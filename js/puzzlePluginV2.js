@@ -304,10 +304,9 @@ class Puzzle extends LocalStorageConfig {
             qrcode,
             animation,
             puzzles_collected,
-            render_count,
             appearing_puzzle_nr,
         } = this.config;
-        if ((render_count % appearing_puzzle_nr) !== 0) return;
+        // if ((render_count % appearing_puzzle_nr) !== 0) return;
         const puzzleSize = 100;
 
         const dash = '-';
