@@ -1,7 +1,9 @@
 const localStoragePropertyName = 'boomioPluginConfig';
 
 /////////// Scripts ////////
-const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV2.js';
+// const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV2.js';
+const puzzleScript = './js/puzzlePluginV2.js';
+
 const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets@main/js/wheelOfFortunePluginV6.js';
 ///////////////////////////
 
@@ -37,7 +39,7 @@ class LocalStorageConfig {
         const app_url = config?.app_url ?? '';
         const custom_text = config?.custom_text ?? '';
         const puzzles_collected = config?.puzzles_collected ?? 0;
-        const appearing_puzzle_nr = config?.appearing_puzzle_nr ?? 0;
+        const appearing_puzzle_nr = config?.appearing_puzzle_nr ?? null;
 
         return {
             success,
@@ -127,6 +129,7 @@ class Boomio {
                 body: JSON.stringify(request_data)
             });
             const content = await rawResponse.json();
+            console.log(content)
             localStorage.setItem(localStoragePropertyName, JSON.stringify(content));
             const scriptUrl = getScriptUrl(content.widget_type);
             createScript(scriptUrl)

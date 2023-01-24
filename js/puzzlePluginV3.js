@@ -211,7 +211,6 @@ class Puzzle extends LocalStorageConfig {
         })
 
 
-
         document.body.appendChild(puzzleWidget);
         if (this.config.puzzles_collected > 0) {
             puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
@@ -304,7 +303,6 @@ class Puzzle extends LocalStorageConfig {
             qrcode,
             animation,
             puzzles_collected,
-            appearing_puzzle_nr,
         } = this.config;
         // if ((render_count % appearing_puzzle_nr) !== 0) return;
         const puzzleSize = 100;
@@ -956,8 +954,6 @@ class Puzzle extends LocalStorageConfig {
             this.addWidgetText()
             this.puzzleWidget.onclick = this.showQR;
             super.updateConfig({ puzzles_collected: 0 })
-        } else {
-            this.startAnimation()
         }
     }
 
@@ -1043,7 +1039,7 @@ class Puzzle extends LocalStorageConfig {
 const inizialization = () => {
     const puzzle = new Puzzle();
 
-    const { success, boomio_closed, puzzles_collected } = puzzle.config;
+    const { success, boomio_closed, puzzles_collected, appearing_puzzle_nr } = puzzle.config;
 
     if (!success || boomio_closed){
         return;
@@ -1051,8 +1047,10 @@ const inizialization = () => {
     puzzle.showPuzzleWidget()
     if (puzzles_collected > 0) {
         puzzle.drawPuzzlesByCollectedCount()
-    } else {
-        puzzle.startAnimation();
+    } else if (appearing_puzzle_nr) {
+        setTimeout(() => {
+            puzzle.startAnimation();
+        },  2 * 60 * 1000)
     }
 };
 
