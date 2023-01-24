@@ -241,7 +241,9 @@ class Puzzle extends LocalStorageConfig {
 
             this.puzzleWidget.appendChild(animationEl);
         }
-        this.startAnimation()
+        setTimeout(() => {
+            this.startAnimation()
+        },  2 * 60 * 1000)
     }
 
     onPuzzleClick = (e) => {
