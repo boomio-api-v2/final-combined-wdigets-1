@@ -8,7 +8,7 @@ const dotImage =
     'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/dot.png?raw=true';
 
 const scripts = [
-    './js/wheelOfFortunePluginV6.js'
+    'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets@main/js/wheelOfFortunePluginV6.js'
 ];
 const url = 'https://api.mars.boomio.com/easter-service/get-qr-code';
 const requestBody = {
