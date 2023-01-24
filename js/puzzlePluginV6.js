@@ -237,6 +237,8 @@ class Puzzle extends LocalStorageConfig {
         document.body.appendChild(puzzleWidget);
         if (this.config.puzzles_collected > 0) {
             puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+        }
+        if (this.config.puzzles_collected > 0) {
             this.addCloseIconToElement(puzzleWidget)
             this.isCloseIconAddedToWidget = true;
             this.addSmallWidgetPreview()
@@ -246,7 +248,6 @@ class Puzzle extends LocalStorageConfig {
     }
 
     drawPuzzlesByCollectedCount = () => {
-        this.addStyles( css);
 
         for (let i = 0; i < this.config.puzzles_collected; i++) {
             const backgroundImage = `url(${puzzleImagesList[i]})`;
