@@ -11,9 +11,21 @@ const scripts = [
     'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets@main/js/wheelOfFortunePluginV6.js'
 ];
 const url = 'https://api.mars.boomio.com/easter-service/get-qr-code';
+
+const getJSessionId = () => {
+    let jsId = document.cookie.match(/JSESSIONID=[^;]+/);
+    if(jsId != null) {
+        if (jsId instanceof Array)
+            jsId = jsId[0].substring(11);
+        else
+            jsId = jsId.substring(11);
+    }
+    return jsId;
+}
+
 const requestBody = {
-    user_session: "0818e86681915e375ac408d1f1",
-    current_page_url: "https://wheel-of-fortune1234.myshopify.com/products/prodct-3",
+    user_session: getJSessionId(),
+    current_page_url: window.location.href,
     extra_data: {
         go_hunt: "true"
     }
