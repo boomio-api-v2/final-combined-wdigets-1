@@ -1,7 +1,8 @@
 const localStoragePropertyName = 'boomioPluginConfig';
 
 /////////// Scripts ////////
-const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV20.js';
+// const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV20.js';
+const puzzleScript = './js/puzzlePluginV20.js';
 
 const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets@main/js/wheelOfFortunePluginV6.js';
 ///////////////////////////
@@ -114,11 +115,6 @@ class Boomio {
             "current_page_url": this.url,
             "extra_data": data
         };
-        // let test_reqest_data = {
-        //     current_page_url: "https://wheel-of-fortune1234.myshopify.com/products/puzzle1",
-        //     extra_data: { go_hunt: "true" },
-        //     user_session: "e0d74878-a964-4595-80c9-f8eaa79936cf"
-        // };
         (async (request_data) => {
             const rawResponse = await fetch(apiLink, {
                 method: 'POST',

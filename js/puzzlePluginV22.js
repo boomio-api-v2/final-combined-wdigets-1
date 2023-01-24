@@ -195,13 +195,44 @@ class Puzzle extends LocalStorageConfig {
 
     showPuzzleWidget = () => {
         this.addStyles(`
+        	.custom-close-icon {
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+            position: absolute;
+            right: -16px;
+            font-size: 13px;
+            top: -16px;
+            color: #000;
+            cursor: pointer;
+            background-color: lightgray;
+            width: 16px;
+            height: 16px;
+            border-radius: 20px;
+            font-size: 10px;
+            opacity: 0.45;
+		}
+			.boomio--animation__wrapper {
+			text-align: center;
+			position: fixed;
+			z-index: 9999;
+			visibility: visible;
+			background-size: cover;
+			opacity: 1;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+		}
            #widgetPreview {
             position: absolute;
             width: 50px;
             height: 50px;
             bottom: -55px;
             cursor: pointer;
-            background-image: url(${frameSvg})
         }
         #puzzle-widget {
             border-radius: 10px;
@@ -210,6 +241,7 @@ class Puzzle extends LocalStorageConfig {
             z-index: 1000;
             left: 20px;
             top: 20px;
+            background-image: url(${frameSvg})
         }
         .boomio--puzzle-widget-text {
             width: 100%;
@@ -864,23 +896,7 @@ class Puzzle extends LocalStorageConfig {
             padding-top: 11px;
             line-height: 21px;
         }
-		.custom-close-icon {
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-            position: absolute;
-            right: -16px;
-            font-size: 13px;
-            top: -16px;
-            color: #000;
-            cursor: pointer;
-            background-color: lightgray;
-            width: 16px;
-            height: 16px;
-            border-radius: 20px;
-            font-size: 10px;
-            opacity: 0.45;
-		}
+	
 		`;
 
         this.addStyles( css);
@@ -1038,7 +1054,8 @@ const inizialization = () => {
 
     if (puzzles_collected > 0) {
         puzzle.drawPuzzlesByCollectedCount()
-    } else if (appearing_puzzle_nr) {
+    }
+    if (appearing_puzzle_nr) {
         setTimeout(() => {
             puzzle.startAnimation();
         },  2 * 60 * 1000)
