@@ -10,26 +10,7 @@ const dotImage =
 const scripts = [
     'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets@main/js/wheelOfFortunePluginV6.js'
 ];
-const url = 'https://api.mars.boomio.com/easter-service/get-qr-code';
-
-const getJSessionId = () => {
-    let jsId = document.cookie.match(/JSESSIONID=[^;]+/);
-    if(jsId != null) {
-        if (jsId instanceof Array)
-            jsId = jsId[0].substring(11);
-        else
-            jsId = jsId.substring(11);
-    }
-    return jsId;
-}
-
-const requestBody = {
-    user_session: getJSessionId(),
-    current_page_url: window.location.href,
-    extra_data: {
-        go_hunt: "true"
-    }
-};
+const apiLink = 'https://api.mars.boomio.com/easter-service/get-qr-code';
 
 class LocalStorageConfig {
     constructor() {
@@ -62,28 +43,112 @@ class LocalStorageConfig {
     };
 };
 
+
 const createScript = (url) => {
     const script = document.createElement('script');
     script.setAttribute('src', url)
     document.head.appendChild(script)
 };
 
-fetch(url, {
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify(requestBody)
-})
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        localStorage.setItem(localStoragePropertyName, JSON.stringify(data));
-        scripts.forEach((script) => {
-            createScript(script);
+class Boomio {
+    constructor() {
+        this.url = window.location.href;
+        this.user_session = this.session();
+        this.send({
+            go_hunt: "true"
         })
-    }).catch(err => {
-        console.log(err)
-    })
+    }
+    session(){
+        let session = this.getCookie('boomio_session');
+        if(!session){
+            session = this.uuidv4();
+            this.setCookie('boomio_session',session,120);
+        }
+        return session;
+    }
+    setCookie(name,value,days) {
+        let expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+    getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for(let i=0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    eraseCookie(name) {
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+    uuidv4() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
+    send(data){
+        let request_data = {
+            "user_session": this.user_session,
+            "current_page_url": this.url,
+            "extra_data": data
+        };
+        (async (request_data) => {
+            const rawResponse = await fetch(apiLink, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(request_data)
+            });
+            const content = await rawResponse.json();
+            localStorage.setItem(localStoragePropertyName, JSON.stringify(content));
+            scripts.forEach((script) => {
+                createScript(script);
+            })
+        })(request_data);
+    }
+}
+
+
+document.onreadystatechange = () => {
+
+    new Boomio()
+
+    // document.body.innerHTML = `<input type="hidden" id="hdnSession" data-value="@Request.RequestContext.HttpContext.Session['someKey']" />`;
+    // let user_session = '@Request.RequestContext.HttpContext.Session["someKey"]';
+    //
+    // fetch(url, {
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //         user_session,
+    //         current_page_url: window.location.href,
+    //         extra_data: {
+    //             go_hunt: "true"
+    //         }
+    //     })
+    // })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log(data)
+    //         localStorage.setItem(localStoragePropertyName, JSON.stringify(data));
+    //         scripts.forEach((script) => {
+    //             createScript(script);
+    //         })
+    //     }).catch(err => {
+    //     console.log(err)
+    // })
+
+
+};
 
