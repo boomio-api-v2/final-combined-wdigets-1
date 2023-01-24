@@ -1,5 +1,10 @@
 const localStoragePropertyName = 'boomioPluginConfig';
 
+/////////// Scripts ////////
+const puzzleScript = './js/puzzlePlugin.js';
+const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets@main/js/wheelOfFortunePluginV6.js';
+///////////////////////////
+
 const appStoreImage =
     'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/appstore.png?raw=true';
 const playStoreImage =
@@ -7,9 +12,6 @@ const playStoreImage =
 const dotImage =
     'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/dot.png?raw=true';
 
-const scripts = [
-    'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets@main/js/wheelOfFortunePluginV6.js'
-];
 const apiLink = 'https://api.mars.boomio.com/easter-service/get-qr-code';
 
 class LocalStorageConfig {
@@ -31,17 +33,32 @@ class LocalStorageConfig {
         const config = this.config;
         const success = config?.success ?? false;
         const animation = config?.ani ?? 0;
-        const qrcode = config?.qrcode ?? '';
+        const qrcode = `${config?.qrcode}` ?? '';
         const app_url = config?.app_url ?? '';
+        const custom_text = config?.custom_text ?? '';
+        const puzzles_collected = config?.puzzles_collected ?? 0;
+        const appearing_puzzle_nr = config?.appearing_puzzle_nr ?? 0;
 
         return {
             success,
             qrcode,
             animation,
-            app_url
+            app_url,
+            custom_text,
+            puzzles_collected,
+            appearing_puzzle_nr,
+            render_count: 0
         };
     };
 };
+
+const getScriptUrl = (widget_type) => {
+    if (widget_type === 'puzzle') {
+        return puzzleScript;
+    } else if (widget_type === 'wheel') {
+        return wheelScript;
+    }
+}
 
 
 const createScript = (url) => {
@@ -106,9 +123,8 @@ class Boomio {
             });
             const content = await rawResponse.json();
             localStorage.setItem(localStoragePropertyName, JSON.stringify(content));
-            scripts.forEach((script) => {
-                createScript(script);
-            })
+            const scriptUrl = getScriptUrl(content.widget_type);
+            createScript(scriptUrl)
         })(request_data);
     }
 }
