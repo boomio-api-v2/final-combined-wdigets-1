@@ -114,11 +114,11 @@ class Boomio {
             "current_page_url": this.url,
             "extra_data": data
         };
-        let test_reqest_data = {
-            current_page_url: "https://wheel-of-fortune1234.myshopify.com/products/puzzle1",
-            extra_data: { go_hunt: "true" },
-            user_session: "e0d74878-a964-4595-80c9-f8eaa79936cf"
-        };
+        // let test_reqest_data = {
+        //     current_page_url: "https://wheel-of-fortune1234.myshopify.com/products/puzzle1",
+        //     extra_data: { go_hunt: "true" },
+        //     user_session: "e0d74878-a964-4595-80c9-f8eaa79936cf"
+        // };
         (async (request_data) => {
             const rawResponse = await fetch(apiLink, {
                 method: 'POST',
@@ -130,9 +130,8 @@ class Boomio {
             const content = await rawResponse.json();
             localStorage.setItem(localStoragePropertyName, JSON.stringify(content));
             const scriptUrl = getScriptUrl(content.widget_type);
-            console.log(scriptUrl)
             createScript(scriptUrl)
-        })(test_reqest_data);
+        })(request_data);
     }
 }
 
