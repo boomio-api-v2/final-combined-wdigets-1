@@ -201,6 +201,7 @@ class Puzzle extends LocalStorageConfig {
             height: 50px;
             bottom: -55px;
             cursor: pointer;
+            background-image: url(${frameSvg})
         }
         #puzzle-widget {
             border-radius: 10px;
@@ -235,9 +236,6 @@ class Puzzle extends LocalStorageConfig {
 
 
         document.body.appendChild(puzzleWidget);
-        if (this.config.puzzles_collected > 0) {
-            puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
-        }
         if (this.config.puzzles_collected > 0) {
             this.addCloseIconToElement(puzzleWidget)
             this.isCloseIconAddedToWidget = true;
@@ -1034,7 +1032,9 @@ const inizialization = () => {
     if (!success || boomio_closed){
         return;
     }
-    puzzle.showPuzzleWidget()
+    if (appearing_puzzle_nr > 1) {
+        puzzle.showPuzzleWidget()
+    }
 
     if (puzzles_collected > 0) {
         puzzle.drawPuzzlesByCollectedCount()
