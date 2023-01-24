@@ -71,5 +71,7 @@ fetch(url, {
         scripts.forEach((script) => {
             createScript(script);
         })
+    }).catch(err => {
+        console.log(err)
     })
 
