@@ -54,9 +54,6 @@ class Boomio {
     constructor() {
         this.url = window.location.href;
         this.user_session = this.session();
-        this.send({
-            go_hunt: "true"
-        })
     }
     session(){
         let session = this.getCookie('boomio_session');
@@ -117,38 +114,8 @@ class Boomio {
 }
 
 
-document.onreadystatechange = () => {
+new Boomio().send({
+    go_hunt: "true"
+});
 
-    new Boomio()
-
-    // document.body.innerHTML = `<input type="hidden" id="hdnSession" data-value="@Request.RequestContext.HttpContext.Session['someKey']" />`;
-    // let user_session = '@Request.RequestContext.HttpContext.Session["someKey"]';
-    //
-    // fetch(url, {
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     },
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //         user_session,
-    //         current_page_url: window.location.href,
-    //         extra_data: {
-    //             go_hunt: "true"
-    //         }
-    //     })
-    // })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         localStorage.setItem(localStoragePropertyName, JSON.stringify(data));
-    //         scripts.forEach((script) => {
-    //             createScript(script);
-    //         })
-    //     }).catch(err => {
-    //     console.log(err)
-    // })
-
-
-};
 
