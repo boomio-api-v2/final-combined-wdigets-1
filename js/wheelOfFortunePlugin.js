@@ -107,7 +107,7 @@ const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 const rand = (m, M) => Math.random() * (M - m) + m;
 
-class WheelOfFortunePluginV26 extends LocalStorageConfig {
+class WheelOfFortunePlugin extends LocalStorageConfig {
     constructor() {
         super();
         this.config = super.getDefaultConfig();
@@ -950,5 +950,5 @@ class WheelOfFortunePluginV26 extends LocalStorageConfig {
 
 }
 
-new WheelOfFortunePluginV26();
+new WheelOfFortunePlugin();
 

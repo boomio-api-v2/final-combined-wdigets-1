@@ -18,26 +18,7 @@ function addStyles(stylesheet, cssRules) {
     }
 }
 
-
-function getQueryString(qs) {
-    var query = qs.split('&');
-    var queryObj = {};
-
-    if (query.length && query[0].charAt(0) === '?') {
-        query[0] = query[0].substring(1);
-    }
-
-    query.forEach(function (item) {
-        const [key, val] = item.split('=');
-        queryObj[key] = val;
-    });
-
-    return queryObj;
-}
-
-
-
-class StartWidgetV2 extends LocalStorageConfig {
+class StartWidget extends LocalStorageConfig {
     constructor() {
         super()
         this.config = super.getDefaultConfig();
@@ -49,8 +30,8 @@ class StartWidgetV2 extends LocalStorageConfig {
         let animationNR = this.config.animation ??  0;
 
 
-        const posx = (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
-        const posy = (Math.random() * (document.documentElement.clientHeight - (QRsize * 1.5))).toFixed();
+        const posx = this.config?.x_position ?? (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
+        const posy = this.config?.y_position ?? (Math.random() * (document.documentElement.clientHeight - (QRsize * 1.5))).toFixed();
 
         const animate = (animation) => (el) => {
             el.classList.add(`boomio--animation--${animation}`);
@@ -94,15 +75,19 @@ class StartWidgetV2 extends LocalStorageConfig {
 	   </div>
 	   <p>Search for your favourite products and be suprised!</p>
 	   <div class="center_text">
-		  <div class="coupon_user_gets_modal_button coupon_button"><span class="coupon_user_gets_modal_button">Let’s go</span></div>
+		  <div id="letGoToBtn"
+		   class="coupon_user_gets_modal_button coupon_button"><span class="coupon_user_gets_modal_button">Let’s go</span></div>
 	   </div>
 	</div>
  </div>`;
         animationEl.classList.remove('boomio--qr');
-        animationEl.addEventListener('click', function _listener(e) {
-            boomio.signal('START_OK')
-        });
+        // animationEl.addEventListener('click', function _listener(e) {
+        //     boomio.signal('START_OK')
+        //     animationEl.remove()
+        // });
+        new DragElement(animationEl)
         document.body.appendChild(animationEl);
+
         document.getElementById("close_div_img").onclick = closeModalDiscount;
         function closeModalDiscount() {
             boomio.signal('START_CLOSE')
@@ -141,10 +126,6 @@ class StartWidgetV2 extends LocalStorageConfig {
 
 		.boomio--animation__wrapper--initial:hover {
 			transform: scale(1.0);
-		}
-
-		.boomio--animation__wrapper--initial:active {
-			transform: scale(1.1);
 		}
 
 		.boomio--animation__wrapper--qr {
@@ -668,8 +649,14 @@ class StartWidgetV2 extends LocalStorageConfig {
         addStyles(style, css);
 
         animFunc(animationEl);
+        const letGoBtn = document.getElementById('letGoToBtn');
+        console.log(letGoBtn)
+        letGoBtn.onclick = () => {
+            boomio.signal('START_OK')
+            animationEl.remove()
+        }
     }
 
 };
 
-new StartWidgetV2();
+new StartWidget();

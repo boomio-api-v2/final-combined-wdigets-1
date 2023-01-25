@@ -1,6 +1,5 @@
 const frameSvg = 'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/frame.png?raw=true';
 
-const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 const puzzlesCoordinateForMobile = [
     { top: '0px', left: '0px', width: '62.84px', height: '83.33px' },

@@ -1,11 +1,14 @@
 const localStoragePropertyName = 'boomioPluginConfig';
 
+const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+
 /////////// Scripts ////////
 const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV27.js';
 
 const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/wheelOfFortunePluginV26.js';
 
-const startWidgetScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/startWidgetV2.js';
+const startWidgetScript = './js/startWidget.js';
 ///////////////////////////
 
 const appStoreImage =
