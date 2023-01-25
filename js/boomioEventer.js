@@ -4,6 +4,8 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 
 
 /////////// Scripts ////////
+const imageWidgetScript = './js/imagePlugin.js';
+
 const puzzleScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js';
@@ -210,6 +212,8 @@ class Boomio extends LocalStorageConfig {
             return wheelScript;
         } else if (widget_type === 'start_widget') {
             return startWidgetScript;
+        } else if (widget_type === 'image') {
+            return imageWidgetScript;
         }
     };
 
