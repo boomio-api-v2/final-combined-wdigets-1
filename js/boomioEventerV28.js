@@ -4,6 +4,8 @@ const localStoragePropertyName = 'boomioPluginConfig';
 const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV27.js';
 
 const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/wheelOfFortunePluginV26.js';
+
+const startWidgetScript = './js/startWidget.js';
 ///////////////////////////
 
 const appStoreImage =
@@ -202,6 +204,8 @@ class Boomio extends LocalStorageConfig {
             return puzzleScript;
         } else if (widget_type === 'wheel') {
             return wheelScript;
+        } else if (widget_type === 'start_widget') {
+            return startWidgetScript;
         }
     };
 
