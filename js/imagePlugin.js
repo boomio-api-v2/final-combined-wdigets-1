@@ -1,89 +1,84 @@
 ////constants
 // const localStoragePropertyName = 'boomioPluginConfig';
 
-const defaultSuccessStatus = true;
-
-const defaultAnimation = 0;
-
-const defaultQrCode = '3877216F19FE4DD59E0C08C3BA569A0F';
-
-const defaultAppUrl = 'https://www.boomio.com/?coupon_id=3877216F19FE4DD59E0C08C3BA569A0F';
-
-const defaultGifImage =
-    'https://github.com/boomio-api-v2/easter-egg-styles/blob/16df9945f669319808bd93be1df1de3924234e46/img/5.gif?raw=true';
-
-const appStoreImage =
-    'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/appstore.png?raw=true';
-const playStoreImage =
-    'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/playstore.png?raw=true';
-const dotImage =
-    'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/dot.png?raw=true';
-//////////////////
-
-let db;
-
 const style = document.createElement('style');
 style.setAttribute('id', 'boomio--stylesheet');
 document.getElementsByTagName('head')[0].appendChild(style);
 
-const addStyles = (stylesheet, cssRules) => {
-    if (stylesheet.styleSheet) {
-        stylesheet.styleSheet.cssText = cssRules;
-    } else {
-        stylesheet.appendChild(document.createTextNode(cssRules));
+
+class ImagePlugin extends LocalStorageConfig{
+    constructor() {
+     super();
+        this.config = super.getDefaultConfig();
+        this.startAnimation()
     }
-};
-
-const startAnimation = ({ success, qrCode, img, animationNR, appUrl }) => {
-    if (!success) return;
-    const divsize = (200).toFixed();
-    const QRsize = (300).toFixed();
-
-    const dash = '-';
-    const pos = qrCode.indexOf(dash);
-    if (pos != -1) {
-        qrCode = qrCode.substring(0, pos);
-    }
-
-    const posx = (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
-    const posy = (Math.random() * (document.documentElement.clientHeight - QRsize * 1.5)).toFixed();
-
-    const animate = (animation) => (el) => {
-        el.classList.add(`boomio--animation--${animation}`);
-    };
-    const animArr = [
-        animate('moveRight'),
-        animate('moveLeft'),
-        animate('moveDown'),
-        animate('moveUp'),
-        animate('fadeIn'),
-        animate('moveDiagonalDown'),
-        animate('rotateRight'),
-        animate('zoomIn'),
-        animate('skewLeft'),
-        animate('moveDiagonalUp'),
-        animate('tada'),
-        animate('lightSpeedInLeft'),
-        animate('rollIn'),
-    ];
-
-    const animFunc = animArr[animationNR];
-    const animationEl = document.createElement('div');
-    animationEl.setAttribute('id', 'boomio--animation');
-    animationEl.classList.add('boomio--animation__wrapper');
-    animationEl.classList.add('boomio--animation__wrapper--initial');
-    animationEl.classList.remove('boomio--qr');
-    animationEl.addEventListener('click', function _listener(e) {
-        const elementRemove = document.getElementById('boomio--qr');
-        if (elementRemove != null) {
-            elementRemove.remove();
+    addStyles = (stylesheet, cssRules) => {
+        if (stylesheet.styleSheet) {
+            stylesheet.styleSheet.cssText = cssRules;
+        } else {
+            stylesheet.appendChild(document.createTextNode(cssRules));
         }
-        e.stopPropagation();
-        animationEl.classList.remove('boomio--animation__wrapper--initial');
-        animationEl.classList.add('boomio--animation__wrapper--qr');
-        const qrEl = document.createElement('div');
-        qrEl.setAttribute('id', 'boomio--qr');
-        qrEl.innerHTML = `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
+    };
+
+    startAnimation = () => {
+        const {
+            success,
+            qrcode,
+            animation: animationNR,
+            app_url,
+            img,
+            x_position,
+            y_position
+        } = this.config;
+        if (!success) return;
+        const divsize = (200).toFixed();
+        const QRsize = (300).toFixed();
+
+        const dash = '-';
+        const pos = qrcode.indexOf(dash);
+        if (pos != -1) {
+            this.config.qrcode = qrcode.substring(0, pos);
+        }
+
+        const posx = x_position ?? (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
+        const posy = y_position ?? (Math.random() * (document.documentElement.clientHeight - QRsize * 1.5)).toFixed();
+
+        const animate = (animation) => (el) => {
+            el.classList.add(`boomio--animation--${animation}`);
+        };
+        const animArr = [
+            animate('moveRight'),
+            animate('moveLeft'),
+            animate('moveDown'),
+            animate('moveUp'),
+            animate('fadeIn'),
+            animate('moveDiagonalDown'),
+            animate('rotateRight'),
+            animate('zoomIn'),
+            animate('skewLeft'),
+            animate('moveDiagonalUp'),
+            animate('tada'),
+            animate('lightSpeedInLeft'),
+            animate('rollIn'),
+        ];
+
+        const animFunc = animArr[animationNR ?? 0];
+        const animationEl = document.createElement('div');
+        animationEl.setAttribute('id', 'boomio--animation');
+        animationEl.classList.add('boomio--animation__wrapper');
+        animationEl.classList.add('boomio--animation__wrapper--initial');
+        animationEl.classList.remove('boomio--qr');
+        animationEl.addEventListener('click', function _listener(e) {
+            const elementRemove = document.getElementById('boomio--qr');
+            if (elementRemove != null) {
+                elementRemove.remove();
+            }
+            e.stopPropagation();
+            animationEl.classList.remove('boomio--animation__wrapper--initial');
+            animationEl.classList.add('boomio--animation__wrapper--qr');
+            const qrEl = document.createElement('div');
+            qrEl.setAttribute('id', 'boomio--qr');
+            qrEl.innerHTML = `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
 		<span class='close' id='close'>&#x2715; </span>
 		<div class="coupon__preview__body coupon_discount_modal">
 		
@@ -99,7 +94,7 @@ const startAnimation = ({ success, qrCode, img, animationNR, appUrl }) => {
 					<div class="coupon_info">
 						<h3>20 %</h3>
 						<h3>Discount</h3>
-						<p>Unique code: <span id="qrcode">${qrCode}</span> </p>
+						<p>Unique code: <span id="qrcode">${qrcode}</span> </p>
 					</div>
 					<div class="coupon__preview__card__after"></div>
 					<div class="coupon__preview__card__befor"></div>
@@ -107,7 +102,7 @@ const startAnimation = ({ success, qrCode, img, animationNR, appUrl }) => {
 			</div>
 			<div class="coupon_preview_card_footer">
 				<p>To have immpediate access for all your great rewards <b> open of download</b></p>
-				<a href=${appUrl}>
+				<a href=${app_url}>
 				<div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
 					<img src="${dotImage}" alt="img not find">
 					<div class="d-flex flex-column btn-text-group ml-2"><small class="small-font">Open</small>
@@ -119,7 +114,7 @@ const startAnimation = ({ success, qrCode, img, animationNR, appUrl }) => {
 				<div class="d-flex pt-2">
 					<div class="appstore-img "><a href=""><img src="${appStoreImage}"
 								alt="App Store"></a></div>
-					<div class="playstore-img"><a href=${appUrl}"><img src="${playStoreImage}"
+					<div class="playstore-img"><a href=${app_url}"><img src="${playStoreImage}"
 								alt="Play Store"></a></div>
 				</div>
 				<div>
@@ -129,52 +124,53 @@ const startAnimation = ({ success, qrCode, img, animationNR, appUrl }) => {
 		</div>
 	</div>`;
 
-        animationEl.append(qrEl);
-        new QRCode('qrcodeShowHtml', {
-            text: qrCode,
-            width: 250,
-            height: 250,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H,
+            animationEl.append(qrEl);
+            new QRCode('qrcodeShowHtml', {
+                text: qrcode,
+                width: 250,
+                height: 250,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H,
+            });
+
+            function showQR(e) {
+                document.getElementById('qrcodeShow').style.display = 'block';
+                document.getElementById('coupon_div').style.display = 'none';
+                e.stopPropagation();
+            }
+            function showCoupon(e) {
+                document.getElementById('qrcodeShow').style.display = 'none';
+                document.getElementById('coupon_div').style.display = 'block';
+                e.stopPropagation();
+            }
+            function closeDiscount(e) {
+                const elementRemove = document.getElementById('boomio--qr');
+                elementRemove.remove();
+                e.stopPropagation();
+            }
+            document.getElementById('coupon_div').onclick = showQR;
+            document.getElementById('qrcodeShow').onclick = showCoupon;
+            document.getElementById('close').onclick = closeDiscount;
+
+            // animationEl.removeEventListener('click', _listener);
         });
+        new DragElement(animationEl)
+        document.body.appendChild(animationEl);
 
-        function showQR(e) {
-            document.getElementById('qrcodeShow').style.display = 'block';
-            document.getElementById('coupon_div').style.display = 'none';
-            e.stopPropagation();
-        }
-        function showCoupon(e) {
-            document.getElementById('qrcodeShow').style.display = 'none';
-            document.getElementById('coupon_div').style.display = 'block';
-            e.stopPropagation();
-        }
-        function closeDiscount(e) {
-            const elementRemove = document.getElementById('boomio--qr');
-            elementRemove.remove();
-            e.stopPropagation();
-        }
-        document.getElementById('coupon_div').onclick = showQR;
-        document.getElementById('qrcodeShow').onclick = showCoupon;
-        document.getElementById('close').onclick = closeDiscount;
+        const systemFont =
+            'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
+        const duration = '1000ms';
+        const easingBack = 'cubic-bezier(0.18, 0.89, 0.32, 1.28)';
+        const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
-        // animationEl.removeEventListener('click', _listener);
-    });
-    document.body.appendChild(animationEl);
-
-    const systemFont =
-        'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
-    const duration = '1000ms';
-    const easingBack = 'cubic-bezier(0.18, 0.89, 0.32, 1.28)';
-    const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
-
-    const initialPosition = {
-        x: animationEl.clientWidth + parseInt(posy),
-        nx: -1 * (animationEl.clientWidth + parseInt(posy)),
-        y: animationEl.clientHeight + parseInt(posx),
-        ny: -1 * (animationEl.clientHeight + parseInt(posx)),
-    };
-    const css = `
+        const initialPosition = {
+            x: animationEl.clientWidth + parseInt(posy),
+            nx: -1 * (animationEl.clientWidth + parseInt(posy)),
+            y: animationEl.clientHeight + parseInt(posx),
+            ny: -1 * (animationEl.clientHeight + parseInt(posx)),
+        };
+        const css = `
 		.boomio--animation__wrapper {
 			text-align: center;
 			position: absolute;
@@ -650,26 +646,13 @@ const startAnimation = ({ success, qrCode, img, animationNR, appUrl }) => {
 			cursor: pointer;
 		}`;
 
-    addStyles(style, css);
+        this.addStyles(style, css);
 
-    animFunc(animationEl);
-};
+        animFunc(animationEl);
+    };
 
-const getConfigFormLocalStorage = () => {
-    const config = localStorage.getItem(localStoragePropertyName);
-    const configToObj = JSON.parse(config);
-
-    const qrCode = configToObj?.qrCode ?? defaultQrCode;
-    const img = configToObj?.img ?? defaultGifImage;
-    const animationNR = configToObj?.animation ?? defaultAnimation;
-    const appUrl = configToObj?.appUrl ?? defaultAppUrl;
-    const success = configToObj?.success ?? defaultSuccessStatus;
-
-    return { success, img, qrCode, animationNR, appUrl };
-};
-
-document.onreadystatechange = () => {
-    if (document.readyState !== 'complete') return;
-    const config = getConfigFormLocalStorage();
-    startAnimation(config);
-};
+}
+// document.onreadystatechange = () => {
+//     if (document.readyState !== 'complete') return;
+    new ImagePlugin();
+// };

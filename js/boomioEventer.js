@@ -4,6 +4,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 
 
 /////////// Scripts ////////
+// const imageWidgetScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/imagePlugin.js';
 const imageWidgetScript = './js/imagePlugin.js';
 
 const puzzleScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/puzzlePlugin.js';
@@ -54,6 +55,7 @@ class LocalStorageConfig {
         const appearing_puzzle_nr = config?.appearing_puzzle_nr ?? null;
         const x_position = config?.x_position ?? null;
         const y_position = config?.y_position ?? null;
+        const img = config?.img ?? null;
 
         return {
             success,
@@ -64,7 +66,8 @@ class LocalStorageConfig {
             puzzles_collected,
             appearing_puzzle_nr,
             x_position,
-            y_position
+            y_position,
+            img
         };
     };
 };
@@ -219,9 +222,10 @@ class Boomio extends LocalStorageConfig {
 
     async setInitialConfiguration() {
         const content = await this.send({ go_hunt: "true"});
+        console.log(content)
         super.setConfigFromApi(content);
         createScript(qrCodeScript);
-        const scriptUrl = this.getScriptUrl(content.widget_type);
+        const scriptUrl = this.getScriptUrl(content.widget_type)
         createScript(scriptUrl)
     }
 
@@ -232,13 +236,19 @@ class Boomio extends LocalStorageConfig {
             "extra_data": data
         };
 
+        let test = {
+            current_page_url: "https://wheel-of-fortune1234.myshopify.com/products/my_image",
+        extra_data: data,
+        user_session: "6851ef2f-f6c7-49e8-b78b-9d08a4005275"
+        }
+
         return new Promise(async (resolve) => {
             const rawResponse = await  fetch(newLinkBoomio, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(request_data)
+                body: JSON.stringify(test)
             });
             resolve(rawResponse.json())
         })
