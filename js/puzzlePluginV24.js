@@ -1053,9 +1053,7 @@ const inizialization = () => {
     }
 
     if (appearing_puzzle_nr) {
-        setTimeout(() => {
-            puzzle.startAnimation();
-        },  2 * 60 * 1000)
+        puzzle.startAnimation();
     }
 };
 
