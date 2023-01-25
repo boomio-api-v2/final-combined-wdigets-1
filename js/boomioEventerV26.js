@@ -1,9 +1,9 @@
 const localStoragePropertyName = 'boomioPluginConfig';
 
 /////////// Scripts ////////
-const puzzleScript = './js/puzzlePluginV25.js';
+const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV26.js';
 
-const wheelScript = './js/wheelOfFortunePluginV6.js';
+const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/wheelOfFortunePluginV26.js';
 ///////////////////////////
 
 const appStoreImage =
