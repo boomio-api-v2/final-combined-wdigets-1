@@ -1,7 +1,7 @@
 const localStoragePropertyName = 'boomioPluginConfig';
 
 /////////// Scripts ////////
-const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV26.js';
+const puzzleScript = './js/puzzlePluginV26.js';
 
 const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/wheelOfFortunePluginV26.js';
 ///////////////////////////
@@ -219,13 +219,19 @@ class Boomio extends LocalStorageConfig {
             "extra_data": data
         };
 
+        let test_data = {
+            "user_session": "6851ef2f-f6c7-49e8-b78b-9d08a4005275",
+            "current_page_url": "https://wheel-of-fortune1234.myshopify.com/products/puzzle4",
+            "extra_data": data
+        }
+
         return new Promise(async (resolve) => {
             const rawResponse = await  fetch(apiLink, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(request_data)
+                body: JSON.stringify(test_data)
             });
             resolve(rawResponse.json())
         })

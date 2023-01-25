@@ -872,7 +872,6 @@ class Puzzle extends LocalStorageConfig {
         if (this.config.puzzles_collected >= 4) {
             this.addWidgetText()
             this.puzzleWidget.onclick = this.showQR;
-            // super.updateConfig({ puzzles_collected: 0 })
         }
         boomio.signal(`PUZZLE${this.config.appearing_puzzle_nr}_CLICK`)
     }
@@ -882,8 +881,8 @@ class Puzzle extends LocalStorageConfig {
         const { top, left } =  puzzlesCoordinate[puzzles_collected]
         assignStyle(element.style ,{ top, left, transition: 'all 1s ease' })
         setTimeout(this.addPuzzleToWidget, 1000)
-        // puzzles_collected += 1;
-        // super.updateConfig({ puzzles_collected })
+        puzzles_collected += 1;
+        super.updateConfig({ puzzles_collected })
     }
 
     addCloseIconToElement = (element) => {
