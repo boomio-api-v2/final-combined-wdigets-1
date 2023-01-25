@@ -1,6 +1,4 @@
 ////constants
-// const localStoragePropertyName = 'boomioPluginConfig';
-
 
 const frameSvg = 'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/frame.png?raw=true';
 
@@ -31,6 +29,271 @@ const puzzleImagesList = [
 const puzzleWidgetSize = isMobileDevice ? 135 : 185;
 
 let isPuzzleWidgetDisplayed = false;
+
+const mainCss = `
+[draggable=true] {
+    cursor: move;
+}
+
+.boomie-preview-mobile {
+    width: 100px;
+}
+#boomio--qr {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+}
+.custom-close-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: -16px;
+    font-size: 13px;
+    top: -16px;
+    color: #000;
+    cursor: pointer;
+    background-color: lightgray;
+    width: 16px;
+    height: 16px;
+    border-radius: 20px;
+    font-size: 10px;
+    opacity: 0.45;
+}
+.boomio--animation__wrapper:empty {
+    display: block !important;
+}
+.boomio--animation__wrapper {
+    text-align: center;
+    position: fixed;
+    z-index: 9999;
+    visibility: visible;
+    background-size: cover;
+    opacity: 1;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#widgetPreview {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: -55px;
+    cursor: pointer;
+}
+#puzzle-widget {
+    border-radius: 10px;
+    background-size: contain;
+    position: fixed;
+    z-index: 1000;
+    left: 20px;
+    top: 20px;
+}
+.boomio--puzzle-widget-text {
+    width: 100%;
+    z-index: 100000;
+    position: absolute;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    top: 50px;
+    font-size: ${isMobileDevice ? 20 : 36}px;
+    text-align: center;
+}
+.coupon_discount_modal .coupon_info h3 {
+    background: -webkit-linear-gradient(#FF3183, #8559F3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.coupon_discount_modal .coupon_info p {
+    padding: 0;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+.coupon_discount_modal .coupon_preview_card_footer {
+    margin-top: 0px;
+}
+.coupon_discount_modal .coupon_preview_card_footer a {
+    color:black
+}
+
+.coupon_discount_modal .coupon_preview_card_footer p {
+    font-size: 14px;
+}
+
+.coupon_preview_card_footer .btn-content {
+    width: 100%;
+    border: none;
+    padding: 1px;
+    height: 47px;
+    border: double 2px transparent;
+    border-radius: 24px;
+    background-image: linear-gradient(#e8dff7, #fee0e7), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.coupon_preview_card_footer .btn-content img {
+    width: 30px;
+}
+
+.coupon_preview_card_footer .btn-content .small-font {
+    font-weight: 500;
+    font-size: 14px;
+    text-align: left;
+}
+
+.coupon_preview_card_footer .appstore-img img,
+.coupon_preview_card_footer .playstore-img img {
+    width: 150px;
+}
+.coupon_preview_card_footer .btn-text-group {
+    line-height: 14px;
+    font-size: 14px;
+}
+.coupon_preview_card_footer .btn-content {
+    cursor: pointer;
+}
+.footer-dec {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-top: 11px;
+    line-height: 21px;
+}
+.coupon_discount_modal .coupon_preview_card_info {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.coupon_discount_modal .coupon__preview__card {
+    box-shadow: 10px 11px 5px -5px rgb(195 195 195 / 35%);
+}
+
+.coupon__preview__card {
+    position: relative;
+    width: 100%;
+    height: 282px;
+    border: double 2px transparent;
+    border-radius: 24px;
+    background-image: linear-gradient(#FBFAFC, #FBFAFC), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.coupon__preview__card::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -18px;
+    /* background-color: #fff; */
+    width: 32px;
+    height: 37.6px;
+    transform: translate(0%, -50%);
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#fff, #fff), linear-gradient(228.29deg, #FD5A97 10.56%, #FB6E80 86.04%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.coupon__preview__card__after {
+    position: absolute;
+    content: "";
+    width: 19px;
+    top: 50%;
+    left: 0px;
+    height: 50px;
+    background-color: #fff;
+    transform: translate(-111%, -50%);
+}
+
+.coupon__preview__card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -18px;
+    background-color: #fff;
+    width: 32px;
+    height: 37.6px;
+    transform: translate(0%, -50%);
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#fff, #fff), linear-gradient(180deg, #5CB1E0 0%, #7E85E9 100%);
+    background-clip: content-box, border-box;
+}
+
+.coupon__preview__card__befor {
+    position: absolute;
+    content: "";
+    width: 19px;
+    top: 50%;
+    right: 0px;
+    height: 50px;
+    z-index: 1;
+    background-color: #fff;
+    transform: translate(111%, -50%);
+}
+
+.coupon_discount_modal .coupon__preview__card__header {
+    padding: 0;
+    text-align: center;
+}
+
+.coupon_discount_modal .coupon__preview__card__header h1 {
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.coupon_discount_modal .coupon__preview__card {
+    height: auto;
+}
+
+.coupon_discount_modal .coupon_info {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coupon_discount_modal .coupon_preview_card_info {
+    cursor: pointer;
+}
+
+
+
+.coupon_discount_modal .coupon__preview__card {
+    box-shadow: 10px 11px 5px -5px rgba(195, 195, 195, 0.35);
+}
+
+.coupon_discount_modal .coupon_info h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.coupon_discount_modal .coupon_info h3:first-child {
+    font-size: 40px;
+    background: -webkit-linear-gradient(#FF3183, #8559F3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    line-height: 37px;
+}
+
+`;
 
 /////////////
 
@@ -134,6 +397,7 @@ class Puzzle extends LocalStorageConfig {
         this.config = super.getDefaultConfig();
         this.isCloseIconAddedToWidget = false;
         this.addedrender_count();
+        this.addStyles(mainCss)
     }
     addedrender_count = () => {
         super.updateConfig({ render_count: this.config.render_count + 1 })
@@ -193,71 +457,11 @@ class Puzzle extends LocalStorageConfig {
 
     }
 
+    addImageTPuzzleWidget = () => {
+        this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`
+    }
+
     showPuzzleWidget = () => {
-        this.addStyles(`
-            .boomio--animation__wrapper:empty {
-                display: block !important;
-            }
-        	.custom-close-icon {
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-            position: absolute;
-            right: -16px;
-            font-size: 13px;
-            top: -16px;
-            color: #000;
-            cursor: pointer;
-            background-color: lightgray;
-            width: 16px;
-            height: 16px;
-            border-radius: 20px;
-            font-size: 10px;
-            opacity: 0.45;
-		}
-			.boomio--animation__wrapper {
-			text-align: center;
-			position: fixed;
-			z-index: 9999;
-			visibility: visible;
-			background-size: cover;
-			opacity: 1;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-		}
-           #widgetPreview {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            bottom: -55px;
-            cursor: pointer;
-        }
-        #puzzle-widget {
-            border-radius: 10px;
-            background-size: contain;
-            position: fixed;
-            z-index: 1000;
-            left: 20px;
-            top: 20px;
-            background-image: url(${frameSvg})
-        }
-        .boomio--puzzle-widget-text {
-            width: 100%;
-            z-index: 100000;
-            position: absolute;
-            cursor: pointer;
-            color: white;
-            font-weight: bold;
-            top: 50px;
-            font-size: ${isMobileDevice ? 20 : 36}px;
-            text-align: center;
-        }
-        `)
         const puzzleWidget = document.createElement('div');
         const widgetSmallPreview = document.createElement('div');
         puzzleWidget.setAttribute('id', 'puzzle-widget');
@@ -301,6 +505,12 @@ class Puzzle extends LocalStorageConfig {
     }
 
     onPuzzleClick = (e) => {
+        if (!this.puzzleWidget) {
+            this.showPuzzleWidget()
+            setTimeout(() => {
+                this.addImageTPuzzleWidget()
+            }, 1000)
+        }
         const puzzle = e.target;
         puzzle.childNodes[0].remove()
         const { offsetTop , offsetLeft } = puzzle;
@@ -403,19 +613,7 @@ class Puzzle extends LocalStorageConfig {
             ny: -1 * (animationEl.clientHeight + parseInt(posx)),
         };
         const css = `
-        [draggable=true] {
-            cursor: move;
-        }
-     
-        .boomie-preview-mobile {
-            width: 100px;
-        }
-        #boomio--qr {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            z-index: 1000;
-        }
+
 		.boomio--animation__wrapper {
 			text-align: center;
 			position: fixed;
@@ -703,195 +901,7 @@ class Puzzle extends LocalStorageConfig {
             padding: 0;
         }
 
-        .coupon_discount_modal .coupon_preview_card_info {
-            display: flex;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .coupon_discount_modal .coupon__preview__card {
-            box-shadow: 10px 11px 5px -5px rgb(195 195 195 / 35%);
-        }
-
-        .coupon__preview__card {
-            position: relative;
-            width: 100%;
-            height: 282px;
-            border: double 2px transparent;
-            border-radius: 24px;
-            background-image: linear-gradient(#FBFAFC, #FBFAFC), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-        }
-
-        .coupon__preview__card::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: -18px;
-            /* background-color: #fff; */
-            width: 32px;
-            height: 37.6px;
-            transform: translate(0%, -50%);
-            border-radius: 50%;
-            border: 2px solid transparent;
-            background-image: linear-gradient(#fff, #fff), linear-gradient(228.29deg, #FD5A97 10.56%, #FB6E80 86.04%);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-        }
-
-        .coupon__preview__card__after {
-            position: absolute;
-            content: "";
-            width: 19px;
-            top: 50%;
-            left: 0px;
-            height: 50px;
-            background-color: #fff;
-            transform: translate(-111%, -50%);
-        }
-
-        .coupon__preview__card::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: -18px;
-            background-color: #fff;
-            width: 32px;
-            height: 37.6px;
-            transform: translate(0%, -50%);
-            border-radius: 50%;
-            border: 2px solid transparent;
-            background-image: linear-gradient(#fff, #fff), linear-gradient(180deg, #5CB1E0 0%, #7E85E9 100%);
-            background-clip: content-box, border-box;
-        }
-
-        .coupon__preview__card__befor {
-            position: absolute;
-            content: "";
-            width: 19px;
-            top: 50%;
-            right: 0px;
-            height: 50px;
-            z-index: 1;
-            background-color: #fff;
-            transform: translate(111%, -50%);
-        }
-
-        .coupon_discount_modal .coupon__preview__card__header {
-            padding: 0;
-            text-align: center;
-        }
-
-        .coupon_discount_modal .coupon__preview__card__header h1 {
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-
-        .coupon_discount_modal .coupon__preview__card {
-            height: auto;
-        }
-
-        .coupon_discount_modal .coupon_info {
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .coupon_discount_modal .coupon_preview_card_info {
-            cursor: pointer;
-        }
-
-      
-
-        .coupon_discount_modal .coupon__preview__card {
-            box-shadow: 10px 11px 5px -5px rgba(195, 195, 195, 0.35);
-        }
-
-        .coupon_discount_modal .coupon_info h3 {
-            margin: 0;
-            padding: 0;
-        }
-
-        .coupon_discount_modal .coupon_info h3:first-child {
-            font-size: 40px;
-            background: -webkit-linear-gradient(#FF3183, #8559F3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-            line-height: 37px;
-        }
-
-        .coupon_discount_modal .coupon_info h3 {
-            background: -webkit-linear-gradient(#FF3183, #8559F3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            font-weight: 900;
-            font-size: 30px;
-        }
-
-        .coupon_discount_modal .coupon_info p {
-            padding: 0;
-            font-size: 13px;
-            font-weight: 600;
-            margin: 0;
-        }
-
-
-        .coupon_discount_modal .coupon_preview_card_footer {
-            margin-top: 0px;
-        }
-		.coupon_discount_modal .coupon_preview_card_footer a {
-            color:black
-        }
-
-        .coupon_discount_modal .coupon_preview_card_footer p {
-            font-size: 14px;
-        }
-
-        .coupon_preview_card_footer .btn-content {
-            width: 100%;
-            border: none;
-            padding: 1px;
-            height: 47px;
-            border: double 2px transparent;
-            border-radius: 24px;
-            background-image: linear-gradient(#e8dff7, #fee0e7), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-        }
-
-        .coupon_preview_card_footer .btn-content img {
-            width: 30px;
-        }
-
-        .coupon_preview_card_footer .btn-content .small-font {
-            font-weight: 500;
-            font-size: 14px;
-			text-align: left;
-        }
-
-        .coupon_preview_card_footer .appstore-img img,
-        .coupon_preview_card_footer .playstore-img img {
-            width: 150px;
-        }
-        .coupon_preview_card_footer .btn-text-group {
-            line-height: 14px;
-            font-size: 14px;
-        }
-        .coupon_preview_card_footer .btn-content {
-            cursor: pointer;
-        }
-        .footer-dec {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            padding-top: 11px;
-            line-height: 21px;
-        }
-	
+     
 		`;
 
         this.addStyles( css);
@@ -1046,6 +1056,7 @@ const inizialization = () => {
 
     if (appearing_puzzle_nr > 1) {
         puzzle.showPuzzleWidget()
+        puzzle.addImageTPuzzleWidget()
     }
 
     if (puzzles_collected > 0) {
