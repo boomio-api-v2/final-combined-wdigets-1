@@ -4,8 +4,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 
 
 /////////// Scripts ////////
-// const imageWidgetScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/imagePlugin.js';
-const imageWidgetScript = './js/imagePlugin.js';
+const imageWidgetScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/imagePlugin.js';
 
 const puzzleScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/puzzlePlugin.js';
 
@@ -236,19 +235,13 @@ class Boomio extends LocalStorageConfig {
             "extra_data": data
         };
 
-        let test = {
-            current_page_url: "https://wheel-of-fortune1234.myshopify.com/products/my_image",
-        extra_data: data,
-        user_session: "6851ef2f-f6c7-49e8-b78b-9d08a4005275"
-        }
-
         return new Promise(async (resolve) => {
             const rawResponse = await  fetch(newLinkBoomio, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(test)
+                body: JSON.stringify(request_data)
             });
             resolve(rawResponse.json())
         })

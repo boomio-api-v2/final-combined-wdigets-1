@@ -28,7 +28,8 @@ class ImagePlugin extends LocalStorageConfig{
             app_url,
             img,
             x_position,
-            y_position
+            y_position,
+            custom_text
         } = this.config;
         if (!success) return;
         const divsize = (200).toFixed();
@@ -68,7 +69,18 @@ class ImagePlugin extends LocalStorageConfig{
         animationEl.classList.add('boomio--animation__wrapper');
         animationEl.classList.add('boomio--animation__wrapper--initial');
         animationEl.classList.remove('boomio--qr');
+        const image = document.createElement('img');
+        image.style.width =  `${divsize}px`;
+        image.src = img;
+        const text = document.createElement('div');
+        text.innerText = custom_text;
+        text.style.marginTop = '-30px';
+        animationEl.appendChild(image)
+        animationEl.appendChild(text)
+
         animationEl.addEventListener('click', function _listener(e) {
+            e.target.remove()
+            text.remove()
             const elementRemove = document.getElementById('boomio--qr');
             if (elementRemove != null) {
                 elementRemove.remove();
@@ -185,7 +197,6 @@ class ImagePlugin extends LocalStorageConfig{
 		}
 		.boomio--animation__wrapper--initial {
 			width: ${divsize}px;
-			content: url(${img});
 			cursor: pointer;
 			transition: transform 300ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
 			animation-duration: ${duration};
