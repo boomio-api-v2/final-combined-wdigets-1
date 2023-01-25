@@ -1,5 +1,3 @@
-////constants
-
 const frameSvg = 'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/frame.png?raw=true';
 
 const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -303,92 +301,6 @@ const assignStyle = (style, properties) => {
     Object.assign(style, properties);
 }
 
-/////// Drag Element /////////
-
-class DragElement {
-    constructor(elmnt) {
-        this.elmnt = elmnt;
-        this.pos1 = 0;
-        this.pos2 = 0;
-        this.pos3 = 0;
-        this.pos4 = 0;
-
-        if (isMobileDevice) {
-            this.addMobileListener()
-            return;
-        }
-
-        if (document.getElementById(elmnt.id + "header")) {
-            // if present, the header is where you move the DIV from:
-            document.getElementById(elmnt.id + "header").onmousedown = this.dragMouseDown;
-        } else {
-            // otherwise, move the DIV from anywhere inside the DIV:
-            elmnt.onmousedown = this.dragMouseDown;
-
-        }
-    }
-    addMobileListener() {
-        let mobileX = 0;
-        let mobileY = 0;
-        this.elmnt.addEventListener('touchmove', (e) =>  {
-            e.preventDefault()
-            const { clientX, clientY } = e.touches[0];
-            const isBlocking = this.checkIsMoveBlocking(clientX, clientY);
-            if (isBlocking) return;
-            this.elmnt.style.left = (clientX - mobileX) + 'px';
-            this.elmnt.style.top = (clientY - mobileY) + 'px';
-        })
-        this.elmnt.addEventListener('touchstart', (e) => {
-            const { clientX, clientY } = e.touches[0]
-            const { left, top } = e.target.getBoundingClientRect();
-            mobileX = clientX - left - 10;
-            mobileY = clientY - top - 10;
-        })
-
-    }
-
-    closeDragElement = () => {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-
-    checkIsMoveBlocking(x, y) {
-        if (x <= 0 || y <= 0) return true;
-        return false;
-    }
-
-    elementDrag = (e) => {
-        e = e || window.event;
-        e.preventDefault();
-        this.pos1 = this.pos3 - e.clientX;
-        this.pos2 = this.pos4 - e.clientY;
-        this.pos3 = e.clientX;
-        this.pos4 = e.clientY;
-
-        const xPosition = this.elmnt.offsetLeft - this.pos1;
-        const yPosition = this.elmnt.offsetTop - this.pos2;
-
-        const isBlocking = this.checkIsMoveBlocking(xPosition, yPosition);
-        if (isBlocking) return;
-
-        this.elmnt.style.top = yPosition + "px";
-        this.elmnt.style.left = xPosition + "px";
-    }
-
-
-     dragMouseDown = (e) => {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        this.pos3 = e.clientX;
-        this.pos4 = e.clientY;
-        document.onmouseup = this.closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = this.elementDrag;
-    }
-
-}
-
 ////////Puzzle Class ////////////
 class Puzzle extends LocalStorageConfig {
     constructor() {
@@ -396,11 +308,7 @@ class Puzzle extends LocalStorageConfig {
         this.isPrewiewDisplayed = false;
         this.config = super.getDefaultConfig();
         this.isCloseIconAddedToWidget = false;
-        this.addedrender_count();
         this.addStyles(mainCss)
-    }
-    addedrender_count = () => {
-        super.updateConfig({ render_count: this.config.render_count + 1 })
     }
     addStyles = (cssRules) => {
         const style = document.createElement('style');
@@ -462,11 +370,16 @@ class Puzzle extends LocalStorageConfig {
     }
 
     showPuzzleWidget = () => {
+        const { x_position, y_position } = this.config
         const puzzleWidget = document.createElement('div');
         const widgetSmallPreview = document.createElement('div');
         puzzleWidget.setAttribute('id', 'puzzle-widget');
         puzzleWidget.appendChild(widgetSmallPreview);
-        this.puzzleWidget = puzzleWidget
+        if (x_position && y_position) {
+            puzzleWidget.style.left = `${x_position}px`;
+            puzzleWidget.style.top = `${y_position}px`
+        };
+        this.puzzleWidget = puzzleWidget;
         const size = `${puzzleWidgetSize}px`;
         assignStyle(puzzleWidget.style, {
             width: size,
@@ -529,7 +442,6 @@ class Puzzle extends LocalStorageConfig {
         })
 
         e.stopPropagation();
-        this.addedrender_count()
 
         setTimeout(() => {
             this.startPuzzleMoving(puzzle)
@@ -613,7 +525,6 @@ class Puzzle extends LocalStorageConfig {
             ny: -1 * (animationEl.clientHeight + parseInt(posx)),
         };
         const css = `
-
 		.boomio--animation__wrapper {
 			text-align: center;
 			position: fixed;
@@ -900,8 +811,6 @@ class Puzzle extends LocalStorageConfig {
             border-radius: 10px;
             padding: 0;
         }
-
-     
 		`;
 
         this.addStyles( css);
@@ -911,6 +820,7 @@ class Puzzle extends LocalStorageConfig {
     };
 
     showQR = () => {
+        boomio.signal('PUZZLE_CODE_REVEALED')
         document.body.removeChild(this.puzzleWidget)
         const { qrcode } = this.config;
         const qrEl = document.createElement('div');
@@ -962,17 +872,18 @@ class Puzzle extends LocalStorageConfig {
         if (this.config.puzzles_collected >= 4) {
             this.addWidgetText()
             this.puzzleWidget.onclick = this.showQR;
-            super.updateConfig({ puzzles_collected: 0 })
+            // super.updateConfig({ puzzles_collected: 0 })
         }
+        boomio.signal(`PUZZLE${this.config.appearing_puzzle_nr}_CLICK`)
     }
 
     startPuzzleMoving = (element) =>  {
         let { puzzles_collected } = this.config
         const { top, left } =  puzzlesCoordinate[puzzles_collected]
         assignStyle(element.style ,{ top, left, transition: 'all 1s ease' })
-        puzzles_collected += 1;
-        super.updateConfig({ puzzles_collected })
         setTimeout(this.addPuzzleToWidget, 1000)
+        // puzzles_collected += 1;
+        // super.updateConfig({ puzzles_collected })
     }
 
     addCloseIconToElement = (element) => {
@@ -988,7 +899,7 @@ class Puzzle extends LocalStorageConfig {
     }
 
     disableWidgetAndRemoveAllElements = () => {
-        this.updateConfig({ boomio_closed: true })
+        boomio.signal('PUZZLE_CLOSED');
         this.puzzleWidget.remove()
         this.animationEl.remove()
     }
@@ -1048,9 +959,9 @@ class Puzzle extends LocalStorageConfig {
 const inizialization = () => {
     const puzzle = new Puzzle();
 
-    const { success, boomio_closed, puzzles_collected, appearing_puzzle_nr } = puzzle.config;
+    const { success, puzzles_collected, appearing_puzzle_nr } = puzzle.config;
 
-    if (!success || boomio_closed){
+    if (!success){
         return;
     }
 

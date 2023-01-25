@@ -1,9 +1,9 @@
 const localStoragePropertyName = 'boomioPluginConfig';
 
 /////////// Scripts ////////
-const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV25.js';
+const puzzleScript = './js/puzzlePluginV25.js';
 
-const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets@main/js/wheelOfFortunePluginV6.js';
+const wheelScript = './js/wheelOfFortunePluginV6.js';
 ///////////////////////////
 
 const appStoreImage =
@@ -30,6 +30,11 @@ class LocalStorageConfig {
         localStorage.setItem(localStoragePropertyName, objToString)
     }
 
+    setConfigFromApi(content) {
+        const params = JSON.parse(localStorage.getItem(localStoragePropertyName));
+        localStorage.setItem(localStoragePropertyName, JSON.stringify({ ...params, ...content }));
+    }
+
     getDefaultConfig() {
         const config = this.config;
         const success = config?.success ?? false;
@@ -39,6 +44,8 @@ class LocalStorageConfig {
         const custom_text = config?.custom_text ?? '';
         const puzzles_collected = config?.puzzles_collected ?? 0;
         const appearing_puzzle_nr = config?.appearing_puzzle_nr ?? null;
+        const x_position = config?.x_position ?? null;
+        const y_position = config?.y_position ?? null;
 
         return {
             success,
@@ -48,17 +55,100 @@ class LocalStorageConfig {
             custom_text,
             puzzles_collected,
             appearing_puzzle_nr,
-            render_count: 0
+            x_position,
+            y_position
         };
     };
 };
 
-const getScriptUrl = (widget_type) => {
-    if (widget_type === 'puzzle') {
-        return puzzleScript;
-    } else if (widget_type === 'wheel') {
-        return wheelScript;
+class DragElement extends LocalStorageConfig {
+    constructor(elmnt) {
+        super();
+        this.elmnt = elmnt;
+        this.pos1 = 0;
+        this.pos2 = 0;
+        this.pos3 = 0;
+        this.pos4 = 0;
+
+        if (isMobileDevice) {
+            this.addMobileListener()
+            return;
+        }
+
+        if (document.getElementById(elmnt.id + "header")) {
+            // if present, the header is where you move the DIV from:
+            document.getElementById(elmnt.id + "header").onmousedown = this.dragMouseDown;
+        } else {
+            // otherwise, move the DIV from anywhere inside the DIV:
+            elmnt.onmousedown = this.dragMouseDown;
+
+        }
     }
+    addMobileListener() {
+        let mobileX = 0;
+        let mobileY = 0;
+        this.elmnt.addEventListener('touchmove', (e) =>  {
+            e.preventDefault()
+            const { clientX, clientY } = e.touches[0];
+            const isBlocking = this.checkIsMoveBlocking(clientX, clientY);
+            if (isBlocking) return;
+            const x_position = clientX - mobileX;
+            const y_position = clientY - mobileY;
+            super.updateConfig({ x_position, y_position })
+            this.elmnt.style.left = x_position + 'px';
+            this.elmnt.style.top = y_position + 'px';
+        })
+        this.elmnt.addEventListener('touchstart', (e) => {
+            const { clientX, clientY } = e.touches[0]
+            const { left, top } = e.target.getBoundingClientRect();
+            mobileX = clientX - left - 10;
+            mobileY = clientY - top - 10;
+        })
+
+    }
+
+    closeDragElement = () => {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+
+    checkIsMoveBlocking(x, y) {
+        if (x <= 0 || y <= 0) return true;
+        return false;
+    }
+
+    elementDrag = (e) => {
+        e = e || window.event;
+        e.preventDefault();
+        this.pos1 = this.pos3 - e.clientX;
+        this.pos2 = this.pos4 - e.clientY;
+        this.pos3 = e.clientX;
+        this.pos4 = e.clientY;
+
+        const x_position = this.elmnt.offsetLeft - this.pos1;
+        const y_position = this.elmnt.offsetTop - this.pos2;
+
+        super.updateConfig({ x_position, y_position })
+
+        const isBlocking = this.checkIsMoveBlocking(x_position, y_position);
+        if (isBlocking) return;
+
+        this.elmnt.style.top = y_position + "px";
+        this.elmnt.style.left = x_position + "px";
+    }
+
+
+    dragMouseDown = (e) => {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        this.pos3 = e.clientX;
+        this.pos4 = e.clientY;
+        document.onmouseup = this.closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = this.elementDrag;
+    }
+
 }
 
 
@@ -68,10 +158,12 @@ const createScript = (url) => {
     document.head.appendChild(script)
 };
 
-class Boomio {
+class Boomio extends LocalStorageConfig {
     constructor() {
+        super()
         this.url = window.location.href;
         this.user_session = this.session();
+        this.setInitialConfiguration()
     }
     session(){
         let session = this.getCookie('boomio_session');
@@ -84,7 +176,7 @@ class Boomio {
     setCookie(name,value,days) {
         let expires = "";
         if (days) {
-            var date = new Date();
+            let date = new Date();
             date.setTime(date.getTime() + (days*24*60*60*1000));
             expires = "; expires=" + date.toUTCString();
         }
@@ -100,39 +192,55 @@ class Boomio {
         }
         return null;
     }
-    eraseCookie(name) {
-        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
     uuidv4() {
         return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
         );
     }
+    getScriptUrl = (widget_type) => {
+        if (widget_type === 'puzzle') {
+            return puzzleScript;
+        } else if (widget_type === 'wheel') {
+            return wheelScript;
+        }
+    };
+
+    async setInitialConfiguration() {
+        const content = await this.send({ go_hunt: "true"});
+        super.setConfigFromApi(content);
+        const scriptUrl = this.getScriptUrl(content.widget_type);
+        createScript(scriptUrl)
+    }
+
     send(data){
         let request_data = {
             "user_session": this.user_session,
             "current_page_url": this.url,
             "extra_data": data
         };
-        (async (request_data) => {
-            const rawResponse = await fetch(apiLink, {
+
+        return new Promise(async (resolve) => {
+            const rawResponse = await  fetch(apiLink, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(request_data)
             });
-            const content = await rawResponse.json();
-            localStorage.setItem(localStoragePropertyName, JSON.stringify(content));
-            const scriptUrl = getScriptUrl(content.widget_type);
-            createScript(scriptUrl)
-        })(request_data);
+            resolve(rawResponse.json())
+        })
+    }
+
+    signal(signal_code) {
+        this.send({
+            go_hunt: "true",
+            ev_type: 'signal',
+            signal_code
+        })
     }
 }
 
+const boomio = new Boomio();
 
-new Boomio().send({
-    go_hunt: "true"
-});
 
 

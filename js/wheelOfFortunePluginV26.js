@@ -1,9 +1,3 @@
-//////Constants ///////
-// const localStoragePropertyName = 'boomioPluginWheelOfFortuneConfig';
-
-
-const frameSvg = 'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/frame.png?raw=true';
-
 const defaultList =  [
     {
         color:"#f82",
@@ -107,101 +101,13 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 
 //////////////////
 
-/////// Drag Element /////////
-
-class DragElement {
-    constructor(elmnt) {
-        this.elmnt = elmnt;
-        this.pos1 = 0;
-        this.pos2 = 0;
-        this.pos3 = 0;
-        this.pos4 = 0;
-        this.xPosition = 0;
-        this.yPosition = 0;
-        if (isMobileDevice) {
-            this.addMobileListener()
-            return;
-        }
-
-        if (document.getElementById(elmnt.id + "header")) {
-            // if present, the header is where you move the DIV from:
-            document.getElementById(elmnt.id + "header").onmousedown = this.dragMouseDown;
-        } else {
-            // otherwise, move the DIV from anywhere inside the DIV:
-            elmnt.onmousedown = this.dragMouseDown;
-
-        }
-    }
-    addMobileListener() {
-        let mobileX = 0;
-        let mobileY = 0;
-        this.elmnt.addEventListener('touchmove', (e) =>  {
-            e.preventDefault()
-            const { clientX, clientY } = e.touches[0];
-            const isBlocking = this.checkIsMoveBlocking(clientX, clientY);
-            if (isBlocking) return;
-            this.elmnt.style.left = (clientX - mobileX) + 'px';
-            this.elmnt.style.top = (clientY - mobileY) + 'px';
-        })
-        this.elmnt.addEventListener('touchstart', (e) => {
-            const { clientX, clientY } = e.touches[0];
-            this.xPosition = clientX;
-            this.yPosition = clientY;
-            const { left, top } = e.target.getBoundingClientRect();
-            mobileX = clientX - left - 10;
-            mobileY = clientY - top - 10;
-        })
-
-    }
-
-    closeDragElement = () => {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-
-    checkIsMoveBlocking(x, y) {
-        if (x <= 0 || y <= 0) return true;
-        return false;
-    }
-
-    elementDrag = (e) => {
-        e = e || window.event;
-        e.preventDefault();
-        this.pos1 = this.pos3 - e.clientX;
-        this.pos2 = this.pos4 - e.clientY;
-        this.pos3 = e.clientX;
-        this.pos4 = e.clientY;
-
-        this.xPosition = this.elmnt.offsetLeft - this.pos1;
-        this.yPosition = this.elmnt.offsetTop - this.pos2;
-
-        const isBlocking = this.checkIsMoveBlocking(this.xPosition, this.yPosition);
-        if (isBlocking) return;
-
-        this.elmnt.style.top = this.yPosition + "px";
-        this.elmnt.style.left = this.xPosition + "px";
-    }
-
-    dragMouseDown = (e) => {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        this.pos3 = e.clientX;
-        this.pos4 = e.clientY;
-        document.onmouseup = this.closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = this.elementDrag;
-    }
-}
-
-///////////
 
 const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 
 const rand = (m, M) => Math.random() * (M - m) + m;
 
-class WheelOfFortunePluginV6 extends LocalStorageConfig {
+class WheelOfFortunePluginV26 extends LocalStorageConfig {
     constructor() {
         super();
         this.config = super.getDefaultConfig();
@@ -227,6 +133,7 @@ class WheelOfFortunePluginV6 extends LocalStorageConfig {
         this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         this.elSpin.addEventListener("click", () => {
+            boomio.signal('SPIN')
             if (this.isSpinning) return;
             this.isSpinning = true;
             this.isAccelerating = true;
@@ -343,8 +250,10 @@ class WheelOfFortunePluginV6 extends LocalStorageConfig {
 
         const { clientWidth, clientHeight } = document.documentElement;
 
-        this.posx = parseInt(getRandomArbitrary(10, clientWidth - 250).toFixed());
-        this.posy = parseInt(getRandomArbitrary(10, clientHeight - 250).toFixed());
+        const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed())
+
+        this.posx = this.config?.x_position ?? getPosition(clientWidth);
+        this.posy = this.config?.y_position ?? getPosition(clientHeight);
 
         const initialPosition = {
             x: animationEl.clientWidth + parseInt(this.posy),
@@ -382,7 +291,6 @@ class WheelOfFortunePluginV6 extends LocalStorageConfig {
             z-index: 1000;
         }
         .boomio--puzzle-widget {
-            // background-image: url(${frameSvg});
             cursor: pointer;
             background-color: #F5F5F5;
             border-radius: 10px;
@@ -1042,5 +950,5 @@ class WheelOfFortunePluginV6 extends LocalStorageConfig {
 
 }
 
-new WheelOfFortunePluginV6();
+new WheelOfFortunePluginV26();
 
