@@ -107,7 +107,7 @@ class StartWidget extends LocalStorageConfig {
         const css = `
 		.boomio--animation__wrapper {
 			text-align: center;
-			position: absolute;
+			position: fixed;
 			z-index: 9999;
 			left: ${posx}px;
 			top: ${posy}px;
