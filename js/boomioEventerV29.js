@@ -5,7 +5,7 @@ const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-w
 
 const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/wheelOfFortunePluginV26.js';
 
-const startWidgetScript = './js/startWidget.js';
+const startWidgetScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/startWidgetV2.js';
 ///////////////////////////
 
 const appStoreImage =
