@@ -4,11 +4,11 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 
 
 /////////// Scripts ////////
-const puzzleScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/puzzlePluginV30.js';
+const puzzleScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/puzzlePlugin.js';
 
-const wheelScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/wheelOfFortunePluginV30.js';
+const wheelScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js';
 
-const startWidgetScript = 'https://cdn.jsdelivr.net/gh/boomio-api-v2/final-combined-wdigets-1@main/js/startWidgetV30.js';
+const startWidgetScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/startWidget.js';
 ///////////////////////////
 
 const appStoreImage =
