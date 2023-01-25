@@ -195,6 +195,9 @@ class Puzzle extends LocalStorageConfig {
 
     showPuzzleWidget = () => {
         this.addStyles(`
+            .boomio--animation__wrapper:empty {
+                display: block !important;
+            }
         	.custom-close-icon {
 		    display: flex;
 		    justify-content: center;
@@ -278,11 +281,9 @@ class Puzzle extends LocalStorageConfig {
     }
 
     drawPuzzlesByCollectedCount = () => {
-
         for (let i = 0; i < this.config.puzzles_collected; i++) {
             const backgroundImage = `url(${puzzleImagesList[i]})`;
             const { top, left, width, height } = puzzlesCoordinate[i];
-
             const animationEl =  document.createElement('div')
             animationEl.setAttribute('id',`boomio--animation-${i}`);
             animationEl.classList.add('boomio--animation__wrapper');
@@ -297,9 +298,6 @@ class Puzzle extends LocalStorageConfig {
 
             this.puzzleWidget.appendChild(animationEl);
         }
-        setTimeout(() => {
-            this.startAnimation()
-        },  2 * 60 * 1000)
     }
 
     onPuzzleClick = (e) => {
@@ -438,9 +436,6 @@ class Puzzle extends LocalStorageConfig {
         .boomio--animation__wrapper {
           outline: none !important;
         }
-        .boomio--animation__wrapper:empty {
-			display: block !important;
-		}
 		.boomio--animation__wrapper--initial {
 			width: ${puzzleSize}px;
 			cursor: pointer;
@@ -1048,6 +1043,7 @@ const inizialization = () => {
     if (!success || boomio_closed){
         return;
     }
+
     if (appearing_puzzle_nr > 1) {
         puzzle.showPuzzleWidget()
     }
@@ -1055,6 +1051,7 @@ const inizialization = () => {
     if (puzzles_collected > 0) {
         puzzle.drawPuzzlesByCollectedCount()
     }
+
     if (appearing_puzzle_nr) {
         setTimeout(() => {
             puzzle.startAnimation();
