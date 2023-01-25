@@ -9,6 +9,8 @@ const puzzleScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdige
 const wheelScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js';
 
 const startWidgetScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/startWidget.js';
+
+const qrCodeScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/qrcode.min.js';
 ///////////////////////////
 
 const appStoreImage =
@@ -214,6 +216,7 @@ class Boomio extends LocalStorageConfig {
     async setInitialConfiguration() {
         const content = await this.send({ go_hunt: "true"});
         super.setConfigFromApi(content);
+        createScript(qrCodeScript);
         const scriptUrl = this.getScriptUrl(content.widget_type);
         createScript(scriptUrl)
     }
