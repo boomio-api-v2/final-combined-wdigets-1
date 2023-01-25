@@ -18,7 +18,6 @@ const playStoreImage =
 const dotImage =
     'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/dot.png?raw=true';
 
-const apiLink = 'https://api.mars.boomio.com/easter-service/get-qr-code';
 
 class LocalStorageConfig {
     constructor() {
@@ -227,7 +226,7 @@ class Boomio extends LocalStorageConfig {
         };
 
         return new Promise(async (resolve) => {
-            const rawResponse = await  fetch(apiLink, {
+            const rawResponse = await  fetch(newLinkBoomio, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
