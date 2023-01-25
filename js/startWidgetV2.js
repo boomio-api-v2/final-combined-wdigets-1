@@ -1,9 +1,9 @@
 ////////Constants Icons/////////
-const closeIcon = '';
-const gifIcon = '';
-const couponsDiscountIcon = '';
-const discountIcon = '';
-const gameIcon = '';
+const closeIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/close.png?raw=true';
+const gifIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift.png?raw=true';
+const couponsDiscountIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/couponsDiscount.png?raw=true';
+const discountIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/discount.png?raw=true';
+const gameIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/game.png?raw=true';
 
 //////////////////////////
 const style = document.createElement('style');
@@ -37,7 +37,7 @@ function getQueryString(qs) {
 
 
 
-class StartWidget extends LocalStorageConfig {
+class StartWidgetV2 extends LocalStorageConfig {
     constructor() {
         super()
         this.config = super.getDefaultConfig();
@@ -672,4 +672,4 @@ class StartWidget extends LocalStorageConfig {
 
 };
 
-new StartWidget();
+new StartWidgetV2();
