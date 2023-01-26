@@ -54,10 +54,6 @@ class LocalStorageConfig {
         this.setInStorage();
     }
 
-    getDraggeblePosition() {
-        const {x_position, y_position} = this.config
-        return {x_position, y_position}
-    }
 
     setConfigFromApi(content) {
         const params = JSON.parse(localStorage.getItem(localStoragePropertyName));
@@ -121,11 +117,7 @@ class DragElement extends LocalStorageConfig {
     }
 
     getQrCodePosition(element, posx, posy) {
-        const windowHeight = Math.max(
-            document.body.scrollHeight, document.documentElement.scrollHeight,
-            document.body.offsetHeight, document.documentElement.offsetHeight,
-            document.body.clientHeight, document.documentElement.clientHeight
-        );
+        const windowHeight = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
         const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const elementHeight = element.offsetHeight;
         const elementWidth = element.offsetWidth;
@@ -312,7 +304,7 @@ class Boomio extends LocalStorageConfig {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(request_data)
+                body: JSON.stringify(test)
             });
             resolve(rawResponse.json())
         })
