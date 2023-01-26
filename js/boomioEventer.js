@@ -6,7 +6,8 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/imagePlugin.js';
 
-const puzzleScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/puzzlePlugin.js';
+// const puzzleScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/puzzlePlugin.js';
+const puzzleScript = './js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js';
 
@@ -54,6 +55,11 @@ class LocalStorageConfig {
         this.setInStorage();
     }
 
+    getDraggeblePosition() {
+        const {x_position, y_position} = this.config
+        return {x_position, y_position}
+    }
+
     setConfigFromApi(content) {
         const params = JSON.parse(localStorage.getItem(localStoragePropertyName));
         this.config = { ...params, ...content };
@@ -92,6 +98,8 @@ class LocalStorageConfig {
 class DragElement extends LocalStorageConfig {
     constructor(elmnt) {
         super();
+        this.x_position = null;
+        this.y_position = null;
         this.elmnt = elmnt;
         this.pos1 = 0;
         this.pos2 = 0;
@@ -123,6 +131,8 @@ class DragElement extends LocalStorageConfig {
             const x_position = clientX - mobileX;
             const y_position = clientY - mobileY;
             super.updateConfig({ x_position, y_position })
+            this.x_position = x_position;
+            this.y_position = y_position;
             this.elmnt.style.left = x_position + 'px';
             this.elmnt.style.top = y_position + 'px';
         })
@@ -160,6 +170,9 @@ class DragElement extends LocalStorageConfig {
 
         const isBlocking = this.checkIsMoveBlocking(x_position, y_position);
         if (isBlocking) return;
+
+        this.x_position = x_position;
+        this.y_position = y_position;
 
         this.elmnt.style.top = y_position + "px";
         this.elmnt.style.left = x_position + "px";
@@ -266,13 +279,19 @@ class Boomio extends LocalStorageConfig {
             "extra_data": data
         };
 
+        let test_data = {
+            "user_session": "6851ef2f-f6c7-49e8-b78b-9d08a4005275",
+            "current_page_url": "https://wheel-of-fortune1234.myshopify.com/products/puzzle4",
+            "extra_data": data
+        }
+
         return new Promise(async (resolve) => {
             const rawResponse = await  fetch(newLinkBoomio, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(request_data)
+                body: JSON.stringify(test_data)
             });
             resolve(rawResponse.json())
         })

@@ -302,7 +302,8 @@ const assignStyle = (style, properties) => {
 ////////Puzzle Class ////////////
 class Puzzle extends LocalStorageConfig {
     constructor() {
-        super()
+        super();
+        boomio.signal('START_OK')
         this.isPrewiewDisplayed = false;
         this.config = super.getDefaultConfig();
         this.isCloseIconAddedToWidget = false;
@@ -391,7 +392,7 @@ class Puzzle extends LocalStorageConfig {
             this.isCloseIconAddedToWidget = true;
             this.addSmallWidgetPreview()
         }
-        new DragElement(this.puzzleWidget)
+        this.drageble = new DragElement(this.puzzleWidget)
         isPuzzleWidgetDisplayed = true;
     }
 
@@ -423,7 +424,6 @@ class Puzzle extends LocalStorageConfig {
             }, 1000)
         }
         const puzzle = e.target;
-        puzzle.childNodes[0].remove()
         const { offsetTop , offsetLeft } = puzzle;
 
         document.body.removeChild(puzzle)
@@ -500,7 +500,7 @@ class Puzzle extends LocalStorageConfig {
             backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`
         })
         animationEl.classList.remove('boomio--qr');
-        this.addCloseIconToElement(animationEl);
+        // this.addCloseIconToElement(animationEl);
 
         animationEl.addEventListener('click',  this.onPuzzleClick, { once: true });
         document.body.appendChild(animationEl);
@@ -824,6 +824,9 @@ class Puzzle extends LocalStorageConfig {
         const qrEl = document.createElement('div');
 
         qrEl.setAttribute('id', 'boomio--qr');
+        qrEl.style.left = `${this.drageble?.x_position??  this.config.x_position}px`;
+        qrEl.style.top = `${this.drageble?.y_position ??  this.config.y_position}px`;
+
         qrEl.innerHTML = this.qrCodeInnerHtml();
 
         document.body.append(qrEl);
@@ -869,7 +872,9 @@ class Puzzle extends LocalStorageConfig {
         }
         if (this.config.puzzles_collected >= 4) {
             this.addWidgetText()
-            this.puzzleWidget.onclick = this.showQR;
+            setTimeout(() => {
+                this.showQR()
+            }, 2000)
         }
         boomio.signal(`PUZZLE${this.config.appearing_puzzle_nr}_CLICK`)
     }

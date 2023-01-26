@@ -20,7 +20,8 @@ function addStyles(stylesheet, cssRules) {
 
 class StartWidget extends LocalStorageConfig {
     constructor() {
-        super()
+        super();
+        boomio.signal('START_OK')
         this.config = super.getDefaultConfig();
         this.makeDiv()
     }
