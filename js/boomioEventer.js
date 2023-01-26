@@ -6,7 +6,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/imagePlugin.js';
 
-const puzzleScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/puzzlePlugin.js';
+const puzzleScript = './js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githack.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js';
 
@@ -104,8 +104,7 @@ class DragElement extends LocalStorageConfig {
         this.pos2 = 0;
         this.pos3 = 0;
         this.pos4 = 0;
-        this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
         if (isMobileDevice) {
             this.addMobileListener()
             return;
@@ -122,14 +121,20 @@ class DragElement extends LocalStorageConfig {
     }
 
     getQrCodePosition(element, posx, posy) {
+        const windowHeight = Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+        );
+        const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const elementHeight = element.offsetHeight;
         const elementWidth = element.offsetWidth;
         const posX = this.x_position ??  posx;
         const posY = this.y_position ??  posy;
 
         return {
-            posX: this.windowWidth <= posX + elementWidth ? (this.windowWidth - elementWidth) : posX,
-            posY: this.windowHeight <= posY + elementHeight ? (this.windowHeight - elementHeight) : posY
+            posX: (windowWidth <= posX + elementWidth) ? (windowWidth - elementWidth) : posX,
+            posY: (windowHeight <= posY + elementHeight) ? (windowHeight - elementHeight) : posY
         }
 
     }
@@ -212,6 +217,7 @@ const createScript = (url) => {
     const script = document.createElement('script');
     script.setAttribute('src', url)
     document.head.appendChild(script)
+    return script
 };
 
 class Boomio extends LocalStorageConfig {
@@ -265,15 +271,18 @@ class Boomio extends LocalStorageConfig {
         }
     };
 
-    async setInitialConfiguration() {
+     setInitialConfiguration() {
         try {
-            const content = await this.send({ go_hunt: "true"});
-            super.setConfigFromApi(content);
-            createScript(qrCodeScript);
-            if (content?.widget_type && content.widget_type !== 'instruction') {
-                const scriptUrl = this.getScriptUrl(content.widget_type)
-                createScript(scriptUrl)
-            }
+            createScript(qrCodeScript).addEventListener('load', async () => {
+                createScript(puzzleScript);
+                const content = await this.send({ go_hunt: "true"});
+                super.setConfigFromApi(content);
+                createScript(qrCodeScript);
+                if (content?.widget_type && content.widget_type !== 'instruction') {
+                    const scriptUrl = this.getScriptUrl(content.widget_type)
+                    createScript(scriptUrl)
+                }
+            });
         } catch (err) {
             console.log(err)
         }
@@ -298,12 +307,6 @@ class Boomio extends LocalStorageConfig {
             "current_page_url": this.url,
             "extra_data": data
         };
-
-        // let test_data = {
-        //     "user_session": "6851ef2f-f6c7-49e8-b78b-9d08a4005275",
-        //     "current_page_url": "https://wheel-of-fortune1234.myshopify.com/products/puzzle4",
-        //     "extra_data": data
-        // }
 
         return new Promise(async (resolve) => {
             const rawResponse = await fetch(newLinkBoomio, {

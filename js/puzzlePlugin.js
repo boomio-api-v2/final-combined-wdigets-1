@@ -824,17 +824,12 @@ class Puzzle extends LocalStorageConfig {
         const qrEl = document.createElement('div');
 
         qrEl.setAttribute('id', 'boomio--qr');
-        const { posX, posY} = this.drageble.getQrCodePosition(
-            qrEl,
-            this.drageble.x_position,
-            this.drageble.y_position
-        )
-        qrEl.style.left = `${posX}px`;
-        qrEl.style.top = `${posY}px`;
+
 
         qrEl.innerHTML = this.qrCodeInnerHtml();
 
         document.body.append(qrEl);
+
         new QRCode('qrcodeShowHtml', {
             text: qrcode,
             width: 300,
@@ -861,6 +856,13 @@ class Puzzle extends LocalStorageConfig {
             qrcodeShow.style.display = 'block'
             coupon.style.display = 'none'
         }
+        const { posX, posY} = this.drageble.getQrCodePosition(
+            qrEl,
+            this.config.x_position,
+            this.config.y_position
+        )
+        qrEl.style.left = `${posX}px`;
+        qrEl.style.top = `${posY}px`;
     }
 
     addWidgetText = () => {

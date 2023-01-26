@@ -877,14 +877,6 @@ class WheelOfFortunePlugin extends LocalStorageConfig {
             e.stopPropagation();
         };
 
-        const { posX, posY} = this.drageble.getQrCodePosition(
-            qrEl,
-            this.drageble.x_position,
-            this.drageble.y_position
-        )
-
-        qrEl.style.left = `${posX}px`;
-        qrEl.style.top = `${posY}px`;
 
         if (isMobileDevice) return;
         qrcodeShow.onclick = () => {
@@ -895,6 +887,14 @@ class WheelOfFortunePlugin extends LocalStorageConfig {
             qrcodeShow.style.display = 'block'
             coupon.style.display = 'none'
         }
+        const { posX, posY} = this.drageble.getQrCodePosition(
+            qrEl,
+            this.config.x_position,
+            this.config.y_position
+        )
+
+        qrEl.style.left = `${posX}px`;
+        qrEl.style.top = `${posY}px`;
     }
 
 
