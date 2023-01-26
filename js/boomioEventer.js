@@ -274,7 +274,6 @@ class Boomio extends LocalStorageConfig {
      setInitialConfiguration() {
         try {
             createScript(qrCodeScript).addEventListener('load', async () => {
-                createScript(puzzleScript);
                 const content = await this.send({ go_hunt: "true"});
                 super.setConfigFromApi(content);
                 createScript(qrCodeScript);
@@ -308,20 +307,13 @@ class Boomio extends LocalStorageConfig {
             "extra_data": data
         };
 
-        let test = {
-            "user_session": "6851ef2f-f6c7-49e8-b78b-9d08a4005275",
-            "current_page_url": "https://wheel-of-fortune1234.myshopify.com/products/puzzle4",
-            "extra_data": {
-                "go_hunt": "true"
-            }
-        }
         return new Promise(async (resolve) => {
             const rawResponse = await fetch(newLinkBoomio, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(test)
+                body: JSON.stringify(request_data)
             });
             resolve(rawResponse.json())
         })
