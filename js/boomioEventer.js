@@ -278,11 +278,11 @@ class Boomio extends LocalStorageConfig {
             "extra_data": data
         };
 
-        let test_data = {
-            "user_session": "6851ef2f-f6c7-49e8-b78b-9d08a4005275",
-            "current_page_url": "https://wheel-of-fortune1234.myshopify.com/products/puzzle4",
-            "extra_data": data
-        }
+        // let test_data = {
+        //     "user_session": "6851ef2f-f6c7-49e8-b78b-9d08a4005275",
+        //     "current_page_url": "https://wheel-of-fortune1234.myshopify.com/products/puzzle4",
+        //     "extra_data": data
+        // }
 
         return new Promise(async (resolve) => {
             const rawResponse = await  fetch(newLinkBoomio, {
@@ -290,7 +290,7 @@ class Boomio extends LocalStorageConfig {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(test_data)
+                body: JSON.stringify(request_data)
             });
             resolve(rawResponse.json())
         })
