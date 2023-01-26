@@ -30,8 +30,8 @@ class StartWidget extends LocalStorageConfig {
         let animationNR = this.config.animation ??  0;
 
 
-        const posx = this.config?.x_position ?? (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
-        const posy = this.config?.y_position ?? (Math.random() * (document.documentElement.clientHeight - (QRsize * 1.5))).toFixed();
+        const posx = (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
+        const posy = (Math.random() * (document.documentElement.clientHeight - (QRsize * 1.5))).toFixed();
 
         const animate = (animation) => (el) => {
             el.classList.add(`boomio--animation--${animation}`);

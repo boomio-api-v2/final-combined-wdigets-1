@@ -250,8 +250,8 @@ class WheelOfFortunePlugin extends LocalStorageConfig {
 
         const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed())
 
-        this.posx = this.config?.x_position ?? getPosition(clientWidth);
-        this.posy = this.config?.y_position ?? getPosition(clientHeight);
+        this.posx = getPosition(clientWidth);
+        this.posy = getPosition(clientHeight);
 
         const initialPosition = {
             x: animationEl.clientWidth + parseInt(this.posy),

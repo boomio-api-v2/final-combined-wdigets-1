@@ -27,8 +27,6 @@ class ImagePlugin extends LocalStorageConfig{
             animation: animationNR,
             app_url,
             img,
-            x_position,
-            y_position,
             custom_text
         } = this.config;
         if (!success) return;
@@ -41,8 +39,8 @@ class ImagePlugin extends LocalStorageConfig{
             this.config.qrcode = qrcode.substring(0, pos);
         }
 
-        const posx = x_position ?? (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
-        const posy = y_position ?? (Math.random() * (document.documentElement.clientHeight - QRsize * 1.5)).toFixed();
+        const posx = (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
+        const posy = (Math.random() * (document.documentElement.clientHeight - QRsize * 1.5)).toFixed();
 
         const animate = (animation) => (el) => {
             el.classList.add(`boomio--animation--${animation}`);
