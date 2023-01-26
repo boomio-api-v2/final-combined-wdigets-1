@@ -276,7 +276,6 @@ class Boomio extends LocalStorageConfig {
             createScript(qrCodeScript).addEventListener('load', async () => {
                 const content = await this.send({ go_hunt: "true"});
                 super.setConfigFromApi(content);
-                createScript(qrCodeScript);
                 if (content?.widget_type && content.widget_type !== 'instruction') {
                     const scriptUrl = this.getScriptUrl(content.widget_type)
                     createScript(scriptUrl)
