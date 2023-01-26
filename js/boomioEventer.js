@@ -304,7 +304,7 @@ class Boomio extends LocalStorageConfig {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(test)
+                body: JSON.stringify(request_data)
             });
             resolve(rawResponse.json())
         })
