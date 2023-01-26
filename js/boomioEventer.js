@@ -39,10 +39,19 @@ class LocalStorageConfig {
         return JSON.parse(config);
     }
 
-    updateConfig (property) {
-        this.config = { ...this.config, ...property }
+    removeByKey(key) {
+        delete this.config[key];
+        this.setInStorage()
+    }
+
+    setInStorage() {
         const objToString = JSON.stringify(this.config)
         localStorage.setItem(localStoragePropertyName, objToString)
+    }
+
+    updateConfig (property) {
+        this.config = { ...this.config, ...property }
+        this.setInStorage();
     }
 
     setConfigFromApi(content) {
@@ -241,13 +250,17 @@ class Boomio extends LocalStorageConfig {
     checkIsRequestDenied() {
         const boomioStopTill = this.config?.boomioStopTill
         if (!boomioStopTill) return false;
-        return new Date(boomioStopTill).getTime() > new Date().getTime()
+        const isTimeout = new Date(boomioStopTill).getTime() > new Date().getTime();
+        if (!isTimeout) {
+            super.removeByKey('boomioStopTill');
+        }
+        return isTimeout;
     }
 
     send(data){
         const isDenied = this.checkIsRequestDenied();
         if (isDenied) return {success: false};
-        let request_data = {
+        const request_data = {
             "user_session": this.user_session,
             "current_page_url": this.url,
             "extra_data": data
