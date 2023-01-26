@@ -824,8 +824,13 @@ class Puzzle extends LocalStorageConfig {
         const qrEl = document.createElement('div');
 
         qrEl.setAttribute('id', 'boomio--qr');
-        qrEl.style.left = `${this.drageble?.x_position??  this.config.x_position}px`;
-        qrEl.style.top = `${this.drageble?.y_position ??  this.config.y_position}px`;
+        const { posX, posY} = this.drageble.getQrCodePosition(
+            qrEl,
+            this.drageble.x_position,
+            this.drageble.y_position
+        )
+        qrEl.style.left = `${posX}px`;
+        qrEl.style.top = `${posY}px`;
 
         qrEl.innerHTML = this.qrCodeInnerHtml();
 

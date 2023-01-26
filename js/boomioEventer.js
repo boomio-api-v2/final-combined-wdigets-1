@@ -104,7 +104,8 @@ class DragElement extends LocalStorageConfig {
         this.pos2 = 0;
         this.pos3 = 0;
         this.pos4 = 0;
-
+        this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         if (isMobileDevice) {
             this.addMobileListener()
             return;
@@ -119,6 +120,21 @@ class DragElement extends LocalStorageConfig {
 
         }
     }
+
+    getQrCodePosition(element, posx, posy) {
+        const elementHeight = element.offsetHeight;
+        const elementWidth = element.offsetWidth;
+        const posX = this.x_position ??  posx;
+        const posY = this.y_position ??  posy;
+
+        return {
+            posX: this.windowWidth <= posX + elementWidth ? (this.windowWidth - elementWidth) : posX,
+            posY: this.windowHeight <= posY + elementHeight ? (this.windowHeight - elementHeight) : posY
+        }
+
+    }
+
+
     addMobileListener() {
         let mobileX = 0;
         let mobileY = 0;
@@ -250,13 +266,18 @@ class Boomio extends LocalStorageConfig {
     };
 
     async setInitialConfiguration() {
-        const content = await this.send({ go_hunt: "true"});
-        super.setConfigFromApi(content);
-        createScript(qrCodeScript);
-        if (content?.widget_type && content.widget_type !== 'instruction') {
-            const scriptUrl = this.getScriptUrl(content.widget_type)
-            createScript(scriptUrl)
+        try {
+            const content = await this.send({ go_hunt: "true"});
+            super.setConfigFromApi(content);
+            createScript(qrCodeScript);
+            if (content?.widget_type && content.widget_type !== 'instruction') {
+                const scriptUrl = this.getScriptUrl(content.widget_type)
+                createScript(scriptUrl)
+            }
+        } catch (err) {
+            console.log(err)
         }
+
     }
 
     checkIsRequestDenied() {
@@ -285,7 +306,7 @@ class Boomio extends LocalStorageConfig {
         // }
 
         return new Promise(async (resolve) => {
-            const rawResponse = await  fetch(newLinkBoomio, {
+            const rawResponse = await fetch(newLinkBoomio, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -877,14 +877,14 @@ class WheelOfFortunePlugin extends LocalStorageConfig {
             e.stopPropagation();
         };
 
-        const elementHeight = qrEl.offsetHeight;
-        const elementWidth = qrEl.offsetWidth;
+        const { posX, posY} = this.drageble.getQrCodePosition(
+            qrEl,
+            this.drageble.x_position,
+            this.drageble.y_position
+        )
 
-        const posX = this.drageble?.xPosition ??  this.posx;
-        const posY = this.drageble?.yPosition ??  this.posy;
-
-        qrEl.style.left = `${this.windowWidth <= posX + elementWidth ? (this.windowWidth - elementWidth) : posX}px`;
-        qrEl.style.top = `${this.windowHeight <= posY + elementHeight ? (this.windowHeight - elementHeight) : posY}px`;
+        qrEl.style.left = `${posX}px`;
+        qrEl.style.top = `${posY}px`;
 
         if (isMobileDevice) return;
         qrcodeShow.onclick = () => {
