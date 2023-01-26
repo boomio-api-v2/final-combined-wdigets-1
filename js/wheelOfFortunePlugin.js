@@ -108,6 +108,7 @@ const rand = (m, M) => Math.random() * (M - m) + m;
 class WheelOfFortunePlugin extends LocalStorageConfig {
     constructor() {
         super();
+        boomio.signal('START_OK')
         this.config = super.getDefaultConfig();
         if (!this.config.success) return;
         this.addStyles(cssRules)
