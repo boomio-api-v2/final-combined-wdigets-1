@@ -231,14 +231,14 @@ class Boomio extends LocalStorageConfig {
         const content = await this.send({ go_hunt: "true"});
         super.setConfigFromApi(content);
         createScript(qrCodeScript);
-        if (content.widget_type !== 'instruction') {
+        if (content?.widget_type && content.widget_type !== 'instruction') {
             const scriptUrl = this.getScriptUrl(content.widget_type)
             createScript(scriptUrl)
         }
     }
 
     checkIsRequestDenied() {
-        const boomioStopTill = this.config.boomioStopTill;
+        const boomioStopTill = this.config?.boomioStopTill;
         if (!boomioStopTill) return false;
         return new Date(boomioStopTill).getTime() > new Date().getTime()
     }
