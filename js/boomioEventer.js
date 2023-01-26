@@ -28,6 +28,7 @@ class LocalStorageConfig {
         this.config = this.getLocalStorageStringToObject();
     }
     сheckOnInstruction() {
+        console.log(this.config)
         if (this.config?.widget_type  !== 'instruction') return;
         if (this.config?.instruction  === 'stop') {
             const boomioStopTill = new Date(new Date().getTime() + (1000 * this.config.stop_for_sec));
@@ -47,7 +48,8 @@ class LocalStorageConfig {
 
     setConfigFromApi(content) {
         const params = JSON.parse(localStorage.getItem(localStoragePropertyName));
-        localStorage.setItem(localStoragePropertyName, JSON.stringify({ ...params, ...content }));
+        this.config = { ...params, ...content };
+        localStorage.setItem(localStoragePropertyName, JSON.stringify(this.config));
         this.сheckOnInstruction();
     }
 
@@ -252,13 +254,19 @@ class Boomio extends LocalStorageConfig {
             "extra_data": data
         };
 
+        let test = {
+            current_page_url: "https://wheel-of-fortune1234.myshopify.com/products/ddddd",
+        extra_data: {go_hunt: "true"},
+        user_session: "6851ef2f-f6c7-49e8-b78b-9d08a4005275"
+        }
+
         return new Promise(async (resolve) => {
             const rawResponse = await  fetch(newLinkBoomio, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(request_data)
+                body: JSON.stringify(test)
             });
             resolve(rawResponse.json())
         })
