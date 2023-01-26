@@ -238,7 +238,9 @@ class Boomio extends LocalStorageConfig {
     }
 
     checkIsRequestDenied() {
-        return new Date(this.config.boomioStopTill).getTime() > new Date().getTime()
+        const boomioStopTill = this.config.boomioStopTill;
+        if (!boomioStopTill) return false;
+        return new Date(boomioStopTill).getTime() > new Date().getTime()
     }
 
     send(data){
