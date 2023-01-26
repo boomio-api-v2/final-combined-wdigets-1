@@ -27,11 +27,10 @@ class LocalStorageConfig {
     constructor() {
         this.config = this.getLocalStorageStringToObject();
     }
-    сheckOnInstruction() {
-        console.log(this.config)
-        if (this.config?.widget_type  !== 'instruction') return;
-        if (this.config?.instruction  === 'stop') {
-            const boomioStopTill = new Date(new Date().getTime() + (1000 * this.config.stop_for_sec));
+    сheckOnInstruction(content) {
+        if (content?.widget_type  !== 'instruction') return;
+        if (content?.instruction  === 'stop') {
+            const boomioStopTill = new Date(new Date().getTime() + (1000 * content.stop_for_sec));
             this.updateConfig({ boomioStopTill })
         }
     };
@@ -50,7 +49,7 @@ class LocalStorageConfig {
         const params = JSON.parse(localStorage.getItem(localStoragePropertyName));
         this.config = { ...params, ...content };
         localStorage.setItem(localStoragePropertyName, JSON.stringify(this.config));
-        this.сheckOnInstruction();
+        this.сheckOnInstruction(content);
     }
 
     getDefaultConfig() {
@@ -240,14 +239,14 @@ class Boomio extends LocalStorageConfig {
     }
 
     checkIsRequestDenied() {
-        const boomioStopTill = this.config?.boomioStopTill;
+        const boomioStopTill = this.config?.boomioStopTill
         if (!boomioStopTill) return false;
         return new Date(boomioStopTill).getTime() > new Date().getTime()
     }
 
     send(data){
         const isDenied = this.checkIsRequestDenied();
-        if (isDenied) return ;
+        if (isDenied) return {success: false};
         let request_data = {
             "user_session": this.user_session,
             "current_page_url": this.url,
