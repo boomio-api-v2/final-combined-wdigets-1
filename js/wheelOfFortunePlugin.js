@@ -140,7 +140,8 @@ class WheelOfFortunePlugin extends LocalStorageConfig {
         });
 
         this.config?.list?.forEach(this.drawSector);
-        if (document.readyState !== 'complete') return;
+        /////To Check///////
+        // if (document.readyState !== 'complete') return;
         this.wheelOfFortune = document.getElementById('wheelOfFortune');
         this.wheelOfFortune.style.display = 'block';
         this.addCloseIconToElement(this.wheelOfFortune)
