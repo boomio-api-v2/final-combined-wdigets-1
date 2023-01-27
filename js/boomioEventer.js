@@ -6,7 +6,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
 
-const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/7685f7c83401c2b703dafc48cedba9169498f4e4/js/puzzlePlugin.js';
+const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/59509f0e10a43c1d192024280205408bbbec7749/js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
 
