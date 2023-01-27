@@ -54,7 +54,11 @@ class LocalStorageConfig {
 
     setConfigFromApi(content) {
         const params = JSON.parse(localStorage.getItem(localStoragePropertyName));
-        this.config = { ...params, ...content };
+        this.config = {
+            x_position: params?.x_position ?? null,
+            y_position: params?.y_position ?? null,
+            ...content
+        };
         localStorage.setItem(localStoragePropertyName, JSON.stringify(this.config));
         this.сheckOnInstruction(content);
     }
