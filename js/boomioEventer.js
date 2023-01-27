@@ -62,7 +62,7 @@ class LocalStorageConfig {
     getDefaultConfig() {
         const config = this.config;
         const success = config?.success ?? false;
-        const animation = config?.ani ?? 0;
+        const animation = config?.ani ?? config.animation ?? 0;
         const qrcode = `${config?.qrcode}` ?? '';
         const app_url = config?.app_url ?? '';
         const custom_text = config?.custom_text ?? '';
