@@ -303,7 +303,6 @@ const assignStyle = (style, properties) => {
 class Puzzle extends LocalStorageConfig {
     constructor() {
         super();
-        boomio.signal('START_OK')
         this.isPrewiewDisplayed = false;
         this.config = super.getDefaultConfig();
         this.isCloseIconAddedToWidget = false;

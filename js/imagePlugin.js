@@ -9,7 +9,6 @@ document.getElementsByTagName('head')[0].appendChild(style);
 class ImagePlugin extends LocalStorageConfig{
     constructor() {
      super();
-        boomio.signal('START_OK')
         this.config = super.getDefaultConfig();
         this.startAnimation()
     }
