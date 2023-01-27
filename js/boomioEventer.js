@@ -26,7 +26,6 @@ class LocalStorageConfig {
         this.config = this.getLocalStorageStringToObject();
     }
     сheckOnInstruction(content) {
-        if (content?.widget_type  !== 'instruction') return;
         if (content?.instruction  === 'stop') {
             const boomioStopTill = new Date(new Date().getTime() + (1000 * content.stop_for_sec));
             this.updateConfig({ boomioStopTill })
@@ -265,7 +264,7 @@ class Boomio extends LocalStorageConfig {
         try {
             const content = await this.send({ go_hunt: "true"});
             super.setConfigFromApi(content);
-            if (content?.widget_type && content.widget_type !== 'instruction') {
+            if (content?.widget_type && content.instruction !== 'stop') {
                 const scriptUrl = this.getScriptUrl(content.widget_type)
                 createScript(scriptUrl)
             }
