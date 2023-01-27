@@ -973,8 +973,11 @@ const inizialization = () => {
         return;
     }
 
-    if (appearing_puzzle_nr > 1) {
+    if (puzzles_collected > 0) {
         puzzle.showPuzzleWidget()
+    }
+
+    if (appearing_puzzle_nr > 1) {
         puzzle.addImageTPuzzleWidget()
     }
 
