@@ -373,6 +373,8 @@ class Puzzle extends LocalStorageConfig {
         const widgetSmallPreview = document.createElement('div');
         puzzleWidget.setAttribute('id', 'puzzle-widget');
         puzzleWidget.appendChild(widgetSmallPreview);
+        puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+
         if (x_position && y_position) {
             puzzleWidget.style.left = `${x_position}px`;
             puzzleWidget.style.top = `${y_position}px`
