@@ -1,17 +1,17 @@
 const frameSvg = 'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/frame.png?raw=true';
 
 const puzzlesCoordinateForMobile = [
-    { top: '0px', left: '0px', width: '62.84px', height: '83.33px' },
-    { top: '0px', left: '47px', width: '83.3px', height: '66.86px' },
-    { top: '63px', left: '0px', width: '86.3px', height: '69.86px' },
-    { top: '44px', left: '62px', width: '67.84px', height: '88.3px' },
+    { top: 0, left: 0, width: '62.84px', height: '83.33px' },
+    { top: 0, left: 47, width: '83.3px', height: '66.86px' },
+    { top: 63, left: 0, width: '86.3px', height: '69.86px' },
+    { top: 44, left: 62, width: '67.84px', height: '88.3px' },
 ];
 
 const puzzlesCoordinateForDesktop =  [
-    { top: '0px', left: '0px', width: '89.84px', height: '112.33px' },
-    { top: '0px', left: '67px', width: '112.3px', height: '89.86px' },
-    { top: '87px', left: '0px', width: '112.3px', height: '89.86px' },
-    { top: '64px', left: '89px', width: '89.84px', height: '112.33px' },
+    { top: 0, left: 0, width: '89.84px', height: '112.33px' },
+    { top: 0, left: 67, width: '112.3px', height: '89.86px' },
+    { top: 87, left: 0, width: '112.3px', height: '89.86px' },
+    { top: 64, left: 89, width: '89.84px', height: '112.33px' },
 ]
 
 const puzzlesCoordinate = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
@@ -27,8 +27,78 @@ const puzzleWidgetSize = isMobileDevice ? 135 : 185;
 let isPuzzleWidgetDisplayed = false;
 
 const mainCss = `
+* {
+    margin: 0px;
+    padding: 0px;
+}
 [draggable=true] {
     cursor: move;
+}
+#goModalButton {
+    background: linear-gradient(39.06deg, #8559F3 8.58%, #657BEA 17.79%, #34B0DC 46.68%, #15D1D3 72.63%, #09DDD0 88.95%);
+    border-radius: 32px;
+    width: 116px;
+    height: 40px;
+    color: #FFFFFF;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 8px;
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    outline: auto;
+}
+#modalBackground {
+    width: 100%;
+    height: 100vh;
+    background: rgba(62, 50, 72, 0.5);
+    z-index: 10000000000;
+}
+
+@keyframes appearance {
+  from {
+    transform: scale(0.1)
+  }
+  to {
+    transform: scale(1)
+    transition: all 0.3s;
+  }
+}
+
+@keyframes deleting {
+  from {
+    transform: scale(1)
+  }
+  to {
+    transform: scale(0.1)
+    transition: all 0.3s;
+  }
+}
+
+#widgetModal {
+    overflow: hidden;
+    box-shadow: 0px 4px 64px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E8E7EB;
+    width: 300px;
+    height: 432px;
+    border-radius: 16px;
+    background: #FFFFFF;
+    position: fixed;
+    left: 20%;
+    top: 20%;
+    z-index: 100000000000;
+    position: relative;
+    transform: scale(0.1);
+    animation: appearance;
+    animation-duration: 0.3s;
 }
 
 .boomie-preview-mobile {
@@ -86,18 +156,20 @@ const mainCss = `
     border-radius: 10px;
     background-size: contain;
     position: fixed;
-    z-index: 1000;
+    z-index: 100000000000;
     left: 20px;
     top: 20px;
 }
 .boomio--puzzle-widget-text {
     width: 100%;
-    z-index: 100000;
+    z-index: 1000000000000;
     position: absolute;
     cursor: pointer;
     color: white;
     font-weight: bold;
-    top: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: ${isMobileDevice ? 20 : 36}px;
     text-align: center;
 }
@@ -305,7 +377,7 @@ class Puzzle extends LocalStorageConfig {
         super();
         this.isPrewiewDisplayed = false;
         this.config = super.getDefaultConfig();
-        this.isCloseIconAddedToWidget = false;
+        this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
         this.addStyles(mainCss)
     }
     addStyles = (cssRules) => {
@@ -367,13 +439,40 @@ class Puzzle extends LocalStorageConfig {
         this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`
     }
 
-    showPuzzleWidget = () => {
+    createPuzzleWidget = () => {
+        const puzzleWidget = document.createElement('div');
+        puzzleWidget.setAttribute('id', 'puzzle-widget');
+        puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+        puzzleWidget.style.position = 'relative';
+        puzzleWidget.style.left = '50%';
+        puzzleWidget.style.top = '50%';
+        puzzleWidget.style.transform = 'translate(-50%, -50%)';
+
+        const size = `${puzzleWidgetSize}px`;
+
+        this.puzzleWidget = puzzleWidget;
+        assignStyle(puzzleWidget.style, {
+            width: size,
+            height: size
+        })
+        this.drawPuzzlesByCollectedCount()
+
+        return puzzleWidget;
+    }
+
+    // This method for creating widget in window
+    showPuzzleWidgetWindowDraggable = () => {
         const { x_position, y_position } = this.config
         const puzzleWidget = document.createElement('div');
         const widgetSmallPreview = document.createElement('div');
         puzzleWidget.setAttribute('id', 'puzzle-widget');
         puzzleWidget.appendChild(widgetSmallPreview);
         puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+        puzzleWidget.onclick = () => {
+            puzzleWidget.remove();
+            this?.animationEl?.remove();
+            this.showModalWidgetPreview(false, true)
+        }
 
         if (x_position && y_position) {
             puzzleWidget.style.left = `${x_position}px`;
@@ -386,7 +485,6 @@ class Puzzle extends LocalStorageConfig {
             height: size
         })
 
-
         document.body.appendChild(puzzleWidget);
         if (this.config.puzzles_collected > 0) {
             this.addCloseIconToElement(puzzleWidget)
@@ -395,6 +493,7 @@ class Puzzle extends LocalStorageConfig {
         }
         this.drageble = new DragElement(this.puzzleWidget)
         isPuzzleWidgetDisplayed = true;
+        this.drawPuzzlesByCollectedCount()
     }
 
     drawPuzzlesByCollectedCount = () => {
@@ -405,8 +504,8 @@ class Puzzle extends LocalStorageConfig {
             animationEl.setAttribute('id',`boomio--animation-${i}`);
             animationEl.classList.add('boomio--animation__wrapper');
             assignStyle(animationEl.style, {
-                top,
-                left,
+                top: `${top}px`,
+                left: `${left}px`,
                 width,
                 height,
                 backgroundImage,
@@ -417,39 +516,95 @@ class Puzzle extends LocalStorageConfig {
         }
     }
 
+    showModalWidgetPreview = (showAnimation = false, isPreview = false) => {
+        this?.puzzleWidget?.remove()
+        const modalBackground = document.createElement('div');
+        modalBackground.setAttribute('id', 'modalBackground')
+        const modal = document.createElement('div');
+        modal.setAttribute('id', 'widgetModal');
+        modal.style.transform = 'scale(1)';
+        modalBackground.appendChild(modal);
+        document.body.appendChild(modalBackground);
+        this.puzzleWidget = this.createPuzzleWidget();
+        modal.appendChild(this.puzzleWidget);
+
+        const goBtn = document.createElement('button');
+        goBtn.setAttribute('id', 'goModalButton');
+        goBtn.innerHTML = 'Go!';
+        goBtn.onclick = () => {
+
+            this.puzzleWidget.remove()
+            modalBackground.remove()
+            this.showPuzzleWidgetWindowDraggable()
+        };
+        modal.appendChild(goBtn);
+        //////////////////
+
+        const { top, left } = this.coordinates[this.config.puzzles_collected];
+        if (!showAnimation) return;
+        setTimeout(() => {
+            this.startAnimation(left, top, {zIndex: 100000000000000 }, this.puzzleWidget);
+            if (!isPreview) {
+                super.updateConfig({
+                    puzzles_collected: this.config.puzzles_collected + 1
+                })
+            }
+            if (this.config.puzzles_collected >= 4) {
+                setTimeout(() => {
+                    modal.remove()
+                    this.showQR()
+                }, 2000)
+            }
+        }, 1000);
+
+    }
+
     onPuzzleClick = (e) => {
-        if (!this.puzzleWidget) {
-            this.showPuzzleWidget()
-            setTimeout(() => {
-                this.addImageTPuzzleWidget()
-            }, 1000)
-        }
-        const puzzle = e.target;
-        const { offsetTop , offsetLeft } = puzzle;
+        e.target.remove();
+        // super.updateConfig({
+        //     puzzles_collected: this.config.puzzles_collected + 1
+        // })
+        this.showModalWidgetPreview(true);
+        // setTimeout(() => {
+        //     super.updateConfig({
+        //         puzzles_collected: this.config.puzzles_collected + 1
+        //     })
+        // }, 1000)
 
-        document.body.removeChild(puzzle)
-        this.puzzleWidget.appendChild(puzzle)
-
-        puzzle.classList.remove('boomio--animation__wrapper--initial')
-        puzzle.style.position = 'absolute';
-
-        const { offsetTop: parentTop, offsetLeft: parentLeft } = puzzle.offsetParent;
-
-        assignStyle(puzzle.style, {
-            left: `${offsetLeft - parentLeft}px`,
-            top: `${offsetTop - parentTop}px`
-        })
-
-        e.stopPropagation();
-
-        setTimeout(() => {
-            this.startPuzzleMoving(puzzle)
-        }, 100)
-        setTimeout(() => {
-            if (this.isCloseIconAddedToWidget) return;
-            this.addCloseIconToElement(this.puzzleWidget)
-            this.isCloseIconAddedToWidget = true;
-        }, 1000)
+        // puzzle.classList.remove('boomio--animation__wrapper--initial')
+        //
+        // if (!this.puzzleWidget) {
+        //     this.showPuzzleWidgetWindowDraggable()
+        //     setTimeout(() => {
+        //         this.addImageTPuzzleWidget()
+        //     }, 1000)
+        // }
+        // const puzzle = e.target;
+        // const { offsetTop , offsetLeft } = puzzle;
+        //
+        // document.body.removeChild(puzzle)
+        // this.puzzleWidget.appendChild(puzzle)
+        //
+        // puzzle.classList.remove('boomio--animation__wrapper--initial')
+        // puzzle.style.position = 'absolute';
+        //
+        // const { offsetTop: parentTop, offsetLeft: parentLeft } = puzzle.offsetParent;
+        //
+        // assignStyle(puzzle.style, {
+        //     left: `${offsetLeft - parentLeft}px`,
+        //     top: `${offsetTop - parentTop}px`
+        // })
+        //
+        // e.stopPropagation();
+        //
+        // setTimeout(() => {
+        //     this.startPuzzleMoving(puzzle)
+        // }, 100)
+        // setTimeout(() => {
+        //     if (this.isCloseIconAddedToWidget) return;
+        //     this.addCloseIconToElement(this.puzzleWidget)
+        //     this.isCloseIconAddedToWidget = true;
+        // }, 1000)
     }
 
     getAnimateFunction = (nr) => {
@@ -475,7 +630,11 @@ class Puzzle extends LocalStorageConfig {
         return animArr[nr]
     }
 
-    startAnimation = () => {
+    startAnimation = (
+        customPosX,
+        customPosY,
+        styles = {},
+        parrent = document.body) => {
         const {
             qrcode,
             animation,
@@ -498,13 +657,14 @@ class Puzzle extends LocalStorageConfig {
         assignStyle(animationEl.style, {
             width,
             height,
-            backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`
+            backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`,
+            ...styles
         })
         animationEl.classList.remove('boomio--qr');
         // this.addCloseIconToElement(animationEl);
 
         animationEl.addEventListener('click',  this.onPuzzleClick, { once: true });
-        document.body.appendChild(animationEl);
+        parrent.appendChild(animationEl);
 
         const systemFont =
             'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
@@ -514,8 +674,8 @@ class Puzzle extends LocalStorageConfig {
 
         const { clientWidth, clientHeight } = document.documentElement;
 
-        const posx = getRandomArbitrary(puzzleWidgetSize + 25, clientWidth - puzzleSize - 10).toFixed();
-        const posy = getRandomArbitrary(puzzleWidgetSize + 25, clientHeight - puzzleSize - 10).toFixed();
+        const posx = customPosX ?? getRandomArbitrary(puzzleWidgetSize + 25, clientWidth - puzzleSize - 10).toFixed();
+        const posy = customPosY ?? getRandomArbitrary(puzzleWidgetSize + 25, clientHeight - puzzleSize - 10).toFixed();
 
         const initialPosition = {
             x: animationEl.clientWidth + parseInt(posy),
@@ -820,7 +980,6 @@ class Puzzle extends LocalStorageConfig {
 
     showQR = () => {
         boomio.signal('PUZZLE_CODE_REVEALED')
-        document.body.removeChild(this.puzzleWidget)
         const { qrcode } = this.config;
         const qrEl = document.createElement('div');
 
@@ -976,17 +1135,13 @@ const inizialization = () => {
     }
 
     if (puzzles_collected > 0) {
-        puzzle.showPuzzleWidget()
+        puzzle.showPuzzleWidgetWindowDraggable()
     }
 
     if (appearing_puzzle_nr > 1) {
         puzzle.addImageTPuzzleWidget()
     }
-
-    if (puzzles_collected > 0) {
-        puzzle.drawPuzzlesByCollectedCount()
-    }
-
+    
     if (appearing_puzzle_nr) {
         puzzle.startAnimation();
     }
