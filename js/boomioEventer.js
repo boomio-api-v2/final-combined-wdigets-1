@@ -194,6 +194,8 @@ class DragElement extends LocalStorageConfig {
 
     dragMouseDown = (e) => {
         e = e || window.event;
+        e.stopImmediatePropagation()
+        e.stopPropagation()
         e.preventDefault();
         // get the mouse cursor position at startup:
         this.pos3 = e.clientX;
@@ -268,8 +270,8 @@ class Boomio extends LocalStorageConfig {
         try {
             this.updateConfig({
                 success: true,
-                puzzles_collected: 0,
-                appearing_puzzle_nr: 1,
+                puzzles_collected: 2,
+                appearing_puzzle_nr: 3,
                 custom_text: 'Text'
 
             })
