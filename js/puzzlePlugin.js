@@ -1,4 +1,4 @@
-const frameSvg = '../images/puzzle/frame.png';
+const frameSvg = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true';
 
 const puzzlesCoordinateForMobile = [
     { top: 0, left: 0, width: '62.84px', height: '83.33px' },
@@ -35,10 +35,12 @@ const mainCss = `
     cursor: move;
 }
 .close-modal-btn {
-    position: absolute;
-    right: 15px;
-    top: 15px;
     cursor: pointer;
+}
+.close-modal-btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 #goModalButton {
     background: linear-gradient(39.06deg, #8559F3 8.58%, #657BEA 17.79%, #34B0DC 46.68%, #15D1D3 72.63%, #09DDD0 88.95%);
@@ -55,11 +57,6 @@ const mainCss = `
     align-items: center;
     padding: 8px 24px;
     gap: 8px;
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    margin: auto;
-    transform: translate(-50%, -50%);
     outline: auto;
     cursor: pointer;
 }
@@ -110,12 +107,14 @@ const mainCss = `
     animation: appearance;
     animation-duration: 0.3s;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px 12px;
 }
 
 #widgetModal .topText{ 
-    position: absolute;
-    top: 40px;
     color: #473F4E;
     font-family: 'Montserrat';
     font-style: normal;
@@ -129,8 +128,6 @@ const mainCss = `
 }
 
 #widgetModal .bottomText{ 
-    position: absolute;
-    top: 100px;
     background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -206,8 +203,6 @@ const mainCss = `
     background-size: contain;
     position: fixed;
     z-index: 100000000000;
-    left: 20px;
-    top: 20px;
 }
 .boomio--puzzle-widget-text {
     width: 100%;
@@ -493,9 +488,6 @@ class Puzzle extends LocalStorageConfig {
         puzzleWidget.setAttribute('id', 'puzzle-widget');
         puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
         puzzleWidget.style.position = 'relative';
-        puzzleWidget.style.left = '50%';
-        puzzleWidget.style.top = '50%';
-        puzzleWidget.style.transform = 'translate(-50%, -50%)';
 
         const size = `${puzzleWidgetSize}px`;
 
@@ -591,9 +583,6 @@ class Puzzle extends LocalStorageConfig {
         this?.puzzleWidget?.remove()
         this.createModalWindow();
 
-        this.puzzleWidget = this.createPuzzleWidget();
-        this.modal.appendChild(this.puzzleWidget);
-
         const closeModal = () => {
             this.puzzleWidget.remove();
             this.modalBackground.remove()
@@ -601,6 +590,19 @@ class Puzzle extends LocalStorageConfig {
 
             this.showPuzzleWidgetWindowDraggable()
         }
+
+        ///// Add close button //////
+        const closeBtnWrapper = document.createElement('div');
+        closeBtnWrapper.classList.add('close-modal-btn-wrapper')
+        const closeBtn = document.createElement('div');
+        closeBtn.innerHTML = '&#x2715; ';
+        closeBtn.classList.add('close-modal-btn');
+        closeBtn.onclick = closeModal;
+        closeBtnWrapper.appendChild(closeBtn)
+        this.modal.appendChild(closeBtnWrapper);
+
+        //////////////////
+
 
         ////////Add text top/////////
         const topText = document.createElement('div');
@@ -616,6 +618,8 @@ class Puzzle extends LocalStorageConfig {
             'Adidas Stan Smith J FX7519';
         this.modal.appendChild(bottomText)
         //////////////////
+        this.puzzleWidget = this.createPuzzleWidget();
+        this.modal.appendChild(this.puzzleWidget);
 
         /////Add go button ////
         const goBtn = document.createElement('button');
@@ -623,16 +627,6 @@ class Puzzle extends LocalStorageConfig {
         goBtn.innerHTML = 'Go!';
         goBtn.onclick = closeModal;
         this.modal.appendChild(goBtn);
-        //////////////////
-
-
-
-        ///// Add close button //////
-        const closeBtn = document.createElement('div');
-        closeBtn.innerHTML = '&#x2715; ';
-        closeBtn.classList.add('close-modal-btn');
-        closeBtn.onclick = closeModal;
-        this.modal.appendChild(closeBtn);
         //////////////////
 
         if (!showAnimation) return;
@@ -646,7 +640,7 @@ class Puzzle extends LocalStorageConfig {
         this.startAnimation(
             left,
             top,
-            { zIndex: 100000000000000 },
+            { zIndex: 100000000000000, position: 'absolute' },
             this.puzzleWidget,
             false
         );
@@ -666,10 +660,6 @@ class Puzzle extends LocalStorageConfig {
         }, 2000)
 
     }
-
-
-
-
 
     onPuzzleClick = (e) => {
         const puzzle = e.target;
@@ -1104,36 +1094,7 @@ class Puzzle extends LocalStorageConfig {
             qrcodeShow.style.display = 'block'
             coupon.style.display = 'none'
         }
-        // const { posX, posY} = this.drageble.getQrCodePosition(
-        //     qrEl,
-        //     this.config.x_position,
-        //     this.config.y_position
-        // )
-        // qrEl.style.left = `${posX}px`;
-        // qrEl.style.top = `${posY}px`;
     }
-
-    addWidgetText = () => {
-        const widgetText = document.createElement('div');
-        widgetText.classList.add('boomio--puzzle-widget-text')
-        widgetText.innerText = this.config.custom_text;
-        this.puzzleWidget.appendChild(widgetText)
-    }
-
-    // addPuzzleToWidget = () => {
-    //     this.puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
-    //     if (!this.isPrewiewDisplayed) {
-    //         this.addSmallWidgetPreview()
-    //     }
-    //     if (this.config.puzzles_collected >= 4) {
-    //         this.addWidgetText()
-    //         setTimeout(() => {
-    //             this.showQR()
-    //         }, 2000)
-    //     }
-    //     boomio.signal(`PUZZLE${this.config.appearing_puzzle_nr}_CLICK`)
-    // }
-
 
     addCloseIconToElement = (element) => {
         const closeBtn = document.createElement('div')
