@@ -581,6 +581,7 @@ class Puzzle extends LocalStorageConfig {
 
     showModalWidgetPreview = (showAnimation = false) => {
         this?.puzzleWidget?.remove()
+        this.puzzleWidget = this.createPuzzleWidget();
         this.createModalWindow();
 
         const closeModal = () => {
@@ -618,7 +619,6 @@ class Puzzle extends LocalStorageConfig {
             'Adidas Stan Smith J FX7519';
         this.modal.appendChild(bottomText)
         //////////////////
-        this.puzzleWidget = this.createPuzzleWidget();
         this.modal.appendChild(this.puzzleWidget);
 
         /////Add go button ////
