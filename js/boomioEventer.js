@@ -6,7 +6,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
 
-const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/59509f0e10a43c1d192024280205408bbbec7749/js/puzzlePlugin.js';
+const puzzleScript = './js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
 
@@ -266,12 +266,20 @@ class Boomio extends LocalStorageConfig {
 
      async setInitialConfiguration() {
         try {
-            const content = await this.send({ go_hunt: "true"});
-            super.setConfigFromApi(content);
-            if (content?.widget_type && content.instruction !== 'stop') {
-                const scriptUrl = this.getScriptUrl(content.widget_type)
-                createScript(scriptUrl)
-            }
+            this.updateConfig({
+                success: true,
+                puzzles_collected: 0,
+                appearing_puzzle_nr: 1,
+                custom_text: 'Text'
+
+            })
+            createScript(puzzleScript);
+            // const content = await this.send({ go_hunt: "true"});
+            // super.setConfigFromApi(content);
+            // if (content?.widget_type && content.instruction !== 'stop') {
+            //     const scriptUrl = this.getScriptUrl(content.widget_type)
+            //     createScript(scriptUrl)
+            // }
         } catch (err) {
             console.log(err)
         }
