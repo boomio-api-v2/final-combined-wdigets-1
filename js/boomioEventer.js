@@ -6,7 +6,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
 
-const puzzleScript = './js/puzzlePlugin.js';
+const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/02840ef84e31410333880d3437aa27257d467447/js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
 
@@ -268,26 +268,26 @@ class Boomio extends LocalStorageConfig {
 
      async setInitialConfiguration() {
         try {
-            super.updateConfig({
-                animation: 5,
-                app_url: "https://boomio.page.link/2UUN9MKT3ftGen4Y6",
-                appearing_puzzle_nr: 4,
-                custom_text: "20% Discount",
-                img: 2,
-                puzzles_collected: 3,
-                qrcode:"1675166258864",
-                success: true,
-                x_position: 202,
-                y_position: 282
-            })
-            createScript(puzzleScript);
+            // super.updateConfig({
+            //     animation: 5,
+            //     app_url: "https://boomio.page.link/2UUN9MKT3ftGen4Y6",
+            //     appearing_puzzle_nr: 4,
+            //     custom_text: "20% Discount",
+            //     img: 2,
+            //     puzzles_collected: 3,
+            //     qrcode:"1675166258864",
+            //     success: true,
+            //     x_position: 202,
+            //     y_position: 282
+            // })
+            // createScript(puzzleScript);
 
-            // const content = await this.send({ go_hunt: "true"});
-            // super.setConfigFromApi(content);
-            // if (content?.widget_type && content.instruction !== 'stop') {
-            //     const scriptUrl = this.getScriptUrl(content.widget_type)
-            //     createScript(scriptUrl)
-            // }
+            const content = await this.send({ go_hunt: "true"});
+            super.setConfigFromApi(content);
+            if (content?.widget_type && content.instruction !== 'stop') {
+                const scriptUrl = this.getScriptUrl(content.widget_type)
+                createScript(scriptUrl)
+            }
         } catch (err) {
             console.log(err)
         }
