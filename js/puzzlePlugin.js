@@ -75,21 +75,17 @@ const mainCss = `
     transform: scale(0.1)
   }
   to {
-    transform: scale(1)
-    transition: all 0.3s;
+    transform: scale(1);
+    transform-origin: 200% 200%;
+    transition: all 0.s;
   }
 }
 
-@keyframes deleting {
-  from {
-    transform: scale(1)
-  }
-  to {
-    transform: scale(0.1)
-    transition: all 0.3s;
-  }
+.animation-widget {
+    transition: transform 0.3s;
+    animation: appearance;
+    animation-duration: 0.3s;
 }
-
 
 #widgetModal {
     overflow: hidden;
@@ -531,13 +527,17 @@ class Puzzle extends LocalStorageConfig {
     }
 
     // This method for creating widget in window
-    showPuzzleWidgetWindowDraggable = () => {
+    showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
         const { x_position, y_position } = this.config
         const puzzleWidget = document.createElement('div');
         const widgetSmallPreview = document.createElement('div');
         puzzleWidget.setAttribute('id', 'puzzle-widget');
         puzzleWidget.appendChild(widgetSmallPreview);
         puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+
+        if (isAnimation) {
+            puzzleWidget.classList.add('animation-widget')
+        }
 
         puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {
             puzzleWidget.remove();
@@ -619,25 +619,35 @@ class Puzzle extends LocalStorageConfig {
         return closeBtnWrapper;
     }
 
-    closeAnimation = () => {
-        this.modal.style.transform = 'scale(0)'
+    closeAnimation = (callback) => () => {
+        this.modal.style.transformOrigin = '100% 100%';
+        this.modal.style.transform = 'scale(0)';
         this.modal.addEventListener('transitionend' , () => {
             this.puzzleWidget.remove();
             this.modalBackground.remove()
-            this.showPuzzleWidgetWindowDraggable()
+            if (callback) {
+                callback()
+            }
         })
     }
 
     showModalWidgetPreview = (showAnimation = false) => {
-        const { puzzles_collected } = this.config;
-        const isLastPuzzle = puzzles_collected > 2;
+        const { appearing_puzzle_nr } = this.config;
+        const isLastPuzzle = appearing_puzzle_nr === 4 && showAnimation;
         this?.puzzleWidget?.remove()
         this.puzzleWidget = this.createPuzzleWidget();
         this.createModalWindow();
 
+        const showWidget = () => {
+            this.showPuzzleWidgetWindowDraggable(true)
+        }
         ///// Add close button //////
+
+        const animationFunc = this.closeAnimation(showWidget);
+
         if (!isLastPuzzle) {
-            this.modal.appendChild(this.getCloseModalBtn(this.closeAnimation));
+            const closeBtn = this.getCloseModalBtn(animationFunc);
+            this.modal.appendChild(closeBtn);
         }
         //////////////////
 
@@ -670,7 +680,7 @@ class Puzzle extends LocalStorageConfig {
             const goBtn = document.createElement('button');
             goBtn.setAttribute('id', 'goModalButton');
             goBtn.innerHTML = 'Go!';
-            goBtn.onclick = this.closeAnimation;
+            goBtn.onclick = animationFunc;
             this.modal.appendChild(goBtn);
         }
         //////////////////
@@ -694,7 +704,6 @@ class Puzzle extends LocalStorageConfig {
             })
             boomio.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`)
         }
-        console.log(puzzles_collected)
         if (puzzles_collected < 4) return;
 
         this.showWinningAnimation()
@@ -843,17 +852,9 @@ class Puzzle extends LocalStorageConfig {
 			animation-iteration-count: 1;
 		}
 
-		// .boomio--animation__wrapper--initial:hover {
-		// 	transform: scale(1.1);
-		// }
-		
         .boomio--animation__hover:hover {
 			transform: scale(1.1);
 		}
-
-		// .boomio--animation__wrapper--initial:active {
-		// 	transform: scale(.9);
-		// }
 
 		.boomio--animation__wrapper--qr {
 			animation-name: boomio-animate-qr;
@@ -1128,9 +1129,7 @@ class Puzzle extends LocalStorageConfig {
 
 
         qrEl.innerHTML = this.qrCodeInnerHtml();
-        this.modal.appendChild(this.getCloseModalBtn(() => {
-            this.modalBackground.remove()
-        }))
+        this.modal.appendChild(this.getCloseModalBtn(this.closeAnimation()))
         this.modal.append(qrEl);
 
         new QRCode('qrcodeShowHtml', {
