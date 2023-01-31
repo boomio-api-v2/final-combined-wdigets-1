@@ -675,6 +675,8 @@ class Puzzle extends LocalStorageConfig {
         }
         //////////////////
         this.modal.appendChild(this.puzzleWidget);
+        this.puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+
 
         /////Add go button ////
         if (!isLastPuzzle) {
