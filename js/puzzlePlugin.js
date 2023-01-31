@@ -63,8 +63,8 @@ const mainCss = `
     cursor: pointer;
 }
 #modalBackground {
-    position: relative;
-    width: 100%;
+    position: fixed;
+    width: 100vw;
     height: 100vh;
     background: rgba(62, 50, 72, 0.5);
     z-index: 10000000000;
