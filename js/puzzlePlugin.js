@@ -335,9 +335,10 @@ div:empty {
 .coupon_discount_modal .coupon_info h3 {
     background: -webkit-linear-gradient(#FF3183, #8559F3);
     -webkit-background-clip: text;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 30px;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    line-height: 37px;
+    font-size: 24px;
 }
 
 .coupon_discount_modal .coupon_info p {
@@ -777,8 +778,7 @@ class Puzzle extends LocalStorageConfig {
         this.showWinningAnimation();
 
         setTimeout(() => {
-            this.modalBackground.remove();
-            this.createModalWindow(300, 480);
+            this.closeModal()
             this.showQR();
         }, 2000);
     };
@@ -909,7 +909,7 @@ class Puzzle extends LocalStorageConfig {
 		.boomio--animation__wrapper {
 			text-align: center;
 			position: fixed;
-			z-index: 9999;
+			z-index: 999999999999;
 			left: ${posx}px;
 			top: ${posy}px;
 			visibility: visible;
@@ -1299,15 +1299,11 @@ class Puzzle extends LocalStorageConfig {
         textTitle.classList.add('exist-or-saving-modal-title')
         textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
 
-        const onCloseClick = () => {
-            this.closeModal()
-            this.showRatingModal();
-        }
-
         const saveBtn = document.createElement('button');
         saveBtn.onclick = () => {
             boomio.signal('exit_yes');
-            onCloseClick();
+            this.closeModal()
+            this.showQR()
         }
         saveBtn.classList.add('save')
         saveBtn.innerHTML = 'Save';
@@ -1315,7 +1311,8 @@ class Puzzle extends LocalStorageConfig {
         const exitBtn = document.createElement('div');
         exitBtn.onclick =  () => {
             boomio.signal('exit_cancel');
-            onCloseClick();
+            this.closeModal()
+            this.showRatingModal();
         }
         exitBtn.style.cursor = 'pointer';
         exitBtn.innerHTML = `
@@ -1351,6 +1348,7 @@ class Puzzle extends LocalStorageConfig {
     }
 
     showQR = () => {
+        this.createModalWindow(300, 480);
         boomio.signal("PUZZLE_CODE_REVEALED");
         const {
             qrcode
