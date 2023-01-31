@@ -208,6 +208,8 @@ const mainCss = `
     cursor: pointer;
 }
 #puzzle-widget {
+    width: 185px;
+    height: 185px;
     border-radius: 10px;
     background-size: contain;
     position: fixed;
@@ -513,9 +515,10 @@ class Puzzle extends LocalStorageConfig {
     createPuzzleWidget = () => {
         const puzzleWidget = document.createElement('div');
         puzzleWidget.setAttribute('id', 'puzzle-widget');
-        puzzleWidget.style.position = 'relative';
-        puzzleWidget.style.width = '185px';
-        puzzleWidget.style.height = '185px';
+        assignStyle(puzzleWidget.style, {
+            position: 'relative',
+            backgroundImage: ` url(${frameSvg})`
+        })
         this.puzzleWidget = puzzleWidget;
 
         this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop)
@@ -587,7 +590,6 @@ class Puzzle extends LocalStorageConfig {
         ////Add modal Background //////
         const modalBackground = document.createElement('div');
         modalBackground.setAttribute('id', 'modalBackground')
-        document.body.appendChild(modalBackground);
         this.modalBackground = modalBackground;
         /////////////////////////
 
@@ -670,7 +672,6 @@ class Puzzle extends LocalStorageConfig {
         }
         //////////////////
         this.modal.appendChild(this.puzzleWidget);
-        this.puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
 
 
         /////Add go button ////
@@ -683,8 +684,9 @@ class Puzzle extends LocalStorageConfig {
         }
         //////////////////
 
+        document.body.appendChild(this.modalBackground)
         if (!showAnimation) return;
-        setTimeout(this.addPuzzleToWidget, 1000);
+        setTimeout(this.addPuzzleToWidget, 500);
     };
 
     addPuzzleToWidget = () => {
