@@ -6,7 +6,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
 
-const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/790bab31978a5b4168a03ac1f3ae3f1ab62d286e/js/puzzlePlugin.js';
+const puzzleScript = './js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
 
@@ -268,12 +268,18 @@ class Boomio extends LocalStorageConfig {
 
      async setInitialConfiguration() {
         try {
-            // //Test data ??????
+            //Test data ??????
             // super.updateConfig({
-            //     puzzles_collected: 0,
+            //     animation: 3,
+            //     app_url: "https://boomio.page.link/2UUN9MKT3ftGen4Y6",
             //     appearing_puzzle_nr: 1,
+            //     custom_text: "20% Discount",
+            //     img: 2,
+            //     puzzles_collected: 0,
+            //     qrcode:"1675166258864",
             //     success: true,
-            //     animation: 1
+            //     x_position: 202,
+            //     y_position: 282
             // })
             // createScript(puzzleScript);
 
