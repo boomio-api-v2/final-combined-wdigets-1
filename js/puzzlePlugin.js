@@ -27,6 +27,7 @@ const puzzleWidgetSize = isMobileDevice ? 135 : 185;
 let isPuzzleWidgetDisplayed = false;
 
 const mainCss = `
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 * {
     margin: 0px;
     padding: 0px;
@@ -111,12 +112,12 @@ const mainCss = `
     justify-content: space-evenly;
     align-items: center;
     box-sizing: border-box;
-    padding: 8px 12px;
+    padding: 23px;
 }
 
 #widgetModal .topText{ 
     color: #473F4E;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -133,7 +134,7 @@ const mainCss = `
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -489,14 +490,12 @@ class Puzzle extends LocalStorageConfig {
         puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
         puzzleWidget.style.position = 'relative';
 
-        const size = `${puzzleWidgetSize}px`;
-
         this.puzzleWidget = puzzleWidget;
         assignStyle(puzzleWidget.style, {
-            width: size,
-            height: size
+            width: '185px',
+            height: '185px'
         })
-        this.drawPuzzlesByCollectedCount()
+        this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop)
 
         return puzzleWidget;
     }
@@ -538,10 +537,10 @@ class Puzzle extends LocalStorageConfig {
         this.drawPuzzlesByCollectedCount()
     }
 
-    drawPuzzlesByCollectedCount = () => {
+    drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
         for (let i = 0; i < this.config.puzzles_collected; i++) {
             const backgroundImage = `url(${puzzleImagesList[i]})`;
-            const { top, left, width, height } = puzzlesCoordinate[i];
+            const { top, left, width, height } = coordinate[i];
             const animationEl =  document.createElement('div')
             animationEl.setAttribute('id',`boomio--animation-${i}`);
             animationEl.classList.add('boomio--animation__wrapper');
@@ -558,7 +557,7 @@ class Puzzle extends LocalStorageConfig {
         }
     }
 
-    createModalWindow = (width = 300, height = 432) => {
+    createModalWindow = (width = 300, height = 442) => {
         ////Add modal Background //////
         const modalBackground = document.createElement('div');
         modalBackground.setAttribute('id', 'modalBackground')
@@ -608,7 +607,7 @@ class Puzzle extends LocalStorageConfig {
         ////////Add text top/////////
         const topText = document.createElement('div');
         topText.classList.add('topText');
-        topText.innerHTML = 'YOU’RE ALMOST THERE! FIND THE LAST PIECE!';
+        topText.innerHTML = 'COLLECT ALL PIECES AND WIN A GIFT!';
         this.modal.appendChild(topText)
         //////////////////
 
@@ -638,11 +637,10 @@ class Puzzle extends LocalStorageConfig {
         const { top, left } = this.coordinates[puzzles_collected];
 
         this.startAnimation(
-            left,
-            top,
+            puzzlesCoordinateForDesktop,
             { zIndex: 100000000000000, position: 'absolute' },
             this.puzzleWidget,
-            false
+            false,
         );
         if (!this.isPrewiewDisplayed) {
             super.updateConfig({
@@ -695,17 +693,18 @@ class Puzzle extends LocalStorageConfig {
         ...args
         ) => {
         const [
-            customPosX,
-            customPosY,
+            coordinates = puzzlesCoordinate,
             styles = {},
             parent = document.body,
-            isClickable = true
+            isClickable = true,
         ] = args;
         const {
             qrcode,
             animation,
             puzzles_collected,
         } = this.config;
+        const { width, height, top: customPosY, left: customPosX} = coordinates[puzzles_collected];
+
         // if ((render_count % appearing_puzzle_nr) !== 0) return;
         const puzzleSize = 100;
 
@@ -715,7 +714,6 @@ class Puzzle extends LocalStorageConfig {
             this.config.qrcode = qrcode.substring(0, pos);
         }
 
-        const { width, height } =  puzzlesCoordinate[puzzles_collected];
         const animationEl = document.createElement('div');
         animationEl.setAttribute('id', `boomio--animation-${puzzles_collected}`);
         animationEl.classList.add('boomio--animation__wrapper');
