@@ -629,36 +629,50 @@ class Puzzle extends LocalStorageConfig {
     }
 
     showModalWidgetPreview = (showAnimation = false) => {
+        const { puzzles_collected } = this.config;
+        const isLastPuzzle = puzzles_collected > 2;
         this?.puzzleWidget?.remove()
         this.puzzleWidget = this.createPuzzleWidget();
         this.createModalWindow();
 
         ///// Add close button //////
-        this.modal.appendChild(this.getCloseModalBtn(this.closeAnimation));
+        if (!isLastPuzzle) {
+            this.modal.appendChild(this.getCloseModalBtn(this.closeAnimation));
+        }
         //////////////////
 
         ////////Add text top/////////
         const topText = document.createElement('div');
         topText.classList.add('topText');
-        topText.innerHTML = 'COLLECT ALL PIECES AND WIN A GIFT!';
+        topText.innerHTML = isLastPuzzle ? 'CONGRATULATIONS!ENJOY YOUR A REWARD' : 'COLLECT ALL PIECES AND WIN A GIFT!';
         this.modal.appendChild(topText)
         //////////////////
 
+        if (isLastPuzzle) {
+            this.modal.style.height = 'max-content';
+            this.modal.style.padding = '54px 24px';
+            this.puzzleWidget.style.marginTop = '24px';
+        }
+
         ////////Add text bottom/////////
-        const bottomText = document.createElement('div');
-        bottomText.classList.add('bottomText');
-        bottomText.innerHTML = 'Hint for another piece:\n' +
-            'Adidas Stan Smith J FX7519';
-        this.modal.appendChild(bottomText)
+        if (!isLastPuzzle) {
+            const bottomText = document.createElement('div');
+            bottomText.classList.add('bottomText');
+            bottomText.innerHTML = 'Hint for another piece:\n' +
+                'Adidas Stan Smith J FX7519';
+            this.modal.appendChild(bottomText)
+        }
         //////////////////
         this.modal.appendChild(this.puzzleWidget);
 
         /////Add go button ////
-        const goBtn = document.createElement('button');
-        goBtn.setAttribute('id', 'goModalButton');
-        goBtn.innerHTML = 'Go!';
-        goBtn.onclick = this.closeAnimation;
-        this.modal.appendChild(goBtn);
+        if (!isLastPuzzle) {
+            const goBtn = document.createElement('button');
+            goBtn.setAttribute('id', 'goModalButton');
+            goBtn.innerHTML = 'Go!';
+            goBtn.onclick = this.closeAnimation;
+            this.modal.appendChild(goBtn);
+        }
         //////////////////
 
         if (!showAnimation) return;
@@ -1131,10 +1145,6 @@ class Puzzle extends LocalStorageConfig {
         const qrcodeShow = document.getElementById('qrcodeShow');
         qrcodeShow.style.display = isMobileDevice ? 'none' : 'block';
         coupon.style.display = isMobileDevice ? 'block' : 'none';
-        document.getElementById('close').onclick = (e) => {
-            this.modalBackground.remove()
-            e.stopPropagation();
-        };
         if (isMobileDevice) return;
         qrcodeShow.onclick = () => {
             coupon.style.display = 'block'
