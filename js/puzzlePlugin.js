@@ -36,6 +36,9 @@ const mainCss = `
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
 }
+div:empty {
+    display: block !important;
+}
 [draggable=true] {
     cursor: move;
 }
@@ -185,9 +188,6 @@ const mainCss = `
     font-size: 10px;
     opacity: 0.45;
 }
-.boomio--animation__wrapper:empty {
-    display: block !important;
-}
 .boomio--animation__wrapper {
     text-align: center;
     position: fixed;
@@ -218,6 +218,7 @@ const mainCss = `
     position: fixed;
     z-index: 100000000000;
 }
+
 .boomio--puzzle-widget-text {
     width: 100%;
     z-index: 1000000000000;
