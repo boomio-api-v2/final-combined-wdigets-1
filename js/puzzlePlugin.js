@@ -1,25 +1,28 @@
-const frameSvg = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true';
+const frameSvg =
+    "./images/puzzle/frame.png";
 
 const puzzlesCoordinateForMobile = [
-    { top: 0, left: 0, width: '62.84px', height: '83.33px' },
-    { top: 0, left: 47, width: '83.3px', height: '66.86px' },
-    { top: 63, left: 0, width: '86.3px', height: '69.86px' },
-    { top: 44, left: 62, width: '67.84px', height: '88.3px' },
+    { top: 0, left: 0, width: "62.84px", height: "83.33px" },
+    { top: 0, left: 47, width: "83.3px", height: "66.86px" },
+    { top: 63, left: 0, width: "86.3px", height: "69.86px" },
+    { top: 44, left: 62, width: "67.84px", height: "88.3px" },
 ];
 
-const puzzlesCoordinateForDesktop =  [
-    { top: 0, left: 0, width: '89.84px', height: '112.33px' },
-    { top: 0, left: 67, width: '112.3px', height: '89.86px' },
-    { top: 87, left: 0, width: '112.3px', height: '89.86px' },
-    { top: 64, left: 89, width: '89.84px', height: '112.33px' },
-]
+const puzzlesCoordinateForDesktop = [
+    { top: 0, left: 0, width: "89.84px", height: "112.33px" },
+    { top: 0, left: 67, width: "112.3px", height: "89.86px" },
+    { top: 87, left: 0, width: "112.3px", height: "89.86px" },
+    { top: 64, left: 89, width: "89.84px", height: "112.33px" },
+];
 
-const puzzlesCoordinate = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
+const puzzlesCoordinate = isMobileDevice
+    ? puzzlesCoordinateForMobile
+    : puzzlesCoordinateForDesktop;
 const puzzleImagesList = [
-    'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-1.png?raw=true',
-    'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-2.png?raw=true',
-    'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-3.png?raw=true',
-    'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-4.png?raw=true',
+    "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-1.png?raw=true",
+    "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-2.png?raw=true",
+    "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-3.png?raw=true",
+    "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-4.png?raw=true",
 ];
 
 const puzzleWidgetSize = isMobileDevice ? 135 : 185;
@@ -442,7 +445,7 @@ const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 const assignStyle = (style, properties) => {
     Object.assign(style, properties);
-}
+};
 
 ////////Puzzle Class ////////////
 class Puzzle extends LocalStorageConfig {
@@ -450,13 +453,15 @@ class Puzzle extends LocalStorageConfig {
         super();
         this.isPrewiewDisplayed = false;
         this.config = super.getDefaultConfig();
-        this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
-        this.addStyles(mainCss)
+        this.coordinates = isMobileDevice
+            ? puzzlesCoordinateForMobile
+            : puzzlesCoordinateForDesktop;
+        this.addStyles(mainCss);
     }
     addStyles = (cssRules) => {
-        const style = document.createElement('style');
-        style.setAttribute('id', 'boomio--stylesheet');
-        document.getElementsByTagName('head')[0].appendChild(style);
+        const style = document.createElement("style");
+        style.setAttribute("id", "boomio--stylesheet");
+        document.getElementsByTagName("head")[0].appendChild(style);
         if (style.styleSheet) {
             style.styleSheet.cssText = cssRules;
         } else {
@@ -465,9 +470,9 @@ class Puzzle extends LocalStorageConfig {
     };
 
     addSmallWidgetPreview = (qrSize = 50) => {
-        const widgetPreview = document.createElement('div');
-        widgetPreview.setAttribute('id', 'widgetPreview')
-        this.puzzleWidget.appendChild(widgetPreview)
+        const widgetPreview = document.createElement("div");
+        widgetPreview.setAttribute("id", "widgetPreview");
+        this.puzzleWidget.appendChild(widgetPreview);
 
         if (isMobileDevice) {
             widgetPreview.innerHTML = `
@@ -479,166 +484,168 @@ class Puzzle extends LocalStorageConfig {
                         </div>
                     </div>
                 </div>
-				`
-        } else  {
-            widgetPreview.style.background = 'white'
+				`;
+        } else {
+            widgetPreview.style.background = "white";
             if (qrSize === 50) {
-                widgetPreview.style.left = '68px'
+                widgetPreview.style.left = "68px";
             }
-            new QRCode('widgetPreview', {
+            new QRCode("widgetPreview", {
                 text: this.config.qrcode,
                 width: qrSize,
                 height: qrSize,
-                colorDark: '#000000',
-                colorLight: '#ffffff',
+                colorDark: "#000000",
+                colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H,
             });
         }
 
-        widgetPreview.addEventListener('click', () => {
-            if (isMobileDevice) {
-                window.open(this.config.app_url)
-            } else {
-                widgetPreview.remove();
-                this.addSmallWidgetPreview(qrSize === 50 ? 180 : 50)
-            }
-        }, { once: true })
+        widgetPreview.addEventListener(
+            "click",
+            () => {
+                if (isMobileDevice) {
+                    window.open(this.config.app_url);
+                } else {
+                    widgetPreview.remove();
+                    this.addSmallWidgetPreview(qrSize === 50 ? 180 : 50);
+                }
+            },
+            { once: true }
+        );
 
         this.isPrewiewDisplayed = true;
-
-    }
+    };
 
     addImageTPuzzleWidget = () => {
-        this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`
-    }
+        this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;
+    };
 
     createPuzzleWidget = () => {
-        const puzzleWidget = document.createElement('div');
-        puzzleWidget.setAttribute('id', 'puzzle-widget');
+        const puzzleWidget = document.createElement("div");
+        puzzleWidget.setAttribute("id", "puzzle-widget");
         assignStyle(puzzleWidget.style, {
-            position: 'relative',
-            backgroundImage: ` url(${frameSvg})`
-        })
+            position: "relative",
+            backgroundImage: ` url(${frameSvg})`,
+        });
         this.puzzleWidget = puzzleWidget;
 
-        this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop)
-
-    }
+        this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop);
+    };
 
     // This method for creating widget in window
     showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
-        const { x_position, y_position } = this.config
-        const puzzleWidget = document.createElement('div');
-        const widgetSmallPreview = document.createElement('div');
-        puzzleWidget.setAttribute('id', 'puzzle-widget');
+        const { x_position, y_position } = this.config;
+        const puzzleWidget = document.createElement("div");
+        const widgetSmallPreview = document.createElement("div");
+        puzzleWidget.setAttribute("id", "puzzle-widget");
         puzzleWidget.appendChild(widgetSmallPreview);
         puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
 
         if (isAnimation) {
-            puzzleWidget.classList.add('animation-widget')
+            puzzleWidget.classList.add("animation-widget");
         }
 
-        puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {
+        puzzleWidget.addEventListener(isMobileDevice ? "click" : "dblclick", () => {
             puzzleWidget.remove();
             this?.animationEl?.remove();
             this.isPrewiewDisplayed = true;
-            this.showModalWidgetPreview(false)
-        })
+            this.showModalWidgetPreview(false);
+        });
 
         if (x_position && y_position) {
             puzzleWidget.style.left = `${x_position}px`;
-            puzzleWidget.style.top = `${y_position}px`
-        };
+            puzzleWidget.style.top = `${y_position}px`;
+        }
         this.puzzleWidget = puzzleWidget;
         const size = `${puzzleWidgetSize}px`;
         assignStyle(puzzleWidget.style, {
             width: size,
-            height: size
-        })
+            height: size,
+        });
 
         document.body.appendChild(puzzleWidget);
         if (this.config.puzzles_collected > 0) {
-            this.addCloseIconToElement(puzzleWidget)
-            this.addSmallWidgetPreview()
+            this.addCloseIconToElement(puzzleWidget);
+            this.addSmallWidgetPreview();
         }
-        this.drageble = new DragElement(this.puzzleWidget)
+        this.drageble = new DragElement(this.puzzleWidget);
         isPuzzleWidgetDisplayed = true;
-        this.drawPuzzlesByCollectedCount()
-    }
+        this.drawPuzzlesByCollectedCount();
+    };
 
     drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
         for (let i = 0; i < this.config.puzzles_collected; i++) {
             const backgroundImage = `url(${puzzleImagesList[i]})`;
             const { top, left, width, height } = coordinate[i];
-            const animationEl =  document.createElement('div')
-            animationEl.setAttribute('id',`boomio--animation-${i}`);
-            animationEl.classList.add('boomio--animation__wrapper');
+            const animationEl = document.createElement("div");
+            animationEl.setAttribute("id", `boomio--animation-${i}`);
+            animationEl.classList.add("boomio--animation__wrapper");
             assignStyle(animationEl.style, {
                 top: `${top}px`,
                 left: `${left}px`,
                 width,
                 height,
                 backgroundImage,
-                position: 'absolute'
-            })
+                position: "absolute",
+            });
 
             this.puzzleWidget.appendChild(animationEl);
         }
-    }
+    };
 
     createModalWindow = (width = 300, height = 442) => {
         ////Add modal Background //////
-        const modalBackground = document.createElement('div');
-        modalBackground.setAttribute('id', 'modalBackground')
+        const modalBackground = document.createElement("div");
+        modalBackground.setAttribute("id", "modalBackground");
         this.modalBackground = modalBackground;
         /////////////////////////
 
         ////////Add modal ///////
-        const modal = document.createElement('div');
-        modal.setAttribute('id', 'widgetModal');
+        const modal = document.createElement("div");
+        modal.setAttribute("id", "widgetModal");
         assignStyle(modal.style, {
             width: `${width}px`,
             height: `${height}px`,
-            transform: 'scale(1)'
-        })
+            transform: "scale(1)",
+        });
         modalBackground.appendChild(modal);
         this.modal = modal;
         ////////////////////////////
-    }
+    };
 
     getCloseModalBtn = (closeCallback) => {
-        const closeBtnWrapper = document.createElement('div');
-        closeBtnWrapper.classList.add('close-modal-btn-wrapper')
-        const closeBtn = document.createElement('div');
-        closeBtn.innerHTML = '&#x2715; ';
-        closeBtn.classList.add('close-modal-btn');
+        const closeBtnWrapper = document.createElement("div");
+        closeBtnWrapper.classList.add("close-modal-btn-wrapper");
+        const closeBtn = document.createElement("div");
+        closeBtn.innerHTML = "&#x2715; ";
+        closeBtn.classList.add("close-modal-btn");
         closeBtn.onclick = closeCallback;
-        closeBtnWrapper.appendChild(closeBtn)
+        closeBtnWrapper.appendChild(closeBtn);
         return closeBtnWrapper;
-    }
+    };
 
     closeAnimation = (callback) => () => {
-        this.modal.style.transformOrigin = '100% 100%';
-        this.modal.style.transform = 'scale(0)';
-        this.modal.addEventListener('transitionend' , () => {
+        this.modal.style.transformOrigin = "100% 100%";
+        this.modal.style.transform = "scale(0)";
+        this.modal.addEventListener("transitionend", () => {
             this.puzzleWidget.remove();
-            this.modalBackground.remove()
+            this.modalBackground.remove();
             if (callback) {
-                callback()
+                callback();
             }
-        })
-    }
+        });
+    };
 
     showModalWidgetPreview = (showAnimation = false) => {
         const { appearing_puzzle_nr } = this.config;
         const isLastPuzzle = appearing_puzzle_nr === 4 && showAnimation;
-        this?.puzzleWidget?.remove()
+        this?.puzzleWidget?.remove();
         this.createPuzzleWidget();
         this.createModalWindow();
 
         const showWidget = () => {
-            this.showPuzzleWidgetWindowDraggable(true)
-        }
+            this.showPuzzleWidgetWindowDraggable(true);
+        };
         ///// Add close button //////
 
         const animationFunc = this.closeAnimation(showWidget);
@@ -650,41 +657,42 @@ class Puzzle extends LocalStorageConfig {
         //////////////////
 
         ////////Add text top/////////
-        const topText = document.createElement('div');
-        topText.classList.add('topText');
-        topText.innerHTML = isLastPuzzle ? 'CONGRATULATIONS!ENJOY YOUR A REWARD' : 'COLLECT ALL PIECES AND WIN A GIFT!';
-        this.modal.appendChild(topText)
+        const topText = document.createElement("div");
+        topText.classList.add("topText");
+        topText.innerHTML = isLastPuzzle
+            ? "CONGRATULATIONS!ENJOY YOUR A REWARD"
+            : "COLLECT ALL PIECES AND WIN A GIFT!";
+        this.modal.appendChild(topText);
         //////////////////
 
         if (isLastPuzzle) {
-            this.modal.style.height = 'max-content';
-            this.modal.style.padding = '54px 24px';
-            this.puzzleWidget.style.marginTop = '24px';
+            this.modal.style.height = "max-content";
+            this.modal.style.padding = "54px 24px";
+            this.puzzleWidget.style.marginTop = "24px";
         }
 
         ////////Add text bottom/////////
         if (!isLastPuzzle) {
-            const bottomText = document.createElement('div');
-            bottomText.classList.add('bottomText');
-            bottomText.innerHTML = 'Hint for another piece:\n' +
-                'Adidas Stan Smith J FX7519';
-            this.modal.appendChild(bottomText)
+            const bottomText = document.createElement("div");
+            bottomText.classList.add("bottomText");
+            bottomText.innerHTML =
+                "Hint for another piece:\n" + "Adidas Stan Smith J FX7519";
+            this.modal.appendChild(bottomText);
         }
         //////////////////
         this.modal.appendChild(this.puzzleWidget);
 
-
         /////Add go button ////
         if (!isLastPuzzle) {
-            const goBtn = document.createElement('button');
-            goBtn.setAttribute('id', 'goModalButton');
-            goBtn.innerHTML = 'Go!';
+            const goBtn = document.createElement("button");
+            goBtn.setAttribute("id", "goModalButton");
+            goBtn.innerHTML = "Go!";
             goBtn.onclick = animationFunc;
             this.modal.appendChild(goBtn);
         }
         //////////////////
 
-        document.body.appendChild(this.modalBackground)
+        document.body.appendChild(this.modalBackground);
         if (!showAnimation) return;
         setTimeout(this.addPuzzleToWidget, 500);
     };
@@ -694,85 +702,81 @@ class Puzzle extends LocalStorageConfig {
 
         this.startAnimation(
             puzzlesCoordinateForDesktop,
-            { zIndex: 100000000000000, position: 'absolute' },
+            { zIndex: 100000000000000, position: "absolute" },
             this.puzzleWidget,
-            false,
+            false
         );
         if (!this.isPrewiewDisplayed) {
             super.updateConfig({
-                puzzles_collected: puzzles_collected += 1
-            })
-            boomio.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`)
+                puzzles_collected: (puzzles_collected += 1),
+            });
+            boomio.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`);
         }
         if (puzzles_collected < 4) return;
 
-        this.showWinningAnimation()
+        this.showWinningAnimation();
 
         setTimeout(() => {
-            this.modalBackground.remove()
-            this.createModalWindow(300, 480)
-            this.showQR()
-        }, 2000)
-
-    }
+            this.modalBackground.remove();
+            this.createModalWindow(300, 480);
+            this.showQR();
+        }, 2000);
+    };
 
     showWinningAnimation = () => {
-        const winningAnimation = document.createElement('iframe');
-        winningAnimation.classList.add('winningAnimation');
-        winningAnimation.setAttribute('src','https://embed.lottiefiles.com/animation/35875' );
+        const winningAnimation = document.createElement("iframe");
+        winningAnimation.classList.add("winningAnimation");
+        winningAnimation.setAttribute(
+            "src",
+            "https://embed.lottiefiles.com/animation/35875"
+        );
         document.body.appendChild(winningAnimation);
         setTimeout(() => {
-            winningAnimation.remove()
-        }, 2000)
-    }
+            winningAnimation.remove();
+        }, 2000);
+    };
 
     onPuzzleClick = (e) => {
         const puzzle = e.target;
         puzzle.remove();
         this.isPrewiewDisplayed = false;
         this.showModalWidgetPreview(true);
-    }
+    };
 
     getAnimateFunction = (nr) => {
         const animate = (animation) => (el) => {
             el.classList.add(`boomio--animation--${animation}`);
         };
         const animArr = [
-            animate('moveRight'),
-            animate('moveLeft'),
-            animate('moveDown'),
-            animate('moveUp'),
-            animate('fadeIn'),
-            animate('moveDiagonalDown'),
-            animate('rotateRight'),
-            animate('zoomIn'),
-            animate('skewLeft'),
-            animate('moveDiagonalUp'),
-            animate('tada'),
-            animate('lightSpeedInLeft'),
-            animate('rollIn'),
+            animate("moveRight"),
+            animate("moveLeft"),
+            animate("moveDown"),
+            animate("moveUp"),
+            animate("fadeIn"),
+            animate("moveDiagonalDown"),
+            animate("rotateRight"),
+            animate("zoomIn"),
+            animate("skewLeft"),
+            animate("moveDiagonalUp"),
+            animate("tada"),
+            animate("lightSpeedInLeft"),
+            animate("rollIn"),
         ];
 
-        return animArr[nr]
-    }
+        return animArr[nr];
+    };
 
-    startAnimation = (
-        ...args
-        ) => {
+    startAnimation = (...args) => {
         const [
             coordinates,
             styles = {},
             parent = document.body,
             isClickable = true,
         ] = args;
-        const {
-            qrcode,
-            animation,
-            puzzles_collected,
-        } = this.config;
+        const { qrcode, animation, puzzles_collected } = this.config;
         const defaultCoordinates = this.coordinates[puzzles_collected];
 
-        const currentCoordinates =  coordinates?.[puzzles_collected];
+        const currentCoordinates = coordinates?.[puzzles_collected];
         const customPosX = currentCoordinates?.left;
         const customPosY = currentCoordinates?.top;
         const width = currentCoordinates?.width ?? defaultCoordinates.width;
@@ -781,40 +785,50 @@ class Puzzle extends LocalStorageConfig {
         // if ((render_count % appearing_puzzle_nr) !== 0) return;
         const puzzleSize = 100;
 
-        const dash = '-';
+        const dash = "-";
         const pos = qrcode.indexOf(dash);
         if (pos != -1) {
             this.config.qrcode = qrcode.substring(0, pos);
         }
 
-        const animationEl = document.createElement('div');
-        animationEl.setAttribute('id', `boomio--animation-${puzzles_collected}`);
-        animationEl.classList.add('boomio--animation__wrapper');
-        animationEl.classList.add('boomio--animation__wrapper--initial');
+        const animationEl = document.createElement("div");
+        animationEl.setAttribute("id", `boomio--animation-${puzzles_collected}`);
+        animationEl.classList.add("boomio--animation__wrapper");
+        animationEl.classList.add("boomio--animation__wrapper--initial");
         assignStyle(animationEl.style, {
             width,
             height,
             backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`,
-            ...styles
-        })
-        animationEl.classList.remove('boomio--qr');
+            ...styles,
+        });
+        animationEl.classList.remove("boomio--qr");
         // this.addCloseIconToElement(animationEl);
         if (isClickable) {
-            animationEl.classList.add('boomio--animation__hover')
-            animationEl.addEventListener('click',  this.onPuzzleClick, { once: true });
+            animationEl.classList.add("boomio--animation__hover");
+            animationEl.addEventListener("click", this.onPuzzleClick, { once: true });
         }
         parent.appendChild(animationEl);
 
         const systemFont =
-            'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
-        const duration = '1000ms';
-        const easingBack = 'cubic-bezier(0.18, 0.89, 0.32, 1.28)';
-        const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+            "system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue";
+        const duration = "1000ms";
+        const easingBack = "cubic-bezier(0.18, 0.89, 0.32, 1.28)";
+        const easing = "cubic-bezier(0.22, 0.61, 0.36, 1)";
 
         const { clientWidth, clientHeight } = document.documentElement;
 
-        const posx = customPosX ?? getRandomArbitrary(puzzleWidgetSize + 25, clientWidth - puzzleSize - 10).toFixed();
-        const posy = customPosY ?? getRandomArbitrary(puzzleWidgetSize + 25, clientHeight - puzzleSize - 10).toFixed();
+        const posx =
+            customPosX ??
+            getRandomArbitrary(
+                puzzleWidgetSize + 25,
+                clientWidth - puzzleSize - 10
+            ).toFixed();
+        const posy =
+            customPosY ??
+            getRandomArbitrary(
+                puzzleWidgetSize + 25,
+                clientHeight - puzzleSize - 10
+            ).toFixed();
 
         const initialPosition = {
             x: animationEl.clientWidth + parseInt(posy),
@@ -1114,67 +1128,70 @@ class Puzzle extends LocalStorageConfig {
         }
 		`;
 
-        this.addStyles( css);
+        this.addStyles(css);
         const animFunc = this.getAnimateFunction(animation);
         animFunc(animationEl);
         this.animationEl = animationEl;
     };
 
     showQR = () => {
-        boomio.signal('PUZZLE_CODE_REVEALED')
+        boomio.signal("PUZZLE_CODE_REVEALED");
         const { qrcode } = this.config;
-        const qrEl = document.createElement('div');
+        const qrEl = document.createElement("div");
 
-        qrEl.setAttribute('id', 'boomio--qr');
-
+        qrEl.setAttribute("id", "boomio--qr");
 
         qrEl.innerHTML = this.qrCodeInnerHtml();
-        this.modal.appendChild(this.getCloseModalBtn(this.closeAnimation()))
+        this.modal.appendChild(this.getCloseModalBtn(this.closeAnimation()));
         this.modal.append(qrEl);
 
-        new QRCode('qrcodeShowHtml', {
+        new QRCode("qrcodeShowHtml", {
             text: qrcode,
             width: 200,
             height: 200,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
+            colorDark: "#000000",
+            colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H,
         });
-        const coupon = document.getElementById('coupon_div');
-        const qrcodeShow = document.getElementById('qrcodeShow');
-        qrcodeShow.style.display = isMobileDevice ? 'none' : 'block';
-        coupon.style.display = isMobileDevice ? 'block' : 'none';
+        const coupon = document.getElementById("coupon_div");
+        const qrcodeShow = document.getElementById("qrcodeShow");
+        qrcodeShow.style.display = isMobileDevice ? "none" : "block";
+        coupon.style.display = isMobileDevice ? "block" : "none";
         if (isMobileDevice) return;
         qrcodeShow.onclick = () => {
-            coupon.style.display = 'block'
-            qrcodeShow.style.display = 'none'
-        }
+            coupon.style.display = "block";
+            qrcodeShow.style.display = "none";
+        };
         coupon.onclick = () => {
-            qrcodeShow.style.display = 'block'
-            coupon.style.display = 'none'
-        }
-    }
+            qrcodeShow.style.display = "block";
+            coupon.style.display = "none";
+        };
+    };
 
     addCloseIconToElement = (element) => {
-        const closeBtn = document.createElement('div')
-        closeBtn.classList.add('custom-close-icon')
-        closeBtn.innerHTML = '&#x2715; ';
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation()
-            e.preventDefault()
-            this.disableWidgetAndRemoveAllElements()
-        },{ once: true })
-        element.appendChild(closeBtn)
-    }
+        const closeBtn = document.createElement("div");
+        closeBtn.classList.add("custom-close-icon");
+        closeBtn.innerHTML = "&#x2715; ";
+        closeBtn.addEventListener(
+            "click",
+            (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                this.disableWidgetAndRemoveAllElements();
+            },
+            { once: true }
+        );
+        element.appendChild(closeBtn);
+    };
 
     disableWidgetAndRemoveAllElements = () => {
-        boomio.signal('PUZZLE_CLOSED');
-        this.puzzleWidget.remove()
-        this.animationEl.remove()
-    }
+        boomio.signal("PUZZLE_CLOSED");
+        this.puzzleWidget.remove();
+        this.animationEl.remove();
+    };
 
-
-    qrCodeInnerHtml = () =>  `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
+    qrCodeInnerHtml =
+        () => `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
     
 		<div class="coupon__preview__body coupon_discount_modal">
 
@@ -1210,31 +1227,30 @@ class Puzzle extends LocalStorageConfig {
 		
 			</div>
 		</div>
-	</div>`
+	</div>`;
 }
 ////////////////////////////
-
 
 const inizialization = () => {
     const puzzle = new Puzzle();
 
     const { success, puzzles_collected, appearing_puzzle_nr } = puzzle.config;
 
-    if (!success){
+    if (!success) {
         return;
     }
 
     if (puzzles_collected > 0) {
-        puzzle.showPuzzleWidgetWindowDraggable()
+        puzzle.showPuzzleWidgetWindowDraggable();
     }
 
     if (appearing_puzzle_nr > 1) {
-        puzzle.addImageTPuzzleWidget()
+        puzzle.addImageTPuzzleWidget();
     }
-    
+
     if (appearing_puzzle_nr) {
         puzzle.startAnimation();
     }
 };
 
-inizialization()
+inizialization();
