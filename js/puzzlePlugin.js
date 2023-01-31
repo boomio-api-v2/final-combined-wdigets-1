@@ -1,5 +1,5 @@
 const frameSvg =
-    "./images/puzzle/frame.png";
+    "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true";
 
 const puzzlesCoordinateForMobile = [
     { top: 0, left: 0, width: "62.84px", height: "83.33px" },
