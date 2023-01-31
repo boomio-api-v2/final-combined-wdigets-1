@@ -27,10 +27,11 @@ const puzzleWidgetSize = isMobileDevice ? 135 : 185;
 let isPuzzleWidgetDisplayed = false;
 
 const mainCss = `
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 * {
     margin: 0px;
     padding: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
 [draggable=true] {
     cursor: move;
@@ -145,6 +146,17 @@ const mainCss = `
     letter-spacing: -0.02em;
 }
 
+.winningAnimation {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000000000000000;
+}
+
 
 .boomie-preview-mobile {
     width: 100px;
@@ -218,6 +230,14 @@ const mainCss = `
     font-size: ${isMobileDevice ? 20 : 36}px;
     text-align: center;
 }
+
+.oomio-app-text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+}
+
 .coupon_discount_modal .coupon_info h3 {
     background: -webkit-linear-gradient(#FF3183, #8559F3);
     -webkit-background-clip: text;
@@ -251,7 +271,7 @@ const mainCss = `
     border: none;
     padding: 1px;
     height: 47px;
-    border: double 2px transparent;
+    border: double 1px transparent;
     border-radius: 24px;
     background-image: linear-gradient(#e8dff7, #fee0e7), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
     background-origin: border-box;
@@ -259,13 +279,14 @@ const mainCss = `
 }
 
 .coupon_preview_card_footer .btn-content img {
-    width: 30px;
+    width: 20px;
+    height: 24px;
+    margin-right: 16px;
 }
 
 .coupon_preview_card_footer .btn-content .small-font {
-    font-weight: 500;
-    font-size: 14px;
-    text-align: left;
+    font-weight: 600;
+    font-size: 10px;
 }
 
 .coupon_preview_card_footer .appstore-img img,
@@ -276,6 +297,8 @@ const mainCss = `
     line-height: 14px;
     font-size: 14px;
 }
+
+
 .coupon_preview_card_footer .btn-content {
     cursor: pointer;
 }
@@ -333,6 +356,15 @@ const mainCss = `
     background-color: #fff;
     transform: translate(-111%, -50%);
 }
+
+.coupon-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+}
+
 
 .coupon__preview__card::after {
     content: "";
@@ -447,7 +479,7 @@ class Puzzle extends LocalStorageConfig {
                     <div class="btn-content d-flex align-items-center justify-content-center" style="height: 40px; width: 130px">
                         <img src="${dotImage}" alt="img not find">
                         <div class="d-flex flex-column btn-text-group ml-2"><small class="small-font">Open</small>
-                        <b>Boomio app</b>
+                        <b class="boomio-app-text">Boomio app</b>
                         </div>
                     </div>
                 </div>
@@ -651,12 +683,24 @@ class Puzzle extends LocalStorageConfig {
         console.log(puzzles_collected)
         if (puzzles_collected < 4) return;
 
+        this.showWinningAnimation()
+
         setTimeout(() => {
             this.modal.remove()
             this.createModalWindow(300, 480)
             this.showQR()
         }, 2000)
 
+    }
+
+    showWinningAnimation = () => {
+        const winningAnimation = document.createElement('iframe');
+        winningAnimation.classList.add('winningAnimation');
+        winningAnimation.setAttribute('src','https://embed.lottiefiles.com/animation/35875' );
+        document.body.appendChild(winningAnimation);
+        setTimeout(() => {
+            winningAnimation.remove()
+        }, 2000)
     }
 
     onPuzzleClick = (e) => {
@@ -1029,6 +1073,7 @@ class Puzzle extends LocalStorageConfig {
 
         .coupon__preview__card__header h1 {
             font-weight: 600;
+            font-style: normal;
             font-size: 20px;
             line-height: 24px;
             letter-spacing: -0.02em;
@@ -1135,15 +1180,14 @@ class Puzzle extends LocalStorageConfig {
 					<div class="coupon__preview__card__befor"></div>
 				</div>
 			</div>
-				<p>To have immpediate access for all your great rewards <b> open of download</b></p>
+				<p class="coupon-text">To have immpediate access for all your great rewards <b> open of download</b></p>
 							<div class="coupon_preview_card_footer">
 
 				<a href=${this.config.app_url}>
 				<div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
 					<img src="${dotImage}" alt="img not find">
 					<div class="d-flex flex-column btn-text-group ml-2"><small class="small-font">Open</small>
-						<b>Boomio
-							app</b>
+						<b>Boomio app</b>
 					</div>
 				</div>
 				</a>

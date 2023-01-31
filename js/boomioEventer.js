@@ -18,7 +18,7 @@ const appStoreImage =
 const playStoreImage =
     'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/playstore.png?raw=true';
 const dotImage =
-    'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/dot.png?raw=true';
+    './images/boomio-app.png';
 
 
 class LocalStorageConfig {
@@ -270,8 +270,8 @@ class Boomio extends LocalStorageConfig {
         try {
             ////Test data ??????
             super.updateConfig({
-                puzzles_collected: 2,
-                appearing_puzzle_nr: 3,
+                puzzles_collected: 3,
+                appearing_puzzle_nr: 4,
                 success: true
             })
             createScript(puzzleScript);
