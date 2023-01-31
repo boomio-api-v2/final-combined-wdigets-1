@@ -418,8 +418,6 @@ const mainCss = `
     cursor: pointer;
 }
 
-
-
 .coupon_discount_modal .coupon__preview__card {
     box-shadow: 10px 11px 5px -5px rgba(195, 195, 195, 0.35);
 }
@@ -621,21 +619,22 @@ class Puzzle extends LocalStorageConfig {
         return closeBtnWrapper;
     }
 
+    closeAnimation = () => {
+        this.modal.style.transform = 'scale(0)'
+        this.modal.addEventListener('transitionend' , () => {
+            this.puzzleWidget.remove();
+            this.modalBackground.remove()
+            this.showPuzzleWidgetWindowDraggable()
+        })
+    }
+
     showModalWidgetPreview = (showAnimation = false) => {
         this?.puzzleWidget?.remove()
         this.puzzleWidget = this.createPuzzleWidget();
         this.createModalWindow();
 
-        const closeModalFunc = () => {
-            this.puzzleWidget.remove();
-            this.modalBackground.remove()
-            // modal.style.transform = 'scale(1)'
-
-            this.showPuzzleWidgetWindowDraggable()
-        }
-
         ///// Add close button //////
-        this.modal.appendChild(this.getCloseModalBtn(closeModalFunc));
+        this.modal.appendChild(this.getCloseModalBtn(this.closeAnimation));
         //////////////////
 
         ////////Add text top/////////
@@ -658,7 +657,7 @@ class Puzzle extends LocalStorageConfig {
         const goBtn = document.createElement('button');
         goBtn.setAttribute('id', 'goModalButton');
         goBtn.innerHTML = 'Go!';
-        goBtn.onclick = closeModalFunc;
+        goBtn.onclick = this.closeAnimation;
         this.modal.appendChild(goBtn);
         //////////////////
 
@@ -738,7 +737,7 @@ class Puzzle extends LocalStorageConfig {
         ...args
         ) => {
         const [
-            coordinates = puzzlesCoordinate,
+            coordinates,
             styles = {},
             parent = document.body,
             isClickable = true,
@@ -748,7 +747,13 @@ class Puzzle extends LocalStorageConfig {
             animation,
             puzzles_collected,
         } = this.config;
-        const { width, height, top: customPosY, left: customPosX} = coordinates[puzzles_collected];
+        const defaultCoordinates = this.coordinates[puzzles_collected];
+
+        const currentCoordinates =  coordinates?.[puzzles_collected];
+        const customPosX = currentCoordinates?.left;
+        const customPosY = currentCoordinates?.top;
+        const width = currentCoordinates?.width ?? defaultCoordinates.width;
+        const height = currentCoordinates?.height ?? defaultCoordinates.height;
 
         // if ((render_count % appearing_puzzle_nr) !== 0) return;
         const puzzleSize = 100;

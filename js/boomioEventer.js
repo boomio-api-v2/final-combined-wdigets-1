@@ -272,7 +272,8 @@ class Boomio extends LocalStorageConfig {
             super.updateConfig({
                 puzzles_collected: 2,
                 appearing_puzzle_nr: 3,
-                success: true
+                success: true,
+                animation: 1
             })
             createScript(puzzleScript);
 
