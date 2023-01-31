@@ -514,17 +514,12 @@ class Puzzle extends LocalStorageConfig {
         const puzzleWidget = document.createElement('div');
         puzzleWidget.setAttribute('id', 'puzzle-widget');
         puzzleWidget.style.position = 'relative';
-
+        puzzleWidget.style.width = '185px';
+        puzzleWidget.style.height = '185px';
         this.puzzleWidget = puzzleWidget;
-        assignStyle(puzzleWidget.style, {
-            width: '185px',
-            height: '185px'
-        })
-        puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
 
         this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop)
 
-        return puzzleWidget;
     }
 
     // This method for creating widget in window
@@ -636,7 +631,7 @@ class Puzzle extends LocalStorageConfig {
         const { appearing_puzzle_nr } = this.config;
         const isLastPuzzle = appearing_puzzle_nr === 4 && showAnimation;
         this?.puzzleWidget?.remove()
-        this.puzzleWidget = this.createPuzzleWidget();
+        this.createPuzzleWidget();
         this.createModalWindow();
 
         const showWidget = () => {
