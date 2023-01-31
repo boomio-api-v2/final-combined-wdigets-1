@@ -29,6 +29,7 @@ const puzzleWidgetSize = isMobileDevice ? 135 : 185;
 
 let isPuzzleWidgetDisplayed = false;
 
+
 const mainCss = `
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 * {
