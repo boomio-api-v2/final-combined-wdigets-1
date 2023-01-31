@@ -110,7 +110,7 @@ const mainCss = `
     animation-duration: 0.3s;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     padding: 23px;
@@ -162,9 +162,9 @@ const mainCss = `
     width: 100px;
 }
 #boomio--qr {
-    position: fixed;
-    top: 0px;
-    left: 0px;
+    // position: fixed;
+    // top: 0px;
+    // left: 0px;
     z-index: 1000;
     width: 100%;
     height: 100%;
@@ -610,12 +610,23 @@ class Puzzle extends LocalStorageConfig {
         ////////////////////////////
     }
 
+    getCloseModalBtn = (closeCallback) => {
+        const closeBtnWrapper = document.createElement('div');
+        closeBtnWrapper.classList.add('close-modal-btn-wrapper')
+        const closeBtn = document.createElement('div');
+        closeBtn.innerHTML = '&#x2715; ';
+        closeBtn.classList.add('close-modal-btn');
+        closeBtn.onclick = closeCallback;
+        closeBtnWrapper.appendChild(closeBtn)
+        return closeBtnWrapper;
+    }
+
     showModalWidgetPreview = (showAnimation = false) => {
         this?.puzzleWidget?.remove()
         this.puzzleWidget = this.createPuzzleWidget();
         this.createModalWindow();
 
-        const closeModal = () => {
+        const closeModalFunc = () => {
             this.puzzleWidget.remove();
             this.modalBackground.remove()
             // modal.style.transform = 'scale(1)'
@@ -624,17 +635,8 @@ class Puzzle extends LocalStorageConfig {
         }
 
         ///// Add close button //////
-        const closeBtnWrapper = document.createElement('div');
-        closeBtnWrapper.classList.add('close-modal-btn-wrapper')
-        const closeBtn = document.createElement('div');
-        closeBtn.innerHTML = '&#x2715; ';
-        closeBtn.classList.add('close-modal-btn');
-        closeBtn.onclick = closeModal;
-        closeBtnWrapper.appendChild(closeBtn)
-        this.modal.appendChild(closeBtnWrapper);
-
+        this.modal.appendChild(this.getCloseModalBtn(closeModalFunc));
         //////////////////
-
 
         ////////Add text top/////////
         const topText = document.createElement('div');
@@ -656,7 +658,7 @@ class Puzzle extends LocalStorageConfig {
         const goBtn = document.createElement('button');
         goBtn.setAttribute('id', 'goModalButton');
         goBtn.innerHTML = 'Go!';
-        goBtn.onclick = closeModal;
+        goBtn.onclick = closeModalFunc;
         this.modal.appendChild(goBtn);
         //////////////////
 
@@ -666,7 +668,6 @@ class Puzzle extends LocalStorageConfig {
 
     addPuzzleToWidget = () => {
         let { puzzles_collected, appearing_puzzle_nr } = this.config;
-        const { top, left } = this.coordinates[puzzles_collected];
 
         this.startAnimation(
             puzzlesCoordinateForDesktop,
@@ -686,7 +687,7 @@ class Puzzle extends LocalStorageConfig {
         this.showWinningAnimation()
 
         setTimeout(() => {
-            this.modal.remove()
+            this.modalBackground.remove()
             this.createModalWindow(300, 480)
             this.showQR()
         }, 2000)
@@ -1052,7 +1053,7 @@ class Puzzle extends LocalStorageConfig {
         }
 	
         .coupon__preview__body {
-            padding: 40px 20px;
+            // padding: 40px 20px;
             height: 100%;
             box-sizing: border-box;
             display: flex;
@@ -1108,7 +1109,9 @@ class Puzzle extends LocalStorageConfig {
 
 
         qrEl.innerHTML = this.qrCodeInnerHtml();
-
+        this.modal.appendChild(this.getCloseModalBtn(() => {
+            this.modalBackground.remove()
+        }))
         this.modal.append(qrEl);
 
         new QRCode('qrcodeShowHtml', {
@@ -1124,8 +1127,7 @@ class Puzzle extends LocalStorageConfig {
         qrcodeShow.style.display = isMobileDevice ? 'none' : 'block';
         coupon.style.display = isMobileDevice ? 'block' : 'none';
         document.getElementById('close').onclick = (e) => {
-            const elementRemove = document.getElementById('boomio--qr');
-            elementRemove.remove();
+            this.modalBackground.remove()
             e.stopPropagation();
         };
         if (isMobileDevice) return;
@@ -1159,7 +1161,7 @@ class Puzzle extends LocalStorageConfig {
 
 
     qrCodeInnerHtml = () =>  `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
-		<span class='custom-close-icon' style='top: 16px; right: 10px' id='close'>&#x2715; </span>
+    
 		<div class="coupon__preview__body coupon_discount_modal">
 
 			<div class="coupon__preview__card__header text-center d-block">
