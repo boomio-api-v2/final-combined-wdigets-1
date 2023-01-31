@@ -694,7 +694,7 @@ class Puzzle extends LocalStorageConfig {
 
         document.body.appendChild(this.modalBackground);
         if (!showAnimation) return;
-        setTimeout(this.addPuzzleToWidget, 500);
+        setTimeout(this.addPuzzleToWidget, 1000);
     };
 
     addPuzzleToWidget = () => {
