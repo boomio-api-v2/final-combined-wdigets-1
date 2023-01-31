@@ -513,7 +513,6 @@ class Puzzle extends LocalStorageConfig {
     createPuzzleWidget = () => {
         const puzzleWidget = document.createElement('div');
         puzzleWidget.setAttribute('id', 'puzzle-widget');
-        puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
         puzzleWidget.style.position = 'relative';
 
         this.puzzleWidget = puzzleWidget;
@@ -521,6 +520,8 @@ class Puzzle extends LocalStorageConfig {
             width: '185px',
             height: '185px'
         })
+        puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+
         this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop)
 
         return puzzleWidget;
