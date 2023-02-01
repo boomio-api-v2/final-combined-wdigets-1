@@ -6,7 +6,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
 
-const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/49ef51be2bb245be21f82fb1acca1e207ddab318/js/puzzlePlugin.js';
+const puzzleScript = './js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
 
@@ -81,7 +81,11 @@ class LocalStorageConfig {
         const appearing_puzzle_nr = config?.appearing_puzzle_nr ?? null;
         const x_position = config?.x_position ?? null;
         const y_position = config?.y_position ?? null;
-        const img = config?.img ?? null;
+        const img = config?.img ?? null
+        const w_button_text = config?.w_button_text ?? "Go!";
+        const w_hint_static_text = config?.w_hint_static_text ?? "Hint for another piece";
+        const w_hint_text = config?.w_hint_text ?? "Adidas Stan Smith J FX7519";
+        const w_top_text = config?.w_top_text ?? "COLLECT ALL PIECES AND WIN A GIFT!"
 
         return {
             success,
@@ -93,7 +97,11 @@ class LocalStorageConfig {
             appearing_puzzle_nr,
             x_position,
             y_position,
-            img
+            img,
+            w_button_text,
+            w_hint_static_text,
+            w_hint_text,
+            w_top_text
         };
     };
 };
@@ -289,12 +297,18 @@ class Boomio extends LocalStorageConfig {
 
      async setInitialConfiguration() {
         try {
-            const content = await this.send({ go_hunt: "true"});
-            super.setConfigFromApi(content);
-            if (content?.widget_type && content.instruction !== 'stop') {
-                const scriptUrl = this.getScriptUrl(content.widget_type)
-                createScript(scriptUrl)
-            }
+            super.updateConfig({
+                success: true,
+                puzzles_collected: 0,
+                appearing_puzzle_nr: 1
+            })
+            createScript(puzzleScript)
+            // const content = await this.send({ go_hunt: "true"});
+            // super.setConfigFromApi(content);
+            // if (content?.widget_type && content.instruction !== 'stop') {
+            //     const scriptUrl = this.getScriptUrl(content.widget_type)
+            //     createScript(scriptUrl)
+            // }
         } catch (err) {
             console.log(err)
         }
