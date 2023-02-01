@@ -6,7 +6,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
 
-const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/ca14f22a0fc9d55102ee06b1e05e959a9a7b74c9/js/puzzlePlugin.js';
+const puzzleScript = './js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
 
@@ -19,6 +19,13 @@ const playStoreImage =
     'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/playstore.png?raw=true';
 const dotImage =
     'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/boomio-app.png?raw=true';
+
+const createScript = (url) => {
+    const script = document.createElement('script');
+    script.setAttribute('src', url)
+    document.head.appendChild(script)
+    return script
+};
 
 
 class LocalStorageConfig {
@@ -207,12 +214,26 @@ class DragElement extends LocalStorageConfig {
 
 }
 
-
-const createScript = (url) => {
-    const script = document.createElement('script');
-    script.setAttribute('src', url)
-    document.head.appendChild(script)
-    return script
+class StylesEnvironment {
+    addStylesToHtml = (cssRules) => {
+        const style = document.createElement("style");
+        style.setAttribute("id", "boomio--stylesheet");
+        document.getElementsByTagName("head")[0].appendChild(style);
+        if (style.styleSheet) {
+            style.styleSheet.cssText = cssRules;
+        } else {
+            style.appendChild(document.createTextNode(cssRules));
+        }
+    };
+    addCssLinkToHtml = (href) => {
+        const link = document.createElement("link");
+        link.setAttribute("href", href);
+        link.setAttribute('rel', 'stylesheet')
+        document.getElementsByTagName("head")[0].appendChild(link);
+    };
+    assignStyleOnElement = (style, properties) => {
+        Object.assign(style, properties);
+    }
 };
 
 class Boomio extends LocalStorageConfig {
@@ -321,5 +342,6 @@ class Boomio extends LocalStorageConfig {
 }
 
 const boomio = new Boomio();
+const stylesEnvironment = new StylesEnvironment();
 
 
