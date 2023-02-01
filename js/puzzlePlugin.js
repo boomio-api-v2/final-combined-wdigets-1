@@ -9,26 +9,26 @@ const { addStylesToHtml, addCssLinkToHtml, assignStyleOnElement } = stylesEnviro
 const puzzlesCoordinateForMobile = [{
     top: 0,
     left: 0,
-    width: "62.84px",
-    height: "83.33px"
+    width: "49.84px",
+    height: "61.33px"
 },
     {
         top: 0,
-        left: 47,
-        width: "83.3px",
-        height: "66.86px"
+        left: 37,
+        width: "60.3px",
+        height: "50.86px"
     },
     {
-        top: 63,
+        top: 50,
         left: 0,
-        width: "86.3px",
-        height: "69.86px"
+        width: "58.3px",
+        height: "44.86px"
     },
     {
         top: 44,
         left: 62,
-        width: "67.84px",
-        height: "88.3px"
+        width: "50.84px",
+        height: "63.3px"
     },
 ];
 
@@ -68,7 +68,7 @@ const puzzleImagesList = [
     "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-4.png?raw=true",
 ];
 
-const puzzleWidgetSize = isMobileDevice ? 135 : 185;
+const puzzleWidgetSize = isMobileDevice ? 100 : 185;
 
 let isPuzzleWidgetDisplayed = false;
 

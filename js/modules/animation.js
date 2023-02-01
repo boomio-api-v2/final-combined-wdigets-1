@@ -1,6 +1,7 @@
 class AnimationService extends LocalStorageConfig {
     constructor({ posx, posy, size, parent, styles } ) {
         super();
+        this.config = super.getDefaultConfig();
 
         this.clearPrev()
         const elem = document.createElement('div');
