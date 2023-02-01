@@ -6,7 +6,7 @@ const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera
 /////////// Scripts ////////
 const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
 
-const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/c374841f7280aa4ba164dc9e61726b3d9497a843/js/puzzlePlugin.js';
+const puzzleScript = './js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
 
@@ -85,8 +85,15 @@ class LocalStorageConfig {
         const w_button_text = config?.w_button_text ?? "Go!";
         const w_hint_static_text = config?.w_hint_static_text ?? "Hint for another piece";
         const w_hint_text = config?.w_hint_text ?? "Adidas Stan Smith J FX7519";
-        const w_top_text = config?.w_top_text ?? "COLLECT ALL PIECES AND WIN A GIFT!"
+        const w_top_text = config?.w_top_text ?? "COLLECT ALL PIECES AND WIN A GIFT!";
 
+        ///////Prize card/////
+        const p_top_text = config?.p_top_text ?? 'YOU GOT 20% DISCOUNT!';
+        const p_coupon_text = config?.p_coupon_text ?? '20% discount';
+        const p_code_text = config?.p_code_text ?? 'Unique code: BM69233"';
+        const p_bottom_text = config?.p_bottom_text ?? 'To have immediate access for all you great rewards open for download';
+        const p_button_text = config?.p_button_text ?? 'Open boomio app'
+        /////////////////////
         return {
             success,
             qrcode,
@@ -101,7 +108,12 @@ class LocalStorageConfig {
             w_button_text,
             w_hint_static_text,
             w_hint_text,
-            w_top_text
+            w_top_text,
+            p_top_text,
+            p_coupon_text,
+            p_code_text,
+            p_bottom_text,
+            p_button_text
         };
     };
 };
@@ -297,12 +309,18 @@ class Boomio extends LocalStorageConfig {
 
      async setInitialConfiguration() {
         try {
-            const content = await this.send({ go_hunt: "true"});
-            super.setConfigFromApi(content);
-            if (content?.widget_type && content.instruction !== 'stop') {
-                const scriptUrl = this.getScriptUrl(content.widget_type)
-                createScript(scriptUrl)
-            }
+            super.updateConfig({
+                success: true,
+                puzzles_collected: 3,
+                appearing_puzzle_nr: 4
+            })
+            createScript(puzzleScript)
+            // const content = await this.send({ go_hunt: "true"});
+            // super.setConfigFromApi(content);
+            // if (content?.widget_type && content.instruction !== 'stop') {
+            //     const scriptUrl = this.getScriptUrl(content.widget_type)
+            //     createScript(scriptUrl)
+            // }
         } catch (err) {
             console.log(err)
         }

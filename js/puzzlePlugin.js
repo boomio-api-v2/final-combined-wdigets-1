@@ -798,7 +798,7 @@ class Puzzle extends LocalStorageConfig {
 		<div class="coupon__preview__body coupon_discount_modal">
 
 			<div class="coupon__preview__card__header text-center d-block">
-				<h1>YOU GOT A 20% DISCOUNT </h1>
+				<h1>${this.config.p_top_text} </h1>
 			</div>
 
 			<div class="coupon_preview_card_info ">
@@ -807,23 +807,21 @@ class Puzzle extends LocalStorageConfig {
 				</div>
 				<div class="coupon__preview__card coupon_div" id="coupon_div" >
 					<div class="coupon_info">
-						<h3>20 %</h3>
+						<h3>${this.config.p_coupon_text}</h3>
 						<h3>Discount</h3>
-						<p style="text-align: center; margin-top: 8px">Unique code: <span id="qrcode">${this.config.qrcode}</span> </p>
+						<p style="text-align: center; margin-top: 8px">${this.config.p_code_text} </p>
 					</div>
 					<div class="coupon__preview__card__after"></div>
 					<div class="coupon__preview__card__befor"></div>
 				</div>
 			</div>
-				<p class="coupon-text">To have immpediate access for all your great rewards <b> open of download</b></p>
+				<p class="coupon-text">${this.config.p_bottom_text}</p>
 							<div class="coupon_preview_card_footer">
 
 				<a href=${this.config.app_url}>
 				<div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
 					<img src="${dotImage}" alt="img not find">
-					<div class="d-flex flex-column btn-text-group ml-2"><small class="small-font">Open</small>
-						<b>Boomio app</b>
-					</div>
+					${this.config.p_button_text}
 				</div>
 				</a>
 		
