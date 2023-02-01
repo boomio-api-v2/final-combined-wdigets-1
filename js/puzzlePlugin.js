@@ -3,8 +3,9 @@ const frameSvg =
 
 const puzzleCssLink = "https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/7d139d4954c1b92b15f4f0272454af468c466611/css/puzzle.css";
 
+//////// Services ////////
 const { addStylesToHtml, addCssLinkToHtml, assignStyleOnElement } = stylesEnvironment;
-
+/////////////////////////
 const puzzlesCoordinateForMobile = [{
     top: 0,
     left: 0,
@@ -243,7 +244,6 @@ class Puzzle extends LocalStorageConfig {
                 height
             } = coordinate[i];
             const animationEl = document.createElement("div");
-            animationEl.setAttribute("id", `boomio--animation-${i}`);
             animationEl.classList.add("boomio--animation__wrapper");
             assignStyleOnElement(animationEl.style, {
                 top: `${top}px`,
@@ -262,7 +262,6 @@ class Puzzle extends LocalStorageConfig {
         ////Add modal Background //////
         const modalBackground = document.createElement("div");
         modalBackground.setAttribute("id", "modalBackground");
-        this.modalBackground = modalBackground;
         /////////////////////////
 
         ////////Add modal ///////
@@ -274,9 +273,9 @@ class Puzzle extends LocalStorageConfig {
             transform: "scale(1)",
         });
         modalBackground.appendChild(modal);
+        document.body.appendChild(modalBackground)
         this.modal = modal;
-        document.body.appendChild(this.modalBackground)
-
+        this.modalBackground = modalBackground;
         ////////////////////////////
     };
 
@@ -339,8 +338,13 @@ class Puzzle extends LocalStorageConfig {
         //////////////////
 
         if (isLastPuzzle) {
-            this.modal.style.height = "max-content";
-            this.modal.style.padding = "54px 24px";
+            assignStyleOnElement(
+                this.modal.style,
+                {
+                    height: "max-content",
+                    padding: "54px 24px"
+                }
+            )
             this.puzzleWidget.style.marginTop = "24px";
         }
 
@@ -376,7 +380,8 @@ class Puzzle extends LocalStorageConfig {
         } = this.config;
 
         this.startAnimation(
-            puzzlesCoordinateForDesktop, {
+        puzzlesCoordinateForDesktop,
+            {
                 zIndex: 100000000000000,
                 position: "absolute"
             },
@@ -419,29 +424,6 @@ class Puzzle extends LocalStorageConfig {
         this.showModalWidgetPreview(true);
     };
 
-    getAnimateFunction = (nr) => {
-        const animate = (animation) => (el) => {
-            el.classList.add(`boomio--animation--${animation}`);
-        };
-        const animArr = [
-            animate("moveRight"),
-            animate("moveLeft"),
-            animate("moveDown"),
-            animate("moveUp"),
-            animate("fadeIn"),
-            animate("moveDiagonalDown"),
-            animate("rotateRight"),
-            animate("zoomIn"),
-            animate("skewLeft"),
-            animate("moveDiagonalUp"),
-            animate("tada"),
-            animate("lightSpeedInLeft"),
-            animate("rollIn"),
-        ];
-
-        return animArr[nr];
-    };
-
     startAnimation = (...args) => {
         const [
             coordinates,
@@ -451,7 +433,6 @@ class Puzzle extends LocalStorageConfig {
         ] = args;
         const {
             qrcode,
-            animation,
             puzzles_collected
         } = this.config;
         const defaultCoordinates = this.coordinates[puzzles_collected];
@@ -471,32 +452,6 @@ class Puzzle extends LocalStorageConfig {
             this.config.qrcode = qrcode.substring(0, pos);
         }
 
-        const animationEl = document.createElement("div");
-        animationEl.setAttribute("id", `boomio--animation-${puzzles_collected}`);
-        animationEl.classList.add("boomio--animation__wrapper");
-        animationEl.classList.add("boomio--animation__wrapper--initial");
-        assignStyleOnElement(animationEl.style, {
-            width,
-            height,
-            backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`,
-            ...styles,
-        });
-        animationEl.classList.remove("boomio--qr");
-        // this.addCloseIconToElement(animationEl);
-        if (isClickable) {
-            animationEl.classList.add("boomio--animation__hover");
-            animationEl.addEventListener("click", this.onPuzzleClick, {
-                once: true
-            });
-        }
-        parent.appendChild(animationEl);
-
-        const systemFont =
-            "system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue";
-        const duration = "1000ms";
-        const easingBack = "cubic-bezier(0.18, 0.89, 0.32, 1.28)";
-        const easing = "cubic-bezier(0.22, 0.61, 0.36, 1)";
-
         const {
             clientWidth,
             clientHeight
@@ -515,150 +470,30 @@ class Puzzle extends LocalStorageConfig {
                 clientHeight - puzzleSize - 10
             ).toFixed();
 
-        const initialPosition = {
-            x: animationEl.clientWidth + parseInt(posy),
-            nx: -1 * (animationEl.clientWidth + parseInt(posy)),
-            y: animationEl.clientHeight + parseInt(posx),
-            ny: -1 * (animationEl.clientHeight + parseInt(posx)),
-        };
-        const css = `
-		.boomio--animation__wrapper {
-			text-align: center;
-			position: fixed;
-			z-index: 999999999999;
-			left: ${posx}px;
-			top: ${posy}px;
-			visibility: visible;
-			background-size: cover;
-			opacity: 1;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-		}
- 
-		.boomio--animation__wrapper--initial {
-			width: ${puzzleSize}px;
-			cursor: pointer;
-			transition: transform 300ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
-			animation-duration: ${duration};
-			animation-timing-function: ${easing};
-			animation-iteration-count: 1;
-		}
+        const animStyles = {
+            width,
+            height,
+            backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`,
+            ...styles,
+        }
 
+        this.animationEl = new AnimationService({
+            posx,
+            posy,
+            size: puzzleWidgetSize,
+            parent,
+            styles: animStyles
+        });
 
+        this.animationEl.classList.remove("boomio--qr");
 
-		.boomio--animation__heading {
-			color: #000;
-			font: 22px/1.2 ${systemFont};
-			margin: 0 0 16px;
-		}
+        if (isClickable) {
+            this.animationEl.classList.add("boomio--animation__hover");
+            this.animationEl.addEventListener("click", this.onPuzzleClick, {
+                once: true
+            });
+        }
 
-		h4.boomio--animation__heading {
-			font-size: 16px;
-			opacity: .7;
-			margin-top: -8px;
-		}
-
-		.boomio--animation--moveRight { animation-name: boomio-animate--moveRight; animation-timing-function: ${easingBack}; }
-		.boomio--animation--moveLeft { animation-name: boomio-animate--moveLeft; animation-timing-function: ${easingBack}; }
-		.boomio--animation--moveUp { animation-name: boomio-animate--moveUp; }
-		.boomio--animation--moveDown { animation-name: boomio-animate--moveDown; }
-		.boomio--animation--moveDiagonalDown { animation-name: boomio-animate--moveDiagonalDown; }
-		.boomio--animation--moveDiagonalUp { animation-name: boomio-animate--moveDiagonalUp; }
-		.boomio--animation--fadeIn { animation-name: boomio-animate--fadeIn; }
-		.boomio--animation--zoomIn { animation-name: boomio-animate--zoomIn; animation-timing-function: ${easingBack}; }
-		.boomio--animation--rotateRight { animation-name: boomio-animate--rotateRight; animation-timing-function: ${easingBack}; }
-		.boomio--animation--skewLeft { animation-name: boomio-animate--skewLeft; }
-		.boomio--animation--tada { animation-name: boomio-animate--tada; }
-		.boomio--animation--lightSpeedInLeft { animation-name: boomio-animate--lightSpeedInLeft; }
-		.boomio--animation--rollIn { animation-name: boomio-animate--rollIn; }
-
-		@keyframes boomio-animate--lightSpeedInLeft {
-			from {
-				transform: translate3d(${initialPosition.nx}px, 0, 0) skewX(30deg);
-				opacity: 0;
-			}
-		
-			60% {
-				transform: skewX(-20deg);
-				opacity: 1;
-			}
-		
-			80% {
-				transform: skewX(5deg);
-			}
-		
-			to {
-				transform: translate3d(0, 0, 0);
-			}
-		}
-	
-
-		@keyframes boomio-animate--moveRight {
-			0% {
-				transform: translateX(${initialPosition.nx}px);
-			}
-			100% {
-				transform: translateX(0);
-			}
-		}
-
-		@keyframes boomio-animate--moveLeft {
-			0% {
-				transform: translateX(${initialPosition.x}px);
-			}
-			100% {
-				transform: translateX(0);
-			}
-		}
-
-		@keyframes boomio-animate--moveDown {
-			0% {
-				transform: translateY(${initialPosition.ny}px);
-			}
-			100% {
-				transform: translateY(0);
-			}
-		}
-		
-		@keyframes boomio-animate--moveUp {
-			0% {
-				transform: translateY(${initialPosition.y}px);
-			}
-			100% {
-				transform: translateY(0);
-			}
-		}
-
-
-		
-		@keyframes boomio-animate--moveDiagonalDown {
-			0% {
-				transform: translate(${initialPosition.nx}px, ${initialPosition.ny}px);
-			}
-			100% {
-				transform: translate(0, 0);
-			}
-		}
-		
-		@keyframes boomio-animate--moveDiagonalUp {
-			0% {
-				transform: translate(${initialPosition.nx}px, ${initialPosition.y}px);
-			}
-			100% {
-				transform: translate(0, 0);
-			}
-		}
-		`;
-
-        addStylesToHtml(css);
-        const animFunc = this.getAnimateFunction(animation);
-        animFunc(animationEl);
-        this.animationEl = animationEl;
     };
 
     closeModal = () => {
@@ -792,42 +627,50 @@ class Puzzle extends LocalStorageConfig {
         this.animationEl.remove();
     };
 
-    qrCodeInnerHtml =
-        () => `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
+    qrCodeInnerHtml = () => {
+        const {
+            p_top_text,
+            p_coupon_text ,
+            p_code_text,
+            p_button_text,
+            p_bottom_text,
+            app_url
+        } = this.config;
+        return `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
     
-		<div class="coupon__preview__body coupon_discount_modal">
-
-			<div class="coupon__preview__card__header text-center d-block">
-				<h1>${this.config.p_top_text} </h1>
-			</div>
-
-			<div class="coupon_preview_card_info ">
-				<div id='qrcodeShow' style="display:none">
-					<a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
-				</div>
-				<div class="coupon__preview__card coupon_div" id="coupon_div" >
-					<div class="coupon_info">
-						<h3>${this.config.p_coupon_text}</h3>
-						<h3>Discount</h3>
-						<p style="text-align: center; margin-top: 8px">${this.config.p_code_text} </p>
-					</div>
-					<div class="coupon__preview__card__after"></div>
-					<div class="coupon__preview__card__befor"></div>
-				</div>
-			</div>
-				<p class="coupon-text">${this.config.p_bottom_text}</p>
-							<div class="coupon_preview_card_footer">
-
-				<a href=${this.config.app_url}>
-				<div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
-					<img src="${dotImage}" alt="img not find">
-					${this.config.p_button_text}
-				</div>
-				</a>
-		
-			</div>
-		</div>
-	</div>`;
+        <div class="coupon__preview__body coupon_discount_modal">
+    
+            <div class="coupon__preview__card__header text-center d-block">
+                <h1>${p_top_text} </h1>
+            </div>
+    
+            <div class="coupon_preview_card_info ">
+                <div id='qrcodeShow' style="display:none">
+                    <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
+                </div>
+                <div class="coupon__preview__card coupon_div" id="coupon_div" >
+                    <div class="coupon_info">
+                        <h3>${p_coupon_text}</h3>
+                        <p style="text-align: center; margin-top: 8px">${p_code_text} </p>
+                    </div>
+                    <div class="coupon__preview__card__after"></div>
+                    <div class="coupon__preview__card__befor"></div>
+                </div>
+            </div>
+                <p class="coupon-text">${p_bottom_text}</p>
+                            <div class="coupon_preview_card_footer">
+    
+                <a href=${app_url}>
+                <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
+                    <img src="${dotImage}" alt="img not find">
+                    ${p_button_text}
+                </div>
+                </a>
+        
+            </div>
+        </div>
+    </div>`
+    };
 }
 ////////////////////////////
 
