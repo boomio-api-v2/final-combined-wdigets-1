@@ -1,7 +1,7 @@
 const frameSvg =
     "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true";
 
-const puzzleCssLink = "./css/puzzle.css";
+const puzzleCssLink = "https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/7d139d4954c1b92b15f4f0272454af468c466611/css/puzzle.css";
 
 const { addStylesToHtml, addCssLinkToHtml, assignStyleOnElement } = stylesEnvironment;
 
