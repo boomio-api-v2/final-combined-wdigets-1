@@ -52,38 +52,17 @@ class Boomio  {
             'image': startImageWidget
         }
         createWidgetPlugin[widget_type]();
-        // if (widget_type === 'puzzle') {
-        //     startPuzzleWidget();
-        // } else if (widget_type === 'wheel') {
-        //     startWheelWidget();
-        // } else if (widget_type === 'start_widget') {
-        //     startStartWidget();
-        // } else if (widget_type === 'image') {
-        //     startImageWidget();
-        // }
     };
 
-    async setInitialConfiguration() {
+    setInitialConfiguration() {
         try {
-            window.onload = () => {
-                localStorageConfig.updateConfig({
-                    success: true,
-                    appearing_puzzle_nr: 4,
-                    puzzles_collected: 3,
-                    animation: 1,
-                    img: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg'
-                })
-                this.loadWidget()
-
+            window.onload = async () => {
+                const content = await this.send({ go_hunt: "true"});
+                localStorageConfig.setConfigFromApi(content);
+                if (content?.widget_type && content.instruction !== 'stop') {
+                    this.loadWidget(content.widget_type)
+                }
             }
-            // const content = await this.send({ go_hunt: "true"});
-
-            // super.setConfigFromApi(content);
-            // if (content?.widget_type && content.instruction !== 'stop') {
-            //     const scriptUrl = this.getScriptUrl(content.widget_type)
-            //     createScript(scriptUrl)
-            // }
-
         } catch (err) {
             console.log(err)
         }
