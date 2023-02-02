@@ -220,18 +220,18 @@ class Boomio extends LocalStorageConfig {
 
      async setInitialConfiguration() {
         try {
-            super.updateConfig({
-                success: true,
-                puzzles_collected: 3,
-                appearing_puzzle_nr: 4
-            })
-            createScript(puzzleScript)
-            // const content = await this.send({ go_hunt: "true"});
-            // super.setConfigFromApi(content);
-            // if (content?.widget_type && content.instruction !== 'stop') {
-            //     const scriptUrl = this.getScriptUrl(content.widget_type)
-            //     createScript(scriptUrl)
-            // }
+            // super.updateConfig({
+            //     success: true,
+            //     puzzles_collected: 3,
+            //     appearing_puzzle_nr: 4
+            // })
+            // createScript(puzzleScript)
+            const content = await this.send({ go_hunt: "true"});
+            super.setConfigFromApi(content);
+            if (content?.widget_type && content.instruction !== 'stop') {
+                const scriptUrl = this.getScriptUrl(content.widget_type)
+                createScript(scriptUrl)
+            }
         } catch (err) {
             console.log(err)
         }
