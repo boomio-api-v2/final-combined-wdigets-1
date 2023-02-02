@@ -8,7 +8,7 @@ const qrCodeScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wd
 
 const localStorageScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/js/modules/localStorage.js';
 
-const stylesEnviroimentScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/js/modules/stylesEnviroiment.js';
+const stylesEnviroimentScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/1921e9edcb923486c8401465121c1afb9564bf65/js/modules/stylesEnviroiment.js';
 
 const animationScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/js/modules/animation.js';
 
@@ -20,7 +20,7 @@ const boomioEventerScript = 'https://rawcdn.githack.com/boomio-api-v2/final-comb
 ///////////// Widgets Script ///////////////
 const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
 
-const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/e7e5b809dc42982fbea3d0c3892d7d0253ecb94d/js/puzzlePlugin.js';
+const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/1921e9edcb923486c8401465121c1afb9564bf65/js/puzzlePlugin.js';
 
 const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
 
