@@ -1,5 +1,10 @@
 import { localStorageConfig } from "./modules";
-import { startPuzzleWidget, startStartWidget, startWheelWidget, startImageWidget } from "./wdgets";
+import {
+    startPuzzleWidget,
+    startStartWidget,
+    startWheelWidget,
+    startImageWidget
+} from "./wdgets";
 
 class Boomio  {
     constructor() {
@@ -39,34 +44,46 @@ class Boomio  {
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
         );
     }
-    loadWidget = (widget_type) => {
-        if (widget_type === 'puzzle') {
-            startPuzzleWidget();
-        } else if (widget_type === 'wheel') {
-            startWheelWidget();
-        } else if (widget_type === 'start_widget') {
-            startStartWidget();
-        } else if (widget_type === 'image') {
-            startImageWidget();
+    loadWidget = (widget_type = 'puzzle') => {
+        const createWidgetPlugin = {
+            'puzzle': startPuzzleWidget,
+            'wheel': startWheelWidget,
+            'start_widget': startStartWidget,
+            'image': startImageWidget
         }
+        createWidgetPlugin[widget_type]();
+        // if (widget_type === 'puzzle') {
+        //     startPuzzleWidget();
+        // } else if (widget_type === 'wheel') {
+        //     startWheelWidget();
+        // } else if (widget_type === 'start_widget') {
+        //     startStartWidget();
+        // } else if (widget_type === 'image') {
+        //     startImageWidget();
+        // }
     };
 
     async setInitialConfiguration() {
         try {
-            const content = await this.send({ go_hunt: "true"});
-            localStorageConfig.updateConfig({
-                success: true,
-                appearing_puzzle_nr: 1,
-                puzzles_collected: 0
-            })
-            this.loadWidget('puzzle')
+            window.onload = () => {
+                localStorageConfig.updateConfig({
+                    success: true,
+                    appearing_puzzle_nr: 4,
+                    puzzles_collected: 3,
+                    animation: 1,
+                    img: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg'
+                })
+                this.loadWidget()
 
-            startPuzzleWidget();
+            }
+            // const content = await this.send({ go_hunt: "true"});
+
             // super.setConfigFromApi(content);
             // if (content?.widget_type && content.instruction !== 'stop') {
             //     const scriptUrl = this.getScriptUrl(content.widget_type)
             //     createScript(scriptUrl)
             // }
+
         } catch (err) {
             console.log(err)
         }
@@ -112,5 +129,6 @@ class Boomio  {
         })
     }
 };
+
 
 export const boomio = new Boomio();

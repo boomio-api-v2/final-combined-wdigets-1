@@ -2,7 +2,6 @@ import { localStoragePropertyName } from '../config';
 
 class LocalStorageConfig {
     constructor() {
-        this.config = this.getLocalStorageStringToObject();
         this.config = this.getDefaultConfig();
     }
     сheckOnInstruction(content) {
@@ -43,9 +42,11 @@ class LocalStorageConfig {
     }
 
     getDefaultConfig() {
-        const config = this.config;
+        const localStorageConfig  = localStorage.getItem(localStoragePropertyName);
+        const config = JSON.parse(localStorageConfig);
+
         const success = config?.success ?? false;
-        const animation = config?.ani ?? config?.animation ?? 0;
+        const animation = config?.animation ?? 1;
         const qrcode = `${config?.qrcode}` ?? '';
         const app_url = config?.app_url ?? '';
         const custom_text = config?.custom_text ?? '';
@@ -54,10 +55,13 @@ class LocalStorageConfig {
         const x_position = config?.x_position ?? null;
         const y_position = config?.y_position ?? null;
         const img = config?.img ?? null
+
+        //////// Widget text ////////
         const w_button_text = config?.w_button_text ?? "Go!";
         const w_hint_static_text = config?.w_hint_static_text ?? "Hint for another piece";
         const w_hint_text = config?.w_hint_text ?? "Adidas Stan Smith J FX7519";
         const w_top_text = config?.w_top_text ?? "COLLECT ALL PIECES AND WIN A GIFT!";
+        ///////////////////////////
 
         ///////Prize card/////
         const p_top_text = config?.p_top_text ?? 'YOU GOT 20% DISCOUNT!';

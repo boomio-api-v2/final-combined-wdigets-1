@@ -5,7 +5,7 @@ import {
     addCssLinkToHtml,
     assignStyleOnElement,
 } from '../modules';
-import { boomio } from '../index'
+import { boomio } from '../index';
 import {
     isMobileDevice,
     dotImage } from '../config';
@@ -177,6 +177,7 @@ const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 ////////Puzzle Class ////////////
 class Puzzle  {
     constructor() {
+        this.animationEl = null;
         this.isPrewiewDisplayed = false;
         this.coordinates = isMobileDevice ?
             puzzlesCoordinateForMobile :
@@ -498,6 +499,7 @@ class Puzzle  {
         this.animationEl.classList.remove("boomio--qr");
 
         if (isClickable) {
+            console.log(this.animationEl)
             this.animationEl.classList.add("boomio--animation__hover");
             this.animationEl.addEventListener("click", this.onPuzzleClick, {
                 once: true

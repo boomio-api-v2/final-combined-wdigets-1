@@ -1,4 +1,5 @@
-import { localStorageConfig } from '../modules'
+import { localStorageConfig, DragElement } from '../modules';
+import { boomio } from '../index'
 
 ////////Constants Icons/////////
 const closeIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/close.png?raw=true';
