@@ -3,6 +3,7 @@ import { localStoragePropertyName } from '../config';
 class LocalStorageConfig {
     constructor() {
         this.config = this.getDefaultConfig();
+        console.log(this.config)
     }
     сheckOnInstruction(content) {
         if (content?.instruction  === 'stop') {
@@ -31,11 +32,10 @@ class LocalStorageConfig {
     }
 
     setConfigFromApi(content) {
-        const params = JSON.parse(localStorage.getItem(localStoragePropertyName));
         this.config = {
-            x_position: params?.x_position ?? null,
-            y_position: params?.y_position ?? null,
-            ...params,
+            x_position: this.config?.x_position ?? null,
+            y_position: this.config?.y_position ?? null,
+            ...this.config,
             ...content
         };
         localStorage.setItem(localStoragePropertyName, JSON.stringify(this.config));
