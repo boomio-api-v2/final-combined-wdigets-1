@@ -1,12 +1,25 @@
 import {
-    LocalStorageConfig,
     addStylesToHtml,
     assignStyleOnElement,
     localStorageConfig
 } from '../modules';
 
+const defaultProps = {
+    posx: 0,
+    posy:  0,
+    size : 100,
+    parent: document.body,
+    styles: {}
+}
+
 export class AnimationService {
-    constructor({ posx, posy, size, parent, styles } ) {
+    constructor({
+        posx = 0,
+        posy = 0,
+        size = 100,
+        parent = document.body,
+        styles = {}
+    } = defaultProps) {
         this.config = localStorageConfig.getDefaultConfig();
 
         this.clearPrev()

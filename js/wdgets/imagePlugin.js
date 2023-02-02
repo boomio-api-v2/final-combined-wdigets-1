@@ -1,7 +1,7 @@
 ////constants
 // const localStoragePropertyName = 'boomioPluginConfig';
-import { localStorageConfig } from '../modules';
-import { isMobileDevice } from '../config';
+import { localStorageConfig, DragElement } from '../modules';
+import { isMobileDevice, playStoreImage, dotImage, appStoreImage} from '../config';
 
 const style = document.createElement('style');
 style.setAttribute('id', 'boomio--stylesheet');

@@ -1,5 +1,6 @@
-import { localStorageConfig } from '../modules';
-import { isMobileDevice } from '../config';
+import { localStorageConfig, DragElement } from '../modules';
+import { isMobileDevice, dotImage, appStoreImage, playStoreImage } from '../config';
+import { boomio } from '../index'
 
 const defaultList =  [
     {
@@ -130,8 +131,6 @@ class WheelOfFortunePlugin {
         this.ang = 0;
         this.isSpinning = false;
         this.isAccelerating = false;
-        this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         this.elSpin.addEventListener("click", () => {
             boomio.signal('SPIN')
             if (this.isSpinning) return;
