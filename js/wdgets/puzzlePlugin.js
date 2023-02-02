@@ -458,7 +458,7 @@ class Puzzle  {
         const puzzleSize = 100;
 
         const dash = "-";
-        const pos = qrcode.indexOf(dash);
+        const pos = `${qrcode}`.indexOf(dash);
         if (pos != -1) {
             localStorageConfig.config.qrcode = qrcode.substring(0, pos);
         }
