@@ -1,51 +1,116 @@
-const localStoragePropertyName = 'boomioPluginConfig';
+import { localStorageConfig } from "./modules";
+import { startPuzzleWidget, startStartWidget, startWheelWidget, startImageWidget } from "./wdgets";
 
-const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+class Boomio  {
+    constructor() {
+        this.url = window.location.href;
+        this.user_session = this.session();
+        this.setInitialConfiguration()
+    }
+    session(){
+        let session = this.getCookie('boomio_session');
+        if(!session){
+            session = this.uuidv4();
+            this.setCookie('boomio_session',session,120);
+        }
+        return session;
+    }
+    setCookie(name,value,days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+    getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for(let i=0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    uuidv4() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
+    loadWidget = (widget_type) => {
+        if (widget_type === 'puzzle') {
+            startPuzzleWidget();
+        } else if (widget_type === 'wheel') {
+            startWheelWidget();
+        } else if (widget_type === 'start_widget') {
+            startStartWidget();
+        } else if (widget_type === 'image') {
+            startImageWidget();
+        }
+    };
 
+    async setInitialConfiguration() {
+        try {
+            const content = await this.send({ go_hunt: "true"});
+            localStorageConfig.updateConfig({
+                success: true,
+                appearing_puzzle_nr: 1,
+                puzzles_collected: 0
+            })
+            this.loadWidget('puzzle')
 
-/////////// Modules Scripts ////////
-const qrCodeScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/js/qrcode.min.js';
+            startPuzzleWidget();
+            // super.setConfigFromApi(content);
+            // if (content?.widget_type && content.instruction !== 'stop') {
+            //     const scriptUrl = this.getScriptUrl(content.widget_type)
+            //     createScript(scriptUrl)
+            // }
+        } catch (err) {
+            console.log(err)
+        }
 
-const localStorageScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/js/modules/localStorage.js';
+    }
 
-const stylesEnviroimentScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/1921e9edcb923486c8401465121c1afb9564bf65/js/modules/stylesEnviroiment.js';
+    checkIsRequestDenied() {
+        const boomioStopTill = this.config?.boomioStopTill
+        if (!boomioStopTill) return false;
+        const isTimeout = new Date(boomioStopTill).getTime() > new Date().getTime();
+        if (!isTimeout) {
+            super.removeByKey('boomioStopTill');
+        }
+        return isTimeout;
+    }
 
-const animationScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/js/modules/animation.js';
+    send(data){
+        const isDenied = this.checkIsRequestDenied();
+        if (isDenied) return {success: false};
+        const request_data = {
+            "user_session": this.user_session,
+            "current_page_url": this.url,
+            "extra_data": data
+        };
 
-const draggableScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/js/modules/draggable.js';
+        return new Promise(async (resolve) => {
+            const rawResponse = await fetch(newLinkBoomio, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(request_data)
+            });
+            resolve(rawResponse.json())
+        })
+    }
 
-const boomioEventerScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/js/modules/boomioEventer.js';
-/////////////////////////////////
-
-///////////// Widgets Script ///////////////
-const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/imagePlugin.js?min=1';
-
-const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/1921e9edcb923486c8401465121c1afb9564bf65/js/puzzlePlugin.js';
-
-const wheelScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/ac0aa0f495ebfe03af3a1579a60dbb33b25e6f45/js/wheelOfFortunePlugin.js';
-
-const startWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/startWidget.js?min=1';
-///////////////////////////
-
-/////////Images  /////////
-const appStoreImage =
-    'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/appstore.png?raw=true';
-const playStoreImage =
-    'https://github.com/boomio-api-v2/easter-egg-styles/blob/main/img/playstore.png?raw=true';
-const dotImage =
-    'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/boomio-app.png?raw=true';
-//////////////////////////
-const createScript = (url) => {
-    const script = document.createElement('script');
-    script.src = url;
-    script.type = "text/javascript";
-    script.async = false;                                 // <-- this is important
-    document.getElementsByTagName('head')[0].appendChild(script);
-    return script;
+    signal(signal_code) {
+        this.send({
+            go_hunt: "true",
+            ev_type: 'signal',
+            signal_code
+        })
+    }
 };
 
-const scriptsList = [
-    qrCodeScript, localStorageScript, stylesEnviroimentScript, animationScript, draggableScript, boomioEventerScript
-];
-
-scriptsList.forEach((script) => createScript(script))
+export const boomio = new Boomio();

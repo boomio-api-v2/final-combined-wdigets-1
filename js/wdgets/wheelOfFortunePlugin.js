@@ -1,3 +1,6 @@
+import { localStorageConfig } from '../modules';
+import { isMobileDevice } from '../config';
+
 const defaultList =  [
     {
         color:"#f82",
@@ -105,10 +108,9 @@ const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 const rand = (m, M) => Math.random() * (M - m) + m;
 
-class WheelOfFortunePlugin extends LocalStorageConfig {
+class WheelOfFortunePlugin {
     constructor() {
-        super();
-        this.config = super.getDefaultConfig();
+        this.config = localStorageConfig.getDefaultConfig();
         if (!this.config.success) return;
         this.addStyles(cssRules)
         this.createWheel();
@@ -949,5 +951,7 @@ class WheelOfFortunePlugin extends LocalStorageConfig {
 
 }
 
-new WheelOfFortunePlugin();
+export const startWheelWidget = () => {
+    new WheelOfFortunePlugin();
+}
 

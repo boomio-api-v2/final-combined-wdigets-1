@@ -1,6 +1,9 @@
+import { localStoragePropertyName } from '../config';
+
 class LocalStorageConfig {
     constructor() {
         this.config = this.getLocalStorageStringToObject();
+        this.config = this.getDefaultConfig();
     }
     сheckOnInstruction(content) {
         if (content?.instruction  === 'stop') {
@@ -28,7 +31,6 @@ class LocalStorageConfig {
         this.setInStorage();
     }
 
-
     setConfigFromApi(content) {
         const params = JSON.parse(localStorage.getItem(localStoragePropertyName));
         this.config = {
@@ -43,7 +45,7 @@ class LocalStorageConfig {
     getDefaultConfig() {
         const config = this.config;
         const success = config?.success ?? false;
-        const animation = config?.ani ?? config.animation ?? 0;
+        const animation = config?.ani ?? config?.animation ?? 0;
         const qrcode = `${config?.qrcode}` ?? '';
         const app_url = config?.app_url ?? '';
         const custom_text = config?.custom_text ?? '';
@@ -87,3 +89,5 @@ class LocalStorageConfig {
         };
     };
 };
+
+export const localStorageConfig = new LocalStorageConfig();

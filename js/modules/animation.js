@@ -1,7 +1,13 @@
-class AnimationService extends LocalStorageConfig {
+import {
+    LocalStorageConfig,
+    addStylesToHtml,
+    assignStyleOnElement,
+    localStorageConfig
+} from '../modules';
+
+export class AnimationService {
     constructor({ posx, posy, size, parent, styles } ) {
-        super();
-        this.config = super.getDefaultConfig();
+        this.config = localStorageConfig.getDefaultConfig();
 
         this.clearPrev()
         const elem = document.createElement('div');

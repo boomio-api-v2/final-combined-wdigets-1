@@ -1,6 +1,8 @@
-class DragElement extends LocalStorageConfig {
+import { localStorageConfig } from "./";
+import { isMobileDevice } from '../config';
+
+export class DragElement  {
     constructor(elmnt) {
-        super();
         this.x_position = null;
         this.y_position = null;
         this.elmnt = elmnt;
@@ -50,7 +52,7 @@ class DragElement extends LocalStorageConfig {
             if (isBlocking) return;
             const x_position = clientX - mobileX;
             const y_position = clientY - mobileY;
-            super.updateConfig({ x_position, y_position })
+            localStorageConfig.updateConfig({ x_position, y_position })
             this.x_position = x_position;
             this.y_position = y_position;
             this.elmnt.style.left = x_position + 'px';
@@ -86,7 +88,7 @@ class DragElement extends LocalStorageConfig {
         const x_position = this.elmnt.offsetLeft - this.pos1;
         const y_position = this.elmnt.offsetTop - this.pos2;
 
-        super.updateConfig({ x_position, y_position })
+        localStorageConfig.updateConfig({ x_position, y_position })
 
         const isBlocking = this.checkIsMoveBlocking(x_position, y_position);
         if (isBlocking) return;
