@@ -1,7 +1,7 @@
 const frameSvg =
     "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true";
 
-const puzzleCssLink = "https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/7d139d4954c1b92b15f4f0272454af468c466611/css/puzzle.css";
+const puzzleCssLink = "./css/puzzle.css";
 
 //////// Services ////////
 const { addStylesToHtml, addCssLinkToHtml, assignStyleOnElement } = stylesEnvironment;
@@ -19,10 +19,10 @@ const puzzlesCoordinateForMobile = [{
         height: "50.86px"
     },
     {
-        top: 50,
+        top: 49,
         left: 0,
-        width: "58.3px",
-        height: "44.86px"
+        width: "61.3px",
+        height: "47.86px"
     },
     {
         top: 44,
@@ -214,18 +214,20 @@ class Puzzle extends LocalStorageConfig {
             this.showModalWidgetPreview(false);
         });
 
-        if (x_position && y_position) {
-            puzzleWidget.style.left = `${x_position}px`;
-            puzzleWidget.style.top = `${y_position}px`;
-        }
-        this.puzzleWidget = puzzleWidget;
+        const { clientWidth, clientHeight } = document.documentElement;
+
+        const left = x_position ? x_position : (clientWidth - 40 - puzzleWidgetSize);
+        const top = y_position ? y_position : (clientHeight - 40 - puzzleWidgetSize);
         const size = `${puzzleWidgetSize}px`;
         assignStyleOnElement(puzzleWidget.style, {
             width: size,
             height: size,
+            left: `${left}px`,
+            top: `${top}px`
         });
 
         document.body.appendChild(puzzleWidget);
+        this.puzzleWidget = puzzleWidget;
         if (this.config.puzzles_collected > 0) {
             this.addCloseIconToElement(puzzleWidget);
         }
