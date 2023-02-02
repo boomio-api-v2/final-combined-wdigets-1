@@ -1,3 +1,5 @@
+import { localStorageConfig } from '../modules'
+
 ////////Constants Icons/////////
 const closeIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/close.png?raw=true';
 const gifIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift.png?raw=true';
@@ -18,10 +20,9 @@ function addStyles(stylesheet, cssRules) {
     }
 }
 
-class StartWidget extends LocalStorageConfig {
+class StartWidget {
     constructor() {
-        super();
-        this.config = super.getDefaultConfig();
+        this.config = localStorageConfig.getDefaultConfig();
         this.makeDiv()
     }
     makeDiv = () => {
@@ -659,4 +660,7 @@ class StartWidget extends LocalStorageConfig {
 
 };
 
-new StartWidget();
+export const startStartWidget = () => {
+    new StartWidget();
+}
+

@@ -1,5 +1,7 @@
 ////constants
 // const localStoragePropertyName = 'boomioPluginConfig';
+import { localStorageConfig } from '../modules';
+import { isMobileDevice } from '../config';
 
 const style = document.createElement('style');
 style.setAttribute('id', 'boomio--stylesheet');
@@ -276,11 +278,10 @@ const assignStyle = (style, properties) => {
     Object.assign(style, properties);
 }
 
-class ImagePlugin extends LocalStorageConfig{
+class ImagePlugin {
     constructor() {
-     super();
         this.addStyles(mainCss)
-        this.config = super.getDefaultConfig();
+        this.config = localStorageConfig.getDefaultConfig();
         this.startAnimation()
     }
     addStyles = (cssRules) => {
@@ -995,4 +996,7 @@ class ImagePlugin extends LocalStorageConfig{
 
 }
 
-new ImagePlugin();
+
+export const startImageWidget = () => {
+    new ImagePlugin();
+}
