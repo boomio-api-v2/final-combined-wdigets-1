@@ -941,7 +941,6 @@ class ImagePlugin {
             this.config.x_position,
             this.config.y_position
         )
-        console.log(posX, posY)
         qrEl.style.left = `${posX}px`;
         qrEl.style.top = `${posY}px`;
     }

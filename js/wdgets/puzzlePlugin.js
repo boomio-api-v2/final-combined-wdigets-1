@@ -499,7 +499,6 @@ class Puzzle  {
         this.animationEl.classList.remove("boomio--qr");
 
         if (isClickable) {
-            console.log(this.animationEl)
             this.animationEl.classList.add("boomio--animation__hover");
             this.animationEl.addEventListener("click", this.onPuzzleClick, {
                 once: true
