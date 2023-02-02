@@ -35,6 +35,7 @@ class LocalStorageConfig {
         this.config = {
             x_position: params?.x_position ?? null,
             y_position: params?.y_position ?? null,
+            ...params,
             ...content
         };
         localStorage.setItem(localStoragePropertyName, JSON.stringify(this.config));
