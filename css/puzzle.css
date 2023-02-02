@@ -448,6 +448,7 @@ div:empty {
 }
 
 .coupon_discount_modal .coupon_info h3:first-child {
+    text-align: center;
     font-size: 40px;
     background: -webkit-linear-gradient(#FF3183, #8559F3);
     -webkit-background-clip: text;
