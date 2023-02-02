@@ -22,7 +22,7 @@ const imageWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combin
 
 const puzzleScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/1921e9edcb923486c8401465121c1afb9564bf65/js/puzzlePlugin.js';
 
-const wheelScript = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/js/wheelOfFortunePlugin.js?min=1';
+const wheelScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/ac0aa0f495ebfe03af3a1579a60dbb33b25e6f45/js/wheelOfFortunePlugin.js';
 
 const startWidgetScript = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/8e352f90cfadb73c4afb4e4133e3a3af742937f2/js/startWidget.js?min=1';
 ///////////////////////////
