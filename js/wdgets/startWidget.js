@@ -652,7 +652,6 @@ class StartWidget {
 
         animFunc(animationEl);
         const letGoBtn = document.getElementById('letGoToBtn');
-        console.log(letGoBtn)
         letGoBtn.onclick = () => {
             boomio.signal('START_OK')
             animationEl.remove()

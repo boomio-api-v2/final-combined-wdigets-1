@@ -3,7 +3,6 @@ import { localStoragePropertyName } from '../config';
 class LocalStorageConfig {
     constructor() {
         this.config = this.getDefaultConfig();
-        console.log(this.config)
     }
     сheckOnInstruction(content) {
         if (content?.instruction  === 'stop') {
