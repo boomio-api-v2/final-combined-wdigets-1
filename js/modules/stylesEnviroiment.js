@@ -19,4 +19,4 @@ class StylesEnvironment {
         Object.assign(style, properties);
     }
 };
-const stylesEnvironment = new StylesEnvironment();
+const { addStylesToHtml, addCssLinkToHtml, assignStyleOnElement } = new StylesEnvironment();

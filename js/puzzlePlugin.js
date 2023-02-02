@@ -4,7 +4,6 @@ const frameSvg =
 const puzzleCssLink = "https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/css/puzzle.css";
 
 //////// Services ////////
-const { addStylesToHtml, addCssLinkToHtml, assignStyleOnElement } = stylesEnvironment;
 /////////////////////////
 const puzzlesCoordinateForMobile = [{
     top: 0,
