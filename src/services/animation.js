@@ -1,8 +1,8 @@
 import {
     addStylesToHtml,
     assignStyleOnElement,
-    localStorageConfig
-} from '../modules';
+    localStorageService
+} from './index';
 
 const defaultProps = {
     posx: 0,
@@ -20,7 +20,7 @@ export class AnimationService {
         parent = document.body,
         styles = {}
     } = defaultProps) {
-        this.config = localStorageConfig.getDefaultConfig();
+        this.config = localStorageService.getDefaultConfig();
 
         this.clearPrev()
         const elem = document.createElement('div');

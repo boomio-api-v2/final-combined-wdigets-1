@@ -1,6 +1,6 @@
 import { localStoragePropertyName } from '../config';
 
-class LocalStorageConfig {
+class LocalStorageService {
     constructor() {
         this.config = this.getDefaultConfig();
     }
@@ -42,8 +42,8 @@ class LocalStorageConfig {
     }
 
     getDefaultConfig() {
-        const localStorageConfig  = localStorage.getItem(localStoragePropertyName);
-        const config = JSON.parse(localStorageConfig);
+        const localStorageService  = localStorage.getItem(localStoragePropertyName);
+        const config = JSON.parse(localStorageService);
 
         const success = config?.success ?? false;
         const animation = config?.animation ?? 1;
@@ -94,4 +94,4 @@ class LocalStorageConfig {
     };
 };
 
-export const localStorageConfig = new LocalStorageConfig();
+export const localStorageService = new LocalStorageService();

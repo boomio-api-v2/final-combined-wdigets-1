@@ -1,4 +1,4 @@
-import { localStorageConfig } from "./";
+import { localStorageService } from "./index";
 import { isMobileDevice } from '../config';
 
 export class DragElement  {
@@ -52,7 +52,7 @@ export class DragElement  {
             if (isBlocking) return;
             const x_position = clientX - mobileX;
             const y_position = clientY - mobileY;
-            localStorageConfig.updateConfig({ x_position, y_position })
+            localStorageService.updateConfig({ x_position, y_position })
             this.x_position = x_position;
             this.y_position = y_position;
             this.elmnt.style.left = x_position + 'px';
@@ -88,7 +88,7 @@ export class DragElement  {
         const x_position = this.elmnt.offsetLeft - this.pos1;
         const y_position = this.elmnt.offsetTop - this.pos2;
 
-        localStorageConfig.updateConfig({ x_position, y_position })
+        localStorageService.updateConfig({ x_position, y_position })
 
         const isBlocking = this.checkIsMoveBlocking(x_position, y_position);
         if (isBlocking) return;
