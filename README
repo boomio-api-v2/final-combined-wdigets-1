@@ -25,3 +25,8 @@ Example:
     </script>
     <script src="https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/faa3751938a8edcf41d95c83a58bcd0b55563278/dist/bundle.js"></script>
 </head>
+
+
+Task list:
+1.) Fixed eslint issues.
+2.) Put Qrcode script in project eviroment
