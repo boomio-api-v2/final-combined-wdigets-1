@@ -1,89 +1,87 @@
 import {
-    boomioService,
-    localStorageService,
-    DragElement,
-    AnimationService,
-    addCssLinkToHtml,
-    assignStyleOnElement,
+  boomioService,
+  localStorageService,
+  DragElement,
+  AnimationService,
+  addCssLinkToHtml,
+  assignStyleOnElement,
 } from '../services';
 import {
-    isMobileDevice,
-    dotImage
+  isMobileDevice,
+  dotImage,
 } from '../config';
 
-const frameSvg =
-    "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true";
-const puzzleCssLink = "https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/89e9e941bc45ee5d674d07632112c20bfae730ad/css/puzzle.css";
+const frameSvg = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true';
+const puzzleCssLink = 'https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/89e9e941bc45ee5d674d07632112c20bfae730ad/css/puzzle.css';
 
-//////// Services ////////
-/////////////////////////
+/// ///// Services ////////
+/// //////////////////////
 const puzzlesCoordinateForMobile = [{
-    top: 0,
-    left: 0,
-    width: "49.84px",
-    height: "61.33px"
+  top: 0,
+  left: 0,
+  width: '49.84px',
+  height: '61.33px',
 },
-    {
-        top: 0,
-        left: 37,
-        width: "60.3px",
-        height: "50.86px"
-    },
-    {
-        top: 49,
-        left: 0,
-        width: "61.3px",
-        height: "47.86px"
-    },
-    {
-        top: 44,
-        left: 62,
-        width: "50.84px",
-        height: "63.3px"
-    },
+{
+  top: 0,
+  left: 37,
+  width: '60.3px',
+  height: '50.86px',
+},
+{
+  top: 49,
+  left: 0,
+  width: '61.3px',
+  height: '47.86px',
+},
+{
+  top: 44,
+  left: 62,
+  width: '50.84px',
+  height: '63.3px',
+},
 ];
 
 const puzzlesCoordinateForDesktop = [{
-    top: 0,
-    left: 0,
-    width: "89.84px",
-    height: "112.33px"
+  top: 0,
+  left: 0,
+  width: '89.84px',
+  height: '112.33px',
 },
-    {
-        top: 0,
-        left: 67,
-        width: "112.3px",
-        height: "89.86px"
-    },
-    {
-        top: 87,
-        left: 0,
-        width: "112.3px",
-        height: "89.86px"
-    },
-    {
-        top: 64,
-        left: 89,
-        width: "89.84px",
-        height: "112.33px"
-    },
+
+{
+  top: 0,
+  left: 67,
+  width: '112.3px',
+  height: '89.86px',
+},
+{
+  top: 87,
+  left: 0,
+  width: '112.3px',
+  height: '89.86px',
+},
+{
+  top: 64,
+  left: 89,
+  width: '89.84px',
+  height: '112.33px',
+},
 ];
 
-const puzzlesCoordinate = isMobileDevice ?
-    puzzlesCoordinateForMobile :
-    puzzlesCoordinateForDesktop;
+const puzzlesCoordinate = isMobileDevice
+  ? puzzlesCoordinateForMobile
+  : puzzlesCoordinateForDesktop;
 const puzzleImagesList = [
-    "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-1.png?raw=true",
-    "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-2.png?raw=true",
-    "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-3.png?raw=true",
-    "https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-4.png?raw=true",
+  'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-1.png?raw=true',
+  'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-2.png?raw=true',
+  'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-3.png?raw=true',
+  'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-4.png?raw=true',
 ];
 
 const puzzleWidgetSize = isMobileDevice ? 100 : 185;
 
-let isPuzzleWidgetDisplayed = false;
-
-/////////////// Templates //////////////
+/// //////////// Templates //////////////
 
 const noBtnHtml = `
     <svg width="87" height="32" viewBox="0 0 87 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,486 +167,479 @@ const exitBtnHtml = `
     </svg>
 `;
 
-
-/////////////
+/// //////////
 
 const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
+/// /////Puzzle Class ////////////
+class Puzzle {
+  constructor() {
+    this.animationEl = null;
+    this.isPrewiewDisplayed = false;
+    this.coordinates = isMobileDevice
+      ? puzzlesCoordinateForMobile
+      : puzzlesCoordinateForDesktop;
+  }
 
-////////Puzzle Class ////////////
-class Puzzle  {
-    constructor() {
-        this.animationEl = null;
-        this.isPrewiewDisplayed = false;
-        this.coordinates = isMobileDevice ?
-            puzzlesCoordinateForMobile :
-            puzzlesCoordinateForDesktop;
+  addImageTPuzzleWidget = () => {
+    this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;
+  };
+
+  createPuzzleWidget = () => {
+    const puzzleWidget = document.createElement('div');
+    puzzleWidget.setAttribute('id', 'puzzle-widget');
+    assignStyleOnElement(puzzleWidget.style, {
+      position: 'relative',
+      backgroundImage: ` url(${frameSvg})`,
+    });
+    this.puzzleWidget = puzzleWidget;
+
+    this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop);
+  };
+
+  // This method for creating widget in window
+  showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
+    const {
+      x_position,
+      y_position,
+    } = localStorageService.config;
+    const puzzleWidget = document.createElement('div');
+    const widgetSmallPreview = document.createElement('div');
+    puzzleWidget.setAttribute('id', 'puzzle-widget');
+    puzzleWidget.appendChild(widgetSmallPreview);
+    puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+
+    if (isAnimation) {
+      puzzleWidget.classList.add('animation-widget');
     }
 
-    addImageTPuzzleWidget = () => {
-        this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;
+    puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {
+      puzzleWidget.remove();
+      this?.animationEl?.remove();
+      this.isPrewiewDisplayed = true;
+      this.showModalWidgetPreview(false);
+    });
+
+    const { clientWidth, clientHeight } = document.documentElement;
+
+    const left = x_position || (clientWidth - 40 - puzzleWidgetSize);
+    const top = y_position || (clientHeight - 40 - puzzleWidgetSize);
+    const size = `${puzzleWidgetSize}px`;
+    assignStyleOnElement(puzzleWidget.style, {
+      width: size,
+      height: size,
+      left: `${left}px`,
+      top: `${top}px`,
+    });
+
+    document.body.appendChild(puzzleWidget);
+    this.puzzleWidget = puzzleWidget;
+    if (localStorageService.config.puzzles_collected > 0) {
+      this.addCloseIconToElement(puzzleWidget);
+    }
+    this.drageble = new DragElement(this.puzzleWidget);
+    this.drawPuzzlesByCollectedCount();
+  };
+
+  drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
+    for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
+      const backgroundImage = `url(${puzzleImagesList[i]})`;
+      const {
+        top,
+        left,
+        width,
+        height,
+      } = coordinate[i];
+      const animationEl = document.createElement('div');
+      animationEl.classList.add('boomio--animation__wrapper');
+      assignStyleOnElement(animationEl.style, {
+        top: `${top}px`,
+        left: `${left}px`,
+        width,
+        height,
+        backgroundImage,
+        position: 'absolute',
+      });
+
+      this.puzzleWidget.appendChild(animationEl);
+    }
+  };
+
+  createModalWindow = (width = 300, height = 442) => {
+    /// /Add modal Background //////
+    const modalBackground = document.createElement('div');
+    modalBackground.setAttribute('id', 'modalBackground');
+    /// //////////////////////
+
+    /// /////Add modal ///////
+    const modal = document.createElement('div');
+    modal.setAttribute('id', 'widgetModal');
+    assignStyleOnElement(modal.style, {
+      width: `${width}px`,
+      height: `${height}px`,
+      transform: 'scale(1)',
+    });
+    modalBackground.appendChild(modal);
+    document.body.appendChild(modalBackground);
+    this.modal = modal;
+    this.modalBackground = modalBackground;
+    /// /////////////////////////
+  };
+
+  getCloseModalBtn = (closeCallback) => {
+    const closeBtnWrapper = document.createElement('div');
+    closeBtnWrapper.classList.add('close-modal-btn-wrapper');
+    const closeBtn = document.createElement('div');
+    closeBtn.innerHTML = '&#x2715; ';
+    closeBtn.classList.add('close-modal-btn');
+    closeBtn.onclick = closeCallback;
+    closeBtnWrapper.appendChild(closeBtn);
+    return closeBtnWrapper;
+  };
+
+  closeAnimation = (callback) => () => {
+    this.modal.style.transformOrigin = '100% 100%';
+    this.modal.style.transform = 'scale(0)';
+    this.modal.addEventListener('transitionend', () => {
+      this.puzzleWidget.remove();
+      this.modalBackground.remove();
+      if (callback) {
+        callback();
+      }
+    });
+  };
+
+  showModalWidgetPreview = (showAnimation = false) => {
+    const {
+      appearing_puzzle_nr,
+      w_top_text,
+      w_button_text,
+      w_hint_static_text,
+      w_hint_text,
+    } = localStorageService.config;
+    const isLastPuzzle = appearing_puzzle_nr === 4 && showAnimation;
+    this?.puzzleWidget?.remove();
+    this.createPuzzleWidget();
+    this.createModalWindow();
+
+    const showWidget = () => {
+      this.showPuzzleWidgetWindowDraggable(true);
     };
+    /// // Add close button //////
 
-    createPuzzleWidget = () => {
-        const puzzleWidget = document.createElement("div");
-        puzzleWidget.setAttribute("id", "puzzle-widget");
-        assignStyleOnElement(puzzleWidget.style, {
-            position: "relative",
-            backgroundImage: ` url(${frameSvg})`,
-        });
-        this.puzzleWidget = puzzleWidget;
+    const animationFunc = this.closeAnimation(showWidget);
 
-        this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop);
-    };
+    if (!isLastPuzzle) {
+      const closeBtn = this.getCloseModalBtn(animationFunc);
+      this.modal.appendChild(closeBtn);
+    }
+    /// ///////////////
 
-    // This method for creating widget in window
-    showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
-        const {
-            x_position,
-            y_position
-        } = localStorageService.config;
-        const puzzleWidget = document.createElement("div");
-        const widgetSmallPreview = document.createElement("div");
-        puzzleWidget.setAttribute("id", "puzzle-widget");
-        puzzleWidget.appendChild(widgetSmallPreview);
-        puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+    /// /////Add text top/////////
+    const topText = document.createElement('div');
+    topText.classList.add('topText');
+    topText.innerHTML = isLastPuzzle
+      ? 'CONGRATULATIONS!ENJOY YOUR A REWARD'
+      : w_top_text;
+    this.modal.appendChild(topText);
+    /// ///////////////
 
-        if (isAnimation) {
-            puzzleWidget.classList.add("animation-widget");
-        }
+    if (isLastPuzzle) {
+      assignStyleOnElement(
+        this.modal.style,
+        {
+          height: 'max-content',
+          padding: '54px 24px',
+        },
+      );
+      this.puzzleWidget.style.marginTop = '24px';
+    }
 
-        puzzleWidget.addEventListener(isMobileDevice ? "click" : "dblclick", () => {
-            puzzleWidget.remove();
-            this?.animationEl?.remove();
-            this.isPrewiewDisplayed = true;
-            this.showModalWidgetPreview(false);
-        });
+    /// /////Add text bottom/////////
+    if (!isLastPuzzle) {
+      const bottomText = document.createElement('div');
+      bottomText.classList.add('bottomText');
+      bottomText.innerHTML = `${w_hint_static_text}\n${w_hint_text}`;
+      this.modal.appendChild(bottomText);
+    }
+    /// ///////////////
+    this.modal.appendChild(this.puzzleWidget);
 
-        const { clientWidth, clientHeight } = document.documentElement;
+    /// //Add go button ////
+    if (!isLastPuzzle) {
+      const goBtn = document.createElement('button');
+      goBtn.setAttribute('id', 'goModalButton');
+      goBtn.innerHTML = w_button_text;
+      goBtn.onclick = animationFunc;
+      this.modal.appendChild(goBtn);
+    }
+    /// ///////////////
 
-        const left = x_position ? x_position : (clientWidth - 40 - puzzleWidgetSize);
-        const top = y_position ? y_position : (clientHeight - 40 - puzzleWidgetSize);
-        const size = `${puzzleWidgetSize}px`;
-        assignStyleOnElement(puzzleWidget.style, {
-            width: size,
-            height: size,
-            left: `${left}px`,
-            top: `${top}px`
-        });
+    if (!showAnimation) return;
+    setTimeout(this.addPuzzleToWidget, 1000);
+  };
 
-        document.body.appendChild(puzzleWidget);
-        this.puzzleWidget = puzzleWidget;
-        if (localStorageService.config.puzzles_collected > 0) {
-            this.addCloseIconToElement(puzzleWidget);
-        }
-        this.drageble = new DragElement(this.puzzleWidget);
-        isPuzzleWidgetDisplayed = true;
-        this.drawPuzzlesByCollectedCount();
-    };
+  addPuzzleToWidget = () => {
+    let {
+      puzzles_collected,
+      appearing_puzzle_nr,
+    } = localStorageService.config;
 
-    drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
-        for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
-            const backgroundImage = `url(${puzzleImagesList[i]})`;
-            const {
-                top,
-                left,
-                width,
-                height
-            } = coordinate[i];
-            const animationEl = document.createElement("div");
-            animationEl.classList.add("boomio--animation__wrapper");
-            assignStyleOnElement(animationEl.style, {
-                top: `${top}px`,
-                left: `${left}px`,
-                width,
-                height,
-                backgroundImage,
-                position: "absolute",
-            });
+    this.startAnimation(
+      puzzlesCoordinateForDesktop,
+      {
+        zIndex: 100000000000000,
+        position: 'absolute',
+      },
+      this.puzzleWidget,
+      false,
+    );
+    if (!this.isPrewiewDisplayed) {
+      localStorageService.updateConfig({
+        puzzles_collected: (puzzles_collected += 1),
+      });
+      boomioService.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`);
+    }
+    if (puzzles_collected < 4) return;
 
-            this.puzzleWidget.appendChild(animationEl);
-        }
-    };
+    this.showWinningAnimation();
 
-    createModalWindow = (width = 300, height = 442) => {
-        ////Add modal Background //////
-        const modalBackground = document.createElement("div");
-        modalBackground.setAttribute("id", "modalBackground");
-        /////////////////////////
+    setTimeout(() => {
+      this.closeModal();
+      this.showQR();
+    }, 2000);
+  };
 
-        ////////Add modal ///////
-        const modal = document.createElement("div");
-        modal.setAttribute("id", "widgetModal");
-        assignStyleOnElement(modal.style, {
-            width: `${width}px`,
-            height: `${height}px`,
-            transform: "scale(1)",
-        });
-        modalBackground.appendChild(modal);
-        document.body.appendChild(modalBackground)
-        this.modal = modal;
-        this.modalBackground = modalBackground;
-        ////////////////////////////
-    };
+  showWinningAnimation = () => {
+    const winningAnimation = document.createElement('iframe');
+    winningAnimation.classList.add('winningAnimation');
+    winningAnimation.setAttribute(
+      'src',
+      'https://embed.lottiefiles.com/animation/35875',
+    );
+    document.body.appendChild(winningAnimation);
+    setTimeout(() => {
+      winningAnimation.remove();
+    }, 2000);
+  };
 
-    getCloseModalBtn = (closeCallback) => {
-        const closeBtnWrapper = document.createElement("div");
-        closeBtnWrapper.classList.add("close-modal-btn-wrapper");
-        const closeBtn = document.createElement("div");
-        closeBtn.innerHTML = "&#x2715; ";
-        closeBtn.classList.add("close-modal-btn");
-        closeBtn.onclick = closeCallback;
-        closeBtnWrapper.appendChild(closeBtn);
-        return closeBtnWrapper;
-    };
+  onPuzzleClick = (e) => {
+    const puzzle = e.target;
+    puzzle.remove();
+    this.isPrewiewDisplayed = false;
+    this.showModalWidgetPreview(true);
+  };
 
-    closeAnimation = (callback) => () => {
-        this.modal.style.transformOrigin = "100% 100%";
-        this.modal.style.transform = "scale(0)";
-        this.modal.addEventListener("transitionend", () => {
-            this.puzzleWidget.remove();
-            this.modalBackground.remove();
-            if (callback) {
-                callback();
-            }
-        });
-    };
+  startAnimation = (...args) => {
+    const [
+      coordinates,
+      styles = {},
+      parent = document.body,
+      isClickable = true,
+    ] = args;
+    const {
+      qrcode,
+      puzzles_collected,
+    } = localStorageService.config;
+    const defaultCoordinates = this.coordinates[puzzles_collected];
 
-    showModalWidgetPreview = (showAnimation = false) => {
-        const {
-            appearing_puzzle_nr,
-            w_top_text,
-            w_button_text,
-            w_hint_static_text,
-            w_hint_text
-        } = localStorageService.config;
-        const isLastPuzzle = appearing_puzzle_nr === 4 && showAnimation;
-        this?.puzzleWidget?.remove();
-        this.createPuzzleWidget();
-        this.createModalWindow();
+    const currentCoordinates = coordinates?.[puzzles_collected];
+    const customPosX = currentCoordinates?.left;
+    const customPosY = currentCoordinates?.top;
+    const width = currentCoordinates?.width ?? defaultCoordinates.width;
+    const height = currentCoordinates?.height ?? defaultCoordinates.height;
 
-        const showWidget = () => {
-            this.showPuzzleWidgetWindowDraggable(true);
-        };
-        ///// Add close button //////
+    // if ((render_count % appearing_puzzle_nr) !== 0) return;
+    const puzzleSize = 100;
 
-        const animationFunc = this.closeAnimation(showWidget);
+    const dash = '-';
+    const pos = `${qrcode}`.indexOf(dash);
+    if (pos != -1) {
+      localStorageService.config.qrcode = qrcode.substring(0, pos);
+    }
 
-        if (!isLastPuzzle) {
-            const closeBtn = this.getCloseModalBtn(animationFunc);
-            this.modal.appendChild(closeBtn);
-        }
-        //////////////////
+    const {
+      clientWidth,
+      clientHeight,
+    } = document.documentElement;
 
-        ////////Add text top/////////
-        const topText = document.createElement("div");
-        topText.classList.add("topText");
-        topText.innerHTML = isLastPuzzle ?
-            "CONGRATULATIONS!ENJOY YOUR A REWARD" :
-            w_top_text;
-        this.modal.appendChild(topText);
-        //////////////////
-
-        if (isLastPuzzle) {
-            assignStyleOnElement(
-                this.modal.style,
-                {
-                    height: "max-content",
-                    padding: "54px 24px"
-                }
-            )
-            this.puzzleWidget.style.marginTop = "24px";
-        }
-
-        ////////Add text bottom/////////
-        if (!isLastPuzzle) {
-            const bottomText = document.createElement("div");
-            bottomText.classList.add("bottomText");
-            bottomText.innerHTML =
-                `${w_hint_static_text}\n${w_hint_text}`;
-            this.modal.appendChild(bottomText);
-        }
-        //////////////////
-        this.modal.appendChild(this.puzzleWidget);
-
-        /////Add go button ////
-        if (!isLastPuzzle) {
-            const goBtn = document.createElement("button");
-            goBtn.setAttribute("id", "goModalButton");
-            goBtn.innerHTML = w_button_text;
-            goBtn.onclick = animationFunc;
-            this.modal.appendChild(goBtn);
-        }
-        //////////////////
-
-        if (!showAnimation) return;
-        setTimeout(this.addPuzzleToWidget, 1000);
-    };
-
-    addPuzzleToWidget = () => {
-        let {
-            puzzles_collected,
-            appearing_puzzle_nr
-        } = localStorageService.config;
-
-        this.startAnimation(
-        puzzlesCoordinateForDesktop,
-            {
-                zIndex: 100000000000000,
-                position: "absolute"
-            },
-            this.puzzleWidget,
-            false
-        );
-        if (!this.isPrewiewDisplayed) {
-            localStorageService.updateConfig({
-                puzzles_collected: (puzzles_collected += 1),
-            });
-            boomioService.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`);
-        }
-        if (puzzles_collected < 4) return;
-
-        this.showWinningAnimation();
-
-        setTimeout(() => {
-            this.closeModal()
-            this.showQR();
-        }, 2000);
-    };
-
-    showWinningAnimation = () => {
-        const winningAnimation = document.createElement("iframe");
-        winningAnimation.classList.add("winningAnimation");
-        winningAnimation.setAttribute(
-            "src",
-            "https://embed.lottiefiles.com/animation/35875"
-        );
-        document.body.appendChild(winningAnimation);
-        setTimeout(() => {
-            winningAnimation.remove();
-        }, 2000);
-    };
-
-    onPuzzleClick = (e) => {
-        const puzzle = e.target;
-        puzzle.remove();
-        this.isPrewiewDisplayed = false;
-        this.showModalWidgetPreview(true);
-    };
-
-    startAnimation = (...args) => {
-        const [
-            coordinates,
-            styles = {},
-            parent = document.body,
-            isClickable = true,
-        ] = args;
-        const {
-            qrcode,
-            puzzles_collected
-        } = localStorageService.config;
-        const defaultCoordinates = this.coordinates[puzzles_collected];
-
-        const currentCoordinates = coordinates?.[puzzles_collected];
-        const customPosX = currentCoordinates?.left;
-        const customPosY = currentCoordinates?.top;
-        const width = currentCoordinates?.width ?? defaultCoordinates.width;
-        const height = currentCoordinates?.height ?? defaultCoordinates.height;
-
-        // if ((render_count % appearing_puzzle_nr) !== 0) return;
-        const puzzleSize = 100;
-
-        const dash = "-";
-        const pos = `${qrcode}`.indexOf(dash);
-        if (pos != -1) {
-            localStorageService.config.qrcode = qrcode.substring(0, pos);
-        }
-
-        const {
-            clientWidth,
-            clientHeight
-        } = document.documentElement;
-
-        const posx =
-            customPosX ??
-            getRandomArbitrary(
-                puzzleWidgetSize + 25,
-                clientWidth - puzzleSize - 10
+    const posx = customPosX
+            ?? getRandomArbitrary(
+              puzzleWidgetSize + 25,
+              clientWidth - puzzleSize - 10,
             ).toFixed();
-        const posy =
-            customPosY ??
-            getRandomArbitrary(
-                puzzleWidgetSize + 25,
-                clientHeight - puzzleSize - 10
+    const posy = customPosY
+            ?? getRandomArbitrary(
+              puzzleWidgetSize + 25,
+              clientHeight - puzzleSize - 10,
             ).toFixed();
 
-        const animStyles = {
-            width,
-            height,
-            backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`,
-            ...styles,
-        }
-
-        this.animationEl = new AnimationService({
-            posx,
-            posy,
-            size: puzzleWidgetSize,
-            parent,
-            styles: animStyles
-        });
-
-        this.animationEl.classList.remove("boomio--qr");
-
-        if (isClickable) {
-            this.animationEl.classList.add("boomio--animation__hover");
-            this.animationEl.addEventListener("click", this.onPuzzleClick, {
-                once: true
-            });
-        }
-
+    const animStyles = {
+      width,
+      height,
+      backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`,
+      ...styles,
     };
 
-    closeModal = () => {
-        this.modalBackground.remove();
+    this.animationEl = new AnimationService({
+      posx,
+      posy,
+      size: puzzleWidgetSize,
+      parent,
+      styles: animStyles,
+    });
+
+    this.animationEl.classList.remove('boomio--qr');
+
+    if (isClickable) {
+      this.animationEl.classList.add('boomio--animation__hover');
+      this.animationEl.addEventListener('click', this.onPuzzleClick, {
+        once: true,
+      });
     }
+  };
 
-    onModalClickBtnWithCommand = (command) => () => {
-        boomioService.signal(command);
-        this.closeModal()
-    }
+  closeModal = () => {
+    this.modalBackground.remove();
+  };
 
-    showRatingModal = () => {
-        this.createModalWindow(296, 154);
-        const textTitle = document.createElement('p');
-        textTitle.classList.add('exist-or-saving-modal-title')
-        textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
-        this.modal.appendChild(textTitle)
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList.add('modal-buttons');
-        const yesBtn = document.createElement('div');
-        yesBtn.style.cursor = 'pointer'
-        yesBtn.onclick = this.onModalClickBtnWithCommand('well_yes')
-        yesBtn.innerHTML = yesBtnHtml;
-        const noBtn = document.createElement('div');
-        noBtn.onclick = this.onModalClickBtnWithCommand('well_no');
-        noBtn.style.cursor = 'pointer'
+  onModalClickBtnWithCommand = (command) => () => {
+    boomioService.signal(command);
+    this.closeModal();
+  };
 
-        noBtn.innerHTML = noBtnHtml;
-        buttonContainer.appendChild(yesBtn);
-        buttonContainer.appendChild(noBtn);
+  showRatingModal = () => {
+    this.createModalWindow(296, 154);
+    const textTitle = document.createElement('p');
+    textTitle.classList.add('exist-or-saving-modal-title');
+    textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
+    this.modal.appendChild(textTitle);
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('modal-buttons');
+    const yesBtn = document.createElement('div');
+    yesBtn.style.cursor = 'pointer';
+    yesBtn.onclick = this.onModalClickBtnWithCommand('well_yes');
+    yesBtn.innerHTML = yesBtnHtml;
+    const noBtn = document.createElement('div');
+    noBtn.onclick = this.onModalClickBtnWithCommand('well_no');
+    noBtn.style.cursor = 'pointer';
 
-        this.modal.appendChild(buttonContainer);
-    }
+    noBtn.innerHTML = noBtnHtml;
+    buttonContainer.appendChild(yesBtn);
+    buttonContainer.appendChild(noBtn);
 
-    showSavingOrExitModal = () => {
-        this.createModalWindow(296, 154);
+    this.modal.appendChild(buttonContainer);
+  };
 
-        const textTitle = document.createElement('p');
-        textTitle.classList.add('exist-or-saving-modal-title')
-        textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
+  showSavingOrExitModal = () => {
+    this.createModalWindow(296, 154);
 
-        const saveBtn = document.createElement('button');
-        saveBtn.onclick = () => {
-            boomioService.signal('exit_yes');
-            this.closeModal()
-            this.showQR()
-        }
-        saveBtn.classList.add('save')
-        saveBtn.innerHTML = 'Save';
+    const textTitle = document.createElement('p');
+    textTitle.classList.add('exist-or-saving-modal-title');
+    textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
 
-        const exitBtn = document.createElement('div');
-        exitBtn.onclick =  () => {
-            boomioService.signal('exit_cancel');
-            this.closeModal()
-            this.showRatingModal();
-        }
-        exitBtn.style.cursor = 'pointer';
-        exitBtn.innerHTML = exitBtnHtml;
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList.add('modal-buttons');
-        buttonContainer.appendChild(saveBtn);
-        buttonContainer.appendChild(exitBtn);
-
-        this.modal.appendChild(textTitle);
-        this.modal.appendChild(buttonContainer)
-    }
-
-    showQR = () => {
-        this.createModalWindow(300, 480);
-        boomioService.signal("PUZZLE_CODE_REVEALED");
-        const {
-            qrcode
-        } = localStorageService.config;
-        const qrEl = document.createElement("div");
-
-        qrEl.setAttribute("id", "boomio--qr");
-
-        qrEl.innerHTML = this.qrCodeInnerHtml();
-
-        const closeAnimation = this.closeAnimation(this.showSavingOrExitModal);
-
-        const closeModalBtn = this.getCloseModalBtn(closeAnimation);
-
-
-        this.modal.appendChild(closeModalBtn);
-        this.modal.append(qrEl);
-
-        new QRCode("qrcodeShowHtml", {
-            text: qrcode,
-            width: 200,
-            height: 200,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H,
-        });
-        const coupon = document.getElementById("coupon_div");
-        const qrcodeShow = document.getElementById("qrcodeShow");
-        qrcodeShow.style.display = isMobileDevice ? "none" : "block";
-        coupon.style.display = isMobileDevice ? "block" : "none";
-        if (isMobileDevice) return;
-        qrcodeShow.onclick = () => {
-            coupon.style.display = "block";
-            qrcodeShow.style.display = "none";
-        };
-        coupon.onclick = () => {
-            qrcodeShow.style.display = "block";
-            coupon.style.display = "none";
-        };
+    const saveBtn = document.createElement('button');
+    saveBtn.onclick = () => {
+      boomioService.signal('exit_yes');
+      this.closeModal();
+      this.showQR();
     };
+    saveBtn.classList.add('save');
+    saveBtn.innerHTML = 'Save';
 
-    addCloseIconToElement = (element) => {
-        const closeBtn = document.createElement("div");
-        closeBtn.classList.add("custom-close-icon");
-        closeBtn.innerHTML = "&#x2715; ";
-        closeBtn.addEventListener(
-            "click",
-            (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                this.disableWidgetAndRemoveAllElements();
-            }, {
-                once: true
-            }
-        );
-        element.appendChild(closeBtn);
+    const exitBtn = document.createElement('div');
+    exitBtn.onclick = () => {
+      boomioService.signal('exit_cancel');
+      this.closeModal();
+      this.showRatingModal();
     };
+    exitBtn.style.cursor = 'pointer';
+    exitBtn.innerHTML = exitBtnHtml;
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('modal-buttons');
+    buttonContainer.appendChild(saveBtn);
+    buttonContainer.appendChild(exitBtn);
 
-    disableWidgetAndRemoveAllElements = () => {
-        boomioService.signal("PUZZLE_CLOSED");
-        this.puzzleWidget.remove();
-        this.animationEl.remove();
+    this.modal.appendChild(textTitle);
+    this.modal.appendChild(buttonContainer);
+  };
+
+  showQR = () => {
+    this.createModalWindow(300, 480);
+    boomioService.signal('PUZZLE_CODE_REVEALED');
+    const {
+      qrcode,
+    } = localStorageService.config;
+    const qrEl = document.createElement('div');
+
+    qrEl.setAttribute('id', 'boomio--qr');
+
+    qrEl.innerHTML = this.qrCodeInnerHtml();
+
+    const closeAnimation = this.closeAnimation(this.showSavingOrExitModal);
+
+    const closeModalBtn = this.getCloseModalBtn(closeAnimation);
+
+    this.modal.appendChild(closeModalBtn);
+    this.modal.append(qrEl);
+
+    new QRCode('qrcodeShowHtml', {
+      text: qrcode,
+      width: 200,
+      height: 200,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+    const coupon = document.getElementById('coupon_div');
+    const qrcodeShow = document.getElementById('qrcodeShow');
+    qrcodeShow.style.display = isMobileDevice ? 'none' : 'block';
+    coupon.style.display = isMobileDevice ? 'block' : 'none';
+    if (isMobileDevice) return;
+    qrcodeShow.onclick = () => {
+      coupon.style.display = 'block';
+      qrcodeShow.style.display = 'none';
     };
+    coupon.onclick = () => {
+      qrcodeShow.style.display = 'block';
+      coupon.style.display = 'none';
+    };
+  };
 
-    qrCodeInnerHtml = () => {
-        const {
-            p_top_text,
-            p_coupon_text ,
-            p_code_text,
-            p_button_text,
-            p_bottom_text,
-            app_url
-        } = localStorageService.config;
-        return `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
+  addCloseIconToElement = (element) => {
+    const closeBtn = document.createElement('div');
+    closeBtn.classList.add('custom-close-icon');
+    closeBtn.innerHTML = '&#x2715; ';
+    closeBtn.addEventListener(
+      'click',
+      (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        this.disableWidgetAndRemoveAllElements();
+      },
+      {
+        once: true,
+      },
+    );
+    element.appendChild(closeBtn);
+  };
+
+  disableWidgetAndRemoveAllElements = () => {
+    boomioService.signal('PUZZLE_CLOSED');
+    this.puzzleWidget.remove();
+    this.animationEl.remove();
+  };
+
+  qrCodeInnerHtml = () => {
+    const {
+      p_top_text,
+      p_coupon_text,
+      p_code_text,
+      p_button_text,
+      p_bottom_text,
+      app_url,
+    } = localStorageService.config;
+    return `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
     
         <div class="coupon__preview__body coupon_discount_modal">
     
@@ -681,34 +672,34 @@ class Puzzle  {
         
             </div>
         </div>
-    </div>`
-    };
+    </div>`;
+  };
 }
-////////////////////////////
+/// /////////////////////////
 
 export const startPuzzleWidget = () => {
-    addCssLinkToHtml(puzzleCssLink);
-    const puzzle = new Puzzle();
+  addCssLinkToHtml(puzzleCssLink);
+  const puzzle = new Puzzle();
 
-    const {
-        success,
-        puzzles_collected,
-        appearing_puzzle_nr
-    } = localStorageService.config;
+  const {
+    success,
+    puzzles_collected,
+    appearing_puzzle_nr,
+  } = localStorageService.config;
 
-    if (!success) {
-        return;
-    }
+  if (!success) {
+    return;
+  }
 
-    if (puzzles_collected > 0) {
-        puzzle.showPuzzleWidgetWindowDraggable();
-    }
+  if (puzzles_collected > 0) {
+    puzzle.showPuzzleWidgetWindowDraggable();
+  }
 
-    if (appearing_puzzle_nr > 1) {
-        puzzle.addImageTPuzzleWidget();
-    }
+  if (appearing_puzzle_nr > 1) {
+    puzzle.addImageTPuzzleWidget();
+  }
 
-    if (appearing_puzzle_nr) {
-        puzzle.startAnimation();
-    }
+  if (appearing_puzzle_nr) {
+    puzzle.startAnimation();
+  }
 };

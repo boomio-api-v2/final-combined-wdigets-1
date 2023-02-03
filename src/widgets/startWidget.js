@@ -1,68 +1,68 @@
 import {
-    boomioService,
-    localStorageService,
-    DragElement
+  boomioService,
+  localStorageService,
+  DragElement,
 } from '../services';
 
-////////Constants Icons/////////
+/// /////Constants Icons/////////
 const closeIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/close.png?raw=true';
 const gifIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift.png?raw=true';
 const couponsDiscountIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/couponsDiscount.png?raw=true';
 const discountIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/discount.png?raw=true';
 const gameIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/game.png?raw=true';
 
-//////////////////////////
+/// ///////////////////////
 const style = document.createElement('style');
 style.setAttribute('id', 'boomio--stylesheet');
 document.getElementsByTagName('head')[0].appendChild(style);
 
 function addStyles(stylesheet, cssRules) {
-    if (stylesheet.styleSheet) {
-        stylesheet.styleSheet.cssText = cssRules;
-    } else {
-        stylesheet.appendChild(document.createTextNode(cssRules));
-    }
+  if (stylesheet.styleSheet) {
+    stylesheet.styleSheet.cssText = cssRules;
+  } else {
+    stylesheet.appendChild(document.createTextNode(cssRules));
+  }
 }
 
 class StartWidget {
-    constructor() {
-        this.config = localStorageService.getDefaultConfig();
-        this.makeDiv()
-    }
-    makeDiv = () => {
-        const divsize = (200).toFixed();
-        const QRsize = (300).toFixed();
-        let animationNR = this.config.animation ??  0;
+  constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    this.makeDiv();
+  }
 
+  makeDiv = () => {
+    const divsize = (200).toFixed();
+    const QRsize = (300).toFixed();
+    const animationNR = this.config.animation ?? 0;
 
-        const posx = (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
-        const posy = (Math.random() * (document.documentElement.clientHeight - (QRsize * 1.5))).toFixed();
+    const posx = (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
+    const posy = (Math.random() * (document.documentElement.clientHeight - (QRsize * 1.5))).toFixed();
 
-        const animate = (animation) => (el) => {
-            el.classList.add(`boomio--animation--${animation}`);
-        }
-        const animArr = [
-            animate('moveRight'),
-            animate('moveLeft'),
-            animate('moveDown'),
-            animate('moveUp'),
-            animate('fadeIn'),
-            animate('moveDiagonalDown'),
-            animate('rotateRight'),
-            animate('zoomIn'),
-            animate('skewLeft'),
-            animate('moveDiagonalUp'),
-            animate('tada'),
-            animate('lightSpeedInLeft'),
-            animate('rollIn'),
-        ];
+    const animate = (animation) => (el) => {
+      el.classList.add(`boomio--animation--${animation}`);
+    };
+    const animArr = [
+      animate('moveRight'),
+      animate('moveLeft'),
+      animate('moveDown'),
+      animate('moveUp'),
+      animate('fadeIn'),
+      animate('moveDiagonalDown'),
+      animate('rotateRight'),
+      animate('zoomIn'),
+      animate('skewLeft'),
+      animate('moveDiagonalUp'),
+      animate('tada'),
+      animate('lightSpeedInLeft'),
+      animate('rollIn'),
+    ];
 
-        const animFunc = animArr[animationNR];
-        const animationEl = document.createElement('div');
-        animationEl.setAttribute('id', 'boomio--animation');
-        animationEl.classList.add('boomio--animation__wrapper');
-        animationEl.classList.add('boomio--animation__wrapper--initial');
-        animationEl.innerHTML = `<div style="background-color: rgb(255, 255, 255); width: 375px; height: fit-content; border-radius: 10px; padding: 0px;">
+    const animFunc = animArr[animationNR];
+    const animationEl = document.createElement('div');
+    animationEl.setAttribute('id', 'boomio--animation');
+    animationEl.classList.add('boomio--animation__wrapper');
+    animationEl.classList.add('boomio--animation__wrapper--initial');
+    animationEl.innerHTML = `<div style="background-color: rgb(255, 255, 255); width: 375px; height: fit-content; border-radius: 10px; padding: 0px;">
 	<style> @import url('https://fonts.googleapis.com/css?family=Montserrat');*{font-family: 'Montserrat' ;font-style: normal;}.fontColor{background: -webkit-linear-gradient(#FF3183, #8559F3);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
 	</style>
 	
@@ -85,31 +85,32 @@ class StartWidget {
 	   </div>
 	</div>
  </div>`;
-        animationEl.classList.remove('boomio--qr');
-        // animationEl.addEventListener('click', function _listener(e) {
-        //     boomio.signal('START_OK')
-        //     animationEl.remove()
-        // });
-        new DragElement(animationEl)
-        document.body.appendChild(animationEl);
+    animationEl.classList.remove('boomio--qr');
+    // animationEl.addEventListener('click', function _listener(e) {
+    //     boomio.signal('START_OK')
+    //     animationEl.remove()
+    // });
+    new DragElement(animationEl);
+    document.body.appendChild(animationEl);
+    function closeModalDiscount() {
+      boomioService.signal('START_CLOSE');
+      animationEl.remove();
+    }
 
-        document.getElementById("close_div_img").onclick = closeModalDiscount;
-        function closeModalDiscount() {
-            boomioService.signal('START_CLOSE')
-            animationEl.remove()
-        }
-        const systemFont = "system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue";
-        const duration = "1000ms";
-        const easingBack = "cubic-bezier(0.18, 0.89, 0.32, 1.28)";
-        const easing = "cubic-bezier(0.22, 0.61, 0.36, 1)";
+    document.getElementById('close_div_img').onclick = closeModalDiscount;
 
-        const initialPosition = {
-            x: animationEl.clientWidth + parseInt(posy),
-            nx: -1 * (animationEl.clientWidth + parseInt(posy)),
-            y: animationEl.clientHeight + parseInt(posx),
-            ny: -1 * (animationEl.clientHeight + parseInt(posx)),
-        }
-        const css = `
+    const systemFont = 'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
+    const duration = '1000ms';
+    const easingBack = 'cubic-bezier(0.18, 0.89, 0.32, 1.28)';
+    const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+
+    const initialPosition = {
+      x: animationEl.clientWidth + parseInt(posy),
+      nx: -1 * (animationEl.clientWidth + parseInt(posy)),
+      y: animationEl.clientHeight + parseInt(posx),
+      ny: -1 * (animationEl.clientHeight + parseInt(posx)),
+    };
+    const css = `
 		.boomio--animation__wrapper {
 			text-align: center;
 			position: fixed;
@@ -651,19 +652,17 @@ class StartWidget {
 		}
 		`;
 
-        addStyles(style, css);
+    addStyles(style, css);
 
-        animFunc(animationEl);
-        const letGoBtn = document.getElementById('letGoToBtn');
-        letGoBtn.onclick = () => {
-            boomioService.signal('START_OK')
-            animationEl.remove()
-        }
-    }
-
-};
-
-export const startStartWidget = () => {
-    new StartWidget();
+    animFunc(animationEl);
+    const letGoBtn = document.getElementById('letGoToBtn');
+    letGoBtn.onclick = () => {
+      boomioService.signal('START_OK');
+      animationEl.remove();
+    };
+  };
 }
 
+export const startStartWidget = () => {
+  new StartWidget();
+};
