@@ -9,12 +9,6 @@ export const addStylesToHtml = (cssRules) => {
   }
 };
 
-export const addCssLinkToHtml = (href) => {
-  const link = document.createElement('link');
-  link.setAttribute('href', href);
-  link.setAttribute('rel', 'stylesheet');
-  document.getElementsByTagName('head')[0].appendChild(link);
-};
 
 export const assignStyleOnElement = (style, properties) => {
   Object.assign(style, properties);
