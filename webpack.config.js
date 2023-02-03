@@ -11,5 +11,4 @@ module.exports = {
     publicPath: 'public/',
   },
 
-  stats: 'errors-only',
 };
