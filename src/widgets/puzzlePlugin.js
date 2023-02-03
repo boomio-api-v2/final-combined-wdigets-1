@@ -1,11 +1,11 @@
 import {
-    localStorageConfig,
+    boomioService,
+    localStorageService,
     DragElement,
     AnimationService,
     addCssLinkToHtml,
     assignStyleOnElement,
-} from '../modules';
-import { boomio } from '../index';
+} from '../services';
 import {
     isMobileDevice,
     dotImage
@@ -206,7 +206,7 @@ class Puzzle  {
         const {
             x_position,
             y_position
-        } = localStorageConfig.config;
+        } = localStorageService.config;
         const puzzleWidget = document.createElement("div");
         const widgetSmallPreview = document.createElement("div");
         puzzleWidget.setAttribute("id", "puzzle-widget");
@@ -238,7 +238,7 @@ class Puzzle  {
 
         document.body.appendChild(puzzleWidget);
         this.puzzleWidget = puzzleWidget;
-        if (localStorageConfig.config.puzzles_collected > 0) {
+        if (localStorageService.config.puzzles_collected > 0) {
             this.addCloseIconToElement(puzzleWidget);
         }
         this.drageble = new DragElement(this.puzzleWidget);
@@ -247,7 +247,7 @@ class Puzzle  {
     };
 
     drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
-        for (let i = 0; i < localStorageConfig.config.puzzles_collected; i++) {
+        for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
             const backgroundImage = `url(${puzzleImagesList[i]})`;
             const {
                 top,
@@ -321,7 +321,7 @@ class Puzzle  {
             w_button_text,
             w_hint_static_text,
             w_hint_text
-        } = localStorageConfig.config;
+        } = localStorageService.config;
         const isLastPuzzle = appearing_puzzle_nr === 4 && showAnimation;
         this?.puzzleWidget?.remove();
         this.createPuzzleWidget();
@@ -389,7 +389,7 @@ class Puzzle  {
         let {
             puzzles_collected,
             appearing_puzzle_nr
-        } = localStorageConfig.config;
+        } = localStorageService.config;
 
         this.startAnimation(
         puzzlesCoordinateForDesktop,
@@ -401,10 +401,10 @@ class Puzzle  {
             false
         );
         if (!this.isPrewiewDisplayed) {
-            localStorageConfig.updateConfig({
+            localStorageService.updateConfig({
                 puzzles_collected: (puzzles_collected += 1),
             });
-            boomio.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`);
+            boomioService.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`);
         }
         if (puzzles_collected < 4) return;
 
@@ -446,7 +446,7 @@ class Puzzle  {
         const {
             qrcode,
             puzzles_collected
-        } = localStorageConfig.config;
+        } = localStorageService.config;
         const defaultCoordinates = this.coordinates[puzzles_collected];
 
         const currentCoordinates = coordinates?.[puzzles_collected];
@@ -461,7 +461,7 @@ class Puzzle  {
         const dash = "-";
         const pos = `${qrcode}`.indexOf(dash);
         if (pos != -1) {
-            localStorageConfig.config.qrcode = qrcode.substring(0, pos);
+            localStorageService.config.qrcode = qrcode.substring(0, pos);
         }
 
         const {
@@ -513,7 +513,7 @@ class Puzzle  {
     }
 
     onModalClickBtnWithCommand = (command) => () => {
-        boomio.signal(command);
+        boomioService.signal(command);
         this.closeModal()
     }
 
@@ -549,7 +549,7 @@ class Puzzle  {
 
         const saveBtn = document.createElement('button');
         saveBtn.onclick = () => {
-            boomio.signal('exit_yes');
+            boomioService.signal('exit_yes');
             this.closeModal()
             this.showQR()
         }
@@ -558,7 +558,7 @@ class Puzzle  {
 
         const exitBtn = document.createElement('div');
         exitBtn.onclick =  () => {
-            boomio.signal('exit_cancel');
+            boomioService.signal('exit_cancel');
             this.closeModal()
             this.showRatingModal();
         }
@@ -575,10 +575,10 @@ class Puzzle  {
 
     showQR = () => {
         this.createModalWindow(300, 480);
-        boomio.signal("PUZZLE_CODE_REVEALED");
+        boomioService.signal("PUZZLE_CODE_REVEALED");
         const {
             qrcode
-        } = localStorageConfig.config;
+        } = localStorageService.config;
         const qrEl = document.createElement("div");
 
         qrEl.setAttribute("id", "boomio--qr");
@@ -634,7 +634,7 @@ class Puzzle  {
     };
 
     disableWidgetAndRemoveAllElements = () => {
-        boomio.signal("PUZZLE_CLOSED");
+        boomioService.signal("PUZZLE_CLOSED");
         this.puzzleWidget.remove();
         this.animationEl.remove();
     };
@@ -647,7 +647,7 @@ class Puzzle  {
             p_button_text,
             p_bottom_text,
             app_url
-        } = localStorageConfig.config;
+        } = localStorageService.config;
         return `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
     
         <div class="coupon__preview__body coupon_discount_modal">
@@ -694,7 +694,7 @@ export const startPuzzleWidget = () => {
         success,
         puzzles_collected,
         appearing_puzzle_nr
-    } = localStorageConfig.config;
+    } = localStorageService.config;
 
     if (!success) {
         return;

@@ -1,12 +1,12 @@
-import { localStorageConfig } from "./modules";
 import {
+    startImageWidget,
     startPuzzleWidget,
     startStartWidget,
-    startWheelWidget,
-    startImageWidget
-} from "./wdgets";
+    startWheelWidget
+} from "../widgets";
+import { localStorageService } from "./localStorage";
 
-class Boomio  {
+class BoomioService  {
     constructor() {
         this.url = window.location.href;
         this.user_session = this.session();
@@ -57,11 +57,17 @@ class Boomio  {
     setInitialConfiguration() {
         try {
             window.onload = async () => {
-                const content = await this.send({ go_hunt: "true"});
-                localStorageConfig.setConfigFromApi(content);
-                if (content?.widget_type && content.instruction !== 'stop') {
-                    this.loadWidget(content.widget_type)
-                }
+                localStorageService.setConfigFromApi({
+                    success: true,
+                    puzzles_collected: 3,
+                    appearing_puzzle_nr: 4
+                });
+                this.loadWidget();
+                // const content = await this.send({ go_hunt: "true"});
+                // localStorageService.setConfigFromApi(content);
+                // if (content?.widget_type && content.instruction !== 'stop') {
+                //     this.loadWidget(content.widget_type)
+                // }
             }
         } catch (err) {
             console.log(err)
@@ -110,4 +116,4 @@ class Boomio  {
 };
 
 
-export const boomio = new Boomio();
+export default new BoomioService();

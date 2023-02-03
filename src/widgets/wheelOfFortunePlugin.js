@@ -1,34 +1,65 @@
-////constants
-// const localStoragePropertyName = 'boomioPluginConfig';
-import { localStorageConfig, DragElement } from '../modules';
-import { isMobileDevice, playStoreImage, dotImage, appStoreImage} from '../config';
+import { boomioService, localStorageService, DragElement } from '../services';
+import { isMobileDevice, dotImage, appStoreImage, playStoreImage } from '../config';
 
-const style = document.createElement('style');
-style.setAttribute('id', 'boomio--stylesheet');
-document.getElementsByTagName('head')[0].appendChild(style);
+const defaultList =  [
+    {
+        color:"#f82",
+        label:"10",
+        img:"https://eucys.eu/wp-content/uploads/2019/09/ribbon_prize-300x300.png",
+    },
+    {
+        color:"#0bf",
+        label:"10",
+        img : "https://cdn.pixabay.com/photo/2022/08/22/03/07/logo-7402580__340.png"
+    },
+    {
+        color:"#fb0",
+        label:"200",
+        img:"https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c521.png",
+    },
+    {
+        color:"#0fb",
+        label:"50",
+        img:"https://www.pngmart.com/files/12/Shopee-Logo-Transparent-Background.png",
+    },
+    {
+        color:"#b0f",
+        label:"100",
+        img: 'https://cdn.freebiesupply.com/images/large/2x/dallas-cowboys-logo-transparent.png'
+    },
+    {
+        color:"#f0b",
+        label:"5",
+        img:"https://cdn-icons-png.flaticon.com/512/1018/1018083.png",
+    },
+    {
+        color:"#bf0",
+        label:"500",
+        img:"https://assets-global.website-files.com/6152b2d34ca06b6d275dd66e/6152b2d34ca06be4185ddd29_save-money.png",
+    },
+]
 
-const mainCss = `
-[draggable=true] {
-    cursor: move;
-}
 
-.boomie-preview-mobile {
-    width: 100px;
-}
-#boomio--qr {
+const cssRules = `
+#wheelOfFortune {
+    display: inline-flex;
     position: fixed;
-    top: 0px;
-    left: 0px;
+    overflow: initial;
     z-index: 1000;
 }
+
+#wheel {
+    display: block;
+}
+
 .custom-close-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: -16px;
+    right: 0px;
     font-size: 13px;
-    top: -16px;
+    top: 0px;
     color: #000;
     cursor: pointer;
     background-color: lightgray;
@@ -38,280 +69,178 @@ const mainCss = `
     font-size: 10px;
     opacity: 0.45;
 }
-.boomio--animation__wrapper:empty {
-    display: block !important;
-}
-.boomio--animation__wrapper {
-    text-align: center;
-    position: fixed;
-    z-index: 9999;
-    visibility: visible;
-    background-size: cover;
-    opacity: 1;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+
+#spin {
+    font: 1.5rem/0 sans-serif;
     user-select: none;
-}
-#widgetPreview {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    bottom: -55px;
     cursor: pointer;
-}
-#puzzle-widget {
-    border-radius: 10px;
-    background-size: contain;
-    position: fixed;
-    z-index: 1000;
-    left: 20px;
-    top: 20px;
-}
-.boomio--puzzle-widget-text {
-    width: 100%;
-    z-index: 100000;
-    position: absolute;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
-    top: 50px;
-    font-size: ${isMobileDevice ? 20 : 36}px;
-    text-align: center;
-}
-.coupon_discount_modal .coupon_info h3 {
-    background: -webkit-linear-gradient(#FF3183, #8559F3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 30px;
-}
-
-.coupon_discount_modal .coupon_info p {
-    padding: 0;
-    font-size: 13px;
-    font-weight: 600;
-    margin: 0;
-}
-
-
-.coupon_discount_modal .coupon_preview_card_footer {
-    margin-top: 0px;
-}
-.coupon_discount_modal .coupon_preview_card_footer a {
-    color:black
-}
-
-.coupon_discount_modal .coupon_preview_card_footer p {
-    font-size: 14px;
-}
-
-.coupon_preview_card_footer .btn-content {
-    width: 100%;
-    border: none;
-    padding: 1px;
-    height: 47px;
-    border: double 2px transparent;
-    border-radius: 24px;
-    background-image: linear-gradient(#e8dff7, #fee0e7), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
-.coupon_preview_card_footer .btn-content img {
-    width: 30px;
-}
-
-.coupon_preview_card_footer .btn-content .small-font {
-    font-weight: 500;
-    font-size: 14px;
-    text-align: left;
-}
-
-.coupon_preview_card_footer .appstore-img img,
-.coupon_preview_card_footer .playstore-img img {
-    width: 150px;
-}
-.coupon_preview_card_footer .btn-text-group {
-    line-height: 14px;
-    font-size: 14px;
-}
-.coupon_preview_card_footer .btn-content {
-    cursor: pointer;
-}
-.footer-dec {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    padding-top: 11px;
-    line-height: 21px;
-}
-.coupon_discount_modal .coupon_preview_card_info {
     display: flex;
     justify-content: center;
-    cursor: pointer;
-}
-
-.coupon_discount_modal .coupon__preview__card {
-    box-shadow: 10px 11px 5px -5px rgb(195 195 195 / 35%);
-}
-
-.coupon__preview__card {
-    position: relative;
-    width: 100%;
-    height: 282px;
-    border: double 2px transparent;
-    border-radius: 24px;
-    background-image: linear-gradient(#FBFAFC, #FBFAFC), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
-.coupon__preview__card::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -18px;
-    /* background-color: #fff; */
-    width: 32px;
-    height: 37.6px;
-    transform: translate(0%, -50%);
-    border-radius: 50%;
-    border: 2px solid transparent;
-    background-image: linear-gradient(#fff, #fff), linear-gradient(228.29deg, #FD5A97 10.56%, #FB6E80 86.04%);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
-.coupon__preview__card__after {
-    position: absolute;
-    content: "";
-    width: 19px;
-    top: 50%;
-    left: 0px;
-    height: 50px;
-    background-color: #fff;
-    transform: translate(-111%, -50%);
-}
-
-.coupon__preview__card::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -18px;
-    background-color: #fff;
-    width: 32px;
-    height: 37.6px;
-    transform: translate(0%, -50%);
-    border-radius: 50%;
-    border: 2px solid transparent;
-    background-image: linear-gradient(#fff, #fff), linear-gradient(180deg, #5CB1E0 0%, #7E85E9 100%);
-    background-clip: content-box, border-box;
-}
-
-.coupon__preview__card__befor {
-    position: absolute;
-    content: "";
-    width: 19px;
-    top: 50%;
-    right: 0px;
-    height: 50px;
-    z-index: 1;
-    background-color: #fff;
-    transform: translate(111%, -50%);
-}
-
-.coupon_discount_modal .coupon__preview__card__header {
-    padding: 0;
-    text-align: center;
-}
-
-.coupon_discount_modal .coupon__preview__card__header h1 {
-    text-transform: uppercase;
-    margin-bottom: 14px;
-}
-
-.coupon_discount_modal .coupon__preview__card {
-    height: auto;
-}
-
-.coupon_discount_modal .coupon_info {
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    margin: -15%;
+    background: #fff;
+    color: #fff;
+    box-shadow: 0 0 0 8px currentColor, 0 0px 15px 5px rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    transition: 0.8s;
 }
 
-.coupon_discount_modal .coupon_preview_card_info {
-    cursor: pointer;
+#spin::after {
+    content: "";
+    position: absolute;
+    top: -17px;
+    border: 10px solid transparent;
+    border-bottom-color: currentColor;
+    border-top: none;
 }
-
-
-
-.coupon_discount_modal .coupon__preview__card {
-    box-shadow: 10px 11px 5px -5px rgba(195, 195, 195, 0.35);
-}
-
-.coupon_discount_modal .coupon_info h3 {
-    margin: 0;
-    padding: 0;
-}
-
-.coupon_discount_modal .coupon_info h3:first-child {
-    font-size: 40px;
-    background: -webkit-linear-gradient(#FF3183, #8559F3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-    line-height: 37px;
-}
-
 `;
+
+//////////////////
+
 
 const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
-const assignStyle = (style, properties) => {
-    Object.assign(style, properties);
-}
 
-class ImagePlugin {
+const rand = (m, M) => Math.random() * (M - m) + m;
+
+class WheelOfFortunePlugin {
     constructor() {
-        this.addStyles(mainCss)
-        this.config = localStorageConfig.getDefaultConfig();
-        this.startAnimation()
+        this.config = localStorageService.getDefaultConfig();
+        if (!this.config.success) return;
+        this.addStyles(cssRules)
+        this.createWheel();
+        this.elSpin = document.querySelector("#spin");
+        this.ctx = document.getElementById("wheel").getContext`2d`;
+        this.config.list = this?.config?.list ?? defaultList;
+        this.tot = this.config?.list?.length ?? 0;
+        this.dia = this.ctx.canvas.width;
+        this.rad = this.dia / 2;
+        this.PI = Math.PI;
+        this.TAU = 2 * this.PI;
+        this.arc = this.TAU / (this.config?.list?.length ?? 0);
+        this.friction = 0.991;
+        this.angVelMin = 0.002;
+        this.angVelMax = 0;
+        this.angVel = 0;
+        this.ang = 0;
+        this.isSpinning = false;
+        this.isAccelerating = false;
+        this.elSpin.addEventListener("click", () => {
+            boomioService.signal('SPIN')
+            if (this.isSpinning) return;
+            this.isSpinning = true;
+            this.isAccelerating = true;
+            this.angVelMax = rand(0.10, 0.20);
+        });
+
+        this.config?.list?.forEach(this.drawSector);
+        /////To Check///////
+        // if (document.readyState !== 'complete') return;
+        this.wheelOfFortune = document.getElementById('wheelOfFortune');
+        this.wheelOfFortune.style.display = 'block';
+        this.addCloseIconToElement(this.wheelOfFortune)
+
+        this.drageble = new DragElement(this.wheelOfFortune)
+
+
+        this.rotate(); // Initial rotation
+        this.engine(); // Start engine!
+        this.startAnimation();
     }
-    addStyles = (cssRules) => {
-        const style = document.createElement('style');
-        style.setAttribute('id', 'boomio--stylesheet');
-        document.getElementsByTagName('head')[0].appendChild(style);
-        if (style.styleSheet) {
-            style.styleSheet.cssText = cssRules;
-        } else {
-            style.appendChild(document.createTextNode(cssRules));
-        }
+
+    engine = () => {
+        this.frame();
+        requestAnimationFrame(this.engine)
     };
 
-    startAnimation = () => {
-        const { animation, img } = this.config;
-        const puzzleSize = 250;
-        const animationEl = document.createElement('div');
-        animationEl.classList.add('boomio--animation__wrapper');
-        animationEl.classList.add('boomio--animation__wrapper--initial');
-        animationEl.onclick = (e) => {
-            e.target.remove()
-            this.showQR();
+    frame = () => {
+
+        if (!this.isSpinning) return;
+
+        if (this.angVel >= this.angVelMax) this.isAccelerating = false;
+
+        // Accelerate
+        if (this.isAccelerating) {
+            this.angVel ||= this.angVelMin; // Initial velocity kick
+            this.angVel *= 1.06; // Accelerate
         }
-        this.drageble =  new DragElement(animationEl)
-        document.body.appendChild(animationEl);
-        assignStyle(animationEl.style, {
-            width: '100px',
-            height: '100px',
-            backgroundImage: `url(${img})`
-        })
+
+        // Decelerate
+        else {
+            this.isAccelerating = false;
+            this.angVel *= this.friction; // Decelerate by friction
+
+            // SPIN END:
+            if (this.angVel < this.angVelMin) {
+                this.isSpinning = false;
+                this.angVel = 0;
+                this.showQR();
+                this.wheelOfFortune.remove()
+            }
+        }
+
+        this.ang += this.angVel; // Update angle
+        this.ang %= this.TAU;    // Normalize angle
+        this.rotate();      // CSS rotate!
+    };
+
+    getIndex = () => Math.floor(this.tot - this.ang / this.TAU * this.tot) % this.tot;
+
+    rotate = () => {
+        const sector = this.config?.list?.[this.getIndex()];
+        this.ctx.canvas.style.transform = `rotate(${this.ang - this.PI / 2}rad)`;
+        this.elSpin.innerHTML = !this.angVel ? "SPIN" : `
+            <img style="width: 40px; height: 40px" src="${sector.img}"></img>
+        `;
+        this.elSpin.style.background = sector?.color;
+    };
+
+    drawSector = (sector, i) => {
+        const ang = this.arc * i;
+        this.ctx.save();
+        this.ctx.beginPath();
+        this.ctx.fillStyle = sector.color;
+        this.ctx.moveTo(this.rad, this.rad);
+        this.ctx.arc(this.rad, this.rad, this.rad, ang, ang + this.arc);
+        this.ctx.lineTo(this.rad, this.rad);
+        this.ctx.fill();
+        this.ctx.translate(this.rad, this.rad);
+        this.ctx.rotate(ang + this.arc / 2);
+        this.ctx.textAlign = "right";
+        this.ctx.fillStyle = "#fff";
+        this.ctx.font = "bold 30px sans-serif";
+        this.ctx.font = "14px serif";
+        const img = new Image();
+        img.src = sector.img
+        this.ctx.drawImage(img, 86, -12, 32, 32);
+        this.ctx.fillText(sector.label, this.rad - 55, 10);
+        this.ctx.restore();
+    };
+
+    createWheel = () => {
+        const wheel = document.createElement('div');
+        wheel.setAttribute('id', 'wheelOfFortune');
+        wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
+        wheel.style.display = 'none';
+        wheel.innerHTML = `
+                <canvas id="wheel" width="250" height="250"></canvas>
+                <div id="spin">SPIN asd asd asd as dasd as dasd asd asd as d</div>
+          `;
+        document.body.appendChild(wheel)
+    }
+
+    startAnimation = () => {
+
+        const { animation } = this.config;
+        const puzzleSize = 250;
+        const animationEl = document.getElementById('wheelOfFortune');
+
+
         const systemFont =
             'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
         const duration = '1000ms';
@@ -331,7 +260,6 @@ class ImagePlugin {
             y: animationEl.clientHeight + parseInt(this.posx),
             ny: -1 * (animationEl.clientHeight + parseInt(this.posx)),
         };
-
         const css = `
         [draggable=true] {
             cursor: move;
@@ -871,7 +799,6 @@ class ImagePlugin {
 		`;
 
         this.addStyles( css);
-
         const animFunc = this.getAnimateFunction(animation);
         animFunc(animationEl);
     };
@@ -899,6 +826,29 @@ class ImagePlugin {
         return animArr[nr]
     }
 
+    addStyles = (cssRules) => {
+        const style = document.createElement('style');
+        style.setAttribute('id', 'boomio--stylesheet');
+        document.getElementsByTagName('head')[0].appendChild(style);
+        if (style.styleSheet) {
+            style.styleSheet.cssText = cssRules;
+        } else {
+            style.appendChild(document.createTextNode(cssRules));
+        }
+    };
+
+    addCloseIconToElement = (element) => {
+        const closeBtn = document.createElement('div')
+        closeBtn.classList.add('custom-close-icon')
+        closeBtn.innerHTML = '&#x2715; ';
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            e.preventDefault()
+            element.remove()
+        },{ once: true })
+        element.appendChild(closeBtn)
+    }
+
     showQR = () => {
         const { qrcode } = this.config;
         const qrEl = document.createElement('div');
@@ -909,7 +859,6 @@ class ImagePlugin {
         qrEl.innerHTML = this.qrCodeInnerHtml();
 
         document.body.append(qrEl);
-
         new QRCode('qrcodeShowHtml', {
             text: qrcode,
             width: 300,
@@ -927,6 +876,8 @@ class ImagePlugin {
             elementRemove.remove();
             e.stopPropagation();
         };
+
+
         if (isMobileDevice) return;
         qrcodeShow.onclick = () => {
             coupon.style.display = 'block'
@@ -941,9 +892,11 @@ class ImagePlugin {
             this.config.x_position,
             this.config.y_position
         )
+
         qrEl.style.left = `${posX}px`;
         qrEl.style.top = `${posY}px`;
     }
+
 
     qrCodeInnerHtml = () =>  `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
 		<span class='custom-close-icon' style='top: 16px; right: 10px' id='close'>&#x2715; </span>
@@ -993,9 +946,10 @@ class ImagePlugin {
 		</div>
 	</div>`
 
+
 }
 
-
-export const startImageWidget = () => {
-    new ImagePlugin();
+export const startWheelWidget = () => {
+    new WheelOfFortunePlugin();
 }
+

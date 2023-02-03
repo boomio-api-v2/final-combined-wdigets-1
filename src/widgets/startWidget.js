@@ -1,5 +1,8 @@
-import { localStorageConfig, DragElement } from '../modules';
-import { boomio } from '../index'
+import {
+    boomioService,
+    localStorageService,
+    DragElement
+} from '../services';
 
 ////////Constants Icons/////////
 const closeIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/close.png?raw=true';
@@ -23,7 +26,7 @@ function addStyles(stylesheet, cssRules) {
 
 class StartWidget {
     constructor() {
-        this.config = localStorageConfig.getDefaultConfig();
+        this.config = localStorageService.getDefaultConfig();
         this.makeDiv()
     }
     makeDiv = () => {
@@ -92,7 +95,7 @@ class StartWidget {
 
         document.getElementById("close_div_img").onclick = closeModalDiscount;
         function closeModalDiscount() {
-            boomio.signal('START_CLOSE')
+            boomioService.signal('START_CLOSE')
             animationEl.remove()
         }
         const systemFont = "system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue";
@@ -653,7 +656,7 @@ class StartWidget {
         animFunc(animationEl);
         const letGoBtn = document.getElementById('letGoToBtn');
         letGoBtn.onclick = () => {
-            boomio.signal('START_OK')
+            boomioService.signal('START_OK')
             animationEl.remove()
         }
     }
