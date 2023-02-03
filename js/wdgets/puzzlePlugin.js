@@ -11,8 +11,8 @@ import {
     dotImage
 } from '../config';
 
-const frameSvg = "/public/images/puzzle/frame.png";
-
+const frameSvg =
+    "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true";
 const puzzleCssLink = "https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/31e4e15bef157c67ef66db1e5767f9e003e3b24b/css/puzzle.css";
 
 //////// Services ////////
