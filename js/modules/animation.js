@@ -207,6 +207,6 @@ export class AnimationService {
             animate("rollIn"),
         ];
 
-        return animArr[nr];
+        return animArr[nr - 1];
     };
 }
