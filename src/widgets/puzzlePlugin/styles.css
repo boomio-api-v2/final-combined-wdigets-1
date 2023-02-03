@@ -38,7 +38,7 @@
 div:empty {
     display: block !important;
 }
-frame:empty {
+iframe:empty {
     display: block !important;
 }
 [draggable=true] {
