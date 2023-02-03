@@ -186,7 +186,7 @@ class WheelOfFortunePlugin {
     this.rotate(); // CSS rotate!
   };
 
-  getIndex = () => Math.floor(this.tot - this.ang / this.TAU * this.tot) % this.tot;
+  getIndex = () => Math.floor(this.tot - (this.ang / this.TAU) * this.tot) % this.tot;
 
   rotate = () => {
     const sector = this.config?.list?.[this.getIndex()];
