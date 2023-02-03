@@ -1,0 +1,17 @@
+{
+  "parserOptions": {
+    "requireConfigFile": false
+  },
+  "parser": "@babel/eslint-parser",
+  "extends": ["airbnb"],
+  "env": {
+    "browser": true
+  },
+
+  "rules": {
+    "camelcase": "off",
+    "no-tabs": 0,
+    "no-undef": "off",
+    "no-new": "off"
+  }
+}

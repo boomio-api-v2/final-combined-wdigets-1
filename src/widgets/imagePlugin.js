@@ -1,7 +1,9 @@
-////constants
+/// /constants
 // const localStoragePropertyName = 'boomioPluginConfig';
 import { localStorageService, DragElement } from '../services';
-import { isMobileDevice, playStoreImage, dotImage, appStoreImage} from '../config';
+import {
+  isMobileDevice, playStoreImage, dotImage, appStoreImage,
+} from '../config';
 
 const style = document.createElement('style');
 style.setAttribute('id', 'boomio--stylesheet');
@@ -275,64 +277,64 @@ const mainCss = `
 const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 const assignStyle = (style, properties) => {
-    Object.assign(style, properties);
-}
+  Object.assign(style, properties);
+};
 
 class ImagePlugin {
-    constructor() {
-        this.addStyles(mainCss)
-        this.config = localStorageService.getDefaultConfig();
-        this.startAnimation()
+  constructor() {
+    this.addStyles(mainCss);
+    this.config = localStorageService.getDefaultConfig();
+    this.startAnimation();
+  }
+
+  addStyles = (cssRules) => {
+    const style = document.createElement('style');
+    style.setAttribute('id', 'boomio--stylesheet');
+    document.getElementsByTagName('head')[0].appendChild(style);
+    if (style.styleSheet) {
+      style.styleSheet.cssText = cssRules;
+    } else {
+      style.appendChild(document.createTextNode(cssRules));
     }
-    addStyles = (cssRules) => {
-        const style = document.createElement('style');
-        style.setAttribute('id', 'boomio--stylesheet');
-        document.getElementsByTagName('head')[0].appendChild(style);
-        if (style.styleSheet) {
-            style.styleSheet.cssText = cssRules;
-        } else {
-            style.appendChild(document.createTextNode(cssRules));
-        }
+  };
+
+  startAnimation = () => {
+    const { animation, img } = this.config;
+    const puzzleSize = 250;
+    const animationEl = document.createElement('div');
+    animationEl.classList.add('boomio--animation__wrapper');
+    animationEl.classList.add('boomio--animation__wrapper--initial');
+    animationEl.onclick = (e) => {
+      e.target.remove();
+      this.showQR();
+    };
+    this.drageble = new DragElement(animationEl);
+    document.body.appendChild(animationEl);
+    assignStyle(animationEl.style, {
+      width: '100px',
+      height: '100px',
+      backgroundImage: `url(${img})`,
+    });
+    const systemFont = 'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
+    const duration = '1000ms';
+    const easingBack = 'cubic-bezier(0.18, 0.89, 0.32, 1.28)';
+    const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+
+    const { clientWidth, clientHeight } = document.documentElement;
+
+    const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed());
+
+    this.posx = getPosition(clientWidth);
+    this.posy = getPosition(clientHeight);
+
+    const initialPosition = {
+      x: animationEl.clientWidth + parseInt(this.posy),
+      nx: -1 * (animationEl.clientWidth + parseInt(this.posy)),
+      y: animationEl.clientHeight + parseInt(this.posx),
+      ny: -1 * (animationEl.clientHeight + parseInt(this.posx)),
     };
 
-    startAnimation = () => {
-        const { animation, img } = this.config;
-        const puzzleSize = 250;
-        const animationEl = document.createElement('div');
-        animationEl.classList.add('boomio--animation__wrapper');
-        animationEl.classList.add('boomio--animation__wrapper--initial');
-        animationEl.onclick = (e) => {
-            e.target.remove()
-            this.showQR();
-        }
-        this.drageble =  new DragElement(animationEl)
-        document.body.appendChild(animationEl);
-        assignStyle(animationEl.style, {
-            width: '100px',
-            height: '100px',
-            backgroundImage: `url(${img})`
-        })
-        const systemFont =
-            'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
-        const duration = '1000ms';
-        const easingBack = 'cubic-bezier(0.18, 0.89, 0.32, 1.28)';
-        const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
-
-        const { clientWidth, clientHeight } = document.documentElement;
-
-        const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed())
-
-        this.posx = getPosition(clientWidth);
-        this.posy = getPosition(clientHeight);
-
-        const initialPosition = {
-            x: animationEl.clientWidth + parseInt(this.posy),
-            nx: -1 * (animationEl.clientWidth + parseInt(this.posy)),
-            y: animationEl.clientHeight + parseInt(this.posx),
-            ny: -1 * (animationEl.clientHeight + parseInt(this.posx)),
-        };
-
-        const css = `
+    const css = `
         [draggable=true] {
             cursor: move;
         }
@@ -870,82 +872,81 @@ class ImagePlugin {
 		}
 		`;
 
-        this.addStyles( css);
+    this.addStyles(css);
 
-        const animFunc = this.getAnimateFunction(animation);
-        animFunc(animationEl);
+    const animFunc = this.getAnimateFunction(animation);
+    animFunc(animationEl);
+  };
+
+  getAnimateFunction = (nr) => {
+    const animate = (animation) => (el) => {
+      el.classList.add(`boomio--animation--${animation}`);
     };
+    const animArr = [
+      animate('moveRight'),
+      animate('moveLeft'),
+      animate('moveDown'),
+      animate('moveUp'),
+      animate('fadeIn'),
+      animate('moveDiagonalDown'),
+      animate('rotateRight'),
+      animate('zoomIn'),
+      animate('skewLeft'),
+      animate('moveDiagonalUp'),
+      animate('tada'),
+      animate('lightSpeedInLeft'),
+      animate('rollIn'),
+    ];
 
-    getAnimateFunction = (nr) => {
-        const animate = (animation) => (el) => {
-            el.classList.add(`boomio--animation--${animation}`);
-        };
-        const animArr = [
-            animate('moveRight'),
-            animate('moveLeft'),
-            animate('moveDown'),
-            animate('moveUp'),
-            animate('fadeIn'),
-            animate('moveDiagonalDown'),
-            animate('rotateRight'),
-            animate('zoomIn'),
-            animate('skewLeft'),
-            animate('moveDiagonalUp'),
-            animate('tada'),
-            animate('lightSpeedInLeft'),
-            animate('rollIn'),
-        ];
+    return animArr[nr];
+  };
 
-        return animArr[nr]
-    }
+  showQR = () => {
+    const { qrcode } = this.config;
+    const qrEl = document.createElement('div');
 
-    showQR = () => {
-        const { qrcode } = this.config;
-        const qrEl = document.createElement('div');
+    qrEl.setAttribute('id', 'boomio--qr');
 
-        qrEl.setAttribute('id', 'boomio--qr');
+    qrEl.innerHTML = this.qrCodeInnerHtml();
 
+    document.body.append(qrEl);
 
-        qrEl.innerHTML = this.qrCodeInnerHtml();
+    new QRCode('qrcodeShowHtml', {
+      text: qrcode,
+      width: 300,
+      height: 300,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+    const coupon = document.getElementById('coupon_div');
+    const qrcodeShow = document.getElementById('qrcodeShow');
+    qrcodeShow.style.display = isMobileDevice ? 'none' : 'block';
+    coupon.style.display = isMobileDevice ? 'block' : 'none';
+    document.getElementById('close').onclick = (e) => {
+      const elementRemove = document.getElementById('boomio--qr');
+      elementRemove.remove();
+      e.stopPropagation();
+    };
+    if (isMobileDevice) return;
+    qrcodeShow.onclick = () => {
+      coupon.style.display = 'block';
+      qrcodeShow.style.display = 'none';
+    };
+    coupon.onclick = () => {
+      qrcodeShow.style.display = 'block';
+      coupon.style.display = 'none';
+    };
+    const { posX, posY } = this.drageble.getQrCodePosition(
+      qrEl,
+      this.config.x_position,
+      this.config.y_position,
+    );
+    qrEl.style.left = `${posX}px`;
+    qrEl.style.top = `${posY}px`;
+  };
 
-        document.body.append(qrEl);
-
-        new QRCode('qrcodeShowHtml', {
-            text: qrcode,
-            width: 300,
-            height: 300,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H,
-        });
-        const coupon = document.getElementById('coupon_div');
-        const qrcodeShow = document.getElementById('qrcodeShow');
-        qrcodeShow.style.display = isMobileDevice ? 'none' : 'block';
-        coupon.style.display = isMobileDevice ? 'block' : 'none';
-        document.getElementById('close').onclick = (e) => {
-            const elementRemove = document.getElementById('boomio--qr');
-            elementRemove.remove();
-            e.stopPropagation();
-        };
-        if (isMobileDevice) return;
-        qrcodeShow.onclick = () => {
-            coupon.style.display = 'block'
-            qrcodeShow.style.display = 'none'
-        }
-        coupon.onclick = () => {
-            qrcodeShow.style.display = 'block'
-            coupon.style.display = 'none'
-        }
-        const { posX, posY} = this.drageble.getQrCodePosition(
-            qrEl,
-            this.config.x_position,
-            this.config.y_position
-        )
-        qrEl.style.left = `${posX}px`;
-        qrEl.style.top = `${posY}px`;
-    }
-
-    qrCodeInnerHtml = () =>  `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
+  qrCodeInnerHtml = () => `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
 		<span class='custom-close-icon' style='top: 16px; right: 10px' id='close'>&#x2715; </span>
 		<div class="coupon__preview__body coupon_discount_modal">
 
@@ -979,23 +980,21 @@ class ImagePlugin {
 				</div>
 				</a>
 				${!isMobileDevice ? (
-        `		<div class="d-flex pt-2">
+    `		<div class="d-flex pt-2">
 					<div class="appstore-img "><a href=""><img src="${appStoreImage}"
 								alt="App Store"></a></div>
 					<div class="playstore-img"><a href=${this.config.app_url}"><img src="${playStoreImage}"
 								alt="Play Store"></a></div>
 				</div>`
-    ) : ''}
+  ) : ''}
 				<div>
 					<p class="footer-dec">Don't have time now? Make a screenshot and use it later!</p>
 				</div>
 			</div>
 		</div>
-	</div>`
-
+	</div>`;
 }
-
 
 export const startImageWidget = () => {
-    new ImagePlugin();
-}
+  new ImagePlugin();
+};

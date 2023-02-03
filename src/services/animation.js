@@ -1,55 +1,51 @@
 import {
-    addStylesToHtml,
-    assignStyleOnElement,
-    localStorageService
+  addStylesToHtml,
+  assignStyleOnElement,
+  localStorageService,
 } from './index';
 
 const defaultProps = {
-    posx: 0,
-    posy:  0,
-    size : 100,
-    parent: document.body,
-    styles: {}
-}
+  posx: 0,
+  posy: 0,
+  size: 100,
+  parent: document.body,
+  styles: {},
+};
 
-export class AnimationService {
-    constructor({
-        posx = 0,
-        posy = 0,
-        size = 100,
-        parent = document.body,
-        styles = {}
-    } = defaultProps) {
-        this.config = localStorageService.getDefaultConfig();
+export default class AnimationService {
+  constructor({
+    posx = 0,
+    posy = 0,
+    size = 100,
+    parent = document.body,
+    styles = {},
+  } = defaultProps) {
+    this.config = localStorageService.getDefaultConfig();
 
-        this.clearPrev()
-        const elem = document.createElement('div');
-        const { animation } = this.config;
-        const animFunc = this.getAnimateFunction(animation);
+    this.clearPrev();
+    const elem = document.createElement('div');
+    const { animation } = this.config;
+    const animFunc = this.getAnimateFunction(animation);
 
-        elem.classList.add("boomio--animation__wrapper");
-        elem.classList.add("boomio--animation__wrapper--initial");
-        parent.appendChild(elem)
+    elem.classList.add('boomio--animation__wrapper');
+    elem.classList.add('boomio--animation__wrapper--initial');
+    parent.appendChild(elem);
 
+    const systemFont = 'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
+    const duration = '1000ms';
+    const easingBack = 'cubic-bezier(0.18, 0.89, 0.32, 1.28)';
+    const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
-        const systemFont =
-            "system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue";
-        const duration = "1000ms";
-        const easingBack = "cubic-bezier(0.18, 0.89, 0.32, 1.28)";
-        const easing = "cubic-bezier(0.22, 0.61, 0.36, 1)";
+    assignStyleOnElement(elem.style, styles);
 
-        assignStyleOnElement(elem.style, styles);
+    const initialPosition = {
+      x: elem.clientWidth + parseInt(posy, 10),
+      nx: -1 * (elem.clientWidth + parseInt(posy, 10)),
+      y: elem.clientHeight + parseInt(posx, 10),
+      ny: -1 * (elem.clientHeight + parseInt(posx, 10)),
+    };
 
-
-        const initialPosition = {
-            x: elem.clientWidth + parseInt(posy),
-            nx: -1 * (elem.clientWidth + parseInt(posy)),
-            y: elem.clientHeight + parseInt(posx),
-            ny: -1 * (elem.clientHeight + parseInt(posx)),
-        };
-
-
-        const css = `
+    const css = `
 		.boomio--animation__wrapper {
 			text-align: center;
 			position: fixed;
@@ -180,33 +176,35 @@ export class AnimationService {
 		}
 		`;
 
-        addStylesToHtml(css);
-        animFunc(elem);
-        return elem
-    };
-    clearPrev() {
-        document.getElementById('boomio--stylesheet')?.remove();
-    };
-    getAnimateFunction = (nr) => {
-        const animate = (animation) => (el) => {
-            el.classList.add(`boomio--animation--${animation}`);
-        };
-        const animArr = [
-            animate("moveRight"),
-            animate("moveLeft"),
-            animate("moveDown"),
-            animate("moveUp"),
-            animate("fadeIn"),
-            animate("moveDiagonalDown"),
-            animate("rotateRight"),
-            animate("zoomIn"),
-            animate("skewLeft"),
-            animate("moveDiagonalUp"),
-            animate("tada"),
-            animate("lightSpeedInLeft"),
-            animate("rollIn"),
-        ];
+    addStylesToHtml(css);
+    animFunc(elem);
+    return elem;
+  }
 
-        return animArr[nr - 1];
+  clearPrev() {
+    document.getElementById('boomio--stylesheet')?.remove();
+  }
+
+  getAnimateFunction = (nr) => {
+    const animate = (animation) => (el) => {
+      el.classList.add(`boomio--animation--${animation}`);
     };
+    const animArr = [
+      animate('moveRight'),
+      animate('moveLeft'),
+      animate('moveDown'),
+      animate('moveUp'),
+      animate('fadeIn'),
+      animate('moveDiagonalDown'),
+      animate('rotateRight'),
+      animate('zoomIn'),
+      animate('skewLeft'),
+      animate('moveDiagonalUp'),
+      animate('tada'),
+      animate('lightSpeedInLeft'),
+      animate('rollIn'),
+    ];
+
+    return animArr[nr - 1];
+  };
 }
