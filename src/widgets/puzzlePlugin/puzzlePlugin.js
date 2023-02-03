@@ -9,7 +9,6 @@ import {
   isMobileDevice,
   dotImage,
 } from '../../config';
-import './styles.css';
 
 const frameSvg = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true';
 
@@ -374,8 +373,10 @@ class Puzzle {
     }
     /// ///////////////
 
-    if (!showAnimation) return;
-    setTimeout(this.addPuzzleToWidget, 1000);
+    if (showAnimation) {
+      boomioService.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`);
+      setTimeout(this.addPuzzleToWidget, 1000);
+    }
   };
 
   addPuzzleToWidget = () => {
@@ -397,7 +398,6 @@ class Puzzle {
       localStorageService.updateConfig({
         puzzles_collected: (puzzles_collected += 1),
       });
-      boomioService.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`);
     }
     if (puzzles_collected < 4) return;
 
@@ -419,7 +419,7 @@ class Puzzle {
     document.body.appendChild(winningAnimation);
     setTimeout(() => {
       winningAnimation.remove();
-    }, 2000);
+    }, 3000);
   };
 
   onPuzzleClick = (e) => {
@@ -677,6 +677,8 @@ class Puzzle {
 /// /////////////////////////
 
 export const startPuzzleWidget = () => {
+  ///TODO put this loading here, because these styles can crash changes for another widgets
+  require('./styles.css');
   const puzzle = new Puzzle();
 
   const {
