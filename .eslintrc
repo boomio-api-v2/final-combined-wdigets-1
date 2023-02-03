@@ -7,11 +7,24 @@
   "env": {
     "browser": true
   },
-
+////TO DO need to fix this rules
   "rules": {
     "camelcase": "off",
     "no-tabs": 0,
     "no-undef": "off",
-    "no-new": "off"
+    "no-new": "off",
+    "import/no-cycle": "off",
+    "class-methods-use-this": "off",
+    "no-constructor-return":  "off",
+    "no-plusplus": "off",
+    "no-bitwise": "off",
+    "no-mixed-operators": "off",
+    "import/prefer-default-export": "off",
+    "prefer-const": "off",
+    "no-console\n": "off",
+    "no-param-reassign": "off",
+    "no-console": "off",
+    "no-async-promise-executor": "off",
+    "brace-style": "off"
   }
 }

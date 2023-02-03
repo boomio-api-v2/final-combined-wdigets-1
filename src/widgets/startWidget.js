@@ -34,9 +34,10 @@ class StartWidget {
     const divsize = (200).toFixed();
     const QRsize = (300).toFixed();
     const animationNR = this.config.animation ?? 0;
+    const { clientWidth, clientHeight } = document.documentElement;
 
-    const posx = (Math.random() * (document.documentElement.clientWidth - QRsize)).toFixed();
-    const posy = (Math.random() * (document.documentElement.clientHeight - (QRsize * 1.5))).toFixed();
+    const posx = (Math.random() * (clientWidth - QRsize)).toFixed();
+    const posy = (Math.random() * (clientHeight - (QRsize * 1.5))).toFixed();
 
     const animate = (animation) => (el) => {
       el.classList.add(`boomio--animation--${animation}`);
@@ -105,10 +106,10 @@ class StartWidget {
     const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
     const initialPosition = {
-      x: animationEl.clientWidth + parseInt(posy),
-      nx: -1 * (animationEl.clientWidth + parseInt(posy)),
-      y: animationEl.clientHeight + parseInt(posx),
-      ny: -1 * (animationEl.clientHeight + parseInt(posx)),
+      x: animationEl.clientWidth + parseInt(posy, 10),
+      nx: -1 * (animationEl.clientWidth + parseInt(posy, 10)),
+      y: animationEl.clientHeight + parseInt(posx, 10),
+      ny: -1 * (animationEl.clientHeight + parseInt(posx, 10)),
     };
     const css = `
 		.boomio--animation__wrapper {

@@ -26,8 +26,9 @@ export class DragElement {
   }
 
   getQrCodePosition(element, posx, posy) {
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const { clientHeight: documentHeight, clientWidth: documentWidth } = document.documentElement;
+    const windowHeight = window.innerHeight || documentHeight || document.body.clientHeight;
+    const windowWidth = window.innerWidth || documentWidth || document.body.clientWidth;
     const elementHeight = element.offsetHeight;
     const elementWidth = element.offsetWidth;
     const posX = this.x_position ?? posx;

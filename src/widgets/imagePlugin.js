@@ -5,9 +5,9 @@ import {
   isMobileDevice, playStoreImage, dotImage, appStoreImage,
 } from '../config';
 
-const style = document.createElement('style');
-style.setAttribute('id', 'boomio--stylesheet');
-document.getElementsByTagName('head')[0].appendChild(style);
+const styleTag = document.createElement('style');
+styleTag.setAttribute('id', 'boomio--stylesheet');
+document.getElementsByTagName('head')[0].appendChild(styleTag);
 
 const mainCss = `
 [draggable=true] {
@@ -322,16 +322,16 @@ class ImagePlugin {
 
     const { clientWidth, clientHeight } = document.documentElement;
 
-    const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed());
+    const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed(), 10);
 
     this.posx = getPosition(clientWidth);
     this.posy = getPosition(clientHeight);
 
     const initialPosition = {
-      x: animationEl.clientWidth + parseInt(this.posy),
-      nx: -1 * (animationEl.clientWidth + parseInt(this.posy)),
-      y: animationEl.clientHeight + parseInt(this.posx),
-      ny: -1 * (animationEl.clientHeight + parseInt(this.posx)),
+      x: animationEl.clientWidth + parseInt(this.posy, 10),
+      nx: -1 * (animationEl.clientWidth + parseInt(this.posy, 10)),
+      y: animationEl.clientHeight + parseInt(this.posx, 10),
+      ny: -1 * (animationEl.clientHeight + parseInt(this.posx, 10)),
     };
 
     const css = `

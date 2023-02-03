@@ -454,7 +454,7 @@ class Puzzle {
 
     const dash = '-';
     const pos = `${qrcode}`.indexOf(dash);
-    if (pos != -1) {
+    if (pos !== -1) {
       localStorageService.config.qrcode = qrcode.substring(0, pos);
     }
 
