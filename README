@@ -1,1 +1,27 @@
-I used webpack for building. Please install it globaly
+Steps:
+
+1.) npm i
+
+2.) npm run build
+
+3.) Commit and push changes. Make sure that you pushes dist/bundle.js file.
+
+4.) take dist/bundle.js it is our main build file, which we will connect to website. Open it and pres Raw button.
+
+5.) Put your github link, and transform it in cd for source code. I used this https://raw.githack.com/
+
+!!! But don't forget if you use production mode, if you push new changes, they will be cached from previous branch.
+So you need to open your new commit, open version of file and repeat the previous operation.
+
+6.) Put your url in link <head></head>
+
+7.) Add newLinkBoomio in script higher, for api link
+
+Example:
+
+<head>
+     <script>
+        const newLinkBoomio = "https://api.mars.boomio.com/easter-service/get-qr-code";
+    </script>
+    <script src="https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/faa3751938a8edcf41d95c83a58bcd0b55563278/dist/bundle.js"></script>
+</head>
