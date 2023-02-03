@@ -35,7 +35,10 @@
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
 }
-div, frame:empty {
+div:empty {
+    display: block !important;
+}
+frame:empty {
     display: block !important;
 }
 [draggable=true] {
