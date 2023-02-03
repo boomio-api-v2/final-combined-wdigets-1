@@ -51,7 +51,7 @@ class LocalStorageConfig {
         const app_url = config?.app_url ?? '';
         const custom_text = config?.custom_text ?? '';
         const puzzles_collected = config?.puzzles_collected ?? 0;
-        const appearing_puzzle_nr = config?.appearing_puzzle_nr ?? null;
+        const appearing_puzzle_nr = config?.appearing_puzzle_nr ?? 1;
         const x_position = config?.x_position ?? null;
         const y_position = config?.y_position ?? null;
         const img = config?.img ?? null
