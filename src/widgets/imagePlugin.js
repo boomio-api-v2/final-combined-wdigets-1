@@ -1,5 +1,3 @@
-/// /constants
-// const localStoragePropertyName = 'boomioPluginConfig';
 import { localStorageService, DragElement } from '../services';
 import {
   isMobileDevice, playStoreImage, dotImage, appStoreImage,
