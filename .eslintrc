@@ -11,7 +11,7 @@
   "rules": {
     "camelcase": "off",
     "no-tabs": 0,
-    "no-undef": "off",
+//    "no-undef": "off",
     "no-new": "off",
     "import/no-cycle": "off",
     "class-methods-use-this": "off",
