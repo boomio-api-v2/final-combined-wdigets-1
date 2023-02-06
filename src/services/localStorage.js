@@ -36,6 +36,7 @@ class LocalStorageService {
     this.config = {
       x_position: this.config?.x_position ?? null,
       y_position: this.config?.y_position ?? null,
+      appearing_puzzle_nr: this.config?.appearing_puzzle_nr ?? null,
       ...this.config,
       ...content,
     };
