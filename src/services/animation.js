@@ -31,9 +31,7 @@ export default class AnimationService {
     elem.classList.add('boomio--animation__wrapper--initial');
     parent.appendChild(elem);
 
-    const systemFont = 'system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue';
     const duration = '1000ms';
-    const easingBack = 'cubic-bezier(0.18, 0.89, 0.32, 1.28)';
     const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
     assignStyleOnElement(elem.style, styles);
@@ -72,31 +70,6 @@ export default class AnimationService {
 			animation-timing-function: ${easing};
 			animation-iteration-count: 1;
 		}
-		.boomio--animation__heading {
-			color: #000;
-			font: 22px/1.2 ${systemFont};
-			margin: 0 0 16px;
-		}
-
-		h4.boomio--animation__heading {
-			font-size: 16px;
-			opacity: .7;
-			margin-top: -8px;
-		}
-
-		.boomio--animation--moveRight { animation-name: boomio-animate--moveRight; animation-timing-function: ${easingBack}; }
-		.boomio--animation--moveLeft { animation-name: boomio-animate--moveLeft; animation-timing-function: ${easingBack}; }
-		.boomio--animation--moveUp { animation-name: boomio-animate--moveUp; }
-		.boomio--animation--moveDown { animation-name: boomio-animate--moveDown; }
-		.boomio--animation--moveDiagonalDown { animation-name: boomio-animate--moveDiagonalDown; }
-		.boomio--animation--moveDiagonalUp { animation-name: boomio-animate--moveDiagonalUp; }
-		.boomio--animation--fadeIn { animation-name: boomio-animate--fadeIn; }
-		.boomio--animation--zoomIn { animation-name: boomio-animate--zoomIn; animation-timing-function: ${easingBack}; }
-		.boomio--animation--rotateRight { animation-name: boomio-animate--rotateRight; animation-timing-function: ${easingBack}; }
-		.boomio--animation--skewLeft { animation-name: boomio-animate--skewLeft; }
-		.boomio--animation--tada { animation-name: boomio-animate--tada; }
-		.boomio--animation--lightSpeedInLeft { animation-name: boomio-animate--lightSpeedInLeft; }
-		.boomio--animation--rollIn { animation-name: boomio-animate--rollIn; }
 
 		@keyframes boomio-animate--lightSpeedInLeft {
 			from {

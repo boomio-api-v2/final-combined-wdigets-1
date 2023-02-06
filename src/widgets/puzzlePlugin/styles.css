@@ -261,14 +261,7 @@ iframe:empty {
     line-height: 18px;
 }
 
-.coupon_discount_modal .coupon_info h3 {
-    background: -webkit-linear-gradient(#FF3183, #8559F3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-    line-height: 37px;
-    font-size: 24px;
-}
+
 
 .coupon_discount_modal .coupon_info p {
     padding: 0;
@@ -289,17 +282,6 @@ iframe:empty {
     font-size: 14px;
 }
 
-.coupon_preview_card_footer .btn-content {
-    width: 100%;
-    border: none;
-    padding: 1px;
-    height: 47px;
-    border: double 1px transparent;
-    border-radius: 24px;
-    background-image: linear-gradient(#e8dff7, #fee0e7), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
 
 .coupon_preview_card_footer .btn-content img {
     width: 20px;
@@ -322,9 +304,6 @@ iframe:empty {
 }
 
 
-.coupon_preview_card_footer .btn-content {
-    cursor: pointer;
-}
 .footer-dec {
     margin: 0;
     padding: 0;
@@ -369,17 +348,6 @@ iframe:empty {
     background-clip: content-box, border-box;
 }
 
-.coupon__preview__card__after {
-    position: absolute;
-    content: "";
-    width: 19px;
-    top: 50%;
-    left: 0px;
-    height: 50px;
-    background-color: #fff;
-    transform: translate(-111%, -50%);
-}
-
 .coupon-text {
     font-family: 'Montserrat';
     font-style: normal;
@@ -389,42 +357,12 @@ iframe:empty {
 }
 
 
-.coupon__preview__card::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -18px;
-    background-color: #fff;
-    width: 32px;
-    height: 37.6px;
-    transform: translate(0%, -50%);
-    border-radius: 50%;
-    border: 2px solid transparent;
-    background-image: linear-gradient(#fff, #fff), linear-gradient(180deg, #5CB1E0 0%, #7E85E9 100%);
-    background-clip: content-box, border-box;
-}
-
-.coupon__preview__card__befor {
-    position: absolute;
-    content: "";
-    width: 19px;
-    top: 50%;
-    right: 0px;
-    height: 50px;
-    z-index: 1;
-    background-color: #fff;
-    transform: translate(111%, -50%);
-}
 
 .coupon_discount_modal .coupon__preview__card__header {
     padding: 0;
     text-align: center;
 }
 
-.coupon_discount_modal .coupon__preview__card__header h1 {
-    text-transform: uppercase;
-    margin-bottom: 14px;
-}
 
 .coupon_discount_modal .coupon__preview__card {
     height: auto;
@@ -445,11 +383,6 @@ iframe:empty {
     box-shadow: 10px 11px 5px -5px rgba(195, 195, 195, 0.35);
 }
 
-.coupon_discount_modal .coupon_info h3 {
-    margin: 0;
-    padding: 0;
-}
-
 .coupon_discount_modal .coupon_info h3:first-child {
     text-align: center;
     font-size: 26px;
@@ -464,38 +397,6 @@ iframe:empty {
     transform: scale(1.1);
 }
 
-.boomio--animation__wrapper--qr {
-    animation-name: boomio-animate-qr;
-    animation-duration: 300ms;
-    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    background-color: #ffffff;
-    box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px, rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
-    border-radius: 7px;
-}
-
-
-@keyframes boomio-animate-qr {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes boomio-animate--rollIn {
-    from {
-        opacity: 0;
-        transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-}
 
 .d-flex {
     display: flex !important;
@@ -516,10 +417,6 @@ iframe:empty {
 .product-design-bg-2 *{
     font-family: 'Montserrat' ;
     font-style: normal;
-}
-.coupon_discount_modal .coupon__preview__card__header h1 {
-    text-transform: uppercase;
-    margin-bottom: 14px;
 }
 
 .coupon__preview__card__header h1 {
@@ -543,33 +440,6 @@ iframe:empty {
     padding: 0;
 }
 
-
-@keyframes boomio-animate--rotateRight {
-    0% {
-        transform: rotate(360deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-@keyframes boomio-animate--skewLeft {
-    0% {
-        transform: skew(60deg, 60deg);
-    }
-    100% {
-        transform: skew(0deg, 0deg);
-    }
-}
-
-@keyframes boomio-animate--zoomIn {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
 .align-items-center {
     align-items: center !important;
 }
@@ -582,42 +452,7 @@ iframe:empty {
     flex-direction: column !important;
 }
 
-@keyframes boomio-animate--fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
-@keyframes boomio-animate--tada {
-    from {
-        transform: scale3d(1, 1, 1);
-    }
-
-    10%,
-    20% {
-        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
-    }
-
-    30%,
-    50%,
-    70%,
-    90% {
-        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
-    }
-
-    40%,
-    60%,
-    80% {
-        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
-    }
-
-    to {
-        transform: scale3d(1, 1, 1);
-    }
-}
 
 .boomio--animation__wrapper {
     outline: none !important;
