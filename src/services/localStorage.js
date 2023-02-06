@@ -2,7 +2,11 @@ import { localStoragePropertyName } from '../config';
 
 class LocalStorageService {
   constructor() {
-    this.config = this.getDefaultConfig();
+    this.clearStorage();
+  }
+
+  clearStorage() {
+    localStorage.removeItem(localStoragePropertyName)
   }
 
   сheckOnInstruction(content) {
@@ -33,11 +37,11 @@ class LocalStorageService {
   }
 
   setConfigFromApi(content) {
+    const defaultValues = this.getDefaultConfig();
     this.config = {
       x_position: this.config?.x_position ?? null,
       y_position: this.config?.y_position ?? null,
-      appearing_puzzle_nr: this.config?.appearing_puzzle_nr ?? null,
-      ...this.config,
+      ...defaultValues,
       ...content,
     };
     localStorage.setItem(localStoragePropertyName, JSON.stringify(this.config));
