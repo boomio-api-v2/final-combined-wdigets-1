@@ -4,7 +4,8 @@ import {
   DragElement,
   QrCodeModal,
   AnimationService
-} from '../services';
+} from '../../services';
+import './styles.css';
 
 const defaultList = [
   {
@@ -44,69 +45,8 @@ const defaultList = [
   },
 ];
 
-const cssRules = `
-#wheelOfFortune {
-    display: inline-flex;
-    position: fixed;
-    overflow: initial;
-    z-index: 1000;
-}
-
-#wheel {
-    display: block;
-}
-
-.custom-close-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 0px;
-    font-size: 13px;
-    top: 0px;
-    color: #000;
-    cursor: pointer;
-    background-color: lightgray;
-    width: 16px;
-    height: 16px;
-    border-radius: 20px;
-    font-size: 10px;
-    opacity: 0.45;
-}
-
-#spin {
-    font: 1.5rem/0 sans-serif;
-    user-select: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30%;
-    height: 30%;
-    margin: -15%;
-    background: #fff;
-    color: #fff;
-    box-shadow: 0 0 0 8px currentColor, 0 0px 15px 5px rgba(0, 0, 0, 0.6);
-    border-radius: 50%;
-    transition: 0.8s;
-}
-
-#spin::after {
-    content: "";
-    position: absolute;
-    top: -17px;
-    border: 10px solid transparent;
-    border-bottom-color: currentColor;
-    border-top: none;
-}
-`;
 
 /// ///////////////
-
-const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 const rand = (m, M) => Math.random() * (M - m) + m;
 
@@ -114,7 +54,6 @@ class WheelOfFortunePlugin {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     if (!this.config.success) return;
-    this.addStyles(cssRules);
     this.createWheel();
     this.elSpin = document.querySelector('#spin');
     this.ctx = document.getElementById('wheel').getContext`2d`;
@@ -235,32 +174,12 @@ class WheelOfFortunePlugin {
   };
 
   startAnimation = () => {
-    const puzzleSize = 250;
-
-    const { clientWidth, clientHeight } = document.documentElement;
-
-    const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed(), 10);
-
-    const posx = getPosition(clientWidth);
-    const posy = getPosition(clientHeight);
     new AnimationService({
-      elem: this.wheelOfFortune,
-      posx, posy, size: puzzleSize
+      elem: this.wheelOfFortune, size: 250
     })
 
   };
 
-
-  addStyles = (cssParams) => {
-    const style = document.createElement('style');
-    style.setAttribute('id', 'boomio--stylesheet');
-    document.getElementsByTagName('head')[0].appendChild(style);
-    if (style.styleSheet) {
-      style.styleSheet.cssText = cssParams;
-    } else {
-      style.appendChild(document.createTextNode(cssParams));
-    }
-  };
 
   addCloseIconToElement = (element) => {
     const closeBtn = document.createElement('div');
