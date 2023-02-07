@@ -12,16 +12,25 @@ const defaultProps = {
   styles: {},
 };
 
+const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
+
+const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed(), 10);
+
+
 export default class AnimationService {
   constructor({
-    posx = 0,
-    posy = 0,
+    posx ,
+    posy ,
     size = 100,
     parent = document.body,
     elem = document.createElement('div'),
     styles = {},
   } = defaultProps) {
+    const { clientWidth, clientHeight } = document.documentElement;
     this.config = localStorageService.getDefaultConfig();
+
+    posx = posx ? posx : getPosition(clientWidth)
+    posy = posy ? posy : getPosition(clientHeight)
 
     this.clearPrev();
     const { animation } = this.config;

@@ -2,7 +2,7 @@ import {
   boomioService,
   DragElement, AnimationService,
 } from '../../services';
-
+import './styles.css';
 /// /////Constants Icons/////////
 const closeIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/close.png?raw=true';
 const gifIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift.png?raw=true';
@@ -72,6 +72,5 @@ class StartWidget {
 }
 
 export const startStartWidget = () => {
-  require('./styles.css');
   new StartWidget();
 };
