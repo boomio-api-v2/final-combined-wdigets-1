@@ -10,7 +10,7 @@ import {
   isMobileDevice,
 } from '../../config';
 
-const frameSvg = '../../images/puzzle/frame.svg';
+const frameSvg = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/frame.svg';
 
 /// ///// Services ////////
 /// //////////////////////
@@ -71,10 +71,10 @@ const puzzlesCoordinate = isMobileDevice
   ? puzzlesCoordinateForMobile
   : puzzlesCoordinateForDesktop;
 const puzzleImagesList = [
-  '../../images/puzzle/puzzle-1.svg',
-  '../../images/puzzle/puzzle-2.svg',
-  '../../images/puzzle/puzzle-3.svg',
-  '../../images/puzzle/puzzle-4.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-1.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-2.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-3.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-4.svg',
 ];
 
 const puzzleWidgetSize = isMobileDevice ? 100 : 185;
