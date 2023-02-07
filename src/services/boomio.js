@@ -64,10 +64,10 @@ class BoomioService {
           success: true,
           puzzles_collected: 3,
           appearing_puzzle_nr: 4,
-          animation: 2,
+          animation: 4,
           img: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg'
         });
-        this.loadWidget('start_widget')
+        this.loadWidget('image')
         // const content = await this.send({ go_hunt: "true"});
         // localStorageService.setConfigFromApi(content);
         // if (content?.widget_type && content.instruction !== 'stop') {

@@ -18,12 +18,12 @@ export default class AnimationService {
     posy = 0,
     size = 100,
     parent = document.body,
+    elem = document.createElement('div'),
     styles = {},
   } = defaultProps) {
     this.config = localStorageService.getDefaultConfig();
 
     this.clearPrev();
-    const elem = document.createElement('div');
     const { animation } = this.config;
     const animFunc = this.getAnimateFunction(animation);
 
