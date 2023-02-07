@@ -29,8 +29,8 @@ export default class AnimationService {
     const { clientWidth, clientHeight } = document.documentElement;
     this.config = localStorageService.getDefaultConfig();
 
-    posx = posx ? posx : getPosition(clientWidth)
-    posy = posy ? posy : getPosition(clientHeight)
+    posx = isNaN(posx) ? getPosition(clientWidth) :posx;
+    posy = isNaN(posy) ? getPosition(clientHeight) : posy;
 
     this.clearPrev();
     const { animation } = this.config;
