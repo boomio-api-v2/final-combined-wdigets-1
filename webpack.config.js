@@ -10,6 +10,11 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: 'public/',
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    }
+  },
   module: {
     rules: [
       {

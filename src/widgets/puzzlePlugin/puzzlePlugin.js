@@ -5,77 +5,67 @@ import {
   AnimationService,
   assignStyleOnElement,
   QrCodeModal,
-} from '../../services';
-import {
-  isMobileDevice,
-} from '../../config';
-
-const frameSvg = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/frame.svg';
+} from '@/services';
+import { frameSvg, puzzleIconsList } from '@/сonstants/icons';
+import { isMobileDevice } from '@/config';
 
 /// ///// Services ////////
-/// //////////////////////
-const puzzlesCoordinateForMobile = [{
-  top: 0,
-  left: 0,
-  width: '49.84px',
-  height: '61.33px',
-},
-{
-  top: 0,
-  left: 37,
-  width: '60.3px',
-  height: '50.86px',
-},
-{
-  top: 49,
-  left: 0,
-  width: '61.3px',
-  height: '47.86px',
-},
-{
-  top: 44,
-  left: 62,
-  width: '50.84px',
-  height: '63.3px',
-},
+const puzzlesCoordinateForMobile = [
+  {
+    top: 0,
+    left: 0,
+    width: '49.84px',
+    height: '61.33px',
+  },
+  {
+    top: 0,
+    left: 37,
+    width: '60.3px',
+    height: '50.86px',
+  },
+  {
+    top: 49,
+    left: 0,
+    width: '61.3px',
+    height: '47.86px',
+  },
+  {
+    top: 44,
+    left: 62,
+    width: '50.84px',
+    height: '63.3px',
+  },
 ];
 
-const puzzlesCoordinateForDesktop = [{
-  top: 0,
-  left: 0,
-  width: '89.84px',
-  height: '112.33px',
-},
+const puzzlesCoordinateForDesktop = [
+  {
+    top: 0,
+    left: 0,
+    width: '89.84px',
+    height: '112.33px',
+  },
 
-{
-  top: 0,
-  left: 66,
-  width: '114.3px',
-  height: '87.86px',
-},
-{
-  top: 87,
-  left: 0,
-  width: '112.3px',
-  height: '89.86px',
-},
-{
-  top: 65,
-  left: 88,
-  width: '90.84px',
-  height: '113.33px',
-},
+  {
+    top: 0,
+    left: 66,
+    width: '114.3px',
+    height: '87.86px',
+  },
+  {
+    top: 87,
+    left: 0,
+    width: '112.3px',
+    height: '89.86px',
+  },
+  {
+    top: 65,
+    left: 88,
+    width: '90.84px',
+    height: '113.33px',
+  },
 ];
 
-const puzzlesCoordinate = isMobileDevice
-  ? puzzlesCoordinateForMobile
-  : puzzlesCoordinateForDesktop;
-const puzzleImagesList = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-1.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-2.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-3.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-4.svg',
-];
+const puzzlesCoordinate = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
 
 const puzzleWidgetSize = isMobileDevice ? 100 : 185;
 
@@ -86,9 +76,7 @@ class Puzzle {
   constructor() {
     this.animationEl = null;
     this.isPrewiewDisplayed = false;
-    this.coordinates = isMobileDevice
-      ? puzzlesCoordinateForMobile
-      : puzzlesCoordinateForDesktop;
+    this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
   }
 
   addImageTPuzzleWidget = () => {
@@ -109,10 +97,7 @@ class Puzzle {
 
   // This method for creating widget in window
   showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
-    const {
-      x_position,
-      y_position,
-    } = localStorageService.config;
+    const { x_position, y_position } = localStorageService.config;
     const puzzleWidget = document.createElement('div');
     const widgetSmallPreview = document.createElement('div');
     puzzleWidget.setAttribute('id', 'puzzle-widget');
@@ -132,8 +117,8 @@ class Puzzle {
 
     const { clientWidth, clientHeight } = document.documentElement;
 
-    const left = x_position || (clientWidth - 40 - puzzleWidgetSize);
-    const top = y_position || (clientHeight - 40 - puzzleWidgetSize);
+    const left = x_position || clientWidth - 40 - puzzleWidgetSize;
+    const top = y_position || clientHeight - 40 - puzzleWidgetSize;
     const size = `${puzzleWidgetSize}px`;
     assignStyleOnElement(puzzleWidget.style, {
       width: size,
@@ -153,13 +138,8 @@ class Puzzle {
 
   drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
     for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
-      const backgroundImage = `url(${puzzleImagesList[i]})`;
-      const {
-        top,
-        left,
-        width,
-        height,
-      } = coordinate[i];
+      const backgroundImage = `url(${puzzleIconsList[i]})`;
+      const { top, left, width, height } = coordinate[i];
       const animationEl = document.createElement('div');
       animationEl.classList.add('boomio--animation__wrapper');
       assignStyleOnElement(animationEl.style, {
@@ -220,13 +200,8 @@ class Puzzle {
   };
 
   showModalWidgetPreview = (showAnimation = false) => {
-    const {
-      appearing_puzzle_nr,
-      w_top_text,
-      w_button_text,
-      w_hint_static_text,
-      w_hint_text,
-    } = localStorageService.config;
+    const { appearing_puzzle_nr, w_top_text, w_button_text, w_hint_static_text, w_hint_text } =
+      localStorageService.config;
     const isLastPuzzle = appearing_puzzle_nr === 4 && showAnimation;
     this?.puzzleWidget?.remove();
     this.createPuzzleWidget();
@@ -248,20 +223,15 @@ class Puzzle {
     /// /////Add text top/////////
     const topText = document.createElement('div');
     topText.classList.add('topText');
-    topText.innerHTML = isLastPuzzle
-      ? 'CONGRATULATIONS!ENJOY YOUR A REWARD'
-      : w_top_text;
+    topText.innerHTML = isLastPuzzle ? 'CONGRATULATIONS!ENJOY YOUR A REWARD' : w_top_text;
     this.modal.appendChild(topText);
     /// ///////////////
 
     if (isLastPuzzle) {
-      assignStyleOnElement(
-        this.modal.style,
-        {
-          height: 'max-content',
-          padding: '54px 24px',
-        },
-      );
+      assignStyleOnElement(this.modal.style, {
+        height: 'max-content',
+        padding: '54px 24px',
+      });
       this.puzzleWidget.style.marginTop = '24px';
     }
 
@@ -292,9 +262,7 @@ class Puzzle {
   };
 
   addPuzzleToWidget = () => {
-    let {
-      puzzles_collected,
-    } = localStorageService.config;
+    let { puzzles_collected } = localStorageService.config;
 
     this.startAnimation(
       puzzlesCoordinateForDesktop,
@@ -316,17 +284,14 @@ class Puzzle {
 
     setTimeout(() => {
       this.closeModal();
-      new QrCodeModal()
+      new QrCodeModal();
     }, 2000);
   };
 
   showWinningAnimation = () => {
     const winningAnimation = document.createElement('iframe');
     winningAnimation.classList.add('winningAnimation');
-    winningAnimation.setAttribute(
-      'src',
-      'https://embed.lottiefiles.com/animation/35875',
-    );
+    winningAnimation.setAttribute('src', 'https://embed.lottiefiles.com/animation/35875');
     document.body.appendChild(winningAnimation);
     setTimeout(() => {
       winningAnimation.remove();
@@ -341,16 +306,8 @@ class Puzzle {
   };
 
   startAnimation = (...args) => {
-    const [
-      coordinates,
-      styles = {},
-      parent = document.body,
-      isClickable = true,
-    ] = args;
-    const {
-      qrcode,
-      puzzles_collected,
-    } = localStorageService.config;
+    const [coordinates, styles = {}, parent = document.body, isClickable = true] = args;
+    const { qrcode, puzzles_collected } = localStorageService.config;
     const defaultCoordinates = this.coordinates[puzzles_collected];
 
     const currentCoordinates = coordinates?.[puzzles_collected];
@@ -368,26 +325,19 @@ class Puzzle {
       localStorageService.config.qrcode = qrcode.substring(0, pos);
     }
 
-    const {
-      clientWidth,
-      clientHeight,
-    } = document.documentElement;
+    const { clientWidth, clientHeight } = document.documentElement;
 
-    const posx = customPosX
-            ?? getRandomArbitrary(
-              puzzleWidgetSize + 25,
-              clientWidth - puzzleSize - 10,
-            ).toFixed();
-    const posy = customPosY
-            ?? getRandomArbitrary(
-              puzzleWidgetSize + 25,
-              clientHeight - puzzleSize - 10,
-            ).toFixed();
+    const posx =
+      customPosX ??
+      getRandomArbitrary(puzzleWidgetSize + 25, clientWidth - puzzleSize - 10).toFixed();
+    const posy =
+      customPosY ??
+      getRandomArbitrary(puzzleWidgetSize + 25, clientHeight - puzzleSize - 10).toFixed();
 
     const animStyles = {
       width,
       height,
-      backgroundImage: `url(${puzzleImagesList[puzzles_collected]})`,
+      backgroundImage: `url(${puzzleIconsList[puzzles_collected]})`,
       ...styles,
     };
 
@@ -436,18 +386,13 @@ class Puzzle {
     this.puzzleWidget.remove();
     this.animationEl.remove();
   };
-
 }
 /// /////////////////////////
 
 export const startPuzzleWidget = () => {
   const puzzle = new Puzzle();
 
-  const {
-    success,
-    puzzles_collected,
-    appearing_puzzle_nr,
-  } = localStorageService.config;
+  const { success, puzzles_collected, appearing_puzzle_nr } = localStorageService.config;
 
   if (!success) {
     return;

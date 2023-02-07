@@ -3,8 +3,8 @@ import {
   localStorageService,
   DragElement,
   QrCodeModal,
-  AnimationService
-} from '../../services';
+  AnimationService,
+} from '@/services';
 import './styles.css';
 
 const defaultList = [
@@ -45,7 +45,6 @@ const defaultList = [
   },
 ];
 
-
 /// ///////////////
 
 const rand = (m, M) => Math.random() * (M - m) + m;
@@ -76,7 +75,7 @@ class WheelOfFortunePlugin {
       if (this.isSpinning) return;
       this.isSpinning = true;
       this.isAccelerating = true;
-      this.angVelMax = rand(0.10, 0.20);
+      this.angVelMax = rand(0.1, 0.2);
     });
 
     this.config?.list?.forEach(this.drawSector);
@@ -133,7 +132,9 @@ class WheelOfFortunePlugin {
   rotate = () => {
     const sector = this.config?.list?.[this.getIndex()];
     this.ctx.canvas.style.transform = `rotate(${this.ang - this.PI / 2}rad)`;
-    this.elSpin.innerHTML = !this.angVel ? 'SPIN' : `
+    this.elSpin.innerHTML = !this.angVel
+      ? 'SPIN'
+      : `
             <img style="width: 40px; height: 40px" src="${sector.img}"></img>
         `;
     this.elSpin.style.background = sector?.color;
@@ -175,25 +176,26 @@ class WheelOfFortunePlugin {
 
   startAnimation = () => {
     new AnimationService({
-      elem: this.wheelOfFortune, size: 250
-    })
-
+      elem: this.wheelOfFortune,
+      size: 250,
+    });
   };
-
 
   addCloseIconToElement = (element) => {
     const closeBtn = document.createElement('div');
     closeBtn.classList.add('custom-close-icon');
     closeBtn.innerHTML = '&#x2715; ';
-    closeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      element.remove();
-    }, { once: true });
+    closeBtn.addEventListener(
+      'click',
+      (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        element.remove();
+      },
+      { once: true },
+    );
     element.appendChild(closeBtn);
   };
-
-
 }
 
 export const startWheelWidget = () => {

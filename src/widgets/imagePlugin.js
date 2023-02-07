@@ -1,4 +1,4 @@
-import {localStorageService, DragElement, QrCodeModal, AnimationService} from '../services';
+import { localStorageService, DragElement, QrCodeModal, AnimationService } from '@/services';
 
 class ImagePlugin {
   constructor() {
@@ -13,13 +13,13 @@ class ImagePlugin {
         width: '100px',
         height: '100px',
         backgroundImage: `url(${img})`,
-      }
-    })
+      },
+    });
     animationEl.onclick = (e) => {
       e.target.remove();
       new QrCodeModal();
     };
-   new DragElement(animationEl);
+    new DragElement(animationEl);
   };
 }
 

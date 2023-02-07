@@ -1,8 +1,4 @@
-import {
-  addStylesToHtml,
-  assignStyleOnElement,
-  localStorageService,
-} from './index';
+import { addStylesToHtml, assignStyleOnElement, localStorageService } from '@/services';
 
 const defaultProps = {
   posx: 0,
@@ -16,11 +12,10 @@ const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed(), 10);
 
-
 export default class AnimationService {
   constructor({
-    posx ,
-    posy ,
+    posx,
+    posy,
     size = 100,
     parent = document.body,
     elem = document.createElement('div'),
@@ -29,7 +24,7 @@ export default class AnimationService {
     const { clientWidth, clientHeight } = document.documentElement;
     this.config = localStorageService.getDefaultConfig();
 
-    posx = isNaN(posx) ? getPosition(clientWidth) :posx;
+    posx = isNaN(posx) ? getPosition(clientWidth) : posx;
     posy = isNaN(posy) ? getPosition(clientHeight) : posy;
 
     this.clearPrev();

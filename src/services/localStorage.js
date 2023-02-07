@@ -1,4 +1,4 @@
-import { localStoragePropertyName } from '../config';
+import { localStoragePropertyName } from '@/config';
 
 class LocalStorageService {
   constructor() {

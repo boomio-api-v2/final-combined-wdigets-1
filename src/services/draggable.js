@@ -1,5 +1,5 @@
 import { localStorageService } from './index';
-import { isMobileDevice } from '../config';
+import { isMobileDevice } from '@/config';
 
 export class DragElement {
   constructor(elmnt) {
