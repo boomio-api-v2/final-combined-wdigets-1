@@ -10,7 +10,7 @@ import {
   isMobileDevice,
 } from '../../config';
 
-const frameSvg = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/DK/development/new-puzzle-widget-ui/images/puzzle/frame.png?raw=true';
+const frameSvg = '../../images/puzzle/frame.svg';
 
 /// ///// Services ////////
 /// //////////////////////
@@ -49,9 +49,9 @@ const puzzlesCoordinateForDesktop = [{
 
 {
   top: 0,
-  left: 67,
-  width: '112.3px',
-  height: '89.86px',
+  left: 66,
+  width: '114.3px',
+  height: '87.86px',
 },
 {
   top: 87,
@@ -60,10 +60,10 @@ const puzzlesCoordinateForDesktop = [{
   height: '89.86px',
 },
 {
-  top: 64,
-  left: 89,
-  width: '89.84px',
-  height: '112.33px',
+  top: 65,
+  left: 88,
+  width: '90.84px',
+  height: '113.33px',
 },
 ];
 
@@ -71,10 +71,10 @@ const puzzlesCoordinate = isMobileDevice
   ? puzzlesCoordinateForMobile
   : puzzlesCoordinateForDesktop;
 const puzzleImagesList = [
-  'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-1.png?raw=true',
-  'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-2.png?raw=true',
-  'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-3.png?raw=true',
-  'https://github.com/boomio-api-v2/puzzle-widget-styles/blob/main/img/puzzle-4.png?raw=true',
+  '../../images/puzzle/puzzle-1.svg',
+  '../../images/puzzle/puzzle-2.svg',
+  '../../images/puzzle/puzzle-3.svg',
+  '../../images/puzzle/puzzle-4.svg',
 ];
 
 const puzzleWidgetSize = isMobileDevice ? 100 : 185;
