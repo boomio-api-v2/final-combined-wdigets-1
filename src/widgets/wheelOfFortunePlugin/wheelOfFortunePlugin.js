@@ -121,7 +121,6 @@ class WheelOfFortunePlugin {
         this.wheelOfFortune.remove();
       }
     }
-
     this.ang += this.angVel; // Update angle
     this.ang %= this.TAU; // Normalize angle
     this.rotate(); // CSS rotate!
