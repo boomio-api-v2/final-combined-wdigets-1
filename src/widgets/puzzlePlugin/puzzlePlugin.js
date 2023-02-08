@@ -8,7 +8,7 @@ import {
 } from '@/services';
 import { frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
-
+import { getRandomArbitrary } from '@/utlis';
 /// ///// Services ////////
 const puzzlesCoordinateForMobile = [
   {
@@ -68,8 +68,6 @@ const puzzlesCoordinateForDesktop = [
 const puzzlesCoordinate = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
 
 const puzzleWidgetSize = isMobileDevice ? 100 : 185;
-
-const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 /// /////Puzzle Class ////////////
 class Puzzle {
@@ -347,7 +345,7 @@ class Puzzle {
       size: puzzleWidgetSize,
       parent,
       styles: animStyles,
-    });
+    }).animationEl;
 
     this.animationEl.classList.remove('boomio--qr');
 

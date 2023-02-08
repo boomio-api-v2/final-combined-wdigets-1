@@ -1,5 +1,5 @@
 import { addStylesToHtml, assignStyleOnElement, localStorageService } from '@/services';
-
+import { getRandomArbitrary } from '@/utlis';
 const defaultProps = {
   posx: 0,
   posy: 0,
@@ -7,8 +7,6 @@ const defaultProps = {
   parent: document.body,
   styles: {},
 };
-
-const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
 const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed(), 10);
 
@@ -21,14 +19,14 @@ export default class AnimationService {
     elem = document.createElement('div'),
     styles = {},
   } = defaultProps) {
-    const { clientWidth, clientHeight } = document.documentElement;
-    this.config = localStorageService.getDefaultConfig();
+    const { animation } = localStorageService.config;
 
-    posx = isNaN(posx) ? getPosition(clientWidth) : posx;
-    posy = isNaN(posy) ? getPosition(clientHeight) : posy;
+    const { clientWidth, clientHeight } = document.documentElement;
+
+    this.posx = isNaN(posx) ? getPosition(clientWidth) : posx;
+    this.posy = isNaN(posy) ? getPosition(clientHeight) : posy;
 
     this.clearPrev();
-    const { animation } = this.config;
     const animFunc = this.getAnimateFunction(animation);
 
     elem.classList.add('boomio--animation__wrapper');
@@ -41,10 +39,10 @@ export default class AnimationService {
     assignStyleOnElement(elem.style, styles);
 
     const initialPosition = {
-      x: elem.clientWidth + parseInt(posy, 10),
-      nx: -1 * (elem.clientWidth + parseInt(posy, 10)),
-      y: elem.clientHeight + parseInt(posx, 10),
-      ny: -1 * (elem.clientHeight + parseInt(posx, 10)),
+      x: elem.clientWidth + parseInt(this.posy, 10),
+      nx: -1 * (elem.clientWidth + parseInt(this.posy, 10)),
+      y: elem.clientHeight + parseInt(this.posx, 10),
+      ny: -1 * (elem.clientHeight + parseInt(this.posx, 10)),
     };
 
     const css = `
@@ -52,8 +50,8 @@ export default class AnimationService {
 			text-align: center;
 			position: fixed;
 			z-index: 999999999999;
-			left: ${posx}px;
-			top: ${posy}px;
+			left: ${this.posx}px;
+			top: ${this.posy}px;
 			visibility: visible;
 			background-size: cover;
 			opacity: 1;
@@ -155,7 +153,7 @@ export default class AnimationService {
 
     addStylesToHtml(css);
     animFunc(elem);
-    return elem;
+    this.animationEl = elem;
   }
 
   clearPrev() {
