@@ -25,12 +25,30 @@
     left: 40px;
 }
 
-@keyframes appearance {
+@keyframes appearance-exploasion {
     from {
         transform: scale(0)
     }
     to {
         transform: scale(3);
+    }
+}
+
+@keyframes cloud {
+    from {
+        transform: scale(1.1)
+    }
+    to {
+        transform: scale(5);
+    }
+}
+
+@keyframes cloud-animation {
+    from {
+        transform: scale(0.6)
+    }
+    to {
+        transform: scale(1.2);
     }
 }
 
@@ -50,8 +68,28 @@
     z-index: 100000;
     height: 200px;
     width: 200px;
-    animation: appearance;
-    transition: transform 0.4s;
-    animation-duration: 0.4s;
+    animation: appearance-exploasion;
+    transition: transform 0.5s;
+    animation-duration: 0.5s;
+}
 
+.crash-block-animation {
+    position: absolute;
+    z-index: 100000;
+    height: 120px;
+    width: 120px;
+    animation: appearance-crash-block;
+    transition: transform 0.5s;
+    animation-duration: 0.5s;
+}
+
+.cloud-animation {
+    position: absolute;
+    z-index: 100000;
+    height: 120px;
+    width: 120px;
+    animation: cloud;
+    transition: transform 1.2s;
+    animation-duration: 1.2s;
+    pointer-events: none;
 }
