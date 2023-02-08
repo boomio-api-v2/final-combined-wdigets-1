@@ -4,7 +4,7 @@ import { AnimationService, assignStyleOnElement, DragElement } from '@/services'
 const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';
 
 const mainExplosionImage = 'https://github.com/kbnvch/boomio/blob/main/expl1.png?raw=true';
-const сrashBlockAnimation = 'https://github.com/kbnvch/boomio/blob/main/expl2.png?raw=true';
+const сrashBlockAnimationImage = 'https://github.com/kbnvch/boomio/blob/main/expl2.png?raw=true';
 const cloudAnimationImage = 'https://github.com/kbnvch/boomio/blob/main/expl5.png?raw=true';
 
 const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest1.png?raw=true';
@@ -106,16 +106,23 @@ class StoneWidget {
 
   showCrashBlockAnimation = (e) => {
     const { x_position, y_position } = this.draggeble;
-    const animation = document.createElement('img');
-    animation.setAttribute('src', сrashBlockAnimation);
-    animation.classList.add('crash-block-animation');
-    assignStyleOnElement(animation.style, {
-      left: `${e.clientX - x_position - 65}px`,
-      top: `${e.clientY - y_position - 65}px`,
+    const crashBlockAnimation = document.createElement('img');
+    crashBlockAnimation.setAttribute('src', сrashBlockAnimationImage);
+    crashBlockAnimation.classList.add('crash-block-animation');
+
+    const left = e.clientX - x_position - 65;
+    const top = e.clientY - y_position - 65;
+
+    assignStyleOnElement(crashBlockAnimation.style, {
+      left: `${left}px`,
+      top: `${top}px`,
     });
-    this.stoneContainer.appendChild(animation);
-    animation.animate({ transform: 'scale(0)' }, { duration: 500, fill: 'forwards' });
-    setTimeout(this.showCloudAnimation(e), 500);
+    this.stoneContainer.appendChild(crashBlockAnimation);
+    crashBlockAnimation.animate({ transform: 'scale(0)' }, { duration: 500, fill: 'forwards' });
+    setTimeout((e) => {
+      crashBlockAnimation.remove();
+      this.showCloudAnimation(e);
+    }, 500);
   };
 
   onBlockClick = (e) => {

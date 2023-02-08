@@ -1,6 +1,6 @@
 #stone-container {
-    width: 240px;
-    height: 240px;
+    width: 260px;
+    height: 260px;
     border: 1px solid black;
     overflow: hidden;
 }
@@ -8,8 +8,8 @@
 #stone-container .block {
     position: absolute;
     z-index: 1000;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
 }
 
 #stone-container #hammer {
@@ -39,7 +39,7 @@
         transform: scale(1.1)
     }
     to {
-        transform: scale(5);
+        transform: scale(7);
     }
 }
 
