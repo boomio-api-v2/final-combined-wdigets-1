@@ -24,3 +24,34 @@
     bottom: 10px;
     left: 40px;
 }
+
+@keyframes appearance {
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(3);
+    }
+}
+
+@keyframes remove {
+    from {
+        transform: scale(1)
+    }
+    to {
+        transform: scale(0);
+    }
+}
+
+
+
+.explosion-animation {
+    position: absolute;
+    z-index: 100000;
+    height: 200px;
+    width: 200px;
+    animation: appearance;
+    transition: transform 0.4s;
+    animation-duration: 0.4s;
+
+}
