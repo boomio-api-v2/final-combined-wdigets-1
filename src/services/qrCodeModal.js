@@ -1,5 +1,5 @@
 import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../qrcode.min.js';
-import { assignStyleOnElement, boomioService, localStorageService } from './index';
+import { assignStyleOnElement, boomioService, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
 import { dotImage } from '@/сonstants/icons';
 import { noBtnHtml, yesBtnHtml, exitBtnHtml } from '@/сonstants/htmlTemplates';

@@ -7,7 +7,7 @@ class ImagePlugin {
   startAnimation = () => {
     const { img } = localStorageService.config;
 
-    const animationEl = new AnimationService({
+    const { animationEl } = new AnimationService({
       size: 250,
       styles: {
         width: '100px',

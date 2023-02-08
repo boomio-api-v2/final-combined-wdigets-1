@@ -1,0 +1,26 @@
+#stone-container {
+    width: 240px;
+    height: 240px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+#stone-container .block {
+    position: absolute;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+}
+
+#stone-container #hammer {
+    position: absolute;
+    z-index: 10000;
+}
+
+#stone-container .chest {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    bottom: 10px;
+    left: 40px;
+}
