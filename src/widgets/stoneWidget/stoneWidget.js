@@ -1,11 +1,11 @@
 import './styles.css';
-import { AnimationService, assignStyleOnElement, DragElement } from '@/services';
+import { AnimationService, assignStyleOnElement, DragElement, QrCodeModal } from '@/services';
 
 const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';
 
-const mainExplosionImage = 'https://github.com/kbnvch/boomio/blob/main/expl1.png?raw=true';
-const сrashBlockAnimationImage = 'https://github.com/kbnvch/boomio/blob/main/expl2.png?raw=true';
-const cloudAnimationImage = 'https://github.com/kbnvch/boomio/blob/main/expl5.png?raw=true';
+const expolosionOneImage = 'https://github.com/kbnvch/boomio/blob/main/expl1.png?raw=true';
+const expolosionTwoImage = 'https://github.com/kbnvch/boomio/blob/main/expl2.png?raw=true';
+const expolosionThreeImage = 'https://github.com/kbnvch/boomio/blob/main/expl3.png?raw=true';
 
 const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest1.png?raw=true';
 const openedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest3.png?raw=true';
@@ -75,61 +75,45 @@ class StoneWidget {
     this.createClosedChestImage();
   }
 
-  showExplosionAnimation = ({ clientX, clientY }) => {
-    const { x_position, y_position } = this.draggeble;
-    const animation = document.createElement('img');
-    animation.setAttribute('src', mainExplosionImage);
-    animation.classList.add('explosion-animation');
-    assignStyleOnElement(animation.style, {
-      left: `${clientX - x_position - 100}px`,
-      top: `${clientY - y_position - 100}px`,
-    });
-    this.stoneContainer.appendChild(animation);
-    animation.animate({ transform: 'scale(0)' }, { duration: 400, fill: 'forwards' });
-  };
+  animateBlock =
+    (e) =>
+    ({ img, animation, styles = {}, margin = 100 }) => {
+      const { x_position, y_position } = this.draggeble;
+      const blockElement = document.createElement('img');
+      blockElement.setAttribute('src', img);
+      blockElement.classList.add(animation);
 
-  showCloudAnimation = (e) => () => {
-    const { x_position, y_position } = this.draggeble;
-    const cloudAnimation = document.createElement('img');
-    cloudAnimation.setAttribute('src', cloudAnimationImage);
-    cloudAnimation.classList.add('cloud-animation');
-    assignStyleOnElement(cloudAnimation.style, {
-      left: `${e.clientX - x_position - 65}px`,
-      top: `${e.clientY - y_position - 65}px`,
-    });
+      const left = e.clientX - x_position - margin;
+      const top = e.clientY - y_position - margin;
 
-    this.stoneContainer.appendChild(cloudAnimation);
-    setTimeout(() => {
-      cloudAnimation.remove();
-    }, 1200);
-  };
-
-  showCrashBlockAnimation = (e) => {
-    const { x_position, y_position } = this.draggeble;
-    const crashBlockAnimation = document.createElement('img');
-    crashBlockAnimation.setAttribute('src', сrashBlockAnimationImage);
-    crashBlockAnimation.classList.add('crash-block-animation');
-
-    const left = e.clientX - x_position - 65;
-    const top = e.clientY - y_position - 65;
-
-    assignStyleOnElement(crashBlockAnimation.style, {
-      left: `${left}px`,
-      top: `${top}px`,
-    });
-    this.stoneContainer.appendChild(crashBlockAnimation);
-    crashBlockAnimation.animate({ transform: 'scale(0)' }, { duration: 500, fill: 'forwards' });
-    setTimeout((e) => {
-      crashBlockAnimation.remove();
-      this.showCloudAnimation(e);
-    }, 500);
-  };
+      assignStyleOnElement(blockElement.style, {
+        left: `${left}px`,
+        top: `${top}px`,
+        ...styles,
+      });
+      blockElement.animate({ transform: 'scale(0)' }, { duration: 500, fill: 'forwards' });
+      this.stoneContainer.appendChild(blockElement);
+    };
 
   onBlockClick = (e) => {
     const elem = e.target;
     if (!elem.classList.contains('block')) return;
-    this.showExplosionAnimation(e);
-    this.showCrashBlockAnimation(e);
+    const animationFunc = this.animateBlock(e);
+    animationFunc({
+      img: expolosionOneImage,
+      animation: 'explosion-one',
+      margin: 60,
+    });
+    animationFunc({
+      img: expolosionTwoImage,
+      animation: 'explosion-two',
+      margin: 80,
+    });
+    animationFunc({
+      img: expolosionThreeImage,
+      animation: 'explosion-three',
+      margin: 100,
+    });
     elem.remove();
     this.activeBlocks--;
   };
@@ -163,9 +147,16 @@ class StoneWidget {
     chest.setAttribute('src', closedChestImage);
     this.stoneContainer.appendChild(chest);
     chest.onclick = (e) => {
-      this.showExplosionAnimation(e);
+      this.animateBlock(e)({
+        img: expolosionOneImage,
+        animation: 'explosion-one',
+        margin: 60,
+      });
       if (this.activeBlocks === 0) {
         chest.setAttribute('src', openedChestImage);
+        setTimeout(() => {
+          new QrCodeModal();
+        }, 600);
       }
     };
     this.chest = chest;

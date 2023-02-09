@@ -25,7 +25,16 @@
     left: 40px;
 }
 
-@keyframes appearance-exploasion {
+@keyframes explosion-one-animation {
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(4);
+    }
+}
+
+@keyframes explosion-two-animation {
     from {
         transform: scale(0)
     }
@@ -34,12 +43,12 @@
     }
 }
 
-@keyframes cloud {
+@keyframes explosion-three-animation {
     from {
-        transform: scale(1.1)
+        transform: scale(0)
     }
     to {
-        transform: scale(7);
+        transform: scale(1.5);
     }
 }
 
@@ -61,35 +70,33 @@
     }
 }
 
+.explosion-one{
+    position: absolute;
+    z-index: 100000;
+    height: 120px;
+    width: 120px;
+    animation: explosion-one-animation;
+    transition: transform 0.5s;
+    animation-duration: 0.5s;
+}
 
+.explosion-two {
+    position: absolute;
+    z-index: 1000000;
+    height: 150px;
+    width: 150px;
+    animation: explosion-two-animation;
+    transition: transform 1.2s;
+    animation-duration: 1.2s;
+    pointer-events: none;
+}
 
-.explosion-animation {
+.explosion-three {
     position: absolute;
     z-index: 100000;
     height: 200px;
     width: 200px;
-    animation: appearance-exploasion;
+    animation: explosion-three-animation;
     transition: transform 0.5s;
     animation-duration: 0.5s;
-}
-
-.crash-block-animation {
-    position: absolute;
-    z-index: 100000;
-    height: 120px;
-    width: 120px;
-    animation: appearance-crash-block;
-    transition: transform 0.5s;
-    animation-duration: 0.5s;
-}
-
-.cloud-animation {
-    position: absolute;
-    z-index: 100000;
-    height: 120px;
-    width: 120px;
-    animation: cloud;
-    transition: transform 1.2s;
-    animation-duration: 1.2s;
-    pointer-events: none;
 }
