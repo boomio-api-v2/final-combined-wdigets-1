@@ -1,8 +1,13 @@
 import { localStorageService } from './index';
 import { isMobileDevice } from '@/config';
 
+const defaultArguments = {
+  x_position: null,
+  y_position: null,
+};
+
 export class DragElement {
-  constructor(elmnt, { x_position = null, y_position = null }) {
+  constructor(elmnt, { x_position = null, y_position = null } = defaultArguments) {
     this.x_position = x_position;
     this.y_position = y_position;
     this.elmnt = elmnt;
