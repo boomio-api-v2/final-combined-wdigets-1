@@ -21,3 +21,15 @@ export const puzzleIconsList = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-3.svg',
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-4.svg',
 ];
+
+export const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';
+
+export const expolosionOneImage =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/stepWidget/explosion-one.png?raw=true';
+export const expolosionTwoImage =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/stepWidget/explosion-two.png?raw=true';
+export const expolosionThreeImage =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/stepWidget/explosion-three.png?raw=true';
+
+export const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest1.png?raw=true';
+export const openedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest3.png?raw=true';

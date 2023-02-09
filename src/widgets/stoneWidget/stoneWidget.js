@@ -1,14 +1,16 @@
 import './styles.css';
 import { AnimationService, assignStyleOnElement, DragElement, QrCodeModal } from '@/services';
+import { loadImageBeforeUsing } from '@/сonstants';
+import {
+  hammerImage,
+  expolosionOneImage,
+  expolosionTwoImage,
+  expolosionThreeImage,
+  closedChestImage,
+  openedChestImage,
+} from '@/сonstants/icons';
 
-const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';
-
-const expolosionOneImage = 'https://github.com/kbnvch/boomio/blob/main/expl1.png?raw=true';
-const expolosionTwoImage = 'https://github.com/kbnvch/boomio/blob/main/expl2.png?raw=true';
-const expolosionThreeImage = 'https://github.com/kbnvch/boomio/blob/main/expl3.png?raw=true';
-
-const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest1.png?raw=true';
-const openedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest3.png?raw=true';
+loadImageBeforeUsing([expolosionOneImage, expolosionTwoImage, expolosionThreeImage]);
 
 const blocks = [
   {
@@ -107,7 +109,7 @@ class StoneWidget {
     animationFunc({
       img: expolosionTwoImage,
       animation: 'explosion-two',
-      margin: 80,
+      margin: 85,
     });
     animationFunc({
       img: expolosionThreeImage,
@@ -152,7 +154,8 @@ class StoneWidget {
         animation: 'explosion-one',
         margin: 60,
       });
-      if (this.activeBlocks === 0) {
+      if (this.activeBlocks === 0 && !this.isQrCodeVisible) {
+        this.isQrCodeVisible = true;
         chest.setAttribute('src', openedChestImage);
         setTimeout(() => {
           new QrCodeModal();
