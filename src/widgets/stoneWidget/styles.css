@@ -39,7 +39,7 @@
         transform: scale(0)
     }
     to {
-        transform: scale(3);
+        transform: scale(1.5);
     }
 }
 
@@ -77,8 +77,9 @@
     height: 120px;
     width: 120px;
     animation: explosion-one-animation;
-    transition: transform 0.5s;
-    animation-duration: 0.5s;
+    transition: transform 0.4s;
+    animation-duration: 0.4s;
+    pointer-events: none;
 }
 
 .explosion-two {
@@ -87,8 +88,8 @@
     height: 160px;
     width: 160px;
     animation: explosion-two-animation;
-    transition: transform 1.2s;
-    animation-duration: 1.2s;
+    transition: transform 0.4s;
+    animation-duration: 0.4s;
     pointer-events: none;
 }
 
@@ -98,8 +99,9 @@
     height: 200px;
     width: 200px;
     animation: explosion-three-animation;
-    transition: transform 0.5s;
-    animation-duration: 0.5s;
+    transition: transform 0.4s;
+    animation-duration: 0.4s;
+    pointer-events: none;
 }
 
 .cloud {
@@ -108,7 +110,7 @@
     height: 200px;
     width: 200px;
     animation: cloud-animation;
-    transition: transform 3s;
-    animation-duration: 3s;
+    transition: transform 2s;
+    animation-duration: 2s;
     pointer-events: none;
 }

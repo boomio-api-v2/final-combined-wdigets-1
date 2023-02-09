@@ -80,30 +80,33 @@ class StoneWidget {
 
   animateBlock =
     (e) =>
-    ({ img, animation, styles = {}, margin = 100, isCloud = false }) => {
+    ({ img, animation, styles = {}, margin = 100, isCloud = false, time = 400 }) => {
       const { x_position, y_position } = this.draggeble;
+      const image = new Image();
       const blockElement = document.createElement('img');
       const stoneContainer = this.stoneContainer;
 
-      blockElement.setAttribute('src', img);
-      blockElement.classList.add(animation);
-      stoneContainer.appendChild(blockElement);
+      image.onload = function () {
+        blockElement.setAttribute('src', this.src);
+        blockElement.classList.add(animation);
+        if (!isCloud) {
+          blockElement.animate({ transform: 'scale(0)' }, { duration: time, fill: 'forwards' });
+        }
+        const left = e.clientX - x_position - margin;
+        const top = e.clientY - y_position - margin;
 
-      const left = e.clientX - x_position - margin;
-      const top = e.clientY - y_position - margin;
+        assignStyleOnElement(blockElement.style, {
+          left: `${left}px`,
+          top: `${top}px`,
+          ...styles,
+        });
+        stoneContainer.appendChild(blockElement);
 
-      assignStyleOnElement(blockElement.style, {
-        left: `${left}px`,
-        top: `${top}px`,
-        ...styles,
-      });
-
-      if (!isCloud) {
-        blockElement.animate({ transform: 'scale(0)' }, { duration: 500, fill: 'forwards' });
-      }
-      setTimeout(() => {
-        blockElement.remove();
-      }, 3000);
+        setTimeout(() => {
+          blockElement.remove();
+        }, time);
+      };
+      image.src = img;
     };
 
   onBlockClick = (e) => {
@@ -131,6 +134,7 @@ class StoneWidget {
         animation: 'cloud',
         margin: 100,
         isCloud: true,
+        time: 2000,
       });
     }, 500);
 
