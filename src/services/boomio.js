@@ -65,15 +65,11 @@ class BoomioService {
   setInitialConfiguration() {
     try {
       window.onload = async () => {
-        localStorageService.setConfigFromApi({
-          success: true,
-        });
-        this.loadWidget('stone');
-        // const content = await this.send({ go_hunt: 'true' });
-        // localStorageService.setConfigFromApi(content);
-        // if (content?.widget_type && content.instruction !== 'stop') {
-        //   this.loadWidget(content.widget_type);
-        // }
+        const content = await this.send({ go_hunt: 'true' });
+        localStorageService.setConfigFromApi(content);
+        if (content?.widget_type && content.instruction !== 'stop') {
+          this.loadWidget(content.widget_type);
+        }
       };
     } catch (err) {
       console.log(err);

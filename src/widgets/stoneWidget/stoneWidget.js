@@ -83,8 +83,11 @@ class StoneWidget {
     ({ img, animation, styles = {}, margin = 100, isCloud = false }) => {
       const { x_position, y_position } = this.draggeble;
       const blockElement = document.createElement('img');
+      const stoneContainer = this.stoneContainer;
+
       blockElement.setAttribute('src', img);
       blockElement.classList.add(animation);
+      stoneContainer.appendChild(blockElement);
 
       const left = e.clientX - x_position - margin;
       const top = e.clientY - y_position - margin;
@@ -94,13 +97,13 @@ class StoneWidget {
         top: `${top}px`,
         ...styles,
       });
+
       if (!isCloud) {
         blockElement.animate({ transform: 'scale(0)' }, { duration: 500, fill: 'forwards' });
       }
       setTimeout(() => {
         blockElement.remove();
       }, 3000);
-      this.stoneContainer.appendChild(blockElement);
     };
 
   onBlockClick = (e) => {
@@ -153,7 +156,8 @@ class StoneWidget {
     this.animation = new AnimationService({
       elem: stoneContainer,
     });
-    this.draggeble = new DragElement(stoneContainer);
+    const { posx, posy } = this.animation;
+    this.draggeble = new DragElement(stoneContainer, { x_position: posx, y_position: posy });
     this.stoneContainer = stoneContainer;
     this.addHammerToCursor();
   }
@@ -187,8 +191,8 @@ class StoneWidget {
     this.stoneContainer.appendChild(hammer);
     this.stoneContainer.onmousemove = ({ clientX, clientY }) => {
       const { x_position, y_position } = this.draggeble;
-      const left = clientX - (x_position ?? this.animation.posx) + 5;
-      const top = clientY - (y_position ?? this.animation.posy) + 5;
+      const left = clientX - x_position + 5;
+      const top = clientY - y_position + 5;
       hammer.style.left = `${left}px`;
       hammer.style.top = `${top}px`;
     };

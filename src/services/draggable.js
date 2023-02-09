@@ -2,9 +2,9 @@ import { localStorageService } from './index';
 import { isMobileDevice } from '@/config';
 
 export class DragElement {
-  constructor(elmnt) {
-    this.x_position = null;
-    this.y_position = null;
+  constructor(elmnt, { x_position = null, y_position = null }) {
+    this.x_position = x_position;
+    this.y_position = y_position;
     this.elmnt = elmnt;
     this.pos1 = 0;
     this.pos2 = 0;
@@ -35,8 +35,8 @@ export class DragElement {
     const posY = this.y_position ?? posy;
 
     return {
-      posX: (windowWidth <= posX + elementWidth) ? (windowWidth - elementWidth) : posX,
-      posY: (windowHeight <= posY + elementHeight) ? (windowHeight - elementHeight) : posY,
+      posX: windowWidth <= posX + elementWidth ? windowWidth - elementWidth : posX,
+      posY: windowHeight <= posY + elementHeight ? windowHeight - elementHeight : posY,
     };
   }
 
