@@ -8,9 +8,10 @@ import {
   expolosionThreeImage,
   closedChestImage,
   openedChestImage,
+  cloudImage,
 } from '@/сonstants/icons';
 
-loadImageBeforeUsing([expolosionOneImage, expolosionTwoImage, expolosionThreeImage]);
+loadImageBeforeUsing([expolosionOneImage, expolosionTwoImage, expolosionThreeImage, cloudImage]);
 
 const blocks = [
   {
@@ -79,7 +80,7 @@ class StoneWidget {
 
   animateBlock =
     (e) =>
-    ({ img, animation, styles = {}, margin = 100 }) => {
+    ({ img, animation, styles = {}, margin = 100, isCloud = false }) => {
       const { x_position, y_position } = this.draggeble;
       const blockElement = document.createElement('img');
       blockElement.setAttribute('src', img);
@@ -93,7 +94,12 @@ class StoneWidget {
         top: `${top}px`,
         ...styles,
       });
-      blockElement.animate({ transform: 'scale(0)' }, { duration: 500, fill: 'forwards' });
+      if (!isCloud) {
+        blockElement.animate({ transform: 'scale(0)' }, { duration: 500, fill: 'forwards' });
+      }
+      setTimeout(() => {
+        blockElement.remove();
+      }, 3000);
       this.stoneContainer.appendChild(blockElement);
     };
 
@@ -116,6 +122,15 @@ class StoneWidget {
       animation: 'explosion-three',
       margin: 100,
     });
+    setTimeout(() => {
+      animationFunc({
+        img: cloudImage,
+        animation: 'cloud',
+        margin: 100,
+        isCloud: true,
+      });
+    }, 500);
+
     elem.remove();
     this.activeBlocks--;
   };
@@ -149,12 +164,12 @@ class StoneWidget {
     chest.setAttribute('src', closedChestImage);
     this.stoneContainer.appendChild(chest);
     chest.onclick = (e) => {
-      this.animateBlock(e)({
-        img: expolosionOneImage,
-        animation: 'explosion-one',
-        margin: 60,
-      });
       if (this.activeBlocks === 0 && !this.isQrCodeVisible) {
+        this.animateBlock(e)({
+          img: expolosionOneImage,
+          animation: 'explosion-one',
+          margin: 60,
+        });
         this.isQrCodeVisible = true;
         chest.setAttribute('src', openedChestImage);
         setTimeout(() => {

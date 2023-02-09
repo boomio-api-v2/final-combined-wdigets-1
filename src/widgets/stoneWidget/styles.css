@@ -61,12 +61,13 @@
     }
 }
 
-@keyframes remove {
+
+@keyframes cloud-animation {
     from {
-        transform: scale(1)
+        transform: scale(0)
     }
     to {
-        transform: scale(0);
+        transform: scale(7);
     }
 }
 
@@ -99,4 +100,15 @@
     animation: explosion-three-animation;
     transition: transform 0.5s;
     animation-duration: 0.5s;
+}
+
+.cloud {
+    position: absolute;
+    z-index: 100000;
+    height: 200px;
+    width: 200px;
+    animation: cloud-animation;
+    transition: transform 3s;
+    animation-duration: 3s;
+    pointer-events: none;
 }

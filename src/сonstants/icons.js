@@ -33,3 +33,4 @@ export const expolosionThreeImage =
 
 export const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest1.png?raw=true';
 export const openedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest3.png?raw=true';
+export const cloudImage = 'https://github.com/kbnvch/boomio/blob/main/expl5.png?raw=true';
