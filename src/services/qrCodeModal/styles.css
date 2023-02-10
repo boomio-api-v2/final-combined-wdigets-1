@@ -61,6 +61,13 @@
     font-size: 16px;
 }
 
+.modal-buttons button img {
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
 .modal-buttons .no-button {
     border: 1px solid #FF9161;
     color: #FF9161;

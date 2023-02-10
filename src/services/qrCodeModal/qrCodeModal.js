@@ -6,8 +6,10 @@ import { dotImage } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 
-const likeBtnImage = '/public/like.svg';
-const disLikeBtnImage = '/public/dislike.svg';
+const likeBtnImage =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/like.svg';
+const disLikeBtnImage =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/dislike.svg';
 
 export default class QrCodeModal {
   constructor() {
