@@ -3,8 +3,11 @@ import { boomioService, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
 import { assignStyleOnElement } from '@/utlis';
 import { dotImage } from '@/сonstants/icons';
-import { noBtnHtml, yesBtnHtml, exitBtnHtml } from '@/сonstants/htmlTemplates';
+import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
+
+const likeBtnImage = '/public/like.svg';
+const disLikeBtnImage = '/public/dislike.svg';
 
 export default class QrCodeModal {
   constructor() {
@@ -38,15 +41,23 @@ export default class QrCodeModal {
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('modal-buttons');
 
-    const yesBtn = document.createElement('div');
-    yesBtn.style.cursor = 'pointer';
-    yesBtn.onclick = this.onModalClickBtnWithCommand('well_yes');
-    yesBtn.innerHTML = yesBtnHtml;
+    const likeBtn = document.createElement('img');
+    likeBtn.setAttribute('src', likeBtnImage);
 
-    const noBtn = document.createElement('div');
-    noBtn.style.cursor = 'pointer';
+    const yesBtn = document.createElement('button');
+    yesBtn.onclick = this.onModalClickBtnWithCommand('well_yes');
+    yesBtn.classList.add('yes-button');
+    yesBtn.innerHTML = 'Yes!';
+    yesBtn.appendChild(likeBtn);
+
+    const dislikeBtn = document.createElement('img');
+    dislikeBtn.setAttribute('src', disLikeBtnImage);
+
+    const noBtn = document.createElement('button');
     noBtn.onclick = this.onModalClickBtnWithCommand('well_no');
-    noBtn.innerHTML = noBtnHtml;
+    noBtn.classList.add('no-button');
+    noBtn.innerHTML = 'No!';
+    noBtn.appendChild(dislikeBtn);
 
     buttonContainer.appendChild(yesBtn);
     buttonContainer.appendChild(noBtn);

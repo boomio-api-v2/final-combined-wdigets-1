@@ -7,6 +7,7 @@ import {
 } from '@/widgets';
 
 import { localStorageService } from './localStorage';
+
 class BoomioService {
   constructor() {
     this.url = window.location.href;
