@@ -8,65 +8,13 @@ import {
 import { frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
 import { getRandomArbitrary, assignStyleOnElement } from '@/utlis';
+import {
+  puzzlesCoordinateForDesktop,
+  puzzlesCoordinateForMobile,
+  puzzlesCoordinate,
+  puzzleWidgetSize,
+} from './constants';
 /// ///// Services ////////
-const puzzlesCoordinateForMobile = [
-  {
-    top: 0,
-    left: 0,
-    width: '49.84px',
-    height: '61.33px',
-  },
-  {
-    top: 0,
-    left: 37,
-    width: '60.3px',
-    height: '50.86px',
-  },
-  {
-    top: 49,
-    left: 0,
-    width: '61.3px',
-    height: '47.86px',
-  },
-  {
-    top: 44,
-    left: 62,
-    width: '50.84px',
-    height: '63.3px',
-  },
-];
-
-const puzzlesCoordinateForDesktop = [
-  {
-    top: 0,
-    left: 0,
-    width: '89.84px',
-    height: '112.33px',
-  },
-
-  {
-    top: 0,
-    left: 66,
-    width: '114.3px',
-    height: '87.86px',
-  },
-  {
-    top: 87,
-    left: 0,
-    width: '112.3px',
-    height: '89.86px',
-  },
-  {
-    top: 65,
-    left: 88,
-    width: '90.84px',
-    height: '113.33px',
-  },
-];
-
-const puzzlesCoordinate = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
-
-const puzzleWidgetSize = isMobileDevice ? 100 : 185;
 
 /// /////Puzzle Class ////////////
 export class Puzzle {
@@ -185,8 +133,11 @@ export class Puzzle {
   };
 
   closeAnimation = (callback) => () => {
-    this.modal.style.transformOrigin = '100% 100%';
-    this.modal.style.transform = 'scale(0)';
+    assignStyleOnElement(this.modal.style, {
+      transformOrigin: '100% 100%',
+      transform: 'scale(0)',
+    });
+
     this.modal.addEventListener('transitionend', () => {
       this.puzzleWidget.remove();
       this.modalBackground.remove();
@@ -318,18 +269,18 @@ export class Puzzle {
 
     const dash = '-';
     const pos = `${qrcode}`.indexOf(dash);
+
     if (pos !== -1) {
       localStorageService.config.qrcode = qrcode.substring(0, pos);
     }
 
     const { clientWidth, clientHeight } = document.documentElement;
+    const startCoordinate = puzzleWidgetSize + 25;
+    const limitX = clientWidth - puzzleSize - 10;
+    const limitY = clientHeight - puzzleSize - 10;
 
-    const posx =
-      customPosX ??
-      getRandomArbitrary(puzzleWidgetSize + 25, clientWidth - puzzleSize - 10).toFixed();
-    const posy =
-      customPosY ??
-      getRandomArbitrary(puzzleWidgetSize + 25, clientHeight - puzzleSize - 10).toFixed();
+    const posx = customPosX ?? getRandomArbitrary(startCoordinate, limitX);
+    const posy = customPosY ?? getRandomArbitrary(startCoordinate, limitY);
 
     const animStyles = {
       width,
@@ -338,7 +289,7 @@ export class Puzzle {
       ...styles,
     };
 
-    this.animationEl = new AnimationService({
+    const animationEl = new AnimationService({
       posx,
       posy,
       size: puzzleWidgetSize,
@@ -346,14 +297,15 @@ export class Puzzle {
       styles: animStyles,
     }).animationEl;
 
-    this.animationEl.classList.remove('boomio--qr');
+    animationEl.classList.remove('boomio--qr');
 
     if (isClickable) {
-      this.animationEl.classList.add('boomio--animation__hover');
-      this.animationEl.addEventListener('click', this.onPuzzleClick, {
+      animationEl.classList.add('boomio--animation__hover');
+      animationEl.addEventListener('click', this.onPuzzleClick, {
         once: true,
       });
     }
+    this.animationEl = animationEl;
   };
 
   closeModal = () => {

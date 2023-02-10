@@ -22,9 +22,11 @@ export class DragElement {
       return;
     }
 
-    if (document.getElementById(`${elmnt.id}header`)) {
+    const heder = document.getElementById(`${elmnt.id}header`);
+
+    if (heder) {
       // if present, the header is where you move the DIV from:
-      document.getElementById(`${elmnt.id}header`).onmousedown = this.dragMouseDown;
+      heder.onmousedown = this.dragMouseDown;
     } else {
       // otherwise, move the DIV from anywhere inside the DIV:
       elmnt.onmousedown = this.dragMouseDown;
@@ -62,10 +64,9 @@ export class DragElement {
     document.onmousemove = null;
   };
 
-  checkIsMoveBlocking(x, y) {
-    if (x <= 0 || y <= 0) return true;
-    return false;
-  }
+  checkIsMoveBlocking = (x, y) => {
+    return x <= 0 || y <= 0;
+  };
 
   elementDrag = (e) => {
     e = e || window.event;
@@ -86,8 +87,10 @@ export class DragElement {
     this.x_position = x_position;
     this.y_position = y_position;
 
-    this.elmnt.style.top = `${y_position}px`;
-    this.elmnt.style.left = `${x_position}px`;
+    assignStyleOnElement(this.elmnt.style, {
+      top: `${y_position}px`,
+      left: `${x_position}px`,
+    });
   };
 
   dragMouseDown = (e) => {

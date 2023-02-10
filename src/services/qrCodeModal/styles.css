@@ -44,3 +44,35 @@
     color: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
     text-fill-color: transparent;
 }
+
+
+.modal-buttons .yes-button {
+    border: 1px solid #09DDD0;
+    color: #09DDD0;
+    background: white;
+    border-radius: 24px;
+    width: 91px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.modal-buttons .no-button {
+    border: 1px solid #FF9161;
+    color: #FF9161;
+    background: white;
+    border-radius: 24px;
+    width: 91px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+
+}
