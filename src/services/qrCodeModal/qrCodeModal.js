@@ -1,8 +1,10 @@
-import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../qrcode.min.js';
-import { assignStyleOnElement, boomioService, localStorageService } from '@/services';
+import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
+import { boomioService, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
+import { assignStyleOnElement } from '@/utlis';
 import { dotImage } from '@/сonstants/icons';
 import { noBtnHtml, yesBtnHtml, exitBtnHtml } from '@/сonstants/htmlTemplates';
+import './styles.css';
 
 export default class QrCodeModal {
   constructor() {
@@ -10,8 +12,10 @@ export default class QrCodeModal {
   }
 
   closeAnimation = (callback) => () => {
-    this.modal.style.transformOrigin = '100% 100%';
-    this.modal.style.transform = 'scale(0)';
+    assignStyleOnElement(this.modal.style, {
+      transformOrigin: '100% 100%',
+      transform: 'scale(0)',
+    });
     this.modal.addEventListener('transitionend', () => {
       this.modalBackground.remove();
       if (callback) {
@@ -30,17 +34,20 @@ export default class QrCodeModal {
     textTitle.classList.add('exist-or-saving-modal-title');
     textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
     this.modal.appendChild(textTitle);
+
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('modal-buttons');
+
     const yesBtn = document.createElement('div');
     yesBtn.style.cursor = 'pointer';
     yesBtn.onclick = this.onModalClickBtnWithCommand('well_yes');
     yesBtn.innerHTML = yesBtnHtml;
-    const noBtn = document.createElement('div');
-    noBtn.onclick = this.onModalClickBtnWithCommand('well_no');
-    noBtn.style.cursor = 'pointer';
 
+    const noBtn = document.createElement('div');
+    noBtn.style.cursor = 'pointer';
+    noBtn.onclick = this.onModalClickBtnWithCommand('well_no');
     noBtn.innerHTML = noBtnHtml;
+
     buttonContainer.appendChild(yesBtn);
     buttonContainer.appendChild(noBtn);
 
@@ -125,7 +132,9 @@ export default class QrCodeModal {
     const qrcodeShow = document.getElementById('qrcodeShow');
     qrcodeShow.style.display = isMobileDevice ? 'none' : 'block';
     coupon.style.display = isMobileDevice ? 'block' : 'none';
+
     if (isMobileDevice) return;
+
     qrcodeShow.onclick = () => {
       coupon.style.display = 'block';
       qrcodeShow.style.display = 'none';

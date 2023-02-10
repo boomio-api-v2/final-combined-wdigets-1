@@ -1,6 +1,6 @@
 import './styles.css';
-import { AnimationService, assignStyleOnElement, DragElement, QrCodeModal } from '@/services';
-import { loadImageBeforeUsing } from '@/сonstants';
+import { AnimationService, DragElement, QrCodeModal } from '@/services';
+import { loadImageBeforeUsing, assignStyleOnElement } from '@/utlis';
 import {
   hammerImage,
   expolosionOneImage,
@@ -195,10 +195,10 @@ class StoneWidget {
     this.stoneContainer.appendChild(hammer);
     this.stoneContainer.onmousemove = ({ clientX, clientY }) => {
       const { x_position, y_position } = this.draggeble;
-      const left = clientX - x_position + 5;
-      const top = clientY - y_position + 5;
-      hammer.style.left = `${left}px`;
-      hammer.style.top = `${top}px`;
+      assignStyleOnElement(hammer.style, {
+        left: `${clientX - x_position + 5}px`,
+        top: `${clientY - y_position + 5}px`,
+      });
     };
   };
 }

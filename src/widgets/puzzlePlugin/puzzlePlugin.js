@@ -3,12 +3,11 @@ import {
   localStorageService,
   DragElement,
   AnimationService,
-  assignStyleOnElement,
   QrCodeModal,
 } from '@/services';
 import { frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
-import { getRandomArbitrary } from '@/utlis';
+import { getRandomArbitrary, assignStyleOnElement } from '@/utlis';
 /// ///// Services ////////
 const puzzlesCoordinateForMobile = [
   {
@@ -70,7 +69,7 @@ const puzzlesCoordinate = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesC
 const puzzleWidgetSize = isMobileDevice ? 100 : 185;
 
 /// /////Puzzle Class ////////////
-class Puzzle {
+export class Puzzle {
   constructor() {
     this.animationEl = null;
     this.isPrewiewDisplayed = false;
@@ -387,7 +386,7 @@ class Puzzle {
 }
 /// /////////////////////////
 
-export const startPuzzleWidget = () => {
+export default () => {
   const puzzle = new Puzzle();
 
   const { success, puzzles_collected, appearing_puzzle_nr } = localStorageService.config;
