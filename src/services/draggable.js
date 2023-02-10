@@ -1,4 +1,5 @@
-import { localStorageService } from './index';
+import { localStorageService } from '@/services';
+import { assignStyleOnElement } from '@/utlis';
 import { isMobileDevice } from '@/config';
 
 const defaultArguments = {
@@ -30,21 +31,6 @@ export class DragElement {
     }
   }
 
-  getQrCodePosition(element, posx, posy) {
-    const { clientHeight: documentHeight, clientWidth: documentWidth } = document.documentElement;
-    const windowHeight = window.innerHeight || documentHeight || document.body.clientHeight;
-    const windowWidth = window.innerWidth || documentWidth || document.body.clientWidth;
-    const elementHeight = element.offsetHeight;
-    const elementWidth = element.offsetWidth;
-    const posX = this.x_position ?? posx;
-    const posY = this.y_position ?? posy;
-
-    return {
-      posX: windowWidth <= posX + elementWidth ? windowWidth - elementWidth : posX,
-      posY: windowHeight <= posY + elementHeight ? windowHeight - elementHeight : posY,
-    };
-  }
-
   addMobileListener() {
     let mobileX = 0;
     let mobileY = 0;
@@ -58,8 +44,10 @@ export class DragElement {
       localStorageService.updateConfig({ x_position, y_position });
       this.x_position = x_position;
       this.y_position = y_position;
-      this.elmnt.style.left = `${x_position}px`;
-      this.elmnt.style.top = `${y_position}px`;
+      assignStyleOnElement(this.elmnt.style, {
+        left: `${x_position}px`,
+        top: `${y_position}px`,
+      });
     });
     this.elmnt.addEventListener('touchstart', (e) => {
       const { clientX, clientY } = e.touches[0];

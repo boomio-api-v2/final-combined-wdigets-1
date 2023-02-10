@@ -208,19 +208,6 @@
     text-align: left;
 }
 
-.modal-buttons .exit {
-    width: 100%;
-    height: 100%;
-    background: #FFFFFF;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    background: white;
-    background-clip: text;
-    color: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
-    text-fill-color: transparent;
-}
-
 .coupon_discount_modal .coupon_info h3:first-child {
     font-size: 30px;
     text-align: center;
@@ -559,20 +546,7 @@ iframe:empty {
     z-index: 10000000000000000;
 }
 
-.modal-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-between
-}
 
-.modal-buttons button {
-    border-radius: 32px;
-    width: 116px;
-    height: 40px;
-    cursor: pointer;
-    outline: none;
-    border: none;
-}
 
 .exist-or-saving-modal-title {
     text-align: center;
@@ -581,24 +555,7 @@ iframe:empty {
     line-height: 20px;
 }
 
-.modal-buttons .save {
-    background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: #FFFFFF;
-}
 
-.modal-buttons .exit-wrapper {
-    background: #FFFFFF;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
-    background-clip: text;
-    text-fill-color: transparent;
-    padding: 2px;
-}
 
 
 
@@ -669,12 +626,9 @@ iframe:empty {
 }
 
 
-
-
 .boomio--animation__hover:hover {
     transform: scale(1.1);
 }
-
 
 .d-flex {
     display: flex !important;

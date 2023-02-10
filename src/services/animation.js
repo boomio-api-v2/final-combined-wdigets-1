@@ -1,5 +1,5 @@
-import { addStylesToHtml, assignStyleOnElement, localStorageService } from '@/services';
-import { getRandomArbitrary } from '@/utlis';
+import { localStorageService } from '@/services';
+import { getRandomArbitrary, addStylesToHtml, assignStyleOnElement } from '@/utlis';
 const defaultProps = {
   posx: 0,
   posy: 0,

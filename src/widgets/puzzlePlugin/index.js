@@ -1,1 +1,1 @@
-export * from './puzzlePlugin';
+export { default as startPuzzleWidget } from './puzzlePlugin';
