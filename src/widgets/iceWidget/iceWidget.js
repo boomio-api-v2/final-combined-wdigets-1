@@ -19,19 +19,23 @@ class IceWidget {
     this.isCracksDisplayed = true;
   };
 
+  showQrModal() {
+    const length = this.imagesList.length;
+    if (length) return;
+    setTimeout(() => {
+      this.widget.remove();
+      new QrCodeModal();
+    }, 1000);
+  }
+
   crashIce = () => {
     const currentImage = this.imagesList.pop();
-    const length = this.imagesList.length;
-    if (!length) {
-      setTimeout(() => {
-        this.widget.remove();
-        new QrCodeModal();
-      }, 1000);
-    }
+    this.showQrModal();
 
     assignStyleOnElement(currentImage.style, {
       top: '200px',
-      opacity: 0,
+      opacity: '0',
+      transform: 'rotate(-30deg)',
     });
     assignStyleOnElement(this.hammer.style, {
       right: 0,
@@ -47,8 +51,10 @@ class IceWidget {
         right: '-150px',
         transform: 'rotate(40deg)',
       });
-      currentImage.remove();
     }, 500);
+    setTimeout(() => {
+      currentImage.remove();
+    }, 1000);
   };
 
   createHammer = () => {
