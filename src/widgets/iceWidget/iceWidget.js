@@ -1,4 +1,4 @@
-import { AnimationService, DragElement, QrCodeModal } from '@/services';
+import { AnimationService, DragElement, localStorageService, QrCodeModal } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
 import { imagesList, hammerImage, cracksImage } from './constants';
 import './styles.css';
@@ -6,6 +6,7 @@ import './styles.css';
 class IceWidget {
   constructor() {
     this.isCracksDisplayed = false;
+    this.showCoupon = false;
     this.imagesList = [];
     this.start();
   }
@@ -14,7 +15,7 @@ class IceWidget {
     if (this.isCracksDisplayed) return;
     const cracksIcon = document.createElement('img');
     cracksIcon.src = cracksImage;
-    cracksIcon.classList.add('frame');
+    cracksIcon.classList.add('piece-of-ice');
     this.widget.appendChild(cracksIcon);
     this.isCracksDisplayed = true;
   };
@@ -22,6 +23,7 @@ class IceWidget {
   showQrModal() {
     const length = this.imagesList.length;
     if (length) return;
+    this.showCoupon = true;
     setTimeout(() => {
       this.widget.remove();
       new QrCodeModal();
@@ -29,6 +31,7 @@ class IceWidget {
   }
 
   crashIce = () => {
+    if (this.showCoupon) return;
     const currentImage = this.imagesList.pop();
     this.showQrModal();
 
@@ -48,13 +51,13 @@ class IceWidget {
     setTimeout(() => {
       assignStyleOnElement(this.hammer.style, {
         top: '-60px',
-        right: '-150px',
+        right: '-140px',
         transform: 'rotate(40deg)',
       });
-    }, 500);
+    }, 400);
     setTimeout(() => {
       currentImage.remove();
-    }, 1000);
+    }, 1200);
   };
 
   createHammer = () => {
@@ -72,7 +75,7 @@ class IceWidget {
     imagesList.forEach((img) => {
       const image = document.createElement('img');
       image.src = img;
-      image.classList.add('frame');
+      image.classList.add('piece-of-ice');
       this.imagesList.push(image);
       widget.appendChild(image);
     });
@@ -95,5 +98,7 @@ class IceWidget {
 }
 
 export default () => {
+  const { success } = localStorageService.config;
+  if (!success) return;
   new IceWidget();
 };
