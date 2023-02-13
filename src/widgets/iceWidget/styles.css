@@ -25,4 +25,5 @@
     top: -60px;
     z-index: 100000000000;
     transition: all 0.5s;
+    transform: rotate(40deg);
 }
