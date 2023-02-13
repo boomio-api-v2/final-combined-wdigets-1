@@ -1,1 +1,1 @@
-export * from './stoneWidget';
+export { default as startStoneWidget } from './stoneWidget';

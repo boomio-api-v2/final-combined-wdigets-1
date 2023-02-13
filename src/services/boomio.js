@@ -6,7 +6,7 @@ import {
   startStoneWidget,
 } from '@/widgets';
 
-import { localStorageService } from './localStorage';
+import { localStorageService } from '@/services';
 
 class BoomioService {
   constructor() {

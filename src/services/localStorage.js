@@ -17,11 +17,6 @@ class LocalStorageService {
     }
   }
 
-  getLocalStorageStringToObject() {
-    const config = localStorage.getItem(localStoragePropertyName);
-    return JSON.parse(config);
-  }
-
   removeByKey(key) {
     delete this.config[key];
     this.setInStorage();
@@ -104,4 +99,4 @@ class LocalStorageService {
   }
 }
 
-export const localStorageService = new LocalStorageService();
+export default new LocalStorageService();

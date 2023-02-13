@@ -1,1 +1,1 @@
-export * from './wheelOfFortunePlugin';
+export { default as startWheelWidget } from './wheelOfFortunePlugin';

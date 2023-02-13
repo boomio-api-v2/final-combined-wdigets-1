@@ -203,6 +203,6 @@ class StoneWidget {
   };
 }
 
-export const startStoneWidget = () => {
+export default () => {
   new StoneWidget();
 };

@@ -60,6 +60,6 @@ class StartWidget {
   };
 }
 
-export const startStartWidget = () => {
+export default () => {
   new StartWidget();
 };

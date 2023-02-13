@@ -1,1 +1,1 @@
-export * from './startWidget';
+export { default as startStartWidget } from './startWidget';
