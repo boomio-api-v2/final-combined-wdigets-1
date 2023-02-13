@@ -1,24 +1,15 @@
 import { AnimationService, DragElement, localStorageService, QrCodeModal } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
-import { imagesList, hammerImage, cracksImage } from './constants';
+import { imagesList, hammerImage, iceBlockImage } from './constants';
 import './styles.css';
 
 class IceWidget {
   constructor() {
-    this.isCracksDisplayed = false;
     this.showCoupon = false;
     this.imagesList = [];
+    this.diplayedIcePieces = 0;
     this.start();
   }
-
-  displayCracks = () => {
-    if (this.isCracksDisplayed) return;
-    const cracksIcon = document.createElement('img');
-    cracksIcon.src = cracksImage;
-    cracksIcon.classList.add('piece-of-ice');
-    this.widget.appendChild(cracksIcon);
-    this.isCracksDisplayed = true;
-  };
 
   showQrModal() {
     const length = this.imagesList.length;
@@ -30,23 +21,12 @@ class IceWidget {
     }, 1000);
   }
 
-  crashIce = () => {
-    if (this.showCoupon) return;
-    const currentImage = this.imagesList.pop();
-    this.showQrModal();
-
-    assignStyleOnElement(currentImage.style, {
-      top: '200px',
-      opacity: '0',
-      transform: 'rotate(-30deg)',
-    });
+  showHammerAnimation = () => {
     assignStyleOnElement(this.hammer.style, {
       right: 0,
       transform: 'rotate(-40deg)',
       top: '20px',
     });
-
-    this.displayCracks();
 
     setTimeout(() => {
       assignStyleOnElement(this.hammer.style, {
@@ -55,6 +35,20 @@ class IceWidget {
         transform: 'rotate(40deg)',
       });
     }, 400);
+  };
+
+  crashIce = () => {
+    if (this.showCoupon) return;
+    const currentImage = this.imagesList.pop();
+    this.showQrModal();
+    this.showHammerAnimation();
+
+    assignStyleOnElement(currentImage.style, {
+      top: '200px',
+      opacity: '0',
+      transform: 'rotate(-30deg)',
+    });
+
     setTimeout(() => {
       currentImage.remove();
     }, 1200);
@@ -68,21 +62,42 @@ class IceWidget {
     this.hammer = hammer;
   };
 
+  checkAreAllIcePiecesLoaded = () => {
+    if (this.diplayedIcePieces === 5) {
+      this.iceBlock.remove();
+      this.crashIce();
+      this.widget.onclick = this.crashIce;
+      return;
+    }
+
+    this.diplayedIcePieces++;
+  };
+
+  createPiecesOfIces = () => {
+    this.showHammerAnimation();
+    imagesList.forEach((img) => {
+      const image = document.createElement('img');
+      image.src = img;
+      image.addEventListener('load', this.checkAreAllIcePiecesLoaded);
+      image.classList.add('piece-of-ice');
+      this.imagesList.push(image);
+      this.widget.appendChild(image);
+    });
+  };
+
   start = () => {
     const widget = document.createElement('div');
     const coupon = document.createElement('div');
 
-    imagesList.forEach((img) => {
-      const image = document.createElement('img');
-      image.src = img;
-      image.classList.add('piece-of-ice');
-      this.imagesList.push(image);
-      widget.appendChild(image);
-    });
+    const iceBlock = document.createElement('img');
+    iceBlock.src = iceBlockImage;
+    iceBlock.classList.add('ice-block');
+    this.iceBlock = iceBlock;
+    iceBlock.onclick = this.createPiecesOfIces;
 
+    widget.appendChild(iceBlock);
     widget.appendChild(coupon);
     widget.setAttribute('id', 'ice-widget');
-    widget.onclick = this.crashIce;
 
     coupon.innerHTML = QrCodeModal.getCoupon();
     coupon.classList.add('coupon');
