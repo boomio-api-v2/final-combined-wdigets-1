@@ -1,4 +1,4 @@
-export const imagesList = [
+export const icePieceImages = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step7.png?raw=true',
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step6.png?raw=true',
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step5.png?raw=true',
@@ -7,7 +7,7 @@ export const imagesList = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step2.png?raw=true',
 ];
 
-export const shadowImages = [
+export const icePieceShadowImages = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step2.png?raw=true',
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step3.png?raw=true',
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step4.png?raw=true',

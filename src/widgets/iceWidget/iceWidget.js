@@ -2,17 +2,18 @@ import { AnimationService, DragElement, localStorageService, QrCodeModal } from 
 import { assignStyleOnElement } from '@/utlis';
 import {
   icePieceCount,
-  imagesList,
+  icePieceImages,
   hammerImage,
   iceBlockImage,
-  shadowImages,
+  icePieceShadowImages,
   shadowTopCoordinatesForDesktop,
   shadowTopCoordinatesForMobile,
   bangImage,
   couponImage,
 } from './constants';
-import './styles.css';
 import { isMobileDevice } from '@/config';
+import './styles.css';
+import boomio from '@/services/boomio';
 
 class IceWidget {
   constructor() {
@@ -64,7 +65,7 @@ class IceWidget {
     const currentImage = this.icePieces.pop();
 
     const shadowIndex = icePieceCount - this.icePieces.length;
-    currentImage.src = shadowImages[shadowIndex];
+    currentImage.src = icePieceShadowImages[shadowIndex];
 
     if (shadowIndex !== 0) {
       this.showHammerAnimation();
@@ -101,7 +102,7 @@ class IceWidget {
     this.hammer = hammer;
   };
 
-  checkAreAllIcePiecesLoaded = () => {
+  onIcePieceLoaded = () => {
     if (this.diplayedIcePieces === icePieceCount) {
       this.iceBlock.remove();
       this.crashIce();
@@ -113,11 +114,12 @@ class IceWidget {
   };
 
   createPiecesOfIces = () => {
+    boomio.signal('hammer_click');
     this.showHammerAnimation();
-    imagesList.forEach((img) => {
+    icePieceImages.forEach((img) => {
       const image = document.createElement('img');
       image.src = img;
-      image.addEventListener('load', this.checkAreAllIcePiecesLoaded, { once: true });
+      image.addEventListener('load', this.onIcePieceLoaded, { once: true });
       image.classList.add('piece-of-ice');
       this.icePieces.push(image);
       this.widget.appendChild(image);
@@ -139,6 +141,7 @@ class IceWidget {
 
   start = () => {
     const widget = document.createElement('div');
+    widget.setAttribute('id', 'ice-widget');
 
     const iceBlock = document.createElement('img');
     iceBlock.src = iceBlockImage;
@@ -147,7 +150,6 @@ class IceWidget {
     this.iceBlock = iceBlock;
 
     widget.appendChild(iceBlock);
-    widget.setAttribute('id', 'ice-widget');
 
     new AnimationService({
       elem: widget,
