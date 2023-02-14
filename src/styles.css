@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap");
+
 * {
     margin: 0px;
     padding: 0px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
 }
 .boomio--animation__wrapper--qr {
     animation-name: boomio-animate-qr;
@@ -321,7 +323,6 @@ h4.boomio--animation__heading {
 
 #widgetModal .topText{
     color: #473F4E;
-    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -338,7 +339,6 @@ h4.boomio--animation__heading {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
-    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -517,6 +517,7 @@ iframe:empty {
     gap: 8px;
     outline: auto;
     cursor: pointer;
+    font-weight: 600;
 }
 
 @keyframes appearance {

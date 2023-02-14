@@ -11,9 +11,9 @@ import {
   bangImage,
   couponImage,
 } from './constants';
+import boomio from '@/services/boomio';
 import { isMobileDevice } from '@/config';
 import './styles.css';
-import boomio from '@/services/boomio';
 
 class IceWidget {
   constructor() {

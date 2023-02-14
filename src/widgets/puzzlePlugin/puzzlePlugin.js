@@ -187,7 +187,7 @@ export class Puzzle {
     if (!isLastPuzzle) {
       const bottomText = document.createElement('div');
       bottomText.classList.add('bottomText');
-      bottomText.innerHTML = `${w_hint_static_text}\n${w_hint_text}`;
+      bottomText.innerHTML = `${w_hint_static_text}:<br>${w_hint_text}`;
       this.modal.appendChild(bottomText);
     }
     /// ///////////////
