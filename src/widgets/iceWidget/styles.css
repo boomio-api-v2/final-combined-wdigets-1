@@ -12,7 +12,7 @@
     right: 0;
     bottom: 0;
     z-index: 1000000;
-    transition: all 1.2s;
+    transition: top 1.4s, transform 0.5s, opacity 4s;
 }
 
 #ice-widget .coupon {

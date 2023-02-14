@@ -1,18 +1,25 @@
 import { AnimationService, DragElement, localStorageService, QrCodeModal } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
-import { imagesList, hammerImage, iceBlockImage } from './constants';
+import {
+  icePieceCount,
+  imagesList,
+  hammerImage,
+  iceBlockImage,
+  shadowImages,
+  shadowTopCoordinates,
+} from './constants';
 import './styles.css';
 
 class IceWidget {
   constructor() {
     this.showCoupon = false;
-    this.imagesList = [];
+    this.icePieces = [];
     this.diplayedIcePieces = 0;
     this.start();
   }
 
   showQrModal() {
-    const length = this.imagesList.length;
+    const length = this.icePieces.length;
     if (length) return;
     this.showCoupon = true;
     setTimeout(() => {
@@ -39,19 +46,33 @@ class IceWidget {
 
   crashIce = () => {
     if (this.showCoupon) return;
-    const currentImage = this.imagesList.pop();
-    this.showQrModal();
-    this.showHammerAnimation();
+    const currentImage = this.icePieces.pop();
 
-    assignStyleOnElement(currentImage.style, {
-      top: '200px',
-      opacity: '0',
-      transform: 'rotate(-30deg)',
-    });
+    const shadowIndex = icePieceCount - this.icePieces.length;
+    currentImage.src = shadowImages[shadowIndex];
 
-    setTimeout(() => {
-      currentImage.remove();
-    }, 1200);
+    if (shadowIndex !== 0) {
+      this.showHammerAnimation();
+    }
+
+    currentImage.addEventListener(
+      'load',
+      () => {
+        this.showQrModal();
+        const top = shadowTopCoordinates[shadowIndex];
+
+        assignStyleOnElement(currentImage.style, {
+          top: `${top}px`,
+          opacity: '0',
+          transform: 'rotate(-30deg)',
+        });
+
+        setTimeout(() => {
+          currentImage.remove();
+        }, 4000);
+      },
+      { once: true },
+    );
   };
 
   createHammer = () => {
@@ -63,7 +84,7 @@ class IceWidget {
   };
 
   checkAreAllIcePiecesLoaded = () => {
-    if (this.diplayedIcePieces === 5) {
+    if (this.diplayedIcePieces === icePieceCount) {
       this.iceBlock.remove();
       this.crashIce();
       this.widget.onclick = this.crashIce;
@@ -78,9 +99,9 @@ class IceWidget {
     imagesList.forEach((img) => {
       const image = document.createElement('img');
       image.src = img;
-      image.addEventListener('load', this.checkAreAllIcePiecesLoaded);
+      image.addEventListener('load', this.checkAreAllIcePiecesLoaded, { once: true });
       image.classList.add('piece-of-ice');
-      this.imagesList.push(image);
+      this.icePieces.push(image);
       this.widget.appendChild(image);
     });
   };
@@ -92,8 +113,8 @@ class IceWidget {
     const iceBlock = document.createElement('img');
     iceBlock.src = iceBlockImage;
     iceBlock.classList.add('ice-block');
-    this.iceBlock = iceBlock;
     iceBlock.onclick = this.createPiecesOfIces;
+    this.iceBlock = iceBlock;
 
     widget.appendChild(iceBlock);
     widget.appendChild(coupon);
