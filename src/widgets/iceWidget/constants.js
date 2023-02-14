@@ -21,6 +21,8 @@ export const hammerImage =
 
 export const iceBlockImage = '/images/iceWidget/ice-block.png';
 
+export const bangImage = '/images/iceWidget/bang.svg';
+
 export const icePieceCount = 5;
 
 export const shadowTopCoordinates = [250, 220, 180, 190, 90, 150];

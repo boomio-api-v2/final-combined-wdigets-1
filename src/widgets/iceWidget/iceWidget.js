@@ -7,6 +7,7 @@ import {
   iceBlockImage,
   shadowImages,
   shadowTopCoordinates,
+  bangImage,
 } from './constants';
 import './styles.css';
 
@@ -28,14 +29,25 @@ class IceWidget {
     }, 1000);
   }
 
+  showBangAnimation = () => {
+    const bang = document.createElement('img');
+    bang.classList.add('bang');
+    bang.src = bangImage;
+    this.widget.appendChild(bang);
+    setTimeout(() => {
+      bang.remove();
+    }, 200);
+  };
+
   showHammerAnimation = () => {
     assignStyleOnElement(this.hammer.style, {
       right: 0,
-      transform: 'rotate(-40deg)',
-      top: '20px',
+      transform: 'rotate(-50deg)',
+      top: '-20px',
     });
 
     setTimeout(() => {
+      this.showBangAnimation();
       assignStyleOnElement(this.hammer.style, {
         top: '-60px',
         right: '-140px',

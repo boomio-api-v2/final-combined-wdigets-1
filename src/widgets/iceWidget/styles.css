@@ -21,7 +21,7 @@
 
 #ice-widget .hammer {
     position: absolute;
-    right: -150px;
+    right: -170px;
     top: -60px;
     z-index: 100000000000;
     transition: all 0.4s;
@@ -35,4 +35,13 @@
     right: 0;
     bottom: 0;
     z-index: 1000000;
+}
+
+#ice-widget .bang {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    z-index: 10000000000000;
+    top: 100px;
+    left: 90px;
 }
