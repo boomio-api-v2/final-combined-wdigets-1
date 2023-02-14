@@ -74,8 +74,8 @@ class BoomioService {
         // }
         localStorageService.setConfigFromApi({
           success: true,
-          puzzles_collected: 2,
-          appearing_puzzle_nr: 3,
+          puzzles_collected: 0,
+          appearing_puzzle_nr: 1,
         });
         this.loadWidget('puzzle');
       };

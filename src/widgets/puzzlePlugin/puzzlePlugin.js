@@ -5,7 +5,7 @@ import {
   AnimationService,
   QrCodeModal,
 } from '@/services';
-import { frameSvg, puzzleIconsList } from '@/сonstants/icons';
+import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
 import { getRandomArbitrary, assignStyleOnElement } from '@/utlis';
 import {
@@ -124,8 +124,8 @@ export class Puzzle {
   getCloseModalBtn = (closeCallback) => {
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.classList.add('close-modal-btn-wrapper');
-    const closeBtn = document.createElement('div');
-    closeBtn.innerHTML = '&#x2715; ';
+    const closeBtn = document.createElement('img');
+    closeBtn.src = closeImage;
     closeBtn.classList.add('close-modal-btn');
     closeBtn.onclick = closeCallback;
     closeBtnWrapper.appendChild(closeBtn);
