@@ -9,6 +9,7 @@ import {
   shadowTopCoordinatesForDesktop,
   shadowTopCoordinatesForMobile,
   bangImage,
+  couponImage,
 } from './constants';
 import './styles.css';
 import { isMobileDevice } from '@/config';
@@ -123,9 +124,21 @@ class IceWidget {
     });
   };
 
+  createCoupon = () => {
+    const { p_coupon_text, p_code_text } = localStorageService.config;
+    const coupon = document.createElement('div');
+    coupon.style.backgroundImage = `url(${couponImage})`;
+    coupon.classList.add('coupon');
+    this.widget.appendChild(coupon);
+    coupon.innerHTML = `
+      <div class="coupon_info">
+          <h3>${p_coupon_text}</h3>
+          <p style="text-align: center; margin-top: 8px">${p_code_text} </p>
+      </div>`;
+  };
+
   start = () => {
     const widget = document.createElement('div');
-    const coupon = document.createElement('div');
 
     const iceBlock = document.createElement('img');
     iceBlock.src = iceBlockImage;
@@ -134,11 +147,7 @@ class IceWidget {
     this.iceBlock = iceBlock;
 
     widget.appendChild(iceBlock);
-    widget.appendChild(coupon);
     widget.setAttribute('id', 'ice-widget');
-
-    coupon.innerHTML = QrCodeModal.getCoupon();
-    coupon.classList.add('coupon');
 
     new AnimationService({
       elem: widget,
@@ -146,6 +155,7 @@ class IceWidget {
     new DragElement(widget);
 
     this.widget = widget;
+    this.createCoupon();
     this.createHammer();
   };
 }

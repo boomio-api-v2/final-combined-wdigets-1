@@ -208,7 +208,7 @@
     text-align: left;
 }
 
-.coupon_discount_modal .coupon_info h3:first-child {
+ .coupon_info h3:first-child {
     font-size: 30px;
     text-align: center;
     background: -webkit-linear-gradient(#FF3183, #8559F3);
@@ -218,7 +218,7 @@
     line-height: 37px;
 }
 
-.coupon_discount_modal .coupon_info p {
+ .coupon_info p {
     padding: 0;
     font-size: 13px;
     font-weight: 600;
@@ -247,7 +247,7 @@
     background-clip: content-box, border-box;
 }
 
-.coupon_discount_modal .coupon_info h3 {
+ .coupon_info h3 {
     background: -webkit-linear-gradient(#FF3183, #8559F3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -412,7 +412,7 @@ h4.boomio--animation__heading {
 
 
 
-.coupon_discount_modal .coupon_info p {
+ .coupon_info p {
     padding: 0;
     font-size: 13px;
     font-weight: 600;
@@ -618,7 +618,7 @@ iframe:empty {
     height: auto;
 }
 
-.coupon_discount_modal .coupon_info {
+ .coupon_info {
     padding: 32px;
     display: flex;
     flex-direction: column;

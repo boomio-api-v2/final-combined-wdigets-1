@@ -16,6 +16,8 @@ export const shadowImages = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step7.png?raw=true',
 ];
 
+export const couponImage = '/images/coupon.svg';
+
 export const hammerImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/hammer.png?raw=true';
 

@@ -217,25 +217,4 @@ export default class QrCodeModal {
         </div>
     </div>`;
   };
-
-  static getCoupon() {
-    const { p_coupon_text, p_code_text } = localStorageService.config;
-    return `
-    <div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
-      <div class="coupon__preview__body coupon_discount_modal">   
-        <div class="coupon_preview_card_info ">
-          <div class="coupon__preview__card coupon_div" id="coupon_div" >
-              <div class="coupon_info">
-                  <h3>${p_coupon_text}</h3>
-                  <p style="text-align: center; margin-top: 8px">${p_code_text} </p>
-              </div>
-              <div class="coupon__preview__card__after"></div>
-              <div class="coupon__preview__card__befor"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    `;
-  }
 }
