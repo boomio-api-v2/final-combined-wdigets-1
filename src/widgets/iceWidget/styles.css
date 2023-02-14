@@ -64,20 +64,24 @@
 }
 
 @media (max-width: 600px) {
+    #ice-widget {
+        padding: 8px 4px 0 4px;
+    }
+
     #ice-widget, #ice-widget .piece-of-ice,  #ice-widget .ice-block {
-        width: 150px;
-        height: 118px;
+        width: 103px;
+        height: 86px;
     }
 
     #ice-widget .coupon {
-        height: 99px;
-        width: 125px;
+        height: 72px;
+        width: 91px;
     }
 
     #ice-widget .hammer {
-        height: 70px;
-        width: 60px;
-        right: -60px;
+        height: 60px;
+        width: 50px;
+        right: -40px;
         top: -30px;
     }
 
@@ -86,12 +90,12 @@
     }
 
     #ice-widget .coupon_info h3 {
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 10px;
+        line-height: 16px;
     }
 
     #ice-widget .coupon_info p {
-        font-size: 8px;
+        font-size: 6px;
     }
 
     #ice-widget .coupon__preview__card::before, #ice-widget .coupon__preview__card::after{
@@ -108,8 +112,8 @@
         width: 20px;
         height: 20px;
         z-index: 10000000000000;
-        top: 50px;
-        left: 80px;
+        top: 35px;
+        left: 50px;
     }
 }
 

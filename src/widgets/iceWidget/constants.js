@@ -32,4 +32,4 @@ export const icePieceCount = 5;
 
 export const shadowTopCoordinatesForDesktop = [250, 220, 180, 190, 90, 150];
 
-export const shadowTopCoordinatesForMobile = [150, 120, 90, 110, 50, 70];
+export const shadowTopCoordinatesForMobile = [130, 100, 70, 90, 30, 50];
