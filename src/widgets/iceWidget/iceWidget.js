@@ -6,10 +6,12 @@ import {
   hammerImage,
   iceBlockImage,
   shadowImages,
-  shadowTopCoordinates,
+  shadowTopCoordinatesForDesktop,
+  shadowTopCoordinatesForMobile,
   bangImage,
 } from './constants';
 import './styles.css';
+import { isMobileDevice } from '@/config';
 
 class IceWidget {
   constructor() {
@@ -43,14 +45,14 @@ class IceWidget {
     assignStyleOnElement(this.hammer.style, {
       right: 0,
       transform: 'rotate(-50deg)',
-      top: '-20px',
+      top: `${isMobileDevice ? 10 : -20}px`,
     });
 
     setTimeout(() => {
       this.showBangAnimation();
       assignStyleOnElement(this.hammer.style, {
-        top: '-60px',
-        right: '-140px',
+        top: `${isMobileDevice ? -30 : -60}px`,
+        right: `${isMobileDevice ? -60 : -140}px`,
         transform: 'rotate(40deg)',
       });
     }, 400);
@@ -71,7 +73,10 @@ class IceWidget {
       'load',
       () => {
         this.showQrModal();
-        const top = shadowTopCoordinates[shadowIndex];
+        const coordinates = isMobileDevice
+          ? shadowTopCoordinatesForMobile
+          : shadowTopCoordinatesForDesktop;
+        const top = coordinates[shadowIndex];
 
         assignStyleOnElement(currentImage.style, {
           top: `${top}px`,

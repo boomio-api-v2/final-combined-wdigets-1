@@ -15,17 +15,13 @@
     transition: top 1.4s, transform 0.5s, opacity 4s;
 }
 
-#ice-widget .coupon {
-    height: 100%;
-}
-
-#ice-widget .hammer {
+#ice-widget .bang {
     position: absolute;
-    right: -170px;
-    top: -60px;
-    z-index: 100000000000;
-    transition: all 0.4s;
-    transform: rotate(40deg);
+    width: 35px;
+    height: 35px;
+    z-index: 10000000000000;
+    top: 100px;
+    left: 90px;
 }
 
 #ice-widget .ice-block {
@@ -37,11 +33,63 @@
     z-index: 1000000;
 }
 
-#ice-widget .bang {
+
+#ice-widget .hammer {
     position: absolute;
-    width: 35px;
-    height: 35px;
-    z-index: 10000000000000;
-    top: 100px;
-    left: 90px;
+    right: -170px;
+    top: -60px;
+    z-index: 100000000000;
+    transition: all 0.4s;
+    transform: rotate(40deg);
 }
+
+#ice-widget .coupon {
+    height: 100%;
+}
+
+@media (max-width: 600px) {
+    #ice-widget, #ice-widget .piece-of-ice,  #ice-widget .ice-block {
+        width: 150px;
+        height: 118px;
+    }
+
+
+    #ice-widget .hammer {
+        height: 70px;
+        width: 60px;
+        right: -60px;
+        top: -30px;
+    }
+
+    #ice-widget .coupon_info {
+        padding: 10px;
+    }
+
+    #ice-widget .coupon_info h3 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    #ice-widget .coupon_info p {
+        font-size: 8px;
+    }
+
+    #ice-widget .coupon__preview__card::before, #ice-widget .coupon__preview__card::after{
+        width: 26px;
+        height: 26px;
+    }
+
+    #ice-widget .coupon__preview__card {
+        border-radius: 15px;
+    }
+
+    #ice-widget .bang {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        z-index: 10000000000000;
+        top: 50px;
+        left: 80px;
+    }
+}
+

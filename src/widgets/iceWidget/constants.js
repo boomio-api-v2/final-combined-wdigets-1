@@ -19,10 +19,14 @@ export const shadowImages = [
 export const hammerImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/hammer.png?raw=true';
 
-export const iceBlockImage = '/images/iceWidget/ice-block.png';
+export const iceBlockImage =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/ice-block.png?raw=true';
 
-export const bangImage = '/images/iceWidget/bang.svg';
+export const bangImage =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/29f42dcf4707294e1a86d84192c5fceb8c81f414/images/iceWidget/bang.svg';
 
 export const icePieceCount = 5;
 
-export const shadowTopCoordinates = [250, 220, 180, 190, 90, 150];
+export const shadowTopCoordinatesForDesktop = [250, 220, 180, 190, 90, 150];
+
+export const shadowTopCoordinatesForMobile = [150, 120, 90, 110, 50, 70];
