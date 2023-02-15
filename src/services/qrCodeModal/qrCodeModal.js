@@ -2,7 +2,7 @@ import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode
 import { boomioService, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
 import { assignStyleOnElement } from '@/utlis';
-import { dotImage } from '@/сonstants/icons';
+import { closeImage, dotImage } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 
@@ -103,8 +103,8 @@ export default class QrCodeModal {
   getCloseModalBtn = (closeCallback) => {
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.classList.add('close-modal-btn-wrapper');
-    const closeBtn = document.createElement('div');
-    closeBtn.innerHTML = '&#x2715; ';
+    const closeBtn = document.createElement('img');
+    closeBtn.src = closeImage;
     closeBtn.classList.add('close-modal-btn');
     closeBtn.onclick = closeCallback;
     closeBtnWrapper.appendChild(closeBtn);
@@ -117,7 +117,7 @@ export default class QrCodeModal {
   };
 
   showQR = () => {
-    this.createModalWindow(300, 480);
+    this.createModalWindow(272, 442);
     boomioService.signal('PUZZLE_CODE_REVEALED');
     const { qrcode } = localStorageService.config;
     const qrEl = document.createElement('div');
@@ -135,8 +135,8 @@ export default class QrCodeModal {
 
     new QRCode('qrcodeShowHtml', {
       text: qrcode,
-      width: 200,
-      height: 200,
+      width: 146,
+      height: 146,
       colorDark: '#000000',
       colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.H,
@@ -196,20 +196,41 @@ export default class QrCodeModal {
                 </div>
                 <div class="coupon__preview__card coupon_div" id="coupon_div" >
                     <div class="coupon_info">
-                        <h3>${p_coupon_text}</h3>
+                        ${
+                          p_coupon_text
+                            ? `<h3>${p_coupon_text}</h3>`
+                            : `
+                          <h3>20%</h3>
+                          <h4>Discount</h1>
+                        `
+                        }
                         <p style="text-align: center; margin-top: 8px">${p_code_text} </p>
                     </div>
                     <div class="coupon__preview__card__after"></div>
                     <div class="coupon__preview__card__befor"></div>
                 </div>
             </div>
-                <p class="coupon-text">${p_bottom_text}</p>
+                <p class="coupon-text">${
+                  p_bottom_text ??
+                  `
+                  To have immediate access for all your great rewards <span>open or download</span>
+                `
+                }</p>
                             <div class="coupon_preview_card_footer">
     
                 <a href=${app_url}>
                 <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
-                    <img src="${dotImage}" alt="img not find">
-                    ${p_button_text}
+                    <img src="${dotImage}" alt="img not find">               
+                    ${
+                      p_button_text
+                        ? `<p>${p_button_text}</p>`
+                        : `
+                      <div class="text-wrapper">                   
+                        <p style="font-size: 10px">Open</p>
+                        <p style="font-size: 14px">Boomio app</p>
+                      </div>
+                    `
+                    }
                 </div>
                 </a>
         

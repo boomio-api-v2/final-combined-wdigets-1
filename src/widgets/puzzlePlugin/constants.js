@@ -2,22 +2,22 @@ import { isMobileDevice } from '@/config';
 
 export const puzzlesCoordinateForMobile = [
   {
-    top: 0,
-    left: 0,
-    width: '49.84px',
+    top: -1,
+    left: 2,
+    width: '48.84px',
     height: '61.33px',
   },
   {
-    top: 0,
+    top: -1,
     left: 37,
-    width: '60.3px',
-    height: '50.86px',
+    width: '61.3px',
+    height: '49.86px',
   },
   {
-    top: 49,
-    left: 0,
-    width: '61.3px',
-    height: '47.86px',
+    top: 47,
+    left: 2,
+    width: '60.3px',
+    height: '48.86px',
   },
   {
     top: 44,
@@ -30,28 +30,28 @@ export const puzzlesCoordinateForMobile = [
 export const puzzlesCoordinateForDesktop = [
   {
     top: 0,
-    left: 0,
+    left: 3,
     width: '89.84px',
-    height: '112.33px',
+    height: '111.33px',
   },
 
   {
-    top: 0,
-    left: 66,
-    width: '114.3px',
-    height: '87.86px',
-  },
-  {
-    top: 87,
-    left: 0,
+    top: -1,
+    left: 69,
     width: '112.3px',
     height: '89.86px',
   },
   {
+    top: 87,
+    left: 3,
+    width: '111.3px',
+    height: '90.86px',
+  },
+  {
     top: 65,
-    left: 88,
+    left: 90,
     width: '90.84px',
-    height: '113.33px',
+    height: '112.33px',
   },
 ];
 

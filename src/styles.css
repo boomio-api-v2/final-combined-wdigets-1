@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 * {
     margin: 0px;
     padding: 0px;
+    font-weight: 600;
     font-family: 'Montserrat';
 }
 .boomio--animation__wrapper--qr {
@@ -129,8 +129,8 @@
     top: 50%;
     right: -18px;
     background-color: #fff;
-    width: 32px;
-    height: 37.6px;
+    width: 20.99px;
+    height: 17.86px;
     transform: translate(0%, -50%);
     border-radius: 50%;
     border: 2px solid transparent;
@@ -177,15 +177,27 @@
 
 .coupon_preview_card_footer .btn-content {
     width: 100%;
-    border: none;
     padding: 1px;
     height: 47px;
-    border: double 2px transparent;
+    border: double 1px transparent;
     border-radius: 24px;
     background-image: linear-gradient(#e8dff7, #fee0e7), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
     background-origin: border-box;
     background-clip: content-box, border-box;
     cursor: pointer;
+}
+
+.coupon_preview_card_footer a {
+    text-decoration: none;
+}
+
+.coupon_preview_card_footer .btn-content a {
+    text-decoration: none;
+}
+
+.coupon_preview_card_footer .btn-content .text-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .coupon_discount_modal .coupon_preview_card_footer {
@@ -210,15 +222,15 @@
     text-align: left;
 }
 
- .coupon_info h3:first-child {
-    font-size: 30px;
-    text-align: center;
-    background: -webkit-linear-gradient(#FF3183, #8559F3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-    line-height: 37px;
-}
+/* .coupon_info h3:first-child {*/
+/*    font-size: 30px;*/
+/*    text-align: center;*/
+/*    background: -webkit-linear-gradient(#FF3183, #8559F3);*/
+/*    -webkit-background-clip: text;*/
+/*    -webkit-text-fill-color: transparent;*/
+/*    font-weight: 600;*/
+/*    line-height: 37px;*/
+/*}*/
 
  .coupon_info p {
     padding: 0;
@@ -240,8 +252,8 @@
 
 .coupon__preview__card {
     position: relative;
-    width: 100%;
-    height: 282px;
+    width: 187px;
+    height: 146px;
     border: double 2px transparent;
     border-radius: 24px;
     background-image: linear-gradient(#FBFAFC, #FBFAFC), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
@@ -250,15 +262,28 @@
 }
 
  .coupon_info h3 {
+    text-align: center;
     background: -webkit-linear-gradient(#FF3183, #8559F3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 30px;
+    font-size: 40px;
     margin: 0;
     padding: 0;
 }
+
+ .coupon_info h4 {
+     background: -webkit-linear-gradient(#FF3183, #8559F3);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     text-transform: uppercase;
+     font-weight: 900;
+     font-size: 24px;
+     margin: 0;
+     padding: 0;
+     text-align: center;
+ }
 
 .coupon__preview__card::before {
     content: "";
@@ -266,8 +291,8 @@
     top: 50%;
     left: -18px;
     /* background-color: #fff; */
-    width: 32px;
-    height: 37.6px;
+    width: 20.99px;
+    height: 17.86px;
     transform: translate(0%, -50%);
     border-radius: 50%;
     border: 2px solid transparent;
@@ -408,13 +433,14 @@ h4.boomio--animation__heading {
     font-weight: 400;
     font-size: 14px;
     text-align: center;
+    line-height: 18px;
 }
 
 
 
  .coupon_info p {
     padding: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     margin: 0;
 }
@@ -615,15 +641,16 @@ iframe:empty {
 }
 
 
-.coupon_discount_modal .coupon__preview__card {
-    height: auto;
-}
+/*.coupon_discount_modal .coupon__preview__card {*/
+/*    height: auto;*/
+/*}*/
 
  .coupon_info {
-    padding: 32px;
+    /*padding: 32px;*/
+     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
 
