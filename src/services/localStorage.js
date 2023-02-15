@@ -68,12 +68,10 @@ class LocalStorageService {
 
     /// ////Prize card/////
     const p_top_text = config?.p_top_text ?? 'YOU GOT 20% DISCOUNT!';
-    const p_coupon_text = config?.p_coupon_text ?? '20% discount';
     const p_code_text = config?.p_code_text ?? 'Unique code: BM69233"';
-    const p_bottom_text =
-      config?.p_bottom_text ??
-      'To have immediate access for all you great rewards open for download';
-    const p_button_text = config?.p_button_text ?? 'Open boomio app';
+    const p_coupon_text = config?.p_coupon_text ?? null;
+    const p_bottom_text = config?.p_bottom_text ?? null;
+    const p_button_text = config?.p_button_text ?? null;
     /// //////////////////
     return {
       success,

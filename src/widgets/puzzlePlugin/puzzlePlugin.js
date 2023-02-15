@@ -228,8 +228,6 @@ export class Puzzle {
     }
     if (puzzles_collected < 4) return;
 
-    this.showWinningAnimation();
-
     setTimeout(() => {
       this.closeModal();
       new QrCodeModal();
@@ -285,6 +283,7 @@ export class Puzzle {
     const animStyles = {
       width,
       height,
+      backgroundSize: 'container',
       backgroundImage: `url(${puzzleIconsList[puzzles_collected]})`,
       ...styles,
     };

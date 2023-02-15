@@ -22,7 +22,7 @@ describe('localStorageService', () => {
     expect(typeof result.w_top_text).toMatch('string');
     expect(typeof result.p_coupon_text).toMatch('string');
     expect(typeof result.p_code_text).toMatch('string');
-    expect(typeof result.p_bottom_text).toMatch('string');
-    expect(typeof result.p_button_text).toMatch('string');
+    expect(typeof result.p_bottom_text === 'string' || result.p_bottom_text === null).toBe(true);
+    expect(typeof result.p_button_text === 'string' || result.p_button_text === null).toBe(true);
   });
 });
