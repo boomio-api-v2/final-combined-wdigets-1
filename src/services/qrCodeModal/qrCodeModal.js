@@ -1,5 +1,5 @@
 import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
-import { boomioService, localStorageService } from '@/services';
+import { AnimationService, boomioService, DragElement, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
 import { assignStyleOnElement } from '@/utlis';
 import { closeImage, dotImage } from '@/сonstants/icons';
@@ -13,7 +13,7 @@ const disLikeBtnImage =
 
 export default class QrCodeModal {
   constructor() {
-    this.showQR();
+    isMobileDevice ? this.showQRMobile() : this.showQRDesktop();
   }
 
   closeAnimation = (callback) => () => {
@@ -116,7 +116,63 @@ export default class QrCodeModal {
     this.closeModal();
   };
 
-  showQR = () => {
+  getCouponHtml = () => {
+    const { p_coupon_text, p_code_text } = localStorageService.config;
+    return `
+       <div class="coupon__preview__card coupon_div" id="coupon_div" >
+          <div class="coupon_info">
+              ${
+                p_coupon_text
+                  ? `<h3>${p_coupon_text}</h3>`
+                  : `
+                <h3>20%</h3>
+                <h4>Discount</h1>
+              `
+              }
+              <p style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${p_code_text} </p>
+          </div>
+          <div class="coupon__preview__card__after"></div>
+          <div class="coupon__preview__card__befor"></div>
+      </div>`;
+  };
+
+  showQRDesktop = () => {
+    const { qrcode, p_top_text } = localStorageService.config;
+    const modal = document.createElement('div');
+    modal.setAttribute('id', 'desktop-qr-modal');
+    modal.innerHTML = `
+    <div class="close-modal-btn-wrapper">
+      <img src="${closeImage}" id="close-modal-btn" class="close-modal-btn"/>
+    </div>
+    <div class="coupon__preview__card__header text-center d-block">
+        <h1>${p_top_text} </h1>
+    </div>
+    ${this.getCouponHtml()}
+    <p>To have immediate access for all your great rewards open or download <span>Boomio app by scanning this code</span></p>
+      <div id='qrcodeShow'>
+        <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
+      </div>
+    `;
+
+    const animationEl = new AnimationService({
+      elem: modal,
+    }).animationEl;
+
+    new DragElement(animationEl);
+    new QRCode('qrcodeShowHtml', {
+      text: qrcode,
+      width: 100,
+      height: 100,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+    document.getElementById('close-modal-btn').onclick = () => {
+      modal.remove();
+    };
+  };
+
+  showQRMobile = () => {
     this.createModalWindow(272, 442);
     boomioService.signal('PUZZLE_CODE_REVEALED');
     const { qrcode } = localStorageService.config;
@@ -180,8 +236,7 @@ export default class QrCodeModal {
   };
 
   qrCodeInnerHtml = () => {
-    const { p_top_text, p_coupon_text, p_code_text, p_button_text, p_bottom_text, app_url } =
-      localStorageService.config;
+    const { p_top_text, p_button_text, p_bottom_text, app_url } = localStorageService.config;
     return `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
     
         <div class="coupon__preview__body coupon_discount_modal">
@@ -194,21 +249,7 @@ export default class QrCodeModal {
                 <div id='qrcodeShow' style="display:none">
                     <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
                 </div>
-                <div class="coupon__preview__card coupon_div" id="coupon_div" >
-                    <div class="coupon_info">
-                        ${
-                          p_coupon_text
-                            ? `<h3>${p_coupon_text}</h3>`
-                            : `
-                          <h3>20%</h3>
-                          <h4>Discount</h1>
-                        `
-                        }
-                        <p style="text-align: center; margin-top: 8px">${p_code_text} </p>
-                    </div>
-                    <div class="coupon__preview__card__after"></div>
-                    <div class="coupon__preview__card__befor"></div>
-                </div>
+                ${this.getCouponHtml()}
             </div>
                 <p class="coupon-text">${
                   p_bottom_text ??
