@@ -153,6 +153,8 @@ export default class QrCodeModal {
 
     const animationEl = new AnimationService({
       elem: modal,
+      posx: 300,
+      posy: 200,
     }).animationEl;
 
     new DragElement(animationEl);

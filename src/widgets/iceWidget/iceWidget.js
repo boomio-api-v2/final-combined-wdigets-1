@@ -25,7 +25,7 @@ class IceWidget {
 
   showQrModal() {
     const length = this.icePieces.length;
-    if (length) return;
+    if (length || this.showCoupon) return;
     this.showCoupon = true;
     setTimeout(() => {
       this.widget.remove();
