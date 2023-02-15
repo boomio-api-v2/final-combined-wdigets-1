@@ -123,7 +123,7 @@ export default class QrCodeModal {
           <div class="coupon_info">
               ${
                 p_coupon_text
-                  ? `<h3>${p_coupon_text}</h3>`
+                  ? `<h4>${p_coupon_text}</h4>`
                   : `
                 <h3>20%</h3>
                 <h4>Discount</h1>
