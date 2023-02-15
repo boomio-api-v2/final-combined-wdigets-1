@@ -66,7 +66,14 @@ class LocalStorageService {
     const w_top_text = config?.w_top_text ?? 'YOU’RE ALMOST THERE!<br> FIND THE LAST PIECE!';
     /// ////////////////////////
 
-    /// ////Prize card/////
+    const p_bottom_text_start_pc =
+      config?.p_bottom_text_start_pc ??
+      'To have immediate access for all your great rewards open or download ';
+    const p_bottom_text_end_pc = config?.p_bottom_text_end_pc ?? 'Boomio app by scanning this code';
+    const p_bottom_text_start_m =
+      config?.p_bottom_text_start_m ?? 'To have immediate access for all your great rewards ';
+    const p_bottom_text_end_m = config?.p_bottom_text_end_m ?? 'open or download';
+
     const p_top_text = config?.p_top_text ?? 'YOU GOT 20% DISCOUNT!';
     const p_code_text = config?.p_code_text ?? 'Unique code: BM69233"';
     const p_coupon_text = config?.p_coupon_text ?? null;
@@ -93,6 +100,10 @@ class LocalStorageService {
       p_code_text,
       p_bottom_text,
       p_button_text,
+      p_bottom_text_end_pc,
+      p_bottom_text_start_pc,
+      p_bottom_text_start_m,
+      p_bottom_text_end_m,
     };
   }
 }

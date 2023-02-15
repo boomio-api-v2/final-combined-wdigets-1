@@ -137,7 +137,8 @@ export default class QrCodeModal {
   };
 
   showQRDesktop = () => {
-    const { qrcode, p_top_text } = localStorageService.config;
+    const { qrcode, p_top_text, p_bottom_text_end_pc, p_bottom_text_start_pc } =
+      localStorageService.config;
     const modal = document.createElement('div');
     modal.setAttribute('id', 'desktop-qr-modal');
     modal.innerHTML = `
@@ -148,7 +149,7 @@ export default class QrCodeModal {
         <h1>${p_top_text} </h1>
     </div>
     ${this.getCouponHtml()}
-    <p>To have immediate access for all your great rewards open or download <span>Boomio app by scanning this code</span></p>
+    <p>${p_bottom_text_start_pc} <span>${p_bottom_text_end_pc}</span></p>
       <div id='qrcodeShow'>
         <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
       </div>
@@ -236,7 +237,14 @@ export default class QrCodeModal {
   };
 
   qrCodeInnerHtml = () => {
-    const { p_top_text, p_button_text, p_bottom_text, app_url } = localStorageService.config;
+    const {
+      p_top_text,
+      p_button_text,
+      p_bottom_text,
+      app_url,
+      p_bottom_text_start_m,
+      p_bottom_text_end_m,
+    } = localStorageService.config;
     return `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
     
         <div class="coupon__preview__body coupon_discount_modal">
@@ -254,7 +262,7 @@ export default class QrCodeModal {
                 <p class="coupon-text">${
                   p_bottom_text ??
                   `
-                  To have immediate access for all your great rewards <span>open or download</span>
+                  ${p_bottom_text_start_m}<span>${p_bottom_text_end_m}</span>
                 `
                 }</p>
                             <div class="coupon_preview_card_footer">
