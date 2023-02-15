@@ -164,6 +164,7 @@
     letter-spacing: -0.02em;
     color: #473F4E;
     margin: 0px;
+    font-family: 'Montserrat' ;
 }
 
 .coupon_discount_modal .coupon__preview__card__header h1 {
@@ -285,6 +286,7 @@
      margin: 0;
      padding: 0;
      text-align: center;
+     font-family: 'Montserrat';
  }
 
 .coupon__preview__card::before {
