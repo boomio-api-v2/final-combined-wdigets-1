@@ -80,6 +80,9 @@ class LocalStorageService {
     const p_bottom_text = config?.p_bottom_text ?? null;
     const p_button_text = config?.p_button_text ?? null;
     /// //////////////////
+
+    const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '20%';
+    const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
     return {
       success,
       qrcode,
@@ -104,6 +107,8 @@ class LocalStorageService {
       p_bottom_text_start_pc,
       p_bottom_text_start_m,
       p_bottom_text_end_m,
+      p_coupon_text_line1,
+      p_coupon_text_line2,
     };
   }
 }

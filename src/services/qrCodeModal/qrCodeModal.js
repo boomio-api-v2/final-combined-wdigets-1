@@ -117,18 +117,14 @@ export default class QrCodeModal {
   };
 
   getCouponHtml = () => {
-    const { p_coupon_text, p_code_text } = localStorageService.config;
+    const { p_code_text, p_coupon_text_line1, p_coupon_text_line2 } = localStorageService.config;
     return `
        <div class="coupon__preview__card coupon_div" id="coupon_div" >
           <div class="coupon_info">
-              ${
-                p_coupon_text
-                  ? `<h4>${p_coupon_text}</h4>`
-                  : `
-                <h3>20%</h3>
-                <h4>Discount</h1>
-              `
-              }
+              
+                <h3>${p_coupon_text_line1}</h3>
+                <h4>${p_coupon_text_line2}</h1>
+           
               <p style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${p_code_text} </p>
           </div>
           <div class="coupon__preview__card__after"></div>
