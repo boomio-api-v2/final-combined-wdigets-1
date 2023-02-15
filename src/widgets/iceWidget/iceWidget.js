@@ -134,7 +134,7 @@ class IceWidget {
     this.widget.appendChild(coupon);
     coupon.innerHTML = `
       <div class="coupon_info">
-          <h3>${p_coupon_text ?? '20% <br> <p style="font-size: 24px">DISCOUNT</p>'}</h3>
+          <h3>${p_coupon_text ?? '20% <br> <p class="discount">DISCOUNT</p>'}</h3>
           <p style="text-align: center; margin-top: 8px">${p_code_text} </p>
       </div>`;
   };
