@@ -97,6 +97,7 @@
     align-items: center;
     flex-direction: column;
     z-index: 100000;
+    font-family: 'Montserrat';
 }
 
 #desktop-qr-modal p {

@@ -72,7 +72,6 @@ class BoomioService {
         if (content?.widget_type && content.instruction !== 'stop') {
           this.loadWidget(content.widget_type);
         }
-        this.loadWidget('ice');
       };
     } catch (err) {
       console.log(err);
