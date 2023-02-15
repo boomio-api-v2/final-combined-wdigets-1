@@ -3,8 +3,8 @@ import { isMobileDevice } from '@/config';
 export const puzzlesCoordinateForMobile = [
   {
     top: -1,
-    left: 2,
-    width: '48.84px',
+    left: 1,
+    width: '49.84px',
     height: '61.33px',
   },
   {
@@ -15,9 +15,9 @@ export const puzzlesCoordinateForMobile = [
   },
   {
     top: 47,
-    left: 2,
-    width: '60.3px',
-    height: '48.86px',
+    left: 1,
+    width: '61.3px',
+    height: '49.86px',
   },
   {
     top: 44,
@@ -59,4 +59,4 @@ export const puzzlesCoordinate = isMobileDevice
   ? puzzlesCoordinateForMobile
   : puzzlesCoordinateForDesktop;
 
-export const puzzleWidgetSize = isMobileDevice ? 100 : 185;
+export const puzzleWidgetSize = isMobileDevice ? 101 : 185;
