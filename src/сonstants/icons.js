@@ -9,17 +9,16 @@ export const discountIcon =
 export const gameIcon =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/game.png?raw=true';
 
-export const frameSvg =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/update-puzzle-styles/images/puzzle/frame.png?raw=true';
+export const frameSvg = '/images/puzzle/frame.png';
 
 export const dotImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/0753f565c8eeb594222696c37839677a8738f41d/images/dotImage.svg';
 
 export const puzzleIconsList = [
-  '/images/puzzle/gift-puzzle-1.svg',
-  '/images/puzzle/gift-puzzle-2.svg',
-  '/images/puzzle/gift-puzzle-3.svg',
-  '/images/puzzle/gift-puzzle-4.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/195ade675706aced3ce83b959818733919494960/images/puzzle/puzzle-1.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/195ade675706aced3ce83b959818733919494960/images/puzzle/puzzle-2.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/195ade675706aced3ce83b959818733919494960/images/puzzle/puzzle-3.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/195ade675706aced3ce83b959818733919494960/images/puzzle/puzzle-4.svg',
 ];
 
 export const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';

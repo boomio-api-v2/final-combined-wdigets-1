@@ -79,8 +79,8 @@ class BoomioService {
         this.createWidgetContainer();
         localStorageService.setConfigFromApi({
           success: true,
-          puzzles_collected: 3,
-          appearing_puzzle_nr: 4,
+          puzzles_collected: 0,
+          appearing_puzzle_nr: 1,
         });
         this.loadWidget();
         // const content = await this.send({ go_hunt: 'true' });
