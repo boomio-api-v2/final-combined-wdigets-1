@@ -5,6 +5,20 @@
     font-weight: 600;
     font-family: 'Montserrat';
 }
+.boomio-widget-screen-wrapper {
+    position: fixed;
+    z-index: 10000000000000;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+#boomio-widget-content {
+    pointer-events: auto;
+}
+
 .boomio--animation__wrapper--qr {
     animation-name: boomio-animate-qr;
     animation-duration: 300ms;
@@ -517,10 +531,10 @@ h4.boomio--animation__heading {
 }
 
 
-div:empty {
+#boomio-widget-content div:empty {
     display: block !important;
 }
-iframe:empty {
+#boomio-widget-content iframe:empty {
     display: block !important;
 }
 [draggable=true] {

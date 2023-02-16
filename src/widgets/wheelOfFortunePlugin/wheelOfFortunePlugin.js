@@ -5,7 +5,7 @@ import {
   QrCodeModal,
   AnimationService,
 } from '@/services';
-import { getRandomArbitrary } from '@/utlis';
+import { getBoomioWidgetContainer, getRandomArbitrary } from '@/utlis';
 import { defaultList } from './constants';
 import './styles.css';
 
@@ -130,7 +130,7 @@ class WheelOfFortunePlugin {
                 <canvas id="wheel" width="250" height="250"></canvas>
                 <div id="spin">SPIN asd asd asd as dasd as dasd asd asd as d</div>
           `;
-    document.body.appendChild(wheel);
+    getBoomioWidgetContainer().appendChild(wheel);
   };
 
   startAnimation = () => {

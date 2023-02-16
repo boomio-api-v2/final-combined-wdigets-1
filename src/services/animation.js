@@ -1,10 +1,16 @@
 import { localStorageService } from '@/services';
-import { getRandomArbitrary, addStylesToHtml, assignStyleOnElement } from '@/utlis';
+import {
+  getRandomArbitrary,
+  addStylesToHtml,
+  assignStyleOnElement,
+  getBoomioWidgetContainer,
+} from '@/utlis';
+
 const defaultProps = {
   posx: 0,
   posy: 0,
   size: 100,
-  parent: document.body,
+  parent: getBoomioWidgetContainer(),
   styles: {},
 };
 
@@ -15,10 +21,11 @@ export default class AnimationService {
     posx,
     posy,
     size = 100,
-    parent = document.body,
+    parent = getBoomioWidgetContainer(),
     elem = document.createElement('div'),
     styles = {},
   } = defaultProps) {
+    console.log(parent);
     const { animation } = localStorageService.config;
 
     const { clientWidth, clientHeight } = document.documentElement;
