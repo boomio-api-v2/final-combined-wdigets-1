@@ -100,6 +100,9 @@ class IceWidget {
     hammer.src = hammerImage;
     this.widget.appendChild(hammer);
     this.hammer = hammer;
+    hammer.addEventListener('load', () => {
+      this.createCoupon();
+    });
   };
 
   onIcePieceLoaded = () => {
@@ -162,8 +165,9 @@ class IceWidget {
     new DragElement(widget);
 
     this.widget = widget;
-    this.createCoupon();
-    this.createHammer();
+    iceBlock.addEventListener('load', () => {
+      this.createHammer();
+    });
   };
 }
 
