@@ -50,8 +50,8 @@ export const puzzlesCoordinateForDesktop = [
   {
     top: 65,
     left: 90,
-    width: '90.84px',
-    height: '112.33px',
+    width: '89.84px',
+    height: '111.33px',
   },
 ];
 
