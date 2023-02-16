@@ -63,7 +63,7 @@ class LocalStorageService {
     const w_button_text = config?.w_button_text ?? 'Go!';
     const w_hint_static_text = config?.w_hint_static_text ?? 'Hint for another piece';
     const w_hint_text = config?.w_hint_text ?? 'Adidas Stan Smith J FX7519';
-    const w_top_text = config?.w_top_text ?? 'YOU’RE ALMOST THERE!<br> FIND THE LAST PIECE!';
+    const w_top_text = config?.w_top_text ?? 'CONGRATULATIONS!ENJOY YOUR A REWARD!';
     /// ////////////////////////
 
     const p_bottom_text_start_pc =

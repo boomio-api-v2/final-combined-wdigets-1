@@ -1,5 +1,5 @@
 import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
-import { AnimationService, boomioService, DragElement, localStorageService } from '@/services';
+import { boomioService, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
 import { assignStyleOnElement, getBoomioWidgetContainer } from '@/utlis';
 import { closeImage, dotImage } from '@/сonstants/icons';
@@ -13,7 +13,7 @@ const disLikeBtnImage =
 
 export default class QrCodeModal {
   constructor() {
-    isMobileDevice ? this.showQRMobile() : this.showQRDesktop();
+    this.showQRCode();
   }
 
   closeAnimation = (callback) => () => {
@@ -132,46 +132,47 @@ export default class QrCodeModal {
       </div>`;
   };
 
-  showQRDesktop = () => {
-    const { qrcode, p_top_text, p_bottom_text_end_pc, p_bottom_text_start_pc } =
-      localStorageService.config;
-    const modal = document.createElement('div');
-    modal.setAttribute('id', 'desktop-qr-modal');
-    modal.innerHTML = `
-    <div class="close-modal-btn-wrapper">
-      <img src="${closeImage}" id="close-modal-btn" class="close-modal-btn"/>
-    </div>
-    <div class="coupon__preview__card__header text-center d-block">
-        <h1>${p_top_text} </h1>
-    </div>
-    ${this.getCouponHtml()}
-    <p>${p_bottom_text_start_pc} <span>${p_bottom_text_end_pc}</span></p>
-      <div id='qrcodeShow'>
-        <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
-      </div>
-    `;
+  // showQRDesktop = () => {
+  //   const { qrcode, p_top_text, p_bottom_text_end_pc, p_bottom_text_start_pc } =
+  //     localStorageService.config;
+  //   const modal = document.createElement('div');
+  //   modal.setAttribute('id', 'desktop-qr-modal');
+  //   modal.innerHTML = `
+  //   <div class="close-modal-btn-wrapper">
+  //     <img src="${closeImage}" id="close-modal-btn" class="close-modal-btn"/>
+  //   </div>
+  //   <div class="coupon__preview__card__header text-center d-block">
+  //       <h1>${p_top_text} </h1>
+  //   </div>
+  //   ${this.getCouponHtml()}
+  //   <p>${p_bottom_text_start_pc} <span>${p_bottom_text_end_pc}</span></p>
+  //     <div id='qrcodeShow'>
+  //       <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
+  //     </div>
+  //   `;
+  //
+  //   const animationEl = new AnimationService({
+  //     elem: modal,
+  //     posx: 300,
+  //     posy: 200,
+  //   }).animationEl;
+  //
+  //   new DragElement(animationEl);
+  //   new QRCode('qrcodeShowHtml', {
+  //     text: qrcode,
+  //     width: 100,
+  //     height: 100,
+  //     colorDark: '#000000',
+  //     colorLight: '#ffffff',
+  //     correctLevel: QRCode.CorrectLevel.H,
+  //   });
+  //   document.getElementById('close-modal-btn').onclick = () => {
+  //     modal.remove();
+  //     this.showSavingOrExitModal();
+  //   };
+  // };
 
-    const animationEl = new AnimationService({
-      elem: modal,
-      posx: 300,
-      posy: 200,
-    }).animationEl;
-
-    new DragElement(animationEl);
-    new QRCode('qrcodeShowHtml', {
-      text: qrcode,
-      width: 100,
-      height: 100,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H,
-    });
-    document.getElementById('close-modal-btn').onclick = () => {
-      modal.remove();
-    };
-  };
-
-  showQRMobile = () => {
+  showQRCode = () => {
     this.createModalWindow(272, 442);
     boomioService.signal('PUZZLE_CODE_REVEALED');
     const { qrcode } = localStorageService.config;

@@ -173,7 +173,7 @@ export class Puzzle {
     /// /////Add text top/////////
     const topText = document.createElement('div');
     topText.classList.add('topText');
-    topText.innerHTML = isLastPuzzle ? 'CONGRATULATIONS!ENJOY YOUR A REWARD' : w_top_text;
+    topText.innerHTML = w_top_text;
     this.modal.appendChild(topText);
     /// ///////////////
 
@@ -229,7 +229,7 @@ export class Puzzle {
       });
     }
     if (puzzles_collected < 4) return;
-
+    this.showWinningAnimation();
     setTimeout(() => {
       this.closeModal();
       new QrCodeModal();
