@@ -265,8 +265,8 @@ export default class QrCodeModal {
                         ? `<p>${p_button_text}</p>`
                         : `
                       <div class="text-wrapper">                   
-                        <p style="font-size: 10px">${p_button_text_line1}</p>
-                        <p style="font-size: 14px">${p_button_text_line2}</p>
+                        <p style="font-size: 10px; line-height: initial;">${p_button_text_line1}</p>
+                        <p style="font-size: 14px; line-height: initial;">${p_button_text_line2}</p>
                       </div>
                     `
                     }
