@@ -63,7 +63,10 @@ class LocalStorageService {
     const w_button_text = config?.w_button_text ?? 'Go!';
     const w_hint_static_text = config?.w_hint_static_text ?? 'Hint for another piece';
     const w_hint_text = config?.w_hint_text ?? 'Adidas Stan Smith J FX7519';
-    const w_top_text = config?.w_top_text ?? 'CONGRATULATIONS!ENJOY YOUR A REWARD!';
+    const w_top_text =
+      config?.w_top_text ?? appearing_puzzle_nr === 4
+        ? 'CONGRATULATIONS!ENJOY YOUR A REWARD!'
+        : 'COLLECT ALL PIECES AND WIN A GIFT!';
     /// ////////////////////////
 
     const p_bottom_text_start_pc =
