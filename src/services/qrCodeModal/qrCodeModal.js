@@ -146,7 +146,7 @@ export default class QrCodeModal {
         <h1>${p_top_text} </h1>
     </div>
     ${this.getCouponHtml()}
-    <p>${p_bottom_text_start_pc} <span>${p_bottom_text_end_pc}</span></p>
+    <p style="color: black">${p_bottom_text_start_pc} <span>${p_bottom_text_end_pc}</span></p>
       <div id='qrcodeShow'>
         <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
       </div>
