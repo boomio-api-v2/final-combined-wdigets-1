@@ -191,8 +191,8 @@ export default class QrCodeModal {
 
     new QRCode('qrcodeShowHtml', {
       text: qrcode,
-      width: 146,
-      height: 146,
+      width: 150,
+      height: 150,
       colorDark: '#000000',
       colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.H,
@@ -258,12 +258,9 @@ export default class QrCodeModal {
                 </div>
                 ${this.getCouponHtml()}
             </div>
-                <p class="coupon-text">${
-                  p_bottom_text ??
-                  `
+                <p class="coupon-text">  
                   ${p_bottom_text_start_m}<span>${p_bottom_text_end_m}</span>
-                `
-                }</p>
+                </p>
                             <div class="coupon_preview_card_footer">
     
                 <a href=${app_url}>
