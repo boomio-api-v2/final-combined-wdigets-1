@@ -229,8 +229,15 @@ export default class QrCodeModal {
   };
 
   qrCodeInnerHtml = () => {
-    const { p_top_text, p_button_text, app_url, p_bottom_text_start_m, p_bottom_text_end_m } =
-      localStorageService.config;
+    const {
+      p_top_text,
+      p_button_text,
+      app_url,
+      p_bottom_text_start_m,
+      p_bottom_text_end_m,
+      p_button_text_line1,
+      p_button_text_line2,
+    } = localStorageService.config;
     return `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
     
         <div class="coupon__preview__body coupon_discount_modal">
@@ -258,8 +265,8 @@ export default class QrCodeModal {
                         ? `<p>${p_button_text}</p>`
                         : `
                       <div class="text-wrapper">                   
-                        <p style="font-size: 10px">Open</p>
-                        <p style="font-size: 14px">Boomio app</p>
+                        <p style="font-size: 10px">${p_button_text_line1}</p>
+                        <p style="font-size: 14px">${p_button_text_line2}</p>
                       </div>
                     `
                     }

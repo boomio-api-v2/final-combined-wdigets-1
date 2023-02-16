@@ -86,6 +86,10 @@ class LocalStorageService {
 
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '20%';
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
+
+    const p_button_text_line1 = config?.p_coupon_text_line1 ?? 'Open';
+    const p_button_text_line2 = config?.p_coupon_text_line1 ?? 'Boomio app';
+
     return {
       success,
       qrcode,
@@ -112,6 +116,8 @@ class LocalStorageService {
       p_bottom_text_end_m,
       p_coupon_text_line1,
       p_coupon_text_line2,
+      p_button_text_line1,
+      p_button_text_line2,
     };
   }
 }

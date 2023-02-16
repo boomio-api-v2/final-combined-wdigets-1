@@ -315,9 +315,9 @@ export class Puzzle {
   };
 
   addCloseIconToElement = (element) => {
-    const closeBtn = document.createElement('img');
+    const closeBtn = document.createElement('div');
     closeBtn.classList.add('custom-close-icon');
-    closeBtn.src = closeImage;
+    closeBtn.innerHTML = '&#x2715; ';
     closeBtn.addEventListener(
       'click',
       (e) => {
