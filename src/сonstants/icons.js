@@ -9,7 +9,8 @@ export const discountIcon =
 export const gameIcon =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/game.png?raw=true';
 
-export const frameSvg = '/images/puzzle/frame.png';
+export const frameSvg =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/puzzle/frame.png?raw=true';
 
 export const dotImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/0753f565c8eeb594222696c37839677a8738f41d/images/dotImage.svg';
