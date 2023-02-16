@@ -76,6 +76,7 @@ class BoomioService {
   setInitialConfiguration() {
     try {
       window.onload = async () => {
+        this.createWidgetContainer();
         const content = await this.send({ go_hunt: 'true' });
         localStorageService.setConfigFromApi(content);
         if (content?.widget_type && content.instruction !== 'stop') {
