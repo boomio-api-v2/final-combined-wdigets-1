@@ -1,7 +1,7 @@
 import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
 import { AnimationService, boomioService, DragElement, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
-import { assignStyleOnElement } from '@/utlis';
+import { assignStyleOnElement, getBoomioWidgetContainer } from '@/utlis';
 import { closeImage, dotImage } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
@@ -228,7 +228,7 @@ export default class QrCodeModal {
       transform: 'scale(1)',
     });
     modalBackground.appendChild(modal);
-    document.body.appendChild(modalBackground);
+    getBoomioWidgetContainer().appendChild(modalBackground);
     this.modal = modal;
     this.modalBackground = modalBackground;
     /// /////////////////////////

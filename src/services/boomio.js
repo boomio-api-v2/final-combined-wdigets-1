@@ -16,6 +16,15 @@ class BoomioService {
     this.setInitialConfiguration();
   }
 
+  createWidgetContainer = () => {
+    const widgetScreenWrapper = document.createElement('div');
+    widgetScreenWrapper.classList.add('boomio-widget-screen-wrapper');
+    const widgetContent = document.createElement('div');
+    widgetContent.setAttribute('id', 'boomio-widget-content');
+    widgetScreenWrapper.appendChild(widgetContent);
+    document.body.appendChild(widgetScreenWrapper);
+  };
+
   session() {
     let session = this.getCookie('boomio_session');
     if (!session) {
@@ -67,17 +76,20 @@ class BoomioService {
   setInitialConfiguration() {
     try {
       window.onload = async () => {
-        const content = await this.send({ go_hunt: 'true' });
-        localStorageService.setConfigFromApi(content);
-        if (content?.widget_type && content.instruction !== 'stop') {
-          this.loadWidget(content.widget_type);
-        }
-        // localStorageService.setConfigFromApi({
-        //   success: true,
-        //   puzzles_collected: 3,
-        //   appearing_puzzle_nr: 4,
-        // });
-        // this.loadWidget('ice');
+        this.createWidgetContainer();
+
+        // const content = await this.send({ go_hunt: 'true' });
+        // localStorageService.setConfigFromApi(content);
+        // if (content?.widget_type && content.instruction !== 'stop') {
+        //   this.loadWidget(content.widget_type);
+        // }
+        localStorageService.setConfigFromApi({
+          success: true,
+          puzzles_collected: 3,
+          appearing_puzzle_nr: 4,
+          img: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg',
+        });
+        this.loadWidget('stone');
       };
     } catch (err) {
       console.log(err);

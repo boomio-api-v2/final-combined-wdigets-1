@@ -7,7 +7,7 @@ import {
 } from '@/services';
 import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
-import { getRandomArbitrary, assignStyleOnElement } from '@/utlis';
+import { getRandomArbitrary, assignStyleOnElement, getBoomioWidgetContainer } from '@/utlis';
 import {
   puzzlesCoordinateForDesktop,
   puzzlesCoordinateForMobile,
@@ -19,6 +19,8 @@ import {
 /// /////Puzzle Class ////////////
 export class Puzzle {
   constructor() {
+    this.mainContainer = getBoomioWidgetContainer();
+
     this.animationEl = null;
     this.isPrewiewDisplayed = false;
     this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
@@ -72,7 +74,7 @@ export class Puzzle {
       top: `${top}px`,
     });
 
-    document.body.appendChild(puzzleWidget);
+    this.mainContainer.appendChild(puzzleWidget);
     this.puzzleWidget = puzzleWidget;
     if (localStorageService.config.puzzles_collected > 0) {
       this.addCloseIconToElement(puzzleWidget);
@@ -115,7 +117,7 @@ export class Puzzle {
       transform: 'scale(1)',
     });
     modalBackground.appendChild(modal);
-    document.body.appendChild(modalBackground);
+    this.mainContainer.appendChild(modalBackground);
     this.modal = modal;
     this.modalBackground = modalBackground;
     /// /////////////////////////
@@ -238,7 +240,7 @@ export class Puzzle {
     const winningAnimation = document.createElement('iframe');
     winningAnimation.classList.add('winningAnimation');
     winningAnimation.setAttribute('src', 'https://embed.lottiefiles.com/animation/35875');
-    document.body.appendChild(winningAnimation);
+    this.mainContainer.appendChild(winningAnimation);
     setTimeout(() => {
       winningAnimation.remove();
     }, 3000);
@@ -252,7 +254,8 @@ export class Puzzle {
   };
 
   startAnimation = (...args) => {
-    const [coordinates, styles = {}, parent = document.body, isClickable = true] = args;
+    const [coordinates, styles = {}, parent = getBoomioWidgetContainer(), isClickable = true] =
+      args;
     const { qrcode, puzzles_collected } = localStorageService.config;
     const defaultCoordinates = this.coordinates[puzzles_collected];
 
