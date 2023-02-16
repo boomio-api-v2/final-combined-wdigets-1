@@ -128,15 +128,20 @@ class IceWidget {
 
   createCoupon = () => {
     const { p_code_text, p_coupon_text_line1, p_coupon_text_line2 } = localStorageService.config;
+
     const coupon = document.createElement('div');
-    coupon.style.backgroundImage = `url(${couponImage})`;
-    coupon.classList.add('coupon');
+    coupon.classList.add('coupon-shadow-wrapper');
+    // coupon.style.backgroundImage = `url(${couponImage})`;
+    // coupon.classList.add('coupon');
     this.widget.appendChild(coupon);
     coupon.innerHTML = `
-      <div class="coupon_info">
-          <h3>${p_coupon_text_line1} <br> <p class="discount">${p_coupon_text_line2}</p></h3>
-          <p style="text-align: center; margin-top: 8px">${p_code_text} </p>
-      </div>`;
+        <div class="coupon" style="background-image: url(${couponImage})">
+          <div class="coupon_info">
+            <h3>${p_coupon_text_line1} <br> <p class="discount">${p_coupon_text_line2}</p></h3>
+            <p style="text-align: center; margin-top: 8px">${p_code_text} </p>
+          </div>
+        </div>
+      `;
   };
 
   start = () => {

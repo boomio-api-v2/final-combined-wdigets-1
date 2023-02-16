@@ -1,10 +1,10 @@
 export const icePieceImages = [
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step7.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step6.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step5.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step4.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step3.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/step2.png?raw=true',
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step7.png?raw=true',
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step6.png?raw=true',
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step5.png?raw=true',
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step4.png?raw=true',
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step3.png?raw=true',
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step2.png?raw=true',
 ];
 
 export const icePieceShadowImages = [
@@ -16,11 +16,10 @@ export const icePieceShadowImages = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step7.png?raw=true',
 ];
 
-export const couponImage =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/49e5ff5858c39d8f55fb75b28bef95678f080535/images/coupon.svg';
+export const couponImage = '/images/iceWidget/coupon.png';
 
 export const hammerImage =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/ice_widget/images/iceWidget/hammer.png?raw=true';
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';
 
 export const iceBlockImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/ice-block.png?raw=true';
