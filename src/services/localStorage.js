@@ -88,7 +88,7 @@ class LocalStorageService {
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
 
     const p_button_text_line1 = config?.p_coupon_text_line1 ?? 'Open';
-    const p_button_text_line2 = config?.p_coupon_text_line1 ?? 'Boomio app';
+    const p_button_text_line2 = config?.p_coupon_text_line1 ?? 'boomio app';
 
     return {
       success,

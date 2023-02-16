@@ -260,16 +260,10 @@ export default class QrCodeModal {
                 <a href=${app_url}>
                 <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
                     <img src="${dotImage}" alt="img not find">               
-                    ${
-                      p_button_text
-                        ? `<p>${p_button_text}</p>`
-                        : `
                       <div class="text-wrapper">                   
                         <p style="font-size: 10px; line-height: initial;">${p_button_text_line1}</p>
                         <p style="font-size: 14px; line-height: initial;">${p_button_text_line2}</p>
                       </div>
-                    `
-                    }
                 </div>
                 </a>
         
