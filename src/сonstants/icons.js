@@ -16,10 +16,10 @@ export const dotImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/0753f565c8eeb594222696c37839677a8738f41d/images/dotImage.svg';
 
 export const puzzleIconsList = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-1.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-2.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-3.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/a2af819a6a3f005406f98a86cb82061c855fd065/images/puzzle/puzzle-4.svg',
+  '/images/puzzle/gift-puzzle-1.svg',
+  '/images/puzzle/gift-puzzle-2.svg',
+  '/images/puzzle/gift-puzzle-3.svg',
+  '/images/puzzle/gift-puzzle-4.svg',
 ];
 
 export const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';

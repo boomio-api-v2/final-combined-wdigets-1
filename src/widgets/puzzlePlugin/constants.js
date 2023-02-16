@@ -36,16 +36,16 @@ export const puzzlesCoordinateForDesktop = [
   },
 
   {
-    top: -1,
+    top: 0,
     left: 69,
-    width: '112.3px',
-    height: '89.86px',
+    width: '111.3px',
+    height: '88.86px',
   },
   {
     top: 87,
     left: 3,
-    width: '111.3px',
-    height: '90.86px',
+    width: '110.3px',
+    height: '89.86px',
   },
   {
     top: 65,
