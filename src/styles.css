@@ -510,9 +510,14 @@ h4.boomio--animation__heading {
     top: -16px;
     color: #000;
     cursor: pointer;
-    background-color: lightgray;
-    border-radius: 20px;
+    background-color: white;
+    border: 1px solid #E8E7EB;
+    border-radius: 4px;
     opacity: 0.45;
+    width: 16px;
+    height: 16px;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 @media only screen and (max-device-width: 640px) {
@@ -550,6 +555,7 @@ h4.boomio--animation__heading {
     width: 100%;
 }
 #goModalButton {
+    font-size: 16px;
     background: linear-gradient(39.06deg, #8559F3 8.58%, #657BEA 17.79%, #34B0DC 46.68%, #15D1D3 72.63%, #09DDD0 88.95%);
     border-radius: 32px;
     width: 116px;
@@ -601,9 +607,10 @@ h4.boomio--animation__heading {
 .exist-or-saving-modal-title {
     text-align: center;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
     color: black;
+    letter-spacing: -0.03em;
 }
 
 .boomie-preview-mobile {

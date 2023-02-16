@@ -77,11 +77,17 @@ class BoomioService {
     try {
       window.onload = async () => {
         this.createWidgetContainer();
-        const content = await this.send({ go_hunt: 'true' });
-        localStorageService.setConfigFromApi(content);
-        if (content?.widget_type && content.instruction !== 'stop') {
-          this.loadWidget(content.widget_type);
-        }
+        localStorageService.setConfigFromApi({
+          success: true,
+          puzzles_collected: 1,
+          appearing_puzzle_nr: 2,
+        });
+        this.loadWidget();
+        // const content = await this.send({ go_hunt: 'true' });
+        // localStorageService.setConfigFromApi(content);
+        // if (content?.widget_type && content.instruction !== 'stop') {
+        //   this.loadWidget(content.widget_type);
+        // }
       };
     } catch (err) {
       console.log(err);
