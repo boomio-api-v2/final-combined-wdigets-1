@@ -94,8 +94,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /*box-shadow: 8px 8px 80px 0px #0400D966;*/
-    /*box-shadow: -8px -8px 80px 0px #E8610066;*/
     -webkit-box-shadow: 8px 8px 80px 0px #0400D966;
     -moz-box-shadow:  8px 8px 80px 0px #0400D966;
     box-shadow: 8px 8px 80px 0px #0400D966;
