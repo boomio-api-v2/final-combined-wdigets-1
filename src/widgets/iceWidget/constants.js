@@ -16,7 +16,7 @@ export const icePieceShadowImages = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step7.png?raw=true',
 ];
 
-export const hammerImage =
+export const iceHammerImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';
 
 export const iceBlockImage =
