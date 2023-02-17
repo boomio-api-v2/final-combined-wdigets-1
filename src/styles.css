@@ -638,22 +638,13 @@ h4.boomio--animation__heading {
 }
 
 
-
-
-
-
 .coupon_discount_modal .coupon__preview__card__header {
     padding: 0;
     text-align: center;
 }
 
 
-/*.coupon_discount_modal .coupon__preview__card {*/
-/*    height: auto;*/
-/*}*/
-
  .coupon_info {
-    /*padding: 32px;*/
      height: 100%;
     display: flex;
     flex-direction: column;

@@ -13,8 +13,12 @@ const disLikeBtnImage =
 
 export default class QrCodeModal {
   constructor() {
-    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
+    this.showQrCode();
   }
+
+  showQrCode = () => {
+    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
+  };
 
   closeAnimation = (callback) => () => {
     assignStyleOnElement(this.modal.style, {
@@ -78,7 +82,7 @@ export default class QrCodeModal {
     saveBtn.onclick = () => {
       boomioService.signal('exit_yes');
       this.closeModal();
-      isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
+      this.showQrCode();
     };
     saveBtn.classList.add('save');
     saveBtn.innerHTML = 'Save';
@@ -124,7 +128,6 @@ export default class QrCodeModal {
             <div class="coupon_info">
                 <h3>${p_coupon_text_line1}</h3>
                 <h4>${p_coupon_text_line2}</h1>
-           
               <p >${p_code_text} </p>
             </div>
           </div>
