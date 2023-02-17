@@ -3,7 +3,7 @@ import { assignStyleOnElement } from '@/utlis';
 import {
   icePieceCount,
   icePieceImages,
-  hammerImage,
+  iceHammerImage,
   iceBlockImage,
   icePieceShadowImages,
   shadowTopCoordinatesForDesktop,
@@ -96,7 +96,7 @@ class IceWidget {
   createHammer = () => {
     const hammer = document.createElement('img');
     hammer.classList.add('hammer');
-    hammer.src = hammerImage;
+    hammer.src = iceHammerImage;
     this.widget.appendChild(hammer);
     this.hammer = hammer;
     hammer.addEventListener('load', () => {

@@ -98,7 +98,7 @@
 
     #ice-widget .coupon_info p {
         font-size: 6px;
-        margin-top: 8px;
+        margin-top: 4px;
     }
 
     #ice-widget .coupon__preview__card::before, #ice-widget .coupon__preview__card::after{
