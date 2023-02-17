@@ -60,26 +60,16 @@
     align-items: center;
 }
 
-#ice-widget .coupon_info h3 p {
-    font-size: 24px;
-}
 
 @media (max-width: 600px) {
     #ice-widget .coupon-grey-shadow-wrapper {
         height: 72px;
-        width: 90px;
+        width: 92px;
 
     }
     #ice-widget .coupon-grey {
         height: 72px;
-        width: 90px;
-    }
-    /*#ice-widget {*/
-    /*    padding: 8px 4px 0 4px;*/
-    /*}*/
-
-    #ice-widget .coupon_info h3 p {
-        font-size: 10px;
+        width: 92px;
     }
 
     #ice-widget, #ice-widget .piece-of-ice,  #ice-widget .ice-block {
@@ -108,7 +98,7 @@
 
     #ice-widget .coupon_info p {
         font-size: 5px;
-        margin-top: 0px;
+        margin-top: 4px;
     }
 
     #ice-widget .coupon__preview__card::before, #ice-widget .coupon__preview__card::after{
