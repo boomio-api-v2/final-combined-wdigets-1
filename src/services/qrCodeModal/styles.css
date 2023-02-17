@@ -84,8 +84,29 @@
 }
 
 .desktop-qr-modal p {
-    font-weight: 400;
-    font-size: 14px;
+    /*font-weight: 400;*/
+    /*font-size: 14px;*/
     line-height: 18px;
     text-align: center;
+}
+
+.coupon-grey-shadow-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*box-shadow: 8px 8px 80px 0px #0400D966;*/
+    /*box-shadow: -8px -8px 80px 0px #E8610066;*/
+    -webkit-box-shadow: 8px 8px 80px 0px #0400D966;
+    -moz-box-shadow:  8px 8px 80px 0px #0400D966;
+    box-shadow: 8px 8px 80px 0px #0400D966;
+    height: 141.25px;
+    width: 180px;
+}
+
+.coupon-grey {
+    height: 141.25px;
+    width: 180px;
+    background-size: contain;
+    transform: scale(1.1);
+    text-shadow: -5px -4px 4px rgba(0,0,0,0.14);
 }

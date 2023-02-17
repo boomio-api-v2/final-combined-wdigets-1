@@ -37,3 +37,6 @@ export const cloudImage = 'https://github.com/kbnvch/boomio/blob/main/expl5.png?
 
 export const closeImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/273ccfb7bc0752badbdc88389a5b5b47e183a03e/images/close.svg';
+
+export const oldCouponImage =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/coupon.png?raw=true';

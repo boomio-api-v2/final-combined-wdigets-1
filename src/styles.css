@@ -240,22 +240,6 @@
     text-align: left;
 }
 
-/* .coupon_info h3:first-child {*/
-/*    font-size: 30px;*/
-/*    text-align: center;*/
-/*    background: -webkit-linear-gradient(#FF3183, #8559F3);*/
-/*    -webkit-background-clip: text;*/
-/*    -webkit-text-fill-color: transparent;*/
-/*    font-weight: 600;*/
-/*    line-height: 37px;*/
-/*}*/
-
- .coupon_info p {
-    padding: 0;
-    font-size: 13px;
-    font-weight: 600;
-    margin: 0;
-}
 
 .coupon__preview__card__after {
     position: absolute;
@@ -464,7 +448,8 @@ h4.boomio--animation__heading {
     font-size: 12px;
     font-weight: 600;
     color: black;
-    margin: 0;
+    margin-top: 8px;
+    text-align: center;
     font-family: Montserrat;
 }
 

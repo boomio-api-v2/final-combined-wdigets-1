@@ -2,7 +2,7 @@ import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode
 import { boomioService, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
 import { assignStyleOnElement, getBoomioWidgetContainer } from '@/utlis';
-import { closeImage, dotImage } from '@/сonstants/icons';
+import { closeImage, dotImage, oldCouponImage } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 
@@ -116,8 +116,28 @@ export default class QrCodeModal {
     this.closeModal();
   };
 
-  getCouponHtml = () => {
+  static getGreyCoupon = () => {
     const { p_code_text, p_coupon_text_line1, p_coupon_text_line2 } = localStorageService.config;
+    return `
+        <div class="coupon-grey-shadow-wrapper" id="coupon_div">
+          <div class="coupon-grey" style="background-image: url(${oldCouponImage})">
+            <div class="coupon_info">
+                <h3>${p_coupon_text_line1}</h3>
+                <h4>${p_coupon_text_line2}</h1>
+           
+              <p >${p_code_text} </p>
+            </div>
+          </div>
+        </div>
+        `;
+  };
+
+  getCouponHtml = () => {
+    const { p_code_text, p_coupon_text_line1, p_coupon_text_line2, widget_type } =
+      localStorageService.config;
+    if (widget_type === 'ice') {
+      return QrCodeModal.getGreyCoupon();
+    }
     return `
        <div class="coupon__preview__card coupon_div" id="coupon_div" >
           <div class="coupon_info">
@@ -146,7 +166,7 @@ export default class QrCodeModal {
         <h1>${p_top_text} </h1>
     </div>
     ${this.getCouponHtml()}
-    <p style="color: black">${p_bottom_text_start_pc} <span>${p_bottom_text_end_pc}</span></p>
+    <p style="color: black; font-weight: 400; font-size: 14px;">${p_bottom_text_start_pc} <span>${p_bottom_text_end_pc}</span></p>
       <div id='qrcodeShow'>
         <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
       </div>
@@ -231,7 +251,6 @@ export default class QrCodeModal {
   qrCodeInnerHtml = () => {
     const {
       p_top_text,
-      p_button_text,
       app_url,
       p_bottom_text_start_m,
       p_bottom_text_end_m,
