@@ -66,13 +66,13 @@
 
 @media (max-width: 600px) {
     #ice-widget .coupon-grey-shadow-wrapper {
-        height: 68px;
-        width: 86px;
+        height: 72px;
+        width: 90px;
 
     }
     #ice-widget .coupon-grey {
-        height: 68px;
-        width: 86px;
+        height: 72px;
+        width: 90px;
     }
     /*#ice-widget {*/
     /*    padding: 8px 4px 0 4px;*/
@@ -83,14 +83,14 @@
     }
 
     #ice-widget, #ice-widget .piece-of-ice,  #ice-widget .ice-block {
-        width: 123px;
-        height: 106px;
+        width: 127px;
+        height: 110px;
     }
 
 
     #ice-widget .hammer {
-        height: 95px;
-        width: 75px;
+        height: 90px;
+        width: 70px;
         right: -70px;
         top: -30px;
     }
