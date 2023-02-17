@@ -78,7 +78,7 @@ export default class QrCodeModal {
     saveBtn.onclick = () => {
       boomioService.signal('exit_yes');
       this.closeModal();
-      this.showQR();
+      isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
     };
     saveBtn.classList.add('save');
     saveBtn.innerHTML = 'Save';
