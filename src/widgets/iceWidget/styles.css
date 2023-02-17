@@ -66,32 +66,32 @@
 
 @media (max-width: 600px) {
     #ice-widget .coupon-grey-shadow-wrapper {
-        height: 59px;
-        width: 75px;
+        height: 68px;
+        width: 86px;
 
     }
     #ice-widget .coupon-grey {
-        height: 59px;
-        width: 75px;
+        height: 68px;
+        width: 86px;
     }
-    #ice-widget {
-        padding: 8px 4px 0 4px;
-    }
+    /*#ice-widget {*/
+    /*    padding: 8px 4px 0 4px;*/
+    /*}*/
 
     #ice-widget .coupon_info h3 p {
         font-size: 10px;
     }
 
     #ice-widget, #ice-widget .piece-of-ice,  #ice-widget .ice-block {
-        width: 103px;
-        height: 86px;
+        width: 123px;
+        height: 106px;
     }
 
 
     #ice-widget .hammer {
-        height: 60px;
-        width: 50px;
-        right: -40px;
+        height: 95px;
+        width: 75px;
+        right: -70px;
         top: -30px;
     }
 
