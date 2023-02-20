@@ -2,7 +2,7 @@ import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode
 import { boomioService, localStorageService } from '@/services';
 import { isMobileDevice } from '@/config';
 import { assignStyleOnElement, getBoomioWidgetContainer } from '@/utlis';
-import { closeImage, dotImage, oldCouponImage } from '@/сonstants/icons';
+import { closeImage, dotImage, oldCouponImage, winningAnimationGif } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 
@@ -13,8 +13,22 @@ const disLikeBtnImage =
 
 export default class QrCodeModal {
   constructor() {
+    this.mainContainer = getBoomioWidgetContainer();
     this.showQrCode();
+    this.showWinningAnimation();
   }
+
+  showWinningAnimation = () => {
+    const winningAnimation = document.createElement('iframe');
+    winningAnimation.classList.add('winningAnimation');
+    winningAnimation.setAttribute('src', winningAnimationGif);
+    this.mainContainer.appendChild(winningAnimation);
+    winningAnimation.addEventListener('load', () => {
+      setTimeout(() => {
+        winningAnimation.remove();
+      }, 3000);
+    });
+  };
 
   showQrCode = () => {
     isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
@@ -244,7 +258,7 @@ export default class QrCodeModal {
       transform: 'scale(1)',
     });
     modalBackground.appendChild(modal);
-    getBoomioWidgetContainer().appendChild(modalBackground);
+    this.mainContainer.appendChild(modalBackground);
     this.modal = modal;
     this.modalBackground = modalBackground;
     /// /////////////////////////

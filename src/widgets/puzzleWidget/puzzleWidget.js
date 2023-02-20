@@ -5,7 +5,7 @@ import {
   AnimationService,
   QrCodeModal,
 } from '@/services';
-import { closeImage, frameSvg, puzzleIconsList, winningAnimationGif } from '@/сonstants/icons';
+import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
 import { getRandomArbitrary, assignStyleOnElement, getBoomioWidgetContainer } from '@/utlis';
 import {
@@ -228,7 +228,6 @@ export class Puzzle {
         puzzles_collected: (puzzles_collected += 1),
       });
     }
-    this.showWinningAnimation();
 
     if (puzzles_collected < 4) return;
     setTimeout(() => {
@@ -236,18 +235,6 @@ export class Puzzle {
       boomioService.signal('PUZZLE_CODE_REVEALED');
       new QrCodeModal();
     }, 2000);
-  };
-
-  showWinningAnimation = () => {
-    const winningAnimation = document.createElement('iframe');
-    winningAnimation.classList.add('winningAnimation');
-    winningAnimation.setAttribute('src', winningAnimationGif);
-    this.mainContainer.appendChild(winningAnimation);
-    winningAnimation.addEventListener('load', () => {
-      setTimeout(() => {
-        winningAnimation.remove();
-      }, 3000);
-    });
   };
 
   onPuzzleClick = (e) => {
