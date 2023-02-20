@@ -88,8 +88,8 @@ class PenguinWidget {
     this.widget.onmousemove = ({ clientX, clientY }) => {
       const { x_position, y_position } = this.draggeble;
       assignStyleOnElement(hammer.style, {
-        left: `${clientX - x_position + 20}px`,
-        top: `${clientY - y_position - 60}px`,
+        left: `${clientX - x_position + (isMobileDevice ? 5 : 20)}px`,
+        top: `${clientY - y_position - (isMobileDevice ? 30 : 60)}px`,
       });
     };
     this.hammer = hammer;
