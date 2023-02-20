@@ -1,11 +1,13 @@
-import { AnimationService, DragElement } from '@/services';
+import { AnimationService, DragElement, QrCodeModal } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
 import { iceBackgroundImage, penguinParams, iceBlocksParams, iceExplosionImage } from './constants';
 import { hammerImage } from '@/сonstants';
 import './styles.css';
+import { isMobileDevice } from '@/config';
 
 class PenguinWidget {
   constructor() {
+    this.cushedIce = 0;
     this.start();
   }
 
@@ -34,29 +36,40 @@ class PenguinWidget {
   }
 
   onIceBlockClick = (idx) => (e) => {
+    this.cushedIce++;
+
     const elem = e.target;
     if (!elem.classList.contains('ice-block')) return;
     elem.src = iceExplosionImage;
     const { fruitImg, moveX, moveY } = iceBlocksParams[idx];
-
-    setTimeout(() => {
-      elem.src = fruitImg;
-      assignStyleOnElement(elem.style, {
-        width: '40px',
-        height: '40px',
-      });
-
+    elem.addEventListener('load', () => {
       setTimeout(() => {
-        assignStyleOnElement(
-          elem.style,
-          {
-            left: `${moveX}px`,
-            top: `${moveY}px`,
-          },
-          100,
-        );
-      });
-    }, 500);
+        elem.src = fruitImg;
+        elem.addEventListener('load', () => {
+          const size = isMobileDevice ? '23px' : '40px';
+          assignStyleOnElement(elem.style, {
+            width: size,
+            height: size,
+          });
+
+          setTimeout(() => {
+            assignStyleOnElement(
+              elem.style,
+              {
+                left: `${moveX}px`,
+                top: `${moveY}px`,
+              },
+              100,
+            );
+          });
+        });
+      }, 100);
+    });
+    if (this.cushedIce === 4) {
+      setTimeout(() => {
+        new QrCodeModal();
+      }, 1500);
+    }
   };
 
   addHammerToCursor = () => {

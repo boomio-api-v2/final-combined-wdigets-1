@@ -2,11 +2,13 @@
     width: 359px;
     height: 220px;
     border: 1px solid black;
+    overflow: hidden;
 }
 
 #penguin-widget #hammer {
     position: absolute;
     z-index: 10000;
+    height: 60px;
 }
 
 .ice-background {
@@ -18,7 +20,6 @@
 
 .ice-block {
     transition: top 1s, left 1s;
-
 }
 
 
@@ -27,5 +28,8 @@
         width: 209px;
         height: 120px;
         border: 1px solid black;
+    }
+    #penguin-widget #hammer {
+        height: 20px;
     }
 }
