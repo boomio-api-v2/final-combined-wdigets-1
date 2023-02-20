@@ -190,7 +190,6 @@ export default class QrCodeModal {
 
   showQRCodeMobile = () => {
     this.createModalWindow(272, 442);
-    boomioService.signal('PUZZLE_CODE_REVEALED');
     const { qrcode } = localStorageService.config;
     const qrEl = document.createElement('div');
 

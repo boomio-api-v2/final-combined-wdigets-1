@@ -232,6 +232,7 @@ export class Puzzle {
     this.showWinningAnimation();
     setTimeout(() => {
       this.closeModal();
+      boomioService.signal('PUZZLE_CODE_REVEALED');
       new QrCodeModal();
     }, 2000);
   };
