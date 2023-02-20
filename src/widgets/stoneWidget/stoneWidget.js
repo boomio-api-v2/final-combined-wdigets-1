@@ -10,6 +10,7 @@ import {
   openedChestImage,
   cloudImage,
 } from '@/сonstants/icons';
+import { isMobileDevice } from '@/config';
 
 loadImageBeforeUsing([expolosionOneImage, expolosionTwoImage, expolosionThreeImage, cloudImage]);
 
@@ -21,53 +22,53 @@ const blocks = [
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick2.png?raw=true',
-    left: '90px',
+    left: isMobileDevice ? '75px' : '90px',
     bottom: '10px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick3.png?raw=true',
-    left: '150px',
+    left: isMobileDevice ? '120px' : '150px',
     bottom: '10px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick5.png?raw=true',
-    left: '10px',
-    bottom: '80px',
+    left: isMobileDevice ? '10px' : '10px',
+    bottom: isMobileDevice ? '60px' : '80px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick6.png?raw=true',
-    left: '70px',
-    bottom: '80px',
+    left: isMobileDevice ? '55px' : '70px',
+    bottom: isMobileDevice ? '60px' : '80px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick7.png?raw=true',
-    left: '130px',
-    bottom: '80px',
+    left: isMobileDevice ? '100px' : '130px',
+    bottom: isMobileDevice ? '60px' : '80px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick8.png?raw=true',
-    left: '190px',
-    bottom: '80px',
+    left: isMobileDevice ? '140px' : '190px',
+    bottom: isMobileDevice ? '60px' : '80px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick8.png?raw=true',
     left: '10px',
-    bottom: '150px',
+    bottom: isMobileDevice ? '110px' : '150px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick6.png?raw=true',
-    left: '70px',
-    bottom: '150px',
+    left: isMobileDevice ? '55px' : '70px',
+    bottom: isMobileDevice ? '110px' : '150px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick3.png?raw=true',
-    left: '130px',
-    bottom: '150px',
+    left: isMobileDevice ? '100px' : '130px',
+    bottom: isMobileDevice ? '110px' : '150px',
   },
   {
     img: 'https://github.com/kbnvch/boomio/blob/main/brick5.png?raw=true',
-    left: '190px',
-    bottom: '150px',
+    left: isMobileDevice ? '140px' : '190px',
+    bottom: isMobileDevice ? '110px' : '150px',
   },
 ];
 
