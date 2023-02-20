@@ -8,7 +8,9 @@
 #penguin-widget #hammer {
     position: absolute;
     z-index: 10000;
-    height: 60px;
+    height: 90px;
+    transition: 1s transform;
+    transform: rotate(40deg);
 }
 
 .ice-background {

@@ -3,7 +3,6 @@ import { assignStyleOnElement } from '@/utlis';
 import {
   icePieceCount,
   icePieceImages,
-  iceHammerImage,
   iceBlockImage,
   icePieceShadowImages,
   shadowTopCoordinatesForDesktop,
@@ -13,6 +12,7 @@ import {
 import boomio from '@/services/boomio';
 import { isMobileDevice } from '@/config';
 import './styles.css';
+import { iceHammerImage } from '@/сonstants';
 
 class IceWidget {
   constructor() {

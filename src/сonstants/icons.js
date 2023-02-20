@@ -40,3 +40,6 @@ export const closeImage =
 
 export const oldCouponImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/coupon.png?raw=true';
+
+export const iceHammerImage =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';

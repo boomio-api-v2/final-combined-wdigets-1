@@ -1,7 +1,7 @@
 import { AnimationService, DragElement, QrCodeModal } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
 import { iceBackgroundImage, penguinParams, iceBlocksParams, iceExplosionImage } from './constants';
-import { hammerImage } from '@/сonstants';
+import { iceHammerImage } from '@/сonstants';
 import './styles.css';
 import { isMobileDevice } from '@/config';
 
@@ -36,6 +36,7 @@ class PenguinWidget {
   }
 
   onIceBlockClick = (idx) => (e) => {
+    this.showHammerAnimation();
     this.cushedIce++;
 
     const elem = e.target;
@@ -72,18 +73,26 @@ class PenguinWidget {
     }
   };
 
+  showHammerAnimation = () => {
+    this.hammer.style.transform = 'rotate(-100deg)';
+    setTimeout(() => {
+      this.hammer.style.transform = 'rotate(40deg)';
+    }, 400);
+  };
+
   addHammerToCursor = () => {
     const hammer = document.createElement('img');
     hammer.setAttribute('id', 'hammer');
-    hammer.setAttribute('src', hammerImage);
+    hammer.setAttribute('src', iceHammerImage);
     this.widget.appendChild(hammer);
     this.widget.onmousemove = ({ clientX, clientY }) => {
       const { x_position, y_position } = this.draggeble;
       assignStyleOnElement(hammer.style, {
-        left: `${clientX - x_position + 5}px`,
-        top: `${clientY - y_position + 5}px`,
+        left: `${clientX - x_position + 20}px`,
+        top: `${clientY - y_position - 60}px`,
       });
     };
+    this.hammer = hammer;
   };
 
   renderBlocksFromArray = (array, className, onClick) => {
