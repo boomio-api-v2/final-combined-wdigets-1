@@ -1,7 +1,6 @@
 #penguin-widget {
     width: 359px;
     height: 220px;
-    border: 1px solid black;
     overflow: hidden;
 }
 
@@ -27,11 +26,10 @@
 
 @media only screen and (max-device-width: 640px) {
     #penguin-widget {
-        width: 209px;
-        height: 120px;
-        border: 1px solid black;
+        width: 256px;
+        height: 187px;
     }
     #penguin-widget #hammer {
-        height: 35px;
+        height: 50px;
     }
 }

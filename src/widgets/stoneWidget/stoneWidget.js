@@ -182,6 +182,7 @@ class StoneWidget {
         chest.setAttribute('src', openedChestImage);
         setTimeout(() => {
           new QrCodeModal();
+          this.stoneContainer.remove();
         }, 600);
       }
     };

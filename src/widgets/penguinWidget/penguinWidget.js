@@ -47,7 +47,7 @@ class PenguinWidget {
       setTimeout(() => {
         elem.src = fruitImg;
         elem.addEventListener('load', () => {
-          const size = isMobileDevice ? '23px' : '40px';
+          const size = isMobileDevice ? '25px' : '40px';
           assignStyleOnElement(elem.style, {
             width: size,
             height: size,
@@ -69,6 +69,7 @@ class PenguinWidget {
     if (this.cushedIce === 4) {
       setTimeout(() => {
         new QrCodeModal();
+        this.widget.remove();
       }, 1500);
     }
   };
@@ -88,8 +89,8 @@ class PenguinWidget {
     this.widget.onmousemove = ({ clientX, clientY }) => {
       const { x_position, y_position } = this.draggeble;
       assignStyleOnElement(hammer.style, {
-        left: `${clientX - x_position + (isMobileDevice ? 5 : 20)}px`,
-        top: `${clientY - y_position - (isMobileDevice ? 30 : 60)}px`,
+        left: `${clientX - x_position + (isMobileDevice ? 15 : 20)}px`,
+        top: `${clientY - y_position - (isMobileDevice ? 40 : 60)}px`,
       });
     };
     this.hammer = hammer;
