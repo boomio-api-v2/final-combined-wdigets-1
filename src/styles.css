@@ -579,10 +579,9 @@ h4.boomio--animation__heading {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10000000000000000;
+    z-index: 1000000000000000000000;
+    pointer-events: none;
 }
-
-
 
 .exist-or-saving-modal-title {
     text-align: center;

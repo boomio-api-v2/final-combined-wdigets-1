@@ -43,3 +43,5 @@ export const oldCouponImage =
 
 export const iceHammerImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';
+
+export const winningAnimationGif = 'https://embed.lottiefiles.com/animation/35875';
