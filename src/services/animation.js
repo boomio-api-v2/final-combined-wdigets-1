@@ -25,7 +25,6 @@ export default class AnimationService {
     elem = document.createElement('div'),
     styles = {},
   } = defaultProps) {
-    console.log(parent);
     const { animation } = localStorageService.config;
 
     const { clientWidth, clientHeight } = document.documentElement;

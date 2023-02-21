@@ -264,6 +264,7 @@
 }
 
  .coupon_info h3 {
+     padding: 3px;
     text-align: center;
     background: -webkit-linear-gradient(#FF3183, #8559F3);
     -webkit-background-clip: text;

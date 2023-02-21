@@ -282,13 +282,13 @@ export class Puzzle {
       ...styles,
     };
 
-    const animationEl = new AnimationService({
+    const { animationEl } = new AnimationService({
       posx,
       posy,
       size: puzzleWidgetSize,
       parent,
       styles: animStyles,
-    }).animationEl;
+    });
 
     animationEl.classList.remove('boomio--qr');
 
