@@ -9,7 +9,7 @@ import { getBoomioWidgetContainer, getRandomArbitrary } from '@/utlis';
 import { defaultList } from './constants';
 import './styles.css';
 
-class WheelOfFortunePlugin {
+class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     if (!this.config.success) return;
@@ -158,5 +158,5 @@ class WheelOfFortunePlugin {
 }
 
 export default () => {
-  new WheelOfFortunePlugin();
+  new WheelOfFortuneWidget();
 };

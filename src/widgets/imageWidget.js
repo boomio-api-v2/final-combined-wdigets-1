@@ -1,6 +1,6 @@
 import { localStorageService, DragElement, QrCodeModal, AnimationService } from '@/services';
 
-class ImagePlugin {
+class ImageWidget {
   constructor() {
     this.startAnimation();
   }
@@ -24,5 +24,5 @@ class ImagePlugin {
 }
 
 export const startImageWidget = () => {
-  new ImagePlugin();
+  new ImageWidget();
 };

@@ -43,29 +43,33 @@ class PenguinWidget {
     if (!elem.classList.contains('ice-block')) return;
     elem.src = iceExplosionImage;
     const { fruitImg, moveX, moveY } = iceBlocksParams[idx];
+
+    const moveFruitToPenguin = () => {
+      const size = isMobileDevice ? '25px' : '40px';
+      assignStyleOnElement(elem.style, {
+        width: size,
+        height: size,
+      });
+
+      setTimeout(() => {
+        assignStyleOnElement(
+          elem.style,
+          {
+            left: `${moveX}px`,
+            top: `${moveY}px`,
+          },
+          100,
+        );
+      });
+    };
+
     elem.addEventListener('load', () => {
       setTimeout(() => {
         elem.src = fruitImg;
-        elem.addEventListener('load', () => {
-          const size = isMobileDevice ? '25px' : '40px';
-          assignStyleOnElement(elem.style, {
-            width: size,
-            height: size,
-          });
-
-          setTimeout(() => {
-            assignStyleOnElement(
-              elem.style,
-              {
-                left: `${moveX}px`,
-                top: `${moveY}px`,
-              },
-              100,
-            );
-          });
-        });
+        elem.addEventListener('load', moveFruitToPenguin);
       }, 100);
     });
+
     if (this.cushedIce === 4) {
       setTimeout(() => {
         new QrCodeModal();
