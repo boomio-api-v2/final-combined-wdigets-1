@@ -8,18 +8,17 @@ import {
   startPenguinWidget,
 } from '@/widgets';
 
-import { localStorageService, UserService, widgetHtmlService } from '@/services';
+import { localStorageService, widgetHtmlService, UserService } from '@/services';
 
 class BoomioService extends UserService {
   constructor() {
     super();
     this.current_page_url = window.location.href;
-    this.user_session = this.session();
     this.setInitialConfiguration();
   }
 
   loadWidget = (widget_type = 'puzzle') => {
-    const createWidgetPlugin = {
+    const createWidgetMap = {
       puzzle: startPuzzleWidget,
       wheel: startWheelWidget,
       start_widget: startStartWidget,
@@ -28,7 +27,7 @@ class BoomioService extends UserService {
       ice: iceWidget,
       penguin: startPenguinWidget,
     };
-    createWidgetPlugin[widget_type]();
+    createWidgetMap[widget_type]();
   };
 
   setInitialConfiguration() {
@@ -47,7 +46,7 @@ class BoomioService extends UserService {
   }
 
   checkIsRequestDenied() {
-    const boomioStopTill = this.config?.boomioStopTill;
+    const { boomioStopTill } = localStorageService?.config;
     if (!boomioStopTill) return false;
     const isTimeout = new Date(boomioStopTill).getTime() > new Date().getTime();
     if (!isTimeout) {

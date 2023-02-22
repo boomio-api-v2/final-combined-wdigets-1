@@ -28,7 +28,7 @@ class StartWidget {
     }
 
     animationEl.innerHTML = `<div style="background-color: rgb(255, 255, 255); width: 375px; height: fit-content; border-radius: 10px; padding: 0px;">
-	<style> @import url('https://fonts.googleapis.com/css?family=Montserrat');*{font-family: 'Montserrat' ;font-style: normal;}.fontColor{background: -webkit-linear-gradient(#FF3183, #8559F3);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
+	<style> *{font-family: 'Montserrat' ;font-style: normal;}.fontColor{background: -webkit-linear-gradient(#FF3183, #8559F3);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
 	</style>
 	
 	<div class="coupon_user_gets_modal" style="padding: 40px 32px;">

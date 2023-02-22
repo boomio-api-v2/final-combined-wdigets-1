@@ -5,7 +5,12 @@
     font-weight: 600;
     font-family: 'Montserrat';
 }
-.boomio-widget-screen-wrapper {
+
+#boomio-widget-content {
+    pointer-events: auto;
+}
+
+#boomio-widget-content .boomio-widget-screen-wrapper {
     position: fixed;
     z-index: 10000000000000;
     left: 0;
@@ -13,10 +18,6 @@
     bottom: 0;
     right: 0;
     pointer-events: none;
-}
-
-#boomio-widget-content {
-    pointer-events: auto;
 }
 
 .boomio--animation__wrapper--qr {
@@ -115,25 +116,15 @@
     from {
         transform: scale3d(1, 1, 1);
     }
-
-    10%,
-    20% {
+    10%, 20% {
         transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
     }
-
-    30%,
-    50%,
-    70%,
-    90% {
+    30%, 50%, 70%, 90% {
         transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
     }
-
-    40%,
-    60%,
-    80% {
+    40%, 60%, 80% {
         transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
     }
-
     to {
         transform: scale3d(1, 1, 1);
     }
@@ -619,8 +610,6 @@ h4.boomio--animation__heading {
     font-size: 14px;
     line-height: 18px;
 }
-
-
 
 
 .footer-dec {
