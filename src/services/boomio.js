@@ -8,24 +8,15 @@ import {
   startPenguinWidget,
 } from '@/widgets';
 
-import { localStorageService, UserService } from '@/services';
+import { localStorageService, UserService, widgetHtmlService } from '@/services';
 
 class BoomioService extends UserService {
   constructor() {
     super();
-    this.url = window.location.href;
+    this.current_page_url = window.location.href;
     this.user_session = this.session();
     this.setInitialConfiguration();
   }
-
-  createWidgetContainer = () => {
-    const widgetScreenWrapper = document.createElement('div');
-    widgetScreenWrapper.classList.add('boomio-widget-screen-wrapper');
-    const widgetContent = document.createElement('div');
-    widgetContent.setAttribute('id', 'boomio-widget-content');
-    widgetScreenWrapper.appendChild(widgetContent);
-    document.body.appendChild(widgetScreenWrapper);
-  };
 
   loadWidget = (widget_type = 'puzzle') => {
     const createWidgetPlugin = {
@@ -43,7 +34,7 @@ class BoomioService extends UserService {
   setInitialConfiguration() {
     try {
       window.onload = async () => {
-        this.createWidgetContainer();
+        widgetHtmlService.createWidgetContainer();
         const content = await this.send({ go_hunt: 'true' });
         localStorageService.setConfigFromApi(content);
         if (content?.widget_type && content.instruction !== 'stop') {
@@ -65,13 +56,14 @@ class BoomioService extends UserService {
     return isTimeout;
   }
 
-  send(data) {
+  send(extra_data) {
     const isDenied = this.checkIsRequestDenied();
     if (isDenied) return { success: false };
+    const { user_session, current_page_url } = this;
     const request_data = {
-      user_session: this.user_session,
-      current_page_url: this.url,
-      extra_data: data,
+      user_session,
+      current_page_url,
+      extra_data,
     };
 
     return new Promise(async (resolve) => {

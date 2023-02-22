@@ -4,10 +4,11 @@ import {
   DragElement,
   AnimationService,
   QrCodeModal,
+  widgetHtmlService,
 } from '@/services';
 import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
-import { getRandomArbitrary, assignStyleOnElement, getBoomioWidgetContainer } from '@/utlis';
+import { getRandomArbitrary, assignStyleOnElement } from '@/utlis';
 import {
   puzzlesCoordinateForDesktop,
   puzzlesCoordinateForMobile,
@@ -19,7 +20,7 @@ import {
 /// /////Puzzle Class ////////////
 export class Puzzle {
   constructor() {
-    this.mainContainer = getBoomioWidgetContainer();
+    this.mainContainer = widgetHtmlService.container;
 
     this.animationEl = null;
     this.isPrewiewDisplayed = false;
@@ -245,8 +246,7 @@ export class Puzzle {
   };
 
   startAnimation = (...args) => {
-    const [coordinates, styles = {}, parent = getBoomioWidgetContainer(), isClickable = true] =
-      args;
+    const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true] = args;
     const { qrcode, puzzles_collected } = localStorageService.config;
     const defaultCoordinates = this.coordinates[puzzles_collected];
 

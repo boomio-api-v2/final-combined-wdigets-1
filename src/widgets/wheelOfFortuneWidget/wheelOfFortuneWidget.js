@@ -4,8 +4,9 @@ import {
   DragElement,
   QrCodeModal,
   AnimationService,
+  widgetHtmlService,
 } from '@/services';
-import { getBoomioWidgetContainer, getRandomArbitrary } from '@/utlis';
+import { getRandomArbitrary } from '@/utlis';
 import { defaultList } from './constants';
 import './styles.css';
 
@@ -130,7 +131,7 @@ class WheelOfFortuneWidget {
                 <canvas id="wheel" width="250" height="250"></canvas>
                 <div id="spin">SPIN asd asd asd as dasd as dasd asd asd as d</div>
           `;
-    getBoomioWidgetContainer().appendChild(wheel);
+    widgetHtmlService.container.appendChild(wheel);
   };
 
   startAnimation = () => {

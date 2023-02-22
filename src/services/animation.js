@@ -1,16 +1,11 @@
-import { localStorageService } from '@/services';
-import {
-  getRandomArbitrary,
-  addStylesToHtml,
-  assignStyleOnElement,
-  getBoomioWidgetContainer,
-} from '@/utlis';
+import { localStorageService, widgetHtmlService } from '@/services';
+import { getRandomArbitrary, addStylesToHtml, assignStyleOnElement } from '@/utlis';
 
 const defaultProps = {
   posx: 0,
   posy: 0,
   size: 100,
-  parent: getBoomioWidgetContainer(),
+  parent: widgetHtmlService.container,
   styles: {},
 };
 
@@ -21,7 +16,7 @@ export default class AnimationService {
     posx,
     posy,
     size = 100,
-    parent = getBoomioWidgetContainer(),
+    parent = widgetHtmlService.container,
     elem = document.createElement('div'),
     styles = {},
   } = defaultProps) {

@@ -1,7 +1,7 @@
 import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
-import { boomioService, localStorageService } from '@/services';
+import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { isMobileDevice } from '@/config';
-import { assignStyleOnElement, getBoomioWidgetContainer } from '@/utlis';
+import { assignStyleOnElement } from '@/utlis';
 import { closeImage, dotImage, oldCouponImage, winningAnimationGif } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
@@ -13,7 +13,7 @@ const disLikeBtnImage =
 
 export default class QrCodeModal {
   constructor() {
-    this.mainContainer = getBoomioWidgetContainer();
+    this.mainContainer = widgetHtmlService.container;
     this.showQrCode();
     this.showWinningAnimation();
   }
