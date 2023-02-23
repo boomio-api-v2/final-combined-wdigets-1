@@ -1,3 +1,8 @@
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Here is branch typescript, but I haven't tested it. So if all here is okay, it can be merged in main
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 Steps:
 
 1.) npm i
@@ -30,3 +35,4 @@ Example:
 Task list:
 1.) Fixed eslint issues.
 2.) Put Qrcode script in project eviroment
+
