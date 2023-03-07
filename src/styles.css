@@ -572,6 +572,7 @@ h4.boomio--animation__heading {
     right: 0;
     z-index: 1000000000000000000000;
     pointer-events: none;
+    object-fit: contain;
 }
 
 .exist-or-saving-modal-title {

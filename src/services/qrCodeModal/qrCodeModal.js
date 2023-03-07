@@ -19,15 +19,17 @@ export default class QrCodeModal {
   }
 
   showWinningAnimation = () => {
-    const winningAnimation = document.createElement('iframe');
-    winningAnimation.classList.add('winningAnimation');
-    winningAnimation.setAttribute('src', winningAnimationGif);
-    this.mainContainer.appendChild(winningAnimation);
-    winningAnimation.addEventListener('load', () => {
-      setTimeout(() => {
-        winningAnimation.remove();
-      }, 3000);
-    });
+    setTimeout(() => {
+      const winningAnimation = document.createElement('img');
+      winningAnimation.classList.add('winningAnimation');
+      winningAnimation.setAttribute('src', winningAnimationGif);
+      this.mainContainer.appendChild(winningAnimation);
+      winningAnimation.addEventListener('load', () => {
+        setTimeout(() => {
+          winningAnimation.remove();
+        }, 3000);
+      });
+    }, 100)
   };
 
   showQrCode = () => {
