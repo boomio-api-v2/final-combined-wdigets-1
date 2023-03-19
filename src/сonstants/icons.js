@@ -44,4 +44,4 @@ export const oldCouponImage =
 export const iceHammerImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';
 
-export const winningAnimationGif = 'https://boomio.s3.amazonaws.com/campaign_assets/test_d2_cconfeti1.gif';
+export const winningAnimationGif = 'https://i.ibb.co/C0YvY06/confetti-25-1.gif';
