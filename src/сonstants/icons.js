@@ -1,5 +1,7 @@
 export const closeIcon =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/close.png?raw=true';
+  export const giftImage =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift_img.png?raw=true';
 export const gifIcon =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift.png?raw=true';
 export const couponsDiscountIcon =
