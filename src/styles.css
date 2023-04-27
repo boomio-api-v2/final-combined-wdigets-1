@@ -563,16 +563,19 @@ h4.boomio--animation__heading {
 }
 
 .winningAnimation {
-    width: 100vw;
-    height: 100vh;
+     width: 60vw;
+    min-width: 300px;
     position: fixed;
-    top: 0;
     bottom: 0;
-    left: 0;
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vw;
+  height: 100vh;
     right: 0;
     z-index: 1000000000000000000000;
     pointer-events: none;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .exist-or-saving-modal-title {

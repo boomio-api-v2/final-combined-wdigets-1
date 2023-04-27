@@ -1,5 +1,5 @@
 import { boomioService, DragElement, AnimationService } from '@/services';
-import { closeIcon, gifIcon, couponsDiscountIcon, discountIcon, gameIcon } from '@/сonstants/icons';
+import { closeIcon, giftImage  } from '@/сonstants/icons';
 import './styles.css';
 
 class StartWidget {
@@ -27,29 +27,32 @@ class StartWidget {
       animationEl.remove();
     }
 
-    animationEl.innerHTML = `<div style="background-color: rgb(255, 255, 255); width: 375px; height: fit-content; border-radius: 10px; padding: 0px;">
-	<style> *{font-family: 'Montserrat' ;font-style: normal;}.fontColor{background: -webkit-linear-gradient(#FF3183, #8559F3);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
-	</style>
-	
-	<div class="coupon_user_gets_modal" style="padding: 40px 32px;">
-	   <div class="close_div" >
-	   <img src="${closeIcon}" alt="img not find" id="close_div_img">  
-	   </div>
-	   <h1>Hey !</h1>
-	   <p>We prepared some rewards for you!</p>
-	   <div class="coupon_user_gets_modal_img_div">
-			<img src="${gifIcon}" alt="img not find">  
-			<img src="${couponsDiscountIcon}" alt="img not find">  
-			<img src="${discountIcon}" alt="img not find">  
-			<img src="${gameIcon}" alt="img not find">    
-	   </div>
-	   <p>Search for your favourite products and be suprised!</p>
-	   <div class="center_text">
-		  <div id="letGoToBtn"
-		   class="coupon_user_gets_modal_button coupon_button"><span class="coupon_user_gets_modal_button">Let’s go</span></div>
-	   </div>
-	</div>
- </div>`;
+    const props = {
+      title: "You Got Lucky!",
+      description: "There’s a reward waiting for you to win."
+    };
+    
+    animationEl.innerHTML = `
+          <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;'>
+          <div class='close_button align-right'>
+          <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
+        </div>
+            <div class='coupon__preview__body coupon_discount_modal'>
+              <div class='coupon__preview__card__header text-center d-block'>
+                <h3>${props.title}</h3>
+                <h4>${props.description}</h4>
+                <div class='user_gets_hint_img'>
+                  <img src='${giftImage}' alt=''>
+                </div>
+                ${!props.puzzle ? `
+                  <h3 class='color_text_bold_h3'>Find a game and unlock your reward.</h3>
+                  <h4 class='color_text_bold_h4'><b>Hint</b> - look at Adidas Stan Smith J FX7519</h4>
+                ` : ''}
+                <button id="letGoToBtn" class='go_button'>Go!</button>
+              </div>
+            </div>
+          </div>
+    `;
     document.getElementById('close_div_img').onclick = closeModalDiscount;
 
     const letGoBtn = document.getElementById('letGoToBtn');
