@@ -1,4 +1,4 @@
-import { boomioService, DragElement, AnimationService } from '@/services';
+import { localStorageService, boomioService, DragElement, AnimationService } from '@/services';
 import { closeIcon, giftImage  } from '@/сonstants/icons';
 import './styles.css';
 
@@ -27,10 +27,7 @@ class StartWidget {
       animationEl.remove();
     }
 
-    const props = {
-      title: "You Got Lucky!",
-      description: "There’s a reward waiting for you to win."
-    };
+    const { start_secondary_text,start_top_text,w_hint_static_text,w_button_text,under_picture_text } = localStorageService.config;
     
     animationEl.innerHTML = `
           <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;'>
@@ -39,16 +36,16 @@ class StartWidget {
         </div>
             <div class='coupon__preview__body coupon_discount_modal'>
               <div class='coupon__preview__card__header text-center d-block'>
-                <h3>${props.title}</h3>
-                <h4>${props.description}</h4>
+                <h3>${start_top_text}</h3>
+                <h4>${under_picture_text}</h4>
                 <div class='user_gets_hint_img'>
                   <img src='${giftImage}' alt=''>
                 </div>
-                ${!props.puzzle ? `
-                  <h3 class='color_text_bold_h3'>Find a game and unlock your reward.</h3>
-                  <h4 class='color_text_bold_h4'><b>Hint</b> - look at Adidas Stan Smith J FX7519</h4>
-                ` : ''}
-                <button id="letGoToBtn" class='go_button'>Go!</button>
+                
+                  <h3 class='color_text_bold_h3'>${start_secondary_text}</h3>
+                  <h4 class='color_text_bold_h4'>${w_hint_static_text}</h4>
+              
+                <button id="letGoToBtn" class='go_button'>${w_button_text}</button>
               </div>
             </div>
           </div>
