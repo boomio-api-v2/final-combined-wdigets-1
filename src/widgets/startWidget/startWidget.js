@@ -30,7 +30,7 @@ class StartWidget {
     const { secondary_text,top_text,hint_static_text,button_text,under_picture_text } = localStorageService.config;
     
     animationEl.innerHTML = `
-          <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;'>
+          <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd''>
           <div class='close_button align-right'>
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
