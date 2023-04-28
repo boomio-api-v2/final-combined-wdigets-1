@@ -27,7 +27,7 @@ class StartWidget {
       animationEl.remove();
     }
 
-    const { start_secondary_text,start_top_text,w_hint_static_text,w_button_text,under_picture_text } = localStorageService.config;
+    const { secondary_text,top_text,hint_static_text,button_text,under_picture_text } = localStorageService.config;
     
     animationEl.innerHTML = `
           <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;'>
@@ -36,16 +36,16 @@ class StartWidget {
         </div>
             <div class='coupon__preview__body coupon_discount_modal'>
               <div class='coupon__preview__card__header text-center d-block'>
-                <h3>${start_top_text}</h3>
+                <h3>${top_text}</h3>
                 <h4>${under_picture_text}</h4>
                 <div class='user_gets_hint_img'>
                   <img src='${giftImage}' alt=''>
                 </div>
                 
-                  <h3 class='color_text_bold_h3'>${start_secondary_text}</h3>
-                  <h4 class='color_text_bold_h4'>${w_hint_static_text}</h4>
+                  <h3 class='color_text_bold_h3'>${secondary_text}</h3>
+                  <h4 class='color_text_bold_h4'>${hint_static_text}</h4>
               
-                <button id="letGoToBtn" class='go_button'>${w_button_text}</button>
+                <button id="letGoToBtn" class='go_button'>${button_text}</button>
               </div>
             </div>
           </div>
