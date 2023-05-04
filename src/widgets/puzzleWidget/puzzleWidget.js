@@ -28,8 +28,7 @@ export class Puzzle {
   }
   
   addImageTPuzzleWidget = () => {
-    this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;  console.log('1');
-    console.log('2');
+    this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;  
   };
   createPuzzleWidget = () => {  
 
@@ -45,7 +44,7 @@ export class Puzzle {
   };
 
   // This method for creating widget in window
-  showPuzzleWidgetWindowDraggable = (isAnimation = false) => {console.log('3');
+  showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
     const { x_position, y_position } = localStorageService.config;
     const puzzleWidget = document.createElement('div');
     const widgetSmallPreview = document.createElement('div');
@@ -57,7 +56,7 @@ export class Puzzle {
       puzzleWidget.classList.add('animation-widget');
     }
 
-    puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {console.log('4');
+    puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {
       puzzleWidget.remove();
       this?.animationEl?.remove();
       this.isPrewiewDisplayed = true;
@@ -85,7 +84,7 @@ export class Puzzle {
     this.drawPuzzlesByCollectedCount();
   };
 
-  drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {console.log('5');
+  drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
     for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
       const backgroundImage = `url(${puzzleIconsList[i]})`;
       const { top, left, width, height } = coordinate[i];
@@ -104,7 +103,7 @@ export class Puzzle {
     }
   };
 
-  createModalWindow = (width = 300, height = 442) => {console.log('6');
+  createModalWindow = (width = 300, height = 442) => {
     /// /Add modal Background //////
     const modalBackground = document.createElement('div');
     modalBackground.setAttribute('id', 'modalBackground');
@@ -247,7 +246,6 @@ export class Puzzle {
   };
 
   startAnimation = (...args) => {
-    console.log('10');
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true] = args;
     const { qrcode, puzzles_collected } = localStorageService.config;
     const defaultCoordinates = this.coordinates[puzzles_collected];
@@ -335,7 +333,6 @@ export class Puzzle {
 
 export default () => {
   const puzzle = new Puzzle();
-  console.log('123');
 
   const { success, puzzles_collected, appearing_puzzle_nr } = localStorageService.config;
 

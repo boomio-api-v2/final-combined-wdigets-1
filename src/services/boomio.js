@@ -41,7 +41,6 @@ class BoomioService extends UserService {
       if (content?.widget_type && content.instruction !== 'stop') {
         this.loadWidget(content.widget_type);
       }  else if(localStorage.getItem('testing_Widgets')) {
-        console.log('14123',document.getElementById('widget_test'));
         this.loadWidget('testing');
       }
     }

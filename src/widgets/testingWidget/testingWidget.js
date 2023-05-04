@@ -90,7 +90,6 @@ class TestingWidget {
         if (prevWidget) {
           const element = document.getElementById(prevWidget.despawn);
           if (element) {
-            console.log('despawn', element);
             element.remove();
           }
         }
