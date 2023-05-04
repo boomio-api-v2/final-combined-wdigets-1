@@ -10,7 +10,7 @@ class TestingWidget {
   startAnimation = () => {
     localStorage.setItem('testing_Widgets', true);
     const width = 320;
-    const height = 340;
+    const height = 370;
 
     const { clientWidth, clientHeight } = document.documentElement;
 
