@@ -26,12 +26,13 @@ export class Puzzle {
     this.isPrewiewDisplayed = false;
     this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
   }
-
+  
   addImageTPuzzleWidget = () => {
-    this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;
+    this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;  console.log('1');
+    console.log('2');
   };
+  createPuzzleWidget = () => {  
 
-  createPuzzleWidget = () => {
     const puzzleWidget = document.createElement('div');
     puzzleWidget.setAttribute('id', 'puzzle-widget');
     assignStyleOnElement(puzzleWidget.style, {
@@ -44,7 +45,7 @@ export class Puzzle {
   };
 
   // This method for creating widget in window
-  showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
+  showPuzzleWidgetWindowDraggable = (isAnimation = false) => {console.log('3');
     const { x_position, y_position } = localStorageService.config;
     const puzzleWidget = document.createElement('div');
     const widgetSmallPreview = document.createElement('div');
@@ -56,7 +57,7 @@ export class Puzzle {
       puzzleWidget.classList.add('animation-widget');
     }
 
-    puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {
+    puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {console.log('4');
       puzzleWidget.remove();
       this?.animationEl?.remove();
       this.isPrewiewDisplayed = true;
@@ -84,7 +85,7 @@ export class Puzzle {
     this.drawPuzzlesByCollectedCount();
   };
 
-  drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
+  drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {console.log('5');
     for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
       const backgroundImage = `url(${puzzleIconsList[i]})`;
       const { top, left, width, height } = coordinate[i];
@@ -103,7 +104,7 @@ export class Puzzle {
     }
   };
 
-  createModalWindow = (width = 300, height = 442) => {
+  createModalWindow = (width = 300, height = 442) => {console.log('6');
     /// /Add modal Background //////
     const modalBackground = document.createElement('div');
     modalBackground.setAttribute('id', 'modalBackground');
@@ -246,6 +247,7 @@ export class Puzzle {
   };
 
   startAnimation = (...args) => {
+    console.log('10');
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true] = args;
     const { qrcode, puzzles_collected } = localStorageService.config;
     const defaultCoordinates = this.coordinates[puzzles_collected];
@@ -333,22 +335,24 @@ export class Puzzle {
 
 export default () => {
   const puzzle = new Puzzle();
+  console.log('123');
 
   const { success, puzzles_collected, appearing_puzzle_nr } = localStorageService.config;
 
-  if (!success) {
+  if (!success && !localStorage.getItem('testing_Widgets')) {
     return;
   }
 
-  if (puzzles_collected > 0) {
+  if (!puzzles_collected || localStorage.getItem('testing_Widgets')) {
     puzzle.showPuzzleWidgetWindowDraggable();
   }
 
-  if (appearing_puzzle_nr > 1) {
+  if (appearing_puzzle_nr > 1 || localStorage.getItem('testing_Widgets')) {
     puzzle.addImageTPuzzleWidget();
   }
 
-  if (appearing_puzzle_nr) {
+  if (appearing_puzzle_nr || localStorage.getItem('testing_Widgets')) {
     puzzle.startAnimation();
   }
+
 };

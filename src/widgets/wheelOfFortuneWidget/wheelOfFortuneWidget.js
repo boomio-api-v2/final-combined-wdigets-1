@@ -13,7 +13,7 @@ import './styles.css';
 class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    if (!this.config.success) return;
+    if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
     this.createWheel();
     this.elSpin = document.querySelector('#spin');
     this.ctx = document.getElementById('wheel').getContext`2d`;

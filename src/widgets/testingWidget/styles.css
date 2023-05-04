@@ -50,6 +50,7 @@
 .close_div
 {
     text-align:right;
+    
 }
 .coupon_user_gets_modal{
     padding: 25px 22px  !important;
@@ -93,12 +94,12 @@
     background: linear-gradient(39.06deg, #8559F3 8.58%, #657BEA 17.79%, #34B0DC 46.68%, #15D1D3 72.63%, #09DDD0 88.95%) !important;
     border-radius: 32px !important;
     border: none !important;
-    width: 80px !important;
+    width: 180px !important;
     height: 30px !important;
     font-family: 'Montserrat' !important;
     font-style: normal !important;
     font-weight: 600 !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
     line-height: 24px !important;
     color: #FFFFFF !important;
     cursor: pointer;
@@ -168,7 +169,7 @@
 
 .close_button {
   position: absolute;
-  top: 10px;
+  top: 14px;
   right: 10px;
   cursor: pointer;
 }
@@ -179,13 +180,13 @@
   align-items: center;
 }
 
-.coupon__preview__card__header h3 {
+.coupon__preview__card__header h2 {
   font-family: 'Montserrat';
   font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 22px;
   line-height: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 30px;
   text-align: center;
   letter-spacing: -0.03em;
   color: #473F4E;

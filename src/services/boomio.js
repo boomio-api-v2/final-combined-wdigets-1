@@ -19,7 +19,6 @@ class BoomioService extends UserService {
   }
 
   loadWidget = (widget_type = 'puzzle') => {
-    console.log('test',widget_type);
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
       wheel: startWheelWidget,
@@ -33,29 +32,29 @@ class BoomioService extends UserService {
     createWidgetMap[widget_type]();
   };
 
-  testing(testingWidget) {
-    console.log(testingWidget);
-    this.loadWidget(testingWidget);
-    }
-
-  setInitialConfiguration(testingWidget) {
+  setInitialConfiguration() {
     try {
       window.onload = async () => {
       widgetHtmlService.createWidgetContainer();
       const content = await this.send({ go_hunt: 'true' });
       localStorageService.setConfigFromApi(content);
-      if (testingWidget) {
-        console.log('testingWidget');
-      } else if (content?.widget_type && content.instruction !== 'stop') {
-        console.log('load widget');
+      if (content?.widget_type && content.instruction !== 'stop') {
         this.loadWidget(content.widget_type);
+      }  else if(localStorage.getItem('testing_Widgets')) {
+        console.log('14123',document.getElementById('widget_test'));
+        this.loadWidget('testing');
       }
     }
-
   } catch (err) {
     console.log(err);
   }
   }
+
+  testing(testingWidget) {
+    this.loadWidget(testingWidget);
+   }
+
+ 
   
   checkIsRequestDenied() {
     const { boomioStopTill } = localStorageService?.config;

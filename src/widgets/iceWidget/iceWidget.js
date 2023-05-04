@@ -164,6 +164,7 @@ class IceWidget {
 
 export default () => {
   const { success } = localStorageService.config;
-  if (!success) return;
-  new IceWidget();
+  
+  if (success || localStorage.getItem('testing_Widgets'))  new IceWidget();
+  return;
 };
