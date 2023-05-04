@@ -9,19 +9,21 @@ class TestingWidget {
 
   startAnimation = () => {
     localStorage.setItem('testing_Widgets', true);
-    const size = 300;
+    const width = 320;
+    const height = 340;
+
     const { clientWidth, clientHeight } = document.documentElement;
 
-    const posx = ((clientWidth - size)/2).toFixed();
-    const posy = ((clientHeight - size)/2).toFixed();
+    const posx = ((clientWidth - width)/2).toFixed();
+    const posy = ((clientHeight - height)/2).toFixed();
 
 
     const animationEl = document.createElement('div');
     animationEl.style.position = 'absolute';
     animationEl.style.top = `${posy}px`;
     animationEl.style.left = `${posx}px`;
-    animationEl.style.width = `${size}px`;
-    animationEl.style.height = `${size}px`;
+    animationEl.style.width = `${width}px`;
+    animationEl.style.height = `${height}px`;
   
     document.body.appendChild(animationEl);
 
@@ -60,13 +62,13 @@ class TestingWidget {
     });
 
     animationEl.innerHTML = `
-      <div  class='position-relative product-design-bg-2 Preview-select' style='min-width: 260px;min-height: 320px; padding: 20px 10px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd' id='widget_test'>
+      <div  class='position-relative product-design-bg-2 Preview-select' style='z-index:10000000000000; min-width: 260px;min-height: 320px; padding: 20px 10px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd' id='widget_test'>
         <div class='close_button align-right'>
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
         <div class='coupon__preview__body coupon_discount_modal'>
           <div class='coupon__preview__card__header text-center d-block'>
-            <h2>Test all Widgets</h3>
+            <h2 >Widgets Preview</h3>
             ${buttonsHtml}          
           </div>
           <div class='coupon__preview__card__header text-center d-block'>
