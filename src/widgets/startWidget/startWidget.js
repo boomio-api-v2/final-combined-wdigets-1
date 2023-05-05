@@ -1,4 +1,4 @@
-import { boomioService, DragElement, AnimationService } from '@/services';
+import { localStorageService, boomioService, DragElement, AnimationService } from '@/services';
 import { closeIcon, giftImage  } from '@/сonstants/icons';
 import './styles.css';
 
@@ -27,28 +27,25 @@ class StartWidget {
       animationEl.remove();
     }
 
-    const props = {
-      title: "You Got Lucky!",
-      description: "There’s a reward waiting for you to win."
-    };
+    const { secondary_text,top_text,hint_static_text,button_text,under_picture_text } = localStorageService.config;
     
     animationEl.innerHTML = `
-          <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;'>
+          <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd''>
           <div class='close_button align-right'>
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
             <div class='coupon__preview__body coupon_discount_modal'>
               <div class='coupon__preview__card__header text-center d-block'>
-                <h3>${props.title}</h3>
-                <h4>${props.description}</h4>
+                <h3>${top_text}</h3>
+                <h4>${under_picture_text}</h4>
                 <div class='user_gets_hint_img'>
                   <img src='${giftImage}' alt=''>
                 </div>
-                ${!props.puzzle ? `
-                  <h3 class='color_text_bold_h3'>Find a game and unlock your reward.</h3>
-                  <h4 class='color_text_bold_h4'><b>Hint</b> - look at Adidas Stan Smith J FX7519</h4>
-                ` : ''}
-                <button id="letGoToBtn" class='go_button'>Go!</button>
+                
+                  <h3 class='color_text_bold_h3'>${secondary_text}</h3>
+                  <h4 class='color_text_bold_h4'>${hint_static_text}</h4>
+              
+                <button id="letGoToBtn" class='go_button'>${button_text}</button>
               </div>
             </div>
           </div>

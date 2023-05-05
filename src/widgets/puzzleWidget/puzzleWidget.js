@@ -86,9 +86,12 @@ export class Puzzle {
 
   drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
     for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
+      console.log('puzzle',i);
+      if(!document.getElementById(`puzzle_part_${i}`)){
       const backgroundImage = `url(${puzzleIconsList[i]})`;
       const { top, left, width, height } = coordinate[i];
       const animationEl = document.createElement('div');
+      const id = `puzzle_part_${i}`;
       animationEl.classList.add('boomio--animation__wrapper');
       assignStyleOnElement(animationEl.style, {
         top: `${top}px`,
@@ -97,9 +100,10 @@ export class Puzzle {
         height,
         backgroundImage,
         position: 'absolute',
+        id:id
       });
-
       this.puzzleWidget.appendChild(animationEl);
+    }
     }
   };
 
@@ -249,13 +253,15 @@ export class Puzzle {
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true] = args;
     const { qrcode, puzzles_collected } = localStorageService.config;
     const defaultCoordinates = this.coordinates[puzzles_collected];
-
+    console.log(puzzles_collected);
     const currentCoordinates = coordinates?.[puzzles_collected];
     const customPosX = currentCoordinates?.left;
     const customPosY = currentCoordinates?.top;
     const width = currentCoordinates?.width ?? defaultCoordinates.width;
     const height = currentCoordinates?.height ?? defaultCoordinates.height;
+    if(appearing_puzzle_nr === null){
 
+    }
     // if ((render_count % appearing_puzzle_nr) !== 0) return;
     const puzzleSize = 100;
 
@@ -340,15 +346,16 @@ export default () => {
     return;
   }
 
-  if (!puzzles_collected || localStorage.getItem('testing_Widgets')) {
+  if (!puzzles_collected ) {
     puzzle.showPuzzleWidgetWindowDraggable();
   }
 
-  if (appearing_puzzle_nr > 1 || localStorage.getItem('testing_Widgets')) {
+  if (appearing_puzzle_nr > 1 ) {
     puzzle.addImageTPuzzleWidget();
   }
 
   if (appearing_puzzle_nr || localStorage.getItem('testing_Widgets')) {
+
     puzzle.startAnimation();
   }
 

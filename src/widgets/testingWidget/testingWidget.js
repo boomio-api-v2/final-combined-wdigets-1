@@ -90,10 +90,12 @@ class TestingWidget {
       document.getElementById(spawnBtnId).onclick = () => {
         const widgetName = document.getElementById(spawnBtnId).getAttribute('data-widget-spawn');
         if (prevWidget) {
-          const element = document.getElementById(prevWidget.despawn);
-          if (element) {
-            element.remove();
-          }
+          // const element = document.getElementById(prevWidget.despawn); //might need to change so it only removes prev
+          // if (element) {
+          //   element.remove();
+          // }
+
+          removeWidgets()
         }
         boomioService.testing(widgetName);
         prevWidget = widget;
