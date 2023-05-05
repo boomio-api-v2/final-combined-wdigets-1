@@ -37,7 +37,7 @@ class TestingWidget {
 
     
     function removeWidgets() {
-      const element = document.getElementById('boomio-widget-content');
+      const element = document.getElementById('boomio-widget-screen-wrapper-content');
       if (element) {
         element.remove();
       }
