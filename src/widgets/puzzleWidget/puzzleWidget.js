@@ -86,7 +86,6 @@ export class Puzzle {
 
   drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
     for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
-      console.log('puzzle',i);
       const backgroundImage = `url(${puzzleIconsList[i]})`;
       const { top, left, width, height } = coordinate[i];
       const animationEl = document.createElement('div');
