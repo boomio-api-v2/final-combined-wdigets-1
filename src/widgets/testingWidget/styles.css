@@ -1,0 +1,209 @@
+
+.coupon_user_gets_modal h1 ,.coupon_user_gets_modal p{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.03em;
+    color: #473F4E;
+}
+.coupon_user_gets_modal_button{
+    width: 53%;
+    border: 1px double transparent;
+    padding: 2px;
+    height: 43px;
+    border: none;
+    border-radius: 24px;
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.coupon_user_gets_modal_button span{
+    background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 17px;
+    font-weight: 600;
+}
+.coupon_user_gets_modal_img_div img{
+    width: 30px;
+    margin: 0% 5%;
+}
+.coupon_user_gets_modal_img_div{
+    text-align: center;
+    margin-bottom: 8%;
+    margin-top: 8%;
+}
+.center_text{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+.close_div
+{
+    text-align:right;
+    
+}
+.coupon_user_gets_modal{
+    padding: 25px 22px  !important;
+    margin-bottom: 17px;
+    padding-bottom: 56px !important;
+}
+.close_div img
+{
+    width: 11%;
+    cursor: pointer;
+}
+.coupon_button:hover
+{
+    background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
+    color: #fff;
+}
+.coupon_button:hover span
+{
+    background: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.product-design-bg-2 *{
+    font-family: 'Montserrat' ;
+    font-style: normal;
+}
+
+.product-design-bg-2 {
+    height: 100% !important;
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 10px;
+    padding: 0;
+}
+  
+  
+  .go_button {
+    background: linear-gradient(39.06deg, #8559F3 8.58%, #657BEA 17.79%, #34B0DC 46.68%, #15D1D3 72.63%, #09DDD0 88.95%) !important;
+    border-radius: 32px !important;
+    border: none !important;
+    width: 200px !important;
+    height: 35px !important;
+    font-family: 'Montserrat' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: #FFFFFF !important;
+    cursor: pointer;
+  }
+
+  .color_text_bold_h3 {
+    background: linear-gradient(41.01deg, #FF3183 5.48%, #598BF3 31.4%, #657BEA 71.49%, #34B0DC 98.11%);
+    /* background: linear-gradient(298.74deg, #34B0DC 22.51%, #598BF3 52.45%, #657BEA 72.82%); */
+    -webkit-background-clip: text;
+    font-weight: 600 !important;
+    font-size: 16px;
+    margin-bottom: 8px;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .user_gets_hint_img img {
+    margin: 0px;
+  }
+
+  .user_gets_hint_img {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin: 16px 0px;
+  }
+  
+  .color_text_bold {
+    background: linear-gradient(to right, #ff6e6d 0%, #ff3183 5.48%, #8559f3 88.77%, #657bea 95.23%, #34b0dc 101.49%);
+    -webkit-background-clip: text;
+    font-weight: 600 !important;
+    font-size: 16px;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .color_text_bold_h3 {
+    background: linear-gradient(41.01deg, #FF3183 5.48%, #598BF3 31.4%, #657BEA 71.49%, #34B0DC 98.11%);
+    /* background: linear-gradient(298.74deg, #34B0DC 22.51%, #598BF3 52.45%, #657BEA 72.82%); */
+    -webkit-background-clip: text;
+    font-weight: 600 !important;
+    font-size: 16px;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .color_text_bold_h4 {
+    background: linear-gradient(30.03deg, #FF6E6D 4.69%, #FF3183 48.48%, #598BF3 97%);
+    /* background: linear-gradient(2.48deg, #FF6E6D 5.34%, #FF3183 44.2%, #598BF3 115.32%); */
+    -webkit-background-clip: text;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    letter-spacing: 0.05em;
+    margin-bottom:20px;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .coupon__preview__body {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.coupon_discount_modal .coupon_preview_card_info {
+    display: flex;
+    justify-content: center;
+}
+
+.close_button {
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.coupon__preview__card__header {
+  padding: 20px 32px 0px 32px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coupon__preview__card__header h2 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: -0.03em;
+  color: #473F4E;
+}
+
+.coupon__preview__card__header img {
+  margin-right: 30px;
+}
+
+.coupon__preview__card__header h4 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px !important;
+  line-height: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #473F4E;
+}

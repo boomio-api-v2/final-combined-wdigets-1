@@ -6,6 +6,7 @@ import {
   startStoneWidget,
   iceWidget,
   startPenguinWidget,
+  startTestingWidget,
 } from '@/widgets';
 
 import { localStorageService, widgetHtmlService, UserService } from '@/services';
@@ -26,6 +27,7 @@ class BoomioService extends UserService {
       stone: startStoneWidget,
       ice: iceWidget,
       penguin: startPenguinWidget,
+      testing: startTestingWidget,
     };
     createWidgetMap[widget_type]();
   };
@@ -33,18 +35,26 @@ class BoomioService extends UserService {
   setInitialConfiguration() {
     try {
       window.onload = async () => {
-        widgetHtmlService.createWidgetContainer();
-        const content = await this.send({ go_hunt: 'true' });
-        localStorageService.setConfigFromApi(content);
-        if (content?.widget_type && content.instruction !== 'stop') {
-          this.loadWidget(content.widget_type);
-        }
-      };
-    } catch (err) {
-      console.log(err);
+      widgetHtmlService.createWidgetContainer();
+      const content = await this.send({ go_hunt: 'true' });
+      localStorageService.setConfigFromApi(content);
+      if (content?.widget_type && content.instruction !== 'stop') {
+        this.loadWidget(content.widget_type);
+      }  else if(localStorage.getItem('testing_Widgets')) {
+        this.loadWidget('testing');
+      }
     }
+  } catch (err) {
+    console.log(err);
+  }
   }
 
+  testing(testingWidget) {
+    this.loadWidget(testingWidget);
+   }
+
+ 
+  
   checkIsRequestDenied() {
     const { boomioStopTill } = localStorageService?.config;
     if (!boomioStopTill) return false;

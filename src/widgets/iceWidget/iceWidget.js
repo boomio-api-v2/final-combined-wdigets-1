@@ -16,7 +16,6 @@ import { iceHammerImage } from '@/сonstants';
 import {
   boomioService,
 } from '@/services';
-
 class IceWidget {
   constructor() {
     this.showCoupon = false;
@@ -32,7 +31,6 @@ class IceWidget {
     setTimeout(() => {
       this.widget.remove();
       boomioService.signal('PUZZLE_CODE_REVEALED');
-
       new QrCodeModal();
     }, 1000);
   }
@@ -166,6 +164,7 @@ class IceWidget {
 
 export default () => {
   const { success } = localStorageService.config;
-  if (!success) return;
-  new IceWidget();
+  
+  if (success || localStorage.getItem('testing_Widgets'))  new IceWidget();
+  return;
 };

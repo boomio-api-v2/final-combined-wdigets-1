@@ -5,6 +5,7 @@ class WidgetHtmlService {
   createWidgetContainer = () => {
     const widgetScreenWrapper = document.createElement('div');
     widgetScreenWrapper.classList.add('boomio-widget-screen-wrapper');
+    widgetScreenWrapper.setAttribute('id', 'boomio-widget-screen-wrapper-content');
     const widgetContent = document.createElement('div');
     widgetContent.setAttribute('id', 'boomio-widget-content');
     widgetScreenWrapper.appendChild(widgetContent);

@@ -26,12 +26,12 @@ export class Puzzle {
     this.isPrewiewDisplayed = false;
     this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
   }
-
+  
   addImageTPuzzleWidget = () => {
-    this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;
+    this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;  
   };
+  createPuzzleWidget = () => {  
 
-  createPuzzleWidget = () => {
     const puzzleWidget = document.createElement('div');
     puzzleWidget.setAttribute('id', 'puzzle-widget');
     assignStyleOnElement(puzzleWidget.style, {
@@ -98,7 +98,6 @@ export class Puzzle {
         backgroundImage,
         position: 'absolute',
       });
-
       this.puzzleWidget.appendChild(animationEl);
     }
   };
@@ -246,15 +245,21 @@ export class Puzzle {
   };
 
   startAnimation = (...args) => {
+    if(localStorage.getItem('testing_Widgets') && localStorageService.config.puzzles_collected > 3){
+      this.mainContainer = widgetHtmlService.container;
+      this.animationEl = null;
+      this.isPrewiewDisplayed = false;
+      this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
+      localStorageService.config.puzzles_collected = 0;
+    }
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true] = args;
     const { qrcode, puzzles_collected } = localStorageService.config;
     const defaultCoordinates = this.coordinates[puzzles_collected];
-
     const currentCoordinates = coordinates?.[puzzles_collected];
     const customPosX = currentCoordinates?.left;
     const customPosY = currentCoordinates?.top;
-    const width = currentCoordinates?.width ?? defaultCoordinates.width;
-    const height = currentCoordinates?.height ?? defaultCoordinates.height;
+    const width = currentCoordinates?.width ?? defaultCoordinates?.width;
+    const height = currentCoordinates?.height ?? defaultCoordinates?.height;
 
     // if ((render_count % appearing_puzzle_nr) !== 0) return;
     const puzzleSize = 100;
@@ -336,11 +341,11 @@ export default () => {
 
   const { success, puzzles_collected, appearing_puzzle_nr } = localStorageService.config;
 
-  if (!success) {
+  if (!success && !localStorage.getItem('testing_Widgets')) {
     return;
   }
 
-  if (puzzles_collected > 0) {
+  if (!puzzles_collected || localStorage.getItem('testing_Widgets')) {
     puzzle.showPuzzleWidgetWindowDraggable();
   }
 
@@ -348,7 +353,8 @@ export default () => {
     puzzle.addImageTPuzzleWidget();
   }
 
-  if (appearing_puzzle_nr) {
+  if (appearing_puzzle_nr || localStorage.getItem('testing_Widgets')) {
     puzzle.startAnimation();
   }
+
 };
