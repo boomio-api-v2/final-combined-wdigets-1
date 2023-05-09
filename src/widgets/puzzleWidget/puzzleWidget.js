@@ -231,19 +231,18 @@ export class Puzzle {
 
     if (puzzles_collected < 4) return;
     setTimeout(() => {
-      if(localStorage.getItem('testing_Widgets') && localStorageService.config.puzzles_collected > 2){
-      const element = document.getElementById('puzzle-widget');
-      if (element) {
-        element.remove();
-        widgetHtmlService.createWidgetContainer();
+      if(localStorage.getItem('testing_Widgets')){
+        const element = document.getElementById('puzzle-widget');
+        if (element) {
+          element.remove();
+        }
       }
-    }
       this.closeModal();
       boomioService.signal('PUZZLE_CODE_REVEALED');
       new QrCodeModal();
     }, 2000);
 
-    if(localStorage.getItem('testing_Widgets') && localStorageService.config.puzzles_collected > 2){
+    if(localStorage.getItem('testing_Widgets') && localStorageService.config.puzzles_collected > 3){
       this.mainContainer = widgetHtmlService.container;
       this.animationEl = null;
       this.isPrewiewDisplayed = false;
