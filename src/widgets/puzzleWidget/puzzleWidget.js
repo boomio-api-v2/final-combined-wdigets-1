@@ -65,8 +65,8 @@ export class Puzzle {
 
     const { clientWidth, clientHeight } = document.documentElement;
 
-    const left = x_position || clientWidth - 40 - puzzleWidgetSize;
-    const top = y_position || clientHeight - 40 - puzzleWidgetSize;
+    const left = !localStorage.getItem('testing_Widgets') && x_position || clientWidth - 40 - puzzleWidgetSize;
+    const top = !localStorage.getItem('testing_Widgets') &&  y_position || clientHeight - 40 - puzzleWidgetSize;
     const size = `${puzzleWidgetSize}px`;
     assignStyleOnElement(puzzleWidget.style, {
       width: size,
@@ -231,10 +231,25 @@ export class Puzzle {
 
     if (puzzles_collected < 4) return;
     setTimeout(() => {
+      if(localStorage.getItem('testing_Widgets') && localStorageService.config.puzzles_collected > 2){
+      const element = document.getElementById('puzzle-widget');
+      if (element) {
+        element.remove();
+        widgetHtmlService.createWidgetContainer();
+      }
+    }
       this.closeModal();
       boomioService.signal('PUZZLE_CODE_REVEALED');
       new QrCodeModal();
     }, 2000);
+
+    if(localStorage.getItem('testing_Widgets') && localStorageService.config.puzzles_collected > 2){
+      this.mainContainer = widgetHtmlService.container;
+      this.animationEl = null;
+      this.isPrewiewDisplayed = false;
+      this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
+      localStorageService.config.puzzles_collected = 0;
+    }
   };
 
   onPuzzleClick = (e) => {
@@ -245,13 +260,7 @@ export class Puzzle {
   };
 
   startAnimation = (...args) => {
-    if(localStorage.getItem('testing_Widgets') && localStorageService.config.puzzles_collected > 3){
-      this.mainContainer = widgetHtmlService.container;
-      this.animationEl = null;
-      this.isPrewiewDisplayed = false;
-      this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
-      localStorageService.config.puzzles_collected = 0;
-    }
+
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true] = args;
     const { qrcode, puzzles_collected } = localStorageService.config;
     const defaultCoordinates = this.coordinates[puzzles_collected];
@@ -349,7 +358,7 @@ export default () => {
     puzzle.showPuzzleWidgetWindowDraggable();
   }
 
-  if (appearing_puzzle_nr > 1) {
+  if (appearing_puzzle_nr > 1 || localStorage.getItem('testing_Widgets')) {
     puzzle.addImageTPuzzleWidget();
   }
 
