@@ -232,6 +232,12 @@ export class Puzzle {
     if (puzzles_collected < 4) return;
     setTimeout(() => {
       if(localStorage.getItem('testing_Widgets')){
+        this.mainContainer = widgetHtmlService.container;
+        this.animationEl = null;
+        this.isPrewiewDisplayed = false;
+        this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
+        localStorageService.config.puzzles_collected = 0;
+  
         const element = document.getElementById('puzzle-widget');
         if (element) {
           element.remove();
@@ -242,13 +248,7 @@ export class Puzzle {
       new QrCodeModal();
     }, 2000);
 
-    if(localStorage.getItem('testing_Widgets') && localStorageService.config.puzzles_collected > 3){
-      this.mainContainer = widgetHtmlService.container;
-      this.animationEl = null;
-      this.isPrewiewDisplayed = false;
-      this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
-      localStorageService.config.puzzles_collected = 0;
-    }
+    
   };
 
   onPuzzleClick = (e) => {
