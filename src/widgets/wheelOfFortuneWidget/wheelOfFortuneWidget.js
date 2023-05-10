@@ -123,7 +123,7 @@ class WheelOfFortuneWidget {
     img.src = sector.img;
     // this.ctx.drawImage(img, 86, -12, 32, 32);
     // this.ctx.fillText(sector.label, this.rad - 55, 10);
-    this.ctx.fillText(sector.label, this.rad - 55, 10); // change text position
+    this.ctx.fillText(sector.label, 0, 55); // change text position
     this.ctx.restore();
   };
 
