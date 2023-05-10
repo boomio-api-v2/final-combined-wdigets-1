@@ -2,7 +2,7 @@
     display: inline-flex;
     position: fixed;
     overflow: initial;
-    z-index: 1000;
+    z-index: 9999999999;
 }
 
 #wheel {
@@ -36,4 +36,9 @@
     border: 10px solid transparent;
     border-bottom-color: currentColor;
     border-top: none;
+}
+
+.wheel-border {
+    border: #fff 9px solid;
+    border-radius: 50%;
 }

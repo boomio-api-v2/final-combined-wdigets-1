@@ -94,10 +94,11 @@ class WheelOfFortuneWidget {
     this.ctx.canvas.style.transform = `rotate(${this.ang - this.PI / 2}rad)`;
     this.elSpin.innerHTML = !this.angVel
       ? 'SPIN'
-      : `
-            <img style="width: 40px; height: 40px" src="${sector.img}"></img>
+      : `      
+            <img style="width: 40px; height: 40px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift.png?raw=true"></img>
         `;
-    this.elSpin.style.background = sector?.color;
+    //  Correct image to be put here
+    this.elSpin.style.background = 'white';
   };
 
   drawSector = (sector, i) => {
@@ -110,15 +111,19 @@ class WheelOfFortuneWidget {
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.fill();
     this.ctx.translate(this.rad, this.rad);
-    this.ctx.rotate(ang + this.arc / 2);
-    this.ctx.textAlign = 'right';
+    // this.ctx.rotate(ang + this.arc / 2); 
+    this.ctx.rotate(ang + this.arc / 2 + 3 * Math.PI / 2); // rotate by 90 degrees
+
+    this.ctx.textAlign = 'center';
     this.ctx.fillStyle = '#fff';
-    this.ctx.font = 'bold 30px sans-serif';
-    this.ctx.font = '14px serif';
+    this.ctx.font = 'bold 15px sans-serif';
+    // this.ctx.font = '14px serif';
     const img = new Image();
+
     img.src = sector.img;
-    this.ctx.drawImage(img, 86, -12, 32, 32);
-    this.ctx.fillText(sector.label, this.rad - 55, 10);
+    // this.ctx.drawImage(img, 86, -12, 32, 32);
+    // this.ctx.fillText(sector.label, this.rad - 55, 10);
+    this.ctx.fillText(sector.label, this.rad - 55, 10); // change text position
     this.ctx.restore();
   };
 
@@ -126,6 +131,7 @@ class WheelOfFortuneWidget {
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
+    wheel.classList.add('wheel-border');
     wheel.style.display = 'none';
     wheel.innerHTML = `
                 <canvas id="wheel" width="250" height="250"></canvas>
