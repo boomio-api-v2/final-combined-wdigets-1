@@ -69,6 +69,7 @@ class WheelOfFortuneWidget {
       this.angVel *= 1.06; // Accelerate
     }
 
+
     // Decelerate
     else {
       this.isAccelerating = false;
