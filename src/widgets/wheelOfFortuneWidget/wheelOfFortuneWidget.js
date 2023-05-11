@@ -112,19 +112,22 @@ class WheelOfFortuneWidget {
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.fill();
     this.ctx.translate(this.rad, this.rad);
-    // this.ctx.rotate(ang + this.arc / 2); 
-    this.ctx.rotate(ang + this.arc / 2 + 3 * Math.PI / 2); // rotate by 90 degrees
+    this.ctx.rotate(ang + this.arc / 2);
+    // this.ctx.rotate(ang + this.arc / 2 + 3 * Math.PI / 2); // rotate by 90 degrees
 
-    this.ctx.textAlign = 'center';
+    this.ctx.textAlign = 'left';
+    // this.ctx.textAlign = 'center'; // change text alignment to center
     this.ctx.fillStyle = '#fff';
     this.ctx.font = 'bold 15px sans-serif';
-    // this.ctx.font = '14px serif';
+    this.ctx.font = '14px serif';
     const img = new Image();
 
     img.src = sector.img;
-    // this.ctx.drawImage(img, 86, -12, 32, 32);
-    // this.ctx.fillText(sector.label, this.rad - 55, 10);
-    this.ctx.fillText(sector.label, 0, 55); // change text position
+    this.ctx.drawImage(img, 86, -12, 32, 32);
+    this.ctx.fillText(sector.label, this.rad - 65, 10);
+    // this.ctx.fillText(sector.label, 0, 55); // change text position
+
+
     this.ctx.restore();
   };
 

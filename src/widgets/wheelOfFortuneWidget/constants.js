@@ -1,19 +1,19 @@
 export const defaultList = [
   {
     color: '#FFC24F',
-    label: '15 % OFF',
+    label: '15',
     img: 'https://eucys.eu/wp-content/uploads/2019/09/ribbon_prize-300x300.png',
 
   },
   {
     color: '#FF7A68',
-    label: '20 % OFF',
+    label: '20',
     img: 'https://cdn.pixabay.com/photo/2022/08/22/03/07/logo-7402580__340.png',
 
   },
   {
     color: '#FF3183',
-    label: '5 % OFF',
+    label: '5',
     img: 'https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c521.png',
 
   },
