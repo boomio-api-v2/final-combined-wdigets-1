@@ -96,9 +96,8 @@ class WheelOfFortuneWidget {
     this.elSpin.innerHTML = !this.angVel
       ? 'SPIN'
       : `      
-            <img style="width: 40px; height: 40px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift.png?raw=true"></img>
+            <img style="width: 40px; height: 40px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>
         `;
-    //  Correct image to be put here
     this.elSpin.style.background = 'white';
   };
 
