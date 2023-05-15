@@ -1,4 +1,4 @@
-import { pole1, pole2, crate1, crate2, crate3, crate4, crate5, crate6, fishHeap1, fishHeap2, cat1_1, cat1_2, cat1_3, cat1_4, cat2_1, cat2_2, cat2_3, cat2_4, ground, hammerImg } from '@/сonstants';
+import { pole1, pole2, crate1, crate2, crate3, crate4, crate5, crate6, fishHeap1, fishHeap2, cat1_1, cat1_2, cat1_3, cat1_4, cat2_1, cat2_2, cat2_3, cat2_4, ground, hammerImage } from '@/сonstants';
 import * as Matter from 'matter-js'
 import theAnimation from './animation';
 
@@ -41,14 +41,14 @@ class CatsWidget {
     this.createBoxes();
     this.addBoxesTotheWorld(engine);
     // create two boxes and a ground
-    let boxA, boxB, theGround, wall1, wall2, roof, fishHeap1, fishHeap2;
+    this.boxA, boxB, theGround, wall1, wall2, roof, fishHeap1, fishHeap2;
     // create runner
     var runner = Matter.Runner.create();
-    let cursorX = 0; let cursorY = 0;
-    var now
-    var dt = 0
-    var last = window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
-    var step = 1/60;
+    this.cursorX = 0; this.cursorY = 0;
+    this.now
+    this.dt = 0
+    this.last = window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
+    this.step = 1/60;
     this.frame();
      Matter.Runner.run(runner, engine);
     }
@@ -68,7 +68,7 @@ class CatsWidget {
     this.drawGround();
     this.drawHammer();
     this.last = this.now;
-    this.requestAnimationFrame(frame);
+    requestAnimationFrame(this.frame.bind(this)); 
 }
 
 
@@ -167,8 +167,8 @@ addBoxesTotheWorld= (engine) => {
 }
 
  onmousemove(event) {
-    cursorX = event.pageX - this.cX;
-    cursorY = event.pageY - this.cY;
+    this.cursorX = event.pageX - this.cX;
+    this.cursorY = event.pageY - this.cY;
 }
 
  mouseDown(event) {
@@ -228,8 +228,12 @@ addBoxesTotheWorld= (engine) => {
     this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
 }
  drawHammer() {
-    if (hammerImg != null)
-        this.ctx.drawImage(hammerImg, cursorX, cursorY);
+    if (hammerImage != null)
+    var img=new Image();
+    img.onload = () => {
+        this.ctx.drawImage(img, this.cursorX, this.cursorY);
+    };
+   img.src=hammerImage;
 }
 
  drawPole() {
@@ -243,6 +247,7 @@ addBoxesTotheWorld= (engine) => {
 
 
     function start() {
+        if(img1 && img2){
         let _x, _y, _width, _height;
         let scale = 0.64;
         _x = 0;
@@ -255,6 +260,7 @@ addBoxesTotheWorld= (engine) => {
         } else {
             this.ctx.drawImage(img2, _x, _y, _width, _height);
         }
+    }
     }
 
 }
@@ -269,7 +275,11 @@ addBoxesTotheWorld= (engine) => {
     _height = this.myCanvas.width / div;
     _x = 0;
     _y = this.myCanvas.height - _height;
-    this.ctx.drawImage(ground, _x, _y, _width, _height);
+    var img=new Image();
+    img.onload = () => {
+        this.ctx.drawImage(img, _x, _y, _width, _height);
+        };
+    img.src=ground;
 }
 
  drawCubes() {
@@ -314,7 +324,11 @@ addBoxesTotheWorld= (engine) => {
     brokenCube.src=this.boxBlueImgsArr[this.boxA.clickCount];
     function start(){
     if (this.brokenCubes[0] == false){
-        this.ctx.drawImage(brokenCube, _x, _y, _width, _height);
+        var img=new Image();
+        img.onload = () => {
+            this.ctx.drawImage(img, _x, _y, _width, _height);
+        };
+        img.src=brokenCube;
         this.setClickArea(0, _x, _y, _width, _height);
     this.ctx.restore();}
     }
@@ -347,7 +361,11 @@ addBoxesTotheWorld= (engine) => {
         _height = fishHeap2.height;
         _x = pivotX - (_width / 2);
         _y = pivotY - (_height / 2);
-        this.ctx.drawImage(fishHeap2, _x, _y, _width, _height);
+        var img=new Image();
+        img.onload = () => {
+            this.ctx.drawImage(img, _x, _y, _width, _height);
+        };
+        img.src=fishHeap2;
     }
 }
 
@@ -361,7 +379,13 @@ addBoxesTotheWorld= (engine) => {
     _x = this.myCanvas.width * 0.12;
     _y = this.myCanvas.height * 0.28;
 
-    this.ctx.drawImage(this.catAnim2.image, _x, _y, _width, _height);
+    const catImage2 = new Image();
+    catImage2.onload = () => {
+        this.ctx.drawImage(catImage2, _x, _y, _width, _height);
+    };
+    catImage2.src = this.catAnim2.image;
+
+
     
     this.catAnim2.update();
     scale = 0.45;
@@ -369,7 +393,13 @@ addBoxesTotheWorld= (engine) => {
     _height = this.catAnim1.height * scale;
     _x = 0;
     _y = this.myCanvas.height * 0.58;
-    this.ctx.drawImage(this.catAnim1.image, _x, _y, _width, _height);
+
+    const catImage1 = new Image();
+    catImage1.onload = () => {
+        this.ctx.drawImage(catImage1, _x, _y, _width, _height);
+    };
+    catImage1.src = this.catAnim1.image;
+
     this.catAnim1.update();
 }
 }
