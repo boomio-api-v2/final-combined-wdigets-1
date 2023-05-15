@@ -5,4 +5,5 @@ export * from './testingWidget';
 export * from './imageWidget';
 export * from './stoneWidget';
 export * from './iceWidget';
+export * from './catsWidget';
 export * from './penguinWidget';

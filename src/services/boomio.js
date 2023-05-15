@@ -6,6 +6,7 @@ import {
   startStoneWidget,
   iceWidget,
   startPenguinWidget,
+  startCatsWidget,
   startTestingWidget,
 } from '@/widgets';
 
@@ -19,6 +20,7 @@ class BoomioService extends UserService {
   }
 
   loadWidget = (widget_type = 'puzzle') => {
+    console.log('widget_type',widget_type);
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
       wheel: startWheelWidget,
@@ -28,6 +30,7 @@ class BoomioService extends UserService {
       ice: iceWidget,
       penguin: startPenguinWidget,
       testing: startTestingWidget,
+      cats: startCatsWidget,
     };
     createWidgetMap[widget_type]();
   };

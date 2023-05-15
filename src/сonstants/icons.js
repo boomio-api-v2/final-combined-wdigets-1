@@ -47,3 +47,29 @@ export const iceHammerImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';
 
 export const winningAnimationGif = 'https://i.ibb.co/C0YvY06/confetti-25-1.gif';
+
+export const crate1 ="https://github.com/kbnvch/crates/blob/main/aaa1.png?raw=true" ;
+export const crate2 ="https://github.com/kbnvch/crates/blob/main/aaa2.png?raw=true" ;
+export const crate3 ="https://github.com/kbnvch/crates/blob/main/aaa3.png?raw=true" ;
+export const crate4 ="https://github.com/kbnvch/crates/blob/main/aaa4.png?raw=true" ;
+export const crate5 ="https://github.com/kbnvch/crates/blob/main/aaa5.png?raw=true" ;
+export const crate6 ="https://github.com/kbnvch/crates/blob/main/aaa6.png?raw=true" ;
+
+export const fishHeap1 ="https://github.com/kbnvch/crates/blob/main/fish01.png?raw=true" ;
+export const fishHeap2 ="https://github.com/kbnvch/crates/blob/main/fish02.png?raw=true" ;
+
+export const pole1 ="https://github.com/kbnvch/crates/blob/main/p1.png?raw=true" ;
+export const pole2 ="https://github.com/kbnvch/crates/blob/main/p2.png?raw=true" ;
+
+export const cat1_1 ="https://github.com/kbnvch/crates/blob/main/ct1_01.png?raw=true" ;
+export const cat1_2 ="https://github.com/kbnvch/crates/blob/main/ct1_02.png?raw=true" ;
+export const cat1_3 ="https://github.com/kbnvch/crates/blob/main/ct1_03.png?raw=true" ;
+export const cat1_4 ="https://github.com/kbnvch/crates/blob/main/ct1_04.png?raw=true" ;
+
+export const cat2_1 ="https://github.com/kbnvch/crates/blob/main/ct2_01.png?raw=true" ;
+export const cat2_2 ="https://github.com/kbnvch/crates/blob/main/ct2_02.png?raw=true" ;
+export const cat2_3 ="https://github.com/kbnvch/crates/blob/main/ct2_03.png?raw=true" ;
+export const cat2_4 ="https://github.com/kbnvch/crates/blob/main/ct2_04.png?raw=true" ;
+export const ground ="https://github.com/kbnvch/crates/blob/main/ground2.png?raw=true" ;
+export const backgroundImg ="https://github.com/kbnvch/crates/blob/main/dot.png?raw=true" ;
+

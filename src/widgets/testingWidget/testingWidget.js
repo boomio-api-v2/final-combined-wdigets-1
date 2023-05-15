@@ -6,8 +6,8 @@ class TestingWidget {
   constructor() {
     this.startAnimation();
   }
-
   startAnimation = () => {
+
     localStorage.setItem('testing_Widgets', true);
     const width = 320;
     const height = 372;
@@ -50,6 +50,7 @@ class TestingWidget {
       {'spawn':'stone','despawn':'stone-container','name':'Stone'},
       {'spawn':'ice','despawn':'ice-widget','name':'Ice'},
       {'spawn':'penguin','despawn':'penguin-widget','name':'Penguin'},
+      {'spawn':'cats','despawn':'cats','name':'Cats Widget'},
     ];
 
     let buttonsHtml = '';
@@ -79,6 +80,8 @@ class TestingWidget {
         </div>
       </div>
     `;
+
+
     document.getElementById('close_div_img').onclick = closeModalDiscount;
     document.getElementById('remove_div_btn').onclick = removeWidgets;
 
