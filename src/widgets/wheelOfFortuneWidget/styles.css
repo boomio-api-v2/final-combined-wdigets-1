@@ -38,7 +38,12 @@
     border-top: none;
 }
 
-.wheel-border {
-    border: #fff 9px solid;
-    border-radius: 50%;
+
+.topmark {
+    position: absolute;
+    right: 115px;
+    top: 9px;
+    border: 10px solid transparent;
+    border-top-color: white;
+    z-index: 1;
 }

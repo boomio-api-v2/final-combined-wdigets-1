@@ -6,13 +6,14 @@ import {
   AnimationService,
   widgetHtmlService,
 } from '@/services';
-import { getRandomArbitrary } from '@/utlis';
+// import { getRandomArbitrary } from '@/utlis';
 import { defaultList } from './constants';
 import './styles.css';
 
 class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
+    console.log(this.config)
     if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
     this.createWheel();
     this.elSpin = document.querySelector('#spin');
@@ -31,14 +32,22 @@ class WheelOfFortuneWidget {
     this.ang = 0;
     this.isSpinning = false;
     this.isAccelerating = false;
+    this.winningValue = this.config?.p_coupon_text_line1;
+    // this.config.list = this?.config?.list ?? defaultList;
+    this.config.list[3].label = `${this.winningValue} % OFF`
+
+    this.drawBackground();
     this.elSpin.addEventListener('click', () => {
       boomioService.signal('SPIN');
       if (this.isSpinning) return;
       this.isSpinning = true;
       this.isAccelerating = true;
-      this.angVelMax = getRandomArbitrary(0.1, 0.2);
+      // this.angVelMax = getRandomArbitrary(0.1, 0.2);
+      this.angVelMax = 0.16;
+      // this.angVelMax = 0.15;
     });
 
+    // this.drawBackground
     this.config?.list?.forEach(this.drawSector);
     /// //To Check///////
     // if (document.readyState !== 'complete') return;
@@ -69,7 +78,6 @@ class WheelOfFortuneWidget {
       this.angVel *= 1.06; // Accelerate
     }
 
-
     // Decelerate
     else {
       this.isAccelerating = false;
@@ -80,6 +88,7 @@ class WheelOfFortuneWidget {
         this.isSpinning = false;
         this.angVel = 0;
         new QrCodeModal();
+        console.log('result', this.config.list[this.getIndex()].label.replace(/\D/g, ""), ' %')
         this.wheelOfFortune.remove();
       }
     }
@@ -98,8 +107,18 @@ class WheelOfFortuneWidget {
       : `      
             <img style="width: 40px; height: 40px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>
         `;
-    this.elSpin.style.background = 'white';
+    this.elSpin.style.background = sector.color;
+    this.elSpin.style.color = 'white'
   };
+
+  drawBackground = () => {
+    this.ctx.beginPath()
+    this.ctx.fillStyle = 'white'
+    this.ctx.arc(this.rad, this.rad, this.rad, 0, 2 * this.PI)
+    this.ctx.moveTo(this.rad, this.rad)
+    this.ctx.lineTo(this.rad, this.rad)
+    this.ctx.fill()
+  }
 
   drawSector = (sector, i) => {
     const ang = this.arc * i;
@@ -107,7 +126,7 @@ class WheelOfFortuneWidget {
     this.ctx.beginPath();
     this.ctx.fillStyle = sector.color;
     this.ctx.moveTo(this.rad, this.rad);
-    this.ctx.arc(this.rad, this.rad, this.rad, ang, ang + this.arc);
+    this.ctx.arc(this.rad, this.rad, this.rad - 10, ang, ang + this.arc - this.arc / 24);
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.fill();
     this.ctx.translate(this.rad, this.rad);
@@ -118,15 +137,12 @@ class WheelOfFortuneWidget {
     // this.ctx.textAlign = 'center'; // change text alignment to center
     this.ctx.fillStyle = '#fff';
     this.ctx.font = 'bold 15px sans-serif';
-    this.ctx.font = '14px serif';
+    // this.ctx.font = '14px serif';
     const img = new Image();
-
-    img.src = sector.img;
-    this.ctx.drawImage(img, 86, -12, 32, 32);
-    this.ctx.fillText(sector.label, this.rad - 65, 10);
+    // img.src = sector.img;
+    // this.ctx.drawImage(img, 86, -12, 32, 32);
+    this.ctx.fillText(sector.label, this.rad - 77, 10);
     // this.ctx.fillText(sector.label, 0, 55); // change text position
-
-
     this.ctx.restore();
   };
 
@@ -134,11 +150,11 @@ class WheelOfFortuneWidget {
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
-    wheel.classList.add('wheel-border');
+    // wheel.classList.add('wheel-border');
     wheel.style.display = 'none';
     wheel.innerHTML = `
                 <canvas id="wheel" width="250" height="250"></canvas>
-                <div id="spin">SPIN asd asd asd as dasd as dasd asd asd as d</div>
+                <div id="spin">SPIN asd asd asd as dasd as dasd asd asd as d</div> <div class="topmark"></div>
           `;
     widgetHtmlService.container.appendChild(wheel);
   };
