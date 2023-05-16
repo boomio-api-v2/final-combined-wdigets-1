@@ -55,8 +55,8 @@ export const crate4 ="https://github.com/kbnvch/crates/blob/main/aaa4.png?raw=tr
 export const crate5 ="https://github.com/kbnvch/crates/blob/main/aaa5.png?raw=true" ;
 export const crate6 ="https://github.com/kbnvch/crates/blob/main/aaa6.png?raw=true" ;
 
-export const fishHeap1 ="https://github.com/kbnvch/crates/blob/main/fish01.png?raw=true" ;
-export const fishHeap2 ="https://github.com/kbnvch/crates/blob/main/fish02.png?raw=true" ;
+export const fishHeapImg1 ="https://github.com/kbnvch/crates/blob/main/fish01.png?raw=true" ;
+export const fishHeapImg2 ="https://github.com/kbnvch/crates/blob/main/fish02.png?raw=true" ;
 
 export const pole1 ="https://github.com/kbnvch/crates/blob/main/p1.png?raw=true" ;
 export const pole2 ="https://github.com/kbnvch/crates/blob/main/p2.png?raw=true" ;

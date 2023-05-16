@@ -4,9 +4,9 @@
         function init() {
             anim.image = anim.frames[anim.currentFrame];
             anim.frameCount = anim.frames.length;
-            anim.width = anim?.image?.width ??  '300px';
-            anim.height = anim?.image?.height ?? '300px';
-            anim.callCounter = anim.frameDurations[anim.currentFrame];
+            anim.width = anim.image.width;
+            anim.height = anim.image.height;
+                anim.callCounter = anim.frameDurations[anim.currentFrame];
         }
         function update() {
             anim.callCounter--;
@@ -25,14 +25,15 @@
             currentFrame: 0,          // current frame. 
             frameCount: 0,          // number of frames
             image: null,       // the current image at the currentFrame
-            width: null,       // width in pixels
-            height: null,       // height in pixels
+            width: 321,       // width in pixels
+            height: 300,       // height in pixels
             callCounter: 0,          // counts number of draw calls
     
             init: init,      // call to initialize
             update: update     // call after drawing picture
         };
         return anim;
+        
     }
   }
   export default new AnimationService();
