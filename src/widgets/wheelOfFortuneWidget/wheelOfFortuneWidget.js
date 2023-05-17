@@ -6,19 +6,19 @@ import {
   AnimationService,
   widgetHtmlService,
 } from '@/services';
-// import { getRandomArbitrary } from '@/utlis';
+import { getRandomArbitrary } from '@/utlis';
 import { defaultList } from './constants';
 import './styles.css';
 
 class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    console.log(this.config)
     if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
     this.createWheel();
     this.elSpin = document.querySelector('#spin');
     this.ctx = document.getElementById('wheel').getContext`2d`;
-    this.config.list = this?.config?.list ?? defaultList;
+    // this.config.list = this?.config?.list ?? defaultList;
+    this.setValues()
     this.tot = this.config?.list?.length ?? 0;
     this.dia = this.ctx.canvas.width;
     this.rad = this.dia / 2;
@@ -32,10 +32,6 @@ class WheelOfFortuneWidget {
     this.ang = 0;
     this.isSpinning = false;
     this.isAccelerating = false;
-    this.winningValue = this.config?.p_coupon_text_line1;
-    // this.config.list = this?.config?.list ?? defaultList;
-    this.config.list[3].label = `${this.winningValue} % OFF`
-
     this.drawBackground();
     this.elSpin.addEventListener('click', () => {
       boomioService.signal('SPIN');
@@ -43,14 +39,10 @@ class WheelOfFortuneWidget {
       this.isSpinning = true;
       this.isAccelerating = true;
       // this.angVelMax = getRandomArbitrary(0.1, 0.2);
-      this.angVelMax = 0.16;
-      // this.angVelMax = 0.15;
+      this.angVelMax = 0.19;
     });
 
-    // this.drawBackground
     this.config?.list?.forEach(this.drawSector);
-    /// //To Check///////
-    // if (document.readyState !== 'complete') return;
     this.wheelOfFortune = document.getElementById('wheelOfFortune');
     this.wheelOfFortune.style.display = 'block';
     this.addCloseIconToElement(this.wheelOfFortune);
@@ -67,9 +59,28 @@ class WheelOfFortuneWidget {
     requestAnimationFrame(this.engine);
   };
 
+  setValues = () => {
+    this.config.list = defaultList;
+    const winningValue = this.config.p_coupon_text.replace(/\D/g, "")
+
+    if (this.config.p_coupon_text.includes('$') || this.config.p_coupon_text.includes('€')) {
+      this.config.list.forEach((e) => {
+        const rounding = winningValue.length > 1 ? winningValue.length - 1 : 1
+        const value = winningValue * 1 + Math.round(winningValue * getRandomArbitrary(-1, 1) / Math.pow(10, rounding - 1)) * Math.pow(10, rounding - 1);
+        e.label = `${value}${this.config.p_coupon_text.includes('$') ? ' $' : ' €'}`
+      })
+      this.config.list[5].label = `${winningValue} ${this.config.p_coupon_text.includes('$') ? ' $' : ' €'}`
+    }
+    if (this.config.p_coupon_text.includes('%')) {
+      this.config.list[5].label = `${winningValue} % OFF`
+    }
+    if (this.config.p_coupon_text.toLowerCase().includes('free shipping')) {
+      this.config.list[5].label = 'Free Shippping'
+    }
+  }
+
   frame = () => {
     if (!this.isSpinning) return;
-
     if (this.angVel >= this.angVelMax) this.isAccelerating = false;
 
     // Accelerate
@@ -88,8 +99,9 @@ class WheelOfFortuneWidget {
         this.isSpinning = false;
         this.angVel = 0;
         new QrCodeModal();
-        console.log('result', this.config.list[this.getIndex()].label.replace(/\D/g, ""), ' %')
-        this.wheelOfFortune.remove();
+        setTimeout(() => {
+          this.wheelOfFortune.remove();
+        }, 5000);
       }
     }
     this.ang += this.angVel; // Update angle
@@ -131,18 +143,10 @@ class WheelOfFortuneWidget {
     this.ctx.fill();
     this.ctx.translate(this.rad, this.rad);
     this.ctx.rotate(ang + this.arc / 2);
-    // this.ctx.rotate(ang + this.arc / 2 + 3 * Math.PI / 2); // rotate by 90 degrees
-
     this.ctx.textAlign = 'left';
-    // this.ctx.textAlign = 'center'; // change text alignment to center
     this.ctx.fillStyle = '#fff';
     this.ctx.font = 'bold 15px sans-serif';
-    // this.ctx.font = '14px serif';
-    const img = new Image();
-    // img.src = sector.img;
-    // this.ctx.drawImage(img, 86, -12, 32, 32);
-    this.ctx.fillText(sector.label, this.rad - 77, 10);
-    // this.ctx.fillText(sector.label, 0, 55); // change text position
+    this.ctx.fillText(sector.label, this.rad - 77, 10, 70);
     this.ctx.restore();
   };
 
@@ -150,7 +154,6 @@ class WheelOfFortuneWidget {
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
-    // wheel.classList.add('wheel-border');
     wheel.style.display = 'none';
     wheel.innerHTML = `
                 <canvas id="wheel" width="250" height="250"></canvas>

@@ -37,25 +37,6 @@ class CupsWidget {
       }
       widgetHtmlService.createWidgetContainer();
     }
-    
-
-
-    // const widgetsList = [
-    //   {'spawn':'puzzle','despawn':'puzzle-widget','name':'Puzzle'},
-    //   {'spawn':'wheel','despawn':'wheelOfFortune','name':'Wheel Of Fortune'},
-    //   {'spawn':'stone','despawn':'stone-container','name':'Stone'},
-    //   {'spawn':'ice','despawn':'ice-widget','name':'Ice'},
-    //   {'spawn':'penguin','despawn':'penguin-widget','name':'Penguin'},
-    // ];
-
-    // let buttonsHtml = '';
-    // widgetsList.forEach((widget) => {
-    //   const spawnBtnId = `SpawnBtn_${widget.spawn}`;
-
-    //   buttonsHtml += `<div style='width:100%;margin-bottom:10px'>
-    //       <button class='go_button' data-widget-spawn='${widget.spawn}' id='${spawnBtnId}'>${widget.name}</button>
-    //     </div>`;
-    // });
 
 
     animationEl.innerHTML = `
@@ -63,51 +44,15 @@ class CupsWidget {
         <div class='close_button align-right'>
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
-        
+        <h2>Čia bus naujas widgetas</h2>
       </div>
     `;
-    // animationEl.innerHTML = `
-    //   <div  class='position-relative product-design-bg-2 Preview-select' style='z-index:10000000000000; min-width: 260px;min-height: 320px; padding: 20px 0px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd' id='widget_test'>
-    //     <div class='close_button align-right'>
-    //       <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
-    //     </div>
-    //     <div class='coupon__preview__body coupon_discount_modal'>
-    //       <div class='coupon__preview__card__header text-center d-block'>
-    //         <h2 >Widgets Preview</h3>
-    //         ${buttonsHtml}          
-    //       </div>
-    //       <div class='coupon__preview__card__header text-center d-block'>
-    //       <div style='width:100%;margin-bottom:16px'>
-    //       <button class='go_button' id='remove_div_btn' style='margin-top:20px'>Remove All</button>
-    //     </div>        
-    //     </div>
-    //     </div>
-    //   </div>
-    // `;
+
 
     document.getElementById('close_div_img').onclick = closeModalDiscount;
 
     document.getElementById('remove_div_btn').onclick = removeWidgets;
 
-    // let prevWidget = '';
-
-    // widgetsList.forEach((widget) => {
-    //   const spawnBtnId = `SpawnBtn_${widget.spawn}`;
-
-    //   document.getElementById(spawnBtnId).onclick = () => {
-    //     const widgetName = document.getElementById(spawnBtnId).getAttribute('data-widget-spawn');
-    //     if (prevWidget) {
-    //       // const element = document.getElementById(prevWidget.despawn); //might need to change so it only removes prev
-    //       // if (element) {
-    //       //   element.remove();
-    //       // }
-
-    //       removeWidgets()
-    //     }
-    //     boomioService.testing(widgetName);
-    //     prevWidget = widget;
-    //   };
-    // });
   };
 }
 
