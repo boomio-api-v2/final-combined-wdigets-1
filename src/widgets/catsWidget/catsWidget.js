@@ -1,10 +1,34 @@
-import { pole1, pole2, crate1, crate2, crate3, crate4, crate5, crate6, fishHeapImg1, fishHeapImg2, cat1_1, cat1_2, cat1_3, cat1_4, cat2_1, cat2_2, cat2_3, cat2_4, ground, hammerImage } from '@/сonstants';
+import * as constants from '@/сonstants';
 import * as Matter from 'matter-js'
 import theAnimation from './animation';
 
 class CatsWidget {
     constructor() {
-        this.boxBlueImgsArr = [crate1, crate2, crate3, crate4, crate5, crate6];
+        this.imagePaths = {
+            pole1: constants.pole1,
+            pole2: constants.pole2,
+            crate1: constants.crate1,
+            crate2: constants.crate2,
+            crate3: constants.crate3,
+            crate4: constants.crate4,
+            crate5: constants.crate5,
+            crate6: constants.crate6,
+            fishHeapImg1: constants.fishHeapImg1,
+            fishHeapImg2: constants.fishHeapImg2,
+            cat1_1: constants.cat1_1,
+            cat1_2: constants.cat1_2,
+            cat1_3: constants.cat1_3,
+            cat1_4: constants.cat1_4,
+            cat2_1: constants.cat2_1,
+            cat2_2: constants.cat2_2,
+            cat2_3: constants.cat2_3,
+            cat2_4: constants.cat2_4,
+            ground: constants.ground,
+            hammerImage: constants.hammerImage
+          };
+        this.loadedImages = [];
+        console.log(this.loadedImages);
+        this.boxBlueImgsArr = [];
         this.myCanvas = document.createElement("canvas");
         document.getElementsByTagName("Body")[0].appendChild(this.myCanvas);
         this.cX = 300;
@@ -23,10 +47,10 @@ class CatsWidget {
         this.ctx = this.myCanvas.getContext("2d");
         this.brokenCubes = [false, false];
         // here we insert images used as frames, and specify how long frame should last (1 unit here approx = 1/60 sec)
-        this.catAnim1.frames = [cat1_1, cat1_2, cat1_3, cat1_4, cat1_2, cat1_3, cat1_4, cat1_2, cat1_3, cat1_4];
+        this.catAnim1.frames = [];
         this.catAnim1.frameDurations = [120, 6, 6, 6, 6, 6, 6, 6, 6, 20]; // should be same length as frame array
-        this.catAnim2.frames = [cat2_1, cat2_2, cat2_3, cat2_4, cat2_3, cat2_4, cat2_3, cat2_4, cat2_3, cat2_4];
-        this.catAnim2.frameDurations = [75, 34, 7, 7, 7, 7, 7, 7, 7, 7];
+        this.catAnim2.frames = [];
+         this.catAnim2.frameDurations = [75, 34, 7, 7, 7, 7, 7, 7, 7, 7];
         this.engine = Matter.Engine.create();
         this.boxA;
         this.boxB;
@@ -60,28 +84,43 @@ class CatsWidget {
 
         addStyles(stiliukas, myCss);
         Matter.Runner.run(this.runner, this.engine);
-
-
-        this.start();
+        this.loadAllImages();
     }
 
-    start() {
-        var crateImg = new Image();
-        crateImg.onload = () => {
-            this.createBoxes(crateImg)
-                .then(() => {
-                    this.addBoxesTotheWorld();
+    checkAllImagesLoaded() {
+        if (Object.keys(this.loadedImages).length === Object.keys(this.imagePaths).length) {
+            this.start();
+        }
+    }
 
-                    this.catAnim1.init();
-                    this.catAnim2.init();
-                    requestAnimationFrame(() => this.frame());
-
-                })
-                .catch((error) => {
-                    console.error('Error creating boxes:', error);
-                });
+    loadImage(name, path) {
+        var image = new Image();
+        image.onload = () =>{
+            this.loadedImages[name] = image;
+            this.checkAllImagesLoaded();
         };
-        crateImg.src = crate1;
+        image.src = path;
+    }
+
+    loadAllImages() {
+        for (const key in this.imagePaths) {
+          const path = this.imagePaths[key];
+          const name = key;
+          this.loadImage(name, path);
+        }
+      }
+      
+
+
+    start() {
+        this.catAnim1.frames = [this.loadedImages["cat1_1"],this.loadedImages["cat1_2"],this.loadedImages["cat1_3"],this.loadedImages["cat1_4"],this.loadedImages["cat1_2"],this.loadedImages["cat1_3"],this.loadedImages["cat1_4"],this.loadedImages["cat1_2"],this.loadedImages["cat1_3"],this.loadedImages["cat1_4"]];
+        this.catAnim2.frames = [this.loadedImages["cat2_1"],this.loadedImages["cat2_2"],this.loadedImages["cat2_3"],this.loadedImages["cat2_4"],this.loadedImages["cat2_3"],this.loadedImages["cat2_4"],this.loadedImages["cat2_3"],this.loadedImages["cat2_4"],this.loadedImages["cat2_3"],this.loadedImages["cat2_4"]];       
+            this.boxBlueImgsArr = [this.loadedImages["crate1"],this.loadedImages["crate2"],this.loadedImages["crate3"],this.loadedImages["crate4"],this.loadedImages["crate5"],this.loadedImages["crate6"]];
+            this.createBoxes(this.loadedImages["crate1"])
+            this.addBoxesTotheWorld();
+            this.catAnim1.init();
+            this.catAnim2.init();
+            requestAnimationFrame(() => this.frame());
     }
 
     timestamp() {
@@ -89,19 +128,17 @@ class CatsWidget {
     }
 
     frame() {
-
-            his.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
-            // this.drawPole();
-            // this.drawCubes1();
-            // this.drawCubes2();
-            // this.drawFishHeap();
-            // this.drawCats();
-            // this.drawGround();
-            this.drawHammer();
-            console.log('frame');
-        requestAnimationFrame(() => this.frame());
+        this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
+        this.drawPole();
+        this.drawCubes1();
+        this.drawCubes2();
+        this.drawFishHeap();
+        this.drawCats();
+        this.drawGround();
+        this.drawHammer();
+        console.log('frame');
+            requestAnimationFrame(() => this.frame());
     }
-
     createBoxes(crateImg) {
         return new Promise((resolve) => {
             let _x, _y, _width, _height;
@@ -158,33 +195,15 @@ class CatsWidget {
 
     updateBoxColliderForBrokenBox(box) {
         let height1, height6;
-    
-        const crateImg1 = new Image();
-        const crateImg6 = new Image();
-    
-        const onLoadHandler = () => {
-            if (height1 && height6) {
-                console.log('height',height1 ,height6);
-                const divH = height6 / height1;
-                Matter.Body.scale(box, 1, divH);
-                box.height = box.height * divH;
-            }
-        };
-    
-        crateImg1.onload = () => {
-            height1 = crateImg1.height;
-            onLoadHandler();
-        };
-        crateImg1.src = crate1;
-    
-        crateImg6.onload = () => {
-            height6 = crateImg6.height;
-            onLoadHandler();
-        };
-        crateImg6.src = crate6;
-    }
-    
+        height1 = this.loadedImages["crate1"].height;
+        height6 = this.loadedImages["crate6"].height;
+        const divH = height6 / height1;
+        Matter.Body.scale(box, 1, divH);
+        box.height = box.height * divH;
+  
 
+
+    }
     addBoxesTotheWorld() {
         Matter.Composite.add(this.engine.world, [this.boxA, this.boxB, this.theGround, this.wall1, this.wall2, this.roof]);
     }
@@ -244,51 +263,35 @@ class CatsWidget {
     }
 
     drawHammer() {
-        var img = new Image();
-        img.onload = () => {
-            this.ctx.drawImage(img, this.cursorX, this.cursorY);
-        };
-        img.src = hammerImage;
+            this.ctx.drawImage(this.loadedImages["hammerImage"], this.cursorX, this.cursorY);
     }
 
     drawPole() {
-        var img1 = new Image();
-        img1.onload = () => {
-            var img2 = new Image();
-            img2.onload = () => {
+
                 let _x, _y, _width, _height;
                 let scale = 0.64;
                 _x = 0;
                 _y = 0;
-                _width = img1.width * scale;
-                _height = img1.height * scale;
+                _width = this.loadedImages["pole1"].width * scale;
+                _height = this.loadedImages["pole1"].height * scale;
                 if (this.boxA?.clickCount === 0 && this.boxB?.clickCount === 0) {
-                    this.ctx.drawImage(img1, _x, _y, _width, _height);
+                    this.ctx.drawImage(this.loadedImages["pole1"], _x, _y, _width, _height);
                 } else {
-                    this.ctx.drawImage(img2, _x, _y, _width, _height);
+                    this.ctx.drawImage(this.loadedImages["pole2"], _x, _y, _width, _height);
                 }
-            };
-            img2.src = pole2; // Start loading the second image after the first one has loaded
-        };
-        img1.src = pole1; // Start loading the first image
-
-        // Removed the `start()` function as it's not necessary anymore
+     
     }
 
 
     drawGround() {
         let _x, _y, _width, _height;
         let div;
-        var img = new Image();
-        img.onload = () => {
-            div = img.width / img.height;
+            div = this.loadedImages["ground"].width / this.loadedImages["ground"].height;
             _width = this.myCanvas.width;
             _height = this.myCanvas.width / div;
             _x = 0;
             _y = this.myCanvas.height - _height;
-            this.ctx.drawImage(img, _x, _y, _width, _height);
-        };
-        img.src = ground;
+            this.ctx.drawImage(this.loadedImages["ground"], _x, _y, _width, _height);
     }
 
     drawCubes1() {
@@ -305,14 +308,10 @@ class CatsWidget {
             this.ctx.translate(pivotX, pivotY);
             this.ctx.rotate(this.boxB.angle);
             this.ctx.translate(-pivotX, -pivotY);
-            const boxImg1 = new Image();
-            boxImg1.onload = () => {
-                this.ctx.drawImage(boxImg1, _x, _y, _width, _height);
-            };
-            boxImg1.src = this.boxBlueImgsArr[this.boxB.clickCount];
+                this.ctx.drawImage(this.boxBlueImgsArr[this.boxB.clickCount], _x, _y, _width, _height);
             this.setClickArea(1, _x, _y, _width, _height);
             this.ctx.restore();
-    
+
         }
 
     }
@@ -334,14 +333,10 @@ class CatsWidget {
             this.ctx.translate(pivotX, pivotY);
             this.ctx.rotate(this.boxA.angle);
             this.ctx.translate(-pivotX, -pivotY);
-            const boxImg2 = new Image();
-            boxImg2.onload = () => {
-                this.ctx.drawImage(boxImg2, _x, _y, _width, _height);
-            };
-            boxImg2.src = this.boxBlueImgsArr[this.boxA.clickCount];
+                this.ctx.drawImage(this.boxBlueImgsArr[this.boxA.clickCount], _x, _y, _width, _height);
             this.setClickArea(0, _x, _y, _width, _height);
             this.ctx.restore();
-    
+
         }
     }
 
@@ -352,27 +347,19 @@ class CatsWidget {
         _x = box.position.x;
         _y = box.position.y;
         if (i == 0) {
-            var fishHeapImage1 = new Image();
-            fishHeapImage1.onload = () => {
-                div = fishHeapImage1.height / fishHeapImage1.width;
+                div = this.loadedImages["fishHeapImg1"].height / this.loadedImages["fishHeapImg1"].width;
                 _width = box.collisionWidth;
                 _height = box.collisionWidth * div;
                 this.fishHeap1 = Matter.Bodies.rectangle(_x, _y, _width, _height, { width: _width, height: _height });
                 this.fishHeap1.collisionFilter.group = -1;
                 Matter.Composite.add(this.engine.world, this.fishHeap1);
-            };
-            fishHeapImage1.src = fishHeapImg1;
         } else if (i == 1) {
-            var fishHeapImage2 = new Image();
-            fishHeapImage2.onload = () => {
-                div = fishHeapImage2.height / fishHeapImage2.width;
+                div = this.loadedImages["fishHeapImg2"].height / this.loadedImages["fishHeapImg2"].width;
                 _width = box.collisionWidth;
                 _height = box.collisionWidth * div;
                 this.fishHeap2 = Matter.Bodies.rectangle(_x, _y, _width, _height, { width: _width, height: _height });
                 this.fishHeap2.collisionFilter.group = -1;
                 Matter.Composite.add(this.engine.world, this.fishHeap2);
-            };
-            fishHeapImage2.src = fishHeapImg2;
         }
     }
 
@@ -380,61 +367,46 @@ class CatsWidget {
         let _x, _y, _width, _height;
         if (this.boxA.broken == true && this.fishHeap1) {
             let pivotX, pivotY;
-            var fishHeapImage1 = new Image();
-            fishHeapImage1.onload = () => {
                 pivotX = this.fishHeap1.position.x;
                 pivotY = this.fishHeap1.position.y;
-                _width = fishHeapImage1.width/1.5;
-                _height = fishHeapImage1.height/1.5;
+                _width = this.loadedImages["fishHeapImg1"].width / 1.5;
+                _height = this.loadedImages["fishHeapImg1"].height / 1.5;
                 _x = pivotX - (_width / 2);
                 _y = pivotY - (_height / 2);
-                this.ctx.drawImage(fishHeapImage1, _x, _y, _width, _height);
-            };
-            fishHeapImage1.src = fishHeapImg1;
+                this.ctx.drawImage(this.loadedImages["fishHeapImg1"], _x, _y, _width, _height);
         }
         if (this.boxB.broken == true && this.fishHeap2) {
-            var fishHeapImage2 = new Image();
-            fishHeapImage2.onload = () => {
+    
                 let pivotX, pivotY;
                 pivotX = this.fishHeap2.position.x;
                 pivotY = this.fishHeap2.position.y;
-                _width = fishHeapImage2.width/1.5;
-                _height = fishHeapImage2.height/1.5;
+                _width = this.loadedImages["fishHeapImg2"].width / 1.5;
+                _height = this.loadedImages["fishHeapImg2"].height / 1.5;
                 _x = pivotX - (_width / 2);
                 _y = pivotY - (_height / 2);
-                this.ctx.drawImage(fishHeapImage2, _x, _y, _width, _height);
-            };
-            fishHeapImage2.src = fishHeapImg2;
+                this.ctx.drawImage(this.loadedImages["fishHeapImg2"], _x, _y, _width, _height);
         }
     }
 
     drawCats() {
         if (this.boxA.clickCount > 0 || this.boxB.clickCount > 0)
-            return;
-        const catImage2 = new Image();
+        return;
         let _x, _y, _width, _height;
         let scale = 0.28;
-
-        catImage2.onload = () => {
-            _width = catImage2.width * scale;
-            _height = catImage2.height * scale;
+        console.log('this.catAnim2',this.catAnim2);
+            _width = this.catAnim2.image.width * scale;
+            _height = this.catAnim2.image.height * scale;
             _x = this.myCanvas.width * 0.12;
             _y = this.myCanvas.height * 0.28;
-            this.ctx.drawImage(catImage2, _x, _y, _width, _height);
-        };
-        catImage2.src = this.catAnim2.image;
+            this.ctx.drawImage(this.catAnim2.image, _x, _y, _width, _height);
         this.catAnim2.update();
 
-        const catImage1 = new Image();
-        catImage1.onload = () => {
             scale = 0.45;
-            _width = catImage1.width * scale;
-            _height = catImage1.height * scale;
+            _width = this.catAnim1.image.width * scale;
+            _height = this.catAnim1.image.height * scale;
             _x = 0;
             _y = this.myCanvas.height * 0.58;
-            this.ctx.drawImage(catImage1, _x, _y, _width, _height);
-        };
-        catImage1.src = this.catAnim1.image;
+            this.ctx.drawImage(this.catAnim1.image, _x, _y, _width, _height);
         this.catAnim1.update();
     }
 }

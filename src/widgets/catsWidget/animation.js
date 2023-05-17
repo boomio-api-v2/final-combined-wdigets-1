@@ -4,8 +4,9 @@
         function init() {
             anim.image = anim.frames[anim.currentFrame];
             anim.frameCount = anim.frames.length;
-            anim.width = anim.image.width;
-            anim.height = anim.image.height;
+            console.log('anim.image',anim.image);
+            anim.width = anim.image?.width ?? 30;
+            anim.height = anim.image?.height  ?? 30;
                 anim.callCounter = anim.frameDurations[anim.currentFrame];
         }
         function update() {
