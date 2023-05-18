@@ -1,9 +1,13 @@
 import * as constants from '@/сonstants';
 import * as Matter from 'matter-js'
 import theAnimation from './animation';
+import {  AnimationService,localStorageService,widgetHtmlService,DragElement,QrCodeModal } from '@/services';
+import './styles.css';
 
 class CatsWidget {
     constructor() {
+      this.config = localStorageService.getDefaultConfig();
+      if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
         this.imagePaths = {
             pole1: constants.pole1,
             pole2: constants.pole2,
@@ -27,17 +31,12 @@ class CatsWidget {
             hammerImage: constants.hammerImage
           };
         this.loadedImages = [];
-        console.log(this.loadedImages);
         this.boxBlueImgsArr = [];
-        this.myCanvas = document.createElement("canvas");
-        document.getElementsByTagName("Body")[0].appendChild(this.myCanvas);
+        this.createContainer();
         this.cX = 300;
         this.cY = 100;
         this.clickAreas = [[], []];
-        this.myCanvas.style.position = "absolute";
-        this.myCanvas.style.left = this.cX + 'px';
-        this.myCanvas.style.top = this.cY + 'px';
-        this.myCanvas.style.zIndex = "100";
+        this.myCanvas = document.getElementById('crates-container');
         this.myCanvas.height = 300;
         this.myCanvas.width = 231;
         this.myCanvas.addEventListener("mousedown", (event) => this.mouseDown(event), false);
@@ -46,7 +45,6 @@ class CatsWidget {
         this.catAnim2 = theAnimation.animation();
         this.ctx = this.myCanvas.getContext("2d");
         this.brokenCubes = [false, false];
-        // here we insert images used as frames, and specify how long frame should last (1 unit here approx = 1/60 sec)
         this.catAnim1.frames = [];
         this.catAnim1.frameDurations = [120, 6, 6, 6, 6, 6, 6, 6, 6, 20]; // should be same length as frame array
         this.catAnim2.frames = [];
@@ -63,29 +61,21 @@ class CatsWidget {
         this.runner = Matter.Runner.create();
         this.cursorX = 0;
         this.cursorY = 0;
-        const stiliukas = document.createElement("style");
-        document.getElementsByTagName("head")[0].appendChild(stiliukas);
-
-        const myCss = `
-    canvas {
-        border: 0px solid #055500;
-        display: block;
-        margin: 0 auto;
-        image-rendering: high-quality;
-      }
-    `;
-        const addStyles = (stylesheet, cssRules) => {
-            if (stylesheet.styleSheet) {
-                stylesheet.styleSheet.cssText = cssRules;
-            } else {
-                stylesheet.appendChild(document.createTextNode(cssRules));
-            }
-        };
-
-        addStyles(stiliukas, myCss);
+        this.animation = new AnimationService({
+          elem: this.myCanvas,
+        });
+        const { posx, posy } = this.animation;
+        this.draggeble = new DragElement(this.myCanvas, { x_position: posx, y_position: posy });
         Matter.Runner.run(this.runner, this.engine);
         this.loadAllImages();
     }
+
+    createContainer = () => {
+      const myCanvas = document.createElement("canvas");
+      myCanvas.setAttribute('id', 'crates-container');
+      myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
+      widgetHtmlService.container.appendChild(myCanvas);
+    };
 
     checkAllImagesLoaded() {
         if (Object.keys(this.loadedImages).length === Object.keys(this.imagePaths).length) {
@@ -128,17 +118,41 @@ class CatsWidget {
     }
 
     frame() {
-        this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
-        this.drawPole();
-        this.drawCubes1();
-        this.drawCubes2();
-        this.drawFishHeap();
-        this.drawCats();
-        this.drawGround();
-        this.drawHammer();
-        console.log('frame');
-            requestAnimationFrame(() => this.frame());
+      this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
+      this.drawPole();
+      this.drawCubes1();
+      this.drawCubes2();
+      this.drawFishHeap();
+      this.drawCats();
+      this.drawGround();
+      this.drawHammer();
+    
+      if (!this.boxA.broken || !this.boxB.broken) {
+        const endTime = Date.now() + 4000; 
+    
+        const loop = () => {
+          this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
+          this.drawPole();
+          this.drawCubes1();
+          this.drawCubes2();
+          this.drawFishHeap();
+          this.drawCats();
+          this.drawGround();
+          this.drawHammer();
+          if (!this.boxA.broken || !this.boxB.broken || Date.now() < endTime) {
+            requestAnimationFrame(loop);
+          }else{
+            setTimeout(() => {
+              new QrCodeModal();
+            this.myCanvas.remove();
+            }, 600);
+      
+          }
+        };
+        requestAnimationFrame(loop);
+      }
     }
+
     createBoxes(crateImg) {
         return new Promise((resolve) => {
             let _x, _y, _width, _height;
@@ -200,22 +214,29 @@ class CatsWidget {
         const divH = height6 / height1;
         Matter.Body.scale(box, 1, divH);
         box.height = box.height * divH;
-  
-
-
+ 
     }
     addBoxesTotheWorld() {
         Matter.Composite.add(this.engine.world, [this.boxA, this.boxB, this.theGround, this.wall1, this.wall2, this.roof]);
     }
 
     onmousemove(event) {
-        this.cursorX = event.pageX - this.cX;
-        this.cursorY = event.pageY - this.cY;
+      const canvas = document.getElementById('crates-container');
+      const styles = window.getComputedStyle(canvas);
+      const top =  parseInt(styles?.top, 10);
+      const left = parseInt(styles?.left, 10);
+        this.cursorX = event.pageX - left;
+        this.cursorY = event.pageY - top;
+
     }
 
     mouseDown(event) {
-        let clickX = event.pageX - this.cX;
-        let clickY = event.pageY - this.cY;
+      const canvas = document.getElementById('crates-container');
+      const styles = window.getComputedStyle(canvas);
+      const top =  parseInt(styles?.top, 10);
+      const left = parseInt(styles?.left, 10);
+        let clickX = event.pageX - left;
+        let clickY = event.pageY - top;
         if (this.didWeClickOnObject(1, clickX, clickY)) {
             this.objectWasClicked(this.boxB, 1);
         } else if (this.didWeClickOnObject(0, clickX, clickY)) {
@@ -262,6 +283,19 @@ class CatsWidget {
         }
     }
 
+    addHammerToCursor = () => {
+      const hammer = document.createElement('img');
+      hammer.setAttribute('id', 'hammer');
+      hammer.setAttribute('src', hammerImage);
+      this.stoneContainer.appendChild(hammer);
+      this.stoneContainer.onmousemove = ({ clientX, clientY }) => {
+        const { x_position, y_position } = this.draggeble;
+        assignStyleOnElement(hammer.style, {
+          left: `${clientX - x_position + 5}px`,
+          top: `${clientY - y_position + 5}px`,
+        });
+      };
+    };
     drawHammer() {
             this.ctx.drawImage(this.loadedImages["hammerImage"], this.cursorX, this.cursorY);
     }
@@ -311,9 +345,7 @@ class CatsWidget {
                 this.ctx.drawImage(this.boxBlueImgsArr[this.boxB.clickCount], _x, _y, _width, _height);
             this.setClickArea(1, _x, _y, _width, _height);
             this.ctx.restore();
-
         }
-
     }
 
     drawCubes2() {
@@ -393,7 +425,6 @@ class CatsWidget {
         return;
         let _x, _y, _width, _height;
         let scale = 0.28;
-        console.log('this.catAnim2',this.catAnim2);
             _width = this.catAnim2.image.width * scale;
             _height = this.catAnim2.image.height * scale;
             _x = this.myCanvas.width * 0.12;
