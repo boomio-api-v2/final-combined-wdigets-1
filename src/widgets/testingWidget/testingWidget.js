@@ -51,6 +51,8 @@ class TestingWidget {
       {'spawn':'ice','despawn':'ice-widget','name':'Ice'},
       {'spawn':'penguin','despawn':'penguin-widget','name':'Penguin'},
       {'spawn':'cats','despawn':'cats','name':'Cats Widget'},
+      {'spawn':'hedgehog','despawn':'hedgehog','name':'Hedgehog Widget'},
+      
     ];
 
     let buttonsHtml = '';
