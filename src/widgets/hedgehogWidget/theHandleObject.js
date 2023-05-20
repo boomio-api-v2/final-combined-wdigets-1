@@ -33,6 +33,7 @@ class AnimationService {
       return rad;
     }
     function nullFunct() {}
+
     var handle = {
       image: null,
       img1: null,

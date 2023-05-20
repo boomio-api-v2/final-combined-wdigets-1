@@ -5,11 +5,19 @@ import theHandleObject from './theHandleObject';
 import theJar from './theJar';
 import theTransform from './theTransform';
 import * as constants from '@/сonstants';
-import { AnimationService, widgetHtmlService, DragElement } from '@/services';
+import {
+  localStorageService,
+  QrCodeModal,
+  AnimationService,
+  widgetHtmlService,
+  DragElement,
+} from '@/services';
 import './styles.css';
 
 class HedgehogWidget {
   constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
     this.imagePaths = {
       eziukas10: constants.eziukas10,
       eziukas11: constants.eziukas11,
@@ -61,14 +69,8 @@ class HedgehogWidget {
     this.cX = 5;
     this.cY = 100;
     this.myCanvas = document.getElementById('jar-container');
-
-    this.myCanvas.style.position = 'absolute';
-    this.myCanvas.style.left = this.cX + 'px';
-    this.myCanvas.style.top = this.cY + 'px';
-    this.myCanvas.style.zIndex = '100';
     this.myCanvas.height = 299;
     this.myCanvas.width = 340;
-    this.myCanvas.style.border = '1px solid #000';
     this.myCanvas.style.display = 'block';
     this.myCanvas.style.margin = '0 auto';
     this.myCanvas.style.imageRendering = 'high-quality';
@@ -95,17 +97,13 @@ class HedgehogWidget {
 
     this.fullJarMovement = theTransform.animation();
     this.fullJarMovement.canvasContext = this.ctx;
-    this.fullJarMovement.image = this.loadedImages['fullJar'];
     this.fullJarMovement.x = this.jamJar.x;
     this.fullJarMovement.y = this.jamJar.y;
-
     this.emptyJarMovement = theTransform.animation();
     this.emptyJarMovement.canvasContext = this.ctx;
-    this.emptyJarMovement.image = this.loadedImages['stiklainis1'];
     this.emptyJarMovement.scale = 0.28;
     this.emptyJarMovement.x = this.myCanvas.width * 0.58;
     this.emptyJarMovement.y = this.myCanvas.width * 0.78;
-    this.jamJar.fireTranslationWhenJarIsFilled = this.translateJars();
 
     this.myDelay = theDelay.animation();
 
@@ -155,20 +153,31 @@ class HedgehogWidget {
   }
 
   frame() {
-    this.clearScreen();
-    this.drawMachine();
-    this.drawEmptyJars();
-    this.drawFullJars();
-    this.drawJarMovement();
-    this.drawHandle();
-    this.drawIdleHandle();
-    this.drawEziukus();
-    this.drawDrip();
-    this.drawJar();
-    this.drawHammer();
-    this.myDelay.update();
+    const endTime = Date.now() + 5000;
+    const loop = () => {
+      this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
+      this.clearScreen();
+      this.drawMachine();
+      this.drawEmptyJars();
+      this.drawFullJars();
+      this.drawJarMovement();
+      this.drawHandle();
+      this.drawIdleHandle();
+      this.drawEziukus();
+      this.drawDrip();
+      this.drawJar();
+      this.drawHammer();
+      this.myDelay.update();
+      if (this.jamJar.fullJars < 4 || Date.now() < endTime) {
+        console.log(this.jamJar.fullJars);
 
-    requestAnimationFrame(() => this.frame());
+        requestAnimationFrame(loop);
+      } else {
+        new QrCodeModal();
+        this.myCanvas.remove();
+      }
+    };
+    requestAnimationFrame(loop);
   }
 
   start() {
@@ -233,12 +242,16 @@ class HedgehogWidget {
       this.loadedImages['jar08'],
       this.loadedImages['jar09'],
     ];
-    this.jamJar.init();
-    this.myHandle.releaseHandleFunction = this.releaseHandle();
+    this.fullJarMovement.image = this.loadedImages['fullJar'];
+    this.emptyJarMovement.image = this.loadedImages['stiklainis1'];
 
+    this.jamJar.init();
     this.eziukAnim1.init();
     this.eziukAnim2.init();
     this.myHandle.init();
+
+    this.jamJar.fireTranslationWhenJarIsFilled = () => this.translateJars(this.jamJar);
+    this.myHandle.releaseHandleFunction = () => this.releaseHandle(this.myHandle);
     requestAnimationFrame(() => this.frame());
   }
 
@@ -254,7 +267,6 @@ class HedgehogWidget {
     let scale = 0.28;
     let _x = this.myCanvas.width * 0.021;
     let _y = this.myCanvas.height * 0.78;
-
     this.fullJarMovement.x2 = _x;
     this.fullJarMovement.y2 = _y;
     this.fullJarMovement.scale2 = scale;
@@ -279,18 +291,9 @@ class HedgehogWidget {
     };
     this.emptyJarMovement.shouldPlay = true;
     this.jamJar.emptyJars--;
-
-    this.animation = new AnimationService({
-      elem: this.myCanvas,
-    });
-    const { posx, posy } = this.animation;
-    this.draggeble = new DragElement(this.myCanvas, { x_position: posx, y_position: posy });
   }
 
   grabTheHandle() {
-    console.log('grabhandle');
-    event.preventDefault();
-    ///temporary!!!
     if (this.myHandle.isIdle == true) return;
     this.xu = this.cursorX;
     this.yu = this.cursorY;
@@ -344,7 +347,6 @@ class HedgehogWidget {
     this.cursorY = event.pageY - top;
   }
   mouseUp(event) {
-    console.log('mouseUp');
     const canvas = document.getElementById('jar-container');
     const styles = window.getComputedStyle(canvas);
     const top = parseInt(styles?.top, 10);
@@ -355,7 +357,6 @@ class HedgehogWidget {
     this.releaseHandle();
   }
   mouseDown(event) {
-    console.log('mouseDown');
     const canvas = document.getElementById('jar-container');
     const styles = window.getComputedStyle(canvas);
     const top = parseInt(styles?.top, 10);
@@ -364,6 +365,9 @@ class HedgehogWidget {
     let clickX = event.pageX - left;
     let clickY = event.pageY - top;
     if (this.didWeClickOnObject(0, clickX, clickY)) {
+      event.stopImmediatePropagation();
+      event.stopPropagation();
+      event.preventDefault();
       this.objectWasClicked();
     }
   }
@@ -433,6 +437,7 @@ class HedgehogWidget {
     _height = this.jamJar.image.height * scale;
     _x = this.jamJar.x;
     _y = this.jamJar.y;
+
     this.ctx.drawImage(this.jamJar.image, _x, _y, _width, _height);
   }
 
@@ -470,7 +475,6 @@ class HedgehogWidget {
   drawFullJars() {
     let _x, _y, _width, _height;
     let scale = 0.28;
-
     if (this.jamJar.fullJars == 0) return;
 
     _width = this.loadedImages['fullJar'].width * scale;

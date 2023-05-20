@@ -32,7 +32,6 @@ class AnimationService {
       transform.shouldPlay = false;
     }
     function nullFunction() {}
-
     var transform = {
       drawMovement: drawMovement,
       shouldPlay: false,
