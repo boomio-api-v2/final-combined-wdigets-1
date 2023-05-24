@@ -47,7 +47,6 @@ class LocalStorageService {
   getDefaultConfig() {
     const localStorageService = localStorage.getItem(localStoragePropertyName);
     const config = JSON.parse(localStorageService);
-
     const success = config?.success ?? false;
     const animation = config?.animation ?? 1;
     const qrcode = `${config?.qrcode}` ?? '';
