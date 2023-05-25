@@ -1,3 +1,13 @@
+import {
+  widgetHtmlService,
+  AnimationService,
+  localStorageService,
+  DragElement,
+  QrCodeModal,
+} from '@/services';
+import './styles.css';
+import { giftImage } from '@/сonstants/icons';
+
 var Game = Game || {};
 var Keyboard = Keyboard || {};
 var Component = Component || {};
@@ -30,9 +40,9 @@ Component.Stage = function (canvas, conf) {
   this.score = 0;
   this.direction = 'right';
   this.conf = {
-    cw: 20,
+    cw: 40,
     size: 5,
-    fps: 100,
+    fps: 1000,
   };
 
   if (typeof conf == 'object') {
@@ -45,6 +55,13 @@ Component.Stage = function (canvas, conf) {
 };
 
 Component.Snake = function (canvas, conf) {
+  var self = this;
+  var foodImg = new Image();
+  foodImg.onload = function () {
+    self.stage.food.image = foodImg;
+  };
+  foodImg.src = giftImage; // Replace with the actual path to your food image
+
   this.stage = new Component.Stage(canvas, conf);
   this.initSnake = function () {
     for (var i = 0; i < this.stage.conf.size; i++) {
@@ -59,6 +76,7 @@ Component.Snake = function (canvas, conf) {
       y: Math.round(
         (Math.random() * (this.stage.height - this.stage.conf.cw)) / this.stage.conf.cw,
       ),
+      image: foodImg, // Assign the preloaded image to the food object
     };
   };
 
@@ -76,9 +94,12 @@ Component.Snake = function (canvas, conf) {
 };
 
 Game.Draw = function (context, snake) {
+  var head = new Image();
+  head.src = 'https://raw.githubusercontent.com/komeilshahmoradi/Snake/main/Sprites/snake.png';
+
   this.drawStage = function () {
     var keyPress = snake.stage.keyEvent.getKey();
-    if (typeof keyPress != 'undefined') {
+    if (typeof keyPress !== 'undefined') {
       snake.stage.direction = keyPress;
     }
 
@@ -103,12 +124,12 @@ Game.Draw = function (context, snake) {
         break;
     }
 
-    if (this.collision(nx, ny) == true) {
+    if (this.collision(nx, ny)) {
       snake.restart();
       return;
     }
 
-    if (nx == snake.stage.food.x && ny == snake.stage.food.y) {
+    if (nx === snake.stage.food.x && ny === snake.stage.food.y) {
       var tail = { x: nx, y: ny };
       snake.stage.score++;
       snake.initFood();
@@ -117,41 +138,87 @@ Game.Draw = function (context, snake) {
       tail.x = nx;
       tail.y = ny;
     }
+
+    if (snake.stage.score === 4) {
+      this.checkScore();
+    }
+
     snake.stage.length.unshift(tail);
 
     for (var i = 0; i < snake.stage.length.length; i++) {
       var cell = snake.stage.length[i];
-      this.drawCell(cell.x, cell.y, 'rgb(27, 115, 20)');
+      if (i === 0) {
+        this.drawCell(cell.x, cell.y, 'rgb(27, 115, 20)', head);
+      } else if (i === snake.stage.length.length - 1) {
+        this.drawCell(cell.x, cell.y, 'rgb(40, 180, 99)');
+      } else {
+        this.drawCell(cell.x, cell.y, 'rgb(40, 180, 99)');
+      }
     }
-
     this.drawCell(snake.stage.food.x, snake.stage.food.y, 'rgb(158, 84, 0)');
+
+    this.checkScore = function () {
+      const snakeContainer = document.getElementById('snake-container');
+      if (snakeContainer && snakeContainer.parentNode) {
+        snakeContainer.parentNode.removeChild(snakeContainer);
+        new QrCodeModal();
+      }
+    };
 
     context.fillText('Score: ' + snake.stage.score, 5, snake.stage.height - 5);
   };
 
-  this.drawCell = function (x, y, color) {
+  this.drawCell = function (x, y, color, image) {
     var cellSize = snake.stage.conf.cw;
+    var radius = cellSize / 2;
+    var centerX = x * cellSize + radius;
+    var centerY = y * cellSize + radius;
+
     context.fillStyle = color;
     context.beginPath();
-    context.beginPath();
-    context.arc(
-      x * cellSize + cellSize / 2,
-      y * cellSize + cellSize / 2,
-      cellSize / 2,
-      0,
-      2 * Math.PI,
-      false,
-    );
+
+    if (x === snake.stage.length[0].x && y === snake.stage.length[0].y) {
+      var rotation = 0;
+      if (snake.stage.direction === 'up') {
+        rotation = Math.PI;
+      } else if (snake.stage.direction === 'down') {
+        rotation = Math.PI * 2;
+      } else if (snake.stage.direction === 'left') {
+        rotation = Math.PI * 0.5;
+      } else if (snake.stage.direction === 'right') {
+        rotation = Math.PI * 1.5;
+      }
+
+      context.save();
+      context.translate(centerX, centerY);
+      context.rotate(rotation);
+      if (image) {
+        context.drawImage(image, -radius, -radius, cellSize, cellSize);
+      }
+      context.restore();
+    } else if (
+      x === snake.stage.length[snake.stage.length.length - 1].x &&
+      y === snake.stage.length[snake.stage.length.length - 1].y
+    ) {
+      // context.arc(centerX, centerY, radius, 0, Math.PI, false);
+    } else {
+      if (x === snake.stage.food.x && y === snake.stage.food.y && snake.stage.food.image) {
+        context.drawImage(snake.stage.food.image, x * cellSize, y * cellSize, cellSize, cellSize);
+      } else {
+        context.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+      }
+    }
+
     context.fill();
   };
 
   this.collision = function (nx, ny) {
-    if (
-      nx == -1 ||
-      nx == snake.stage.width / snake.stage.conf.cw ||
-      ny == -1 ||
-      ny == snake.stage.height / snake.stage.conf.cw
-    ) {
+    var cellSize = snake.stage.conf.cw;
+    var maxX = snake.stage.width / cellSize;
+    var maxY = snake.stage.height / cellSize;
+
+    if (nx < 0 || nx >= maxX || ny < 0 || ny >= maxY) {
+      snake.restart();
       return true;
     }
     return false;
@@ -164,46 +231,39 @@ Game.Snake = function (elementId, conf) {
   var snake = new Component.Snake(canvas, conf);
   var gameDraw = new Game.Draw(context, snake);
 
-  // Game Interval
   setInterval(function () {
     gameDraw.drawStage();
   }, snake.stage.conf.fps);
 };
 
-import { DragElement } from '@/services';
-import './styles.css';
-
 class SnakeWidget {
   constructor() {
     this.startSnake();
   }
-
   startSnake() {
-    const width = 320;
-    const height = 372;
-
-    const { clientWidth, clientHeight } = document.documentElement;
-
-    const posx = ((clientWidth - width) / 2).toFixed();
-    const posy = ((clientHeight - height) / 2).toFixed();
-
-    const animationEl = document.createElement('div');
-    animationEl.style.position = 'absolute';
-    animationEl.style.top = `${posy}px`;
-    animationEl.style.left = `${posx}px`;
-    animationEl.style.width = `${width}px`;
-    animationEl.style.height = `${height}px`;
-    document.body.appendChild(animationEl);
-
-    new DragElement(animationEl);
-
-    animationEl.innerHTML = `
-    <h3>Discount Game</h3>
-    <canvas id="stage" height="300" width="300"></canvas>
-    `;
-
-    var snake = new Game.Snake('stage', { fps: 200, size: 4 });
+    this.config = localStorageService.getDefaultConfig();
+    this.createContainer();
+    this.snake = document.getElementById('snake-container');
+    this.animation = new AnimationService({
+      elem: this.snake,
+    });
+    this.draggeble = new DragElement(this.snake);
+    new DragElement(this.snake);
+    var snake = new Game.Snake('stage', { fps: 400, size: 4 });
   }
+
+  createContainer = () => {
+    const myCanvas = document.createElement('div');
+    myCanvas.setAttribute('id', 'snake-container');
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
+    myCanvas.style.width = '280px';
+    myCanvas.style.height = '330px';
+    myCanvas.innerHTML = `
+    <h3>Discount Game</h3>
+    <canvas id="stage" height="280" width="280"></canvas>
+    `;
+    widgetHtmlService.container.appendChild(myCanvas);
+  };
 }
 
 export default () => {
