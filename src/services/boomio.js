@@ -13,7 +13,6 @@ import {
 
 import { localStorageService, widgetHtmlService, UserService } from '@/services';
 
-
 class BoomioService extends UserService {
   constructor() {
     super();
@@ -31,7 +30,7 @@ class BoomioService extends UserService {
       ice: iceWidget,
       penguin: startPenguinWidget,
       testing: startTestingWidget,
-      cups: startCupsWidget
+      cups: startCupsWidget,
       snake: startSnakeWidget,
     };
     createWidgetMap[widget_type]();
