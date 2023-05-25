@@ -6,4 +6,3 @@ export * from './imageWidget';
 export * from './stoneWidget';
 export * from './iceWidget';
 export * from './penguinWidget';
-export * from './snakeWidget';
