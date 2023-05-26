@@ -147,38 +147,25 @@ class CatsWidget {
   }
 
   frame() {
-    this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
-    this.drawPole();
-    this.drawCubes1();
-    this.drawCubes2();
-    this.drawFishHeap();
-    this.drawCats();
-    this.drawGround();
-    this.drawHammer();
+    const endTime = Date.now() + 5000;
 
-    if (!this.boxA.broken || !this.boxB.broken) {
-      const endTime = Date.now() + 4000;
-
-      const loop = () => {
-        this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
-        this.drawPole();
-        this.drawCubes1();
-        this.drawCubes2();
-        this.drawFishHeap();
-        this.drawCats();
-        this.drawGround();
-        this.drawHammer();
-        if (!this.boxA.broken || !this.boxB.broken || Date.now() < endTime) {
-          requestAnimationFrame(loop);
-        } else {
-          setTimeout(() => {
-            new QrCodeModal();
-            this.myCanvas.remove();
-          }, 600);
-        }
-      };
-      requestAnimationFrame(loop);
-    }
+    const loop = () => {
+      this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.height);
+      this.drawPole();
+      this.drawCubes1();
+      this.drawCubes2();
+      this.drawFishHeap();
+      this.drawCats();
+      this.drawGround();
+      this.drawHammer();
+      if (!this.boxA.broken || !this.boxB.broken || Date.now() < endTime) {
+        requestAnimationFrame(loop);
+      } else {
+        new QrCodeModal();
+        this.myCanvas.remove();
+      }
+    };
+    requestAnimationFrame(loop);
   }
 
   createBoxes(crateImg) {

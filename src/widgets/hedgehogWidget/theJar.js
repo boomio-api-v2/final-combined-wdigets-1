@@ -6,7 +6,6 @@ class AnimationService {
       jar.shouldPlay = true;
     }
     function selectImage() {
-      // console.log(" image nr = " + jar.currentImage + "  LNGTH#" + jar.images.length + "    amount=" + jar.fillAmount);
       if (jar.currentImage < jar.images.length) jar.image = jar.images[jar.currentImage];
     }
     function updateFill(amount) {
