@@ -29,7 +29,7 @@ export default class QrCodeModal {
           winningAnimation.remove();
         }, 3000);
       });
-    }, 100)
+    }, 100);
   };
 
   showQrCode = () => {
@@ -107,7 +107,7 @@ export default class QrCodeModal {
     exitBtn.onclick = () => {
       boomioService.signal('exit_cancel');
       this.closeModal();
-      this.showRatingModal();
+      // this.showRatingModal();
     };
     exitBtn.style.cursor = 'pointer';
     exitBtn.innerHTML = exitBtnHtml;
