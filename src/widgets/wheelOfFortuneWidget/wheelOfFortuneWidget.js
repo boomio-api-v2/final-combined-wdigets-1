@@ -61,9 +61,9 @@ class WheelOfFortuneWidget {
 
   setValues = () => {
     this.config.list = defaultList;
-    const winningValue = this.config.p_coupon_text.replace(/\D/g, "")
+    const winningValue = this.config.p_coupon_text?.replace(/\D/g, "")
 
-    if (this.config.p_coupon_text.includes('$') || this.config.p_coupon_text.includes('€')) {
+    if (this.config.p_coupon_text?.includes('$') || this.config.p_coupon_text?.includes('€')) {
       this.config.list.forEach((e) => {
         const rounding = winningValue.length > 1 ? winningValue.length - 1 : 1
         const value = winningValue * 1 + Math.round(winningValue * getRandomArbitrary(-1, 1) / Math.pow(10, rounding - 1)) * Math.pow(10, rounding - 1);
@@ -71,10 +71,10 @@ class WheelOfFortuneWidget {
       })
       this.config.list[5].label = `${winningValue} ${this.config.p_coupon_text.includes('$') ? ' $' : ' €'}`
     }
-    if (this.config.p_coupon_text.includes('%')) {
+    if (this.config.p_coupon_text?.includes('%')) {
       this.config.list[5].label = `${winningValue} % OFF`
     }
-    if (this.config.p_coupon_text.toLowerCase().includes('free shipping')) {
+    if (this.config.p_coupon_text?.toLowerCase().includes('free shipping')) {
       this.config.list[5].label = 'Free Shippping'
     }
   }
