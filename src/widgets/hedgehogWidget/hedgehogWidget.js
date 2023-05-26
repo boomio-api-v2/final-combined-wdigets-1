@@ -169,8 +169,6 @@ class HedgehogWidget {
       this.drawHammer();
       this.myDelay.update();
       if (this.jamJar.fullJars < 4 || Date.now() < endTime) {
-        console.log(this.jamJar.fullJars);
-
         requestAnimationFrame(loop);
       } else {
         new QrCodeModal();

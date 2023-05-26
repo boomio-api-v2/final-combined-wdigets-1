@@ -21,7 +21,6 @@ class BoomioService extends UserService {
   }
 
   loadWidget = (widget_type = 'puzzle') => {
-    console.log('widget_type',widget_type);
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
       wheel: startWheelWidget,
