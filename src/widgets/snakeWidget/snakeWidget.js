@@ -43,6 +43,8 @@ Component.Stage = function (canvas, conf) {
     cw: 40,
     size: 5,
     fps: 1000,
+    head: null,
+    tail: null,
   };
 
   if (typeof conf == 'object') {
@@ -94,9 +96,6 @@ Component.Snake = function (canvas, conf) {
 };
 
 Game.Draw = function (context, snake) {
-  var head = new Image();
-  head.src = 'https://raw.githubusercontent.com/komeilshahmoradi/Snake/main/Sprites/snake.png';
-
   this.drawStage = function () {
     var keyPress = snake.stage.keyEvent.getKey();
     if (typeof keyPress !== 'undefined') {
@@ -148,7 +147,7 @@ Game.Draw = function (context, snake) {
     for (var i = 0; i < snake.stage.length.length; i++) {
       var cell = snake.stage.length[i];
       if (i === 0) {
-        this.drawCell(cell.x, cell.y, 'rgb(27, 115, 20)', head);
+        this.drawCell(cell.x, cell.y, 'rgb(27, 115, 20)', snake.stage.conf.head);
       } else if (i === snake.stage.length.length - 1) {
         this.drawCell(cell.x, cell.y, 'rgb(40, 180, 99)');
       } else {
@@ -231,6 +230,48 @@ Game.Snake = function (elementId, conf) {
   var snake = new Component.Snake(canvas, conf);
   var gameDraw = new Game.Draw(context, snake);
 
+  // Swipe Event Listeners
+  var xStart, yStart;
+
+  canvas.addEventListener('touchstart', function (event) {
+    xStart = event.touches[0].clientX;
+    yStart = event.touches[0].clientY;
+  });
+
+  canvas.addEventListener('touchend', function (event) {
+    var xEnd = event.changedTouches[0].clientX;
+    var yEnd = event.changedTouches[0].clientY;
+
+    var xDiff = xStart - xEnd;
+    var yDiff = yStart - yEnd;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      if (xDiff > 0) {
+        // Swipe Left
+        if (snake.stage.direction !== 'right') {
+          snake.stage.direction = 'left';
+        }
+      } else {
+        // Swipe Right
+        if (snake.stage.direction !== 'left') {
+          snake.stage.direction = 'right';
+        }
+      }
+    } else {
+      if (yDiff > 0) {
+        // Swipe Up
+        if (snake.stage.direction !== 'down') {
+          snake.stage.direction = 'up';
+        }
+      } else {
+        // Swipe Down
+        if (snake.stage.direction !== 'up') {
+          snake.stage.direction = 'down';
+        }
+      }
+    }
+  });
+
   setInterval(function () {
     gameDraw.drawStage();
   }, snake.stage.conf.fps);
@@ -242,6 +283,11 @@ class SnakeWidget {
   }
   startSnake() {
     this.config = localStorageService.getDefaultConfig();
+    var head = new Image();
+    head.src = 'https://raw.githubusercontent.com/komeilshahmoradi/Snake/main/Sprites/snake.png';
+    var tail = new Image();
+    tail.src = 'https://raw.githubusercontent.com/komeilshahmoradi/Snake/main/Sprites/snake.png';
+
     this.createContainer();
     this.snake = document.getElementById('snake-container');
     this.animation = new AnimationService({
@@ -249,7 +295,7 @@ class SnakeWidget {
     });
     this.draggeble = new DragElement(this.snake);
     new DragElement(this.snake);
-    var snake = new Game.Snake('stage', { fps: 400, size: 4 });
+    var snake = new Game.Snake('stage', { fps: 400, size: 3, head: head, tail: tail });
   }
 
   createContainer = () => {
