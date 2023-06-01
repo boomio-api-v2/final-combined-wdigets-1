@@ -6,10 +6,9 @@ class TestingWidget {
   constructor() {
     this.startAnimation();
   }
-
   startAnimation = () => {
     localStorage.setItem('testing_Widgets', true);
-    const width = 320;
+    const width = 280;
     const height = 372;
 
     const { clientWidth, clientHeight } = document.documentElement;
@@ -49,6 +48,8 @@ class TestingWidget {
       { spawn: 'ice', despawn: 'ice-widget', name: 'Ice' },
       { spawn: 'penguin', despawn: 'penguin-widget', name: 'Penguin' },
       { spawn: 'snake', despawn: 'snake', name: 'Snake' },
+      { spawn: 'cats', despawn: 'cats', name: 'Cats Widget' },
+      { spawn: 'hedgehog', despawn: 'hedgehog', name: 'Hedgehog Widget' },
     ];
 
     let buttonsHtml = '';
@@ -66,13 +67,14 @@ class TestingWidget {
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
         <div class='coupon__preview__body coupon_discount_modal'>
-          <div class='coupon__preview__card__header text-center d-block'>
             <h2 >Widgets Preview</h3>
+            <div class='coupon__preview__card__header_buttons text-center d-block'>
+
             ${buttonsHtml}          
           </div>
           <div class='coupon__preview__card__header text-center d-block'>
-          <div style='width:100%;margin-bottom:16px'>
-          <button class='go_button' id='remove_div_btn' style='margin-top:20px'>Remove All</button>
+          <div style='width:100%;margin-bottom:16px;margin-left:-17px'>
+          <button class='go_button' id='remove_div_btn' style='margin-top:10px'>Remove All</button>
         </div>        
         </div>
         </div>

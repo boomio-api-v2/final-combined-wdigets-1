@@ -154,6 +154,7 @@
   }
   
   .coupon__preview__body {
+    align-items: center;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -168,8 +169,8 @@
 
 .close_button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   cursor: pointer;
 }
 
@@ -177,6 +178,15 @@
   padding: 20px 32px 0px 32px;
   justify-content: space-between;
   align-items: center;
+}
+
+.coupon__preview__card__header_buttons {
+  padding: 20px 0px;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  height: 280px;
+  overflow: auto;
 }
 
 .coupon__preview__card__header h3 {
