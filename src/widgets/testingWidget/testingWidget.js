@@ -1,30 +1,28 @@
-import { widgetHtmlService,boomioService, DragElement } from '@/services';
-import { closeIcon  } from '@/сonstants/icons';
+import { widgetHtmlService, boomioService, DragElement } from '@/services';
+import { closeIcon } from '@/сonstants/icons';
 import './styles.css';
 
 class TestingWidget {
   constructor() {
     this.startAnimation();
   }
-
   startAnimation = () => {
     localStorage.setItem('testing_Widgets', true);
-    const width = 320;
+    const width = 280;
     const height = 372;
 
     const { clientWidth, clientHeight } = document.documentElement;
 
-    const posx = ((clientWidth - width)/2).toFixed();
-    const posy = ((clientHeight - height)/2).toFixed();
-
+    const posx = ((clientWidth - width) / 2).toFixed();
+    const posy = ((clientHeight - height) / 2).toFixed();
 
     const animationEl = document.createElement('div');
     animationEl.style.position = 'absolute';
     animationEl.style.top = `${posy}px`;
-    animationEl.style.left = `${posx}px`;
+    animationEl.style.left = `30px`;
     animationEl.style.width = `${width}px`;
     animationEl.style.height = `${height}px`;
-  
+
     document.body.appendChild(animationEl);
 
     new DragElement(animationEl);
@@ -35,7 +33,6 @@ class TestingWidget {
       animationEl.remove();
     }
 
-    
     function removeWidgets() {
       const element = document.getElementById('boomio-widget-screen-wrapper-content');
       if (element) {
@@ -45,11 +42,14 @@ class TestingWidget {
     }
 
     const widgetsList = [
-      {'spawn':'puzzle','despawn':'puzzle-widget','name':'Puzzle'},
-      {'spawn':'wheel','despawn':'wheelOfFortune','name':'Wheel Of Fortune'},
-      {'spawn':'stone','despawn':'stone-container','name':'Stone'},
-      {'spawn':'ice','despawn':'ice-widget','name':'Ice'},
-      {'spawn':'penguin','despawn':'penguin-widget','name':'Penguin'},
+      { spawn: 'puzzle', despawn: 'puzzle-widget', name: 'Puzzle' },
+      { spawn: 'wheel', despawn: 'wheelOfFortune', name: 'Wheel Of Fortune' },
+      { spawn: 'stone', despawn: 'stone-container', name: 'Stone' },
+      { spawn: 'ice', despawn: 'ice-widget', name: 'Ice' },
+      { spawn: 'penguin', despawn: 'penguin-widget', name: 'Penguin' },
+      { spawn: 'snake', despawn: 'snake', name: 'Snake' },
+      { spawn: 'cats', despawn: 'cats', name: 'Cats Widget' },
+      { spawn: 'hedgehog', despawn: 'hedgehog', name: 'Hedgehog Widget' },
     ];
 
     let buttonsHtml = '';
@@ -57,6 +57,7 @@ class TestingWidget {
       const spawnBtnId = `SpawnBtn_${widget.spawn}`;
 
       buttonsHtml += `<div style='width:100%;margin-bottom:10px'>
+      ${widget.spawn === 'snake' ? `<p style='margin-top:20px;margin-bottom:30px;'>Coming soon</p>` : ''}
           <button class='go_button' data-widget-spawn='${widget.spawn}' id='${spawnBtnId}'>${widget.name}</button>
         </div>`;
     });
@@ -67,13 +68,14 @@ class TestingWidget {
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
         <div class='coupon__preview__body coupon_discount_modal'>
-          <div class='coupon__preview__card__header text-center d-block'>
             <h2 >Widgets Preview</h3>
+            <div class='coupon__preview__card__header_buttons text-center d-block'>
+
             ${buttonsHtml}          
           </div>
           <div class='coupon__preview__card__header text-center d-block'>
-          <div style='width:100%;margin-bottom:16px'>
-          <button class='go_button' id='remove_div_btn' style='margin-top:20px'>Remove All</button>
+          <div style='width:100%;margin-bottom:16px;margin-left:-17px'>
+          <button class='go_button' id='remove_div_btn' style='margin-top:10px'>Remove All</button>
         </div>        
         </div>
         </div>
@@ -95,7 +97,7 @@ class TestingWidget {
           //   element.remove();
           // }
 
-          removeWidgets()
+          removeWidgets();
         }
         boomioService.testing(widgetName);
         prevWidget = widget;
@@ -109,5 +111,5 @@ let testingWidget = null;
 export default () => {
   if (!testingWidget) {
     testingWidget = new TestingWidget();
-    }
+  }
 };

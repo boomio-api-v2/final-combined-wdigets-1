@@ -1,0 +1,54 @@
+#jar-container {
+    width: 340px;
+    height: 300px;
+    overflow: hidden;
+}
+
+#jar-container #hammer {
+    width: 80px;
+    height: 80px;
+}
+
+#jar-container .block {
+    position: absolute;
+    z-index: 1000;
+    width: 55px;
+    height: 55px;
+}
+
+#jar-container #hammer {
+    position: absolute;
+    z-index: 10000;
+}
+
+#jar-container .chest {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    bottom: 10px;
+    left: 40px;
+}
+
+
+@media only screen and (max-device-width: 640px) {
+    #jar-container {
+        width: 180px;
+        height: 180px;
+    }
+
+    #jar-container .block {
+        width: 40px;
+        height: 40px;
+    }
+
+    #jar-container .chest {
+        width: 120px;
+        height: 120px;
+    }
+
+    #jar-container #hammer {
+        width: 50px;
+        height: 50px;
+    }
+
+}

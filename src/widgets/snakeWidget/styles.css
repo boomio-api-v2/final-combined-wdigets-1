@@ -1,0 +1,11 @@
+body {
+  text-align:center;
+  font-family: helvetica;
+}
+.snake {
+  border: 4px solid rgb(59, 17, 64);
+}
+
+#stage {
+  border-radius: 10px;
+}
