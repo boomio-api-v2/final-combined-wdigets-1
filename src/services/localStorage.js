@@ -11,7 +11,9 @@ class LocalStorageService {
   }
 
   сheckOnInstruction(content) {
+    console.log('sadas123',content);
     if (content?.instruction === 'stop') {
+      console.log('sadas');
       const boomioStopTill = new Date(new Date().getTime() + 1000 * content.stop_for_sec);
       this.updateConfig({ boomioStopTill });
     }
