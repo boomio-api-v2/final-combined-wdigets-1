@@ -9,13 +9,14 @@
     letter-spacing: -0.03em;
     color: #473F4E;
 }
+
 .coupon_user_gets_modal_button{
     width: 53%;
     border: 1px double transparent;
     padding: 2px;
     height: 43px;
     border: none;
-    border-radius: 24px;
+    border-radius: 22px;
     background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);;
     background-origin: border-box;
     background-clip: content-box, border-box;
@@ -24,6 +25,7 @@
     justify-content: center;
     cursor: pointer;
 }
+
 .coupon_user_gets_modal_button span{
     background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
     -webkit-background-clip: text;
@@ -89,7 +91,6 @@
     padding: 0;
 }
   
-  
   .go_button {
     background: linear-gradient(39.06deg, #8559F3 8.58%, #657BEA 17.79%, #34B0DC 46.68%, #15D1D3 72.63%, #09DDD0 88.95%) !important;
     border-radius: 32px !important;
@@ -100,7 +101,7 @@
     font-style: normal !important;
     font-weight: 600 !important;
     font-size: 14px !important;
-    line-height: 24px !important;
+    line-height: 22px !important;
     color: #FFFFFF !important;
     cursor: pointer;
   }

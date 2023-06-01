@@ -173,6 +173,7 @@ Game.Draw = function (context, snake) {
     context.beginPath();
 
     if (x === snake.stage.length[0].x && y === snake.stage.length[0].y) {
+      //hd
       var rotation = 0;
       if (snake.stage.direction === 'up') {
         rotation = Math.PI;
@@ -195,22 +196,10 @@ Game.Draw = function (context, snake) {
       x === snake.stage.length[snake.stage.length.length - 1].x &&
       y === snake.stage.length[snake.stage.length.length - 1].y
     ) {
-      var rotation = 0;
-      if (snake.stage.direction === 'up') {
-        rotation = 0;
-      } else if (snake.stage.direction === 'down') {
-        rotation = Math.PI;
-      } else if (snake.stage.direction === 'left') {
-        rotation = Math.PI * 1.5;
-      } else if (snake.stage.direction === 'right') {
-        rotation = Math.PI * 0.5;
-      }
-      context.save();
-      context.translate(centerX, centerY);
-      context.rotate(rotation);
-      context.arc(0, 0, radius, 0, Math.PI, false);
-      context.restore();
-    } else {
+      //tail
+      context.fillStyle = color;
+      context.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+      } else {
       if (x === snake.stage.food.x && y === snake.stage.food.y && snake.stage.food.image) {
         context.drawImage(snake.stage.food.image, x * cellSize, y * cellSize, cellSize, cellSize);
       } else {

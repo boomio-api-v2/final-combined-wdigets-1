@@ -19,7 +19,7 @@ class TestingWidget {
     const animationEl = document.createElement('div');
     animationEl.style.position = 'absolute';
     animationEl.style.top = `${posy}px`;
-    animationEl.style.left = `${posx}px`;
+    animationEl.style.left = `30px`;
     animationEl.style.width = `${width}px`;
     animationEl.style.height = `${height}px`;
 
@@ -57,6 +57,7 @@ class TestingWidget {
       const spawnBtnId = `SpawnBtn_${widget.spawn}`;
 
       buttonsHtml += `<div style='width:100%;margin-bottom:10px'>
+      ${widget.spawn === 'snake' ? `<p style='margin-top:20px;margin-bottom:30px;'>Coming soon</p>` : ''}
           <button class='go_button' data-widget-spawn='${widget.spawn}' id='${spawnBtnId}'>${widget.name}</button>
         </div>`;
     });
