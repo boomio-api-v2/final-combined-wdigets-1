@@ -3,17 +3,17 @@ import { localStoragePropertyName } from '@/config';
 class LocalStorageService {
   constructor() {
     this.clearStorage();
-    this.config = this.getDefaultConfig();
+    if(!this.config){
+      this.config = this.getDefaultConfig();
+    }
   }
 
   clearStorage() {
-    localStorage.removeItem(localStoragePropertyName);
+    // localStorage.removeItem(localStoragePropertyName);
   }
 
   сheckOnInstruction(content) {
-    console.log('sadas123',content);
     if (content?.instruction === 'stop') {
-      console.log('sadas');
       const boomioStopTill = new Date(new Date().getTime() + 1000 * content.stop_for_sec);
       this.updateConfig({ boomioStopTill });
     }
@@ -34,8 +34,14 @@ class LocalStorageService {
     this.setInStorage();
   }
 
-  setConfigFromApi(content) {
+  setConfigFromApi(content, ev_type) {
+
+    if(ev_type === 'static_info'){
+      this.static_exists = true;
+      this.updateConfig({ static_text:this.static_exists });
+    }
     const defaultValues = this.getDefaultConfig();
+
     this.config = {
       x_position: this.config?.x_position ?? null,
       y_position: this.config?.y_position ?? null,
@@ -49,6 +55,7 @@ class LocalStorageService {
   getDefaultConfig() {
     const localStorageService = localStorage.getItem(localStoragePropertyName);
     const config = JSON.parse(localStorageService);
+
     const success = config?.success ?? false;
     const animation = config?.animation ?? 1;
     const qrcode = `${config?.qrcode}` ?? '';
@@ -78,19 +85,24 @@ class LocalStorageService {
       config?.p_bottom_text_start_m ?? 'To have immediate access for all your great rewards ';
     const p_bottom_text_end_m = config?.p_bottom_text_end_m ?? 'open or download';
 
-    const p_top_text = config?.p_top_text ?? 'YOU GOT 20% DISCOUNT!';
-    const p_code_text = config?.p_code_text ?? 'Unique code: BM69233"';
+    const p_top_text = config?.p_top_text ?? 'YOU GOT ??? DISCOUNT!';
+    const p_code_text = config?.p_code_text ?? 'Unique code: ???"';
     const p_coupon_text = config?.p_coupon_text ?? null;
     const p_bottom_text = config?.p_bottom_text ?? null;
     const p_button_text = config?.p_button_text ?? null;
     /// //////////////////
 
-    const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '20%';
+    const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
 
     const p_button_text_line1 = config?.p_coupon_text_line1 ?? 'Open';
     const p_button_text_line2 = config?.p_coupon_text_line1 ?? 'boomio app';
 
+    const static_text = config?.static_text ?? false;
+    const boomioStopTill = config?.boomioStopTill ?? null;
+    const campaign_id = config?.campaign_id ?? null;
+
+    
     return {
       success,
       qrcode,
@@ -119,6 +131,9 @@ class LocalStorageService {
       p_coupon_text_line2,
       p_button_text_line1,
       p_button_text_line2,
+      static_text,
+      boomioStopTill,
+      campaign_id,
     };
   }
 }
