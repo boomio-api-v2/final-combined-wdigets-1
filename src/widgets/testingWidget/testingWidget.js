@@ -58,7 +58,7 @@ class TestingWidget {
 
       buttonsHtml += `<div style='width:100%;margin-bottom:10px'>
       ${widget.spawn === 'snake' ? `<p style='margin-top:20px;margin-bottom:30px;'>Coming soon</p>` : ''}
-          <button class='go_button' data-widget-spawn='${widget.spawn}' id='${spawnBtnId}'>${widget.name}</button>
+          <button class='go_button' style='width:180px !important' data-widget-spawn='${widget.spawn}' id='${spawnBtnId}'>${widget.name}</button>
         </div>`;
     });
 
@@ -68,7 +68,7 @@ class TestingWidget {
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
         <div class='coupon__preview__body coupon_discount_modal'>
-            <h2 >Widgets Preview</h3>
+            <h2>Widgets Preview</h2>
             <div class='coupon__preview__card__header_buttons text-center d-block'>
 
             ${buttonsHtml}          

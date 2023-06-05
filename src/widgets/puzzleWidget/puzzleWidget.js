@@ -15,9 +15,7 @@ import {
   puzzlesCoordinate,
   puzzleWidgetSize,
 } from './constants';
-/// ///// Services ////////
 
-/// /////Puzzle Class ////////////
 export class Puzzle {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
@@ -28,10 +26,11 @@ export class Puzzle {
   }
   
   addImageTPuzzleWidget = () => {
-    this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;  
+    if(this.puzzleWidget){
+     this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;  }
   };
-  createPuzzleWidget = () => {  
 
+  createPuzzleWidget = () => {  
     const puzzleWidget = document.createElement('div');
     puzzleWidget.setAttribute('id', 'puzzle-widget');
     assignStyleOnElement(puzzleWidget.style, {
@@ -77,7 +76,7 @@ export class Puzzle {
 
     this.mainContainer.appendChild(puzzleWidget);
     this.puzzleWidget = puzzleWidget;
-    if (localStorageService.config.puzzles_collected > 0) {
+    if (localStorageService.config.puzzle.puzzles_collected > 0) {
       this.addCloseIconToElement(puzzleWidget);
     }
     new DragElement(this.puzzleWidget);
@@ -85,7 +84,7 @@ export class Puzzle {
   };
 
   drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
-    for (let i = 0; i < localStorageService.config.puzzles_collected; i++) {
+    for (let i = 0; i < localStorageService.config.puzzle.puzzles_collected; i++) {
       const backgroundImage = `url(${puzzleIconsList[i]})`;
       const { top, left, width, height } = coordinate[i];
       const animationEl = document.createElement('div');
@@ -103,12 +102,8 @@ export class Puzzle {
   };
 
   createModalWindow = (width = 300, height = 442) => {
-    /// /Add modal Background //////
     const modalBackground = document.createElement('div');
     modalBackground.setAttribute('id', 'modalBackground');
-    /// //////////////////////
-
-    /// /////Add modal ///////
     const modal = document.createElement('div');
     modal.setAttribute('id', 'widgetModal');
     assignStyleOnElement(modal.style, {
@@ -150,9 +145,11 @@ export class Puzzle {
   };
 
   showModalWidgetPreview = (showAnimation = false) => {
-    const { appearing_puzzle_nr, w_top_text, w_button_text, w_hint_static_text, w_hint_text } =
+    const { w_top_text, w_button_text, w_hint_static_text } =
       localStorageService.config;
-    const isLastPuzzle = appearing_puzzle_nr === 4 && showAnimation;
+      const { puzzles_collected, hint } =
+      localStorageService.config.puzzle;
+    const isLastPuzzle = puzzles_collected === 3;
     this?.puzzleWidget?.remove();
     this.createPuzzleWidget();
     this.createModalWindow();
@@ -189,7 +186,7 @@ export class Puzzle {
     if (!isLastPuzzle) {
       const bottomText = document.createElement('div');
       bottomText.classList.add('bottomText');
-      bottomText.innerHTML = `${w_hint_static_text}:<br>${w_hint_text}`;
+      bottomText.innerHTML = `${w_hint_static_text}:<br>${hint}`;
       this.modal.appendChild(bottomText);
     }
     /// ///////////////
@@ -206,49 +203,44 @@ export class Puzzle {
     /// ///////////////
 
     if (showAnimation) {
-      boomioService.signal(`PUZZLE${appearing_puzzle_nr}_CLICK`);
+      boomioService.signal(`PUZZLE_CLICKED`);
       setTimeout(this.addPuzzleToWidget, 1000);
     }
   };
 
   addPuzzleToWidget = () => {
-    let { puzzles_collected } = localStorageService.config;
-
+    let { puzzles_collected,puzzles_needed } = localStorageService.config.puzzle;
     this.startAnimation(
       puzzlesCoordinateForDesktop,
       {
-        zIndex: 100000000000000,
+        zIndex: 9999,
         position: 'absolute',
       },
       this.puzzleWidget,
       false,
+      true,
     );
-    if (!this.isPrewiewDisplayed) {
-      localStorageService.updateConfig({
-        puzzles_collected: (puzzles_collected += 1),
-      });
-    }
 
-    if (puzzles_collected < 4) return;
+    if (puzzles_collected !== 4) return;
+
     setTimeout(() => {
       if(localStorage.getItem('testing_Widgets')){
         this.mainContainer = widgetHtmlService.container;
         this.animationEl = null;
         this.isPrewiewDisplayed = false;
         this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
-        localStorageService.config.puzzles_collected = 0;
+        localStorageService.config.puzzle.puzzles_collected = 0;
   
         const element = document.getElementById('puzzle-widget');
         if (element) {
           element.remove();
         }
       }
+
       this.closeModal();
       boomioService.signal('PUZZLE_CODE_REVEALED');
       new QrCodeModal();
-    }, 2000);
-
-    
+    }, 1000);
   };
 
   onPuzzleClick = (e) => {
@@ -259,17 +251,15 @@ export class Puzzle {
   };
 
   startAnimation = (...args) => {
-
-    const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true] = args;
-    const { qrcode, puzzles_collected } = localStorageService.config;
-    const defaultCoordinates = this.coordinates[puzzles_collected];
-    const currentCoordinates = coordinates?.[puzzles_collected];
+    const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true, modal] = args;
+    const { qrcode, puzzles_collected } = localStorageService.config.puzzle;
+    const position = modal ? puzzles_collected-1:puzzles_collected;
+    const defaultCoordinates = this.coordinates[position];
+    const currentCoordinates = coordinates?.[position];
     const customPosX = currentCoordinates?.left;
     const customPosY = currentCoordinates?.top;
     const width = currentCoordinates?.width ?? defaultCoordinates?.width;
     const height = currentCoordinates?.height ?? defaultCoordinates?.height;
-
-    // if ((render_count % appearing_puzzle_nr) !== 0) return;
     const puzzleSize = 100;
 
     const dash = '-';
@@ -286,12 +276,11 @@ export class Puzzle {
 
     const posx = customPosX ?? getRandomArbitrary(startCoordinate, limitX);
     const posy = customPosY ?? getRandomArbitrary(startCoordinate, limitY);
-
     const animStyles = {
       width,
       height,
       backgroundSize: 'container',
-      backgroundImage: `url(${puzzleIconsList[puzzles_collected]})`,
+      backgroundImage: `url(${puzzleIconsList[position]})`,
       ...styles,
     };
 
@@ -347,22 +336,17 @@ export class Puzzle {
 export default () => {
   const puzzle = new Puzzle();
 
-  const { success, puzzles_collected, appearing_puzzle_nr } = localStorageService.config;
+  const {puzzles_collected } = localStorageService.config.puzzle;
+  const {widget_subtype } = localStorageService.config;
 
-  if (!success && !localStorage.getItem('testing_Widgets')) {
-    return;
-  }
-
-  if (!puzzles_collected || localStorage.getItem('testing_Widgets')) {
+  if (puzzles_collected!==0 || localStorage.getItem('testing_Widgets')) {
     puzzle.showPuzzleWidgetWindowDraggable();
-  }
-
-  if (appearing_puzzle_nr > 1 || localStorage.getItem('testing_Widgets')) {
+  }  
+  if (widget_subtype !== 'static' && puzzles_collected > 1 || localStorage.getItem('testing_Widgets')) {
     puzzle.addImageTPuzzleWidget();
   }
-
-  if (appearing_puzzle_nr || localStorage.getItem('testing_Widgets')) {
+  if(widget_subtype !== 'static'){
     puzzle.startAnimation();
-  }
 
-};
+  }
+    };

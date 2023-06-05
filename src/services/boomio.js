@@ -41,6 +41,12 @@ class BoomioService extends UserService {
   };
 
   setInitialConfiguration() {
+    this.config = localStorageService.getDefaultConfig();
+    const isTimeout = new Date(this.config.boomioStopTill).getTime() > new Date().getTime();
+    if (!isTimeout) {
+      localStorageService.removeByKey('boomioStopTill');
+    }    
+    if (!isTimeout) {
     try {
       window.onload = async () => {
         widgetHtmlService.createWidgetContainer();
@@ -51,10 +57,15 @@ class BoomioService extends UserService {
         } else if (localStorage.getItem('testing_Widgets')) {
           this.loadWidget('testing');
         }
+        this.config = localStorageService.getDefaultConfig();
+          const isTimeout = new Date(this.config.boomioStopTill).getTime() > new Date().getTime();
+          if(!isTimeout && !this.config.static_text){
+          this.signal('', "static_info");
+          }
       };
     } catch (err) {
       console.log(err);
-    }
+    }}
   }
 
   testing(testingWidget) {
@@ -93,13 +104,34 @@ class BoomioService extends UserService {
     });
   }
 
-  signal(signal_code) {
-    this.send({
-      go_hunt: 'true',
-      ev_type: 'signal',
-      signal_code,
+
+  signal(signal_code, ev_type) {
+    const includeGoHunt = signal_code !== 'PUZZLE_CODE_REVEALED';
+    return new Promise((resolve, reject) => {
+      const requestData = {
+        ev_type: ev_type ?? 'signal',
+        signal_code,
+      };
+  if(this.config?.campaign_id){
+    requestData.campaign_id = this.config?.campaign_id;
+  }
+      if (includeGoHunt) {
+        requestData.go_hunt = 'true';
+      }
+  
+      this.send(requestData)
+        .then((response) => {
+          localStorageService.setConfigFromApi(response, ev_type);
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
+  
+
+
 }
 
 export default new BoomioService();

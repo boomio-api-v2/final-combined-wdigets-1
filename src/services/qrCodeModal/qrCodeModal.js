@@ -11,12 +11,141 @@ const likeBtnImage =
 const disLikeBtnImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/dislike.svg';
 
-export default class QrCodeModal {
+
+
+
+
+export default class {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
+
+    boomioService.signal('PUZZLE_CODE_REVEALED');
+    this.updateConfigData();
     this.showQrCode();
     this.showWinningAnimation();
   }
+  showQrCode = () => {
+    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
+    this.showSpinner();
+    this.loadQrCodeData();
+  };
+
+  showSpinner = () => {
+    const qrcodeShowDiv = document.querySelector('#qrcodeShow');
+    qrcodeShowDiv.style.display = 'none';
+  
+    const spinnerDiv = document.querySelector('#spinner .spinner');
+    spinnerDiv.classList.add('show');
+  };
+  
+  hideSpinner = () => {
+    const qrcodeShowDiv = document.querySelector('#qrcodeShow');
+    qrcodeShowDiv.style.display = 'block';
+  
+    const spinnerDiv = document.querySelector('#spinner .spinner');
+    spinnerDiv.classList.remove('show');
+  };
+  
+  updateConfigData = () => {
+    this.config = localStorageService.config;
+  }
+
+  async loadQrCodeData() {
+    try {
+      this.loading = true;
+      this.updateConfigData();
+      await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal');
+      this.showFinalData(); // Show the final data after the request is finished
+    } catch (error) {
+      console.error(error);
+      // Handle error if necessary
+    }
+  }
+
+  showFinalData() {
+    this.hideSpinner();
+    const spinner = document.querySelector('.spinner');
+    if (spinner) {
+      spinner.remove(); 
+    }
+
+    this.loading = false;
+    this.updateConfigData();
+  
+    const p_coupon_text_line1 = document.getElementById('p_coupon_text_line1');
+    const p_coupon_text_line2 = document.getElementById('p_coupon_text_line2');
+    const p_code_text = document.getElementById('p_code_text');
+    const p_bottom_text_start_pc = document.getElementById('p_bottom_text_start_pc');
+    const p_top_text = document.getElementById('p_top_text');
+    const p_bottom_text_start_m = document.getElementById('p_bottom_text_start_m');
+    const p_button_text_line1 = document.getElementById('p_button_text_line1');
+    const p_button_text_line2 = document.getElementById('p_button_text_line2');
+    var p_bottom_text_end_pc = document.getElementById('p_bottom_text_end_pc');
+    var p_bottom_text_end_m = document.getElementById('p_bottom_text_end_m');
+    // Check if p_coupon_text_line1 element exists and is not null
+    if (p_coupon_text_line1) {
+      p_coupon_text_line1.textContent = this.config?.p_coupon_text_line1;
+    }
+  
+    // Check if p_coupon_text_line2 element exists and is not null
+    if (p_coupon_text_line2) {
+      p_coupon_text_line2.textContent = this.config?.p_coupon_text_line2;
+    }
+  
+    // Check if p_code_text element exists and is not null
+    if (p_code_text) {
+      p_code_text.textContent = this.config?.p_code_text;
+    }
+  
+    // Check if p_bottom_text_start_pc element exists and is not null
+    if (p_bottom_text_start_pc) {
+      p_bottom_text_start_pc.textContent = this.config?.p_bottom_text_start_pc;
+    }
+  
+    // Check if p_top_text element exists and is not null
+    if (p_top_text) {
+      p_top_text.textContent = this.config?.p_top_text;
+    }
+  
+    // Check if p_bottom_text_start_m element exists and is not null
+    if (p_bottom_text_start_m) {
+      p_bottom_text_start_m.textContent = this.config?.p_bottom_text_start_m;
+    }
+  
+    // Check if p_button_text_line1 element exists and is not null
+    if (p_button_text_line1) {
+      p_button_text_line1.textContent = this.config?.p_button_text_line1;
+    }
+  
+    // Check if p_button_text_line2 element exists and is not null
+    if (p_button_text_line2) {
+      p_button_text_line2.textContent = this.config.p_button_text_line2;
+    }
+  
+    // Check if p_bottom_text_end_pc element exists and is not null
+    if (p_bottom_text_end_pc) {
+      p_bottom_text_end_pc.innerHTML = this.config.p_bottom_text_end_pc;
+    }
+  
+    // Check if p_bottom_text_end_m element exists and is not null
+    if (p_bottom_text_end_m) {
+      p_bottom_text_end_m.innerHTML = this.config.p_bottom_text_end_m;
+    }
+  }
+
+
+  closeAnimation = (callback) => () => {
+    assignStyleOnElement(this.modal.style, {
+      transformOrigin: '100% 100%',
+      transform: 'scale(0)',
+    });
+    this.modal.addEventListener('transitionend', () => {
+      this.modalBackground.remove();
+      if (callback) {
+        callback();
+      }
+    });
+  };
 
   showWinningAnimation = () => {
     setTimeout(() => {
@@ -32,22 +161,7 @@ export default class QrCodeModal {
     }, 100);
   };
 
-  showQrCode = () => {
-    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
-  };
 
-  closeAnimation = (callback) => () => {
-    assignStyleOnElement(this.modal.style, {
-      transformOrigin: '100% 100%',
-      transform: 'scale(0)',
-    });
-    this.modal.addEventListener('transitionend', () => {
-      this.modalBackground.remove();
-      if (callback) {
-        callback();
-      }
-    });
-  };
 
   closeModal = () => {
     this.modalBackground.remove();
@@ -137,14 +251,14 @@ export default class QrCodeModal {
   };
 
   static getGreyCoupon = () => {
-    const { p_code_text, p_coupon_text_line1, p_coupon_text_line2 } = localStorageService.config;
+    this.config = localStorageService.config;
     return `
         <div class="coupon-grey-shadow-wrapper" id="coupon_div">
           <div class="coupon-grey" style="background-image: url(${oldCouponImage})">
             <div class="coupon_info">
-                <h3>${p_coupon_text_line1}</h3>
-                <h4>${p_coupon_text_line2}</h1>
-              <p >${p_code_text} </p>
+                <h3 >${this.config.p_coupon_text_line1}</h3>
+                <h4 >${this.config.p_coupon_text_line2}</h1>
+              <p >${this.config.p_code_text} </p>
             </div>
           </div>
         </div>
@@ -152,19 +266,16 @@ export default class QrCodeModal {
   };
 
   getCouponHtml = () => {
-    const { p_code_text, p_coupon_text_line1, p_coupon_text_line2, widget_type } =
-      localStorageService.config;
-    if (widget_type === 'ice') {
+
+    if (this.config.widget_Type === 'ice') {
       return QrCodeModal.getGreyCoupon();
     }
     return `
        <div class="coupon__preview__card coupon_div" id="coupon_div" >
-          <div class="coupon_info">
-              
-                <h3>${p_coupon_text_line1}</h3>
-                <h4>${p_coupon_text_line2}</h1>
-           
-              <p style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${p_code_text} </p>
+          <div class="coupon_info"> 
+                <h3 id="p_coupon_text_line1">${this.config.p_coupon_text_line1}</h3>
+                <h4 id="p_coupon_text_line2">${this.config.p_coupon_text_line2}</h4>
+              <p id="p_code_text" style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
           </div>
           <div class="coupon__preview__card__after"></div>
           <div class="coupon__preview__card__befor"></div>
@@ -172,8 +283,6 @@ export default class QrCodeModal {
   };
 
   showQRDesktop = () => {
-    const { qrcode, p_top_text, p_bottom_text_end_pc, p_bottom_text_start_pc } =
-      localStorageService.config;
     this.createModalWindow(272, 520);
 
     this.modal.classList.add('desktop-qr-modal');
@@ -182,22 +291,28 @@ export default class QrCodeModal {
       <img src="${closeImage}" id="close-modal-btn" class="close-modal-btn"/>
     </div>
     <div class="coupon__preview__card__header text-center d-block">
-        <h1>${p_top_text} </h1>
+        <h1 id='p_top_text'>${this.config.p_top_text} </h1>
     </div>
     ${this.getCouponHtml()}
-    <p style="color: black; font-weight: 400; font-size: 14px;">${p_bottom_text_start_pc} <span>${p_bottom_text_end_pc}</span></p>
-      <div id='qrcodeShow'>
+    <div>
+    <p style="color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${this.config.p_bottom_text_start_pc}
+    <p style="color: black; font-weight: 600; display: inline; font-size: 14px;" >${this.config.p_bottom_text_end_pc}</p></p></div>
+    <div id='qrcodeShow'>
         <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
-      </div>
+    </div>
+    <div id='spinner'>
+    <div class="spinner"></div>
+  </div>
     `;
     new QRCode('qrcodeShowHtml', {
-      text: qrcode,
+      text: this.config.qrcode,
       width: 100,
       height: 100,
       colorDark: '#000000',
       colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.H,
     });
+
     document.getElementById('close-modal-btn').onclick = () => {
       this.modalBackground.remove();
       this.showSavingOrExitModal();
@@ -267,20 +382,12 @@ export default class QrCodeModal {
   };
 
   qrCodeInnerHtml = () => {
-    const {
-      p_top_text,
-      app_url,
-      p_bottom_text_start_m,
-      p_bottom_text_end_m,
-      p_button_text_line1,
-      p_button_text_line2,
-    } = localStorageService.config;
     return `<div class="product-design-bg-2 p-0 Preview-select box-show qr-div" >
     
         <div class="coupon__preview__body coupon_discount_modal">
     
             <div class="coupon__preview__card__header text-center d-block">
-                <h1>${p_top_text} </h1>
+                <h1 id='p_top_text'>${this.config.p_top_text}</h1>
             </div>
     
             <div class="coupon_preview_card_info ">
@@ -289,17 +396,19 @@ export default class QrCodeModal {
                 </div>
                 ${this.getCouponHtml()}
             </div>
-                <p class="coupon-text">  
-                  ${p_bottom_text_start_m}<span>${p_bottom_text_end_m}</span>
-                </p>
+            <div>
+                <p class="coupon-text" id='p_bottom_text_start_m'>  
+                  ${this.config.p_bottom_text_start_m}
+                  <p style="color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${this.config.p_bottom_text_end_m}</p>
+                </p></div>
                             <div class="coupon_preview_card_footer">
     
-                <a href=${app_url}>
+                <a href=${this.config.app_url}>
                 <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
                     <img src="${dotImage}" alt="img not find">               
                       <div class="text-wrapper">                   
-                        <p style="font-size: 10px; line-height: initial;">${p_button_text_line1}</p>
-                        <p style="font-size: 14px; line-height: initial;">${p_button_text_line2}</p>
+                        <p style="font-size: 10px; line-height: initial;" id='p_button_text_line1'>${this.config.p_button_text_line1}</p>
+                        <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${this.config.p_button_text_line2}</p>
                       </div>
                 </div>
                 </a>
