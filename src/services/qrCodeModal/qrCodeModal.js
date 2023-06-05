@@ -48,7 +48,6 @@ export default class {
   
   updateConfigData = () => {
     this.config = localStorageService.config;
-    console.log('this.configthis.config',this.config);
   }
 
   async loadQrCodeData() {
@@ -271,7 +270,6 @@ export default class {
     if (this.config.widget_Type === 'ice') {
       return QrCodeModal.getGreyCoupon();
     }
-    console.log('tsadsahis.config',this.config);
     return `
        <div class="coupon__preview__card coupon_div" id="coupon_div" >
           <div class="coupon_info"> 
