@@ -33,24 +33,19 @@ export default class {
   showSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     qrcodeShowDiv.style.display = 'none';
-    const spinnerDiv = document.querySelector('#spinner .spinner');
+    const spinnerDiv = document.querySelector('#qr_loader_spinner .spinner');
     if(spinnerDiv){
     spinnerDiv.classList.add('show');
-  }
-  };
+    }
+    };
   
   hideSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     qrcodeShowDiv.style.display = 'block';
-    const spinnerDiv = document.querySelector('#spinner .spinner');
-    if(spinnerDiv){
-      spinnerDiv.classList.remove('show');
-    }
-    const spinner = document.querySelector('.spinner');
-    if (spinner) {
-      spinner.remove(); 
-    }
-  };
+    const element = document.getElementById('qr_loader_spinner');
+      if (element) {
+        element.remove();
+      }  };
   
   updateConfigData = () => {
     this.config = localStorageService.config;
@@ -302,7 +297,7 @@ export default class {
     <div id='qrcodeShow'>
         <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
     </div>
-    <div id='spinner'>
+    <div id='qr_loader_spinner'>
     <div class="spinner"></div>
   </div>
     `;
