@@ -92,11 +92,11 @@ class LocalStorageService {
       puzzles_needed: config?.puzzles_needed ?? undefined,
       hint: config?.hint ?? 'Adidas Stan Smith J FX7519',
     };
-    const w_top_text =
-    config?.w_top_text ?? config?.puzzles_collected === 4
-      ? 'CONGRATULATIONS!ENJOY YOUR A REWARD!'
+    const w_top_text = config?.w_top_text ? config.w_top_text : puzzle.puzzles_collected === 4
+      ? 'CONGRATULATIONS! ENJOY YOUR A REWARD!'
       : 'COLLECT ALL PIECES AND WIN A GIFT!';
-      const widget_subtype  = config?.subtype ?? false;
+
+   const widget_subtype  = config?.subtype ?? false;
 
     return {
       widget_subtype,

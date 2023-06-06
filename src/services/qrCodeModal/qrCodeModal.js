@@ -18,12 +18,12 @@ const disLikeBtnImage =
 export default class {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
-
     boomioService.signal('PUZZLE_CODE_REVEALED');
     this.updateConfigData();
     this.showQrCode();
     this.showWinningAnimation();
   }
+
   showQrCode = () => {
     isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
     this.showSpinner();
@@ -33,7 +33,6 @@ export default class {
   showSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     qrcodeShowDiv.style.display = 'none';
-  
     const spinnerDiv = document.querySelector('#spinner .spinner');
     spinnerDiv.classList.add('show');
   };
@@ -41,7 +40,6 @@ export default class {
   hideSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     qrcodeShowDiv.style.display = 'block';
-  
     const spinnerDiv = document.querySelector('#spinner .spinner');
     spinnerDiv.classList.remove('show');
   };
@@ -275,7 +273,7 @@ export default class {
           <div class="coupon_info"> 
                 <h3 id="p_coupon_text_line1">${this.config.p_coupon_text_line1}</h3>
                 <h4 id="p_coupon_text_line2">${this.config.p_coupon_text_line2}</h4>
-              <p id="p_code_text" style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
+              <p id="p_code_text" style="line-height:18px;text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
           </div>
           <div class="coupon__preview__card__after"></div>
           <div class="coupon__preview__card__befor"></div>
@@ -295,8 +293,8 @@ export default class {
     </div>
     ${this.getCouponHtml()}
     <div>
-    <p style="color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${this.config.p_bottom_text_start_pc}
-    <p style="color: black; font-weight: 600; display: inline; font-size: 14px;" >${this.config.p_bottom_text_end_pc}</p></p></div>
+    <p style="line-height:18px !important;color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${this.config.p_bottom_text_start_pc}
+    <p style="line-height:18px !important;color: black; font-weight: 600; display: inline; font-size: 14px;" >${this.config.p_bottom_text_end_pc}</p></p></div>
     <div id='qrcodeShow'>
         <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
     </div>
@@ -397,9 +395,9 @@ export default class {
                 ${this.getCouponHtml()}
             </div>
             <div>
-                <p class="coupon-text" id='p_bottom_text_start_m'>  
+                <p class="coupon-text" id='p_bottom_text_start_m' style='line-height:18px !important;'>  
                   ${this.config.p_bottom_text_start_m}
-                  <p style="color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${this.config.p_bottom_text_end_m}</p>
+                  <p style="line-height:18px !important;color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${this.config.p_bottom_text_end_m}</p>
                 </p></div>
                             <div class="coupon_preview_card_footer">
     
