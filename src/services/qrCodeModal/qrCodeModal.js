@@ -18,12 +18,12 @@ const disLikeBtnImage =
 export default class {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
-
     boomioService.signal('PUZZLE_CODE_REVEALED');
     this.updateConfigData();
     this.showQrCode();
     this.showWinningAnimation();
   }
+
   showQrCode = () => {
     isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
     this.showSpinner();
@@ -33,18 +33,19 @@ export default class {
   showSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     qrcodeShowDiv.style.display = 'none';
-  
-    const spinnerDiv = document.querySelector('#spinner .spinner');
+    const spinnerDiv = document.querySelector('#qr_loader_spinner .spinner');
+    if(spinnerDiv){
     spinnerDiv.classList.add('show');
-  };
+    }
+    };
   
   hideSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     qrcodeShowDiv.style.display = 'block';
-  
-    const spinnerDiv = document.querySelector('#spinner .spinner');
-    spinnerDiv.classList.remove('show');
-  };
+    const element = document.getElementById('qr_loader_spinner');
+      if (element) {
+        element.remove();
+      }  };
   
   updateConfigData = () => {
     this.config = localStorageService.config;
@@ -64,10 +65,6 @@ export default class {
 
   showFinalData() {
     this.hideSpinner();
-    const spinner = document.querySelector('.spinner');
-    if (spinner) {
-      spinner.remove(); 
-    }
 
     this.loading = false;
     this.updateConfigData();
@@ -294,13 +291,13 @@ export default class {
         <h1 id='p_top_text'>${this.config.p_top_text} </h1>
     </div>
     ${this.getCouponHtml()}
-    <div>
-    <p style="color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${this.config.p_bottom_text_start_pc}
-    <p style="color: black; font-weight: 600; display: inline; font-size: 14px;" >${this.config.p_bottom_text_end_pc}</p></p></div>
+    <div style='font-size:14px;'>
+    <p style="line-height:14px !important;color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${this.config.p_bottom_text_start_pc}
+    <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;" >${this.config.p_bottom_text_end_pc}</p></p></div>
     <div id='qrcodeShow'>
         <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
     </div>
-    <div id='spinner'>
+    <div id='qr_loader_spinner'>
     <div class="spinner"></div>
   </div>
     `;
@@ -396,17 +393,17 @@ export default class {
                 </div>
                 ${this.getCouponHtml()}
             </div>
-            <div>
-                <p class="coupon-text" id='p_bottom_text_start_m'>  
+            <div style='font-size:14px;'>
+                <p class="coupon-text" id='p_bottom_text_start_m' style='line-height:14px !important;'>  
                   ${this.config.p_bottom_text_start_m}
-                  <p style="color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${this.config.p_bottom_text_end_m}</p>
+                  <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${this.config.p_bottom_text_end_m}</p>
                 </p></div>
                             <div class="coupon_preview_card_footer">
     
                 <a href=${this.config.app_url}>
                 <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
                     <img src="${dotImage}" alt="img not find">               
-                      <div class="text-wrapper">                   
+                      <div class="text-wrapper" >                   
                         <p style="font-size: 10px; line-height: initial;" id='p_button_text_line1'>${this.config.p_button_text_line1}</p>
                         <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${this.config.p_button_text_line2}</p>
                       </div>

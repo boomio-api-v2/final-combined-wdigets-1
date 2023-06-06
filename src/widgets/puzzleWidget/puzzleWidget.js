@@ -149,7 +149,7 @@ export class Puzzle {
       localStorageService.config;
       const { puzzles_collected, hint } =
       localStorageService.config.puzzle;
-    const isLastPuzzle = puzzles_collected === 3;
+    const isLastPuzzle = puzzles_collected === 4;
     this?.puzzleWidget?.remove();
     this.createPuzzleWidget();
     this.createModalWindow();
