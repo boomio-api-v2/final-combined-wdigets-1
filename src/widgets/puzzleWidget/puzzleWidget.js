@@ -24,13 +24,14 @@ export class Puzzle {
     this.isPrewiewDisplayed = false;
     this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
   }
-  
+
   addImageTPuzzleWidget = () => {
-    if(this.puzzleWidget){
-     this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;  }
+    if (this.puzzleWidget) {
+      this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;
+    }
   };
 
-  createPuzzleWidget = () => {  
+  createPuzzleWidget = () => {
     const puzzleWidget = document.createElement('div');
     puzzleWidget.setAttribute('id', 'puzzle-widget');
     assignStyleOnElement(puzzleWidget.style, {
@@ -64,8 +65,12 @@ export class Puzzle {
 
     const { clientWidth, clientHeight } = document.documentElement;
 
-    const left = !localStorage.getItem('testing_Widgets') && x_position || clientWidth - 40 - puzzleWidgetSize;
-    const top = !localStorage.getItem('testing_Widgets') &&  y_position || clientHeight - 40 - puzzleWidgetSize;
+    const left =
+      (!localStorage.getItem('testing_Widgets') && x_position) ||
+      clientWidth - 40 - puzzleWidgetSize;
+    const top =
+      (!localStorage.getItem('testing_Widgets') && y_position) ||
+      clientHeight - 40 - puzzleWidgetSize;
     const size = `${puzzleWidgetSize}px`;
     assignStyleOnElement(puzzleWidget.style, {
       width: size,
@@ -145,10 +150,8 @@ export class Puzzle {
   };
 
   showModalWidgetPreview = (showAnimation = false) => {
-    const { w_top_text, w_button_text, w_hint_static_text } =
-      localStorageService.config;
-      const { puzzles_collected, hint } =
-      localStorageService.config.puzzle;
+    const { w_top_text, w_button_text, w_hint_static_text } = localStorageService.config;
+    const { puzzles_collected, hint } = localStorageService.config.puzzle;
     const isLastPuzzle = puzzles_collected === 4;
     this?.puzzleWidget?.remove();
     this.createPuzzleWidget();
@@ -209,7 +212,7 @@ export class Puzzle {
   };
 
   addPuzzleToWidget = () => {
-    let { puzzles_collected,puzzles_needed } = localStorageService.config.puzzle;
+    let { puzzles_collected, puzzles_needed } = localStorageService.config.puzzle;
     this.startAnimation(
       puzzlesCoordinateForDesktop,
       {
@@ -224,13 +227,15 @@ export class Puzzle {
     if (puzzles_collected !== 4) return;
 
     setTimeout(() => {
-      if(localStorage.getItem('testing_Widgets')){
+      if (localStorage.getItem('testing_Widgets')) {
         this.mainContainer = widgetHtmlService.container;
         this.animationEl = null;
         this.isPrewiewDisplayed = false;
-        this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
+        this.coordinates = isMobileDevice
+          ? puzzlesCoordinateForMobile
+          : puzzlesCoordinateForDesktop;
         localStorageService.config.puzzle.puzzles_collected = 0;
-  
+
         const element = document.getElementById('puzzle-widget');
         if (element) {
           element.remove();
@@ -238,7 +243,6 @@ export class Puzzle {
       }
 
       this.closeModal();
-      boomioService.signal('PUZZLE_CODE_REVEALED');
       new QrCodeModal();
     }, 1000);
   };
@@ -253,7 +257,7 @@ export class Puzzle {
   startAnimation = (...args) => {
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true, modal] = args;
     const { qrcode, puzzles_collected } = localStorageService.config.puzzle;
-    const position = modal ? puzzles_collected-1:puzzles_collected;
+    const position = modal ? puzzles_collected - 1 : puzzles_collected;
     const defaultCoordinates = this.coordinates[position];
     const currentCoordinates = coordinates?.[position];
     const customPosX = currentCoordinates?.left;
@@ -336,17 +340,19 @@ export class Puzzle {
 export default () => {
   const puzzle = new Puzzle();
 
-  const {puzzles_collected } = localStorageService.config.puzzle;
-  const {widget_subtype } = localStorageService.config;
+  const { puzzles_collected } = localStorageService.config.puzzle;
+  const { widget_subtype } = localStorageService.config;
 
-  if (puzzles_collected!==0 || localStorage.getItem('testing_Widgets')) {
+  if (puzzles_collected !== 0 || localStorage.getItem('testing_Widgets')) {
     puzzle.showPuzzleWidgetWindowDraggable();
-  }  
-  if (widget_subtype !== 'static' && puzzles_collected > 1 || localStorage.getItem('testing_Widgets')) {
+  }
+  if (
+    (widget_subtype !== 'static' && puzzles_collected > 1) ||
+    localStorage.getItem('testing_Widgets')
+  ) {
     puzzle.addImageTPuzzleWidget();
   }
-  if(widget_subtype !== 'static'){
+  if (widget_subtype !== 'static' || localStorage.getItem('testing_Widgets')) {
     puzzle.startAnimation();
-
   }
-    };
+};

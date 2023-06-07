@@ -105,7 +105,10 @@
     color: #FFFFFF !important;
     cursor: pointer;
   }
-
+  .scrollable-container {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .color_text_bold_h3 {
     background: linear-gradient(41.01deg, #FF3183 5.48%, #598BF3 31.4%, #657BEA 71.49%, #34B0DC 98.11%);
     /* background: linear-gradient(298.74deg, #34B0DC 22.51%, #598BF3 52.45%, #657BEA 72.82%); */

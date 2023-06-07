@@ -1,6 +1,5 @@
 import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
-import { isMobileDevice } from '@/config';
 import { assignStyleOnElement } from '@/utlis';
 import { closeImage, dotImage, oldCouponImage, winningAnimationGif } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
@@ -11,21 +10,16 @@ const likeBtnImage =
 const disLikeBtnImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/dislike.svg';
 
-
-
-
-
 export default class {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
-    boomioService.signal('PUZZLE_CODE_REVEALED');
     this.updateConfigData();
     this.showQrCode();
     this.showWinningAnimation();
   }
 
   showQrCode = () => {
-    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
+    this.showQRDesktop();
     this.showSpinner();
     this.loadQrCodeData();
   };
@@ -34,22 +28,23 @@ export default class {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     qrcodeShowDiv.style.display = 'none';
     const spinnerDiv = document.querySelector('#qr_loader_spinner .spinner');
-    if(spinnerDiv){
-    spinnerDiv.classList.add('show');
+    if (spinnerDiv) {
+      spinnerDiv.classList.add('show');
     }
-    };
-  
+  };
+
   hideSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     qrcodeShowDiv.style.display = 'block';
     const element = document.getElementById('qr_loader_spinner');
-      if (element) {
-        element.remove();
-      }  };
-  
+    if (element) {
+      element.remove();
+    }
+  };
+
   updateConfigData = () => {
     this.config = localStorageService.config;
-  }
+  };
 
   async loadQrCodeData() {
     try {
@@ -68,7 +63,7 @@ export default class {
 
     this.loading = false;
     this.updateConfigData();
-  
+
     const p_coupon_text_line1 = document.getElementById('p_coupon_text_line1');
     const p_coupon_text_line2 = document.getElementById('p_coupon_text_line2');
     const p_code_text = document.getElementById('p_code_text');
@@ -83,53 +78,52 @@ export default class {
     if (p_coupon_text_line1) {
       p_coupon_text_line1.textContent = this.config?.p_coupon_text_line1;
     }
-  
+
     // Check if p_coupon_text_line2 element exists and is not null
     if (p_coupon_text_line2) {
       p_coupon_text_line2.textContent = this.config?.p_coupon_text_line2;
     }
-  
+
     // Check if p_code_text element exists and is not null
     if (p_code_text) {
       p_code_text.textContent = this.config?.p_code_text;
     }
-  
+
     // Check if p_bottom_text_start_pc element exists and is not null
     if (p_bottom_text_start_pc) {
       p_bottom_text_start_pc.textContent = this.config?.p_bottom_text_start_pc;
     }
-  
+
     // Check if p_top_text element exists and is not null
     if (p_top_text) {
       p_top_text.textContent = this.config?.p_top_text;
     }
-  
+
     // Check if p_bottom_text_start_m element exists and is not null
     if (p_bottom_text_start_m) {
       p_bottom_text_start_m.textContent = this.config?.p_bottom_text_start_m;
     }
-  
+
     // Check if p_button_text_line1 element exists and is not null
     if (p_button_text_line1) {
       p_button_text_line1.textContent = this.config?.p_button_text_line1;
     }
-  
+
     // Check if p_button_text_line2 element exists and is not null
     if (p_button_text_line2) {
       p_button_text_line2.textContent = this.config.p_button_text_line2;
     }
-  
+
     // Check if p_bottom_text_end_pc element exists and is not null
     if (p_bottom_text_end_pc) {
       p_bottom_text_end_pc.innerHTML = this.config.p_bottom_text_end_pc;
     }
-  
+
     // Check if p_bottom_text_end_m element exists and is not null
     if (p_bottom_text_end_m) {
       p_bottom_text_end_m.innerHTML = this.config.p_bottom_text_end_m;
     }
   }
-
 
   closeAnimation = (callback) => () => {
     assignStyleOnElement(this.modal.style, {
@@ -157,8 +151,6 @@ export default class {
       });
     }, 100);
   };
-
-
 
   closeModal = () => {
     this.modalBackground.remove();
@@ -263,7 +255,6 @@ export default class {
   };
 
   getCouponHtml = () => {
-
     if (this.config.widget_Type === 'ice') {
       return QrCodeModal.getGreyCoupon();
     }
@@ -292,8 +283,12 @@ export default class {
     </div>
     ${this.getCouponHtml()}
     <div style='font-size:14px;'>
-    <p style="line-height:14px !important;color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${this.config.p_bottom_text_start_pc}
-    <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;" >${this.config.p_bottom_text_end_pc}</p></p></div>
+    <p style="line-height:14px !important;color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${
+      this.config.p_bottom_text_start_pc
+    }
+    <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;" >${
+      this.config.p_bottom_text_end_pc
+    }</p></p></div>
     <div id='qrcodeShow'>
         <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
     </div>
@@ -342,10 +337,8 @@ export default class {
     });
     const coupon = document.getElementById('coupon_div');
     const qrcodeShow = document.getElementById('qrcodeShow');
-    qrcodeShow.style.display = isMobileDevice ? 'none' : 'block';
-    coupon.style.display = isMobileDevice ? 'block' : 'none';
-
-    if (isMobileDevice) return;
+    qrcodeShow.style.display = 'block';
+    coupon.style.display = 'none';
 
     qrcodeShow.onclick = () => {
       coupon.style.display = 'block';
@@ -396,7 +389,9 @@ export default class {
             <div style='font-size:14px;'>
                 <p class="coupon-text" id='p_bottom_text_start_m' style='line-height:14px !important;'>  
                   ${this.config.p_bottom_text_start_m}
-                  <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${this.config.p_bottom_text_end_m}</p>
+                  <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${
+                    this.config.p_bottom_text_end_m
+                  }</p>
                 </p></div>
                             <div class="coupon_preview_card_footer">
     
@@ -404,8 +399,12 @@ export default class {
                 <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
                     <img src="${dotImage}" alt="img not find">               
                       <div class="text-wrapper" >                   
-                        <p style="font-size: 10px; line-height: initial;" id='p_button_text_line1'>${this.config.p_button_text_line1}</p>
-                        <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${this.config.p_button_text_line2}</p>
+                        <p style="font-size: 10px; line-height: initial;" id='p_button_text_line1'>${
+                          this.config.p_button_text_line1
+                        }</p>
+                        <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${
+                          this.config.p_button_text_line2
+                        }</p>
                       </div>
                 </div>
                 </a>
