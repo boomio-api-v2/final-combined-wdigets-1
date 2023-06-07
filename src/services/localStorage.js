@@ -3,7 +3,7 @@ import { localStoragePropertyName } from '@/config';
 class LocalStorageService {
   constructor() {
     this.clearStorage();
-    if(!this.config){
+    if (!this.config) {
       this.config = this.getDefaultConfig();
     }
   }
@@ -35,10 +35,9 @@ class LocalStorageService {
   }
 
   setConfigFromApi(content, ev_type) {
-
-    if(ev_type === 'static_info'){
+    if (ev_type === 'static_info') {
       this.static_exists = true;
-      this.updateConfig({ static_text:this.static_exists });
+      this.updateConfig({ static_text: this.static_exists });
     }
     const defaultValues = this.getDefaultConfig();
 
@@ -86,17 +85,19 @@ class LocalStorageService {
     const p_button_text_line2 = config?.p_coupon_text_line1 ?? 'boomio app';
     const static_text = config?.static_text ?? false;
     const boomioStopTill = config?.boomioStopTill ?? null;
-    const campaign_id = config?.campaign_id ?? null;
+    const m = { campaign_id: config?.m?.campaign_id ?? null };
     const puzzle = {
-      puzzles_collected : config?.puzzles_collected ?? 0,
+      puzzles_collected: config?.puzzles_collected ?? 0,
       puzzles_needed: config?.puzzles_needed ?? undefined,
       hint: config?.hint ?? 'Adidas Stan Smith J FX7519',
     };
-    const w_top_text = config?.w_top_text ? config.w_top_text : puzzle.puzzles_collected === 4
+    const w_top_text = config?.w_top_text
+      ? config.w_top_text
+      : puzzle.puzzles_collected === 4
       ? 'CONGRATULATIONS! ENJOY YOUR A REWARD!'
       : 'COLLECT ALL PIECES AND WIN A GIFT!';
 
-   const widget_subtype  = config?.subtype ?? false;
+    const widget_subtype = config?.subtype ?? false;
 
     return {
       widget_subtype,
@@ -127,7 +128,7 @@ class LocalStorageService {
       p_button_text_line2,
       static_text,
       boomioStopTill,
-      campaign_id,
+      m,
     };
   }
 }
