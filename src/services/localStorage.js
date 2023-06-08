@@ -85,7 +85,7 @@ class LocalStorageService {
     const p_button_text_line2 = config?.p_coupon_text_line1 ?? 'boomio app';
     const static_text = config?.static_text ?? false;
     const boomioStopTill = config?.boomioStopTill ?? null;
-    const m = { campaign_id: config?.m?.campaign_id ?? null };
+    const m = config?.m ?? null;
     const puzzle = {
       puzzles_collected: config?.puzzles_collected ?? 0,
       puzzles_needed: config?.puzzles_needed ?? undefined,
