@@ -111,8 +111,8 @@ class BoomioService extends UserService {
         ev_type: ev_type ?? 'signal',
         signal_code,
       };
-      if (this.config?.m.campaign_id) {
-        requestData.m = { campaign_id: this.config?.m.campaign_id };
+      if (this.config?.m) {
+        requestData.m = this.config?.m;
       }
 
       this.send(requestData)
