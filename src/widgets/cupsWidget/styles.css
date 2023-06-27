@@ -214,3 +214,62 @@
   letter-spacing: 0.05em;
   color: #473F4E;
 }
+
+table {
+  border-collapse: collapse;
+  border: 2px solid black;
+  width:100px;
+  height:100px;
+}
+table td.left {
+  border-collapse: collapse;
+  border-left: 2px solid black;
+}
+table td.right {
+  border-collapse: collapse;
+  border-right: 2px solid black;  
+}
+table td.top {
+  border-collapse: collapse;
+  border-top: 1px solid black;       
+}
+table td.bottom {
+  border-collapse: collapse;
+  border-bottom: 2px solid black;
+}
+table td.head {
+  border-top: 2px solid red;
+  background: red;
+  border-bottom: 0px;
+  border-right: 0px;
+  border-left: 0px;
+}
+
+table td.tail {
+  border-bottom: 2px solid green;
+  border-right: 0px;
+  border-left: 0px;
+  background: green ;
+}
+
+table td.you {
+  border-top: 2px solid blue;
+  border-right: 0px;
+  border-left: 0px;
+  background: blue !important;
+}
+
+table td.route {
+ background: yellow;
+}
+table td.notroute {
+ background: yellow;
+}
+table td.red {background: red;}
+table td.green {background: green;}
+table td.yellow {background: yellow;}
+table td.orange {background: orange;}
+table td.purple {background: purple;}
+table td.blue {background: blue;}
+table td.gray {background: gray;}
+
