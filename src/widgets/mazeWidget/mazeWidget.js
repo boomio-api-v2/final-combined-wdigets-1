@@ -11,7 +11,7 @@ const rand = (t) => {
   return Math.floor((Math.random() * t));
 }
 
-class CupsWidget {
+class MazeWidget {
   constructor() {
     this.startAnimation();
   }
@@ -425,10 +425,10 @@ class Cell {
 
 };
 
-let cupsWidget = null;
+let mazeWidget = null;
 
 export default () => {
-  if (!cupsWidget) {
-    cupsWidget = new CupsWidget();
+  if (!mazeWidget) {
+    mazeWidget = new MazeWidget();
   }
 };
