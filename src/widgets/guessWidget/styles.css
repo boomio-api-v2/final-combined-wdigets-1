@@ -12,8 +12,8 @@
   justify-content: center;
 }
 .cards{
-  height: 400px;
-  width: 400px;
+  height: 350px;
+  width: 350px;
   flex-wrap: wrap;
   justify-content: space-between;
 }
