@@ -50,6 +50,7 @@ class TestingWidget {
       { spawn: 'snake', despawn: 'snake', name: 'Snake' },
       { spawn: 'cats', despawn: 'cats', name: 'Cats Widget' },
       { spawn: 'hedgehog', despawn: 'hedgehog', name: 'Hedgehog Widget' },
+      { spawn: 'guess', despawn: 'guess', name: 'Guess image Widget' },
     ];
 
     let buttonsHtml = '';
