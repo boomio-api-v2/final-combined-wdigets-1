@@ -1,26 +1,25 @@
 import { widgetHtmlService, DragElement } from '@/services';
 import { closeIcon } from '@/сonstants/icons';
 import './styles.css';
-// import Maze from './maze';
 
-// let maze = new Maze(6, 6, true);
-const styles = ["bottom", "right", "left"]; //you can change the level difficulty by changing the styles 
-// var colors = ["red", "green", "orange", "gray", "purple", "blue", "yellow"];
-// //global functions
+const styles = ["bottom", "right", "left"];
 const rand = (t) => {
   return Math.floor((Math.random() * t));
 }
+let solved = false
 
 class MazeWidget {
   constructor() {
     this.startAnimation();
   }
 
-
   startAnimation = () => {
+    while (!solved) {
+      let maze = new Maze(5, 5, false);
+      document.getElementById("maze").innerHTML = ""
+      maze.drawMaze()
+    }
 
-    let maze = new Maze(8, 8, true)
-    maze.drawMaze()
     const width = 600;
     const height = 372;
     const { clientWidth, clientHeight } = document.documentElement;
@@ -90,82 +89,43 @@ class Maze {
     this.head = head; //the start point to the maze
     this.tail = tail; //the exit point from a maze
     this.html();
-
-    // this.showHTML()
-
   }
-  //3. shows the shortest route between starting point and destination 
   drawMaze() {
     for (let r = 0; r < this.row; r++) {
       this.rows[r] = new Row(r, this);
     }
     this.pickHeadTail();
-    this.pickYou(this.coordinates[0], this.coordinates[1]);
-    this.enableMovement()
-
-
-    console.log('can be solved', this.cbs)
-    //now pick head and tail
-    //work to detect success path, this can be done in different ways
-    //          this.routeStyle();
-    // this.you()
-    if (!this.solved) {
-      if (this.cbs) {
-        console.log("Drawing a maze now");
-        maze = new Maze(this.row, this.col, true);
-        document.getElementById("maze").innerHTML = "";
-        maze.drawMaze();
-      } else {
-        alert("This maze can't be solved, refresh the page or set can_be_solved to true when you create a maze instance");
-      }
+    solved = this.solved
+    if (solved) {
+      this.pickYou(this.coordinates[0], this.coordinates[1]);
+      this.enableMovement()
     }
-    console.log(this.solved);
   }
-
   pickHeadTail() {
-    // this.head = this.rows[0].cells[rand(this.col)];
     this.head = this.rows[0].cells[0];
     this.head = this.cells.find(cell => cell.row === this.head.row && cell.col === this.head.col);
     this.head.style = "head";
     this.head.html("head");
-
-    // this.tail = this.rows[this.row - 1].cells[rand(this.col)];
     this.tail = this.rows[this.row - 1].cells[this.col - 1];
     this.tail = this.cells.find(cell => cell.row === this.tail.row && cell.col === this.tail.col);
     this.tail.style = "tail";
     this.tail.html("tail");
-    //not a good idea to try to catch range error of memory stack size exceeded, perforamnce degradation 
-    //try {
     this.solved = this.drawRoute(this.head);
-    console.log('solved', this.solved)
-    //just to make sure head and tail were set when we call this guy
-    //}catch(e){
-    // console.log("I will generated another one now");
-    // }
   }
   enableMovement() {
-
-    let counter = 0
     document.addEventListener('keydown', (e) => {
       const key = e.key;
       if (key === "ArrowLeft" || key === "a") this.moveLeft()
-      if (key === "ArrowRight" || key === "d") {
-        counter++
-        console.log(counter); this.moveRight()
-      }
+      if (key === "ArrowRight" || key === "d") this.moveRight()
       if (key === "ArrowUp" || key === "w") this.moveUp()
       if (key === "ArrowDown" || key === "s") this.moveDown()
     });
-
     let xDown = null;
     let yDown = null;
-
     document.addEventListener('touchstart', (e) => {
       xDown = e.touches[0].clientX
       yDown = e.touches[0].clientY
-
     });
-
     document.addEventListener('touchend', (e) => {
       if (!xDown || !yDown) {
         return;
@@ -174,7 +134,6 @@ class Maze {
       const yUp = e.changedTouches[0].pageY
       const xDiff = xDown - xUp;
       const yDiff = yDown - yUp;
-
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
         if (xDiff > 0) {
           this.moveLeft()
@@ -192,10 +151,10 @@ class Maze {
       yDown = null;
     });
   }
-
   pickYou(r, c) {
     this.you = this.cells.find(cell => cell.row === r && cell.col === c);
-    this.you.html("you");
+    this.you.setClass("you");
+    if (r === this.row - 1 & c === this.col - 1) alert('You made it')
   }
   unpickYou(r, c) {
     this.you = this.cells.find(cell => cell.row === r && cell.col === c);
@@ -203,57 +162,37 @@ class Maze {
   }
   moveRight() {
     if (this.coordinates[1] >= this.col - 1) return
-    // console.log(this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('right') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] + 1).style.includes('left'))
     if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('right') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] + 1).style.includes('left')) return
-    // console.log('right')
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[1]++
     this.pickYou(this.coordinates[0], this.coordinates[1])
   }
   moveLeft() {
-    // console.log(this.coordinates)
     if (this.coordinates[1] <= 0) return
-    // console.log(this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('left') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]-1).style.includes('right'))
     if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('left') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] - 1).style.includes('right')) return
-
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[1]--
     this.pickYou(this.coordinates[0], this.coordinates[1])
   }
   moveUp() {
     if (this.coordinates[0] <= 0) return
-    // console.log(this.coordinates)
-    console.log(this.cells.find(cell => cell.row === this.coordinates[0] - 1 && cell.col === this.coordinates[1]).style.includes('bottom'))
     if (this.cells.find(cell => cell.row === this.coordinates[0] - 1 && cell.col === this.coordinates[1]).style.includes('bottom')) return
-
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[0]--
     this.pickYou(this.coordinates[0], this.coordinates[1])
   }
   moveDown() {
     if (this.coordinates[0] >= this.row - 1) return
-
-    console.log(this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('bottom'))
-
     if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('bottom')) return
-
-    console.log(this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]))
-
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[0]++
     this.pickYou(this.coordinates[0], this.coordinates[1])
   }
-
-
   drawRoute(cell) {
-
-    console.log(this.steps++);
-    //      console.log("cell in call", cell);
     if (this.steps > this.row * this.col) { //this to minimize an overstack error possiblity 
       console.log("exceeded our intentions");
       return false;
     }
-
     if (cell.style === "tail") {
       return true;
     }
@@ -269,6 +208,7 @@ class Maze {
     let bottom_cell = this.cells.find(cell_ => cell_.row === (cell.row + 1) && cell_.col === (cell.col)); //indicates an available bottom route
     let visited_bottom_cell = this.visited.find(cell_ => cell_ === bottom_cell); //indicates a visited bottom route
 
+
     let left_cell = this.cells.find(cell_ => cell_.row === cell.row && cell_.col === (cell.col - 1));
     let visited_left_cell = this.visited.find(cell_ => cell_ === left_cell);
     let right_cell = this.cells.find(cell_ => cell_.row === cell.row && cell_.col === (cell.col + 1));
@@ -279,8 +219,8 @@ class Maze {
 
     if (cell.style !== "bottom" && bottom_cell && bottom_cell.col === cell.col && visited_bottom_cell === undefined && this.drawRoute(bottom_cell)) {
       this.route.push(cell);
-      //        console.log("cell is not bottom:", cell);
-      //       console.log("and we checked on ", bottom_cell);
+      //  console.log("cell is not bottom:", cell);
+      // console.log("and we checked on ", bottom_cell);
       return true;
     }
 
@@ -328,33 +268,55 @@ class Maze {
     }
     return false;
   }
-
   routeStyle() {
     for (let i = 0; i < this.route.length; i++) {
       this.route[i].html("route " + i.toString());
+      // console.log(this.route[i])
     }
   }
-  html() {
+
+  html(name) {
+    const animEl = document.createElement('div');
+    animEl.style.position = 'absolute';
+    animEl.style.top = `100px`;
+    animEl.style.left = `100px`;
+    animEl.style.width = `200px`;
+    animEl.style.height = `200px`;
+    animEl.id = 'maze-container';
     let table = document.getElementById("maze");
     if (!table) {
-
       table = document.createElement("table");
       table.id = "maze";
       table.style.position = 'absolute';
-      table.style.top = `100px`;
-      table.style.left = `100px`;
+      table.style.top = `20px`;
+      table.style.left = `20px`;
       if (document && document.body) {
-        document.body.appendChild(table);
-
+        this.addCloseIconToElement(animEl)
+        animEl.appendChild(table)
+        document.body.appendChild(animEl);
       }
       else {
         alert("Make sure to run maze.js inside an html page, with a present body tag");
       }
     }
-    console.log(table)
-    return table;
 
+    return table;
   }
+  addCloseIconToElement = (element) => {
+    const closeBtn = document.createElement('div');
+    closeBtn.classList.add('close-icon');
+    closeBtn.innerHTML = '&#x2715; ';
+    closeBtn.addEventListener(
+      'click',
+      (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        element.remove();
+      },
+      { once: true },
+    );
+    element.appendChild(closeBtn);
+  };
 
 };
 class Row {
@@ -365,7 +327,6 @@ class Row {
     this.route = [];
     this.html();
     this.createCells();
-    //  this.headAndTail();
   }
 
   html() {
@@ -385,6 +346,8 @@ class Row {
       this.cells.push({ col: cell.col, row: cell.row });
       this.maze.cells.push(cell);
       this.html().appendChild(cell.html());
+      // console.log(this.cells)
+      // console.log(this.maze)
     }
 
   }
@@ -393,10 +356,7 @@ class Cell {
   constructor(row = 0, col = 0) {
     this.row = row;
     this.col = col;
-    //  this.head = false;
-    // this.tail = false;
     this.blocked = false;
-    // this.position = {row,col};
     this.style = styles[rand(styles.length)];
   }
 
@@ -407,15 +367,25 @@ class Cell {
       cell.id = "cell_" + this.row + "." + this.col;
       if (!style) {
         cell.className = this.style;
+        cell.style.width = '10px'
+        cell.style.height = '10px'
       }
       else {
         cell.className = cell.className + " " + style;
+        cell.style.width = '10px'
+        cell.style.height = '10px'
       }
     }
     if (style) {
       cell.className = cell.className + " " + style;
+      cell.style.width = '10px'
+      cell.style.height = '10px'
     }
     return cell;
+  }
+  setClass(cls) {
+    let cell = document.getElementById("cell_" + this.row + "." + this.col);
+    if (!cell.classList.contains(cls)) cell.className = cell.className + " " + cls;
   }
   removeClass(cls) {
     let cell = document.getElementById("cell_" + this.row + "." + this.col);

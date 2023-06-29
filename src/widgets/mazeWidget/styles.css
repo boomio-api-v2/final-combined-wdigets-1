@@ -218,58 +218,68 @@
 table {
   border-collapse: collapse;
   border: 2px solid black;
-  width:100px;
-  height:100px;
+  width: 100px;
+  height: 100px;
 }
+
 table td.left {
   border-collapse: collapse;
-  border-left: 2px solid black;
+  border-left: 1px solid black;
 }
+
 table td.right {
   border-collapse: collapse;
-  border-right: 2px solid black;  
+  border-right: 1px solid black;
+
 }
+
 table td.top {
   border-collapse: collapse;
-  border-top: 1px solid black;       
+  border-top: 1px solid black;
 }
+
 table td.bottom {
   border-collapse: collapse;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
 }
+
 table td.head {
-  border-top: 2px solid red;
+  border-top: 2px solid transparent;
   background: red;
-  border-bottom: 0px;
-  border-right: 0px;
-  border-left: 0px;
+  border-right: none !important;
+  border-bottom: none !important;
 }
 
 table td.tail {
-  border-bottom: 2px solid green;
-  border-right: 0px;
-  border-left: 0px;
-  background: green ;
+  border-bottom: 2px solid transparent;
+  background: green;
+  border-top: none !important;
+  border-left: none !important;
 }
 
 table td.you {
-  border-top: 2px solid blue;
-  border-right: 0px;
-  border-left: 0px;
-  background: blue !important;
+  /* background: blue !important; */
+  background-image: radial-gradient(blue, white, white);
 }
 
 table td.route {
- background: yellow;
+  background: yellow;
 }
-table td.notroute {
- background: yellow;
-}
-table td.red {background: red;}
-table td.green {background: green;}
-table td.yellow {background: yellow;}
-table td.orange {background: orange;}
-table td.purple {background: purple;}
-table td.blue {background: blue;}
-table td.gray {background: gray;}
 
+table td.notroute {
+  background: yellow;
+}
+
+.close-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: #000;
+  cursor: pointer;
+  border-radius: 20px;
+  opacity: 0.45;
+  background: rgba(0, 0, 0, 0);
+}
