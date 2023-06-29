@@ -1,6 +1,10 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { iceHammerImage } from '@/сonstants';
+import { testHammer } from '@/сonstants';
+import { cloudImage } from '@/сonstants/icons';
+import { loadImageBeforeUsing } from '@/utlis';
+
+loadImageBeforeUsing([cloudImage]);
 
 class WhackWidget {
   constructor() {
@@ -23,11 +27,12 @@ class WhackWidget {
     myCanvas.style.height = '100vh';
 
     myCanvas.innerHTML = `
-      <div class="game-container">
-      <div class="mole">
-        <img class="mole-image" src="https://cdn-icons-png.flaticon.com/512/394/394790.png" alt="Mole">
-        </div>
-      </div>
+    <div class="game-container">
+    <div class="mole">
+      <div class="score"><span id="score-value"></span></div>
+      <img class="mole-image" src="https://cdn-icons-png.flaticon.com/512/394/394790.png" alt="Mole">
+    </div>
+  </div>
     `;
 
     widgetHtmlService.container.appendChild(myCanvas);
@@ -87,7 +92,7 @@ class WhackWidget {
 
             setTimeout(function () {
               startMoleAnimation(nextMole);
-            }, 1000);
+            }, 400);
           }, 4000);
         }
 
@@ -103,7 +108,7 @@ class WhackWidget {
       if (!existingHammer) {
         const hammer = document.createElement('img');
         hammer.classList.add('hammer');
-        hammer.src = iceHammerImage;
+        hammer.src = testHammer;
         mole.appendChild(hammer);
         hammer.classList.remove('disappear');
         hammer.classList.remove('appear');
@@ -137,6 +142,26 @@ class WhackWidget {
       }
     };
 
+    const animateBlock =
+      (e) =>
+      ({ img, animation, isCloud = false, time = 400 }) => {
+        const image = new Image();
+        const blockElement = document.createElement('img');
+        const mole = document.querySelector('.mole');
+        image.onload = function () {
+          blockElement.setAttribute('src', this.src);
+          blockElement.classList.add(animation);
+          if (!isCloud) {
+            blockElement.animate({ transform: 'scale(0)' }, { duration: time, fill: 'forwards' });
+          }
+          mole.appendChild(blockElement);
+          setTimeout(() => {
+            blockElement.remove();
+          }, time);
+        };
+        image.src = img;
+      };
+
     const showHammerAnimation = () => {
       const mole = document.querySelector('.mole'); // Select the mole element using a CSS selector
       const hammer = mole.querySelector('.hammer');
@@ -149,7 +174,7 @@ class WhackWidget {
       setTimeout(() => {
         assignStyleOnElement(hammer.style, {
           right: '-80px',
-          top: '-40px',
+          top: '-10px',
           transform: 'rotate(50deg)',
         });
       }, 500);
@@ -160,22 +185,40 @@ class WhackWidget {
     };
 
     const whackMole = (event) => {
-      if (event.target.classList.contains('mole-image')) {
-        const mole = document.querySelector('.mole');
+      const mole = document.querySelector('.mole');
+      if (
+        event.target.classList.contains('mole-image') &&
+        !mole.classList.contains('mole-hit') &&
+        !mole.classList.contains('disappear')
+      ) {
+        const animationFunc = animateBlock(event);
+        animationFunc({
+          img: cloudImage,
+          animation: 'cloud',
+          isCloud: true,
+          time: 800,
+        });
+
         mole.classList.remove('appear');
         mole.classList.remove('disappear');
+        this.score++;
+        document.getElementById('score-value').textContent = '+ 1'; // Update the score element
+        document.getElementById('score-value').style.display = 'block';
         mole.classList.add('mole-hit');
         showHammerAnimation();
         setTimeout(function () {
           mole.classList.remove('mole-hit');
           mole.classList.add('disappear');
           setTimeout(function () {
+            const scoreStyle = document.getElementById('score-value');
+            if (scoreStyle) {
+              scoreStyle.style.display = 'none';
+            }
             mole.style.display = 'none';
           }, 200);
-        }, 1200);
+        }, 800);
 
-        this.score++;
-        if (this.score >= 4) {
+        if (this.score === 4) {
           endGame();
         }
       }

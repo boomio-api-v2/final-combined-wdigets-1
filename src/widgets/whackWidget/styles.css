@@ -19,6 +19,53 @@
   cursor: pointer;
 }
 
+.hammer {
+  width:60px;
+  height:60px;
+  right: -80px;
+  top: -10px;
+  position:absolute;
+  z-index: 100000000000;
+  transform: rotate(30deg);
+  transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
+}
+
+.score {
+  margin-bottom: 20px;
+  color:#F27900;
+}
+
+
+@media (max-width: 600px) {
+  .mole {
+    width: 40px;
+    height: 40px;
+    z-index: 999999999;
+    position: absolute;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .mole-image {
+    width: 40px;
+    height: 40px;
+    z-index: 999999999;
+    cursor: pointer;
+  }
+
+  .hammer {
+    width:40px;
+    height:40px;
+    right: -80px;
+    top: -10px;
+    position:absolute;
+    z-index: 100000000000;
+    transform: rotate(30deg);
+    transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
+  }
+}
+
+
 @keyframes moleAppear {
   0% {
     opacity: 0;
@@ -66,14 +113,30 @@
   animation: mole-hit 1s ease-in-out;
 }
 
-.hammer {
-  width:60px;
-  height:60px;
-  right: -80px;
-  top: -40px;
-  position:absolute;
-  z-index: 100000000000;
-  transform: rotate(30deg);
-  transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
+
+
+
+
+
+@keyframes cloud-animation {
+  from {
+      transform: scale(0)
+  }
+  to {
+      transform: scale(2.5);
+  }
 }
 
+.cloud {    margin-top:-20px;
+  margin-left:-70px;
+
+
+  position: absolute;
+  z-index: 100000;
+  height: 100px;
+  width: 100px;
+  animation: cloud-animation;
+  transition: transform 2s;
+  animation-duration: 2s;
+  pointer-events: none;
+}
