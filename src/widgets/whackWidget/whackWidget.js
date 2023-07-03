@@ -62,10 +62,6 @@ class WhackWidget {
       }
 
       var randomY = Math.floor(Math.random() * maxY);
-
-      mole.style.left = randomX + 'px';
-      mole.style.top = randomY + 'px';
-
       gameContainer.style.left = randomX + 'px';
       gameContainer.style.top = randomY + 'px';
     };
