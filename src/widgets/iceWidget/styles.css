@@ -46,6 +46,8 @@
     z-index: 100000000000;
     transition: all 0.4s;
     transform: rotate(40deg);
+    width: 100px;
+    height: 100px;
 }
 
 #ice-widget .product-design-bg-2 {

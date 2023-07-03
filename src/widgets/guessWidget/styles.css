@@ -1,12 +1,12 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 .wrapper{
+  width: 340px;
+  height: 340px;
   padding: 20px;
   border-radius: 10px;
   background: #F8F8F8;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  width : 300px;
-  height : 300px;
 }
 .cards, .card, .view{
   display: flex;
@@ -32,6 +32,13 @@
 .card.shake{
   animation: shake 0.35s ease-in-out;
 }
+
+
+#guess-container {
+  width : 340px;
+  height : 340px;
+}
+
 
 
 @keyframes shake {
@@ -80,10 +87,14 @@
 
 
 @media (max-width: 600px) {
+  #guess-container {
+    width : 230px;
+    height : 230px;
+  }
   .wrapper{
+    width: 230px;
+    height: 230px;
     padding: 15px;
-    width : 200px;
-    height : 200px;
   }
   .cards .card{
     height: calc(100% / 4 - 8px);
