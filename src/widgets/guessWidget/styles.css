@@ -5,8 +5,6 @@
   border-radius: 10px;
   background: #F8F8F8;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  width : 300px;
-  height : 300px;
 }
 .cards, .card, .view{
   display: flex;
@@ -93,8 +91,6 @@
   }
   .wrapper{
     padding: 15px;
-    width : 200px;
-    height : 200px;
   }
   .cards .card{
     height: calc(100% / 4 - 8px);

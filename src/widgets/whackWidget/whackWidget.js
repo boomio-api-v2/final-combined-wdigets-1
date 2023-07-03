@@ -23,8 +23,6 @@ class WhackWidget {
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'whack-container');
     myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
-    myCanvas.style.width = '100%';
-    myCanvas.style.height = '100vh';
 
     myCanvas.innerHTML = `
     <div class="game-container">
@@ -45,8 +43,8 @@ class WhackWidget {
 
     const randomPosition = (mole) => {
       var gameContainer = mole.parentElement;
-      var containerWidth = gameContainer.clientWidth;
-      var containerHeight = gameContainer.clientHeight - 140;
+      var containerWidth = window.innerWidth;
+      var containerHeight = window.innerHeight - 140;
       var moleWidth = mole.clientWidth;
       var moleHeight = mole.clientHeight;
       var maxY = containerHeight - moleHeight;
@@ -67,6 +65,9 @@ class WhackWidget {
 
       mole.style.left = randomX + 'px';
       mole.style.top = randomY + 'px';
+
+      gameContainer.style.left = randomX + 'px';
+      gameContainer.style.top = randomY + 'px';
     };
 
     const startMoleAnimation = (mole) => {
