@@ -8,8 +8,8 @@ class TestingWidget {
   }
   startAnimation = () => {
     localStorage.setItem('testing_Widgets', true);
-    const width = 280;
-    const height = 372;
+    const width = 260;
+    const height = 300;
 
     const { clientWidth, clientHeight } = document.documentElement;
 
@@ -50,6 +50,9 @@ class TestingWidget {
       { spawn: 'snake', despawn: 'snake', name: 'Snake' },
       { spawn: 'cats', despawn: 'cats', name: 'Cats Widget' },
       { spawn: 'hedgehog', despawn: 'hedgehog', name: 'Hedgehog Widget' },
+      { spawn: 'guess', despawn: 'guess', name: 'Guess image Widget' },
+      { spawn: 'whack', despawn: 'whack', name: 'Whack mole Widget' },
+      { spawn: 'maze', despawn: 'maze', name: 'Maze Widget' },
     ];
 
     let buttonsHtml = '';
@@ -62,7 +65,7 @@ class TestingWidget {
           ? `<p style='margin-top:20px;margin-bottom:30px;'>Coming soon</p>`
           : ''
       }
-          <button class='go_button' style='width:180px !important' data-widget-spawn='${
+          <button class='go_button' style='margin:0px 10px;font-size: 12px !important;width:160px !important' data-widget-spawn='${
             widget.spawn
           }' id='${spawnBtnId}'>${widget.name}</button>
         </div>`;
@@ -80,7 +83,7 @@ class TestingWidget {
             ${buttonsHtml}          
           </div>
           <div class='coupon__preview__card__header text-center d-block'>
-          <div style='width:100%;margin-bottom:16px;margin-left:-17px'>
+          <div style='width:100%;margin-bottom:14px;'>
           <button class='go_button' id='remove_div_btn' style='margin-top:10px'>Remove All</button>
         </div>        
         </div>

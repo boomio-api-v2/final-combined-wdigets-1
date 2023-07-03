@@ -1,0 +1,142 @@
+.game-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.mole {
+  width: 60px;
+  height: 60px;
+  z-index: 999999999;
+  position: absolute;
+  cursor: pointer;
+  display: none;
+}
+
+.mole-image {
+  width: 60px;
+  height: 60px;
+  z-index: 999999999;
+  cursor: pointer;
+}
+
+.hammer {
+  width:60px;
+  height:60px;
+  right: -80px;
+  top: -10px;
+  position:absolute;
+  z-index: 100000000000;
+  transform: rotate(30deg);
+  transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
+}
+
+.score {
+  margin-bottom: 20px;
+  color:#F27900;
+}
+
+
+@media (max-width: 600px) {
+  .mole {
+    width: 40px;
+    height: 40px;
+    z-index: 999999999;
+    position: absolute;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .mole-image {
+    width: 40px;
+    height: 40px;
+    z-index: 999999999;
+    cursor: pointer;
+  }
+
+  .hammer {
+    width:40px;
+    height:40px;
+    right: -80px;
+    top: -10px;
+    position:absolute;
+    z-index: 100000000000;
+    transform: rotate(30deg);
+    transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
+  }
+}
+
+
+@keyframes moleAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes moleDisappear {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes mole-hit {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+.mole.appear {
+  animation: moleAppear 0.5s ease-in-out;
+}
+
+.mole.disappear {
+  animation: moleDisappear 0.3s ease-in-out;
+}
+
+.mole.mole-hit {
+  animation: mole-hit 1s ease-in-out;
+}
+
+
+
+
+
+
+@keyframes cloud-animation {
+  from {
+      transform: scale(0)
+  }
+  to {
+      transform: scale(2.5);
+  }
+}
+
+.cloud {    margin-top:-20px;
+  margin-left:-70px;
+
+
+  position: absolute;
+  z-index: 100000;
+  height: 100px;
+  width: 100px;
+  animation: cloud-animation;
+  transition: transform 2s;
+  animation-duration: 2s;
+  pointer-events: none;
+}
