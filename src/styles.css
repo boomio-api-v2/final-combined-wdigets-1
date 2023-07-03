@@ -478,17 +478,8 @@ h4.boomio--animation__heading {
 }
 
 .custom-close-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: -16px;
-    top: -16px;
-    color: #000;
-    cursor: pointer;
-    background-color: lightgray;
-    border-radius: 20px;
-    opacity: 0.45;
+   
+    
 }
 
 @media only screen and (max-device-width: 640px) {

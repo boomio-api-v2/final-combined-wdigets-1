@@ -214,3 +214,72 @@
   letter-spacing: 0.05em;
   color: #473F4E;
 }
+
+table {
+  border-collapse: collapse;
+  border: 2px solid black;
+  width: 100px;
+  height: 100px;
+}
+
+table td.left {
+  border-collapse: collapse;
+  border-left: 1px solid black;
+}
+
+table td.right {
+  border-collapse: collapse;
+  border-right: 1px solid black;
+
+}
+
+table td.top {
+  border-collapse: collapse;
+  border-top: 1px solid black;
+}
+
+table td.bottom {
+  border-collapse: collapse;
+  border-bottom: 1px solid black;
+}
+
+table td.head {
+  border-top: 2px solid transparent;
+  background: red;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+table td.tail {
+  border-bottom: 2px solid transparent;
+  background: green;
+  border-top: none !important;
+  border-left: none !important;
+}
+
+table td.you {
+  /* background: blue !important; */
+  background-image: radial-gradient(blue, white, white);
+}
+
+table td.route {
+  background: yellow;
+}
+
+table td.notroute {
+  background: yellow;
+}
+
+.close-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: #000;
+  cursor: pointer;
+  border-radius: 20px;
+  opacity: 0.45;
+  background: rgba(0, 0, 0, 0);
+}

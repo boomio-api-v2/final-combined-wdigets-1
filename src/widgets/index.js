@@ -8,7 +8,7 @@ export * from './iceWidget';
 export * from './guessWidget';
 export * from './whackWidget';
 export * from './penguinWidget';
-export * from './cupsWidget';
+export * from './mazeWidget';
 export * from './snakeWidget';
 export * from './catsWidget';
 export * from './hedgehogWidget';
