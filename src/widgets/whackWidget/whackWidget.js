@@ -202,7 +202,7 @@ class WhackWidget {
         mole.classList.remove('appear');
         mole.classList.remove('disappear');
         this.score++;
-        document.getElementById('score-value').textContent = '+ 1'; // Update the score element
+        document.getElementById('score-value').textContent = `${this.score}/4`; // Update the score element
         document.getElementById('score-value').style.display = 'block';
         mole.classList.add('mole-hit');
         showHammerAnimation();

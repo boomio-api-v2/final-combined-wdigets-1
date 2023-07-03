@@ -3,7 +3,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     text-align: center;
     letter-spacing: -0.03em;
@@ -31,7 +31,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
 }
 .coupon_user_gets_modal_img_div img{
@@ -47,7 +47,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-top: 16px;
+    margin-top: 14px;
 }
 .close_div
 {
@@ -127,14 +127,14 @@
     display: flex;
     gap: 30px;
     justify-content: center;
-    margin: 16px 0px;
+    margin: 14px 0px;
   }
   
   .color_text_bold {
     background: linear-gradient(to right, #ff6e6d 0%, #ff3183 5.48%, #8559f3 88.77%, #657bea 95.23%, #34b0dc 101.49%);
     -webkit-background-clip: text;
     font-weight: 600 !important;
-    font-size: 16px;
+    font-size: 14px;
     -webkit-text-fill-color: transparent;
   }
   
@@ -143,7 +143,7 @@
     /* background: linear-gradient(298.74deg, #34B0DC 22.51%, #598BF3 52.45%, #657BEA 72.82%); */
     -webkit-background-clip: text;
     font-weight: 600 !important;
-    font-size: 16px;
+    font-size: 14px;
     -webkit-text-fill-color: transparent;
   }
   
@@ -188,7 +188,7 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 20px;
   margin-bottom: 20px;
   text-align: center;
