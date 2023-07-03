@@ -34,6 +34,13 @@
 }
 
 
+#guess-container {
+  width : 340px;
+  height : 340px;
+}
+
+
+
 @keyframes shake {
   0%, 100%{
     transform: translateX(0);
@@ -80,6 +87,10 @@
 
 
 @media (max-width: 600px) {
+  #guess-container {
+    width : 230px;
+    height : 230px;
+  }
   .wrapper{
     padding: 15px;
     width : 200px;

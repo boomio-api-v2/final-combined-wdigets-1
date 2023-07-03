@@ -28,10 +28,7 @@ class GuessWidget {
   createContainer = () => {
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'guess-container');
-    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
-    myCanvas.style.width = '400px';
-    myCanvas.style.height = '330px';
-
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
     myCanvas.innerHTML = `
     <div class="wrapper">
       <ul class="cards">
