@@ -224,23 +224,26 @@ table {
 
 table td.left {
   border-collapse: collapse;
-  border-left: 1px solid black;
+  border-left: 2px solid black;
+  background-color: white;
 }
 
 table td.right {
   border-collapse: collapse;
-  border-right: 1px solid black;
-
+  border-right: 2px solid black;
+  background-color: white;
 }
 
 table td.top {
   border-collapse: collapse;
-  border-top: 1px solid black;
+  border-top: 2px solid black;
+  background-color: white;
 }
 
 table td.bottom {
   border-collapse: collapse;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
+  background-color: white;
 }
 
 table td.head {

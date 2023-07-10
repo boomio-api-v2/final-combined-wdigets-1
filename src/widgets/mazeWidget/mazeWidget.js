@@ -62,21 +62,25 @@ class Maze {
     this.tail.html('tail');
     this.solved = this.drawRoute(this.head);
   }
+
+  arrowsToMaze = (e) => {
+    const key = e.key;
+    if (key === 'ArrowLeft' || key === 'a') { e.preventDefault(); this.moveLeft(); }
+    if (key === 'ArrowRight' || key === 'd') { e.preventDefault(); this.moveRight(); }
+    if (key === 'ArrowUp' || key === 'w') { e.preventDefault(); this.moveUp(); }
+    if (key === 'ArrowDown' || key === 's') { e.preventDefault(); this.moveDown(); }
+  }
+
   enableMovement() {
-    document.addEventListener('keydown', (e) => {
-      const key = e.key;
-      if (key === 'ArrowLeft' || key === 'a') this.moveLeft();
-      if (key === 'ArrowRight' || key === 'd') this.moveRight();
-      if (key === 'ArrowUp' || key === 'w') this.moveUp();
-      if (key === 'ArrowDown' || key === 's') this.moveDown();
-    });
+    const mazeEl = document.getElementById('maze')
+    document.addEventListener('keydown', this.arrowsToMaze)
     let xDown = null;
     let yDown = null;
-    document.addEventListener('touchstart', (e) => {
+    mazeEl.addEventListener('touchstart', (e) => {
       xDown = e.touches[0].clientX;
       yDown = e.touches[0].clientY;
     });
-    document.addEventListener('touchend', (e) => {
+    mazeEl.addEventListener('touchend', (e) => {
       if (!xDown || !yDown) {
         return;
       }
@@ -108,6 +112,7 @@ class Maze {
     if ((r === this.row - 1) & (c === this.col - 1)) {
       const element = document.getElementById('maze-container');
       if (element) {
+        document.removeEventListener('keydown', this.arrowsToMaze);
         element.remove();
       }
       new QrCodeModal();
@@ -308,6 +313,7 @@ class Maze {
     closeBtn.addEventListener(
       'click',
       (e) => {
+        document.removeEventListener('keydown', this.arrowsToMaze)
         e.stopPropagation();
         e.preventDefault();
         element.remove();
