@@ -13,6 +13,7 @@ import {
   startCatsWidget,
   startHedgehogWidget,
   startTestingWidget,
+  startPacmanWidget,
 } from '@/widgets';
 
 import { localStorageService, widgetHtmlService, UserService } from '@/services';
@@ -40,6 +41,7 @@ class BoomioService extends UserService {
       snake: startSnakeWidget,
       cats: startCatsWidget,
       hedgehog: startHedgehogWidget,
+      pacman: startPacmanWidget,
     };
     createWidgetMap[widget_type]();
   };
