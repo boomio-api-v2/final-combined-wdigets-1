@@ -215,7 +215,7 @@
   color: #473F4E;
 }
 
-table {
+.maze-field {
   border-collapse: collapse;
   border: 2px solid black;
   width: 100px;

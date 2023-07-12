@@ -3,7 +3,7 @@
 // import { closeIcon } from '@/сonstants/icons';
 import './styles.css';
 // import { QrCodeModal } from '@/services';
-const styles = [['free', 'bottomb', 'free', 'bottomb', 'free'], ['free', 'free', 'free', 'free', 'free'], ['rightb', 'bottomb', 'free', 'bottomb', 'leftb'], ['free', 'free', 'free', 'free', 'free']];
+// const styles = [['free', 'bottomb', 'free', 'bottomb', 'free'], ['free', 'free', 'free', 'free', 'free'], ['rightb', 'bottomb', 'free', 'bottomb', 'leftb'], ['free', 'free', 'free', 'free', 'free']];
 // const styles = [['free', 'bottomb', 'free', 'bottomb', 'free'], ['rightb', 'free', 'free', 'rightb', 'free'], ['free', 'free', 'free', 'free', 'free'], ['rightb', 'bottomb', 'free', 'bottomb', 'leftb'], ['free', 'free', 'free', 'free', 'free']];
 
 
@@ -13,7 +13,7 @@ class PackmanWidget {
   }
 
   startAnimation = () => {
-    let maze = new Maze(styles.length, styles[0].length, false)
+    let maze = new Maze(200, 200, false)
     document.getElementById('maze').innerHTML = '';
     maze.drawMaze();
 
@@ -171,10 +171,10 @@ class Maze {
   html(name) {
     const animEl = document.createElement('div');
     animEl.style.position = 'absolute';
-    animEl.style.top = `100px`;
-    animEl.style.left = `100px`;
-    animEl.style.width = `200px`;
-    animEl.style.height = `200px`;
+    animEl.style.top = `20px`;
+    animEl.style.left = `20px`;
+    animEl.style.width = `100%`;
+    animEl.style.height = `100%`;
     animEl.id = 'maze-container';
     let table = document.getElementById('maze');
     if (!table) {
@@ -246,7 +246,8 @@ class Cell {
     this.row = row;
     this.col = col;
     this.visited = false;
-    this.style = styles[this.row][this.col];
+    // this.style = styles[this.row][this.col];
+    this.style = 'free';
   }
 
   html(style) {

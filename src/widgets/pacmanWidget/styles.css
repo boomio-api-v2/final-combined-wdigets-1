@@ -217,9 +217,9 @@
 
 .pacman-field {
   border-collapse: collapse;
-  width: 100px;
-  height: 100px;
-  background-color: black;
+  width: 100%;
+  height: 100%;
+  /* background-color: black; */
 }
 
 
@@ -236,26 +236,26 @@ table td.topb {
 }
 
 table td.bottomb {
-   border-bottom: 5px solid yellow;
+  border-bottom: 5px solid yellow;
 }
 
 table td.free {
   border-collapse: collapse;
-  border: 5px solid black;
+  /* border: 5px solid black; */
 }
 
 table td.dotted {
-  background-image: radial-gradient(circle, red 10%, yellow 5%, black 85%);
+  /* background-image: radial-gradient(circle, red 10%, yellow 5%, black 85%);
   background-size: 5px 5px;
   background-position: center center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 }
 
 
 .pacman {
   margin: -6px -12px -6px 0;
-  width: 12px;
-  height: 12px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #F2D648;
   position: relative;
@@ -263,11 +263,11 @@ table td.dotted {
 
 .pacman__eye {
   position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  top: 2px;
-  right: 4px;
+  top: 5px;
+  right: 10px;
   background: #333333;
 }
 
@@ -277,7 +277,7 @@ table td.dotted {
   width: 100%;
   height: 100%;
   clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
-  /* animation-name: eat; */
+  animation-name: eat-right;
   animation-duration: 0.7s;
   animation-iteration-count: infinite;
 }
@@ -303,6 +303,7 @@ table td.dotted {
     clip-path: polygon(74% 100%, 48% 44%, 21% 100%);
   }
 }
+
 @keyframes eat-up {
   0% {
     clip-path: polygon(74% 0%, 48% 44%, 21% 0%);
@@ -346,6 +347,7 @@ table td.dotted {
     clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
   }
 }
+
 @keyframes eat-left {
   0% {
     clip-path: polygon(0% 74%, 44% 48%, 0% 21%);
