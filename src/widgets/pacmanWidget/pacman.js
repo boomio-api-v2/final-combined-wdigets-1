@@ -2,9 +2,8 @@
 // import { DragElement } from '@/services';
 // import { closeIcon } from '@/сonstants/icons';
 import './styles.css';
-// import { QrCodeModal } from '@/services';
-// const styles = [['free', 'bottomb', 'free', 'bottomb', 'free'], ['free', 'free', 'free', 'free', 'free'], ['rightb', 'bottomb', 'free', 'bottomb', 'leftb'], ['free', 'free', 'free', 'free', 'free']];
-// const styles = [['free', 'bottomb', 'free', 'bottomb', 'free'], ['rightb', 'free', 'free', 'rightb', 'free'], ['free', 'free', 'free', 'free', 'free'], ['rightb', 'bottomb', 'free', 'bottomb', 'leftb'], ['free', 'free', 'free', 'free', 'free']];
+import { QrCodeModal } from '@/services';
+import { giftImage } from '@/сonstants/icons';
 
 
 class PackmanWidget {
@@ -13,7 +12,7 @@ class PackmanWidget {
   }
 
   startAnimation = () => {
-    let maze = new Maze(200, 200, false)
+    let maze = new Maze(80, 80, false)
     document.getElementById('maze').innerHTML = '';
     maze.drawMaze();
 
@@ -23,10 +22,14 @@ class Maze {
 
   constructor(row = 0, col = 0) {
     this.coordinates = [2, 2];
+    this.goal = [30, 40]
     this.row = row;
     this.col = col;
     this.rows = [];
     this.size = this.row * this.col;
+    this.direction = 'none'
+    this.prize = false
+    this.speed = 300
     this.cells = [];
     this.html();
   }
@@ -35,15 +38,46 @@ class Maze {
       this.rows[r] = new Row(r, this);
     }
     this.pickYou(this.coordinates[0], this.coordinates[1]);
+    setTimeout(() => {
+      this.pickGoal(this.goal[0], this.goal[1])
+    }, 1000);
+    setTimeout(() => { this.pickDots(this.coordinates[0], this.coordinates[1] + 1, this.goal[0] - 1, this.goal[1]) }, 1500)
     this.enableMovement();
   }
 
   arrowsToMaze = (e) => {
     const key = e.key;
-    if (key === 'ArrowLeft' || key === 'a') { e.preventDefault(); this.moveLeft(); }
-    if (key === 'ArrowRight' || key === 'd') { e.preventDefault(); this.moveRight(); }
-    if (key === 'ArrowUp' || key === 'w') { e.preventDefault(); this.moveUp(); }
-    if (key === 'ArrowDown' || key === 's') { e.preventDefault(); this.moveDown(); }
+    // if (key === 'ArrowLeft' || key === 'a') { e.preventDefault(); this.moveLeft(); }
+    // if (key === 'ArrowRight' || key === 'd') { e.preventDefault(); this.moveRight(); }
+    // if (key === 'ArrowUp' || key === 'w') { e.preventDefault(); this.moveUp(); }
+    // if (key === 'ArrowDown' || key === 's') { e.preventDefault(); this.moveDown(); }
+    if (key === "ArrowLeft" || key === "a") {
+      e.preventDefault()
+      this.direction = 'left'
+      let i = setInterval(() => { this.moveLeft(); if (this.direction != 'left') clearInterval(i) }, this.speed)
+    }
+
+    if (key === "ArrowRight" || key === "d") {
+      e.preventDefault()
+      this.direction = 'right'
+      let i = setInterval(() => {
+        this.moveRight(); if (this.direction != 'right') clearInterval(i)
+      }, this.speed)
+    }
+
+    if (key === "ArrowUp" || key === "w") {
+      e.preventDefault()
+      this.direction = 'up'
+      let i = setInterval(() => { this.moveUp(); if (this.direction != 'up') clearInterval(i) }, this.speed)
+    }
+
+    if (key === "ArrowDown" || key === "s") {
+      e.preventDefault()
+      this.direction = 'down'
+      let i = setInterval(() => { this.moveDown(); if (this.direction != 'down') clearInterval(i) }, this.speed)
+    }
+
+
   }
   enableMovement() {
     const mazeEl = document.getElementById('maze')
@@ -64,15 +98,29 @@ class Maze {
       const yDiff = yDown - yUp;
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
         if (xDiff > 0) {
-          this.moveLeft();
+          {
+            this.direction = 'left'
+            let i = setInterval(() => { this.moveLeft(); if (this.direction != 'left') clearInterval(i) }, this.speed)
+          }
         } else {
-          this.moveRight();
+          {
+            this.direction = 'right'
+            let i = setInterval(() => {
+              this.moveRight(); if (this.direction != 'right') clearInterval(i)
+            }, this.speed)
+          }
         }
       } else {
         if (yDiff > 0) {
-          this.moveUp();
+          {
+            this.direction = 'up'
+            let i = setInterval(() => { this.moveUp(); if (this.direction != 'up') clearInterval(i) }, this.speed)
+          }
         } else {
-          this.moveDown();
+          {
+            this.direction = 'down'
+            let i = setInterval(() => { this.moveDown(); if (this.direction != 'down') clearInterval(i) }, this.speed)
+          }
         }
       }
       xDown = null;
@@ -80,18 +128,20 @@ class Maze {
     });
   }
   pickYou(r, c) {
+    if (!document.getElementById('maze')) return
     this.you = this.cells.find((cell) => cell.row === r && cell.col === c);
     this.you.visited = true
+
     this.you.setPacman();
     this.you.removeClass('dotted')
-    if (!this.cells.some(e => e.visited === false)) {
-      alert('you made it')
-      // const element = document.getElementById('maze-container');
-      // if (element) {
-      //   document.removeEventListener('keydown', this.arrowsToMaze);
-      //   element.remove();
-      // }
-      // new QrCodeModal();
+    // if (!this.cells.some(e => e.visited === false))
+    if ((r === this.goal[0]) & (c === this.goal[1])) {
+      const element = document.getElementById('maze-container');
+      if (element) {
+        document.removeEventListener('keydown', this.arrowsToMaze);
+        element.remove();
+      }
+      new QrCodeModal();
     }
   }
   unpickYou(r, c) {
@@ -99,73 +149,93 @@ class Maze {
     // this.you.removeClass('you');
     this.you.removePacman()
   }
+  pickGoal(r, c) {
+    this.cells.find(cell => cell.row === r && cell.col === c).setPrize()
+  }
+  pickDots(rStart, cStart, rEnd, cEnd) {
+    let r = rStart
+    let c = cStart
+    let i = setInterval(() => {
+      this.dot = this.cells.find((cell) => cell.row === r && cell.col === c);
+      this.dot.addClass('dotted');
+      if (c < Math.floor((cEnd - cStart) / 3)) {
+        c++
+      } else if (r < Math.floor((rEnd - rStart) / 3)) {
+        r++
+      } else if (c < Math.floor((cEnd - cStart) / 2)) {
+        c++
+      } else if (r <  Math.floor((rEnd - rStart) / 2)) {
+        r++
+      } else if (c < cEnd) {
+        c++
+      } else r++
+      if (c === cEnd & r === rEnd) clearInterval(i)
+    }, 50)
+
+  }
   moveRight() {
+    if (!document.getElementById('maze-container')) return
     let mouthEl = document.getElementById('mouth')
     let eyeEl = document.getElementById('eye')
-    eyeEl.style.right = '4px'
-    eyeEl.style.top = '2px'
-    mouthEl.style.animationName = 'eat-right'
+    if (eyeEl) eyeEl.classList = 'pacman__eye eye-right'
+    if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-right'
     if (this.coordinates[1] >= this.col - 1) return
-    if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('right') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] + 1).style.includes('left')) return
+    // if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('right') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] + 1).style.includes('left')) return
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[1]++
     this.pickYou(this.coordinates[0], this.coordinates[1])
     mouthEl = document.getElementById('mouth')
     eyeEl = document.getElementById('eye')
-    mouthEl.style.animationName = 'eat-right'
-    eyeEl.style.right = '4px'
-    eyeEl.style.top = '2px'
+    if (eyeEl) eyeEl.classList = 'pacman__eye eye-right'
+    if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-right'
   }
   moveLeft() {
+    if (!document.getElementById('maze-container')) return
     let mouthEl = document.getElementById('mouth')
     let eyeEl = document.getElementById('eye')
-    eyeEl.style.right = '6px'
-    eyeEl.style.top = '2px'
-    mouthEl.style.animationName = 'eat-left'
+    if (eyeEl) eyeEl.classList = 'pacman__eye eye-left'
+    if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-left'
     if (this.coordinates[1] <= 0) return
-    if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('left') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] - 1).style.includes('right')) return
+    // if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('left') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] - 1).style.includes('right')) return
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[1]--
     this.pickYou(this.coordinates[0], this.coordinates[1])
     mouthEl = document.getElementById('mouth')
     eyeEl = document.getElementById('eye')
-    mouthEl.style.animationName = 'eat-left'
-    eyeEl.style.right = '6px'
-    eyeEl.style.top = '2px'
+    if (eyeEl) eyeEl.classList = 'pacman__eye eye-left'
+    if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-left'
   }
   moveUp() {
+    if (!document.getElementById('maze-container')) return
     let mouthEl = document.getElementById('mouth')
     let eyeEl = document.getElementById('eye')
-    eyeEl.style.right = '2px'
-    eyeEl.style.top = '4px'
-    mouthEl.style.animationName = 'eat-up'
+    if (eyeEl) eyeEl.classList = 'pacman__eye eye-up'
+    if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-up'
     if (this.coordinates[0] <= 0) return
-    if (this.cells.find(cell => cell.row === this.coordinates[0] - 1 && cell.col === this.coordinates[1]).style.includes('bottom')) return
+    // if (this.cells.find(cell => cell.row === this.coordinates[0] - 1 && cell.col === this.coordinates[1]).style.includes('bottom')) return
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[0]--
     this.pickYou(this.coordinates[0], this.coordinates[1])
     mouthEl = document.getElementById('mouth')
     eyeEl = document.getElementById('eye')
-    mouthEl.style.animationName = 'eat-up'
-    eyeEl.style.right = '2px'
-    eyeEl.style.top = '4px'
+    if (eyeEl) eyeEl.classList = 'pacman__eye eye-up'
+    if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-up'
   }
   moveDown() {
+    if (!document.getElementById('maze-container')) return
     let mouthEl = document.getElementById('mouth')
     let eyeEl = document.getElementById('eye')
-    eyeEl.style.right = '2px'
-    eyeEl.style.top = '4px'
-    mouthEl.style.animationName = 'eat-down'
+    if (eyeEl) eyeEl.classList = 'pacman__eye eye-down'
+    if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-down'
     if (this.coordinates[0] >= this.row - 1) return
-    if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('bottom')) return
+    // if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('bottom')) return
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[0]++
     this.pickYou(this.coordinates[0], this.coordinates[1])
     mouthEl = document.getElementById('mouth')
     eyeEl = document.getElementById('eye')
-    mouthEl.style.animationName = 'eat-down'
-    eyeEl.style.right = '2px'
-    eyeEl.style.top = '4px'
+    if (eyeEl) eyeEl.classList = 'pacman__eye eye-down'
+    if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-down'
   }
 
   html(name) {
@@ -270,21 +340,48 @@ class Cell {
       cell.style.width = '12px';
       cell.style.height = '12px';
     }
-    cell.className = cell.className + " " + 'dotted';
+    // cell.className = cell.className + " " + 'dotted';
     return cell;
   }
   setPacman() {
     let cell = document.getElementById("cell_" + this.row + "." + this.col);
-    cell.innerHTML = `  <div class="pacman">
-    <div class="pacman__eye" id="eye"></div>
-    <div class="pacman__mouth" id="mouth"></div>
-  
-  </div>`
+    if (cell.classList.contains('dotted')) {
+
+      cell.innerHTML = `  <div class="pacman">
+      <div class="pacman__eye red" id="eye"></div>
+      <div class="pacman__mouth" id="mouth"></div>
+    
+    </div>`
+      setTimeout(() => { console.log('red') }, 500)
+    } else {
+      cell.innerHTML = `  <div class="pacman">
+      <div class="pacman__eye" id="eye"></div>
+      <div class="pacman__mouth" id="mouth"></div>
+    
+    </div>`
+    }
+    console.log('cell ID===', "cell_" + this.row + "." + this.col)
+    console.log(cell.classList.contains('dotted'))
+    console.log(cell.innerHTML)
   }
 
   removePacman() {
     let cell = document.getElementById("cell_" + this.row + "." + this.col);
     cell.innerHTML = ``
+  }
+
+  setPrize() {
+    let cell = document.getElementById("cell_" + this.row + "." + this.col);
+    cell.innerHTML = `  <img class="prize" src=${giftImage} >`
+
+    console.log('cell ID===', "cell_" + this.row + "." + this.col)
+    console.log('cell.innerHTML ===', cell.innerHTML);
+  }
+
+  addClass(cls) {
+    let cell = document.getElementById('cell_' + this.row + '.' + this.col);
+    cell.classList.add(cls);
+    return cell;
   }
 
   removeClass(cls) {

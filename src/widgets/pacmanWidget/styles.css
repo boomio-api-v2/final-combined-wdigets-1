@@ -217,8 +217,8 @@
 
 .pacman-field {
   border-collapse: collapse;
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
   /* background-color: black; */
 }
 
@@ -241,21 +241,26 @@ table td.bottomb {
 
 table td.free {
   border-collapse: collapse;
-  /* border: 5px solid black; */
+  white-space: nowrap;
+  /* border: 1px solid black; */
 }
 
 table td.dotted {
-  /* background-image: radial-gradient(circle, red 10%, yellow 5%, black 85%);
+  background-image: radial-gradient(circle, red 20%, yellow 5%, black 85%);
   background-size: 5px 5px;
   background-position: center center;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 
+.prize {
+  width: 40px;
+  height: 40px;
+}
 
 .pacman {
-  margin: -6px -12px -6px 0;
-  width: 30px;
-  height: 30px;
+  /* margin: -6px -12px -6px 0; */
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: #F2D648;
   position: relative;
@@ -263,110 +268,157 @@ table td.dotted {
 
 .pacman__eye {
   position: absolute;
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  top: 5px;
-  right: 10px;
+  top: 12px;
+  right: 18px;
   background: #333333;
 }
 
+.eye-up {
+  top: 14px;
+  right: 12px;
+}
+
+.eye-right {
+  top: 12px;
+  right: 18px;
+}
+
+.eye-left {
+  top: 12px;
+  right: 24px;
+}
+
+.eye-down {
+  top: 26px;
+  right: 32px;
+}
+
+.red {
+  background: red;
+}
+
 .pacman__mouth {
-  background: #000;
+  background: #333333;
   position: absolute;
   width: 100%;
   height: 100%;
-  clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+  /* clip-path: polygon(100% 49%, 55% 55%, 100% 50%); */
+  right: 1px;
   animation-name: eat-right;
-  animation-duration: 0.7s;
+  animation-duration: 0.3s;
   animation-iteration-count: infinite;
 }
 
+.mouth-up {
+  top: 1px;
+  animation-name: eat-up;
+}
+
+.mouth-right {
+  right: 1px;
+  animation-name: eat-right;
+}
+
+.mouth-left {
+  left: 1px;
+  animation-name: eat-left;
+}
+
+.mouth-down {
+  top: -1px;
+  animation-name: eat-down;
+}
+
+
 @keyframes eat-down {
   0% {
-    clip-path: polygon(74% 100%, 48% 44%, 21% 100%);
+    clip-path: polygon(70% 100%, 55% 55%, 30% 100%);
   }
 
   25% {
-    clip-path: polygon(60% 100%, 48% 44%, 40% 100%);
+    clip-path: polygon(60% 100%, 55% 55%, 40% 100%);
   }
 
   50% {
-    clip-path: polygon(50% 100%, 48% 44%, 50% 100%);
+    clip-path: polygon(50% 100%, 55% 55%, 49% 100%);
   }
 
   75% {
-    clip-path: polygon(59% 100%, 48% 44%, 35% 100%);
+    clip-path: polygon(59% 100%, 55% 55%, 35% 100%);
   }
 
   100% {
-    clip-path: polygon(74% 100%, 48% 44%, 21% 100%);
+    clip-path: polygon(70% 100%, 55% 55%, 30% 100%);
   }
 }
 
 @keyframes eat-up {
   0% {
-    clip-path: polygon(74% 0%, 48% 44%, 21% 0%);
+    clip-path: polygon(70% 0%, 45% 45%, 21% 0%);
   }
 
   25% {
-    clip-path: polygon(60% 0%, 48% 44%, 40% 0%);
+    clip-path: polygon(60% 0%, 45% 45%, 40% 0%);
   }
 
   50% {
-    clip-path: polygon(50% 0%, 48% 44%, 50% 0%);
+    clip-path: polygon(50% 0%, 45% 45%, 49% 0%);
   }
 
   75% {
-    clip-path: polygon(59% 0%, 48% 44%, 35% 0%);
+    clip-path: polygon(59% 0%, 45% 45%, 35% 0%);
   }
 
   100% {
-    clip-path: polygon(74% 0%, 48% 44%, 21% 0%);
+    clip-path: polygon(70% 0%, 45% 45%, 21% 0%);
   }
 }
 
 @keyframes eat-right {
   0% {
-    clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+    clip-path: polygon(100% 74%, 55% 55%, 100% 29%);
   }
 
   25% {
-    clip-path: polygon(100% 60%, 44% 48%, 100% 40%);
+    clip-path: polygon(100% 60%, 55% 55%, 100% 40%);
   }
 
   50% {
-    clip-path: polygon(100% 50%, 44% 48%, 100% 50%);
+    clip-path: polygon(100% 49%, 55% 55%, 100% 50%);
   }
 
   75% {
-    clip-path: polygon(100% 59%, 44% 48%, 100% 35%);
+    clip-path: polygon(100% 60%, 55% 55%, 100% 40%);
   }
 
   100% {
-    clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+    clip-path: polygon(100% 74%, 55% 55%, 100% 29%);
   }
+
 }
 
 @keyframes eat-left {
   0% {
-    clip-path: polygon(0% 74%, 44% 48%, 0% 21%);
+    clip-path: polygon(0% 74%, 45% 55%, 0% 29%);
   }
 
   25% {
-    clip-path: polygon(0% 60%, 44% 48%, 0% 40%);
+    clip-path: polygon(0% 60%, 45% 55%, 0% 40%);
   }
 
   50% {
-    clip-path: polygon(0% 50%, 44% 48%, 0% 50%);
+    clip-path: polygon(0% 50%, 45% 55%, 0% 49%);
   }
 
   75% {
-    clip-path: polygon(0% 59%, 44% 48%, 0% 35%);
+    clip-path: polygon(0% 59%, 45% 55%, 0% 35%);
   }
 
   100% {
-    clip-path: polygon(0% 74%, 44% 48%, 0% 21%);
+    clip-path: polygon(0% 74%, 45% 55%, 0% 29%);
   }
 }
 
