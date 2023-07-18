@@ -12,7 +12,7 @@ class PackmanWidget {
   }
 
   startAnimation = () => {
-    let maze = new Maze(80, 80, false)
+    let maze = new Maze(50, 50, false)
     document.getElementById('maze').innerHTML = '';
     maze.drawMaze();
 
@@ -21,8 +21,10 @@ class PackmanWidget {
 class Maze {
 
   constructor(row = 0, col = 0) {
-    this.coordinates = [2, 2];
-    this.goal = [30, 40]
+    this.coordinates = [Math.floor(Math.random() * 45) + 3, 2];
+    // this.coordinates = [2, 2];
+    // this.goal = [2, 40]
+    this.goal = [Math.floor(Math.random() * 45) + 3, 40]
     this.row = row;
     this.col = col;
     this.rows = [];
@@ -47,10 +49,7 @@ class Maze {
 
   arrowsToMaze = (e) => {
     const key = e.key;
-    // if (key === 'ArrowLeft' || key === 'a') { e.preventDefault(); this.moveLeft(); }
-    // if (key === 'ArrowRight' || key === 'd') { e.preventDefault(); this.moveRight(); }
-    // if (key === 'ArrowUp' || key === 'w') { e.preventDefault(); this.moveUp(); }
-    // if (key === 'ArrowDown' || key === 's') { e.preventDefault(); this.moveDown(); }
+
     if (key === "ArrowLeft" || key === "a") {
       e.preventDefault()
       this.direction = 'left'
@@ -130,12 +129,16 @@ class Maze {
   pickYou(r, c) {
     if (!document.getElementById('maze')) return
     this.you = this.cells.find((cell) => cell.row === r && cell.col === c);
-    this.you.visited = true
-
+    // this.you.visited = true
     this.you.setPacman();
-    this.you.removeClass('dotted')
-    // if (!this.cells.some(e => e.visited === false))
-    if ((r === this.goal[0]) & (c === this.goal[1])) {
+    // this.you.removeClass('dotted')
+    for (let x = -1; x < 2; x++) {
+      for (let y = -1; y < 2; y++) {
+        this.eaten = this.cells.find((cell) => cell.row === r + y && cell.col === c + x)
+        if (this.eaten) this.eaten.removeClass('dotted')
+      }
+    }
+    if ((this.goal[0] - r < 3 && this.goal[0] - r > -3) && (this.goal[1] - c < 3 && this.goal[1] - c > -3)) {
       const element = document.getElementById('maze-container');
       if (element) {
         document.removeEventListener('keydown', this.arrowsToMaze);
@@ -150,29 +153,39 @@ class Maze {
     this.you.removePacman()
   }
   pickGoal(r, c) {
+    if (!document.getElementById('maze-container')) return
     this.cells.find(cell => cell.row === r && cell.col === c).setPrize()
   }
+
   pickDots(rStart, cStart, rEnd, cEnd) {
+    const rand = Math.floor(Math.random() * 5) + 2
+    const direction = (rStart < rEnd) ? 1 : -1
     let r = rStart
     let c = cStart
     let i = setInterval(() => {
       this.dot = this.cells.find((cell) => cell.row === r && cell.col === c);
+
+      if (!document.getElementById('maze-container'))
+        clearInterval(i)
       this.dot.addClass('dotted');
-      if (c < Math.floor((cEnd - cStart) / 3)) {
+      if (c < Math.floor((cEnd - cStart) / rand)) {
         c++
-      } else if (r < Math.floor((rEnd - rStart) / 3)) {
-        r++
-      } else if (c < Math.floor((cEnd - cStart) / 2)) {
+      } else if (direction * (r - rStart) < direction * Math.floor((rEnd - rStart) / (rand))) {
+        r += direction
+      } else if (c < Math.floor((cEnd - cStart) / (rand - 1))) {
         c++
-      } else if (r <  Math.floor((rEnd - rStart) / 2)) {
-        r++
+      } else if (direction * (r - rStart) < direction * Math.floor((rEnd - rStart) / (rand - 1))) {
+        r += direction
       } else if (c < cEnd) {
         c++
-      } else r++
+      } else {
+        debugger
+        r += direction
+      }
       if (c === cEnd & r === rEnd) clearInterval(i)
     }, 50)
-
   }
+
   moveRight() {
     if (!document.getElementById('maze-container')) return
     let mouthEl = document.getElementById('mouth')
@@ -180,7 +193,6 @@ class Maze {
     if (eyeEl) eyeEl.classList = 'pacman__eye eye-right'
     if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-right'
     if (this.coordinates[1] >= this.col - 1) return
-    // if (this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('right') || this.cells.find(cell => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] + 1).style.includes('left')) return
     this.unpickYou(this.coordinates[0], this.coordinates[1])
     this.coordinates[1]++
     this.pickYou(this.coordinates[0], this.coordinates[1])
@@ -325,21 +337,22 @@ class Cell {
     if (!cell) {
       cell = document.createElement('td');
       cell.id = 'cell_' + this.row + '.' + this.col;
-      if (!style) {
-        cell.className = this.style;
-        cell.style.width = '12px';
-        cell.style.height = '12px';
-      } else {
-        cell.className = cell.className + ' ' + style;
-        cell.style.width = '12px';
-        cell.style.height = '12px';
-      }
+      cell.className = this.style;
+
+      // if (!style) {
+      //   cell.style.width = '12px';
+      //   cell.style.height = '12px';
+      // } else {
+      //   cell.className = cell.className + ' ' + style;
+      //   cell.style.width = '12px';
+      //   cell.style.height = '12px';
+      // }
     }
-    if (style) {
-      cell.className = cell.className + ' ' + style;
-      cell.style.width = '12px';
-      cell.style.height = '12px';
-    }
+    // if (style) {
+    //   cell.className = cell.className + ' ' + style;
+    //   cell.style.width = '12px';
+    //   cell.style.height = '12px';
+    // }
     // cell.className = cell.className + " " + 'dotted';
     return cell;
   }
@@ -352,7 +365,6 @@ class Cell {
       <div class="pacman__mouth" id="mouth"></div>
     
     </div>`
-      setTimeout(() => { console.log('red') }, 500)
     } else {
       cell.innerHTML = `  <div class="pacman">
       <div class="pacman__eye" id="eye"></div>
@@ -360,9 +372,7 @@ class Cell {
     
     </div>`
     }
-    console.log('cell ID===', "cell_" + this.row + "." + this.col)
-    console.log(cell.classList.contains('dotted'))
-    console.log(cell.innerHTML)
+
   }
 
   removePacman() {
@@ -371,14 +381,13 @@ class Cell {
   }
 
   setPrize() {
+    if (!document.getElementById('maze-container')) return
     let cell = document.getElementById("cell_" + this.row + "." + this.col);
     cell.innerHTML = `  <img class="prize" src=${giftImage} >`
-
-    console.log('cell ID===', "cell_" + this.row + "." + this.col)
-    console.log('cell.innerHTML ===', cell.innerHTML);
   }
 
   addClass(cls) {
+    if (!document.getElementById('maze-container')) return
     let cell = document.getElementById('cell_' + this.row + '.' + this.col);
     cell.classList.add(cls);
     return cell;

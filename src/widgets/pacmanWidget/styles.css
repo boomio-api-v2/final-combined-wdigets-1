@@ -243,6 +243,7 @@ table td.free {
   border-collapse: collapse;
   white-space: nowrap;
   /* border: 1px solid black; */
+  height: 5px;
 }
 
 table td.dotted {
@@ -253,8 +254,10 @@ table td.dotted {
 }
 
 .prize {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  transform: translate(-30px, -20px);
 }
 
 .pacman {
@@ -263,7 +266,8 @@ table td.dotted {
   height: 50px;
   border-radius: 50%;
   background: #F2D648;
-  position: relative;
+  position: absolute;
+  transform: translate(-5px, -25px);
 }
 
 .pacman__eye {
