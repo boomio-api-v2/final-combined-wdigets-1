@@ -292,6 +292,7 @@ class Maze {
     if (!table) {
       table = document.createElement('table');
       table.id = 'maze';
+      table.className = 'maze-field'
       table.style.position = 'absolute';
       table.style.top = `20px`;
       table.style.left = `20px`;

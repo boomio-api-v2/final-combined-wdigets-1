@@ -12,3 +12,5 @@ export * from './mazeWidget';
 export * from './snakeWidget';
 export * from './catsWidget';
 export * from './hedgehogWidget';
+export * from './pacmanWidget';
+
