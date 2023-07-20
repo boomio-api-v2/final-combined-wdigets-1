@@ -8,6 +8,9 @@ import {
 } from '@/services';
 import { getRandomArbitrary } from '@/utlis';
 import { defaultList } from './constants';
+import { outerBorderGradient } from './constants';
+import { outerBorderAngle } from './constants';
+import { innerBorderGradient } from './constants';
 import './styles.css';
 
 class WheelOfFortuneWidget {
@@ -127,16 +130,46 @@ class WheelOfFortuneWidget {
   };
 
   drawBackground = () => {
-    this.ctx.beginPath()
-    this.ctx.fillStyle = 'white'
+    this.ctx.beginPath() // outer circle 
+    let angle = outerBorderAngle + 3 * this.PI / 2
+    let gx = this.rad * Math.cos(angle);
+    let gy = this.rad * Math.sin(angle);
+    let cx = this.rad
+    let cy = this.rad
+    let grd = this.ctx.createLinearGradient(cx - gx, cy - gy, cx + gx, cy + gy);
+    outerBorderGradient.forEach((st) => grd.addColorStop(st.pct, st.clr))
+    this.ctx.fillStyle = grd
     this.ctx.arc(this.rad, this.rad, this.rad, 0, 2 * this.PI)
     this.ctx.moveTo(this.rad, this.rad)
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
+
+    this.ctx.beginPath() // black circle
+    this.ctx.fillStyle = 'black'
+    this.ctx.arc(this.rad, this.rad, this.rad - 2, 0, 2 * this.PI)
+    this.ctx.moveTo(this.rad, this.rad)
+    this.ctx.lineTo(this.rad, this.rad)
+    this.ctx.fill()
+
+    this.ctx.beginPath() // inner circle 
+    angle = 0
+    gx = this.rad * Math.cos(angle);
+    gy = this.rad * Math.sin(angle);
+    cx = this.rad
+    cy = this.rad
+    grd = this.ctx.createLinearGradient(cx - gx, cy - gy, cx + gx, cy + gy);
+    innerBorderGradient.forEach((st) => grd.addColorStop(st.pct, st.clr))
+    this.ctx.fillStyle = grd
+    this.ctx.arc(this.rad, this.rad, this.rad - 18, 0, 2 * this.PI)
+    this.ctx.moveTo(this.rad, this.rad)
+    this.ctx.lineTo(this.rad, this.rad)
+    this.ctx.fill()
+
   }
 
 
   drawSector = (sector, i) => {
+
     const ang = this.arc * i;
     this.ctx.save();
     this.ctx.beginPath();
@@ -148,7 +181,8 @@ class WheelOfFortuneWidget {
 
     this.ctx.moveTo(this.rad, this.rad);
 
-    this.ctx.arc(this.rad, this.rad, this.rad - 10, ang, ang + this.arc - this.arc / 24);
+    // this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc - this.arc / 24);
+    this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.fill();
     this.ctx.translate(this.rad, this.rad);
@@ -166,9 +200,12 @@ class WheelOfFortuneWidget {
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     wheel.style.display = 'none';
-    wheel.innerHTML = `
-                <canvas id="wheel" width="250" height="250"></canvas>
-                <div id="spin">SPIN asd asd asd as dasd as dasd asd asd as d</div> <div class="topmark"></div>
+    wheel.innerHTML = `<div>
+                <canvas id="wheel" width="350" height="350"></canvas><div class="spin-border-wrap">
+                <div id="spin"></div></div>
+                <div class="topmark-box"></div>
+                <div class="topmark-arrow"></div>
+                </div>
           `;
     widgetHtmlService.container.appendChild(wheel);
   };
@@ -176,7 +213,7 @@ class WheelOfFortuneWidget {
   startAnimation = () => {
     new AnimationService({
       elem: this.wheelOfFortune,
-      size: 250,
+      size: 350,
     });
   };
 

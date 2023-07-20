@@ -25,5 +25,10 @@ export const defaultList = [
   },
 ];
 
+export const outerBorderGradient =[{ pct: 0.0858, clr: "#FFC24F" }, { pct: 0.3232, clr: "#FF3183" }, { pct: 0.6082, clr: "#8559F3" }, { pct: 0.6673, clr: "#657BEA" },{ pct: 0.7701, clr: "#34B0DC" },{ pct: 0.8473, clr: "#15D1D3" },{ pct: 0.8890, clr: "#09DDD0" },
+]
+export const outerBorderAngle = - 0.629889327
 
+export const innerBorderGradient =[{ pct: 0, clr: "#ff9161" }, { pct: 1, clr: "#f4ab22" } 
+]
 
