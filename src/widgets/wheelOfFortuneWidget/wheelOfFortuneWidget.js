@@ -114,12 +114,15 @@ class WheelOfFortuneWidget {
   rotate = () => {
     const sector = this.config?.list?.[this.getIndex()];
     this.ctx.canvas.style.transform = `rotate(${this.ang - this.PI / 2}rad)`;
+
+    // this.elSpin.innerHTML = ''
     this.elSpin.innerHTML = !this.angVel
       ? 'SPIN'
       : `      
             <img style="width: 40px; height: 40px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>
         `;
     this.elSpin.style.background = sector.color;
+
     this.elSpin.style.color = 'white'
   };
 
@@ -132,12 +135,19 @@ class WheelOfFortuneWidget {
     this.ctx.fill()
   }
 
+
   drawSector = (sector, i) => {
     const ang = this.arc * i;
     this.ctx.save();
     this.ctx.beginPath();
-    this.ctx.fillStyle = sector.color;
+    const gx = this.rad * Math.cos(ang + this.PI + this.arc / 2);
+    const gy = this.rad * Math.sin(ang + this.PI + this.arc / 2);
+    const grd = this.ctx.createLinearGradient(this.rad - gx, this.rad - gy, this.rad, this.rad);
+    sector.color.forEach((st) => grd.addColorStop(st.pct, st.clr))
+    this.ctx.fillStyle = grd;
+
     this.ctx.moveTo(this.rad, this.rad);
+
     this.ctx.arc(this.rad, this.rad, this.rad - 10, ang, ang + this.arc - this.arc / 24);
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.fill();
@@ -147,6 +157,7 @@ class WheelOfFortuneWidget {
     this.ctx.fillStyle = '#fff';
     this.ctx.font = 'bold 15px sans-serif';
     this.ctx.fillText(sector.label, this.rad - 77, 10, 70);
+    // debugger
     this.ctx.restore();
   };
 
