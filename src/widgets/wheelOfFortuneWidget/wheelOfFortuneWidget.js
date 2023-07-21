@@ -16,6 +16,7 @@ import './styles.css';
 class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
+
     if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
     this.createWheel();
     this.elSpin = document.querySelector('#spin');
@@ -61,23 +62,25 @@ class WheelOfFortuneWidget {
     this.frame();
     requestAnimationFrame(this.engine);
   };
-
+  /**
+   * Sets value to a winning segment of wheel. Uses "p_top_text" field from handle for that.  Sets other values randomised around or from constants.js
+   */
   setValues = () => {
+    // this.config.p_top_text = '370€'
     this.config.list = defaultList;
-    const winningValue = this.config.p_coupon_text?.replace(/\D/g, "")
-
-    if (this.config.p_coupon_text?.includes('$') || this.config.p_coupon_text?.includes('€')) {
+    const winningValue = this.config.p_top_text?.replace(/\D/g, "")
+    if (this.config.p_top_text?.includes('$') || this.config.p_top_text?.includes('€')) {
       this.config.list.forEach((e) => {
         const rounding = winningValue.length > 1 ? winningValue.length - 1 : 1
         const value = winningValue * 1 + Math.round(winningValue * getRandomArbitrary(-1, 1) / Math.pow(10, rounding - 1)) * Math.pow(10, rounding - 1);
-        e.label = `${value}${this.config.p_coupon_text.includes('$') ? ' $' : ' €'}`
+        e.label = `${value}${this.config.p_top_text.includes('$') ? ' $' : ' €'}`
       })
-      this.config.list[5].label = `${winningValue} ${this.config.p_coupon_text.includes('$') ? ' $' : ' €'}`
+      this.config.list[5].label = `${winningValue} ${this.config.p_top_text.includes('$') ? ' $' : ' €'}`
     }
-    if (this.config.p_coupon_text?.includes('%')) {
+    if (this.config.p_top_text?.includes('%')) {
       this.config.list[5].label = `${winningValue} % OFF`
     }
-    if (this.config.p_coupon_text?.toLowerCase().includes('free shipping')) {
+    if (this.config.p_top_text?.toLowerCase().includes('free shipping')) {
       this.config.list[5].label = 'Free Shippping'
     }
   }
@@ -117,14 +120,12 @@ class WheelOfFortuneWidget {
   rotate = () => {
     const sector = this.config?.list?.[this.getIndex()];
     this.ctx.canvas.style.transform = `rotate(${this.ang - this.PI / 2}rad)`;
-
-    // this.elSpin.innerHTML = ''
     this.elSpin.innerHTML = !this.angVel
       ? 'SPIN'
       : `      
             <img style="width: 40px; height: 40px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>
         `;
-    this.elSpin.style.background = sector.color;
+    // this.elSpin.style.background = sector.color;
 
     this.elSpin.style.color = 'white'
   };
@@ -180,18 +181,15 @@ class WheelOfFortuneWidget {
     this.ctx.fillStyle = grd;
 
     this.ctx.moveTo(this.rad, this.rad);
-
-    // this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc - this.arc / 24);
     this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.fill();
     this.ctx.translate(this.rad, this.rad);
     this.ctx.rotate(ang + this.arc / 2);
-    this.ctx.textAlign = 'left';
+    this.ctx.textAlign = 'center';
     this.ctx.fillStyle = '#fff';
-    this.ctx.font = 'bold 15px sans-serif';
-    this.ctx.fillText(sector.label, this.rad - 77, 10, 70);
-    // debugger
+    this.ctx.font = 'bold 20px sans-serif';
+    this.ctx.fillText(sector.label, this.rad - 100, 10, 70);
     this.ctx.restore();
   };
 
