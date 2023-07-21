@@ -166,11 +166,23 @@ class WheelOfFortuneWidget {
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
 
+    // this.ctx.beginPath() // shadow
+    // grd = this.ctx.createRadialGradient(this.rad, this.rad, 0, this.rad, this.rad, this.rad);
+    // grd.addColorStop(0.81, '#FFFFFF');
+    // grd.addColorStop(0.87, "#FCFDFD");
+    // grd.addColorStop(0.91, "#F3F5F7");
+    // grd.addColorStop(0.94, "#E9ECF0");
+    // grd.addColorStop(0.97, "#B9C4CF");
+    // grd.addColorStop(1, "#899BAD");
+    // this.ctx.fillStyle = grd
+    // this.ctx.arc(this.rad, this.rad, this.rad - 20, 0, 2 * this.PI)
+    // this.ctx.moveTo(this.rad, this.rad)
+    // this.ctx.lineTo(this.rad, this.rad)
+    // this.ctx.fill()
+
   }
 
-
   drawSector = (sector, i) => {
-
     const ang = this.arc * i;
     this.ctx.save();
     this.ctx.beginPath();
@@ -199,7 +211,11 @@ class WheelOfFortuneWidget {
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     wheel.style.display = 'none';
     wheel.innerHTML = `<div>
-                <canvas id="wheel" width="350" height="350"></canvas><div class="spin-border-wrap">
+                <canvas id="wheel" width="350" height="350">
+                <img class="shadow" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/shadow.png?raw=true"></img>
+
+                </canvas><div class="spin-border-wrap">
+              
                 <div id="spin"></div></div>
                 <div class="topmark-box"></div>
                 <div class="topmark-arrow"></div>
