@@ -131,6 +131,7 @@ class WheelOfFortuneWidget {
   };
 
   drawBackground = () => {
+
     this.ctx.beginPath() // outer circle 
     let angle = outerBorderAngle + 3 * this.PI / 2
     let gx = this.rad * Math.cos(angle);
@@ -183,6 +184,7 @@ class WheelOfFortuneWidget {
   }
 
   drawSector = (sector, i) => {
+
     const ang = this.arc * i;
     this.ctx.save();
     this.ctx.beginPath();
@@ -210,17 +212,29 @@ class WheelOfFortuneWidget {
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     wheel.style.display = 'none';
-    wheel.innerHTML = `<div>
-                <canvas id="wheel" width="350" height="350">
-                <img class="shadow" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/shadow.png?raw=true"></img>
+    // wheel.innerHTML = `<div>
+    //             <canvas id="wheel" width="350" height="350">
+    //             <img class="shadow" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/shadow.png"></img>
+    //             </canvas><div class="spin-border-wrap">
 
+    //             <div id="spin"></div></div>
+    //             <div class="topmark-box"></div>
+    //             <div class="topmark-arrow"></div>
+    //             </div>
+    //       `;
+
+    wheel.innerHTML = `<div>
+    <img class="shadow" src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/deafa450e65136314d9a8d18e40e062c4152eaaa/images/wheelOfFortuneWidget/shadow.svg"></img>
+                <canvas id="wheel" width="350" height="350">
+                
                 </canvas><div class="spin-border-wrap">
-              
+             
                 <div id="spin"></div></div>
                 <div class="topmark-box"></div>
                 <div class="topmark-arrow"></div>
                 </div>
           `;
+
     widgetHtmlService.container.appendChild(wheel);
   };
 
