@@ -213,32 +213,17 @@ class WheelOfFortuneWidget {
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     wheel.style.display = 'none';
 
-
-    // wheel.innerHTML = `<div>
-    // <img class="shadow" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/shadow-op30.png?raw=true"></img>
-    //             <canvas id="wheel" width="350" height="350">
-
-    //             </canvas><div class="spin-border-wrap">
-
-    //             <div id="spin"></div></div>
-    //             <div class="topmark-box"></div>
-    //             <div class="topmark-arrow"></div>
-    //             </div>
-    //       `;
-
     wheel.innerHTML = `<div>
-    <img class="shadow" src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/cff2f72c56f6af32eea3c10a53f470eac9c1c9ef/images/wheelOfFortuneWidget/shadow.svg"></img>
+    <img class="shadow" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/shadow-op30.png?raw=true"></img>
                 <canvas id="wheel" width="350" height="350">
-                
                 </canvas><div class="spin-border-wrap">
-             
                 <div id="spin"></div></div>
                 <div class="topmark-box"></div>
                 <div class="topmark-arrow"></div>
                 </div>
           `;
 
-    widgetHtmlService.container.appendChild(wheel);
+       widgetHtmlService.container.appendChild(wheel);
   };
 
   startAnimation = () => {
