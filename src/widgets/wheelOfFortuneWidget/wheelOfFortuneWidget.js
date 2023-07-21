@@ -212,9 +212,12 @@ class WheelOfFortuneWidget {
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     wheel.style.display = 'none';
+
+
     // wheel.innerHTML = `<div>
+    // <img class="shadow" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/shadow-op30.png?raw=true"></img>
     //             <canvas id="wheel" width="350" height="350">
-    //             <img class="shadow" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/shadow.png"></img>
+
     //             </canvas><div class="spin-border-wrap">
 
     //             <div id="spin"></div></div>
@@ -224,7 +227,7 @@ class WheelOfFortuneWidget {
     //       `;
 
     wheel.innerHTML = `<div>
-    <img class="shadow" src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/deafa450e65136314d9a8d18e40e062c4152eaaa/images/wheelOfFortuneWidget/shadow.svg"></img>
+    <img class="shadow" src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/cff2f72c56f6af32eea3c10a53f470eac9c1c9ef/images/wheelOfFortuneWidget/shadow.svg"></img>
                 <canvas id="wheel" width="350" height="350">
                 
                 </canvas><div class="spin-border-wrap">
