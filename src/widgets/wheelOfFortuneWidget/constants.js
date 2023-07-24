@@ -62,4 +62,6 @@ export const outerBorderAngle = - 0.629889327
 
 export const innerBorderGradient = [{ pct: 0, clr: "#ff9161" }, { pct: 1, clr: "#f4ab22" }
 ]
+export const shadowGradient = [{ pct: 0.81, clr: "#FFFFFF" }, { pct: 0.87, clr: "#FCFDFD" },{ pct: 0.91, clr: "#F3F5F7" },{ pct: 0.94, clr: "#E9ECF0" },{ pct: 0.97, clr: "#B9C4CF" },{ pct: 1, clr: "#899BAD" },
+]
 

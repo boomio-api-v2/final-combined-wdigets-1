@@ -11,6 +11,7 @@ import { defaultList } from './constants';
 import { outerBorderGradient } from './constants';
 import { outerBorderAngle } from './constants';
 import { innerBorderGradient } from './constants';
+import { shadowGradient } from './constants';
 import './styles.css';
 
 class WheelOfFortuneWidget {
@@ -47,6 +48,7 @@ class WheelOfFortuneWidget {
     });
 
     this.config?.list?.forEach(this.drawSector);
+    this.config?.list?.forEach(this.addText);
     this.wheelOfFortune = document.getElementById('wheelOfFortune');
     this.wheelOfFortune.style.display = 'flex';
     // this.wheelOfFortune.style.display = 'block';
@@ -133,7 +135,7 @@ class WheelOfFortuneWidget {
   };
 
   drawBackground = () => {
-
+    // return
     this.ctx.beginPath() // outer circle 
     let angle = outerBorderAngle + 3 * this.PI / 2
     let gx = this.rad * Math.cos(angle);
@@ -169,27 +171,30 @@ class WheelOfFortuneWidget {
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
 
-    // this.ctx.globalCompositeOperation = 'multiply';
-    // this.ctx.beginPath() // shadow
-    // grd = this.ctx.createRadialGradient(this.rad, this.rad, 0, this.rad, this.rad, this.rad);
-    // grd.addColorStop(0.81, '#FFFFFF');
-    // grd.addColorStop(0.87, "#FCFDFD");
-    // grd.addColorStop(0.91, "#F3F5F7");
-    // grd.addColorStop(0.94, "#E9ECF0");
-    // grd.addColorStop(0.97, "#B9C4CF");
-    // grd.addColorStop(1, "#899BAD");
-    // this.ctx.fillStyle = grd
-    // this.ctx.arc(this.rad, this.rad, this.rad - 20, 0, 2 * this.PI)
-    // this.ctx.moveTo(this.rad, this.rad)
-    // this.ctx.lineTo(this.rad, this.rad)
-    // this.ctx.fill()
+    this.ctx.beginPath() // white circle
+    this.ctx.fillStyle = 'white'
+    this.ctx.arc(this.rad, this.rad, this.rad - 20, 0, 2 * this.PI)
+    this.ctx.moveTo(this.rad, this.rad)
+    this.ctx.lineTo(this.rad, this.rad)
+    this.ctx.fill()
 
   }
 
   drawSector = (sector, i) => {
-
+    // return
     const ang = this.arc * i;
     this.ctx.save();
+
+    this.ctx.globalCompositeOperation = 'multiply'
+    this.ctx.beginPath();
+    const grdShadow = this.ctx.createRadialGradient(this.rad, this.rad, 0, this.rad, this.rad, this.rad);
+    shadowGradient.forEach((st) => grdShadow.addColorStop(st.pct, st.clr));
+    this.ctx.fillStyle = grdShadow;
+    this.ctx.moveTo(this.rad, this.rad);
+    this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
+    this.ctx.closePath();
+    this.ctx.fill();
+
     this.ctx.beginPath();
     const gx = this.rad * Math.cos(ang + this.PI + this.arc / 2);
     const gy = this.rad * Math.sin(ang + this.PI + this.arc / 2);
@@ -200,6 +205,7 @@ class WheelOfFortuneWidget {
     this.ctx.moveTo(this.rad, this.rad);
     this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
     this.ctx.lineTo(this.rad, this.rad);
+    this.ctx.closePath();
     this.ctx.fill();
     this.ctx.translate(this.rad, this.rad);
     this.ctx.rotate(ang + this.arc / 2);
@@ -209,6 +215,17 @@ class WheelOfFortuneWidget {
     this.ctx.fillText(sector.label, this.rad - 100, 10, 70);
     this.ctx.restore();
   };
+  addText = (sector, i) => {
+    const ang = this.arc * i;
+    this.ctx.save();
+    this.ctx.translate(this.rad, this.rad);
+    this.ctx.rotate(ang + this.arc / 2);
+    this.ctx.textAlign = 'center';
+    this.ctx.fillStyle = '#fff';
+    this.ctx.font = 'bold 20px sans-serif';
+    this.ctx.fillText(sector.label, this.rad - 100, 10, 70);
+    this.ctx.restore();
+  }
 
   createWheel = () => {
     const wheel = document.createElement('div');
