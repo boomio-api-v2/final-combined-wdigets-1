@@ -177,14 +177,11 @@ class WheelOfFortuneWidget {
     this.ctx.moveTo(this.rad, this.rad)
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
-
   }
 
   drawSector = (sector, i) => {
-    // return
     const ang = this.arc * i;
     this.ctx.save();
-
     this.ctx.globalCompositeOperation = 'multiply'
     this.ctx.beginPath();
     const grdShadow = this.ctx.createRadialGradient(this.rad, this.rad, 0, this.rad, this.rad, this.rad);
@@ -207,12 +204,6 @@ class WheelOfFortuneWidget {
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.closePath();
     this.ctx.fill();
-    this.ctx.translate(this.rad, this.rad);
-    this.ctx.rotate(ang + this.arc / 2);
-    this.ctx.textAlign = 'center';
-    this.ctx.fillStyle = '#fff';
-    this.ctx.font = 'bold 20px sans-serif';
-    this.ctx.fillText(sector.label, this.rad - 100, 10, 70);
     this.ctx.restore();
   };
   addText = (sector, i) => {
@@ -234,8 +225,7 @@ class WheelOfFortuneWidget {
     wheel.style.display = 'none';
 
     wheel.innerHTML = `<div>
-    <img class="shadow" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/shadow-op30.png?raw=true"></img>
-                <canvas id="wheel" width="350" height="350">
+                  <canvas id="wheel" width="350" height="350">
                 </canvas><div class="spin-border-wrap">
                 <div id="spin"></div></div>
                 <div class="topmark-box"></div>
