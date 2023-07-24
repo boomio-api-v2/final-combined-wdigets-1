@@ -169,6 +169,7 @@ class WheelOfFortuneWidget {
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
 
+    // this.ctx.globalCompositeOperation = 'multiply';
     // this.ctx.beginPath() // shadow
     // grd = this.ctx.createRadialGradient(this.rad, this.rad, 0, this.rad, this.rad, this.rad);
     // grd.addColorStop(0.81, '#FFFFFF');
@@ -240,16 +241,13 @@ class WheelOfFortuneWidget {
     btnContainer.style.display = 'flex';
     btnContainer.style.flexDirection = 'column'
     btnContainer.style.justifyContent = 'center'
-
-
-    // closeBtn.classList.add('btn-container');
     const dragBtn = document.createElement('div')
-    // dragBtn.classList.add('custom-close-icon');
-    // dragBtn.innerHTML = '&#x2715; ';
+    dragBtn.classList.add('round-close-icon');
+    dragBtn.innerHTML = '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/icon-drag.svg"></img>';
     const closeBtn = document.createElement('div');
     closeBtn.classList.add('round-close-icon');
     // closeBtn.innerHTML = '&#x2715; ';
-    closeBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>';
+    closeBtn.innerHTML = '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/round-close.svg"></img>';
     closeBtn.addEventListener(
       'click',
       (e) => {
@@ -259,15 +257,9 @@ class WheelOfFortuneWidget {
       },
       { once: true },
     );
-    // element.appendChild(closeBtn);
-
     btnContainer.appendChild(closeBtn);
     btnContainer.appendChild(dragBtn);
     element.appendChild(btnContainer);
-
-
-
-
   };
 }
 
