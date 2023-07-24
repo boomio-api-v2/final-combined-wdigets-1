@@ -69,3 +69,10 @@
     clip-path: polygon(100% 0%, 50% 30%, 0% 0%);
 
 }
+
+.round-close-icon {
+    width: 20px;
+    height: 20px;
+    padding: 5px; 
+    border-radius: 50%;
+}

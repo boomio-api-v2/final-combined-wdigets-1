@@ -48,7 +48,9 @@ class WheelOfFortuneWidget {
 
     this.config?.list?.forEach(this.drawSector);
     this.wheelOfFortune = document.getElementById('wheelOfFortune');
-    this.wheelOfFortune.style.display = 'block';
+    this.wheelOfFortune.style.display = 'flex';
+    // this.wheelOfFortune.style.display = 'block';
+    this.wheelOfFortune
     this.addCloseIconToElement(this.wheelOfFortune);
 
     new DragElement(this.wheelOfFortune);
@@ -223,7 +225,7 @@ class WheelOfFortuneWidget {
                 </div>
           `;
 
-       widgetHtmlService.container.appendChild(wheel);
+    widgetHtmlService.container.appendChild(wheel);
   };
 
   startAnimation = () => {
@@ -234,9 +236,20 @@ class WheelOfFortuneWidget {
   };
 
   addCloseIconToElement = (element) => {
+    const btnContainer = document.createElement('div')
+    btnContainer.style.display = 'flex';
+    btnContainer.style.flexDirection = 'column'
+    btnContainer.style.justifyContent = 'center'
+
+
+    // closeBtn.classList.add('btn-container');
+    const dragBtn = document.createElement('div')
+    // dragBtn.classList.add('custom-close-icon');
+    // dragBtn.innerHTML = '&#x2715; ';
     const closeBtn = document.createElement('div');
-    closeBtn.classList.add('custom-close-icon');
-    closeBtn.innerHTML = '&#x2715; ';
+    closeBtn.classList.add('round-close-icon');
+    // closeBtn.innerHTML = '&#x2715; ';
+    closeBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>';
     closeBtn.addEventListener(
       'click',
       (e) => {
@@ -246,7 +259,15 @@ class WheelOfFortuneWidget {
       },
       { once: true },
     );
-    element.appendChild(closeBtn);
+    // element.appendChild(closeBtn);
+
+    btnContainer.appendChild(closeBtn);
+    btnContainer.appendChild(dragBtn);
+    element.appendChild(btnContainer);
+
+
+
+
   };
 }
 
