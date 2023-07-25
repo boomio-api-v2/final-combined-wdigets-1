@@ -37,22 +37,12 @@
     z-index: 1;
 }
 
-.shadow {
-    position: absolute;
-    width: 310px;
-    height: 310px;
-    right: 20px;
-    top: 20px;
-    /* z-index: 1; */
-}
-
 .topmark-box {
     position: absolute;
     left: 48%;
     top: 1px;
     width: 4%;
     height: 30px;
-    /* background: linear-gradient(270deg, #ff9161 0%, #f4ab22 100%); */
     background: linear-gradient(180deg, #FF9161 0%, #F4AB22 48.44%, #FEDC32 100%);
     z-index: 1;
 
