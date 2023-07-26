@@ -213,8 +213,8 @@ class WheelOfFortuneWidget {
     this.ctx.rotate(ang + this.arc / 2);
     this.ctx.textAlign = 'center';
     this.ctx.fillStyle = '#fff';
-    this.ctx.font = 'bold 20px sans-serif';
-    this.ctx.fillText(sector.label, this.rad - 100, 10, 70);
+    this.ctx.font = 'bold 20px Montserrat';
+    this.ctx.fillText(sector.label, this.rad - 80, 10, 55);
     this.ctx.restore();
   }
 
