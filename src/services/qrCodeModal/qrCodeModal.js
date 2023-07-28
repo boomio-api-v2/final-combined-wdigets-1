@@ -4,6 +4,7 @@ import { assignStyleOnElement } from '@/utlis';
 import { closeImage, dotImage, oldCouponImage, winningAnimationGif } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
+import { isMobileDevice } from '@/config';
 
 const likeBtnImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/like.svg';
@@ -19,7 +20,7 @@ export default class {
   }
 
   showQrCode = () => {
-    this.showQRDesktop();
+    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
     this.showSpinner();
     this.loadQrCodeData();
   };
@@ -57,7 +58,6 @@ export default class {
       // Handle error if necessary
     }
   }
-
   showFinalData() {
     this.hideSpinner();
 
@@ -393,13 +393,13 @@ export default class {
                     this.config.p_bottom_text_end_m
                   }</p>
                 </p></div>
-                            <div class="coupon_preview_card_footer">
+                            <div class="coupon_preview_card_footer" style='width:200px;'>
     
                 <a href=${this.config.app_url}>
                 <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
                     <img src="${dotImage}" alt="img not find">               
                       <div class="text-wrapper" >                   
-                        <p style="font-size: 10px; line-height: initial;" id='p_button_text_line1'>${
+                        <p style="font-size: 10px; line-height: initial;text-align:start;" id='p_button_text_line1'>${
                           this.config.p_button_text_line1
                         }</p>
                         <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${
