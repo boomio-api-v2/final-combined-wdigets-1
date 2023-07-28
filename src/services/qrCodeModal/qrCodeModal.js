@@ -60,15 +60,24 @@ export default class {
       // Handle error if necessary
     }
   }
+  mobilePaper() {
+    const coupon = document.getElementById('coupon_div');
+    coupon.style.display = 'block';
+  }
+
   showFinalData() {
-    new QRCode('qrcodeShowHtml', {
-      text: this.config.app_url,
-      width: isMobileDevice ? 150 : 100,
-      height: isMobileDevice ? 150 : 100,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H,
-    });
+    {
+      isMobileDevice
+        ? this.mobilePaper()
+        : new QRCode('qrcodeShowHtml', {
+            text: this.config.app_url,
+            width: isMobileDevice ? 150 : 100,
+            height: isMobileDevice ? 150 : 100,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H,
+          });
+    }
 
     this.insideShowFinalDataHTML = `
     <a href=${this.config.app_url}>
@@ -348,17 +357,17 @@ export default class {
 
     const coupon = document.getElementById('coupon_div');
     const qrcodeShow = document.getElementById('qrcodeShow');
-    qrcodeShow.style.display = 'block';
+    qrcodeShow.style.display = 'none';
     coupon.style.display = 'none';
 
-    qrcodeShow.onclick = () => {
-      coupon.style.display = 'block';
-      qrcodeShow.style.display = 'none';
-    };
-    coupon.onclick = () => {
-      qrcodeShow.style.display = 'block';
-      coupon.style.display = 'none';
-    };
+    // qrcodeShow.onclick = () => {
+    //   coupon.style.display = 'block';
+    //   qrcodeShow.style.display = 'none';
+    // };
+    // coupon.onclick = () => {
+    //   qrcodeShow.style.display = 'block';
+    //   coupon.style.display = 'none';
+    // };
   };
 
   createModalWindow = (width = 300, height = 442) => {
