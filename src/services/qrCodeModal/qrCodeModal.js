@@ -20,14 +20,16 @@ export default class {
   }
 
   showQrCode = () => {
-    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
-    this.showSpinner();
     this.loadQrCodeData();
+    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
+
+    this.showSpinner();
   };
 
   showSpinner = () => {
+    this.loading = true;
+
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
-    qrcodeShowDiv.style.display = 'none';
     const spinnerDiv = document.querySelector('#qr_loader_spinner .spinner');
     if (spinnerDiv) {
       spinnerDiv.classList.add('show');
@@ -36,7 +38,6 @@ export default class {
 
   hideSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
-    qrcodeShowDiv.style.display = 'block';
     const element = document.getElementById('qr_loader_spinner');
     if (element) {
       element.remove();
@@ -50,8 +51,9 @@ export default class {
   async loadQrCodeData() {
     try {
       this.loading = true;
-      this.updateConfigData();
       await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal');
+      this.updateConfigData();
+
       this.showFinalData(); // Show the final data after the request is finished
     } catch (error) {
       console.error(error);
@@ -59,6 +61,31 @@ export default class {
     }
   }
   showFinalData() {
+    new QRCode('qrcodeShowHtml', {
+      text: this.config.app_url,
+      width: isMobileDevice ? 150 : 100,
+      height: isMobileDevice ? 150 : 100,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+
+    this.insideShowFinalDataHTML = `
+    <a href=${this.config.app_url}>
+      <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
+        <img src="${dotImage}" alt="img not find">
+        <div class="text-wrapper">
+          <p style="font-size: 10px; line-height: initial;text-align:start;" id='p_button_text_line1'>${this.config.p_button_text_line1}</p>
+          <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${this.config.p_button_text_line2}</p>
+        </div>
+      </div>
+    </a>
+  `;
+
+    const buttonMobileElement = document.getElementById('buttonMobile');
+    if (buttonMobileElement) {
+      buttonMobileElement.innerHTML = this.insideShowFinalDataHTML;
+    }
     this.hideSpinner();
 
     this.loading = false;
@@ -255,7 +282,7 @@ export default class {
   };
 
   getCouponHtml = () => {
-    if (this.config.widget_Type === 'ice') {
+    if (this.config.app_url === 'ice') {
       return QrCodeModal.getGreyCoupon();
     }
     return `
@@ -297,15 +324,6 @@ export default class {
   </div>
     `;
 
-    new QRCode('qrcodeShowHtml', {
-      text: this.config.app_url,
-      width: 100,
-      height: 100,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H,
-    });
-
     document.getElementById('close-modal-btn').onclick = () => {
       this.modalBackground.remove();
       this.showSavingOrExitModal();
@@ -327,14 +345,7 @@ export default class {
 
     this.modal.appendChild(closeModalBtn);
     this.modal.append(qrEl);
-    new QRCode('qrcodeShowHtml', {
-      text: app_url,
-      width: 150,
-      height: 150,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H,
-    });
+
     const coupon = document.getElementById('coupon_div');
     const qrcodeShow = document.getElementById('qrcodeShow');
     qrcodeShow.style.display = 'block';
@@ -384,6 +395,9 @@ export default class {
                 <div id='qrcodeShow' style="display:none">
                     <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
                 </div>
+                <div id='qr_loader_spinner'>
+                <div class="spinner"></div>
+              </div>
                 ${this.getCouponHtml()}
             </div>
             <div style='font-size:14px;'>
@@ -395,20 +409,8 @@ export default class {
                 </p></div>
                             <div class="coupon_preview_card_footer" style='width:200px;'>
     
-                <a href=${this.config.app_url}>
-                <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
-                    <img src="${dotImage}" alt="img not find">               
-                      <div class="text-wrapper" >                   
-                        <p style="font-size: 10px; line-height: initial;text-align:start;" id='p_button_text_line1'>${
-                          this.config.p_button_text_line1
-                        }</p>
-                        <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${
-                          this.config.p_button_text_line2
-                        }</p>
-                      </div>
+                <div id='buttonMobile' >
                 </div>
-                </a>
-        
             </div>
         </div>
     </div>`;
