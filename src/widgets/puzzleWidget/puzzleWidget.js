@@ -256,7 +256,7 @@ export class Puzzle {
 
   startAnimation = (...args) => {
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true, modal] = args;
-    const { qrcode, puzzles_collected } = localStorageService.config.puzzle;
+    const { app_url, puzzles_collected } = localStorageService.config.puzzle;
     const position = modal ? puzzles_collected - 1 : puzzles_collected;
     const defaultCoordinates = this.coordinates[position];
     const currentCoordinates = coordinates?.[position];
@@ -267,10 +267,10 @@ export class Puzzle {
     const puzzleSize = 100;
 
     const dash = '-';
-    const pos = `${qrcode}`.indexOf(dash);
+    const pos = `${app_url}`.indexOf(dash);
 
     if (pos !== -1) {
-      localStorageService.config.qrcode = qrcode.substring(0, pos);
+      localStorageService.config.app_url = app_url.substring(0, pos);
     }
 
     const { clientWidth, clientHeight } = document.documentElement;
