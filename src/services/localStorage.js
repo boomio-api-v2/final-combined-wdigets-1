@@ -81,8 +81,8 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
-    const p_button_text_line1 = config?.p_coupon_text_line1 ?? 'Open';
-    const p_button_text_line2 = config?.p_coupon_text_line1 ?? 'boomio app';
+    const p_button_text_line1 = config?.p_button_text_line1 ?? 'Open';
+    const p_button_text_line2 = config?.p_button_text_line2 ?? 'boomio app';
     const static_text = config?.static_text ?? false;
     const boomioStopTill = config?.boomioStopTill ?? null;
     const m = config?.m ?? null;
