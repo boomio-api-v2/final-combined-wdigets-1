@@ -296,8 +296,9 @@ export default class {
     <div class="spinner"></div>
   </div>
     `;
+
     new QRCode('qrcodeShowHtml', {
-      text: this.config.qrcode,
+      text: this.config.app_url,
       width: 100,
       height: 100,
       colorDark: '#000000',
@@ -313,7 +314,7 @@ export default class {
 
   showQRCodeMobile = () => {
     this.createModalWindow(272, 442);
-    const { qrcode } = localStorageService.config;
+    const { app_url } = localStorageService.config;
     const qrEl = document.createElement('div');
 
     qrEl.setAttribute('id', 'boomio--qr');
@@ -326,9 +327,8 @@ export default class {
 
     this.modal.appendChild(closeModalBtn);
     this.modal.append(qrEl);
-
     new QRCode('qrcodeShowHtml', {
-      text: qrcode,
+      text: app_url,
       width: 150,
       height: 150,
       colorDark: '#000000',
