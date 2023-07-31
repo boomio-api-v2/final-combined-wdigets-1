@@ -3,6 +3,7 @@ import './styles.css';
 import { testHammer } from '@/сonstants';
 import { cloudImage } from '@/сonstants/icons';
 import { loadImageBeforeUsing } from '@/utlis';
+import { WhackMole01 } from '@/сonstants/icons';
 
 loadImageBeforeUsing([cloudImage]);
 
@@ -28,7 +29,7 @@ class WhackWidget {
     <div class="game-container">
     <div class="mole">
       <div class="score"><span id="score-value"></span></div>
-      <img class="mole-image" src="https://cdn-icons-png.flaticon.com/512/394/394790.png" alt="Mole">
+      <img class="mole-image" src=${WhackMole01} alt="Mole">
     </div>
   </div>
     `;
@@ -72,6 +73,9 @@ class WhackWidget {
           mole.classList.add('appear');
           createHammer();
           showNextMole();
+          console.log('4');
+
+          mole.classList.remove('appear');
         }
 
         function showNextMole() {
@@ -80,14 +84,19 @@ class WhackWidget {
           randomPosition(nextMole);
           nextMole.style.display = 'block';
           setTimeout(function () {
+            console.log('3');
+
             mole.classList.remove('appear');
             mole.classList.add('disappear');
             setTimeout(function () {
+              console.log('2');
+
               mole.classList.remove('disappear');
               mole.style.display = 'none';
             }, 300);
 
             setTimeout(function () {
+              console.log('1');
               startMoleAnimation(nextMole);
             }, 400);
           }, 4000);
