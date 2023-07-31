@@ -75,7 +75,7 @@ class WhackWidget {
           showNextMole();
           console.log('4');
 
-          mole.classList.remove('appear');
+          // mole.classList.remove('appear');
         }
 
         function showNextMole() {
