@@ -16,6 +16,8 @@ export const frameSvg =
 
 export const WhackMole01 =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/Whack-a-mole-boomio_01.gif?raw=true';
+export const WhackMole01Paused =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/frame_7_delay-0.1s.png?raw=true';
 
 export const dotImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/0753f565c8eeb594222696c37839677a8738f41d/images/dotImage.svg';
