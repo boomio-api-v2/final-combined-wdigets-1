@@ -69,8 +69,17 @@ class WhackWidget {
 
     const startMoleAnimation = (mole) => {
       if (!this.score || this.score < 4) {
+        function resetGIF(imageElement) {
+          const src = imageElement.src;
+          imageElement.src = '';
+          imageElement.src = src;
+        }
         function hideMole() {
-          mole.classList.add('appear');
+          //force gif to loop again
+          // mole.classList.add('appear');
+          const moleImage = mole.querySelector('.mole-image');
+          resetGIF(moleImage);
+
           createHammer();
           showNextMole();
           console.log('4');
@@ -93,13 +102,13 @@ class WhackWidget {
 
               mole.classList.remove('disappear');
               mole.style.display = 'none';
-            }, 300);
+            }, 200);
 
             setTimeout(function () {
               console.log('1');
               startMoleAnimation(nextMole);
-            }, 400);
-          }, 4000);
+            }, 200);
+          }, 2000);
         }
 
         hideMole();
