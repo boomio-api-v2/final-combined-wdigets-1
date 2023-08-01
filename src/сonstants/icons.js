@@ -14,6 +14,9 @@ export const gameIcon =
 export const frameSvg =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/puzzle/frame.png?raw=true';
 
+export const WhackHammer =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/WhackHammer.png?raw=true';
+
 export const WhackMole01 =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/Whack-a-mole-boomio_01.gif?raw=true';
 export const WhackMole01Reversed =
@@ -56,9 +59,6 @@ export const oldCouponImage =
 
 export const iceHammerImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';
-
-export const testHammer =
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPsykA0VL-qwz1Hk8CMbrg-881mWPZLup4yQ&usqp=CAU';
 
 export const winningAnimationGif = 'https://i.ibb.co/C0YvY06/confetti-25-1.gif';
 

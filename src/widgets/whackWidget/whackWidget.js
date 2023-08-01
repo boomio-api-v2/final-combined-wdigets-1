@@ -9,14 +9,26 @@ import {
 } from '@/сonstants';
 import { loadImageBeforeUsing } from '@/utlis';
 
-loadImageBeforeUsing([cloudImage]);
+loadImageBeforeUsing([testHammer, WhackMole01, cloudImage, WhackMole01Reversed, WhackMoleHit]);
 
 class WhackWidget {
   constructor() {
     this.startWhack();
     this.score = 0;
+    this.preloadImages().then(() => {
+      this.startWhack();
+    });
   }
-
+  preloadImages() {
+    const imageUrlsToPreload = [
+      testHammer,
+      WhackMole01,
+      cloudImage,
+      WhackMole01Reversed,
+      WhackMoleHit,
+    ];
+    return loadImageBeforeUsing(imageUrlsToPreload);
+  }
   startWhack() {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
@@ -127,7 +139,6 @@ class WhackWidget {
       const mole = document.querySelector('.mole'); // Select the mole element using a CSS selector
       const existingHammer = mole.querySelector('.hammer');
 
-      // Only create the hammer if it doesn't already exist
       if (!existingHammer) {
         const hammer = document.createElement('img');
         hammer.classList.add('hammer');
@@ -136,26 +147,25 @@ class WhackWidget {
         hammer.classList.remove('disappear');
         hammer.classList.remove('appear');
         hammer.style.opacity = '0';
-        // Show the hammer initially
         hammer.style.display = 'none';
 
         // Add event listeners for mouseover and mouseout events
         mole.addEventListener('mouseover', () => {
-          hammer.style.opacity = '1';
-          hammer.style.display = 'block';
+          // console.log('mouseover');
+          // hammer.style.opacity = '1';
+          // hammer.style.display = 'block';
         });
 
         let hideHammerTimeout; // Timeout variable to store the reference
 
         mole.addEventListener('mouseout', () => {
-          hammer.style.opacity = '1';
-          // Delay hiding the hammer for 500ms
-          hideHammerTimeout = setTimeout(() => {
-            hammer.style.opacity = '0';
-            setTimeout(() => {
-              hammer.style.display = 'none';
-            }, 300); // Adjust the transition duration to match the CSS transition duration
-          }, 800);
+          // hammer.style.opacity = '1';
+          // hideHammerTimeout = setTimeout(() => {
+          //   hammer.style.opacity = '0';
+          //   setTimeout(() => {
+          //     hammer.style.display = 'none';
+          //   }, 200); // Adjust the transition duration to match the CSS transition duration
+          // }, 400);
         });
 
         // Cancel the hide timeout when mouseover occurs again
@@ -227,7 +237,6 @@ class WhackWidget {
         document.getElementById('score-value').textContent = `${this.score}/4`; // Update the score element
         document.getElementById('score-value').style.display = 'block';
         mole.classList.add('mole-hit');
-        // showHammerAnimation();
         const moleImage = mole.querySelector('.mole-image');
 
         moleHit(moleImage);
