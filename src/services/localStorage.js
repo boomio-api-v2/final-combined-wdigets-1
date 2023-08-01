@@ -89,7 +89,7 @@ class LocalStorageService {
     const puzzle = {
       puzzles_collected: config?.puzzles_collected ?? 0,
       puzzles_needed: config?.puzzles_needed ?? undefined,
-      hint: config?.hint ?? 'Adidas Stan Smith J FX7519',
+      hint: config?.hint ?? 'Keep looking!',
     };
     const w_top_text = config?.w_top_text
       ? config.w_top_text
