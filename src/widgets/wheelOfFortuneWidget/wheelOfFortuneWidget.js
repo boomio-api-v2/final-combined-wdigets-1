@@ -166,14 +166,16 @@ class WheelOfFortuneWidget {
     grd = this.ctx.createLinearGradient(cx - gx, cy - gy, cx + gx, cy + gy);
     innerBorderGradient.forEach((st) => grd.addColorStop(st.pct, st.clr))
     this.ctx.fillStyle = grd
-    this.ctx.arc(this.rad, this.rad, this.rad - 18, 0, 2 * this.PI)
+    // this.ctx.arc(this.rad, this.rad, this.rad - 18, 0, 2 * this.PI)
+    this.ctx.arc(this.rad, this.rad, this.rad - 23, 0, 2 * this.PI)
     this.ctx.moveTo(this.rad, this.rad)
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
 
     this.ctx.beginPath() // white circle
     this.ctx.fillStyle = 'white'
-    this.ctx.arc(this.rad, this.rad, this.rad - 20, 0, 2 * this.PI)
+    // this.ctx.arc(this.rad, this.rad, this.rad - 20, 0, 2 * this.PI)
+    this.ctx.arc(this.rad, this.rad, this.rad - 26, 0, 2 * this.PI)
     this.ctx.moveTo(this.rad, this.rad)
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
@@ -188,7 +190,8 @@ class WheelOfFortuneWidget {
     shadowGradient.forEach((st) => grdShadow.addColorStop(st.pct, st.clr));
     this.ctx.fillStyle = grdShadow;
     this.ctx.moveTo(this.rad, this.rad);
-    this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
+    // this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
+    this.ctx.arc(this.rad, this.rad, this.rad - 26, ang, ang + this.arc);
     this.ctx.closePath();
     this.ctx.fill();
 
@@ -200,7 +203,8 @@ class WheelOfFortuneWidget {
     this.ctx.fillStyle = grd;
 
     this.ctx.moveTo(this.rad, this.rad);
-    this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
+    // this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
+    this.ctx.arc(this.rad, this.rad, this.rad - 26, ang, ang + this.arc);
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.closePath();
     this.ctx.fill();
@@ -213,13 +217,14 @@ class WheelOfFortuneWidget {
     this.ctx.rotate(ang + this.arc / 2);
     this.ctx.textAlign = 'center';
     this.ctx.fillStyle = '#fff';
-    this.ctx.font = 'bold 20px Montserrat';
+    // this.ctx.font = 'bold 20px Montserrat';
+    this.ctx.font = 'bold 16px Montserrat';
     this.ctx.fillText(sector.label, this.rad - 80, 10, 55);
     this.ctx.restore();
   }
 
   createWheel = () => {
-    const pict = '    <img style="width: 200px; height: 200px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>'
+    const pict = '    <img style="width: 350px; height: 350px; position: absolute; top: -250px; left: -250px;" src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/de58baac4e2c02cec66dba75e036642e8837517c/images/wheelOfFortuneWidget/spinTheWheel.svg"></img>'
 
 
 
@@ -240,7 +245,7 @@ class WheelOfFortuneWidget {
 
     const pictEl = document.createElement('div');
     pictEl.classList.add('picture')
-    pictEl.innerHTML= pict
+    pictEl.innerHTML = pict
     wheel.appendChild(pictEl)
     // pictEl.style.display = 'none'
 
