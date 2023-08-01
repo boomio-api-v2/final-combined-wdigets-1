@@ -1,8 +1,13 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { testHammer, WhackMole01, cloudImage, WhackMole01Reversed } from '@/сonstants';
+import {
+  testHammer,
+  WhackMole01,
+  cloudImage,
+  WhackMole01Reversed,
+  WhackMoleHit,
+} from '@/сonstants';
 import { loadImageBeforeUsing } from '@/utlis';
-import {} from '@/сonstants/icons';
 
 loadImageBeforeUsing([cloudImage]);
 
@@ -69,26 +74,27 @@ class WhackWidget {
     const startMoleAnimation = (mole) => {
       if (!this.score || this.score < 4) {
         function resetGIF(imageElement) {
-          const src = imageElement.src;
+          console.log('appear');
+          mole.classList.add('appear');
+          const src = WhackMole01;
           imageElement.src = '';
           imageElement.src = src;
         }
         function reverseGIF(imageElement) {
+          console.log('reverse');
+          mole.classList.add('disappear');
           const src = WhackMole01Reversed;
           imageElement.src = '';
           imageElement.src = src;
         }
+
         function hideMole() {
-          //force gif to loop again
-          // mole.classList.add('appear');
           const moleImage = mole.querySelector('.mole-image');
           resetGIF(moleImage);
 
           createHammer();
           showNextMole();
           console.log('4');
-
-          // mole.classList.remove('appear');
         }
 
         function showNextMole() {
@@ -101,19 +107,15 @@ class WhackWidget {
             const moleImage = mole.querySelector('.mole-image');
 
             reverseGIF(moleImage);
-            mole.classList.remove('appear');
-            mole.classList.add('disappear');
             setTimeout(function () {
-              console.log('2');
-
               mole.classList.remove('disappear');
               mole.style.display = 'none';
-            }, 200);
+            }, 500);
 
             setTimeout(function () {
               console.log('1');
               startMoleAnimation(nextMole);
-            }, 200);
+            }, 500);
           }, 2000);
         }
 
@@ -206,27 +208,30 @@ class WhackWidget {
     };
 
     const whackMole = (event) => {
+      function moleHit(imageElement) {
+        const src = WhackMoleHit;
+        imageElement.src = '';
+        imageElement.src = src;
+      }
+
       const mole = document.querySelector('.mole');
       if (
         event.target.classList.contains('mole-image') &&
         !mole.classList.contains('mole-hit') &&
         !mole.classList.contains('disappear')
       ) {
-        const animationFunc = animateBlock(event);
-        animationFunc({
-          img: cloudImage,
-          animation: 'cloud',
-          isCloud: true,
-          time: 800,
-        });
-
+        console.log('whack');
         mole.classList.remove('appear');
         mole.classList.remove('disappear');
         this.score++;
         document.getElementById('score-value').textContent = `${this.score}/4`; // Update the score element
         document.getElementById('score-value').style.display = 'block';
         mole.classList.add('mole-hit');
-        showHammerAnimation();
+        // showHammerAnimation();
+        const moleImage = mole.querySelector('.mole-image');
+
+        moleHit(moleImage);
+
         setTimeout(function () {
           mole.classList.remove('mole-hit');
           mole.classList.add('disappear');
