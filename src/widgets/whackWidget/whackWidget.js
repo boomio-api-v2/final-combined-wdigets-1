@@ -1,9 +1,8 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { testHammer } from '@/сonstants';
-import { cloudImage } from '@/сonstants/icons';
+import { testHammer, WhackMole01, cloudImage, WhackMole01Reversed } from '@/сonstants';
 import { loadImageBeforeUsing } from '@/utlis';
-import { WhackMole01 } from '@/сonstants/icons';
+import {} from '@/сonstants/icons';
 
 loadImageBeforeUsing([cloudImage]);
 
@@ -74,6 +73,11 @@ class WhackWidget {
           imageElement.src = '';
           imageElement.src = src;
         }
+        function reverseGIF(imageElement) {
+          const src = WhackMole01Reversed;
+          imageElement.src = '';
+          imageElement.src = src;
+        }
         function hideMole() {
           //force gif to loop again
           // mole.classList.add('appear');
@@ -94,7 +98,9 @@ class WhackWidget {
           nextMole.style.display = 'block';
           setTimeout(function () {
             console.log('3');
+            const moleImage = mole.querySelector('.mole-image');
 
+            reverseGIF(moleImage);
             mole.classList.remove('appear');
             mole.classList.add('disappear');
             setTimeout(function () {
