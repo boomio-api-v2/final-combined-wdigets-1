@@ -17,9 +17,8 @@ import './styles.css';
 class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-
     if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
-    this.createWheel();
+    this.createWheel(this.number);
     this.elSpin = document.querySelector('#spin');
     this.ctx = document.getElementById('wheel').getContext`2d`;
     // this.config.list = this?.config?.list ?? defaultList;
@@ -44,14 +43,15 @@ class WheelOfFortuneWidget {
       this.isSpinning = true;
       this.isAccelerating = true;
       // this.angVelMax = getRandomArbitrary(0.1, 0.2);
-      this.angVelMax = 0.19;
+      this.angVelMax = 0.15;
     });
 
     this.config?.list?.forEach(this.drawSector);
     this.config?.list?.forEach(this.addText);
     this.wheelOfFortune = document.getElementById('wheelOfFortune');
-    this.wheelOfFortune.style.display = 'flex';
+    // this.wheelOfFortune.style.display = 'flex';
     // this.wheelOfFortune.style.display = 'block';
+
     this.wheelOfFortune
     this.addCloseIconToElement(this.wheelOfFortune);
 
@@ -180,7 +180,7 @@ class WheelOfFortuneWidget {
   }
 
   drawSector = (sector, i) => {
-    const ang = this.arc * i;
+    const ang = this.arc * i - this.arc / 2;
     this.ctx.save();
     this.ctx.globalCompositeOperation = 'multiply'
     this.ctx.beginPath();
@@ -207,7 +207,7 @@ class WheelOfFortuneWidget {
     this.ctx.restore();
   };
   addText = (sector, i) => {
-    const ang = this.arc * i;
+    const ang = this.arc * i - this.arc / 2;
     this.ctx.save();
     this.ctx.translate(this.rad, this.rad);
     this.ctx.rotate(ang + this.arc / 2);
@@ -219,28 +219,48 @@ class WheelOfFortuneWidget {
   }
 
   createWheel = () => {
+    const pict = '    <img style="width: 200px; height: 200px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>'
+
+
+
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
-    wheel.style.display = 'none';
+    wheel.classList.add('wheelOfFortune');
+    wheel.style.display = 'flex';
 
     wheel.innerHTML = `<div>
-                  <canvas id="wheel" width="350" height="350">
-                </canvas><div class="spin-border-wrap">
-                <div id="spin"></div></div>
-                <div class="topmark-box"></div>
-                <div class="topmark-arrow"></div>
-                </div>
-          `;
+    <canvas id="wheel" class="wheel" width="350" height="350">
+    </canvas><div class="spin-border-wrap">
+    <div id="spin" class="spin"></div></div>
+    <div class="topmark-box"></div>
+    <div class="topmark-arrow"></div>
+    </div>
+    `;
+
+    const pictEl = document.createElement('div');
+    pictEl.classList.add('picture')
+    pictEl.innerHTML= pict
+    wheel.appendChild(pictEl)
+    // pictEl.style.display = 'none'
 
     widgetHtmlService.container.appendChild(wheel);
+
+    // setTimeout(() => { wheel.style.display = 'none';
+    // }, 1000)
+    // setTimeout(() => { wheel.style.display = 'flex'; pictEl.style.display = 'none';}, 3000)
+    // setTimeout(() => { wheel.style.display = 'flex'; }, 1000)
+
+
   };
 
   startAnimation = () => {
     new AnimationService({
       elem: this.wheelOfFortune,
       size: 350,
-    });
+      posx: 150,
+      posy: 150,
+    }, true);
   };
 
   addCloseIconToElement = (element) => {

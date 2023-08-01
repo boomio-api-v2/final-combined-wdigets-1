@@ -1,16 +1,46 @@
-#wheelOfFortune {
+/* #wheelOfFortune {
+    display: inline-flex;
+    position: fixed;
+    overflow: initial;
+    z-index: 9999999999;
+} */
+.wheelOfFortune {
     display: inline-flex;
     position: fixed;
     overflow: initial;
     z-index: 9999999999;
 }
 
-#wheel {
+.picture {
+    position: absolute;
+    top: 250px;
+    left: 250px
+}
+
+/* #wheel {
+    display: block;
+} */
+.wheel {
     display: block;
 }
 
 
-#spin {
+/* #spin {
+    font: 0.9rem/0 sans-serif;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 1;
+} */
+.spin {
     font: 0.9rem/0 sans-serif;
     cursor: pointer;
     display: flex;
