@@ -1,12 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import {
-  WhackHammer,
-  WhackMole01,
-  cloudImage,
-  WhackMole01Reversed,
-  WhackMoleHit,
-} from '@/сonstants';
+import { WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit } from '@/сonstants';
 
 class WhackWidget {
   constructor() {
@@ -23,13 +17,7 @@ class WhackWidget {
   }
 
   preloadImages() {
-    const imageUrlsToPreload = [
-      WhackHammer,
-      WhackMole01,
-      cloudImage,
-      WhackMole01Reversed,
-      WhackMoleHit,
-    ];
+    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit];
 
     const loadImageBeforeUsing = (images) => {
       const promises = images.map((img) => {
