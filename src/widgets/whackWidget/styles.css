@@ -103,7 +103,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   100% {
     transform: scale(1);
@@ -112,11 +112,11 @@
 
 
 .mole.appear {
-  animation: moleAppear 0.4s ease-in-out;
+  animation: moleAppear 1s ease-in-out;
 }
 
 .mole.disappear {
-  animation: moleDisappear 0.9s ease-in-out;
+  animation: moleDisappear 1.1s ease-in-out;
 }
 
 .mole.mole-hit {

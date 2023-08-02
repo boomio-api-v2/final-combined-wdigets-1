@@ -12,6 +12,7 @@ class WhackWidget {
   constructor() {
     this.isAnimationRunning = true;
     this.score = 0;
+    this.whackedMoles = {};
     this.preloadImages()
       .then(() => {
         this.startWhack();
@@ -53,12 +54,13 @@ class WhackWidget {
 
   createContainer() {
     const myCanvas = document.createElement('div');
+    const moleId = `mole-${Date.now()}`;
     myCanvas.setAttribute('id', 'whack-container');
     myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
 
     myCanvas.innerHTML = `
     <div class="game-container">
-    <div class="mole">
+    <div class="mole" id="${moleId}">
       <img class="mole-image" src=${WhackMole01} alt="Mole">
       <div class="score"><span id="score-value"></span></div>
     </div>
@@ -98,33 +100,33 @@ class WhackWidget {
       gameContainer.style.top = randomY + 'px';
     };
 
+    const resetGIF = (imageElement) => {
+      console.log('appear');
+      const mole = document.querySelector('.mole');
+      // Select the mole element using a CSS selector
+      mole.classList.add('appear');
+      const src = WhackMole01;
+      imageElement.src = '';
+      imageElement.src = src;
+      setTimeout(function () {
+        mole.classList.remove('appear');
+      }, 1000);
+      createHammer();
+    };
+    const reverseGIF = (imageElement) => {
+      console.log('reverse');
+      const mole = document.querySelector('.mole'); // Select the mole element using a CSS selector
+      mole.classList.add('disappear');
+      const src = WhackMole01Reversed;
+      imageElement.src = '';
+      imageElement.src = src;
+    };
     const startMoleAnimation = (mole) => {
-      if (!this.isAnimationRunning) return;
-      if (!this.score || this.score < 4) {
-        function resetGIF(imageElement) {
-          console.log('appear');
-          mole.classList.add('appear');
-          const src = WhackMole01;
-          imageElement.src = '';
-          imageElement.src = src;
-        }
-        function reverseGIF(imageElement) {
-          console.log('reverse');
-          const src = WhackMole01Reversed;
-          imageElement.src = '';
-          imageElement.src = src;
-          setTimeout(function () {
-            mole.classList.add('disappear');
-          }, 300);
-        }
-
+      if (!this.score || this.score < 14) {
         function hideMole() {
           const moleImage = mole.querySelector('.mole-image');
           resetGIF(moleImage);
-
-          createHammer();
           showNextMole();
-          console.log('4');
         }
 
         function showNextMole() {
@@ -133,22 +135,20 @@ class WhackWidget {
           randomPosition(nextMole);
           nextMole.style.display = 'block';
           setTimeout(function () {
-            console.log('3');
+            const mole = document.querySelector('.mole'); // Select the mole element using a CSS selector
             const moleImage = mole.querySelector('.mole-image');
-
             reverseGIF(moleImage);
             setTimeout(function () {
-              mole.classList.remove('disappear');
               mole.style.display = 'none';
-            }, 800);
-
-            setTimeout(function () {
-              console.log('1');
-              startMoleAnimation(nextMole);
-            }, 800);
-          }, 3000);
+              setTimeout(function () {
+                mole.classList.remove('disappear');
+              }, 200);
+              setTimeout(function () {
+                startMoleAnimation(nextMole);
+              }, 1000);
+            }, 1000);
+          }, 5000);
         }
-
         hideMole();
       }
     };
@@ -165,13 +165,11 @@ class WhackWidget {
         hammer.classList.remove('disappear');
         hammer.classList.remove('appear');
         hammer.style.opacity = '0';
-        hammer.style.display = 'none';
 
         // Add event listeners for mouseover and mouseout events
         mole.addEventListener('mouseover', () => {
           console.log('mouseover');
           hammer.style.opacity = '1';
-          hammer.style.display = 'block';
         });
 
         let hideHammerTimeout; // Timeout variable to store the reference
@@ -180,9 +178,7 @@ class WhackWidget {
           hammer.style.opacity = '1';
           hideHammerTimeout = setTimeout(() => {
             hammer.style.opacity = '0';
-            setTimeout(() => {
-              hammer.style.display = 'none';
-            }, 200); // Adjust the transition duration to match the CSS transition duration
+            // Adjust the transition duration to match the CSS transition duration
           }, 400);
         });
 
@@ -193,92 +189,41 @@ class WhackWidget {
       }
     };
 
-    const animateBlock =
-      (e) =>
-      ({ img, animation, isCloud = false, time = 400 }) => {
-        const image = new Image();
-        const blockElement = document.createElement('img');
-        const mole = document.querySelector('.mole');
-        image.onload = function () {
-          blockElement.setAttribute('src', this.src);
-          blockElement.classList.add(animation);
-          if (!isCloud) {
-            blockElement.animate({ transform: 'scale(0)' }, { duration: time, fill: 'forwards' });
-          }
-          mole.appendChild(blockElement);
-          setTimeout(() => {
-            blockElement.remove();
-          }, time);
-        };
-        image.src = img;
-      };
-
-    const showHammerAnimation = () => {
-      const mole = document.querySelector('.mole'); // Select the mole element using a CSS selector
-      const hammer = mole.querySelector('.hammer');
-
-      assignStyleOnElement(hammer.style, {
-        right: 0,
-        transform: 'rotate(-80deg)',
-      });
-
-      setTimeout(() => {
-        assignStyleOnElement(hammer.style, {
-          right: '-80px',
-          top: '-10px',
-          transform: 'rotate(50deg)',
-        });
-      }, 500);
-    };
-
-    const assignStyleOnElement = (elementStyle, styles) => {
-      Object.assign(elementStyle, styles);
-    };
-
     const whackMole = (event) => {
-      console.log('this.isAnimationRunning', this.isAnimationRunning);
-
       function moleHit(imageElement) {
-        const hammer = mole.querySelector('.hammer');
-        hammer.style.display = 'none';
-
+        mole.classList.remove('mole-hit');
         const src = WhackMoleHit;
         imageElement.src = '';
         imageElement.src = src;
       }
-
       const mole = document.querySelector('.mole');
+      console.log(mole.id);
       if (
         event.target.classList.contains('mole-image') &&
         !mole.classList.contains('mole-hit') &&
-        !mole.classList.contains('disappear')
+        !mole.classList.contains('disappear') &&
+        !mole.classList.contains('appear') &&
+        !this.whackedMoles[mole.id]
       ) {
-        console.log('whack');
-        mole.classList.remove('appear');
-        mole.classList.remove('disappear');
         this.score++;
         document.getElementById('score-value').textContent = `${this.score}/4`; // Update the score element
         document.getElementById('score-value').style.display = 'block';
-        // mole.classList.add('mole-hit');
         const moleImage = mole.querySelector('.mole-image');
-
         moleHit(moleImage);
 
         setTimeout(function () {
-          mole.classList.remove('mole-hit');
-          mole.classList.add('disappear');
           setTimeout(function () {
             const scoreStyle = document.getElementById('score-value');
             if (scoreStyle) {
               scoreStyle.style.display = 'none';
             }
-            mole.style.display = 'none';
-          }, 1000);
-        }, 1200);
+          }, 800);
+        }, 1000);
 
         if (this.score === 14) {
           endGame();
         }
+        this.whackedMoles[mole.id] = true; // Mark the mole as whacked
       }
     };
 
@@ -298,11 +243,23 @@ class WhackWidget {
     };
 
     gameContainer.addEventListener('click', (event) => {
-      this.isAnimationRunning = false; // Set the flag to false when clicked
-      setTimeout(() => {
-        this.isAnimationRunning = true; // Set the flag back to true after a delay
-      }, 1000);
-      whackMole(event); // Pass the event object to the whackMole function
+      const mole = event.target.closest('.mole');
+      console.log('mole', mole.classList);
+      if (
+        mole &&
+        mole.classList.contains('mole') &&
+        !mole.classList.contains('appear') &&
+        !mole.classList.contains('disappear')
+      ) {
+        const hammer = mole.querySelector('.hammer');
+        this.isAnimationRunning = false;
+        hammer.style.display = 'none';
+        setTimeout(() => {
+          this.isAnimationRunning = true;
+          hammer.style.display = 'block';
+        }, 2200);
+        whackMole(event);
+      }
     });
   }
 }
