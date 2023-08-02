@@ -57,7 +57,7 @@ class WhackWidget {
     btnContainer.style.flexDirection = 'column';
     btnContainer.style.justifyContent = 'center';
     const closeBtn = document.createElement('div');
-    closeBtn.classList.add('round-close-icon');
+    closeBtn.classList.add('round-close-icon-whack');
     closeBtn.innerHTML =
       '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/round-close.svg" style="width: 20px;"></img>'; // Add style width: 20px to the image
     closeBtn.addEventListener(
