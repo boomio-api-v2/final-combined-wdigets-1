@@ -116,7 +116,6 @@ class WhackWidget {
     };
 
     const resetGIF = (imageElement) => {
-      console.log('appear');
       const mole = document.querySelector('.mole');
       mole.classList.remove('mole-hit-once');
 
@@ -140,7 +139,6 @@ class WhackWidget {
 
     const reverseGIF = (imageElement, whacked) => {
       const mole = document.querySelector('.mole');
-      console.log('reverse', mole.classList.contains('mole-hit-once'));
       if (!mole.classList.contains('mole-hit-once')) {
         mole.classList.add('disappear');
         const src = WhackMole01Reversed;
@@ -222,7 +220,6 @@ class WhackWidget {
 
         // Add event listeners for mouseover and mouseout events
         mole.addEventListener('mouseover', () => {
-          console.log('mouseover');
           hammer.style.opacity = '1';
         });
 
@@ -245,7 +242,6 @@ class WhackWidget {
 
     const whackMole = (event) => {
       function moleHit(imageElement) {
-        console.log('mole hit');
         const mole = document.querySelector('.mole');
         mole.classList.add('mole-hit');
         const src = WhackMoleHit;
@@ -320,8 +316,6 @@ class WhackWidget {
         hammer.style.display = 'none';
         setTimeout(() => {
           const newMole = event.target.closest('.mole');
-          console.log(newMole);
-
           if (this.whackedMoles[newMole.id]) {
             hammer.style.display = 'block';
           }
