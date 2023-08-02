@@ -3,7 +3,7 @@
 }
 .mole {
   width: 120px;
-  height: 67.6px;
+  height: 120px;
   z-index: 999999999;
   cursor: pointer;
   display: none;
@@ -11,7 +11,7 @@
 
 .mole-image {
   width: 120px;
-  height: 67.6px;
+  height: 120px;
   z-index: 999999999;
   cursor: pointer;
 }
@@ -105,7 +105,7 @@
 }
 
 .mole.disappear {
-  animation: moleDisappear 0.6s ease-in-out;
+  animation: moleDisappear 0.9s ease-in-out;
 }
 
 .mole.mole-hit {

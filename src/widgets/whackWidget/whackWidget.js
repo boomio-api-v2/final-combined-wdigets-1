@@ -99,7 +99,7 @@ class WhackWidget {
           imageElement.src = src;
           setTimeout(function () {
             mole.classList.add('disappear');
-          }, 200);
+          }, 300);
         }
 
         function hideMole() {
@@ -124,7 +124,7 @@ class WhackWidget {
             setTimeout(function () {
               mole.classList.remove('disappear');
               mole.style.display = 'none';
-            }, 500);
+            }, 800);
 
             setTimeout(function () {
               console.log('1');
@@ -255,8 +255,8 @@ class WhackWidget {
               scoreStyle.style.display = 'none';
             }
             mole.style.display = 'none';
-          }, 200);
-        }, 800);
+          }, 1000);
+        }, 1200);
 
         if (this.score === 4) {
           endGame();
