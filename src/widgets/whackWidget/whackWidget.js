@@ -7,18 +7,20 @@ import {
   WhackMole01Reversed,
   WhackMoleHit,
 } from '@/сonstants';
-import { loadImageBeforeUsing } from '@/utlis';
-
-loadImageBeforeUsing([WhackHammer, WhackMole01, cloudImage, WhackMole01Reversed, WhackMoleHit]);
 
 class WhackWidget {
   constructor() {
-    this.startWhack();
+    this.isAnimationRunning = true;
     this.score = 0;
-    this.preloadImages().then(() => {
-      this.startWhack();
-    });
+    this.preloadImages()
+      .then(() => {
+        this.startWhack();
+      })
+      .catch((error) => {
+        console.error('Error loading images:', error);
+      });
   }
+
   preloadImages() {
     const imageUrlsToPreload = [
       WhackHammer,
@@ -27,6 +29,19 @@ class WhackWidget {
       WhackMole01Reversed,
       WhackMoleHit,
     ];
+
+    const loadImageBeforeUsing = (images) => {
+      const promises = images.map((img) => {
+        return new Promise((resolve, reject) => {
+          const image = new Image();
+          image.onload = resolve;
+          image.onerror = reject;
+          image.src = img;
+        });
+      });
+      return Promise.all(promises);
+    };
+
     return loadImageBeforeUsing(imageUrlsToPreload);
   }
   startWhack() {
@@ -44,8 +59,8 @@ class WhackWidget {
     myCanvas.innerHTML = `
     <div class="game-container">
     <div class="mole">
-      <div class="score"><span id="score-value"></span></div>
       <img class="mole-image" src=${WhackMole01} alt="Mole">
+      <div class="score"><span id="score-value"></span></div>
     </div>
   </div>
     `;
@@ -84,6 +99,7 @@ class WhackWidget {
     };
 
     const startMoleAnimation = (mole) => {
+      if (!this.isAnimationRunning) return;
       if (!this.score || this.score < 4) {
         function resetGIF(imageElement) {
           console.log('appear');
@@ -129,8 +145,8 @@ class WhackWidget {
             setTimeout(function () {
               console.log('1');
               startMoleAnimation(nextMole);
-            }, 500);
-          }, 2000);
+            }, 800);
+          }, 3000);
         }
 
         hideMole();
@@ -220,6 +236,8 @@ class WhackWidget {
     };
 
     const whackMole = (event) => {
+      console.log('this.isAnimationRunning', this.isAnimationRunning);
+
       function moleHit(imageElement) {
         const hammer = mole.querySelector('.hammer');
         hammer.style.display = 'none';
@@ -241,7 +259,7 @@ class WhackWidget {
         this.score++;
         document.getElementById('score-value').textContent = `${this.score}/4`; // Update the score element
         document.getElementById('score-value').style.display = 'block';
-        mole.classList.add('mole-hit');
+        // mole.classList.add('mole-hit');
         const moleImage = mole.querySelector('.mole-image');
 
         moleHit(moleImage);
@@ -258,7 +276,7 @@ class WhackWidget {
           }, 1000);
         }, 1200);
 
-        if (this.score === 4) {
+        if (this.score === 14) {
           endGame();
         }
       }
@@ -279,7 +297,13 @@ class WhackWidget {
       }, 1000);
     };
 
-    gameContainer.addEventListener('click', whackMole);
+    gameContainer.addEventListener('click', (event) => {
+      this.isAnimationRunning = false; // Set the flag to false when clicked
+      setTimeout(() => {
+        this.isAnimationRunning = true; // Set the flag back to true after a delay
+      }, 1000);
+      whackMole(event); // Pass the event object to the whackMole function
+    });
   }
 }
 
