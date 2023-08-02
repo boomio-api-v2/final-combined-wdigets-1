@@ -2,35 +2,68 @@
   position: fixed;
 }
 .mole {
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   z-index: 999999999;
   cursor: pointer;
   display: none;
 }
 
 .mole-image {
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   z-index: 999999999;
   cursor: pointer;
+  transition: opacity 0.5s ease;
 }
 
+.mole-image.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.mole-hit-image {
+  transition: opacity 0.5s ease;
+  /* Add other styles as needed */
+}
+
+.mole-hit-image.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mole-hit-image.show {
+  opacity: 1;
+}
+
+.mole-image.show {
+  opacity: 1;
+}
 .hammer {
-  width:60px;
-  height:60px;
-  right: -80px;
-  top: -10px;
+  width:58px;
+  height:65px;
+  right: -5px;
+  top: -2px;
   position:absolute;
   z-index: 100000000000;
-  transform: rotate(30deg);
+  transform: rotate(16deg);
   transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
 }
 
 .score {
+  margin-top: -10px;
   margin-bottom: 20px;
-  color:#F27900;
+  font-family: Play;
+  font-size: 20px;
+  font-weight: 700 !important;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: center;
+  background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
+
 .no-pointer-events {
   pointer-events: none;
 }
@@ -82,7 +115,7 @@
     opacity: 1;
   }
   to {
-    transform: translateY(100%);
+    transform: translateY(20%);
     opacity: 0;
   }
 }
@@ -91,8 +124,11 @@
   0% {
     transform: scale(1);
   }
-  50% {
-    transform: scale(1.2);
+  70% {
+    transform: scale(1);
+  }
+  85% {
+    transform: scale(1.05);
   }
   100% {
     transform: scale(1);
@@ -101,17 +137,19 @@
 
 
 .mole.appear {
-  animation: moleAppear 0.5s ease-in-out;
+  animation: moleAppear 1.3s ease-in-out;
 }
 
 .mole.disappear {
-  animation: moleDisappear 0.3s ease-in-out;
+  animation: moleDisappear 1.4s ease-in-out;
 }
 
 .mole.mole-hit {
   animation: mole-hit 1s ease-in-out;
 }
 
+.mole.mole-hit-once {
+}
 
 
 
@@ -138,4 +176,14 @@
   transition: transform 2s;
   animation-duration: 2s;
   pointer-events: none;
+}
+
+.round-close-icon {
+  position: absolute;
+  top:0px;
+  left:-30px;
+  width: 20px;
+  height: 20px;
+  padding: 6px;
+  margin-left: 10px;
 }
