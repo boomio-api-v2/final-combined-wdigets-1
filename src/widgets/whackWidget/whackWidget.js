@@ -1,7 +1,7 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
 import {
-  testHammer,
+  WhackHammer,
   WhackMole01,
   cloudImage,
   WhackMole01Reversed,
@@ -9,7 +9,7 @@ import {
 } from '@/сonstants';
 import { loadImageBeforeUsing } from '@/utlis';
 
-loadImageBeforeUsing([testHammer, WhackMole01, cloudImage, WhackMole01Reversed, WhackMoleHit]);
+loadImageBeforeUsing([WhackHammer, WhackMole01, cloudImage, WhackMole01Reversed, WhackMoleHit]);
 
 class WhackWidget {
   constructor() {
@@ -21,7 +21,7 @@ class WhackWidget {
   }
   preloadImages() {
     const imageUrlsToPreload = [
-      testHammer,
+      WhackHammer,
       WhackMole01,
       cloudImage,
       WhackMole01Reversed,
@@ -94,10 +94,12 @@ class WhackWidget {
         }
         function reverseGIF(imageElement) {
           console.log('reverse');
-          mole.classList.add('disappear');
           const src = WhackMole01Reversed;
           imageElement.src = '';
           imageElement.src = src;
+          setTimeout(function () {
+            mole.classList.add('disappear');
+          }, 200);
         }
 
         function hideMole() {
@@ -142,7 +144,7 @@ class WhackWidget {
       if (!existingHammer) {
         const hammer = document.createElement('img');
         hammer.classList.add('hammer');
-        hammer.src = testHammer;
+        hammer.src = WhackHammer;
         mole.appendChild(hammer);
         hammer.classList.remove('disappear');
         hammer.classList.remove('appear');
@@ -151,21 +153,21 @@ class WhackWidget {
 
         // Add event listeners for mouseover and mouseout events
         mole.addEventListener('mouseover', () => {
-          // console.log('mouseover');
-          // hammer.style.opacity = '1';
-          // hammer.style.display = 'block';
+          console.log('mouseover');
+          hammer.style.opacity = '1';
+          hammer.style.display = 'block';
         });
 
         let hideHammerTimeout; // Timeout variable to store the reference
 
         mole.addEventListener('mouseout', () => {
-          // hammer.style.opacity = '1';
-          // hideHammerTimeout = setTimeout(() => {
-          //   hammer.style.opacity = '0';
-          //   setTimeout(() => {
-          //     hammer.style.display = 'none';
-          //   }, 200); // Adjust the transition duration to match the CSS transition duration
-          // }, 400);
+          hammer.style.opacity = '1';
+          hideHammerTimeout = setTimeout(() => {
+            hammer.style.opacity = '0';
+            setTimeout(() => {
+              hammer.style.display = 'none';
+            }, 200); // Adjust the transition duration to match the CSS transition duration
+          }, 400);
         });
 
         // Cancel the hide timeout when mouseover occurs again
@@ -219,6 +221,9 @@ class WhackWidget {
 
     const whackMole = (event) => {
       function moleHit(imageElement) {
+        const hammer = mole.querySelector('.hammer');
+        hammer.style.display = 'none';
+
         const src = WhackMoleHit;
         imageElement.src = '';
         imageElement.src = src;
