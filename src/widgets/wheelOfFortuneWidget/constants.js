@@ -34,3 +34,11 @@ export const innerBorderGradient = [{ pct: 0, clr: "#ff9161" }, { pct: 1, clr: "
 export const shadowGradient = [{ pct: 0.81, clr: "#FFFFFF" }, { pct: 0.87, clr: "#FCFDFD" },{ pct: 0.91, clr: "#F3F5F7" },{ pct: 0.94, clr: "#E9ECF0" },{ pct: 0.97, clr: "#B9C4CF" },{ pct: 1, clr: "#899BAD" },
 ]
 
+export const wrecks = [
+  { dx: 50, dy: 100, path: 'polygon(14% 76%, 0% 100%, 100% 100%)', transition: '1s' },
+  { dx: -10, dy: - 30, path: ' polygon(14% 76%, 0 0, 0 100%)', transition: '1.5s' },
+  { dx: -50, dy: - 200, path: ' polygon(14% 76%, 0 0, 100% 0)', transition: '0.7s' },
+  { dx: 200, dy: 10, path: 'polygon(14% 76%, 100% 100%, 100% 0)', transition: '2s' },]
+
+  export const pict = "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/spinner.png?raw=true" 
+

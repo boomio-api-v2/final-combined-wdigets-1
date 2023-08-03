@@ -13,13 +13,10 @@
 
 .picture {
     position: absolute;
-    top: 250px;
-    left: 250px
-}
+    width: 350px; 
+    height: 350px;
+ }
 
-/* #wheel {
-    display: block;
-} */
 .wheel {
     display: block;
 }

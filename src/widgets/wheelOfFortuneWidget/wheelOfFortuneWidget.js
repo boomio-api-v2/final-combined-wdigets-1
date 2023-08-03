@@ -12,6 +12,8 @@ import { outerBorderGradient } from './constants';
 import { outerBorderAngle } from './constants';
 import { innerBorderGradient } from './constants';
 import { shadowGradient } from './constants';
+import { wrecks } from './constants';
+import { pict } from './constants';
 import './styles.css';
 
 class WheelOfFortuneWidget {
@@ -224,9 +226,13 @@ class WheelOfFortuneWidget {
   }
 
   createWheel = () => {
-    const pict = '    <img style="width: 350px; height: 350px; position: absolute; top: -250px; left: -250px;" src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/de58baac4e2c02cec66dba75e036642e8837517c/images/wheelOfFortuneWidget/spinTheWheel.svg"></img>'
+    // const x = window.innerWidth / 2 - 10
+    // const y = window.innerHeight / 3
+    const x = 10
+    const y = 100
 
 
+    // const pict = "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/spinner.png?raw=true"
 
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
@@ -242,29 +248,41 @@ class WheelOfFortuneWidget {
     <div class="topmark-arrow"></div>
     </div>
     `;
-
-    const pictEl = document.createElement('div');
-    pictEl.classList.add('picture')
-    pictEl.innerHTML = pict
-    wheel.appendChild(pictEl)
-    // pictEl.style.display = 'none'
-
     widgetHtmlService.container.appendChild(wheel);
-
-    // setTimeout(() => { wheel.style.display = 'none';
-    // }, 1000)
-    // setTimeout(() => { wheel.style.display = 'flex'; pictEl.style.display = 'none';}, 3000)
-    // setTimeout(() => { wheel.style.display = 'flex'; }, 1000)
+    wheel.style.display = 'none'
 
 
+    const delay = 500
+    let transition = 0
+    wrecks.forEach((w) => {
+      const current = w.transition.replace(/[^0-9 .]/g, "")
+      if (current > transition) transition = current
+    })
+    wrecks.forEach((w, i) => {
+      window['pict' + i] = document.createElement('img');
+      window['pict' + i].classList.add('picture');
+      window['pict' + i].src = pict;
+      window['pict' + i].style.left = `${x + w.dx}px`;
+      window['pict' + i].style.top = `${y + w.dy}px`;
+      window['pict' + i].style.clipPath = w.path;
+      setTimeout(() => {
+        window['pict' + i].style.transform = `translate(${-w.dx}px,${-w.dy}px)`;
+        window['pict' + i].style.transition = w.transition
+      }, delay)
+      widgetHtmlService.container.appendChild(window['pict' + i])
+    })
+    setTimeout(() => {
+      wheel.style.display = 'flex';
+      document.querySelectorAll('.picture').forEach((pic) => pic.remove())
+    }, delay + transition * 1000)
   };
 
   startAnimation = () => {
     new AnimationService({
       elem: this.wheelOfFortune,
       size: 350,
-      posx: 150,
-      posy: 150,
+      posx: 10,
+      posy: 100,
     }, true);
   };
 
