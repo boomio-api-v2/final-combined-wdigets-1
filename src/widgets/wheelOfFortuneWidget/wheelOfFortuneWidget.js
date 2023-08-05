@@ -226,14 +226,8 @@ class WheelOfFortuneWidget {
   }
 
   createWheel = () => {
-    // const x = window.innerWidth / 2 - 10
-    // const y = window.innerHeight / 3
-    const x = 10
-    const y = 100
-
-
-    // const pict = "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/spinner.png?raw=true"
-
+    const x = window.innerWidth > 560 ? 300 : 1
+    const y = 200
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
@@ -250,7 +244,6 @@ class WheelOfFortuneWidget {
     `;
     widgetHtmlService.container.appendChild(wheel);
     wheel.style.display = 'none'
-
 
     const delay = 500
     let transition = 0
@@ -278,11 +271,13 @@ class WheelOfFortuneWidget {
   };
 
   startAnimation = () => {
+    const x = window.innerWidth > 560 ? 300 : 1
+    const y = 200
     new AnimationService({
       elem: this.wheelOfFortune,
       size: 350,
-      posx: 10,
-      posy: 100,
+      posx: x,
+      posy: y,
     }, true);
   };
 
