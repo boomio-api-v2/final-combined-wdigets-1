@@ -20,6 +20,8 @@ class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
+    this.x =  window.innerWidth > 560 ? 300 : window.innerWidth > 390 ? 1 :-20
+    this.y = 200
     this.createWheel(this.number);
     this.elSpin = document.querySelector('#spin');
     this.ctx = document.getElementById('wheel').getContext`2d`;
@@ -51,19 +53,12 @@ class WheelOfFortuneWidget {
     this.config?.list?.forEach(this.drawSector);
     this.config?.list?.forEach(this.addText);
     this.wheelOfFortune = document.getElementById('wheelOfFortune');
-    // this.wheelOfFortune.style.display = 'flex';
-    // this.wheelOfFortune.style.display = 'block';
-
-    this.wheelOfFortune
     this.addCloseIconToElement(this.wheelOfFortune);
-
     new DragElement(this.wheelOfFortune);
-
     this.rotate(); // Initial rotation
     this.engine(); // Start engine!
     this.startAnimation();
   }
-
   engine = () => {
     this.frame();
     requestAnimationFrame(this.engine);
@@ -226,8 +221,8 @@ class WheelOfFortuneWidget {
   }
 
   createWheel = () => {
-    const x = window.innerWidth > 560 ? 300 : 1
-    const y = 200
+   const x = this.x
+    const y = this.y
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
@@ -258,8 +253,10 @@ class WheelOfFortuneWidget {
       window['pict' + i].style.left = `${x + w.dx}px`;
       window['pict' + i].style.top = `${y + w.dy}px`;
       window['pict' + i].style.clipPath = w.path;
+      const angle= Math.ceil(Math.random()*359)
+      window['pict' + i].style.transform = `rotate(${angle}deg)`
       setTimeout(() => {
-        window['pict' + i].style.transform = `translate(${-w.dx}px,${-w.dy}px)`;
+        window['pict' + i].style.transform = `translate(${-w.dx}px,${-w.dy}px) rotate(0deg)`;
         window['pict' + i].style.transition = w.transition
       }, delay)
       widgetHtmlService.container.appendChild(window['pict' + i])
@@ -271,8 +268,9 @@ class WheelOfFortuneWidget {
   };
 
   startAnimation = () => {
-    const x = window.innerWidth > 560 ? 300 : 1
-    const y = 200
+    const x = this.x
+    const y = this.y
+    // true stands for no animation 
     new AnimationService({
       elem: this.wheelOfFortune,
       size: 350,

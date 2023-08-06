@@ -19,11 +19,11 @@ export default class AnimationService {
 		parent = widgetHtmlService.container,
 		elem = document.createElement('div'),
 		styles = {},
-	} = defaultProps, fromWrecks) {
+	} = defaultProps, noAnimation) {
 
-		this.fromWrecks = fromWrecks === undefined ? false : fromWrecks;
+		this.noAnimation = noAnimation === undefined ? false : noAnimation;
 		let animation 
-		fromWrecks?  animation =14 :  { animation } = localStorageService.config;
+		noAnimation?  animation =14 :  { animation } = localStorageService.config;
 		const { clientWidth, clientHeight } = document.documentElement;
 		this.posx = isNaN(posx) ? getPosition(clientWidth) : posx;
 		this.posy = isNaN(posy) ? getPosition(clientHeight) : posy;
@@ -181,7 +181,7 @@ parent.appendChild(elem)
 			animate('tada'),
 			animate('lightSpeedInLeft'),
 			animate('rollIn'),
-			animate('fromWrecks'),
+			animate('noAnimation'),
 		];
 
 		return animArr[nr - 1];
