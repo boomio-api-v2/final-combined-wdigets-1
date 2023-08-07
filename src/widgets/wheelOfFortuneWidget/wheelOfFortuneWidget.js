@@ -13,16 +13,17 @@ import { outerBorderAngle } from './constants';
 import { innerBorderGradient } from './constants';
 import { shadowGradient } from './constants';
 import { wrecks } from './constants';
-import { pict } from './constants';
+import { pictS } from './constants';
+import { pictL } from './constants';
 import './styles.css';
 
 class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
-    this.x = window.innerWidth > 560 ? 300 : window.innerWidth > 390 ? 1 : -20
+    this.x = window.matchMedia("(min-width: 560px)").matches ? 300 : window.matchMedia("(min-width: 390px)").matches ? 1 : -20
     this.y = 200
-    this.size = window.innerWidth > 560 ? 450 : 350
+    this.size = window.matchMedia("(min-width: 560px)").matches ? 450 : 350
     this.createWheel();
     this.elSpin = document.querySelector('#spin');
     this.ctx = document.getElementById('wheel').getContext`2d`;
@@ -239,20 +240,21 @@ class WheelOfFortuneWidget {
     this.ctx.restore();
   }
 
-  showWidth = () => {
-    console.log('window.innerWidth ===', window.innerWidth);
-  }
+
 
   createWheel = () => {
-    console.log('create wheel', this.size)
+    let pict
+    this.size === 350 ? pict = pictS : pict = pictL
     const x = this.x
-    const y = this.y
+    const y = this.y+document.documentElement.scrollTop
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     wheel.classList.add('wheelOfFortune');
     wheel.style.display = 'flex';
-
+    wheel.style.position = 'absolute'
+    wheel.style.left = `${x}px`
+    wheel.style.top = `${y}px`
     wheel.innerHTML = `<div>
     <canvas id="wheel" class="wheel" width="${this.size}" height="${this.size}">
     </canvas><div class="spin-border-wrap">
@@ -263,7 +265,6 @@ class WheelOfFortuneWidget {
     `;
     widgetHtmlService.container.appendChild(wheel);
     wheel.style.display = 'none'
-
     const delay = 100
     let transition = 0
     wrecks.forEach((w) => {
@@ -283,7 +284,7 @@ class WheelOfFortuneWidget {
         window['pict' + i].style.transform = `translate(${-w.dx}px,${-w.dy}px) rotate(0deg)`;
         window['pict' + i].style.transition = w.transition
       }, delay)
-      widgetHtmlService.container.appendChild(window['pict' + i])
+    widgetHtmlService.container.appendChild(window['pict' + i])
     })
     setTimeout(() => {
       wheel.style.display = 'flex';
@@ -293,8 +294,7 @@ class WheelOfFortuneWidget {
 
   startAnimation = () => {
     const x = this.x
-    const y = this.y
-    console.log('start anim', this.size)
+    const y = this.y+document.documentElement.scrollTop
     // true stands for no animation 
     new AnimationService({
       elem: this.wheelOfFortune,

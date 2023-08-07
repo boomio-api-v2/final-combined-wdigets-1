@@ -65,5 +65,7 @@ export const wrecks = [
   { dx: -200, dy: 600, path: 'polygon(50% 0, 100% 0, 100% 19%, 79% 22%)', transition: '1s' },
 ]
 
-export const pict = "https://github.com/Remigijus66/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/spinnerL.png?raw=true"
+export const pictL = "https://github.com/Remigijus66/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/spinnerL.png?raw=true"
+
+export const pictS = "https://github.com/Remigijus66/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/spinnerS.png?raw=true"
 
