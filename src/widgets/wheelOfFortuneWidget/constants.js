@@ -5,7 +5,7 @@ export const defaultList = [
   },
   {
     color: [{ pct: 0.1340, clr: "#D80056" }, { pct: 0.4630, clr: "#FF5C9D" }],
-    label: '10 % OFF',
+    label: '20 % OFF',
   },
   {
     color: [{ pct: 0.1344, clr: "#743DFF" }, { pct: 0.4929, clr: "#8F62FF" }],

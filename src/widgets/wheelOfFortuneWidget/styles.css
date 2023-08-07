@@ -69,7 +69,7 @@
     left: 48%;
     top: 1px;
     width: 16px;
-    height: 35px;
+    height: 40px;
     background: linear-gradient(180deg, #FF9161 0%, #F4AB22 48.44%, #FEDC32 100%);
     z-index: 1;
 
@@ -78,7 +78,7 @@
 .topmark-arrow {
     position: absolute;
     left: 48%;
-    top: 35px;
+    top: 42px;
     width: 16px;
     height: 20px;
     background: linear-gradient(180deg, #FEDC32 0%, #FEDC32 48.44%, #FEDC32 100%);
@@ -93,3 +93,34 @@
     padding: 6px;
     margin-left: 10px;
 }
+
+@media screen and (min-width:560px) {
+    .picture {
+        width: 450px; 
+        height: 450px;
+     }
+    .spin-border-wrap {
+        top: 198px;
+        left: 198px;
+        width:58px;
+        height: 58px;
+    }
+    .spin {
+        font: 0.9rem/0 sans-serif;
+        width: 50px;
+        height: 50px;
+        top: 3px;
+        left: 3px;
+    }
+    .topmark-box {
+        width: 22px;
+        height: 47px;
+    }
+    .topmark-arrow {
+        top: 47px;
+        width: 22px;
+        height: 30px;
+        }
+
+
+  }
