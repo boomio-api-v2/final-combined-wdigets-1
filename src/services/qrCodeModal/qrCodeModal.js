@@ -4,6 +4,7 @@ import { assignStyleOnElement } from '@/utlis';
 import { closeImage, dotImage, oldCouponImage, winningAnimationGif } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
+import { isMobileDevice } from '@/config';
 
 const likeBtnImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/like.svg';
@@ -19,14 +20,16 @@ export default class {
   }
 
   showQrCode = () => {
-    this.showQRDesktop();
-    this.showSpinner();
     this.loadQrCodeData();
+    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
+
+    this.showSpinner();
   };
 
   showSpinner = () => {
+    this.loading = true;
+
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
-    qrcodeShowDiv.style.display = 'none';
     const spinnerDiv = document.querySelector('#qr_loader_spinner .spinner');
     if (spinnerDiv) {
       spinnerDiv.classList.add('show');
@@ -35,7 +38,6 @@ export default class {
 
   hideSpinner = () => {
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
-    qrcodeShowDiv.style.display = 'block';
     const element = document.getElementById('qr_loader_spinner');
     if (element) {
       element.remove();
@@ -49,16 +51,50 @@ export default class {
   async loadQrCodeData() {
     try {
       this.loading = true;
-      this.updateConfigData();
       await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal');
+      this.updateConfigData();
+
       this.showFinalData(); // Show the final data after the request is finished
     } catch (error) {
       console.error(error);
       // Handle error if necessary
     }
   }
+  mobilePaper() {
+    const coupon = document.getElementById('coupon_div');
+    coupon.style.display = 'block';
+  }
 
   showFinalData() {
+    {
+      isMobileDevice
+        ? this.mobilePaper()
+        : new QRCode('qrcodeShowHtml', {
+            text: this.config.app_url,
+            width: isMobileDevice ? 150 : 100,
+            height: isMobileDevice ? 150 : 100,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H,
+          });
+    }
+
+    this.insideShowFinalDataHTML = `
+    <a href=${this.config.app_url}>
+      <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
+        <img src="${dotImage}" alt="img not find">
+        <div class="text-wrapper">
+          <p style="font-size: 10px; line-height: initial;text-align:start;" id='p_button_text_line1'>${this.config.p_button_text_line1}</p>
+          <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${this.config.p_button_text_line2}</p>
+        </div>
+      </div>
+    </a>
+  `;
+
+    const buttonMobileElement = document.getElementById('buttonMobile');
+    if (buttonMobileElement) {
+      buttonMobileElement.innerHTML = this.insideShowFinalDataHTML;
+    }
     this.hideSpinner();
 
     this.loading = false;
@@ -255,7 +291,7 @@ export default class {
   };
 
   getCouponHtml = () => {
-    if (this.config.widget_Type === 'ice') {
+    if (this.config.app_url === 'ice') {
       return QrCodeModal.getGreyCoupon();
     }
     return `
@@ -296,14 +332,6 @@ export default class {
     <div class="spinner"></div>
   </div>
     `;
-    new QRCode('qrcodeShowHtml', {
-      text: this.config.qrcode,
-      width: 100,
-      height: 100,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H,
-    });
 
     document.getElementById('close-modal-btn').onclick = () => {
       this.modalBackground.remove();
@@ -313,7 +341,7 @@ export default class {
 
   showQRCodeMobile = () => {
     this.createModalWindow(272, 442);
-    const { qrcode } = localStorageService.config;
+    const { app_url } = localStorageService.config;
     const qrEl = document.createElement('div');
 
     qrEl.setAttribute('id', 'boomio--qr');
@@ -327,27 +355,19 @@ export default class {
     this.modal.appendChild(closeModalBtn);
     this.modal.append(qrEl);
 
-    new QRCode('qrcodeShowHtml', {
-      text: qrcode,
-      width: 150,
-      height: 150,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H,
-    });
     const coupon = document.getElementById('coupon_div');
     const qrcodeShow = document.getElementById('qrcodeShow');
-    qrcodeShow.style.display = 'block';
+    qrcodeShow.style.display = 'none';
     coupon.style.display = 'none';
 
-    qrcodeShow.onclick = () => {
-      coupon.style.display = 'block';
-      qrcodeShow.style.display = 'none';
-    };
-    coupon.onclick = () => {
-      qrcodeShow.style.display = 'block';
-      coupon.style.display = 'none';
-    };
+    // qrcodeShow.onclick = () => {
+    //   coupon.style.display = 'block';
+    //   qrcodeShow.style.display = 'none';
+    // };
+    // coupon.onclick = () => {
+    //   qrcodeShow.style.display = 'block';
+    //   coupon.style.display = 'none';
+    // };
   };
 
   createModalWindow = (width = 300, height = 442) => {
@@ -384,6 +404,9 @@ export default class {
                 <div id='qrcodeShow' style="display:none">
                     <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
                 </div>
+                <div id='qr_loader_spinner'>
+                <div class="spinner"></div>
+              </div>
                 ${this.getCouponHtml()}
             </div>
             <div style='font-size:14px;'>
@@ -393,22 +416,10 @@ export default class {
                     this.config.p_bottom_text_end_m
                   }</p>
                 </p></div>
-                            <div class="coupon_preview_card_footer">
+                            <div class="coupon_preview_card_footer" style='width:200px;'>
     
-                <a href=${this.config.app_url}>
-                <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
-                    <img src="${dotImage}" alt="img not find">               
-                      <div class="text-wrapper" >                   
-                        <p style="font-size: 10px; line-height: initial;" id='p_button_text_line1'>${
-                          this.config.p_button_text_line1
-                        }</p>
-                        <p style="font-size: 14px; line-height: initial;" id='p_button_text_line2'>${
-                          this.config.p_button_text_line2
-                        }</p>
-                      </div>
+                <div id='buttonMobile' >
                 </div>
-                </a>
-        
             </div>
         </div>
     </div>`;
