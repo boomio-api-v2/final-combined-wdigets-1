@@ -240,7 +240,7 @@ class WheelOfFortuneWidget {
     widgetHtmlService.container.appendChild(wheel);
     wheel.style.display = 'none'
 
-    const delay = 500
+    const delay = 100
     let transition = 0
     wrecks.forEach((w) => {
       const current = w.transition.replace(/[^0-9 .]/g, "")
