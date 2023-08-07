@@ -2,51 +2,52 @@ import { localStorageService, widgetHtmlService } from '@/services';
 import { getRandomArbitrary, addStylesToHtml, assignStyleOnElement } from '@/utlis';
 
 const defaultProps = {
-  posx: 0,
-  posy: 0,
-  size: 100,
-  parent: widgetHtmlService.container,
-  styles: {},
+	posx: 0,
+	posy: 0,
+	size: 100,
+	parent: widgetHtmlService.container,
+	styles: {},
 };
 
 const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed(), 10);
 
 export default class AnimationService {
-  constructor({
-    posx,
-    posy,
-    size = 100,
-    parent = widgetHtmlService.container,
-    elem = document.createElement('div'),
-    styles = {},
-  } = defaultProps) {
-    const { animation } = localStorageService.config;
+	constructor({
+		posx,
+		posy,
+		size = 100,
+		parent = widgetHtmlService.container,
+		elem = document.createElement('div'),
+		styles = {},
+	} = defaultProps, noAnimation) {
 
-    const { clientWidth, clientHeight } = document.documentElement;
+		this.noAnimation = noAnimation === undefined ? false : noAnimation;
+		let animation 
+		noAnimation?  animation =14 :  { animation } = localStorageService.config;
+		const { clientWidth, clientHeight } = document.documentElement;
+		this.posx = isNaN(posx) ? getPosition(clientWidth) : posx;
+		this.posy = isNaN(posy) ? getPosition(clientHeight) : posy;
+		 this.clearPrev();
 
-    this.posx = isNaN(posx) ? getPosition(clientWidth) : posx;
-    this.posy = isNaN(posy) ? getPosition(clientHeight) : posy;
 
-    this.clearPrev();
-    const animFunc = this.getAnimateFunction(animation);
 
-    elem.classList.add('boomio--animation__wrapper');
-    elem.classList.add('boomio--animation__wrapper--initial');
-    parent.appendChild(elem);
+		const animFunc = this.getAnimateFunction(animation);
+		elem.classList.add('boomio--animation__wrapper');
+		elem.classList.add('boomio--animation__wrapper--initial');
+parent.appendChild(elem)
+		const duration = '1000ms';
+		const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
-    const duration = '1000ms';
-    const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+		assignStyleOnElement(elem.style, styles);
 
-    assignStyleOnElement(elem.style, styles);
+		const initialPosition = {
+			x: elem.clientWidth + parseInt(this.posy, 10),
+			nx: -1 * (elem.clientWidth + parseInt(this.posy, 10)),
+			y: elem.clientHeight + parseInt(this.posx, 10),
+			ny: -1 * (elem.clientHeight + parseInt(this.posx, 10)),
+		};
 
-    const initialPosition = {
-      x: elem.clientWidth + parseInt(this.posy, 10),
-      nx: -1 * (elem.clientWidth + parseInt(this.posy, 10)),
-      y: elem.clientHeight + parseInt(this.posx, 10),
-      ny: -1 * (elem.clientHeight + parseInt(this.posx, 10)),
-    };
-
-    const css = `
+		const css = `
 		.boomio--animation__wrapper {
 			text-align: center;
 			position: fixed;
@@ -152,35 +153,37 @@ export default class AnimationService {
 		}
 		`;
 
-    addStylesToHtml(css);
-    animFunc(elem);
-    this.animationEl = elem;
-  }
+		addStylesToHtml(css);
+		animFunc(elem);
+		this.animationEl = elem;
+	}
 
-  clearPrev() {
-    document.getElementById('boomio--stylesheet')?.remove();
-  }
+	clearPrev() {
+		document.getElementById('boomio--stylesheet')?.remove();
+	}
 
-  getAnimateFunction = (nr) => {
-    const animate = (animation) => (el) => {
-      el.classList.add(`boomio--animation--${animation}`);
-    };
-    const animArr = [
-      animate('moveRight'),
-      animate('moveLeft'),
-      animate('moveDown'),
-      animate('moveUp'),
-      animate('fadeIn'),
-      animate('moveDiagonalDown'),
-      animate('rotateRight'),
-      animate('zoomIn'),
-      animate('skewLeft'),
-      animate('moveDiagonalUp'),
-      animate('tada'),
-      animate('lightSpeedInLeft'),
-      animate('rollIn'),
-    ];
 
-    return animArr[nr - 1];
-  };
+	getAnimateFunction = (nr) => {
+				const animate = (animation) => (el) => {
+			el.classList.add(`boomio--animation--${animation}`);
+			};
+		const animArr = [
+			animate('moveRight'),
+			animate('moveLeft'),
+			animate('moveDown'),
+			animate('moveUp'),
+			animate('fadeIn'),
+			animate('moveDiagonalDown'),
+			animate('rotateRight'),
+			animate('zoomIn'),
+			animate('skewLeft'),
+			animate('moveDiagonalUp'),
+			animate('tada'),
+			animate('lightSpeedInLeft'),
+			animate('rollIn'),
+			animate('noAnimation'),
+		];
+
+		return animArr[nr - 1];
+	};
 }

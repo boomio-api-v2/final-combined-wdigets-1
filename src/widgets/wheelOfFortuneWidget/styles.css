@@ -1,16 +1,28 @@
-#wheelOfFortune {
+/* #wheelOfFortune {
+    display: inline-flex;
+    position: fixed;
+    overflow: initial;
+    z-index: 9999999999;
+} */
+.wheelOfFortune {
     display: inline-flex;
     position: fixed;
     overflow: initial;
     z-index: 9999999999;
 }
 
-#wheel {
+.picture {
+    position: absolute;
+    width: 350px; 
+    height: 350px;
+ }
+
+.wheel {
     display: block;
 }
 
 
-#spin {
+/* #spin {
     font: 0.9rem/0 sans-serif;
     cursor: pointer;
     display: flex;
@@ -24,14 +36,29 @@
     top: 2px;
     left: 2px;
     z-index: 1;
+} */
+.spin {
+    font: 0.8rem/0 sans-serif;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 39px;
+    height: 39px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 1;
 }
 
 .spin-border-wrap {
     position: absolute;
-    top: 145px;
-    left: 145px;
-    width: 60px;
-    height: 60px;
+    top: 154px;
+    left: 154px;
+    width: 44px;
+    height: 44px;
     background: linear-gradient(0deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
     border-radius: 50%;
     z-index: 1;
@@ -41,8 +68,8 @@
     position: absolute;
     left: 48%;
     top: 1px;
-    width: 4%;
-    height: 30px;
+    width: 16px;
+    height: 35px;
     background: linear-gradient(180deg, #FF9161 0%, #F4AB22 48.44%, #FEDC32 100%);
     z-index: 1;
 
@@ -51,9 +78,9 @@
 .topmark-arrow {
     position: absolute;
     left: 48%;
-    top: 31px;
-    width: 4%;
-    height: 34px;
+    top: 35px;
+    width: 16px;
+    height: 20px;
     background: linear-gradient(180deg, #FEDC32 0%, #FEDC32 48.44%, #FEDC32 100%);
     z-index: 1;
     clip-path: polygon(100% 0%, 50% 30%, 0% 0%);

@@ -34,3 +34,36 @@ export const innerBorderGradient = [{ pct: 0, clr: "#ff9161" }, { pct: 1, clr: "
 export const shadowGradient = [{ pct: 0.81, clr: "#FFFFFF" }, { pct: 0.87, clr: "#FCFDFD" },{ pct: 0.91, clr: "#F3F5F7" },{ pct: 0.94, clr: "#E9ECF0" },{ pct: 0.97, clr: "#B9C4CF" },{ pct: 1, clr: "#899BAD" },
 ]
 
+export const wrecks = [
+  { dx: 50, dy: 100, path: 'polygon(50% 0%, 79% 22%, 59% 66%, 26% 80%, 68% 33%)', transition: '1s' },
+  { dx: -10, dy: - 30, path: 'polygon(50% 0%, 39% 0, 19% 44%)', transition: '1s' },
+  { dx: -20, dy: - 30, path: 'polygon(28% 0, 39% 0, 19% 44%)', transition: '1.5s' },
+  { dx: -30, dy: -20, path: 'polygon(28% 0, 16% 0, 19% 44%)', transition: '0.2s' },
+  { dx: -15, dy: 0, path: 'polygon(0 0, 16% 0, 19% 44%)', transition: '2s' },
+  { dx: -60, dy: 60, path: 'polygon(0 0, 0 14%, 19% 44%)', transition: '0.3s' },
+  { dx: -90, dy: 10, path: 'polygon(0 25%, 0 14%, 19% 44%)', transition: '1.7s' },
+  { dx: -100, dy: 100, path: 'polygon(0 25%, 0 40%, 19% 44%)', transition: '0.5s' },
+  { dx: 0, dy: 180, path: 'polygon(0 47%, 0 40%, 19% 44%)', transition: '2s' },
+  { dx: 5, dy: 200, path: 'polygon(0 47%, 0 64%, 19% 44%)', transition: '0.7s' },
+  { dx: 10, dy: 80, path: 'polygon(0 71%, 0 64%, 19% 44%)', transition: '1.5s' },
+  { dx: 50, dy: 0, path: 'polygon(50% 0, 59% 17%, 13% 75%, 0 71%)', transition: '1.5s' },
+  { dx: -30, dy: -10, path: 'polygon(13% 75%, 47% 32%, 28% 80%)', transition: '0.6s' },
+  { dx: -40, dy: -10, path: 'polygon(47% 32%, 59% 17%, 50% 54%, 28% 80%)', transition: '1.8s' },
+  { dx: 70, dy: -10, path: 'polygon(59% 17%, 68% 33%, 50% 54%)', transition: '1s' },
+  { dx: -50, dy: - 200, path: 'polygon(0 100%, 21% 100%, 28% 80%, 0 71%)', transition: '2s' },
+  { dx: -50, dy: - 180, path: 'polygon(28% 80%, 59% 66%, 67% 74%, 25% 90%)', transition: '0.7s' },
+  { dx: 30, dy: - 100, path: 'polygon(25% 90%, 67% 74%,  21% 100% )', transition: '2s' },
+  { dx: 45, dy: 0, path: 'polygon(39% 90% , 67% 74%,80% 88%)', transition: '0.7s' },
+  { dx: 0, dy: 30, path: 'polygon( 21% 100%, 39% 90%, 80% 88%, 91% 100%)', transition: '1.7s' },
+  { dx: 130, dy: -70, path: 'polygon(79% 22%, 100% 19%, 100% 25%, 75% 31%)', transition: '2s' },
+  { dx: 100, dy: 10, path: 'polygon(100% 25%, 75% 31%,70% 42%, 100% 39% )', transition: '0.3s' },
+  { dx: 10, dy: 10, path: 'polygon(70% 42%, 100% 39%,100% 61%, 63% 57%)', transition: '2s' },
+  { dx: -30, dy: -90, path: 'polygon( 59% 66%,100% 61%, 63% 57%)', transition: '1s' },
+  { dx: -60, dy: 70, path: 'polygon(59% 66%, 100% 61%, 100% 71%)', transition: '0.7s' },
+  { dx: 0, dy: -100, path: 'polygon(59% 66%,  100% 71%, 100% 84%)', transition: '2s' },
+  { dx: 200, dy: 10, path: 'polygon(59% 66%,   100% 84%, 100% 100%, 91% 100%)', transition: '0.3s' },
+  { dx: 150, dy: -30, path: 'polygon(50% 0, 100% 0, 100% 19%, 79% 22%)', transition: '1s' }, 
+]
+
+  export const pict = "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/wheel-of-fortune-design/images/wheelOfFortuneWidget/spinner.png?raw=true" 
+
