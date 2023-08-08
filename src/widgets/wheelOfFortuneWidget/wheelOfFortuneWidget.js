@@ -13,16 +13,18 @@ import { outerBorderAngle } from './constants';
 import { innerBorderGradient } from './constants';
 import { shadowGradient } from './constants';
 import { wrecks } from './constants';
-import { pict } from './constants';
+import { pictS } from './constants';
+import { pictL } from './constants';
 import './styles.css';
 
 class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
-    this.x =  window.innerWidth > 560 ? 300 : window.innerWidth > 390 ? 1 :-20
+    this.x = window.matchMedia("(min-width: 560px)").matches ? 300 : window.matchMedia("(min-width: 390px)").matches ? 1 : -20
     this.y = 200
-    this.createWheel(this.number);
+    this.size = window.matchMedia("(min-width: 560px)").matches ? 450 : 350
+    this.createWheel();
     this.elSpin = document.querySelector('#spin');
     this.ctx = document.getElementById('wheel').getContext`2d`;
     // this.config.list = this?.config?.list ?? defaultList;
@@ -149,7 +151,11 @@ class WheelOfFortuneWidget {
 
     this.ctx.beginPath() // black circle
     this.ctx.fillStyle = 'black'
-    this.ctx.arc(this.rad, this.rad, this.rad - 2, 0, 2 * this.PI)
+    if (this.size === 350) {
+      this.ctx.arc(this.rad, this.rad, this.rad - 2, 0, 2 * this.PI)
+    } else {
+      this.ctx.arc(this.rad, this.rad, this.rad - 3, 0, 2 * this.PI)
+    }
     this.ctx.moveTo(this.rad, this.rad)
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
@@ -164,7 +170,11 @@ class WheelOfFortuneWidget {
     innerBorderGradient.forEach((st) => grd.addColorStop(st.pct, st.clr))
     this.ctx.fillStyle = grd
     // this.ctx.arc(this.rad, this.rad, this.rad - 18, 0, 2 * this.PI)
-    this.ctx.arc(this.rad, this.rad, this.rad - 23, 0, 2 * this.PI)
+    if (this.size === 350) {
+      this.ctx.arc(this.rad, this.rad, this.rad - 23, 0, 2 * this.PI)
+    } else {
+      this.ctx.arc(this.rad, this.rad, this.rad - 32, 0, 2 * this.PI)
+    }
     this.ctx.moveTo(this.rad, this.rad)
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
@@ -172,36 +182,40 @@ class WheelOfFortuneWidget {
     this.ctx.beginPath() // white circle
     this.ctx.fillStyle = 'white'
     // this.ctx.arc(this.rad, this.rad, this.rad - 20, 0, 2 * this.PI)
-    this.ctx.arc(this.rad, this.rad, this.rad - 26, 0, 2 * this.PI)
+    if (this.size === 350) {
+      this.ctx.arc(this.rad, this.rad, this.rad - 26, 0, 2 * this.PI)
+    } else {
+      this.ctx.arc(this.rad, this.rad, this.rad - 36, 0, 2 * this.PI)
+    }
     this.ctx.moveTo(this.rad, this.rad)
     this.ctx.lineTo(this.rad, this.rad)
     this.ctx.fill()
   }
 
   drawSector = (sector, i) => {
+    let outerCircle
+    if (this.size === 350) { outerCircle = 26 } else { outerCircle = 36 }
     const ang = this.arc * i - this.arc / 2;
     this.ctx.save();
     this.ctx.globalCompositeOperation = 'multiply'
     this.ctx.beginPath();
-    const grdShadow = this.ctx.createRadialGradient(this.rad, this.rad, 0, this.rad, this.rad, this.rad);
+    let grdShadow
+    grdShadow = this.ctx.createRadialGradient(this.rad, this.rad, 0, this.rad, this.rad, this.rad - outerCircle);
     shadowGradient.forEach((st) => grdShadow.addColorStop(st.pct, st.clr));
     this.ctx.fillStyle = grdShadow;
     this.ctx.moveTo(this.rad, this.rad);
-    // this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
-    this.ctx.arc(this.rad, this.rad, this.rad - 26, ang, ang + this.arc);
+    this.ctx.arc(this.rad, this.rad, this.rad - outerCircle, ang, ang + this.arc);
     this.ctx.closePath();
     this.ctx.fill();
-
     this.ctx.beginPath();
     const gx = this.rad * Math.cos(ang + this.PI + this.arc / 2);
     const gy = this.rad * Math.sin(ang + this.PI + this.arc / 2);
     const grd = this.ctx.createLinearGradient(this.rad - gx, this.rad - gy, this.rad, this.rad);
     sector.color.forEach((st) => grd.addColorStop(st.pct, st.clr))
     this.ctx.fillStyle = grd;
-
     this.ctx.moveTo(this.rad, this.rad);
     // this.ctx.arc(this.rad, this.rad, this.rad - 20, ang, ang + this.arc);
-    this.ctx.arc(this.rad, this.rad, this.rad - 26, ang, ang + this.arc);
+    this.ctx.arc(this.rad, this.rad, this.rad - outerCircle, ang, ang + this.arc);
     this.ctx.lineTo(this.rad, this.rad);
     this.ctx.closePath();
     this.ctx.fill();
@@ -214,23 +228,35 @@ class WheelOfFortuneWidget {
     this.ctx.rotate(ang + this.arc / 2);
     this.ctx.textAlign = 'center';
     this.ctx.fillStyle = '#fff';
-    // this.ctx.font = 'bold 20px Montserrat';
-    this.ctx.font = 'bold 16px Montserrat';
-    this.ctx.fillText(sector.label, this.rad - 80, 10, 55);
+    // this.ctx.font = 'bold 16px Montserrat';
+    if (this.size === 350) {
+      this.ctx.font = 'bold 17px Montserrat';
+      // this.ctx.fillText(sector.label, this.rad - 80, 10, 55);
+      this.ctx.fillText(sector.label, this.rad - 95, 10, 75);
+    } else {
+      this.ctx.font = 'bold 20px Montserrat';
+      this.ctx.fillText(sector.label, this.rad - 120, 10, 85);
+    }
     this.ctx.restore();
   }
 
+
+
   createWheel = () => {
-   const x = this.x
-    const y = this.y
+    let pict
+    this.size === 350 ? pict = pictS : pict = pictL
+    const x = this.x
+    const y = this.y+document.documentElement.scrollTop
     const wheel = document.createElement('div');
     wheel.setAttribute('id', 'wheelOfFortune');
     wheel.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     wheel.classList.add('wheelOfFortune');
     wheel.style.display = 'flex';
-
+    wheel.style.position = 'absolute'
+    wheel.style.left = `${x}px`
+    wheel.style.top = `${y}px`
     wheel.innerHTML = `<div>
-    <canvas id="wheel" class="wheel" width="350" height="350">
+    <canvas id="wheel" class="wheel" width="${this.size}" height="${this.size}">
     </canvas><div class="spin-border-wrap">
     <div id="spin" class="spin"></div></div>
     <div class="topmark-box"></div>
@@ -239,7 +265,6 @@ class WheelOfFortuneWidget {
     `;
     widgetHtmlService.container.appendChild(wheel);
     wheel.style.display = 'none'
-
     const delay = 100
     let transition = 0
     wrecks.forEach((w) => {
@@ -253,13 +278,13 @@ class WheelOfFortuneWidget {
       window['pict' + i].style.left = `${x + w.dx}px`;
       window['pict' + i].style.top = `${y + w.dy}px`;
       window['pict' + i].style.clipPath = w.path;
-      const angle= Math.ceil(Math.random()*359)
+      const angle = Math.ceil(Math.random() * 359)
       window['pict' + i].style.transform = `rotate(${angle}deg)`
       setTimeout(() => {
         window['pict' + i].style.transform = `translate(${-w.dx}px,${-w.dy}px) rotate(0deg)`;
         window['pict' + i].style.transition = w.transition
       }, delay)
-      widgetHtmlService.container.appendChild(window['pict' + i])
+    widgetHtmlService.container.appendChild(window['pict' + i])
     })
     setTimeout(() => {
       wheel.style.display = 'flex';
@@ -269,11 +294,11 @@ class WheelOfFortuneWidget {
 
   startAnimation = () => {
     const x = this.x
-    const y = this.y
+    const y = this.y+document.documentElement.scrollTop
     // true stands for no animation 
     new AnimationService({
       elem: this.wheelOfFortune,
-      size: 350,
+      size: this.size,
       posx: x,
       posy: y,
     }, true);
