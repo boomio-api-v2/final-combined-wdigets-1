@@ -43,20 +43,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 39px;
-    height: 39px;
+    width: 40px;
+    height: 40px;
     background: black;
     border-radius: 50%;
     position: absolute;
     top: 2px;
     left: 2px;
     z-index: 1;
+    text-shadow: -2px 0px 0px #FE4100;
 }
 
 .spin-border-wrap {
     position: absolute;
-    top: 154px;
-    left: 154px;
+    top: 153px;
+    left: 153px;
     width: 44px;
     height: 44px;
     background: linear-gradient(0deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);

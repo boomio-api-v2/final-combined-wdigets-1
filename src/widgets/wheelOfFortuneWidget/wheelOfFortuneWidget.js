@@ -226,12 +226,23 @@ class WheelOfFortuneWidget {
     this.ctx.save();
     this.ctx.translate(this.rad, this.rad);
     this.ctx.rotate(ang + this.arc / 2);
+    //shadow
     this.ctx.textAlign = 'center';
-    this.ctx.fillStyle = '#fff';
-    // this.ctx.font = 'bold 16px Montserrat';
+    this.ctx.fillStyle = '#FE4100';
+   
     if (this.size === 350) {
       this.ctx.font = 'bold 17px Montserrat';
-      // this.ctx.fillText(sector.label, this.rad - 80, 10, 55);
+      this.ctx.fillText(sector.label, this.rad - 97, 10, 75);
+    } else {
+      this.ctx.font = 'bold 20px Montserrat';
+      this.ctx.fillText(sector.label, this.rad - 122, 10, 85);
+    }
+//text
+    this.ctx.textAlign = 'center';
+    this.ctx.fillStyle = '#fff';
+   
+    if (this.size === 350) {
+      this.ctx.font = 'bold 17px Montserrat';
       this.ctx.fillText(sector.label, this.rad - 95, 10, 75);
     } else {
       this.ctx.font = 'bold 20px Montserrat';
