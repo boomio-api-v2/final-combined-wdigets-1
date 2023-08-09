@@ -13,9 +13,10 @@
 
 .picture {
     position: absolute;
-    width: 350px; 
+    width: 350px;
     height: 350px;
- }
+    z-index: 9999999999;
+}
 
 .wheel {
     display: block;
@@ -38,7 +39,7 @@
     z-index: 1;
 } */
 .spin {
-    font: 0.8rem/0 sans-serif;
+    /* font: 0.8rem/0 sans-serif; */
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -51,7 +52,8 @@
     top: 2px;
     left: 2px;
     z-index: 1;
-    text-shadow: -2px 0px 0px #FE4100;
+    text-shadow: -1px 0px 0px #FE4100;
+    font-size: 12px !important;
 }
 
 .spin-border-wrap {
@@ -89,39 +91,44 @@
 }
 
 .round-close-icon {
-    width: 40px;
+    /* width: 40px;
     height: 40px;
-    padding: 6px;
+    padding: 6px; */
     margin-left: 10px;
 }
 
 @media screen and (min-width:560px) {
     .picture {
-        width: 450px; 
+        width: 450px;
         height: 450px;
-     }
+    }
+
     .spin-border-wrap {
         top: 198px;
         left: 198px;
-        width:58px;
+        width: 58px;
         height: 58px;
     }
+
     .spin {
-        font: 0.9rem/0 sans-serif;
+        /* font: 0.9rem/0 sans-serif; */
         width: 50px;
         height: 50px;
-        top: 3px;
-        left: 3px;
+        top: 4px;
+        left: 4px;
+        font-size: 15px !important;
     }
+
     .topmark-box {
         width: 22px;
         height: 47px;
     }
+
     .topmark-arrow {
         top: 47px;
         width: 22px;
         height: 30px;
-        }
+    }
 
 
-  }
+}
