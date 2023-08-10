@@ -47,7 +47,7 @@ export const wrecks = [
   { dx: 1800, dy: 300, path: 'polygon(0 47%, 0 64%, 19% 44%)', transition: '0.7s' },
   { dx: 1500, dy: 400, path: 'polygon(0 71%, 0 64%, 19% 44%)', transition: '1.5s' },
   { dx: 1600, dy: 0, path: 'polygon(50% 0, 59% 17%, 13% 75%, 0 71%)', transition: '1.5s' },
-  { dx: -200, dy:700, path: 'polygon(13% 75%, 47% 32%, 28% 80%)', transition: '0.6s' },
+  { dx: -200, dy: 700, path: 'polygon(13% 75%, 47% 32%, 28% 80%)', transition: '0.6s' },
   { dx: -100, dy: 200, path: 'polygon(47% 32%, 59% 17%, 50% 54%, 28% 80%)', transition: '1.8s' },
   { dx: 1900, dy: 50, path: 'polygon(59% 17%, 68% 33%, 50% 54%)', transition: '1s' },
   { dx: 1400, dy: - 50, path: 'polygon(0 100%, 21% 100%, 28% 80%, 0 71%)', transition: '2s' },
@@ -57,7 +57,7 @@ export const wrecks = [
   { dx: 1400, dy: 600, path: 'polygon( 21% 100%, 39% 90%, 80% 88%, 91% 100%)', transition: '1.7s' },
   { dx: 2000, dy: -70, path: 'polygon(79% 22%, 100% 19%, 100% 25%, 75% 31%)', transition: '2s' },
   { dx: 1200, dy: 700, path: 'polygon(100% 25%, 75% 31%,70% 42%, 100% 39% )', transition: '0.3s' },
-  { dx: 900, dy:400, path: 'polygon(70% 42%, 100% 39%,100% 61%, 63% 57%)', transition: '2s' },
+  { dx: 900, dy: 400, path: 'polygon(70% 42%, 100% 39%,100% 61%, 63% 57%)', transition: '2s' },
   { dx: 1600, dy: -90, path: 'polygon( 59% 66%,100% 61%, 63% 57%)', transition: '1s' },
   { dx: 600, dy: 300, path: 'polygon(59% 66%, 100% 61%, 100% 71%)', transition: '0.7s' },
   { dx: 1300, dy: 650, path: 'polygon(59% 66%,  100% 71%, 100% 84%)', transition: '2s' },
@@ -65,7 +65,7 @@ export const wrecks = [
   { dx: -200, dy: 600, path: 'polygon(50% 0, 100% 0, 100% 19%, 79% 22%)', transition: '1s' },
 ]
 
-export const pictL = "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/wheelOfFortuneWidget/spinnerL.png?raw=true"
+export const pictL = "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix-wheel-z-index/images/wheelOfFortuneWidget/spinnerL.png?raw=true"
 
-export const pictS = "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/wheelOfFortuneWidget/spinnerS.png?raw=true"
+export const pictS = "https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix-wheel-z-index/images/wheelOfFortuneWidget/spinnerS.png?raw=true"
 
