@@ -17,11 +17,15 @@ export const frameSvg =
 export const WhackHammer =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/WhackHammer.png?raw=true';
 
+// export const WhackMole01 =
+//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/Whack-a-mole-boomio_01.gif?raw=true';
 export const WhackMole01 =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/Whack-a-mole-boomio_01.gif?raw=true';
-  
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/UP_whack_a_mole.gif?raw=true';
+
+// export const WhackMole01Reversed =
+//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/ezgif.com-reverse.gif?raw=true';
 export const WhackMole01Reversed =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/ezgif.com-reverse.gif?raw=true';
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down_whack_a_mole.gif?raw=true';
 
 export const WhackMoleHit =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/Whack-a-mole-boomio.gif?raw=true';
