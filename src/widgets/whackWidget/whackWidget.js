@@ -134,24 +134,20 @@ class WhackWidget {
 
       setTimeout(() => {
         mole.classList.remove('appear');
-      }, 700); //interval between apperances
+      }, 700); //1300
       createHammer();
     };
 
     const reverseGIF = (imageElement, whacked) => {
-      debugger
-      // console.log('1', imageElement,  whacked)
       const mole = document.querySelector('.mole');
       if (!mole.classList.contains('mole-hit-once')) {
         mole.classList.add('disappear');
         const src = WhackMole01Reversed;
         if (whacked) {
           mole.classList.add('mole-hit-once');
-          // console.log('2', imageElement,  whacked, mole.classList)
         }
         imageElement.classList.add('hide');
         imageElement.src = src;
-        // console.log('3', imageElement,  whacked, mole.classList)
 
         // To ensure smooth transition, we use setTimeout to toggle classes after a small delay
         setTimeout(() => {
@@ -164,7 +160,7 @@ class WhackWidget {
           if (whacked) {
             mole.style.display = 'none';
           }
-        }, 700); //interval between apperances
+        }, 700); //1300
       }
     };
 
@@ -201,10 +197,10 @@ class WhackWidget {
                 }, 200);
                 setTimeout(() => {
                   startMoleAnimation(nextMole);
-                }, 700); //interval between apperances
-              }, 700); //interval between apperances 
+                }, 700); //1300
+              }, 700); //1300
             }
-          }, 3000); // time waiting to be  hit
+          }, 3000); // 5000
         };
         hideMole();
       }
@@ -250,7 +246,7 @@ class WhackWidget {
     };
 
     const whackMole = (event) => {
-      // debugger
+      // console.log('event ===', event.target.classList);
       function moleHit(imageElement) {
         const mole = document.querySelector('.mole');
         mole.classList.add('mole-hit');
@@ -267,13 +263,15 @@ class WhackWidget {
         }, 1000);
       }
       const mole = document.querySelector('.mole');
+      //  debugger
       if (
-        event.target.classList.contains('mole-image') &&
+        // the following condition requires hit mole twice in order to whack 
+        // event.target.classList.contains('mole-image') &&
         !mole.classList.contains('mole-hit') &&
         !mole.classList.contains('disappear') &&
         !mole.classList.contains('appear') &&
-        this.currentMoleId === mole.id &&
-        !this.whackedMoles[mole.id]
+        this.currentMoleId === mole.id 
+        // && !this.whackedMoles[mole.id]
       ) {
         this.score++;
         document.getElementById('score-value').textContent = `${this.score}/4`; // Update the score element
