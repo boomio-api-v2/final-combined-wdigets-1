@@ -38,6 +38,7 @@ class WhackWidget {
     this.createContainer();
     this.whack = document.getElementById('whack-container');
     this.addCardEventListeners();
+    // debugger
   }
   addCloseIconToElement = (element, deleteElement) => {
     const btnContainer = document.createElement('div');
@@ -75,10 +76,11 @@ class WhackWidget {
     <img class="mole-image mole-image3" src=${WhackMoleHit} alt="Mole" style="display: none;">
     <div class="score"><span id="score-value"></span></div>
     </div>
+    <div class="score"><span id="score-value"></span></div>
+    </div>
   </div>
     `;
-
-    widgetHtmlService.container.appendChild(myCanvas);
+   widgetHtmlService.container.appendChild(myCanvas);
     this.addCloseIconToElement(
       myCanvas.querySelector('.mole'),
       document.getElementById('whack-container'),
@@ -94,10 +96,9 @@ class WhackWidget {
       var gameContainer = mole.parentElement;
       var containerWidth = window.innerWidth;
       var containerHeight = window.innerHeight - 140;
-      var moleWidth = mole.clientWidth;
-      var moleHeight = mole.clientHeight;
+      var moleWidth = window.matchMedia("(max-width: 600px)").matches ? 253: 380
+      var moleHeight = window.matchMedia("(max-width: 600px)").matches ?  173 : 260
       var maxY = containerHeight - moleHeight;
-
       var randomX;
       if (Math.random() < 0.5) {
         randomX = Math.floor(Math.random() * (containerWidth / 4 - moleWidth)) + 100;
@@ -105,14 +106,14 @@ class WhackWidget {
         randomX =
           Math.floor(
             Math.random() * (containerWidth / 4 - moleWidth) +
-              containerWidth / 2 +
-              containerWidth / 4,
+            containerWidth / 2 +
+            containerWidth / 4,
           ) - 100;
       }
 
       var randomY = Math.floor(Math.random() * maxY);
       gameContainer.style.left = randomX + 'px';
-      gameContainer.style.top = randomY + 'px';
+      gameContainer.style.top = randomY + 'px'; 
     };
 
     const resetGIF = (imageElement) => {

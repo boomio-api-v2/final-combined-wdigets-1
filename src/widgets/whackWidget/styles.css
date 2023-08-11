@@ -1,26 +1,49 @@
 .game-container {
   position: fixed;
 }
+
 .mole {
-  width: 120px;
-  height: 120px;
+  /* width: 120px;
+  height: 120px; */
+  width: 380px;
+  height: 260px;
   z-index: 999999999;
   cursor: pointer;
   display: none;
 }
 
 .mole-image {
-  width: 120px;
-  height: 120px;
+  /* width: 120px;
+  height: 120px; */
+  width: 380px;
+  height: 260px;
   z-index: 999999999;
   cursor: pointer;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
+
+/* .mole-set {
+  width: 380px;
+  height: 260px;
+} */
+
+/* .set {
+  display: flex;
+  flex-direction: row;
+}
+
+.set-box {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+  background-color: white;
+} */
 
 .mole-image.hide {
   opacity: 0;
   pointer-events: none;
 }
+
 .mole-hit-image {
   transition: opacity 0.5s ease;
   /* Add other styles as needed */
@@ -38,12 +61,15 @@
 .mole-image.show {
   opacity: 1;
 }
+
 .hammer {
-  width:58px;
-  height:65px;
-  right: -5px;
-  top: -2px;
-  position:absolute;
+  width: 380px;
+  height: 260px;
+  /* width:58px;
+  height:65px; */
+  right: -30px;
+  top: -30px;
+  position: absolute;
   z-index: 100000000000;
   transform: rotate(16deg);
   transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
@@ -70,23 +96,28 @@
 
 
 @media (max-width: 600px) {
-  
+
   .mole-image {
-    width: 80px;
-    height: 80px;
-      z-index: 999999999;
+    width: calc(380px*2/3);
+    height: calc(260px*2/3);
+    z-index: 999999999;
     cursor: pointer;
   }
 
   .hammer {
-    width:34px;
-    height:43px;
-    right: 40px;
-    top: -2px;
-    position:absolute;
+    width: calc(380px*2/3);
+    height: calc(260px*2/3);
+    right: 130px;
+    top: -20px;
+    position: absolute;
     z-index: 100000000000;
     transform: rotate(16deg);
     transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
+  }
+
+  .round-close-icon-whack {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -94,21 +125,23 @@
 @keyframes moleAppear {
   0% {
     opacity: 0;
-    transform: translateY(100%);
+    /* transform: translateY(100%); */
   }
+
   100% {
     opacity: 1;
-    transform: translateY(0%);
+    /* transform: translateY(0%); */
   }
 }
 
 @keyframes moleDisappear {
   from {
-    transform: translateY(0);
+    /* transform: translateY(0); */
     opacity: 1;
   }
+
   to {
-    transform: translateY(20%);
+    /* transform: translateY(20%); */
     opacity: 0;
   }
 }
@@ -117,12 +150,15 @@
   0% {
     transform: scale(1);
   }
+
   70% {
     transform: scale(1);
   }
+
   85% {
     transform: scale(1.05);
   }
+
   100% {
     transform: scale(1);
   }
@@ -131,18 +167,20 @@
 
 .mole.appear {
   animation: moleAppear 1.3s ease-in-out;
+  /* animation: moleAppear 0.6s ease-in-out; */
 }
 
 .mole.disappear {
   animation: moleDisappear 1.4s ease-in-out;
+  /* animation: moleDisappear 0.7s ease-in-out; */
 }
 
 .mole.mole-hit {
   animation: mole-hit 1s ease-in-out;
+  /* animation: mole-hit 0.5s ease-in-out; */
 }
 
-.mole.mole-hit-once {
-}
+.mole.mole-hit-once {}
 
 
 
@@ -150,15 +188,17 @@
 
 @keyframes cloud-animation {
   from {
-      transform: scale(0)
+    transform: scale(0)
   }
+
   to {
-      transform: scale(2.5);
+    transform: scale(2.5);
   }
 }
 
-.cloud {    margin-top:-20px;
-  margin-left:-70px;
+.cloud {
+  margin-top: -20px;
+  margin-left: -70px;
 
 
   position: absolute;
@@ -173,8 +213,8 @@
 
 .round-close-icon-whack {
   position: absolute;
-  top:0px;
-  left:-30px;
+  top: 0px;
+  left: -30px;
   width: 20px;
   height: 20px;
   padding: 6px;
