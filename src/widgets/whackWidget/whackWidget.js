@@ -221,17 +221,19 @@ class WhackWidget {
 
         // Add event listeners for mouseover and mouseout events
         mole.addEventListener('mouseover', () => {
-          hammer.style.opacity = '1';
+         if (! window.matchMedia("(max-width: 600px)").matches)
+         { hammer.style.opacity = '1';}
         });
 
         let hideHammerTimeout; // Timeout variable to store the reference
 
         mole.addEventListener('mouseout', () => {
-          hammer.style.opacity = '1';
-          hideHammerTimeout = setTimeout(() => {
-            hammer.style.opacity = '0';
-            // Adjust the transition duration to match the CSS transition duration
-          }, 400);
+          if (! window.matchMedia("(max-width: 600px)").matches)
+          {  hammer.style.opacity = '1';
+        hideHammerTimeout = setTimeout(() => {
+          hammer.style.opacity = '0';
+          // Adjust the transition duration to match the CSS transition duration
+        }, 400);}
         });
 
         // Cancel the hide timeout when mouseover occurs again

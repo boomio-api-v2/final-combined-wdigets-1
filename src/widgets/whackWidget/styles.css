@@ -112,7 +112,9 @@
     position: absolute;
     z-index: 100000000000;
     transform: rotate(16deg);
+    opacity: 1 !important;
     transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
+
   }
 
   .round-close-icon-whack {
