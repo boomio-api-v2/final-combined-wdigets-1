@@ -1,6 +1,7 @@
 .game-container {
   position: fixed;
 }
+
 .mole {
   /* width: 120px;
   height: 120px; */
@@ -22,18 +23,19 @@
 }
 
 /* .mole-set {
-  width: 220px;
-  height: 220px;
+  width: 380px;
+  height: 260px;
 } */
 
 /* .set {
- display: flex;
- flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
+
 .set-box {
   width: 300px;
   height: 300px;
-  margin:10px;
+  margin: 10px;
   background-color: white;
 } */
 
@@ -41,6 +43,7 @@
   opacity: 0;
   pointer-events: none;
 }
+
 .mole-hit-image {
   transition: opacity 0.5s ease;
   /* Add other styles as needed */
@@ -58,6 +61,7 @@
 .mole-image.show {
   opacity: 1;
 }
+
 .hammer {
   width: 380px;
   height: 260px;
@@ -65,7 +69,7 @@
   height:65px; */
   right: -30px;
   top: -30px;
-  position:absolute;
+  position: absolute;
   z-index: 100000000000;
   transform: rotate(16deg);
   transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
@@ -92,23 +96,28 @@
 
 
 @media (max-width: 600px) {
-  
+
   .mole-image {
-    width: 80px;
-    height: 80px;
-      z-index: 999999999;
+    width: calc(380px*2/3);
+    height: calc(260px*2/3);
+    z-index: 999999999;
     cursor: pointer;
   }
 
   .hammer {
-    width:34px;
-    height:43px;
-    right: 40px;
-    top: -2px;
-    position:absolute;
+    width: calc(380px*2/3);
+    height: calc(260px*2/3);
+    right: 130px;
+    top: -20px;
+    position: absolute;
     z-index: 100000000000;
     transform: rotate(16deg);
     transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
+  }
+
+  .round-close-icon-whack {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -118,6 +127,7 @@
     opacity: 0;
     /* transform: translateY(100%); */
   }
+
   100% {
     opacity: 1;
     /* transform: translateY(0%); */
@@ -129,6 +139,7 @@
     /* transform: translateY(0); */
     opacity: 1;
   }
+
   to {
     /* transform: translateY(20%); */
     opacity: 0;
@@ -139,12 +150,15 @@
   0% {
     transform: scale(1);
   }
+
   70% {
     transform: scale(1);
   }
+
   85% {
     transform: scale(1.05);
   }
+
   100% {
     transform: scale(1);
   }
@@ -166,8 +180,7 @@
   /* animation: mole-hit 0.5s ease-in-out; */
 }
 
-.mole.mole-hit-once {
-}
+.mole.mole-hit-once {}
 
 
 
@@ -175,15 +188,17 @@
 
 @keyframes cloud-animation {
   from {
-      transform: scale(0)
+    transform: scale(0)
   }
+
   to {
-      transform: scale(2.5);
+    transform: scale(2.5);
   }
 }
 
-.cloud {    margin-top:-20px;
-  margin-left:-70px;
+.cloud {
+  margin-top: -20px;
+  margin-left: -70px;
 
 
   position: absolute;
@@ -198,8 +213,8 @@
 
 .round-close-icon-whack {
   position: absolute;
-  top:0px;
-  left:-30px;
+  top: 0px;
+  left: -30px;
   width: 20px;
   height: 20px;
   padding: 6px;

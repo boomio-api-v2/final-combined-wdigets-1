@@ -17,26 +17,22 @@ export const frameSvg =
 export const WhackHammer =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hammer_02.png?raw=true';
 
+// export const WhackMole01 =
+//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole.gif?raw=true';
+
 export const WhackMole01 =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole.gif?raw=true';
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole-faster140pct.gif?raw=true';
 
+// export const WhackMole01Reversed =
+//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down-to-ground-mole.gif?raw=true';
 export const WhackMole01Reversed =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down-to-ground-mole.gif?raw=true';
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down-to-ground-mole-faster140pct.gif?raw=true';
 
+// export const WhackMoleHit =
+//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hit-and-dizzy-mole.gif?raw=true';
 export const WhackMoleHit =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hit-and-dizzy-mole.gif?raw=true';
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hit-and-dizzy-mole-faster140pct.gif?raw=true';
 
-  export const WhackMoleDizzy =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/dizzy_effect_whack-a-mole.gif?raw=true';
-
-  export const WhackMoleStart =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/game_start.gif?raw=true';
-
-  export const WhackMoleEnd =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/game_end.gif?raw=true';
-
-  export const WhackMole01Paused =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/frame_7_delay-0.1s.png?raw=true';
 
 export const dotImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/0753f565c8eeb594222696c37839677a8738f41d/images/dotImage.svg';

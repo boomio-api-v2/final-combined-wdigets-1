@@ -80,8 +80,7 @@ class WhackWidget {
     </div>
   </div>
     `;
-
-    widgetHtmlService.container.appendChild(myCanvas);
+   widgetHtmlService.container.appendChild(myCanvas);
     this.addCloseIconToElement(
       myCanvas.querySelector('.mole'),
       document.getElementById('whack-container'),
@@ -97,10 +96,9 @@ class WhackWidget {
       var gameContainer = mole.parentElement;
       var containerWidth = window.innerWidth;
       var containerHeight = window.innerHeight - 140;
-      var moleWidth = mole.clientWidth;
-      var moleHeight = mole.clientHeight;
+      var moleWidth = window.matchMedia("(max-width: 600px)").matches ? 253: 380
+      var moleHeight = window.matchMedia("(max-width: 600px)").matches ?  173 : 260
       var maxY = containerHeight - moleHeight;
-
       var randomX;
       if (Math.random() < 0.5) {
         randomX = Math.floor(Math.random() * (containerWidth / 4 - moleWidth)) + 100;
@@ -115,10 +113,7 @@ class WhackWidget {
 
       var randomY = Math.floor(Math.random() * maxY);
       gameContainer.style.left = randomX + 'px';
-      gameContainer.style.top = randomY + 'px';
-      gameContainer.style.left = '100' + 'px'; // temp
-      gameContainer.style.top = '100' + 'px'; // temp
-
+      gameContainer.style.top = randomY + 'px'; 
     };
 
     const resetGIF = (imageElement) => {
