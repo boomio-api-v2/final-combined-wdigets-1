@@ -1,6 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit } from '@/сonstants';
+import { WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit, WhackMoleDizzy, WhackMoleStart, WhackMoleEnd } from '@/сonstants';
 
 class WhackWidget {
   constructor() {
@@ -17,7 +17,7 @@ class WhackWidget {
   }
 
   preloadImages() {
-    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit];
+    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit, WhackMoleDizzy, WhackMoleStart, WhackMoleEnd];
 
     const loadImageBeforeUsing = (images) => {
       const promises = images.map((img) => {
@@ -38,6 +38,7 @@ class WhackWidget {
     this.createContainer();
     this.whack = document.getElementById('whack-container');
     this.addCardEventListeners();
+    // debugger
   }
   addCloseIconToElement = (element, deleteElement) => {
     const btnContainer = document.createElement('div');
@@ -70,9 +71,12 @@ class WhackWidget {
     myCanvas.innerHTML = `
     <div class="game-container">
     <div class="mole" id="${moleId}">
+    <img class="mole-image mole-image0" src=${WhackMoleStart} alt="Mole">
     <img class="mole-image mole-image1" src=${WhackMole01} alt="Mole">
     <img class="mole-image mole-image2" src=${WhackMole01Reversed} alt="Mole" style="display: none;">
     <img class="mole-image mole-image3" src=${WhackMoleHit} alt="Mole" style="display: none;">
+    <div class="score"><span id="score-value"></span></div>
+    </div>
     <div class="score"><span id="score-value"></span></div>
     </div>
   </div>
@@ -105,14 +109,17 @@ class WhackWidget {
         randomX =
           Math.floor(
             Math.random() * (containerWidth / 4 - moleWidth) +
-              containerWidth / 2 +
-              containerWidth / 4,
+            containerWidth / 2 +
+            containerWidth / 4,
           ) - 100;
       }
 
       var randomY = Math.floor(Math.random() * maxY);
       gameContainer.style.left = randomX + 'px';
       gameContainer.style.top = randomY + 'px';
+      gameContainer.style.left = '100' + 'px'; // temp
+      gameContainer.style.top = '100' + 'px'; // temp
+
     };
 
     const resetGIF = (imageElement) => {

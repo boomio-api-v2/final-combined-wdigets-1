@@ -4,8 +4,8 @@
 .mole {
   /* width: 120px;
   height: 120px; */
-  width: 220px;
-  height: 220px;
+  width: 380px;
+  height: 260px;
   z-index: 999999999;
   cursor: pointer;
   display: none;
@@ -14,12 +14,28 @@
 .mole-image {
   /* width: 120px;
   height: 120px; */
-  width: 220px;
-  height: 220px;
+  width: 380px;
+  height: 260px;
   z-index: 999999999;
   cursor: pointer;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
+
+/* .mole-set {
+  width: 220px;
+  height: 220px;
+} */
+
+/* .set {
+ display: flex;
+ flex-direction: row;
+}
+.set-box {
+  width: 300px;
+  height: 300px;
+  margin:10px;
+  background-color: white;
+} */
 
 .mole-image.hide {
   opacity: 0;
@@ -43,12 +59,12 @@
   opacity: 1;
 }
 .hammer {
-  width:106px;
-  height:119px;
+  width: 380px;
+  height: 260px;
   /* width:58px;
   height:65px; */
-  right: -5px;
-  top: -2px;
+  right: -30px;
+  top: -30px;
   position:absolute;
   z-index: 100000000000;
   transform: rotate(16deg);
@@ -100,21 +116,21 @@
 @keyframes moleAppear {
   0% {
     opacity: 0;
-    transform: translateY(100%);
+    /* transform: translateY(100%); */
   }
   100% {
     opacity: 1;
-    transform: translateY(0%);
+    /* transform: translateY(0%); */
   }
 }
 
 @keyframes moleDisappear {
   from {
-    transform: translateY(0);
+    /* transform: translateY(0); */
     opacity: 1;
   }
   to {
-    transform: translateY(20%);
+    /* transform: translateY(20%); */
     opacity: 0;
   }
 }
