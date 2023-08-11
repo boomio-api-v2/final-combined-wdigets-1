@@ -80,7 +80,7 @@ class WhackWidget {
     </div>
   </div>
     `;
-   widgetHtmlService.container.appendChild(myCanvas);
+    widgetHtmlService.container.appendChild(myCanvas);
     this.addCloseIconToElement(
       myCanvas.querySelector('.mole'),
       document.getElementById('whack-container'),
@@ -96,8 +96,8 @@ class WhackWidget {
       var gameContainer = mole.parentElement;
       var containerWidth = window.innerWidth;
       var containerHeight = window.innerHeight - 140;
-      var moleWidth = window.matchMedia("(max-width: 600px)").matches ? 253: 380
-      var moleHeight = window.matchMedia("(max-width: 600px)").matches ?  173 : 260
+      var moleWidth = window.matchMedia("(max-width: 600px)").matches ? 253 : 380
+      var moleHeight = window.matchMedia("(max-width: 600px)").matches ? 173 : 260
       var maxY = containerHeight - moleHeight;
       var randomX;
       if (Math.random() < 0.5) {
@@ -113,7 +113,7 @@ class WhackWidget {
 
       var randomY = Math.floor(Math.random() * maxY);
       gameContainer.style.left = randomX + 'px';
-      gameContainer.style.top = randomY + 'px'; 
+      gameContainer.style.top = randomY + 'px';
     };
 
     const resetGIF = (imageElement) => {
@@ -197,10 +197,10 @@ class WhackWidget {
                 }, 200);
                 setTimeout(() => {
                   startMoleAnimation(nextMole);
-                }, 1300);
-              }, 1300);
+                }, 700);
+              }, 700); //interval between apperances 
             }
-          }, 5000);
+          }, 3000); // time waiting to be  hit
         };
         hideMole();
       }
@@ -221,29 +221,32 @@ class WhackWidget {
 
         // Add event listeners for mouseover and mouseout events
         mole.addEventListener('mouseover', () => {
-         if (! window.matchMedia("(max-width: 600px)").matches)
-         { hammer.style.opacity = '1';}
+          if (!window.matchMedia("(max-width: 600px)").matches) { hammer.style.opacity = '1'; }
         });
 
         let hideHammerTimeout; // Timeout variable to store the reference
 
         mole.addEventListener('mouseout', () => {
-          if (! window.matchMedia("(max-width: 600px)").matches)
-          {  hammer.style.opacity = '1';
-        hideHammerTimeout = setTimeout(() => {
-          hammer.style.opacity = '0';
-          // Adjust the transition duration to match the CSS transition duration
-        }, 400);}
+          if (!window.matchMedia("(max-width: 600px)").matches) {
+            hammer.style.opacity = '1';
+            hideHammerTimeout = setTimeout(() => {
+              hammer.style.opacity = '0';
+              // Adjust the transition duration to match the CSS transition duration
+            }, 400);
+          }
         });
 
         // Cancel the hide timeout when mouseover occurs again
-        mole.addEventListener('mouseover', () => {
-          clearTimeout(hideHammerTimeout);
-        });
+        if (!window.matchMedia("(max-width: 600px)").matches) {
+          mole.addEventListener('mouseover', () => {
+            clearTimeout(hideHammerTimeout);
+          });
+        }
       }
     };
 
     const whackMole = (event) => {
+      debugger
       function moleHit(imageElement) {
         const mole = document.querySelector('.mole');
         mole.classList.add('mole-hit');
@@ -322,7 +325,7 @@ class WhackWidget {
           if (this.whackedMoles[newMole.id]) {
             hammer.style.display = 'block';
           }
-        }, 2200);
+        }, 1000);
         whackMole(event);
       }
     });
