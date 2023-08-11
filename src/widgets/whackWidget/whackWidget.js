@@ -134,20 +134,24 @@ class WhackWidget {
 
       setTimeout(() => {
         mole.classList.remove('appear');
-      }, 1300);
+      }, 700); //interval between apperances
       createHammer();
     };
 
     const reverseGIF = (imageElement, whacked) => {
+      debugger
+      // console.log('1', imageElement,  whacked)
       const mole = document.querySelector('.mole');
       if (!mole.classList.contains('mole-hit-once')) {
         mole.classList.add('disappear');
         const src = WhackMole01Reversed;
         if (whacked) {
           mole.classList.add('mole-hit-once');
+          // console.log('2', imageElement,  whacked, mole.classList)
         }
         imageElement.classList.add('hide');
         imageElement.src = src;
+        // console.log('3', imageElement,  whacked, mole.classList)
 
         // To ensure smooth transition, we use setTimeout to toggle classes after a small delay
         setTimeout(() => {
@@ -160,7 +164,7 @@ class WhackWidget {
           if (whacked) {
             mole.style.display = 'none';
           }
-        }, 1300);
+        }, 700); //interval between apperances
       }
     };
 
@@ -197,7 +201,7 @@ class WhackWidget {
                 }, 200);
                 setTimeout(() => {
                   startMoleAnimation(nextMole);
-                }, 700);
+                }, 700); //interval between apperances
               }, 700); //interval between apperances 
             }
           }, 3000); // time waiting to be  hit
@@ -246,7 +250,7 @@ class WhackWidget {
     };
 
     const whackMole = (event) => {
-      debugger
+      // debugger
       function moleHit(imageElement) {
         const mole = document.querySelector('.mole');
         mole.classList.add('mole-hit');
@@ -325,7 +329,8 @@ class WhackWidget {
           if (this.whackedMoles[newMole.id]) {
             hammer.style.display = 'block';
           }
-        }, 1000);
+        }, 700);
+
         whackMole(event);
       }
     });
