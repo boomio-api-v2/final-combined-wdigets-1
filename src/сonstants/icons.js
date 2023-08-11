@@ -14,26 +14,17 @@ export const gameIcon =
 export const frameSvg =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/puzzle/frame.png?raw=true';
 
-// export const WhackHammer =
-//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/WhackHammer.png?raw=true';
-
 export const WhackHammer =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hammer_02.png?raw=true';
 
-// export const WhackMole01 =
-//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/Whack-a-mole-boomio_01.gif?raw=true';
 export const WhackMole01 =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/UP_whack_a_mole.gif?raw=true';
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole.gif?raw=true';
 
-// export const WhackMole01Reversed =
-//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/immages/whackWidget/ezgif.com-reverse.gif?raw=true';
 export const WhackMole01Reversed =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down_whack_a_mole.gif?raw=true';
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down-to-ground-mole.gif?raw=true';
 
-// export const WhackMoleHit =
-//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/mobile-qr/images/whackWidget/Whack-a-mole-boomio.gif?raw=true';
 export const WhackMoleHit =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/hammer_effect_whack-a-mole.gif?raw=true';
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hit-and-dizzy-mole.gif?raw=true';
 
   export const WhackMoleDizzy =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/dizzy_effect_whack-a-mole.gif?raw=true';

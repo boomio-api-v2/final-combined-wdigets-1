@@ -1,6 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit, WhackMoleDizzy, WhackMoleStart, WhackMoleEnd } from '@/сonstants';
+import { WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit } from '@/сonstants';
 
 class WhackWidget {
   constructor() {
@@ -17,7 +17,7 @@ class WhackWidget {
   }
 
   preloadImages() {
-    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit, WhackMoleDizzy, WhackMoleStart, WhackMoleEnd];
+    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit];
 
     const loadImageBeforeUsing = (images) => {
       const promises = images.map((img) => {
@@ -71,7 +71,6 @@ class WhackWidget {
     myCanvas.innerHTML = `
     <div class="game-container">
     <div class="mole" id="${moleId}">
-    <img class="mole-image mole-image0" src=${WhackMoleStart} alt="Mole">
     <img class="mole-image mole-image1" src=${WhackMole01} alt="Mole">
     <img class="mole-image mole-image2" src=${WhackMole01Reversed} alt="Mole" style="display: none;">
     <img class="mole-image mole-image3" src=${WhackMoleHit} alt="Mole" style="display: none;">
