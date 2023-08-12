@@ -1,7 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-
-import { WhackHammer, WhackMole01, WhackMole02, WhackMole03, WhackMole04, WhackMole05, WhackMole06, WhackMole07, WhackMole01Reversed, WhackMoleHit} from '@/сonstants';
+import { WhackHammer, WhackMole00, WhackMole01Reversed, WhackMoleHit} from '@/сonstants';
 
 class WhackWidget {
   constructor() {
@@ -19,8 +18,11 @@ class WhackWidget {
   }
 
   preloadImages() {
-    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole02, WhackMole03, WhackMole04, WhackMole05, WhackMole06, WhackMole07, WhackMole01Reversed, WhackMoleHit];
-
+       let imageUrlsToPreload = [WhackHammer,  WhackMole01Reversed, WhackMoleHit];
+    for(let i=0; i<=7; i++) {
+      window['WhackMole0'+i] = WhackMole00.concat('?x=')+i;
+      imageUrlsToPreload.push(window['WhackMole0'+i])
+    }
     const loadImageBeforeUsing = (images) => {
       const promises = images.map((img) => {
         return new Promise((resolve, reject) => {
@@ -123,41 +125,9 @@ class WhackWidget {
        mole.classList.add('appear');
       let src = '' 
       imageElement.classList.add('hide');
-
-  switch(this.swch) {
-    case 1:
-      src = WhackMole01
-      this.swch = 2
-      break;
-     case 2:
-      src = WhackMole02
-      this.swch = 3
-      break;
-    case 3:
-      src = WhackMole03
-      this.swch = 4
-      break;
-    case 4:
-      src = WhackMole04
-      this.swch = 5
-      break;
-    case 5:
-      src = WhackMole05
-      this.swch = 6
-      break;
-    case 6:
-      src = WhackMole06
-      this.swch = 7
-      break;
-    case 7:
-      src = WhackMole07
-      this.swch = 1
-      break;
-    default:
-     this.swch = 1;
-  }
-
-      imageElement.src = src;
+      src = window['WhackMole0'+this.swch]
+      this.swch === 7 ? this.swch = 1 :this.swch++
+       imageElement.src = src;
       // To ensure smooth transition, we use setTimeout to toggle classes after a small delay
       setTimeout(() => {
         imageElement.classList.remove('hide');
@@ -201,8 +171,6 @@ class WhackWidget {
         const moleImage = mole.querySelector('.mole-image');
 
         function hideMole() {
-          // for (let i=0; i<7; i++)  
-          // {resetGIF(moleImage)}
           resetGIF(moleImage);
           showNextMole();
         }
