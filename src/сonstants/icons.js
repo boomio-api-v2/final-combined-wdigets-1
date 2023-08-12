@@ -17,11 +17,27 @@ export const frameSvg =
 export const WhackHammer =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hammer_02.png?raw=true';
 
-// export const WhackMole01 =
-//   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole.gif?raw=true';
-
-export const WhackMole01 =
+  
+  export const WhackMole01 =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole-faster140pct.gif?raw=true';
+  
+  export const WhackMole02 =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole-delayed-start.gif?raw=true';
+  
+  export const WhackMole03 =
+    'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole.gif?raw=true';
+
+  export const WhackMole04 =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole-faster140pct.gif?raw=true';
+  
+  export const WhackMole05 =
+  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole-delayed-start.gif?raw=true';
+  
+  export const WhackMole06 =
+    'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole.gif?raw=true';
+
+    export const WhackMole07 =
+    'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole-delayed-start.gif?raw=true';
 
 // export const WhackMole01Reversed =
 //   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down-to-ground-mole.gif?raw=true';

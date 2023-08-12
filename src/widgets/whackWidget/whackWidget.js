@@ -1,9 +1,11 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit } from '@/сonstants';
+import { WhackHammer, WhackMole01, WhackMole02, WhackMole03, WhackMole04, WhackMole05, WhackMole06, WhackMole07, WhackMole01Reversed, WhackMoleHit} from '@/сonstants';
 
 class WhackWidget {
   constructor() {
+    this.count = 0;
+    this.swch =1;
     this.score = 0;
     this.currentMoleId = null;
     this.whackedMoles = {};
@@ -17,7 +19,7 @@ class WhackWidget {
   }
 
   preloadImages() {
-    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit];
+    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole02, WhackMole03, WhackMole04, WhackMole05, WhackMole06, WhackMole07, WhackMole01Reversed, WhackMoleHit];
 
     const loadImageBeforeUsing = (images) => {
       const promises = images.map((img) => {
@@ -38,7 +40,6 @@ class WhackWidget {
     this.createContainer();
     this.whack = document.getElementById('whack-container');
     this.addCardEventListeners();
-    // debugger
   }
   addCloseIconToElement = (element, deleteElement) => {
     const btnContainer = document.createElement('div');
@@ -96,8 +97,8 @@ class WhackWidget {
       var gameContainer = mole.parentElement;
       var containerWidth = window.innerWidth;
       var containerHeight = window.innerHeight - 140;
-      var moleWidth = window.matchMedia("(max-width: 600px)").matches ? 253 : 380
-      var moleHeight = window.matchMedia("(max-width: 600px)").matches ? 173 : 260
+      var moleWidth = window.matchMedia("(max-width: 600px)").matches ? 200 : 300
+      var moleHeight = window.matchMedia("(max-width: 600px)").matches ? 133 : 200
       var maxY = containerHeight - moleHeight;
       var randomX;
       if (Math.random() < 0.5) {
@@ -117,15 +118,49 @@ class WhackWidget {
     };
 
     const resetGIF = (imageElement) => {
-      const mole = document.querySelector('.mole');
-      mole.classList.remove('mole-hit-once');
-
-      mole.classList.add('appear');
-      const src = WhackMole01;
-
+       const mole = document.querySelector('.mole');
+       mole.classList.remove('mole-hit-once');
+       mole.classList.add('appear');
+      let src = '' 
       imageElement.classList.add('hide');
-      imageElement.src = src;
 
+  switch(this.swch) {
+    case 1:
+      src = WhackMole01
+      this.swch = 2
+      break;
+     case 2:
+      src = WhackMole02
+      this.swch = 3
+      break;
+    case 3:
+      src = WhackMole03
+      this.swch = 4
+      break;
+    case 4:
+      src = WhackMole04
+      this.swch = 5
+      break;
+    case 5:
+      src = WhackMole05
+      this.swch = 6
+      break;
+    case 6:
+      src = WhackMole06
+      this.swch = 7
+      break;
+    case 7:
+      src = WhackMole07
+      this.swch = 1
+      break;
+    default:
+     this.swch = 1;
+  }
+
+  this.count ++  
+   console.log(' this.count ===',  this.count);
+  // imageElement.src = "#"
+      imageElement.src = src;
       // To ensure smooth transition, we use setTimeout to toggle classes after a small delay
       setTimeout(() => {
         imageElement.classList.remove('hide');
@@ -169,6 +204,8 @@ class WhackWidget {
         const moleImage = mole.querySelector('.mole-image');
 
         function hideMole() {
+          // for (let i=0; i<7; i++)  
+          // {resetGIF(moleImage)}
           resetGIF(moleImage);
           showNextMole();
         }
@@ -263,7 +300,6 @@ class WhackWidget {
         }, 1000);
       }
       const mole = document.querySelector('.mole');
-      //  debugger
       if (
         // the following condition requires hit mole twice in order to whack 
         // event.target.classList.contains('mole-image') &&
