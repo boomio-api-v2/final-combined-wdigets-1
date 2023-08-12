@@ -1,10 +1,10 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
+
 import { WhackHammer, WhackMole01, WhackMole02, WhackMole03, WhackMole04, WhackMole05, WhackMole06, WhackMole07, WhackMole01Reversed, WhackMoleHit} from '@/сonstants';
 
 class WhackWidget {
   constructor() {
-    this.count = 0;
     this.swch =1;
     this.score = 0;
     this.currentMoleId = null;
@@ -157,9 +157,6 @@ class WhackWidget {
      this.swch = 1;
   }
 
-  this.count ++  
-   console.log(' this.count ===',  this.count);
-  // imageElement.src = "#"
       imageElement.src = src;
       // To ensure smooth transition, we use setTimeout to toggle classes after a small delay
       setTimeout(() => {
