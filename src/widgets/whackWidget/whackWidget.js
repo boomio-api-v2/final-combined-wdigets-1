@@ -1,9 +1,10 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit } from '@/сonstants';
+import { WhackHammer, WhackMole00, WhackMole01Reversed, WhackMoleHit} from '@/сonstants';
 
 class WhackWidget {
   constructor() {
+    this.swch =1;
     this.score = 0;
     this.currentMoleId = null;
     this.whackedMoles = {};
@@ -17,8 +18,11 @@ class WhackWidget {
   }
 
   preloadImages() {
-    const imageUrlsToPreload = [WhackHammer, WhackMole01, WhackMole01Reversed, WhackMoleHit];
-
+       let imageUrlsToPreload = [WhackHammer,  WhackMole01Reversed, WhackMoleHit];
+    for(let i=0; i<=7; i++) {
+      window['WhackMole0'+i] = WhackMole00.concat('?x=')+i;
+      imageUrlsToPreload.push(window['WhackMole0'+i])
+    }
     const loadImageBeforeUsing = (images) => {
       const promises = images.map((img) => {
         return new Promise((resolve, reject) => {
@@ -38,7 +42,6 @@ class WhackWidget {
     this.createContainer();
     this.whack = document.getElementById('whack-container');
     this.addCardEventListeners();
-    // debugger
   }
   addCloseIconToElement = (element, deleteElement) => {
     const btnContainer = document.createElement('div');
@@ -80,7 +83,7 @@ class WhackWidget {
     </div>
   </div>
     `;
-   widgetHtmlService.container.appendChild(myCanvas);
+    widgetHtmlService.container.appendChild(myCanvas);
     this.addCloseIconToElement(
       myCanvas.querySelector('.mole'),
       document.getElementById('whack-container'),
@@ -96,8 +99,8 @@ class WhackWidget {
       var gameContainer = mole.parentElement;
       var containerWidth = window.innerWidth;
       var containerHeight = window.innerHeight - 140;
-      var moleWidth = window.matchMedia("(max-width: 600px)").matches ? 253: 380
-      var moleHeight = window.matchMedia("(max-width: 600px)").matches ?  173 : 260
+      var moleWidth = window.matchMedia("(max-width: 600px)").matches ? 200 : 300
+      var moleHeight = window.matchMedia("(max-width: 600px)").matches ? 133 : 200
       var maxY = containerHeight - moleHeight;
       var randomX;
       if (Math.random() < 0.5) {
@@ -113,28 +116,27 @@ class WhackWidget {
 
       var randomY = Math.floor(Math.random() * maxY);
       gameContainer.style.left = randomX + 'px';
-      gameContainer.style.top = randomY + 'px'; 
+      gameContainer.style.top = randomY + 'px';
     };
 
     const resetGIF = (imageElement) => {
-      const mole = document.querySelector('.mole');
-      mole.classList.remove('mole-hit-once');
-
-      mole.classList.add('appear');
-      const src = WhackMole01;
-
-      imageElement.classList.add('hide');
-      imageElement.src = src;
-
+       const mole = document.querySelector('.mole');
+       mole?.classList.remove('mole-hit-once');
+       mole?.classList.add('appear');
+      let src = '' 
+      imageElement?.classList.add('hide');
+      src = window['WhackMole0'+this.swch]
+      this.swch === 7 ? this.swch = 1 :this.swch++
+       imageElement.src = src;
       // To ensure smooth transition, we use setTimeout to toggle classes after a small delay
       setTimeout(() => {
-        imageElement.classList.remove('hide');
-        imageElement.classList.add('show');
+        imageElement?.classList.remove('hide');
+        imageElement?.classList.add('show');
       }, 50);
 
       setTimeout(() => {
-        mole.classList.remove('appear');
-      }, 1300);
+        mole?.classList.remove('appear');
+      }, 700); //1300
       createHammer();
     };
 
@@ -160,7 +162,7 @@ class WhackWidget {
           if (whacked) {
             mole.style.display = 'none';
           }
-        }, 1300);
+        }, 700); //1300
       }
     };
 
@@ -197,10 +199,10 @@ class WhackWidget {
                 }, 200);
                 setTimeout(() => {
                   startMoleAnimation(nextMole);
-                }, 1300);
-              }, 1300);
+                }, 700); //1300
+              }, 700); //1300
             }
-          }, 5000);
+          }, 3000); // 5000
         };
         hideMole();
       }
@@ -208,40 +210,45 @@ class WhackWidget {
 
     const createHammer = () => {
       const mole = document.querySelector('.mole');
-      const existingHammer = mole.querySelector('.hammer');
+      const existingHammer = mole?.querySelector('.hammer');
 
       if (!existingHammer) {
         const hammer = document.createElement('img');
-        hammer.classList.add('hammer');
+        hammer?.classList.add('hammer');
         hammer.src = WhackHammer;
-        mole.appendChild(hammer);
-        hammer.classList.remove('disappear');
-        hammer.classList.remove('appear');
+        mole?.appendChild(hammer);
+        hammer?.classList.remove('disappear');
+        hammer?.classList.remove('appear');
         hammer.style.opacity = '0';
 
         // Add event listeners for mouseover and mouseout events
-        mole.addEventListener('mouseover', () => {
-          hammer.style.opacity = '1';
+        mole?.addEventListener('mouseover', () => {
+          if (!window.matchMedia("(max-width: 600px)").matches) { hammer.style.opacity = '1'; }
         });
 
         let hideHammerTimeout; // Timeout variable to store the reference
 
-        mole.addEventListener('mouseout', () => {
-          hammer.style.opacity = '1';
-          hideHammerTimeout = setTimeout(() => {
-            hammer.style.opacity = '0';
-            // Adjust the transition duration to match the CSS transition duration
-          }, 400);
+        mole?.addEventListener('mouseout', () => {
+          if (!window.matchMedia("(max-width: 600px)").matches) {
+            hammer.style.opacity = '1';
+            hideHammerTimeout = setTimeout(() => {
+              hammer.style.opacity = '0';
+              // Adjust the transition duration to match the CSS transition duration
+            }, 400);
+          }
         });
 
         // Cancel the hide timeout when mouseover occurs again
-        mole.addEventListener('mouseover', () => {
-          clearTimeout(hideHammerTimeout);
-        });
+        if (!window.matchMedia("(max-width: 600px)").matches) {
+          mole?.addEventListener('mouseover', () => {
+            clearTimeout(hideHammerTimeout);
+          });
+        }
       }
     };
 
     const whackMole = (event) => {
+      // console.log('event ===', event.target.classList);
       function moleHit(imageElement) {
         const mole = document.querySelector('.mole');
         mole.classList.add('mole-hit');
@@ -259,12 +266,13 @@ class WhackWidget {
       }
       const mole = document.querySelector('.mole');
       if (
-        event.target.classList.contains('mole-image') &&
+        // the following condition requires hit mole twice in order to whack 
+        // event.target.classList.contains('mole-image') &&
         !mole.classList.contains('mole-hit') &&
         !mole.classList.contains('disappear') &&
         !mole.classList.contains('appear') &&
-        this.currentMoleId === mole.id &&
-        !this.whackedMoles[mole.id]
+        this.currentMoleId === mole.id 
+        // && !this.whackedMoles[mole.id]
       ) {
         this.score++;
         document.getElementById('score-value').textContent = `${this.score}/4`; // Update the score element
@@ -320,7 +328,8 @@ class WhackWidget {
           if (this.whackedMoles[newMole.id]) {
             hammer.style.display = 'block';
           }
-        }, 2200);
+        }, 700);
+
         whackMole(event);
       }
     });
