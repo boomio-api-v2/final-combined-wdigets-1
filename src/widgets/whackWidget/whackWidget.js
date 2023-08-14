@@ -121,21 +121,21 @@ class WhackWidget {
 
     const resetGIF = (imageElement) => {
        const mole = document.querySelector('.mole');
-       mole.classList.remove('mole-hit-once');
-       mole.classList.add('appear');
+       mole?.classList.remove('mole-hit-once');
+       mole?.classList.add('appear');
       let src = '' 
-      imageElement.classList.add('hide');
+      imageElement?.classList.add('hide');
       src = window['WhackMole0'+this.swch]
       this.swch === 7 ? this.swch = 1 :this.swch++
        imageElement.src = src;
       // To ensure smooth transition, we use setTimeout to toggle classes after a small delay
       setTimeout(() => {
-        imageElement.classList.remove('hide');
-        imageElement.classList.add('show');
+        imageElement?.classList.remove('hide');
+        imageElement?.classList.add('show');
       }, 50);
 
       setTimeout(() => {
-        mole.classList.remove('appear');
+        mole?.classList.remove('appear');
       }, 700); //1300
       createHammer();
     };
@@ -210,25 +210,25 @@ class WhackWidget {
 
     const createHammer = () => {
       const mole = document.querySelector('.mole');
-      const existingHammer = mole.querySelector('.hammer');
+      const existingHammer = mole?.querySelector('.hammer');
 
       if (!existingHammer) {
         const hammer = document.createElement('img');
-        hammer.classList.add('hammer');
+        hammer?.classList.add('hammer');
         hammer.src = WhackHammer;
-        mole.appendChild(hammer);
-        hammer.classList.remove('disappear');
-        hammer.classList.remove('appear');
+        mole?.appendChild(hammer);
+        hammer?.classList.remove('disappear');
+        hammer?.classList.remove('appear');
         hammer.style.opacity = '0';
 
         // Add event listeners for mouseover and mouseout events
-        mole.addEventListener('mouseover', () => {
+        mole?.addEventListener('mouseover', () => {
           if (!window.matchMedia("(max-width: 600px)").matches) { hammer.style.opacity = '1'; }
         });
 
         let hideHammerTimeout; // Timeout variable to store the reference
 
-        mole.addEventListener('mouseout', () => {
+        mole?.addEventListener('mouseout', () => {
           if (!window.matchMedia("(max-width: 600px)").matches) {
             hammer.style.opacity = '1';
             hideHammerTimeout = setTimeout(() => {
@@ -240,7 +240,7 @@ class WhackWidget {
 
         // Cancel the hide timeout when mouseover occurs again
         if (!window.matchMedia("(max-width: 600px)").matches) {
-          mole.addEventListener('mouseover', () => {
+          mole?.addEventListener('mouseover', () => {
             clearTimeout(hideHammerTimeout);
           });
         }
