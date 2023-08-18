@@ -15,24 +15,31 @@ class GuessWidget {
   startGuess() {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
+
     this.guess = document.getElementById('guess-container');
     this.animation = new AnimationService({
       elem: this.guess,
     });
     this.draggeble = new DragElement(this.guess);
     new DragElement(this.guess);
-    this.shuffleCard();
-    this.addCardEventListeners();
+    setTimeout(() => {
+      this.shuffleCard();
+      this.addCardEventListeners();
+    }, 200);
   }
 
   createContainer = () => {
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'guess-container');
-    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
+    myCanvas.classList.add(
+      'boomio--animation__wrapper',
+      'boomio--animation__wrapper--initial',
+      'box',
+    );
     myCanvas.innerHTML = `
     <div class="wrapper">
-      <ul class="cards">
-        <li class="card">
+      <ul class="guess-cards">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -40,7 +47,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-1.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -48,7 +55,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-6.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -56,7 +63,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-3.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -64,7 +71,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-2.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -72,7 +79,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-1.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -80,7 +87,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-5.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -88,7 +95,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-2.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -96,7 +103,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-6.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -104,7 +111,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-3.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -112,7 +119,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -120,7 +127,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-5.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -128,7 +135,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -136,7 +143,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -144,7 +151,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -152,7 +159,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
           </div>
         </li>
-        <li class="card">
+        <li class="guess-card">
           <div class="view front-view">
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
           </div>
@@ -167,18 +174,23 @@ class GuessWidget {
   };
 
   shuffleCard() {
-    const cards = Array.from(document.querySelectorAll('.card'));
+    const cards = Array.from(document.querySelectorAll('.guess-card'));
+    console.log('Number of cards:', cards.length);
+
     let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
       card.classList.remove('flip');
+      console.log('card:', card);
       let imgTag = card.querySelector('.back-view img');
+      console.log('Image tag:', imgTag);
+
       imgTag.src = `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-${arr[i]}.png`;
     });
   }
 
   addCardEventListeners() {
-    const cards = Array.from(document.querySelectorAll('.card'));
+    const cards = Array.from(document.querySelectorAll('.guess-card'));
     let matched = 0;
     let cardOne, cardTwo;
     let disableDeck = false;
