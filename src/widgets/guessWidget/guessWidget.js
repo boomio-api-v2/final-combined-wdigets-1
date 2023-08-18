@@ -15,14 +15,17 @@ class GuessWidget {
   startGuess() {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
+
     this.guess = document.getElementById('guess-container');
     this.animation = new AnimationService({
       elem: this.guess,
     });
     this.draggeble = new DragElement(this.guess);
     new DragElement(this.guess);
-    this.shuffleCard();
-    this.addCardEventListeners();
+    setTimeout(() => {
+      this.shuffleCard();
+      this.addCardEventListeners();
+    }, 200);
   }
 
   createContainer = () => {
@@ -178,8 +181,10 @@ class GuessWidget {
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
       card.classList.remove('flip');
-      console.log('test', card);
+      console.log('card:', card);
       let imgTag = card.querySelector('.back-view img');
+      console.log('Image tag:', imgTag);
+
       imgTag.src = `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-${arr[i]}.png`;
     });
   }
