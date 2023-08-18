@@ -28,7 +28,11 @@ class GuessWidget {
   createContainer = () => {
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'guess-container');
-    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
+    myCanvas.classList.add(
+      'boomio--animation__wrapper',
+      'boomio--animation__wrapper--initial',
+      'box',
+    );
     myCanvas.innerHTML = `
     <div class="wrapper">
       <ul class="cards">
@@ -172,6 +176,7 @@ class GuessWidget {
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
       card.classList.remove('flip');
+      console.log(card);
       let imgTag = card.querySelector('.back-view img');
       imgTag.src = `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-${arr[i]}.png`;
     });
