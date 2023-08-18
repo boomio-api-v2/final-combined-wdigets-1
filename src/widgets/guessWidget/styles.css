@@ -1,8 +1,8 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 .wrapper{
-  width: 340px;
-  height: 340px;
+  width: 300px;
+  height: 300px;
   padding: 20px;
   border-radius: 10px;
   background: #F8F8F8;
@@ -26,8 +26,8 @@
   position: relative;
   perspective: 1000px;
   transform-style: preserve-3d;
-  height: calc(100% / 4 - 10px);
-  width: calc(100% / 4 - 10px);
+  height: calc(100% / 4 - 10px) !important;
+  width: calc(100% / 4 - 10px) !important;
 }
 .card.shake{
   animation: shake 0.35s ease-in-out;
@@ -97,8 +97,8 @@
     padding: 15px;
   }
   .cards .card{
-    height: calc(100% / 4 - 8px);
-    width: calc(100% / 4 - 8px);
+    height: calc(100% / 4 - 8px) !important;
+    width: calc(100% / 4 - 8px) !important;
   }
   .cards{
     height: 200px;
