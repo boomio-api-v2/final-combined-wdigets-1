@@ -1,8 +1,8 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 .wrapper{
-  width: 300px;
-  height: 300px;
+  width: 340px;
+  height: 340px;
   padding: 20px;
   border-radius: 10px;
   background: #F8F8F8;
