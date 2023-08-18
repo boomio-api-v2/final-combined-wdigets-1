@@ -175,15 +175,12 @@ class GuessWidget {
 
   shuffleCard() {
     const cards = Array.from(document.querySelectorAll('.guess-card'));
-    console.log('Number of cards:', cards.length);
 
     let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
       card.classList.remove('flip');
-      console.log('card:', card);
       let imgTag = card.querySelector('.back-view img');
-      console.log('Image tag:', imgTag);
 
       imgTag.src = `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-${arr[i]}.png`;
     });
