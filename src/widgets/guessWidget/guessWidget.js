@@ -171,7 +171,43 @@ class GuessWidget {
     </div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
+    this.addCloseIconToElement(
+      myCanvas.querySelector('.wrapper'),
+      document.getElementById('guess-container'),
+    );
   };
+
+  addCloseIconToElement = (element, deleteElement) => {
+    const btnContainer = document.createElement('div');
+    btnContainer.style.display = 'flex';
+    btnContainer.style.flexDirection = 'column';
+    btnContainer.style.justifyContent = 'center';
+    const dragBtn = document.createElement('div')
+    dragBtn.classList.add('round-close-icon');
+    // dragBtn.innerHTML = '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/icon-drag.svg"></img>';
+    dragBtn.innerHTML = '<div> drag button</div>';
+
+    const closeBtn = document.createElement('div');
+    closeBtn.classList.add('round-close-icon-whack');
+    closeBtn.innerHTML =
+      // '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/round-close.svg" style="width: 20px;"></img>';
+       // Add style width: 20px to the image
+    closeBtn.innerHTML =
+      '<div> close button </div>'; // Add style width: 20px to the image
+    closeBtn.addEventListener(
+      'click',
+      (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        deleteElement.remove(); // Remove the specified deleteElement
+      },
+      { once: true },
+    );
+    btnContainer.appendChild(closeBtn);
+    btnContainer.appendChild(dragBtn);
+    element.appendChild(btnContainer);
+  };
+
 
   shuffleCard() {
     const cards = Array.from(document.querySelectorAll('.guess-card'));
