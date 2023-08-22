@@ -135,38 +135,7 @@ class GuessWidget {
             <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
           </div>
         </li>
-        <li class="guess-card">
-          <div class="view front-view">
-            <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-            <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-            <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-            <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/que_icon.svg" alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/guess-card-widget/src/widgets/guessWidget/img-4.png" alt="card-img">
-          </div>
-        </li>
+      
       </ul>
     </div>
     `;
@@ -191,8 +160,8 @@ class GuessWidget {
     closeBtn.classList.add('round-close-icon-whack');
     closeBtn.innerHTML =
       // '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/round-close.svg" style="width: 20px;"></img>';
-       // Add style width: 20px to the image
-    closeBtn.innerHTML =
+      // Add style width: 20px to the image
+      closeBtn.innerHTML =
       '<div> close button </div>'; // Add style width: 20px to the image
     closeBtn.addEventListener(
       'click',
@@ -212,7 +181,8 @@ class GuessWidget {
   shuffleCard() {
     const cards = Array.from(document.querySelectorAll('.guess-card'));
 
-    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
+    // let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
+    let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
       card.classList.remove('flip');
