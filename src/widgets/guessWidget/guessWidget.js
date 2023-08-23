@@ -19,6 +19,8 @@ class GuessWidget {
     this.guess = document.getElementById('guess-container');
     this.animation = new AnimationService({
       elem: this.guess,
+      posx: window.matchMedia("(min-width: 450px)").matches ? 1  : -50,
+      posy: 1,
     });
     this.draggeble = new DragElement(this.guess);
     new DragElement(this.guess);
@@ -158,7 +160,7 @@ class GuessWidget {
     dragBtn.classList.add('action-icon', 'move');
     dragBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';
     const closeBtn = document.createElement('div');
-    closeBtn.classList.add('action-icon' , 'close');
+    closeBtn.classList.add('action-icon', 'close');
     closeBtn.innerHTML =
       '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true"></img>';
     closeBtn.addEventListener(
