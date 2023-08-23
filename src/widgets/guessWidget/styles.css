@@ -1,14 +1,26 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+.action-icon {
+  position: absolute;
+  top: 120px;
+}
+
+.action-icon :first-child{
+  width: 20px;
+}
+.close {
+  left: 145px;
+}
+
+.move {
+ 
+}
+
 .wrapper{
   width: 400px;
   height: 400px;
   padding: 120px;
-  /* border-radius: 10px; */
-  /* background: #F8F8F8; */
-  /* box-shadow: 0 10px 30px rgba(0,0,0,0.1); */
-
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

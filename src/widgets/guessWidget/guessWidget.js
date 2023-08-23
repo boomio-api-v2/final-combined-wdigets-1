@@ -155,17 +155,12 @@ class GuessWidget {
     btnContainer.style.flexDirection = 'column';
     btnContainer.style.justifyContent = 'center';
     const dragBtn = document.createElement('div')
-    dragBtn.classList.add('round-close-icon');
-    // dragBtn.innerHTML = '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/icon-drag.svg"></img>';
-    dragBtn.innerHTML = '<div> drag button</div>';
-
+    dragBtn.classList.add('action-icon', 'move');
+    dragBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';
     const closeBtn = document.createElement('div');
-    closeBtn.classList.add('round-close-icon-whack');
+    closeBtn.classList.add('action-icon' , 'close');
     closeBtn.innerHTML =
-      // '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/round-close.svg" style="width: 20px;"></img>';
-      // Add style width: 20px to the image
-      closeBtn.innerHTML =
-      '<div> close button </div>'; // Add style width: 20px to the image
+      '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true"></img>';
     closeBtn.addEventListener(
       'click',
       (e) => {
@@ -184,7 +179,6 @@ class GuessWidget {
   shuffleCard() {
     const cards = Array.from(document.querySelectorAll('.guess-card'));
 
-    // let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
     let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
@@ -192,7 +186,6 @@ class GuessWidget {
       let imgTag = card.querySelector('.back-view img');
 
       imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${arr[i]}.png?raw=true`;
-
 
     });
   }
