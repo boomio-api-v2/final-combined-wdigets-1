@@ -6,18 +6,20 @@
   top: 120px;
 }
 
-.action-icon :first-child{
+.action-icon :first-child {
   width: 20px;
 }
+
 .close {
- 
+
+
 }
 
 .move {
   left: 145px;
 }
 
-.wrapper{
+.wrapper {
   width: 400px;
   height: 400px;
   padding: 120px;
@@ -26,21 +28,25 @@
   background-position: center;
   background-image: url('https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/background.png?raw=true');
 }
-.guess-cards, .guess-card, .view{
+
+.guess-cards,
+.guess-card,
+.view {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.guess-cards{
-height: 130px;
-    width: 150px;
+
+.guess-cards {
+  height: 130px;
+  width: 150px;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* border: 1px solid red; */
   margin-top: 30px;
-    margin-left: 0px;
+  margin-left: 0px;
 }
-.guess-cards .guess-card{
+
+.guess-cards .guess-card {
   cursor: pointer;
   list-style: none;
   user-select: none;
@@ -50,65 +56,161 @@ height: 130px;
   height: calc(100% / 4 - 7px) !important;
   width: calc(100% / 4 - 7px) !important;
 }
-.guess-card.shake{
+
+.guess-card.shake {
   animation: shake 0.35s ease-in-out;
 }
 
 
 #guess-container {
-  width : 340px;
-  height : 340px;
+  width: 340px;
+  height: 340px;
 }
 
 
 
 @keyframes shake {
-  0%, 100%{
+
+  0%,
+  100% {
     transform: translateX(0);
   }
-  20%{
+
+  20% {
     transform: translateX(-13px);
   }
-  40%{
+
+  40% {
     transform: translateX(13px);
   }
-  60%{
+
+  60% {
     transform: translateX(-8px);
   }
-  80%{
+
+  80% {
     transform: translateX(8px);
   }
 }
-.guess-card .view{
+
+.guess-card .view {
   width: 100%;
   height: 100%;
   position: absolute;
   border-radius: 12px;
   pointer-events: none;
   backface-visibility: hidden;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s linear;
 }
-.guess-card .front-view img{
+
+.guess-card .front-view img {
   width: 100% !important;
 }
-.guess-card .back-view img{
+
+.guess-card .back-view img {
   width: 100% !important;
 }
-.guess-card .back-view{
+
+.guess-card .back-view {
   transform: rotateY(-180deg);
 }
-.guess-card.flip .back-view{
+
+.guess-card.flip .back-view {
   transform: rotateY(0);
 }
-.guess-card.flip .front-view{
+
+.guess-card.flip .front-view {
   transform: rotateY(180deg);
 }
 
 
-@media (max-width: 1200px) {
-  .move {
- display: none
-  }
- }
+@media (min-width: 300px) {
 
+  .guess-cards {
+    height: 200px;
+    width: 200px;
+    margin-top: 90px;
+    margin-left: 90px;
+  }
+
+  .guess-cards .guess-card {
+    height: calc(100% / 4 - 8px) !important;
+    width: calc(100% / 4 - 8px) !important;
+  }
+
+  #guess-container {
+    width: 600px;
+    height: 600px;
+  }
+
+  .wrapper {
+    width: 600px;
+    height: 600px;
+    padding: 100px;
+    
+  }
+
+  .action-icon {
+      top:170px;
+  }
+
+  .action-icon :first-child {
+    width: 20px;
+  }
+
+  .close {
+    left:190px;
+
+  }
+
+  .move {
+    left:220px;
+    }
+
+}
+
+@media (min-width: 600px) {
+
+  .guess-cards {
+    height: 300px;
+    width: 300px;
+    margin-top: 120px;
+    margin-left: 120px;
+  }
+
+  .guess-cards .guess-card {
+    height: calc(100% / 4 - 10px) !important;
+    width: calc(100% / 4 - 10px) !important;
+  }
+
+  #guess-container {
+    width: 750px;
+    height: 750px;
+  }
+
+  .wrapper {
+    width: 750px;
+    height: 750px;
+    padding: 100px;
+    
+  }
+
+  .action-icon {
+    top:190px;
+  }
+
+  .action-icon :first-child {
+    width: 25px;
+  }
+
+  .close {
+    left:220px;
+
+  }
+
+  .move {
+    left:260px;
+    }
+
+}
