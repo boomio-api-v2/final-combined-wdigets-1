@@ -139,10 +139,7 @@
     width: calc(100% / 4 - 8px) !important;
   }
 
-  #guess-container {
-    width: 600px;
-    height: 600px;
-  }
+
 
   .wrapper {
     width: 600px;
@@ -184,10 +181,6 @@
     width: calc(100% / 4 - 10px) !important;
   }
 
-  #guess-container {
-    width: 750px;
-    height: 750px;
-  }
 
   .wrapper {
     width: 750px;
