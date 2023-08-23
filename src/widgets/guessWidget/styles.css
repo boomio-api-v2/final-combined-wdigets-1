@@ -10,10 +10,7 @@
   width: 20px;
 }
 
-.close {
-
-
-}
+.close {}
 
 .move {
   left: 145px;
@@ -145,11 +142,11 @@
     width: 600px;
     height: 600px;
     padding: 100px;
-    
+
   }
 
   .action-icon {
-      top:170px;
+    top: 170px;
   }
 
   .action-icon :first-child {
@@ -157,13 +154,18 @@
   }
 
   .close {
-    left:190px;
+    left: 190px;
 
   }
 
   .move {
-    left:220px;
-    }
+    left: 220px;
+  }
+  #guess-container {
+    width: 430px;
+    height: 430px;
+    
+}
 
 }
 
@@ -186,11 +188,11 @@
     width: 750px;
     height: 750px;
     padding: 100px;
-    
+
   }
 
   .action-icon {
-    top:190px;
+    top: 190px;
   }
 
   .action-icon :first-child {
@@ -198,12 +200,17 @@
   }
 
   .close {
-    left:220px;
+    left: 220px;
 
   }
 
   .move {
-    left:260px;
-    }
+    left: 260px;
+  }
+
+  #guess-container {
+    width: 600px;
+    height: 600px;
+  }
 
 }
