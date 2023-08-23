@@ -10,11 +10,11 @@
   width: 20px;
 }
 .close {
-  left: 145px;
+ 
 }
 
 .move {
- 
+  left: 145px;
 }
 
 .wrapper{
@@ -84,7 +84,6 @@ height: 130px;
   height: 100%;
   position: absolute;
   border-radius: 12px;
-  /* background: #fff; */
   pointer-events: none;
   backface-visibility: hidden;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
@@ -107,31 +106,9 @@ height: 130px;
 }
 
 
-@media (max-width: 600px) {
-  #guess-container {
-    width : 230px;
-    height : 230px;
+@media (max-width: 1200px) {
+  .move {
+ display: none
   }
-  .wrapper{
-    width: 230px;
-    height: 230px;
-    padding: 15px;
-  }
-  .guess-cards .guess-card{
-    height: calc(100% / 4 - 8px) !important;
-    width: calc(100% / 4 - 8px) !important;
-  }
-  .guess-cards{
-    height: 200px;
-    width: 200px;
-  }
-  .guess-card .front-view img{
-    /* width: 13px; */
-    width: 100%;
-  }
-  .guess-card .back-view img{
-    /* max-width: 30px; */
-    width: 100%
-  }
-}
+ }
 
