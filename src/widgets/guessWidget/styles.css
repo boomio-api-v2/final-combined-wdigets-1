@@ -42,7 +42,6 @@
   width: 150px;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* border: 1px solid red; */
   margin-top: 30px;
   margin-left: 0px;
 }
@@ -153,8 +152,7 @@
   }
 
   .action-icon {
-    position: absolute;
-    top:170px;
+      top:170px;
   }
 
   .action-icon :first-child {
@@ -199,7 +197,6 @@
   }
 
   .action-icon {
-    position: absolute;
     top:190px;
   }
 
