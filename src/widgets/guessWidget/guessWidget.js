@@ -5,7 +5,9 @@ import {
   DragElement,
   QrCodeModal,
 } from '@/services';
+import { winningAnimationGif } from '@/сonstants/icons';
 import './styles.css';
+
 
 class GuessWidget {
   constructor() {
@@ -34,6 +36,7 @@ class GuessWidget {
   createContainer = () => {
     const queIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/1c01bd6fb616cfea26f25c6287d2d860d987ae63/src/widgets/guessWidget/que_icon.svg'
     const img1 = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-1.png?raw=true'
+    const img7 = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/guess3/src/widgets/guessWidget/img-7.png?raw=true'
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'guess-container');
     myCanvas.classList.add(
@@ -76,12 +79,12 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
+        <li class="guess-card disabled">
           <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+          <img src=${img7} alt="icon">
           </div>
           <div class="view back-view">
-            <img src=${img1}>
+            <img src=${img7}>
           </div>
         </li>
         <li class="guess-card">
@@ -162,10 +165,23 @@ class GuessWidget {
       card.classList.remove('flip');
       let imgTag = card.querySelector('.back-view img');
 
-      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${ i<4? arr[i]: i>4? arr[i-1] : 7}.png?raw=true`;
+      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${ i<4? arr[i]: i>4? arr[i-1] : ''}.png?raw=true`;
 
     });
   }
+  showWinningAnimation = () => {
+    setTimeout(() => {
+      const winningAnimation = document.createElement('img');
+      winningAnimation.classList.add('winningAnimation');
+      winningAnimation.setAttribute('src', winningAnimationGif);
+      widgetHtmlService.container.appendChild(winningAnimation);
+      winningAnimation.addEventListener('load', () => {
+        setTimeout(() => {
+          winningAnimation.remove();
+        }, 1000);
+      });
+    }, 100);
+  };
 
   addCardEventListeners() {
     const cards = Array.from(document.querySelectorAll('.guess-card'));
@@ -174,6 +190,7 @@ class GuessWidget {
     let disableDeck = false;
 
     function flipCard({ target: clickedCard }) {
+      if (clickedCard.classList.contains('disabled')) return
       if (cardOne !== clickedCard && !disableDeck) {
         clickedCard.classList.add('flip');
         if (!cardOne) {
@@ -186,11 +203,25 @@ class GuessWidget {
         matchCards(cardOneImg, cardTwoImg);
       }
     }
+    const showWinningAnimation = () => {
+      setTimeout(() => {
+        const winningAnimation = document.createElement('img');
+        winningAnimation.classList.add('winningAnimation');
+        winningAnimation.setAttribute('src', winningAnimationGif);
+        widgetHtmlService.container.appendChild(winningAnimation);
+        winningAnimation.addEventListener('load', () => {
+          setTimeout(() => {
+            winningAnimation.remove();
+          }, 1000);
+        });
+      }, 100);
+    };
 
     function matchCards(img1, img2) {
       if (img1 === img2) {
         matched++;
-        if (matched == 6) {
+        showWinningAnimation()
+        if (matched == 4) {
           setTimeout(() => {
             const guessContainer = document.getElementById('guess-container');
             if (guessContainer && guessContainer.parentNode) {
