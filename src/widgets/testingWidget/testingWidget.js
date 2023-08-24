@@ -48,6 +48,7 @@ class TestingWidget {
       { spawn: 'ice', despawn: 'ice-widget', name: 'Ice' },
       { spawn: 'penguin', despawn: 'penguin-widget', name: 'Penguin' },
       { spawn: 'snake', despawn: 'snake', name: 'Snake' },
+      { spawn: 'claw', despawn: 'claw', name: 'Claw Machine Widget' },
       { spawn: 'cats', despawn: 'cats', name: 'Cats Widget' },
       { spawn: 'hedgehog', despawn: 'hedgehog', name: 'Hedgehog Widget' },
       { spawn: 'guess', despawn: 'guess', name: 'Guess image Widget' },
@@ -61,12 +62,14 @@ class TestingWidget {
       const spawnBtnId = `SpawnBtn_${widget.spawn}`;
 
       buttonsHtml += `<div style='width:100%;margin-bottom:10px'>
-      ${widget.spawn === 'snake'
+      ${
+        widget.spawn === 'snake'
           ? `<p style='margin-top:20px;margin-bottom:30px;'>Coming soon</p>`
           : ''
-        }
-          <button class='go_button' style='margin:0px 10px;font-size: 12px !important;width:160px !important' data-widget-spawn='${widget.spawn
-        }' id='${spawnBtnId}'>${widget.name}</button>
+      }
+          <button class='go_button' style='margin:0px 10px;font-size: 12px !important;width:160px !important' data-widget-spawn='${
+            widget.spawn
+          }' id='${spawnBtnId}'>${widget.name}</button>
         </div>`;
     });
 
