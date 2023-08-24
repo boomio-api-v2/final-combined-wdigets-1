@@ -22,8 +22,9 @@ class GuessWidget {
       posx: window.matchMedia("(min-width: 450px)").matches ? 1  : -50,
       posy: 1,
     });
-    this.draggeble = new DragElement(this.guess);
-    new DragElement(this.guess);
+
+    if (window.matchMedia("(min-width: 600px)").matches) {this.draggeble = new DragElement(this.guess);
+    new DragElement(this.guess);}
     setTimeout(() => {
       this.shuffleCard();
       this.addCardEventListeners();
@@ -157,8 +158,8 @@ class GuessWidget {
     btnContainer.style.flexDirection = 'column';
     btnContainer.style.justifyContent = 'center';
     const dragBtn = document.createElement('div')
-    dragBtn.classList.add('action-icon', 'move');
-    dragBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';
+    if (window.matchMedia("(min-width: 600px)").matches) {dragBtn.classList.add('action-icon', 'move');
+    dragBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';}
     const closeBtn = document.createElement('div');
     closeBtn.classList.add('action-icon', 'close');
     closeBtn.innerHTML =
@@ -173,7 +174,7 @@ class GuessWidget {
       { once: true },
     );
     btnContainer.appendChild(closeBtn);
-    btnContainer.appendChild(dragBtn);
+    if (window.matchMedia("(min-width: 600px)").matches) {btnContainer.appendChild(dragBtn);}
     element.appendChild(btnContainer);
   };
 
