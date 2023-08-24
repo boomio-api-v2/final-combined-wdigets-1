@@ -115,33 +115,7 @@ class GuessWidget {
           <div class="view back-view">
             <img src=${img1}>
           </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-      
-      
+        </li>    
       </ul>
     </div>
     `;
@@ -182,13 +156,13 @@ class GuessWidget {
   shuffleCard() {
     const cards = Array.from(document.querySelectorAll('.guess-card'));
 
-    let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
+    let arr = [1, 2, 3, 4, 1, 2, 3, 4];
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
       card.classList.remove('flip');
       let imgTag = card.querySelector('.back-view img');
 
-      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${arr[i]}.png?raw=true`;
+      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${ i<4? arr[i]: i>4? arr[i-1] : 7}.png?raw=true`;
 
     });
   }
