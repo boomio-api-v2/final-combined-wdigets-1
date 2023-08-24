@@ -1,114 +1,216 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-.wrapper{
-  width: 340px;
-  height: 340px;
-  padding: 20px;
-  border-radius: 10px;
-  background: #F8F8F8;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+.action-icon {
+  position: absolute;
+  top: 120px;
 }
-.cards, .card, .view{
+
+.action-icon :first-child {
+  width: 20px;
+}
+
+.close {}
+
+.move {
+  left: 145px;
+}
+
+.wrapper {
+  width: 400px;
+  height: 400px;
+  padding: 120px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/background.png?raw=true');
+}
+
+.guess-cards,
+.guess-card,
+.view {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.cards{
-  height: 300px;
-  width: 300px;
+
+.guess-cards {
+  height: 130px;
+  width: 150px;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 30px;
+  margin-left: 0px;
 }
-.cards .card{
+
+.guess-cards .guess-card {
   cursor: pointer;
   list-style: none;
   user-select: none;
   position: relative;
   perspective: 1000px;
   transform-style: preserve-3d;
-  height: calc(100% / 4 - 10px);
-  width: calc(100% / 4 - 10px);
+  height: calc(100% / 4 - 7px) !important;
+  width: calc(100% / 4 - 7px) !important;
 }
-.card.shake{
+
+.guess-card.shake {
   animation: shake 0.35s ease-in-out;
 }
 
 
 #guess-container {
-  width : 340px;
-  height : 340px;
+  width: 340px;
+  height: 340px;
 }
 
 
 
 @keyframes shake {
-  0%, 100%{
+
+  0%,
+  100% {
     transform: translateX(0);
   }
-  20%{
+
+  20% {
     transform: translateX(-13px);
   }
-  40%{
+
+  40% {
     transform: translateX(13px);
   }
-  60%{
+
+  60% {
     transform: translateX(-8px);
   }
-  80%{
+
+  80% {
     transform: translateX(8px);
   }
 }
-.card .view{
+
+.guess-card .view {
   width: 100%;
   height: 100%;
   position: absolute;
-  border-radius: 7px;
-  background: #fff;
+  border-radius: 12px;
   pointer-events: none;
   backface-visibility: hidden;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s linear;
 }
-.card .front-view img{
-  width: 19px;
+
+.guess-card .front-view img {
+  width: 100% !important;
 }
-.card .back-view img{
-  max-width: 45px;
+
+.guess-card .back-view img {
+  width: 100% !important;
 }
-.card .back-view{
+
+.guess-card .back-view {
   transform: rotateY(-180deg);
 }
-.card.flip .back-view{
+
+.guess-card.flip .back-view {
   transform: rotateY(0);
 }
-.card.flip .front-view{
+
+.guess-card.flip .front-view {
   transform: rotateY(180deg);
 }
 
 
-@media (max-width: 600px) {
-  #guess-container {
-    width : 230px;
-    height : 230px;
-  }
-  .wrapper{
-    width: 230px;
-    height: 230px;
-    padding: 15px;
-  }
-  .cards .card{
-    height: calc(100% / 4 - 8px);
-    width: calc(100% / 4 - 8px);
-  }
-  .cards{
-    height: 200px;
+@media (min-width: 300px) {
+
+  .guess-cards {
+    height: 155px;
     width: 200px;
+    margin-top: 135px;
+    margin-left: 70px;
   }
-  .card .front-view img{
-    width: 13px;
+
+  .guess-cards .guess-card {
+    height: calc(100% / 4 - 8px) !important;
+    width: calc(100% / 4 - 8px) !important;
   }
-  .card .back-view img{
-    max-width: 30px;
+
+
+
+  .wrapper {
+    width: 600px;
+    height: 600px;
+    padding: 100px;
+
   }
+
+  .action-icon {
+    top: 200px;
+  }
+
+  .action-icon :first-child {
+    width: 20px;
+  }
+
+  .close {
+    left: 350px
+
+  }
+
+  .move {
+    left: 220px;
+  }
+  #guess-container {
+    width: 300px;
+    height: 300px;
+    
 }
 
+}
+
+@media (min-width: 600px) {
+
+  .guess-cards {
+    height: 240px;
+    width: 300px;
+    margin-top: 170px;
+    margin-left: 120px;
+  }
+
+  .guess-cards .guess-card {
+    height: calc(100% / 4 - 10px) !important;
+    width: calc(100% / 4 - 10px) !important;
+  }
+
+
+  .wrapper {
+    width: 750px;
+    height: 750px;
+    padding: 100px;
+
+  }
+
+  .action-icon {
+    top: 225px;
+  }
+
+  .action-icon :first-child {
+    width: 25px;
+  }
+
+  .close {
+    left: 500px;
+
+  }
+
+  .move {
+    left: 450px;
+  }
+
+  #guess-container {
+    width: 600px;
+    height: 600px;
+  }
+
+}

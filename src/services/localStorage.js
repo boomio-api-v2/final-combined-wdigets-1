@@ -81,15 +81,15 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
-    const p_button_text_line1 = config?.p_coupon_text_line1 ?? 'Open';
-    const p_button_text_line2 = config?.p_coupon_text_line1 ?? 'boomio app';
+    const p_button_text_line1 = config?.p_button_text_line1 ?? 'Open';
+    const p_button_text_line2 = config?.p_button_text_line2 ?? 'boomio app';
     const static_text = config?.static_text ?? false;
     const boomioStopTill = config?.boomioStopTill ?? null;
     const m = config?.m ?? null;
     const puzzle = {
       puzzles_collected: config?.puzzles_collected ?? 0,
       puzzles_needed: config?.puzzles_needed ?? undefined,
-      hint: config?.hint ?? 'Adidas Stan Smith J FX7519',
+      hint: config?.hint ?? 'Keep looking!',
     };
     const w_top_text = config?.w_top_text
       ? config.w_top_text
