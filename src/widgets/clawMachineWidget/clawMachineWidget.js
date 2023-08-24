@@ -185,11 +185,11 @@ class ClawMachineWidget {
 
       // Move the Claw div down
       this.clawDiv.style.transition = 'top 1s';
-      this.clawDiv.style.top = '92vh';
+      this.clawDiv.style.top = '90vh';
 
       // Extend the chain-div height and transform it down as the Claw div goes down
       this.chainDiv.style.transition = 'height 1s, transform 1s'; // Add transitions for height and transform change
-      this.chainDiv.style.height = '92vh';
+      this.chainDiv.style.height = '90vh';
 
       // Delay the collision detection until after the animation
       console.log('2', this.animationInProgress);
