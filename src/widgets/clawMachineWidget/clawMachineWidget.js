@@ -191,11 +191,11 @@ class ClawMachineWidget {
         return window.innerWidth <= mobileThreshold;
       }
 
-      this.clawDiv.style.top = `calc(100vh - ${isMobile() ? '60px' : '110px'})`;
+      this.clawDiv.style.top = `calc(100vh - ${isMobile() ? '110px' : '110px'})`;
 
       // Extend the chain-div height and transform it down as the Claw div goes down
       this.chainDiv.style.transition = 'height 1s, transform 1s'; // Add transitions for height and transform change
-      this.chainDiv.style.height = `calc(100vh - ${isMobile() ? '60px' : '110px'})`;
+      this.chainDiv.style.height = `calc(100vh - ${isMobile() ? '110px' : '110px'})`;
 
       // Delay the collision detection until after the animation
       console.log('2', this.animationInProgress);
@@ -208,8 +208,7 @@ class ClawMachineWidget {
           if (
             clawDivRect.left < clawPresentDivRect.right &&
             clawDivRect.right > clawPresentDivRect.left &&
-            clawDivRect.top < clawPresentDivRect.bottom &&
-            clawDivRect.bottom > clawPresentDivRect.top
+            clawDivRect.top < clawPresentDivRect.bottom
           ) {
             console.log(`Collision detected with Present Div ${index}`);
 
