@@ -5,7 +5,6 @@ import {
   DragElement,
   QrCodeModal,
 } from '@/services';
-import { winningAnimationGif } from '@/сonstants/icons';
 import './styles.css';
 
 
@@ -166,10 +165,22 @@ class GuessWidget {
     let arr = [1, 2, 3, 4, 1, 2, 3, 4];
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
-      card.classList.remove('flip');
+      card.classList.remove('flip')
       let imgTag = card.querySelector('.back-view img');
-
+      
       imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${i < 4 ? arr[i] : i > 4 ? arr[i - 1] : ''}.png?raw=true`;
+      
+
+      setTimeout(() => {
+        cards.forEach((card, i) => {
+          if (i!=4) card.classList.add('flip');
+        })
+          }, 500);
+      setTimeout(() => {
+        cards.forEach((card) => {
+          card.classList.remove('flip');
+        })
+          }, 1500);
 
     });
   }
@@ -190,7 +201,7 @@ class GuessWidget {
         disableDeck = true;
         let cardOneImg = cardOne.querySelector('.back-view img').src,
           cardTwoImg = cardTwo.querySelector('.back-view img').src;
-        matchCards(cardOneImg, cardTwoImg);
+          matchCards(cardOneImg, cardTwoImg);
       }
     }
 
