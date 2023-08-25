@@ -30,8 +30,10 @@ class GuessWidget {
     }
     setTimeout(() => {
       this.shuffleCard();
-      this.addCardEventListeners();
-    }, 200);
+        }, 200);
+    setTimeout(() => {
+        this.addCardEventListeners();
+    }, 3200);
   }
 
   createContainer = () => {
@@ -48,7 +50,7 @@ class GuessWidget {
     myCanvas.innerHTML = `
     <div class="wrapper">
       <ul class="guess-cards">
-        <li class="guess-card">
+        <li class="guess-card invisible">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -56,7 +58,7 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
+        <li class="guess-card invisible">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -64,7 +66,7 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
+        <li class="guess-card invisible">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -72,7 +74,7 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
+        <li class="guess-card invisible">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -80,7 +82,7 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card disabled">
+        <li class="guess-card disabled invisible">
           <div class="view front-view">
           <img src=${img7} alt="icon">
           </div>
@@ -88,7 +90,7 @@ class GuessWidget {
             <img src=${img7}>
           </div>
         </li>
-        <li class="guess-card">
+        <li class="guess-card invisible">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -96,7 +98,7 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
+        <li class="guess-card invisible">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -104,7 +106,7 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
+        <li class="guess-card invisible">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -112,7 +114,7 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
+        <li class="guess-card invisible">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -167,80 +169,98 @@ class GuessWidget {
     cards.forEach((card, i) => {
       card.classList.remove('flip')
       let imgTag = card.querySelector('.back-view img');
-      
-      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${i < 4 ? arr[i] : i > 4 ? arr[i - 1] : ''}.png?raw=true`;
-      
 
-      setTimeout(() => {
-        cards.forEach((card, i) => {
-          if (i!=4) card.classList.add('flip');
-        })
-          }, 500);
+      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${i < 4 ? arr[i] : i > 4 ? arr[i - 1] : ''}.png?raw=true`;
+
+
       setTimeout(() => {
         cards.forEach((card) => {
-          card.classList.remove('flip');
-        })
-          }, 1500);
-
-    });
-  }
-  addCardEventListeners() {
-    const cards = Array.from(document.querySelectorAll('.guess-card'));
-    let matched = 0;
-    let cardOne, cardTwo;
-    let disableDeck = false;
-
-    function flipCard({ target: clickedCard }) {
-      if (clickedCard.classList.contains('disabled')) return
-      if (cardOne !== clickedCard && !disableDeck) {
-        clickedCard.classList.add('flip');
-        if (!cardOne) {
-          return (cardOne = clickedCard);
+          card.classList.remove('invisible')
+        });
+        for (let i = 1; i < 4; i++) {
+          cards[i - 1].classList.add(`flytop${i}`)
+          cards[i + 2].classList.add(`flymid${i}`)
+          cards[i + 5].classList.add(`flybottom${i}`)
         }
-        cardTwo = clickedCard;
-        disableDeck = true;
-        let cardOneImg = cardOne.querySelector('.back-view img').src,
-          cardTwoImg = cardTwo.querySelector('.back-view img').src;
-          matchCards(cardOneImg, cardTwoImg);
+  
+    }, 500);
+
+    setTimeout(() => {
+      cards.forEach((card, i) => {
+        if (i != 4) card.classList.add('flip');
+      })
+    }, 2000);
+
+    setTimeout(() => {
+      cards.forEach((card) => {
+        card.classList.remove('flip');
+      })
+      for (let i = 1; i < 4; i++) {
+        cards[i - 1].classList.remove(`flytop${i}`)
+        cards[i + 2].classList.remove(`flymid${i}`)
+        cards[i + 5].classList.remove(`flybottom${i}`)
       }
-    }
+    }, 3000);
 
-    function matchCards(img1, img2) {
-      if (img1 === img2) {
-        matched++;
-          cardOne.classList.add('rotate');
-          cardTwo.classList.add('rotate');
-         if (matched == 4) {
-          setTimeout(() => {
-            const guessContainer = document.getElementById('guess-container');
-            if (guessContainer && guessContainer.parentNode) {
-              guessContainer.parentNode.removeChild(guessContainer);
-              new QrCodeModal();
-            }
-          }, 3000);
-        }
-        cardOne.removeEventListener('click', flipCard);
-        cardTwo.removeEventListener('click', flipCard);
-        cardOne = cardTwo = '';
-        return (disableDeck = false);
+  });
+}
+addCardEventListeners() {
+  const cards = Array.from(document.querySelectorAll('.guess-card'));
+  let matched = 0;
+  let cardOne, cardTwo;
+  let disableDeck = false;
+
+  function flipCard({ target: clickedCard }) {
+    if (clickedCard.classList.contains('disabled')) return
+    if (cardOne !== clickedCard && !disableDeck) {
+      clickedCard.classList.add('flip');
+      if (!cardOne) {
+        return (cardOne = clickedCard);
       }
-      setTimeout(() => {
-        cardOne.classList.add('shake');
-        cardTwo.classList.add('shake');
-      }, 400);
-
-      setTimeout(() => {
-        cardOne.classList.remove('shake', 'flip');
-        cardTwo.classList.remove('shake', 'flip');
-        cardOne = cardTwo = '';
-        disableDeck = false;
-      }, 1200);
+      cardTwo = clickedCard;
+      disableDeck = true;
+      let cardOneImg = cardOne.querySelector('.back-view img').src,
+        cardTwoImg = cardTwo.querySelector('.back-view img').src;
+      matchCards(cardOneImg, cardTwoImg);
     }
-
-    cards.forEach((card) => {
-      card.addEventListener('click', flipCard);
-    });
   }
+
+  function matchCards(img1, img2) {
+    if (img1 === img2) {
+      matched++;
+      cardOne.classList.add('rotate');
+      cardTwo.classList.add('rotate');
+      if (matched == 4) {
+        setTimeout(() => {
+          const guessContainer = document.getElementById('guess-container');
+          if (guessContainer && guessContainer.parentNode) {
+            guessContainer.parentNode.removeChild(guessContainer);
+            new QrCodeModal();
+          }
+        }, 3000);
+      }
+      cardOne.removeEventListener('click', flipCard);
+      cardTwo.removeEventListener('click', flipCard);
+      cardOne = cardTwo = '';
+      return (disableDeck = false);
+    }
+    setTimeout(() => {
+      cardOne.classList.add('shake');
+      cardTwo.classList.add('shake');
+    }, 400);
+
+    setTimeout(() => {
+      cardOne.classList.remove('shake', 'flip');
+      cardTwo.classList.remove('shake', 'flip');
+      cardOne = cardTwo = '';
+      disableDeck = false;
+    }, 1200);
+  }
+
+  cards.forEach((card) => {
+    card.addEventListener('click', flipCard);
+  });
+}
 }
 
 export default () => {

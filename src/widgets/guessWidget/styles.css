@@ -60,6 +60,63 @@
   animation: shake 0.35s ease-in-out;
 
 }
+.invisible {
+  display: none;
+}
+.flytop1{
+  animation: flyinNE 0.2s 0.1s ease-in-out;
+}
+.flytop2{
+  animation: flyinNE 0.5s 0.1s ease-in-out;
+}
+.flytop3{
+  animation: flyinNE 0.8s 0.1s ease-in-out;
+}
+
+@keyframes flyinNE {
+  0% {
+    transform:translateX(500px) translateY(-200px) rotateZ(350deg);
+  }
+}
+
+
+.flymid1{
+  animation: flyinE 1.2s 0.1s ease-in-out;
+}
+.flymid2{
+  /* animation: flyinE 0.1s 0.1s ease-in-out; */
+}
+.flymid3{
+  animation: flyinW 1.2s 0.1s ease-in-out;
+}
+
+@keyframes flyinE {
+  0% {
+    transform:translateX(-500px) ;
+  }
+}
+@keyframes flyinW {
+  0% {
+    transform:translateX(500px) ;
+  }
+}
+
+.flybottom1{
+  animation: flyinSW 1.2s 0.1s ease-in-out;
+}
+.flybottom2{
+  animation: flyinSW 0.9s 0.1s ease-in-out;
+}
+.flybottom3{
+  animation: flyinSW 0.6s 0.1s ease-in-out;
+}
+
+@keyframes flyinSW {
+  0% {
+    transform:translateX(-500px) translateY(200px) rotateZ(-350deg);
+  }
+}
+
 
 .rotate {
   animation: rotation 2.5s 0.2s ease-in-out;
