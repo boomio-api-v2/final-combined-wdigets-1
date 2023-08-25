@@ -3,6 +3,8 @@ import {
   AnimationService,
   localStorageService,
   DragElement,
+
+
   QrCodeModal,
 } from '@/services';
 import './styles.css';
@@ -84,7 +86,7 @@ class GuessWidget {
         </li>
         <li class="guess-card disabled invisible">
           <div class="view front-view">
-          <img src=${img7} alt="icon">
+          <img src=''>
           </div>
           <div class="view back-view">
             <img src=${img7}>
