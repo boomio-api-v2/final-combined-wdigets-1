@@ -21,12 +21,14 @@ class GuessWidget {
     this.guess = document.getElementById('guess-container');
     this.animation = new AnimationService({
       elem: this.guess,
-      posx: window.matchMedia("(min-width: 450px)").matches ? 1  : -50,
+      posx: window.matchMedia("(min-width: 450px)").matches ? 50 : -50,
       posy: 1,
     });
 
-    if (window.matchMedia("(min-width: 600px)").matches) {this.draggeble = new DragElement(this.guess);
-    new DragElement(this.guess);}
+    if (window.matchMedia("(min-width: 600px)").matches) {
+      this.draggeble = new DragElement(this.guess);
+      new DragElement(this.guess);
+    }
     setTimeout(() => {
       this.shuffleCard();
       this.addCardEventListeners();
@@ -135,8 +137,10 @@ class GuessWidget {
     btnContainer.style.flexDirection = 'column';
     btnContainer.style.justifyContent = 'center';
     const dragBtn = document.createElement('div')
-    if (window.matchMedia("(min-width: 600px)").matches) {dragBtn.classList.add('action-icon', 'move');
-    dragBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';}
+    if (window.matchMedia("(min-width: 600px)").matches) {
+      dragBtn.classList.add('action-icon', 'move');
+      dragBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';
+    }
     const closeBtn = document.createElement('div');
     closeBtn.classList.add('action-icon', 'close');
     closeBtn.innerHTML =
@@ -151,7 +155,7 @@ class GuessWidget {
       { once: true },
     );
     btnContainer.appendChild(closeBtn);
-    if (window.matchMedia("(min-width: 600px)").matches) {btnContainer.appendChild(dragBtn);}
+    if (window.matchMedia("(min-width: 600px)").matches) { btnContainer.appendChild(dragBtn); }
     element.appendChild(btnContainer);
   };
 
@@ -165,24 +169,10 @@ class GuessWidget {
       card.classList.remove('flip');
       let imgTag = card.querySelector('.back-view img');
 
-      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${ i<4? arr[i]: i>4? arr[i-1] : ''}.png?raw=true`;
+      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${i < 4 ? arr[i] : i > 4 ? arr[i - 1] : ''}.png?raw=true`;
 
     });
   }
-  showWinningAnimation = () => {
-    setTimeout(() => {
-      const winningAnimation = document.createElement('img');
-      winningAnimation.classList.add('winningAnimation');
-      winningAnimation.setAttribute('src', winningAnimationGif);
-      widgetHtmlService.container.appendChild(winningAnimation);
-      winningAnimation.addEventListener('load', () => {
-        setTimeout(() => {
-          winningAnimation.remove();
-        }, 1000);
-      });
-    }, 100);
-  };
-
   addCardEventListeners() {
     const cards = Array.from(document.querySelectorAll('.guess-card'));
     let matched = 0;
@@ -203,32 +193,20 @@ class GuessWidget {
         matchCards(cardOneImg, cardTwoImg);
       }
     }
-    const showWinningAnimation = () => {
-      setTimeout(() => {
-        const winningAnimation = document.createElement('img');
-        winningAnimation.classList.add('winningAnimation');
-        winningAnimation.setAttribute('src', winningAnimationGif);
-        widgetHtmlService.container.appendChild(winningAnimation);
-        winningAnimation.addEventListener('load', () => {
-          setTimeout(() => {
-            winningAnimation.remove();
-          }, 1000);
-        });
-      }, 100);
-    };
 
     function matchCards(img1, img2) {
       if (img1 === img2) {
         matched++;
-        showWinningAnimation()
-        if (matched == 4) {
+          cardOne.classList.add('rotate');
+          cardTwo.classList.add('rotate');
+         if (matched == 4) {
           setTimeout(() => {
             const guessContainer = document.getElementById('guess-container');
             if (guessContainer && guessContainer.parentNode) {
               guessContainer.parentNode.removeChild(guessContainer);
               new QrCodeModal();
             }
-          }, 1000);
+          }, 3000);
         }
         cardOne.removeEventListener('click', flipCard);
         cardTwo.removeEventListener('click', flipCard);
