@@ -65,12 +65,15 @@
 }
 .flytop1{
   animation: flyinNE 0.2s 0.1s ease-in-out;
+  animation-fill-mode: backwards;
 }
 .flytop2{
   animation: flyinNE 0.5s 0.1s ease-in-out;
+  animation-fill-mode: backwards;
 }
 .flytop3{
   animation: flyinNE 0.8s 0.1s ease-in-out;
+  animation-fill-mode: backwards;
 }
 
 @keyframes flyinNE {
@@ -82,12 +85,20 @@
 
 .flymid1{
   animation: flyinE 1.2s 0.1s ease-in-out;
+  animation-fill-mode: backwards;
 }
 .flymid2{
-  /* animation: flyinE 0.1s 0.1s ease-in-out; */
+  animation-duration: 0.75s;
+  animation-delay: 0.8s;
+  animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+  animation-fill-mode: backwards;
+  animation-name: animate-blur;
+  animation-timing-function: ease;
+  /* animation-name: animate-roll; */
 }
 .flymid3{
   animation: flyinW 1.2s 0.1s ease-in-out;
+  animation-fill-mode: backwards;
 }
 
 @keyframes flyinE {
@@ -103,12 +114,15 @@
 
 .flybottom1{
   animation: flyinSW 1.2s 0.1s ease-in-out;
+  animation-fill-mode: backwards;
 }
 .flybottom2{
   animation: flyinSW 0.9s 0.1s ease-in-out;
+  animation-fill-mode: backwards;
 }
 .flybottom3{
   animation: flyinSW 0.6s 0.1s ease-in-out;
+  animation-fill-mode: backwards;
 }
 
 @keyframes flyinSW {
@@ -117,17 +131,39 @@
   }
 }
 
-
-.rotate {
-  animation: rotation 2.5s 0.2s ease-in-out;
+@keyframes animate-blur {
+  0% {
+    opacity: 0;
+    filter: blur(15px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
 }
 
- @keyframes rotation {
+@keyframes animate-roll {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0) rotate(360deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1) rotate(0deg);
+  }
+}
+
+
+.jump {
+  animation: jump 0.5s 0.2s ease-in-out;
+}
+
+ @keyframes jump {
  
-  15%  {
+  50%  {
      transform: translateY(-10px) ;
    }
-   30% {
+   /* 30% {
      transform: rotate(0deg);
    }
   45% {
@@ -135,7 +171,7 @@
    }
   60% {
      transform: rotate(720deg);
-   }
+   } */
    /* 100% {
         transform: translateY(0px) ;
       } */

@@ -32,9 +32,9 @@ class GuessWidget {
     }
     setTimeout(() => {
       this.shuffleCard();
-        }, 200);
+    }, 200);
     setTimeout(() => {
-        this.addCardEventListeners();
+      this.addCardEventListeners();
     }, 3200);
   }
 
@@ -174,22 +174,27 @@ class GuessWidget {
       let imgTag = card.querySelector('.back-view img');
 
       imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${i < 4 ? arr[i] : i > 4 ? arr[i - 1] : ''}.png?raw=true`;
-      setTimeout(() => {
-        cards.forEach((card) => {
-          card.classList.remove('invisible')
-        });
-        for (let i = 1; i < 4; i++) {
-          cards[i - 1].classList.add(`flytop${i}`)
-          cards[i + 2].classList.add(`flymid${i}`)
-          cards[i + 5].classList.add(`flybottom${i}`)
-        }
-  
-    }, 500);
+
+    });
 
     setTimeout(() => {
+      for (let i = 1; i < 4; i++) {
+        cards[i - 1].classList.add(`flytop${i}`)
+        cards[i + 2].classList.add(`flymid${i}`)
+        cards[i + 5].classList.add(`flybottom${i}`)
+      }
+      cards.forEach((card) => {
+        card.classList.remove('invisible')
+      })
+
+    }, 400);
+
+    setTimeout(() => {
+
       cards.forEach((card, i) => {
         if (i != 4) card.classList.add('flip');
       })
+
     }, 2000);
 
     setTimeout(() => {
@@ -203,65 +208,65 @@ class GuessWidget {
       }
     }, 3000);
 
-  });
-}
-addCardEventListeners() {
-  const cards = Array.from(document.querySelectorAll('.guess-card'));
-  let matched = 0;
-  let cardOne, cardTwo;
-  let disableDeck = false;
 
-  function flipCard({ target: clickedCard }) {
-    if (clickedCard.classList.contains('disabled')) return
-    if (cardOne !== clickedCard && !disableDeck) {
-      clickedCard.classList.add('flip');
-      if (!cardOne) {
-        return (cardOne = clickedCard);
-      }
-      cardTwo = clickedCard;
-      disableDeck = true;
-      let cardOneImg = cardOne.querySelector('.back-view img').src,
-        cardTwoImg = cardTwo.querySelector('.back-view img').src;
-      matchCards(cardOneImg, cardTwoImg);
-    }
   }
+  addCardEventListeners() {
+    const cards = Array.from(document.querySelectorAll('.guess-card'));
+    let matched = 0;
+    let cardOne, cardTwo;
+    let disableDeck = false;
 
-  function matchCards(img1, img2) {
-    if (img1 === img2) {
-      matched++;
-      cardOne.classList.add('rotate');
-      cardTwo.classList.add('rotate');
-      if (matched == 4) {
-        setTimeout(() => {
-          const guessContainer = document.getElementById('guess-container');
-          if (guessContainer && guessContainer.parentNode) {
-            guessContainer.parentNode.removeChild(guessContainer);
-            new QrCodeModal();
-          }
-        }, 3000);
+    function flipCard({ target: clickedCard }) {
+      if (clickedCard.classList.contains('disabled')) return
+      if (cardOne !== clickedCard && !disableDeck) {
+        clickedCard.classList.add('flip');
+        if (!cardOne) {
+          return (cardOne = clickedCard);
+        }
+        cardTwo = clickedCard;
+        disableDeck = true;
+        let cardOneImg = cardOne.querySelector('.back-view img').src,
+          cardTwoImg = cardTwo.querySelector('.back-view img').src;
+        matchCards(cardOneImg, cardTwoImg);
       }
-      cardOne.removeEventListener('click', flipCard);
-      cardTwo.removeEventListener('click', flipCard);
-      cardOne = cardTwo = '';
-      return (disableDeck = false);
     }
-    setTimeout(() => {
-      cardOne.classList.add('shake');
-      cardTwo.classList.add('shake');
-    }, 400);
 
-    setTimeout(() => {
-      cardOne.classList.remove('shake', 'flip');
-      cardTwo.classList.remove('shake', 'flip');
-      cardOne = cardTwo = '';
-      disableDeck = false;
-    }, 1200);
+    function matchCards(img1, img2) {
+      if (img1 === img2) {
+        matched++;
+        cardOne.classList.add('jump');
+        cardTwo.classList.add('jump');
+        if (matched == 4) {
+          setTimeout(() => {
+            const guessContainer = document.getElementById('guess-container');
+            if (guessContainer && guessContainer.parentNode) {
+              guessContainer.parentNode.removeChild(guessContainer);
+              new QrCodeModal();
+            }
+          }, 3000);
+        }
+        cardOne.removeEventListener('click', flipCard);
+        cardTwo.removeEventListener('click', flipCard);
+        cardOne = cardTwo = '';
+        return (disableDeck = false);
+      }
+      setTimeout(() => {
+        cardOne.classList.add('shake');
+        cardTwo.classList.add('shake');
+      }, 400);
+
+      setTimeout(() => {
+        cardOne.classList.remove('shake', 'flip');
+        cardTwo.classList.remove('shake', 'flip');
+        cardOne = cardTwo = '';
+        disableDeck = false;
+      }, 1200);
+    }
+
+    cards.forEach((card) => {
+      card.addEventListener('click', flipCard);
+    });
   }
-
-  cards.forEach((card) => {
-    card.addEventListener('click', flipCard);
-  });
-}
 }
 
 export default () => {
