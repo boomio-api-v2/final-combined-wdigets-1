@@ -108,7 +108,9 @@ class ClawMachineWidget {
       setTimeout(() => {
         setTimeout(() => {
           const buttonElement = document.querySelector('.boomio-control-button');
-          buttonElement.style.pointerEvents = 'auto';
+          if (buttonElement) {
+            buttonElement.style.pointerEvents = 'auto';
+          }
         }, 600);
         this.clawDiv.style.transition = 'top 1s';
         this.clawDiv.style.top = '50px';
