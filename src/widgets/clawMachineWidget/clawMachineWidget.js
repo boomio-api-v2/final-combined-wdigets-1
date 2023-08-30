@@ -255,6 +255,11 @@ class ClawMachineWidget {
   setupClickHandler() {}
 
   endGame = () => {
+    const buttonElement = document.querySelector('.control-button');
+    if (buttonElement && buttonElement.parentNode) {
+      buttonElement.parentNode.removeChild(buttonElement);
+    }
+
     setTimeout(() => {
       const element = document.getElementById('clawMachine-container');
       if (element && element.parentNode) {
