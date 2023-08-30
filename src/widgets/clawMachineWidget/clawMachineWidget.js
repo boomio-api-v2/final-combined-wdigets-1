@@ -12,7 +12,6 @@ class ClawMachineWidget {
     this.clawDiv = document.querySelector('.claw-div');
     this.chainDiv = document.querySelector('.chain-div');
     this.clawDivPosition = { top: 0, left: 0 };
-    this.moveDivWithArrows();
     this.setupClickHandler();
     this.animationInProgress = false; // Use a separate flag for animation
 
@@ -252,38 +251,6 @@ class ClawMachineWidget {
 
     widgetHtmlService.container.appendChild(clawMachineContainer);
   };
-
-  moveDivWithArrows() {
-    if (this.animationInProgress) {
-      console.log('return');
-      return;
-    }
-    // Add event listener for keydown events
-    document.addEventListener('keydown', (event) => {
-      switch (event.key) {
-        case 'ArrowLeft':
-          this.clawDivPosition.left -= 10; // Move left
-          break;
-        case 'ArrowRight':
-          this.clawDivPosition.left += 10; // Move right
-          break;
-      }
-
-      // Calculate the maximum positions to stay within the viewport
-      const maxX = window.innerWidth - this.clawDiv.clientWidth;
-      const maxY = window.innerHeight - this.clawDiv.clientHeight;
-
-      // Ensure the claw-div stays within the screen boundaries
-      this.clawDivPosition.left = Math.min(Math.max(this.clawDivPosition.left, 0), maxX);
-
-      // Update the position of the .claw-div
-      this.clawDiv.style.left = `${this.clawDivPosition.left}px`;
-
-      // Update the position of the .chain-div to move together with the claw-div
-      const chainDivLeft = this.clawDivPosition.left + this.clawDiv.clientWidth / 2; // Adjust as needed
-      this.chainDiv.style.left = `${chainDivLeft}px`;
-    });
-  }
 
   setupClickHandler() {}
 
