@@ -33,6 +33,7 @@ class ClawMachineWidget {
 
     // Apply CSS for the button's appearance
     controlButton.style.position = 'fixed';
+    controlButton.style.zIndex = 9999999999999999999;
     controlButton.style.bottom = '50%';
     controlButton.style.left = '50%';
     controlButton.style.transform = 'translate(-50%, -50%)';
