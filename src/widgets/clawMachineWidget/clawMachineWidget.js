@@ -58,6 +58,12 @@ class ClawMachineWidget {
       return;
     }
 
+    // Disable the button
+    const controlButton = document.querySelector('.control-button');
+    if (controlButton) {
+      controlButton.disabled = true;
+    }
+
     this.animationInProgress = true;
 
     // Add your logic to move the claw down here
@@ -97,6 +103,13 @@ class ClawMachineWidget {
               }, 1000);
 
               this.endGame(index);
+
+              // Re-enable the button after 1 second
+              setTimeout(() => {
+                if (controlButton) {
+                  controlButton.disabled = false;
+                }
+              }, 1000);
             }, 1000);
           }
         }
@@ -111,8 +124,9 @@ class ClawMachineWidget {
         this.chainDiv.style.transform = 'translateY(0)';
         this.animationInProgress = false;
       }, 600);
-    }, 1000);
+    }, 1200);
   }
+
   startAutomaticClawMovement() {
     let direction = 1; // 1 for right, -1 for left
     const clawSpeed = 2; // Adjust the speed as needed
