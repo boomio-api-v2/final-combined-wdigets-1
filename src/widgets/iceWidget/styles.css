@@ -1,16 +1,17 @@
-#ice-widget {
+#boomio-ice-widget {
     height: 201px;
     width: 246px;
     box-sizing: border-box;
+    display:inline-flex;
 }
 
-#ice-widget .coupon {
+#boomio-ice-widget .coupon {
     height: 201px;
     width: 246px;
     background-size: cover;
 }
 
-#ice-widget .piece-of-ice {
+#boomio-ice-widget .boomio-piece-of-ice {
     position: absolute;
     left: 0;
     top: 0;
@@ -20,7 +21,7 @@
     transition: top 1.4s, transform 0.5s, opacity 4s;
 }
 
-#ice-widget .bang {
+#boomio-ice-widget .boomio-bang {
     position: absolute;
     width: 35px;
     height: 35px;
@@ -29,7 +30,7 @@
     left: 90px;
 }
 
-#ice-widget .ice-block {
+#boomio-ice-widget .boomio-ice-block {
     position: absolute;
     left: 0;
     top: 0;
@@ -38,8 +39,7 @@
     z-index: 1000000;
 }
 
-
-#ice-widget .hammer {
+#boomio-ice-widget .boomio-hammer {
     position: absolute;
     right: -170px;
     top: -60px;
@@ -50,11 +50,11 @@
     height: 100px;
 }
 
-#ice-widget .product-design-bg-2 {
+#boomio-ice-widget .boomio-product-design-bg-2 {
     border-radius: 24px;
 }
 
-#ice-widget .coupon-wrapper {
+#boomio-ice-widget .boomio-coupon-wrapper {
     width: 100%;
     height: 100%;
     display: flex;
@@ -62,57 +62,54 @@
     align-items: center;
 }
 
-
 @media (max-width: 600px) {
-    #ice-widget .coupon-grey-shadow-wrapper {
+    #boomio-ice-widget .coupon-grey-shadow-wrapper {
         height: 80px;
         width: 102px;
     }
-    #ice-widget .coupon-grey {
+    #boomio-ice-widget .coupon-grey {
         height: 80px;
         width: 102px;
     }
 
-    #ice-widget, #ice-widget .piece-of-ice,  #ice-widget .ice-block {
+    #boomio-ice-widget, #boomio-ice-widget .boomio-piece-of-ice,  #boomio-ice-widget .boomio-ice-block {
         width: 131px;
         height: 118px;
     }
 
-
-    #ice-widget .hammer {
+    #boomio-ice-widget .boomio-hammer {
         height: 100px;
         width: 80px;
         right: -75px;
         top: -30px;
     }
 
-
-    #ice-widget .coupon_info h3 {
+    #boomio-ice-widget .boomio-coupon_info h3 {
         font-size: 20px;
         line-height: 16px;
     }
 
-    #ice-widget .coupon_info h4 {
+    #boomio-ice-widget .boomio-coupon_info h4 {
         font-size: 12px;
         line-height: 16px;
         margin-top: 3px;
     }
 
-    #ice-widget .coupon_info p {
+    #boomio-ice-widget .boomio-coupon_info p {
         font-size: 6px;
         margin-top: 4px;
     }
 
-    #ice-widget .coupon__preview__card::before, #ice-widget .coupon__preview__card::after{
+    #boomio-ice-widget .boomio-coupon__preview__card::before, #boomio-ice-widget .boomio-coupon__preview__card::after{
         width: 26px;
         height: 26px;
     }
 
-    #ice-widget .coupon__preview__card {
+    #boomio-ice-widget .boomio-coupon__preview__card {
         border-radius: 15px;
     }
 
-    #ice-widget .bang {
+    #boomio-ice-widget .boomio-bang {
         position: absolute;
         width: 20px;
         height: 20px;
@@ -121,4 +118,3 @@
         left: 50px;
     }
 }
-

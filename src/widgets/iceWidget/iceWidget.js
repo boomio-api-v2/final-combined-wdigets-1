@@ -1,5 +1,7 @@
 import { AnimationService, DragElement, localStorageService, QrCodeModal } from '@/services';
-import { assignStyleOnElement } from '@/utlis';
+
+import { assignStyleOnElement, createCloseMoveButtons } from '@/utlis';
+
 import {
   icePieceCount,
   icePieceImages,
@@ -9,39 +11,94 @@ import {
   shadowTopCoordinatesForMobile,
   bangImage,
 } from './constants';
+
+import { iceHammerImage } from '@/сonstants';
+
 import boomio from '@/services/boomio';
 import { isMobileDevice } from '@/config';
+
 import './styles.css';
-import { iceHammerImage } from '@/сonstants';
+
 class IceWidget {
   constructor() {
     this.showCoupon = false;
     this.icePieces = [];
-    this.diplayedIcePieces = 0;
-    this.start();
+    this.displayedIcePieces = 0;
+    this.createWidget();
   }
 
-  showQrModal() {
-    const length = this.icePieces.length;
-    if (length || this.showCoupon) return;
-    this.showCoupon = true;
-    setTimeout(() => {
-      this.widget.remove();
-      new QrCodeModal();
-    }, 1000);
+  createWidget() {
+    this.widget = document.createElement('div');
+    this.widget.setAttribute('id', 'boomio-ice-widget');
+
+    this.createIceBlock();
+    this.initializeAnimations();
+
+    console.log('asdasd');
+
+    document.body.appendChild(this.widget);
   }
 
-  showBangAnimation = () => {
-    const bang = document.createElement('img');
-    bang.classList.add('bang');
-    bang.src = bangImage;
-    this.widget.appendChild(bang);
-    setTimeout(() => {
-      bang.remove();
-    }, 200);
-  };
+  createIceBlock() {
+    this.iceBlock = document.createElement('img');
+    this.iceBlock.src = iceBlockImage;
+    this.iceBlock.classList.add('boomio-ice-block');
+    this.iceBlock.addEventListener('load', () => {
+      this.createHammer();
+    });
+    this.iceBlock.onclick = () => {
+      this.createPiecesOfIce();
+    };
+    this.widget.appendChild(this.iceBlock);
+  }
 
-  showHammerAnimation = () => {
+  initializeAnimations() {
+    new AnimationService({
+      elem: this.widget,
+    });
+    new DragElement(this.widget);
+  }
+
+  createHammer() {
+    this.hammer = document.createElement('img');
+    this.hammer.classList.add('boomio-hammer');
+    this.hammer.src = iceHammerImage;
+    this.createCoupon();
+    this.widget.appendChild(this.hammer);
+  }
+
+  createPiecesOfIce() {
+    boomio.signal('hammer_click');
+    this.showHammerAnimation();
+    icePieceImages.forEach((img) => {
+      const image = document.createElement('img');
+      image.src = img;
+      image.addEventListener(
+        'load',
+        () => {
+          this.onIcePieceLoaded(image);
+        },
+        { once: true },
+      );
+      image.classList.add('boomio-piece-of-ice');
+      this.icePieces.push(image);
+      this.widget.appendChild(image);
+    });
+  }
+
+  onIcePieceLoaded(image) {
+    this.displayedIcePieces++;
+
+    if (this.displayedIcePieces === icePieceCount) {
+      this.iceBlock.remove();
+      this.crashIce();
+      this.widget.onclick = () => {
+        this.crashIce();
+      };
+    }
+  }
+
+  showHammerAnimation() {
     assignStyleOnElement(this.hammer.style, {
       right: 0,
       transform: 'rotate(-50deg)',
@@ -56,10 +113,21 @@ class IceWidget {
         transform: 'rotate(40deg)',
       });
     }, 400);
-  };
+  }
 
-  crashIce = () => {
+  showBangAnimation() {
+    const bang = document.createElement('img');
+    bang.classList.add('boomio-bang');
+    bang.src = bangImage;
+    this.widget.appendChild(bang);
+    setTimeout(() => {
+      bang.remove();
+    }, 200);
+  }
+
+  crashIce() {
     if (this.showCoupon) return;
+
     const currentImage = this.icePieces.pop();
 
     const shadowIndex = icePieceCount - this.icePieces.length;
@@ -90,77 +158,31 @@ class IceWidget {
       },
       { once: true },
     );
-  };
+  }
 
-  createHammer = () => {
-    const hammer = document.createElement('img');
-    hammer.classList.add('hammer');
-    hammer.src = iceHammerImage;
-    this.widget.appendChild(hammer);
-    this.hammer = hammer;
-    hammer.addEventListener('load', () => {
-      this.createCoupon();
-    });
-  };
+  showQrModal() {
+    const length = this.icePieces.length;
+    if (length || this.showCoupon) return;
+    this.showCoupon = true;
+    setTimeout(() => {
+      this.widget.remove();
+      new QrCodeModal();
+    }, 1000);
+  }
 
-  onIcePieceLoaded = () => {
-    if (this.diplayedIcePieces === icePieceCount) {
-      this.iceBlock.remove();
-      this.crashIce();
-      this.widget.onclick = this.crashIce;
-      return;
-    }
-
-    this.diplayedIcePieces++;
-  };
-
-  createPiecesOfIces = () => {
-    boomio.signal('hammer_click');
-    this.showHammerAnimation();
-    icePieceImages.forEach((img) => {
-      const image = document.createElement('img');
-      image.src = img;
-      image.addEventListener('load', this.onIcePieceLoaded, { once: true });
-      image.classList.add('piece-of-ice');
-      this.icePieces.push(image);
-      this.widget.appendChild(image);
-    });
-  };
-
-  createCoupon = () => {
+  createCoupon() {
     const coupon = document.createElement('div');
-    coupon.classList.add('coupon-wrapper');
+    coupon.classList.add('boomio-coupon-wrapper');
     this.widget.appendChild(coupon);
     coupon.innerHTML = QrCodeModal.getGreyCoupon();
-  };
-
-  start = () => {
-    const widget = document.createElement('div');
-    widget.setAttribute('id', 'ice-widget');
-
-    const iceBlock = document.createElement('img');
-    iceBlock.src = iceBlockImage;
-    iceBlock.classList.add('ice-block');
-    iceBlock.onclick = this.createPiecesOfIces;
-    this.iceBlock = iceBlock;
-
-    widget.appendChild(iceBlock);
-
-    new AnimationService({
-      elem: widget,
-    });
-    new DragElement(widget);
-
-    this.widget = widget;
-    iceBlock.addEventListener('load', () => {
-      this.createHammer();
-    });
-  };
+    createCloseMoveButtons(this.widget);
+  }
 }
 
 export default () => {
   const { success } = localStorageService.config;
-  
-  if (success || localStorage.getItem('testing_Widgets'))  new IceWidget();
-  return;
+
+  if (success || localStorage.getItem('testing_Widgets')) {
+    new IceWidget();
+  }
 };

@@ -8,7 +8,7 @@ import {
 } from '@/services';
 import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
-import { getRandomArbitrary, assignStyleOnElement } from '@/utlis';
+import { getRandomArbitrary, assignStyleOnElement, addCloseIconToElement } from '@/utlis';
 import {
   puzzlesCoordinateForDesktop,
   puzzlesCoordinateForMobile,
@@ -19,36 +19,34 @@ import {
 export class Puzzle {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
-
     this.animationEl = null;
-    this.isPrewiewDisplayed = false;
+    this.isPreviewDisplayed = false;
     this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
+    this.onPuzzleClick = this.onPuzzleClick.bind(this);
   }
 
-  addImageTPuzzleWidget = () => {
+  addImageToPuzzleWidget = () => {
     if (this.puzzleWidget) {
       this.puzzleWidget.style.backgroundImage = `url(${frameSvg})`;
     }
   };
 
   createPuzzleWidget = () => {
-    const puzzleWidget = document.createElement('div');
-    puzzleWidget.setAttribute('id', 'puzzle-widget');
-    assignStyleOnElement(puzzleWidget.style, {
+    this.puzzleWidget = document.createElement('div');
+    this.puzzleWidget.setAttribute('id', 'puzzle-widget');
+    assignStyleOnElement(this.puzzleWidget.style, {
       position: 'relative',
-      backgroundImage: ` url(${frameSvg})`,
+      backgroundImage: `url(${frameSvg})`,
     });
-    this.puzzleWidget = puzzleWidget;
-
-    this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop);
+    this.mainContainer.appendChild(this.puzzleWidget);
   };
 
-  // This method for creating widget in window
-  showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
+  showPuzzleWidgetWindowDraggable(isAnimation = false) {
     const { x_position, y_position } = localStorageService.config;
-    const puzzleWidget = document.createElement('div');
+    this.createPuzzleWidget();
+
+    const puzzleWidget = this.puzzleWidget;
     const widgetSmallPreview = document.createElement('div');
-    puzzleWidget.setAttribute('id', 'puzzle-widget');
     puzzleWidget.appendChild(widgetSmallPreview);
     puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
 
@@ -59,7 +57,7 @@ export class Puzzle {
     puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {
       puzzleWidget.remove();
       this?.animationEl?.remove();
-      this.isPrewiewDisplayed = true;
+      this.isPreviewDisplayed = true;
       this.showModalWidgetPreview(false);
     });
 
@@ -78,15 +76,14 @@ export class Puzzle {
       left: `${left}px`,
       top: `${top}px`,
     });
-
     this.mainContainer.appendChild(puzzleWidget);
     this.puzzleWidget = puzzleWidget;
     if (localStorageService.config.puzzle.puzzles_collected > 0) {
-      this.addCloseIconToElement(puzzleWidget);
+      addCloseIconToElement(puzzleWidget, disableWidgetAndRemoveAllElements);
     }
     new DragElement(this.puzzleWidget);
     this.drawPuzzlesByCollectedCount();
-  };
+  }
 
   drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
     for (let i = 0; i < localStorageService.config.puzzle.puzzles_collected; i++) {
@@ -120,19 +117,18 @@ export class Puzzle {
     this.mainContainer.appendChild(modalBackground);
     this.modal = modal;
     this.modalBackground = modalBackground;
-    /// /////////////////////////
   };
 
-  getCloseModalBtn = (closeCallback) => {
+  getCloseModalBtn(closeCallback) {
     const closeBtnWrapper = document.createElement('div');
-    closeBtnWrapper.classList.add('close-modal-btn-wrapper');
+    closeBtnWrapper.classList.add('boomio-close-modal-btn-wrapper');
     const closeBtn = document.createElement('img');
     closeBtn.src = closeImage;
-    closeBtn.classList.add('close-modal-btn');
+    closeBtn.classList.add('boomio-close-modal-btn');
     closeBtn.onclick = closeCallback;
     closeBtnWrapper.appendChild(closeBtn);
     return closeBtnWrapper;
-  };
+  }
 
   closeAnimation = (callback) => () => {
     assignStyleOnElement(this.modal.style, {
@@ -147,68 +143,6 @@ export class Puzzle {
         callback();
       }
     });
-  };
-
-  showModalWidgetPreview = (showAnimation = false) => {
-    const { w_top_text, w_button_text, w_hint_static_text } = localStorageService.config;
-    const { puzzles_collected, hint } = localStorageService.config.puzzle;
-    const isLastPuzzle = puzzles_collected === 4;
-    this?.puzzleWidget?.remove();
-    this.createPuzzleWidget();
-    this.createModalWindow();
-
-    const showWidget = () => {
-      this.showPuzzleWidgetWindowDraggable(true);
-    };
-    /// // Add close button //////
-
-    const animationFunc = this.closeAnimation(showWidget);
-
-    if (!isLastPuzzle) {
-      const closeBtn = this.getCloseModalBtn(animationFunc);
-      this.modal.appendChild(closeBtn);
-    }
-    /// ///////////////
-
-    /// /////Add text top/////////
-    const topText = document.createElement('div');
-    topText.classList.add('topText');
-    topText.innerHTML = w_top_text;
-    this.modal.appendChild(topText);
-    /// ///////////////
-
-    if (isLastPuzzle) {
-      assignStyleOnElement(this.modal.style, {
-        height: 'max-content',
-        padding: '54px 24px',
-      });
-      this.puzzleWidget.style.marginTop = '24px';
-    }
-
-    /// /////Add text bottom/////////
-    if (!isLastPuzzle) {
-      const bottomText = document.createElement('div');
-      bottomText.classList.add('bottomText');
-      bottomText.innerHTML = `${hint}`;
-      this.modal.appendChild(bottomText);
-    }
-    /// ///////////////
-    this.modal.appendChild(this.puzzleWidget);
-
-    /// //Add go button ////
-    if (!isLastPuzzle) {
-      const goBtn = document.createElement('button');
-      goBtn.setAttribute('id', 'goModalButton');
-      goBtn.innerHTML = w_button_text;
-      goBtn.onclick = animationFunc;
-      this.modal.appendChild(goBtn);
-    }
-    /// ///////////////
-
-    if (showAnimation) {
-      boomioService.signal(`PUZZLE_CLICKED`);
-      setTimeout(this.addPuzzleToWidget, 1000);
-    }
   };
 
   addPuzzleToWidget = () => {
@@ -230,7 +164,7 @@ export class Puzzle {
       if (localStorage.getItem('testing_Widgets')) {
         this.mainContainer = widgetHtmlService.container;
         this.animationEl = null;
-        this.isPrewiewDisplayed = false;
+        this.isPreviewDisplayed = false;
         this.coordinates = isMobileDevice
           ? puzzlesCoordinateForMobile
           : puzzlesCoordinateForDesktop;
@@ -247,12 +181,67 @@ export class Puzzle {
     }, 1000);
   };
 
-  onPuzzleClick = (e) => {
+  showModalWidgetPreview(showAnimation = false) {
+    const { w_top_text, w_button_text, w_hint_static_text } = localStorageService.config;
+    const { puzzles_collected, hint } = localStorageService.config.puzzle;
+    const isLastPuzzle = puzzles_collected === 4;
+    this?.puzzleWidget?.remove();
+    this.createPuzzleWidget();
+    this.createModalWindow();
+
+    const showWidget = () => {
+      this.showPuzzleWidgetWindowDraggable(true);
+    };
+
+    const animationFunc = this.closeAnimation(showWidget);
+
+    if (!isLastPuzzle) {
+      const closeBtn = this.getCloseModalBtn(animationFunc);
+      this.modal.appendChild(closeBtn);
+    }
+
+    const topText = document.createElement('div');
+    topText.classList.add('topText');
+    topText.innerHTML = w_top_text;
+    this.modal.appendChild(topText);
+
+    if (isLastPuzzle) {
+      assignStyleOnElement(this.modal.style, {
+        height: 'max-content',
+        padding: '54px 24px',
+      });
+      this.puzzleWidget.style.marginTop = '24px';
+    }
+
+    if (!isLastPuzzle) {
+      const bottomText = document.createElement('div');
+      bottomText.classList.add('bottomText');
+      bottomText.innerHTML = `${hint}`;
+      this.modal.appendChild(bottomText);
+    }
+
+    this.modal.appendChild(this.puzzleWidget);
+
+    if (!isLastPuzzle) {
+      const goBtn = document.createElement('button');
+      goBtn.setAttribute('id', 'goModalButton');
+      goBtn.innerHTML = w_button_text;
+      goBtn.onclick = animationFunc;
+      this.modal.appendChild(goBtn);
+    }
+
+    if (showAnimation) {
+      boomioService.signal(`PUZZLE_CLICKED`);
+      setTimeout(this.addPuzzleToWidget, 1000);
+    }
+  }
+
+  onPuzzleClick(e) {
     const puzzle = e.target;
     puzzle.remove();
-    this.isPrewiewDisplayed = false;
+    this.isPreviewDisplayed = false;
     this.showModalWidgetPreview(true);
-  };
+  }
 
   startAnimation = (...args) => {
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true, modal] = args;
@@ -311,35 +300,15 @@ export class Puzzle {
     this.modalBackground.remove();
   };
 
-  addCloseIconToElement = (element) => {
-    const closeBtn = document.createElement('div');
-    closeBtn.classList.add('custom-close-icon');
-    closeBtn.innerHTML = '&#x2715; ';
-    closeBtn.addEventListener(
-      'click',
-      (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        this.disableWidgetAndRemoveAllElements();
-      },
-      {
-        once: true,
-      },
-    );
-    element.appendChild(closeBtn);
-  };
-
-  disableWidgetAndRemoveAllElements = () => {
+  disableWidgetAndRemoveAllElements() {
     boomioService.signal('PUZZLE_CLOSED');
     this.puzzleWidget.remove();
     this.animationEl.remove();
-  };
+  }
 }
-/// /////////////////////////
 
 export default () => {
   const puzzle = new Puzzle();
-
   const { puzzles_collected } = localStorageService.config.puzzle;
   const { widget_subtype } = localStorageService.config;
 
@@ -350,7 +319,7 @@ export default () => {
     (widget_subtype !== 'static' && puzzles_collected > 1) ||
     localStorage.getItem('testing_Widgets')
   ) {
-    puzzle.addImageTPuzzleWidget();
+    puzzle.addImageToPuzzleWidget();
   }
   if (widget_subtype !== 'static' || localStorage.getItem('testing_Widgets')) {
     puzzle.startAnimation();
