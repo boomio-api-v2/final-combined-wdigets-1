@@ -28,7 +28,7 @@ class ClawMachineWidget {
     // Create a button element
     const controlButton = document.createElement('button');
     controlButton.innerText = 'Get a prize';
-    controlButton.classList.add('control-button');
+    controlButton.classList.add('boomio-control-button');
 
     // Apply CSS for the button's appearance
     controlButton.style.position = 'fixed';
@@ -43,6 +43,7 @@ class ClawMachineWidget {
     controlButton.style.color = 'white';
     controlButton.style.fontSize = '16px';
     controlButton.style.cursor = 'pointer';
+    controlButton.setAttribute('id', 'boomio-control-button');
 
     // Add a click event listener to trigger the claw's grabbing action
     controlButton.addEventListener('click', () => {
@@ -57,12 +58,9 @@ class ClawMachineWidget {
     if (this.animationInProgress || this.isHoldingclawPresentDivs.some((held) => held)) {
       return;
     }
+    const buttonElement = document.querySelector('.boomio-control-button');
 
-    // Disable the button
-    const controlButton = document.querySelector('.control-button');
-    if (controlButton) {
-      controlButton.disabled = true;
-    }
+    buttonElement.style.pointerEvents = 'none';
 
     this.animationInProgress = true;
 
@@ -95,7 +93,6 @@ class ClawMachineWidget {
             clawPresentDiv.style.top = '10px';
             clawPresentDiv.style.left = '10px';
             this.clawDiv.appendChild(clawPresentDiv);
-
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
                 this.clawDiv.removeChild(clawPresentDiv);
@@ -103,19 +100,16 @@ class ClawMachineWidget {
               }, 1000);
 
               this.endGame(index);
-
-              // Re-enable the button after 1 second
-              setTimeout(() => {
-                if (controlButton) {
-                  controlButton.disabled = false;
-                }
-              }, 1000);
             }, 1000);
           }
         }
       });
 
       setTimeout(() => {
+        setTimeout(() => {
+          const buttonElement = document.querySelector('.boomio-control-button');
+          buttonElement.style.pointerEvents = 'auto';
+        }, 600);
         this.clawDiv.style.transition = 'top 1s';
         this.clawDiv.style.top = '50px';
 
@@ -124,9 +118,8 @@ class ClawMachineWidget {
         this.chainDiv.style.transform = 'translateY(0)';
         this.animationInProgress = false;
       }, 600);
-    }, 1200);
+    }, 1000);
   }
-
   startAutomaticClawMovement() {
     let direction = 1; // 1 for right, -1 for left
     const clawSpeed = 2; // Adjust the speed as needed
@@ -269,7 +262,7 @@ class ClawMachineWidget {
   setupClickHandler() {}
 
   endGame = () => {
-    const buttonElement = document.querySelector('.control-button');
+    const buttonElement = document.querySelector('.boomio-control-button');
     if (buttonElement && buttonElement.parentNode) {
       buttonElement.parentNode.removeChild(buttonElement);
     }
