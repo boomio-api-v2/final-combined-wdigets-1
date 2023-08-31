@@ -124,7 +124,7 @@ class ClawMachineWidget {
   }
   startAutomaticClawMovement() {
     let direction = 1; // 1 for right, -1 for left
-    const clawSpeed = 2; // Adjust the speed as needed
+    const clawSpeed = 8; // Adjust the speed as needed
     let clawPosition = 0;
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 

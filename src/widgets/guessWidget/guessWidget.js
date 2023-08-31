@@ -7,6 +7,8 @@ import {
 } from '@/services';
 import './styles.css';
 
+import { createCloseMoveButtons } from '@/utlis';
+
 class GuessWidget {
   constructor() {
     this.startGuess();
@@ -16,15 +18,17 @@ class GuessWidget {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
 
-    this.guess = document.getElementById('guess-container');
+    this.guess = document.getElementById('boomio-guess-container');
     this.animation = new AnimationService({
       elem: this.guess,
-      posx: window.matchMedia("(min-width: 450px)").matches ? 1  : -50,
+      posx: window.matchMedia('(min-width: 450px)').matches ? 1 : -50,
       posy: 1,
     });
 
-    if (window.matchMedia("(min-width: 600px)").matches) {this.draggeble = new DragElement(this.guess);
-    new DragElement(this.guess);}
+    if (window.matchMedia('(min-width: 600px)').matches) {
+      this.draggeble = new DragElement(this.guess);
+      new DragElement(this.guess);
+    }
     setTimeout(() => {
       this.shuffleCard();
       this.addCardEventListeners();
@@ -32,19 +36,85 @@ class GuessWidget {
   }
 
   createContainer = () => {
-    const queIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/1c01bd6fb616cfea26f25c6287d2d860d987ae63/src/widgets/guessWidget/que_icon.svg'
-    const img1 = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-1.png?raw=true'
+    const queIcon =
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/1c01bd6fb616cfea26f25c6287d2d860d987ae63/src/widgets/guessWidget/que_icon.svg';
+    const img1 =
+      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-1.png?raw=true';
     const myCanvas = document.createElement('div');
-    myCanvas.setAttribute('id', 'guess-container');
+    myCanvas.setAttribute('id', 'boomio-guess-container');
     myCanvas.classList.add(
       'boomio--animation__wrapper',
       'boomio--animation__wrapper--initial',
       'box',
     );
     myCanvas.innerHTML = `
-    <div class="wrapper">
-      <ul class="guess-cards">
-        <li class="guess-card">
+    <div class="boomio-wrapper">
+      <ul class="boomio-guess-cards">
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
+          <img src=${queIcon} alt="icon">
+          </div>
+          <div class="boomio-view back-view">
+            <img src=${img1}>
+          </div>
+        </li>
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
+          <img src=${queIcon} alt="icon">
+          </div>
+          <div class="boomio-view back-view">
+            <img src=${img1}>
+          </div>
+        </li>
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
+          <img src=${queIcon} alt="icon">
+          </div>
+          <div class="boomio-view back-view">
+            <img src=${img1}>
+          </div>
+        </li>
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
+          <img src=${queIcon} alt="icon">
+          </div>
+          <div class="boomio-view back-view">
+            <img src=${img1}>
+          </div>
+        </li>
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
+          <img src=${queIcon} alt="icon">
+          </div>
+          <div class="boomio-view back-view">
+            <img src=${img1}>
+          </div>
+        </li>
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
+          <img src=${queIcon} alt="icon">
+          </div>
+          <div class="boomio-view back-view">
+            <img src=${img1}>
+          </div>
+        </li>
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
+          <img src=${queIcon} alt="icon">
+          </div>
+          <div class="boomio-view back-view">
+            <img src=${img1}>
+          </div>
+        </li>
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
+          <img src=${queIcon} alt="icon">
+          </div>
+          <div class="view back-view">
+            <img src=${img1}>
+          </div>
+        </li>
+        <li class="boomio-guess-card">
           <div class="view front-view">
           <img src=${queIcon} alt="icon">
           </div>
@@ -52,91 +122,27 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
-          <div class="view front-view">
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
           <img src=${queIcon} alt="icon">
           </div>
-          <div class="view back-view">
+          <div class="boomio-view back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
-          <div class="view front-view">
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
           <img src=${queIcon} alt="icon">
           </div>
-          <div class="view back-view">
+          <div class="boomio-view back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card">
-          <div class="view front-view">
+        <li class="boomio-guess-card">
+          <div class="boomio-view front-view">
           <img src=${queIcon} alt="icon">
           </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
-            <img src=${img1}>
-          </div>
-        </li>
-        <li class="guess-card">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
-          </div>
-          <div class="view back-view">
+          <div class="boomio-view back-view">
             <img src=${img1}>
           </div>
         </li>
@@ -146,38 +152,11 @@ class GuessWidget {
     </div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
-    this.addCloseIconToElement(
-      myCanvas.querySelector('.wrapper'),
-      document.getElementById('guess-container'),
+    createCloseMoveButtons(
+      myCanvas.querySelector('.boomio-wrapper'),
+      document.getElementById('boomio-guess-container'),
     );
   };
-
-  addCloseIconToElement = (element, deleteElement) => {
-    const btnContainer = document.createElement('div');
-    btnContainer.style.display = 'flex';
-    btnContainer.style.flexDirection = 'column';
-    btnContainer.style.justifyContent = 'center';
-    const dragBtn = document.createElement('div')
-    if (window.matchMedia("(min-width: 600px)").matches) {dragBtn.classList.add('action-icon', 'move');
-    dragBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';}
-    const closeBtn = document.createElement('div');
-    closeBtn.classList.add('action-icon', 'close');
-    closeBtn.innerHTML =
-      '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true"></img>';
-    closeBtn.addEventListener(
-      'click',
-      (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        deleteElement.remove(); // Remove the specified deleteElement
-      },
-      { once: true },
-    );
-    btnContainer.appendChild(closeBtn);
-    if (window.matchMedia("(min-width: 600px)").matches) {btnContainer.appendChild(dragBtn);}
-    element.appendChild(btnContainer);
-  };
-
 
   shuffleCard() {
     const cards = Array.from(document.querySelectorAll('.guess-card'));
@@ -189,7 +168,6 @@ class GuessWidget {
       let imgTag = card.querySelector('.back-view img');
 
       imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${arr[i]}.png?raw=true`;
-
     });
   }
 
@@ -218,7 +196,7 @@ class GuessWidget {
         matched++;
         if (matched == 6) {
           setTimeout(() => {
-            const guessContainer = document.getElementById('guess-container');
+            const guessContainer = document.getElementById('boomio-guess-container');
             if (guessContainer && guessContainer.parentNode) {
               guessContainer.parentNode.removeChild(guessContainer);
               new QrCodeModal();
