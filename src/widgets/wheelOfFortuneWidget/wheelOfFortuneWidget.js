@@ -65,7 +65,9 @@ class WheelOfFortuneWidget {
     this.rotate(); // Initial rotation
     this.engine(); // Start engine!
     this.startAnimation();
-    createCloseMoveButtons(this.wheelOfFortune, 450);
+    const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
+
+    createCloseMoveButtons(this.wheelOfFortune, false, isMobile ? [-180, 0] : [-250, 0]);
   }
   engine = () => {
     this.frame();

@@ -175,7 +175,8 @@ class IceWidget {
     coupon.classList.add('boomio-coupon-wrapper');
     this.widget.appendChild(coupon);
     coupon.innerHTML = QrCodeModal.getGreyCoupon();
-    createCloseMoveButtons(this.widget);
+    const isMobile = window.innerWidth <= 768;
+    createCloseMoveButtons(this.widget, null, isMobile ? [-170, -200] : [-240, -210]);
   }
 }
 

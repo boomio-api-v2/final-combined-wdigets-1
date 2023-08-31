@@ -8,7 +8,7 @@ import {
 } from '@/services';
 import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
-import { getRandomArbitrary, assignStyleOnElement, addCloseIconToElement } from '@/utlis';
+import { getRandomArbitrary, assignStyleOnElement, createCloseMoveButtons } from '@/utlis';
 import {
   puzzlesCoordinateForDesktop,
   puzzlesCoordinateForMobile,
@@ -31,19 +31,30 @@ export class Puzzle {
     }
   };
 
-  createPuzzleWidget = () => {
+  createPuzzleWidget = (position) => {
     this.puzzleWidget = document.createElement('div');
     this.puzzleWidget.setAttribute('id', 'puzzle-widget');
     assignStyleOnElement(this.puzzleWidget.style, {
-      position: 'relative',
+      position: position,
+
       backgroundImage: `url(${frameSvg})`,
     });
     this.mainContainer.appendChild(this.puzzleWidget);
   };
 
+  disableWidgetAndRemoveAllElements() {
+    boomioService.signal('PUZZLE_CLOSED');
+    this.puzzleWidget.remove();
+    this.animationEl.remove();
+  }
+
   showPuzzleWidgetWindowDraggable(isAnimation = false) {
     const { x_position, y_position } = localStorageService.config;
-    this.createPuzzleWidget();
+    this.createPuzzleWidget('fixed');
+    const isMobile = window.innerWidth <= 768;
+    const element = document.getElementById('puzzle-widget');
+
+    createCloseMoveButtons(this.puzzleWidget, element, isMobile ? [-170, -170] : [-220, -270]);
 
     const puzzleWidget = this.puzzleWidget;
     const widgetSmallPreview = document.createElement('div');
@@ -65,7 +76,7 @@ export class Puzzle {
 
     const left =
       (!localStorage.getItem('testing_Widgets') && x_position) ||
-      clientWidth - 40 - puzzleWidgetSize;
+      clientWidth - (isMobile ? 40 : 40) - puzzleWidgetSize;
     const top =
       (!localStorage.getItem('testing_Widgets') && y_position) ||
       clientHeight - 40 - puzzleWidgetSize;
@@ -78,9 +89,6 @@ export class Puzzle {
     });
     this.mainContainer.appendChild(puzzleWidget);
     this.puzzleWidget = puzzleWidget;
-    if (localStorageService.config.puzzle.puzzles_collected > 0) {
-      addCloseIconToElement(puzzleWidget, disableWidgetAndRemoveAllElements);
-    }
     new DragElement(this.puzzleWidget);
     this.drawPuzzlesByCollectedCount();
   }
@@ -186,7 +194,7 @@ export class Puzzle {
     const { puzzles_collected, hint } = localStorageService.config.puzzle;
     const isLastPuzzle = puzzles_collected === 4;
     this?.puzzleWidget?.remove();
-    this.createPuzzleWidget();
+    this.createPuzzleWidget('relative');
     this.createModalWindow();
 
     const showWidget = () => {
@@ -299,12 +307,6 @@ export class Puzzle {
   closeModal = () => {
     this.modalBackground.remove();
   };
-
-  disableWidgetAndRemoveAllElements() {
-    boomioService.signal('PUZZLE_CLOSED');
-    this.puzzleWidget.remove();
-    this.animationEl.remove();
-  }
 }
 
 export default () => {

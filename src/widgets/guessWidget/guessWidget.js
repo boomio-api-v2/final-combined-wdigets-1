@@ -6,6 +6,7 @@ import {
   QrCodeModal,
 } from '@/services';
 import './styles.css';
+import { createCloseMoveButtons } from '@/utlis';
 
 class GuessWidget {
   constructor() {
@@ -52,77 +53,77 @@ class GuessWidget {
       'box',
     );
     myCanvas.innerHTML = `
-    <div class="wrapper">
-      <ul class="guess-cards">
-        <li class="guess-card invisible">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+    <div class="boomio-wrapper">
+      <ul class="boomio-guess-cards">
+        <li class="boomio-guess-card boomio-invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${queIcon} alt="boomio-icon">
           </div>
-          <div class="view back-view">
+          <div class="boomio-view boomio-back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card invisible">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+        <li class="boomio-guess-card boomio-invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${queIcon} alt="boomio-icon">
           </div>
-          <div class="boomio-view back-view">
+          <div class="boomio-view boomio-back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card invisible">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+        <li class="boomio-guess-card boomio-invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${queIcon} alt="boomio-icon">
           </div>
-          <div class="boomio-view back-view">
+          <div class="boomio-view boomio-back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card invisible">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+        <li class="boomio-guess-card boomio-invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${queIcon} alt="boomio-icon">
           </div>
-          <div class="view back-view">
+          <div class="boomio-view boomio-back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card disabled invisible">
-          <div class="view front-view">
-          <img src=${center} alt="icon">
+        <li class="boomio-guess-card disabled invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${center} alt="boomio-icon">
           </div>
-          <div class="view back-view">
-            <img src=${center} alt="icon">
+          <div class="boomio-view boomio-back-view">
+            <img src=${center} alt="boomio-icon">
           </div>
         </li>
-        <li class="guess-card invisible">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+        <li class="boomio-guess-card boomio-invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${queIcon} alt="boomio-icon">
           </div>
-          <div class="view back-view">
+          <div class="boomio-view boomio-back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card invisible">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+        <li class="boomio-guess-card boomio-invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${queIcon} alt="boomio-icon">
           </div>
-          <div class="view back-view">
+          <div class="boomio-view boomio-back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card invisible">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+        <li class="boomio-guess-card boomio-invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${queIcon} alt="boomio-icon">
           </div>
-          <div class="view back-view">
+          <div class="boomio-view boomio-back-view">
             <img src=${img1}>
           </div>
         </li>
-        <li class="guess-card invisible">
-          <div class="view front-view">
-          <img src=${queIcon} alt="icon">
+        <li class="boomio-guess-card boomio-invisible">
+          <div class="boomio-view boomio-front-view">
+          <img src=${queIcon} alt="boomio-icon">
           </div>
-          <div class="view back-view">
+          <div class="boomio-view boomio-back-view">
             <img src=${img1}>
           </div>
         </li>    
@@ -133,48 +134,18 @@ class GuessWidget {
     createCloseMoveButtons(
       myCanvas.querySelector('.boomio-wrapper'),
       document.getElementById('boomio-guess-container'),
+      [-30, 0],
     );
-  };
-
-  addCloseIconToElement = (element, deleteElement) => {
-    const btnContainer = document.createElement('div');
-    btnContainer.style.display = 'flex';
-    btnContainer.style.flexDirection = 'column';
-    btnContainer.style.justifyContent = 'center';
-    const dragBtn = document.createElement('div');
-    if (window.matchMedia('(min-width: 600px)').matches) {
-      dragBtn.classList.add('action-icon', 'move');
-      dragBtn.innerHTML =
-        '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';
-    }
-    const closeBtn = document.createElement('div');
-    closeBtn.classList.add('action-icon', 'close');
-    closeBtn.innerHTML =
-      '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true"></img>';
-    closeBtn.addEventListener(
-      'click',
-      (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        deleteElement.remove(); // Remove the specified deleteElement
-      },
-      { once: true },
-    );
-    btnContainer.appendChild(closeBtn);
-    if (window.matchMedia('(min-width: 600px)').matches) {
-      btnContainer.appendChild(dragBtn);
-    }
-    element.appendChild(btnContainer);
   };
 
   shuffleCard() {
-    const cards = Array.from(document.querySelectorAll('.guess-card'));
+    const cards = Array.from(document.querySelectorAll('.boomio-guess-card'));
 
     let arr = [1, 2, 3, 4, 1, 2, 3, 4];
     arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
     cards.forEach((card, i) => {
       card.classList.remove('flip');
-      let imgTag = card.querySelector('.back-view img');
+      let imgTag = card.querySelector('.boomio-back-view img');
 
       imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${
         i < 4 ? arr[i] : i > 4 ? arr[i - 1] : ''
@@ -183,24 +154,24 @@ class GuessWidget {
 
     setTimeout(() => {
       for (let i = 1; i < 4; i++) {
-        cards[i - 1].classList.add(`flytop${i}`);
-        cards[i + 2].classList.add(`flymid${i}`);
-        cards[i + 5].classList.add(`flybottom${i}`);
+        cards[i - 1].classList.add(`boomio-flytop${i}`);
+        cards[i + 2].classList.add(`boomio-flymid${i}`);
+        cards[i + 5].classList.add(`boomio-flybottom${i}`);
       }
       cards.forEach((card) => {
-        card.classList.remove('invisible');
+        card.classList.remove('boomio-invisible');
       });
     }, 400);
 
     setTimeout(() => {
       cards.forEach((card, i) => {
-        if (i != 4) card.classList.add('flip');
+        if (i != 4) card.classList.add('boomio-flip');
       });
     }, 2000);
 
     setTimeout(() => {
       cards.forEach((card) => {
-        card.classList.remove('flip');
+        card.classList.remove('boomio-flip');
       });
       for (let i = 1; i < 4; i++) {
         cards[i - 1].classList.remove(`flytop${i}`);
@@ -210,7 +181,7 @@ class GuessWidget {
     }, 3000);
   }
   addCardEventListeners() {
-    const cards = Array.from(document.querySelectorAll('.guess-card'));
+    const cards = Array.from(document.querySelectorAll('.boomio-guess-card'));
     let matched = 0;
     let cardOne, cardTwo;
     let disableDeck = false;
@@ -218,14 +189,14 @@ class GuessWidget {
     function flipCard({ target: clickedCard }) {
       if (clickedCard.classList.contains('disabled')) return;
       if (cardOne !== clickedCard && !disableDeck) {
-        clickedCard.classList.add('flip');
+        clickedCard.classList.add('boomio-flip');
         if (!cardOne) {
           return (cardOne = clickedCard);
         }
         cardTwo = clickedCard;
         disableDeck = true;
-        let cardOneImg = cardOne.querySelector('.back-view img').src,
-          cardTwoImg = cardTwo.querySelector('.back-view img').src;
+        let cardOneImg = cardOne.querySelector('.boomio-back-view img').src,
+          cardTwoImg = cardTwo.querySelector('.boomio-back-view img').src;
         matchCards(cardOneImg, cardTwoImg);
       }
     }
@@ -250,13 +221,13 @@ class GuessWidget {
         return (disableDeck = false);
       }
       setTimeout(() => {
-        cardOne.classList.add('shake');
-        cardTwo.classList.add('shake');
+        cardOne.classList.add('boomio-shake');
+        cardTwo.classList.add('boomio-shake');
       }, 400);
 
       setTimeout(() => {
-        cardOne.classList.remove('shake', 'flip');
-        cardTwo.classList.remove('shake', 'flip');
+        cardOne.classList.remove('boomio-shake', 'boomio-flip');
+        cardTwo.classList.remove('boomio-shake', 'boomio-flip');
         cardOne = cardTwo = '';
         disableDeck = false;
       }, 1200);

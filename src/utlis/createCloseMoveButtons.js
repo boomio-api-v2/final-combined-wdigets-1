@@ -1,8 +1,15 @@
-export const createCloseMoveButtons = (element, deleteElement, width) => {
+export const createCloseMoveButtons = (element, deleteElement, position) => {
   const btnContainer = document.createElement('div');
   btnContainer.style.display = 'flex';
   btnContainer.style.flexDirection = 'column';
   btnContainer.style.justifyContent = 'center';
+  btnContainer.style.position = 'absolute';
+
+  if (position) {
+    btnContainer.style.top = position[0] + 'px';
+    btnContainer.style.left = position[1] + 'px';
+  }
+
   const dragBtn = document.createElement('div');
   if (window.matchMedia('(min-width: 600px)').matches) {
     dragBtn.classList.add('action-icon', 'move');
@@ -18,7 +25,9 @@ export const createCloseMoveButtons = (element, deleteElement, width) => {
     (e) => {
       e.stopPropagation();
       e.preventDefault();
-      deleteElement.remove(); // Remove the specified deleteElement
+      if (deleteElement) {
+        deleteElement.remove(); // Remove the specified deleteElement
+      }
     },
     { once: true },
   );
