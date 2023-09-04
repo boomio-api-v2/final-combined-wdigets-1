@@ -1,6 +1,8 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
 import { WhackHammer, WhackMole00, WhackMole01Reversed, WhackMoleHit } from '@/сonstants';
+import { createCloseMoveButtons } from '@/utlis';
+
 class WhackWidget {
   constructor() {
     this.swch = 1;
@@ -45,29 +47,6 @@ class WhackWidget {
     this.addCardEventListeners();
   }
 
-  addCloseIconToElement = (element, deleteElement) => {
-    const btnContainer = document.createElement('div');
-    btnContainer.style.display = 'flex';
-    btnContainer.style.flexDirection = 'column';
-    btnContainer.style.justifyContent = 'center';
-    const closeBtn = document.createElement('div');
-    closeBtn.classList.add('round-close-icon-whack');
-    closeBtn.innerHTML = `
-      <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/131cda78a7d6d48ddfcd6475ccd5a61a66c2f2af/images/wheelOfFortuneWidget/round-close.svg" style="width: 20px;"></img>
-    `; // Add style width: 20px to the image
-    closeBtn.addEventListener(
-      'click',
-      (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        deleteElement.remove(); // Remove the specified deleteElement
-      },
-      { once: true },
-    );
-    btnContainer.appendChild(closeBtn);
-    element.appendChild(btnContainer);
-  };
-
   createContainer() {
     const myCanvas = document.createElement('div');
     const moleId = `mole-${Date.now()}`;
@@ -86,9 +65,14 @@ class WhackWidget {
       </div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
-    this.addCloseIconToElement(
+
+    const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
+
+    createCloseMoveButtons(
       myCanvas.querySelector('.boomio-mole'),
       document.getElementById('boomio-whack-container'),
+      isMobile ? [-130, -330] : [-150, -450],
+      false,
     );
   }
 

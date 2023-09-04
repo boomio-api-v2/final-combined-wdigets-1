@@ -1,7 +1,5 @@
 import { AnimationService, DragElement, localStorageService, QrCodeModal } from '@/services';
-
-import { assignStyleOnElement, createCloseMoveButtons } from '@/utlis';
-
+import { assignStyleOnElement } from '@/utlis';
 import {
   icePieceCount,
   icePieceImages,
@@ -11,94 +9,42 @@ import {
   shadowTopCoordinatesForMobile,
   bangImage,
 } from './constants';
-
-import { iceHammerImage } from '@/сonstants';
-
 import boomio from '@/services/boomio';
 import { isMobileDevice } from '@/config';
-
 import './styles.css';
+import { iceHammerImage } from '@/сonstants';
+
+import { createCloseMoveButtons } from '@/utlis';
 
 class IceWidget {
   constructor() {
     this.showCoupon = false;
     this.icePieces = [];
-    this.displayedIcePieces = 0;
-    this.createWidget();
+    this.diplayedIcePieces = 0;
+    this.start();
   }
 
-  createWidget() {
-    this.widget = document.createElement('div');
-    this.widget.setAttribute('id', 'boomio-ice-widget');
-
-    this.createIceBlock();
-    this.initializeAnimations();
-
-    console.log('asdasd');
-
-    document.body.appendChild(this.widget);
+  showQrModal() {
+    const length = this.icePieces.length;
+    if (length || this.showCoupon) return;
+    this.showCoupon = true;
+    setTimeout(() => {
+      this.widget.remove();
+      new QrCodeModal();
+    }, 1000);
   }
 
-  createIceBlock() {
-    this.iceBlock = document.createElement('img');
-    this.iceBlock.src = iceBlockImage;
-    this.iceBlock.classList.add('boomio-ice-block');
-    this.iceBlock.addEventListener('load', () => {
-      this.createHammer();
-    });
-    this.iceBlock.onclick = () => {
-      this.createPiecesOfIce();
-    };
-    this.widget.appendChild(this.iceBlock);
-  }
+  showBangAnimation = () => {
+    const bang = document.createElement('img');
+    bang.classList.add('boomio-bang');
+    bang.src = bangImage;
+    this.widget.appendChild(bang);
+    setTimeout(() => {
+      bang.remove();
+    }, 200);
+  };
 
-  initializeAnimations() {
-    new AnimationService({
-      elem: this.widget,
-    });
-    new DragElement(this.widget);
-  }
-
-  createHammer() {
-    this.hammer = document.createElement('img');
-    this.hammer.classList.add('boomio-hammer');
-    this.hammer.src = iceHammerImage;
-    this.createCoupon();
-    this.widget.appendChild(this.hammer);
-  }
-
-  createPiecesOfIce() {
-    boomio.signal('hammer_click');
-    this.showHammerAnimation();
-    icePieceImages.forEach((img) => {
-      const image = document.createElement('img');
-      image.src = img;
-      image.addEventListener(
-        'load',
-        () => {
-          this.onIcePieceLoaded(image);
-        },
-        { once: true },
-      );
-      image.classList.add('boomio-piece-of-ice');
-      this.icePieces.push(image);
-      this.widget.appendChild(image);
-    });
-  }
-
-  onIcePieceLoaded(image) {
-    this.displayedIcePieces++;
-
-    if (this.displayedIcePieces === icePieceCount) {
-      this.iceBlock.remove();
-      this.crashIce();
-      this.widget.onclick = () => {
-        this.crashIce();
-      };
-    }
-  }
-
-  showHammerAnimation() {
+  showHammerAnimation = () => {
     assignStyleOnElement(this.hammer.style, {
       right: 0,
       transform: 'rotate(-50deg)',
@@ -113,21 +59,10 @@ class IceWidget {
         transform: 'rotate(40deg)',
       });
     }, 400);
-  }
+  };
 
-  showBangAnimation() {
-    const bang = document.createElement('img');
-    bang.classList.add('boomio-bang');
-    bang.src = bangImage;
-    this.widget.appendChild(bang);
-    setTimeout(() => {
-      bang.remove();
-    }, 200);
-  }
-
-  crashIce() {
+  crashIce = () => {
     if (this.showCoupon) return;
-
     const currentImage = this.icePieces.pop();
 
     const shadowIndex = icePieceCount - this.icePieces.length;
@@ -158,32 +93,80 @@ class IceWidget {
       },
       { once: true },
     );
-  }
+  };
 
-  showQrModal() {
-    const length = this.icePieces.length;
-    if (length || this.showCoupon) return;
-    this.showCoupon = true;
-    setTimeout(() => {
-      this.widget.remove();
-      new QrCodeModal();
-    }, 1000);
-  }
+  createHammer = () => {
+    const hammer = document.createElement('img');
+    hammer.classList.add('boomio-hammer');
+    hammer.src = iceHammerImage;
+    this.widget.appendChild(hammer);
+    this.hammer = hammer;
+    hammer.addEventListener('load', () => {
+      this.createCoupon();
+    });
+  };
 
-  createCoupon() {
+  onIcePieceLoaded = () => {
+    if (this.diplayedIcePieces === icePieceCount) {
+      this.iceBlock.remove();
+      this.crashIce();
+      this.widget.onclick = this.crashIce;
+      return;
+    }
+
+    this.diplayedIcePieces++;
+  };
+
+  createPiecesOfIces = () => {
+    boomio.signal('hammer_click');
+    this.showHammerAnimation();
+    icePieceImages.forEach((img) => {
+      const image = document.createElement('img');
+      image.src = img;
+      image.addEventListener('load', this.onIcePieceLoaded, { once: true });
+      image.classList.add('boomio-piece-of-ice');
+      this.icePieces.push(image);
+      this.widget.appendChild(image);
+    });
+  };
+
+  createCoupon = () => {
     const coupon = document.createElement('div');
     coupon.classList.add('boomio-coupon-wrapper');
     this.widget.appendChild(coupon);
     coupon.innerHTML = QrCodeModal.getGreyCoupon();
-    const isMobile = window.innerWidth <= 768;
-    createCloseMoveButtons(this.widget, null, isMobile ? [-170, -200] : [-240, -210]);
-  }
+  };
+
+  start = () => {
+    const widget = document.createElement('div');
+    widget.setAttribute('id', 'ice-widget');
+
+    const iceBlock = document.createElement('img');
+    iceBlock.src = iceBlockImage;
+    iceBlock.classList.add('boomio-ice-block');
+    iceBlock.onclick = this.createPiecesOfIces;
+    this.iceBlock = iceBlock;
+
+    widget.appendChild(iceBlock);
+
+    new AnimationService({
+      elem: widget,
+    });
+    new DragElement(widget);
+
+    this.widget = widget;
+    iceBlock.addEventListener('load', () => {
+      this.createHammer();
+    });
+    const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
+
+    createCloseMoveButtons(widget, widget, isMobile ? [-170, -330] : [-220, -380], true);
+  };
 }
 
 export default () => {
   const { success } = localStorageService.config;
 
-  if (success || localStorage.getItem('testing_Widgets')) {
-    new IceWidget();
-  }
+  if (success || localStorage.getItem('testing_Widgets')) new IceWidget();
+  return;
 };

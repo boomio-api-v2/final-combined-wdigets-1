@@ -135,6 +135,7 @@ class GuessWidget {
       myCanvas.querySelector('.boomio-wrapper'),
       document.getElementById('boomio-guess-container'),
       [-30, 0],
+      true,
     );
   };
 

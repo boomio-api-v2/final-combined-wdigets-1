@@ -53,8 +53,13 @@ export class Puzzle {
     this.createPuzzleWidget('fixed');
     const isMobile = window.innerWidth <= 768;
     const element = document.getElementById('puzzle-widget');
+    const deleteElement = document.getElementById('boomio-widget-content');
 
-    createCloseMoveButtons(this.puzzleWidget, element, isMobile ? [-170, -170] : [-220, -270]);
+    createCloseMoveButtons(
+      this.puzzleWidget,
+      deleteElement,
+      isMobile ? [-170, -170] : [-220, -270],
+    );
 
     const puzzleWidget = this.puzzleWidget;
     const widgetSmallPreview = document.createElement('div');
