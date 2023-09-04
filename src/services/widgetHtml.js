@@ -17,7 +17,8 @@ class WidgetHtmlService {
 
     const imageElement = document.createElement('img');
     imageElement.src =
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true';
+      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/Boomio_bubble_game.gif?raw=true';
+
     imageElement.style.width = '100px'; // Change width here
     imageElement.style.height = '100px'; // Change height here
     imageElement.classList.add('jumping-image');
@@ -32,6 +33,10 @@ class WidgetHtmlService {
     setTimeout(() => {
       boomioMainHolder.style.transition = 'bottom 1s ease-in-out';
       boomioMainHolder.style.bottom = '20px';
+      setTimeout(() => {
+        imageElement.src =
+          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
+      }, 5000);
     }, 100); // Adjust the delay time (in milliseconds) as needed
   };
 }
