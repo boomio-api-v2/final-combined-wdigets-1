@@ -192,7 +192,7 @@ class ClawMachineWidget {
     if (isMobile()) {
       numberOfPresents = 7;
     } else {
-      numberOfPresents = 9;
+      numberOfPresents = 20;
     }
 
     // Array to store present positions

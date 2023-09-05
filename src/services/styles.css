@@ -8,7 +8,7 @@
 }
 
 .jumping-image {
-  animation: jump 1s ease-in-out 5;
+  animation: jump 2s ease-in-out 5;
 }
 
 .fade-out {
