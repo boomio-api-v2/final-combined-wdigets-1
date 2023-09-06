@@ -10,3 +10,6 @@ export const buttonImg = [
 export const clawPoleImg = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/clawPole.png',
 ];
+export const ClawLineImg = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/ClawLine.png',
+];

@@ -311,7 +311,7 @@ export default class {
 
     this.modal.classList.add('desktop-qr-modal');
     this.modal.innerHTML = `
-    <div class="boomio-boomio-close-modal-btn-wrapper">
+    <div class="boomio-boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
       <img src="${closeImage}" id="boomio-boomio-close-modal-btn" class="boomio-boomio-close-modal-btn"/>
     </div>
     <div class="coupon__preview__card__header text-center d-block">
