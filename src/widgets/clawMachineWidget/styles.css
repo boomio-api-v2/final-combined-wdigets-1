@@ -2,20 +2,21 @@
   position: fixed; /* Use position: fixed to make it relative to the viewport */
   top: 0px; /* Position it at 100 pixels from the top of the viewport */
   left: 50px; /* Position it at the left of the viewport */
-  width: 50px; /* Set the width of the custom-div */
-  height: 50px; /* Set the height of the custom-div */
-  background-color: blue; /* Set the background color or any other styles */
-  z-index: 2; /* Ensure it appears above other elements */
+  width: 82px; /* Set the width of the custom-div */
+  height: 202px; /* Set the height of the custom-div */
+z-index: 2; /* Ensure it appears above other elements */
+z-index: 9999999999999;
 }
 
 
 .claw-div {
+  z-index: 99999999999999;
+
   position: fixed; /* Use position: fixed to make it relative to the viewport */
-  top: 50px; /* Position it at 100 pixels from the top of the viewport */
+  top: 200px; /* Position it at 100 pixels from the top of the viewport */
   left: 0; /* Position it at the left of the viewport */
-  width: 100px; /* Set the width of the custom-div */
-  height: 100px; /* Set the height of the custom-div */
-  background-color: blue; /* Set the background color or any other styles */
+  width: 190px; /* Set the width of the custom-div */
+  height: 130px; /* Set the height of the custom-div */
   z-index: 2; /* Ensure it appears above other elements */
 }
 
@@ -42,9 +43,8 @@
     position: fixed; /* Use position: fixed to make it relative to the viewport */
     top: 0px; /* Position it at 100 pixels from the top of the viewport */
     left: 25px; /* Position it at the left of the viewport */
-    width: 25px; /* Set the width of the custom-div */
-    height: 25px; /* Set the height of the custom-div */
-    background-color: blue; /* Set the background color or any other styles */
+    width: 82px; /* Set the width of the custom-div */
+    height: 202px; /* Set the height of the custom-div */
     z-index: 2; /* Ensure it appears above other elements */
   }
   
@@ -55,7 +55,6 @@
     left: 0; /* Position it at the left of the viewport */
     width: 50px; /* Set the width of the custom-div */
     height: 50px; /* Set the height of the custom-div */
-    background-color: blue; /* Set the background color or any other styles */
     z-index: 2; /* Ensure it appears above other elements */
   }
   

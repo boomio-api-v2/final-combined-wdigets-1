@@ -1,5 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
+import { clawImg, chainImg, buttonImg } from './constants';
 
 class ClawMachineWidget {
   constructor() {
@@ -25,27 +26,21 @@ class ClawMachineWidget {
     this.direction = -1;
     this.clawPosition = 0;
     this.setupControlButton();
+    this.setupPole();
   }
 
   setupControlButton() {
-    // Create a button element
-    const controlButton = document.createElement('button');
-    controlButton.innerText = 'Get a prize';
-    controlButton.classList.add('boomio-control-button');
-
-    // Apply CSS for the button's appearance
-    controlButton.style.position = 'fixed';
+    const controlButton = document.createElement('div');
+    controlButton.classList.add('boomio-pole');
     controlButton.style.zIndex = 9999999999999999999;
-    controlButton.style.bottom = '50%';
-    controlButton.style.left = '50%';
-    controlButton.style.transform = 'translate(-50%, -50%)';
-    controlButton.style.width = '100px';
-    controlButton.style.height = '100px';
-    controlButton.style.borderRadius = '50%';
-    controlButton.style.backgroundColor = 'red';
-    controlButton.style.color = 'white';
-    controlButton.style.fontSize = '16px';
-    controlButton.style.cursor = 'pointer';
+    controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
+    controlButton.style.backgroundSize = 'cover'; // Adjust as needed
+    controlButton.style.width = '160px';
+    controlButton.style.height = '88px';
+    controlButton.style.marginTop = '60px';
+    controlButton.style.marginLeft = '-47px';
+    controlButton.style.backgroundColor = 'transparent';
+    controlButton.style.border = 'none';
     controlButton.setAttribute('id', 'boomio-control-button');
 
     // Add a click event listener to trigger the claw's grabbing action
@@ -54,7 +49,33 @@ class ClawMachineWidget {
     });
 
     // Append the button to the document body
-    document.body.appendChild(controlButton);
+    this.chainDiv.appendChild(controlButton);
+  }
+
+  setupControlButton() {
+    // Create a button element
+    const controlButton = document.createElement('button');
+    controlButton.classList.add('boomio-control-button');
+
+    // Apply CSS for the button's appearance
+    controlButton.style.zIndex = 9999999999999999999;
+    controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
+    controlButton.style.backgroundSize = 'cover'; // Adjust as needed
+    controlButton.style.width = '160px';
+    controlButton.style.height = '88px';
+    controlButton.style.marginTop = '60px';
+    controlButton.style.marginLeft = '-47px';
+    controlButton.style.backgroundColor = 'transparent';
+    controlButton.style.border = 'none';
+    controlButton.setAttribute('id', 'boomio-control-button');
+
+    // Add a click event listener to trigger the claw's grabbing action
+    controlButton.addEventListener('click', () => {
+      this.activateGrabbing();
+    });
+
+    // Append the button to the document body
+    this.chainDiv.appendChild(controlButton);
   }
 
   activateGrabbing() {
@@ -116,10 +137,10 @@ class ClawMachineWidget {
           }
         }, 600);
         this.clawDiv.style.transition = 'top 1s';
-        this.clawDiv.style.top = '50px';
+        this.clawDiv.style.top = '200px';
 
         this.chainDiv.style.transition = 'height 1s, transform 1s';
-        this.chainDiv.style.height = '50px';
+        this.chainDiv.style.height = '200px';
         this.chainDiv.style.transform = 'translateY(0)';
         setTimeout(() => {
           this.animationInProgress = false;
@@ -154,7 +175,7 @@ class ClawMachineWidget {
       this.clawDiv.style.left = `${this.clawPosition}px`;
 
       // Update the chain's position to move together with the claw
-      const chainDivLeft = this.clawPosition + this.clawDiv.clientWidth / 2;
+      const chainDivLeft = this.clawPosition + this.clawDiv.clientWidth / 2 - 40;
       this.chainDiv.style.left = `${chainDivLeft}px`;
 
       // Schedule the next movement
@@ -247,6 +268,8 @@ class ClawMachineWidget {
     // Create the existing Claw div
     const clawDiv = document.createElement('div');
     clawDiv.classList.add('claw-div');
+    clawDiv.style.backgroundImage = `url(${clawImg})`; // Use the imported clawImg as the background image
+    clawDiv.style.backgroundSize = 'cover'; // Adjust as needed
 
     clawDiv.style.transform = 'translateY(-100px)';
     clawDiv.style.transition = 'transform 1s ease-in-out'; // Add a smooth transition effect for transform
@@ -255,6 +278,8 @@ class ClawMachineWidget {
 
     const chainDiv = document.createElement('div');
     chainDiv.classList.add('chain-div');
+    chainDiv.style.backgroundImage = `url(${chainImg})`; // Use the imported clawImg as the background image
+    chainDiv.style.backgroundSize = 'cover'; // Adjust as needed
 
     // Set initial position of the chain div
     chainDiv.style.transform = 'translateY(-100px)'; // Adjust the initial position as needed
