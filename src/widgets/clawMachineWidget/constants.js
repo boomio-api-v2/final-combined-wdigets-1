@@ -7,3 +7,6 @@ export const chainImg = [
 export const buttonImg = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/Button.svg',
 ];
+export const clawPoleImg = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/clawPole.png',
+];

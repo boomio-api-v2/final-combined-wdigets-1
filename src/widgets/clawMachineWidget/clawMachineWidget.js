@@ -1,6 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { clawImg, chainImg, buttonImg } from './constants';
+import { clawImg, chainImg, buttonImg, clawPoleImg } from './constants';
 
 class ClawMachineWidget {
   constructor() {
@@ -29,27 +29,27 @@ class ClawMachineWidget {
     this.setupPole();
   }
 
-  setupControlButton() {
-    const controlButton = document.createElement('div');
-    controlButton.classList.add('boomio-pole');
-    controlButton.style.zIndex = 9999999999999999999;
-    controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
-    controlButton.style.backgroundSize = 'cover'; // Adjust as needed
-    controlButton.style.width = '160px';
-    controlButton.style.height = '88px';
-    controlButton.style.marginTop = '60px';
-    controlButton.style.marginLeft = '-47px';
-    controlButton.style.backgroundColor = 'transparent';
-    controlButton.style.border = 'none';
-    controlButton.setAttribute('id', 'boomio-control-button');
+  setupPole() {
+    this.clawPole = document.createElement('div');
+    this.clawPole.classList.add('boomio-claw-pole');
+    this.clawPole.style.zIndex = 2;
+    this.clawPole.style.backgroundImage = `url(${clawPoleImg})`; // Use the imported clawImg as the background image
+    this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
+    this.clawPole.style.width = '25px';
+    this.clawPole.style.height = '25px';
+    this.clawPole.style.marginTop = '20px';
+    this.clawPole.style.marginLeft = '30px';
+    this.clawPole.style.backgroundColor = 'transparent';
+    this.clawPole.style.border = 'none';
+    this.clawPole.setAttribute('id', 'boomio-control-button');
 
     // Add a click event listener to trigger the claw's grabbing action
-    controlButton.addEventListener('click', () => {
+    this.clawPole.addEventListener('click', () => {
       this.activateGrabbing();
     });
 
     // Append the button to the document body
-    this.chainDiv.appendChild(controlButton);
+    this.chainDiv.appendChild(this.clawPole);
   }
 
   setupControlButton() {
@@ -67,6 +67,8 @@ class ClawMachineWidget {
     controlButton.style.marginLeft = '-47px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
+    controlButton.style.cursor = 'pointer';
+
     controlButton.setAttribute('id', 'boomio-control-button');
 
     // Add a click event listener to trigger the claw's grabbing action
@@ -93,9 +95,9 @@ class ClawMachineWidget {
 
     const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
 
-    this.clawDiv.style.top = `calc(100vh - ${isMobile ? '110px' : '110px'})`;
-    this.chainDiv.style.transition = 'height 1s, transform 1s';
-    this.chainDiv.style.height = `calc(100vh - ${isMobile ? '110px' : '110px'})`;
+    this.clawDiv.style.top = `calc(100vh - ${isMobile ? '120px' : '120px'})`;
+    this.clawPole.style.transition = 'height 1s, transform 1s';
+    this.clawPole.style.height = `calc(100vh - ${isMobile ? '270px' : '270px'})`;
 
     setTimeout(() => {
       this.clawPresentDivs.forEach((clawPresentDiv, index) => {
@@ -137,11 +139,11 @@ class ClawMachineWidget {
           }
         }, 600);
         this.clawDiv.style.transition = 'top 1s';
-        this.clawDiv.style.top = '200px';
+        this.clawDiv.style.top = '195px';
 
-        this.chainDiv.style.transition = 'height 1s, transform 1s';
-        this.chainDiv.style.height = '200px';
-        this.chainDiv.style.transform = 'translateY(0)';
+        this.clawPole.style.transition = 'height 1s, transform 1s';
+        this.clawPole.style.height = '25px';
+        this.clawPole.style.transform = 'translateY(0)';
         setTimeout(() => {
           this.animationInProgress = false;
           this.shouldContinueAutomaticClawMovement = true;
@@ -151,7 +153,7 @@ class ClawMachineWidget {
     }, 1000);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = 8; // Adjust the speed as needed
+    const clawSpeed = 10; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
