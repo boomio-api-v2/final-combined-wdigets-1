@@ -36,7 +36,7 @@ class WidgetHtmlService {
       if (element) {
         element.classList.add('fade-out');
         imageElement.src =
-          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
+          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/Boomio_bubble_game.gif?raw=true';
 
         setTimeout(() => {
           if (element) {
