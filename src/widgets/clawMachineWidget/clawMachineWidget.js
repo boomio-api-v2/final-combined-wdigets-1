@@ -20,7 +20,10 @@ class ClawMachineWidget {
 
     // Initialize flags for each present div
     this.isHoldingclawPresentDivs = Array(this.clawPresentDivs.length).fill(false);
+    this.shouldContinueAutomaticClawMovement = true;
     this.startAutomaticClawMovement();
+    this.direction = -1;
+    this.clawPosition = 0;
     this.setupControlButton();
   }
 
@@ -63,7 +66,7 @@ class ClawMachineWidget {
     buttonElement.style.pointerEvents = 'none';
 
     this.animationInProgress = true;
-
+    this.shouldContinueAutomaticClawMovement = false;
     // Add your logic to move the claw down here
     this.clawDiv.style.transition = 'top 1s';
 
@@ -118,33 +121,40 @@ class ClawMachineWidget {
         this.chainDiv.style.transition = 'height 1s, transform 1s';
         this.chainDiv.style.height = '50px';
         this.chainDiv.style.transform = 'translateY(0)';
-        this.animationInProgress = false;
+        setTimeout(() => {
+          this.animationInProgress = false;
+          this.shouldContinueAutomaticClawMovement = true;
+          this.startAutomaticClawMovement();
+        }, 1000);
       }, 600);
     }, 1000);
   }
   startAutomaticClawMovement() {
-    let direction = 1; // 1 for right, -1 for left
     const clawSpeed = 8; // Adjust the speed as needed
-    let clawPosition = 0;
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
-      clawPosition += direction * clawSpeed;
+      // Check if automatic movement should continue
+      if (!this.shouldContinueAutomaticClawMovement) {
+        return;
+      }
+
+      this.clawPosition += this.direction * clawSpeed; // Update the stored claw position
 
       // Ensure the claw stays within the screen boundaries
-      if (clawPosition >= maxX) {
-        clawPosition = maxX;
-        direction = -1; // Reverse direction when reaching the right edge
-      } else if (clawPosition <= 0) {
-        clawPosition = 0;
-        direction = 1; // Reverse direction when reaching the left edge
+      if (this.clawPosition >= maxX) {
+        this.clawPosition = maxX;
+        this.direction = -1; // Reverse direction when reaching the right edge
+      } else if (this.clawPosition <= 0) {
+        this.clawPosition = 0;
+        this.direction = 1; // Reverse direction when reaching the left edge
       }
 
       // Update the claw's position
-      this.clawDiv.style.left = `${clawPosition}px`;
+      this.clawDiv.style.left = `${this.clawPosition}px`;
 
       // Update the chain's position to move together with the claw
-      const chainDivLeft = clawPosition + this.clawDiv.clientWidth / 2;
+      const chainDivLeft = this.clawPosition + this.clawDiv.clientWidth / 2;
       this.chainDiv.style.left = `${chainDivLeft}px`;
 
       // Schedule the next movement
@@ -192,7 +202,7 @@ class ClawMachineWidget {
     if (isMobile()) {
       numberOfPresents = 7;
     } else {
-      numberOfPresents = 20;
+      numberOfPresents = 2;
     }
 
     // Array to store present positions
