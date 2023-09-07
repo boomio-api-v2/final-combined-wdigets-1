@@ -1,6 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { clawImg, chainImg, buttonImg, ClawLineImg } from './constants';
+import { clawImg, chainImg, buttonImg, ClawLineImg, clawImgGif } from './constants';
 
 class ClawMachineWidget {
   constructor() {
@@ -173,6 +173,9 @@ class ClawMachineWidget {
     this.clawDiv.style.top = `calc(100vh - ${isMobile ? '127px' : '127px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${isMobile ? '260px' : '260px'})`;
+    setTimeout(() => {
+      this.clawDiv.style.backgroundImage = `url(${clawImgGif})`;
+    }, 1000);
 
     setTimeout(() => {
       this.clawPresentDivs.forEach((clawPresentDiv, index) => {
@@ -218,6 +221,8 @@ class ClawMachineWidget {
 
         this.clawPole.style.transition = 'height 1s, transform 1s';
         this.clawPole.style.height = '65px';
+        this.clawDiv.style.backgroundImage = `url(${clawImg})`;
+
         setTimeout(() => {
           this.animationInProgress = false;
           this.shouldContinueAutomaticClawMovement = true;
