@@ -92,13 +92,14 @@ class ClawMachineWidget {
       '8px 8px 22px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset';
     controlButton.style.background =
       'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
-    controlButton.style.width = '160px';
-    controlButton.style.height = '88px';
+    controlButton.style.width = '161px';
+    controlButton.style.height = '53.281px';
+    controlButton.style.flexShrink = 0;
+
     controlButton.style.position = 'absolute';
-    controlButton.style.marginTop = '50px';
-    controlButton.style.marginLeft = '-100px';
+    controlButton.style.marginTop = '75px';
+    controlButton.style.marginLeft = '-123px';
     controlButton.style.backgroundColor = 'transparent';
-    controlButton.style.border = 'none';
     controlButton.style.cursor = 'pointer';
     controlButton.style.zIndex = 999999;
     controlButton.setAttribute('id', 'boomio-control-button');
