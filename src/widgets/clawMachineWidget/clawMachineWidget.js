@@ -72,10 +72,10 @@ class ClawMachineWidget {
     this.clawPole.style.zIndex = 2;
     this.clawPole.style.background = `linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)`; // Use the imported clawImg as the background image
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
-    this.clawPole.style.width = '25px';
-    this.clawPole.style.height = '70px';
-    this.clawPole.style.marginTop = '0px';
-    this.clawPole.style.marginLeft = '30px';
+    this.clawPole.style.width = '28px';
+    this.clawPole.style.height = '62px';
+    this.clawPole.style.marginTop = '8px';
+    this.clawPole.style.marginLeft = '27px';
     this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
     this.clawPole.setAttribute('id', 'boomio-claw-pole');
@@ -104,15 +104,46 @@ class ClawMachineWidget {
     controlButton.style.zIndex = 999999;
     controlButton.setAttribute('id', 'boomio-control-button');
 
-    // Add a click event listener to trigger the claw's grabbing action
+    // Add text and styling
+    controlButton.style.color = '#FFF';
+    controlButton.style.textAlign = 'center';
+    controlButton.style.textShadow = '4px 4px 12px rgba(0, 0, 0, 0.15)';
+    controlButton.style.fontFamily = 'Holtwood One SC';
+    controlButton.style.fontSize = '26px';
+    controlButton.style.fontStyle = 'normal';
+    controlButton.style.fontWeight = 600;
+    controlButton.style.lineHeight = 'normal';
+    controlButton.innerText = 'START'; // Replace with your desired text
+
+    controlButton.addEventListener('mouseenter', () => {
+      controlButton.style.transform = 'scale(1.05)';
+      controlButton.style.transition = 'transform 0.2s ease';
+    });
+
+    controlButton.addEventListener('mouseleave', () => {
+      controlButton.style.transform = 'scale(1)';
+      controlButton.style.transition = 'transform 0.2s ease';
+    });
+
     controlButton.addEventListener('click', () => {
       this.activateGrabbing();
+
+      // Apply "pressed in" styles
+      controlButton.style.boxShadow = '0px 0px 10px 0px rgba(0, 0, 0, 0.8) inset';
+      controlButton.style.backgroundColor = '#D85E99'; // Change the color if desired
+
+      // Restore original styles after a short delay (e.g., 300 milliseconds)
+      setTimeout(() => {
+        controlButton.style.boxShadow =
+          'inset 0px 0px 5px #c1c1c1, 8px 8px 22px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset';
+        controlButton.style.backgroundColor =
+          'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
+      }, 3400);
     });
 
     // Append the button to the document body
     this.chainDiv.appendChild(controlButton);
   }
-
   activateGrabbing() {
     if (this.animationInProgress || this.isHoldingclawPresentDivs.some((held) => held)) {
       return;
@@ -130,7 +161,7 @@ class ClawMachineWidget {
 
     this.clawDiv.style.top = `calc(100vh - ${isMobile ? '127px' : '127px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${isMobile ? '258px' : '258px'})`;
+    this.clawPole.style.height = `calc(100vh - ${isMobile ? '266px' : '266px'})`;
 
     setTimeout(() => {
       this.clawPresentDivs.forEach((clawPresentDiv, index) => {
@@ -150,7 +181,7 @@ class ClawMachineWidget {
 
             clawPresentDiv.style.transition = 'top 0s';
             clawPresentDiv.style.top = '50px';
-            clawPresentDiv.style.left = '70px';
+            clawPresentDiv.style.left = '65px';
             this.clawDiv.appendChild(clawPresentDiv);
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
@@ -175,7 +206,7 @@ class ClawMachineWidget {
         this.clawDiv.style.top = '200px';
 
         this.clawPole.style.transition = 'height 1s, transform 1s';
-        this.clawPole.style.height = '70px';
+        this.clawPole.style.height = '62px';
         this.clawPole.style.transform = 'translateY(0)';
         setTimeout(() => {
           this.animationInProgress = false;
