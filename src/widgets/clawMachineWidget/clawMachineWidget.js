@@ -37,14 +37,12 @@ class ClawMachineWidget {
     controlButton.classList.add('boomio-control-button');
     controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
     controlButton.style.backgroundSize = 'cover'; // Adjust as needed
-    controlButton.style.width = '160px';
+    controlButton.style.width = '82px';
     controlButton.style.height = '88px';
     controlButton.style.marginTop = '60px';
-    controlButton.style.marginLeft = '-47px';
+    controlButton.style.marginLeft = '0px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
-    controlButton.style.cursor = 'pointer';
-
     controlButton.setAttribute('id', 'boomio-control-button');
     // Append the button to the document body
     this.chainDiv.appendChild(controlButton);
@@ -88,12 +86,17 @@ class ClawMachineWidget {
     // Create a button element
     const controlButton = document.createElement('button');
     controlButton.classList.add('boomio-control-button');
-    controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
-    controlButton.style.backgroundSize = 'cover'; // Adjust as needed
+    controlButton.style.borderRadius = '30px';
+    controlButton.style.border = '2px solid #FFF';
+    controlButton.style.boxShadow =
+      '8px 8px 22px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset';
+    controlButton.style.background =
+      'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
     controlButton.style.width = '160px';
     controlButton.style.height = '88px';
-    controlButton.style.marginTop = '60px';
-    controlButton.style.marginLeft = '-47px';
+    controlButton.style.position = 'absolute';
+    controlButton.style.marginTop = '50px';
+    controlButton.style.marginLeft = '-100px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
     controlButton.style.cursor = 'pointer';
