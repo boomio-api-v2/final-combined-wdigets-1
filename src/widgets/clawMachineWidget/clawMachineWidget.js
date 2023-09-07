@@ -1,6 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { clawImg, chainImg, buttonImg, clawPoleImg, ClawLineImg } from './constants';
+import { clawImg, chainImg, buttonImg, ClawLineImg } from './constants';
 
 class ClawMachineWidget {
   constructor() {
@@ -25,9 +25,29 @@ class ClawMachineWidget {
     this.startAutomaticClawMovement();
     this.direction = -1;
     this.clawPosition = 0;
+    this.setupControlButtonBackground();
     this.setupControlButton();
     this.setupClawLine();
     this.setupPole();
+  }
+
+  setupControlButtonBackground() {
+    // Create a button element
+    const controlButton = document.createElement('button');
+    controlButton.classList.add('boomio-control-button');
+    controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
+    controlButton.style.backgroundSize = 'cover'; // Adjust as needed
+    controlButton.style.width = '160px';
+    controlButton.style.height = '88px';
+    controlButton.style.marginTop = '60px';
+    controlButton.style.marginLeft = '-47px';
+    controlButton.style.backgroundColor = 'transparent';
+    controlButton.style.border = 'none';
+    controlButton.style.cursor = 'pointer';
+
+    controlButton.setAttribute('id', 'boomio-control-button');
+    // Append the button to the document body
+    this.chainDiv.appendChild(controlButton);
   }
 
   setupClawLine() {
@@ -52,11 +72,11 @@ class ClawMachineWidget {
     this.clawPole = document.createElement('div');
     this.clawPole.classList.add('boomio-claw-pole');
     this.clawPole.style.zIndex = 2;
-    this.clawPole.style.backgroundImage = `url(${clawPoleImg})`; // Use the imported clawImg as the background image
+    this.clawPole.style.background = `linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)`; // Use the imported clawImg as the background image
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = '25px';
-    this.clawPole.style.height = '25px';
-    this.clawPole.style.marginTop = '42px';
+    this.clawPole.style.height = '70px';
+    this.clawPole.style.marginTop = '0px';
     this.clawPole.style.marginLeft = '30px';
     this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
@@ -77,7 +97,7 @@ class ClawMachineWidget {
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
     controlButton.style.cursor = 'pointer';
-
+    controlButton.style.zIndex = 999999;
     controlButton.setAttribute('id', 'boomio-control-button');
 
     // Add a click event listener to trigger the claw's grabbing action
@@ -106,7 +126,7 @@ class ClawMachineWidget {
 
     this.clawDiv.style.top = `calc(100vh - ${isMobile ? '127px' : '127px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${isMobile ? '300px' : '300px'})`;
+    this.clawPole.style.height = `calc(100vh - ${isMobile ? '258px' : '258px'})`;
 
     setTimeout(() => {
       this.clawPresentDivs.forEach((clawPresentDiv, index) => {
@@ -151,7 +171,7 @@ class ClawMachineWidget {
         this.clawDiv.style.top = '200px';
 
         this.clawPole.style.transition = 'height 1s, transform 1s';
-        this.clawPole.style.height = '25px';
+        this.clawPole.style.height = '70px';
         this.clawPole.style.transform = 'translateY(0)';
         setTimeout(() => {
           this.animationInProgress = false;
