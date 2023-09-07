@@ -7,7 +7,7 @@ export const createCloseMoveButtons = (element, deleteElement, position, moveBut
   btnContainer.style.justifyContent = 'center';
   btnContainer.style.position = 'absolute';
   btnContainer.style.zIndex = 1000000000000000;
-
+  localStorage.setItem('closing_button', false);
   if (position) {
     btnContainer.style.top = position[0] + 'px';
     btnContainer.style.left = position[1] + 'px';

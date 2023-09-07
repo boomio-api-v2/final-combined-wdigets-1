@@ -3,7 +3,25 @@ import './styles.css';
 class WidgetHtmlService {
   constructor() {
     this.container = null;
+    this.imageElement;
   }
+
+  changeImagePeriodically = () => {
+    setInterval(() => {
+      const item = localStorage.getItem('closing_button');
+      const element = document.getElementById(item);
+      if (element) {
+        const element = document.getElementById('boomio-widget-content');
+        this.imageElement.src =
+          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
+
+        setTimeout(() => {
+          this.imageElement.src =
+            'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/db5cdbda00947c118c62a4358b42247179687b40/images/wheelOfFortuneWidget/Boomio_bouncy_bubble%20(2).gif?raw=true';
+        }, 1000);
+      }
+    }, 4000); // 20 seconds in milliseconds
+  };
 
   createWidgetContainer = () => {
     const widgetScreenWrapper = document.createElement('div');
@@ -17,13 +35,13 @@ class WidgetHtmlService {
     boomioMainHolder.style.bottom = '30%'; // Adjust the starting vertical position
     boomioMainHolder.style.right = '-150px'; // Adjust the starting horizontal position off-screen
 
-    const imageElement = document.createElement('img');
-    imageElement.src =
+    this.imageElement = document.createElement('img');
+    this.imageElement.src =
       'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
 
-    imageElement.style.width = '200px'; // Change width here
-    imageElement.style.height = '200px'; // Change height here
-    boomioMainHolder.appendChild(imageElement);
+    this.imageElement.style.width = '200px'; // Change width here
+    this.imageElement.style.height = '200px'; // Change height here
+    boomioMainHolder.appendChild(this.imageElement);
 
     const widgetContent = document.createElement('div');
     widgetContent.setAttribute('id', 'boomio-widget-content');
@@ -35,9 +53,6 @@ class WidgetHtmlService {
       const element = document.getElementById(item);
       if (element) {
         element.classList.add('fade-out');
-        imageElement.src =
-          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/Boomio_bubble_game.gif?raw=true';
-
         setTimeout(() => {
           if (element) {
             element.style.display = 'block';
@@ -45,14 +60,9 @@ class WidgetHtmlService {
         }, 10);
         setTimeout(() => {
           if (element) {
-            imageElement.src =
-              'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
-
-            // imageElement.src =
-            //   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/Boomio_bubble_game.gif?raw=true';
             element.style.opacity = '1';
           }
-        }, 510);
+        }, 1010);
         localStorage.setItem('closing_button', false);
         e.stopPropagation();
         e.preventDefault();
@@ -77,10 +87,11 @@ class WidgetHtmlService {
       }, 1000);
 
       setTimeout(() => {
-        imageElement.src =
+        this.imageElement.src =
           'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
-      }, 10000); // Adjust the delay time (in milliseconds) as needed
-    }, 100); // Adjust the delay time (in milliseconds) as needed
+      }, 10000);
+    }, 100);
+    this.changeImagePeriodically();
   };
 }
 
