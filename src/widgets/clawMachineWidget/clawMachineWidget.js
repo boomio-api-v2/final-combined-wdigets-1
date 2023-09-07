@@ -74,7 +74,7 @@ class ClawMachineWidget {
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = '28px';
     this.clawPole.style.height = '62px';
-    this.clawPole.style.marginTop = '8px';
+    this.clawPole.style.marginTop = '1px';
     this.clawPole.style.marginLeft = '27px';
     this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
