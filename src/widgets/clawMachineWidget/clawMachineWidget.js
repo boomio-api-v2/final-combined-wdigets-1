@@ -73,9 +73,9 @@ class ClawMachineWidget {
     this.clawPole.style.background = `linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)`; // Use the imported clawImg as the background image
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = '28px';
-    this.clawPole.style.height = '62px';
-    this.clawPole.style.marginTop = '1px';
-    this.clawPole.style.marginLeft = '27px';
+    this.clawPole.style.height = '65px';
+    this.clawPole.style.marginTop = '3px';
+    this.clawPole.style.marginLeft = '28px';
     this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
     this.clawPole.setAttribute('id', 'boomio-claw-pole');
@@ -104,16 +104,27 @@ class ClawMachineWidget {
     controlButton.style.zIndex = 999999;
     controlButton.setAttribute('id', 'boomio-control-button');
 
-    // Add text and styling
-    controlButton.style.color = '#FFF';
-    controlButton.style.textAlign = 'center';
-    controlButton.style.textShadow = '4px 4px 12px rgba(0, 0, 0, 0.15)';
-    controlButton.style.fontFamily = 'Holtwood One SC';
-    controlButton.style.fontSize = '26px';
-    controlButton.style.fontStyle = 'normal';
-    controlButton.style.fontWeight = 600;
-    controlButton.style.lineHeight = 'normal';
-    controlButton.innerText = 'START'; // Replace with your desired text
+    const textSpan = document.createElement('span');
+    textSpan.innerText = 'START'; // Replace with your desired text
+    textSpan.style.padding = '5px 10px'; // Add some padding for better appearance
+    textSpan.style.display = 'inline-block';
+
+    // Add text styling
+    textSpan.style.color = 'white'; // Hide the text color
+    textSpan.style.fontFamily = 'sans-serif';
+    textSpan.style.fontSize = '28px';
+    textSpan.style.fontStyle = 'normal';
+    textSpan.style.fontWeight = 600;
+    textSpan.style.lineHeight = 'normal';
+    textSpan.style.textAlign = 'center';
+
+    // Apply text stroke (border) to each letter
+    textSpan.style.webkitTextStroke = '1px #b8b8b8'; // Webkit browsers (Safari)
+    textSpan.style.mozTextStroke = '1px #b8b8b8'; // Firefox
+    textSpan.style.textStroke = '1px #b8b8b8'; // Standard
+
+    // Append the text span to the button
+    controlButton.appendChild(textSpan);
 
     controlButton.addEventListener('mouseenter', () => {
       controlButton.style.transform = 'scale(1.05)';
@@ -161,7 +172,7 @@ class ClawMachineWidget {
 
     this.clawDiv.style.top = `calc(100vh - ${isMobile ? '127px' : '127px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${isMobile ? '266px' : '266px'})`;
+    this.clawPole.style.height = `calc(100vh - ${isMobile ? '260px' : '260px'})`;
 
     setTimeout(() => {
       this.clawPresentDivs.forEach((clawPresentDiv, index) => {
@@ -181,7 +192,7 @@ class ClawMachineWidget {
 
             clawPresentDiv.style.transition = 'top 0s';
             clawPresentDiv.style.top = '50px';
-            clawPresentDiv.style.left = '65px';
+            clawPresentDiv.style.left = '68px';
             this.clawDiv.appendChild(clawPresentDiv);
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
@@ -206,8 +217,7 @@ class ClawMachineWidget {
         this.clawDiv.style.top = '200px';
 
         this.clawPole.style.transition = 'height 1s, transform 1s';
-        this.clawPole.style.height = '62px';
-        this.clawPole.style.transform = 'translateY(0)';
+        this.clawPole.style.height = '65px';
         setTimeout(() => {
           this.animationInProgress = false;
           this.shouldContinueAutomaticClawMovement = true;
@@ -217,7 +227,7 @@ class ClawMachineWidget {
     }, 2000);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = 10; // Adjust the speed as needed
+    const clawSpeed = 0; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
