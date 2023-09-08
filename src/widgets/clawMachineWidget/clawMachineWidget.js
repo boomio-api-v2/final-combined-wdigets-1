@@ -1,6 +1,6 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { clawImg, chainImg, buttonImg, ClawLineImg, clawImgGif } from './constants';
+import { clawImg, chainImg, buttonImg, ClawLineImg, clawRelease, clawPick } from './constants';
 
 class ClawMachineWidget {
   constructor() {
@@ -174,7 +174,7 @@ class ClawMachineWidget {
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${isMobile ? '260px' : '260px'})`;
     setTimeout(() => {
-      this.clawDiv.style.backgroundImage = `url(${clawImgGif})`;
+      this.clawDiv.style.backgroundImage = `url(${clawPick})`;
     }, 1000);
 
     setTimeout(() => {
@@ -191,6 +191,7 @@ class ClawMachineWidget {
             if (this.clawDiv.contains(clawPresentDiv)) {
               this.clawDiv.removeChild(clawPresentDiv);
             }
+
             this.isHoldingclawPresentDivs[index] = true;
 
             clawPresentDiv.style.transition = 'top 0s';
@@ -204,7 +205,7 @@ class ClawMachineWidget {
               }, 1000);
 
               this.endGame(index);
-            }, 1000);
+            }, 2000);
           }
         }
       });
@@ -216,23 +217,30 @@ class ClawMachineWidget {
             buttonElement.style.pointerEvents = 'auto';
           }
         }, 600);
-        this.clawDiv.style.transition = 'top 1s';
-        this.clawDiv.style.top = '200px';
-
-        this.clawPole.style.transition = 'height 1s, transform 1s';
-        this.clawPole.style.height = '65px';
-        this.clawDiv.style.backgroundImage = `url(${clawImg})`;
-
         setTimeout(() => {
-          this.animationInProgress = false;
-          this.shouldContinueAutomaticClawMovement = true;
-          this.startAutomaticClawMovement();
+          if (this.isHoldingclawPresentDivs) {
+            this.clawDiv.style.backgroundImage = `url(${clawRelease})`;
+          }
+          setTimeout(() => {
+            this.clawDiv.style.transition = 'top 1s';
+            this.clawDiv.style.top = '200px';
+
+            this.clawPole.style.transition = 'height 1s, transform 1s';
+            this.clawPole.style.height = '65px';
+            this.clawDiv.style.backgroundImage = `url(${clawImg})`;
+
+            setTimeout(() => {
+              this.animationInProgress = false;
+              this.shouldContinueAutomaticClawMovement = true;
+              this.startAutomaticClawMovement();
+            }, 1000);
+          }, 1200);
         }, 1000);
       }, 600);
     }, 2000);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = 0; // Adjust the speed as needed
+    const clawSpeed = 8; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
