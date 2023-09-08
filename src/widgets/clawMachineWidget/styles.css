@@ -37,6 +37,8 @@ z-index: 9999999999999;
   -webkit-transition: background-image 0.2s ease-in-out;
   transition: background-image 0.2s ease-in-out;
   }
+
+  
 @media (max-width: 600px) {
   .chain-div {
     position: fixed; /* Use position: fixed to make it relative to the viewport */

@@ -9,6 +9,7 @@ import {
   clawPick,
   GiftOne,
   GiftTwo,
+  ClawLineBackground,
 } from './constants';
 
 class ClawMachineWidget {
@@ -28,6 +29,7 @@ class ClawMachineWidget {
       clawPick,
       GiftOne,
       GiftTwo,
+      ClawLineBackground,
     ];
 
     const imagePromises = imageUrls.map((imageUrl) => {
@@ -55,7 +57,7 @@ class ClawMachineWidget {
     this.clawDivPosition = { top: 0, left: 0 };
     this.setupClickHandler();
     this.animationInProgress = false; // Use a separate flag for animation
-
+    this.clawPresentDiv = null;
     // Store an array of grabbable present divs
     this.clawPresentDivs = document.querySelectorAll('.claw-present-div');
 
@@ -210,9 +212,9 @@ class ClawMachineWidget {
 
     const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
 
-    this.clawDiv.style.top = `calc(100vh - ${isMobile ? '200px' : '200px'})`;
+    this.clawDiv.style.top = `calc(100vh - ${isMobile ? '290px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${isMobile ? '305px' : '305px'})`;
+    this.clawPole.style.height = `calc(100vh - ${isMobile ? '395px' : '395px'})`;
     setTimeout(() => {
       // Add the CSS class to trigger the transition
       this.clawDiv.classList.add('claw-div-transition');
@@ -230,34 +232,40 @@ class ClawMachineWidget {
       this.clawPresentDivs.forEach((clawPresentDiv, index) => {
         const clawDivRect = this.clawDiv.getBoundingClientRect();
         const clawPresentDivRect = clawPresentDiv.getBoundingClientRect();
-
-        console.log(clawDivRect);
-        console.log(clawPresentDivRect);
-
         if (
-          clawDivRect.left + 50 < clawPresentDivRect.right &&
-          clawDivRect.right - 50 > clawPresentDivRect.left &&
+          clawDivRect.left + 80 < clawPresentDivRect.right &&
+          clawDivRect.right - 80 > clawPresentDivRect.left &&
           clawDivRect.top < clawPresentDivRect.bottom
         ) {
           if (!this.isHoldingclawPresentDivs[index]) {
-            if (this.clawDiv.contains(clawPresentDiv)) {
-              this.clawDiv.removeChild(clawPresentDiv);
-            }
-
             this.isHoldingclawPresentDivs[index] = true;
-
             clawPresentDiv.style.transition = 'top 0s';
-            clawPresentDiv.style.top = '50px';
+            clawPresentDiv.style.top = '120px';
             clawPresentDiv.style.left = '25px';
+            this.clawPresentDiv = clawPresentDiv;
             this.clawDiv.appendChild(clawPresentDiv);
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
-                this.clawDiv.removeChild(clawPresentDiv);
-                this.isHoldingclawPresentDivs[index] = false;
-              }, 1000);
+                const presentType = this.clawPresentDiv.style.backgroundImage;
+                if (presentType.includes('GiftOne')) {
+                  clawPresentDiv.style.opacity = 1;
+                  setTimeout(() => {
+                    animateFalling(clawPresentDiv);
+                  }, 10);
+                  const animateFalling = (element) => {
+                    element.style.transition = 'top 2s ,opacity 1s';
+                    element.style.top = '1500px';
+                    element.style.opacity = 0;
+                  };
+                  setTimeout(() => {
+                    this.clawDiv.removeChild(clawPresentDiv);
+                    this.isHoldingclawPresentDivs[index] = false;
+                  }, 700);
+                }
+              }, 100);
 
-              this.endGame(index);
-            }, 3000);
+              this.endGame();
+            }, 1000);
           }
         }
       });
@@ -270,32 +278,36 @@ class ClawMachineWidget {
           }
         }, 600);
         setTimeout(() => {
-          if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
+          const presentType = this.clawPresentDiv.style.backgroundImage;
+          if (
+            this.isHoldingclawPresentDivs.some((item) => item === true) &&
+            presentType.includes('GiftOne')
+          ) {
             this.clawDiv.style.backgroundImage = `url(${clawRelease})`;
           }
+        }, 700);
+        setTimeout(() => {
+          this.clawDiv.style.transition = 'top 1s';
+          this.clawDiv.style.top = '170px';
+
+          this.clawPole.style.transition = 'height 1s, transform 1s';
+          this.clawPole.style.height = '65px';
+
           setTimeout(() => {
-            this.clawDiv.style.transition = 'top 1s';
-            this.clawDiv.style.top = '170px';
-
-            this.clawPole.style.transition = 'height 1s, transform 1s';
-            this.clawPole.style.height = '65px';
-
-            setTimeout(() => {
-              if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
-                console.log(this.isHoldingclawPresentDivs);
-                this.clawDiv.style.backgroundImage = `url(${clawImg})`;
-              }
-              this.animationInProgress = false;
-              this.shouldContinueAutomaticClawMovement = true;
-              this.startAutomaticClawMovement();
-            }, 1000);
-          }, 1200);
-        }, 1000);
-      }, 600);
+            if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
+              console.log(this.isHoldingclawPresentDivs);
+              this.clawDiv.style.backgroundImage = `url(${clawImg})`;
+            }
+            this.animationInProgress = false;
+            this.shouldContinueAutomaticClawMovement = true;
+            this.startAutomaticClawMovement();
+          }, 500);
+        }, 500);
+      }, 200);
     }, 2000);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = 8; // Adjust the speed as needed
+    const clawSpeed = 12; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
@@ -343,9 +355,11 @@ class ClawMachineWidget {
 
     // Set the width of the line div
     clawLineDiv.style.width = '100%'; // Set it to 100% to cover the entire container
+    clawLineDiv.style.backgroundImage = `url(${ClawLineBackground})`; // Use the imported clawImg as the background image
+    clawLineDiv.style.backgroundSize = 'cover'; // Adjust as needed
 
     // Initially, position the line div 100px above the top of the viewport using transform
-    clawLineDiv.style.transform = 'translateY(100px)';
+    clawLineDiv.style.transform = 'translateY(200px)';
     clawLineDiv.style.transition = 'transform 1s ease-in-out'; // Add a smooth transition effect for transform
 
     // Append the line div to the container
@@ -354,7 +368,6 @@ class ClawMachineWidget {
     // Calculate the width of the line div
     const lineWidth = window.innerWidth;
     let presentSpacing; // Adjust as needed
-    const presentWidth = 50; // Adjust as needed
     function isMobile() {
       const mobileThreshold = 768; // You can adjust this threshold as needed
 
@@ -363,70 +376,58 @@ class ClawMachineWidget {
 
     let numberOfPresents;
 
+    let containerWidth = 0;
+    let leftPosition = 0;
+    let minHeight = 0;
+    let maxHeight = 0;
+
     if (isMobile()) {
       numberOfPresents = 8;
-      presentSpacing = 20;
+      presentSpacing = 30;
+      minHeight = 61;
+      maxHeight = 91;
+      leftPosition = 40;
+      containerWidth = window.innerWidth - 40;
     } else {
       numberOfPresents = 20;
-      presentSpacing = 70;
+      presentSpacing = 50;
+      minHeight = 111;
+      maxHeight = 207;
+      leftPosition = 90;
+      containerWidth = window.innerWidth - 80;
     }
 
-    // Array to store present positions
-    const presentPositions = [];
     for (let i = 0; i < numberOfPresents; i++) {
-      const clawPresentDiv = document.createElement('div');
-      clawPresentDiv.classList.add('claw-present-div');
+      const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+      const aspectRatio = 161 / 167; // Aspect ratio of the original size (width / height)
+      const randomWidth = Math.floor(randomHeight * aspectRatio);
+      if (leftPosition + randomWidth < containerWidth) {
+        console.log(leftPosition);
 
-      let leftPosition;
-      let attempts = 0;
-      const maxAttempts = 100; // Maximum number of attempts to find a non-colliding position
-      let collision;
-      // Position the present randomly, avoiding collisions
-      do {
-        leftPosition =
-          Math.random() * (lineWidth - presentWidth - presentWidth / 2 - (isMobile() ? 30 : 100));
-        // Check for collisions with existing presents
-        collision = presentPositions.some(
-          (pos) => Math.abs(leftPosition - pos) < presentWidth + presentSpacing,
-        );
-
-        attempts++;
-
-        // If too many attempts are made, skip this present
-        if (attempts > maxAttempts) {
-          console.warn(`Skipped present ${i} after ${attempts} attempts.`);
-          break;
-        }
-      } while (collision);
-
-      // If a valid position was found, add the present
-      if (attempts <= maxAttempts) {
-        presentPositions.push(leftPosition);
-        let minHeight = 0;
-        let maxHeight = 0;
-        if (isMobile()) {
-          minHeight = 61;
-          maxHeight = 91;
-        } else {
-          minHeight = 111;
-          maxHeight = 167;
-        }
-        const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
-        clawPresentDiv.style.bottom = `${randomHeight}px`;
-
-        const aspectRatio = 161 / 167; // Aspect ratio of the original size (width / height)
-        const randomWidth = Math.floor(randomHeight * aspectRatio);
-
-        // Set the calculated width and height
+        const clawPresentDiv = document.createElement('div');
+        clawPresentDiv.classList.add('claw-present-div');
         clawPresentDiv.style.width = `${randomWidth}px`;
         clawPresentDiv.style.height = `${randomHeight}px`;
-
         clawPresentDiv.style.left = `${leftPosition}px`;
-        clawPresentDiv.style.bottom = `${Math.random() * 15 + 25}px`;
+        clawPresentDiv.style.bottom = `2000px`;
+        clawPresentDiv.style.opacity = 0.5;
+        const styleBottom = `${Math.random() * 15 + 35}px`;
         clawPresentDiv.style.backgroundImage = `url(${Math.random() < 0.5 ? GiftOne : GiftTwo})`;
-        clawPresentDiv.style.backgroundSize = 'cover'; // Adjust as needed
+        clawPresentDiv.style.backgroundSize = 'cover';
 
         clawLineDiv.appendChild(clawPresentDiv);
+        const randomTimeout = Math.random() * 500;
+
+        setTimeout(() => {
+          animateFalling(clawPresentDiv, styleBottom);
+        }, randomTimeout);
+        leftPosition += randomWidth + presentSpacing;
+      }
+
+      function animateFalling(element, bottom) {
+        element.style.transition = 'bottom 1.5s, opacity 1s';
+        element.style.opacity = 1; // Ensure the final position is exactly 10px
+        element.style.bottom = bottom; // Ensure the final position is exactly 10px
       }
     }
 
@@ -464,13 +465,16 @@ class ClawMachineWidget {
   setupClickHandler() {}
 
   endGame = () => {
-    setTimeout(() => {
-      const element = document.getElementById('clawMachine-container');
-      if (element && element.parentNode) {
-        element.parentNode.removeChild(element);
-        new QrCodeModal();
-      }
-    }, 700);
+    const presentType = this.clawPresentDiv.style.backgroundImage;
+    if (!presentType.includes('GiftOne')) {
+      setTimeout(() => {
+        const element = document.getElementById('clawMachine-container');
+        if (element && element.parentNode) {
+          element.parentNode.removeChild(element);
+          new QrCodeModal();
+        }
+      }, 250);
+    }
   };
 }
 
