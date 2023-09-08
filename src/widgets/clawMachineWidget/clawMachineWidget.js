@@ -1,6 +1,15 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
-import { clawImg, chainImg, buttonImg, ClawLineImg, clawRelease, clawPick } from './constants';
+import {
+  clawImg,
+  chainImg,
+  buttonImg,
+  ClawLineImg,
+  clawRelease,
+  clawPick,
+  GiftOne,
+  GiftTwo,
+} from './constants';
 
 class ClawMachineWidget {
   constructor() {
@@ -298,7 +307,7 @@ class ClawMachineWidget {
 
     // Calculate the width of the line div
     const lineWidth = window.innerWidth;
-    const presentSpacing = 20; // Adjust as needed
+    let presentSpacing; // Adjust as needed
     const presentWidth = 50; // Adjust as needed
     function isMobile() {
       const mobileThreshold = 768; // You can adjust this threshold as needed
@@ -307,12 +316,13 @@ class ClawMachineWidget {
     }
 
     let numberOfPresents;
-    let presentColors;
 
     if (isMobile()) {
-      numberOfPresents = 7;
+      numberOfPresents = 5;
+      presentSpacing = 30;
     } else {
-      numberOfPresents = 2;
+      numberOfPresents = 7;
+      presentSpacing = 6;
     }
 
     // Array to store present positions
@@ -345,10 +355,29 @@ class ClawMachineWidget {
       // If a valid position was found, add the present
       if (attempts <= maxAttempts) {
         presentPositions.push(leftPosition);
+        let minHeight = 0;
+        let maxHeight = 0;
+        if (isMobile()) {
+          minHeight = 51;
+          maxHeight = 111;
+        } else {
+          minHeight = 111;
+          maxHeight = 167;
+        }
+        const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+        clawPresentDiv.style.bottom = `${randomHeight}px`;
+
+        const aspectRatio = 161 / 167; // Aspect ratio of the original size (width / height)
+        const randomWidth = Math.floor(randomHeight * aspectRatio);
+
+        // Set the calculated width and height
+        clawPresentDiv.style.width = `${randomWidth}px`;
+        clawPresentDiv.style.height = `${randomHeight}px`;
 
         clawPresentDiv.style.left = `${leftPosition}px`;
         clawPresentDiv.style.bottom = `${Math.random() * 15 + 25}px`;
-        clawPresentDiv.style.backgroundColor = 'orange';
+        clawPresentDiv.style.backgroundImage = `url(${Math.random() < 0.5 ? GiftOne : GiftTwo})`;
+        clawPresentDiv.style.backgroundSize = 'cover'; // Adjust as needed
 
         clawLineDiv.appendChild(clawPresentDiv);
       }

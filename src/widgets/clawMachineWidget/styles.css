@@ -31,7 +31,6 @@ z-index: 9999999999999;
 .claw-present-div {
   width: 50px;
   height: 50px;
-  background-color: purple;
   position: absolute;
 }
 
@@ -65,7 +64,6 @@ z-index: 9999999999999;
   .claw-present-div {
     width: 25px;
     height: 25px;
-    background-color: purple;
     position: absolute;
   }
 }

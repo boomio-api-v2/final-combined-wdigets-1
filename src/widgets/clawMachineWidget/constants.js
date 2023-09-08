@@ -19,9 +19,9 @@ export const clawRelease = [
 export const clawPick = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/ClawPick.gif',
 ];
-export const giftOne = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/ClawRelease.gif',
+export const GiftOne = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/GiftOne.png',
 ];
-export const giftTwo = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/ClawPick.gif',
+export const GiftTwo = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/GiftTwo.png',
 ];
