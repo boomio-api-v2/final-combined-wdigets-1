@@ -1,5 +1,5 @@
 export const clawImg = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/Claw.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/Claw.png',
 ];
 export const chainImg = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/claw_detail.svg',

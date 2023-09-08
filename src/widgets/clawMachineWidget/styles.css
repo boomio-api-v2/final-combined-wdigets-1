@@ -11,15 +11,14 @@ z-index: 9999999999999;
 .claw-div {
   z-index: 99999999999999;
   position: fixed; /* Use position: fixed to make it relative to the viewport */
-  top: 200px; /* Position it at 100 pixels from the top of the viewport */
+  top: 170px; /* Position it at 100 pixels from the top of the viewport */
   left: 0; /* Position it at the left of the viewport */
   width: 190px; /* Set the width of the custom-div */
-  height: 130px; /* Set the height of the custom-div */
+  height: 170px; /* Set the height of the custom-div */
 }
 
 .claw-line-div {
   height: 100px;
-  width: 100%;
   background-color: transparent;
   pointer-events: none;  
   position: fixed;
@@ -29,11 +28,15 @@ z-index: 9999999999999;
 
 /* Define a CSS class for the new-div */
 .claw-present-div {
+  z-index:1000;
   width: 50px;
   height: 50px;
   position: absolute;
 }
-
+.claw-div-transition {
+  -webkit-transition: background-image 0.2s ease-in-out;
+  transition: background-image 0.2s ease-in-out;
+  }
 @media (max-width: 600px) {
   .chain-div {
     position: fixed; /* Use position: fixed to make it relative to the viewport */
@@ -42,19 +45,19 @@ z-index: 9999999999999;
     width: 82px; /* Set the width of the custom-div */
     height: 202px; /* Set the height of the custom-div */
   }
-  
+
   
   .claw-div {
     position: fixed; /* Use position: fixed to make it relative to the viewport */
-    top: 200px; /* Position it at 100 pixels from the top of the viewport */
+    top: 170px; /* Position it at 100 pixels from the top of the viewport */
     left: 0; /* Position it at the left of the viewport */
     width: 190px; /* Set the width of the custom-div */
-    height: 130px; /* Set the height of the custom-div */
+    height: 170px; /* Set the height of the custom-div */
     }
   
   .claw-line-div {
     height: 50px;
-    width: 100%;
+    width: 97%;
     position: fixed;
     bottom: 0px;
     left: 0px;

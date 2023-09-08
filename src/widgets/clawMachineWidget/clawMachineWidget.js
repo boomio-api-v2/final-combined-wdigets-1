@@ -13,7 +13,38 @@ import {
 
 class ClawMachineWidget {
   constructor() {
-    this.startClawMachine();
+    this.preloadImages().then(() => {
+      this.startClawMachine();
+    });
+  }
+
+  async preloadImages() {
+    const imageUrls = [
+      clawImg,
+      chainImg,
+      buttonImg,
+      ClawLineImg,
+      clawRelease,
+      clawPick,
+      GiftOne,
+      GiftTwo,
+    ];
+
+    const imagePromises = imageUrls.map((imageUrl) => {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.src = imageUrl;
+        image.onload = resolve;
+        image.onerror = reject;
+      });
+    });
+
+    try {
+      await Promise.all(imagePromises);
+      console.log('All images preloaded successfully.');
+    } catch (error) {
+      console.error('Error preloading images:', error);
+    }
   }
 
   startClawMachine() {
@@ -179,11 +210,20 @@ class ClawMachineWidget {
 
     const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
 
-    this.clawDiv.style.top = `calc(100vh - ${isMobile ? '127px' : '127px'})`;
+    this.clawDiv.style.top = `calc(100vh - ${isMobile ? '200px' : '200px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${isMobile ? '260px' : '260px'})`;
+    this.clawPole.style.height = `calc(100vh - ${isMobile ? '305px' : '305px'})`;
     setTimeout(() => {
+      // Add the CSS class to trigger the transition
+      this.clawDiv.classList.add('claw-div-transition');
+
+      // Change the background image
       this.clawDiv.style.backgroundImage = `url(${clawPick})`;
+
+      // After a short delay, remove the CSS class to stop the transition
+      setTimeout(() => {
+        this.clawDiv.classList.remove('claw-div-transition');
+      }, 500); // Adjust the delay to match the transition duration
     }, 1000);
 
     setTimeout(() => {
@@ -191,9 +231,12 @@ class ClawMachineWidget {
         const clawDivRect = this.clawDiv.getBoundingClientRect();
         const clawPresentDivRect = clawPresentDiv.getBoundingClientRect();
 
+        console.log(clawDivRect);
+        console.log(clawPresentDivRect);
+
         if (
-          clawDivRect.left < clawPresentDivRect.right &&
-          clawDivRect.right > clawPresentDivRect.left &&
+          clawDivRect.left + 50 < clawPresentDivRect.right &&
+          clawDivRect.right - 50 > clawPresentDivRect.left &&
           clawDivRect.top < clawPresentDivRect.bottom
         ) {
           if (!this.isHoldingclawPresentDivs[index]) {
@@ -205,7 +248,7 @@ class ClawMachineWidget {
 
             clawPresentDiv.style.transition = 'top 0s';
             clawPresentDiv.style.top = '50px';
-            clawPresentDiv.style.left = '68px';
+            clawPresentDiv.style.left = '25px';
             this.clawDiv.appendChild(clawPresentDiv);
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
@@ -214,7 +257,7 @@ class ClawMachineWidget {
               }, 1000);
 
               this.endGame(index);
-            }, 2000);
+            }, 3000);
           }
         }
       });
@@ -227,18 +270,21 @@ class ClawMachineWidget {
           }
         }, 600);
         setTimeout(() => {
-          if (this.isHoldingclawPresentDivs) {
+          if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
             this.clawDiv.style.backgroundImage = `url(${clawRelease})`;
           }
           setTimeout(() => {
             this.clawDiv.style.transition = 'top 1s';
-            this.clawDiv.style.top = '200px';
+            this.clawDiv.style.top = '170px';
 
             this.clawPole.style.transition = 'height 1s, transform 1s';
             this.clawPole.style.height = '65px';
-            this.clawDiv.style.backgroundImage = `url(${clawImg})`;
 
             setTimeout(() => {
+              if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
+                console.log(this.isHoldingclawPresentDivs);
+                this.clawDiv.style.backgroundImage = `url(${clawImg})`;
+              }
               this.animationInProgress = false;
               this.shouldContinueAutomaticClawMovement = true;
               this.startAutomaticClawMovement();
@@ -318,11 +364,11 @@ class ClawMachineWidget {
     let numberOfPresents;
 
     if (isMobile()) {
-      numberOfPresents = 5;
-      presentSpacing = 30;
+      numberOfPresents = 8;
+      presentSpacing = 20;
     } else {
-      numberOfPresents = 7;
-      presentSpacing = 6;
+      numberOfPresents = 20;
+      presentSpacing = 70;
     }
 
     // Array to store present positions
@@ -337,7 +383,8 @@ class ClawMachineWidget {
       let collision;
       // Position the present randomly, avoiding collisions
       do {
-        leftPosition = Math.random() * (lineWidth - presentWidth - 25);
+        leftPosition =
+          Math.random() * (lineWidth - presentWidth - presentWidth / 2 - (isMobile() ? 30 : 100));
         // Check for collisions with existing presents
         collision = presentPositions.some(
           (pos) => Math.abs(leftPosition - pos) < presentWidth + presentSpacing,
@@ -358,8 +405,8 @@ class ClawMachineWidget {
         let minHeight = 0;
         let maxHeight = 0;
         if (isMobile()) {
-          minHeight = 51;
-          maxHeight = 111;
+          minHeight = 61;
+          maxHeight = 91;
         } else {
           minHeight = 111;
           maxHeight = 167;
