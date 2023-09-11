@@ -13,11 +13,11 @@ class WidgetHtmlService {
       if (element) {
         const element = document.getElementById('boomio-widget-content');
         this.imageElement.src =
-          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
+          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
 
         setTimeout(() => {
           this.imageElement.src =
-            'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/db5cdbda00947c118c62a4358b42247179687b40/images/wheelOfFortuneWidget/Boomio_bouncy_bubble%20(2).gif?raw=true';
+            'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/db5cdbda00947c118c62a4358b42247179687b40/images/wheelOfFortuneWidget/Boomio_bubble_game.gif?raw=true';
         }, 1000);
       }
     }, 4000); // 20 seconds in milliseconds
@@ -37,7 +37,7 @@ class WidgetHtmlService {
 
     this.imageElement = document.createElement('img');
     this.imageElement.src =
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
+      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
 
     this.imageElement.style.width = '200px'; // Change width here
     this.imageElement.style.height = '200px'; // Change height here
@@ -88,7 +88,7 @@ class WidgetHtmlService {
 
       setTimeout(() => {
         this.imageElement.src =
-          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/frame_0_delay-0.3s.png?raw=true';
+          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
       }, 10000);
     }, 100);
     this.changeImagePeriodically();
