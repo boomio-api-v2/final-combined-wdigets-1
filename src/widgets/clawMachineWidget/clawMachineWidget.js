@@ -10,6 +10,7 @@ import {
   GiftOne,
   GiftTwo,
   ClawLineBackground,
+  GifTwo,
 } from './constants';
 
 class ClawMachineWidget {
@@ -30,6 +31,7 @@ class ClawMachineWidget {
       GiftOne,
       GiftTwo,
       ClawLineBackground,
+      GifTwo,
     ];
 
     const imagePromises = imageUrls.map((imageUrl) => {
@@ -253,19 +255,22 @@ class ClawMachineWidget {
               setTimeout(() => {
                 const presentType = this.clawPresentDiv.style.backgroundImage;
                 if (presentType.includes('GiftOne')) {
-                  clawPresentDiv.style.opacity = 1;
+                  clawPresentDiv.style.backgroundImage = `url(${GifTwo})`;
                   setTimeout(() => {
-                    animateFalling(clawPresentDiv);
-                  }, 10);
-                  const animateFalling = (element) => {
-                    element.style.transition = 'top 2s ,opacity 1s';
-                    element.style.top = '1500px';
-                    element.style.opacity = 0;
-                  };
-                  setTimeout(() => {
-                    this.clawDiv.removeChild(clawPresentDiv);
-                    this.isHoldingclawPresentDivs[index] = false;
-                  }, 700);
+                    clawPresentDiv.style.opacity = 1;
+                    setTimeout(() => {
+                      animateFalling(clawPresentDiv);
+                    }, 10);
+                    const animateFalling = (element) => {
+                      element.style.transition = 'top 2s ,opacity 1s';
+                      element.style.top = '1500px';
+                      element.style.opacity = 0;
+                    };
+                    setTimeout(() => {
+                      this.clawDiv.removeChild(clawPresentDiv);
+                      this.isHoldingclawPresentDivs[index] = false;
+                    }, 700);
+                  }, 3600);
                 }
               }, 100);
 
