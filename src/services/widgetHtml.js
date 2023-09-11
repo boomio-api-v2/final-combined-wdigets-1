@@ -10,6 +10,7 @@ class WidgetHtmlService {
     setInterval(() => {
       const item = localStorage.getItem('closing_button');
       const element = document.getElementById(item);
+      console.log(element);
       if (element) {
         const element = document.getElementById('boomio-widget-content');
         this.imageElement.src =
@@ -17,7 +18,7 @@ class WidgetHtmlService {
 
         setTimeout(() => {
           this.imageElement.src =
-            'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/db5cdbda00947c118c62a4358b42247179687b40/images/wheelOfFortuneWidget/Boomio_bubble_game.gif?raw=true';
+            'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
         }, 1000);
       }
     }, 4000); // 20 seconds in milliseconds
@@ -39,8 +40,8 @@ class WidgetHtmlService {
     this.imageElement.src =
       'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
 
-    this.imageElement.style.width = '200px'; // Change width here
-    this.imageElement.style.height = '200px'; // Change height here
+    this.imageElement.style.width = '150px'; // Change width here
+    this.imageElement.style.height = '150px'; // Change height here
     boomioMainHolder.appendChild(this.imageElement);
 
     const widgetContent = document.createElement('div');
@@ -75,7 +76,7 @@ class WidgetHtmlService {
           'bounce 0.4s 8 alternate ease-out, bounce-left 4s forwards';
         setTimeout(() => {
           boomioMainHolder.style.animation = 'move-slowly 1s infinite alternate';
-        }, 4000); // Delay the start of the move-slowly animation by 6 seconds (duration of the previous animations)
+        }, 5000); // Delay the start of the move-slowly animation by 6 seconds (duration of the previous animations)
       }
     });
     widgetScreenWrapper.appendChild(boomioMainHolder);
