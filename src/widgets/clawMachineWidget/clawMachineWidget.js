@@ -243,7 +243,7 @@ class ClawMachineWidget {
           if (!this.isHoldingclawPresentDivs[index]) {
             this.isHoldingclawPresentDivs[index] = true;
             clawPresentDiv.style.transition = 'top 0s';
-            clawPresentDiv.style.top = '110px';
+            clawPresentDiv.style.top = '70px';
             clawPresentDiv.style.left = `${clawDivRect.width / 2 - clawPresentDivRect.width / 2}px`;
             this.clawPresentDiv = clawPresentDiv;
             this.clawDiv.appendChild(clawPresentDiv);
@@ -252,10 +252,7 @@ class ClawMachineWidget {
                 const presentType = this.clawPresentDiv.style.backgroundImage;
                 if (presentType.includes('GiftTwo')) {
                   clawPresentDiv.style.backgroundImage = `url(${GifTwo})`;
-                  console.log('change');
-
                   setTimeout(() => {
-                    console.log('change1');
                     clawPresentDiv.style.opacity = 1;
                     setTimeout(() => {
                       animateFalling(clawPresentDiv);
@@ -303,7 +300,7 @@ class ClawMachineWidget {
 
         setTimeout(() => {
           this.clawDiv.style.transition = 'top 1s';
-          this.clawDiv.style.top = '170px';
+          this.clawDiv.style.top = '182px';
 
           this.clawPole.style.transition = 'height 1s, transform 1s';
           this.clawPole.style.height = '65px';
@@ -414,7 +411,7 @@ class ClawMachineWidget {
     // Create and display the presents
     for (let i = 0; i < totalPresents; i++) {
       const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
-      const aspectRatio = 161 / 167; // Aspect ratio of the original size (width / height)
+      const aspectRatio = 623 / 704; // Aspect ratio of the original size (width / height)
       const randomWidth = Math.floor(randomHeight * aspectRatio);
 
       if (leftPosition + randomWidth < containerWidth) {
