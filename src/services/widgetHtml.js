@@ -10,16 +10,15 @@ class WidgetHtmlService {
     setInterval(() => {
       const item = localStorage.getItem('closing_button');
       const element = document.getElementById(item);
-      console.log(element);
       if (element) {
         const element = document.getElementById('boomio-widget-content');
         this.imageElement.src =
-          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
+          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/2f96d59d94d9a4e02e94b022edad6cdcd51e7b89/images/wheelOfFortuneWidget/Boomio_bubble_game.gif?raw=true';
 
         setTimeout(() => {
           this.imageElement.src =
-            'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
-        }, 1000);
+            'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/2f96d59d94d9a4e02e94b022edad6cdcd51e7b89/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
+        }, 1400);
       }
     }, 4000); // 20 seconds in milliseconds
   };
@@ -38,7 +37,7 @@ class WidgetHtmlService {
 
     this.imageElement = document.createElement('img');
     this.imageElement.src =
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
+      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/2f96d59d94d9a4e02e94b022edad6cdcd51e7b89/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
 
     this.imageElement.style.width = '150px'; // Change width here
     this.imageElement.style.height = '150px'; // Change height here
@@ -89,7 +88,7 @@ class WidgetHtmlService {
 
       setTimeout(() => {
         this.imageElement.src =
-          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
+          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/2f96d59d94d9a4e02e94b022edad6cdcd51e7b89/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
       }, 10000);
     }, 100);
     this.changeImagePeriodically();
