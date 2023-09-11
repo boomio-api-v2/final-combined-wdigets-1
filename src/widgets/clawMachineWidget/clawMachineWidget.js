@@ -236,8 +236,8 @@ class ClawMachineWidget {
         const clawDivRect = this.clawDiv.getBoundingClientRect();
         const clawPresentDivRect = clawPresentDiv.getBoundingClientRect();
         if (
-          clawDivRect.left + 80 < clawPresentDivRect.right - 40 &&
-          clawDivRect.right - 80 > clawPresentDivRect.left + 40 &&
+          clawDivRect.left + 80 < clawPresentDivRect.right - clawPresentDivRect.width / 4 &&
+          clawDivRect.right - 80 > clawPresentDivRect.left + clawPresentDivRect.width / 8 &&
           clawDivRect.top < clawPresentDivRect.bottom
         ) {
           if (!this.isHoldingclawPresentDivs[index]) {
@@ -391,15 +391,15 @@ class ClawMachineWidget {
     if (this.isMobile) {
       numberOfPresents = 8;
       presentSpacing = 10;
-      minHeight = 73;
-      maxHeight = 109;
+      minHeight = 67;
+      maxHeight = 87;
       leftPosition = 60;
       containerWidth = window.innerWidth - 40;
     } else {
       numberOfPresents = 20;
       presentSpacing = 20;
-      minHeight = 108;
-      maxHeight = 226;
+      minHeight = 129;
+      maxHeight = 271;
       leftPosition = 90;
       containerWidth = window.innerWidth - 80;
     }
