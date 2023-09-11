@@ -236,27 +236,26 @@ class ClawMachineWidget {
         const clawDivRect = this.clawDiv.getBoundingClientRect();
         const clawPresentDivRect = clawPresentDiv.getBoundingClientRect();
         if (
-          clawDivRect.left + 80 < clawPresentDivRect.right &&
-          clawDivRect.right - 80 > clawPresentDivRect.left &&
+          clawDivRect.left + 80 < clawPresentDivRect.right - 40 &&
+          clawDivRect.right - 80 > clawPresentDivRect.left + 40 &&
           clawDivRect.top < clawPresentDivRect.bottom
         ) {
           if (!this.isHoldingclawPresentDivs[index]) {
             this.isHoldingclawPresentDivs[index] = true;
             clawPresentDiv.style.transition = 'top 0s';
-            console.log(clawDivRect);
-
-            console.log(clawPresentDivRect);
             clawPresentDiv.style.top = '110px';
             clawPresentDiv.style.left = `${clawDivRect.width / 2 - clawPresentDivRect.width / 2}px`;
-            console.log(clawPresentDiv.style.left);
             this.clawPresentDiv = clawPresentDiv;
             this.clawDiv.appendChild(clawPresentDiv);
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
                 const presentType = this.clawPresentDiv.style.backgroundImage;
-                if (presentType.includes('GiftOne')) {
+                if (presentType.includes('GiftTwo')) {
                   clawPresentDiv.style.backgroundImage = `url(${GifTwo})`;
+                  console.log('change');
+
                   setTimeout(() => {
+                    console.log('change1');
                     clawPresentDiv.style.opacity = 1;
                     setTimeout(() => {
                       animateFalling(clawPresentDiv);
@@ -270,7 +269,7 @@ class ClawMachineWidget {
                       this.clawDiv.removeChild(clawPresentDiv);
                       this.isHoldingclawPresentDivs[index] = false;
                     }, 700);
-                  }, 3600);
+                  }, 700);
                 }
               }, 100);
 
@@ -287,17 +286,21 @@ class ClawMachineWidget {
             buttonElement.style.pointerEvents = 'auto';
           }
         }, 600);
-        setTimeout(() => {
-          const presentType = this.clawPresentDiv.style.backgroundImage;
-          if (
-            this.isHoldingclawPresentDivs.some((item) => item === true) &&
-            presentType.includes('GiftOne')
-          ) {
-            const gifPath = clawRelease;
 
-            this.clawDiv.style.backgroundImage = `url(${gifPath})`;
+        setTimeout(() => {
+          if (this.clawPresentDiv) {
+            const presentType = this.clawPresentDiv.style.backgroundImage;
+            if (
+              this.isHoldingclawPresentDivs.some((item) => item === true) &&
+              presentType.includes('GiftTwo')
+            ) {
+              const gifPath = clawRelease;
+
+              this.clawDiv.style.backgroundImage = `url(${gifPath})`;
+            }
           }
         }, 700);
+
         setTimeout(() => {
           this.clawDiv.style.transition = 'top 1s';
           this.clawDiv.style.top = '170px';
@@ -307,7 +310,6 @@ class ClawMachineWidget {
 
           setTimeout(() => {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
-              console.log(this.isHoldingclawPresentDivs);
               this.clawDiv.style.backgroundImage = `url(${clawImg})`;
             }
             this.animationInProgress = false;
@@ -388,16 +390,16 @@ class ClawMachineWidget {
 
     if (this.isMobile) {
       numberOfPresents = 8;
-      presentSpacing = 30;
-      minHeight = 61;
-      maxHeight = 91;
+      presentSpacing = 10;
+      minHeight = 73;
+      maxHeight = 109;
       leftPosition = 60;
       containerWidth = window.innerWidth - 40;
     } else {
       numberOfPresents = 20;
-      presentSpacing = 50;
-      minHeight = 90;
-      maxHeight = 189;
+      presentSpacing = 20;
+      minHeight = 108;
+      maxHeight = 226;
       leftPosition = 90;
       containerWidth = window.innerWidth - 80;
     }
@@ -406,7 +408,7 @@ class ClawMachineWidget {
 
     const presents = [];
     for (let i = 0; i < totalPresents; i++) {
-      presents.push(i < 4 ? GiftOne : GiftTwo);
+      presents.push(i < 4 ? GiftTwo : GiftOne);
     }
     shuffleArray(presents);
     // Create and display the presents
@@ -486,7 +488,7 @@ class ClawMachineWidget {
 
   endGame = () => {
     const presentType = this.clawPresentDiv.style.backgroundImage;
-    if (!presentType.includes('GiftOne')) {
+    if (!presentType.includes('GiftTwo')) {
       setTimeout(() => {
         const element = document.getElementById('clawMachine-container');
         if (element && element.parentNode) {

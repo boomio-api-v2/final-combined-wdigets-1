@@ -28,3 +28,7 @@ export const GiftTwo = [
 export const ClawLineBackground = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/ClawLineBackground.png',
 ];
+
+export const GifTwo = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/GifTwo.gif',
+];
