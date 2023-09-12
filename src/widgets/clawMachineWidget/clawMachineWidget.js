@@ -219,7 +219,7 @@ class ClawMachineWidget {
     // Add your logic to move the claw down here
     this.clawDiv.style.transition = 'top 1s';
 
-    this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '216px' : '290px'})`;
+    this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '320px' : '405px'})`;
     setTimeout(() => {
