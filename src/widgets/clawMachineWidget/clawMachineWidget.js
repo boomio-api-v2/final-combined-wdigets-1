@@ -12,6 +12,7 @@ import {
   ClawLineBackground,
   GifTwo,
   clawClosed,
+  GiftOpened,
 } from './constants';
 
 class ClawMachineWidget {
@@ -34,6 +35,7 @@ class ClawMachineWidget {
       ClawLineBackground,
       GifTwo,
       clawClosed,
+      GiftOpened,
     ];
 
     const imagePromises = imageUrls.map((imageUrl) => {
@@ -85,8 +87,8 @@ class ClawMachineWidget {
     controlButton.classList.add('boomio-control-button');
     controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
     controlButton.style.backgroundSize = 'cover'; // Adjust as needed
-    controlButton.style.width = '82px';
-    controlButton.style.height = '88px';
+    controlButton.style.width = this.isMobile ? '74px' : '82px';
+    controlButton.style.height = this.isMobile ? '76px' : '84px';
     controlButton.style.marginTop = '60px';
     controlButton.style.marginLeft = '0px';
     controlButton.style.backgroundColor = 'transparent';
@@ -105,7 +107,7 @@ class ClawMachineWidget {
     this.clawLine.style.width = '323px';
     this.clawLine.style.height = '138px';
     this.clawLine.style.marginTop = '-155px';
-    this.clawLine.style.marginLeft = '-340px';
+    this.clawLine.style.marginLeft = this.isMobile ? '-303px' : '-340px';
     this.clawLine.style.backgroundColor = 'transparent';
     this.clawLine.style.border = 'none';
     this.clawLine.setAttribute('id', 'boomio-claw-line');
@@ -120,8 +122,8 @@ class ClawMachineWidget {
     this.clawPole.style.zIndex = 2;
     this.clawPole.style.background = `linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)`; // Use the imported clawImg as the background image
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
-    this.clawPole.style.width = '28px';
-    this.clawPole.style.height = '65px';
+    this.clawPole.style.width = this.isMobile ? '24px' : '28px';
+    this.clawPole.style.height = this.isMobile ? '66px' : '65px';
     this.clawPole.style.marginTop = '3px';
     this.clawPole.style.marginLeft = '28px';
     this.clawPole.style.backgroundColor = 'transparent';
@@ -141,27 +143,27 @@ class ClawMachineWidget {
     controlButton.style.background =
       'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
 
-    controlButton.style.width = '161px';
-    controlButton.style.height = '53.281px';
+    controlButton.style.width = this.isMobile ? '150px' : '161px';
+    controlButton.style.height = this.isMobile ? '45px' : '53.281px';
     controlButton.style.flexShrink = 0;
 
     controlButton.style.position = 'absolute';
-    controlButton.style.marginTop = '75px';
-    controlButton.style.marginLeft = '-123px';
+    controlButton.style.marginTop = this.isMobile ? '-65px' : '75px';
+    controlButton.style.marginLeft = this.isMobile ? '-74px' : '-123px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.cursor = 'pointer';
     controlButton.style.zIndex = 999999;
     controlButton.setAttribute('id', 'boomio-control-button');
 
     const textSpan = document.createElement('span');
-    textSpan.innerText = 'START'; // Replace with your desired text
+    textSpan.innerText = 'PLAY'; // Replace with your desired text
     textSpan.style.padding = '5px 10px'; // Add some padding for better appearance
     textSpan.style.display = 'inline-block';
 
     // Add text styling
     textSpan.style.color = 'white'; // Hide the text color
     textSpan.style.fontFamily = 'sans-serif';
-    textSpan.style.fontSize = '28px';
+    textSpan.style.fontSize = this.isMobile ? '24px' : '28px';
     textSpan.style.fontStyle = 'normal';
     textSpan.style.fontWeight = 600;
     textSpan.style.lineHeight = 'normal';
@@ -217,9 +219,9 @@ class ClawMachineWidget {
     // Add your logic to move the claw down here
     this.clawDiv.style.transition = 'top 1s';
 
-    this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '220px' : '290px'})`;
+    this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '180px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '315px' : '405px'})`;
+    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '290px' : '405px'})`;
     setTimeout(() => {
       function restartGif(animationElement) {
         const release = `url(${clawPick})`;
@@ -240,14 +242,14 @@ class ClawMachineWidget {
         const clawDivRect = this.clawDiv.getBoundingClientRect();
         const clawPresentDivRect = clawPresentDiv.getBoundingClientRect();
         if (
-          clawDivRect.left + 80 < clawPresentDivRect.right - clawPresentDivRect.width / 4 &&
-          clawDivRect.right - 80 > clawPresentDivRect.left + clawPresentDivRect.width / 8 &&
+          clawDivRect.left + (this.isMobile ? 70 : 105) < clawPresentDivRect.right &&
+          clawDivRect.right - (this.isMobile ? 70 : 105) > clawPresentDivRect.left &&
           clawDivRect.top < clawPresentDivRect.bottom
         ) {
           if (!this.isHoldingclawPresentDivs[index]) {
             this.isHoldingclawPresentDivs[index] = true;
             clawPresentDiv.style.transition = 'top 0s';
-            clawPresentDiv.style.top = '70px';
+            clawPresentDiv.style.top = '60px';
             clawPresentDiv.style.left = `${clawDivRect.width / 2 - clawPresentDivRect.width / 2}px`;
             this.clawPresentDiv = clawPresentDiv;
             this.clawDiv.appendChild(clawPresentDiv);
@@ -256,12 +258,14 @@ class ClawMachineWidget {
                 const presentType = this.clawPresentDiv.style.backgroundImage;
                 if (presentType.includes('GiftTwo')) {
                   function restartGif(animationElement) {
-                    animationElement.style.backgroundImage = `url(${clawImg})`;
+                    const Opened = `url(${GifTwo})`;
                     setTimeout(() => {
-                      const gifUrl = `url(${GifTwo})`;
-                      animationElement.style.backgroundImage = gifUrl;
-                      animationElement.classList.add('claw-div-transition');
-                    }, 50);
+                      animationElement.style.backgroundImage = Opened;
+                      setTimeout(() => {
+                        const gifUrl = `url(${GiftOpened})`;
+                        animationElement.style.backgroundImage = gifUrl;
+                      }, 500);
+                    }, 10);
                   }
                   restartGif(clawPresentDiv);
                   setTimeout(() => {
@@ -323,10 +327,10 @@ class ClawMachineWidget {
 
         setTimeout(() => {
           this.clawDiv.style.transition = 'top 1s';
-          this.clawDiv.style.top = '182px';
+          this.clawDiv.style.top = this.isMobile ? '175px' : '182px';
 
           this.clawPole.style.transition = 'height 1s, transform 1s';
-          this.clawPole.style.height = '65px';
+          this.clawPole.style.height = this.isMobile ? '66px' : '65px';
 
           setTimeout(() => {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
@@ -410,16 +414,16 @@ class ClawMachineWidget {
 
     if (this.isMobile) {
       numberOfPresents = 8;
-      presentSpacing = 10;
+      presentSpacing = 15;
       minHeight = 77;
-      maxHeight = 127;
-      leftPosition = 30;
-      containerWidth = window.innerWidth - 30;
+      maxHeight = 130;
+      leftPosition = 10;
+      containerWidth = window.innerWidth - 15;
     } else {
-      numberOfPresents = 20;
-      presentSpacing = 1;
-      minHeight = 129;
-      maxHeight = 271;
+      numberOfPresents = 30;
+      presentSpacing = 10;
+      minHeight = 149;
+      maxHeight = 251;
       leftPosition = 100;
       containerWidth = window.innerWidth - 80;
     }
@@ -428,7 +432,7 @@ class ClawMachineWidget {
 
     const presents = [];
     for (let i = 0; i < totalPresents; i++) {
-      presents.push(i < (this.isMobile ? 3 : 26) ? GiftTwo : GiftOne);
+      presents.push(i < (this.isMobile ? 2 : 4) ? GiftTwo : GiftOne);
     }
     shuffleArray(presents);
     // Create and display the presents
@@ -445,7 +449,9 @@ class ClawMachineWidget {
         newClawPresentDiv.style.left = `${leftPosition}px`;
         newClawPresentDiv.style.bottom = `2000px`;
         newClawPresentDiv.style.opacity = 0.5;
-        const styleBottom = `${Math.random() * 15 + (this.isMobile ? 25 : 35)}px`;
+        const styleBottom = `${
+          Math.random() * (this.isMobile ? 5 : 15) + (this.isMobile ? 20 : 35)
+        }px`;
 
         newClawPresentDiv.style.backgroundImage = `url(${presents[i]})`;
         newClawPresentDiv.style.backgroundSize = 'cover';

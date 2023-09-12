@@ -46,8 +46,8 @@ z-index: 9999999999999;
     position: fixed; /* Use position: fixed to make it relative to the viewport */
     top: 0px; /* Position it at 100 pixels from the top of the viewport */
     left: 25px; /* Position it at the left of the viewport */
-    width: 82px; /* Set the width of the custom-div */
-    height: 202px; /* Set the height of the custom-div */
+    width: 62px; /* Set the width of the custom-div */
+    height: 190px; /* Set the height of the custom-div */
   }
 
   
@@ -55,8 +55,8 @@ z-index: 9999999999999;
     position: fixed; /* Use position: fixed to make it relative to the viewport */
     top: 175px; /* Position it at 100 pixels from the top of the viewport */
     left: 10; /* Position it at the left of the viewport */
-    width: 171px; /* Set the width of the custom-div */
-    height: 153px; /* Set the height of the custom-div */
+    width: 136px; /* Set the width of the custom-div */
+    height: 122px; /* Set the height of the custom-div */
     }
   
   .claw-line-div {
