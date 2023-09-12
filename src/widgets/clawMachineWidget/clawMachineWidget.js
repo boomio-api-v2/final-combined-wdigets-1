@@ -11,6 +11,7 @@ import {
   GiftTwo,
   ClawLineBackground,
   GifTwo,
+  clawClosed,
 } from './constants';
 
 class ClawMachineWidget {
@@ -32,6 +33,7 @@ class ClawMachineWidget {
       GiftTwo,
       ClawLineBackground,
       GifTwo,
+      clawClosed,
     ];
 
     const imagePromises = imageUrls.map((imageUrl) => {
@@ -215,9 +217,9 @@ class ClawMachineWidget {
     // Add your logic to move the claw down here
     this.clawDiv.style.transition = 'top 1s';
 
-    this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '240px' : '290px'})`;
+    this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '220px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '335px' : '405px'})`;
+    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '315px' : '405px'})`;
     setTimeout(() => {
       function restartGif(animationElement) {
         const release = `url(${clawPick})`;
@@ -225,7 +227,7 @@ class ClawMachineWidget {
         setTimeout(() => {
           animationElement.style.backgroundImage = release;
           setTimeout(() => {
-            const gifUrl = `url(${clawImg})`;
+            const gifUrl = `url(${clawClosed})`;
             animationElement.style.backgroundImage = gifUrl;
           }, 500);
         }, 10);
@@ -408,11 +410,11 @@ class ClawMachineWidget {
 
     if (this.isMobile) {
       numberOfPresents = 8;
-      presentSpacing = 5;
-      minHeight = 67;
-      maxHeight = 107;
-      leftPosition = 60;
-      containerWidth = window.innerWidth - 40;
+      presentSpacing = 10;
+      minHeight = 77;
+      maxHeight = 127;
+      leftPosition = 30;
+      containerWidth = window.innerWidth - 30;
     } else {
       numberOfPresents = 20;
       presentSpacing = 1;
