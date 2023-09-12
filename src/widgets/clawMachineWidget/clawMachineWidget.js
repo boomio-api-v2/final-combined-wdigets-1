@@ -196,7 +196,7 @@ class ClawMachineWidget {
           'inset 0px 0px 5px #c1c1c1, 8px 8px 22px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset';
         controlButton.style.backgroundColor =
           'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
-      }, 3400);
+      }, 2600);
     });
 
     // Append the button to the document body
@@ -217,19 +217,23 @@ class ClawMachineWidget {
 
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '240px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '345px' : '395px'})`;
+    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '335px' : '405px'})`;
     setTimeout(() => {
       // Add the CSS class to trigger the transition
       this.clawDiv.classList.add('claw-div-transition');
-
-      // Change the background image
-      this.clawDiv.style.backgroundImage = `url(${clawPick})`;
-
-      // After a short delay, remove the CSS class to stop the transition
+      function restartGif(animationElement) {
+        animationElement.style.backgroundImage = `url(${clawImg})`;
+        const gifUrl = `url(${clawPick})`;
+        setTimeout(() => {
+          animationElement.style.backgroundImage = gifUrl;
+          animationElement.classList.add('claw-div-transition');
+        }, 50);
+      }
+      restartGif(this.clawDiv);
       setTimeout(() => {
         this.clawDiv.classList.remove('claw-div-transition');
-      }, 500); // Adjust the delay to match the transition duration
-    }, 1000);
+      }, 200); // Adjust the delay to match the transition duration
+    }, 400);
 
     setTimeout(() => {
       this.clawPresentDivs.forEach((clawPresentDiv, index) => {
@@ -251,7 +255,15 @@ class ClawMachineWidget {
               setTimeout(() => {
                 const presentType = this.clawPresentDiv.style.backgroundImage;
                 if (presentType.includes('GiftTwo')) {
-                  clawPresentDiv.style.backgroundImage = `url(${GifTwo})`;
+                  function restartGif(animationElement) {
+                    animationElement.style.backgroundImage = `url(${clawImg})`;
+                    setTimeout(() => {
+                      const gifUrl = `url(${GifTwo})`;
+                      animationElement.style.backgroundImage = gifUrl;
+                      animationElement.classList.add('claw-div-transition');
+                    }, 50);
+                  }
+                  restartGif(clawPresentDiv);
                   setTimeout(() => {
                     clawPresentDiv.style.opacity = 1;
                     setTimeout(() => {
@@ -265,8 +277,8 @@ class ClawMachineWidget {
                     setTimeout(() => {
                       this.clawDiv.removeChild(clawPresentDiv);
                       this.isHoldingclawPresentDivs[index] = false;
-                    }, 700);
-                  }, 700);
+                    }, 500);
+                  }, 500);
                 }
               }, 100);
 
@@ -282,7 +294,7 @@ class ClawMachineWidget {
           if (buttonElement) {
             buttonElement.style.pointerEvents = 'auto';
           }
-        }, 600);
+        }, 500);
 
         setTimeout(() => {
           if (this.clawPresentDiv) {
@@ -291,12 +303,18 @@ class ClawMachineWidget {
               this.isHoldingclawPresentDivs.some((item) => item === true) &&
               presentType.includes('GiftTwo')
             ) {
-              const gifPath = clawRelease;
-
-              this.clawDiv.style.backgroundImage = `url(${gifPath})`;
+              function restartGif(animationElement) {
+                animationElement.style.backgroundImage = `url(${clawImg})`;
+                setTimeout(() => {
+                  const gifUrl = `url(${clawRelease})`;
+                  animationElement.style.backgroundImage = gifUrl;
+                  animationElement.classList.add('claw-div-transition');
+                }, 50);
+              }
+              restartGif(this.clawDiv);
             }
           }
-        }, 700);
+        }, 600);
 
         setTimeout(() => {
           this.clawDiv.style.transition = 'top 1s';
@@ -312,13 +330,13 @@ class ClawMachineWidget {
             this.animationInProgress = false;
             this.shouldContinueAutomaticClawMovement = true;
             this.startAutomaticClawMovement();
-          }, 500);
-        }, 500);
+          }, 400);
+        }, 400);
       }, 200);
-    }, 2000);
+    }, 1500);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = this.isMobile ? 6 : 10; // Adjust the speed as needed
+    const clawSpeed = this.isMobile ? 6 : 12; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
@@ -387,25 +405,25 @@ class ClawMachineWidget {
 
     if (this.isMobile) {
       numberOfPresents = 8;
-      presentSpacing = 10;
+      presentSpacing = 5;
       minHeight = 67;
-      maxHeight = 87;
+      maxHeight = 107;
       leftPosition = 60;
       containerWidth = window.innerWidth - 40;
     } else {
       numberOfPresents = 20;
-      presentSpacing = 20;
+      presentSpacing = 1;
       minHeight = 129;
       maxHeight = 271;
-      leftPosition = 90;
+      leftPosition = 100;
       containerWidth = window.innerWidth - 80;
     }
 
-    const totalPresents = this.isMobile ? 8 : 10;
+    const totalPresents = this.isMobile ? 6 : 12;
 
     const presents = [];
     for (let i = 0; i < totalPresents; i++) {
-      presents.push(i < 4 ? GiftTwo : GiftOne);
+      presents.push(i < (this.isMobile ? 3 : 26) ? GiftTwo : GiftOne);
     }
     shuffleArray(presents);
     // Create and display the presents
@@ -422,7 +440,7 @@ class ClawMachineWidget {
         newClawPresentDiv.style.left = `${leftPosition}px`;
         newClawPresentDiv.style.bottom = `2000px`;
         newClawPresentDiv.style.opacity = 0.5;
-        const styleBottom = `${Math.random() * 15 + 25}px`;
+        const styleBottom = `${Math.random() * 15 + (this.isMobile ? 25 : 35)}px`;
 
         newClawPresentDiv.style.backgroundImage = `url(${presents[i]})`;
         newClawPresentDiv.style.backgroundSize = 'cover';
