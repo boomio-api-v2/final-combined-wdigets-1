@@ -219,9 +219,9 @@ class ClawMachineWidget {
     // Add your logic to move the claw down here
     this.clawDiv.style.transition = 'top 1s';
 
-    this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '180px' : '290px'})`;
+    this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '170px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '290px' : '405px'})`;
+    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '280px' : '405px'})`;
     setTimeout(() => {
       function restartGif(animationElement) {
         const release = `url(${clawPick})`;
@@ -414,16 +414,16 @@ class ClawMachineWidget {
 
     if (this.isMobile) {
       numberOfPresents = 8;
-      presentSpacing = 15;
+      presentSpacing = 20;
       minHeight = 77;
       maxHeight = 130;
-      leftPosition = 10;
+      leftPosition = 20;
       containerWidth = window.innerWidth - 15;
     } else {
       numberOfPresents = 30;
-      presentSpacing = 10;
+      presentSpacing = 30;
       minHeight = 149;
-      maxHeight = 251;
+      maxHeight = 241;
       leftPosition = 100;
       containerWidth = window.innerWidth - 80;
     }
@@ -438,7 +438,7 @@ class ClawMachineWidget {
     // Create and display the presents
     for (let i = 0; i < totalPresents; i++) {
       const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
-      const aspectRatio = 623 / 704; // Aspect ratio of the original size (width / height)
+      const aspectRatio = 504 / 704; // Aspect ratio of the original size (width / height)
       const randomWidth = Math.floor(randomHeight * aspectRatio);
 
       if (leftPosition + randomWidth < containerWidth) {
