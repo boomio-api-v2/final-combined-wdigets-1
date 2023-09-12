@@ -219,24 +219,18 @@ class ClawMachineWidget {
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '335px' : '405px'})`;
     setTimeout(() => {
-      // Add the CSS class to trigger the transition
-      this.clawDiv.classList.add('claw-div-transition');
       function restartGif(animationElement) {
-        const randomQueryParam = `?a=${Math.random()}`;
-        const test = `url(${clawPick})`;
+        const release = `url(${clawPick})`;
+
         setTimeout(() => {
-          animationElement.style.backgroundImage = test + randomQueryParam;
+          animationElement.style.backgroundImage = release;
           setTimeout(() => {
             const gifUrl = `url(${clawImg})`;
             animationElement.style.backgroundImage = gifUrl;
-            animationElement.classList.add('claw-div-transition');
           }, 500);
         }, 10);
       }
       restartGif(this.clawDiv);
-      setTimeout(() => {
-        this.clawDiv.classList.remove('claw-div-transition');
-      }, 200); // Adjust the delay to match the transition duration
     }, 400);
 
     setTimeout(() => {
@@ -309,15 +303,15 @@ class ClawMachineWidget {
             ) {
               function restartGif(animationElement) {
                 const randomQueryParam = `?a=${Math.random()}`;
-                const test = `url(${clawRelease})`;
+                const release = `url(${clawRelease})`;
 
                 setTimeout(() => {
-                  animationElement.style.backgroundImage = test + randomQueryParam;
+                  animationElement.style.backgroundImage = release;
                   setTimeout(() => {
                     const gifUrl = `url(${clawImg})`;
                     animationElement.style.backgroundImage = gifUrl;
                     animationElement.classList.add('claw-div-transition');
-                  }, 500);
+                  }, 400);
                 }, 10);
               }
               restartGif(this.clawDiv);
