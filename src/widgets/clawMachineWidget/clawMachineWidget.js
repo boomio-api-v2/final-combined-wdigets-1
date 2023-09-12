@@ -222,12 +222,16 @@ class ClawMachineWidget {
       // Add the CSS class to trigger the transition
       this.clawDiv.classList.add('claw-div-transition');
       function restartGif(animationElement) {
-        animationElement.style.backgroundImage = `url(${clawImg})`;
-        const gifUrl = `url(${clawPick})`;
+        const randomQueryParam = `?a=${Math.random()}`;
+        const test = `url(${clawPick})`;
         setTimeout(() => {
-          animationElement.style.backgroundImage = gifUrl;
-          animationElement.classList.add('claw-div-transition');
-        }, 50);
+          animationElement.style.backgroundImage = test + randomQueryParam;
+          setTimeout(() => {
+            const gifUrl = `url(${clawImg})`;
+            animationElement.style.backgroundImage = gifUrl;
+            animationElement.classList.add('claw-div-transition');
+          }, 500);
+        }, 10);
       }
       restartGif(this.clawDiv);
       setTimeout(() => {
@@ -304,12 +308,17 @@ class ClawMachineWidget {
               presentType.includes('GiftTwo')
             ) {
               function restartGif(animationElement) {
-                animationElement.style.backgroundImage = `url(${clawImg})`;
+                const randomQueryParam = `?a=${Math.random()}`;
+                const test = `url(${clawRelease})`;
+
                 setTimeout(() => {
-                  const gifUrl = `url(${clawRelease})`;
-                  animationElement.style.backgroundImage = gifUrl;
-                  animationElement.classList.add('claw-div-transition');
-                }, 50);
+                  animationElement.style.backgroundImage = test + randomQueryParam;
+                  setTimeout(() => {
+                    const gifUrl = `url(${clawImg})`;
+                    animationElement.style.backgroundImage = gifUrl;
+                    animationElement.classList.add('claw-div-transition');
+                  }, 500);
+                }, 10);
               }
               restartGif(this.clawDiv);
             }
