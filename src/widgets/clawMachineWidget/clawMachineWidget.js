@@ -13,6 +13,7 @@ import {
   GifTwo,
   clawClosed,
   GiftOpened,
+  ClawClose,
 } from './constants';
 
 class ClawMachineWidget {
@@ -36,6 +37,7 @@ class ClawMachineWidget {
       GifTwo,
       clawClosed,
       GiftOpened,
+      ClawClose,
     ];
 
     const imagePromises = imageUrls.map((imageUrl) => {
@@ -394,6 +396,27 @@ class ClawMachineWidget {
       'box',
     );
 
+    const clawClose = document.createElement('div');
+    clawClose.classList.add('boomio-claw-close');
+    clawClose.style.zIndex = 2;
+    clawClose.style.backgroundSize = 'contain'; // Adjust as needed
+    clawClose.style.width = '52px';
+    clawClose.style.height = '51px';
+    clawClose.style.backgroundImage = `url(${ClawClose})`; // Use the imported clawImg as the background image
+    clawClose.style.top = '0px';
+    clawClose.style.right = '5%';
+    clawClose.style.cursor = 'pointer';
+    clawClose.style.position = 'fixed';
+    clawClose.style.border = 'none';
+
+    clawClose.style.zIndex = '9999999'; // Set a higher z-index value
+    clawClose.addEventListener('click', () => {
+      this.closeGame();
+    });
+
+    clawClose.setAttribute('id', 'boomio-claw-close');
+    clawMachineContainer.appendChild(clawClose);
+
     const clawLineDiv = document.createElement('div');
     clawLineDiv.classList.add('claw-line-div');
 
@@ -530,6 +553,13 @@ class ClawMachineWidget {
   };
 
   setupClickHandler() {}
+
+  closeGame = () => {
+    const element = document.getElementById('clawMachine-container');
+    if (element && element.parentNode) {
+      element.parentNode.removeChild(element);
+    }
+  };
 
   endGame = () => {
     const presentType = this.clawPresentDiv.style.backgroundImage;

@@ -38,3 +38,7 @@ export const ClawLineBackground = [
 export const GifTwo = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/GifTwo.gif',
 ];
+
+export const ClawClose = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/ClawClose.png',
+];
