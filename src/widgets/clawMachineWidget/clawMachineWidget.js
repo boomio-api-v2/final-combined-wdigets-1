@@ -336,16 +336,22 @@ class ClawMachineWidget {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
               this.clawDiv.style.backgroundImage = `url(${clawImg})`;
             }
-            this.animationInProgress = false;
-            this.shouldContinueAutomaticClawMovement = true;
-            this.startAutomaticClawMovement();
+            if (this.clawPresentDiv) {
+              const presentType = this.clawPresentDiv.style.backgroundImage;
+
+              if (presentType.includes('GiftTwo')) {
+                this.animationInProgress = false;
+                this.shouldContinueAutomaticClawMovement = true;
+                this.startAutomaticClawMovement();
+              }
+            }
           }, 400);
         }, 400);
       }, 200);
     }, 1500);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = this.isMobile ? 6 : 12; // Adjust the speed as needed
+    const clawSpeed = this.isMobile ? 1 : 2; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
@@ -373,7 +379,7 @@ class ClawMachineWidget {
       this.chainDiv.style.left = `${chainDivLeft}px`;
 
       // Schedule the next movement
-      setTimeout(moveClaw, 50); // Adjust the delay as needed for the desired speed
+      requestAnimationFrame(moveClaw, 50); // Adjust the delay as needed for the desired speed
     };
 
     // Start the automatic movement
@@ -443,19 +449,32 @@ class ClawMachineWidget {
 
       if (leftPosition + randomWidth < containerWidth) {
         const newClawPresentDiv = document.createElement('div');
+        console.log(this.isMobile);
+
         newClawPresentDiv.classList.add('claw-present-div');
         newClawPresentDiv.style.width = `${randomWidth}px`;
         newClawPresentDiv.style.height = `${randomHeight}px`;
         newClawPresentDiv.style.left = `${leftPosition}px`;
         newClawPresentDiv.style.bottom = `2000px`;
         newClawPresentDiv.style.opacity = 0.5;
+        newClawPresentDiv.style.cursor = `pointer`;
         const styleBottom = `${
           Math.random() * (this.isMobile ? 5 : 15) + (this.isMobile ? 20 : 35)
         }px`;
 
         newClawPresentDiv.style.backgroundImage = `url(${presents[i]})`;
         newClawPresentDiv.style.backgroundSize = 'cover';
-
+        if (this.isMobile) {
+          if (newClawPresentDiv) {
+            newClawPresentDiv.style.zIndex = '9999'; // Set a higher z-index value
+            newClawPresentDiv.style.cursor = 'pointer';
+            newClawPresentDiv.addEventListener('click', () => {
+              this.activateGrabbing();
+            });
+          } else {
+            console.log('newClawPresentDiv not found in the DOM'); // Check if this is logged
+          }
+        }
         clawLineDiv.appendChild(newClawPresentDiv);
         const randomTimeout = Math.random() * 500;
 
@@ -514,6 +533,7 @@ class ClawMachineWidget {
 
   endGame = () => {
     const presentType = this.clawPresentDiv.style.backgroundImage;
+
     if (!presentType.includes('GiftTwo')) {
       setTimeout(() => {
         const element = document.getElementById('clawMachine-container');
@@ -521,7 +541,7 @@ class ClawMachineWidget {
           element.parentNode.removeChild(element);
           new QrCodeModal();
         }
-      }, 250);
+      }, 1000);
     }
   };
 }
