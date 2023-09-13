@@ -345,6 +345,10 @@ class ClawMachineWidget {
                 this.shouldContinueAutomaticClawMovement = true;
                 this.startAutomaticClawMovement();
               }
+            } else {
+              this.animationInProgress = false;
+              this.shouldContinueAutomaticClawMovement = true;
+              this.startAutomaticClawMovement();
             }
           }, 400);
         }, 400);
@@ -471,7 +475,6 @@ class ClawMachineWidget {
 
       if (leftPosition + randomWidth < containerWidth) {
         const newClawPresentDiv = document.createElement('div');
-        console.log(this.isMobile);
 
         newClawPresentDiv.classList.add('claw-present-div');
         newClawPresentDiv.style.width = `${randomWidth}px`;
