@@ -14,6 +14,7 @@ import {
   clawClosed,
   GiftOpened,
   ClawClose,
+  PlayButton,
 } from './constants';
 
 class ClawMachineWidget {
@@ -86,7 +87,7 @@ class ClawMachineWidget {
     // Create a button element
     const controlButton = document.createElement('button');
     controlButton.classList.add('boomio-control-button');
-    controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
+    controlButton.style.backgroundImage = `url(${PlayButton})`; // Use the imported clawImg as the background image
     controlButton.style.backgroundSize = 'cover'; // Adjust as needed
     controlButton.style.width = this.isMobile ? '74px' : '82px';
     controlButton.style.height = this.isMobile ? '76px' : '84px';
