@@ -14,7 +14,6 @@ import {
   clawClosed,
   GiftOpened,
   ClawClose,
-  PlayButton,
 } from './constants';
 
 class ClawMachineWidget {
@@ -87,7 +86,7 @@ class ClawMachineWidget {
     // Create a button element
     const controlButton = document.createElement('button');
     controlButton.classList.add('boomio-control-button');
-    controlButton.style.backgroundImage = `url(${PlayButton})`; // Use the imported clawImg as the background image
+    controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
     controlButton.style.backgroundSize = 'cover'; // Adjust as needed
     controlButton.style.width = this.isMobile ? '74px' : '82px';
     controlButton.style.height = this.isMobile ? '76px' : '84px';
@@ -109,7 +108,7 @@ class ClawMachineWidget {
     this.clawLine.style.width = '323px';
     this.clawLine.style.height = '138px';
     this.clawLine.style.marginTop = '-155px';
-    this.clawLine.style.marginLeft = this.isMobile ? '-303px' : '-340px';
+    this.clawLine.style.marginLeft = this.isMobile ? '-303px' : '-300px';
     this.clawLine.style.backgroundColor = 'transparent';
     this.clawLine.style.border = 'none';
     this.clawLine.setAttribute('id', 'boomio-claw-line');
@@ -145,21 +144,23 @@ class ClawMachineWidget {
     controlButton.style.background =
       'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
 
-    controlButton.style.width = this.isMobile ? '150px' : '161px';
-    controlButton.style.height = this.isMobile ? '45px' : '53.281px';
+    controlButton.style.width = this.isMobile ? '45px' : '60px';
+    controlButton.style.height = this.isMobile ? '45px' : '60px';
     controlButton.style.flexShrink = 0;
 
     controlButton.style.position = 'absolute';
-    controlButton.style.marginTop = this.isMobile ? '-65px' : '75px';
-    controlButton.style.marginLeft = this.isMobile ? '-74px' : '-123px';
+    controlButton.style.marginTop = this.isMobile ? '-65px' : '70px';
+    controlButton.style.marginLeft = this.isMobile ? '-15px' : '-69px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.cursor = 'pointer';
     controlButton.style.zIndex = 999999;
     controlButton.setAttribute('id', 'boomio-control-button');
 
     const textSpan = document.createElement('span');
-    textSpan.innerText = 'PLAY'; // Replace with your desired text
-    textSpan.style.padding = '5px 10px'; // Add some padding for better appearance
+    textSpan.classList.add('text-aaa');
+
+    // Replace with your desired text
+    textSpan.style.padding = this.isMobile ? '0px' : '13px 12px'; // Add some padding for better appearance
     textSpan.style.display = 'inline-block';
 
     // Add text styling

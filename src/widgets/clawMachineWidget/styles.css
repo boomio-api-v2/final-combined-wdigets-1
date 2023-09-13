@@ -27,6 +27,12 @@ z-index: 9999999999999;
   left: 0px;
 }
 
+.boomio-control-button ::before {
+  content: '\25b6';
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
 /* Define a CSS class for the new-div */
 .claw-present-div {
   z-index:1000;
