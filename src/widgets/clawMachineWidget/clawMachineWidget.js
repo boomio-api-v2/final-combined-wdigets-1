@@ -65,7 +65,6 @@ class ClawMachineWidget {
     this.clawDiv = document.querySelector('.claw-div');
     this.chainDiv = document.querySelector('.chain-div');
     this.clawDivPosition = { top: 0, left: 0 };
-    this.setupClickHandler();
     this.animationInProgress = false; // Use a separate flag for animation
     this.clawPresentDiv = null;
     // Store an array of grabbable present divs
@@ -341,7 +340,7 @@ class ClawMachineWidget {
             if (this.clawPresentDiv) {
               const presentType = this.clawPresentDiv.style.backgroundImage;
 
-              if (presentType.includes('GiftTwo')) {
+              if (!presentType.includes('GiftOne')) {
                 this.animationInProgress = false;
                 this.shouldContinueAutomaticClawMovement = true;
                 this.startAutomaticClawMovement();
@@ -480,7 +479,6 @@ class ClawMachineWidget {
         newClawPresentDiv.style.left = `${leftPosition}px`;
         newClawPresentDiv.style.bottom = `2000px`;
         newClawPresentDiv.style.opacity = 0.5;
-        newClawPresentDiv.style.cursor = `pointer`;
         const styleBottom = `${
           Math.random() * (this.isMobile ? 5 : 15) + (this.isMobile ? 20 : 35)
         }px`;
@@ -551,8 +549,6 @@ class ClawMachineWidget {
 
     widgetHtmlService.container.appendChild(clawMachineContainer);
   };
-
-  setupClickHandler() {}
 
   closeGame = () => {
     const element = document.getElementById('clawMachine-container');
