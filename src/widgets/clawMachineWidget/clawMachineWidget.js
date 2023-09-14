@@ -126,7 +126,9 @@ class ClawMachineWidget {
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = this.isMobile ? '24px' : '28px';
     this.clawPole.style.height = this.isMobile ? '60px' : '65px';
-    this.clawPole.style.marginTop = '3px';
+    const isFirefox = typeof InstallTrigger !== 'undefined';
+
+    this.clawPole.style.marginTop = isFirefox ? '10px' : '3px';
     this.clawPole.style.marginLeft = '28px';
     this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
@@ -221,10 +223,13 @@ class ClawMachineWidget {
     this.shouldContinueAutomaticClawMovement = false;
     // Add your logic to move the claw down here
     this.clawDiv.style.transition = 'top 1s';
+    const isFirefox = typeof InstallTrigger !== 'undefined';
 
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '320px' : '405px'})`;
+    this.clawPole.style.height = `calc(100vh - ${
+      this.isMobile ? (isFirefox ? '315px' : '320px') : '405px'
+    })`;
     setTimeout(() => {
       function restartGif(animationElement) {
         const release = `url(${clawPick})`;
