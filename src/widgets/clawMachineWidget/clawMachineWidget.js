@@ -151,7 +151,6 @@ class ClawMachineWidget {
 
     controlButton.style.position = 'absolute';
     const isFirefox = typeof InstallTrigger !== 'undefined';
-    console.log(isFirefox);
     controlButton.style.marginTop = this.isMobile ? (isFirefox ? '73px ' : '-65px') : '75px';
     controlButton.style.marginLeft = this.isMobile ? (isFirefox ? '-115px ' : '-74px') : '-123px';
     controlButton.style.backgroundColor = 'transparent';
