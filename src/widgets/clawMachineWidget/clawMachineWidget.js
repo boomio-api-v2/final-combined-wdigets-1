@@ -87,7 +87,8 @@ class ClawMachineWidget {
     const controlButton = document.createElement('button');
     controlButton.classList.add('boomio-control-button-background');
     controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
-    controlButton.style.backgroundSize = 'cover'; // Adjust as needed
+    controlButton.style.backgroundSize = 'cover';
+    // Adjust as needed
     controlButton.style.width = this.isMobile ? '74px' : '82px';
     controlButton.style.height = this.isMobile ? '76px' : '84px';
     controlButton.style.marginTop = '60px';
@@ -149,8 +150,10 @@ class ClawMachineWidget {
     controlButton.style.flexShrink = 0;
 
     controlButton.style.position = 'absolute';
-    controlButton.style.marginTop = this.isMobile ? '-65px' : '75px';
-    controlButton.style.marginLeft = this.isMobile ? '-74px' : '-123px';
+    const isFirefox = typeof InstallTrigger !== 'undefined';
+    console.log(isFirefox);
+    controlButton.style.marginTop = this.isMobile ? (isFirefox ? '73px ' : '-65px') : '75px';
+    controlButton.style.marginLeft = this.isMobile ? (isFirefox ? '-115px ' : '-74px') : '-123px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.cursor = 'pointer';
     controlButton.style.zIndex = 999999;
@@ -356,7 +359,7 @@ class ClawMachineWidget {
     }, 1500);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = this.isMobile ? 1 : 2; // Adjust the speed as needed
+    const clawSpeed = this.isMobile ? 0 : 0; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
