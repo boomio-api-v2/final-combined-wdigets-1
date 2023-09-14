@@ -23,7 +23,7 @@ z-index: 9999999999999;
   position: fixed;
   background-Size: 100% 100%;
   height:90px;
-  bottom: 0px;
+  bottom: -8px;
   left: 0px;
 }
 
@@ -62,7 +62,7 @@ z-index: 9999999999999;
     height: 50px;
     width: 100%;
     position: fixed;
-    bottom: 0px;
+    bottom: -8px;
     left: 0px;
   }
   
