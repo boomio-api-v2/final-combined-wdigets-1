@@ -85,16 +85,17 @@ class ClawMachineWidget {
   setupControlButtonBackground() {
     // Create a button element
     const controlButton = document.createElement('button');
-    controlButton.classList.add('boomio-control-button');
+    controlButton.classList.add('boomio-control-button-background');
     controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
-    controlButton.style.backgroundSize = 'cover'; // Adjust as needed
+    controlButton.style.backgroundSize = 'cover';
+    // Adjust as needed
     controlButton.style.width = this.isMobile ? '74px' : '82px';
     controlButton.style.height = this.isMobile ? '76px' : '84px';
     controlButton.style.marginTop = '60px';
     controlButton.style.marginLeft = '0px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
-    controlButton.setAttribute('id', 'boomio-control-button');
+    controlButton.setAttribute('id', 'boomio-control-button-background');
     // Append the button to the document body
     this.chainDiv.appendChild(controlButton);
   }
@@ -108,7 +109,7 @@ class ClawMachineWidget {
     this.clawLine.style.width = '323px';
     this.clawLine.style.height = '138px';
     this.clawLine.style.marginTop = '-155px';
-    this.clawLine.style.marginLeft = this.isMobile ? '-303px' : '-300px';
+    this.clawLine.style.marginLeft = this.isMobile ? '-303px' : '-340px';
     this.clawLine.style.backgroundColor = 'transparent';
     this.clawLine.style.border = 'none';
     this.clawLine.setAttribute('id', 'boomio-claw-line');
@@ -125,7 +126,9 @@ class ClawMachineWidget {
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = this.isMobile ? '24px' : '28px';
     this.clawPole.style.height = this.isMobile ? '60px' : '65px';
-    this.clawPole.style.marginTop = '3px';
+    const isFirefox = typeof InstallTrigger !== 'undefined';
+
+    this.clawPole.style.marginTop = isFirefox ? '10px' : '3px';
     this.clawPole.style.marginLeft = '28px';
     this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
@@ -138,29 +141,29 @@ class ClawMachineWidget {
     const controlButton = document.createElement('button');
     controlButton.classList.add('boomio-control-button');
     controlButton.style.borderRadius = '30px';
-    controlButton.style.border = '2px solid #FFF';
+    controlButton.style.border =
+      '2px solid linear-gradient(206.25deg, #9652E1 -0.12%, #CA4FAE 30.68%, #CD52AA 50.7%, #E16690 70.72%)';
     controlButton.style.boxShadow =
       '8px 8px 22px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset';
     controlButton.style.background =
       'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
 
-    controlButton.style.width = this.isMobile ? '45px' : '60px';
-    controlButton.style.height = this.isMobile ? '45px' : '60px';
+    controlButton.style.width = this.isMobile ? '150px' : '104.61px';
+    controlButton.style.height = this.isMobile ? '45px' : '103px';
     controlButton.style.flexShrink = 0;
 
     controlButton.style.position = 'absolute';
-    controlButton.style.marginTop = this.isMobile ? '-65px' : '70px';
-    controlButton.style.marginLeft = this.isMobile ? '-15px' : '-69px';
+    const isFirefox = typeof InstallTrigger !== 'undefined';
+    controlButton.style.marginTop = this.isMobile ? (isFirefox ? '73px ' : '-67px') : '75px';
+    controlButton.style.marginLeft = this.isMobile ? (isFirefox ? '-115px ' : '-74px') : '-123px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.cursor = 'pointer';
     controlButton.style.zIndex = 999999;
     controlButton.setAttribute('id', 'boomio-control-button');
 
     const textSpan = document.createElement('span');
-    textSpan.classList.add('text-aaa');
-
-    // Replace with your desired text
-    textSpan.style.padding = this.isMobile ? '0px' : '13px 12px'; // Add some padding for better appearance
+    textSpan.innerText = 'PLAY'; // Replace with your desired text
+    textSpan.style.padding = '5px 10px'; // Add some padding for better appearance
     textSpan.style.display = 'inline-block';
 
     // Add text styling
@@ -173,6 +176,7 @@ class ClawMachineWidget {
     textSpan.style.textAlign = 'center';
 
     // Apply text stroke (border) to each letter
+
     textSpan.style.webkitTextStroke = '1px #b8b8b8'; // Webkit browsers (Safari)
     textSpan.style.mozTextStroke = '1px #b8b8b8'; // Firefox
     textSpan.style.textStroke = '1px #b8b8b8'; // Standard
@@ -221,10 +225,13 @@ class ClawMachineWidget {
     this.shouldContinueAutomaticClawMovement = false;
     // Add your logic to move the claw down here
     this.clawDiv.style.transition = 'top 1s';
+    const isFirefox = typeof InstallTrigger !== 'undefined';
 
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    this.clawPole.style.height = `calc(100vh - ${this.isMobile ? '320px' : '405px'})`;
+    this.clawPole.style.height = `calc(100vh - ${
+      this.isMobile ? (isFirefox ? '315px' : '320px') : '405px'
+    })`;
     setTimeout(() => {
       function restartGif(animationElement) {
         const release = `url(${clawPick})`;
@@ -406,7 +413,7 @@ class ClawMachineWidget {
     clawClose.style.zIndex = 2;
     clawClose.style.backgroundSize = 'contain'; // Adjust as needed
     clawClose.style.width = '52px';
-    clawClose.style.height = '51px';
+    clawClose.style.height = '50px';
     clawClose.style.backgroundImage = `url(${ClawClose})`; // Use the imported clawImg as the background image
     clawClose.style.top = '0px';
     clawClose.style.right = '5%';
