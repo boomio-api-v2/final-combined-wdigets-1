@@ -85,7 +85,7 @@ class ClawMachineWidget {
   setupControlButtonBackground() {
     // Create a button element
     const controlButton = document.createElement('button');
-    controlButton.classList.add('boomio-control-button');
+    controlButton.classList.add('boomio-control-button-background');
     controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
     controlButton.style.backgroundSize = 'cover'; // Adjust as needed
     controlButton.style.width = this.isMobile ? '74px' : '82px';
@@ -94,7 +94,7 @@ class ClawMachineWidget {
     controlButton.style.marginLeft = '0px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
-    controlButton.setAttribute('id', 'boomio-control-button');
+    controlButton.setAttribute('id', 'boomio-control-button-background');
     // Append the button to the document body
     this.chainDiv.appendChild(controlButton);
   }
@@ -356,7 +356,7 @@ class ClawMachineWidget {
     }, 1500);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = this.isMobile ? 0 : 0; // Adjust the speed as needed
+    const clawSpeed = this.isMobile ? 1 : 2; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
