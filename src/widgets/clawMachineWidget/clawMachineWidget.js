@@ -14,6 +14,8 @@ import {
   clawClosed,
   GiftOpened,
   ClawClose,
+  ClawButton,
+  ButtonBackground,
 } from './constants';
 
 class ClawMachineWidget {
@@ -38,6 +40,8 @@ class ClawMachineWidget {
       clawClosed,
       GiftOpened,
       ClawClose,
+      ClawButton,
+      ButtonBackground,
     ];
 
     const imagePromises = imageUrls.map((imageUrl) => {
@@ -86,17 +90,38 @@ class ClawMachineWidget {
     // Create a button element
     const controlButton = document.createElement('button');
     controlButton.classList.add('boomio-control-button-background');
-    controlButton.style.backgroundImage = `url(${buttonImg})`; // Use the imported clawImg as the background image
+
+    controlButton.style.backgroundImage = `url(${ButtonBackground})`; // Use the imported clawImg as the background image
     controlButton.style.backgroundSize = 'cover';
     // Adjust as needed
-    controlButton.style.width = this.isMobile ? '74px' : '82px';
-    controlButton.style.height = this.isMobile ? '76px' : '84px';
-    controlButton.style.marginTop = '60px';
-    controlButton.style.marginLeft = '0px';
+    controlButton.style.width = this.isMobile ? '123px' : '143px';
+    controlButton.style.height = this.isMobile ? '123px' : '143px';
+    controlButton.style.marginTop = '30px';
+    controlButton.style.marginLeft = this.isMobile ? '-16px' : '-23px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
     controlButton.setAttribute('id', 'boomio-control-button-background');
     // Append the button to the document body
+    controlButton.style.cursor = 'pointer';
+
+    controlButton.addEventListener('mouseenter', () => {
+      controlButton.style.transform = 'scale(1.05)';
+      controlButton.style.transition = 'transform 0.2s ease';
+    });
+
+    controlButton.addEventListener('mouseleave', () => {
+      controlButton.style.transform = 'scale(1)';
+      controlButton.style.transition = 'transform 0.2s ease';
+    });
+
+    controlButton.addEventListener('click', () => {
+      controlButton.style.transform = 'scale(1)';
+      controlButton.style.transition = 'transform 0.2s ease';
+
+      this.activateGrabbing();
+      setTimeout(() => {}, 2600);
+    });
+
     this.chainDiv.appendChild(controlButton);
   }
 
@@ -108,8 +133,8 @@ class ClawMachineWidget {
     this.clawLine.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawLine.style.width = '323px';
     this.clawLine.style.height = '138px';
-    this.clawLine.style.marginTop = '-155px';
-    this.clawLine.style.marginLeft = this.isMobile ? '-303px' : '-340px';
+    this.clawLine.style.marginTop = '-185px';
+    this.clawLine.style.marginLeft = this.isMobile ? '-303px' : '-300px';
     this.clawLine.style.backgroundColor = 'transparent';
     this.clawLine.style.border = 'none';
     this.clawLine.setAttribute('id', 'boomio-claw-line');
@@ -128,7 +153,7 @@ class ClawMachineWidget {
     this.clawPole.style.height = this.isMobile ? '60px' : '65px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
 
-    this.clawPole.style.marginTop = isFirefox ? '10px' : '3px';
+    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '10px' : '20px') : '14px';
     this.clawPole.style.marginLeft = '28px';
     this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
@@ -138,80 +163,27 @@ class ClawMachineWidget {
 
   setupControlButton() {
     // Create a button element
+    const background = document.getElementById('boomio-control-button-background');
+
     const controlButton = document.createElement('button');
     controlButton.classList.add('boomio-control-button');
-    controlButton.style.borderRadius = '30px';
-    controlButton.style.border =
-      '2px solid linear-gradient(206.25deg, #9652E1 -0.12%, #CA4FAE 30.68%, #CD52AA 50.7%, #E16690 70.72%)';
-    controlButton.style.boxShadow =
-      '8px 8px 22px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset';
-    controlButton.style.background =
-      'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
-
-    controlButton.style.width = this.isMobile ? '150px' : '104.61px';
-    controlButton.style.height = this.isMobile ? '45px' : '103px';
-    controlButton.style.flexShrink = 0;
+    controlButton.style.background = `url(${ClawButton})`;
+    controlButton.style.width = this.isMobile ? '48px' : '48px';
+    controlButton.style.height = this.isMobile ? '48px' : '48px';
+    controlButton.style.transform = this.isMobile && 'scale(0.90)';
 
     controlButton.style.position = 'absolute';
     const isFirefox = typeof InstallTrigger !== 'undefined';
-    controlButton.style.marginTop = this.isMobile ? (isFirefox ? '73px ' : '-67px') : '75px';
-    controlButton.style.marginLeft = this.isMobile ? (isFirefox ? '-115px ' : '-74px') : '-123px';
+    controlButton.style.marginTop = this.isMobile ? (isFirefox ? '-30px' : '-30px') : '-30px';
+    controlButton.style.marginLeft = this.isMobile ? (isFirefox ? '-25px' : '-25px') : '-25px';
     controlButton.style.backgroundColor = 'transparent';
-    controlButton.style.cursor = 'pointer';
     controlButton.style.zIndex = 999999;
+    controlButton.style.border = 'none';
+
     controlButton.setAttribute('id', 'boomio-control-button');
 
-    const textSpan = document.createElement('span');
-    textSpan.innerText = 'PLAY'; // Replace with your desired text
-    textSpan.style.padding = '5px 10px'; // Add some padding for better appearance
-    textSpan.style.display = 'inline-block';
-
-    // Add text styling
-    textSpan.style.color = 'white'; // Hide the text color
-    textSpan.style.fontFamily = 'sans-serif';
-    textSpan.style.fontSize = this.isMobile ? '24px' : '28px';
-    textSpan.style.fontStyle = 'normal';
-    textSpan.style.fontWeight = 600;
-    textSpan.style.lineHeight = 'normal';
-    textSpan.style.textAlign = 'center';
-
-    // Apply text stroke (border) to each letter
-
-    textSpan.style.webkitTextStroke = '1px #b8b8b8'; // Webkit browsers (Safari)
-    textSpan.style.mozTextStroke = '1px #b8b8b8'; // Firefox
-    textSpan.style.textStroke = '1px #b8b8b8'; // Standard
-
-    // Append the text span to the button
-    controlButton.appendChild(textSpan);
-
-    controlButton.addEventListener('mouseenter', () => {
-      controlButton.style.transform = 'scale(1.05)';
-      controlButton.style.transition = 'transform 0.2s ease';
-    });
-
-    controlButton.addEventListener('mouseleave', () => {
-      controlButton.style.transform = 'scale(1)';
-      controlButton.style.transition = 'transform 0.2s ease';
-    });
-
-    controlButton.addEventListener('click', () => {
-      this.activateGrabbing();
-
-      // Apply "pressed in" styles
-      controlButton.style.boxShadow = '0px 0px 10px 0px rgba(0, 0, 0, 0.8) inset';
-      controlButton.style.backgroundColor = '#D85E99'; // Change the color if desired
-
-      // Restore original styles after a short delay (e.g., 300 milliseconds)
-      setTimeout(() => {
-        controlButton.style.boxShadow =
-          'inset 0px 0px 5px #c1c1c1, 8px 8px 22px 0px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset';
-        controlButton.style.backgroundColor =
-          'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
-      }, 2600);
-    });
-
     // Append the button to the document body
-    this.chainDiv.appendChild(controlButton);
+    background.appendChild(controlButton);
   }
   activateGrabbing() {
     if (this.animationInProgress || this.isHoldingclawPresentDivs.some((held) => held)) {
@@ -230,7 +202,7 @@ class ClawMachineWidget {
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${
-      this.isMobile ? (isFirefox ? '315px' : '320px') : '405px'
+      this.isMobile ? (isFirefox ? '315px' : '315px') : '405px'
     })`;
     setTimeout(() => {
       function restartGif(animationElement) {
