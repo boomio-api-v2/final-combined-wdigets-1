@@ -356,7 +356,7 @@ class ClawMachineWidget {
     }, 1500);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = this.isMobile ? 1 : 2; // Adjust the speed as needed
+    const clawSpeed = this.isMobile ? 0 : 0; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
@@ -404,7 +404,7 @@ class ClawMachineWidget {
     clawClose.style.zIndex = 2;
     clawClose.style.backgroundSize = 'contain'; // Adjust as needed
     clawClose.style.width = '52px';
-    clawClose.style.height = '51px';
+    clawClose.style.height = '50px';
     clawClose.style.backgroundImage = `url(${ClawClose})`; // Use the imported clawImg as the background image
     clawClose.style.top = '0px';
     clawClose.style.right = '5%';
