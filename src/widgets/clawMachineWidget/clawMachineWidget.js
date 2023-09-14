@@ -359,7 +359,7 @@ class ClawMachineWidget {
     }, 1500);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = this.isMobile ? 0 : 0; // Adjust the speed as needed
+    const clawSpeed = this.isMobile ? 1 : 2; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
