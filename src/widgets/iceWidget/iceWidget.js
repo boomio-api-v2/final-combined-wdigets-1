@@ -13,6 +13,9 @@ import boomio from '@/services/boomio';
 import { isMobileDevice } from '@/config';
 import './styles.css';
 import { iceHammerImage } from '@/сonstants';
+
+import { createCloseMoveButtons } from '@/utlis';
+
 class IceWidget {
   constructor() {
     this.showCoupon = false;
@@ -33,7 +36,7 @@ class IceWidget {
 
   showBangAnimation = () => {
     const bang = document.createElement('img');
-    bang.classList.add('bang');
+    bang.classList.add('boomio-bang');
     bang.src = bangImage;
     this.widget.appendChild(bang);
     setTimeout(() => {
@@ -94,7 +97,7 @@ class IceWidget {
 
   createHammer = () => {
     const hammer = document.createElement('img');
-    hammer.classList.add('hammer');
+    hammer.classList.add('boomio-hammer');
     hammer.src = iceHammerImage;
     this.widget.appendChild(hammer);
     this.hammer = hammer;
@@ -121,7 +124,7 @@ class IceWidget {
       const image = document.createElement('img');
       image.src = img;
       image.addEventListener('load', this.onIcePieceLoaded, { once: true });
-      image.classList.add('piece-of-ice');
+      image.classList.add('boomio-piece-of-ice');
       this.icePieces.push(image);
       this.widget.appendChild(image);
     });
@@ -129,7 +132,7 @@ class IceWidget {
 
   createCoupon = () => {
     const coupon = document.createElement('div');
-    coupon.classList.add('coupon-wrapper');
+    coupon.classList.add('boomio-coupon-wrapper');
     this.widget.appendChild(coupon);
     coupon.innerHTML = QrCodeModal.getGreyCoupon();
   };
@@ -140,7 +143,7 @@ class IceWidget {
 
     const iceBlock = document.createElement('img');
     iceBlock.src = iceBlockImage;
-    iceBlock.classList.add('ice-block');
+    iceBlock.classList.add('boomio-ice-block');
     iceBlock.onclick = this.createPiecesOfIces;
     this.iceBlock = iceBlock;
 
@@ -155,12 +158,15 @@ class IceWidget {
     iceBlock.addEventListener('load', () => {
       this.createHammer();
     });
+    const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
+
+    createCloseMoveButtons(widget, widget, isMobile ? [-170, -330] : [-220, -380], true);
   };
 }
 
 export default () => {
   const { success } = localStorageService.config;
-  
-  if (success || localStorage.getItem('testing_Widgets'))  new IceWidget();
+
+  if (success || localStorage.getItem('testing_Widgets')) new IceWidget();
   return;
 };

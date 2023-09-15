@@ -4,21 +4,22 @@
     overflow: initial;
     z-index: 9999999999;
 } */
-.wheelOfFortune {
+.boomio-wheelOfFortune {
     display: inline-flex;
     position: fixed;
     overflow: initial;
     z-index: 9999999999;
 }
 
-.picture {
-    position: absolute;
+.boomio-picture {
+    position: fixed;
     width: 350px;
     height: 350px;
     z-index: 9999999999;
+    overflow: hidden;
 }
 
-.wheel {
+.boomio-wheel {
     display: block;
 }
 
@@ -38,7 +39,7 @@
     left: 2px;
     z-index: 1;
 } */
-.spin {
+.boomio-spin {
     /* font: 0.8rem/0 sans-serif; */
     cursor: pointer;
     display: flex;
@@ -56,7 +57,7 @@
     font-size: 12px !important;
 }
 
-.spin-border-wrap {
+.boomio-spin-border-wrap {
     position: absolute;
     top: 153px;
     left: 153px;
@@ -67,7 +68,7 @@
     z-index: 1;
 }
 
-.topmark-box {
+.boomio-topmark-box {
     position: absolute;
     left: 48%;
     top: 1px;
@@ -78,7 +79,7 @@
 
 }
 
-.topmark-arrow {
+.boomio-boomio-topmark-arrow {
     position: absolute;
     left: 48%;
     top: 41px;
@@ -98,19 +99,19 @@
 }
 
 @media screen and (min-width:560px) {
-    .picture {
+    .boomio-picture {
         width: 450px;
         height: 450px;
     }
 
-    .spin-border-wrap {
+    .boomio-spin-border-wrap {
         top: 198px;
         left: 198px;
         width: 58px;
         height: 58px;
     }
 
-    .spin {
+    .boomio-spin {
         /* font: 0.9rem/0 sans-serif; */
         width: 50px;
         height: 50px;
@@ -119,12 +120,12 @@
         font-size: 15px !important;
     }
 
-    .topmark-box {
+    .boomio-topmark-box {
         width: 22px;
         height: 47px;
     }
 
-    .topmark-arrow {
+    .boomio-boomio-topmark-arrow {
         top: 47px;
         width: 22px;
         height: 30px;

@@ -2,52 +2,52 @@ import { localStorageService, widgetHtmlService } from '@/services';
 import { getRandomArbitrary, addStylesToHtml, assignStyleOnElement } from '@/utlis';
 
 const defaultProps = {
-	posx: 0,
-	posy: 0,
-	size: 100,
-	parent: widgetHtmlService.container,
-	styles: {},
+  posx: 0,
+  posy: 0,
+  size: 100,
+  parent: widgetHtmlService.container,
+  styles: {},
 };
 
 const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed(), 10);
 
 export default class AnimationService {
-	constructor({
-		posx,
-		posy,
-		size = 100,
-		parent = widgetHtmlService.container,
-		elem = document.createElement('div'),
-		styles = {},
-	} = defaultProps, noAnimation) {
+  constructor(
+    {
+      posx,
+      posy,
+      size = 100,
+      parent = widgetHtmlService.container,
+      elem = document.createElement('div'),
+      styles = {},
+    } = defaultProps,
+    noAnimation,
+  ) {
+    this.noAnimation = noAnimation === undefined ? false : noAnimation;
+    let animation;
+    noAnimation ? (animation = 14) : ({ animation } = localStorageService.config);
+    const { clientWidth, clientHeight } = document.documentElement;
+    this.posx = isNaN(posx) ? getPosition(clientWidth) : posx;
+    this.posy = isNaN(posy) ? getPosition(clientHeight) : posy;
+    this.clearPrev();
 
-		this.noAnimation = noAnimation === undefined ? false : noAnimation;
-		let animation 
-		noAnimation?  animation =14 :  { animation } = localStorageService.config;
-		const { clientWidth, clientHeight } = document.documentElement;
-		this.posx = isNaN(posx) ? getPosition(clientWidth) : posx;
-		this.posy = isNaN(posy) ? getPosition(clientHeight) : posy;
-		 this.clearPrev();
+    const animFunc = this.getAnimateFunction(animation);
+    elem.classList.add('boomio--animation__wrapper');
+    elem.classList.add('boomio--animation__wrapper--initial');
+    parent.appendChild(elem);
+    const duration = '1000ms';
+    const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
+    assignStyleOnElement(elem.style, styles);
 
+    const initialPosition = {
+      x: elem.clientWidth + parseInt(this.posy, 10),
+      nx: -1 * (elem.clientWidth + parseInt(this.posy, 10)),
+      y: elem.clientHeight + parseInt(this.posx, 10),
+      ny: -1 * (elem.clientHeight + parseInt(this.posx, 10)),
+    };
 
-		const animFunc = this.getAnimateFunction(animation);
-		elem.classList.add('boomio--animation__wrapper');
-		elem.classList.add('boomio--animation__wrapper--initial');
-parent.appendChild(elem)
-		const duration = '1000ms';
-		const easing = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
-
-		assignStyleOnElement(elem.style, styles);
-
-		const initialPosition = {
-			x: elem.clientWidth + parseInt(this.posy, 10),
-			nx: -1 * (elem.clientWidth + parseInt(this.posy, 10)),
-			y: elem.clientHeight + parseInt(this.posx, 10),
-			ny: -1 * (elem.clientHeight + parseInt(this.posx, 10)),
-		};
-
-		const css = `
+    const css = `
 		.boomio--animation__wrapper {
 			text-align: center;
 			position: fixed;
@@ -66,7 +66,7 @@ parent.appendChild(elem)
             user-select: none;
 		}
  
-		.boomio--animation__wrapper--initial {
+		.boomio----initial {
 			width: ${size}px;
 			cursor: pointer;
 			transition: transform 300ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
@@ -153,37 +153,36 @@ parent.appendChild(elem)
 		}
 		`;
 
-		addStylesToHtml(css);
-		animFunc(elem);
-		this.animationEl = elem;
-	}
+    addStylesToHtml(css);
+    animFunc(elem);
+    this.animationEl = elem;
+  }
 
-	clearPrev() {
-		document.getElementById('boomio--stylesheet')?.remove();
-	}
+  clearPrev() {
+    document.getElementById('boomio--stylesheet')?.remove();
+  }
 
+  getAnimateFunction = (nr) => {
+    const animate = (animation) => (el) => {
+      el.classList.add(`boomio--animation--${animation}`);
+    };
+    const animArr = [
+      animate('moveRight'),
+      animate('moveLeft'),
+      animate('moveDown'),
+      animate('moveUp'),
+      animate('fadeIn'),
+      animate('moveDiagonalDown'),
+      animate('rotateRight'),
+      animate('zoomIn'),
+      animate('skewLeft'),
+      animate('moveDiagonalUp'),
+      animate('tada'),
+      animate('lightSpeedInLeft'),
+      animate('rollIn'),
+      animate('noAnimation'),
+    ];
 
-	getAnimateFunction = (nr) => {
-				const animate = (animation) => (el) => {
-			el.classList.add(`boomio--animation--${animation}`);
-			};
-		const animArr = [
-			animate('moveRight'),
-			animate('moveLeft'),
-			animate('moveDown'),
-			animate('moveUp'),
-			animate('fadeIn'),
-			animate('moveDiagonalDown'),
-			animate('rotateRight'),
-			animate('zoomIn'),
-			animate('skewLeft'),
-			animate('moveDiagonalUp'),
-			animate('tada'),
-			animate('lightSpeedInLeft'),
-			animate('rollIn'),
-			animate('noAnimation'),
-		];
-
-		return animArr[nr - 1];
-	};
+    return animArr[nr - 1];
+  };
 }

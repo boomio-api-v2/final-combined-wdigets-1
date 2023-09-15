@@ -2,7 +2,7 @@
   position: fixed;
 }
 
-.mole {
+.boomio-mole {
   /* width: 380px;
   height: 360px; */
   /* width: 300px;
@@ -12,7 +12,7 @@
   display: none;
 }
 
-.mole-image {
+.boomio-mole-image {
   /* width: 380px;
   height: 260px; */
   width: 300px;
@@ -40,30 +40,30 @@
   background-color: white;
 } */
 
-.mole-image.hide {
+.boomio-mole-image.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-.mole-hit-image {
+.boomio-mole-hit-image {
   transition: opacity 0.5s ease;
   /* Add other styles as needed */
 }
 
-.mole-hit-image.hide {
+.boomio-mole-hit-image.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-.mole-hit-image.show {
+.boomio-mole-hit.show {
   opacity: 1;
 }
 
-.mole-image.show {
+.boomio-mole-image.show {
   opacity: 1;
 }
 
-.hammer {
+.boomio-hammer {
   /* width: 380px;
   height: 260px; */
   /* right: -30px;
@@ -79,7 +79,7 @@
   transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
 }
 
-.score {
+.boomio-score {
   margin-top: -10px;
   margin-bottom: 20px;
   font-family: Play;
@@ -101,7 +101,7 @@
 
 @media (max-width: 600px) {
 
-  .mole-image {
+  .boomio-mole-image {
     /* width: calc(380px*1/2);
     height: calc(260px*1/2); */
     width: 200px;
@@ -110,7 +110,7 @@
     cursor: pointer;
   }
 
-  .hammer {
+  .boomio-hammer {
     /* width: calc(380px*1/2);
     height: calc(260px*1/2); */
     width: 200px;
@@ -161,17 +161,21 @@
   }
 }
 
-@keyframes mole-hit {
+@keyframes boomio-mole-hit {
   0% {
     transform: scale(1);
   }
 
-  70% {
+  35% {
+    transform: scale(1.05);
+  }
+
+  50% {
     transform: scale(1);
   }
 
   85% {
-    transform: scale(1.05);
+    transform: scale(1);
   }
 
   100% {
@@ -180,22 +184,22 @@
 }
 
 
-.mole.appear {
+.boomio-mole.boomio-whack-appear {
   animation: moleAppear 1.3s ease-in-out;
   /* animation: moleAppear 0.6s ease-in-out; */
 }
 
-.mole.disappear {
+.boomio-mole.boomio-whack-disappear {
   animation: moleDisappear 1.4s ease-in-out;
   /* animation: moleDisappear 0.7s ease-in-out; */
 }
 
-.mole.mole-hit {
+.boomio-mole.boomio-mole-hit {
   animation: mole-hit 1s ease-in-out;
   /* animation: mole-hit 0.5s ease-in-out; */
 }
 
-.mole.mole-hit-once {}
+.boomio-mole.boomio-mole-hit-once {}
 
 
 
@@ -229,7 +233,7 @@
 .round-close-icon-whack {
   position: absolute;
   top: 0px;
-  left: -60px;
+  left: -20px;
   padding: 6px;
   margin-left: 10px;
 }

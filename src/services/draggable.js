@@ -76,16 +76,19 @@ export class DragElement {
     this.pos3 = e.clientX;
     this.pos4 = e.clientY;
 
-    const x_position = this.elmnt.offsetLeft - this.pos1;
-    const y_position = this.elmnt.offsetTop - this.pos2;
+    // Determine the maximum allowable x and y coordinates
+    const maxX = window.innerWidth - this.elmnt.offsetWidth;
+    const maxY = window.innerHeight - this.elmnt.offsetHeight;
+
+    // Calculate the new position
+    let x_position = this.elmnt.offsetLeft - this.pos1;
+    let y_position = this.elmnt.offsetTop - this.pos2;
+
+    // Ensure the new position stays within bounds
+    x_position = Math.min(maxX, Math.max(0, x_position));
+    y_position = Math.min(maxY, Math.max(0, y_position));
 
     localStorageService.updateConfig({ x_position, y_position });
-
-    const isBlocking = this.checkIsMoveBlocking(x_position, y_position);
-    if (isBlocking) return;
-
-    this.x_position = x_position;
-    this.y_position = y_position;
 
     assignStyleOnElement(this.elmnt.style, {
       top: `${y_position}px`,
