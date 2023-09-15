@@ -155,7 +155,7 @@ class ClawMachineWidget {
     this.clawPole.style.height = this.isMobile ? '60px' : '65px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
 
-    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '10px' : '20px') : '14px';
+    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '22px' : '20px') : '14px';
     this.clawPole.style.marginLeft = '28px';
     this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
