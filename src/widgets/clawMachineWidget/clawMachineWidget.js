@@ -152,7 +152,7 @@ class ClawMachineWidget {
     this.clawPole.style.background = `linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)`; // Use the imported clawImg as the background image
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = this.isMobile ? '24px' : '28px';
-    this.clawPole.style.height = this.isMobile ? '62px' : '65px';
+    this.clawPole.style.height = this.isMobile ? '65px' : '65px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
 
     this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '18px' : '20px') : '14px';
@@ -354,7 +354,7 @@ class ClawMachineWidget {
           this.clawDiv.style.top = this.isMobile ? '175px' : '182px';
 
           this.clawPole.style.transition = 'height 1s, transform 1s';
-          this.clawPole.style.height = this.isMobile ? '62px' : '65px';
+          this.clawPole.style.height = this.isMobile ? '64px' : '65px';
 
           setTimeout(() => {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
