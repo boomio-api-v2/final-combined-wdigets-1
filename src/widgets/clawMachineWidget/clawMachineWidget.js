@@ -239,7 +239,7 @@ class ClawMachineWidget {
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${
-      this.isMobile ? (isFirefox ? '315px' : '315px') : '405px'
+      this.isMobile ? (isFirefox ? '312px' : '315px') : '405px'
     })`;
     setTimeout(() => {
       function restartGif(animationElement) {
