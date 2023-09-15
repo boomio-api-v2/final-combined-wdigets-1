@@ -73,7 +73,7 @@ class ClawMachineWidget {
     this.clawPresentDiv = null;
     // Store an array of grabbable present divs
     this.clawPresentDivs = document.querySelectorAll('.claw-present-div');
-
+    this.shakeTimer = true;
     // Initialize flags for each present div
     this.isHoldingclawPresentDivs = Array(this.clawPresentDivs.length).fill(false);
     this.shouldContinueAutomaticClawMovement = true;
@@ -115,6 +115,7 @@ class ClawMachineWidget {
     });
 
     controlButton.addEventListener('click', () => {
+      clearInterval(this.pulseTimer);
       controlButton.style.transform = 'scale(1)';
       controlButton.style.transition = 'transform 0.2s ease';
 
@@ -129,6 +130,7 @@ class ClawMachineWidget {
     this.clawLine = document.createElement('div');
     this.clawLine.classList.add('boomio-claw-line');
     this.clawLine.style.zIndex = 2;
+
     this.clawLine.style.backgroundImage = `url(${ClawLineImg})`; // Use the imported clawImg as the background image
     this.clawLine.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawLine.style.width = '323px';
@@ -171,6 +173,7 @@ class ClawMachineWidget {
     controlButton.style.width = this.isMobile ? '48px' : '48px';
     controlButton.style.height = this.isMobile ? '48px' : '48px';
     controlButton.style.transform = this.isMobile && 'scale(0.90)';
+    controlButton.style.cursor = 'pointer';
 
     controlButton.style.position = 'absolute';
     const isFirefox = typeof InstallTrigger !== 'undefined';
@@ -181,6 +184,40 @@ class ClawMachineWidget {
     controlButton.style.border = 'none';
 
     controlButton.setAttribute('id', 'boomio-control-button');
+
+    controlButton.addEventListener('click', () => {
+      this.activateGrabbing();
+      setTimeout(() => {
+        controlButton.style.backgroundColor =
+          'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
+      }, 2600);
+    });
+
+    const applyPulseEffect = () => {
+      controlButton.style.transform = 'scale(1.05)';
+      controlButton.style.transition = 'transform 0.2s ease';
+      // Reset the scale after a short delay
+      setTimeout(() => {
+        controlButton.style.transform = 'scale(1)';
+        controlButton.style.transition = 'transform 0.2s ease';
+        // Pulse the button a second time after a short delay
+        setTimeout(() => {
+          controlButton.style.transform = 'scale(1.05)';
+          controlButton.style.transition = 'transform 0.2s ease';
+          setTimeout(() => {
+            controlButton.style.transform = 'scale(1)';
+          }, 200); // Adjust the delay as needed for the second pulse
+        }, 200); // Adjust the delay as needed for the second pulse
+      }, 200); // Adjust the delay as needed for the first pulse
+    };
+
+    // Set up a timer to trigger the pulse effect periodically
+    this.pulseTimer = setInterval(applyPulseEffect, 3000); // Adjust the interval (in milliseconds) as needed
+
+    // Add a click event listener to stop the pulse effect when the button is clicked
+    controlButton.addEventListener('click', () => {
+      clearInterval(this.pulseTimer); // Stop the pulse effect
+    });
 
     // Append the button to the document body
     background.appendChild(controlButton);
@@ -230,14 +267,19 @@ class ClawMachineWidget {
         ) {
           if (!this.isHoldingclawPresentDivs[index]) {
             this.isHoldingclawPresentDivs[index] = true;
-            clawPresentDiv.style.transition = 'top 0s';
+
             clawPresentDiv.style.top = '60px';
             clawPresentDiv.style.left = `${clawDivRect.width / 2 - clawPresentDivRect.width / 2}px`;
+
             this.clawPresentDiv = clawPresentDiv;
             this.clawDiv.appendChild(clawPresentDiv);
+            const presentType = this.clawPresentDiv.style.backgroundImage;
+            if (clawPresentDiv.style.backgroundImage.includes('GiftOne')) {
+              clearTimeout(this.shakeTimer);
+              this.shakeTimer = null;
+            }
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
-                const presentType = this.clawPresentDiv.style.backgroundImage;
                 if (presentType.includes('GiftTwo')) {
                   function restartGif(animationElement) {
                     const Opened = `url(${GifTwo})`;
@@ -426,22 +468,20 @@ class ClawMachineWidget {
     let maxHeight = 0;
 
     if (this.isMobile) {
-      numberOfPresents = 8;
       presentSpacing = 20;
       minHeight = 77;
       maxHeight = 130;
       leftPosition = 20;
       containerWidth = window.innerWidth - 15;
     } else {
-      numberOfPresents = 30;
       presentSpacing = 30;
-      minHeight = 149;
+      minHeight = 139;
       maxHeight = 241;
       leftPosition = 100;
       containerWidth = window.innerWidth - 80;
     }
 
-    const totalPresents = this.isMobile ? 6 : 12;
+    const totalPresents = this.isMobile ? 6 : 10;
 
     const presents = [];
     for (let i = 0; i < totalPresents; i++) {
@@ -451,7 +491,7 @@ class ClawMachineWidget {
     // Create and display the presents
     for (let i = 0; i < totalPresents; i++) {
       const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
-      const aspectRatio = 504 / 704; // Aspect ratio of the original size (width / height)
+      const aspectRatio = presents[i] === GiftOne ? 504 / 688 : 504 / 704; // Aspect ratio of the original size (width / height)
       const randomWidth = Math.floor(randomHeight * aspectRatio);
 
       if (leftPosition + randomWidth < containerWidth) {
@@ -466,6 +506,52 @@ class ClawMachineWidget {
         const styleBottom = `${
           Math.random() * (this.isMobile ? 5 : 15) + (this.isMobile ? 20 : 35)
         }px`;
+
+        const applyShakeEffect = (element, shakeCount) => {
+          element.style.transition = 'transform 0.2s ease';
+          let remainingShakes = shakeCount;
+
+          const shake = () => {
+            const shakeAmountX = (Math.random() - 0.5) * 5; // Adjust the shake intensity as needed
+            const shakeAmountY = (Math.random() - 0.5) * 1; // Adjust the shake intensity as needed
+
+            element.style.transform = `translate(${shakeAmountX}px, ${shakeAmountY}px)`;
+
+            remainingShakes--;
+
+            if (remainingShakes > 0) {
+              // Continue shaking
+              setTimeout(shake, 150);
+            } else {
+              // Reset the transformation after all shakes
+              setTimeout(() => {
+                element.style.transform = 'translate(0, 0)';
+              }, 100);
+            }
+          };
+
+          // Start shaking
+          shake();
+        };
+
+        const startRandomShake = (element) => {
+          const randomInterval = Math.random() * 4000 + 2000; // Random interval between 3 and 6 seconds
+          const shakeCount = Math.floor(Math.random() * 5) + 4; // Random number of shakes between 2 and 4
+
+          // Apply the shake effect immediately
+          applyShakeEffect(element, shakeCount);
+
+          // Schedule the next shake after a random interval
+          setTimeout(() => {
+            if (this.shakeTimer) startRandomShake(element);
+          }, randomInterval);
+        };
+
+        setTimeout(() => {
+          if (presents[i] === GiftOne) {
+            startRandomShake(newClawPresentDiv);
+          }
+        }, Math.random() * 3000 + 2000);
 
         newClawPresentDiv.style.backgroundImage = `url(${presents[i]})`;
         newClawPresentDiv.style.backgroundSize = 'cover';
