@@ -521,12 +521,12 @@ class ClawMachineWidget {
 
             if (remainingShakes > 0) {
               // Continue shaking
-              setTimeout(shake, 150);
+              setTimeout(shake, 200);
             } else {
               // Reset the transformation after all shakes
               setTimeout(() => {
                 element.style.transform = 'translate(0, 0)';
-              }, 100);
+              }, 200);
             }
           };
 
