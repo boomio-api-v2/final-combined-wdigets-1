@@ -190,6 +190,10 @@ export default class {
 
   closeModal = () => {
     this.modalBackground.remove();
+    const element = document.getElementById('boomio-widget-screen-wrapper-content');
+    if (element) {
+      element.remove();
+    }
   };
 
   showRatingModal = () => {
