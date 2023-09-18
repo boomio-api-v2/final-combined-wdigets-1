@@ -80,12 +80,12 @@
 @media (max-width: 1300px) {
   @keyframes move-slowly {
     0% {
-      right: 70%;
+      right: 60%;
       bottom: 0px;
       transform: translate(0px, 0px);
     }
     100% {
-      right: 70%;
+      right: 60%;
       bottom: 0px;
       transform: translate(1px, -2px) rotate(3deg);
     }
@@ -99,7 +99,7 @@
       bottom: -42px;
     }
     100% {
-      right: 70%;
+      right: 60%;
       bottom: 0px;
       transform: translateX(0px) rotate(9360deg); /* Adjust the translateX value for faster movement */
     }
@@ -110,12 +110,12 @@
 @media (max-width: 600px) {
   @keyframes move-slowly {
     0% {
-      right: 65%;
+      right: 55%;
       bottom: 0px;
       transform: translate(0px, 0px);
     }
     100% {
-      right: 65%;
+      right: 55%;
       bottom: 0px;
       transform: translate(1px, -2px) rotate(3deg);
     }
@@ -129,7 +129,7 @@
       bottom: -42px;
     }
     100% {
-      right: 65%;
+      right: 55%;
       bottom: 0px;
       transform: translateX(0px) rotate(9360deg); /* Adjust the translateX value for faster movement */
     }
