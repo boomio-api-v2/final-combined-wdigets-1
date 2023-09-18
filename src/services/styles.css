@@ -29,7 +29,7 @@
     right: 15%;
     transform: rotate(1800deg);
   }
-  85% {
+  75% {
     bottom: 10%;
     right: 20%;
     transform: rotate(2160deg);
@@ -45,15 +45,16 @@
     bottom: -42px;
     right: 25%;
   }
-  85% {
+  75% {
     bottom: -42px;
   }
   100% {
-    right: 85%;
+    right: 75%;
     bottom: 0px;
     transform: translateX(0px) rotate(9360deg); /* Adjust the translateX value for faster movement */
   }
 }
+
 
 @keyframes bounce {
   0% {
@@ -66,12 +67,12 @@
 
 @keyframes move-slowly {
   0% {
-    right: 85%;
+    right: 75%;
     bottom: 0px;
     transform: translate(0px, 0px);
   }
   100% {
-    right: 85%;
+    right: 75%;
     bottom: 0px;
     transform: translate(1px,-2px),rotate(3deg);
   }
@@ -135,4 +136,3 @@
     }
   }
 }
-
