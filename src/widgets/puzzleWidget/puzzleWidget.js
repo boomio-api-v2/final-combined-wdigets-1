@@ -66,7 +66,7 @@ export class Puzzle {
     puzzleWidget.addEventListener(isMobileDevice ? 'click' : 'dblclick', () => {
       puzzleWidget.remove();
       this?.animationEl?.remove();
-      this.isPrewiewDisplayed = true;
+      this.isPreviewDisplayed = true;
       this.showModalWidgetPreview(false);
     });
 
@@ -126,7 +126,7 @@ export class Puzzle {
     this.modalBackground = modalBackground;
   };
 
-  getCloseModalBtn(closeCallback) {
+  getCloseModalBtn = (closeCallback) => {
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.classList.add('boomio-close-modal-btn-wrapper');
     const closeBtn = document.createElement('img');
@@ -135,7 +135,7 @@ export class Puzzle {
     closeBtn.onclick = closeCallback;
     closeBtnWrapper.appendChild(closeBtn);
     return closeBtnWrapper;
-  }
+  };
 
   closeAnimation = (callback) => () => {
     assignStyleOnElement(this.modal.style, {
