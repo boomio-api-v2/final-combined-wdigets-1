@@ -22,7 +22,6 @@ export class Puzzle {
     this.animationEl = null;
     this.isPreviewDisplayed = false;
     this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
-    this.onPuzzleClick = this.onPuzzleClick.bind(this);
   }
 
   addImageToPuzzleWidget = () => {
@@ -32,14 +31,14 @@ export class Puzzle {
   };
 
   createPuzzleWidget = (position) => {
-    this.puzzleWidget = document.createElement('div');
-    this.puzzleWidget.setAttribute('id', 'puzzle-widget');
-    assignStyleOnElement(this.puzzleWidget.style, {
+    const puzzleWidget = document.createElement('div');
+    puzzleWidget.setAttribute('id', 'puzzle-widget');
+    assignStyleOnElement(puzzleWidget.style, {
       position: position,
-
       backgroundImage: `url(${frameSvg})`,
     });
-    this.mainContainer.appendChild(this.puzzleWidget);
+    this.puzzleWidget = puzzleWidget;
+    this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop);
   };
 
   disableWidgetAndRemoveAllElements() {
@@ -158,42 +157,6 @@ export class Puzzle {
     });
   };
 
-  addPuzzleToWidget = () => {
-    let { puzzles_collected, puzzles_needed } = localStorageService.config.puzzle;
-    this.startAnimation(
-      puzzlesCoordinateForDesktop,
-      {
-        zIndex: 9999,
-        position: 'absolute',
-      },
-      this.puzzleWidget,
-      false,
-      true,
-    );
-
-    if (puzzles_collected !== 4) return;
-
-    setTimeout(() => {
-      if (localStorage.getItem('testing_Widgets')) {
-        this.mainContainer = widgetHtmlService.container;
-        this.animationEl = null;
-        this.isPreviewDisplayed = false;
-        this.coordinates = isMobileDevice
-          ? puzzlesCoordinateForMobile
-          : puzzlesCoordinateForDesktop;
-        localStorageService.config.puzzle.puzzles_collected = 0;
-
-        const element = document.getElementById('puzzle-widget');
-        if (element) {
-          element.remove();
-        }
-      }
-
-      this.closeModal();
-      new QrCodeModal();
-    }, 1000);
-  };
-
   showModalWidgetPreview(showAnimation = false) {
     const { w_top_text, w_button_text, w_hint_static_text } = localStorageService.config;
     const { puzzles_collected, hint } = localStorageService.config.puzzle;
@@ -249,12 +212,48 @@ export class Puzzle {
     }
   }
 
-  onPuzzleClick(e) {
+  addPuzzleToWidget = () => {
+    let { puzzles_collected, puzzles_needed } = localStorageService.config.puzzle;
+    this.startAnimation(
+      puzzlesCoordinateForDesktop,
+      {
+        zIndex: 9999,
+        position: 'absolute',
+      },
+      this.puzzleWidget,
+      false,
+      true,
+    );
+
+    if (puzzles_collected !== 4) return;
+
+    setTimeout(() => {
+      if (localStorage.getItem('testing_Widgets')) {
+        this.mainContainer = widgetHtmlService.container;
+        this.animationEl = null;
+        this.isPreviewDisplayed = false;
+        this.coordinates = isMobileDevice
+          ? puzzlesCoordinateForMobile
+          : puzzlesCoordinateForDesktop;
+        localStorageService.config.puzzle.puzzles_collected = 0;
+
+        const element = document.getElementById('puzzle-widget');
+        if (element) {
+          element.remove();
+        }
+      }
+
+      this.closeModal();
+      new QrCodeModal();
+    }, 1000);
+  };
+
+  onPuzzleClick = (e) => {
     const puzzle = e.target;
     puzzle.remove();
     this.isPreviewDisplayed = false;
     this.showModalWidgetPreview(true);
-  }
+  };
 
   startAnimation = (...args) => {
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true, modal] = args;
