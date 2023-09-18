@@ -87,7 +87,7 @@ class GuessWidget {
             <img src=${img1}>
           </div>
         </li>
-        <li class="boomio-guess-card disabled invisible">
+        <li class="boomio-guess-card disabled boomio-invisible">
           <div class="boomio-view boomio-front-view">
           <img src=${center} alt="boomio-icon">
           </div>
@@ -166,18 +166,18 @@ class GuessWidget {
 
     setTimeout(() => {
       cards.forEach((card, i) => {
-        if (i != 4) card.classList.add('boomio-flip');
+        if (i != 4) card.classList.add('boomio-card-flip');
       });
     }, 2000);
 
     setTimeout(() => {
       cards.forEach((card) => {
-        card.classList.remove('boomio-flip');
+        card.classList.remove('boomio-card-flip');
       });
       for (let i = 1; i < 4; i++) {
-        cards[i - 1].classList.remove(`flytop${i}`);
-        cards[i + 2].classList.remove(`flymid${i}`);
-        cards[i + 5].classList.remove(`flybottom${i}`);
+        cards[i - 1].classList.remove(`boomio-flytop${i}`);
+        cards[i + 2].classList.remove(`boomio-flymid${i}`);
+        cards[i + 5].classList.remove(`boomio-flybottom${i}`);
       }
     }, 3000);
   }
@@ -190,7 +190,7 @@ class GuessWidget {
     function flipCard({ target: clickedCard }) {
       if (clickedCard.classList.contains('disabled')) return;
       if (cardOne !== clickedCard && !disableDeck) {
-        clickedCard.classList.add('boomio-flip');
+        clickedCard.classList.add('boomio-card-flip');
         if (!cardOne) {
           return (cardOne = clickedCard);
         }
@@ -205,8 +205,8 @@ class GuessWidget {
     function matchCards(img1, img2) {
       if (img1 === img2) {
         matched++;
-        cardOne.classList.add('jump');
-        cardTwo.classList.add('jump');
+        cardOne.classList.add('boomio-card-jump');
+        cardTwo.classList.add('boomio-card-jump');
         if (matched == 4) {
           setTimeout(() => {
             const guessContainer = document.getElementById('boomio-guess-container');
@@ -222,13 +222,13 @@ class GuessWidget {
         return (disableDeck = false);
       }
       setTimeout(() => {
-        cardOne.classList.add('boomio-shake');
-        cardTwo.classList.add('boomio-shake');
+        cardOne.classList.add('boomio-card-shake');
+        cardTwo.classList.add('boomio-card-shake');
       }, 400);
 
       setTimeout(() => {
-        cardOne.classList.remove('boomio-shake', 'boomio-flip');
-        cardTwo.classList.remove('boomio-shake', 'boomio-flip');
+        cardOne.classList.remove('boomio-card-shake', 'boomio-card-flip');
+        cardTwo.classList.remove('boomio-card-shake', 'boomio-card-flip');
         cardOne = cardTwo = '';
         disableDeck = false;
       }, 1200);
