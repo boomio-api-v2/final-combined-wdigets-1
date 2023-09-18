@@ -31,7 +31,7 @@ class WidgetHtmlService {
     const boomioMainHolder = document.createElement('div');
     boomioMainHolder.style.cursor = 'pointer';
     boomioMainHolder.style.position = 'fixed';
-
+    boomioMainHolder.style.zIndex = 99999999;
     boomioMainHolder.style.bottom = '30%'; // Adjust the starting vertical position
     boomioMainHolder.style.right = '-150px'; // Adjust the starting horizontal position off-screen
 
