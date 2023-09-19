@@ -1,5 +1,3 @@
-import './styles.css';
-
 class WidgetHtmlService {
   constructor() {
     this.container = null;

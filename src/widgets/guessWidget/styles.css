@@ -56,8 +56,8 @@
   width: calc(100% / 3 - 9px) !important;
 }
 
-.boomio-guess-card.boomio-shake {
-  animation: shake 0.35s ease-in-out;
+.boomio-guess-card.boomio-card-shake {
+  animation: boomio-card-shake 0.35s ease-in-out;
 
 }
 .boomio-invisible {
@@ -154,7 +154,7 @@
 }
 
 
-.jump {
+.boomio-card-jump {
   animation: jump 0.5s 0.2s ease-in-out;
 }
 
@@ -183,7 +183,7 @@
 }
 
 
-@keyframes boomio-shake {
+@keyframes boomio-card-shake {
 
   0%,
   100% {
@@ -232,11 +232,11 @@
   transform: rotateY(-180deg);
 }
 
-.boomio-guess-card.boomio-flip .boomio-back-view {
+.boomio-guess-card.boomio-card-flip .boomio-back-view {
   transform: rotateY(0);
 }
 
-.boomio-guess-card.boomio-flip .boomio-front-view {
+.boomio-guess-card.boomio-card-flip .boomio-front-view {
   transform: rotateY(180deg);
 }
 

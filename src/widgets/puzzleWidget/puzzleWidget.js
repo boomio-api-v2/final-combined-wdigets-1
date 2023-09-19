@@ -22,7 +22,6 @@ export class Puzzle {
     this.animationEl = null;
     this.isPreviewDisplayed = false;
     this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
-    this.onPuzzleClick = this.onPuzzleClick.bind(this);
   }
 
   addImageToPuzzleWidget = () => {
@@ -32,14 +31,14 @@ export class Puzzle {
   };
 
   createPuzzleWidget = (position) => {
-    this.puzzleWidget = document.createElement('div');
-    this.puzzleWidget.setAttribute('id', 'puzzle-widget');
-    assignStyleOnElement(this.puzzleWidget.style, {
+    const puzzleWidget = document.createElement('div');
+    puzzleWidget.setAttribute('id', 'puzzle-widget');
+    assignStyleOnElement(puzzleWidget.style, {
       position: position,
-
       backgroundImage: `url(${frameSvg})`,
     });
-    this.mainContainer.appendChild(this.puzzleWidget);
+    this.puzzleWidget = puzzleWidget;
+    this.drawPuzzlesByCollectedCount(puzzlesCoordinateForDesktop);
   };
 
   disableWidgetAndRemoveAllElements() {
@@ -48,23 +47,17 @@ export class Puzzle {
     this.animationEl.remove();
   }
 
-  showPuzzleWidgetWindowDraggable(isAnimation = false) {
+  showPuzzleWidgetWindowDraggable = (isAnimation = false) => {
     const { x_position, y_position } = localStorageService.config;
-    this.createPuzzleWidget('fixed');
-    const isMobile = window.innerWidth <= 768;
-    const element = document.getElementById('puzzle-widget');
-    const deleteElement = document.getElementById('boomio-widget-content');
-
-    createCloseMoveButtons(
-      this.puzzleWidget,
-      deleteElement,
-      isMobile ? [-170, -170] : [-220, -270],
-    );
-
-    const puzzleWidget = this.puzzleWidget;
+    const puzzleWidget = document.createElement('div');
     const widgetSmallPreview = document.createElement('div');
+    puzzleWidget.setAttribute('id', 'puzzle-widget');
     puzzleWidget.appendChild(widgetSmallPreview);
     puzzleWidget.style.backgroundImage = ` url(${frameSvg})`;
+    const isMobile = window.innerWidth <= 768;
+
+    const deleteElement = document.getElementById('boomio-widget-content');
+    createCloseMoveButtons(puzzleWidget, deleteElement, isMobile ? [-170, -170] : [-220, -270]);
 
     if (isAnimation) {
       puzzleWidget.classList.add('animation-widget');
@@ -81,7 +74,7 @@ export class Puzzle {
 
     const left =
       (!localStorage.getItem('testing_Widgets') && x_position) ||
-      clientWidth - (isMobile ? 40 : 40) - puzzleWidgetSize;
+      clientWidth - 40 - puzzleWidgetSize;
     const top =
       (!localStorage.getItem('testing_Widgets') && y_position) ||
       clientHeight - 40 - puzzleWidgetSize;
@@ -92,11 +85,12 @@ export class Puzzle {
       left: `${left}px`,
       top: `${top}px`,
     });
+
     this.mainContainer.appendChild(puzzleWidget);
     this.puzzleWidget = puzzleWidget;
     new DragElement(this.puzzleWidget);
     this.drawPuzzlesByCollectedCount();
-  }
+  };
 
   drawPuzzlesByCollectedCount = (coordinate = puzzlesCoordinate) => {
     for (let i = 0; i < localStorageService.config.puzzle.puzzles_collected; i++) {
@@ -132,7 +126,7 @@ export class Puzzle {
     this.modalBackground = modalBackground;
   };
 
-  getCloseModalBtn(closeCallback) {
+  getCloseModalBtn = (closeCallback) => {
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.classList.add('boomio-close-modal-btn-wrapper');
     const closeBtn = document.createElement('img');
@@ -141,7 +135,7 @@ export class Puzzle {
     closeBtn.onclick = closeCallback;
     closeBtnWrapper.appendChild(closeBtn);
     return closeBtnWrapper;
-  }
+  };
 
   closeAnimation = (callback) => () => {
     assignStyleOnElement(this.modal.style, {
@@ -156,42 +150,6 @@ export class Puzzle {
         callback();
       }
     });
-  };
-
-  addPuzzleToWidget = () => {
-    let { puzzles_collected, puzzles_needed } = localStorageService.config.puzzle;
-    this.startAnimation(
-      puzzlesCoordinateForDesktop,
-      {
-        zIndex: 9999,
-        position: 'absolute',
-      },
-      this.puzzleWidget,
-      false,
-      true,
-    );
-
-    if (puzzles_collected !== 4) return;
-
-    setTimeout(() => {
-      if (localStorage.getItem('testing_Widgets')) {
-        this.mainContainer = widgetHtmlService.container;
-        this.animationEl = null;
-        this.isPreviewDisplayed = false;
-        this.coordinates = isMobileDevice
-          ? puzzlesCoordinateForMobile
-          : puzzlesCoordinateForDesktop;
-        localStorageService.config.puzzle.puzzles_collected = 0;
-
-        const element = document.getElementById('puzzle-widget');
-        if (element) {
-          element.remove();
-        }
-      }
-
-      this.closeModal();
-      new QrCodeModal();
-    }, 1000);
   };
 
   showModalWidgetPreview(showAnimation = false) {
@@ -249,12 +207,48 @@ export class Puzzle {
     }
   }
 
-  onPuzzleClick(e) {
+  addPuzzleToWidget = () => {
+    let { puzzles_collected, puzzles_needed } = localStorageService.config.puzzle;
+    this.startAnimation(
+      puzzlesCoordinateForDesktop,
+      {
+        zIndex: 9999,
+        position: 'absolute',
+      },
+      this.puzzleWidget,
+      false,
+      true,
+    );
+
+    if (puzzles_collected !== 4) return;
+
+    setTimeout(() => {
+      if (localStorage.getItem('testing_Widgets')) {
+        this.mainContainer = widgetHtmlService.container;
+        this.animationEl = null;
+        this.isPreviewDisplayed = false;
+        this.coordinates = isMobileDevice
+          ? puzzlesCoordinateForMobile
+          : puzzlesCoordinateForDesktop;
+        localStorageService.config.puzzle.puzzles_collected = 0;
+
+        const element = document.getElementById('puzzle-widget');
+        if (element) {
+          element.remove();
+        }
+      }
+
+      this.closeModal();
+      new QrCodeModal();
+    }, 1000);
+  };
+
+  onPuzzleClick = (e) => {
     const puzzle = e.target;
     puzzle.remove();
     this.isPreviewDisplayed = false;
     this.showModalWidgetPreview(true);
-  }
+  };
 
   startAnimation = (...args) => {
     const [coordinates, styles = {}, parent = this.mainContainer, isClickable = true, modal] = args;
