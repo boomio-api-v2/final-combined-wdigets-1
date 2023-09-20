@@ -180,6 +180,8 @@ export default class {
       winningAnimation.classList.add('winningAnimation');
       winningAnimation.setAttribute('src', winningAnimationGif);
       this.mainContainer.appendChild(winningAnimation);
+      localStorage.setItem('start_widget', false);
+
       winningAnimation.addEventListener('load', () => {
         setTimeout(() => {
           winningAnimation.remove();
@@ -192,7 +194,6 @@ export default class {
     this.modalBackground.remove();
     const element = document.getElementById('boomio-widget-screen-wrapper-content');
     if (element) {
-      localStorage.setItem('start_widget', false);
       element.remove();
     }
   };
