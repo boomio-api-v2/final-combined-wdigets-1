@@ -181,7 +181,7 @@ export default class {
       winningAnimation.setAttribute('src', winningAnimationGif);
       this.mainContainer.appendChild(winningAnimation);
       localStorage.setItem('start_widget', false);
-
+      localStorage.setItem('closing_button', false);
       winningAnimation.addEventListener('load', () => {
         setTimeout(() => {
           winningAnimation.remove();

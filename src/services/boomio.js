@@ -72,8 +72,6 @@ class BoomioService extends UserService {
             localStorage.getItem('closing_button') &&
             localStorage.getItem('start_widget')
           ) {
-            console.log(localStorage.getItem('closing_button'));
-            console.log(localStorage.getItem('start_widget'));
             this.loadWidget('start_widget');
           }
           this.config = localStorageService.getDefaultConfig();
