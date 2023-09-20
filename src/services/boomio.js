@@ -57,13 +57,19 @@ class BoomioService extends UserService {
     if (!isTimeout) {
       try {
         window.onload = async () => {
-          widgetHtmlService.createWidgetContainer();
           const content = await this.send();
+          if (content?.widget_type && content.instruction !== 'stop') {
+            widgetHtmlService.createWidgetContainer(content.widget_type);
+          } else {
+            widgetHtmlService.createWidgetContainer();
+          }
           localStorageService.setConfigFromApi(content);
           if (content?.widget_type && content.instruction !== 'stop') {
             this.loadWidget(content.widget_type);
           } else if (localStorage.getItem('testing_Widgets')) {
             this.loadWidget('testing');
+          } else if (localStorage.getItem('closing_button')) {
+            this.loadWidget('start_widget');
           }
           this.config = localStorageService.getDefaultConfig();
           const isTimeout = new Date(this.config.boomioStopTill).getTime() > new Date().getTime();

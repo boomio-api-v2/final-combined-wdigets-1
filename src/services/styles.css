@@ -100,7 +100,7 @@
       bottom: -42px;
     }
     100% {
-      right: 60%;
+      right: 65%;
       bottom: 0px;
       transform: translateX(0px) rotate(9360deg); /* Adjust the translateX value for faster movement */
     }

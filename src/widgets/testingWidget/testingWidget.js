@@ -28,6 +28,8 @@ class TestingWidget {
     new DragElement(animationEl);
 
     function closeModalDiscount() {
+      console.log('element');
+
       removeWidgets();
       localStorage.removeItem('testing_Widgets');
       animationEl.remove();
@@ -35,6 +37,7 @@ class TestingWidget {
 
     function removeWidgets() {
       const element = document.getElementById('boomio-widget-screen-wrapper-content');
+
       if (element) {
         element.remove();
       }
@@ -55,6 +58,7 @@ class TestingWidget {
       { spawn: 'whack', despawn: 'whack', name: 'Whack mole Widget' },
       { spawn: 'maze', despawn: 'maze', name: 'Maze Widget' },
       { spawn: 'pacman', despawn: 'pacman', name: 'Pacman Widget' },
+      { spawn: 'start_widget', despawn: 'start_widget', name: 'start Widget' },
     ];
 
     let buttonsHtml = '';

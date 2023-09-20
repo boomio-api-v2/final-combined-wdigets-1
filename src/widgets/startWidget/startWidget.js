@@ -22,16 +22,11 @@ class StartWidget {
 
     new DragElement(animationEl);
 
-    function closeModalDiscount() {
-      boomioService.signal('START_CLOSE');
-      animationEl.remove();
-    }
-
     const { secondary_text, top_text, hint_static_text, button_text, under_picture_text } =
       localStorageService.config;
 
     animationEl.innerHTML = `
-          <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd''>
+          <div class='position-relative product-design-bg-2 Preview-select' style='display:none;min-width: 300px; padding: 40px 32px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd' id='start_widget'>
           <div class='close_button align-right'>
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
@@ -51,17 +46,27 @@ class StartWidget {
             </div>
           </div>
     `;
-    document.getElementById('close_div_img').onclick = closeModalDiscount;
+    function closeModalDiscount() {
+      const element = document.getElementById('start_widget');
+      element.style.display = 'none';
+      localStorage.setItem('closing_button', 'start_widget');
+      boomioService.signal('START_OK');
+      // animationEl.remove();
+    }
 
+    document.getElementById('close_div_img').onclick = closeModalDiscount;
+    localStorage.setItem('closing_button', 'start_widget');
     const letGoBtn = document.getElementById('letGoToBtn');
     letGoBtn.onclick = () => {
+      const element = document.getElementById('start_widget');
+      element.style.display = 'none';
+      localStorage.setItem('closing_button', 'start_widget');
       boomioService.signal('START_OK');
-      animationEl.remove();
+      // animationEl.remove();
     };
   };
 }
 
 export default () => {
-  console.log('asdasd');
   new StartWidget();
 };
