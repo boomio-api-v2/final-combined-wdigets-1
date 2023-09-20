@@ -75,8 +75,10 @@ class BoomioService extends UserService {
             localStorage.getItem('closing_button') &&
             localStorage.getItem('start_widget')
           ) {
-            console.log('3');
+            console.log(localStorage.getItem('closing_button'));
+            console.log(localStorage.getItem('start_widget'));
 
+            console.log('3');
             this.loadWidget('start_widget');
           }
           this.config = localStorageService.getDefaultConfig();
@@ -92,8 +94,6 @@ class BoomioService extends UserService {
   }
 
   testing(testingWidget) {
-    console.log('4');
-
     this.loadWidget(testingWidget);
   }
 
