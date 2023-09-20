@@ -72,8 +72,8 @@ class BoomioService extends UserService {
 
             this.loadWidget('testing');
           } else if (
-            localStorage.getItem('closing_button') &&
-            localStorage.getItem('start_widget')
+            localStorage.getItem('closing_button') !== 'false' &&
+            localStorage.getItem('start_widget') !== 'false'
           ) {
             console.log(localStorage.getItem('closing_button'));
             console.log(localStorage.getItem('start_widget'));
