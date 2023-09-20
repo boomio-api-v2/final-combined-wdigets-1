@@ -192,6 +192,7 @@ export default class {
     this.modalBackground.remove();
     const element = document.getElementById('boomio-widget-screen-wrapper-content');
     if (element) {
+      localStorage.setItem('start_widget', false);
       element.remove();
     }
   };

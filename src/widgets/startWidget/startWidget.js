@@ -5,6 +5,7 @@ import './styles.css';
 class StartWidget {
   constructor() {
     this.startAnimation();
+    localStorage.setItem('start_widget', true);
   }
 
   startAnimation = () => {
