@@ -5,7 +5,6 @@ import './styles.css';
 class StartWidget {
   constructor() {
     this.startAnimation();
-    localStorage.setItem('start_widget', true);
   }
 
   startAnimation = () => {
@@ -57,6 +56,8 @@ class StartWidget {
 
     document.getElementById('close_div_img').onclick = closeModalDiscount;
     localStorage.setItem('closing_button', 'start_widget');
+    localStorage.setItem('start_widget', true);
+
     const letGoBtn = document.getElementById('letGoToBtn');
     letGoBtn.onclick = () => {
       const element = document.getElementById('start_widget');
