@@ -1,4 +1,5 @@
 import './styles.css';
+import { BoomioBubbles, BoomioBubblesGif } from '@/сonstants';
 
 class WidgetHtmlService {
   constructor() {
@@ -12,12 +13,10 @@ class WidgetHtmlService {
       const element = document.getElementById(item);
       if (element) {
         const element = document.getElementById('boomio-widget-content');
-        this.imageElement.src =
-          'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/2f96d59d94d9a4e02e94b022edad6cdcd51e7b89/images/wheelOfFortuneWidget/Boomio_bubble_game.gif?raw=true';
+        this.imageElement.src = BoomioBubblesGif;
 
         setTimeout(() => {
-          this.imageElement.src =
-            'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/2f96d59d94d9a4e02e94b022edad6cdcd51e7b89/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
+          this.imageElement.src = BoomioBubbles;
         }, 2000);
       }
     }, 8000);
@@ -42,8 +41,7 @@ class WidgetHtmlService {
       boomioMainHolder.style.right = storedBoomioWidgetPosition?.right ?? '-150px'; // Adjust the starting horizontal position off-screen
 
       this.imageElement = document.createElement('img');
-      this.imageElement.src =
-        'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/2f96d59d94d9a4e02e94b022edad6cdcd51e7b89/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
+      this.imageElement.src = BoomioBubbles;
 
       this.imageElement.style.width = '150px'; // Change width here
       this.imageElement.style.height = '150px'; // Change height here
@@ -97,8 +95,7 @@ class WidgetHtmlService {
           }, 1000);
 
           setTimeout(() => {
-            this.imageElement.src =
-              'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/2f96d59d94d9a4e02e94b022edad6cdcd51e7b89/images/wheelOfFortuneWidget/New_boomio_logo_bubble.png?raw=true';
+            this.imageElement.src = BoomioBubbles;
           }, 10000);
         }
       }, 100);
