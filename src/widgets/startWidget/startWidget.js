@@ -50,10 +50,7 @@ class StartWidget {
       const element = document.getElementById('start_widget');
       element.style.display = 'none';
       localStorage.setItem('closing_button', 'start_widget');
-      console.log(localStorage.getItem('start_signal'));
-
       localStorage.setItem('start_signal', true);
-
       if (localStorage.getItem('start_signal')) {
         boomioService.signal('START_OK');
       }
