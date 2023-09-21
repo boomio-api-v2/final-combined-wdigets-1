@@ -7,37 +7,38 @@
   10% {
     bottom: 52%;
     right: 0%;
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
   25% {
     bottom: 50%;
     right: 4%;
-    transform: rotate(720deg);
+    transform: rotate(-720deg);
   }
   37.5% {
     bottom: 45%;
     right: 7%;
-    transform: rotate(1080deg);
+    transform: rotate(-1080deg);
   }
   50% {
     bottom: 35%;
     right: 10%;
-    transform: rotate(1440deg);
+    transform: rotate(-1440deg);
   }
   62.5% {
     bottom: 20%;
     right: 15%;
-    transform: rotate(1800deg);
+    transform: rotate(-1800deg);
   }
   75% {
     bottom: 10%;
     right: 20%;
-    transform: rotate(2160deg);
+    transform: rotate(-2160deg);
   }
   100% {
     bottom: -42px;
     right: 25%;
-    transform: rotate(2880deg);
+    transform: rotate(-2800deg);
+
   }
 }
 @keyframes bounce-left {
@@ -49,9 +50,9 @@
     bottom: -42px;
   }
   100% {
-    right: 85%;
+    right: 80%;
     bottom: 0px;
-    transform: translateX(0px) rotate(3600deg); /* Adjust the translateX value for faster movement */
+    transform: translateX(0px) rotate(-2160deg); /* Adjust the translateX value for faster movement */
   }
 }
 
@@ -67,12 +68,12 @@
 
 @keyframes move-slowly {
   0% {
-    right: 85%;
+    right: 80%;
     bottom: 0px;
     transform: translate(0px, 0px);
   }
   100% {
-    right: 85%;
+    right: 80%;
     bottom: 0px;
     transform: translate(1px,-2px),rotate(3deg);
   }
