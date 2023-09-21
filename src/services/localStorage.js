@@ -40,7 +40,6 @@ class LocalStorageService {
       this.updateConfig({ static_text: this.static_exists });
     }
     const defaultValues = this.getDefaultConfig();
-    console.log('content', content);
     this.config = {
       x_position: this.config?.x_position ?? null,
       y_position: this.config?.y_position ?? null,

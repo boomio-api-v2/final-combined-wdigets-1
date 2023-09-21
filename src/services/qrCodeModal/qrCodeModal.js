@@ -180,8 +180,10 @@ export default class {
       winningAnimation.classList.add('winningAnimation');
       winningAnimation.setAttribute('src', winningAnimationGif);
       this.mainContainer.appendChild(winningAnimation);
-      localStorage.setItem('start_widget', false);
-      localStorage.setItem('closing_button', false);
+      localStorage.removeItem('start_widget');
+      localStorage.removeItem('closing_button');
+      localStorage.removeItem('boomio_hint_widget');
+      localStorage.removeItem('start_signal');
       winningAnimation.addEventListener('load', () => {
         setTimeout(() => {
           winningAnimation.remove();

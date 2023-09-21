@@ -30,7 +30,6 @@ class WidgetHtmlService {
     widgetScreenWrapper.appendChild(widgetContent);
     document.body.appendChild(widgetScreenWrapper);
     const boomioStartWidget = localStorage.getItem('start_widget');
-    // localStorage.getItem('closing_button') &&
     if ((type === 'start_widget' || !type) && boomioStartWidget !== 'false') {
       const boomioMainHolder = document.createElement('div');
       boomioMainHolder.style.cursor = 'pointer';
@@ -73,16 +72,27 @@ class WidgetHtmlService {
           boomioMainHolder.style.animation =
             'bounce 0.4s 6 alternate ease-out, bounce-left 3s forwards';
           setTimeout(() => {
-            const computedStyle = window.getComputedStyle(boomioMainHolder);
-            const bottom = computedStyle.getPropertyValue('bottom');
-            const right = computedStyle.getPropertyValue('right');
-            const positionObject = {
-              bottom,
-              right,
-            };
-            localStorage.setItem('boomio_hint_widget', JSON.stringify(positionObject));
+            if (boomioMainHolder) {
+              const windowHeight = window.innerHeight;
+              const windowWidth = window.innerWidth;
+
+              const computedStyle = getComputedStyle(boomioMainHolder);
+              const bottomInPixels = parseFloat(computedStyle.bottom);
+              const rightInPixels = parseFloat(computedStyle.right);
+
+              const bottomPercentage = (bottomInPixels / windowHeight) * 100;
+              const rightPercentage = (rightInPixels / windowWidth) * 100;
+
+              const positionObject = {
+                bottom: bottomPercentage + '%',
+                right: rightPercentage + '%',
+              };
+
+              localStorage.setItem('boomio_hint_widget', JSON.stringify(positionObject));
+            }
+
             boomioMainHolder.style.animation = 'move-slowly 1s infinite alternate';
-          }, 3000); // Delay the start of the move-slowly animation by 6 seconds (duration of the previous animations)
+          }, 3000);
         }
       });
 
@@ -92,11 +102,11 @@ class WidgetHtmlService {
         if (!storedBoomioWidgetPosition) {
           setTimeout(() => {
             boomioMainHolder.style.animation = 'move-in 1.5s linear forwards';
-          }, 1000);
+          }, 500);
 
           setTimeout(() => {
             this.imageElement.src = BoomioBubbles;
-          }, 10000);
+          }, 4000);
         }
       }, 100);
       this.changeImagePeriodically();

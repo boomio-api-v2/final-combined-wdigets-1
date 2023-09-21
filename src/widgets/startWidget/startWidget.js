@@ -50,7 +50,10 @@ class StartWidget {
       const element = document.getElementById('start_widget');
       element.style.display = 'none';
       localStorage.setItem('closing_button', 'start_widget');
-      boomioService.signal('START_OK');
+      if (localStorage.getItem('start_signal')) {
+        boomioService.signal('START_OK');
+      }
+      localStorage.setItem('start_signal', true);
       // animationEl.remove();
     }
 
@@ -63,7 +66,11 @@ class StartWidget {
       const element = document.getElementById('start_widget');
       element.style.display = 'none';
       localStorage.setItem('closing_button', 'start_widget');
-      boomioService.signal('START_OK');
+      if (localStorage.getItem('start_signal')) {
+        boomioService.signal('START_OK');
+      }
+      localStorage.setItem('start_signal', true);
+
       // animationEl.remove();
     };
   };

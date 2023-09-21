@@ -121,9 +121,9 @@ export const drip5 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/drp5.p
 export const hand1 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/rr1.png?raw=true';
 export const hand2 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/rr2.png?raw=true';
 
-export const BoomioBubbles = [
+export const BoomioBubblesGif = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/Bubbles/Boomio_bubble_game.gif?raw=true',
 ];
-export const BoomioBubblesGif = [
+export const BoomioBubbles = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/Bubbles/Boomio_bubble_hint_image.png?raw=true',
 ];
