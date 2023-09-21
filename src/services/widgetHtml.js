@@ -30,11 +30,7 @@ class WidgetHtmlService {
     widgetScreenWrapper.appendChild(widgetContent);
     document.body.appendChild(widgetScreenWrapper);
     const boomioStartWidget = localStorage.getItem('start_widget');
-    if (
-      localStorage.getItem('closing_button') &&
-      (type === 'start_widget' || !type) &&
-      boomioStartWidget !== 'false'
-    ) {
+    if ((type === 'start_widget' || !type) && boomioStartWidget !== 'false' && boomioStartWidget) {
       const boomioMainHolder = document.createElement('div');
       boomioMainHolder.style.cursor = 'pointer';
       boomioMainHolder.style.position = 'fixed';
