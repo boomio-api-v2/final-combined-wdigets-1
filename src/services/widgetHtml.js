@@ -41,9 +41,8 @@ class WidgetHtmlService {
 
       this.imageElement = document.createElement('img');
       this.imageElement.src = BoomioBubbles;
-
-      this.imageElement.style.width = '150px'; // Change width here
-      this.imageElement.style.height = '150px'; // Change height here
+      this.imageElement.style.width = '142.5px'; // Change width here
+      this.imageElement.style.height = '160.5px'; // Change height here
       boomioMainHolder.appendChild(this.imageElement);
 
       boomioMainHolder.addEventListener('click', (e) => {
