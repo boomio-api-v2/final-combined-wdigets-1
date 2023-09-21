@@ -103,7 +103,7 @@
     100% {
       right: 70%;
       bottom: 0px;
-      transform: translateX(0px) rotate(9360deg); /* Adjust the translateX value for faster movement */
+      transform: translateX(0px) rotate(-2160deg); /* Adjust the translateX value for faster movement */
     }
   }
 }
@@ -133,7 +133,7 @@
     100% {
       right: 50%;
       bottom: 0px;
-      transform: translateX(0px) rotate(9360deg); /* Adjust the translateX value for faster movement */
+      transform: translateX(0px) rotate(-2160deg); /* Adjust the translateX value for faster movement */
     }
   }
 }
