@@ -38,10 +38,9 @@ class WidgetHtmlService {
       const storedBoomioWidgetPosition = JSON.parse(localStorage.getItem('boomio_hint_widget'));
       boomioMainHolder.style.bottom = storedBoomioWidgetPosition?.bottom ?? '30%'; // Adjust the starting vertical position
       boomioMainHolder.style.right = storedBoomioWidgetPosition?.right ?? '-150px'; // Adjust the starting horizontal position off-screen
-
       this.imageElement = document.createElement('img');
       this.imageElement.src = BoomioBubbles;
-      this.imageElement.style.width = '142.5px'; // Change width here
+      this.imageElement.style.width = '160.5px'; // Change width here
       this.imageElement.style.height = '160.5px'; // Change height here
       boomioMainHolder.appendChild(this.imageElement);
 
