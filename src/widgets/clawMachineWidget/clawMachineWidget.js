@@ -332,6 +332,7 @@ class ClawMachineWidget {
               presentType.includes('GiftTwo')
             ) {
               function restartGif(animationElement) {
+                console.log('test');
                 const randomQueryParam = `?a=${Math.random()}`;
                 const release = `url(${clawRelease})`;
 
@@ -341,7 +342,7 @@ class ClawMachineWidget {
                     const gifUrl = `url(${clawImg})`;
                     animationElement.style.backgroundImage = gifUrl;
                     animationElement.classList.add('claw-div-transition');
-                  }, 400);
+                  }, 800);
                 }, 10);
               }
               restartGif(this.clawDiv);
