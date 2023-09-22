@@ -332,7 +332,6 @@ class ClawMachineWidget {
               presentType.includes('GiftTwo')
             ) {
               function restartGif(animationElement) {
-                console.log('test');
                 const randomQueryParam = `?a=${Math.random()}`;
                 const release = `url(${clawRelease})`;
 
