@@ -22,16 +22,11 @@ class StartWidget {
 
     new DragElement(animationEl);
 
-    function closeModalDiscount() {
-      boomioService.signal('START_CLOSE');
-      animationEl.remove();
-    }
-
     const { secondary_text, top_text, hint_static_text, button_text, under_picture_text } =
       localStorageService.config;
 
     animationEl.innerHTML = `
-          <div class='position-relative product-design-bg-2 Preview-select' style='min-width: 300px; padding: 40px 32px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd''>
+          <div class='position-relative product-design-bg-2 Preview-select' style='display:none;min-width: 300px; padding: 40px 32px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd' id='start_widget'>
           <div class='close_button align-right'>
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
@@ -51,17 +46,35 @@ class StartWidget {
             </div>
           </div>
     `;
+    function closeModalDiscount() {
+      const element = document.getElementById('start_widget');
+      element.style.display = 'none';
+      localStorage.setItem('closing_button', 'start_widget');
+      localStorage.setItem('start_signal', true);
+      if (localStorage.getItem('start_signal')) {
+        boomioService.signal('START_OK');
+      }
+    }
+
     document.getElementById('close_div_img').onclick = closeModalDiscount;
+    localStorage.setItem('closing_button', 'start_widget');
+    localStorage.setItem('start_widget', true);
 
     const letGoBtn = document.getElementById('letGoToBtn');
     letGoBtn.onclick = () => {
-      boomioService.signal('START_OK');
-      animationEl.remove();
+      const element = document.getElementById('start_widget');
+      element.style.display = 'none';
+      localStorage.setItem('closing_button', 'start_widget');
+
+      localStorage.setItem('start_signal', true);
+
+      if (localStorage.getItem('start_signal')) {
+        boomioService.signal('START_OK');
+      }
     };
   };
 }
 
 export default () => {
-  console.log('asdasd');
   new StartWidget();
 };
