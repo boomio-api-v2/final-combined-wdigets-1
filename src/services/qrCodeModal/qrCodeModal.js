@@ -196,6 +196,18 @@ export default class {
     this.modalBackground.remove();
     const element = document.getElementById('boomio-widget-screen-wrapper-content');
     if (element) {
+      const localStoragePropertyName = 'boomioPluginConfig';
+      const existingConfigJSON = localStorage.getItem(localStoragePropertyName);
+      if (existingConfigJSON) {
+        const existingConfig = JSON.parse(existingConfigJSON);
+        existingConfig.p_top_text = 'YOU GOT ??? DISCOUNT!';
+        localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
+      } else {
+        const updatedConfig = {
+          p_top_text: 'YOU GOT ??? DISCOUNT!',
+        };
+        localStorage.setItem(localStoragePropertyName, JSON.stringify(updatedConfig));
+      }
       element.remove();
     }
   };
