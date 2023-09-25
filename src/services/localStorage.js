@@ -40,7 +40,6 @@ class LocalStorageService {
       this.updateConfig({ static_text: this.static_exists });
     }
     const defaultValues = this.getDefaultConfig();
-
     this.config = {
       x_position: this.config?.x_position ?? null,
       y_position: this.config?.y_position ?? null,
@@ -96,6 +95,11 @@ class LocalStorageService {
       : puzzle.puzzles_collected === 4
       ? 'CONGRATULATIONS! ENJOY YOUR A REWARD!'
       : 'COLLECT ALL PIECES AND WIN A GIFT!';
+    const secondary_text = config?.secondary_text ?? null;
+    const top_text = config?.top_text ?? null;
+    const hint_static_text = config?.hint_static_text ?? null;
+    const button_text = config?.button_text ?? null;
+    const under_picture_text = config?.under_picture_text ?? null;
 
     const widget_subtype = config?.subtype ?? false;
 
@@ -129,6 +133,11 @@ class LocalStorageService {
       static_text,
       boomioStopTill,
       m,
+      secondary_text,
+      top_text,
+      hint_static_text,
+      button_text,
+      under_picture_text,
     };
   }
 }

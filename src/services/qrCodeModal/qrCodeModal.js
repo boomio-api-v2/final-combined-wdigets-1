@@ -180,6 +180,10 @@ export default class {
       winningAnimation.classList.add('winningAnimation');
       winningAnimation.setAttribute('src', winningAnimationGif);
       this.mainContainer.appendChild(winningAnimation);
+      localStorage.removeItem('start_widget');
+      localStorage.removeItem('closing_button');
+      localStorage.removeItem('boomio_hint_widget');
+      localStorage.removeItem('start_signal');
       winningAnimation.addEventListener('load', () => {
         setTimeout(() => {
           winningAnimation.remove();
@@ -190,6 +194,22 @@ export default class {
 
   closeModal = () => {
     this.modalBackground.remove();
+    const localStoragePropertyName = 'boomioPluginConfig';
+    const existingConfigJSON = localStorage.getItem(localStoragePropertyName);
+    if (existingConfigJSON) {
+      const existingConfig = JSON.parse(existingConfigJSON);
+      existingConfig.p_top_text = 'YOU GOT ??? DISCOUNT!';
+      localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
+    } else {
+      const updatedConfig = {
+        p_top_text: 'YOU GOT ??? DISCOUNT!',
+      };
+      localStorage.setItem(localStoragePropertyName, JSON.stringify(updatedConfig));
+    }
+    const element = document.getElementById('boomio-widget-screen-wrapper-content');
+    if (element) {
+      element.remove();
+    }
   };
 
   showRatingModal = () => {

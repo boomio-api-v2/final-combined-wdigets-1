@@ -338,7 +338,7 @@ class ClawMachineWidget {
                     const gifUrl = `url(${clawImg})`;
                     animationElement.style.backgroundImage = gifUrl;
                     animationElement.classList.add('claw-div-transition');
-                  }, 800);
+                  }, 500);
                 }, 10);
               }
               restartGif(this.clawDiv);
