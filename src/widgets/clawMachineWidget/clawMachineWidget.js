@@ -55,10 +55,7 @@ class ClawMachineWidget {
 
     try {
       await Promise.all(imagePromises);
-      console.log('All images preloaded successfully.');
-    } catch (error) {
-      console.error('Error preloading images:', error);
-    }
+    } catch (error) {}
   }
 
   startClawMachine() {
@@ -561,8 +558,6 @@ class ClawMachineWidget {
           newClawPresentDiv.addEventListener('click', () => {
             this.activateGrabbing();
           });
-        } else {
-          console.log('newClawPresentDiv not found in the DOM'); // Check if this is logged
         }
 
         clawLineDiv.appendChild(newClawPresentDiv);
