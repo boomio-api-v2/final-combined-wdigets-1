@@ -15,20 +15,22 @@ export default class {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
     this.updateConfigData();
-    this.showQrCode();
+    if (this.config?.m) {
+      this.showQrCode();
+    } else {
+      this.showTextfield();
+    }
     this.showWinningAnimation();
   }
 
   showQrCode = () => {
     this.loadQrCodeData();
     isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
-
     this.showSpinner();
   };
 
   showSpinner = () => {
     this.loading = true;
-
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     const spinnerDiv = document.querySelector('#qr_loader_spinner .spinner');
     if (spinnerDiv) {
@@ -324,6 +326,34 @@ export default class {
           <div class="coupon__preview__card__after"></div>
           <div class="coupon__preview__card__befor"></div>
       </div>`;
+  };
+
+  showTextfield = () => {
+    this.createModalWindow(272, 220);
+    this.modal.classList.add('desktop-qr-modal');
+    this.modal.innerHTML = `
+    <div class="boomio-boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
+      <img src="${closeImage}" id="boomio-boomio-close-modal-btn" class="boomio-boomio-close-modal-btn"/>
+    </div>
+    <div class="coupon__preview__card__header text-center d-block">
+        <h1 id='p_top_text'>Enter your email</h1>
+    </div>
+    <div class="text-center">
+        <input type="text" id="boomio-emailField" placeholder="Enter your email">
+        <button id="boomio-email-btn">Submit</button>
+    </div>
+  </div>
+    `;
+
+    document.getElementById('boomio-boomio-close-modal-btn').onclick = () => {
+      this.modalBackground.remove();
+      this.showSavingOrExitModal();
+    };
+
+    document.getElementById('boomio-email-btn').onclick = () => {
+      this.modalBackground.remove();
+      this.showSavingOrExitModal();
+    };
   };
 
   showQRDesktop = () => {
