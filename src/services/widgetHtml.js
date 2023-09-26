@@ -44,8 +44,9 @@ class WidgetHtmlService {
       boomioMainHolder.style.right = storedBoomioWidgetPosition?.right ?? '-150px'; // Adjust the starting horizontal position off-screen
       this.imageElement = document.createElement('img');
       this.imageElement.src = BoomioBubbles;
-      this.imageElement.style.width = '160.5px'; // Change width here
-      this.imageElement.style.height = '160.5px'; // Change height here
+      const isMobile = window.innerWidth <= 768;
+      this.imageElement.style.width = isMobile ? '120.375px' : '160.5px'; // Change width here
+      this.imageElement.style.height = isMobile ? '120.375px' : '160.5px'; // Change height here
       boomioMainHolder.appendChild(this.imageElement);
 
       boomioMainHolder.addEventListener('click', (e) => {
