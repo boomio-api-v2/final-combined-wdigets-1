@@ -26,7 +26,7 @@ class StartWidget {
       localStorageService.config;
 
     animationEl.innerHTML = `
-          <div class='position-relative product-design-bg-2 Preview-select' style='display:none;min-width: 180px; padding: 20px 22px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd' id='start_widget'>
+          <div class='position-relative product-design-bg-2 Preview-select' style='display:none;min-width: 180px;max-width: 300px; padding: 20px 22px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd' id='start_widget'>
           <div class='close_button align-right'>
           <img src='${closeIcon}' width='30' height='30' alt='' id="close_div_img">
         </div>
