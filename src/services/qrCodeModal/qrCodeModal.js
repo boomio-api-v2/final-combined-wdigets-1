@@ -14,16 +14,17 @@ const disLikeBtnImage =
 export default class {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
-    this.updateConfigData();
     if (this.config?.m) {
       this.showQrCode();
     } else {
+      this.updateConfigData();
       this.showTextfield();
     }
     this.showWinningAnimation();
   }
 
   showQrCode = () => {
+    this.updateConfigData();
     this.loadQrCodeData();
     isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
     this.showSpinner();
@@ -53,7 +54,9 @@ export default class {
   async loadQrCodeData() {
     try {
       this.loading = true;
-      await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal');
+      await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal', {
+        user_email: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_email,
+      });
       this.updateConfigData();
 
       this.showFinalData(); // Show the final data after the request is finished
@@ -201,10 +204,12 @@ export default class {
     if (existingConfigJSON) {
       const existingConfig = JSON.parse(existingConfigJSON);
       existingConfig.p_top_text = 'YOU GOT ??? DISCOUNT!';
+      existingConfig.user_email = null;
       localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
     } else {
       const updatedConfig = {
         p_top_text: 'YOU GOT ??? DISCOUNT!',
+        user_email: null,
       };
       localStorage.setItem(localStoragePropertyName, JSON.stringify(updatedConfig));
     }
@@ -312,6 +317,23 @@ export default class {
         `;
   };
 
+  getEmailHtml = () => {
+    if (!JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_email) {
+      return ``;
+    }
+    return `
+      <div style="margin-bottom:8px;">
+        <p style="line-height:14px !important;color: black; font-weight: 400; display: inline; font-size: 14px;">
+          Your reward was sent to:
+        </p>
+        <div style="margin-bottom:14px;">
+          <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;">
+            ${JSON.parse(localStorage.getItem('boomioPluginConfig')).user_email}
+          </p>
+        </div>
+      </div>`;
+  };
+
   getCouponHtml = () => {
     if (this.config.app_url === 'ice') {
       return QrCodeModal.getGreyCoupon();
@@ -329,18 +351,28 @@ export default class {
   };
 
   showTextfield = () => {
-    this.createModalWindow(272, 220);
+    this.createModalWindow(263, 268);
     this.modal.classList.add('desktop-qr-modal');
     this.modal.innerHTML = `
     <div class="boomio-boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
       <img src="${closeImage}" id="boomio-boomio-close-modal-btn" class="boomio-boomio-close-modal-btn"/>
     </div>
-    <div class="coupon__preview__card__header text-center d-block">
-        <h1 id='p_top_text'>Enter your email</h1>
+    <div class="text-center d-block" >
+    <h1 id='p_top_text' style='margin-bottom:16px;font-size:32px;color:background: #473F4E;'>YOU WON!</h1>
+</div>
+    <div class="text-center d-block">
+        <h6 id='p_top_text' style='margin:0px 10px;font-size:14px;color:background: #473F4E;font-weight:400;'>Where should we send your reward?</h6>
     </div>
     <div class="text-center">
-        <input type="text" id="boomio-emailField" placeholder="Enter your email">
-        <button id="boomio-email-btn">Submit</button>
+        <input style='margin:16px 0px;font-size:14px;color:background: #473F4E;font-weight:400;border-radius:25px;padding:10px 16px' type="text" id="boomio-emailField" placeholder="Enter your email address...">
+  <div class="coupon_preview_card_footer" style='width:200px;'>
+  <a id="boomio-email-btn">
+        <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
+          <div class="text-wrapper">
+            <p style="font-size: 16px; line-height: initial;" id='p_button_text_line2'>Get reward</p>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
     `;
@@ -351,14 +383,25 @@ export default class {
     };
 
     document.getElementById('boomio-email-btn').onclick = () => {
+      const emailInput = document.getElementById('boomio-emailField');
+      const emailValue = emailInput.value;
+
+      const localStoragePropertyName = 'boomioPluginConfig';
+      const existingConfigJSON = localStorage.getItem(localStoragePropertyName);
+
+      if (existingConfigJSON) {
+        const existingConfig = JSON.parse(existingConfigJSON);
+        existingConfig.user_email = emailValue;
+        localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
+      }
+
       this.modalBackground.remove();
-      this.showSavingOrExitModal();
+      this.showQrCode();
     };
   };
 
   showQRDesktop = () => {
     this.createModalWindow(272, 520);
-
     this.modal.classList.add('desktop-qr-modal');
     this.modal.innerHTML = `
     <div class="boomio-boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
@@ -368,7 +411,9 @@ export default class {
         <h1 id='p_top_text'>${this.config.p_top_text} </h1>
     </div>
     ${this.getCouponHtml()}
-    <div style='font-size:14px;'>
+    <div style='font-size:14px;'>  
+      ${this.getEmailHtml()}
+
     <p style="line-height:14px !important;color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${
       this.config.p_bottom_text_start_pc
     }

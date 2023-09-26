@@ -100,6 +100,7 @@ class LocalStorageService {
     const hint_static_text = config?.hint_static_text ?? null;
     const button_text = config?.button_text ?? null;
     const under_picture_text = config?.under_picture_text ?? null;
+    const user_email = config?.user_email ?? null;
 
     const widget_subtype = config?.subtype ?? false;
 
@@ -138,6 +139,7 @@ class LocalStorageService {
       hint_static_text,
       button_text,
       under_picture_text,
+      user_email,
     };
   }
 }
