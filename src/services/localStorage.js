@@ -101,8 +101,8 @@ class LocalStorageService {
     const button_text = config?.button_text ?? null;
     const under_picture_text = config?.under_picture_text ?? null;
     const user_email = config?.user_email ?? null;
-
     const widget_subtype = config?.subtype ?? false;
+    const email_collection_required = config?.email_collection_required ?? false;
 
     return {
       widget_subtype,
@@ -140,6 +140,7 @@ class LocalStorageService {
       button_text,
       under_picture_text,
       user_email,
+      email_collection_required,
     };
   }
 }
