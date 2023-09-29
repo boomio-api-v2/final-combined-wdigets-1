@@ -13,6 +13,7 @@ const disLikeBtnImage =
 
 export default class {
   constructor() {
+    this.updateConfigData();
     this.mainContainer = widgetHtmlService.container;
     if (!this.config?.email_collection_required) {
       this.showQrCode();
