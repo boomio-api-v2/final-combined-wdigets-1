@@ -17,6 +17,7 @@ import {
   ClawButton,
   ButtonBackground,
 } from './constants';
+import boomio from '@/services/boomio';
 
 class ClawMachineWidget {
   constructor() {
@@ -223,6 +224,10 @@ class ClawMachineWidget {
     if (this.animationInProgress || this.isHoldingclawPresentDivs.some((held) => held)) {
       return;
     }
+    boomio.signal('hammer_click', 'signal', {
+      widget_type: 'claw',
+    });
+
     const buttonElement = document.querySelector('.boomio-control-button');
 
     buttonElement.style.pointerEvents = 'none';

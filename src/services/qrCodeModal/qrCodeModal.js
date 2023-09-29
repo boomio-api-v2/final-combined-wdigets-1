@@ -109,6 +109,8 @@ export default class {
     const p_coupon_text_line1 = document.getElementById('p_coupon_text_line1');
     const p_coupon_text_line2 = document.getElementById('p_coupon_text_line2');
     const p_code_text = document.getElementById('p_code_text');
+    const product = document.getElementById('product');
+
     const p_bottom_text_start_pc = document.getElementById('p_bottom_text_start_pc');
     const p_top_text = document.getElementById('p_top_text');
     const p_bottom_text_start_m = document.getElementById('p_bottom_text_start_m');
@@ -126,9 +128,12 @@ export default class {
       p_coupon_text_line2.textContent = this.config?.p_coupon_text_line2;
     }
 
-    // Check if p_code_text element exists and is not null
     if (p_code_text) {
       p_code_text.textContent = this.config?.p_code_text;
+    }
+
+    if (product) {
+      product.textContent = 'For: ' + this.config?.product;
     }
 
     // Check if p_bottom_text_start_pc element exists and is not null
@@ -348,6 +353,7 @@ export default class {
                 <h3 >${this.config.p_coupon_text_line1}</h3>
                 <h4 >${this.config.p_coupon_text_line2}</h1>
               <p >${this.config.p_code_text} </p>
+              <p >For: ${this.config.product} </p>
             </div>
           </div>
         </div>
@@ -380,7 +386,8 @@ export default class {
           <div class="coupon_info"> 
                 <h3 id="p_coupon_text_line1">${this.config.p_coupon_text_line1}</h3>
                 <h4 id="p_coupon_text_line2">${this.config.p_coupon_text_line2}</h4>
-              <p id="p_code_text" style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
+                <p id="p_code_text" style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
+                <p id="product" style="text-align: center; font-weight: 600; font-size: 12px">For: ${this.config.product} </p>
           </div>
           <div class="coupon__preview__card__after"></div>
           <div class="coupon__preview__card__befor"></div>
