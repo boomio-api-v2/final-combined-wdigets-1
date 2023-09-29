@@ -109,6 +109,8 @@ export default class {
     const p_coupon_text_line1 = document.getElementById('p_coupon_text_line1');
     const p_coupon_text_line2 = document.getElementById('p_coupon_text_line2');
     const p_code_text = document.getElementById('p_code_text');
+    const product = document.getElementById('product');
+
     const p_bottom_text_start_pc = document.getElementById('p_bottom_text_start_pc');
     const p_top_text = document.getElementById('p_top_text');
     const p_bottom_text_start_m = document.getElementById('p_bottom_text_start_m');
@@ -118,7 +120,7 @@ export default class {
     var p_bottom_text_end_m = document.getElementById('p_bottom_text_end_m');
     // Check if p_coupon_text_line1 element exists and is not null
     if (p_coupon_text_line1) {
-      p_coupon_text_line1.textContent = this.config?.p_coupon_text_line1;
+      p_coupon_text_line1.textContent = '- ' + this.config?.p_coupon_text_line1;
     }
 
     // Check if p_coupon_text_line2 element exists and is not null
@@ -126,9 +128,12 @@ export default class {
       p_coupon_text_line2.textContent = this.config?.p_coupon_text_line2;
     }
 
-    // Check if p_code_text element exists and is not null
     if (p_code_text) {
       p_code_text.textContent = this.config?.p_code_text;
+    }
+
+    if (product) {
+      product.textContent = 'For: ' + this.config?.product;
     }
 
     // Check if p_bottom_text_start_pc element exists and is not null
@@ -316,6 +321,7 @@ export default class {
     exitBtn.innerHTML = exitBtnHtml;
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('modal-buttons');
+    boomio - boomio;
     buttonContainer.appendChild(saveBtn);
     buttonContainer.appendChild(exitBtn);
 
@@ -325,10 +331,10 @@ export default class {
 
   getCloseModalBtn = (closeCallback) => {
     const closeBtnWrapper = document.createElement('div');
-    closeBtnWrapper.classList.add('boomio-boomio-close-modal-btn-wrapper');
+    closeBtnWrapper.classList.add('boomio-close-modal-btn-wrapper');
     const closeBtn = document.createElement('img');
     closeBtn.src = closeImage;
-    closeBtn.classList.add('boomio-boomio-close-modal-btn');
+    closeBtn.classList.add('boomio-close-modal-btn');
     closeBtn.onclick = closeCallback;
     closeBtnWrapper.appendChild(closeBtn);
     return closeBtnWrapper;
@@ -345,9 +351,9 @@ export default class {
         <div class="coupon-grey-shadow-wrapper" id="coupon_div">
           <div class="coupon-grey" style="background-image: url(${oldCouponImage})">
             <div class="coupon_info">
-                <h3 >${this.config.p_coupon_text_line1}</h3>
-                <h4 >${this.config.p_coupon_text_line2}</h1>
+                <h3 >- ${this.config.p_coupon_text_line1}</h3>
               <p >${this.config.p_code_text} </p>
+              <p >For: ${this.config.product} </p>
             </div>
           </div>
         </div>
@@ -378,9 +384,9 @@ export default class {
     return `
        <div class="coupon__preview__card coupon_div" id="coupon_div" >
           <div class="coupon_info"> 
-                <h3 id="p_coupon_text_line1">${this.config.p_coupon_text_line1}</h3>
-                <h4 id="p_coupon_text_line2">${this.config.p_coupon_text_line2}</h4>
-              <p id="p_code_text" style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
+                <h3 id="p_coupon_text_line1">- ${this.config.p_coupon_text_line1}</h3>
+                <p id="p_code_text" style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
+                <p id="product" style="text-align: center; font-weight: 600; font-size: 12px">For: ${this.config.product} </p>
           </div>
           <div class="coupon__preview__card__after"></div>
           <div class="coupon__preview__card__befor"></div>
@@ -391,11 +397,11 @@ export default class {
     this.createModalWindow(290, 284);
     this.modal.classList.add('desktop-qr-modal');
     this.modal.innerHTML = `
-    <div class="boomio-boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
-    <img src="${closeImage}" id="boomio-boomio-close-modal-btn" class="boomio-boomio-close-modal-btn"/>
+    <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
+    <img src="${closeImage}" id="boomio-close-modal-btn" class="boomio-close-modal-btn"/>
   </div>
   <div class="text-center d-block" >
-    <h1 id='p_top_text' style='margin-bottom:16px;font-size:32px;color:background: #473F4E;'>YOU WON!</h1>
+    <h1 id='p_top_text_new' style='margin-bottom:16px;font-size:34px;color:background: #473F4E;'>YOU WON!</h1>
   </div>
   <div class="text-center d-block">
     <h6 id='p_top_text' style='margin:0px 24px;font-size:14px;color:background: #473F4E;font-weight:400;'>Where should we send your reward?</h6>
@@ -415,7 +421,7 @@ export default class {
       </div>
     `;
     this.modal.style.justifyContent = 'start';
-    const closeBtn = document.getElementById('boomio-boomio-close-modal-btn');
+    const closeBtn = document.getElementById('boomio-close-modal-btn');
     if (closeBtn) {
       closeBtn.onclick = () => {
         this.modalBackground.remove();
@@ -463,11 +469,11 @@ export default class {
     this.createModalWindow(272, 520);
     this.modal.classList.add('desktop-qr-modal');
     this.modal.innerHTML = `
-    <div class="boomio-boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
-      <img src="${closeImage}" id="boomio-boomio-close-modal-btn" class="boomio-boomio-close-modal-btn"/>
+    <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
+      <img src="${closeImage}" id="boomio-close-modal-btn" class="boomio-close-modal-btn"/>
     </div>
-    <div class="coupon__preview__card__header text-center d-block">
-        <h1 id='p_top_text'>${this.config.p_top_text} </h1>
+    <div class="text-center d-block">
+        <h1 id='p_top_text_new' style='font-size:32px'>YOU WON! </h1>
     </div>
     ${this.getCouponHtml()}
     <div style='font-size:14px;'>  
@@ -487,7 +493,7 @@ export default class {
   </div>
     `;
 
-    document.getElementById('boomio-boomio-close-modal-btn').onclick = () => {
+    document.getElementById('boomio-close-modal-btn').onclick = () => {
       this.modalBackground.remove();
       this.showSavingOrExitModal();
     };
@@ -548,8 +554,8 @@ export default class {
     
         <div class="coupon__preview__body coupon_discount_modal">
     
-            <div class="coupon__preview__card__header text-center d-block">
-                <h1 id='p_top_text'>${this.config.p_top_text}</h1>
+            <div class="text-center d-block">
+                <h1 id='p_top_text_new' style='font-size:32px'>YOU WON!</h1>
             </div>
     
             <div class="coupon_preview_card_info ">

@@ -2,6 +2,7 @@ import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services'
 import './styles.css';
 import { WhackHammer, WhackMole00, WhackMole01Reversed, WhackMoleHit } from '@/сonstants';
 import { createCloseMoveButtons } from '@/utlis';
+import boomio from '@/services/boomio';
 
 class WhackWidget {
   constructor() {
@@ -238,6 +239,9 @@ class WhackWidget {
     const whackMole = (event) => {
       // console.log('event ===', event.target.classList);
       function moleHit(imageElement) {
+        boomio.signal('hammer_click', 'signal', {
+          widget_type: 'whack',
+        });
         const mole = document.querySelector('.boomio-mole');
         mole.classList.add('boomio-mole-hit');
         const src = WhackMoleHit;

@@ -118,7 +118,9 @@ class IceWidget {
   };
 
   createPiecesOfIces = () => {
-    boomio.signal('hammer_click');
+    boomio.signal('hammer_click', 'signal', {
+      widget_type: 'ice',
+    });
     this.showHammerAnimation();
     icePieceImages.forEach((img) => {
       const image = document.createElement('img');

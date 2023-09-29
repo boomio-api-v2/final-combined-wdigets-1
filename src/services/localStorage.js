@@ -73,7 +73,7 @@ class LocalStorageService {
       config?.p_bottom_text_start_m ?? 'To have immediate access for all your great rewards ';
     const p_bottom_text_end_m = config?.p_bottom_text_end_m ?? 'open or download';
     const p_top_text = config?.p_top_text ?? 'YOU GOT ??? DISCOUNT!';
-    const p_code_text = config?.p_code_text ?? 'Unique code: ???"';
+    const p_code_text = config?.p_code_text ?? 'Unique code: ???';
     const p_coupon_text = config?.p_coupon_text ?? null;
     const p_bottom_text = config?.p_bottom_text ?? null;
     const p_button_text = config?.p_button_text ?? null;
@@ -103,6 +103,7 @@ class LocalStorageService {
     const user_email = config?.user_email ?? null;
     const widget_subtype = config?.subtype ?? false;
     const email_collection_required = config?.email_collection_required ?? false;
+    const product = config?.product ?? '???';
 
     return {
       widget_subtype,
@@ -120,7 +121,7 @@ class LocalStorageService {
       w_top_text,
       p_top_text,
       p_coupon_text,
-      p_code_text,
+      product,
       p_bottom_text,
       p_button_text,
       p_bottom_text_end_pc,
@@ -141,6 +142,8 @@ class LocalStorageService {
       under_picture_text,
       user_email,
       email_collection_required,
+      p_code_text,
+      product,
     };
   }
 }

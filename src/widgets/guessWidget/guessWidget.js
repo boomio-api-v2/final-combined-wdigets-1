@@ -7,6 +7,7 @@ import {
 } from '@/services';
 import './styles.css';
 import { createCloseMoveButtons } from '@/utlis';
+import boomio from '@/services/boomio';
 
 class GuessWidget {
   constructor() {
@@ -188,6 +189,10 @@ class GuessWidget {
     let disableDeck = false;
 
     function flipCard({ target: clickedCard }) {
+      boomio.signal('hammer_click', 'signal', {
+        widget_type: 'guess',
+      });
+
       if (clickedCard.classList.contains('disabled')) return;
       if (cardOne !== clickedCard && !disableDeck) {
         clickedCard.classList.add('boomio-card-flip');
