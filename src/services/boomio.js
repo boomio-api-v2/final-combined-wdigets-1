@@ -127,11 +127,12 @@ class BoomioService extends UserService {
     });
   }
 
-  signal(signal_code, ev_type) {
+  signal(signal_code, ev_type, additional_fields) {
     return new Promise((resolve, reject) => {
       const requestData = {
         ev_type: ev_type ?? 'signal',
         signal_code,
+        ...additional_fields,
       };
       if (this.config?.m) {
         requestData.m = this.config?.m;

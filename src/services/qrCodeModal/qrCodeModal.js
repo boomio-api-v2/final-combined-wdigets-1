@@ -14,21 +14,24 @@ const disLikeBtnImage =
 export default class {
   constructor() {
     this.mainContainer = widgetHtmlService.container;
-    this.updateConfigData();
-    this.showQrCode();
+    if (this.config?.email_collection_required) {
+      this.showQrCode();
+    } else {
+      this.updateConfigData();
+      this.showTextfield();
+    }
     this.showWinningAnimation();
   }
 
   showQrCode = () => {
+    this.updateConfigData();
     this.loadQrCodeData();
     isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
-
     this.showSpinner();
   };
 
   showSpinner = () => {
     this.loading = true;
-
     const qrcodeShowDiv = document.querySelector('#qrcodeShow');
     const spinnerDiv = document.querySelector('#qr_loader_spinner .spinner');
     if (spinnerDiv) {
@@ -51,7 +54,9 @@ export default class {
   async loadQrCodeData() {
     try {
       this.loading = true;
-      await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal');
+      await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal', {
+        user_email: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_email,
+      });
       this.updateConfigData();
 
       this.showFinalData(); // Show the final data after the request is finished
@@ -192,23 +197,28 @@ export default class {
     }, 100);
   };
 
-  closeModal = () => {
+  closeModal = (exit) => {
     this.modalBackground.remove();
-    const localStoragePropertyName = 'boomioPluginConfig';
-    const existingConfigJSON = localStorage.getItem(localStoragePropertyName);
-    if (existingConfigJSON) {
-      const existingConfig = JSON.parse(existingConfigJSON);
-      existingConfig.p_top_text = 'YOU GOT ??? DISCOUNT!';
-      localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
-    } else {
-      const updatedConfig = {
-        p_top_text: 'YOU GOT ??? DISCOUNT!',
-      };
-      localStorage.setItem(localStoragePropertyName, JSON.stringify(updatedConfig));
-    }
-    const element = document.getElementById('boomio-widget-screen-wrapper-content');
-    if (element) {
-      element.remove();
+    if (exit) {
+      const localStoragePropertyName = 'boomioPluginConfig';
+      const existingConfigJSON = localStorage.getItem(localStoragePropertyName);
+      if (existingConfigJSON) {
+        const existingConfig = JSON.parse(existingConfigJSON);
+        existingConfig.p_top_text = 'YOU GOT ??? DISCOUNT!';
+        existingConfig.user_email = null;
+        existingConfig.email_collection_required = false;
+        localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
+      } else {
+        const updatedConfig = {
+          p_top_text: 'YOU GOT ??? DISCOUNT!',
+          user_email: null,
+        };
+        localStorage.setItem(localStoragePropertyName, JSON.stringify(updatedConfig));
+      }
+      const element = document.getElementById('boomio-widget-screen-wrapper-content');
+      if (element) {
+        element.remove();
+      }
     }
   };
 
@@ -255,7 +265,7 @@ export default class {
 
     const saveBtn = document.createElement('button');
     saveBtn.onclick = () => {
-      boomioService.signal('exit_yes');
+      boomioService.signal('exit_cancel');
       this.closeModal();
       this.showQrCode();
     };
@@ -264,8 +274,41 @@ export default class {
 
     const exitBtn = document.createElement('div');
     exitBtn.onclick = () => {
+      boomioService.signal('exit_yes');
+      this.closeModal(true);
+      // this.showRatingModal();
+    };
+    exitBtn.style.cursor = 'pointer';
+    exitBtn.innerHTML = exitBtnHtml;
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('modal-buttons');
+    buttonContainer.appendChild(saveBtn);
+    buttonContainer.appendChild(exitBtn);
+
+    this.modal.appendChild(textTitle);
+    this.modal.appendChild(buttonContainer);
+  };
+
+  showSavingOrExitEmailModal = () => {
+    this.createModalWindow(296, 154);
+
+    const textTitle = document.createElement('p');
+    textTitle.classList.add('exist-or-saving-modal-title');
+    textTitle.innerHTML = 'Are you sure you don’t want your reward?';
+
+    const saveBtn = document.createElement('button');
+    saveBtn.onclick = () => {
       boomioService.signal('exit_cancel');
       this.closeModal();
+      this.showTextfield();
+    };
+    saveBtn.classList.add('save');
+    saveBtn.innerHTML = 'Yes, I want!';
+
+    const exitBtn = document.createElement('div');
+    exitBtn.onclick = () => {
+      boomioService.signal('exit_yes');
+      this.closeModal(true);
       // this.showRatingModal();
     };
     exitBtn.style.cursor = 'pointer';
@@ -310,6 +353,23 @@ export default class {
         `;
   };
 
+  getEmailHtml = () => {
+    if (!JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_email) {
+      return ``;
+    }
+    return `
+      <div style="margin-bottom:8px;">
+        <p style="line-height:14px !important;color: black; font-weight: 400; display: inline; font-size: 14px;">
+          Your reward was sent to:
+        </p>
+        <div style="margin-bottom:14px;">
+          <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;">
+            ${JSON.parse(localStorage.getItem('boomioPluginConfig')).user_email}
+          </p>
+        </div>
+      </div>`;
+  };
+
   getCouponHtml = () => {
     if (this.config.app_url === 'ice') {
       return QrCodeModal.getGreyCoupon();
@@ -326,9 +386,80 @@ export default class {
       </div>`;
   };
 
+  showTextfield = () => {
+    this.createModalWindow(290, 284);
+    this.modal.classList.add('desktop-qr-modal');
+    this.modal.innerHTML = `
+    <div class="boomio-boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
+    <img src="${closeImage}" id="boomio-boomio-close-modal-btn" class="boomio-boomio-close-modal-btn"/>
+  </div>
+  <div class="text-center d-block" >
+    <h1 id='p_top_text' style='margin-bottom:16px;font-size:32px;color:background: #473F4E;'>YOU WON!</h1>
+  </div>
+  <div class="text-center d-block">
+    <h6 id='p_top_text' style='margin:0px 24px;font-size:14px;color:background: #473F4E;font-weight:400;'>Where should we send your reward?</h6>
+  </div>
+      <div class="text-center" style="display:flex;flex-direction:column;height:100%;justify-content:space-between;align-items:center;">
+        <input style='width:210px;margin-top:16px;font-size:14px;color:background: #473F4E;font-weight:400;border-radius:25px;padding:11px 16px' type="text" id="boomio-emailField" placeholder="Enter your email address...">
+        <div id="email-error-message" style="color: red; margin-top: 4px; display: none;font-size:12px;">Please enter a valid email address.</div>
+        <div class="coupon_preview_card_footer" style='width:240px;margin-top:16px;'>
+          <a id="boomio-email-btn">
+            <div class="btn-content d-flex align-items-center justify-content-center" style="height: 40px;">
+              <div class="text-wrapper">
+                <p style="font-size: 16px; line-height: initial;" id='p_button_text_line2'>Get reward</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    `;
+    this.modal.style.justifyContent = 'start';
+    const closeBtn = document.getElementById('boomio-boomio-close-modal-btn');
+    if (closeBtn) {
+      closeBtn.onclick = () => {
+        this.modalBackground.remove();
+        this.showSavingOrExitEmailModal();
+      };
+    }
+
+    const emailInput = document.getElementById('boomio-emailField');
+    const emailErrorMessage = document.getElementById('email-error-message');
+
+    const emailBtn = document.getElementById('boomio-email-btn');
+    if (emailBtn) {
+      emailBtn.onclick = () => {
+        const emailValue = emailInput.value;
+
+        // Validate email format using a regular expression
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailValue)) {
+          // Invalid email format, show error message and add red border
+          emailInput.style.border = '2px solid red';
+          emailErrorMessage.style.display = 'block';
+          return;
+        } else {
+          // Reset styling and hide error message
+          emailInput.style.border = ''; // Reset border to default
+          emailErrorMessage.style.display = 'none';
+        }
+
+        // Proceed with storing the email in local storage and showing the QR code
+        const localStoragePropertyName = 'boomioPluginConfig';
+        const existingConfigJSON = localStorage.getItem(localStoragePropertyName);
+
+        if (existingConfigJSON) {
+          const existingConfig = JSON.parse(existingConfigJSON);
+          existingConfig.user_email = emailValue;
+          localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
+        }
+
+        this.modalBackground.remove();
+        this.showQrCode();
+      };
+    }
+  };
   showQRDesktop = () => {
     this.createModalWindow(272, 520);
-
     this.modal.classList.add('desktop-qr-modal');
     this.modal.innerHTML = `
     <div class="boomio-boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
@@ -338,7 +469,9 @@ export default class {
         <h1 id='p_top_text'>${this.config.p_top_text} </h1>
     </div>
     ${this.getCouponHtml()}
-    <div style='font-size:14px;'>
+    <div style='font-size:14px;'>  
+      ${this.getEmailHtml()}
+
     <p style="line-height:14px !important;color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${
       this.config.p_bottom_text_start_pc
     }
@@ -394,8 +527,6 @@ export default class {
     /// /Add modal Background //////
     const modalBackground = document.createElement('div');
     modalBackground.setAttribute('id', 'modalBackground');
-    /// //////////////////////
-
     /// /////Add modal ///////
     const modal = document.createElement('div');
     modal.setAttribute('id', 'widgetModal');
@@ -408,7 +539,7 @@ export default class {
     this.mainContainer.appendChild(modalBackground);
     this.modal = modal;
     this.modalBackground = modalBackground;
-    /// /////////////////////////
+    console.log('test', this.modal);
   };
 
   qrCodeInnerHtml = () => {
