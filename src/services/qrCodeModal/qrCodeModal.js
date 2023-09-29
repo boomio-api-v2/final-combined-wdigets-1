@@ -385,8 +385,8 @@ export default class {
        <div class="coupon__preview__card coupon_div" id="coupon_div" >
           <div class="coupon_info"> 
                 <h3 id="p_coupon_text_line1">- ${this.config.p_coupon_text_line1}</h3>
-                <p id="p_code_text" style="text-align: center; margin-top: 8px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
-                <p id="product" style="text-align: center; font-weight: 600; font-size: 12px">For: ${this.config.product} </p>
+                <p id="p_code_text" style="text-align: center; margin-top: 0px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
+                <p id="product" style="text-align: center; font-weight: 500; font-size: 12px">For: ${this.config.product} </p>
           </div>
           <div class="coupon__preview__card__after"></div>
           <div class="coupon__preview__card__befor"></div>
@@ -401,7 +401,7 @@ export default class {
     <img src="${closeImage}" id="boomio-close-modal-btn" class="boomio-close-modal-btn"/>
   </div>
   <div class="text-center d-block" >
-    <h1 id='p_top_text_new' style='margin-bottom:16px;font-size:34px;color:background: #473F4E;'>YOU WON!</h1>
+    <h1 id='p_top_text_new' style='margin-bottom:16px;font-size:34px;color:background: #473F4E;font-weight:600;'>YOU WON!</h1>
   </div>
   <div class="text-center d-block">
     <h6 id='p_top_text' style='margin:0px 24px;font-size:14px;color:background: #473F4E;font-weight:400;'>Where should we send your reward?</h6>
@@ -473,7 +473,7 @@ export default class {
       <img src="${closeImage}" id="boomio-close-modal-btn" class="boomio-close-modal-btn"/>
     </div>
     <div class="text-center d-block">
-        <h1 id='p_top_text_new' style='font-size:32px'>YOU WON! </h1>
+        <h1 id='p_top_text_new' style='margin-bottom:16px;font-size:32px;font-weight:600;'>YOU WON! </h1>
     </div>
     ${this.getCouponHtml()}
     <div style='font-size:14px;'>  
@@ -555,7 +555,7 @@ export default class {
         <div class="coupon__preview__body coupon_discount_modal">
     
             <div class="text-center d-block">
-                <h1 id='p_top_text_new' style='font-size:32px'>YOU WON!</h1>
+                <h1 id='p_top_text_new' style='margin-bottom:16px;font-size:32px;font-weight:600;'>YOU WON!</h1>
             </div>
     
             <div class="coupon_preview_card_info ">
