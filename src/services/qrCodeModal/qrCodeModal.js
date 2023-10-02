@@ -2,7 +2,7 @@ import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
 import { closeImage, dotImage, oldCouponImage, winningAnimationGif } from '@/сonstants/icons';
-import { exitBtnHtml } from '@/сonstants/htmlTemplates';
+import { exitBtnHtml, exitBtnEmailHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 import { isMobileDevice } from '@/config';
 
@@ -229,7 +229,7 @@ export default class {
   };
 
   showRatingModal = () => {
-    this.createModalWindow(296, 154);
+    this.createModalWindow(316, 154);
     const textTitle = document.createElement('p');
     textTitle.classList.add('exist-or-saving-modal-title');
     textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
@@ -263,7 +263,7 @@ export default class {
   };
 
   showSavingOrExitModal = () => {
-    this.createModalWindow(296, 154);
+    this.createModalWindow(316, 154);
 
     const textTitle = document.createElement('p');
     textTitle.classList.add('exist-or-saving-modal-title');
@@ -276,6 +276,7 @@ export default class {
       this.showQrCode();
     };
     saveBtn.classList.add('save');
+    saveBtn.style.fontSize = '16px';
     saveBtn.innerHTML = 'Save';
 
     const exitBtn = document.createElement('div');
@@ -309,6 +310,7 @@ export default class {
       this.showTextfield();
     };
     saveBtn.classList.add('save');
+    saveBtn.style.fontSize = '14px';
     saveBtn.innerHTML = 'Yes, I want!';
 
     const exitBtn = document.createElement('div');
@@ -318,10 +320,9 @@ export default class {
       // this.showRatingModal();
     };
     exitBtn.style.cursor = 'pointer';
-    exitBtn.innerHTML = exitBtnHtml;
+    exitBtn.innerHTML = exitBtnEmailHtml;
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('modal-buttons');
-    boomio - boomio;
     buttonContainer.appendChild(saveBtn);
     buttonContainer.appendChild(exitBtn);
 
