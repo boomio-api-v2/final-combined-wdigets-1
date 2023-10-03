@@ -422,7 +422,7 @@ export default class {
       <div class="text-center" style="display:flex;flex-direction:column;height:100%;justify-content:space-between;align-items:center;">
         <input style='width:210px;margin-top:16px;font-size:14px;color:#473F4E;font-weight:400;border-radius:25px;padding:11px 16px' type="text" id="boomio-emailField" placeholder="Enter your email address...">
         <div id="email-error-message" style="color: red; margin-top: 4px; display: none;font-size:12px;">Please enter a valid email address.</div>
-        <div class="coupon_preview_card_footer" style='width:240px;margin-top:16px;'>
+        <div class="coupon_preview_card_footer" style='width:240px;'>
           <a id="boomio-email-btn">
             <div class="btn-content d-flex align-items-center justify-content-center" style="height: 40px;">
               <div class="text-wrapper">
