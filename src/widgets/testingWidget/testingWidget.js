@@ -10,7 +10,7 @@ class TestingWidget {
     localStorage.setItem('testing_Widgets', true);
     const width = 260;
     const height = 300;
-    console.log('testing1');
+    console.log('testing2');
     const { clientWidth, clientHeight } = document.documentElement;
 
     const posx = ((clientWidth - width) / 2).toFixed();
