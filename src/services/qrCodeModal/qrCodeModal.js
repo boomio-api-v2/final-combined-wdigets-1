@@ -352,7 +352,7 @@ export default class {
         <div class="coupon-grey-shadow-wrapper" id="coupon_div">
           <div class="coupon-grey" style="background-image: url(${oldCouponImage})">
             <div class="coupon_info">
-                <h3 >- ${this.config.p_coupon_text_line1}</h3>
+                <h3 >- ${this.config.p_coupon_text_line1 !== 'YOUR' ?? '???'}</h3>
               <p >${this.config.product} </p> 
               <p >${this.config.p_code_text} </p>
             </div>
@@ -385,9 +385,15 @@ export default class {
     return `
        <div class="coupon__preview__card coupon_div" id="coupon_div" >
           <div class="coupon_info"> 
-                <h3 id="p_coupon_text_line1">- ${this.config.p_coupon_text_line1}</h3>
-                <p id="product" style="text-align: center; font-weight: 500; font-size: 12px">${this.config.product} </p>
-                <p id="p_code_text" style="text-align: center; margin-top: 0px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
+                <h3 id="p_coupon_text_line1">- ${
+                  this.config.p_coupon_text_line1 !== 'YOUR' ?? '???'
+                }</h3>
+                <p id="product" style="text-align: center; font-weight: 500; font-size: 12px">${
+                  this.config.product
+                } </p>
+                <p id="p_code_text" style="text-align: center; margin-top: 0px; font-weight: 600; font-size: 12px">${
+                  this.config.p_code_text
+                } </p>
           </div>
           <div class="coupon__preview__card__after"></div>
           <div class="coupon__preview__card__befor"></div>
