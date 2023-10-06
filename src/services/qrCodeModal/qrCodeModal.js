@@ -1,7 +1,13 @@
 import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
-import { closeImage, dotImage, oldCouponImage, winningAnimationGif } from '@/сonstants/icons';
+import {
+  closeImage,
+  dotImage,
+  oldCouponImage,
+  winningAnimationGif,
+  winningConfetinGif,
+} from '@/сonstants/icons';
 import { exitBtnHtml, exitBtnEmailHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 import { isMobileDevice } from '@/config';
@@ -189,7 +195,7 @@ export default class {
     setTimeout(() => {
       const winningAnimation = document.createElement('img');
       winningAnimation.classList.add('winningAnimation');
-      winningAnimation.setAttribute('src', winningAnimationGif);
+      winningAnimation.setAttribute('src', winningConfetinGif);
       this.mainContainer.appendChild(winningAnimation);
       localStorage.removeItem('start_widget');
       localStorage.removeItem('closing_button');
