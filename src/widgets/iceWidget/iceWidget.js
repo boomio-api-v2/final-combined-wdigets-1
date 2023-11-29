@@ -168,7 +168,6 @@ class IceWidget {
 
 export default () => {
   const { success } = localStorageService.config;
-  new QrCodeModal();
 
   if (success || localStorage.getItem('testing_Widgets')) new IceWidget();
 
