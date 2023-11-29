@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+#flappy-canvas {
+  cursor: url(https://i.ibb.co/M6ryN00/cute-christmas-tree-and-gift-1421-1-1.png) 10 10, auto;
+}
+.startButton{
+  cursor: url(https://i.ibb.co/M6ryN00/cute-christmas-tree-and-gift-1421-1-1.png) 10 10, auto;
+}
+
+.input-container{
+  cursor: url(https://i.ibb.co/M6ryN00/cute-christmas-tree-and-gift-1421-1-1.png) 10 10, auto;
+}
+
+.game-container{
+  cursor: url(https://i.ibb.co/M6ryN00/cute-christmas-tree-and-gift-1421-1-1.png) 10 10, auto;
+
+}
+.intro-screen{
+  z-index: 99999;
+}
+
+
+body {
+  margin: 0;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  user-select: none;
+}
+header {
+  margin: 0 auto;
+  width: 418px;
+}
+h1 {
+  background: green;
+  padding: 1.3rem 0;
+  margin: 0;
+}
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 6px;
+  background: #5EE270;
+}
+.game-container {
+  width: 100%;
+  height: 100%;backdrop-filter: blur(10px);  background-color: rgba(128, 128, 128, 0.3);
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.flappy-game{
+  border-radius: 20px;
+}
+.score-input-container{
+position: absolute;
+top : calc(50% - 280px);
+left :calc(50% + 120px);
+transform : translate(-50%, -50%);
+display:flex;
+flex-direction: column;
+}
+.input-container{
+  overflow: hidden;
+  position: absolute;
+  top : calc(50% + 170px);
+  left :50%;
+  width:418px;
+  transform : translate(-50%, -50%);
+  display:flex;
+  flex-direction: column;
+  height:332px;
+  }
+input::placeholder {
+  color: black;
+}
+
+.closing {
+  height: 10; /* Reduce the height to 0 for disappearing effect */
+  top: calc(50% + 335px);
+  transition: height 1s ease, top 1s ease; /* Adjust the duration and timing function as needed */
+}
+
+.control-button{
+  position:absolute;
+}
+
+.numbers {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  line-height: 1em;
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  margin-bottom: 140px;
+  color:white;
+  display:none;
+
+}
+.numbers__window {
+  display: inline-block;
+  overflow: hidden;
+  width: 18px;
+  height: 1em;  
+
+}
+
+.numbers__window__digit {
+  font: inherit;
+  word-break: break-all;
+  display: block;
+  width: 18px;
+
+  padding: 0 0.52em 0 0;
+  margin: 0 auto;
+  overflow: inherit;
+  animation:counting 0.07s steps(10) forwards infinite;
+}
+
+
+.numbers__window__digit::before {
+  content: attr(data-fake);
+  display: inline-block;
+  width: 100%;
+  height: auto;
+}
+
+.counting-animation {
+  /* animation: counting 0.1s steps(8) forwards infinite; */
+}
+
+@keyframes counting {
+  100% {
+    transform: translate3d(0, -10em, 0);
+  }
+}
+
+.numbers__window__digit--1 {
+  animation-iteration-count: 25;
+  display:none;
+}
+.numbers__window__digit--2 {
+  animation-iteration-count: 20; 
+   display:none;
+}
+.numbers__window__digit--3 {
+  animation-iteration-count: 15; 
+   display:none;
+}
+.numbers__window__digit--4 {
+  animation-iteration-count: 10;  
+  display:none;
+}
+.numbers__window__digit--5 {
+  animation-iteration-count: 5;  
+  display:none;
+}
+
+.button_background{
+  position: absolute;
+  width:148px;
+  height:60px;
+  top:-10px;
+  left:-10px;
+}
+
+.tutorial{
+  display:none;
+  left:calc(50% - 130px);
+  top:50%;
+}
