@@ -18,10 +18,12 @@ const disLikeBtnImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/dislike.svg';
 
 export default class {
-  constructor() {
+  constructor(demo, value) {
+    this.demo = demo;
+    this.demoValue = value;
     this.updateConfigData();
     this.mainContainer = widgetHtmlService.container;
-    if (this.config?.email_collection_required) {
+    if (!this.config?.email_collection_required) {
       this.showQrCode();
     } else {
       this.updateConfigData();
@@ -56,6 +58,7 @@ export default class {
 
   updateConfigData = () => {
     this.config = localStorageService.config;
+    console.log(this.config);
   };
 
   async loadQrCodeData() {
@@ -445,7 +448,7 @@ export default class {
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
     </div>
     <div style="font-family:Paytone One;width: 100%; text-align: center; color: white; font-size: 42px; font-weight: 400;text-transform: uppercase; line-height: 54.60px; letter-spacing: 3.34px; word-wrap: break-word" id="p_coupon_text_line1">
-    ${'??? %'} OFF</div>
+    ${'??? %'} </div>
    <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
    
    <div style='width:100%'>
@@ -517,7 +520,9 @@ export default class {
     this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
 
     this.modal.innerHTML = `
-    <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
+    <div class="boomio-close-modal-btn-wrapper" style='display: ${
+      this.demo ? 'none' : 'flex'
+    }; width:100%; justify-content:end;'>
       <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
     </div>
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
@@ -530,8 +535,12 @@ export default class {
     </div>
     <div style="font-family:Paytone One;width: 100%; text-align: center; color: white; font-size: 42px; font-weight: 400;text-transform: uppercase; line-height: 54.60px; letter-spacing: 3.34px; word-wrap: break-word" id="p_coupon_text_line1">
     ${
-      this.config.p_coupon_text_line1 !== 'YOUR' ? this.config.p_coupon_text_line1 : '???'
-    } OFF</div>
+      this.demo
+        ? this.demoValue
+        : this.config.p_coupon_text_line1 !== 'YOUR'
+        ? this.config.p_coupon_text_line1
+        : '???'
+    } </div>
   
    <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px">Discount code</div>
    

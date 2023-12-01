@@ -1,17 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-#flappy-canvas {
-  cursor: url(https://i.ibb.co/M6ryN00/cute-christmas-tree-and-gift-1421-1-1.png) 10 10, auto;
+@import url('https://fonts.googleapis.com/css2?family=Georama&display=swap');
+
+
+.gradient-border {
+  width: 142px;
+  left: 46px;
+  top: 116px;
+  position: absolute;
+  color: white;
+  font-size: 18px;
+  font-family: Georama;
+  font-weight: 800;
+  line-height: 27px;
+  word-wrap: break-word;
+  text-align: start;
 }
+
+
+
+.colored_box {
+ width: 374px; 
+ height: 126px; left: 20px; top: 100px; 
+ background: rgba(255, 255, 255, 0.40); 
+ border-radius: 20px;  
+  position: relative;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* .colored_box::after {
+  position: absolute;
+  top: -2px; bottom: -2px;
+  left: -2px; right: -2px;
+  background: linear-gradient(40.93deg, #FF3183 -4.42%, #FF6E6D 12.31%, #8559F3 75.67%, #657BEA 92.91%);
+  content: '';
+  z-index: -1;
+  border-radius: 16px;
+} */
+
+.game_over{
+  font-family: 'Georama';
+}
+
+#flappy-canvas {
+  cursor: url(https://i.ibb.co/CVpYTsH/Cursor-1.png) 10 10, auto;
+  transition:filter 1s ease;
+  opacity: 0;
+}
+
 .startButton{
-  cursor: url(https://i.ibb.co/M6ryN00/cute-christmas-tree-and-gift-1421-1-1.png) 10 10, auto;
+  cursor: url(https://i.ibb.co/CVpYTsH/Cursor-1.png) 10 10, auto;
 }
 
 .input-container{
-  cursor: url(https://i.ibb.co/M6ryN00/cute-christmas-tree-and-gift-1421-1-1.png) 10 10, auto;
+  cursor: url(https://i.ibb.co/CVpYTsH/Cursor-1.png) 10 10, auto;
 }
 
 .game-container{
-  cursor: url(https://i.ibb.co/M6ryN00/cute-christmas-tree-and-gift-1421-1-1.png) 10 10, auto;
+  cursor: url(https://i.ibb.co/CVpYTsH/Cursor-1.png) 10 10, auto;
 
 }
 .intro-screen{
@@ -29,11 +75,7 @@ header {
   margin: 0 auto;
   width: 418px;
 }
-h1 {
-  background: green;
-  padding: 1.3rem 0;
-  margin: 0;
-}
+
 .score-container {
   display: flex;
   justify-content: space-between;
@@ -46,30 +88,53 @@ h1 {
   display:flex;
   justify-content: center;
   align-items:center;
+  
 }
 
 .flappy-game{
-  border-radius: 20px;
 }
 .score-input-container{
+  transition :opacity 0.8s ease;
+  opacity:0;
+  z-index: 3;
 position: absolute;
-top : calc(50% - 280px);
-left :calc(50% + 120px);
+top : calc(50% - 260px);
+left :calc(50% + 115px);
 transform : translate(-50%, -50%);
 display:flex;
 flex-direction: column;
 }
+
 .input-container{
+  opacity: 0;
   overflow: hidden;
   position: absolute;
   top : calc(50% + 170px);
   left :50%;
-  width:418px;
+  width:420px;
   transform : translate(-50%, -50%);
   display:flex;
   flex-direction: column;
   height:332px;
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+  z-index: 2;
   }
+
+  .input-container1{
+    overflow: hidden;
+    position: absolute;
+    top : calc(50% + 330px);
+    left :50%;
+    height:10px;
+    width:420px;
+    transform : translate(-50%, -50%);
+    display:none;
+    flex-direction: column;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;z-index: 2;
+    }
+
 input::placeholder {
   color: black;
 }
@@ -81,17 +146,40 @@ input::placeholder {
 }
 
 .control-button{
+  opacity: 0;
   position:absolute;
 }
 
-.numbers {
-  font-family: 'Arial', sans-serif;
-  font-size: 24px;
+.control-button1{
+  position:absolute;
+  margin-top: 300px;
+  display:none;
+}
+
+
+.new_highscore {
+  z-index:10;
+  overflow: hidden;
+  margin-bottom: 160px;
+  margin-left: 20px;
+  display:none; 
+  position: absolute;
+}
+
+.numbers { 
+  text-shadow: 2px 0 #FF9161
+  , -2px 0 #FF9161, 0 2px #FF9161
+  , 0 -2px #FF9161,
+  1px 1px #FF9161, -1px -1px #FF9161, 1px -1px #FF9161, -1px 1px #FF9161;
+  z-index: 3;
+  font-family: Georama;
+  font-size: 28px;
   line-height: 1em;
   text-align: center;
   overflow: hidden;
   position: absolute;
-  margin-bottom: 140px;
+  margin-bottom: 85px;
+  margin-left: 40px;
   color:white;
   display:none;
 
@@ -157,8 +245,6 @@ input::placeholder {
 
 .button_background{
   position: absolute;
-  width:148px;
-  height:60px;
   top:-10px;
   left:-10px;
 }
