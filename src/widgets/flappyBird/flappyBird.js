@@ -272,7 +272,11 @@ class FlappyBird {
         this.flight += gravity;
         flyHeight = Math.min(flyHeight + this.flight, canvas.height - size[1]);
       } else {
-        ctx.drawImage(img, 422, 0, 77, 80, cTenth, flyHeight, 77, 80);
+        if (!this.newHighScoreReached) {
+          console.log('reac1hed');
+
+          ctx.drawImage(img, 422, 0, 77, 80, cTenth, flyHeight, 77, 80);
+        }
 
         flyHeight = canvas.height / 2 - size[1] / 2 - 70;
 
@@ -321,12 +325,13 @@ class FlappyBird {
 
           // Remove the counting class after a short delay
           setTimeout(() => {
+            setTimeout(() => {
+              this.newHighScoreReached = false;
+            }, 2000);
             scoreDigits.forEach((digit) => {
               digit.classList.remove('counting-animation');
             });
           }, 1000);
-
-          this.newHighScoreReached = false;
         }
         ctx.font = 'bold 30px monospace';
       }
