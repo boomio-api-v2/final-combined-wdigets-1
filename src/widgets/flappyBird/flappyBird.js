@@ -107,7 +107,7 @@ class FlappyBird {
         setTimeout(() => {
           document.getElementById('background_intro').style.display = 'none';
         }, 2000);
-      }, 4000);
+      }, 6000);
 
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
