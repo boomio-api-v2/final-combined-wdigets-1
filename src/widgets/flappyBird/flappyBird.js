@@ -31,7 +31,7 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    img.src = 'https://i.ibb.co/DLcH5s3/Boomio-demo-3-1.png';
+    img.src = 'https://i.ibb.co/zGp7ZwN/Boomio-demo-2023-12-2-1.png';
     const img2 = new Image();
     img2.src = 'https://i.ibb.co/y6qcCZx/Iki-X-Boomio-colab-2-1.png';
     const snowImg = new Image();
@@ -84,11 +84,19 @@ class FlappyBird {
         document.getElementById('flappy-canvas').style.transition = 'opacity 1s ease';
         document.getElementById('flappy-canvas').style.opacity = 1;
 
-        document.getElementById('input-container').style.transition = 'opacity 1s ease';
-        document.getElementById('input-container').style.opacity = 1;
+        if (this.gameCount === 0) {
+          const inputContainer = document.querySelector('.input-container');
+          document.getElementById('control-button').style.transition = 'opacity 2s ease';
+          document.getElementById('control-button').style.opacity = 1;
 
-        document.getElementById('control-button').style.transition = 'opacity 1s ease';
-        document.getElementById('control-button').style.opacity = 1;
+          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inputContainer.style.display = 'block';
+          setTimeout(() => {
+            inputContainer.style.height = '332px';
+            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.opacity = 1;
+          }, 100);
+        }
 
         document.getElementById('background_intro').style.transition = 'opacity 1s ease';
         document.getElementById('background_intro').style.opacity = 0;
@@ -160,7 +168,7 @@ class FlappyBird {
           // top pipe
           ctx.drawImage(
             img,
-            423,
+            426,
             608 - pipe[1],
             pipeWidth,
             pipe[1],
@@ -267,7 +275,7 @@ class FlappyBird {
         if (this.isJumping) {
           ctx.drawImage(img, 506, 0, 77, 80, cTenth, flyHeight, 77, 80);
         } else {
-          ctx.drawImage(img, 422, 0, 77, 80, cTenth, flyHeight, 77, 80);
+          ctx.drawImage(img, 426, 0, 77, 80, cTenth, flyHeight, 77, 80);
         }
         this.flight += gravity;
         flyHeight = Math.min(flyHeight + this.flight, canvas.height - size[1]);
@@ -275,7 +283,7 @@ class FlappyBird {
         if (!this.newHighScoreReached) {
           console.log('reac1hed');
 
-          ctx.drawImage(img, 422, 0, 77, 80, cTenth, flyHeight, 77, 80);
+          ctx.drawImage(img, 426, 0, 77, 80, cTenth, flyHeight, 77, 80);
         }
 
         flyHeight = canvas.height / 2 - size[1] / 2 - 70;
@@ -430,7 +438,7 @@ class FlappyBird {
       <img src="${useCuponImage.src}" alt="Image Description" style="z-index:4;width: 335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
     </a>
 
-      <img class="new_highscore_stars" src=${newHighscoreStarsImage.src} alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-290px;display:none; height: 86px;position:absolute;pointer-events:none;" >
+      <img class="new_highscore_stars" src=${newHighscoreStarsImage.src} alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
       </img>
       <div class="new_highscore"><img src=${newHighscoreImage.src} alt="Image Description" style="width: 100%; height: 100%;">
       </div>
@@ -472,8 +480,6 @@ class FlappyBird {
 </div>
 </div>
 <div class="input-container" id="input-container">
-
-
 <div style="width: 100%; height: 100%; padding-top: 25px; padding-bottom: 35px; background:  linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%);  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
 <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
 <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word">  <img src=${rulesImage.src} alt="Image Description" ></div>
@@ -481,7 +487,7 @@ class FlappyBird {
 </div>
 </div>
           </div>
-          <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:420px;" class="control-button" id="control-button">
+          <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;" class="control-button" id="control-button">
           <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
           <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${okImage.src} alt="Image Description"></div>
 </div>
@@ -511,7 +517,7 @@ class FlappyBird {
 
 </div>
           </div>
-          <div style="justify-content: center; align-items: center; gap: 24px;width:420px;" class="control-button1">
+          <div style="justify-content: center; align-items: center; gap: 24px;width:424px;" class="control-button1">
           <div  style="margin-left: 46px; margin-right: 46px; padding-top: 14px; padding-bottom: 14px; width:100%;background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 32px; border: 2px rgba(255, 255, 255, 0.20) solid; justify-content: center; align-items: center; gap: 8px; display: flex;">
 <div style="color: white; font-size: 25px; font-family: Poppins; font-weight: 900; line-height: 24px; letter-spacing: 0.25px; word-wrap: break-word;" id="startButton">Play1231231</div>
 </div>
