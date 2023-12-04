@@ -46,6 +46,8 @@ class FlappyBird {
     let snowSpeed = 0.4; // Adjust the this.speed of the falling snow
     this.speed = 4;
     this.gamePlaying = false;
+    this.index = 0;
+
     const gravity = 0.12;
 
     const size = [70, 70];
@@ -53,8 +55,7 @@ class FlappyBird {
     const cTenth = canvas.width / 10;
     this.flight = 0;
     this.currentScore = 0;
-    let index = 0,
-      flyHeight,
+    let flyHeight = 0,
       pipes;
 
     const pipeWidth = 86;
@@ -142,14 +143,16 @@ class FlappyBird {
     const render = () => {
       updateElapsedTime();
       console.log('this.speed123', this.speed);
-      index++;
+      console.log('this.index', this.index);
+
+      this.index++;
       ctx.drawImage(
         img,
         0,
         0,
         canvas.width,
         canvas.height,
-        -((index * (this.speed / 2)) % canvas.width) + canvas.width,
+        -((this.index * (this.speed / 2)) % canvas.width) + canvas.width,
         0,
         canvas.width,
         canvas.height,
@@ -160,7 +163,7 @@ class FlappyBird {
         0,
         canvas.width,
         canvas.height,
-        -(index * (this.speed / 2)) % canvas.width,
+        -(this.index * (this.speed / 2)) % canvas.width,
         0,
         canvas.width,
         canvas.height,
@@ -569,11 +572,11 @@ class FlappyBird {
         if (this.gameCount === 0) {
           const controlButton = document.querySelector('.control-button');
           controlButton.style.display = 'none';
+          this.index = 0;
 
           this.clickEventHandler = () => {
             const tutorial = document.querySelector('.tutorial');
             tutorial.style.display = 'none';
-
             const numbers = document.querySelector('.numbers');
             const new_highscore = document.querySelector('.new_highscore');
 
@@ -642,6 +645,7 @@ class FlappyBird {
         this.clickEventHandlerButton = () => {
           const controlButton = document.querySelector('.control-button1');
           const inputContainer = document.querySelector('.input-container1');
+          this.index = 0;
           this.currentScore = 0;
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           controlButton.style.transition = 'opacity 0.6s ease';
