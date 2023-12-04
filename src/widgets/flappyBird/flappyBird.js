@@ -443,7 +443,7 @@ class FlappyBird {
       <img src=${introImage.src} alt="Image Description" style="z-index:4;width: 418px; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
       </img>
       <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-      <img src="${useCuponImage.src}" alt="Image Description" style="z-index:4;width: 335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+      <img src="${useCuponImage.src}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
     </a>
 
       <img class="new_highscore_stars" src=${newHighscoreStarsImage.src} alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
