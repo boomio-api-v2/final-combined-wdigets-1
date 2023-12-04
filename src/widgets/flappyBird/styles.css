@@ -43,39 +43,28 @@
 }
 
 #flappy-canvas {
-  cursor: url(https://i.ibb.co/CVpYTsH/Cursor-1.png) 10 10, auto;
+  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
   transition:filter 1s ease;
   opacity: 0;
 }
 
 .startButton{
-  cursor: url(https://i.ibb.co/CVpYTsH/Cursor-1.png) 10 10, auto;
+  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
 }
 
 .input-container{
-  cursor: url(https://i.ibb.co/CVpYTsH/Cursor-1.png) 10 10, auto;
+  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
 
 }
 
 .game-container{
-  cursor: url(https://i.ibb.co/CVpYTsH/Cursor-1.png) 10 10, auto;
+  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
 
 }
 .intro-screen{
   z-index: 99999;
 }
 
-
-body {
-  margin: 0;
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
-  user-select: none;
-}
-header {
-  margin: 0 auto;
-  width: 418px;
-}
 
 .score-container {
   display: flex;
@@ -85,7 +74,9 @@ header {
 }
 .game-container {
   width: 100%;
-  height: 100%;backdrop-filter: blur(10px);  background-color: rgba(128, 128, 128, 0.3);
+  height: 100%;
+  backdrop-filter: blur(10px); 
+  background-color: rgba(128, 128, 128, 0.3);
   display:flex;
   justify-content: center;
   align-items:center;

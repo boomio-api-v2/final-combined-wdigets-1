@@ -8,7 +8,8 @@ class FlappyBird {
     this.gameStarted = false;
     this.bestScore = 0;
     this.gameCount = 0;
-
+    this.gameEnded = false;
+    this.isMobile = window.innerWidth <= 768;
     this.newHighScoreReached = false;
   }
 
@@ -17,6 +18,10 @@ class FlappyBird {
     this.createContainer();
 
     this.flappy = document.getElementById('boomio-flappy-container');
+
+    document.querySelector('.game-container').style.backgroundColor =
+      window.innerWidth <= 768 ? 'black' : 'none';
+
     const screenWidth = window.innerWidth;
 
     const initialPosx =
@@ -115,7 +120,7 @@ class FlappyBird {
         setTimeout(() => {
           document.getElementById('background_intro').style.display = 'none';
         }, 2000);
-      }, 6000);
+      }, 5000);
 
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -275,7 +280,7 @@ class FlappyBird {
         if (this.isJumping) {
           ctx.drawImage(img, 506, 0, 77, 80, cTenth, flyHeight, 77, 80);
         } else {
-          ctx.drawImage(img, 426, 0, 77, 80, cTenth, flyHeight, 77, 80);
+          ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
         }
         this.flight += gravity;
         flyHeight = Math.min(flyHeight + this.flight, canvas.height - size[1]);
@@ -283,7 +288,7 @@ class FlappyBird {
         if (!this.newHighScoreReached) {
           console.log('reac1hed');
 
-          ctx.drawImage(img, 426, 0, 77, 80, cTenth, flyHeight, 77, 80);
+          ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
         }
 
         flyHeight = canvas.height / 2 - size[1] / 2 - 70;
@@ -344,9 +349,12 @@ class FlappyBird {
         ctx.font = 'bold 30px monospace';
       }
       ctx.globalAlpha = 0.2; // Set transparency level (0 = fully transparent, 1 = fully opaque)
-      ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
 
-      ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
+      if (!this.gameEnded) {
+        ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
+        ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
+      }
+
       ctx.globalAlpha = 1; // Reset transparency to fully opaque
 
       // Update snow offset for animation
@@ -399,7 +407,7 @@ class FlappyBird {
     tapImage.src = 'https://i.ibb.co/LdbY1B8/tap.png';
 
     const introImage = new Image();
-    introImage.src = 'https://i.ibb.co/FxrMQ2F/ezgif-com-gif-maker-30.gif';
+    introImage.src = 'https://i.ibb.co/sypb4Ph/Boomio-demo-game-intro.gif';
 
     const useCuponImage = new Image();
     useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
@@ -413,8 +421,8 @@ class FlappyBird {
     const endingBackground = new Image();
     endingBackground.src = 'https://i.ibb.co/5rS0VM9/COUPON-5.png';
 
-    const snowImg = new Image();
-    snowImg.src = 'https://i.giphy.com/media/ggK4TpfK2cfuZcokhj/giphy.webp';
+    const snowImgEnd = new Image();
+    snowImgEnd.src = 'https://i.giphy.com/media/ggK4TpfK2cfuZcokhj/giphy.webp';
 
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-flappy-container');
@@ -430,7 +438,7 @@ class FlappyBird {
       </img>
       <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
       </img>
-            <img src=${snowImg.src} alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
+            <img src=${snowImgEnd.src} alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
       </img>
       <img src=${introImage.src} alt="Image Description" style="z-index:4;width: 418px; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
       </img>
@@ -460,7 +468,7 @@ class FlappyBird {
 </span>
 </div>
 
-<div style="left:calc(50% - 10px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
+<div style="left:calc(50% - 20px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
 <img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px">
 <img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px">
 
@@ -621,6 +629,8 @@ class FlappyBird {
               document.getElementById('snow_background_qr').style.transition = 'opacity 1s ease';
               document.getElementById('snow_background_qr').style.opacity = 0.3;
             }, 100);
+
+            this.gameEnded = true;
             setTimeout(() => {
               new QrCodeModal(true, this.bestScore / 100 + '€');
             }, 200);
