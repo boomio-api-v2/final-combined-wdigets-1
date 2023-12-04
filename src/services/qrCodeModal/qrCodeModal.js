@@ -207,6 +207,28 @@ export default class {
       winningAnimation.addEventListener('load', () => {
         setTimeout(() => {
           winningAnimation.remove();
+          setTimeout(() => {
+            const winningAnimation = document.createElement('img');
+            winningAnimation.classList.add('winningAnimation');
+            winningAnimation.setAttribute('src', winningConfetinGif);
+            this.mainContainer.appendChild(winningAnimation);
+            winningAnimation.addEventListener('load', () => {
+              setTimeout(() => {
+                winningAnimation.remove();
+                setTimeout(() => {
+                  const winningAnimation = document.createElement('img');
+                  winningAnimation.classList.add('winningAnimation');
+                  winningAnimation.setAttribute('src', winningConfetinGif);
+                  this.mainContainer.appendChild(winningAnimation);
+                  winningAnimation.addEventListener('load', () => {
+                    setTimeout(() => {
+                      winningAnimation.remove();
+                    }, 3000);
+                  });
+                }, 100);
+              }, 3000);
+            });
+          }, 100);
         }, 3000);
       });
     }, 100);
