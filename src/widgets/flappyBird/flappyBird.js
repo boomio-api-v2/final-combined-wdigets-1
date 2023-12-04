@@ -398,7 +398,7 @@ class FlappyBird {
     rulesImage.src = 'https://i.ibb.co/sK74MHP/Rules-1.png';
 
     const rulesImage2 = new Image();
-    rulesImage2.src = 'https://i.ibb.co/hctyWfV/Text-rules-2.png';
+    rulesImage2.src = 'https://gcdnb.pbrd.co/images/1bsvDYHu5MDP.png';
 
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
