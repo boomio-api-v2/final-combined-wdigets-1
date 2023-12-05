@@ -69,12 +69,13 @@ class FlappyBird {
       this.speed = 4;
       this.jump = -2.5;
       this.gravity = 0.12;
-      console.log('this.speed1', this.speed);
       this.flight = this.jump / 2;
+
       const new_highscore = document.querySelector('.new_highscore');
       const new_highscore_stars = document.querySelector('.new_highscore_stars');
-
       const numbers = document.querySelector('.numbers');
+      console.log('reset');
+
       numbers.style.transition = 'opacity 0.5s ease';
       numbers.style.opacity = 0;
       new_highscore.style.transition = 'opacity 0.5s ease';
@@ -85,7 +86,6 @@ class FlappyBird {
       setTimeout(() => {
         new_highscore.style.display = 'none';
         new_highscore_stars.style.display = 'none';
-
         numbers.style.display = 'none';
       }, 500);
 
