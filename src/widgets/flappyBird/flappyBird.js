@@ -48,7 +48,7 @@ class FlappyBird {
     this.gamePlaying = false;
     this.index = 0;
 
-    const gravity = 0.12;
+    this.gravity = 0.12;
 
     const size = [70, 70];
     this.jump = -2.5;
@@ -67,6 +67,8 @@ class FlappyBird {
       snowSpeed = 0.4;
       pipeGap = 250;
       this.speed = 4;
+      this.jump = -2.5;
+      this.gravity = 0.12;
       console.log('this.speed1', this.speed);
       this.flight = this.jump / 2;
       const new_highscore = document.querySelector('.new_highscore');
@@ -142,9 +144,6 @@ class FlappyBird {
 
     const render = () => {
       updateElapsedTime();
-      console.log('this.speed123', this.speed);
-      console.log('this.index', this.index);
-
       this.index++;
       ctx.drawImage(
         img,
@@ -224,10 +223,13 @@ class FlappyBird {
             const targetPipeGap = Math.max(pipeGap - elapsedTime * 400, 130);
             pipeGap += (targetPipeGap - pipeGap) * 0.1; // Adjust the interpolation factor as needed
             snowSpeed = Math.min(snowSpeed + elapsedTime * 10, 3);
-            console.log('pipeGap', pipeGap);
-            console.log('this.speed2', this.speed);
+            const decayFactor = 2; // Adjust this value based on how quickly you want the jump to decrease
+            const gravityFactor = 2;
+            this.gravity = Math.min(this.gravity * Math.pow(gravityFactor, elapsedTime), 0.3);
+            this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -4);
 
-            console.log('snowSpeed', snowSpeed);
+            console.log('this.jump', this.jump);
+            console.log('this.gravity', this.gravity);
           }
           if (
             [
@@ -287,7 +289,7 @@ class FlappyBird {
         } else {
           ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
         }
-        this.flight += gravity;
+        this.flight += this.gravity;
         flyHeight = Math.min(flyHeight + this.flight, canvas.height - size[1]);
       } else {
         if (!this.newHighScoreReached) {
