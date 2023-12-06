@@ -68,7 +68,7 @@ class FlappyBird {
       pipeGap = 250;
       this.speed = 4;
       this.jump = -2.5;
-      this.gravity = 0.12;
+      this.gravity = 0.15;
       this.flight = this.jump / 2;
 
       const new_highscore = document.querySelector('.new_highscore');
