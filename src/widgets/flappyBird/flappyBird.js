@@ -51,7 +51,7 @@ class FlappyBird {
     this.gravity = 0.12;
 
     const size = [70, 70];
-    this.jump = -2.5;
+    this.jump = -3;
     const cTenth = canvas.width / 10;
     this.flight = 0;
     this.currentScore = 0;
@@ -67,8 +67,8 @@ class FlappyBird {
       snowSpeed = 0.4;
       pipeGap = 250;
       this.speed = 4;
-      this.jump = -2.5;
-      this.gravity = 0.15;
+      this.jump = -5;
+      this.gravity = 0.3;
       this.flight = this.jump / 2;
 
       const new_highscore = document.querySelector('.new_highscore');
@@ -145,6 +145,7 @@ class FlappyBird {
     const render = () => {
       updateElapsedTime();
       this.index++;
+      console.log('this.index', this.index);
       ctx.drawImage(
         img,
         0,
@@ -225,8 +226,8 @@ class FlappyBird {
             snowSpeed = Math.min(snowSpeed + elapsedTime * 10, 3);
             const decayFactor = 2; // Adjust this value based on how quickly you want the jump to decrease
             const gravityFactor = 2;
-            this.gravity = Math.min(this.gravity * Math.pow(gravityFactor, elapsedTime), 0.3);
-            this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -4);
+            this.gravity = Math.min(this.gravity * Math.pow(gravityFactor, elapsedTime), 0.4);
+            this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -6);
 
             console.log('this.jump', this.jump);
             console.log('this.gravity', this.gravity);
