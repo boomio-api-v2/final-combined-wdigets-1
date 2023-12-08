@@ -58,7 +58,7 @@ class FlappyBird {
     let flyHeight = 0,
       pipes;
 
-    const pipeWidth = 86;
+    const pipeWidth = 80;
     let pipeGap = 250;
     const pipeLoc = () =>
       Math.random() * (canvas.height - (pipeGap + pipeWidth) - pipeWidth) + pipeWidth;
@@ -67,7 +67,7 @@ class FlappyBird {
       snowSpeed = 0.4;
       pipeGap = 250;
       this.speed = 4;
-      this.jump = -5;
+      this.jump = -6;
       this.gravity = 0.3;
       this.flight = this.jump / 2;
 
@@ -189,7 +189,7 @@ class FlappyBird {
           // bottom pipe
           ctx.drawImage(
             img,
-            422 + pipeWidth,
+            426 + pipeWidth,
             108,
             pipeWidth,
             canvas.height - pipe[1] + pipeGap,
@@ -227,7 +227,7 @@ class FlappyBird {
             const decayFactor = 2; // Adjust this value based on how quickly you want the jump to decrease
             const gravityFactor = 2;
             this.gravity = Math.min(this.gravity * Math.pow(gravityFactor, elapsedTime), 0.4);
-            this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -6);
+            this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -7);
 
             console.log('this.jump', this.jump);
             console.log('this.gravity', this.gravity);
