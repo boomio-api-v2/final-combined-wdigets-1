@@ -36,9 +36,7 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    img.src = 'https://i.ibb.co/zGp7ZwN/Boomio-demo-2023-12-2-1.png';
-    const img2 = new Image();
-    img2.src = 'https://i.ibb.co/y6qcCZx/Iki-X-Boomio-colab-2-1.png';
+    img.src = 'https://i.ibb.co/SrtXMFx/Boomio-demo-penguin.png';
     const snowImg = new Image();
     snowImg.src = 'https://i.giphy.com/media/ggK4TpfK2cfuZcokhj/giphy.webp';
 
@@ -415,7 +413,7 @@ class FlappyBird {
     tapImage.src = 'https://i.ibb.co/LdbY1B8/tap.png';
 
     const introImage = new Image();
-    introImage.src = 'https://i.ibb.co/sypb4Ph/Boomio-demo-game-intro.gif';
+    introImage.src = 'https://i.ibb.co/XFgPwS0/Winter-game-2024-intro.gif';
 
     const useCuponImage = new Image();
     useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
