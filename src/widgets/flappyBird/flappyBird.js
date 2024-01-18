@@ -72,7 +72,6 @@ class FlappyBird {
       const new_highscore = document.querySelector('.new_highscore');
       const new_highscore_stars = document.querySelector('.new_highscore_stars');
       const numbers = document.querySelector('.numbers');
-      console.log('reset');
 
       numbers.style.transition = 'opacity 0.5s ease';
       numbers.style.opacity = 0;
@@ -143,7 +142,6 @@ class FlappyBird {
     const render = () => {
       updateElapsedTime();
       this.index++;
-      console.log('this.index', this.index);
       ctx.drawImage(
         img,
         0,
@@ -226,9 +224,6 @@ class FlappyBird {
             const gravityFactor = 2;
             this.gravity = Math.min(this.gravity * Math.pow(gravityFactor, elapsedTime), 0.4);
             this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -7);
-
-            console.log('this.jump', this.jump);
-            console.log('this.gravity', this.gravity);
           }
           if (
             [
@@ -257,7 +252,7 @@ class FlappyBird {
             setTimeout(
               () => {
                 const inputContainer = document.querySelector('.input-container1');
-
+                console.log('game over');
                 const canvas = document.getElementById('flappy-canvas');
                 canvas.style.transition = 'filter 0.6s ease';
                 canvas.style.filter = 'blur(2px)';
@@ -292,8 +287,6 @@ class FlappyBird {
         flyHeight = Math.min(flyHeight + this.flight, canvas.height - size[1]);
       } else {
         if (!this.newHighScoreReached) {
-          console.log('reac1hed');
-
           ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
         }
 
@@ -483,14 +476,8 @@ class FlappyBird {
         <div class="flappy-container">
           <div class="score-input-container" style="display:none;width:188px;height">
           <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-   
         <img src=${starImg.src} alt="Image Description" style="width: 100%; height: 100%;"></img>
-
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:100px;top:20px;z-index:3;line-height:30px;" id="currentScore"></div>
- 
-
-
-
 </div>
 </div>
 <div class="input-container" id="input-container">
@@ -505,12 +492,8 @@ class FlappyBird {
           <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
           <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${okImage.src} alt="Image Description"></div>
 </div>
-
 </div>
-
-
 <div class="input-container1">
-
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
     <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${gameOver.src} alt="Image Description"></div>
     <div class="colored_box"></div>
@@ -674,7 +657,6 @@ class FlappyBird {
           controlButton.style.opacity = 0;
           setTimeout(() => {
             canvas.onclick = () => {
-              console.log('Canvas clicked!');
               this.flight = this.jump;
               this.isJumping = true;
               this.gameStarted = true;
