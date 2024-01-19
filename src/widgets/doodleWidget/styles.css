@@ -12,7 +12,8 @@
 	height: 668px;
 	width: 422px;
 	display: block;
-	background: url(https://i.ibb.co/XFqLXGM/Jump-up-background.png) top left;
+	background-size: cover;
+
 }
 
 #boomio-doodle-scoreBoard {

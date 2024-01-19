@@ -19,8 +19,20 @@ export const icePieceShadowImages = [
 export const iceBlockImage =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/ice-block.png?raw=true';
 
-export const bangImage =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/29f42dcf4707294e1a86d84192c5fceb8c81f414/images/iceWidget/bang.svg';
+export const rules =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/3x_Rules.png';
+
+export const rules2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Rules_text_Jump_up.png';
+
+export const gameOver =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Game%20over.png';
+
+export const scoreImage =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Score_element_01.png';
+
+export const background =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Jump_up_background.png';
 
 export const icePieceCount = 5;
 

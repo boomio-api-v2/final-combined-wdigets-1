@@ -1,5 +1,6 @@
 import { widgetHtmlService, QrCodeModal, AnimationService, localStorageService } from '@/services';
 import './styles.css';
+import { rules, rules2, gameOver, scoreImage, background } from './constants';
 
 class DoodleWidget {
   static ctx;
@@ -37,7 +38,11 @@ class DoodleWidget {
     this.createHandlers();
 
     this.doodle = document.getElementById('boomio-doodle-container');
-    const canvas = document.getElementById('boomio-doodle-canvas'); // Updated here
+    const canvas = document.getElementById('boomio-doodle-canvas');
+
+    canvas.style.background = `url(${background}) center`;
+
+    // Updated here
 
     if (!canvas) {
       console.error('Canvas element not found.');
@@ -649,18 +654,9 @@ class DoodleWidget {
     newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
     const playAgain = new Image();
     playAgain.src = 'https://i.ibb.co/0Bqvttk/PLAY-AGAIN.png';
-    const gameOver = new Image();
-    gameOver.src = 'https://i.ibb.co/kGkXBHq/Game-over-2.png';
-    const starImg = new Image();
-    starImg.src = 'https://i.ibb.co/mBmxsKP/Group-1000001725.png';
+
     const okImage = new Image();
     okImage.src = 'https://i.ibb.co/nL70YWF/OK.png';
-
-    const rulesImage = new Image();
-    rulesImage.src = 'https://i.ibb.co/sK74MHP/Rules-1.png';
-
-    const rulesImage2 = new Image();
-    rulesImage2.src = 'https://gcdnb.pbrd.co/images/1bsvDYHu5MDP.png';
 
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
@@ -697,16 +693,16 @@ class DoodleWidget {
 
 
     <div class="input-container" id="input-container">
-    <div style="width: 100%; height: 100%; padding-top: 25px; padding-bottom: 35px; background:  linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%);  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
+    <div style="width: 100%; height: 100%; padding-top: 25px; padding-bottom: 35px; background:  white;  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word">  <img src=${rulesImage.src} alt="Image Description" ></div>
-    <div style="width: 320px; color: white; font-size: 16px; font-family: Poppins; font-weight: 800; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;margin-top:12px;"><img src=${rulesImage2.src} alt="Image Description" style="width:100%;height:100%"></div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word;">  <img style="width:179px;height:60px" src=${rules} alt="Image Description" ></div>
+    <div style="width: 320px; color: white; font-size: 16px; font-family: Poppins; font-weight: 800; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;margin-top:12px;"><img src=${rules2} alt="Image Description" style="width:100%;height:100%"></div>
     </div>
     </div>
               </div>
               <div style="margin-top:570px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;" class="control-button" id="control-button">
-              <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${okImage.src} alt="Image Description"></div>
+              <div id="startButtonClick" style="box-shadow: 0px 16px 32px 0px #3610A666; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: #6E2DF0; border:3px solid white;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24pxtext-align: center; color: white; font-size: 18px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">LET'S PLAY</div></div>
     </div>
     </div>
 
@@ -737,15 +733,15 @@ class DoodleWidget {
 
           <div class="score-input-container" style="display:none;width:188px;height">
           <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-        <img src=${starImg.src} alt="Image Description" style="width: 100%; height: 100%;"></img>
+        <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:100px;top:20px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div></div>
 
 
 <div class="input-container1">
-<div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
-    <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${gameOver.src} alt="Image Description"></div>
-    <div class="colored_box"></div>
+<div style="height: 100%; position: relative;  background: white; border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
+    <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${gameOver} alt="Image Description"></div>
+    <div class="colored_box" style="border:3px solid #6E2DF0;"></div>
     <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
     <div style="left: 240px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
     <div style="width: 142px; left: 46px; top: 150px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">BEST SCORE</div>
@@ -755,8 +751,8 @@ class DoodleWidget {
     <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 27px; top: 255px; position: absolute; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${playAgain.src} alt="Image Description"></div>
     </div>
-    <div id="claimReward" style="box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 220px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px white solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="line-height:24pxtext-align: center; color: white; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
+    <div id="claimReward" style="box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 220px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px #6E2DF0 solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+        <div style="line-height:24pxtext-align: center; color: #6E2DF0; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
     </div>
 </div>
  </div>
