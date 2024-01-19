@@ -203,7 +203,7 @@ class DoodleWidget {
     this.player = new Player(this.image);
 
     this.Spring = new Spring(this.image);
-    this.platform_broken_substitute = new Platform_broken_substitute();
+    this.platform_broken_substitute = new Platform_broken_substitute(this.image);
 
     this.platforms = [];
     for (let i = 0; i < this.platformCount; i++) {
@@ -547,7 +547,6 @@ class DoodleWidget {
 
       if (this.bestScore < this.currentScore) {
         this.newHighScoreReached = true;
-        console.log(this.bestScore);
       }
       this.bestScore = Math.max(this.bestScore, this.currentScore);
     }
@@ -778,8 +777,8 @@ class Platform {
   constructor(image, score) {
     this.image = image;
     this.currentScore = score;
-    this.width = 70;
-    this.height = 17;
+    this.width = 100;
+    this.height = 20;
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - 420);
     this.y = 0;
     this.flag = 0;
@@ -789,7 +788,7 @@ class Platform {
     this.cx = 0;
     this.cy = 0;
     this.cwidth = 105;
-    this.cheight = 31;
+    this.cheight = 30;
 
     this.moved = 0;
     this.vx = 1;
@@ -887,7 +886,7 @@ class Platform_broken_substitute {
   draw = () => {
     try {
       if (this.appearance === true) {
-        ctx.drawImage(
+        DoodleWidget.ctx.drawImage(
           this.image,
           this.cx,
           this.cy,
@@ -969,8 +968,8 @@ class Player {
     this.image = image;
     this.vy = 11;
     this.vx = 0;
-    this.width = 55;
-    this.height = 40;
+    this.width = 66;
+    this.height = 48;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
@@ -1004,7 +1003,7 @@ class Player {
   }
 
   jump = () => {
-    this.vy = -6;
+    this.vy = -8;
   };
 
   jumpHigh = () => {
