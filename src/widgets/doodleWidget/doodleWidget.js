@@ -13,6 +13,7 @@ class DoodleWidget {
     this.player;
     this.image = new Image();
     this.image.src = 'https://i.ibb.co/ryHgk6B/JUMP-UP-2-1.png';
+    this.isMobile = window.innerWidth <= 768;
     this.image.onload = () => {
       // Your existing code using this.image
       this.startDoodle();
@@ -447,23 +448,6 @@ class DoodleWidget {
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
-    window.addEventListener('deviceorientation', (e) => {
-      // Use e.gamma for left-right tilt (horizontal)
-      // Adjust the sensitivity value based on your needs
-      const sensitivity = 0.1;
-      if (e.gamma < -sensitivity) {
-        this.dir = 'left';
-        this.player.isMovingLeft = true;
-      } else if (e.gamma > sensitivity) {
-        this.dir = 'right';
-        this.player.isMovingRight = true;
-      } else {
-        this.dir = ''; // Reset direction when device is level
-        this.player.isMovingLeft = false;
-        this.player.isMovingRight = false;
-      }
-    });
-
     //Adding keyboard controls
     document.onkeydown = (e) => {
       var key = e.keyCode;
@@ -492,6 +476,25 @@ class DoodleWidget {
       }
     };
 
+    if (this.isMobile) {
+      window.addEventListener('deviceorientation', (e) => {
+        // Use e.gamma for left-right tilt (horizontal)
+        // Adjust the sensitivity value based on your needs
+        const sensitivity = 0.1;
+        if (e.gamma < -sensitivity) {
+          this.dir = 'left';
+          this.player.isMovingLeft = true;
+        } else if (e.gamma > sensitivity) {
+          this.dir = 'right';
+          this.player.isMovingRight = true;
+        } else {
+          this.dir = ''; // Reset direction when device is level
+          this.player.isMovingLeft = false;
+          this.player.isMovingRight = false;
+        }
+      });
+    }
+
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
@@ -510,8 +513,8 @@ class DoodleWidget {
     }
 
     // Speed limits!
-    if (this.player.vx > 8) this.player.vx = 8;
-    else if (this.player.vx < -8) this.player.vx = -8;
+    if (this.player.vx > 3) this.player.vx = 3;
+    else if (this.player.vx < -3) this.player.vx = -3;
 
     //Jump the player when it hits the base
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height)
@@ -599,23 +602,6 @@ class DoodleWidget {
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
-    window.addEventListener('deviceorientation', (e) => {
-      // Use e.gamma for left-right tilt (horizontal)
-      // Adjust the sensitivity value based on your needs
-      const sensitivity = 0.1;
-      if (e.gamma < -sensitivity) {
-        this.dir = 'left';
-        this.player.isMovingLeft = true;
-      } else if (e.gamma > sensitivity) {
-        this.dir = 'right';
-        this.player.isMovingRight = true;
-      } else {
-        this.dir = ''; // Reset direction when device is level
-        this.player.isMovingLeft = false;
-        this.player.isMovingRight = false;
-      }
-    });
-
     document.onkeydown = (e) => {
       var key = e.keyCode;
 
@@ -639,6 +625,25 @@ class DoodleWidget {
         this.player.isMovingRight = false;
       }
     };
+
+    if (this.isMobile) {
+      window.addEventListener('deviceorientation', (e) => {
+        // Use e.gamma for left-right tilt (horizontal)
+        // Adjust the sensitivity value based on your needs
+        const sensitivity = 0.000001; // Lower sensitivity
+        if (e.gamma < -sensitivity) {
+          this.dir = 'left';
+          this.player.isMovingLeft = true;
+        } else if (e.gamma > sensitivity) {
+          this.dir = 'right';
+          this.player.isMovingRight = true;
+        } else {
+          this.dir = ''; // Reset direction when device is level
+          this.player.isMovingLeft = false;
+          this.player.isMovingRight = false;
+        }
+      });
+    }
 
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
