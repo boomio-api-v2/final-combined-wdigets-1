@@ -34,6 +34,9 @@ export const scoreImage =
 export const background =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Jump_up_background.png';
 
+export const couponBackground =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/COUPON.png';
+
 export const icePieceCount = 5;
 
 export const shadowTopCoordinatesForDesktop = [250, 220, 180, 190, 90, 150];

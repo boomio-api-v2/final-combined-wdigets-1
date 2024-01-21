@@ -1,6 +1,6 @@
 import { widgetHtmlService, QrCodeModal, AnimationService, localStorageService } from '@/services';
 import './styles.css';
-import { rules, rules2, gameOver, scoreImage, background } from './constants';
+import { rules, rules2, gameOver, scoreImage, background, couponBackground } from './constants';
 
 class DoodleWidget {
   static ctx;
@@ -447,6 +447,23 @@ class DoodleWidget {
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
+    window.addEventListener('deviceorientation', (e) => {
+      // Use e.gamma for left-right tilt (horizontal)
+      // Adjust the sensitivity value based on your needs
+      const sensitivity = 0.1;
+      if (e.gamma < -sensitivity) {
+        this.dir = 'left';
+        this.player.isMovingLeft = true;
+      } else if (e.gamma > sensitivity) {
+        this.dir = 'right';
+        this.player.isMovingRight = true;
+      } else {
+        this.dir = ''; // Reset direction when device is level
+        this.player.isMovingLeft = false;
+        this.player.isMovingRight = false;
+      }
+    });
+
     //Adding keyboard controls
     document.onkeydown = (e) => {
       var key = e.keyCode;
@@ -582,6 +599,23 @@ class DoodleWidget {
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
+    window.addEventListener('deviceorientation', (e) => {
+      // Use e.gamma for left-right tilt (horizontal)
+      // Adjust the sensitivity value based on your needs
+      const sensitivity = 0.1;
+      if (e.gamma < -sensitivity) {
+        this.dir = 'left';
+        this.player.isMovingLeft = true;
+      } else if (e.gamma > sensitivity) {
+        this.dir = 'right';
+        this.player.isMovingRight = true;
+      } else {
+        this.dir = ''; // Reset direction when device is level
+        this.player.isMovingLeft = false;
+        this.player.isMovingRight = false;
+      }
+    });
+
     document.onkeydown = (e) => {
       var key = e.keyCode;
 
@@ -661,9 +695,6 @@ class DoodleWidget {
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
 
-    const endingBackground = new Image();
-    endingBackground.src = 'https://i.ibb.co/5rS0VM9/COUPON-5.png';
-
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-doodle-container');
     myCanvas.classList.add(
@@ -683,7 +714,7 @@ class DoodleWidget {
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
 
 
-    <img src=${endingBackground.src} alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
+    <img src=${couponBackground} alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
@@ -731,7 +762,7 @@ class DoodleWidget {
 </div>
 
 
-          <div class="score-input-container" style="display:none;width:188px;height">
+          <div class="score-input-container" style="display:none;width:188px;height;left:50%">
           <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
         <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:100px;top:20px;z-index:3;line-height:30px;" id="currentScore"></div>
@@ -999,7 +1030,7 @@ class Player {
   }
 
   jump = () => {
-    this.vy = -8;
+    this.vy = -7;
   };
 
   jumpHigh = () => {
