@@ -1,6 +1,14 @@
 import { widgetHtmlService, QrCodeModal, AnimationService, localStorageService } from '@/services';
 import './styles.css';
-import { rules, rules2, gameOver, scoreImage, background, couponBackground } from './constants';
+import {
+  rules,
+  rules2,
+  gameOver,
+  scoreImage,
+  background,
+  couponBackground,
+  cursor,
+} from './constants';
 
 class DoodleWidget {
   static ctx;
@@ -40,8 +48,13 @@ class DoodleWidget {
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
-
     canvas.style.background = `url(${background}) center`;
+
+    const backgroundCursor = document.getElementById('game-container');
+    backgroundCursor.style.cursor = `url(${cursor}) 10 10, auto`;
+
+    const inputContainerCursor = document.getElementById('input-container');
+    inputContainerCursor.style.cursor = `url(${cursor}) 10 10, auto`;
 
     // Updated here
 
@@ -702,7 +715,7 @@ class DoodleWidget {
     );
 
     myCanvas.innerHTML = `
-    <div class="game-container">
+    <div class="game-container" id="game-container">
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas">
 		</canvas>
 
@@ -929,7 +942,7 @@ class Spring {
     this.cx = 0;
     this.cy = 454;
     this.cwidth = 45;
-    this.cheight = 33;
+    this.cheight = 35;
 
     this.width = 26;
     this.height = 30;
