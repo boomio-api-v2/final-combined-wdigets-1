@@ -117,7 +117,6 @@ var Player = function () {
   };
 
   this.jump = function () {
-    console.log('jump');
     this.vy = -8;
   };
 
@@ -200,6 +199,8 @@ function Platform() {
 }
 
 for (var i = 0; i < platformCount; i++) {
+  console.log('platform22222', platforms);
+
   platforms.push(new Platform());
 }
 
@@ -407,7 +408,7 @@ function init() {
   function springCalc() {
     var s = Spring;
     var p = platforms[0];
-    console.log(platforms);
+
     if (p.type == 1 || p.type == 2) {
       s.x = p.x + p.width / 2 - s.width / 2;
       s.y = p.y - p.height - 10;
@@ -571,6 +572,7 @@ function reset() {
 
   platforms = [];
   for (var i = 0; i < platformCount; i++) {
+    console.log('platform1111', platforms);
     platforms.push(new Platform());
   }
 }

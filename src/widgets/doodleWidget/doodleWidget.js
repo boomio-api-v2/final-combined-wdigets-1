@@ -60,15 +60,15 @@ class DoodleWidget {
 
     DoodleWidget.ctx.canvas.width = this.width; // Update here
     DoodleWidget.ctx.canvas.height = this.height; // Update here
+    DoodleWidget.broken = 0;
+    DoodleWidget.position = 0;
 
     //Variables for game
     this.platforms = [];
     this.player;
-    this.position = 0;
     this.animloop;
     this.flag = 0;
     this.menuloop;
-    this.broken = 0;
     this.dir;
     this.currentScore = 0;
     this.bestScore = 0;
@@ -76,10 +76,7 @@ class DoodleWidget {
     this.firstRun = true;
     this.gravity = 0.1;
     this.gameCount = 0;
-    for (var i = 0; i < this.platformCount; i++) {
-      this.platforms.push(new Platform(this.image, this.currentScore));
-    }
-    console.log('asda');
+
     if (this.gameCount === 0) {
       const inputContainer = document.querySelector('.input-container');
       document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -198,11 +195,10 @@ class DoodleWidget {
       this.gamePlaying = true;
     }, 400);
 
-    console.log('reset');
     this.hideGoMenu();
     this.player.isDead = false;
     this.flag = 0;
-    this.position = 0;
+    DoodleWidget.position = 0;
     this.currentScore = 0;
 
     this.base = new Base(this.image);
@@ -213,7 +209,7 @@ class DoodleWidget {
 
     this.platforms = [];
     for (let i = 0; i < this.platformCount; i++) {
-      this.platforms.push(new Platform(this.image, this.image));
+      this.platforms.push(new Platform(this.image, this.currentScore));
     }
   };
 
@@ -280,7 +276,6 @@ class DoodleWidget {
     setTimeout(
       () => {
         const inputContainer = document.querySelector('.input-container1');
-        console.log('game over');
         const canvas = document.getElementById('boomio-doodle-canvas');
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
@@ -350,7 +345,6 @@ class DoodleWidget {
   };
 
   gameLoop = () => {
-    // this.updateGame();
     this.update();
     requestAnimFrame(this.gameLoop);
   };
@@ -432,7 +426,7 @@ class DoodleWidget {
 
       if (s.y > this.height / 1.1) s.state = 0;
 
-      s.draw();
+      s.draw(this.image);
     } else {
       s.x = 0 - s.width;
       s.y = 0 - s.height;
@@ -676,9 +670,10 @@ class DoodleWidget {
   update = () => {
     DoodleWidget.ctx.clearRect(0, 0, this.width, this.height);
     this.paintCanvas();
-    this.platformCalc();
     this.springCalc();
     this.player.draw();
+    this.platformCalc();
+
     this.base.draw();
     this.playerCalc();
     this.updateScore();
@@ -811,10 +806,12 @@ class Platform {
     this.currentScore = score;
     this.width = 100;
     this.height = 20;
-    this.x = Math.random() * (DoodleWidget.ctx.canvas.width - 420);
-    this.y = 0;
+    this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
+    this.y = DoodleWidget.position;
     this.flag = 0;
     this.state = 0;
+
+    DoodleWidget.position += DoodleWidget.ctx.canvas.height / 10;
 
     //Sprite clipping
     this.cx = 0;
@@ -834,29 +831,6 @@ class Platform {
     //4: Vanishable
 
     this.reset();
-
-    if (this.currentScore >= 5000) this.types = [2, 3, 3, 3, 4, 4, 4, 4];
-    else if (this.currentScore >= 2000 && this.currentScore < 5000)
-      this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
-    else if (this.currentScore >= 1000 && this.currentScore < 2000)
-      this.types = [2, 2, 2, 3, 3, 3, 3, 3];
-    else if (this.currentScore >= 500 && this.currentScore < 1000)
-      this.types = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
-    else if (this.currentScore >= 100 && this.currentScore < 500) this.types = [1, 1, 1, 1, 2, 2];
-    else this.types = [1];
-
-    this.type = this.types[Math.floor(Math.random() * this.types.length)];
-
-    //We can't have two consecutive breakable platforms otherwise it will be impossible to reach another platform sometimes!
-    if (this.type == 3 && this.broken < 1) {
-      this.broken++;
-    } else if (this.type == 3 && this.broken >= 1) {
-      this.type = 1;
-      this.broken = 0;
-    }
-
-    this.moved = 0;
-    this.vx = 1;
   }
   draw() {
     try {
@@ -866,7 +840,6 @@ class Platform {
       else if (this.type == 3 && this.flag == 1) this.cy = 1000;
       else if (this.type == 4 && this.state === 0) this.cy = 90;
       else if (this.type == 4 && this.state == 1) this.cy = 1000;
-
       DoodleWidget.ctx.drawImage(
         this.image,
         this.cx,
@@ -884,16 +857,30 @@ class Platform {
   reset() {
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
 
-    // Ensure that the y coordinate is within the canvas height
-    this.y = Math.random() * (DoodleWidget.ctx.canvas.height - this.height);
-
     // Set initial platform types
-    if (this.types.length === 0) {
-      this.types = [1, 2, 3, 3, 3, 4, 4, 4, 4];
-    }
+    if (this.currentScore >= 5000) this.types = [2, 3, 3, 3, 4, 4, 4, 4];
+    else if (this.currentScore >= 2000 && this.currentScore < 5000)
+      this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
+    else if (this.currentScore >= 1000 && this.currentScore < 2000)
+      this.types = [2, 2, 2, 3, 3, 3, 3, 3];
+    else if (this.currentScore >= 500 && this.currentScore < 1000)
+      this.types = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
+    else if (this.currentScore >= 100 && this.currentScore < 500) this.types = [1, 1, 1, 1, 2, 2];
+    else this.types = [1];
 
     // Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
+
+    //We can't have two consecutive breakable platforms otherwise it will be impossible to reach another platform sometimes!
+    if (this.type == 3 && DoodleWidget.broken < 1) {
+      DoodleWidget.broken++;
+    } else if (this.type == 3 && DoodleWidget.broken >= 1) {
+      this.type = 1;
+      DoodleWidget.broken = 0;
+    }
+
+    this.moved = 0;
+    this.vx = 1;
   }
 }
 
@@ -942,9 +929,12 @@ class Spring {
     this.moved = 0;
     this.vx = 1;
     this.cx = 0;
-    this.cy = 554;
-    this.cwidth = 104;
-    this.cheight = 80;
+    this.cy = 514;
+    this.cwidth = 45;
+    this.cheight = 33;
+
+    this.width = 26;
+    this.height = 30;
   }
 
   draw() {
@@ -967,7 +957,7 @@ class Spring {
 class Base {
   constructor(image) {
     this.image = image;
-    this.height = 5;
+    this.height = 10;
     this.width = 422; // Adjust the width value accordingly
     this.cx = 0;
     this.cy = 614;
