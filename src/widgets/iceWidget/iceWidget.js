@@ -170,5 +170,6 @@ export default () => {
   const { success } = localStorageService.config;
 
   if (success || localStorage.getItem('testing_Widgets')) new IceWidget();
+
   return;
 };

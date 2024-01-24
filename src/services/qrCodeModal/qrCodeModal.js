@@ -1,7 +1,13 @@
 import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
-import { closeImage, dotImage, oldCouponImage, winningConfetinGif } from '@/сonstants/icons';
+import {
+  closeImage,
+  dotImage,
+  oldCouponImage,
+  winningConfetinGif,
+  BoomioBubbles,
+} from '@/сonstants/icons';
 import { exitBtnHtml, exitBtnEmailHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 import { isMobileDevice } from '@/config';
@@ -12,7 +18,9 @@ const disLikeBtnImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/dislike.svg';
 
 export default class {
-  constructor() {
+  constructor(demo, value) {
+    this.demo = demo;
+    this.demoValue = value;
     this.updateConfigData();
     this.mainContainer = widgetHtmlService.container;
     if (!this.config?.email_collection_required) {
@@ -27,8 +35,8 @@ export default class {
   showQrCode = () => {
     this.updateConfigData();
     this.loadQrCodeData();
-    isMobileDevice ? this.showQRCodeMobile() : this.showQRDesktop();
-    this.showSpinner();
+    this.showQRDesktop();
+    // this.showSpinner();
   };
 
   showSpinner = () => {
@@ -50,6 +58,7 @@ export default class {
 
   updateConfigData = () => {
     this.config = localStorageService.config;
+    console.log(this.config);
   };
 
   async loadQrCodeData() {
@@ -101,7 +110,7 @@ export default class {
     if (buttonMobileElement) {
       buttonMobileElement.innerHTML = this.insideShowFinalDataHTML;
     }
-    this.hideSpinner();
+    // this.hideSpinner();
 
     this.loading = false;
     this.updateConfigData();
@@ -198,6 +207,28 @@ export default class {
       winningAnimation.addEventListener('load', () => {
         setTimeout(() => {
           winningAnimation.remove();
+          setTimeout(() => {
+            const winningAnimation = document.createElement('img');
+            winningAnimation.classList.add('winningAnimation');
+            winningAnimation.setAttribute('src', winningConfetinGif);
+            this.mainContainer.appendChild(winningAnimation);
+            winningAnimation.addEventListener('load', () => {
+              setTimeout(() => {
+                winningAnimation.remove();
+                setTimeout(() => {
+                  const winningAnimation = document.createElement('img');
+                  winningAnimation.classList.add('winningAnimation');
+                  winningAnimation.setAttribute('src', winningConfetinGif);
+                  this.mainContainer.appendChild(winningAnimation);
+                  winningAnimation.addEventListener('load', () => {
+                    setTimeout(() => {
+                      winningAnimation.remove();
+                    }, 3000);
+                  });
+                }, 100);
+              }, 3000);
+            });
+          }, 100);
         }, 3000);
       });
     }, 100);
@@ -229,10 +260,14 @@ export default class {
   };
 
   showRatingModal = () => {
-    this.createModalWindow(316, 154);
+    this.createModalWindow(335, 358);
     const textTitle = document.createElement('p');
     textTitle.classList.add('exist-or-saving-modal-title');
+
     textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
+    this.modal.style.background =
+      'linear-gradient(43deg, #D25858 -3.9%, #C92265 1.79%, #764BE1 71.34%, #4151A6 95.05%)';
+
     this.modal.appendChild(textTitle);
 
     const buttonContainer = document.createElement('div');
@@ -263,7 +298,7 @@ export default class {
   };
 
   showSavingOrExitModal = () => {
-    this.createModalWindow(316, 154);
+    this.createModalWindow(335, 358);
 
     const textTitle = document.createElement('p');
     textTitle.classList.add('exist-or-saving-modal-title');
@@ -297,11 +332,16 @@ export default class {
   };
 
   showSavingOrExitEmailModal = () => {
-    this.createModalWindow(296, 154);
+    this.createModalWindow(335, 358);
 
     const textTitle = document.createElement('p');
     textTitle.classList.add('exist-or-saving-modal-title');
+    textTitle.style.color = 'white';
+
     textTitle.innerHTML = 'Are you sure you don’t want your reward?';
+    textTitle.style.fontSize = '32px';
+    textTitle.style.marginTop = '50px';
+    textTitle.style.lineHeight = '40px';
 
     const saveBtn = document.createElement('button');
     saveBtn.onclick = () => {
@@ -312,6 +352,8 @@ export default class {
     saveBtn.classList.add('save');
     saveBtn.style.fontSize = '14px';
     saveBtn.innerHTML = 'Yes, I want!';
+    this.modal.style.background =
+      'linear-gradient(43deg, #D25858 -3.9%, #C92265 1.79%, #764BE1 71.34%, #4151A6 95.05%)';
 
     const exitBtn = document.createElement('div');
     exitBtn.onclick = () => {
@@ -407,32 +449,42 @@ export default class {
   };
 
   showTextfield = () => {
-    this.createModalWindow(290, 284);
+    this.createModalWindow(335, 358);
     this.modal.classList.add('desktop-qr-modal');
+
+    this.modal.style.background =
+      'linear-gradient(43deg, #D25858 -3.9%, #C92265 1.79%, #764BE1 71.34%, #4151A6 95.05%)';
+    this.modal.style.paddingBottom = '50px';
+    this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
+
     this.modal.innerHTML = `
     <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
-    <img src="${closeImage}" id="boomio-close-modal-btn" class="boomio-close-modal-btn"/>
+      <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
+    </div>
+    <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
+    <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
+    <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
+    <img src=${BoomioBubbles} style="width:72px; height:72px; position: absolute; left: 40%; top: 0; z-index: 2;"/>
   </div>
-  <div class="text-center d-block" >
-    <h1 id='p_top_text_new' style='margin-bottom:16px;font-size:34px;color: #473F4E;font-weight:600;'>YOU WON!</h1>
+    <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
+    </div>
+    <div style="font-family:Paytone One;width: 100%; text-align: center; color: white; font-size: 42px; font-weight: 400;text-transform: uppercase; line-height: 54.60px; letter-spacing: 3.34px; word-wrap: break-word" id="p_coupon_text_line1">
+    ${'??? %'} </div>
+   <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
+   
+   <div style='width:100%'>
+   <div style="width: 100%; height: 50px; position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
+   <div style="width: 76px; height: 47px; left: 210px;cursor:pointer; top: 1px; position: absolute; border-top-right-radius: 24.50px; border-bottom-right-radius: 24.50px" id=boomio-copy-modal-btn' id='boomio-email-btn'></div>
+   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your email" id="boomio-copy-modal-btn">
+   <div style="left: 225px; top: 11px;cursor:pointer; position: absolute; color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" id='boomio-email-btn'>Send</div>
+</div>
+<div id="email-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid email address.</div>
+</div> 
+
   </div>
-  <div class="text-center d-block">
-    <h6 id='p_top_text' style='margin:0px 24px;font-size:14px;color: #473F4E;font-weight:400;'>Where should we send your reward?</h6>
-  </div>
-      <div class="text-center" style="display:flex;flex-direction:column;height:100%;justify-content:space-between;align-items:center;">
-        <input style='width:210px;margin-top:16px;font-size:14px;color:#473F4E;font-weight:400;border-radius:25px;padding:11px 16px' type="text" id="boomio-emailField" placeholder="Enter your email address...">
-        <div id="email-error-message" style="color: red; margin-top: 4px; display: none;font-size:12px;">Please enter a valid email address.</div>
-        <div class="coupon_preview_card_footer" style='width:240px;'>
-          <a id="boomio-email-btn">
-            <div class="btn-content d-flex align-items-center justify-content-center" style="height: 40px;">
-              <div class="text-wrapper">
-                <p style="font-size: 16px; line-height: initial;" id='p_button_text_line2'>Get reward</p>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
     `;
+
     this.modal.style.justifyContent = 'start';
     const closeBtn = document.getElementById('boomio-close-modal-btn');
     if (closeBtn) {
@@ -442,8 +494,9 @@ export default class {
       };
     }
 
-    const emailInput = document.getElementById('boomio-emailField');
+    const emailInput = document.getElementById('boomio-copy-modal-btn');
     const emailErrorMessage = document.getElementById('email-error-message');
+    const emailInputErrors = document.getElementById('textfield-email');
 
     const emailBtn = document.getElementById('boomio-email-btn');
     if (emailBtn) {
@@ -454,12 +507,13 @@ export default class {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(emailValue)) {
           // Invalid email format, show error message and add red border
-          emailInput.style.border = '2px solid red';
+          emailInputErrors.style.border = '2px solid red';
+
           emailErrorMessage.style.display = 'block';
           return;
         } else {
           // Reset styling and hide error message
-          emailInput.style.border = ''; // Reset border to default
+          emailInputErrors.style.border = ''; // Reset border to default
           emailErrorMessage.style.display = 'none';
         }
 
@@ -479,40 +533,72 @@ export default class {
     }
   };
   showQRDesktop = () => {
-    this.createModalWindow(272, 520);
+    this.createModalWindow(335, 358);
     this.modal.classList.add('desktop-qr-modal');
-    this.modal.innerHTML = `
-    <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
-      <img src="${closeImage}" id="boomio-close-modal-btn" class="boomio-close-modal-btn"/>
-    </div>
-    <div class="text-center d-block">
-        <h1 id='p_top_text_new' style='margin-bottom:16px;font-size:32px;color: #473F4E;font-weight:600;'>YOU WON! </h1>
-    </div>
-    ${this.getCouponHtml()}
-    <div style='font-size:14px;'>  
-      ${this.getEmailHtml()}
 
-    <p style="line-height:14px !important;color: black; font-weight: 400; display: inline;font-size: 14px;" id="p_bottom_text_start_pc">${
-      this.config.p_bottom_text_start_pc
-    }<p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;" >${
-      this.config.p_bottom_text_end_pc
-    }</p></p></div>
-    <div id='qrcodeShow'>
-        <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
+    this.modal.style.background =
+      'linear-gradient(43deg, #D25858 -3.9%, #C92265 1.79%, #764BE1 71.34%, #4151A6 95.05%)';
+    this.modal.style.paddingBottom = '50px';
+    this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
+
+    this.modal.innerHTML = `
+    <div class="boomio-close-modal-btn-wrapper" style='display: ${
+      this.demo ? 'none' : 'flex'
+    }; width:100%; justify-content:end;'>
+      <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
     </div>
-    <div id='qr_loader_spinner'>
-    <div class="spinner"></div>
+    <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
+    <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
+    <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
+    <img src=${BoomioBubbles} style="width:72px; height:72px; position: absolute; left: 40%; top: 0; z-index: 2;"/>
+  </div>
+    <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
+    </div>
+    <div style="font-family:Paytone One;width: 100%; text-align: center; color: white; font-size: 42px; font-weight: 400;text-transform: uppercase; line-height: 54.60px; letter-spacing: 3.34px; word-wrap: break-word" id="p_coupon_text_line1">
+    ${
+      this.demo
+        ? this.demoValue
+        : this.config.p_coupon_text_line1 !== 'YOUR'
+        ? this.config.p_coupon_text_line1
+        : '???'
+    } </div>
+  
+   <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px">Discount code</div>
+   
+   <div style='width:100%'>
+   <div style="box-sizing: border-box;width: 100%; padding-left: 24px; padding-right: 24px; padding-top: 14px; padding-bottom: 14px; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex">
+<div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word">
+${this.config.p_code_text.replace('Unique code: ', '')}
+    </div>
+    <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn" style="cursor:pointer">
+    <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
+    </svg>
+    
+</div> 
+</div> 
+
   </div>
     `;
 
     document.getElementById('boomio-close-modal-btn').onclick = () => {
       this.modalBackground.remove();
-      this.showSavingOrExitModal();
+    };
+
+    document.getElementById('boomio-copy-modal-btn').onclick = () => {
+      const textToCopy = this.config.p_code_text.replace('Unique code: ', '');
+      const textarea = document.createElement('textarea');
+      textarea.value = textToCopy;
+      document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
     };
   };
 
   showQRCodeMobile = () => {
-    this.createModalWindow(272, 442);
+    this.createModalWindow(335, 358);
     const { app_url } = localStorageService.config;
     const qrEl = document.createElement('div');
 
@@ -542,7 +628,7 @@ export default class {
     // };
   };
 
-  createModalWindow = (width = 300, height = 442) => {
+  createModalWindow = (width = 335, height = 358) => {
     /// /Add modal Background //////
     const modalBackground = document.createElement('div');
     modalBackground.setAttribute('id', 'modalBackground');
@@ -566,16 +652,12 @@ export default class {
     
         <div class="coupon__preview__body coupon_discount_modal">
     
-            <div class="text-center d-block">
-                <h1 id='p_top_text_new' style='margin-bottom:16px;font-size:32px;color: #473F4E;font-weight:600;'>YOU WON!</h1>
-            </div>
+        <div style="width: 100%; height: 100%; flex-direction: column; justify-content: center; align-items: center; gap: 9px; display: inline-flex">
+        <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
+        </div>
     
             <div class="coupon_preview_card_info ">
-                <div id='qrcodeShow' style="display:none">
-                    <a class="qrcodeShowHtml" id="qrcodeShowHtml"> </a>
-                </div>
-                <div id='qr_loader_spinner'>
-                <div class="spinner"></div>
+ 
               </div>
                 ${this.getCouponHtml()}
             </div>
