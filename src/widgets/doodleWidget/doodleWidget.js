@@ -38,10 +38,13 @@ class DoodleWidget {
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
         function (callback) {
-          window.setTimeout(callback, 1000 / 60);
+          window.setTimeout(callback, 1000 / 20);
         }
       );
     })();
+
+    document.querySelector('.game-container').style.backgroundColor =
+      window.innerWidth <= 768 ? 'black' : 'none';
 
     this.config = localStorageService.getDefaultConfig();
     this.createHandlers();
@@ -486,21 +489,31 @@ class DoodleWidget {
     };
 
     if (this.isMobile) {
-      window.addEventListener('deviceorientation', (e) => {
-        // Use e.gamma for left-right tilt (horizontal)
+      document.addEventListener('touchstart', (e) => {
+        const touchX = e.touches[0].clientX;
+        const screenWidth = window.innerWidth;
+
         // Adjust the sensitivity value based on your needs
         const sensitivity = 0.1;
-        if (e.gamma < -sensitivity) {
+
+        if (touchX < screenWidth / 2) {
+          // Left side of the screen is touched
           this.dir = 'left';
           this.player.isMovingLeft = true;
-        } else if (e.gamma > sensitivity) {
-          this.dir = 'right';
-          this.player.isMovingRight = true;
-        } else {
-          this.dir = ''; // Reset direction when device is level
-          this.player.isMovingLeft = false;
           this.player.isMovingRight = false;
+        } else {
+          // Right side of the screen is touched
+          this.dir = 'right';
+          this.player.isMovingLeft = false;
+          this.player.isMovingRight = true;
         }
+      });
+
+      document.addEventListener('touchend', () => {
+        // Reset direction when touch is released
+        this.dir = '';
+        this.player.isMovingLeft = false;
+        this.player.isMovingRight = false;
       });
     }
 
@@ -636,21 +649,32 @@ class DoodleWidget {
     };
 
     if (this.isMobile) {
-      window.addEventListener('deviceorientation', (e) => {
-        // Use e.gamma for left-right tilt (horizontal)
+      document.addEventListener('click', (e) => {
+        const screenWidth = window.innerWidth;
+        const clickX = e.clientX;
+
         // Adjust the sensitivity value based on your needs
-        const sensitivity = 0.000001; // Lower sensitivity
-        if (e.gamma < -sensitivity) {
+        const sensitivity = 0.1;
+
+        if (clickX < screenWidth / 2) {
+          // Left side of the screen is clicked
           this.dir = 'left';
           this.player.isMovingLeft = true;
-        } else if (e.gamma > sensitivity) {
-          this.dir = 'right';
-          this.player.isMovingRight = true;
-        } else {
-          this.dir = ''; // Reset direction when device is level
-          this.player.isMovingLeft = false;
           this.player.isMovingRight = false;
+        } else {
+          // Right side of the screen is clicked
+          this.dir = 'right';
+          this.player.isMovingLeft = false;
+          this.player.isMovingRight = true;
         }
+      });
+
+      // Add event listener for releasing the click
+      document.addEventListener('mouseup', () => {
+        // Reset direction when click is released
+        this.dir = '';
+        this.player.isMovingLeft = false;
+        this.player.isMovingRight = false;
       });
     }
 
