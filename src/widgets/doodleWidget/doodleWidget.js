@@ -15,6 +15,7 @@ class DoodleWidget {
   static ctx;
 
   constructor() {
+    this.isMobile = window.innerWidth <= 768;
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
     this.width = 422;
@@ -22,7 +23,6 @@ class DoodleWidget {
     this.player;
     this.image = new Image();
     this.image.src = 'https://i.ibb.co/ryHgk6B/JUMP-UP-2-1.png';
-    this.isMobile = window.innerWidth <= 768;
     this.image.onload = () => {
       // Your existing code using this.image
       this.startDoodle();
