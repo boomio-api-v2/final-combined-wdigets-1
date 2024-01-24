@@ -873,11 +873,6 @@ class Platform {
 
     this.types = [];
     this.type = 1;
-    //Platform types
-    //1: Normal
-    //2: Moving
-    //3: Breakable (Go through)
-    //4: Vanishable
 
     this.reset();
   }
@@ -905,6 +900,12 @@ class Platform {
 
   reset() {
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
+
+    //Platform types
+    //1: Normal
+    //2: Moving
+    //3: Breakable (Go through)
+    //4: Vanishable
 
     // Set initial platform types
     if (this.currentScore >= 5000) this.types = [2, 3, 3, 3, 4, 4, 4, 4];
