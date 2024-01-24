@@ -10,6 +10,7 @@ import {
   couponBackground,
   cursor,
   intro,
+  howToPlay,
 } from './constants';
 
 class DoodleWidget {
@@ -22,6 +23,7 @@ class DoodleWidget {
     this.width = 422;
     this.height = 668;
     this.player;
+    this.tutorial = true;
     this.image = new Image();
     this.image.src = 'https://i.ibb.co/ryHgk6B/JUMP-UP-2-1.png';
     this.image.onload = () => {
@@ -95,39 +97,36 @@ class DoodleWidget {
     this.gravity = 0.1;
     this.gameCount = 0;
 
-    if (this.gameCount === 0) {
-      const inputContainer = document.querySelector('.input-container');
-      document.getElementById('control-button').style.transition = 'opacity 2s ease';
-      document.getElementById('control-button').style.opacity = 1;
-
-      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      inputContainer.style.display = 'block';
-      setTimeout(() => {
-        inputContainer.style.height = '332px';
-        inputContainer.style.top = 'calc(50% + 170px)';
-        inputContainer.style.opacity = 1;
-      }, 100);
-
-      setTimeout(() => {
-        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-        document.getElementById('background_intro').style.opacity = 0;
-        if (this.gameCount === 0) {
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-        }
-        if (this.gameCount === 0) {
-          setTimeout(() => {
-            document.getElementById('background_blur').style.opacity = 0.37;
-
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
-          }, 1000);
-        }
+    setTimeout(() => {
+      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+      document.getElementById('background_intro').style.opacity = 0;
+      if (this.gameCount === 0) {
+        document.getElementById('background_blur').style.display = 'block';
+        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+      }
+      if (this.gameCount === 0) {
         setTimeout(() => {
-          document.getElementById('background_intro').style.display = 'none';
-        }, 2000);
-      }, 5000);
-    }
+          document.getElementById('background_blur').style.opacity = 0.37;
+
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          const inputContainer = document.querySelector('.input-container');
+          document.getElementById('control-button').style.transition = 'opacity 2s ease';
+          document.getElementById('control-button').style.opacity = 1;
+
+          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inputContainer.style.display = 'block';
+          setTimeout(() => {
+            inputContainer.style.height = '332px';
+            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.opacity = 1;
+          }, 100);
+        }, 300);
+      }
+      setTimeout(() => {
+        document.getElementById('background_intro').style.display = 'none';
+      }, 2000);
+    }, 5000);
   }
 
   createHandlers = () => {
@@ -143,11 +142,40 @@ class DoodleWidget {
 
   initGame = () => {
     this.removeRules();
-    this.Spring = new Spring(this.image);
-    this.player = new Player(this.image);
-    this.hideMenu();
-    this.resetGame();
-    this.gameLoop();
+    if (!this.tutorial || !this.isMobile) {
+      this.Spring = new Spring(this.image);
+      this.player = new Player(this.image);
+      this.hideMenu();
+      this.resetGame();
+      this.gameLoop();
+    } else {
+      this.showTutorialArrows();
+    }
+  };
+
+  showTutorialArrows = () => {
+    if (this.tutorial) {
+      document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
+      document.getElementById('tutorialArrows').style.opacity = 1;
+      document.getElementById('tutorialArrows').style.display = 'block';
+      this.tutorial = false;
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-doodle-canvas');
+        canvas.addEventListener('click', this.removeTutorialArrows);
+      }, 100);
+    }
+  };
+
+  removeTutorialArrows = () => {
+    const canvas = document.getElementById('boomio-doodle-canvas');
+    canvas.removeEventListener('click', this.removeTutorialArrows);
+
+    document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
+    document.getElementById('tutorialArrows').style.opacity = 0;
+    document.getElementById('tutorialArrows').style.display = 'none';
+    setTimeout(() => {
+      this.initGame();
+    }, 100);
   };
 
   claimReward = () => {
@@ -190,10 +218,6 @@ class DoodleWidget {
       inputContainer.style.height = '10px';
       inputContainer.style.top = 'calc(50% + 330px)';
       inputContainer.style.opacity = 0;
-      if (this.gameCount === 0) {
-        const tutorial = document.querySelector('.tutorial');
-        tutorial.style.display = 'block';
-      }
     }, 100);
     setTimeout(() => {
       inputContainer.style.display = 'none';
@@ -216,10 +240,6 @@ class DoodleWidget {
       inputContainer.style.height = '10px';
       inputContainer.style.top = 'calc(50% + 330px)';
       inputContainer.style.opacity = 0;
-      if (this.gameCount === 0) {
-        const tutorial = document.querySelector('.tutorial');
-        tutorial.style.display = 'block';
-      }
     }, 100);
     setTimeout(() => {
       inputContainer.style.display = 'none';
@@ -768,8 +788,11 @@ class DoodleWidget {
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas">
 		</canvas>
 
+    
+    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
-    <img src=${intro} alt="Image Description" style="z-index:4;width: 418px; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+
+    <img src=${intro} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
     <img src=${
       blurImage.src
