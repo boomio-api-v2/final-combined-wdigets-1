@@ -438,8 +438,11 @@ class DoodleWidget {
       s.y = p.y - p.height - 10;
 
       if (s.y > this.height / 1.1) s.state = 0;
+
+      console.log(s.state);
       s.draw(this.image);
     } else {
+      console.log('test');
       s.x = 0 - s.width;
       s.y = 0 - s.height;
     }
@@ -683,11 +686,11 @@ class DoodleWidget {
     DoodleWidget.ctx.clearRect(0, 0, this.width, this.height);
     this.paintCanvas();
     this.player.draw();
-    this.platformCalc();
     this.base.draw();
     this.playerCalc();
     this.springCalc();
     this.updateScore();
+    this.platformCalc();
   };
 
   createContainer = () => {
@@ -943,7 +946,7 @@ class Spring {
     this.cy = 454;
     this.cwidth = 45;
     this.cheight = 35;
-
+    this.state = 0;
     this.width = 26;
     this.height = 30;
   }
