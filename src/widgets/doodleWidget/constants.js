@@ -25,6 +25,9 @@ export const rules =
 export const rules2 =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Rules_text_Jump_up.png';
 
+export const rules2Mobile =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Jump_up_mobile_rules.png';
+
 export const gameOver =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Game%20over.png';
 

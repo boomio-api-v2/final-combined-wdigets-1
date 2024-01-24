@@ -3,6 +3,7 @@ import './styles.css';
 import {
   rules,
   rules2,
+  rules2Mobile,
   gameOver,
   scoreImage,
   background,
@@ -749,14 +750,18 @@ class DoodleWidget {
 
 
 
-    <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
+    <img src=${
+      blurImage.src
+    } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
 
 
     <img src=${couponBackground} alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-    <img src="${useCuponImage.src}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+    <img src="${
+      useCuponImage.src
+    }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
 
@@ -765,7 +770,9 @@ class DoodleWidget {
     <div style="width: 100%; height: 100%; padding-top: 25px; padding-bottom: 35px; background:  white;  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word;">  <img style="width:179px;height:60px" src=${rules} alt="Image Description" ></div>
-    <div style="width: 320px; color: white; font-size: 16px; font-family: Poppins; font-weight: 800; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;"><img src=${rules2} alt="Image Description" style="width:100%;height:100%"></div>
+    <div style="width: 320px; color: white; font-size: 16px; font-family: Poppins; font-weight: 800; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;"><img src=${
+      this.isMobile ? rules2Mobile : rules2
+    } alt="Image Description" style="width:100%;height:100%"></div>
     </div>
     </div>
               </div>
@@ -775,9 +782,13 @@ class DoodleWidget {
     </div>
     </div>
 
-    <img class="new_highscore_stars" src=${newHighscoreStarsImage.src} alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+    <img class="new_highscore_stars" src=${
+      newHighscoreStarsImage.src
+    } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${newHighscoreImage.src} alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${
+      newHighscoreImage.src
+    } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
 
 
