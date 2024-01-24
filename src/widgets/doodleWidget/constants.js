@@ -43,8 +43,8 @@ export const couponBackground =
 export const cursor =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Cursor.png';
 
-export const icePieceCount = 5;
+export const intro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Jump_up_intro.gif';
 
-export const shadowTopCoordinatesForDesktop = [250, 220, 180, 190, 90, 150];
-
-export const shadowTopCoordinatesForMobile = [130, 100, 70, 90, 30, 50];
+export const howToPlay =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/How_to_play.gif';

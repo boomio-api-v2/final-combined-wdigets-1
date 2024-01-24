@@ -9,6 +9,7 @@ import {
   background,
   couponBackground,
   cursor,
+  intro,
 } from './constants';
 
 class DoodleWidget {
@@ -106,6 +107,26 @@ class DoodleWidget {
         inputContainer.style.top = 'calc(50% + 170px)';
         inputContainer.style.opacity = 1;
       }, 100);
+
+      setTimeout(() => {
+        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+        document.getElementById('background_intro').style.opacity = 0;
+        if (this.gameCount === 0) {
+          document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+        }
+        if (this.gameCount === 0) {
+          setTimeout(() => {
+            document.getElementById('background_blur').style.opacity = 0.37;
+
+            canvas.style.transition = 'filter 0.6s ease';
+            canvas.style.filter = 'blur(2px)';
+          }, 1000);
+        }
+        setTimeout(() => {
+          document.getElementById('background_intro').style.display = 'none';
+        }, 2000);
+      }, 5000);
     }
   }
 
@@ -748,7 +769,7 @@ class DoodleWidget {
 		</canvas>
 
 
-
+    <img src=${intro} alt="Image Description" style="z-index:4;width: 418px; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
     <img src=${
       blurImage.src
