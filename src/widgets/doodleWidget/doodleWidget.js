@@ -92,6 +92,7 @@ class DoodleWidget {
     this.dir;
     this.currentScore = 0;
     this.bestScore = 0;
+    this.discount = '0%';
     this.newHighScoreReached = false;
     this.firstRun = true;
     this.gravity = 0.1;
@@ -203,7 +204,7 @@ class DoodleWidget {
 
       this.gameEnded = true;
       setTimeout(() => {
-        new QrCodeModal(true, this.bestScore / 100 + '€');
+        new QrCodeModal(true, this.discount);
       }, 200);
     }, 500);
   };
@@ -274,7 +275,31 @@ class DoodleWidget {
   updateScore = () => {
     document.getElementById('bestScoreField').textContent = this.currentScore;
     document.getElementById('currentScoreField').textContent = this.bestScore;
-    document.getElementById('bestScoreFieldConverted').textContent = this.bestScore / 100 + '€';
+    document.getElementById('bestScoreFieldConverted').textContent =
+      this.config.discountType !== 'percentage'
+        ? this.bestScore / 100 + '€'
+        : this.bestScore > 5000
+        ? '30%'
+        : this.bestScore > 3000
+        ? '20%'
+        : this.bestScore > 1000
+        ? '10%'
+        : this.bestScore > 1
+        ? '5%'
+        : this.bestScore;
+
+    this.discount =
+      this.config.discountType !== 'percentage'
+        ? this.bestScore / 100 + '€'
+        : this.bestScore > 5000
+        ? '30%'
+        : this.bestScore > 3000
+        ? '20%'
+        : this.bestScore > 1000
+        ? '10%'
+        : this.bestScore > 1
+        ? '5%'
+        : this.bestScore;
   };
   hideMenu = () => {
     // var menu = document.getElementById('boomio-doodle-mainMenu');
@@ -483,11 +508,8 @@ class DoodleWidget {
       s.y = p.y - p.height - 10;
 
       if (s.y > this.height / 1.1) s.state = 0;
-
-      console.log(s.state);
       s.draw(this.image);
     } else {
-      console.log('test');
       s.x = 0 - s.width;
       s.y = 0 - s.height;
     }

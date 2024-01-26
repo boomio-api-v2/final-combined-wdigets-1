@@ -69,6 +69,8 @@ class LocalStorageService {
       config?.p_bottom_text_start_pc ??
       'To have immediate access for all your great rewards open or download ';
     const p_bottom_text_end_pc = config?.p_bottom_text_end_pc ?? 'Boomio app by scanning this code';
+    const discountType = 'percentage';
+
     const p_bottom_text_start_m =
       config?.p_bottom_text_start_m ?? 'To have immediate access for all your great rewards ';
     const p_bottom_text_end_m = config?.p_bottom_text_end_m ?? 'open or download';
@@ -125,6 +127,7 @@ class LocalStorageService {
       p_bottom_text,
       p_button_text,
       p_bottom_text_end_pc,
+      discountType,
       p_bottom_text_start_pc,
       p_bottom_text_start_m,
       p_bottom_text_end_m,
