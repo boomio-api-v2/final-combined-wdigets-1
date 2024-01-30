@@ -36,6 +36,7 @@ export default class {
     this.updateConfigData();
     this.loadQrCodeData();
     this.showQRDesktop();
+    console.log(this.config?.p_coupon_text_line1);
     // this.showSpinner();
   };
 
@@ -58,7 +59,6 @@ export default class {
 
   updateConfigData = () => {
     this.config = localStorageService.config;
-    console.log(this.config);
   };
 
   async loadQrCodeData() {
@@ -93,7 +93,7 @@ export default class {
         correctLevel: QRCode.CorrectLevel.H,
       });
     }
-
+    console.log('testt');
     this.insideShowFinalDataHTML = `
     <a href=${this.config.app_url}>
       <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">
@@ -646,7 +646,6 @@ ${this.config.p_code_text.replace('Unique code: ', '')}
     this.mainContainer.appendChild(modalBackground);
     this.modal = modal;
     this.modalBackground = modalBackground;
-    console.log('test', this.modal);
   };
 
   qrCodeInnerHtml = () => {
