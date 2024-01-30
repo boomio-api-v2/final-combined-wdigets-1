@@ -1,4 +1,3 @@
-import { QRCode } from 'exports-loader?type=commonjs&exports=QRCode!../../qrcode.min.js';
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
 import {
@@ -10,7 +9,6 @@ import {
 } from '@/сonstants/icons';
 import { exitBtnHtml, exitBtnEmailHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
-import { isMobileDevice } from '@/config';
 
 const likeBtnImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/like.svg';
@@ -69,12 +67,13 @@ export default class {
       });
       this.updateConfigData();
 
-      // this.showFinalData(); // Show the final data after the request is finished
+      this.showFinalData(); // Show the final data after the request is finished
     } catch (error) {
       console.error(error);
       // Handle error if necessary
     }
   }
+
   mobilePaper() {
     const coupon = document.getElementById('coupon_div');
     if (coupon) {
@@ -83,16 +82,16 @@ export default class {
   }
 
   showFinalData() {
-    {
-      new QRCode('qrcodeShowHtml', {
-        text: this.config.app_url,
-        width: isMobileDevice ? 150 : 100,
-        height: isMobileDevice ? 150 : 100,
-        colorDark: '#000000',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H,
-      });
-    }
+    // {
+    //   new QRCode('qrcodeShowHtml', {
+    //     text: this.config.app_url,
+    //     width: isMobileDevice ? 150 : 100,
+    //     height: isMobileDevice ? 150 : 100,
+    //     colorDark: '#000000',
+    //     colorLight: '#ffffff',
+    //     correctLevel: QRCode.CorrectLevel.H,
+    //   });
+    // }
     console.log('testt');
     this.insideShowFinalDataHTML = `
     <a href=${this.config.app_url}>
