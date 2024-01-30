@@ -7,6 +7,7 @@ class FlappyBird {
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
+    this.discount = '0%';
     this.gameCount = 0;
     this.gameEnded = false;
     this.isMobile = window.innerWidth <= 768;
@@ -294,7 +295,32 @@ class FlappyBird {
 
         document.getElementById('bestScoreField').textContent = this.currentScore;
         document.getElementById('currentScoreField').textContent = this.bestScore;
-        document.getElementById('bestScoreFieldConverted').textContent = this.bestScore / 100 + '€';
+
+        document.getElementById('bestScoreFieldConverted').textContent =
+          this.config.discountType !== 'percentage'
+            ? this.bestScore / 100 + '€'
+            : this.bestScore > 5000
+            ? '30%'
+            : this.bestScore > 3000
+            ? '20%'
+            : this.bestScore > 1000
+            ? '10%'
+            : this.bestScore > 1
+            ? '5%'
+            : this.bestScore;
+
+        this.discount =
+          this.config.discountType !== 'percentage'
+            ? this.bestScore / 100 + '€'
+            : this.bestScore > 5000
+            ? '30%'
+            : this.bestScore > 3000
+            ? '20%'
+            : this.bestScore > 1000
+            ? '10%'
+            : this.bestScore > 1
+            ? '5%'
+            : this.bestScore;
 
         if (this.newHighScoreReached) {
           const numbers = document.querySelector('.numbers');
@@ -621,7 +647,7 @@ class FlappyBird {
 
             this.gameEnded = true;
             setTimeout(() => {
-              new QrCodeModal(true, this.bestScore / 100 + '€');
+              new QrCodeModal(true, this.discount);
             }, 200);
           }, 500);
         };

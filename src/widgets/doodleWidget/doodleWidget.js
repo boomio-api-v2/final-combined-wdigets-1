@@ -9,18 +9,22 @@ import {
   background,
   couponBackground,
   cursor,
+  intro,
+  howToPlay,
 } from './constants';
 
 class DoodleWidget {
   static ctx;
 
   constructor() {
-    this.isMobile = window.innerWidth <= 768;
+    this.isMobile = window.innerWidth <= 1280;
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
     this.width = 422;
+
     this.height = 668;
     this.player;
+    this.tutorial = true;
     this.image = new Image();
     this.image.src = 'https://i.ibb.co/ryHgk6B/JUMP-UP-2-1.png';
     this.image.onload = () => {
@@ -39,7 +43,7 @@ class DoodleWidget {
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
         function (callback) {
-          window.setTimeout(callback, 1000 / 20);
+          window.setTimeout(callback, 1000 / 10);
         }
       );
     })();
@@ -89,24 +93,42 @@ class DoodleWidget {
     this.dir;
     this.currentScore = 0;
     this.bestScore = 0;
+    this.discount = '0%';
     this.newHighScoreReached = false;
     this.firstRun = true;
     this.gravity = 0.1;
     this.gameCount = 0;
 
-    if (this.gameCount === 0) {
-      const inputContainer = document.querySelector('.input-container');
-      document.getElementById('control-button').style.transition = 'opacity 2s ease';
-      document.getElementById('control-button').style.opacity = 1;
+    setTimeout(() => {
+      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+      document.getElementById('background_intro').style.opacity = 0;
+      if (this.gameCount === 0) {
+        document.getElementById('background_blur').style.display = 'block';
+        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+      }
+      if (this.gameCount === 0) {
+        setTimeout(() => {
+          document.getElementById('background_blur').style.opacity = 0.37;
 
-      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      inputContainer.style.display = 'block';
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          const inputContainer = document.querySelector('.input-container');
+          document.getElementById('control-button').style.transition = 'opacity 2s ease';
+          document.getElementById('control-button').style.opacity = 1;
+
+          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inputContainer.style.display = 'block';
+          setTimeout(() => {
+            inputContainer.style.height = '332px';
+            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.opacity = 1;
+          }, 100);
+        }, 300);
+      }
       setTimeout(() => {
-        inputContainer.style.height = '332px';
-        inputContainer.style.top = 'calc(50% + 170px)';
-        inputContainer.style.opacity = 1;
-      }, 100);
-    }
+        document.getElementById('background_intro').style.display = 'none';
+      }, 2000);
+    }, 5000);
   }
 
   createHandlers = () => {
@@ -122,11 +144,40 @@ class DoodleWidget {
 
   initGame = () => {
     this.removeRules();
-    this.Spring = new Spring(this.image);
-    this.player = new Player(this.image);
-    this.hideMenu();
-    this.resetGame();
-    this.gameLoop();
+    if (!this.tutorial || !this.isMobile) {
+      this.Spring = new Spring(this.image);
+      this.player = new Player(this.image);
+      this.hideMenu();
+      this.resetGame();
+      this.gameLoop();
+    } else {
+      this.showTutorialArrows();
+    }
+  };
+
+  showTutorialArrows = () => {
+    if (this.tutorial) {
+      document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
+      document.getElementById('tutorialArrows').style.opacity = 1;
+      document.getElementById('tutorialArrows').style.display = 'block';
+      this.tutorial = false;
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-doodle-canvas');
+        canvas.addEventListener('click', this.removeTutorialArrows);
+      }, 100);
+    }
+  };
+
+  removeTutorialArrows = () => {
+    const canvas = document.getElementById('boomio-doodle-canvas');
+    canvas.removeEventListener('click', this.removeTutorialArrows);
+
+    document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
+    document.getElementById('tutorialArrows').style.opacity = 0;
+    document.getElementById('tutorialArrows').style.display = 'none';
+    setTimeout(() => {
+      this.initGame();
+    }, 100);
   };
 
   claimReward = () => {
@@ -154,7 +205,7 @@ class DoodleWidget {
 
       this.gameEnded = true;
       setTimeout(() => {
-        new QrCodeModal(true, this.bestScore / 100 + '€');
+        new QrCodeModal(true, this.discount);
       }, 200);
     }, 500);
   };
@@ -169,10 +220,6 @@ class DoodleWidget {
       inputContainer.style.height = '10px';
       inputContainer.style.top = 'calc(50% + 330px)';
       inputContainer.style.opacity = 0;
-      if (this.gameCount === 0) {
-        const tutorial = document.querySelector('.tutorial');
-        tutorial.style.display = 'block';
-      }
     }, 100);
     setTimeout(() => {
       inputContainer.style.display = 'none';
@@ -195,10 +242,6 @@ class DoodleWidget {
       inputContainer.style.height = '10px';
       inputContainer.style.top = 'calc(50% + 330px)';
       inputContainer.style.opacity = 0;
-      if (this.gameCount === 0) {
-        const tutorial = document.querySelector('.tutorial');
-        tutorial.style.display = 'block';
-      }
     }, 100);
     setTimeout(() => {
       inputContainer.style.display = 'none';
@@ -233,7 +276,31 @@ class DoodleWidget {
   updateScore = () => {
     document.getElementById('bestScoreField').textContent = this.currentScore;
     document.getElementById('currentScoreField').textContent = this.bestScore;
-    document.getElementById('bestScoreFieldConverted').textContent = this.bestScore / 100 + '€';
+    document.getElementById('bestScoreFieldConverted').textContent =
+      this.config.discountType !== 'percentage'
+        ? this.bestScore / 100 + '€'
+        : this.bestScore > 5000
+        ? '30%'
+        : this.bestScore > 3000
+        ? '20%'
+        : this.bestScore > 1000
+        ? '10%'
+        : this.bestScore > 1
+        ? '5%'
+        : this.bestScore;
+
+    this.discount =
+      this.config.discountType !== 'percentage'
+        ? this.bestScore / 100 + '€'
+        : this.bestScore > 5000
+        ? '30%'
+        : this.bestScore > 3000
+        ? '20%'
+        : this.bestScore > 1000
+        ? '10%'
+        : this.bestScore > 1
+        ? '5%'
+        : this.bestScore;
   };
   hideMenu = () => {
     // var menu = document.getElementById('boomio-doodle-mainMenu');
@@ -363,9 +430,11 @@ class DoodleWidget {
 
   gameLoop = () => {
     this.update();
-    requestAnimFrame(this.gameLoop);
-  };
 
+    setTimeout(() => {
+      requestAnimationFrame(this.gameLoop);
+    }, 1000 / 120);
+  };
   collides = () => {
     this.platforms.forEach((p, i) => {
       if (
@@ -442,11 +511,8 @@ class DoodleWidget {
       s.y = p.y - p.height - 10;
 
       if (s.y > this.height / 1.1) s.state = 0;
-
-      console.log(s.state);
       s.draw(this.image);
     } else {
-      console.log('test');
       s.x = 0 - s.width;
       s.y = 0 - s.height;
     }
@@ -710,12 +776,12 @@ class DoodleWidget {
   update = () => {
     DoodleWidget.ctx.clearRect(0, 0, this.width, this.height);
     this.paintCanvas();
-    this.player.draw();
     this.base.draw();
     this.playerCalc();
     this.springCalc();
     this.updateScore();
     this.platformCalc();
+    this.player.draw();
   };
 
   createContainer = () => {
@@ -747,8 +813,11 @@ class DoodleWidget {
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas">
 		</canvas>
 
+    
+    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
 
+    <img src=${intro} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
     <img src=${
       blurImage.src
@@ -777,7 +846,7 @@ class DoodleWidget {
     </div>
               </div>
               <div style="margin-top:570px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;" class="control-button" id="control-button">
-              <div id="startButtonClick" style="box-shadow: 0px 16px 32px 0px #3610A666; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: #6E2DF0; border:3px solid white;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <div id="startButtonClick" style="box-shadow: 0px 16px 32px 0px #3610A666; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 137px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: #6E2DF0; border:3px solid white;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24pxtext-align: center; color: white; font-size: 18px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">LET'S PLAY</div></div>
     </div>
     </div>
@@ -828,10 +897,10 @@ class DoodleWidget {
     <div style="left: 240px; top: 150px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;line-height:28px;" id="currentScoreField"></div>
     <div style="left: 46px; top: 185px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">YOUR DISCOUNT REWARD</div>
     <div style="left: 240px; top: 185px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreFieldConverted"></div>
-    <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 27px; top: 255px; position: absolute; background: #6E2DF0; box-shadow:0px 6px 20px 0px #3610A64D;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+    <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 130px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 18px; top: 255px; position: absolute; background: #6E2DF0; box-shadow:0px 6px 20px 0px #3610A64D;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">     <div style="line-height:24pxtext-align: center; color: white; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">PLAY AGAIN</div></div>
     </div>
-    <div id="claimReward" style="box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 220px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px #6E2DF0 solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+    <div id="claimReward" style="box-sizing:content-box;width: 130px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 215px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px #6E2DF0 solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="line-height:24pxtext-align: center; color: #6E2DF0; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
     </div>
 </div>
@@ -873,11 +942,6 @@ class Platform {
 
     this.types = [];
     this.type = 1;
-    //Platform types
-    //1: Normal
-    //2: Moving
-    //3: Breakable (Go through)
-    //4: Vanishable
 
     this.reset();
   }
@@ -905,6 +969,12 @@ class Platform {
 
   reset() {
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
+
+    //Platform types
+    //1: Normal
+    //2: Moving
+    //3: Breakable (Go through)
+    //4: Vanishable
 
     // Set initial platform types
     if (this.currentScore >= 5000) this.types = [2, 3, 3, 3, 4, 4, 4, 4];

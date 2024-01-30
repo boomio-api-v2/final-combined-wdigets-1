@@ -77,7 +77,9 @@ export default class {
   }
   mobilePaper() {
     const coupon = document.getElementById('coupon_div');
-    coupon.style.display = 'block';
+    if (coupon) {
+      coupon.style.display = 'block';
+    }
   }
 
   showFinalData() {
@@ -616,7 +618,9 @@ ${this.config.p_code_text.replace('Unique code: ', '')}
     const coupon = document.getElementById('coupon_div');
     const qrcodeShow = document.getElementById('qrcodeShow');
     qrcodeShow.style.display = 'none';
-    coupon.style.display = 'none';
+    if (coupon) {
+      coupon.style.display = 'none';
+    }
 
     // qrcodeShow.onclick = () => {
     //   coupon.style.display = 'block';
