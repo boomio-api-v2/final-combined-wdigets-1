@@ -17,10 +17,11 @@ class DoodleWidget {
   static ctx;
 
   constructor() {
-    this.isMobile = window.innerWidth <= 768;
+    this.isMobile = window.innerWidth <= 1280;
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
     this.width = 422;
+
     this.height = 668;
     this.player;
     this.tutorial = true;
@@ -42,7 +43,7 @@ class DoodleWidget {
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
         function (callback) {
-          window.setTimeout(callback, 1000 / 20);
+          window.setTimeout(callback, 1000 / 10);
         }
       );
     })();
@@ -429,9 +430,11 @@ class DoodleWidget {
 
   gameLoop = () => {
     this.update();
-    requestAnimFrame(this.gameLoop);
-  };
 
+    setTimeout(() => {
+      requestAnimationFrame(this.gameLoop);
+    }, 1000 / 120);
+  };
   collides = () => {
     this.platforms.forEach((p, i) => {
       if (
@@ -773,12 +776,12 @@ class DoodleWidget {
   update = () => {
     DoodleWidget.ctx.clearRect(0, 0, this.width, this.height);
     this.paintCanvas();
-    this.player.draw();
     this.base.draw();
     this.playerCalc();
     this.springCalc();
     this.updateScore();
     this.platformCalc();
+    this.player.draw();
   };
 
   createContainer = () => {
@@ -843,7 +846,7 @@ class DoodleWidget {
     </div>
               </div>
               <div style="margin-top:570px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;" class="control-button" id="control-button">
-              <div id="startButtonClick" style="box-shadow: 0px 16px 32px 0px #3610A666; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: #6E2DF0; border:3px solid white;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <div id="startButtonClick" style="box-shadow: 0px 16px 32px 0px #3610A666; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 137px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: #6E2DF0; border:3px solid white;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24pxtext-align: center; color: white; font-size: 18px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">LET'S PLAY</div></div>
     </div>
     </div>
@@ -894,10 +897,10 @@ class DoodleWidget {
     <div style="left: 240px; top: 150px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;line-height:28px;" id="currentScoreField"></div>
     <div style="left: 46px; top: 185px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">YOUR DISCOUNT REWARD</div>
     <div style="left: 240px; top: 185px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreFieldConverted"></div>
-    <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 27px; top: 255px; position: absolute; background: #6E2DF0; box-shadow:0px 6px 20px 0px #3610A64D;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+    <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 130px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 18px; top: 255px; position: absolute; background: #6E2DF0; box-shadow:0px 6px 20px 0px #3610A64D;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">     <div style="line-height:24pxtext-align: center; color: white; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">PLAY AGAIN</div></div>
     </div>
-    <div id="claimReward" style="box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 220px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px #6E2DF0 solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+    <div id="claimReward" style="box-sizing:content-box;width: 130px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 215px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px #6E2DF0 solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="line-height:24pxtext-align: center; color: #6E2DF0; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
     </div>
 </div>
