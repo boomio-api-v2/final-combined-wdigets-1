@@ -137,7 +137,7 @@ export default class {
     }
 
     if (p_code_text) {
-      p_code_text.textContent = this.config?.p_code_text;
+      p_code_text.textContent = this.config?.p_code_text.replace('Unique code: ', '');
     }
 
     if (product) {
