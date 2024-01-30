@@ -23,7 +23,7 @@ export default class {
     this.demoValue = value;
     this.updateConfigData();
     this.mainContainer = widgetHtmlService.container;
-    if (!this.config?.email_collection_required) {
+    if (this.config?.email_collection_required) {
       this.showQrCode();
     } else {
       this.updateConfigData();
@@ -69,7 +69,7 @@ export default class {
       });
       this.updateConfigData();
 
-      this.showFinalData(); // Show the final data after the request is finished
+      // this.showFinalData(); // Show the final data after the request is finished
     } catch (error) {
       console.error(error);
       // Handle error if necessary
@@ -84,16 +84,14 @@ export default class {
 
   showFinalData() {
     {
-      isMobileDevice
-        ? this.mobilePaper()
-        : new QRCode('qrcodeShowHtml', {
-            text: this.config.app_url,
-            width: isMobileDevice ? 150 : 100,
-            height: isMobileDevice ? 150 : 100,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H,
-          });
+      new QRCode('qrcodeShowHtml', {
+        text: this.config.app_url,
+        width: isMobileDevice ? 150 : 100,
+        height: isMobileDevice ? 150 : 100,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H,
+      });
     }
 
     this.insideShowFinalDataHTML = `
