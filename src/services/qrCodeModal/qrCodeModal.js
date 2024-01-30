@@ -23,7 +23,7 @@ export default class {
     this.demoValue = value;
     this.updateConfigData();
     this.mainContainer = widgetHtmlService.container;
-    if (this.config?.email_collection_required) {
+    if (!this.config?.email_collection_required) {
       this.showQrCode();
     } else {
       this.updateConfigData();
