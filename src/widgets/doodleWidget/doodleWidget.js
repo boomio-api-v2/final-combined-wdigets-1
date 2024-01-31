@@ -26,7 +26,7 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = 'https://i.ibb.co/B6t8Zp2/JUMP-UP-3.png';
+    this.image.src = 'https://i.ibb.co/KWfBPXB/JUMP-UP-4.png';
     this.image.onload = () => {
       // Your existing code using this.image
       this.startDoodle();
