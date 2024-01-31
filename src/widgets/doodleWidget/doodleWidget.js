@@ -6,11 +6,11 @@ import {
   rules2Mobile,
   gameOver,
   scoreImage,
-  background,
   couponBackground,
   cursor,
   intro,
   howToPlay,
+  backgroundRed,
 } from './constants';
 
 class DoodleWidget {
@@ -56,7 +56,7 @@ class DoodleWidget {
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.style.background = `url(${background}) center`;
+    canvas.style.background = `url(${backgroundRed}) center`;
 
     const backgroundCursor = document.getElementById('game-container');
     backgroundCursor.style.cursor = `url(${cursor}) 10 10, auto`;

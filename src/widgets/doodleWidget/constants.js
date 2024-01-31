@@ -37,6 +37,8 @@ export const scoreImage =
 export const background =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Jump_up_background.png';
 
+export const backgroundRed = 'https://i.ibb.co/m68X4LC/Background-1.png';
+
 export const couponBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/COUPON.png';
 
