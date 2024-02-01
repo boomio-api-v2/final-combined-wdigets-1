@@ -1114,24 +1114,24 @@ class Player {
     this.vy = 11;
     this.vx = 0;
     this.width = 66;
-    this.height = 46;
+    this.height = 48;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
     this.cx = 0;
     this.cy = 0;
     this.cwidth = 110;
-    this.cheight = 80;
+    this.cheight = 75;
     this.dir = 'left';
     this.x = 422 / 2 - this.width / 2;
-    this.y = 668;
+    this.y = 666;
   }
   draw() {
     try {
-      if (this.dir == 'right') this.cy = 121;
-      else if (this.dir == 'left') this.cy = 201;
-      else if (this.dir == 'right_land') this.cy = 289;
-      else if (this.dir == 'left_land') this.cy = 371;
+      if (this.dir == 'right') this.cy = 124;
+      else if (this.dir == 'left') this.cy = 204;
+      else if (this.dir == 'right_land') this.cy = 292;
+      else if (this.dir == 'left_land') this.cy = 374;
 
       DoodleWidget.ctx.drawImage(
         this.image,
