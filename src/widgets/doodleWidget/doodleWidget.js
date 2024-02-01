@@ -11,6 +11,7 @@ import {
   intro,
   howToPlay,
   backgroundRed,
+  mainImage,
 } from './constants';
 
 class DoodleWidget {
@@ -26,7 +27,7 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = 'https://i.ibb.co/KWfBPXB/JUMP-UP-4.png';
+    this.image.src = mainImage;
     this.image.onload = () => {
       // Your existing code using this.image
       this.startDoodle();
