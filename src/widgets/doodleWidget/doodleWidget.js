@@ -553,12 +553,10 @@ class DoodleWidget {
         this.player.isMovingRight = false;
       }
     };
-
     if (this.isMobile) {
       document.addEventListener('touchstart', (e) => {
         const touchX = e.touches[0].clientX;
         const screenWidth = window.innerWidth;
-
         // Adjust the sensitivity value based on your needs
         const sensitivity = 0.1;
 
