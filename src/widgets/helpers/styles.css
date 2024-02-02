@@ -1,0 +1,15 @@
+.input-register-container{
+    overflow: hidden;
+    position: absolute;
+    left :50%;
+    width:424px;
+    transform : translate(-50%, -50%);
+    flex-direction: column;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    z-index: 3;  
+    height :332px;
+    top :calc(50% + 170px);
+    opacity: 1;
+    display: block;
+    }

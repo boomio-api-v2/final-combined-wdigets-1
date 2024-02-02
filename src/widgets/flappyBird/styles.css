@@ -90,6 +90,7 @@ flex-direction: column;
 }
 
 .input-container{
+  background-color: white;
   overflow: hidden;
   position: absolute;
   left :50%;
