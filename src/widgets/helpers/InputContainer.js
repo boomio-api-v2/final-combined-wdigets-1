@@ -5,8 +5,6 @@ export class InputContainer {
   createInputContainerDiv() {
     this.isMobile = window.innerWidth <= 1280;
 
-    console.log('tyete');
-
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');
