@@ -1,24 +1,3 @@
-export const icePieceImages = [
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step7.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step6.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step5.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step4.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step3.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step2.png?raw=true',
-];
-
-export const icePieceShadowImages = [
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step2.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step3.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step4.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step5.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step6.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step7.png?raw=true',
-];
-
-export const iceBlockImage =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/ice-block.png?raw=true';
-
 export const rules =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/3x_Rules.png';
 
@@ -32,7 +11,7 @@ export const gameOver =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/GAME_OVER_RED.png';
 
 export const scoreImage =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Score_element_01.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/Score_element_red.png';
 
 export const background =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/JUMP UP_Barbora_x2.png';
