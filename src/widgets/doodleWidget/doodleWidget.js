@@ -127,7 +127,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 500);
+    }, 5000);
   }
 
   createHandlers = () => {
@@ -1009,9 +1009,9 @@ class Spring {
     this.y = 0;
     this.moved = 0;
     this.vx = 1;
-    this.cx = 22;
+    this.cx = 5;
     this.cy = 452;
-    this.cwidth = 70;
+    this.cwidth = 90;
     this.cheight = 100;
     this.state = 0;
     this.width = 35;
