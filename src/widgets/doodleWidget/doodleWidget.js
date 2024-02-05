@@ -127,7 +127,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 5000);
+    }, 500);
   }
 
   createHandlers = () => {
