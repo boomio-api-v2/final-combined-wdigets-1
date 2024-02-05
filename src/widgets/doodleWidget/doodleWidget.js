@@ -1009,19 +1009,20 @@ class Spring {
     this.y = 0;
     this.moved = 0;
     this.vx = 1;
-    this.cx = 0;
-    this.cy = 514;
-    this.cwidth = 45;
-    this.cheight = 35;
+    this.cx = 22;
+    this.cy = 452;
+    this.cwidth = 70;
+    this.cheight = 100;
     this.state = 0;
-    this.width = 26;
-    this.height = 30;
+    this.width = 35;
+    this.height = 32;
   }
 
   draw() {
     try {
       // if (this.state === 0) this.cy = 454;
-      // else if (this.state == 1) this.cy = 514;
+      if (this.state == 1) this.height = 32;
+      if (this.state == 1) this.cy = 442;
 
       DoodleWidget.ctx.drawImage(
         this.image,
