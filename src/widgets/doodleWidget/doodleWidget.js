@@ -127,7 +127,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 5000);
+    }, 500);
   }
 
   createHandlers = () => {
@@ -1010,18 +1010,18 @@ class Spring {
     this.moved = 0;
     this.vx = 1;
     this.cx = 0;
-    this.cy = 454;
+    this.cy = 514;
     this.cwidth = 45;
     this.cheight = 35;
     this.state = 0;
-    this.width = 50;
+    this.width = 26;
     this.height = 30;
   }
 
   draw() {
     try {
-      if (this.state === 0) this.cy = 445;
-      else if (this.state == 1) this.cy = 505;
+      // if (this.state === 0) this.cy = 454;
+      // else if (this.state == 1) this.cy = 514;
 
       DoodleWidget.ctx.drawImage(
         this.image,
