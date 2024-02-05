@@ -47,7 +47,7 @@ export class InputRegisterContainer {
             color: white;
             font-size: 16px;
             font-family: Poppins;
-            font-weight: 800;
+            font-weight: 700;
             text-transform: uppercase;
             line-height: 35.20px;
             word-wrap: break-word;

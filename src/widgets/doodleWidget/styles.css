@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
-@import url(https://fonts.googleapis.com/css?family=Londrina+Solid);
+@import url(https://fonts.googleapis.com/css?family=Oswald);
 
 
 
@@ -103,7 +103,7 @@
 	, 0 -2px #FF9161,
 	1px 1px #FF9161, -1px -1px #FF9161, 1px -1px #FF9161, -1px 1px #FF9161;
 	z-index: 3;
-	font-family: Georama;
+	font-family: Oswald;
 	font-size: 44px;
 	line-height: 1em;
 	text-align: center;
@@ -124,7 +124,7 @@
   }
   
   .numbers__window__digit {
-	font-family: Georama;
+	font-family: Oswald;
 	word-break: break-all;
 	display: block;
 	width: 30px;
