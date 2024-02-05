@@ -1014,14 +1014,14 @@ class Spring {
     this.cwidth = 45;
     this.cheight = 35;
     this.state = 0;
-    this.width = 26;
+    this.width = 50;
     this.height = 30;
   }
 
   draw() {
     try {
-      if (this.state === 0) this.cy = 454;
-      else if (this.state == 1) this.cy = 514;
+      if (this.state === 0) this.cy = 445;
+      else if (this.state == 1) this.cy = 505;
 
       DoodleWidget.ctx.drawImage(
         this.image,
