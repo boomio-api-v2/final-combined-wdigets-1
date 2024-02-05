@@ -875,11 +875,6 @@ class DoodleWidget {
 
 ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
-
-
-		<!-- Preloading image ;) -->
-		<img id="boomio-doodle-sprite" src="https://i.ibb.co/ryHgk6B/JUMP-UP-2-1.png" class="boomio-doodle-img"/>
-
 	</div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
