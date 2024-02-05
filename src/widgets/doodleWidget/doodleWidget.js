@@ -872,7 +872,6 @@ class DoodleWidget {
 </div></div>
 
 
-
 ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
 	</div>
