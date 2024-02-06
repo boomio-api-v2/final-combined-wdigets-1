@@ -824,7 +824,7 @@ class DoodleWidget {
     <img src=${couponBackground} alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
 
-    <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
+    <a href="https://www.barbora.lt/" style="position:absolute;margin-top:380px;margin-left:-340px">
     <img src="${useButton}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
