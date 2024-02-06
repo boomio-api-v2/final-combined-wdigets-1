@@ -17,7 +17,7 @@ export const backgroundRed =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/Background_Barbora_New.png';
 
 export const couponBackground =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/COUPON.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/Background_Barbora_New.png';
 
 export const mainImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/Barbora_Jump_up_Main.png';
