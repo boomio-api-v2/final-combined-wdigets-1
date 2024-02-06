@@ -13,6 +13,7 @@ import {
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { GameOverContainer } from '../helpers/GameOverContainer';
+import { CompetitionTableContainer } from '../helpers/CompetitionTableContainer';
 
 class DoodleWidget {
   static ctx;
@@ -809,8 +810,9 @@ class DoodleWidget {
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas">
 		</canvas>
     
-    ${true ? new InputRegisterContainer().createTestDiv().outerHTML : ''}
-    
+    ${false ? new InputRegisterContainer().createTestDiv().outerHTML : ''}
+    ${new CompetitionTableContainer().createTestDiv().outerHTML}
+
     <img src=${howToPlay} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
 
@@ -870,6 +872,9 @@ class DoodleWidget {
 
 
 ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
+
+
+
 
 	</div>
     `;
