@@ -128,7 +128,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 5000);
+    }, 100);
   }
 
   createHandlers = () => {
@@ -809,7 +809,7 @@ class DoodleWidget {
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas">
 		</canvas>
     
-    ${false ? new InputRegisterContainer().createTestDiv().outerHTML : ''}
+    ${true ? new InputRegisterContainer().createTestDiv().outerHTML : ''}
     
     <img src=${howToPlay} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 

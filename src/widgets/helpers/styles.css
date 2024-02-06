@@ -2,14 +2,17 @@
     overflow: hidden;
     position: absolute;
     left :50%;
-    width:424px;
+    width:430px;
     transform : translate(-50%, -50%);
     flex-direction: column;
     border-top-left-radius:20px;
     border-top-right-radius:20px;
     z-index: 3;  
-    height :332px;
-    top :calc(50% + 170px);
+    height :528px;
+    top :calc(50% + 70px);
     opacity: 1;
     display: block;
+     background: linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),
+    linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%);
+    ;
     }
