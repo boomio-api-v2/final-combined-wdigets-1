@@ -22,10 +22,10 @@ export class InputContainer {
     </div>
     </div>
               </div>
-              <div style="z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;" class="control-button" id="control-button">
+              <div style="z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:430px;" class="control-button" id="control-button">
               <div id="startButtonClick" style="box-shadow:-4px -4px 8px 0px #DFE6F599 inset, 2px 2px 4px 0px #EEF3FFBF inset, 0px 6px 20px 0px #B3C5EA80; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 139px; padding-right: 129px; padding-top: 13px; padding-bottom: 13px; background: #3BAF29
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: white; font-size: 18px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word">LET'S PLAY</div></div>
+              <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: white; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word">LET'S PLAY</div></div>
     </div>
  
     `;
