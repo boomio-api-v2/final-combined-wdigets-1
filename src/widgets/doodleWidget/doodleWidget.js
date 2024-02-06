@@ -865,7 +865,7 @@ class DoodleWidget {
 </div>
 
 
-          <div class="score-input-container" style="display:none;width:148px;height;left:50%">
+          <div class="score-input-container" style="display:none;width:148px;height;left:calc(50% - 110px);top:calc(50% - 270px);">
           <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
         <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:85px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
