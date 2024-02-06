@@ -8,6 +8,7 @@ import {
   howToPlay,
   backgroundRed,
   mainImage,
+  useButton,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -782,8 +783,6 @@ class DoodleWidget {
   };
 
   createContainer = () => {
-    const useCuponImage = new Image();
-    useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
     const newHighscoreImage = new Image();
@@ -826,9 +825,7 @@ class DoodleWidget {
       </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-    <img src="${
-      useCuponImage.src
-    }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+    <img src="${useButton}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
 
