@@ -1,8 +1,12 @@
 import { widgetHtmlService, AnimationService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
+import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 
 class FlappyBird {
   constructor() {
+    this.showCompetitiveRegistration = true;
+
     this.isJumping = false;
     this.startFlappy();
     this.gameStarted = false;
@@ -70,6 +74,7 @@ class FlappyBird {
       this.gravity = 0.3;
       this.flight = this.jump / 2;
 
+      console.log('stars');
       const new_highscore = document.querySelector('.new_highscore');
       const new_highscore_stars = document.querySelector('.new_highscore_stars');
       const numbers = document.querySelector('.numbers');
@@ -92,17 +97,55 @@ class FlappyBird {
         document.getElementById('flappy-canvas').style.opacity = 1;
 
         if (this.gameCount === 0) {
-          const inputContainer = document.querySelector('.input-container');
-          document.getElementById('control-button').style.transition = 'opacity 2s ease';
-          document.getElementById('control-button').style.opacity = 1;
+          if (this.showCompetitiveRegistration) {
+            const checkboxImg = document.querySelector('.privacyCheckbox');
+            checkboxImg.addEventListener('click', () => {
+              console.log('Checkbox state changed:');
+            });
+            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            emailInput.addEventListener('input', () => {
+              console.log('Email input changed:', emailInput.value);
+            });
+            playerNameInput.addEventListener('input', () => {
+              console.log('Player name input changed:', playerNameInput.value);
+            });
+            setTimeout(() => {
+              const canvas = document.getElementById('flappy-canvas');
+              document.getElementById('background_blur').style.opacity = 0.37;
+              canvas.style.transition = 'filter 0.6s ease';
+              canvas.style.filter = 'blur(2px)';
 
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          inputContainer.style.display = 'block';
-          setTimeout(() => {
-            inputContainer.style.height = '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
-            inputContainer.style.opacity = 1;
-          }, 100);
+              const inpuRegisterContainer = document.querySelector('.input-register-container');
+              inpuRegisterContainer.style.transition =
+                'height 1s ease, top 1s ease, opacity 1s ease';
+              inpuRegisterContainer.style.display = 'block';
+              setTimeout(() => {
+                inpuRegisterContainer.style.height = '528px';
+                inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+                inpuRegisterContainer.style.opacity = 1;
+              }, 100);
+            }, 300);
+          } else {
+            setTimeout(() => {
+              const canvas = document.getElementById('flappy-canvas');
+              document.getElementById('background_blur').style.opacity = 0.37;
+              canvas.style.transition = 'filter 0.6s ease';
+              canvas.style.filter = 'blur(2px)';
+              const inputContainer = document.querySelector('.input-container');
+              document.getElementById('control-button').style.transition = 'opacity 2s ease';
+              document.getElementById('control-button').style.opacity = 1;
+              document.getElementById('control-button').style.display = 'flex';
+
+              inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+              inputContainer.style.display = 'block';
+              setTimeout(() => {
+                inputContainer.style.height = '332px';
+                inputContainer.style.top = 'calc(50% + 170px)';
+                inputContainer.style.opacity = 1;
+              }, 100);
+            }, 300);
+          }
         }
 
         document.getElementById('background_intro').style.transition = 'opacity 1s ease';
@@ -122,7 +165,7 @@ class FlappyBird {
         setTimeout(() => {
           document.getElementById('background_intro').style.display = 'none';
         }, 2000);
-      }, 5000);
+      }, 4000);
 
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -254,22 +297,49 @@ class FlappyBird {
               () => {
                 const inputContainer = document.querySelector('.input-container1');
                 console.log('game over');
-                const canvas = document.getElementById('flappy-canvas');
-                canvas.style.transition = 'filter 0.6s ease';
-                canvas.style.filter = 'blur(2px)';
-                document.getElementById('background_blur').style.display = 'block';
-                inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-                inputContainer.style.display = 'block';
-                setTimeout(() => {
-                  inputContainer.style.height = '332px';
-                  inputContainer.style.top = 'calc(50% + 170px)';
-                  inputContainer.style.opacity = 1;
-                }, 100);
-                const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
-                currectScoreDiv.style.opacity = 0;
-                setTimeout(() => {
-                  currectScoreDiv.style.display = 'none';
-                }, 300);
+
+                if (this.showCompetitiveRegistration) {
+                  const canvas = document.getElementById('flappy-canvas');
+                  const competitionTableContainer = document.querySelector(
+                    '.competition-table-container',
+                  );
+                  canvas.style.transition = 'filter 0.6s ease';
+                  canvas.style.filter = 'blur(2px)';
+                  document.getElementById('background_blur').style.display = 'block';
+                  competitionTableContainer.style.transition =
+                    'height 1s ease, top 1s ease, opacity 1s ease';
+                  competitionTableContainer.style.display = 'block';
+                  setTimeout(() => {
+                    competitionTableContainer.style.height = '680px';
+                    competitionTableContainer.style.top = 'calc(50%)';
+                    competitionTableContainer.style.opacity = 1;
+                  }, 100);
+                  const currectScoreDiv =
+                    document.getElementsByClassName('score-input-container')[0];
+                  currectScoreDiv.style.opacity = 0;
+                  setTimeout(() => {
+                    currectScoreDiv.style.display = 'none';
+                  }, 300);
+                } else {
+                  const canvas = document.getElementById('flappy-canvas');
+                  canvas.style.transition = 'filter 0.6s ease';
+                  canvas.style.filter = 'blur(2px)';
+                  document.getElementById('background_blur').style.display = 'block';
+                  inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+                  inputContainer.style.display = 'block';
+                  setTimeout(() => {
+                    inputContainer.style.height = '332px';
+                    inputContainer.style.top = 'calc(50% + 170px)';
+                    inputContainer.style.opacity = 1;
+                  }, 100);
+                  const currectScoreDiv =
+                    document.getElementsByClassName('score-input-container')[0];
+                  currectScoreDiv.style.opacity = 0;
+                  setTimeout(() => {
+                    currectScoreDiv.style.display = 'none';
+                  }, 300);
+                }
+
                 setup();
               },
               this.newHighScoreReached ? 2500 : 100,
@@ -457,23 +527,47 @@ class FlappyBird {
       'box',
     );
 
-    myCanvas.innerHTML = `
+    myCanvas.innerHTML = `    
       <div class="game-container game-container-flappy">
-      <img src=${endingBackground.src} alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
+
+      ${
+        this.showCompetitiveRegistration
+          ? new InputRegisterContainer().createInputRegisterContainer().outerHTML
+          : ''
+      }
+      ${
+        this.showCompetitiveRegistration
+          ? new CompetitionScoreTableContainer().createCompetitionScoreTableContainer().outerHTML
+          : ''
+      }
+  
+      <img src=${
+        endingBackground.src
+      } alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
-      <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
+      <img src=${
+        blurImage.src
+      } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
       </img>
             <img  style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
       </img>
-      <img src=${introImage.src} alt="Image Description" style="z-index:4;width: 418px; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+      <img src=${
+        introImage.src
+      } alt="Image Description" style="z-index:4;width: 418px; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
       </img>
       <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-      <img src="${useCuponImage.src}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+      <img src="${
+        useCuponImage.src
+      }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
     </a>
 
-      <img class="new_highscore_stars" src=${newHighscoreStarsImage.src} alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+      <img class="new_highscore_stars" src=${
+        newHighscoreStarsImage.src
+      } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
       </img>
-      <div class="new_highscore"><img src=${newHighscoreImage.src} alt="Image Description" style="width: 100%; height: 100%;">
+      <div class="new_highscore"><img src=${
+        newHighscoreImage.src
+      } alt="Image Description" style="width: 100%; height: 100%;">
       </div>
       <div class="numbers">
     <span class="numbers__window">
@@ -494,8 +588,12 @@ class FlappyBird {
 </div>
 
 <div style="left:calc(50% - 20px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
-<img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px">
-<img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px">
+<img src=${
+      tapImage.src
+    } alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px">
+<img src=${
+      tapImage.src
+    } alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px">
 
 <img src=${clickImg.src} alt="Image Description" style="width: 71px; height: 54px;">
 </div>
@@ -506,22 +604,35 @@ class FlappyBird {
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:100px;top:20px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
+
+
 <div class="input-container" id="input-container">
 <div style="width: 100%; height: 100%; padding-top: 25px; padding-bottom: 35px; background:  linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%);  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
 <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-<div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word">  <img src=${rulesImage.src} alt="Image Description" ></div>
-<div style="width: 320px; color: white; font-size: 16px; font-family: Poppins; font-weight: 800; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;margin-top:12px;"><img src=${rulesImage2.src} alt="Image Description" style="width:100%;height:100%"></div>
+<div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word">  <img src=${
+      rulesImage.src
+    } alt="Image Description" ></div>
+<div style="width: 320px; color: white; font-size: 16px; font-family: Poppins; font-weight: 800; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;margin-top:12px;"><img src=${
+      rulesImage2.src
+    } alt="Image Description" style="width:100%;height:100%"></div>
 </div>
 </div>
+
+
+
           </div>
-          <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;" class="control-button" id="control-button">
+          <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;display:none;" class="control-button" id="control-button">
           <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-          <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${okImage.src} alt="Image Description"></div>
+          <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
+            okImage.src
+          } alt="Image Description"></div>
 </div>
 </div>
 <div class="input-container1">
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
-    <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${gameOver.src} alt="Image Description"></div>
+    <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
+      gameOver.src
+    } alt="Image Description"></div>
     <div class="colored_box"></div>
     <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
     <div style="left: 240px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
@@ -530,7 +641,9 @@ class FlappyBird {
     <div style="left: 46px; top: 185px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">YOUR DISCOUNT REWARD</div>
     <div style="left: 240px; top: 185px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreFieldConverted"></div>
     <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 27px; top: 255px; position: absolute; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${playAgain.src} alt="Image Description"></div>
+        <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
+          playAgain.src
+        } alt="Image Description"></div>
     </div>
     <div id="claimReward" style="box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 220px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px white solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="line-height:24pxtext-align: center; color: white; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
@@ -557,6 +670,75 @@ class FlappyBird {
       </div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
+
+    if (this.showCompetitiveRegistration) {
+      const clickEventHandlerShowRules = () => {
+        if (this.gameCount === 0) {
+          setTimeout(() => {
+            console.log('showint');
+            const inpuRegisterContainer = document.querySelector('.input-register-container');
+            inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+            setTimeout(() => {
+              inpuRegisterContainer.style.height = '10px';
+              inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+              inpuRegisterContainer.style.opacity = 0;
+            }, 100);
+            setTimeout(() => {
+              inpuRegisterContainer.style.display = 'none';
+            }, 1000);
+            setTimeout(() => {
+              const canvas = document.getElementById('flappy-canvas');
+              document.getElementById('background_blur').style.opacity = 0.37;
+              canvas.style.transition = 'filter 0.6s ease';
+              canvas.style.filter = 'blur(2px)';
+              const inputContainer = document.querySelector('.input-container');
+              document.getElementById('control-button').style.transition = 'opacity 2s ease';
+              document.getElementById('control-button').style.opacity = 1;
+              document.getElementById('control-button').style.display = 'flex';
+              inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+              inputContainer.style.display = 'block';
+              setTimeout(() => {
+                inputContainer.style.height = '332px';
+                inputContainer.style.top = 'calc(50% + 170px)';
+                inputContainer.style.opacity = 1;
+              }, 100);
+            }, 300);
+          }, 300);
+        }
+      };
+
+      const clickEventHandlerResetGame = () => {
+        const controlButton = document.querySelector('.control-button1');
+        this.index = 0;
+        this.currentScore = 0;
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          competitionTableContainer.style.height = '10px';
+          competitionTableContainer.style.top = 'calc(50% + 330px)';
+          competitionTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          competitionTableContainer.style.display = 'none';
+        }, 1000);
+
+        setTimeout(() => {
+          document.getElementById('background_blur').style.display = 'none';
+          const canvas = document.getElementById('flappy-canvas');
+          canvas.style.transition = 'filter 1s ease';
+          canvas.style.filter = 'none';
+          this.gamePlaying = true;
+        }, 400);
+        controlButton.style.display = 'none';
+        controlButton.style.opacity = 0;
+      };
+
+      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+
+      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+    }
 
     document.getElementById('startButtonClick').addEventListener('click', () => {
       if (!this.gameStarted) {
@@ -618,6 +800,7 @@ class FlappyBird {
           };
           canvas.addEventListener('click', this.clickEventHandler);
         }
+
         this.clickEventHandlerClaimButton = () => {
           const inputContainer = document.querySelector('.input-container1');
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';

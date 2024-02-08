@@ -13,17 +13,18 @@ import {
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { GameOverContainer } from '../helpers/GameOverContainer';
-import { CompetitionTableContainer } from '../helpers/CompetitionTableContainer';
+import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 
 class DoodleWidget {
   static ctx;
 
   constructor() {
     this.isMobile = window.innerWidth <= 1280;
+    this.showCompetitiveRegistration = false;
+
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
     this.width = 422;
-
     this.height = 668;
     this.player;
     this.tutorial = true;
@@ -53,6 +54,7 @@ class DoodleWidget {
       window.innerWidth <= 768 ? 'black' : 'none';
 
     this.config = localStorageService.getDefaultConfig();
+
     this.createHandlers();
 
     this.doodle = document.getElementById('boomio-doodle-container');
@@ -107,29 +109,12 @@ class DoodleWidget {
         document.getElementById('background_blur').style.display = 'block';
         document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
       }
-      if (this.gameCount === 0) {
-        setTimeout(() => {
-          document.getElementById('background_blur').style.opacity = 0.37;
+      this.showRulesOrRegistration();
 
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
-          const inputContainer = document.querySelector('.input-container');
-          document.getElementById('control-button').style.transition = 'opacity 2s ease';
-          document.getElementById('control-button').style.opacity = 1;
-
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          inputContainer.style.display = 'block';
-          setTimeout(() => {
-            inputContainer.style.height = '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
-            inputContainer.style.opacity = 1;
-          }, 100);
-        }, 300);
-      }
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 100);
+    }, 500);
   }
 
   createHandlers = () => {
@@ -141,6 +126,103 @@ class DoodleWidget {
 
     const reward = document.getElementById('claimReward');
     reward.addEventListener('click', this.claimReward);
+
+    if (this.showCompetitiveRegistration) {
+      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+      competitionConfirmField.addEventListener('click', this.showRules);
+
+      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      competitionRestart.addEventListener('click', this.resetGame);
+    }
+  };
+
+  showRulesOrRegistration = () => {
+    if (this.showCompetitiveRegistration) {
+      const checkboxImg = document.querySelector('.privacyCheckbox');
+      console.log('checkboxImg', checkboxImg);
+      checkboxImg.addEventListener('click', () => {
+        console.log('Checkbox state changed:');
+      });
+
+      const emailInput = document.querySelector('.boomio-competition-email-input-field');
+      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+
+      emailInput.addEventListener('input', () => {
+        console.log('Email input changed:', emailInput.value);
+      });
+
+      playerNameInput.addEventListener('input', () => {
+        console.log('Player name input changed:', playerNameInput.value);
+      });
+
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-doodle-canvas');
+        document.getElementById('background_blur').style.opacity = 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
+
+        const inpuRegisterContainer = document.querySelector('.input-register-container');
+        document.getElementById('control-button').style.transition = 'opacity 2s ease';
+        document.getElementById('control-button').style.opacity = 1;
+        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        inpuRegisterContainer.style.display = 'block';
+        setTimeout(() => {
+          inpuRegisterContainer.style.height = '528px';
+          inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+          inpuRegisterContainer.style.opacity = 1;
+        }, 100);
+      }, 300);
+    } else {
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-doodle-canvas');
+        document.getElementById('background_blur').style.opacity = 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
+        const inputContainer = document.querySelector('.input-container');
+        document.getElementById('control-button').style.transition = 'opacity 2s ease';
+        document.getElementById('control-button').style.opacity = 1;
+        inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        inputContainer.style.display = 'block';
+        setTimeout(() => {
+          inputContainer.style.height = '332px';
+          inputContainer.style.top = 'calc(50% + 170px)';
+          inputContainer.style.opacity = 1;
+        }, 100);
+      }, 300);
+    }
+  };
+
+  showRules = () => {
+    if (this.gameCount === 0) {
+      setTimeout(() => {
+        const inpuRegisterContainer = document.querySelector('.input-register-container');
+        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          inpuRegisterContainer.style.height = '10px';
+          inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+          inpuRegisterContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          inpuRegisterContainer.style.display = 'none';
+        }, 1000);
+        setTimeout(() => {
+          const canvas = document.getElementById('boomio-doodle-canvas');
+          document.getElementById('background_blur').style.opacity = 0.37;
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          const inputContainer = document.querySelector('.input-container');
+          document.getElementById('control-button').style.transition = 'opacity 2s ease';
+          document.getElementById('control-button').style.opacity = 1;
+          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inputContainer.style.display = 'block';
+          setTimeout(() => {
+            inputContainer.style.height = '332px';
+            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.opacity = 1;
+          }, 100);
+        }, 300);
+      }, 300);
+    }
   };
 
   initGame = () => {
@@ -235,18 +317,33 @@ class DoodleWidget {
 
   resetGame = () => {
     this.gameCount++;
-    const inputContainer = document.querySelector('.input-container1');
     this.index = 0;
     this.currentScore = 0;
-    inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-    setTimeout(() => {
-      inputContainer.style.height = '10px';
-      inputContainer.style.top = 'calc(50% + 330px)';
-      inputContainer.style.opacity = 0;
-    }, 100);
-    setTimeout(() => {
-      inputContainer.style.display = 'none';
-    }, 1000);
+
+    if (this.showCompetitiveRegistration) {
+      const competitionTableContainer = document.querySelector('.competition-table-container');
+      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      setTimeout(() => {
+        competitionTableContainer.style.height = '10px';
+        competitionTableContainer.style.top = 'calc(50% + 330px)';
+        competitionTableContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        competitionTableContainer.style.display = 'none';
+      }, 1000);
+    } else {
+      const inputContainer = document.querySelector('.input-container1');
+
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      setTimeout(() => {
+        inputContainer.style.height = '10px';
+        inputContainer.style.top = 'calc(50% + 330px)';
+        inputContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        inputContainer.style.display = 'none';
+      }, 1000);
+    }
 
     setTimeout(() => {
       document.getElementById('background_blur').style.display = 'none';
@@ -360,18 +457,34 @@ class DoodleWidget {
 
     setTimeout(
       () => {
-        const inputContainer = document.querySelector('.input-container1');
-        const canvas = document.getElementById('boomio-doodle-canvas');
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
-        document.getElementById('background_blur').style.display = 'block';
-        inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        inputContainer.style.display = 'block';
-        setTimeout(() => {
-          inputContainer.style.height = '332px';
-          inputContainer.style.top = 'calc(50% + 170px)';
-          inputContainer.style.opacity = 1;
-        }, 100);
+        if (this.showCompetitiveRegistration) {
+          const competitionTableContainer = document.querySelector('.competition-table-container');
+          const canvas = document.getElementById('boomio-doodle-canvas');
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          document.getElementById('background_blur').style.display = 'block';
+          competitionTableContainer.style.transition =
+            'height 1s ease, top 1s ease, opacity 1s ease';
+          competitionTableContainer.style.display = 'block';
+          setTimeout(() => {
+            competitionTableContainer.style.height = '680px';
+            competitionTableContainer.style.top = 'calc(50%)';
+            competitionTableContainer.style.opacity = 1;
+          }, 100);
+        } else {
+          const inputContainer = document.querySelector('.input-container1');
+          const canvas = document.getElementById('boomio-doodle-canvas');
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          document.getElementById('background_blur').style.display = 'block';
+          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inputContainer.style.display = 'block';
+          setTimeout(() => {
+            inputContainer.style.height = '332px';
+            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.opacity = 1;
+          }, 100);
+        }
         const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
         this.hideScore();
         currectScoreDiv.style.opacity = 0;
@@ -810,8 +923,16 @@ class DoodleWidget {
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas">
 		</canvas>
     
-    ${false ? new InputRegisterContainer().createTestDiv().outerHTML : ''}
-    ${new CompetitionTableContainer().createTestDiv().outerHTML}
+    ${
+      this.showCompetitiveRegistration
+        ? new InputRegisterContainer().createInputRegisterContainer().outerHTML
+        : ''
+    }
+    ${
+      this.CompetitionScoreTableContainer
+        ? new CompetitionScoreTableContainer().createCompetitionScoreTableContainer().outerHTML
+        : ''
+    }
 
     <img src=${howToPlay} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
@@ -842,7 +963,7 @@ class DoodleWidget {
     </div>
 
 
-    ${new InputContainer().createInputContainerDiv().outerHTML}
+    ${new InputContainer('doodle').createInputContainerDiv().outerHTML}
 
 
     <div class="numbers">

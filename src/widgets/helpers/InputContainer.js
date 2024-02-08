@@ -2,9 +2,12 @@ import './styles.css';
 import { rules, rules2, rules2Mobile } from './constants';
 
 export class InputContainer {
-  createInputContainerDiv() {
+  constructor(prop) {
+    this.prop = prop; // Store the prop in a class property
     this.isMobile = window.innerWidth <= 1280;
-
+    console.log(prop);
+  }
+  createInputContainerDiv() {
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');

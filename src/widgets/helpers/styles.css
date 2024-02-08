@@ -10,16 +10,14 @@
     border-top-left-radius:20px;
     border-top-right-radius:20px;
     z-index: 3;  
-    height :528px;
-    top :calc(50% + 74px);
-    opacity: 1;
-    display: block;
+    height :10px;
+    top :calc(50% + 330px);
+    opacity: 0;
+    display: none;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%);
     box-shadow: 10px 10px 20px 0px #9783E399 inset,0px 4px 4px 0px #00000040 inset;
     ;
     }
-
-
     .competition-table-container{
         overflow: hidden;
         position: absolute;
@@ -27,19 +25,47 @@
         width:430px;
         transform : translate(-50%, -50%);
         flex-direction: column;
-        border-top-left-radius:20px;
-        border-top-right-radius:20px;
+ 
         z-index: 3;  
         height :680px;
         top :calc(50%);
-        opacity: 1;
-        display: block;
+        opacity: 0;
+        display: none;
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%);
         box-shadow: 10px 10px 20px 0px #9783E399 inset,0px 4px 4px 0px #00000040 inset;
         ;
         }
     
 
-    #boomio-competition-input-field:focus {
-        outline: none;
-    }
+        .boomio-competition-email-input-field:focus {
+          outline: none; /* Remove default focus outline */
+          border-color: transparent; /* Change border color on focus */
+        }
+      
+        .boomio-competition-name-input-field:focus {
+          outline: none; /* Remove default focus outline */
+          border-color: transparent; /* Change border color on focus */
+        }
+      
+
+    .custom-scrollbar::-webkit-scrollbar {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 8px;        border-radius: 20px;
+
+      }
+      
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 20px;
+      }
+      
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #FF3183;        border-radius: 20px;
+
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #FF3183;        border-radius: 20px;
+
+      }

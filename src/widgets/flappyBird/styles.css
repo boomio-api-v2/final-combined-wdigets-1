@@ -132,6 +132,7 @@ input::placeholder {
 .control-button{
   opacity: 0;
   position:absolute;
+  display:none;
 }
 
 .control-button1{
