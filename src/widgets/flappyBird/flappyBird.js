@@ -41,7 +41,14 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    img.src = 'https://i.ibb.co/SrtXMFx/Boomio-demo-penguin.png';
+    img.src = 'https://i.ibb.co/QYBRvX2/Boomio-demo-1-1.png';
+
+    const img2 = new Image();
+    img2.src = 'https://i.ibb.co/YcpNJtj/Boomio-demo-2-1.png';
+
+    const img3 = new Image();
+    img3.src = 'https://i.ibb.co/xq7Yf83/Boomio-demo-3-1.png';
+
     const snowImg = new Image();
     snowImg.src = 'https://i.giphy.com/media/ggK4TpfK2cfuZcokhj/giphy.webp';
 
@@ -85,6 +92,7 @@ class FlappyBird {
       new_highscore.style.opacity = 0;
       new_highscore_stars.style.transition = 'opacity 0.5s ease';
       new_highscore_stars.style.opacity = 0;
+      console.log('remove stars');
 
       setTimeout(() => {
         new_highscore.style.display = 'none';
@@ -165,7 +173,7 @@ class FlappyBird {
         setTimeout(() => {
           document.getElementById('background_intro').style.display = 'none';
         }, 2000);
-      }, 4000);
+      }, 10);
 
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
