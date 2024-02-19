@@ -6,7 +6,6 @@
 
 .boomio-doodle-container {
 	height: 668px;
-	width: 422px;
 	position: relative;
 	margin: 20px auto 0; 
 	overflow: hidden;
@@ -14,7 +13,6 @@
 
 .boomio-doodle-canvas {
 	height: 668px;
-	width: 422px;
 	display: block;
 	background-size: cover;
 

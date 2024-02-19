@@ -1,11 +1,22 @@
-import { widgetHtmlService, AnimationService, QrCodeModal, localStorageService } from '@/services';
+import {
+  widgetHtmlService,
+  AnimationService,
+  QrCodeModal,
+  localStorageService,
+  boomioService,
+} from '@/services';
 import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 
 class FlappyBird {
   constructor() {
+    this.config = localStorageService.getDefaultConfig();
+
+    this.showCompetitiveRegistration = this.config.game_type === 'competition';
     this.showCompetitiveRegistration = true;
+    this.userBestPlace = 0;
+    this.scoreTable = {};
 
     this.isJumping = false;
     this.startFlappy();
@@ -16,11 +27,13 @@ class FlappyBird {
     this.gameEnded = false;
     this.isMobile = window.innerWidth <= 768;
     this.newHighScoreReached = false;
+    this.scoreTableContainerInstance;
   }
 
   startFlappy() {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
+    this.checkboxChange = true;
 
     this.flappy = document.getElementById('boomio-flappy-container');
 
@@ -41,10 +54,13 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    img.src = 'https://i.ibb.co/QYBRvX2/Boomio-demo-1-1.png';
+
+    img.src = 'https://i.ibb.co/F6r2f8N/Clip-path-group-1.png';
+
+    // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
     const img2 = new Image();
-    img2.src = 'https://i.ibb.co/YcpNJtj/Boomio-demo-2-1.png';
+    img2.src = 'https://i.ibb.co/SrtXMFx/Boomio-demo-penguin.png';
 
     const img3 = new Image();
     img3.src = 'https://i.ibb.co/xq7Yf83/Boomio-demo-3-1.png';
@@ -108,7 +124,12 @@ class FlappyBird {
           if (this.showCompetitiveRegistration) {
             const checkboxImg = document.querySelector('.privacyCheckbox');
             checkboxImg.addEventListener('click', () => {
-              console.log('Checkbox state changed:');
+              this.checkboxChange = !this.checkboxChange;
+              console.log(this.checkboxChange);
+              const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+              checkboxImgChange.src = this.checkboxChange
+                ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
+                : 'none';
             });
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
@@ -173,7 +194,7 @@ class FlappyBird {
         setTimeout(() => {
           document.getElementById('background_intro').style.display = 'none';
         }, 2000);
-      }, 10);
+      }, 4000);
 
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -304,7 +325,23 @@ class FlappyBird {
             setTimeout(
               () => {
                 const inputContainer = document.querySelector('.input-container1');
-                console.log('game over');
+                console.log('ROUND_FINISHED');
+
+                if (this.showCompetitiveRegistration) {
+                  boomioService
+                    .signal('ROUND_FINISHED', 'signal', { score: this.currentScore })
+                    .then((response) => {
+                      console.log('Response2', response);
+                      this.userBestPlace = response.user_best_place;
+
+                      this.scoreTable = response;
+
+                      this.scoreTableContainerInstance.updateProps('barbora', this.scoreTable);
+                    })
+                    .catch((error) => {
+                      console.error('Error:', error);
+                    });
+                }
 
                 if (this.showCompetitiveRegistration) {
                   const canvas = document.getElementById('flappy-canvas');
@@ -540,28 +577,26 @@ class FlappyBird {
 
       ${
         this.showCompetitiveRegistration
-          ? new InputRegisterContainer().createInputRegisterContainer().outerHTML
+          ? new InputRegisterContainer('barbora').createInputRegisterContainer().outerHTML
           : ''
       }
-      ${
-        this.showCompetitiveRegistration
-          ? new CompetitionScoreTableContainer().createCompetitionScoreTableContainer().outerHTML
-          : ''
-      }
+
   
       <img src=${
         endingBackground.src
       } alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
-      <img src=${
-        blurImage.src
-      } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
+      <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
       </img>
-            <img  style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
+            <img  style="z-index:1;width: ${
+              document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+            }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
       </img>
-      <img src=${
-        introImage.src
-      } alt="Image Description" style="z-index:4;width: 418px; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+      <img src=${introImage.src} alt="Image Description" style="z-index:4;width: ${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
       </img>
       <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
       <img src="${
@@ -614,7 +649,9 @@ class FlappyBird {
 </div>
 
 
-<div class="input-container" id="input-container">
+<div class="input-container" id="input-container" style="width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }">
 <div style="width: 100%; height: 100%; padding-top: 25px; padding-bottom: 35px; background:  linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%);  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
 <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
 <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word">  <img src=${
@@ -629,19 +666,23 @@ class FlappyBird {
 
 
           </div>
-          <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;display:none;" class="control-button" id="control-button">
+          <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
+            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          };display:none;" class="control-button" id="control-button">
           <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
           <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
             okImage.src
           } alt="Image Description"></div>
 </div>
 </div>
-<div class="input-container1">
+<div class="input-container1" style="width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }">
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
     <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
       gameOver.src
     } alt="Image Description"></div>
-    <div class="colored_box"></div>
+    <div class="colored_box" style="width:calc(100% - 40px);"></div>
     <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
     <div style="left: 240px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
     <div style="width: 142px; left: 46px; top: 150px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">BEST SCORE</div>
@@ -661,9 +702,11 @@ class FlappyBird {
 
 </div>
           </div>
-          <div style="justify-content: center; align-items: center; gap: 24px;width:424px;" class="control-button1">
+          <div style="justify-content: center; align-items: center; gap: 24px;width:${
+            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          };" class="control-button1">
           <div  style="margin-left: 46px; margin-right: 46px; padding-top: 14px; padding-bottom: 14px; width:100%;background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 32px; border: 2px rgba(255, 255, 255, 0.20) solid; justify-content: center; align-items: center; gap: 8px; display: flex;">
-<div style="color: white; font-size: 25px; font-family: Poppins; font-weight: 900; line-height: 24px; letter-spacing: 0.25px; word-wrap: break-word;" id="startButton">Play1231231</div>
+<div style="color: white; font-size: 25px; font-family: Poppins; font-weight: 900; line-height: 24px; letter-spacing: 0.25px; word-wrap: break-word;" id="startButton">Play</div>
 </div>
 </div>
 
@@ -674,43 +717,88 @@ class FlappyBird {
 
         
         
-        <canvas id="flappy-canvas" width="418" height="668" class="flappy-game"></canvas>
+        <canvas id="flappy-canvas" width=${
+          document.body.offsetWidth < 418 ? document.body.offsetWidth : '418'
+        } height="668" class="flappy-game"></canvas>
       </div>
     `;
+
     widgetHtmlService.container.appendChild(myCanvas);
+
+    if (this.showCompetitiveRegistration) {
+      const gameContainer = document.querySelector('.game-container-flappy');
+
+      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+        'barbora',
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
 
     if (this.showCompetitiveRegistration) {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           setTimeout(() => {
-            console.log('showint');
-            const inpuRegisterContainer = document.querySelector('.input-register-container');
-            inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            setTimeout(() => {
-              inpuRegisterContainer.style.height = '10px';
-              inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-              inpuRegisterContainer.style.opacity = 0;
-            }, 100);
-            setTimeout(() => {
-              inpuRegisterContainer.style.display = 'none';
-            }, 1000);
-            setTimeout(() => {
-              const canvas = document.getElementById('flappy-canvas');
-              document.getElementById('background_blur').style.opacity = 0.37;
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
-              const inputContainer = document.querySelector('.input-container');
-              document.getElementById('control-button').style.transition = 'opacity 2s ease';
-              document.getElementById('control-button').style.opacity = 1;
-              document.getElementById('control-button').style.display = 'flex';
-              inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-              inputContainer.style.display = 'block';
-              setTimeout(() => {
-                inputContainer.style.height = '332px';
-                inputContainer.style.top = 'calc(50% + 170px)';
-                inputContainer.style.opacity = 1;
-              }, 100);
-            }, 300);
+            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+
+            if (this.showCompetitiveRegistration && this.checkboxChange) {
+              console.log('login');
+
+              boomioService
+                .signal('', 'user_info', {
+                  user_email: emailInput?.value,
+                  user_name: playerNameInput?.value,
+                })
+                .then((response) => {
+                  console.log('response1', response);
+
+                  if (response.success === false) {
+                    if (response.res_code === 'EMAIL_EXIST') {
+                      console.log(response.res_msg);
+                    } else if (response.res_code === 'NAME_EXIST') {
+                      console.log(response.res_msg);
+                    }
+                  } else {
+                    this.bestScore = response.user_best_score;
+                    const inpuRegisterContainer = document.querySelector(
+                      '.input-register-container',
+                    );
+                    inpuRegisterContainer.style.transition =
+                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.height = '10px';
+                      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                      inpuRegisterContainer.style.opacity = 0;
+                    }, 100);
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.display = 'none';
+                    }, 1000);
+                    setTimeout(() => {
+                      const canvas = document.getElementById('flappy-canvas');
+                      document.getElementById('background_blur').style.opacity = 0.37;
+                      canvas.style.transition = 'filter 0.6s ease';
+                      canvas.style.filter = 'blur(2px)';
+                      const inputContainer = document.querySelector('.input-container');
+                      document.getElementById('control-button').style.transition =
+                        'opacity 2s ease';
+                      document.getElementById('control-button').style.opacity = 1;
+                      document.getElementById('control-button').style.display = 'flex';
+                      inputContainer.style.transition =
+                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      inputContainer.style.display = 'block';
+                      setTimeout(() => {
+                        inputContainer.style.height = '332px';
+                        inputContainer.style.top = 'calc(50% + 170px)';
+                        inputContainer.style.opacity = 1;
+                      }, 100);
+                    }, 300);
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
+            }
           }, 300);
         }
       };
@@ -720,6 +808,7 @@ class FlappyBird {
         this.index = 0;
         this.currentScore = 0;
         const competitionTableContainer = document.querySelector('.competition-table-container');
+
         competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         setTimeout(() => {
           competitionTableContainer.style.height = '10px';

@@ -21,10 +21,9 @@ class DoodleWidget {
   constructor() {
     this.isMobile = window.innerWidth <= 1280;
     this.showCompetitiveRegistration = false;
-
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
-    this.width = 422;
+    this.width = document.body.offsetWidth < 422 ? document.body.offsetWidth : 422;
     this.height = 668;
     this.player;
     this.tutorial = true;
@@ -114,7 +113,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 500);
+    }, 5000);
   }
 
   createHandlers = () => {
@@ -129,7 +128,7 @@ class DoodleWidget {
 
     if (this.showCompetitiveRegistration) {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
-      competitionConfirmField.addEventListener('click', this.showRules);
+      competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
 
       const competitionRestart = document.getElementById('boomio-competition-play-again');
       competitionRestart.addEventListener('click', this.resetGame);
@@ -139,9 +138,12 @@ class DoodleWidget {
   showRulesOrRegistration = () => {
     if (this.showCompetitiveRegistration) {
       const checkboxImg = document.querySelector('.privacyCheckbox');
-      console.log('checkboxImg', checkboxImg);
       checkboxImg.addEventListener('click', () => {
-        console.log('Checkbox state changed:');
+        this.checkboxChange = !this.checkboxChange;
+        const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+        checkboxImgChange.src = this.checkboxChange
+          ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
+          : 'none';
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
@@ -192,7 +194,7 @@ class DoodleWidget {
     }
   };
 
-  showRules = () => {
+  clickEventHandlerShowRules = () => {
     if (this.gameCount === 0) {
       setTimeout(() => {
         const inpuRegisterContainer = document.querySelector('.input-register-container');
@@ -920,31 +922,41 @@ class DoodleWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
-		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas">
+		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
+      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+    }">
 		</canvas>
     
     ${
       this.showCompetitiveRegistration
-        ? new InputRegisterContainer().createInputRegisterContainer().outerHTML
+        ? new InputRegisterContainer('barbora').createInputRegisterContainer().outerHTML
         : ''
     }
     ${
-      this.CompetitionScoreTableContainer
-        ? new CompetitionScoreTableContainer().createCompetitionScoreTableContainer().outerHTML
+      this.showCompetitiveRegistration
+        ? new CompetitionScoreTableContainer('#3BAF29').createCompetitionScoreTableContainer()
+            .outerHTML
         : ''
     }
 
-    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
+    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:${
+      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
 
-    <img src=${intro} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    <img src=${intro} alt="Image Description" style="z-index:4;width:${
+      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
-    <img src=${
-      blurImage.src
-    } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
+    <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
+      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+    }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
 
 
-    <img src=${couponBackground} alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
+    <img src=${couponBackground} alt="Image Description" style="z-index:1;width:    ${
+      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+    };
+    ; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
 
     <a href="https://www.barbora.lt/" style="position:absolute;margin-top:380px;margin-left:-340px">
@@ -1162,7 +1174,7 @@ class Base {
   constructor(image) {
     this.image = image;
     this.height = 10;
-    this.width = 422; // Adjust the width value accordingly
+    this.width = document.body.offsetWidth < 422 ? document.body.offsetWidth : 422; // Adjust the width value accordingly
     this.cx = 0;
     this.cy = 614;
     this.cwidth = 100;
@@ -1204,7 +1216,8 @@ class Player {
     this.cwidth = 110;
     this.cheight = 75;
     this.dir = 'left';
-    this.x = 422 / 2 - this.width / 2;
+    this.x =
+      (document.body.offsetWidth < 422 ? document.body.offsetWidth : 422) / 2 - this.width / 2;
     this.y = 666;
   }
   draw() {

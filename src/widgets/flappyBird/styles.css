@@ -19,7 +19,6 @@
 
 
 .colored_box {
- width: 374px; 
  height: 126px; left: 20px; top: 100px; 
  background: rgba(255, 255, 255, 0.40); 
  border-radius: 20px;  
@@ -83,7 +82,7 @@
   z-index: 3;
 position: absolute;
 top : calc(50% - 260px);
-left :calc(50% + 115px);
+left :calc(50% + 80px);
 transform : translate(-50%, -50%);
 display:flex;
 flex-direction: column;
@@ -94,7 +93,6 @@ flex-direction: column;
   overflow: hidden;
   position: absolute;
   left :50%;
-  width:430px;
   transform : translate(-50%, -50%);
   flex-direction: column;
   border-top-left-radius:20px;
@@ -111,7 +109,6 @@ flex-direction: column;
     top : calc(50% + 330px);
     left :50%;
     height:10px;
-    width:430px;
     transform : translate(-50%, -50%);
     display:none;
     flex-direction: column;

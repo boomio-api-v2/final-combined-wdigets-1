@@ -114,6 +114,7 @@ class BoomioService extends UserService {
       }, 2000);
     }
     const { user_session, current_page_url } = this;
+
     const request_data = {
       user_session,
       current_page_url,
