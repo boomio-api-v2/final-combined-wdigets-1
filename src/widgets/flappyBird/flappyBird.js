@@ -199,7 +199,7 @@ class FlappyBird {
             background.style.display = 'none';
           }
         }, 2000);
-      }, 4000);
+      }, 100);
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -655,7 +655,7 @@ class FlappyBird {
 </div>
 </div>
 
-<div class="close-game-container" id="close-game-container" style="display:block;width:48px;height:48px;">
+<div class="close-game-container" id="close-game-container" style="display:block;width:24px;height:24px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
 
@@ -755,8 +755,18 @@ ${new InputContainer('penki').createInputContainerDiv().outerHTML}
 
                   if (response.success === false) {
                     if (response.res_code === 'EMAIL_EXIST') {
+                      document.getElementById('competition-email-error').innerText =
+                        response.res_msg;
+
+                      document.getElementById('competition-name-error').innerText = '';
+
                       console.log(response.res_msg);
                     } else if (response.res_code === 'NAME_EXIST') {
+                      document.getElementById('competition-name-error').innerText =
+                        response.res_msg;
+
+                      document.getElementById('competition-email-error').innerText = '';
+
                       console.log(response.res_msg);
                     }
                   } else {

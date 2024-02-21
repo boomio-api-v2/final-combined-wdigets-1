@@ -12,7 +12,7 @@ export class InputContainer {
     containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
-      document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px';
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px';
     containerDiv.style.background =
       this.prop === 'barbora'
         ? 'white'

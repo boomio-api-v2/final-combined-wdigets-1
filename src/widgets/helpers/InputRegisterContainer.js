@@ -33,7 +33,7 @@ export class InputRegisterContainer {
           this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >TOLIAU</div>
       </div>
-      <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 28px; top: 353px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+      <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 28px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       
       <div  style="cursor: pointer;">
             <img id="privacyCheckboxImg"  src="${
@@ -46,6 +46,26 @@ export class InputRegisterContainer {
           this.prop === 'barbora' ? '#3BAF29' : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">Sutinku su Penki sezonai <a href="https://penkisezonai.lt/lt-lt/privatumo-politika.html" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a></div>
       </div>
+
+
+      <div style="width: calc(100% - 54px); height: 30px; left: 45px; top: 260px; position: absolute;text-align:start;z-index:99999;color: #CD1E1E;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: -0.42px;
+      " id="competition-name-error"></div>
+
+
+      <div style="width: calc(100% - 54px); height: 30px; left: 45px; top: 340px; position: absolute;text-align:start;z-index:99999;color: #CD1E1E;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: -0.42px;
+      " id="competition-email-error"></div>
+
+
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: 287px; position: absolute; background: ${
         this.prop === 'barbora' ? '#3BAF29' : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
@@ -55,6 +75,9 @@ export class InputRegisterContainer {
         ? '1px solid #A6CE39'
         : ' 1px #FF3284 solid'
     }"></div>
+
+
+
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: 204px; position: absolute; background: ${
         this.prop === 'barbora' ? '#3BAF29' : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
