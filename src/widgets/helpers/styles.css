@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Londrina+Solid);
+@import url('https://fonts.googleapis.com/css?family=Londrina+Solid');
 
 .input-register-container{
     overflow: hidden;
@@ -55,11 +55,30 @@
       }
       
       .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #FF3183;        border-radius: 20px;
+        background: #00B5AC;        border-radius: 20px;
 
       }
 
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #FF3183;        border-radius: 20px;
+        background: #00B5AC;        border-radius: 20px;
 
       }
+
+      .boomio-competition-email-input-field::placeholder {
+        color: #473F4E;
+        text-align: start;
+        font-family: "Londrina Solid";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 24px; /* 120% */
+    }
+    .boomio-competition-name-input-field::placeholder {
+      color: #473F4E;
+      text-align: start;
+      font-family: "Londrina Solid";
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 24px; /* 120% */
+  }

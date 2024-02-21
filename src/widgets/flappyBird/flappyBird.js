@@ -8,16 +8,15 @@ import {
 import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
-
+import { InputContainer } from '../helpers/InputContainer';
+import { close } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-
+    this.gameClosed = false;
     this.showCompetitiveRegistration = this.config.game_type === 'competition';
-    this.showCompetitiveRegistration = true;
     this.userBestPlace = 0;
     this.scoreTable = {};
-
     this.isJumping = false;
     this.startFlappy();
     this.gameStarted = false;
@@ -33,6 +32,7 @@ class FlappyBird {
   startFlappy() {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
+
     this.checkboxChange = true;
 
     this.flappy = document.getElementById('boomio-flappy-container');
@@ -55,7 +55,7 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.src = 'https://i.ibb.co/F6r2f8N/Clip-path-group-1.png';
+    img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
@@ -66,7 +66,8 @@ class FlappyBird {
     img3.src = 'https://i.ibb.co/xq7Yf83/Boomio-demo-3-1.png';
 
     const snowImg = new Image();
-    snowImg.src = 'https://i.giphy.com/media/ggK4TpfK2cfuZcokhj/giphy.webp';
+    snowImg.src =
+      'https://i.ibb.co/hVgn0NM/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f.gif';
 
     let snowOffset = 0; // Initial offset for snow GIF animation
     let snowSpeed = 0.4; // Adjust the this.speed of the falling snow
@@ -84,7 +85,7 @@ class FlappyBird {
     let flyHeight = 0,
       pipes;
 
-    const pipeWidth = 80;
+    const pipeWidth = 78;
     let pipeGap = 250;
     const pipeLoc = () =>
       Math.random() * (canvas.height - (pipeGap + pipeWidth) - pipeWidth) + pipeWidth;
@@ -192,10 +193,14 @@ class FlappyBird {
           }, 1000);
         }
         setTimeout(() => {
-          document.getElementById('background_intro').style.display = 'none';
+          const background = document.getElementById('background_intro');
+
+          if (background) {
+            background.style.display = 'none';
+          }
         }, 2000);
       }, 4000);
-
+      //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
       for (let i = 1; i < 3; i++) {
@@ -213,302 +218,304 @@ class FlappyBird {
     };
 
     const render = () => {
-      updateElapsedTime();
-      this.index++;
-      ctx.drawImage(
-        img,
-        0,
-        0,
-        canvas.width,
-        canvas.height,
-        -((this.index * (this.speed / 2)) % canvas.width) + canvas.width,
-        0,
-        canvas.width,
-        canvas.height,
-      );
-      ctx.drawImage(
-        img,
-        0,
-        0,
-        canvas.width,
-        canvas.height,
-        -(this.index * (this.speed / 2)) % canvas.width,
-        0,
-        canvas.width,
-        canvas.height,
-      );
+      if (!this.gameClosed) {
+        updateElapsedTime();
+        this.index++;
+        ctx.drawImage(
+          img,
+          0,
+          0,
+          418,
+          canvas.height,
+          -((this.index * (this.speed / 2)) % 418) + 418,
+          0,
+          418,
+          canvas.height,
+        );
+        ctx.drawImage(
+          img,
+          0,
+          0,
+          418,
+          canvas.height,
+          -(this.index * (this.speed / 2)) % 418,
+          0,
+          418,
+          canvas.height,
+        );
 
-      if (this.gamePlaying) {
-        pipes.map((pipe) => {
-          // pipe moving
-          pipe[0] -= this.speed;
+        if (this.gamePlaying) {
+          pipes.map((pipe) => {
+            // pipe moving
+            pipe[0] -= this.speed;
 
-          // top pipe
-          ctx.drawImage(
-            img,
-            426,
-            608 - pipe[1],
-            pipeWidth,
-            pipe[1],
-            pipe[0],
-            0,
-            pipeWidth,
-            pipe[1],
-          );
-          // bottom pipe
-          ctx.drawImage(
-            img,
-            426 + pipeWidth,
-            108,
-            pipeWidth,
-            canvas.height - pipe[1] + pipeGap,
-            pipe[0],
-            pipe[1] + pipeGap,
-            pipeWidth,
-            canvas.height - pipe[1] + pipeGap,
-          );
-          // give 1 point & create new pipe
-          if (pipe[0] <= -pipeWidth) {
-            this.currentScore = this.currentScore + 100;
-            document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
-
-            if (this.currentScore > 1) {
-              const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
-              currectScoreDiv.style.transition = 'opacity 0.8s ease';
-              currectScoreDiv.style.display = 'block';
-              currectScoreDiv.style.opacity = 1;
-            }
-
-            if (this.bestScore < this.currentScore) {
-              this.newHighScoreReached = true;
-            }
-            // check if it's the best score
-            this.bestScore = Math.max(this.bestScore, this.currentScore);
-
-            // remove & create new pipe
-            pipes = [
-              ...pipes.slice(1),
-              [pipes[pipes.length - 1][0] + pipeGap + pipeWidth, pipeLoc()],
-            ];
-            const targetPipeGap = Math.max(pipeGap - elapsedTime * 400, 130);
-            pipeGap += (targetPipeGap - pipeGap) * 0.1; // Adjust the interpolation factor as needed
-            snowSpeed = Math.min(snowSpeed + elapsedTime * 10, 3);
-            const decayFactor = 2; // Adjust this value based on how quickly you want the jump to decrease
-            const gravityFactor = 2;
-            this.gravity = Math.min(this.gravity * Math.pow(gravityFactor, elapsedTime), 0.4);
-            this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -7);
-          }
-          if (
-            [
-              pipe[0] <= cTenth + size[0],
-              pipe[0] + pipeWidth >= cTenth,
-              pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + size[1],
-            ].every((elem) => elem)
-          ) {
-            this.gamePlaying = false;
-
-            if (this.gameCount === 0) {
-              const canvas = document.getElementById('flappy-canvas');
-              canvas.removeEventListener('click', this.clickEventHandler);
-
-              document
-                .getElementById('startButtonClick1')
-                .addEventListener('click', this.clickEventHandlerButton);
-
-              document
-                .getElementById('claimReward')
-                .addEventListener('click', this.clickEventHandlerClaimButton);
-
-              this.gameCount++;
-            }
-
-            setTimeout(
-              () => {
-                const inputContainer = document.querySelector('.input-container1');
-                console.log('ROUND_FINISHED');
-
-                if (this.showCompetitiveRegistration) {
-                  boomioService
-                    .signal('ROUND_FINISHED', 'signal', { score: this.currentScore })
-                    .then((response) => {
-                      console.log('Response2', response);
-                      this.userBestPlace = response.user_best_place;
-
-                      this.scoreTable = response;
-
-                      this.scoreTableContainerInstance.updateProps('barbora', this.scoreTable);
-                    })
-                    .catch((error) => {
-                      console.error('Error:', error);
-                    });
-                }
-
-                if (this.showCompetitiveRegistration) {
-                  const canvas = document.getElementById('flappy-canvas');
-                  const competitionTableContainer = document.querySelector(
-                    '.competition-table-container',
-                  );
-                  canvas.style.transition = 'filter 0.6s ease';
-                  canvas.style.filter = 'blur(2px)';
-                  document.getElementById('background_blur').style.display = 'block';
-                  competitionTableContainer.style.transition =
-                    'height 1s ease, top 1s ease, opacity 1s ease';
-                  competitionTableContainer.style.display = 'block';
-                  setTimeout(() => {
-                    competitionTableContainer.style.height = '680px';
-                    competitionTableContainer.style.top = 'calc(50%)';
-                    competitionTableContainer.style.opacity = 1;
-                  }, 100);
-                  const currectScoreDiv =
-                    document.getElementsByClassName('score-input-container')[0];
-                  currectScoreDiv.style.opacity = 0;
-                  setTimeout(() => {
-                    currectScoreDiv.style.display = 'none';
-                  }, 300);
-                } else {
-                  const canvas = document.getElementById('flappy-canvas');
-                  canvas.style.transition = 'filter 0.6s ease';
-                  canvas.style.filter = 'blur(2px)';
-                  document.getElementById('background_blur').style.display = 'block';
-                  inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-                  inputContainer.style.display = 'block';
-                  setTimeout(() => {
-                    inputContainer.style.height = '332px';
-                    inputContainer.style.top = 'calc(50% + 170px)';
-                    inputContainer.style.opacity = 1;
-                  }, 100);
-                  const currectScoreDiv =
-                    document.getElementsByClassName('score-input-container')[0];
-                  currectScoreDiv.style.opacity = 0;
-                  setTimeout(() => {
-                    currectScoreDiv.style.display = 'none';
-                  }, 300);
-                }
-
-                setup();
-              },
-              this.newHighScoreReached ? 2500 : 100,
+            // top pipe
+            ctx.drawImage(
+              img,
+              418,
+              595 - pipe[1],
+              pipeWidth,
+              pipe[1],
+              pipe[0],
+              0,
+              pipeWidth,
+              pipe[1],
             );
-          }
-        });
-      }
+            // bottom pipe
+            ctx.drawImage(
+              img,
+              426 + pipeWidth,
+              108,
+              pipeWidth,
+              canvas.height - pipe[1] + pipeGap,
+              pipe[0],
+              pipe[1] + pipeGap,
+              pipeWidth,
+              canvas.height - pipe[1] + pipeGap,
+            );
+            // give 1 point & create new pipe
+            if (pipe[0] <= -pipeWidth) {
+              this.currentScore = this.currentScore + 100;
+              document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
 
-      if (this.gamePlaying) {
-        if (this.isJumping) {
-          ctx.drawImage(img, 506, 0, 77, 80, cTenth, flyHeight, 77, 80);
-        } else {
-          ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
-        }
-        this.flight += this.gravity;
-        flyHeight = Math.min(flyHeight + this.flight, canvas.height - size[1]);
-      } else {
-        if (!this.newHighScoreReached) {
-          ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
-        }
+              if (this.currentScore > 1) {
+                const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
+                currectScoreDiv.style.transition = 'opacity 0.8s ease';
+                currectScoreDiv.style.display = 'block';
+                currectScoreDiv.style.opacity = 1;
+              }
 
-        flyHeight = canvas.height / 2 - size[1] / 2 - 70;
+              if (this.bestScore < this.currentScore) {
+                this.newHighScoreReached = true;
+              }
+              // check if it's the best score
+              this.bestScore = Math.max(this.bestScore, this.currentScore);
 
-        document.getElementById('bestScoreField').textContent = this.currentScore;
-        document.getElementById('currentScoreField').textContent = this.bestScore;
+              // remove & create new pipe
+              pipes = [
+                ...pipes.slice(1),
+                [pipes[pipes.length - 1][0] + pipeGap + pipeWidth, pipeLoc()],
+              ];
+              const targetPipeGap = Math.max(pipeGap - elapsedTime * 400, 130);
+              pipeGap += (targetPipeGap - pipeGap) * 0.1; // Adjust the interpolation factor as needed
+              snowSpeed = Math.min(snowSpeed + elapsedTime * 10, 3);
+              const decayFactor = 2; // Adjust this value based on how quickly you want the jump to decrease
+              const gravityFactor = 2;
+              this.gravity = Math.min(this.gravity * Math.pow(gravityFactor, elapsedTime), 0.4);
+              this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -7);
+            }
+            if (
+              [
+                pipe[0] <= cTenth + size[0],
+                pipe[0] + pipeWidth >= cTenth,
+                pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + size[1],
+              ].every((elem) => elem)
+            ) {
+              this.gamePlaying = false;
 
-        document.getElementById('bestScoreFieldConverted').textContent =
-          this.config.discountType !== 'percentage'
-            ? this.bestScore / 100 + '€'
-            : this.bestScore > 5000
-            ? '30%'
-            : this.bestScore > 3000
-            ? '20%'
-            : this.bestScore > 1000
-            ? '10%'
-            : this.bestScore > 1
-            ? '5%'
-            : this.bestScore;
+              if (this.gameCount === 0) {
+                const canvas = document.getElementById('flappy-canvas');
+                canvas.removeEventListener('click', this.clickEventHandler);
 
-        this.discount =
-          this.config.discountType !== 'percentage'
-            ? this.bestScore / 100 + '€'
-            : this.bestScore > 5000
-            ? '30%'
-            : this.bestScore > 3000
-            ? '20%'
-            : this.bestScore > 1000
-            ? '10%'
-            : this.bestScore > 1
-            ? '5%'
-            : this.bestScore;
+                document
+                  .getElementById('startButtonClick1')
+                  .addEventListener('click', this.clickEventHandlerButton);
 
-        if (this.newHighScoreReached) {
-          const numbers = document.querySelector('.numbers');
-          const new_highscore = document.querySelector('.new_highscore');
-          const new_highscore_stars = document.querySelector('.new_highscore_stars');
-          new_highscore_stars.style.display = 'block';
+                document
+                  .getElementById('claimReward')
+                  .addEventListener('click', this.clickEventHandlerClaimButton);
 
-          new_highscore.style.display = 'block';
-          numbers.style.display = 'block';
+                this.gameCount++;
+              }
 
-          setTimeout(() => {
-            new_highscore.style.opacity = 1;
-            new_highscore_stars.style.opacity = 1;
+              setTimeout(
+                () => {
+                  const inputContainer = document.querySelector('.input-container1');
+                  console.log('ROUND_FINISHED');
 
-            numbers.style.opacity = 1;
-          }, 200);
+                  if (this.showCompetitiveRegistration) {
+                    boomioService
+                      .signal('ROUND_FINISHED', 'signal', { score: this.currentScore })
+                      .then((response) => {
+                        console.log('Response2', response);
+                        this.userBestPlace = response.user_best_place;
 
-          const scoreDigits = document.querySelectorAll('.numbers__window__digit');
+                        this.scoreTable = response;
 
-          // Update the score digits content
-          const scoreString = this.currentScore.toString();
+                        this.scoreTableContainerInstance.updateProps('penki', this.scoreTable);
+                      })
+                      .catch((error) => {
+                        console.error('Error:', error);
+                      });
+                  }
 
-          // Determine the number of leading zeros to hide
-          let leadingZeros = 0;
-          while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
-            leadingZeros++;
-          }
-
-          // Hide all digits initially
-          scoreDigits.forEach((digit) => {
-            digit.style.display = 'none';
+                  if (this.showCompetitiveRegistration) {
+                    const canvas = document.getElementById('flappy-canvas');
+                    const competitionTableContainer = document.querySelector(
+                      '.competition-table-container',
+                    );
+                    canvas.style.transition = 'filter 0.6s ease';
+                    canvas.style.filter = 'blur(2px)';
+                    document.getElementById('background_blur').style.display = 'block';
+                    competitionTableContainer.style.transition =
+                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    competitionTableContainer.style.display = 'block';
+                    setTimeout(() => {
+                      competitionTableContainer.style.height = '680px';
+                      competitionTableContainer.style.top = 'calc(50%)';
+                      competitionTableContainer.style.opacity = 1;
+                    }, 100);
+                    const currectScoreDiv =
+                      document.getElementsByClassName('score-input-container')[0];
+                    currectScoreDiv.style.opacity = 0;
+                    setTimeout(() => {
+                      currectScoreDiv.style.display = 'none';
+                    }, 300);
+                  } else {
+                    const canvas = document.getElementById('flappy-canvas');
+                    canvas.style.transition = 'filter 0.6s ease';
+                    canvas.style.filter = 'blur(2px)';
+                    document.getElementById('background_blur').style.display = 'block';
+                    inputContainer.style.transition =
+                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    inputContainer.style.display = 'block';
+                    setTimeout(() => {
+                      inputContainer.style.height = '332px';
+                      inputContainer.style.top = 'calc(50% + 170px)';
+                      inputContainer.style.opacity = 1;
+                    }, 100);
+                    const currectScoreDiv =
+                      document.getElementsByClassName('score-input-container')[0];
+                    currectScoreDiv.style.opacity = 0;
+                    setTimeout(() => {
+                      currectScoreDiv.style.display = 'none';
+                    }, 300);
+                  }
+                  setup();
+                },
+                this.newHighScoreReached ? 2500 : 100,
+              );
+            }
           });
+        }
 
-          // Display each digit individually, starting from the first non-zero digit
-          for (let i = leadingZeros; i < scoreString.length; i++) {
-            scoreDigits[i - leadingZeros].textContent = scoreString[i];
-            scoreDigits[i - leadingZeros].style.display = 'block';
-            scoreDigits[i - leadingZeros].classList.add('counting-animation');
+        if (this.gamePlaying) {
+          if (this.isJumping) {
+            ctx.drawImage(img, 506, 0, 77, 80, cTenth, flyHeight, 77, 80);
+          } else {
+            ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
+          }
+          this.flight += this.gravity;
+          flyHeight = Math.min(flyHeight + this.flight, canvas.height - size[1]);
+        } else {
+          if (!this.newHighScoreReached) {
+            ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
           }
 
-          // Remove the counting class after a short delay
-          setTimeout(() => {
+          flyHeight = canvas.height / 2 - size[1] / 2 - 70;
+
+          document.getElementById('bestScoreField').textContent = this.currentScore;
+          document.getElementById('currentScoreField').textContent = this.bestScore;
+
+          document.getElementById('bestScoreFieldConverted').textContent =
+            this.config.discountType !== 'percentage'
+              ? this.bestScore / 100 + '€'
+              : this.bestScore > 5000
+              ? '30%'
+              : this.bestScore > 3000
+              ? '20%'
+              : this.bestScore > 1000
+              ? '10%'
+              : this.bestScore > 1
+              ? '5%'
+              : this.bestScore;
+
+          this.discount =
+            this.config.discountType !== 'percentage'
+              ? this.bestScore / 100 + '€'
+              : this.bestScore > 5000
+              ? '30%'
+              : this.bestScore > 3000
+              ? '20%'
+              : this.bestScore > 1000
+              ? '10%'
+              : this.bestScore > 1
+              ? '5%'
+              : this.bestScore;
+
+          if (this.newHighScoreReached) {
+            const numbers = document.querySelector('.numbers');
+            const new_highscore = document.querySelector('.new_highscore');
+            const new_highscore_stars = document.querySelector('.new_highscore_stars');
+            new_highscore_stars.style.display = 'block';
+
+            new_highscore.style.display = 'block';
+            numbers.style.display = 'block';
+
             setTimeout(() => {
-              this.newHighScoreReached = false;
-            }, 2000);
+              new_highscore.style.opacity = 1;
+              new_highscore_stars.style.opacity = 1;
+
+              numbers.style.opacity = 1;
+            }, 200);
+
+            const scoreDigits = document.querySelectorAll('.numbers__window__digit');
+
+            // Update the score digits content
+            const scoreString = this.currentScore.toString();
+
+            // Determine the number of leading zeros to hide
+            let leadingZeros = 0;
+            while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
+              leadingZeros++;
+            }
+
+            // Hide all digits initially
             scoreDigits.forEach((digit) => {
-              digit.classList.remove('counting-animation');
+              digit.style.display = 'none';
             });
-          }, 1000);
+
+            // Display each digit individually, starting from the first non-zero digit
+            for (let i = leadingZeros; i < scoreString.length; i++) {
+              scoreDigits[i - leadingZeros].textContent = scoreString[i];
+              scoreDigits[i - leadingZeros].style.display = 'block';
+              scoreDigits[i - leadingZeros].classList.add('counting-animation');
+            }
+
+            // Remove the counting class after a short delay
+            setTimeout(() => {
+              setTimeout(() => {
+                this.newHighScoreReached = false;
+              }, 2000);
+              scoreDigits.forEach((digit) => {
+                digit.classList.remove('counting-animation');
+              });
+            }, 1000);
+          }
+          ctx.font = 'bold 30px monospace';
         }
-        ctx.font = 'bold 30px monospace';
+        ctx.globalAlpha = 0.2; // Set transparency level (0 = fully transparent, 1 = fully opaque)
+
+        if (!this.gameEnded) {
+          ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
+          ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
+        }
+
+        ctx.globalAlpha = 1; // Reset transparency to fully opaque
+
+        // Update snow offset for animation
+        snowOffset = (snowOffset + snowSpeed) % canvas.height;
+
+        if (this.gamePlaying) {
+          const easeOutQuad = (t) => t * (2 - t);
+          const easingFactor = 0.1;
+          const targetSpeed = Math.min(this.speed + elapsedTime * 0.2, 60); // 10 times faster
+          this.speed += (targetSpeed - this.speed) * easeOutQuad(easingFactor);
+        }
+        setTimeout(function () {
+          window.requestAnimationFrame(render);
+        }, 1000 / 60);
       }
-      ctx.globalAlpha = 0.2; // Set transparency level (0 = fully transparent, 1 = fully opaque)
-
-      if (!this.gameEnded) {
-        ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
-        ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
-      }
-
-      ctx.globalAlpha = 1; // Reset transparency to fully opaque
-
-      // Update snow offset for animation
-      snowOffset = (snowOffset + snowSpeed) % canvas.height;
-
-      if (this.gamePlaying) {
-        const easeOutQuad = (t) => t * (2 - t);
-        const easingFactor = 0.1;
-        const targetSpeed = Math.min(this.speed + elapsedTime * 0.2, 60); // 10 times faster
-        this.speed += (targetSpeed - this.speed) * easeOutQuad(easingFactor);
-      }
-      setTimeout(function () {
-        window.requestAnimationFrame(render);
-      }, 1000 / 60);
     };
 
     setup();
@@ -577,7 +584,7 @@ class FlappyBird {
 
       ${
         this.showCompetitiveRegistration
-          ? new InputRegisterContainer('barbora').createInputRegisterContainer().outerHTML
+          ? new InputRegisterContainer('penki').createInputRegisterContainer().outerHTML
           : ''
       }
 
@@ -648,24 +655,17 @@ class FlappyBird {
 </div>
 </div>
 
-
-<div class="input-container" id="input-container" style="width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }">
-<div style="width: 100%; height: 100%; padding-top: 25px; padding-bottom: 35px; background:  linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%);  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
-<div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-<div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word">  <img src=${
-      rulesImage.src
-    } alt="Image Description" ></div>
-<div style="width: 320px; color: white; font-size: 16px; font-family: Poppins; font-weight: 800; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;margin-top:12px;"><img src=${
-      rulesImage2.src
-    } alt="Image Description" style="width:100%;height:100%"></div>
-</div>
+<div class="close-game-container" id="close-game-container" style="display:block;width:48px;height:48px;">
+<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
 
 
+${new InputContainer('penki').createInputContainerDiv().outerHTML}
 
-          </div>
+
+
+
+       
           <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
             document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
           };display:none;" class="control-button" id="control-button">
@@ -729,7 +729,7 @@ class FlappyBird {
       const gameContainer = document.querySelector('.game-container-flappy');
 
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-        'barbora',
+        'penki',
         this.scoreTable,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
@@ -840,6 +840,7 @@ class FlappyBird {
     document.getElementById('startButtonClick').addEventListener('click', () => {
       if (!this.gameStarted) {
         let canvas = document.getElementById('flappy-canvas');
+
         const inputContainer = document.querySelector('.input-container');
         const controlButton = document.querySelector('.control-button');
 
@@ -975,12 +976,17 @@ class FlappyBird {
       }
     });
 
-    // createCloseMoveButtons(
-    //   myCanvas.querySelector('.game-container'),
-    //   document.getElementById('boomio-flappy-container'),
-    //   [-30, 0],
-    //   false,
-    // );
+    const closeGame = () => {
+      const element = document.getElementById('boomio-flappy-container');
+      if (element && element.parentNode) {
+        this.gameClosed = true;
+        element.parentNode.removeChild(element);
+      }
+    };
+
+    document.getElementById('close-game-container').addEventListener('click', () => {
+      closeGame();
+    });
   };
 }
 

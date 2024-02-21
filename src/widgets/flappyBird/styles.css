@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Georama&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap');
+
+
+
 
 
 .gradient-border {
@@ -42,22 +46,22 @@
 }
 
 #flappy-canvas {
-  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
+  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
   transition:filter 1s ease;
   opacity: 0;
 }
 
 .startButton{
-  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
+  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
 }
 
 .input-container{
-  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
+  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
 
 }
 
 .game-container-flappy{
-  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
+  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
 
 }
 .intro-screen{
@@ -81,11 +85,22 @@
   opacity:0;
   z-index: 3;
 position: absolute;
-top : calc(50% - 260px);
-left :calc(50% + 80px);
+top : calc(50% - 280px);
+left :calc(50% - 110px);
 transform : translate(-50%, -50%);
 display:flex;
 flex-direction: column;
+}
+
+.close-game-container{
+  z-index: 99999999999999999999999;
+position: absolute;
+top : calc(50% - 290px);
+left :calc(50% + 150px);
+transform : translate(-50%, -50%);
+display:flex;
+flex-direction: column;
+cursor:pointer;
 }
 
 .input-container{
@@ -116,9 +131,6 @@ flex-direction: column;
     border-top-right-radius:20px;z-index: 2;
     }
 
-input::placeholder {
-  color: black;
-}
 
 .closing {
   height: 10; /* Reduce the height to 0 for disappearing effect */

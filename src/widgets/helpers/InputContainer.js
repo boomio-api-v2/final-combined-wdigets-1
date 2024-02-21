@@ -13,11 +13,17 @@ export class InputContainer {
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
       document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px';
+    containerDiv.style.background =
+      this.prop === 'barbora'
+        ? 'white'
+        : this.prop === 'penki'
+        ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.19) 0%, rgba(0, 0, 0, 0.19) 100%), linear-gradient(166deg, rgba(166, 206, 57, 0.90) 9.98%, rgba(0, 181, 172, 0.90) 96.82%)'
+        : 'white';
 
     containerDiv.innerHTML = `
 
     
-    <div style="width: 100%; height: 195px;box-sizing:content-box; padding-top: 25px; padding-bottom: 35px; background:  white;  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
+    <div style="width: 100%; height: 195px;box-sizing:content-box; padding-top: 15px; padding-bottom: 35px; border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 21.60px; word-wrap: break-word;">  <img style="width:150px;height:75px" src=${rules} alt="Image Description" ></div>
@@ -25,14 +31,21 @@ export class InputContainer {
       this.isMobile ? rules2Mobile : rules2
     } alt="Image Description" style="width:100%;height:100%"></div>
     </div>
+    <div>
     </div>
               </div>
               <div style="z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
                 document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px'
               };" class="control-button" id="control-button">
-              <div id="startButtonClick" style="box-shadow:-4px -4px 8px 0px #DFE6F599 inset, 2px 2px 4px 0px #EEF3FFBF inset, 0px 6px 20px 0px #B3C5EA80; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: #3BAF29
+              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px 0px #DFE6F599 inset, 2px 2px 4px 0px #EEF3FFBF inset, 0px 6px 20px 0px #B3C5EA80; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: ${
+                this.prop === 'penki' ? 'white' : '#3BAF29'
+              }
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: white; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word">LET'S PLAY</div></div>
+              <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
+                this.prop === 'penki' ? '#00B5AC' : 'white'
+              }; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word">${
+      this.prop === 'penki' ? 'PIRMYN' : 'LET’S PLAY'
+    }</div></div>
     </div>
  
     `;
