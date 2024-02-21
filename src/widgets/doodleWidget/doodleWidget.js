@@ -23,7 +23,7 @@ class DoodleWidget {
     this.showCompetitiveRegistration = false;
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
-    this.width = document.body.offsetWidth < 422 ? document.body.offsetWidth : 422;
+    this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418;
     this.height = 668;
     this.player;
     this.tutorial = true;
@@ -923,7 +923,7 @@ class DoodleWidget {
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
-      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }">
 		</canvas>
     
@@ -940,21 +940,21 @@ class DoodleWidget {
     }
 
     <img src=${howToPlay} alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
 
     <img src=${intro} alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
 
 
     <img src=${couponBackground} alt="Image Description" style="z-index:1;width:    ${
-      document.body.offsetWidth < 422 ? document.body.offsetWidth + 'px' : '422px'
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     };
     ; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
@@ -1174,7 +1174,7 @@ class Base {
   constructor(image) {
     this.image = image;
     this.height = 10;
-    this.width = document.body.offsetWidth < 422 ? document.body.offsetWidth : 422; // Adjust the width value accordingly
+    this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418; // Adjust the width value accordingly
     this.cx = 0;
     this.cy = 614;
     this.cwidth = 100;
@@ -1217,7 +1217,7 @@ class Player {
     this.cheight = 75;
     this.dir = 'left';
     this.x =
-      (document.body.offsetWidth < 422 ? document.body.offsetWidth : 422) / 2 - this.width / 2;
+      (document.body.offsetWidth < 418 ? document.body.offsetWidth : 418) / 2 - this.width / 2;
     this.y = 666;
   }
   draw() {

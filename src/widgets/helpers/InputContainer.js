@@ -12,7 +12,7 @@ export class InputContainer {
     containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px';
+      document.body.offsetWidth < 420 ? document.body.offsetWidth + 'px' : '420px';
     containerDiv.style.background =
       this.prop === 'barbora'
         ? 'white'
@@ -23,7 +23,7 @@ export class InputContainer {
     containerDiv.innerHTML = `
 
     
-    <div style="width: 100%; height: 195px;box-sizing:content-box; padding-top: 15px; padding-bottom: 35px; border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
+    <div style="width: 100%; height: 195px;box-sizing:content-box; padding-top: 15px; padding-bottom: 35px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 21.60px; word-wrap: break-word;">  <img style="width:150px;height:75px" src=${rules} alt="Image Description" ></div>

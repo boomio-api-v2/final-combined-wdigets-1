@@ -83,7 +83,7 @@ export class CompetitionScoreTableContainer {
     // containerDiv.style.border = this.prop === 'penki' && '2px solid #A6CE39';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px';
+      document.body.offsetWidth < 420 ? document.body.offsetWidth + 'px' : '420px';
 
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">

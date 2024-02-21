@@ -19,7 +19,7 @@ export class InputRegisterContainer {
         : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px';
+      document.body.offsetWidth < 420 ? document.body.offsetWidth + 'px' : '420px';
 
     let privacyCheckboxChecked = true; // Use let instead of const to allow reassignment
     containerDiv.innerHTML = `
