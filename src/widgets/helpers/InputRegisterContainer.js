@@ -1,5 +1,5 @@
 import './styles.css';
-import { checkIcon } from './constants';
+import { checkIcon, inputBackground } from './constants';
 
 export class InputRegisterContainer {
   constructor(prop) {
@@ -13,7 +13,7 @@ export class InputRegisterContainer {
     console.log(this.prop);
     containerDiv.style.background =
       this.prop === 'barbora'
-        ? 'white'
+        ? { inputBackground }
         : this.prop === 'penki'
         ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.19) 0%, rgba(0, 0, 0, 0.19) 100%), linear-gradient(166deg, rgba(166, 206, 57, 0.90) 9.98%, rgba(0, 181, 172, 0.90) 96.82%)'
         : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
@@ -25,7 +25,7 @@ export class InputRegisterContainer {
     containerDiv.innerHTML = `
       <div style="height: 124px; top: 38px; position: relative; text-align: center;margin:10px; color: ${
         this.prop === 'barbora' ? '#3BAF29' : 'white'
-      }; font-size: 54px; font-family: Oswald; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">REGISTRUOKIS ŽAISTI</div>
+      }; font-size: 54px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">REGISTRUOKIS ŽAISTI</div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
         this.prop === 'barbora' ? '#3BAF29' : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">

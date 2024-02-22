@@ -9,7 +9,7 @@ import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
-import { close } from './constants';
+import { close, introGif } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
@@ -55,7 +55,9 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
+    img.src = 'https://i.ibb.co/mt26nqh/Group-1000001767.png';
+
+    // img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
@@ -126,7 +128,6 @@ class FlappyBird {
             const checkboxImg = document.querySelector('.privacyCheckbox');
             checkboxImg.addEventListener('click', () => {
               this.checkboxChange = !this.checkboxChange;
-              console.log(this.checkboxChange);
               const checkboxImgChange = document.getElementById('privacyCheckboxImg');
               checkboxImgChange.src = this.checkboxChange
                 ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
@@ -134,12 +135,8 @@ class FlappyBird {
             });
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-            emailInput.addEventListener('input', () => {
-              console.log('Email input changed:', emailInput.value);
-            });
-            playerNameInput.addEventListener('input', () => {
-              console.log('Player name input changed:', playerNameInput.value);
-            });
+            emailInput.addEventListener('input', () => {});
+            playerNameInput.addEventListener('input', () => {});
             setTimeout(() => {
               const canvas = document.getElementById('flappy-canvas');
               document.getElementById('background_blur').style.opacity = 0.37;
@@ -252,7 +249,7 @@ class FlappyBird {
             // top pipe
             ctx.drawImage(
               img,
-              418,
+              419,
               595 - pipe[1],
               pipeWidth,
               pipe[1],
@@ -331,8 +328,6 @@ class FlappyBird {
               setTimeout(
                 () => {
                   const inputContainer = document.querySelector('.input-container1');
-                  console.log('ROUND_FINISHED');
-
                   if (this.showCompetitiveRegistration) {
                     boomioService
                       .signal('ROUND_FINISHED', 'signal', { score: this.currentScore })
@@ -342,7 +337,7 @@ class FlappyBird {
 
                         this.scoreTable = response;
 
-                        this.scoreTableContainerInstance.updateProps('penki', this.scoreTable);
+                        this.scoreTableContainerInstance.updateProps('barbora', this.scoreTable);
                       })
                       .catch((error) => {
                         console.error('Error:', error);
@@ -584,7 +579,7 @@ class FlappyBird {
 
       ${
         this.showCompetitiveRegistration
-          ? new InputRegisterContainer('penki').createInputRegisterContainer().outerHTML
+          ? new InputRegisterContainer('barbora').createInputRegisterContainer().outerHTML
           : ''
       }
 
@@ -601,7 +596,7 @@ class FlappyBird {
               document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
             }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
       </img>
-      <img src=${introImage.src} alt="Image Description" style="z-index:4;width: ${
+      <img src=${introGif} alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
       </img>
@@ -660,7 +655,7 @@ class FlappyBird {
 </div>
 
 
-${new InputContainer('penki').createInputContainerDiv().outerHTML}
+${new InputContainer('barbora').createInputContainerDiv().outerHTML}
 
 
 
@@ -729,7 +724,7 @@ ${new InputContainer('penki').createInputContainerDiv().outerHTML}
       const gameContainer = document.querySelector('.game-container-flappy');
 
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-        'penki',
+        'barbora',
         this.scoreTable,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
@@ -743,8 +738,6 @@ ${new InputContainer('penki').createInputContainerDiv().outerHTML}
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
             if (this.showCompetitiveRegistration && this.checkboxChange) {
-              console.log('login');
-
               boomioService
                 .signal('', 'user_info', {
                   user_email: emailInput?.value,
@@ -759,15 +752,11 @@ ${new InputContainer('penki').createInputContainerDiv().outerHTML}
                         response.res_msg;
 
                       document.getElementById('competition-name-error').innerText = '';
-
-                      console.log(response.res_msg);
                     } else if (response.res_code === 'NAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
                         response.res_msg;
 
                       document.getElementById('competition-email-error').innerText = '';
-
-                      console.log(response.res_msg);
                     }
                   } else {
                     this.bestScore = response.user_best_score;
