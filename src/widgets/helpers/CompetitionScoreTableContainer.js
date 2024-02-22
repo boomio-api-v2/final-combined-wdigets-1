@@ -33,9 +33,9 @@ export class CompetitionScoreTableContainer {
             ? 'red'
             : this.prop === 'penki'
             ? '#00B5AC'
-            : '#3BAF29'
+            : 'white'
           : this.prop === 'barbora'
-          ? '#3BAF29'
+          ? 'white'
           : 'white';
       const boxShadow =
         index + 1 === userBestPlace ? '2px 4px 3.4px 0px rgba(0, 0, 0, 0.10) inset' : 'none';
@@ -76,19 +76,19 @@ export class CompetitionScoreTableContainer {
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background =
       this.prop === 'barbora'
-        ? 'white'
+        ? 'none'
         : this.prop === 'penki'
         ? 'none'
         : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
     // containerDiv.style.border = this.prop === 'penki' && '2px solid #A6CE39';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 420 ? document.body.offsetWidth + 'px' : '420px';
+      document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
 
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
-        this.prop === 'barbora' ? '#3BAF29' : this.prop === 'penki' ? '#00B5AC' : 'white'
+        this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
       }; font-size: 48px; font-family: Oswald; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
       <div  style="width: calc(100% - 56px); height: 412px; left: 32px; top: 144px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="custom-scrollbar">
@@ -102,10 +102,14 @@ export class CompetitionScoreTableContainer {
         </div>
       </div>
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:590px;position:absolute; height: 46px; background: ${
-        this.prop === 'barbora' ? '#3BAF29' : 'white'
+        this.prop === 'barbora' ? 'white' : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-competition-play-again">
         <div style="text-align: center; color: ${
-          this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
+          this.prop === 'barbora'
+            ? 'rgba(61, 73, 40, 1)'
+            : this.prop === 'penki'
+            ? '#00B5AC'
+            : '#FF3183'
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">ŽAISK DAR KARTĄ</div>
       </div>
     </div>`;

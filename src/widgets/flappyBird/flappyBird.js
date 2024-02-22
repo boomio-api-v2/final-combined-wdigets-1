@@ -9,7 +9,7 @@ import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
-import { close, introGif } from './constants';
+import { close, introGif, scoreImage } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
@@ -645,7 +645,7 @@ class FlappyBird {
         <div class="flappy-container">
           <div class="score-input-container" style="display:none;width:188px;height">
           <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-        <img src=${starImg.src} alt="Image Description" style="width: 100%; height: 100%;"></img>
+        <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:100px;top:20px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>

@@ -1,5 +1,5 @@
 import './styles.css';
-import { rules, rules2, rules2Mobile } from './constants';
+import { rules, rules2, rules2Mobile, inputBackground } from './constants';
 
 export class InputContainer {
   constructor(prop) {
@@ -12,13 +12,14 @@ export class InputContainer {
     containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
-      document.body.offsetWidth < 420 ? document.body.offsetWidth + 'px' : '420px';
+      document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
     containerDiv.style.background =
       this.prop === 'barbora'
-        ? 'white'
+        ? `url(${inputBackground}`
         : this.prop === 'penki'
         ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.19) 0%, rgba(0, 0, 0, 0.19) 100%), linear-gradient(166deg, rgba(166, 206, 57, 0.90) 9.98%, rgba(0, 181, 172, 0.90) 96.82%)'
         : 'white';
+    containerDiv.style.backgroundSize = 'cover';
 
     containerDiv.innerHTML = `
 
@@ -38,13 +39,13 @@ export class InputContainer {
                 document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px'
               };" class="control-button" id="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px 0px #DFE6F599 inset, 2px 2px 4px 0px #EEF3FFBF inset, 0px 6px 20px 0px #B3C5EA80; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: ${
-                this.prop === 'penki' ? 'white' : '#3BAF29'
+                this.prop === 'penki' ? 'white' : 'white'
               }
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
-                this.prop === 'penki' ? '#00B5AC' : 'white'
-              }; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word">${
-      this.prop === 'penki' ? 'PIRMYN' : 'LET’S PLAY'
+                this.prop === 'barbora' ? '#3D4928' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
+              }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
+      this.prop === 'penki' || this.prop === 'barbora' ? 'PIRMYN' : 'LET’S PLAY'
     }</div></div>
     </div>
  
