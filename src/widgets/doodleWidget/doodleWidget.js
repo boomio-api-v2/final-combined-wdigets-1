@@ -975,7 +975,7 @@ class DoodleWidget {
     </div>
 
 
-    ${new InputContainer('doodle').createInputContainerDiv().outerHTML}
+    ${new InputContainer('', 'doodle').createInputContainerDiv().outerHTML}
 
 
     <div class="numbers">

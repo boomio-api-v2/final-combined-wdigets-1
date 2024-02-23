@@ -1,11 +1,13 @@
 import './styles.css';
 import { rules, rules2, rules2Mobile, inputBackground } from './constants';
-
+import { localStorageService } from '@/services';
 export class InputContainer {
-  constructor(prop) {
-    this.prop = prop; // Store the prop in a class property
+  constructor(prop, game) {
+    this.prop = prop;
+    this.game = game; // Store the prop in a class property
     this.isMobile = window.innerWidth <= 1280;
-    console.log(prop);
+    console.log(game);
+    this.config = localStorageService.getDefaultConfig();
   }
   createInputContainerDiv() {
     const containerDiv = document.createElement('div');
@@ -75,11 +77,17 @@ export class InputContainer {
                 document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px'
               };" class="control-button" id="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: ${
-                this.prop === 'penki' ? 'white' : 'white'
+                this.prop === 'penki' ? 'white' : this.game === 'doodle' ? '#3BAF29' : 'white'
               }
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
-                this.prop === 'barbora' ? '#3D4928' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
+              <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
+                this.game === 'doodle'
+                  ? 'white'
+                  : this.prop === 'barbora'
+                  ? '#3D4928'
+                  : this.prop === 'penki'
+                  ? '#00B5AC'
+                  : '#FF3183'
               }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
       this.prop === 'penki' || this.prop === 'barbora' ? 'PIRMYN' : 'LET’S PLAY'
     }</div></div>

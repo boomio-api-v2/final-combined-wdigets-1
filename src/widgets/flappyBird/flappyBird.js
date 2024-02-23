@@ -9,7 +9,7 @@ import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
-import { close, introGif, scoreImage } from './constants';
+import { close, introGif, scoreImage, tapImageBarbora } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
@@ -18,6 +18,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
+    this.customer = 'barbora';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -337,7 +338,10 @@ class FlappyBird {
 
                         this.scoreTable = response;
 
-                        this.scoreTableContainerInstance.updateProps('barbora', this.scoreTable);
+                        this.scoreTableContainerInstance.updateProps(
+                          this.customer,
+                          this.scoreTable,
+                        );
                       })
                       .catch((error) => {
                         console.error('Error:', error);
@@ -579,7 +583,7 @@ class FlappyBird {
 
       ${
         this.showCompetitiveRegistration
-          ? new InputRegisterContainer('barbora').createInputRegisterContainer().outerHTML
+          ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
           : ''
       }
 
@@ -632,15 +636,16 @@ class FlappyBird {
 </span>
 </div>
 
-<div style="left:calc(50% - 20px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
-<img src=${
-      tapImage.src
-    } alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px">
-<img src=${
-      tapImage.src
-    } alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px">
+<div style="left:calc(50% - 60px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
+${
+  this.customer === 'barbora'
+    ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+      <div>TAP</div>
+      <div>TAP</div>
+    </div><img src=${tapImage} alt="Image Description" style="width: 71px; height: 54px;">`
+    : `<img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px"><img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px"><img src=${clickImg.src} alt="Image Description" style="width: 71px; height: 54px;">`
+}
 
-<img src=${clickImg.src} alt="Image Description" style="width: 71px; height: 54px;">
 </div>
         <div class="flappy-container">
           <div class="score-input-container" style="display:none;width:188px;height">
@@ -655,7 +660,7 @@ class FlappyBird {
 </div>
 
 
-${new InputContainer('barbora').createInputContainerDiv().outerHTML}
+${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
 
 
@@ -724,7 +729,7 @@ ${new InputContainer('barbora').createInputContainerDiv().outerHTML}
       const gameContainer = document.querySelector('.game-container-flappy');
 
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-        'barbora',
+        this.customer,
         this.scoreTable,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
