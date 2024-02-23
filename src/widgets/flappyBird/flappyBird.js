@@ -590,7 +590,7 @@ class FlappyBird {
   
       <img src=${
         endingBackground.src
-      } alt="Image Description" style="z-index:1;width: 418px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
+      } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
       <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'

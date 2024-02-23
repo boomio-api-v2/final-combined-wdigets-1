@@ -24,7 +24,7 @@ export class InputRegisterContainer {
 
     let privacyCheckboxChecked = true; // Use let instead of const to allow reassignment
     containerDiv.innerHTML = `
-      <div style="height: 124px; top: 38px; position: relative; text-align: center;margin:10px; color: ${
+      <div style="height: 124px; top: 50px; position: relative; text-align: center;margin:10px; color: ${
         this.prop === 'barbora' ? 'white' : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">REGISTRUOKIS ŽAISTI</div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
