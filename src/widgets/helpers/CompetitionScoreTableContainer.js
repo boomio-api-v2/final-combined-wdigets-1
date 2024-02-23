@@ -30,7 +30,7 @@ export class CompetitionScoreTableContainer {
       const color =
         index + 1 === userBestPlace
           ? this.prop === 'barbora'
-            ? 'red'
+            ? 'rgba(61, 73, 40, 1)'
             : this.prop === 'penki'
             ? '#00B5AC'
             : 'white'
@@ -55,12 +55,12 @@ export class CompetitionScoreTableContainer {
             <td style="padding-left:17px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestScore}</td>
 
               <td style="padding-left:17px;text-align:start;width: 142px; color: ${
-                this.prop === 'barbora' ? 'red' : 'white'
+                this.prop === 'barbora' ? 'rgba(61, 73, 40, 1)' : 'white'
               }; border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
         playerNameInput?.value
       }</td>
               <td style="width: 48px; color: ${
-                this.prop === 'barbora' ? 'red' : 'white'
+                this.prop === 'barbora' ? 'rgba(61, 73, 40, 1)' : 'white'
               }; border: none;font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word">${userBestScore}</td>
             </tr>`;
     }
@@ -89,7 +89,7 @@ export class CompetitionScoreTableContainer {
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
         this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-      }; font-size: 48px; font-family: Oswald; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
+      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
       <div  style="width: calc(100% - 56px); height: 412px; left: 32px; top: 144px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >

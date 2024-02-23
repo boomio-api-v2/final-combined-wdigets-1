@@ -38,7 +38,7 @@ export class InputContainer {
               <div style="z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
                 document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px'
               };" class="control-button" id="control-button">
-              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px 0px #DFE6F599 inset, 2px 2px 4px 0px #EEF3FFBF inset, 0px 6px 20px 0px #B3C5EA80; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: ${
+              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: ${
                 this.prop === 'penki' ? 'white' : 'white'
               }
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
