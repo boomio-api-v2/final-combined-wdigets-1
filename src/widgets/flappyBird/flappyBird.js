@@ -642,7 +642,7 @@ ${
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
       <div>TAP</div>
       <div>TAP</div>
-    </div><img src=${tapImage} alt="Image Description" style="width: 71px; height: 54px;">`
+    </div><img src=${tapImageBarbora} alt="Image Description"margin-left:70px; style="width: 71px; height: 54px;">`
     : `<img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px"><img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px"><img src=${clickImg.src} alt="Image Description" style="width: 71px; height: 54px;">`
 }
 
