@@ -40,13 +40,13 @@ export class InputContainer {
             this.isMobile ? rules2Mobile : rules2
           } alt="Image Description" style="width:100%;height:100%">`
         : `<div style="width: 100%; height: 139px; position: relative">
-          <div style="width: 142px; left: 158px; top: 9px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          <div style="width: 142px; left: 148px; top: 9px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             kad skristum
           </div>
-          <div style="width: 229px; left: 153px; top: 55px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          <div style="width: 229px; left: 148px; top: 55px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             dėl geresnio rezultato
           </div>
-          <div style="width: 246px; left: 155px; top: 104px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          <div style="width: 246px; left: 148px; top: 104px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             500+ prizų kas savaitę
           </div>
           <div style="width: 145px; height: 139px; left: 0px; top: 0px; position: absolute">

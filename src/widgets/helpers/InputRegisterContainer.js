@@ -34,7 +34,7 @@ export class InputRegisterContainer {
           this.prop === 'barbora' ? '#3D4928' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >TOLIAU</div>
       </div>
-      <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 34px; top: 355px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+      <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       
       <div  style="cursor: pointer;">
             <img id="privacyCheckboxImg"  src="${
@@ -45,7 +45,13 @@ export class InputRegisterContainer {
 
         <div style="color: ${
           this.prop === 'barbora' ? 'white' : 'white'
-        }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">Sutinku su Penki sezonai <a href="https://penkisezonai.lt/lt-lt/privatumo-politika.html" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a></div>
+        }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">Sutinku su ${
+      this.prop === 'barbora' ? 'Barbora' : 'Penki sezonai'
+    } <a href="${
+      this.prop === 'barbora'
+        ? 'https://www.barbora.lt/info/privatumo-politika'
+        : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
+    }" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a></div>
       </div>
 
 
