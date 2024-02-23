@@ -24,13 +24,49 @@ export class InputContainer {
     containerDiv.innerHTML = `
 
     
-    <div style="width: 100%; height: 195px;box-sizing:content-box; padding-top: 15px; padding-bottom: 35px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
+    <div style="width: 100%; height: 195px;box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 21.60px; word-wrap: break-word;">  <img style="width:150px;height:75px" src=${rules} alt="Image Description" ></div>
-    <div style="width: 320px;height:135px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;"><img src=${
-      this.isMobile ? rules2Mobile : rules2
-    } alt="Image Description" style="width:100%;height:100%"></div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${
+      this.prop !== 'barbora'
+        ? `<img style="width:150px;height:75px" src=${rules} alt="Image Description" >`
+        : '<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">TAISYKLĖS</div>'
+    }</div>
+    <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:135px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
+      this.prop !== 'barbora'
+        ? `<img src=${
+            this.isMobile ? rules2Mobile : rules2
+          } alt="Image Description" style="width:100%;height:100%">`
+        : `<div style="width: 100%; height: 139px; position: relative">
+          <div style="width: 142px; left: 158px; top: 9px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+            kad skristum
+          </div>
+          <div style="width: 229px; left: 153px; top: 55px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+            dėl geresnio rezultato
+          </div>
+          <div style="width: 246px; left: 155px; top: 104px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+            500+ prizų kas savaitę
+          </div>
+          <div style="width: 145px; height: 139px; left: 0px; top: 0px; position: absolute">
+            <div style="left: 0px; top: 0px; position: absolute; color: white; font-size: 29px; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+              1. Spausk
+            </div>
+            <div style="left: 0px; top: 46px; position: absolute; color: white; font-size: 29px; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+            2. Kartok
+            </div>
+            <div style="left: 1px; top: 95px; position: absolute; color: white; font-size: 29px; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+            3. Laimėk
+            </div>
+          </div>
+        </div>`
+    }</div>
+    ${
+      this.prop === 'barbora'
+        ? '<div style="align-self: stretch; text-align: center; color: white; font-size: 12px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">Skaityk pilnas žaidimo taisykles. </div>'
+        : ''
+    }
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  
+      </div>
     </div>
     <div>
     </div>

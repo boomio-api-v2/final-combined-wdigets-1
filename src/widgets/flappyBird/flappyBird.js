@@ -650,7 +650,7 @@ class FlappyBird {
 </div>
 </div>
 
-<div class="close-game-container" id="close-game-container" style="display:block;width:24px;height:24px;">
+<div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
 

@@ -34,7 +34,7 @@ export class InputRegisterContainer {
           this.prop === 'barbora' ? '#3D4928' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >TOLIAU</div>
       </div>
-      <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 28px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+      <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 34px; top: 355px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       
       <div  style="cursor: pointer;">
             <img id="privacyCheckboxImg"  src="${
@@ -91,12 +91,12 @@ export class InputRegisterContainer {
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 299px; opacity: 0.60;background-color: ${
         this.prop === 'barbora' ? 'white' : 'white'
       }; text-align: start; color:  ${
-      this.prop === 'barbora' ? 'white' : '#473F4E'
+      this.prop === 'barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
     } ; font-size: 20px; font-family: Londrina Solid; font-weight: 300; line-height: 24px; word-wrap: break-word" placeholder="Elektroninio pašto adresas">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
         this.prop === 'barbora' ? 'white' : 'white'
       }; text-align: start; color:  ${
-      this.prop === 'barbora' ? 'white' : '#473F4E'
+      this.prop === 'barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
     } ; font-size: 20px; font-family: Londrina Solid; font-weight: 300; line-height: 24px; word-wrap: break-word" placeholder="Žaidėjo slapyvardis">
     `;
 
