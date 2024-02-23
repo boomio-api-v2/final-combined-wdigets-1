@@ -91,12 +91,13 @@ export class CompetitionScoreTableContainer {
         this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
       ${
-        this.scoreTable.user_best_place < 500 &&
-        `<div style="width:100%;top: 520px; position: absolute; text-align: center; color: ${
-          this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-        }; font-size: 14px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
-          this.prop === 'barbora' ? 'Kovo 8 dieną ieškok prizo savo el. pašte!' : ''
-        }</div>`
+        this.scoreTable.user_best_place < 500
+          ? `<div style="width:100%;top: 520px; position: absolute; text-align: center; color: ${
+              this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
+            }; font-size: 14px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
+              this.prop === 'barbora' ? 'Kovo 8 dieną ieškok prizo savo el. pašte!' : ''
+            }</div>`
+          : ''
       }
       <div  style="width: calc(100% - 56px); height: 352px; left: 32px; top: 144px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="custom-scrollbar">
