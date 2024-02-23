@@ -1,5 +1,5 @@
 import './styles.css';
-import { rules, rules2, rules2Mobile, inputBackground } from './constants';
+import { rules, rules2, rules2Mobile } from './constants';
 import { localStorageService } from '@/services';
 export class InputContainer {
   constructor(prop, game) {
@@ -17,7 +17,7 @@ export class InputContainer {
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
     containerDiv.style.background =
       this.prop === 'barbora'
-        ? `url(${inputBackground}`
+        ? `none`
         : this.prop === 'penki'
         ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.19) 0%, rgba(0, 0, 0, 0.19) 100%), linear-gradient(166deg, rgba(166, 206, 57, 0.90) 9.98%, rgba(0, 181, 172, 0.90) 96.82%)'
         : 'white';

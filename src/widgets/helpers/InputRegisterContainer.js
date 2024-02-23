@@ -1,5 +1,5 @@
 import './styles.css';
-import { checkIcon, inputBackground } from './constants';
+import { checkIcon } from './constants';
 
 export class InputRegisterContainer {
   constructor(prop) {
@@ -13,7 +13,7 @@ export class InputRegisterContainer {
     console.log(this.prop);
     containerDiv.style.background =
       this.prop === 'barbora'
-        ? `url(${inputBackground}`
+        ? `none`
         : this.prop === 'penki'
         ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.19) 0%, rgba(0, 0, 0, 0.19) 100%), linear-gradient(166deg, rgba(166, 206, 57, 0.90) 9.98%, rgba(0, 181, 172, 0.90) 96.82%)'
         : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
