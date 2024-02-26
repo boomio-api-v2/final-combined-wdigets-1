@@ -15,4 +15,7 @@ export const tapImageBarbora =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/tapImage.png';
 
 export const checkIcon =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/CheckRegistration.gif';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/checkboxRegistrationCheck.png';
+
+export const uncheckIcon =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/checkboxRegistrationUncheck.png';
