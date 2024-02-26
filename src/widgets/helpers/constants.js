@@ -11,7 +11,7 @@ export const gameOver =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/GAME_OVER_GREEN.png';
 
 export const checkIcon =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/checkboxRegistrationCheck.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxCheck.png';
 
 export const inputBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/inputBackgroundGray.png';
