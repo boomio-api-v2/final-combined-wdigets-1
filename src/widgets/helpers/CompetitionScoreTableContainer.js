@@ -119,7 +119,7 @@ export class CompetitionScoreTableContainer {
             : this.prop === 'penki'
             ? '#00B5AC'
             : '#FF3183'
-        } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">ŽAISK DAR KARTĄ</div>
+        } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">PAGERINK REZULTATĄ</div>
       </div>
     </div>`;
     this.containerDiv = containerDiv;

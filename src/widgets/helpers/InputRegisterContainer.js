@@ -47,11 +47,12 @@ export class InputRegisterContainer {
           this.prop === 'barbora' ? 'white' : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">Sutinku su ${
       this.prop === 'barbora' ? 'Barbora' : 'Penki sezonai'
-    } <a href="${
+    } <a onclick="event.stopPropagation();" target="_blank" href="${
       this.prop === 'barbora'
         ? 'https://www.barbora.lt/info/privatumo-politika'
         : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
-    }" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a></div>
+    }" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a>
+    </div>
       </div>
 
 

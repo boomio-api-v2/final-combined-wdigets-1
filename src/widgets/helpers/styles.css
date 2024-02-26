@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Londrina+Solid');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;500;600;700;800;900&display=swap');
 
 .input-register-container{
     overflow: hidden;
@@ -40,7 +40,14 @@
           outline: none; /* Remove default focus outline */
           border-color: transparent; /* Change border color on focus */
         }
+
+        .boomio-competition-email-input-field:placeholder {
+          font-family: Londrina Solid;
+      }
       
+      .boomio-competition-name-input-field:placeholder {
+        font-family: Londrina Solid;
+      }
 
     .custom-scrollbar::-webkit-scrollbar {
         padding-top: 10px;

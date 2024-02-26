@@ -56,7 +56,7 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.src = 'https://i.ibb.co/mt26nqh/Group-1000001767.png';
+    img.src = 'https://i.ibb.co/YP7pcjN/Group-1000001769.png';
 
     // img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
 
@@ -69,8 +69,7 @@ class FlappyBird {
     img3.src = 'https://i.ibb.co/xq7Yf83/Boomio-demo-3-1.png';
 
     const snowImg = new Image();
-    snowImg.src =
-      'https://i.ibb.co/hVgn0NM/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f.gif';
+    snowImg.src = 'https://i.ibb.co/qrM7nV8/giphy-4.gif';
 
     let snowOffset = 0; // Initial offset for snow GIF animation
     let snowSpeed = 0.4; // Adjust the this.speed of the falling snow
@@ -493,7 +492,7 @@ class FlappyBird {
           }
           ctx.font = 'bold 30px monospace';
         }
-        ctx.globalAlpha = 0.2; // Set transparency level (0 = fully transparent, 1 = fully opaque)
+        ctx.globalAlpha = 0.1; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
         if (!this.gameEnded) {
           ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
@@ -640,8 +639,8 @@ class FlappyBird {
 ${
   this.customer === 'barbora'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-      <div>TAP</div>
-      <div>TAP</div>
+      <div>BAKST</div>
+      <div>BAKST</div>
     </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`
     : `<img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px"><img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px"><img src=${clickImg.src} alt="Image Description" style="width: 71px; height: 54px;">`
 }
@@ -651,7 +650,7 @@ ${
           <div class="score-input-container" style="display:none;width:188px;height">
           <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
         <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
-        <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:90px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
+        <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
 
