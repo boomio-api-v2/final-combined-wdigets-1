@@ -64,7 +64,7 @@ export class InputContainer {
     }</div>
     ${
       this.prop === 'barbora'
-        ? '<div style="align-self: stretch; text-align: center; color: white; font-size: 12px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">Skaityk pilnas žaidimo taisykles. </div>'
+        ? '<div style="align-self: stretch; text-align: center; color: white; font-size: 12px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" href="https://www.barbora.lt/info/akciju-zaidimu-taisykles" style="color:white;text-decoration: underline;font-size:14px;">Skaityk pilnas žaidimo taisykles. </a></div>'
         : ''
     }
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  
