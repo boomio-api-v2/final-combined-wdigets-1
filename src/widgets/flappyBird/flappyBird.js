@@ -9,7 +9,7 @@ import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
-import { close, introGif, scoreImage, tapImageBarbora } from './constants';
+import { close, introGif, scoreImage, tapImageBarbora, checkIcon } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
@@ -131,7 +131,7 @@ class FlappyBird {
               const checkboxImgChange = document.getElementById('privacyCheckboxImg');
               checkboxImgChange.src = this.checkboxChange
                 ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
-                : 'none';
+                : checkIcon;
             });
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
