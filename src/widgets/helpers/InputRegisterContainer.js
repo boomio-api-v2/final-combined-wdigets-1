@@ -37,7 +37,7 @@ export class InputRegisterContainer {
       <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       
       <div  style="cursor: pointer;">
-            <img id="privacyCheckboxImg"  src="${
+            <img id="privacyCheckboxImg" src="${
               privacyCheckboxChecked ? checkIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
@@ -56,21 +56,25 @@ export class InputRegisterContainer {
       </div>
 
 
-      <div style="width: calc(100% - 54px); height: 30px; left: 45px; top: 260px; position: absolute;text-align:start;z-index:99999;color: #CD1E1E;
+      <div style="width: calc(100% - 90px); height: 20px; left: 45px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
       font-size: 14px;
       font-style: normal;
-      font-weight: 500;
+      font-weight: 900;
       letter-spacing: -0.42px;
+      border-radius:4px;
+      padding:1px;
       " id="competition-name-error"></div>
 
 
-      <div style="width: calc(100% - 54px); height: 30px; left: 45px; top: 340px; position: absolute;text-align:start;z-index:99999;color: #CD1E1E;
+      <div style="width: calc(100% - 90px); height: 20px; left: 45px; top: 338px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
       font-size: 14px;
       font-style: normal;
-      font-weight: 500;
+      font-weight: 900;
       letter-spacing: -0.42px;
+      border-radius:4px;
+      padding:1px;
       " id="competition-email-error"></div>
 
 

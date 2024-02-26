@@ -752,13 +752,23 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                     if (response.res_code === 'EMAIL_EXIST') {
                       document.getElementById('competition-email-error').innerText =
                         response.res_msg;
+                      document.getElementById('competition-email-error').backgroundColor =
+                        '#FFBABA';
+                      document.getElementById('competition-email-error').border = '1px solid red';
 
                       document.getElementById('competition-name-error').innerText = '';
+
+                      document.getElementById('competition-name-error').backgroundColor = 'none';
+                      document.getElementById('competition-name-error').border = 'none';
                     } else if (response.res_code === 'NAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
                         response.res_msg;
+                      document.getElementById('competition-name-error').backgroundColor = '#FFBABA';
+                      document.getElementById('competition-name-error').border = '1px solid red';
 
                       document.getElementById('competition-email-error').innerText = '';
+                      document.getElementById('competition-email-error').backgroundColor = 'none';
+                      document.getElementById('competition-email-error').border = 'none';
                     }
                   } else {
                     this.bestScore = response.user_best_score;
