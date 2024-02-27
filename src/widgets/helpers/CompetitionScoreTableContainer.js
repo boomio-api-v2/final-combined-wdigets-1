@@ -98,7 +98,7 @@ export class CompetitionScoreTableContainer {
             ? `<div style="width:100%;top: 495px; position: absolute; text-align: center; color: ${
                 this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
               }; font-size: 14px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" ">Valio, tau puikiai sekasi!</div>
-              <div style="width:100%;top: 520px; position: absolute; text-align: center; color: ${
+              <div style="width:100%;top: 524px; position: absolute; text-align: center; color: ${
                 this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
               }; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word" ">Kovo 8d. net 500 geriausių žaidėjų laimės prizus!</div>
               <div style="width:100%;top: 540px; position: absolute; text-align: center; color: ${
@@ -106,7 +106,7 @@ export class CompetitionScoreTableContainer {
               }; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word" ">Prizų ieškok savo nurodytame el. pašte.</div>`
             : `<div style="width:100%;top: 495px; position: absolute; text-align: center; color: ${
                 this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-              }; font-size: 14px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" ">Tu gali</div><div style="width:100%;top: 520px; position: absolute; text-align: center; color: ${
+              }; font-size: 14px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" ">Tu gali!</div><div style="width:100%;top: 524px; position: absolute; text-align: center; color: ${
                 this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
               }; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word" ">Pagerink rezultatą nes kovo 8d.</div><div style="width:100%;top: 540px; position: absolute; text-align: center; color: ${
                 this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
@@ -136,7 +136,7 @@ export class CompetitionScoreTableContainer {
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">PAGERINK REZULTATĄ</div>
       </div>
 
-      <div style="left:calc(50% - 59px);width:118px;top:620px;position:absolute; height: 61px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex" id="boomio-competition-play-again">
+      <div style="left:calc(50% - 59px);width:88.5px;top:620px;position:absolute; height: 45.75px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex" id="boomio-competition-play-again">
       </div>
     </div>`;
     this.containerDiv = containerDiv;
