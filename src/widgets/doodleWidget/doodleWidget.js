@@ -1,34 +1,35 @@
 import { widgetHtmlService, QrCodeModal, AnimationService, localStorageService } from '@/services';
 import './styles.css';
 import {
-  rules,
-  rules2,
-  rules2Mobile,
-  gameOver,
   scoreImage,
-  background,
   couponBackground,
   cursor,
   intro,
   howToPlay,
+  backgroundRed,
+  mainImage,
+  useButton,
 } from './constants';
+import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
+import { InputContainer } from '../helpers/InputContainer';
+import { GameOverContainer } from '../helpers/GameOverContainer';
+import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 
 class DoodleWidget {
   static ctx;
 
   constructor() {
     this.isMobile = window.innerWidth <= 1280;
+    this.showCompetitiveRegistration = false;
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
-    this.width = 422;
-
+    this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418;
     this.height = 668;
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = 'https://i.ibb.co/ryHgk6B/JUMP-UP-2-1.png';
+    this.image.src = mainImage;
     this.image.onload = () => {
-      // Your existing code using this.image
       this.startDoodle();
     };
   }
@@ -52,11 +53,12 @@ class DoodleWidget {
       window.innerWidth <= 768 ? 'black' : 'none';
 
     this.config = localStorageService.getDefaultConfig();
+
     this.createHandlers();
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.style.background = `url(${background}) center`;
+    canvas.style.background = `url(${backgroundRed}) center`;
 
     const backgroundCursor = document.getElementById('game-container');
     backgroundCursor.style.cursor = `url(${cursor}) 10 10, auto`;
@@ -106,25 +108,8 @@ class DoodleWidget {
         document.getElementById('background_blur').style.display = 'block';
         document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
       }
-      if (this.gameCount === 0) {
-        setTimeout(() => {
-          document.getElementById('background_blur').style.opacity = 0.37;
+      this.showRulesOrRegistration();
 
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
-          const inputContainer = document.querySelector('.input-container');
-          document.getElementById('control-button').style.transition = 'opacity 2s ease';
-          document.getElementById('control-button').style.opacity = 1;
-
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          inputContainer.style.display = 'block';
-          setTimeout(() => {
-            inputContainer.style.height = '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
-            inputContainer.style.opacity = 1;
-          }, 100);
-        }, 300);
-      }
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
@@ -140,6 +125,106 @@ class DoodleWidget {
 
     const reward = document.getElementById('claimReward');
     reward.addEventListener('click', this.claimReward);
+
+    if (this.showCompetitiveRegistration) {
+      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+      competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
+
+      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      competitionRestart.addEventListener('click', this.resetGame);
+    }
+  };
+
+  showRulesOrRegistration = () => {
+    if (this.showCompetitiveRegistration) {
+      const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
+      checkboxImg.addEventListener('click', () => {
+        this.checkboxChange = !this.checkboxChange;
+        const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+        checkboxImgChange.src = this.checkboxChange
+          ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
+          : 'none';
+      });
+
+      const emailInput = document.querySelector('.boomio-competition-email-input-field');
+      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+
+      emailInput.addEventListener('input', () => {
+        console.log('Email input changed:', emailInput.value);
+      });
+
+      playerNameInput.addEventListener('input', () => {
+        console.log('Player name input changed:', playerNameInput.value);
+      });
+
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-doodle-canvas');
+        document.getElementById('background_blur').style.opacity = 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
+
+        const inpuRegisterContainer = document.querySelector('.input-register-container');
+        document.getElementById('control-button').style.transition = 'opacity 2s ease';
+        document.getElementById('control-button').style.opacity = 1;
+        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        inpuRegisterContainer.style.display = 'block';
+        setTimeout(() => {
+          inpuRegisterContainer.style.height = '528px';
+          inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+          inpuRegisterContainer.style.opacity = 1;
+        }, 100);
+      }, 300);
+    } else {
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-doodle-canvas');
+        document.getElementById('background_blur').style.opacity = 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
+        const inputContainer = document.querySelector('.input-container');
+        document.getElementById('control-button').style.transition = 'opacity 2s ease';
+        document.getElementById('control-button').style.opacity = 1;
+        inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        inputContainer.style.display = 'block';
+        setTimeout(() => {
+          inputContainer.style.height = '332px';
+          inputContainer.style.top = 'calc(50% + 170px)';
+          inputContainer.style.opacity = 1;
+        }, 100);
+      }, 300);
+    }
+  };
+
+  clickEventHandlerShowRules = () => {
+    if (this.gameCount === 0) {
+      setTimeout(() => {
+        const inpuRegisterContainer = document.querySelector('.input-register-container');
+        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          inpuRegisterContainer.style.height = '10px';
+          inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+          inpuRegisterContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          inpuRegisterContainer.style.display = 'none';
+        }, 1000);
+        setTimeout(() => {
+          const canvas = document.getElementById('boomio-doodle-canvas');
+          document.getElementById('background_blur').style.opacity = 0.37;
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          const inputContainer = document.querySelector('.input-container');
+          document.getElementById('control-button').style.transition = 'opacity 2s ease';
+          document.getElementById('control-button').style.opacity = 1;
+          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inputContainer.style.display = 'block';
+          setTimeout(() => {
+            inputContainer.style.height = '332px';
+            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.opacity = 1;
+          }, 100);
+        }, 300);
+      }, 300);
+    }
   };
 
   initGame = () => {
@@ -234,18 +319,33 @@ class DoodleWidget {
 
   resetGame = () => {
     this.gameCount++;
-    const inputContainer = document.querySelector('.input-container1');
     this.index = 0;
     this.currentScore = 0;
-    inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-    setTimeout(() => {
-      inputContainer.style.height = '10px';
-      inputContainer.style.top = 'calc(50% + 330px)';
-      inputContainer.style.opacity = 0;
-    }, 100);
-    setTimeout(() => {
-      inputContainer.style.display = 'none';
-    }, 1000);
+
+    if (this.showCompetitiveRegistration) {
+      const competitionTableContainer = document.querySelector('.competition-table-container');
+      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      setTimeout(() => {
+        competitionTableContainer.style.height = '10px';
+        competitionTableContainer.style.top = 'calc(50% + 330px)';
+        competitionTableContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        competitionTableContainer.style.display = 'none';
+      }, 1000);
+    } else {
+      const inputContainer = document.querySelector('.input-container1');
+
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      setTimeout(() => {
+        inputContainer.style.height = '10px';
+        inputContainer.style.top = 'calc(50% + 330px)';
+        inputContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        inputContainer.style.display = 'none';
+      }, 1000);
+    }
 
     setTimeout(() => {
       document.getElementById('background_blur').style.display = 'none';
@@ -343,7 +443,7 @@ class DoodleWidget {
       for (let i = leadingZeros; i < scoreString.length; i++) {
         scoreDigits[i - leadingZeros].textContent = scoreString[i];
         scoreDigits[i - leadingZeros].style.display = 'block';
-        scoreDigits[i - leadingZeros].classList.add('counting-animation');
+        scoreDigits[i - leadingZeros].classList.add('boomio-counting-animation');
       }
 
       // Remove the counting class after a short delay
@@ -352,26 +452,42 @@ class DoodleWidget {
           this.newHighScoreReached = false;
         }, 2000);
         scoreDigits.forEach((digit) => {
-          digit.classList.remove('counting-animation');
+          digit.classList.remove('boomio-counting-animation');
         });
       }, 1000);
     }
 
     setTimeout(
       () => {
-        const inputContainer = document.querySelector('.input-container1');
-        const canvas = document.getElementById('boomio-doodle-canvas');
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
-        document.getElementById('background_blur').style.display = 'block';
-        inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        inputContainer.style.display = 'block';
-        setTimeout(() => {
-          inputContainer.style.height = '332px';
-          inputContainer.style.top = 'calc(50% + 170px)';
-          inputContainer.style.opacity = 1;
-        }, 100);
-        const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
+        if (this.showCompetitiveRegistration) {
+          const competitionTableContainer = document.querySelector('.competition-table-container');
+          const canvas = document.getElementById('boomio-doodle-canvas');
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          document.getElementById('background_blur').style.display = 'block';
+          competitionTableContainer.style.transition =
+            'height 1s ease, top 1s ease, opacity 1s ease';
+          competitionTableContainer.style.display = 'block';
+          setTimeout(() => {
+            competitionTableContainer.style.height = '680px';
+            competitionTableContainer.style.top = 'calc(50%)';
+            competitionTableContainer.style.opacity = 1;
+          }, 100);
+        } else {
+          const inputContainer = document.querySelector('.input-container1');
+          const canvas = document.getElementById('boomio-doodle-canvas');
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          document.getElementById('background_blur').style.display = 'block';
+          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inputContainer.style.display = 'block';
+          setTimeout(() => {
+            inputContainer.style.height = '332px';
+            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.opacity = 1;
+          }, 100);
+        }
+        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
         this.hideScore();
         currectScoreDiv.style.opacity = 0;
         setTimeout(() => {
@@ -554,12 +670,10 @@ class DoodleWidget {
         this.player.isMovingRight = false;
       }
     };
-
     if (this.isMobile) {
       document.addEventListener('touchstart', (e) => {
         const touchX = e.touches[0].clientX;
         const screenWidth = window.innerWidth;
-
         // Adjust the sensitivity value based on your needs
         const sensitivity = 0.1;
 
@@ -653,7 +767,7 @@ class DoodleWidget {
       document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
 
       if (this.currentScore > 1) {
-        const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
+        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
         currectScoreDiv.style.transition = 'opacity 0.8s ease';
         currectScoreDiv.style.display = 'block';
         currectScoreDiv.style.opacity = 1;
@@ -785,8 +899,6 @@ class DoodleWidget {
   };
 
   createContainer = () => {
-    const useCuponImage = new Image();
-    useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
     const newHighscoreImage = new Image();
@@ -810,46 +922,48 @@ class DoodleWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
-		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas">
+		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }">
 		</canvas>
-
     
-    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
+    ${
+      this.showCompetitiveRegistration
+        ? new InputRegisterContainer('Barbora').createInputRegisterContainer().outerHTML
+        : ''
+    }
+    ${
+      this.showCompetitiveRegistration
+        ? new CompetitionScoreTableContainer('#3BAF29').createCompetitionScoreTableContainer()
+            .outerHTML
+        : ''
+    }
+
+    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
 
-    <img src=${intro} alt="Image Description" style="z-index:4;width:426px; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    <img src=${intro} alt="Image Description" style="z-index:4;width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
-    <img src=${
-      blurImage.src
-    } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
+    <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
 
 
-    <img src=${couponBackground} alt="Image Description" style="z-index:1;width: 422px; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
+    <img src=${couponBackground} alt="Image Description" style="z-index:1;width:    ${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    };
+    ; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
       </img>
 
-    <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-    <img src="${
-      useCuponImage.src
-    }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+    <a href="https://www.barbora.lt/" style="position:absolute;margin-top:380px;margin-left:-340px">
+    <img src="${useButton}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
 
-
-    <div class="input-container" id="input-container">
-    <div style="width: 100%; height: 100%; padding-top: 25px; padding-bottom: 35px; background:  white;  border-top-right-radius: 20px;border-top-left-radius: 20px; backdrop-filter: blur(10px); flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
-    <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; text-transform: uppercase; line-height: 41.60px; word-wrap: break-word;">  <img style="width:179px;height:60px" src=${rules} alt="Image Description" ></div>
-    <div style="width: 320px; color: white; font-size: 16px; font-family: Poppins; font-weight: 800; text-transform: uppercase; line-height: 35.20px; word-wrap: break-word;text-align:start;"><img src=${
-      this.isMobile ? rules2Mobile : rules2
-    } alt="Image Description" style="width:100%;height:100%"></div>
-    </div>
-    </div>
-              </div>
-              <div style="margin-top:570px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:424px;" class="control-button" id="control-button">
-              <div id="startButtonClick" style="box-shadow: 0px 16px 32px 0px #3610A666; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 137px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: #6E2DF0; border:3px solid white;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24pxtext-align: center; color: white; font-size: 18px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">LET'S PLAY</div></div>
-    </div>
-    </div>
 
     <img class="new_highscore_stars" src=${
       newHighscoreStarsImage.src
@@ -859,6 +973,9 @@ class DoodleWidget {
       newHighscoreImage.src
     } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
+
+
+    ${new InputContainer('', 'doodle').createInputContainerDiv().outerHTML}
 
 
     <div class="numbers">
@@ -880,37 +997,17 @@ class DoodleWidget {
 </div>
 
 
-          <div class="score-input-container" style="display:none;width:188px;height;left:50%">
+          <div class="boomio-score-input-container" style="display:none;width:148px;height;left:calc(50% - 110px);top:calc(50% - 270px);">
           <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
         <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
-        <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:100px;top:20px;z-index:3;line-height:30px;" id="currentScore"></div>
+        <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:85px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div></div>
 
 
-<div class="input-container1">
-<div style="height: 100%; position: relative;  background: white; border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
-    <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${gameOver} alt="Image Description"></div>
-    <div class="colored_box" style="border:3px solid #6E2DF0;"></div>
-    <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: #6E2DF0 ; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
-    <div style="left: 240px; top: 116px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
-    <div style="width: 142px; left: 46px; top: 150px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">BEST SCORE</div>
-    <div style="left: 240px; top: 150px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;line-height:28px;" id="currentScoreField"></div>
-    <div style="left: 46px; top: 185px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">YOUR DISCOUNT REWARD</div>
-    <div style="left: 240px; top: 185px; position: absolute; color:  #6E2DF0; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreFieldConverted"></div>
-    <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 130px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 18px; top: 255px; position: absolute; background: #6E2DF0; box-shadow:0px 6px 20px 0px #3610A64D;border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">     <div style="line-height:24pxtext-align: center; color: white; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">PLAY AGAIN</div></div>
-    </div>
-    <div id="claimReward" style="box-sizing:content-box;width: 130px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 215px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px #6E2DF0 solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="line-height:24pxtext-align: center; color: #6E2DF0; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
-    </div>
-</div>
- </div>
+${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
 
 
-
-		<!-- Preloading image ;) -->
-		<img id="boomio-doodle-sprite" src="https://i.ibb.co/ryHgk6B/JUMP-UP-2-1.png" class="boomio-doodle-img"/>
 
 	</div>
     `;
@@ -1047,20 +1144,17 @@ class Spring {
     this.y = 0;
     this.moved = 0;
     this.vx = 1;
-    this.cx = 0;
-    this.cy = 454;
-    this.cwidth = 45;
-    this.cheight = 35;
+    this.cx = 5;
+    this.cy = 452;
+    this.cwidth = 90;
+    this.cheight = 100;
     this.state = 0;
-    this.width = 26;
-    this.height = 30;
+    this.width = 35;
+    this.height = 32;
   }
 
   draw() {
     try {
-      if (this.state === 0) this.cy = 454;
-      else if (this.state == 1) this.cy = 514;
-
       DoodleWidget.ctx.drawImage(
         this.image,
         this.cx,
@@ -1080,7 +1174,7 @@ class Base {
   constructor(image) {
     this.image = image;
     this.height = 10;
-    this.width = 422; // Adjust the width value accordingly
+    this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418; // Adjust the width value accordingly
     this.cx = 0;
     this.cy = 614;
     this.cwidth = 100;
@@ -1120,17 +1214,18 @@ class Player {
     this.cx = 0;
     this.cy = 0;
     this.cwidth = 110;
-    this.cheight = 80;
+    this.cheight = 75;
     this.dir = 'left';
-    this.x = 422 / 2 - this.width / 2;
-    this.y = 668;
+    this.x =
+      (document.body.offsetWidth < 418 ? document.body.offsetWidth : 418) / 2 - this.width / 2;
+    this.y = 666;
   }
   draw() {
     try {
-      if (this.dir == 'right') this.cy = 121;
-      else if (this.dir == 'left') this.cy = 201;
-      else if (this.dir == 'right_land') this.cy = 289;
-      else if (this.dir == 'left_land') this.cy = 371;
+      if (this.dir == 'right') this.cy = 124;
+      else if (this.dir == 'left') this.cy = 204;
+      else if (this.dir == 'right_land') this.cy = 292;
+      else if (this.dir == 'left_land') this.cy = 374;
 
       DoodleWidget.ctx.drawImage(
         this.image,

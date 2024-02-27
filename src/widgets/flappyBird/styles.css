@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Georama&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Georama:wght@100;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;500;600;700;800;900&display=swap');
+
+
+
 
 
 .gradient-border {
@@ -18,8 +22,7 @@
 
 
 
-.colored_box {
- width: 374px; 
+.boomio-colored_box {
  height: 126px; left: 20px; top: 100px; 
  background: rgba(255, 255, 255, 0.40); 
  border-radius: 20px;  
@@ -28,7 +31,7 @@
   background-clip: padding-box;
 }
 
-/* .colored_box::after {
+/* .boomio-colored_box::after {
   position: absolute;
   top: -2px; bottom: -2px;
   left: -2px; right: -2px;
@@ -43,22 +46,22 @@
 }
 
 #flappy-canvas {
-  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
+  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
   transition:filter 1s ease;
   opacity: 0;
 }
 
 .startButton{
-  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
+  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
 }
 
 .input-container{
-  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
+  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
 
 }
 
 .game-container-flappy{
-  cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto;
+  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
 
 }
 .intro-screen{
@@ -77,23 +80,33 @@
 .flappy-game{
 }
 
-.score-input-container{
+.boomio-score-input-container{
   transition :opacity 0.8s ease;
   opacity:0;
   z-index: 3;
 position: absolute;
-top : calc(50% - 260px);
-left :calc(50% + 115px);
+top : calc(50% - 280px);
+left :calc(50% - 110px);
 transform : translate(-50%, -50%);
 display:flex;
 flex-direction: column;
+}
+
+.close-game-container{
+  z-index: 99999999999999999999999;
+position: absolute;
+top : calc(50% - 290px);
+left :calc(50% + 170px);
+transform : translate(-50%, -50%);
+display:flex;
+flex-direction: column;
+cursor:pointer;
 }
 
 .input-container{
   overflow: hidden;
   position: absolute;
   left :50%;
-  width:424px;
   transform : translate(-50%, -50%);
   flex-direction: column;
   border-top-left-radius:20px;
@@ -110,7 +123,6 @@ flex-direction: column;
     top : calc(50% + 330px);
     left :50%;
     height:10px;
-    width:424px;
     transform : translate(-50%, -50%);
     display:none;
     flex-direction: column;
@@ -118,9 +130,6 @@ flex-direction: column;
     border-top-right-radius:20px;z-index: 2;
     }
 
-input::placeholder {
-  color: black;
-}
 
 .closing {
   height: 10; /* Reduce the height to 0 for disappearing effect */
@@ -131,6 +140,7 @@ input::placeholder {
 .control-button{
   opacity: 0;
   position:absolute;
+  display:none;
 }
 
 .control-button1{
@@ -195,7 +205,7 @@ input::placeholder {
   height: auto;
 }
 
-.counting-animation {
+.boomio-counting-animation {
   /* animation: counting 0.1s steps(8) forwards infinite; */
 }
 

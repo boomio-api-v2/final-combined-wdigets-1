@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;500;600;700;800;900&display=swap');
+
+.input-register-container{
+    overflow: hidden;
+    position: absolute;
+    left :50%;
+    transform : translate(-50%, -50%);
+    flex-direction: column;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    z-index: 3;  
+    height :10px;
+    top :calc(50% + 330px);
+    opacity: 0;
+    display: none;
+    ;
+    }
+    .competition-table-container{
+        overflow: hidden;
+        position: absolute;
+        left :50%;
+        transform : translate(-50%, -50%);
+        flex-direction: column;
+ 
+        z-index: 3;  
+        height :0px;
+        top :calc(50% + 330px);
+        opacity: 0;
+        display: none;
+        ;
+        }
+    
+
+        .boomio-competition-email-input-field:focus {
+          outline: none; /* Remove default focus outline */
+          border-color: transparent; /* Change border color on focus */
+        }
+      
+        .boomio-competition-name-input-field:focus {
+          outline: none; /* Remove default focus outline */
+          border-color: transparent; /* Change border color on focus */
+        }
+
+        .boomio-competition-email-input-field:placeholder {
+          font-family: Londrina Solid;
+      }
+      
+      .boomio-competition-name-input-field:placeholder {
+        font-family: Londrina Solid;
+      }
+
+    .boomio-custom-scrollbar::-webkit-scrollbar {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 8px;        border-radius: 20px;
+
+      }
+      
+      .boomio-custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 20px;
+      }
+      
+      .boomio-custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(61, 73, 40, 1);        border-radius: 20px;
+
+      }
+
+      .boomio-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(61, 73, 40, 1);        border-radius: 20px;
+
+      }
+
+      .boomio-competition-email-input-field::placeholder {
+        color: rgba(61, 73, 40, 1);
+        text-align: start;
+        font-family: "Londrina Solid";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 24px; /* 120% */
+    }
+    .boomio-competition-name-input-field::placeholder {
+      color: rgba(61, 73, 40, 1);
+      text-align: start;
+      font-family: "Londrina Solid";
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 24px; /* 120% */
+  }

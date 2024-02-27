@@ -70,7 +70,7 @@ class LocalStorageService {
       'To have immediate access for all your great rewards open or download ';
     const p_bottom_text_end_pc = config?.p_bottom_text_end_pc ?? 'Boomio app by scanning this code';
     const discountType = 'percentage';
-
+    const game_type = config?.game_type ?? 'point';
     const p_bottom_text_start_m =
       config?.p_bottom_text_start_m ?? 'To have immediate access for all your great rewards ';
     const p_bottom_text_end_m = config?.p_bottom_text_end_m ?? 'open or download';
@@ -81,6 +81,8 @@ class LocalStorageService {
     const p_button_text = config?.p_button_text ?? null;
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
+    const business_name = config?.business_name ?? '';
+
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
     const p_button_text_line1 = config?.p_button_text_line1 ?? 'Open';
     const p_button_text_line2 = config?.p_button_text_line2 ?? 'boomio app';
@@ -135,6 +137,7 @@ class LocalStorageService {
       p_coupon_text_line2,
       p_button_text_line1,
       p_button_text_line2,
+      business_name,
       static_text,
       boomioStopTill,
       m,
@@ -147,6 +150,7 @@ class LocalStorageService {
       email_collection_required,
       p_code_text,
       product,
+      game_type,
     };
   }
 }

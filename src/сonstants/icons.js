@@ -128,5 +128,5 @@ export const BoomioBubblesGif = [
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/Bubbles/Boomio_bubble_game.gif?raw=true',
 ];
 export const BoomioBubbles = [
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/Bubbles/Boomio_bubble_hint_image.png?raw=true',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/Bubbles/Barbora_Logo.png?raw=true',
 ];

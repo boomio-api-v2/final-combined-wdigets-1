@@ -78,9 +78,6 @@ class BoomioService extends UserService {
             localStorage.getItem('start_widget') &&
             localStorage.getItem('start_widget') !== 'false'
           ) {
-            console.log(localStorage.getItem('closing_button'));
-            console.log(localStorage.getItem('start_widget'));
-
             this.loadWidget('start_widget');
           }
           this.config = localStorageService.getDefaultConfig();
@@ -111,8 +108,13 @@ class BoomioService extends UserService {
 
   send(extra_data) {
     const isDenied = this.checkIsRequestDenied();
-    if (isDenied) return { success: false };
+    if (isDenied) {
+      setTimeout(() => {
+        this.send();
+      }, 2000);
+    }
     const { user_session, current_page_url } = this;
+
     const request_data = {
       user_session,
       current_page_url,

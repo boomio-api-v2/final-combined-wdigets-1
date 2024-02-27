@@ -264,8 +264,7 @@ export default class {
     textTitle.classList.add('exist-or-saving-modal-title');
 
     textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
-    this.modal.style.background =
-      'linear-gradient(43deg, #D25858 -3.9%, #C92265 1.79%, #764BE1 71.34%, #4151A6 95.05%)';
+    this.modal.style.background = 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
     this.modal.appendChild(textTitle);
 
@@ -351,8 +350,7 @@ export default class {
     saveBtn.classList.add('save');
     saveBtn.style.fontSize = '14px';
     saveBtn.innerHTML = 'Yes, I want!';
-    this.modal.style.background =
-      'linear-gradient(43deg, #D25858 -3.9%, #C92265 1.79%, #764BE1 71.34%, #4151A6 95.05%)';
+    this.modal.style.background = 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
     const exitBtn = document.createElement('div');
     exitBtn.onclick = () => {
@@ -451,8 +449,7 @@ export default class {
     this.createModalWindow(335, 358);
     this.modal.classList.add('desktop-qr-modal');
 
-    this.modal.style.background =
-      'linear-gradient(43deg, #D25858 -3.9%, #C92265 1.79%, #764BE1 71.34%, #4151A6 95.05%)';
+    this.modal.style.background = 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
     this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
 
@@ -463,7 +460,7 @@ export default class {
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
-    <img src=${BoomioBubbles} style="width:72px; height:72px; position: absolute; left: 40%; top: 0; z-index: 2;"/>
+    <img src=${BoomioBubbles} style="width:92px; height:92px; position: absolute; left: 35%; top: -10px; z-index: 2;"/>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
@@ -535,8 +532,7 @@ export default class {
     this.createModalWindow(335, 358);
     this.modal.classList.add('desktop-qr-modal');
 
-    this.modal.style.background =
-      'linear-gradient(43deg, #D25858 -3.9%, #C92265 1.79%, #764BE1 71.34%, #4151A6 95.05%)';
+    this.modal.style.background = 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
     this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
 
@@ -549,7 +545,7 @@ export default class {
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
-    <img src=${BoomioBubbles} style="width:72px; height:72px; position: absolute; left: 40%; top: 0; z-index: 2;"/>
+    <img src=${BoomioBubbles} style="width:92px; height:92px; position: absolute; left: 35%; top: -10px;z-index: 2;"/>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
