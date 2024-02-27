@@ -53,8 +53,8 @@ export class CompetitionScoreTableContainer {
     // Add new line if user_best_place is above 20
     if (userBestPlace > 20) {
       tableHTML += `
-            <tr style="background: none;box-shadow:none;margin: 0;height:44px ">
-            <td style="padding-left:17px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestScore}</td>
+            <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
+            <td style="padding-left:17px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
               <td style="padding-left:17px;text-align:start;width: 142px; color: ${
                 this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : 'white'
