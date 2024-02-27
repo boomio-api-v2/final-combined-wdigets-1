@@ -9,7 +9,15 @@ import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
-import { close, introGif, scoreImage, tapImageBarbora, checkIcon, uncheckIcon } from './constants';
+import {
+  close,
+  introGif,
+  scoreImage,
+  tapImageBarbora,
+  checkIcon,
+  uncheckIcon,
+  BarboraFlappy,
+} from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
@@ -56,7 +64,7 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.src = 'https://i.ibb.co/YP7pcjN/Group-1000001769.png';
+    img.src = BarboraFlappy;
 
     // img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
 
