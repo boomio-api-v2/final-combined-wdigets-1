@@ -34,11 +34,11 @@ export class InputContainer {
         ? `<img style="width:150px;height:75px" src=${rules} alt="Image Description" >`
         : '<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">TAISYKLĖS</div>'
     }</div>
-    <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:135px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
+    <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
       this.prop !== 'Barbora'
         ? `<img src=${
             this.isMobile ? rules2Mobile : rules2
-          } alt="Image Description" style="width:100%;height:100%">`
+          } alt="Image Description" style="width:270px;height:100%">`
         : `<div style="width: 100%; height: 139px; position: relative">
           <div style="width: 142px; left: 160px; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             kad skristum
