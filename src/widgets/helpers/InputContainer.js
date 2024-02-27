@@ -11,7 +11,7 @@ export class InputContainer {
   }
   createInputContainerDiv() {
     const containerDiv = document.createElement('div');
-    containerDiv.classList.add('input-container');
+    containerDiv.classList.add('boomio-input-container');
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
