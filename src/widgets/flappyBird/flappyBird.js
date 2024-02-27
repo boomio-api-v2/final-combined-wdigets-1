@@ -22,11 +22,11 @@ class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competitive';
+    this.showCompetitiveRegistration = this.config.game_type;
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name;
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
