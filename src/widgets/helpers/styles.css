@@ -62,12 +62,12 @@
       }
       
       .boomio-custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #00B5AC;        border-radius: 20px;
+        background: rgba(61, 73, 40, 1);        border-radius: 20px;
 
       }
 
       .boomio-custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #00B5AC;        border-radius: 20px;
+        background: rgba(61, 73, 40, 1);        border-radius: 20px;
 
       }
 
