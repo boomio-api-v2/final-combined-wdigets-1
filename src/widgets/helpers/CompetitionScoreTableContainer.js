@@ -67,7 +67,27 @@ export class CompetitionScoreTableContainer {
             </tr>`;
     }
 
-    this.containerDiv.querySelector('tbody').innerHTML = tableHTML;
+    let textColor = this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white';
+    let fontSize = this.prop === 'Barbora' ? '14px' : '10px';
+    let fontWeight = this.prop === 'Barbora' ? '900' : '700';
+
+    let scoreboardText = `
+      ${
+        this.prop === 'Barbora'
+          ? this.scoreTable.user_best_place < 500
+            ? `<div style="width:100%; top: 495px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">Valio, tau puikiai sekasi!</div>
+            <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">Kovo 8d. net 500 geriausių žaidėjų laimės prizus!</div>
+            <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">Prizų ieškok savo nurodytame el. pašte.</div> `
+            : `<div style="width:100%; top: 495px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">Tu gali!</div>
+            <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">Pagerink rezultatą nes kovo 8d.</div>
+            <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">net 500 geriausių žaidėjų laimės prizus!</div> `
+          : ''
+      }
+    `;
+
+    this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
+
+    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
   }
 
   render() {
@@ -92,31 +112,19 @@ export class CompetitionScoreTableContainer {
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
         this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
-      ${
-        this.prop === 'Barbora'
-          ? this.scoreTable.user_best_place < 500
-            ? `<div style="width:100%;top: 495px; position: absolute; text-align: center; color: ${
-                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-              }; font-size: 14px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" ">Valio, tau puikiai sekasi!</div>
-              <div style="width:100%;top: 524px; position: absolute; text-align: center; color: ${
-                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-              }; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word" ">Kovo 8d. net 500 geriausių žaidėjų laimės prizus!</div>
-              <div style="width:100%;top: 540px; position: absolute; text-align: center; color: ${
-                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-              }; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word" ">Prizų ieškok savo nurodytame el. pašte.</div>`
-            : `<div style="width:100%;top: 495px; position: absolute; text-align: center; color: ${
-                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-              }; font-size: 14px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" ">Tu gali!</div><div style="width:100%;top: 524px; position: absolute; text-align: center; color: ${
-                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-              }; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word" ">Pagerink rezultatą nes kovo 8d.</div><div style="width:100%;top: 540px; position: absolute; text-align: center; color: ${
-                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-              }; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word" ">net 500 geriausių žaidėjų laimės prizus!</div>`
-          : ''
-      }
+      
+      <div class="boomio-scoreboard-text">
+      `;
+
+    containerDiv.innerHTML += `
+              </div>
+              
+
+
       <div  style="width: calc(100% - 56px); height: 352px; left: 32px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
-            <tbody >
+            <tbody class="boomio-tbody">
     `;
 
     containerDiv.innerHTML += `
@@ -136,7 +144,7 @@ export class CompetitionScoreTableContainer {
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">PAGERINK REZULTATĄ</div>
       </div>
 
-      <div style="left:calc(50% - 59px);width:88.5px;top:620px;position:absolute; height: 45.75px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex" id="boomio-competition-play-again">
+      <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;background-size: contain; height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex" id="boomio-competition-play-again">
       </div>
     </div>`;
     this.containerDiv = containerDiv;
