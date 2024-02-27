@@ -12,7 +12,7 @@ export class InputRegisterContainer {
     containerDiv.setAttribute('id', 'input-register-container');
     console.log(this.prop);
     containerDiv.style.background =
-      this.prop === 'barbora'
+      this.prop === 'Barbora'
         ? `none`
         : this.prop === 'penki'
         ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.19) 0%, rgba(0, 0, 0, 0.19) 100%), linear-gradient(166deg, rgba(166, 206, 57, 0.90) 9.98%, rgba(0, 181, 172, 0.90) 96.82%)'
@@ -25,13 +25,13 @@ export class InputRegisterContainer {
     let privacyCheckboxChecked = true; // Use let instead of const to allow reassignment
     containerDiv.innerHTML = `
       <div style="height: 124px; top: 50px; position: relative; text-align: center;margin:10px; color: ${
-        this.prop === 'barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' ? 'white' : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">REGISTRUOKIS ŽAISTI</div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
-        this.prop === 'barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' ? 'white' : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: ${
-          this.prop === 'barbora' ? '#3D4928' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
+          this.prop === 'Barbora' ? '#3D4928' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >TOLIAU</div>
       </div>
       <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
@@ -44,11 +44,11 @@ export class InputRegisterContainer {
 
 
         <div style="color: ${
-          this.prop === 'barbora' ? 'white' : 'white'
+          this.prop === 'Barbora' ? 'white' : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">Sutinku su ${
-      this.prop === 'barbora' ? 'Barbora' : 'Penki sezonai'
+      this.prop === 'Barbora' ? 'Barbora' : 'Penki sezonai'
     } <a onclick="event.stopPropagation();" target="_blank" href="${
-      this.prop === 'barbora'
+      this.prop === 'Barbora'
         ? 'https://www.barbora.lt/info/privatumo-politika'
         : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
     }" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a>
@@ -58,7 +58,7 @@ export class InputRegisterContainer {
 
       <div style="width: calc(100% - 90px); height: 24px; left: 45px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
-      font-size: 14px;
+      font-size: 11px;
       font-style: normal;
       font-weight: 900;
       letter-spacing: -0.42px;
@@ -69,7 +69,7 @@ export class InputRegisterContainer {
 
       <div style="width: calc(100% - 90px); height: 24px; left: 45px; top: 338px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
-      font-size: 14px;
+      font-size: 11px;
       font-style: normal;
       font-weight: 900;
       letter-spacing: -0.42px;
@@ -79,9 +79,9 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: 287px; position: absolute; background: ${
-        this.prop === 'barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' ? 'white' : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
-      this.prop === 'barbora'
+      this.prop === 'Barbora'
         ? '1px rgba(164,164,164,0.9) solid'
         : this.prop === 'penki'
         ? '1px solid #A6CE39'
@@ -91,23 +91,23 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: 204px; position: absolute; background: ${
-        this.prop === 'barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' ? 'white' : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
-      this.prop === 'barbora'
+      this.prop === 'Barbora'
         ? '1px rgba(164,164,164,0.9) solid'
         : this.prop === 'penki'
         ? '1px solid #A6CE39'
         : ' 1px #FF3284 solid'
     }"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 299px; opacity: 0.60;background-color: ${
-        this.prop === 'barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' ? 'white' : 'white'
       }; text-align: start; color:  ${
-      this.prop === 'barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
+      this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
     } ; font-size: 20px; font-family: Londrina Solid; font-weight: 300; line-height: 24px; word-wrap: break-word" placeholder="Elektroninio pašto adresas">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
-        this.prop === 'barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' ? 'white' : 'white'
       }; text-align: start; color:  ${
-      this.prop === 'barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
+      this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
     } ; font-size: 20px; font-family: Londrina Solid; font-weight: 300; line-height: 24px; word-wrap: break-word" placeholder="Žaidėjo slapyvardis">
     `;
 

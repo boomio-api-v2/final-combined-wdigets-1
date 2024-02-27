@@ -929,7 +929,7 @@ class DoodleWidget {
     
     ${
       this.showCompetitiveRegistration
-        ? new InputRegisterContainer('barbora').createInputRegisterContainer().outerHTML
+        ? new InputRegisterContainer('Barbora').createInputRegisterContainer().outerHTML
         : ''
     }
     ${

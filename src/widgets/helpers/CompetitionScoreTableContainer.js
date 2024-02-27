@@ -29,12 +29,12 @@ export class CompetitionScoreTableContainer {
 
       const color =
         index + 1 === userBestPlace
-          ? this.prop === 'barbora'
+          ? this.prop === 'Barbora'
             ? 'rgba(61, 73, 40, 1)'
             : this.prop === 'penki'
             ? '#00B5AC'
             : 'white'
-          : this.prop === 'barbora'
+          : this.prop === 'Barbora'
           ? 'white'
           : 'white';
       const boxShadow =
@@ -55,12 +55,12 @@ export class CompetitionScoreTableContainer {
             <td style="padding-left:17px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestScore}</td>
 
               <td style="padding-left:17px;text-align:start;width: 142px; color: ${
-                this.prop === 'barbora' ? 'rgba(61, 73, 40, 1)' : 'white'
+                this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : 'white'
               }; border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
         playerNameInput?.value
       }</td>
               <td style="width: 48px; color: ${
-                this.prop === 'barbora' ? 'rgba(61, 73, 40, 1)' : 'white'
+                this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : 'white'
               }; border: none;font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word">${userBestScore}</td>
             </tr>`;
     }
@@ -75,7 +75,7 @@ export class CompetitionScoreTableContainer {
     containerDiv.classList.add('competition-table-container');
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background =
-      this.prop === 'barbora'
+      this.prop === 'Barbora'
         ? 'none'
         : this.prop === 'penki'
         ? 'none'
@@ -88,15 +88,23 @@ export class CompetitionScoreTableContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
-        this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
+        this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
       ${
-        this.scoreTable.user_best_place < 500
-          ? `<div style="width:100%;top: 520px; position: absolute; text-align: center; color: ${
-              this.prop === 'barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
-            }; font-size: 14px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
-              this.prop === 'barbora' ? 'Kovo 8 dieną ieškok prizo savo el. pašte!' : ''
-            }</div>`
+        this.prop === 'Barbora'
+          ? this.scoreTable.user_best_place < 500
+            ? `<div style="width:100%;top: 510px; position: absolute; text-align: center; color: ${
+                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
+              }; font-size: 14px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">Valio, tau puikiai sekasi!</div>
+              <div style="width:100%;top: 510px; position: absolute; text-align: center; color: ${
+                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
+              }; font-size: 14px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">Valio, tau puikiai sekasi!</div>
+              <div style="width:100%;top: 510px; position: absolute; text-align: center; color: ${
+                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
+              }; font-size: 14px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">Valio, tau puikiai sekasi!</div>`
+            : `<div style="width:100%;top: 510px; position: absolute; text-align: center; color: ${
+                this.prop === 'Barbora' ? 'white' : this.prop === 'penki' ? '#00B5AC' : 'white'
+              }; font-size: 14px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">Tu gali</div>`
           : ''
       }
       <div  style="width: calc(100% - 56px); height: 352px; left: 32px; top: 144px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
@@ -111,10 +119,10 @@ export class CompetitionScoreTableContainer {
         </div>
       </div>
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:590px;position:absolute; height: 46px; background: ${
-        this.prop === 'barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' ? 'white' : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-competition-play-again">
         <div style="text-align: center; color: ${
-          this.prop === 'barbora'
+          this.prop === 'Barbora'
             ? 'rgba(61, 73, 40, 1)'
             : this.prop === 'penki'
             ? '#00B5AC'

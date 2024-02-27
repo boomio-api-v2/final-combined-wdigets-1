@@ -16,7 +16,7 @@ import {
   tapImageBarbora,
   checkIcon,
   uncheckIcon,
-  BarboraFlappy,
+  mainBarbora,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -26,7 +26,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = 'barbora';
+    this.customer = 'Barbora';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -64,8 +64,7 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.src = BarboraFlappy;
-
+    img.src = mainBarbora;
     // img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -643,7 +642,7 @@ class FlappyBird {
 
 <div style="left:calc(50% - 60px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${
-  this.customer === 'barbora'
+  this.customer === 'Barbora'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
       <div>BAKST</div>
       <div>BAKST</div>
@@ -759,7 +758,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                   if (response.success === false) {
                     if (response.res_code === 'EMAIL_EXIST') {
                       document.getElementById('competition-email-error').innerText =
-                        response.res_msg;
+                        'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor =
                         '#FFBABA';
                       document.getElementById('competition-email-error').style.border =
@@ -772,7 +771,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').style.border = 'none';
                     } else if (response.res_code === 'NAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
-                        response.res_msg;
+                        'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =
                         '#FFBABA';
                       document.getElementById('competition-name-error').style.border =

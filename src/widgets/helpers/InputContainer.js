@@ -16,7 +16,7 @@ export class InputContainer {
     containerDiv.style.width =
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
     containerDiv.style.background =
-      this.prop === 'barbora'
+      this.prop === 'Barbora'
         ? `none`
         : this.prop === 'penki'
         ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.19) 0%, rgba(0, 0, 0, 0.19) 100%), linear-gradient(166deg, rgba(166, 206, 57, 0.90) 9.98%, rgba(0, 181, 172, 0.90) 96.82%)'
@@ -30,12 +30,12 @@ export class InputContainer {
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${
-      this.prop !== 'barbora'
+      this.prop !== 'Barbora'
         ? `<img style="width:150px;height:75px" src=${rules} alt="Image Description" >`
         : '<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">TAISYKLĖS</div>'
     }</div>
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:135px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
-      this.prop !== 'barbora'
+      this.prop !== 'Barbora'
         ? `<img src=${
             this.isMobile ? rules2Mobile : rules2
           } alt="Image Description" style="width:100%;height:100%">`
@@ -83,13 +83,13 @@ export class InputContainer {
               <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
                 this.game === 'doodle'
                   ? 'white'
-                  : this.prop === 'barbora'
+                  : this.prop === 'Barbora'
                   ? '#3D4928'
                   : this.prop === 'penki'
                   ? '#00B5AC'
                   : '#FF3183'
               }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
-      this.prop === 'penki' || this.prop === 'barbora' ? 'PIRMYN' : 'LET’S PLAY'
+      this.prop === 'penki' || this.prop === 'Barbora' ? 'PIRMYN' : 'LET’S PLAY'
     }</div></div>
     </div>
  
