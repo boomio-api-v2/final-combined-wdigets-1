@@ -34,7 +34,7 @@ export class InputRegisterContainer {
           this.prop === 'Barbora' ? '#3D4928' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >TOLIAU</div>
       </div>
-      <div class="privacyCheckbox" id="privacyCheckbox" style="cursor:pointer;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+      <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:pointer;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       
       <div  style="cursor: pointer;">
             <img id="privacyCheckboxImg" src="${

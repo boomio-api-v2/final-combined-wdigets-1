@@ -49,24 +49,24 @@
         font-family: Londrina Solid;
       }
 
-    .custom-scrollbar::-webkit-scrollbar {
+    .boomio-custom-scrollbar::-webkit-scrollbar {
         padding-top: 10px;
         padding-bottom: 10px;
         width: 8px;        border-radius: 20px;
 
       }
       
-      .custom-scrollbar::-webkit-scrollbar-track {
+      .boomio-custom-scrollbar::-webkit-scrollbar-track {
         background: #f1f1f1;
         border-radius: 20px;
       }
       
-      .custom-scrollbar::-webkit-scrollbar-thumb {
+      .boomio-custom-scrollbar::-webkit-scrollbar-thumb {
         background: #00B5AC;        border-radius: 20px;
 
       }
 
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      .boomio-custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #00B5AC;        border-radius: 20px;
 
       }

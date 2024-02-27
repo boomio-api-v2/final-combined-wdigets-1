@@ -11,7 +11,7 @@ export class InputContainer {
   }
   createInputContainerDiv() {
     const containerDiv = document.createElement('div');
-    containerDiv.classList.add('boomio-input-container');
+    containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
@@ -26,7 +26,7 @@ export class InputContainer {
     containerDiv.innerHTML = `
 
     
-    <div style="width: 100%; height: 195px;box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
+    <div style="width: 100%; height: 180px;box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${
@@ -75,7 +75,7 @@ export class InputContainer {
               </div>
               <div style="z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
                 document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px'
-              };" class="control-button" id="control-button">
+              };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: ${
                 this.prop === 'penki' ? 'white' : this.game === 'doodle' ? '#3BAF29' : 'white'
               }

@@ -137,7 +137,7 @@ class DoodleWidget {
 
   showRulesOrRegistration = () => {
     if (this.showCompetitiveRegistration) {
-      const checkboxImg = document.querySelector('.privacyCheckbox');
+      const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
@@ -443,7 +443,7 @@ class DoodleWidget {
       for (let i = leadingZeros; i < scoreString.length; i++) {
         scoreDigits[i - leadingZeros].textContent = scoreString[i];
         scoreDigits[i - leadingZeros].style.display = 'block';
-        scoreDigits[i - leadingZeros].classList.add('counting-animation');
+        scoreDigits[i - leadingZeros].classList.add('boomio-counting-animation');
       }
 
       // Remove the counting class after a short delay
@@ -452,7 +452,7 @@ class DoodleWidget {
           this.newHighScoreReached = false;
         }, 2000);
         scoreDigits.forEach((digit) => {
-          digit.classList.remove('counting-animation');
+          digit.classList.remove('boomio-counting-animation');
         });
       }, 1000);
     }
@@ -487,7 +487,7 @@ class DoodleWidget {
             inputContainer.style.opacity = 1;
           }, 100);
         }
-        const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
+        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
         this.hideScore();
         currectScoreDiv.style.opacity = 0;
         setTimeout(() => {
@@ -767,7 +767,7 @@ class DoodleWidget {
       document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
 
       if (this.currentScore > 1) {
-        const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
+        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
         currectScoreDiv.style.transition = 'opacity 0.8s ease';
         currectScoreDiv.style.display = 'block';
         currectScoreDiv.style.opacity = 1;
@@ -997,7 +997,7 @@ class DoodleWidget {
 </div>
 
 
-          <div class="score-input-container" style="display:none;width:148px;height;left:calc(50% - 110px);top:calc(50% - 270px);">
+          <div class="boomio-score-input-container" style="display:none;width:148px;height;left:calc(50% - 110px);top:calc(50% - 270px);">
           <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
         <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:85px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>

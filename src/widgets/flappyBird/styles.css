@@ -22,7 +22,7 @@
 
 
 
-.colored_box {
+.boomio-colored_box {
  height: 126px; left: 20px; top: 100px; 
  background: rgba(255, 255, 255, 0.40); 
  border-radius: 20px;  
@@ -31,7 +31,7 @@
   background-clip: padding-box;
 }
 
-/* .colored_box::after {
+/* .boomio-colored_box::after {
   position: absolute;
   top: -2px; bottom: -2px;
   left: -2px; right: -2px;
@@ -80,7 +80,7 @@
 .flappy-game{
 }
 
-.score-input-container{
+.boomio-score-input-container{
   transition :opacity 0.8s ease;
   opacity:0;
   z-index: 3;
@@ -205,7 +205,7 @@ cursor:pointer;
   height: auto;
 }
 
-.counting-animation {
+.boomio-counting-animation {
   /* animation: counting 0.1s steps(8) forwards infinite; */
 }
 

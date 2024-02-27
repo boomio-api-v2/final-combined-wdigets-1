@@ -13,7 +13,7 @@ export class GameOverContainer {
     containerDiv.innerHTML = `
     <div style="height: 100%; position: relative;  background: white; border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
         <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Oswald; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img style="width:266px;height:60px;" src=${gameOver} alt="Image Description"></div>
-        <div class="colored_box" style="border:3px solid #3BAF29;width:calc(100% - 40px)"></div>
+        <div class="boomio-colored_box" style="border:3px solid #3BAF29;width:calc(100% - 40px)"></div>
         <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: #3BAF29; font-size: 18px; font-family: Oswald; font-weight: 700; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
         <div style="left: calc(60% - 40px); top: 116px; position: absolute; color:  #3BAF29; font-size: 18px; font-family: Oswald; font-weight: 700; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
         <div style="width: 142px; left: 46px; top: 150px; position: absolute; color:  #3BAF29; font-size: 18px; font-family: Oswald; font-weight: 700; line-height: 27px; word-wrap: break-word;text-align:start;">BEST SCORE</div>

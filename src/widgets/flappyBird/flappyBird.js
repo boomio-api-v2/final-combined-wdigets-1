@@ -22,7 +22,8 @@ class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
-    this.showCompetitiveRegistration = this.config.game_type === 'competition';
+    this.showCompetitiveRegistration =
+      this.config.game_type === 'competition' ? 'competition' : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -132,7 +133,7 @@ class FlappyBird {
 
         if (this.gameCount === 0) {
           if (this.showCompetitiveRegistration) {
-            const checkboxImg = document.querySelector('.privacyCheckbox');
+            const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
             checkboxImg.addEventListener('click', () => {
               this.checkboxChange = !this.checkboxChange;
               const checkboxImgChange = document.getElementById('privacyCheckboxImg');
@@ -281,7 +282,9 @@ class FlappyBird {
               document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
 
               if (this.currentScore > 1) {
-                const currectScoreDiv = document.getElementsByClassName('score-input-container')[0];
+                const currectScoreDiv = document.getElementsByClassName(
+                  'boomio-score-input-container',
+                )[0];
                 currectScoreDiv.style.transition = 'opacity 0.8s ease';
                 currectScoreDiv.style.display = 'block';
                 currectScoreDiv.style.opacity = 1;
@@ -368,8 +371,9 @@ class FlappyBird {
                       competitionTableContainer.style.top = 'calc(50%)';
                       competitionTableContainer.style.opacity = 1;
                     }, 100);
-                    const currectScoreDiv =
-                      document.getElementsByClassName('score-input-container')[0];
+                    const currectScoreDiv = document.getElementsByClassName(
+                      'boomio-score-input-container',
+                    )[0];
                     currectScoreDiv.style.opacity = 0;
                     setTimeout(() => {
                       currectScoreDiv.style.display = 'none';
@@ -387,8 +391,9 @@ class FlappyBird {
                       inputContainer.style.top = 'calc(50% + 170px)';
                       inputContainer.style.opacity = 1;
                     }, 100);
-                    const currectScoreDiv =
-                      document.getElementsByClassName('score-input-container')[0];
+                    const currectScoreDiv = document.getElementsByClassName(
+                      'boomio-score-input-container',
+                    )[0];
                     currectScoreDiv.style.opacity = 0;
                     setTimeout(() => {
                       currectScoreDiv.style.display = 'none';
@@ -482,7 +487,7 @@ class FlappyBird {
             for (let i = leadingZeros; i < scoreString.length; i++) {
               scoreDigits[i - leadingZeros].textContent = scoreString[i];
               scoreDigits[i - leadingZeros].style.display = 'block';
-              scoreDigits[i - leadingZeros].classList.add('counting-animation');
+              scoreDigits[i - leadingZeros].classList.add('boomio-counting-animation');
             }
 
             // Remove the counting class after a short delay
@@ -491,7 +496,7 @@ class FlappyBird {
                 this.newHighScoreReached = false;
               }, 2000);
               scoreDigits.forEach((digit) => {
-                digit.classList.remove('counting-animation');
+                digit.classList.remove('boomio-counting-animation');
               });
             }, 1000);
           }
@@ -652,7 +657,7 @@ ${
 
 </div>
         <div class="flappy-container">
-          <div class="score-input-container" style="display:none;width:188px;height">
+          <div class="boomio-score-input-container" style="display:none;width:188px;height">
           <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
         <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
@@ -686,7 +691,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
       gameOver.src
     } alt="Image Description"></div>
-    <div class="colored_box" style="width:calc(100% - 40px);"></div>
+    <div class="boomio-colored_box" style="width:calc(100% - 40px);"></div>
     <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
     <div style="left: 240px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
     <div style="width: 142px; left: 46px; top: 150px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">BEST SCORE</div>
