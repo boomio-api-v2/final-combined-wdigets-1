@@ -6,7 +6,7 @@ export const introGif =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/BarboraFlappy.gif';
 
 export const mainBarbora =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/BarboraFlappyBackground.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/BarboraFlappyBackgroundCampaing.png';
 
 export const inputBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/inputBackground.png';
