@@ -144,7 +144,7 @@ export class CompetitionScoreTableContainer {
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">PAGERINK REZULTATĄ</div>
       </div>
 
-      <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;background-size: contain; height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex" id="boomio-competition-play-again">
+      <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-competition-play-again">
       </div>
     </div>`;
     this.containerDiv = containerDiv;
