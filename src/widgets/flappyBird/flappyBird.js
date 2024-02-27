@@ -771,7 +771,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').innerText = '';
 
                       document.getElementById('competition-name-error').style.backgroundColor =
-                        'none';
+                        'transparent';
                       document.getElementById('competition-name-error').style.border = 'none';
                     } else if (response.res_code === 'NAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
@@ -783,7 +783,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
                       document.getElementById('competition-email-error').innerText = '';
                       document.getElementById('competition-email-error').style.backgroundColor =
-                        'none';
+                        'transparent';
                       document.getElementById('competition-email-error').style.border = 'none';
                     }
                   } else {
