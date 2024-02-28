@@ -43,11 +43,11 @@ export class InputContainer {
           <div style="width: 142px; left: 160px; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             kad skristum
           </div>
-          <div style="width: 229px; left: 160px; top: 44px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          <div style="width: 229px; left: 160px; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             dėl geresnio rezultato
           </div>
-          <div style="width: 246px; left: 160px; top: 79px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
-            500+ prizų kas savaitę
+          <div style="width: 246px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
+            KINO PAVASARIO bilietus arba BARBOROS kuponus
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">
             <div style="left: 0px; top: 0px; position: absolute; color: white; font-size: 24px; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
@@ -64,7 +64,7 @@ export class InputContainer {
     }</div>
     ${
       this.prop === 'Barbora'
-        ? '<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" href="https://www.barbora.lt/info/akciju-zaidimu-taisykles" style="color:white;text-decoration: underline;font-size:12px;">Skaityk pilnas žaidimo taisykles. </a></div>'
+        ? '<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" href="https://www.barbora.lt/info/akciju-zaidimu-taisykles" style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>'
         : ''
     }
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  
