@@ -201,7 +201,7 @@ class FlappyBird {
             background.style.display = 'none';
           }
         }, 2000);
-      }, 4000);
+      }, 3500);
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -308,11 +308,12 @@ class FlappyBird {
               this.gravity = Math.min(this.gravity * Math.pow(gravityFactor, elapsedTime), 0.4);
               this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -7);
             }
+
             if (
               [
-                pipe[0] <= cTenth + size[0],
+                pipe[0] <= cTenth - 10 + size[0],
                 pipe[0] + pipeWidth >= cTenth,
-                pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + size[1],
+                pipe[1] > flyHeight + 25 || pipe[1] + pipeGap < flyHeight - 25 + size[1],
               ].every((elem) => elem)
             ) {
               this.gamePlaying = false;
@@ -339,7 +340,6 @@ class FlappyBird {
                     boomioService
                       .signal('ROUND_FINISHED', 'signal', { score: this.currentScore })
                       .then((response) => {
-                        console.log('Response2', response);
                         this.userBestPlace = response.user_best_place;
 
                         this.scoreTable = response;
@@ -757,8 +757,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                   user_name: playerNameInput?.value,
                 })
                 .then((response) => {
-                  console.log('response1', response);
-
                   if (response.success === false) {
                     if (response.res_code === 'EMAIL_EXIST') {
                       document.getElementById('competition-email-error').innerText =

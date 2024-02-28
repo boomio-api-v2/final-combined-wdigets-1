@@ -42,11 +42,11 @@
         }
 
         .boomio-competition-email-input-field:placeholder {
-          font-family: Londrina Solid;
-      }
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
       
       .boomio-competition-name-input-field:placeholder {
-        font-family: Londrina Solid;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       }
 
     .boomio-custom-scrollbar::-webkit-scrollbar {
@@ -71,21 +71,54 @@
 
       }
 
-      .boomio-competition-email-input-field::placeholder {
-        color: rgba(61, 73, 40, 1);
-        text-align: start;
-        font-family: "Londrina Solid";
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 300;
-        line-height: 24px; /* 120% */
-    }
-    .boomio-competition-name-input-field::placeholder {
-      color: rgba(61, 73, 40, 1);
-      text-align: start;
-      font-family: "Londrina Solid";
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 24px; /* 120% */
-  }
+
+
+  .boomio-competition-name-input-field::-webkit-input-placeholder {      color: rgba(61, 73, 40, 1);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: Georama;
+}
+.boomio-competition-name-input-field:-moz-placeholder {      color: rgba(61, 73, 40, 1);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+    font-family: Georama;
+}
+.boomio-competition-name-input-field::-moz-placeholder {      color: rgba(61, 73, 40, 1);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+    font-family: Georama;
+}
+.boomio-competition-name-input-field:-ms-input-placeholder {      color: rgba(61, 73, 40, 1);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+    font-family: Georama;
+}
+
+  .boomio-competition-email-input-field::-webkit-input-placeholder {      color: rgba(61, 73, 40, 1);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: Georama;
+}
+.boomio-competition-email-input-field:-moz-placeholder {      color: rgba(61, 73, 40, 1);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+    font-family: Georama;
+}
+.boomio-competition-email-input-field::-moz-placeholder {      color: rgba(61, 73, 40, 1);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+    font-family: Georama;
+}
+.boomio-competition-email-input-field:-ms-input-placeholder {      color: rgba(61, 73, 40, 1);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+    font-family: Georama;
+}

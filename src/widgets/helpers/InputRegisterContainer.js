@@ -45,13 +45,23 @@ export class InputRegisterContainer {
 
         <div style="color: ${
           this.prop === 'Barbora' ? 'white' : 'white'
-        }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">Sutinku su ${
-      this.prop === 'Barbora' ? 'Barbora' : 'Penki sezonai'
-    } <a onclick="event.stopPropagation();" target="_blank" href="${
+        }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">${
       this.prop === 'Barbora'
-        ? 'https://www.barbora.lt/info/privatumo-politika'
-        : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
-    }" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a>
+        ? 'Sutinku gauti naujienas.'
+        : `Sutinku su ${this.prop === 'Barbora' ? 'Barbora' : 'Penki sezonai'} `
+    }
+    ${
+      this.prop !== 'Barbora'
+        ? `<a onclick="event.stopPropagation();" target="_blank" href="${
+            this.prop === 'Barbora'
+              ? 'https://www.barbora.lt/info/privatumo-politika'
+              : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
+          }" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a> `
+        : ''
+    }
+      
+
+
     </div>
       </div>
 
@@ -103,12 +113,12 @@ export class InputRegisterContainer {
         this.prop === 'Barbora' ? 'white' : 'white'
       }; text-align: start; color:  ${
       this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
-    } ; font-size: 20px; font-family: Londrina Solid; font-weight: 300; line-height: 24px; word-wrap: break-word" placeholder="Elektroninio pašto adresas">
+    } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="Elektroninio pašto adresas">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
         this.prop === 'Barbora' ? 'white' : 'white'
       }; text-align: start; color:  ${
       this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
-    } ; font-size: 20px; font-family: Londrina Solid; font-weight: 300; line-height: 24px; word-wrap: break-word" placeholder="Žaidėjo slapyvardis">
+    } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="Žaidėjo slapyvardis">
     `;
 
     return containerDiv;
