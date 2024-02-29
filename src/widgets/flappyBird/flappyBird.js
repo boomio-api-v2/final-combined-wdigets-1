@@ -911,14 +911,23 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             controlButton.style.opacity = 0;
 
             setTimeout(() => {
-              canvas.onclick = () => {
-                this.flight = this.jump;
-                this.isJumping = true;
-                this.gameStarted = true;
-                setTimeout(() => {
-                  this.isJumping = false;
-                }, 300);
-              };
+              if (this.showCompetitiveRegistration) {
+                boomioService
+                  .signal('ROUND_STARTED', 'signal')
+                  .then((response) => {
+                    canvas.onclick = () => {
+                      this.flight = this.jump;
+                      this.isJumping = true;
+                      this.gameStarted = true;
+                      setTimeout(() => {
+                        this.isJumping = false;
+                      }, 300);
+                    };
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+              }
             }, 50);
           };
           canvas.addEventListener('click', this.clickEventHandler);
