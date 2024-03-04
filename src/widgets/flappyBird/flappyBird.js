@@ -17,6 +17,8 @@ import {
   checkIcon,
   uncheckIcon,
   mainBarbora,
+  mainPenki,
+  introGifPenki,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -26,7 +28,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : 'Penki';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -64,7 +66,7 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.src = mainBarbora;
+    img.src = this.customer === 'Barbora' ? mainBarbora : mainPenki;
     // img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -608,7 +610,9 @@ class FlappyBird {
               document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
             }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
       </img>
-      <img src=${introGif} alt="Image Description" style="z-index:4;width: ${
+      <img src=${
+        this.customer === 'Barbora' ? introGif : introGifPenki
+      } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
       </img>
