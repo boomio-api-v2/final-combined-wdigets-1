@@ -508,7 +508,7 @@ class FlappyBird {
         }
         ctx.globalAlpha = 0.1; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
-        if (!this.gameEnded) {
+        if (!this.gameEnded && this.customer === 'Barbora') {
           ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
           ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
         }
