@@ -12,10 +12,8 @@ export class InputRegisterContainer {
     containerDiv.setAttribute('id', 'input-register-container');
     console.log(this.prop);
     containerDiv.style.background =
-      this.prop === 'Barbora'
+      this.prop === 'Barbora' || this.prop === 'Penki'
         ? `none`
-        : this.prop === 'penki'
-        ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.19) 0%, rgba(0, 0, 0, 0.19) 100%), linear-gradient(166deg, rgba(166, 206, 57, 0.90) 9.98%, rgba(0, 181, 172, 0.90) 96.82%)'
         : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
     containerDiv.style.backgroundSize = 'cover';
 
@@ -25,13 +23,13 @@ export class InputRegisterContainer {
     let privacyCheckboxChecked = true; // Use let instead of const to allow reassignment
     containerDiv.innerHTML = `
       <div style="height: 124px; top: 50px; position: relative; text-align: center;margin:10px; color: ${
-        this.prop === 'Barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' || this.prop === 'Penki' ? 'white' : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">REGISTRUOKIS ŽAISTI</div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
-        this.prop === 'Barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' || this.prop === 'Penki' ? 'white' : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: ${
-          this.prop === 'Barbora' ? '#3D4928' : this.prop === 'penki' ? '#00B5AC' : '#FF3183'
+          this.prop === 'Barbora' || this.prop === 'Penki' ? '#3D4928' : '#FF3183'
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >TOLIAU</div>
       </div>
       <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:pointer;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
@@ -44,16 +42,18 @@ export class InputRegisterContainer {
 
 
         <div style="color: ${
-          this.prop === 'Barbora' ? 'white' : 'white'
+          this.prop === 'Barbora' || this.prop === 'Penki' ? 'white' : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">${
-      this.prop === 'Barbora'
+      this.prop === 'Barbora' || this.prop === 'Penki'
         ? 'Sutinku gauti naujienas.'
-        : `Sutinku su ${this.prop === 'Barbora' ? 'Barbora' : 'Penki sezonai'} `
+        : `Sutinku su ${
+            this.prop === 'Barbora' || this.prop === 'Penki' ? 'Barbora' : 'Penki sezonai'
+          } `
     }
     ${
       this.prop !== 'Barbora'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
-            this.prop === 'Barbora'
+            this.prop === 'Barbora' || this.prop === 'Penki'
               ? 'https://www.barbora.lt/info/privatumo-politika'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a> `
@@ -89,35 +89,43 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: 287px; position: absolute; background: ${
-        this.prop === 'Barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' || this.prop === 'Penki' || this.prop === 'Penki'
+          ? 'white'
+          : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
-      this.prop === 'Barbora'
+      this.prop === 'Barbora' || this.prop === 'Penki' || this.prop === 'Penki'
         ? '1px rgba(164,164,164,0.9) solid'
-        : this.prop === 'penki'
-        ? '1px solid #A6CE39'
         : ' 1px #FF3284 solid'
     }"></div>
 
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: 204px; position: absolute; background: ${
-        this.prop === 'Barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' || this.prop === 'Penki' || this.prop === 'Penki'
+          ? 'white'
+          : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
-      this.prop === 'Barbora'
+      this.prop === 'Barbora' || this.prop === 'Penki' || this.prop === 'Penki'
         ? '1px rgba(164,164,164,0.9) solid'
-        : this.prop === 'penki'
-        ? '1px solid #A6CE39'
         : ' 1px #FF3284 solid'
     }"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 299px; opacity: 0.60;background-color: ${
-        this.prop === 'Barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' || this.prop === 'Penki' || this.prop === 'Penki'
+          ? 'white'
+          : 'white'
       }; text-align: start; color:  ${
-      this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
+      this.prop === 'Barbora' || this.prop === 'Penki' || this.prop === 'Penki'
+        ? 'rgba(61, 73, 40, 1)'
+        : '#473F4E'
     } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="Elektroninio pašto adresas">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
-        this.prop === 'Barbora' ? 'white' : 'white'
+        this.prop === 'Barbora' || this.prop === 'Penki' || this.prop === 'Penki'
+          ? 'white'
+          : 'white'
       }; text-align: start; color:  ${
-      this.prop === 'Barbora' ? 'rgba(61, 73, 40, 1)' : '#473F4E'
+      this.prop === 'Barbora' || this.prop === 'Penki' || this.prop === 'Penki'
+        ? 'rgba(61, 73, 40, 1)'
+        : '#473F4E'
     } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="Žaidėjo slapyvardis">
     `;
 

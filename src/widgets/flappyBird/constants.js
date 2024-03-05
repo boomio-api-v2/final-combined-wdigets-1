@@ -8,16 +8,20 @@ export const introGif =
 export const mainBarbora =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/BarboraFlappyBackgroundCampaign.png';
 
-export const mainPenki = 'BoomioPenkiSezonaiBackground';
+export const mainPenki =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Penki/BoomioPenkiSezonaiBackground.png';
 
 export const introGifPenki =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/BoomioPenkiSezonaiIntro.gif';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Penki/BoomioPenkiSezonaiIntro.gif';
 
 export const inputBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/inputBackground.png';
 
 export const scoreImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/Score_element_red.png';
+
+export const scoreImageGreen =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/Score_element_green.png';
 
 export const tapImageBarbora =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/TapImageNoBorder.png';

@@ -19,6 +19,7 @@ import {
   mainBarbora,
   mainPenki,
   introGifPenki,
+  scoreImageGreen,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -650,7 +651,7 @@ class FlappyBird {
 
 <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${
-  this.customer === 'Barbora'
+  this.customer === 'Barbora' || this.customer === 'Penki'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
       <div>BAKST</div>
       <div>BAKST</div>
@@ -662,7 +663,9 @@ ${
         <div class="flappy-container">
           <div class="boomio-score-input-container" style="display:none;width:188px;height">
           <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-        <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
+        <img src=${
+          this.customer === 'Barbora' ? scoreImage : scoreImageGreen
+        } alt="Image Description" style="width: 100%; height: 100%;"></img>
         <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
