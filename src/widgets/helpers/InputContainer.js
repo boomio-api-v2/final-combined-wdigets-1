@@ -16,7 +16,7 @@ export class InputContainer {
     containerDiv.style.width =
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
     containerDiv.style.background =
-      this.prop === 'Barbora' || this.prop === 'Penki' ? `none` : 'white';
+      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' ? `none` : 'white';
     containerDiv.style.backgroundSize = 'cover';
 
     containerDiv.innerHTML = `
@@ -26,12 +26,12 @@ export class InputContainer {
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${
-      this.prop !== 'Barbora' && this.prop !== 'Penki'
+      this.prop !== 'Barbora' && this.prop !== 'Penki Sezonai'
         ? `<img style="width:150px;height:75px" src=${rules} alt="Image Description" >`
         : '<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">TAISYKLĖS</div>'
     }</div>
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
-      this.prop !== 'Barbora' && this.prop !== 'Penki'
+      this.prop !== 'Barbora' && this.prop !== 'Penki Sezonai'
         ? `<img src=${
             this.isMobile ? rules2Mobile : rules2
           } alt="Image Description" style="width:270px;height:100%">`
@@ -63,7 +63,7 @@ export class InputContainer {
         </div>`
     }</div>
     ${
-      this.prop === 'Barbora' || this.prop === 'Penki'
+      this.prop === 'Barbora' || this.prop === 'Penki Sezonai'
         ? '<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" href="https://www.barbora.lt/info/akciju-zaidimu-taisykles" style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>'
         : ''
     }
@@ -83,11 +83,11 @@ export class InputContainer {
               <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
                 this.game === 'doodle'
                   ? 'white'
-                  : this.prop === 'Barbora' || this.prop === 'Penki'
+                  : this.prop === 'Barbora' || this.prop === 'Penki Sezonai'
                   ? '#3D4928'
                   : '#FF3183'
               }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
-      this.prop === 'Barbora' || this.prop === 'Penki' ? 'PIRMYN' : 'LET’S PLAY'
+      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' ? 'PIRMYN' : 'LET’S PLAY'
     }</div></div>
     </div>
  
