@@ -29,7 +29,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Penki';
+    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -234,7 +234,7 @@ class FlappyBird {
           canvas.height,
           -((this.index * (this.speed / 2)) % 418) + 418,
           0,
-          418,
+          420,
           canvas.height,
         );
         ctx.drawImage(
@@ -245,7 +245,7 @@ class FlappyBird {
           canvas.height,
           -(this.index * (this.speed / 2)) % 418,
           0,
-          418,
+          420,
           canvas.height,
         );
 
