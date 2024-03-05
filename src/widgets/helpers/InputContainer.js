@@ -46,7 +46,7 @@ export class InputContainer {
             ${
               this.prop === 'Barbora'
                 ? 'KINO PAVASARIO bilietus arba BARBOROS kuponus'
-                : 'LAIMĖK pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                : 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
             }
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">
@@ -64,7 +64,11 @@ export class InputContainer {
     }</div>
     ${
       this.prop === 'Barbora' || this.prop === 'Penki Sezonai'
-        ? '<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" href="https://www.barbora.lt/info/akciju-zaidimu-taisykles" style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>'
+        ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
+            this.prop === 'Barbora'
+              ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
+              : "href='taisykles'"
+          } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>`
         : ''
     }
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  

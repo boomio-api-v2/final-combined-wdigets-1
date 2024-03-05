@@ -51,7 +51,7 @@ export class InputRegisterContainer {
           } `
     }
     ${
-      this.prop !== 'Barbora'
+      this.prop !== 'Barbora' && this.prop !== 'Penki Sezonai'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' || this.prop === 'Penki Sezonai'
               ? 'https://www.barbora.lt/info/privatumo-politika'
