@@ -89,7 +89,7 @@ export class CompetitionScoreTableContainer {
             ? `<div style="width:100%; top: 495px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">Valio, tau puikiai sekasi!</div>
             <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'Kovo 8d. net 500 geriausių žaidėjų laimės prizus!'
+                  ? 'Kovo 15d. net 500 geriausių žaidėjų laimės prizus!'
                   : 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
               }</div>
             <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -100,7 +100,7 @@ export class CompetitionScoreTableContainer {
             : `<div style="width:100%; top: 495px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">Tu gali!</div>
             <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'Pagerink rezultatą nes kovo 8d.'
+                  ? 'Pagerink rezultatą nes kovo 15d.'
                   : 'Pagerink rezultatą nes balandžio 1d.'
               }</div>
             <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
