@@ -31,7 +31,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Babune';
+    this.customer = this.config.business_name ? this.config.business_name : 'Penki Sezonai';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -75,7 +75,6 @@ class FlappyBird {
         : this.customer === 'Babune'
         ? mainBabune
         : mainPenki;
-    img.src = 'https://i.ibb.co/qyjmmzy/Babune-6.png';
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
@@ -660,7 +659,7 @@ class FlappyBird {
 
 <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${
-  this.customer === 'Barbora' || this.customer === 'Penki Sezonai'
+  this.customer === 'Barbora' || this.customer === 'Penki Sezonai' || this.customer === 'Babune'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>BAKST</div>
     <div>BAKST</div>
