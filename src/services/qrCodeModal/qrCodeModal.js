@@ -92,7 +92,6 @@ export default class {
     //     correctLevel: QRCode.CorrectLevel.H,
     //   });
     // }
-    console.log('testt');
     this.insideShowFinalDataHTML = `
     <a href=${this.config.app_url}>
       <div class="btn-content d-flex align-items-center justify-content-center" style="height: 46px;">

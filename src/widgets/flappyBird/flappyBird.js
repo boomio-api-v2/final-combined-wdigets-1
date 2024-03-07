@@ -17,6 +17,11 @@ import {
   checkIcon,
   uncheckIcon,
   mainBarbora,
+  mainPenki,
+  introGifPenki,
+  scoreImageGreen,
+  mainBabune,
+  scoreImageBabune,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -26,7 +31,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : 'Penki Sezonai';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -64,8 +69,12 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.src = mainBarbora;
-    // img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
+    img.src =
+      this.customer === 'Barbora'
+        ? mainBarbora
+        : this.customer === 'Babune'
+        ? mainBabune
+        : mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
@@ -107,7 +116,7 @@ class FlappyBird {
       this.gravity = 0.3;
       this.flight = this.jump / 2;
 
-      console.log('stars');
+      // console.log('stars');
       const new_highscore = document.querySelector('.new_highscore');
       const new_highscore_stars = document.querySelector('.new_highscore_stars');
       const numbers = document.querySelector('.numbers');
@@ -118,7 +127,7 @@ class FlappyBird {
       new_highscore.style.opacity = 0;
       new_highscore_stars.style.transition = 'opacity 0.5s ease';
       new_highscore_stars.style.opacity = 0;
-      console.log('remove stars');
+      // console.log('remove stars');
 
       setTimeout(() => {
         new_highscore.style.display = 'none';
@@ -231,7 +240,7 @@ class FlappyBird {
           canvas.height,
           -((this.index * (this.speed / 2)) % 418) + 418,
           0,
-          418,
+          420,
           canvas.height,
         );
         ctx.drawImage(
@@ -242,7 +251,7 @@ class FlappyBird {
           canvas.height,
           -(this.index * (this.speed / 2)) % 418,
           0,
-          418,
+          420,
           canvas.height,
         );
 
@@ -338,7 +347,9 @@ class FlappyBird {
                   const inputContainer = document.querySelector('.input-container1');
                   if (this.showCompetitiveRegistration) {
                     boomioService
-                      .signal('ROUND_FINISHED', 'signal', { score: this.currentScore })
+                      .signal('ROUND_FINISHED', 'signal', {
+                        score: this.currentScore,
+                      })
                       .then((response) => {
                         this.userBestPlace = response.user_best_place;
 
@@ -503,7 +514,7 @@ class FlappyBird {
         }
         ctx.globalAlpha = 0.1; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
-        if (!this.gameEnded) {
+        if (!this.gameEnded && this.customer === 'Barbora') {
           ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
           ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
         }
@@ -587,57 +598,59 @@ class FlappyBird {
     );
 
     myCanvas.innerHTML = `    
-      <div class="game-container game-container-flappy">
+    <div class="game-container game-container-flappy">
 
-      ${
-        this.showCompetitiveRegistration
-          ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
-          : ''
-      }
+    ${
+      this.showCompetitiveRegistration
+        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
+        : ''
+    }
 
-  
-      <img src=${
-        endingBackground.src
-      } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
-      </img>
-      <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
+
+    <img src=${
+      endingBackground.src
+    } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
+    </img>
+    <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
-      </img>
-            <img  style="z-index:1;width: ${
-              document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-            }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
-      </img>
-      <img src=${introGif} alt="Image Description" style="z-index:4;width: ${
+    </img>
+          <img  style="z-index:1;width: ${
+            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
+    </img>
+    <img src=${
+      this.customer === 'Barbora' ? introGif : introGifPenki
+    } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
-      </img>
-      <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-      <img src="${
-        useCuponImage.src
-      }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
-    </a>
+    </img>
+    <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
+    <img src="${
+      useCuponImage.src
+    }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+  </a>
 
-      <img class="new_highscore_stars" src=${
-        newHighscoreStarsImage.src
-      } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
-      </img>
-      <div class="new_highscore"><img src=${
-        newHighscoreImage.src
-      } alt="Image Description" style="width: 100%; height: 100%;">
-      </div>
-      <div class="numbers">
-    <span class="numbers__window">
-        <span class="numbers__window__digit numbers__window__digit--1" data-fake="8642519073" id="bestScore1"></span>
-    </span>
-    <span class="numbers__window">
-        <span class="numbers__window__digit numbers__window__digit--2" data-fake="5207186394" id="bestScore2"></span>
-    </span>
-    <span class="numbers__window">
-        <span class="numbers__window__digit numbers__window__digit--3" data-fake="8395216407" id="bestScore3"></span>
-    </span>
-    <span class="numbers__window">
-    <span class="numbers__window__digit numbers__window__digit--4" data-fake="8395216407" id="bestScore4"></span>
+    <img class="new_highscore_stars" src=${
+      newHighscoreStarsImage.src
+    } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+    </img>
+    <div class="new_highscore"><img src=${
+      newHighscoreImage.src
+    } alt="Image Description" style="width: 100%; height: 100%;">
+    </div>
+    <div class="numbers">
+  <span class="numbers__window">
+      <span class="numbers__window__digit numbers__window__digit--1" data-fake="8642519073" id="bestScore1"></span>
+  </span>
+  <span class="numbers__window">
+      <span class="numbers__window__digit numbers__window__digit--2" data-fake="5207186394" id="bestScore2"></span>
+  </span>
+  <span class="numbers__window">
+      <span class="numbers__window__digit numbers__window__digit--3" data-fake="8395216407" id="bestScore3"></span>
+  </span>
+  <span class="numbers__window">
+  <span class="numbers__window__digit numbers__window__digit--4" data-fake="8395216407" id="bestScore4"></span>
 </span>
 <span class="numbers__window">
 <span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
@@ -646,20 +659,26 @@ class FlappyBird {
 
 <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${
-  this.customer === 'Barbora'
+  this.customer === 'Barbora' || this.customer === 'Penki Sezonai' || this.customer === 'Babune'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-      <div>BAKST</div>
-      <div>BAKST</div>
-    </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`
+    <div>BAKST</div>
+    <div>BAKST</div>
+  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`
     : `<img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px"><img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px"><img src=${clickImg.src} alt="Image Description" style="width: 71px; height: 54px;">`
 }
 
 </div>
-        <div class="flappy-container">
-          <div class="boomio-score-input-container" style="display:none;width:188px;height">
-          <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-        <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
-        <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
+      <div class="flappy-container">
+        <div class="boomio-score-input-container" style="display:none;width:188px;height">
+        <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+      <img src=${
+        this.customer === 'Barbora'
+          ? scoreImage
+          : this.customer === 'Babune'
+          ? scoreImageBabune
+          : scoreImageGreen
+      } alt="Image Description" style="width: 100%; height: 100%;"></img>
+      <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
 
@@ -673,63 +692,63 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
 
 
-       
-          <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
-            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-          };display:none;" class="control-button" id="control-button">
-          <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-          <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
-            okImage.src
-          } alt="Image Description"></div>
+     
+        <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
+          document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        };display:none;" class="control-button" id="control-button">
+        <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+        <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
+          okImage.src
+        } alt="Image Description"></div>
 </div>
 </div>
 <div class="input-container1" style="width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }">
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
-    <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
-      gameOver.src
-    } alt="Image Description"></div>
-    <div class="boomio-colored_box" style="width:calc(100% - 40px);"></div>
-    <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
-    <div style="left: 240px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
-    <div style="width: 142px; left: 46px; top: 150px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">BEST SCORE</div>
-    <div style="left: 240px; top: 150px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;line-height:28px;" id="currentScoreField"></div>
-    <div style="left: 46px; top: 185px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">YOUR DISCOUNT REWARD</div>
-    <div style="left: 240px; top: 185px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreFieldConverted"></div>
-    <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 27px; top: 255px; position: absolute; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
-          playAgain.src
-        } alt="Image Description"></div>
-    </div>
-    <div id="claimReward" style="box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 220px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px white solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="line-height:24pxtext-align: center; color: white; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
-    </div>
+  <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
+    gameOver.src
+  } alt="Image Description"></div>
+  <div class="boomio-colored_box" style="width:calc(100% - 40px);"></div>
+  <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
+  <div style="left: 240px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
+  <div style="width: 142px; left: 46px; top: 150px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">BEST SCORE</div>
+  <div style="left: 240px; top: 150px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;line-height:28px;" id="currentScoreField"></div>
+  <div style="left: 46px; top: 185px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">YOUR DISCOUNT REWARD</div>
+  <div style="left: 240px; top: 185px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreFieldConverted"></div>
+  <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 27px; top: 255px; position: absolute; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
+        playAgain.src
+      } alt="Image Description"></div>
+  </div>
+  <div id="claimReward" style="box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 220px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px white solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <div style="line-height:24pxtext-align: center; color: white; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
+  </div>
 
 
 
 </div>
-          </div>
-          <div style="justify-content: center; align-items: center; gap: 24px;width:${
-            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-          };" class="control-button1">
-          <div  style="margin-left: 46px; margin-right: 46px; padding-top: 14px; padding-bottom: 14px; width:100%;background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 32px; border: 2px rgba(255, 255, 255, 0.20) solid; justify-content: center; align-items: center; gap: 8px; display: flex;">
+        </div>
+        <div style="justify-content: center; align-items: center; gap: 24px;width:${
+          document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        };" class="control-button1">
+        <div  style="margin-left: 46px; margin-right: 46px; padding-top: 14px; padding-bottom: 14px; width:100%;background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 32px; border: 2px rgba(255, 255, 255, 0.20) solid; justify-content: center; align-items: center; gap: 8px; display: flex;">
 <div style="color: white; font-size: 25px; font-family: Poppins; font-weight: 900; line-height: 24px; letter-spacing: 0.25px; word-wrap: break-word;" id="startButton">Play</div>
 </div>
 </div>
 
 
 
-        </div>
-
-
-        
-        
-        <canvas id="flappy-canvas" width=${
-          document.body.offsetWidth < 418 ? document.body.offsetWidth : '418'
-        } height="668" class="flappy-game"></canvas>
       </div>
-    `;
+
+
+      
+      
+      <canvas id="flappy-canvas" width=${
+        document.body.offsetWidth < 418 ? document.body.offsetWidth : '418'
+      } height="668" class="flappy-game"></canvas>
+    </div>
+  `;
 
     widgetHtmlService.container.appendChild(myCanvas);
 
