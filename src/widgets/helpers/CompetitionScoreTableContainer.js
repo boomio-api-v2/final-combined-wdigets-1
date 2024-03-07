@@ -118,8 +118,6 @@ export class CompetitionScoreTableContainer {
   }
 
   render() {
-    console.log(this.prop);
-
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('competition-table-container');
     containerDiv.setAttribute('id', 'competition-table-container');
