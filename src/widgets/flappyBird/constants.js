@@ -8,6 +8,12 @@ export const introGif =
 export const mainBarbora =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/BarboraFlappyBackgroundCampaign.png';
 
+export const scoreImageBabune =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/Babune/ScoreImageBabune.png';
+
+export const mainBabune =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/Babune/FlappyBabuneBackground.png';
+
 export const mainPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Penki/BoomioPenkiSezonaiBackground.png';
 

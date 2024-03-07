@@ -6,7 +6,6 @@ export class InputContainer {
     this.prop = prop;
     this.game = game; // Store the prop in a class property
     this.isMobile = window.innerWidth <= 1280;
-    console.log(game);
     this.config = localStorageService.getDefaultConfig();
   }
   createInputContainerDiv() {

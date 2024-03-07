@@ -10,7 +10,6 @@ export class InputRegisterContainer {
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-register-container');
     containerDiv.setAttribute('id', 'input-register-container');
-    console.log(this.prop);
     containerDiv.style.background =
       this.prop === 'Barbora' || this.prop === 'Penki Sezonai'
         ? `none`

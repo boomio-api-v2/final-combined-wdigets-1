@@ -20,6 +20,8 @@ import {
   mainPenki,
   introGifPenki,
   scoreImageGreen,
+  mainBabune,
+  scoreImageBabune,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -29,7 +31,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : 'Babune';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -67,8 +69,13 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.src = this.customer === 'Barbora' ? mainBarbora : mainPenki;
-    // img.src = 'https://i.ibb.co/L9Z93yp/Clip-path-group-8.png';
+    img.src =
+      this.customer === 'Barbora'
+        ? mainBarbora
+        : this.customer === 'Babune'
+        ? mainBabune
+        : mainPenki;
+    img.src = 'https://i.ibb.co/qyjmmzy/Babune-6.png';
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
@@ -666,7 +673,11 @@ ${
         <div class="boomio-score-input-container" style="display:none;width:188px;height">
         <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
       <img src=${
-        this.customer === 'Barbora' ? scoreImage : scoreImageGreen
+        this.customer === 'Barbora'
+          ? scoreImage
+          : this.customer === 'Babune'
+          ? scoreImageBabune
+          : scoreImageGreen
       } alt="Image Description" style="width: 100%; height: 100%;"></img>
       <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
