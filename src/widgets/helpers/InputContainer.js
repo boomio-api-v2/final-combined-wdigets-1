@@ -43,7 +43,7 @@ export class InputContainer {
           <div style="width: 229px; left: 160px; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             dėl geresnio rezultato
           </div>
-          <div style="width: 246px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
+          <div style="width: 236px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
             ${
               this.prop === 'Barbora'
                 ? 'KINO PAVASARIO bilietus arba BARBOROS kuponus'
