@@ -47,7 +47,9 @@ export class InputContainer {
             ${
               this.prop === 'Barbora'
                 ? 'KINO PAVASARIO bilietus arba BARBOROS kuponus'
-                : 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                : this.prop === 'Penki Sezonai'
+                ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                : 'Babune'
             }
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">

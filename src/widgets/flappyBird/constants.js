@@ -9,13 +9,16 @@ export const mainBarbora =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/BarboraFlappyBackgroundCampaign.png';
 
 export const scoreImageBabune =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/Babune/ScoreImageBabune.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Babune/scoreImageBabune.png';
 
 export const mainBabune =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/Babune/FlappyBabuneBackground.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Babune/FlappyBabuneBackground.png';
 
 export const mainPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Penki/BoomioPenkiSezonaiBackground.png';
+
+export const introGifBabune =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Babune/BoomioBabuneIntro.gif';
 
 export const introGifPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Penki/BoomioPenkiSezonaiIntro.gif';
