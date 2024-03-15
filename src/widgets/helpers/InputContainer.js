@@ -71,7 +71,7 @@ export class InputContainer {
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'Babune'
-              ? "href='taisykles'"
+              ? 'href=https://docs.google.com/document/d/1B5ONINFe4nlWECE6anCa7H-YuO-HpdaqSm5pjKS6HQk/edit'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>`
         : ''
