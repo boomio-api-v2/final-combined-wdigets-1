@@ -43,11 +43,13 @@ export class InputContainer {
           <div style="width: 229px; left: 160px; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             dėl geresnio rezultato
           </div>
-          <div style="width: 246px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
+          <div style="width: 236px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
             ${
               this.prop === 'Barbora'
                 ? 'KINO PAVASARIO bilietus arba BARBOROS kuponus'
-                : 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                : this.prop === 'Penki Sezonai'
+                ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                : '50€ ir kitus Babūnė kuponus.&nbsp&nbsp&nbsp&nbsp Net 30 laimėtojų!'
             }
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">
@@ -69,7 +71,7 @@ export class InputContainer {
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'Babune'
-              ? "href='taisykles'"
+              ? 'href=https://docs.google.com/document/d/1B5ONINFe4nlWECE6anCa7H-YuO-HpdaqSm5pjKS6HQk/edit'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>`
         : ''

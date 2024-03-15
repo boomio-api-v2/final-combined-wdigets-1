@@ -22,6 +22,7 @@ import {
   scoreImageGreen,
   mainBabune,
   scoreImageBabune,
+  introGifBabune,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -31,7 +32,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Penki Sezonai';
+    this.customer = this.config.business_name ? this.config.business_name : 'Babune';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -620,7 +621,11 @@ class FlappyBird {
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
     <img src=${
-      this.customer === 'Barbora' ? introGif : introGifPenki
+      this.customer === 'Barbora'
+        ? introGif
+        : this.customer === 'Babune'
+        ? introGifBabune
+        : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">

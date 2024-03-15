@@ -85,28 +85,37 @@ export class CompetitionScoreTableContainer {
     let scoreboardText = `
       ${
         this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
-          ? this.scoreTable.user_best_place < 500
+          ? this.scoreTable.user_best_place <
+            (this.prop === 'Barbora' ? 500 : this.prop === 'Penki Sezonai' ? 5 : 30)
             ? `<div style="width:100%; top: 495px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">Valio, tau puikiai sekasi!</div>
             <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'Kovo 22d. net 500 geriausių žaidėjų laimės prizus!'
-                  : 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
+                  : this.prop === 'Penki Sezonai'
+                  ? 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
+                  : 'Balandžio 5 d.  net 30 geriausių žaidėjų laimės prizus!'
               }</div>
             <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'Prizų ieškok savo nurodytame el. pašte.'
+                  : this.prop === 'Penki Sezonai'
+                  ? 'Apie laimėjimą informuosime nurodytu el. paštu. '
                   : 'Apie laimėjimą informuosime nurodytu el. paštu. '
               } </div> `
             : `<div style="width:100%; top: 495px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">Tu gali!</div>
             <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'Pagerink rezultatą nes kovo 22d.'
-                  : 'Pagerink rezultatą nes balandžio 1d.'
+                  : this.prop === 'Penki Sezonai'
+                  ? 'Pagerink rezultatą nes balandžio 1d.'
+                  : 'Pagerink rezultatą nes balandžio 5d.'
               }</div>
             <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'net 500 geriausių žaidėjų laimės prizus!'
-                  : '5 geriausi žaidėjai laimės prizus!'
+                  : this.prop === 'Penki Sezonai'
+                  ? '5 geriausi žaidėjai laimės prizus!'
+                  : 'net 30 geriausių žaidėjų laimės prizus!'
               }</div> `
           : ''
       }
