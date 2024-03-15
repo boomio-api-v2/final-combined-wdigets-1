@@ -131,6 +131,7 @@ class WhackWidget {
       const mole = document.querySelector('.boomio-mole');
       if (!mole.classList.contains('boomio-mole-hit-once')) {
         mole.classList.add('boomio-whack-disappear');
+
         const src = WhackMole01Reversed;
         if (whacked) {
           mole.classList.add('boomio-mole-hit-once');
@@ -144,7 +145,6 @@ class WhackWidget {
 
         // Set the new GIF source after a short delay
         setTimeout(() => {
-          imageElement.src = '';
           console.log(imageElement.src);
           imageElement.src = src;
           // To ensure smooth transition, we use setTimeout to toggle classes after a small delay
