@@ -43,13 +43,13 @@ export class InputContainer {
           <div style="width: 229px; left: 160px; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             dėl geresnio rezultato
           </div>
-          <div style="width: 236px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
+          <div style="width: 236px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 12px; word-wrap: break-word">
             ${
               this.prop === 'Barbora'
                 ? 'KINO PAVASARIO bilietus arba BARBOROS kuponus'
                 : this.prop === 'Penki Sezonai'
                 ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
-                : '50€ ir kitus Babūnė kuponus. Net 30 laimėtojų!'
+                : '50€ ir kitus Babūnė kuponus.<br></br> Net 30 laimėtojų!'
             }
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">
