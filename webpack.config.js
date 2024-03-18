@@ -13,6 +13,7 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      images: path.resolve(__dirname, 'src/images'), // Add this line
     },
   },
   module: {

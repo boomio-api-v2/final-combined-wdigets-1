@@ -16,19 +16,19 @@ import {
   countdownBeeps,
 } from './audio';
 
-import carImageData from '../assets/mailtruck-sheet-big.png';
-import brickWallImageData from '../assets/brick-wall.png';
-import goldImageData from '../assets/gold.png';
-import mailboxImageData from '../assets/mailbox-big.png';
-import wh1ImageData from '../assets/whitehouse1-big.png';
-import wh2ImageData from '../assets/whitehouse2-big.png';
-import wh3ImageData from '../assets/whitehouse3-big.png';
-import city1ImageData from '../assets/city1-big.png';
-import city2ImageData from '../assets/city2-big.png';
-import city3ImageData from '../assets/city3-big.png';
-import envelopeImageData from '../assets/envelope2.png';
-import cloudsImageData from '../assets/clouds-big.png';
-import treeImageData from '../assets/tree-big.png';
+import carImageData from 'images/assets/mailtruck-sheet-big.png';
+import brickWallImageData from 'images/assets/brick-wall.png';
+import goldImageData from 'images/assets/gold.png';
+import mailboxImageData from 'images/assets/mailbox-big.png';
+import wh1ImageData from 'images/assets/whitehouse1-big.png';
+import wh2ImageData from 'images/assets/whitehouse2-big.png';
+import wh3ImageData from 'images/assets/whitehouse3-big.png';
+import city1ImageData from 'images/assets/city1-big.png';
+import city2ImageData from 'images/assets/city2-big.png';
+import city3ImageData from 'images/assets/city3-big.png';
+import envelopeImageData from 'images/assets/envelope2.png';
+import cloudsImageData from 'images/assets/clouds-big.png';
+import treeImageData from 'images/assets/tree-big.png';
 
 function startGame() {
   const { random, floor, round, min, max, sin } = Math;
@@ -583,6 +583,7 @@ function startGame() {
 
       const { x, y } = envelope.pos;
       ctx.globalAlpha = 1.0;
+      console.log(envelope.image);
       ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
     });
 
@@ -1496,7 +1497,11 @@ function startGame() {
           return;
         }
 
-        ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
+        const image = new Image();
+        image.onload = () => {
+          ctx.drawImage(image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
+        };
+        image.src = envelope.image.src;
       });
   }
 
@@ -1714,26 +1719,30 @@ function startGame() {
     document.getElementsByTagName('head')[0].appendChild(link);
   }
 
-  async function flipImage(imagePath) {
-    return new Promise((resolve, reject) => {
-      const image = new Image();
-      image.onload = () => {
-        const imgCanvas = document.createElement('canvas');
-        const imgCtx = imgCanvas.getContext('2d');
-        imgCanvas.width = image.width;
-        imgCanvas.height = image.height;
-        imgCtx.translate(image.width, 0);
-        imgCtx.scale(-1, 1);
-        imgCtx.drawImage(image, 0, 0);
-        resolve(imgCanvas.toDataURL());
-      };
-      image.onerror = (error) => {
-        reject(error);
-      };
-      image.src = imagePath;
+  async function flipImage(imageData) {
+    const imgCanvas = document.createElement('canvas');
+    const imgCtx = imgCanvas.getContext('2d');
+
+    const image = new Image();
+    // Convert the file path to a Blob URL
+    const imageURL = URL.createObjectURL(await fetch(imageData).then((res) => res.blob()));
+    image.src = imageURL;
+
+    image.onload = () => {
+      imgCtx.translate(image.width, 0);
+      imgCtx.scale(-1, 1);
+      imgCtx.drawImage(image, 0, 0);
+      console.log('Image loaded successfully');
+    };
+
+    image.onerror = (error) => {
+      console.error('Error loading image:', error);
+    };
+
+    return new Promise((resolve) => {
+      resolve(imgCanvas.toDataURL());
     });
   }
-
   function scaleForI(i) {
     return min(i / height, 1);
   }
