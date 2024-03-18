@@ -511,8 +511,6 @@ function startGame() {
   let graceMultiplier = 1;
 
   function tick(t) {
-    console.log('haha');
-
     realTime = t;
     ctx.globalAlpha = 1.0;
     requestAnimationFrame(tick);
@@ -524,14 +522,10 @@ function startGame() {
 
     turningSpeed = TURNING_SPEED * graceMultiplier;
     spriteIncrease = SIDE_SPRITE_INCREASE * graceMultiplier;
-    console.log('start2');
 
     if (gameVars.started) {
-      console.log('start');
       runGame(t);
     } else {
-      console.log('start1');
-
       runTitleScreen(t);
     }
 
@@ -585,7 +579,6 @@ function startGame() {
 
       const { x, y } = envelope.pos;
       ctx.globalAlpha = 1.0;
-      console.log(envelope.image);
       ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
     });
 
@@ -1556,7 +1549,6 @@ function startGame() {
   async function load() {
     const imageData = await flipImage(mailboxImageData);
     requestAnimationFrame(tick);
-    console.log('dasda1231231231');
 
     const image = new Image();
     image.src = imageData;
@@ -1734,7 +1726,6 @@ function startGame() {
       imgCtx.translate(image.width, 0);
       imgCtx.scale(-1, 1);
       imgCtx.drawImage(image, 0, 0);
-      console.log('Image loaded successfully');
     };
 
     image.onerror = (error) => {
