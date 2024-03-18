@@ -1,12 +1,6 @@
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
-import {
-  closeImage,
-  dotImage,
-  oldCouponImage,
-  winningConfetinGif,
-  BoomioBubbles,
-} from '@/сonstants/icons';
+import { closeImage, dotImage, oldCouponImage, winningConfetinGif } from '@/сonstants/icons';
 import { exitBtnHtml, exitBtnEmailHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 
@@ -459,7 +453,7 @@ export default class {
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
-    <img src=${BoomioBubbles} style="width:92px; height:92px; position: absolute; left: 35%; top: -10px; z-index: 2;"/>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
@@ -544,7 +538,7 @@ export default class {
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
-    <img src=${BoomioBubbles} style="width:92px; height:92px; position: absolute; left: 35%; top: -10px;z-index: 2;"/>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
