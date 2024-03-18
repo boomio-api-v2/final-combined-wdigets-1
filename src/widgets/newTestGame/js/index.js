@@ -16,19 +16,21 @@ import {
   countdownBeeps,
 } from './audio';
 
-import carImageData from 'images/assets/mailtruck-sheet-big.png';
-import brickWallImageData from 'images/assets/brick-wall.png';
-import goldImageData from 'images/assets/gold.png';
-import mailboxImageData from 'images/assets/mailbox-big.png';
-import wh1ImageData from 'images/assets/whitehouse1-big.png';
-import wh2ImageData from 'images/assets/whitehouse2-big.png';
-import wh3ImageData from 'images/assets/whitehouse3-big.png';
-import city1ImageData from 'images/assets/city1-big.png';
-import city2ImageData from 'images/assets/city2-big.png';
-import city3ImageData from 'images/assets/city3-big.png';
-import envelopeImageData from 'images/assets/envelope2.png';
-import cloudsImageData from 'images/assets/clouds-big.png';
-import treeImageData from 'images/assets/tree-big.png';
+import {
+  brickWallImageData,
+  carImageData,
+  goldImageData,
+  mailboxImageData,
+  wh1ImageData,
+  wh2ImageData,
+  wh3ImageData,
+  city1ImageData,
+  city2ImageData,
+  city3ImageData,
+  envelopeImageData,
+  cloudsImageData,
+  treeImageData,
+} from './constants';
 
 function startGame() {
   const { random, floor, round, min, max, sin } = Math;

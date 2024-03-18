@@ -20,10 +20,6 @@ class NewGame {
     myCanvas.innerHTML = `
 
     <div id="parent" style="width:100%;height:100%;position:fixed;top:0px;left:0px;">
-      <div class="vbm">
-        up or tap to jump &#x1f579; left/right or drag to turn
-      </div>
-
       <div id="canvas-wrapper"><canvas id="game"></canvas></div>
     </div>
 
