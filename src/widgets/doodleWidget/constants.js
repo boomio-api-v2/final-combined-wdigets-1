@@ -33,3 +33,9 @@ export const useButton =
 
 export const howToPlay =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/How_to_play.png';
+
+export const checkIcon =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxCheck.png';
+
+export const uncheckIcon =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxUncheck.png';

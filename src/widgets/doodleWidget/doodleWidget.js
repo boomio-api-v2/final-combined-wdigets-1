@@ -1,4 +1,10 @@
-import { widgetHtmlService, QrCodeModal, AnimationService, localStorageService } from '@/services';
+import {
+  widgetHtmlService,
+  QrCodeModal,
+  AnimationService,
+  boomioService,
+  localStorageService,
+} from '@/services';
 import './styles.css';
 import {
   scoreImage,
@@ -9,6 +15,8 @@ import {
   backgroundRed,
   mainImage,
   useButton,
+  checkIcon,
+  uncheckIcon,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -19,8 +27,16 @@ class DoodleWidget {
   static ctx;
 
   constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    this.checkboxChange = true;
+
     this.isMobile = window.innerWidth <= 1280;
-    this.showCompetitiveRegistration = false;
+    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.showCompetitiveRegistration = this.config.game_type ?? 'competitive';
+    this.userBestPlace = 0;
+    this.scoreTable = {};
+    this.scoreTableContainerInstance;
+
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
     this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418;
@@ -141,21 +157,13 @@ class DoodleWidget {
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-        checkboxImgChange.src = this.checkboxChange
-          ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
-          : 'none';
+        checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-
-      emailInput.addEventListener('input', () => {
-        console.log('Email input changed:', emailInput.value);
-      });
-
-      playerNameInput.addEventListener('input', () => {
-        console.log('Player name input changed:', playerNameInput.value);
-      });
+      emailInput.addEventListener('input', () => {});
+      playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
@@ -194,39 +202,6 @@ class DoodleWidget {
     }
   };
 
-  clickEventHandlerShowRules = () => {
-    if (this.gameCount === 0) {
-      setTimeout(() => {
-        const inpuRegisterContainer = document.querySelector('.input-register-container');
-        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        setTimeout(() => {
-          inpuRegisterContainer.style.height = '10px';
-          inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-          inpuRegisterContainer.style.opacity = 0;
-        }, 100);
-        setTimeout(() => {
-          inpuRegisterContainer.style.display = 'none';
-        }, 1000);
-        setTimeout(() => {
-          const canvas = document.getElementById('boomio-doodle-canvas');
-          document.getElementById('background_blur').style.opacity = 0.37;
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
-          const inputContainer = document.querySelector('.input-container');
-          document.getElementById('control-button').style.transition = 'opacity 2s ease';
-          document.getElementById('control-button').style.opacity = 1;
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          inputContainer.style.display = 'block';
-          setTimeout(() => {
-            inputContainer.style.height = '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
-            inputContainer.style.opacity = 1;
-          }, 100);
-        }, 300);
-      }, 300);
-    }
-  };
-
   initGame = () => {
     this.removeRules();
     if (!this.tutorial || !this.isMobile) {
@@ -260,6 +235,16 @@ class DoodleWidget {
     document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
     document.getElementById('tutorialArrows').style.opacity = 0;
     document.getElementById('tutorialArrows').style.display = 'none';
+    setTimeout(() => {
+      if (this.showCompetitiveRegistration) {
+        boomioService
+          .signal('ROUND_STARTED', 'signal')
+          .then((response) => {})
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    }, 50);
     setTimeout(() => {
       this.initGame();
     }, 100);
@@ -459,6 +444,22 @@ class DoodleWidget {
 
     setTimeout(
       () => {
+        if (this.showCompetitiveRegistration) {
+          boomioService
+            .signal('ROUND_FINISHED', 'signal', {
+              score: this.currentScore,
+            })
+            .then((response) => {
+              this.userBestPlace = response.user_best_place;
+
+              this.scoreTable = response;
+
+              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
         if (this.showCompetitiveRegistration) {
           const competitionTableContainer = document.querySelector('.competition-table-container');
           const canvas = document.getElementById('boomio-doodle-canvas');
@@ -922,22 +923,17 @@ class DoodleWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+
+    ${
+      this.showCompetitiveRegistration
+        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
+        : ''
+    }
+
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }">
 		</canvas>
-    
-    ${
-      this.showCompetitiveRegistration
-        ? new InputRegisterContainer('Barbora').createInputRegisterContainer().outerHTML
-        : ''
-    }
-    ${
-      this.showCompetitiveRegistration
-        ? new CompetitionScoreTableContainer('#3BAF29').createCompetitionScoreTableContainer()
-            .outerHTML
-        : ''
-    }
 
     <img src=${howToPlay} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -975,7 +971,7 @@ class DoodleWidget {
     </div>
 
 
-    ${new InputContainer('', 'doodle').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'doodle').createInputContainerDiv().outerHTML}
 
 
     <div class="numbers">
@@ -1012,6 +1008,150 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 	</div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
+
+    if (this.showCompetitiveRegistration) {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
+    if (this.showCompetitiveRegistration) {
+      const clickEventHandlerShowRules = () => {
+        if (this.gameCount === 0) {
+          setTimeout(() => {
+            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+
+            if (this.showCompetitiveRegistration && this.checkboxChange) {
+              boomioService
+                .signal('', 'user_info', {
+                  user_email: emailInput?.value,
+                  user_name: playerNameInput?.value,
+                })
+                .then((response) => {
+                  if (response.success === false) {
+                    if (response.res_code === 'EMAIL_EXIST') {
+                      document.getElementById('competition-email-error').innerText =
+                        'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        '#FFBABA';
+                      document.getElementById('competition-email-error').style.border =
+                        '1px solid red';
+
+                      document.getElementById('competition-name-error').innerText = '';
+
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        'transparent';
+                      document.getElementById('competition-name-error').style.border = 'none';
+                    } else if (response.res_code === 'NAME_EXIST') {
+                      document.getElementById('competition-name-error').innerText =
+                        'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        '#FFBABA';
+                      document.getElementById('competition-name-error').style.border =
+                        '1px solid red';
+
+                      document.getElementById('competition-email-error').innerText = '';
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        'transparent';
+                      document.getElementById('competition-email-error').style.border = 'none';
+                    }
+                  } else {
+                    this.bestScore = response.user_best_score;
+                    const inpuRegisterContainer = document.querySelector(
+                      '.input-register-container',
+                    );
+                    inpuRegisterContainer.style.transition =
+                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.height = '10px';
+                      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                      inpuRegisterContainer.style.opacity = 0;
+                    }, 100);
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.display = 'none';
+                    }, 1000);
+                    setTimeout(() => {
+                      const canvas = document.getElementById('boomio-doodle-canvas');
+                      document.getElementById('background_blur').style.opacity = 0.37;
+                      canvas.style.transition = 'filter 0.6s ease';
+                      canvas.style.filter = 'blur(2px)';
+                      const inputContainer = document.querySelector('.input-container');
+                      document.getElementById('control-button').style.transition =
+                        'opacity 2s ease';
+                      document.getElementById('control-button').style.opacity = 1;
+                      document.getElementById('control-button').style.display = 'flex';
+                      inputContainer.style.transition =
+                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      inputContainer.style.display = 'block';
+                      setTimeout(() => {
+                        inputContainer.style.height = '332px';
+                        inputContainer.style.top = 'calc(50% + 170px)';
+                        inputContainer.style.opacity = 1;
+                      }, 100);
+                    }, 300);
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
+            }
+          }, 300);
+        }
+      };
+
+      const clickEventHandlerResetGame = () => {
+        const competitionRestart = document.getElementById('boomio-competition-play-again');
+        competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+        setTimeout(() => {
+          competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+        }, 2000);
+
+        const controlButton = document.querySelector('.control-button1');
+        this.index = 0;
+        this.currentScore = 0;
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          competitionTableContainer.style.height = '10px';
+          competitionTableContainer.style.top = 'calc(50% + 330px)';
+          competitionTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          competitionTableContainer.style.display = 'none';
+        }, 1000);
+
+        setTimeout(() => {
+          if (this.showCompetitiveRegistration) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                document.getElementById('background_blur').style.display = 'none';
+                const canvas = document.getElementById('boomio-doodle-canvas');
+                canvas.style.transition = 'filter 1s ease';
+                canvas.style.filter = 'none';
+                this.gamePlaying = true;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }, 400);
+        // controlButton.style.display = 'none';
+        // controlButton.style.opacity = 0;
+      };
+
+      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+
+      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+    }
   };
 }
 
