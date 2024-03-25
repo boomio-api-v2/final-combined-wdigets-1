@@ -44,7 +44,7 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = mainImage;
+    this.image.src = true ? 'https://i.ibb.co/TgMqbw6/Group-1000001782.png' : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -74,7 +74,9 @@ class DoodleWidget {
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.style.background = `url(${backgroundRed}) center`;
+    canvas.style.background = true
+      ? 'url("https://i.ibb.co/PhRBCCS/BACKGROUND-Barbora-1.png") center'
+      : `url(${backgroundRed}) center`;
 
     const backgroundCursor = document.getElementById('game-container');
     backgroundCursor.style.cursor = `url(${cursor}) 10 10, auto`;
@@ -129,7 +131,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 100); //intro speed
+    }, 5000); //intro speed
   }
 
   createHandlers = () => {
@@ -965,7 +967,9 @@ class DoodleWidget {
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
 
-    <img src=${intro} alt="Image Description" style="z-index:4;width:${
+    <img src=${
+      true ? 'https://i.ibb.co/M1Kxkxb/reference.png' : intro
+    } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
@@ -1206,7 +1210,7 @@ class Platform {
     //Sprite clipping
     this.cx = 0;
     this.cy = 0;
-    this.cwidth = 105;
+    this.cwidth = 110;
     this.cheight = 30;
 
     this.moved = 0;
@@ -1268,9 +1272,10 @@ class Platform {
       this.gravity = 0.12;
       this.types = [1, 1, 1, 1, 2, 2];
     } else {
-      this.gravity = 0.3;
+      this.gravity = 0.1;
       this.types = [1];
     }
+    this.gravity = 0.5;
     console.log(this.gravity);
     // Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
@@ -1333,12 +1338,12 @@ class Spring {
     this.moved = 0;
     this.vx = 1;
     this.cx = 5;
-    this.cy = 452;
-    this.cwidth = 90;
-    this.cheight = 100;
+    this.cy = 495;
+    this.cwidth = 60;
+    this.cheight = 40;
     this.state = 0;
-    this.width = 35;
-    this.height = 32;
+    this.width = 45;
+    this.height = 40;
   }
 
   draw() {
@@ -1394,8 +1399,8 @@ class Player {
     this.image = image;
     this.vy = 11;
     this.vx = 0;
-    this.width = 66;
-    this.height = 48;
+    this.width = 99;
+    this.height = 72;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
