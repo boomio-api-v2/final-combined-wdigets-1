@@ -46,7 +46,7 @@ export class InputContainer {
           <div style="width: 236px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
             ${
               this.prop === 'Barbora'
-                ? 'KINO PAVASARIO bilietus arba BARBOROS kuponus'
+                ? 'gimtadienio prizus iškart!'
                 : this.prop === 'Penki Sezonai'
                 ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
                 : '50€ ir kitus Babūnė kuponus.&nbsp&nbsp&nbsp&nbsp Net 30 laimėtojų!'
