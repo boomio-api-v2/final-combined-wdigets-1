@@ -9,7 +9,6 @@ import './styles.css';
 import {
   scoreImage,
   couponBackground,
-  cursor,
   intro,
   howToPlay,
   backgroundRed,
@@ -77,12 +76,6 @@ class DoodleWidget {
     canvas.style.background = true
       ? 'url("https://i.ibb.co/PhRBCCS/BACKGROUND-Barbora-1.png") center'
       : `url(${backgroundRed}) center`;
-
-    const backgroundCursor = document.getElementById('game-container');
-    backgroundCursor.style.cursor = `url(${cursor}) 10 10, auto`;
-
-    const inputContainerCursor = document.getElementById('input-container');
-    inputContainerCursor.style.cursor = `url(${cursor}) 10 10, auto`;
 
     // Updated here
 
