@@ -200,11 +200,21 @@ class DoodleWidget {
   initGame = () => {
     this.removeRules();
     if (!this.tutorial || !this.isMobile) {
-      this.Spring = new Spring(this.image);
+      setTimeout(() => {
+        if (this.showCompetitiveRegistration) {
+          boomioService
+            .signal('ROUND_STARTED', 'signal')
+            .then((response) => {})
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+      }, 50);
       this.player = new Player(this.image);
       this.hideMenu();
       this.resetGame();
       this.gameLoop();
+      this.Spring = new Spring(this.image);
     } else {
       this.showTutorialArrows();
     }
@@ -230,16 +240,7 @@ class DoodleWidget {
     document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
     document.getElementById('tutorialArrows').style.opacity = 0;
     document.getElementById('tutorialArrows').style.display = 'none';
-    setTimeout(() => {
-      if (this.showCompetitiveRegistration) {
-        boomioService
-          .signal('ROUND_STARTED', 'signal')
-          .then((response) => {})
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      }
-    }, 50);
+
     setTimeout(() => {
       this.initGame();
     }, 100);
@@ -344,13 +345,13 @@ class DoodleWidget {
     this.base = new Base(this.image);
     this.player = new Player(this.image);
 
-    this.Spring = new Spring(this.image);
     this.platform_broken_substitute = new Platform_broken_substitute(this.image);
 
     this.platforms = [];
     for (let i = 0; i < this.platformCount; i++) {
       this.platforms.push(new Platform(this.image, this.currentScore));
     }
+    this.Spring = new Spring(this.image);
   };
 
   updateScore = () => {
@@ -912,9 +913,10 @@ class DoodleWidget {
     this.paintCanvas();
     this.base.draw();
     this.playerCalc();
-    this.springCalc();
     this.updateScore();
     this.platformCalc();
+    this.springCalc();
+
     this.player.draw();
   };
 
@@ -1330,10 +1332,10 @@ class Spring {
     this.cx = 5;
     this.cy = 475;
     this.cwidth = 60;
-    this.cheight = 50;
+    this.cheight = 65;
     this.state = 0;
     this.width = 45;
-    this.height = 40;
+    this.height = 38;
   }
 
   draw() {
