@@ -1409,8 +1409,8 @@ class Player {
     try {
       if (this.dir == 'right') this.cy = 124;
       else if (this.dir == 'left') this.cy = 204;
-      else if (this.dir == 'right_land') this.cy = 292;
-      else if (this.dir == 'left_land') this.cy = 374;
+      else if (this.dir == 'right_land') this.cy = 282;
+      else if (this.dir == 'left_land') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(
         this.image,
