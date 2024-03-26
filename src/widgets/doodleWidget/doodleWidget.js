@@ -43,7 +43,7 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = true ? 'https://i.ibb.co/TgMqbw6/Group-1000001782.png' : mainImage;
+    this.image.src = mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -1331,9 +1331,9 @@ class Spring {
     this.moved = 0;
     this.vx = 1;
     this.cx = 5;
-    this.cy = 495;
+    this.cy = 475;
     this.cwidth = 60;
-    this.cheight = 40;
+    this.cheight = 50;
     this.state = 0;
     this.width = 45;
     this.height = 40;

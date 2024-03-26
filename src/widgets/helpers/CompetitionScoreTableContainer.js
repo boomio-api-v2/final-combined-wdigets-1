@@ -91,7 +91,7 @@ export class CompetitionScoreTableContainer {
               }</div>
             <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'Pirk <a target="_blank" href=https://www.barbora.lt/>Barbora.lt</> ir su kodu GIMTADIENIS gauk dovanų!'
+                  ? 'Pirk <a target="_blank" href=https://www.barbora.lt/>Barbora.lt</a> ir su kodu GIMTADIENIS gauk dovanų!'
                   : this.prop === 'Penki Sezonai'
                   ? 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
                   : 'Balandžio 5 d.  net 30 geriausių žaidėjų laimės prizus!'
@@ -113,7 +113,7 @@ export class CompetitionScoreTableContainer {
                   ? 'Pagerink rezultatą nes balandžio 1d.'
                   : 'Pagerink rezultatą nes balandžio 5d.'
               }</div>
-            <div style="width:100%; top: 536px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+            <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'gimtadienio dovaną iškart!'
                   : this.prop === 'Penki Sezonai'
