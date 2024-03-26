@@ -697,11 +697,11 @@ class DoodleWidget {
     this.speed = 0.16;
     if (this.currentScore >= 5000) {
       this.speed = 0.4;
-    } else if (this.currentScore >= 2000 && this.currentScore < 5000) {
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
       this.speed = 0.35;
-    } else if (this.currentScore >= 1000 && this.currentScore < 2000) {
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
       this.speed = 0.3;
-    } else if (this.currentScore >= 500 && this.currentScore < 1000) {
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
       this.speed = 0.2;
     } else if (this.currentScore >= 100 && this.currentScore < 500) this.speed = 0.16;
     //Accelerations produces when the user hold the keys
@@ -726,13 +726,13 @@ class DoodleWidget {
     if (this.currentScore >= 5000) {
       if (this.player.vx > 7) this.player.vx = 7;
       else if (this.player.vx < -7) this.player.vx = -7;
-    } else if (this.currentScore >= 2000 && this.currentScore < 5000) {
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
       if (this.player.vx > 6) this.player.vx = 6;
       else if (this.player.vx < -6) this.player.vx = -6;
-    } else if (this.currentScore >= 1000 && this.currentScore < 2000) {
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
       if (this.player.vx > 5) this.player.vx = 5;
       else if (this.player.vx < -5) this.player.vx = -5;
-    } else if (this.currentScore >= 500 && this.currentScore < 1000) {
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
       if (this.player.vx > 4) this.player.vx = 4;
       else if (this.player.vx < -4) this.player.vx = -4;
     } else if (this.currentScore >= 100 && this.currentScore < 500) {
@@ -1183,11 +1183,11 @@ class Platform {
     this.width = 100;
     if (this.currentScore >= 5000) {
       this.width = 40;
-    } else if (this.currentScore >= 2000 && this.currentScore < 5000) {
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
       this.width = 60;
-    } else if (this.currentScore >= 1000 && this.currentScore < 2000) {
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
       this.width = 70;
-    } else if (this.currentScore >= 500 && this.currentScore < 1000) {
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
       this.width = 80;
     } else if (this.currentScore >= 100 && this.currentScore < 500) this.width = 100;
 
@@ -1251,13 +1251,13 @@ class Platform {
     } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
       this.types = [2, 3, 2, 3, 4, 4, 4, 4];
       this.gravity = 0.2;
-    } else if (this.currentScore >= 2000 && this.currentScore < 5000) {
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
       this.gravity = 0.18;
-    } else if (this.currentScore >= 1000 && this.currentScore < 2000) {
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 3];
       this.gravity = 0.16;
-    } else if (this.currentScore >= 500 && this.currentScore < 1000) {
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
       this.types = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
       this.gravity = 0.14;
     } else if (this.currentScore >= 100 && this.currentScore < 500) {
