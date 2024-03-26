@@ -91,7 +91,7 @@ export class CompetitionScoreTableContainer {
               }</div>
             <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'Pirk <a target="_blank" href=https://www.barbora.lt/>Barbora.lt</a> ir su kodu GIMTADIENIS gauk dovanų!'
+                  ? 'Pirk <a target="_blank" href="https://www.barbora.lt/">Barbora.lt</a> ir su kodu <b style="font-weight:900;font-size:12px"> &apos;GIMTADIENIS&apos;</b> gauk dovanų!'
                   : this.prop === 'Penki Sezonai'
                   ? 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
                   : 'Balandžio 5 d.  net 30 geriausių žaidėjų laimės prizus!'

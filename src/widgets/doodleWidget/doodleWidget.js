@@ -703,7 +703,6 @@ class DoodleWidget {
     } else if (this.currentScore >= 500 && this.currentScore < 1000) {
       this.speed = 0.2;
     } else if (this.currentScore >= 100 && this.currentScore < 500) this.speed = 0.16;
-    console.log(this.speed);
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
@@ -1268,8 +1267,6 @@ class Platform {
       this.gravity = 0.1;
       this.types = [1];
     }
-    this.gravity = 0.5;
-    console.log(this.gravity);
     // Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
 
