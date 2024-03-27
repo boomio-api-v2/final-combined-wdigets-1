@@ -73,9 +73,7 @@ class DoodleWidget {
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.style.background = true
-      ? 'url("https://i.ibb.co/PhRBCCS/BACKGROUND-Barbora-1.png") center'
-      : `url(${backgroundRed}) center`;
+    canvas.style.background = `url(${backgroundRed}) center`;
 
     // Updated here
 
