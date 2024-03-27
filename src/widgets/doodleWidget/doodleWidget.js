@@ -124,7 +124,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 4000); //intro speed
+    }, 100); //intro speed
   }
 
   createHandlers = () => {
@@ -1336,10 +1336,10 @@ class Spring {
     this.vx = 1;
     this.cx = 5;
     this.cy = 475;
-    this.cwidth = 60;
-    this.cheight = 65;
+    this.cwidth = 90;
+    this.cheight = 50;
     this.state = 0;
-    this.width = 45;
+    this.width = 65;
     this.height = 38;
   }
 

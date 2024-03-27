@@ -20,7 +20,7 @@ export const couponBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/Background_Barbora_New.png?raw=true';
 
 export const mainImage =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Barbora/BarboraMainDoodleNew.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Barbora/BarboraDoodleMain.png?raw=true';
 
 export const intro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Barbora/BarboraIntro.gif?raw=true';
