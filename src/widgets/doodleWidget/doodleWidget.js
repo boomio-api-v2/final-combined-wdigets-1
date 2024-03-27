@@ -124,7 +124,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 5000); //intro speed
+    }, 4000); //intro speed
   }
 
   createHandlers = () => {
@@ -593,6 +593,8 @@ class DoodleWidget {
     this.platforms.forEach((p, i) => {
       if (p.type == 2) {
         if (p.x < 0 || p.x + p.width > this.width) p.vx *= -1;
+        console.log('p.x', p.x);
+        console.log('p.vx', p.vx);
 
         p.x += p.vx;
       }
@@ -622,7 +624,6 @@ class DoodleWidget {
     if (p.type == 1 || p.type == 2) {
       s.x = p.x + p.width / 2 - s.width / 2;
       s.y = p.y - p.height - 10;
-
       if (s.y > this.height / 1.1) s.state = 0;
       s.draw(this.image);
     } else {
@@ -652,9 +653,9 @@ class DoodleWidget {
         this.player.isMovingRight = true;
       }
 
-      if (key == 32) {
-        this.resetGame();
-      }
+      // if (key == 32) {
+      //   this.resetGame();
+      // }
     };
 
     document.onkeyup = (e) => {
@@ -1248,24 +1249,31 @@ class Platform {
     if (this.currentScore >= 7000) {
       this.types = [2, 2, 2, 3, 3, 4, 4, 4, 4];
       this.gravity = 0.3;
+      this.vx = 6;
     } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
       this.types = [2, 3, 2, 3, 4, 4, 4, 4];
       this.gravity = 0.2;
+      this.vx = 5;
     } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
       this.gravity = 0.18;
+      this.vx = 4;
     } else if (this.currentScore >= 700 && this.currentScore < 1500) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 3];
       this.gravity = 0.16;
+      this.vx = 3;
     } else if (this.currentScore >= 500 && this.currentScore < 700) {
       this.types = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
       this.gravity = 0.14;
+      this.vx = 2;
     } else if (this.currentScore >= 100 && this.currentScore < 500) {
       this.gravity = 0.12;
       this.types = [1, 1, 1, 1, 2, 2];
+      this.vx = 1.5;
     } else {
       this.gravity = 0.1;
       this.types = [1];
+      this.vx = 1;
     }
     // Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
@@ -1279,7 +1287,6 @@ class Platform {
     }
 
     this.moved = 0;
-    this.vx = 1;
   }
 }
 
