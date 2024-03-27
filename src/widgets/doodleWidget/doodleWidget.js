@@ -124,7 +124,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 100); //intro speed
+    }, 3000); //intro speed
   }
 
   createHandlers = () => {
@@ -593,8 +593,6 @@ class DoodleWidget {
     this.platforms.forEach((p, i) => {
       if (p.type == 2) {
         if (p.x < 0 || p.x + p.width > this.width) p.vx *= -1;
-        console.log('p.x', p.x);
-        console.log('p.vx', p.vx);
 
         p.x += p.vx;
       }
@@ -1336,8 +1334,8 @@ class Spring {
     this.vx = 1;
     this.cx = 5;
     this.cy = 475;
-    this.cwidth = 90;
-    this.cheight = 50;
+    this.cwidth = 110;
+    this.cheight = 60;
     this.state = 0;
     this.width = 65;
     this.height = 38;
