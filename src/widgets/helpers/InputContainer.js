@@ -43,11 +43,13 @@ export class InputContainer {
           <div style="width: 229px; left: 160px; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             dėl geresnio rezultato
           </div>
-          <div style="width: 246px; left: 160px; top: 88px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
+          <div style="width: 236px; left: 160px; top: 85px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
             ${
               this.prop === 'Barbora'
-                ? 'KINO PAVASARIO bilietus arba BARBOROS kuponus'
-                : 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                ? 'gimtadienio prizus iškart!'
+                : this.prop === 'Penki Sezonai'
+                ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                : '50€ ir kitus Babūnė kuponus.&nbsp&nbsp&nbsp&nbsp Net 30 laimėtojų!'
             }
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">
@@ -69,7 +71,7 @@ export class InputContainer {
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'Babune'
-              ? "href='taisykles'"
+              ? 'href=https://docs.google.com/document/d/1B5ONINFe4nlWECE6anCa7H-YuO-HpdaqSm5pjKS6HQk/edit'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>`
         : ''
@@ -83,16 +85,10 @@ export class InputContainer {
               <div style="z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
                 document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px'
               };" id="control-button" class="control-button">
-              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: ${
-                this.game === 'doodle' ? '#3BAF29' : 'white'
-              }
+              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
-                this.game === 'doodle'
-                  ? 'white'
-                  : this.prop === 'Barbora' ||
-                    this.prop === 'Penki Sezonai' ||
-                    this.prop === 'Babune'
+                this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
                   ? '#3D4928'
                   : '#FF3183'
               }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${

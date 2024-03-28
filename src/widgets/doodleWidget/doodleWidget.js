@@ -1,14 +1,21 @@
-import { widgetHtmlService, QrCodeModal, AnimationService, localStorageService } from '@/services';
+import {
+  widgetHtmlService,
+  QrCodeModal,
+  AnimationService,
+  boomioService,
+  localStorageService,
+} from '@/services';
 import './styles.css';
 import {
   scoreImage,
   couponBackground,
-  cursor,
   intro,
   howToPlay,
   backgroundRed,
   mainImage,
   useButton,
+  checkIcon,
+  uncheckIcon,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -19,8 +26,16 @@ class DoodleWidget {
   static ctx;
 
   constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    this.checkboxChange = true;
+
     this.isMobile = window.innerWidth <= 1280;
-    this.showCompetitiveRegistration = false;
+    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.showCompetitiveRegistration = this.config.game_type ?? 'competitive';
+    this.userBestPlace = 0;
+    this.scoreTable = {};
+    this.scoreTableContainerInstance;
+
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
     this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418;
@@ -59,12 +74,6 @@ class DoodleWidget {
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.style.background = `url(${backgroundRed}) center`;
-
-    const backgroundCursor = document.getElementById('game-container');
-    backgroundCursor.style.cursor = `url(${cursor}) 10 10, auto`;
-
-    const inputContainerCursor = document.getElementById('input-container');
-    inputContainerCursor.style.cursor = `url(${cursor}) 10 10, auto`;
 
     // Updated here
 
@@ -113,7 +122,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 5000);
+    }, 3000); //intro speed
   }
 
   createHandlers = () => {
@@ -141,21 +150,13 @@ class DoodleWidget {
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-        checkboxImgChange.src = this.checkboxChange
-          ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
-          : 'none';
+        checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-
-      emailInput.addEventListener('input', () => {
-        console.log('Email input changed:', emailInput.value);
-      });
-
-      playerNameInput.addEventListener('input', () => {
-        console.log('Player name input changed:', playerNameInput.value);
-      });
+      emailInput.addEventListener('input', () => {});
+      playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
@@ -194,47 +195,24 @@ class DoodleWidget {
     }
   };
 
-  clickEventHandlerShowRules = () => {
-    if (this.gameCount === 0) {
-      setTimeout(() => {
-        const inpuRegisterContainer = document.querySelector('.input-register-container');
-        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        setTimeout(() => {
-          inpuRegisterContainer.style.height = '10px';
-          inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-          inpuRegisterContainer.style.opacity = 0;
-        }, 100);
-        setTimeout(() => {
-          inpuRegisterContainer.style.display = 'none';
-        }, 1000);
-        setTimeout(() => {
-          const canvas = document.getElementById('boomio-doodle-canvas');
-          document.getElementById('background_blur').style.opacity = 0.37;
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
-          const inputContainer = document.querySelector('.input-container');
-          document.getElementById('control-button').style.transition = 'opacity 2s ease';
-          document.getElementById('control-button').style.opacity = 1;
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          inputContainer.style.display = 'block';
-          setTimeout(() => {
-            inputContainer.style.height = '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
-            inputContainer.style.opacity = 1;
-          }, 100);
-        }, 300);
-      }, 300);
-    }
-  };
-
   initGame = () => {
     this.removeRules();
     if (!this.tutorial || !this.isMobile) {
-      this.Spring = new Spring(this.image);
+      setTimeout(() => {
+        if (this.showCompetitiveRegistration) {
+          boomioService
+            .signal('ROUND_STARTED', 'signal')
+            .then((response) => {})
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+      }, 50);
       this.player = new Player(this.image);
       this.hideMenu();
       this.resetGame();
       this.gameLoop();
+      this.Spring = new Spring(this.image);
     } else {
       this.showTutorialArrows();
     }
@@ -260,6 +238,7 @@ class DoodleWidget {
     document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
     document.getElementById('tutorialArrows').style.opacity = 0;
     document.getElementById('tutorialArrows').style.display = 'none';
+
     setTimeout(() => {
       this.initGame();
     }, 100);
@@ -364,13 +343,13 @@ class DoodleWidget {
     this.base = new Base(this.image);
     this.player = new Player(this.image);
 
-    this.Spring = new Spring(this.image);
     this.platform_broken_substitute = new Platform_broken_substitute(this.image);
 
     this.platforms = [];
     for (let i = 0; i < this.platformCount; i++) {
       this.platforms.push(new Platform(this.image, this.currentScore));
     }
+    this.Spring = new Spring(this.image);
   };
 
   updateScore = () => {
@@ -459,6 +438,22 @@ class DoodleWidget {
 
     setTimeout(
       () => {
+        if (this.showCompetitiveRegistration) {
+          boomioService
+            .signal('ROUND_FINISHED', 'signal', {
+              score: this.currentScore,
+            })
+            .then((response) => {
+              this.userBestPlace = response.user_best_place;
+
+              this.scoreTable = response;
+
+              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
         if (this.showCompetitiveRegistration) {
           const competitionTableContainer = document.querySelector('.competition-table-container');
           const canvas = document.getElementById('boomio-doodle-canvas');
@@ -625,7 +620,6 @@ class DoodleWidget {
     if (p.type == 1 || p.type == 2) {
       s.x = p.x + p.width / 2 - s.width / 2;
       s.y = p.y - p.height - 10;
-
       if (s.y > this.height / 1.1) s.state = 0;
       s.draw(this.image);
     } else {
@@ -655,9 +649,9 @@ class DoodleWidget {
         this.player.isMovingRight = true;
       }
 
-      if (key == 32) {
-        this.resetGame();
-      }
+      // if (key == 32) {
+      //   this.resetGame();
+      // }
     };
 
     document.onkeyup = (e) => {
@@ -697,28 +691,52 @@ class DoodleWidget {
         this.player.isMovingRight = false;
       });
     }
-
+    this.speed = 0.16;
+    if (this.currentScore >= 5000) {
+      this.speed = 0.4;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      this.speed = 0.35;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      this.speed = 0.3;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      this.speed = 0.2;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) this.speed = 0.16;
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
-      this.player.vx -= 0.06;
+      this.player.vx -= this.speed;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx < 0) this.player.vx += 0.06;
+      if (this.player.vx < 0) this.player.vx += this.speed;
     }
 
     if (this.player.isMovingRight === true) {
       this.player.x += this.player.vx;
-      this.player.vx += 0.06;
+      this.player.vx += this.speed;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx > 0) this.player.vx -= 0.06;
+      if (this.player.vx > 0) this.player.vx -= this.speed;
     }
 
     // Speed limits!
-    if (this.player.vx > 3) this.player.vx = 3;
-    else if (this.player.vx < -3) this.player.vx = -3;
 
+    if (this.currentScore >= 5000) {
+      if (this.player.vx > 7) this.player.vx = 7;
+      else if (this.player.vx < -7) this.player.vx = -7;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      if (this.player.vx > 6) this.player.vx = 6;
+      else if (this.player.vx < -6) this.player.vx = -6;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      if (this.player.vx > 5) this.player.vx = 5;
+      else if (this.player.vx < -5) this.player.vx = -5;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      if (this.player.vx > 4) this.player.vx = 4;
+      else if (this.player.vx < -4) this.player.vx = -4;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) {
+      if (this.player.vx > 3) this.player.vx = 3;
+      else if (this.player.vx < -3) this.player.vx = -3;
+    }
+    console;
     //Jump the player when it hits the base
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height)
       this.player.jump();
@@ -862,18 +880,18 @@ class DoodleWidget {
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
-      this.player.vx -= 0.15;
+      this.player.vx -= 0.3;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx < 0) this.player.vx += 0.1;
+      if (this.player.vx < 0) this.player.vx += 0.2;
     }
 
     if (this.player.isMovingRight === true) {
       this.player.x += this.player.vx;
-      this.player.vx += 0.15;
+      this.player.vx += 0.3;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx > 0) this.player.vx -= 0.1;
+      if (this.player.vx > 0) this.player.vx -= 0.2;
     }
 
     //Jump the player when it hits the base
@@ -892,9 +910,10 @@ class DoodleWidget {
     this.paintCanvas();
     this.base.draw();
     this.playerCalc();
-    this.springCalc();
     this.updateScore();
     this.platformCalc();
+    this.springCalc();
+
     this.player.draw();
   };
 
@@ -922,22 +941,17 @@ class DoodleWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+
+    ${
+      this.showCompetitiveRegistration
+        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
+        : ''
+    }
+
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }">
 		</canvas>
-    
-    ${
-      this.showCompetitiveRegistration
-        ? new InputRegisterContainer('Barbora').createInputRegisterContainer().outerHTML
-        : ''
-    }
-    ${
-      this.showCompetitiveRegistration
-        ? new CompetitionScoreTableContainer('#3BAF29').createCompetitionScoreTableContainer()
-            .outerHTML
-        : ''
-    }
 
     <img src=${howToPlay} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -975,7 +989,7 @@ class DoodleWidget {
     </div>
 
 
-    ${new InputContainer('', 'doodle').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'doodle').createInputContainerDiv().outerHTML}
 
 
     <div class="numbers">
@@ -1012,6 +1026,150 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 	</div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
+
+    if (this.showCompetitiveRegistration) {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
+    if (this.showCompetitiveRegistration) {
+      const clickEventHandlerShowRules = () => {
+        if (this.gameCount === 0) {
+          setTimeout(() => {
+            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+
+            if (this.showCompetitiveRegistration && this.checkboxChange) {
+              boomioService
+                .signal('', 'user_info', {
+                  user_email: emailInput?.value,
+                  user_name: playerNameInput?.value,
+                })
+                .then((response) => {
+                  if (response.success === false) {
+                    if (response.res_code === 'EMAIL_EXIST') {
+                      document.getElementById('competition-email-error').innerText =
+                        'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        '#FFBABA';
+                      document.getElementById('competition-email-error').style.border =
+                        '1px solid red';
+
+                      document.getElementById('competition-name-error').innerText = '';
+
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        'transparent';
+                      document.getElementById('competition-name-error').style.border = 'none';
+                    } else if (response.res_code === 'NAME_EXIST') {
+                      document.getElementById('competition-name-error').innerText =
+                        'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        '#FFBABA';
+                      document.getElementById('competition-name-error').style.border =
+                        '1px solid red';
+
+                      document.getElementById('competition-email-error').innerText = '';
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        'transparent';
+                      document.getElementById('competition-email-error').style.border = 'none';
+                    }
+                  } else {
+                    this.bestScore = response.user_best_score;
+                    const inpuRegisterContainer = document.querySelector(
+                      '.input-register-container',
+                    );
+                    inpuRegisterContainer.style.transition =
+                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.height = '10px';
+                      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                      inpuRegisterContainer.style.opacity = 0;
+                    }, 100);
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.display = 'none';
+                    }, 1000);
+                    setTimeout(() => {
+                      const canvas = document.getElementById('boomio-doodle-canvas');
+                      document.getElementById('background_blur').style.opacity = 0.37;
+                      canvas.style.transition = 'filter 0.6s ease';
+                      canvas.style.filter = 'blur(2px)';
+                      const inputContainer = document.querySelector('.input-container');
+                      document.getElementById('control-button').style.transition =
+                        'opacity 2s ease';
+                      document.getElementById('control-button').style.opacity = 1;
+                      document.getElementById('control-button').style.display = 'flex';
+                      inputContainer.style.transition =
+                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      inputContainer.style.display = 'block';
+                      setTimeout(() => {
+                        inputContainer.style.height = '332px';
+                        inputContainer.style.top = 'calc(50% + 170px)';
+                        inputContainer.style.opacity = 1;
+                      }, 100);
+                    }, 300);
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
+            }
+          }, 300);
+        }
+      };
+
+      const clickEventHandlerResetGame = () => {
+        const competitionRestart = document.getElementById('boomio-competition-play-again');
+        competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+        setTimeout(() => {
+          competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+        }, 2000);
+
+        const controlButton = document.querySelector('.control-button1');
+        this.index = 0;
+        this.currentScore = 0;
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          competitionTableContainer.style.height = '10px';
+          competitionTableContainer.style.top = 'calc(50% + 330px)';
+          competitionTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          competitionTableContainer.style.display = 'none';
+        }, 1000);
+
+        setTimeout(() => {
+          if (this.showCompetitiveRegistration) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                document.getElementById('background_blur').style.display = 'none';
+                const canvas = document.getElementById('boomio-doodle-canvas');
+                canvas.style.transition = 'filter 1s ease';
+                canvas.style.filter = 'none';
+                this.gamePlaying = true;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }, 400);
+        // controlButton.style.display = 'none';
+        // controlButton.style.opacity = 0;
+      };
+
+      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+
+      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+    }
   };
 }
 
@@ -1020,6 +1178,16 @@ class Platform {
     this.image = image;
     this.currentScore = score;
     this.width = 100;
+    if (this.currentScore >= 5000) {
+      this.width = 40;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      this.width = 60;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      this.width = 70;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      this.width = 80;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) this.width = 100;
+
     this.height = 20;
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
     this.y = DoodleWidget.position;
@@ -1031,7 +1199,7 @@ class Platform {
     //Sprite clipping
     this.cx = 0;
     this.cy = 0;
-    this.cwidth = 105;
+    this.cwidth = 110;
     this.cheight = 30;
 
     this.moved = 0;
@@ -1074,16 +1242,35 @@ class Platform {
     //4: Vanishable
 
     // Set initial platform types
-    if (this.currentScore >= 5000) this.types = [2, 3, 3, 3, 4, 4, 4, 4];
-    else if (this.currentScore >= 2000 && this.currentScore < 5000)
+    if (this.currentScore >= 7000) {
+      this.types = [2, 2, 2, 3, 3, 4, 4, 4, 4];
+      this.gravity = 0.3;
+      this.vx = 6;
+    } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
+      this.types = [2, 3, 2, 3, 4, 4, 4, 4];
+      this.gravity = 0.2;
+      this.vx = 5;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
-    else if (this.currentScore >= 1000 && this.currentScore < 2000)
+      this.gravity = 0.18;
+      this.vx = 4;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 3];
-    else if (this.currentScore >= 500 && this.currentScore < 1000)
+      this.gravity = 0.16;
+      this.vx = 3;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
       this.types = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
-    else if (this.currentScore >= 100 && this.currentScore < 500) this.types = [1, 1, 1, 1, 2, 2];
-    else this.types = [1];
-
+      this.gravity = 0.14;
+      this.vx = 2;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) {
+      this.gravity = 0.12;
+      this.types = [1, 1, 1, 1, 2, 2];
+      this.vx = 1.5;
+    } else {
+      this.gravity = 0.1;
+      this.types = [1];
+      this.vx = 1;
+    }
     // Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
 
@@ -1096,7 +1283,6 @@ class Platform {
     }
 
     this.moved = 0;
-    this.vx = 1;
   }
 }
 
@@ -1145,12 +1331,12 @@ class Spring {
     this.moved = 0;
     this.vx = 1;
     this.cx = 5;
-    this.cy = 452;
-    this.cwidth = 90;
-    this.cheight = 100;
+    this.cy = 475;
+    this.cwidth = 110;
+    this.cheight = 60;
     this.state = 0;
-    this.width = 35;
-    this.height = 32;
+    this.width = 65;
+    this.height = 38;
   }
 
   draw() {
@@ -1206,8 +1392,8 @@ class Player {
     this.image = image;
     this.vy = 11;
     this.vx = 0;
-    this.width = 66;
-    this.height = 48;
+    this.width = 99;
+    this.height = 72;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
@@ -1224,8 +1410,8 @@ class Player {
     try {
       if (this.dir == 'right') this.cy = 124;
       else if (this.dir == 'left') this.cy = 204;
-      else if (this.dir == 'right_land') this.cy = 292;
-      else if (this.dir == 'left_land') this.cy = 374;
+      else if (this.dir == 'right_land') this.cy = 282;
+      else if (this.dir == 'left_land') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(
         this.image,
