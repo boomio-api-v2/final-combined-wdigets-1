@@ -85,7 +85,8 @@ export class CompetitionScoreTableContainer {
     let scoreboardText = `
       ${
         this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
-          ? true
+          ? this.scoreTable.user_best_place < (this.prop === 'Penki Sezonai' ? 5 : 30) ||
+            (this.prop === 'Barbora' && this.userBestScore > 500)
             ? `<div style="width:100%; top: ${
                 this.prop === 'Barbora' ? '450px' : '495px'
               }; position: absolute; text-align: center; color: ${textColor}; font-size: ${
@@ -112,18 +113,20 @@ export class CompetitionScoreTableContainer {
                   : 'Apie laimėjimą informuosime nurodytu el. paštu. '
               } </div> `
             : `<div style="width:100%; top: 495px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
-                this.prop === 'Barbora' ? 'DOVANA tau!' : 'Tu gali!'
+                this.prop === 'Barbora'
+                  ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
+                  : 'Tu gali!'
               }</div>
             <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'Pagerink rezultatą ir laimėk Barbora '
+                  ? ''
                   : this.prop === 'Penki Sezonai'
                   ? 'Pagerink rezultatą nes balandžio 1d.'
                   : 'Pagerink rezultatą nes balandžio 5d.'
               }</div>
             <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'gimtadienio dovaną iškart!'
+                  ? ''
                   : this.prop === 'Penki Sezonai'
                   ? '5 geriausi žaidėjai laimės prizus!'
                   : 'net 30 geriausių žaidėjų laimės prizus!'
