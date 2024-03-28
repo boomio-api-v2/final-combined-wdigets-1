@@ -85,7 +85,8 @@ export class CompetitionScoreTableContainer {
     let scoreboardText = `
       ${
         this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
-          ? this.scoreTable.user_best_place < (this.prop === 'Penki Sezonai' ? 5 : 30) ||
+          ? this.scoreTable.user_best_place <
+              (this.prop === 'Barbora' ? 0 : this.prop === 'Penki Sezonai' ? 5 : 30) ||
             (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500)
             ? `<div style="width:100%; top: ${
                 this.prop === 'Barbora' ? '450px' : '495px'
