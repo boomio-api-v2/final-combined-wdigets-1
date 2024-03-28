@@ -148,10 +148,6 @@ class FlappyBird {
               const checkboxImgChange = document.getElementById('privacyCheckboxImg');
               checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
             });
-            const emailInput = document.querySelector('.boomio-competition-email-input-field');
-            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-            emailInput.addEventListener('input', () => {});
-            playerNameInput.addEventListener('input', () => {});
             setTimeout(() => {
               const canvas = document.getElementById('flappy-canvas');
               document.getElementById('background_blur').style.opacity = 0.37;
