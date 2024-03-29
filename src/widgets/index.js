@@ -17,3 +17,4 @@ export * from './pacmanWidget';
 export * from './flappyBird';
 export * from './doodleWidget';
 export * from './newTestGame';
+export * from './footballWidget';
