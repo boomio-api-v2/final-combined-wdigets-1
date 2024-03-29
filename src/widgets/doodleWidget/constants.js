@@ -23,7 +23,7 @@ export const mainImage =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Barbora/BarboraDoodleMain.png?raw=true';
 
 export const intro =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Barbora/BarboraDoodleIntroBday.gif?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/barboraintrodoodle/images/doodleWidget/Barbora/BarboraDoodleIntroBday.gif?raw=true';
 
 export const useButton =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Barbora/USE_IT_AT_BARBORA.png';
