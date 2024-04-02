@@ -1,7 +1,7 @@
 import './index.css';
 
 import { drawText } from './font';
-
+import { localStorageService, boomioService } from '@/services';
 import {
   engineAlreadyStarted,
   startEngines,
@@ -33,19 +33,30 @@ import {
 } from './constants';
 
 function startGame() {
+  let config = localStorageService.getDefaultConfig();
+  let checkboxChange = true;
+  const isMobile = window.innerWidth <= 1280;
+  const customer = config.business_name ? config.business_name : 'Barbora';
+  let showCompetitiveRegistration = config.game_type ?? 'competitive';
+  let userBestPlace = 0;
+  let scoreTable = {};
+  let scoreTableContainerInstance;
+  let gameCount = 0;
+  let currentScore = 0;
+  let bestScore = 0;
+
   const { random, floor, round, min, max, sin } = Math;
 
   const canvasWrapper = document.querySelector('#canvas-wrapper');
-  const canvas = document.querySelector('#game');
+  const canvas = document.querySelector('#boomio-newGame-canvas');
   const ctx = canvas.getContext('2d');
 
-  let width = 320;
-  let height = 240;
+  let width = 418;
+  let height = 668;
   let aspectRatio = width / height;
 
   canvas.height = height;
   canvas.width = width;
-
   const SPRITE_DIMENSIONS = 32;
   const BIG_SPRITE_DIMENSIONS = 64;
   const JUMP_VELOCITY = -10;
@@ -53,7 +64,7 @@ function startGame() {
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
   const MAX_POSITIVE_VEL = -JUMP_VELOCITY;
   const GROUND_PERCENT = 0.5;
-  const ROAD_WIDTH_PERCENT = 1.1;
+  const ROAD_WIDTH_PERCENT = 1.2;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -85,8 +96,8 @@ function startGame() {
   const COLLECTABLE_DIMENSION = 16;
   const ENVELOPE_TIME = 5;
   const ENVELOPE_DELAY = 100;
-  const GAME_OVER_FUNDING_TEXT = ' RAN OUT OF FUNDS!';
-  const GAME_OVER_TIME_TEXT = 'IT IS ELECTION DAY!';
+  const GAME_OVER_FUNDING_TEXT = 'No energy';
+  const GAME_OVER_TIME_TEXT = 'Time out';
   const ROAD_SPRITE_SPAWN_X = width / 4;
   const RESTART_TIMEOUT_TIME = 1000;
   const START_TIME = 90;
@@ -189,7 +200,7 @@ function startGame() {
   city3.src = city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
-  resize();
+  // resize();
 
   const sky = '#6c82a6';
   const grass1 = '#37946e';
@@ -524,7 +535,6 @@ function startGame() {
     spriteIncrease = SIDE_SPRITE_INCREASE * graceMultiplier;
 
     if (gameVars.started) {
-      runGame(t);
     } else {
       runTitleScreen(t);
     }
@@ -542,7 +552,197 @@ function startGame() {
 
   function runTitleScreen(t) {
     boundUpdateTitleScreen(t);
+    setTimeout(() => {
+      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+      document.getElementById('background_intro').style.opacity = 0;
+      if (gameCount === 0) {
+        document.getElementById('background_blur').style.display = 'block';
+        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+      }
+
+      showRulesOrRegistration();
+      setTimeout(() => {
+        document.getElementById('background_intro').style.display = 'none';
+        // createHandlers(t);
+      }, 2000);
+    }, 500); //intro speed
     drawTitleScreen();
+  }
+
+  function clickEventHandlerShowRules() {
+    if (gameCount === 0) {
+      setTimeout(() => {
+        const emailInput = document.querySelector('.boomio-competition-email-input-field');
+        const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+
+        if (showCompetitiveRegistration && checkboxChange) {
+          boomioService
+            .signal('', 'user_info', {
+              user_email: emailInput?.value,
+              user_name: playerNameInput?.value,
+            })
+            .then((response) => {
+              if (response.success === false) {
+                if (response.res_code === 'EMAIL_EXIST') {
+                  document.getElementById('competition-email-error').innerText =
+                    'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                  document.getElementById('competition-email-error').style.backgroundColor =
+                    '#FFBABA';
+                  document.getElementById('competition-email-error').style.border = '1px solid red';
+
+                  document.getElementById('competition-name-error').innerText = '';
+
+                  document.getElementById('competition-name-error').style.backgroundColor =
+                    'transparent';
+                  document.getElementById('competition-name-error').style.border = 'none';
+                } else if (response.res_code === 'NAME_EXIST') {
+                  document.getElementById('competition-name-error').innerText =
+                    'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                  document.getElementById('competition-name-error').style.backgroundColor =
+                    '#FFBABA';
+                  document.getElementById('competition-name-error').style.border = '1px solid red';
+
+                  document.getElementById('competition-email-error').innerText = '';
+                  document.getElementById('competition-email-error').style.backgroundColor =
+                    'transparent';
+                  document.getElementById('competition-email-error').style.border = 'none';
+                }
+              } else {
+                bestScore = response.user_best_score;
+                const inpuRegisterContainer = document.querySelector('.input-register-container');
+                inpuRegisterContainer.style.transition =
+                  'height 1s ease, top 1s ease, opacity 1s ease';
+                setTimeout(() => {
+                  inpuRegisterContainer.style.height = '10px';
+                  inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                  inpuRegisterContainer.style.opacity = 0;
+                }, 100);
+                setTimeout(() => {
+                  inpuRegisterContainer.style.display = 'none';
+                }, 1000);
+                setTimeout(() => {
+                  const canvas = document.getElementById('boomio-newGame-canvas');
+                  document.getElementById('background_blur').style.opacity = 0.37;
+                  canvas.style.transition = 'filter 0.6s ease';
+                  canvas.style.filter = 'blur(2px)';
+                  const inputContainer = document.querySelector('.input-container');
+                  document.getElementById('control-button').style.transition = 'opacity 2s ease';
+                  document.getElementById('control-button').style.opacity = 1;
+                  document.getElementById('control-button').style.display = 'flex';
+                  inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+                  inputContainer.style.display = 'block';
+                  setTimeout(() => {
+                    inputContainer.style.height = '332px';
+                    inputContainer.style.top = 'calc(50% + 170px)';
+                    inputContainer.style.opacity = 1;
+                  }, 100);
+                }, 300);
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+      }, 300);
+    }
+  }
+
+  function createHandlers(t) {
+    const start = document.getElementById('control-button');
+    start.addEventListener('click', initGame(t));
+
+    if (showCompetitiveRegistration) {
+      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules());
+
+      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      competitionRestart.addEventListener('click', restartGame());
+    }
+  }
+
+  function showRulesOrRegistration() {
+    if (showCompetitiveRegistration) {
+      const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
+      checkboxImg.addEventListener('click', () => {
+        checkboxChange = !checkboxChange;
+        const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+        checkboxImgChange.src = checkboxChange ? checkIcon : uncheckIcon;
+      });
+
+      const emailInput = document.querySelector('.boomio-competition-email-input-field');
+      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+      emailInput.addEventListener('input', () => {});
+      playerNameInput.addEventListener('input', () => {});
+
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-NewGame-container');
+        document.getElementById('background_blur').style.opacity = 0.37;
+        const inpuRegisterContainer = document.querySelector('.input-register-container');
+        document.getElementById('control-button').style.transition = 'opacity 2s ease';
+        document.getElementById('control-button').style.opacity = 1;
+        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        inpuRegisterContainer.style.display = 'block';
+        setTimeout(() => {
+          inpuRegisterContainer.style.height = '528px';
+          inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+          inpuRegisterContainer.style.opacity = 1;
+        }, 100);
+      }, 300);
+    } else {
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-NewGame-container');
+        document.getElementById('background_blur').style.opacity = 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
+        const inputContainer = document.querySelector('.input-container');
+        document.getElementById('control-button').style.transition = 'opacity 2s ease';
+        document.getElementById('control-button').style.opacity = 1;
+        inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        inputContainer.style.display = 'block';
+        setTimeout(() => {
+          inputContainer.style.height = '332px';
+          inputContainer.style.top = 'calc(50% + 170px)';
+          inputContainer.style.opacity = 1;
+        }, 100);
+      }, 300);
+    }
+  }
+
+  function initGame(t) {
+    removeRules();
+    // setTimeout(() => {
+    //   if (showCompetitiveRegistration) {
+    //     boomioService
+    //       .signal('ROUND_STARTED', 'signal')
+    //       .then((response) => {})
+    //       .catch((error) => {
+    //         console.error('Error:', error);
+    //       });
+    //   }
+    // }, 50);
+    eventHandler();
+    runGame(t);
+  }
+
+  function removeRules() {
+    const inputContainer = document.querySelector('.input-container');
+    const controlButton = document.querySelector('.control-button');
+
+    inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    controlButton.style.transition = 'opacity 0.6s ease';
+    setTimeout(() => {
+      inputContainer.style.height = '10px';
+      inputContainer.style.top = 'calc(50% + 330px)';
+      inputContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      inputContainer.style.display = 'none';
+    }, 1000);
+
+    if (gameCount === 0) {
+      const controlButton = document.querySelector('.control-button');
+      controlButton.style.display = 'none';
+    }
   }
 
   function updateTitleScreen() {
@@ -582,13 +782,12 @@ function startGame() {
       ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
     });
 
-    drawText(canvas, 'VOTE BY MAIL:', UI_PADDING + 10 * UI_PADDING, UI_PADDING, FONT_SIZE);
-    drawText(canvas, 'FUNDING NOT FOUND', UI_PADDING + 4 * UI_PADDING, SECOND_ROW_Y, FONT_SIZE);
+    drawText(canvas, 'Collect Points', 100, UI_PADDING, FONT_SIZE);
 
     drawText(
       canvas,
       'TAP OR PRESS KEY',
-      8 * UI_PADDING,
+      100,
       UI_PADDING * 40,
       FONT_SIZE,
       BLACK,
@@ -598,7 +797,7 @@ function startGame() {
     drawText(
       canvas,
       'TO PLAY',
-      24 * UI_PADDING,
+      100,
       UI_PADDING * 40 + SECOND_ROW_Y,
       FONT_SIZE,
       BLACK,
@@ -613,30 +812,9 @@ function startGame() {
     const instructionsOffset = getInstructionsOffset();
     drawText(
       canvas,
-      'COLLECT BALLOTS',
+      'COLLECT POINTS',
       UI_PADDING + 10 * UI_PADDING + instructionsOffset,
       UI_PADDING + yOffset,
-      FONT_SIZE,
-    );
-    drawText(
-      canvas,
-      'BEFORE ELECTION DAY!',
-      UI_PADDING + instructionsOffset,
-      SECOND_ROW_Y + yOffset,
-      FONT_SIZE,
-    );
-    drawText(
-      canvas,
-      'KEEP DEMOCRACY',
-      UI_PADDING + 10 * UI_PADDING + instructionsOffset,
-      UI_PADDING + yOffset + yOffset2,
-      FONT_SIZE,
-    );
-    drawText(
-      canvas,
-      'ROLLING ALONG!',
-      UI_PADDING + 10 * UI_PADDING + instructionsOffset,
-      SECOND_ROW_Y + yOffset + yOffset2,
       FONT_SIZE,
     );
   }
@@ -661,6 +839,53 @@ function startGame() {
   function runGame(t) {
     boundUpdateGame(t);
     drawGame();
+  }
+
+  function restartGame() {
+    gameCount++;
+    playElectionDay();
+    // Stop playing the song from the previous game over
+    if (gameOverElectionDaySong) {
+      gameOverElectionDaySong.oscillatorNodes.forEach((node) => node.disconnect());
+      gameOverElectionDaySong = null;
+    }
+    gameVars.gameOver = false;
+    gameVars = {
+      started: true,
+      funding: START_FUNDING,
+      visibleFunding: START_FUNDING,
+      timeLeft: START_TIME,
+      ballots: 0,
+      gameOver: false,
+      playedGameOverSound: false,
+      readyToRestart: false,
+      countdownBeepsPlayed: [],
+      startedAt: gameTime,
+      gameOverAt: null,
+      lastHitAt: null,
+      lastFlashedAt: null,
+      lastTimeDecrementedAt: null,
+      lastFlashedInstructionsAt: null,
+    };
+
+    inputState.left = false;
+    inputState.right = false;
+    inputState.jump = false;
+
+    pointerState.down = false;
+    pointerState.downAt = null;
+    pointerState.upAt = null;
+    pointerState.playerX = null;
+    pointerState.x = null;
+    pointerState.y = null;
+
+    restartTimeout = null;
+    golds.forEach((s) => resetRoadSprite(s));
+    rightMailboxes.forEach((s) => resetRoadSprite(s));
+    leftMailboxes.forEach((s) => resetRoadSprite(s));
+    clearArray(walls);
+    range(INITIAL_WALLS).forEach(() => walls.push(createWall()));
+    buildUpRoadSprites();
   }
 
   function updateGame() {
@@ -846,52 +1071,6 @@ function startGame() {
     );
   }
 
-  function restartGame() {
-    playElectionDay();
-    // Stop playing the song from the previous game over
-    if (gameOverElectionDaySong) {
-      gameOverElectionDaySong.oscillatorNodes.forEach((node) => node.disconnect());
-      gameOverElectionDaySong = null;
-    }
-    gameVars.gameOver = false;
-    gameVars = {
-      started: true,
-      funding: START_FUNDING,
-      visibleFunding: START_FUNDING,
-      timeLeft: START_TIME,
-      ballots: 0,
-      gameOver: false,
-      playedGameOverSound: false,
-      readyToRestart: false,
-      countdownBeepsPlayed: [],
-      startedAt: gameTime,
-      gameOverAt: null,
-      lastHitAt: null,
-      lastFlashedAt: null,
-      lastTimeDecrementedAt: null,
-      lastFlashedInstructionsAt: null,
-    };
-
-    inputState.left = false;
-    inputState.right = false;
-    inputState.jump = false;
-
-    pointerState.down = false;
-    pointerState.downAt = null;
-    pointerState.upAt = null;
-    pointerState.playerX = null;
-    pointerState.x = null;
-    pointerState.y = null;
-
-    restartTimeout = null;
-    golds.forEach((s) => resetRoadSprite(s));
-    rightMailboxes.forEach((s) => resetRoadSprite(s));
-    leftMailboxes.forEach((s) => resetRoadSprite(s));
-    clearArray(walls);
-    range(INITIAL_WALLS).forEach(() => walls.push(createWall()));
-    buildUpRoadSprites();
-  }
-
   function drawGameOver() {
     if (!gameVars.gameOver) return;
     player.alpha = 1;
@@ -902,9 +1081,6 @@ function startGame() {
 
     drawText(canvas, gameOverText, 2 * UI_PADDING + textOffset, UI_PADDING, FONT_SIZE);
     drawText(canvas, ballotText, 2 * UI_PADDING + textOffset, 2 * SECOND_ROW_Y, FONT_SIZE);
-
-    const votingText = 'VOTING IS GOOD!';
-    drawText(canvas, votingText, 8 * UI_PADDING + textOffset, 4 * SECOND_ROW_Y, FONT_SIZE);
 
     if (gameVars.readyToRestart) {
       const tapText = 'TAP OR PRESS KEY';
@@ -1217,6 +1393,7 @@ function startGame() {
       horizonI - BIG_SPRITE_DIMENSIONS,
       BIG_SPRITE_DIMENSIONS,
     );
+
     drawImage(
       city2,
       ZERO_POS,
@@ -1238,7 +1415,7 @@ function startGame() {
     const introOffset = getIntroOffset();
     drawText(
       canvas,
-      `${pad(gameVars.ballots)} BALLOTS`,
+      `${pad(gameVars.ballots)} Points`,
       UI_PADDING,
       UI_PADDING + introOffset,
       FONT_SIZE,
@@ -1312,7 +1489,7 @@ function startGame() {
 
     const width = floor((MAX_FUNDING_BAR * gameVars.visibleFunding) / 100);
     ctx.fillRect(UI_PADDING, SECOND_ROW_Y + introOffset, width, FONT_SIZE + 1);
-    drawText(canvas, 'FUNDING', UI_PADDING, SECOND_ROW_Y + introOffset, FONT_SIZE);
+    drawText(canvas, 'POWER', UI_PADDING, SECOND_ROW_Y + introOffset, FONT_SIZE);
   }
 
   function getWallParticlePosition(particle) {
@@ -1611,39 +1788,65 @@ function startGame() {
     y: null,
   };
 
-  window.addEventListener('keydown', (e) => {
-    switch (e.key) {
-      case 'ArrowLeft':
-        inputState.left = true;
-        break;
-      case 'ArrowRight':
-        inputState.right = true;
-        break;
-      case 'ArrowUp':
-        inputState.jump = true;
-        break;
-      case ' ':
-        inputState.jump = true;
-        break;
-    }
-  });
+  function eventHandler() {
+    window.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'ArrowLeft':
+          inputState.left = true;
+          break;
+        case 'ArrowRight':
+          inputState.right = true;
+          break;
+        case 'ArrowUp':
+          inputState.jump = true;
+          break;
+        case ' ':
+          inputState.jump = true;
+          break;
+      }
+    });
 
-  window.addEventListener('keyup', (e) => {
-    switch (e.key) {
-      case 'ArrowLeft':
-        inputState.left = false;
-        break;
-      case 'ArrowRight':
-        inputState.right = false;
-        break;
-      case 'ArrowUp':
-        inputState.jump = false;
-        break;
-      case ' ':
-        inputState.jump = false;
-        break;
-    }
-  });
+    window.addEventListener('keyup', (e) => {
+      switch (e.key) {
+        case 'ArrowLeft':
+          inputState.left = false;
+          break;
+        case 'ArrowRight':
+          inputState.right = false;
+          break;
+        case 'ArrowUp':
+          inputState.jump = false;
+          break;
+        case ' ':
+          inputState.jump = false;
+          break;
+      }
+    });
+    window.addEventListener('touchstart', (e) => {
+      pointerDown(e.touches[0].clientX);
+    });
+
+    window.addEventListener('touchend', () => {
+      pointerUp();
+    });
+
+    window.addEventListener('mousedown', (e) => {
+      pointerDown(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!pointerState.down) return;
+      pointerMove(e.clientX);
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      pointerMove(e.touches[0].clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      pointerUp();
+    });
+  }
 
   function pointerDown(pointerX) {
     pointerState.down = true;
@@ -1676,32 +1879,7 @@ function startGame() {
     player.pos.x = pointerState.playerX + diff;
   }
 
-  window.addEventListener('touchstart', (e) => {
-    pointerDown(e.touches[0].clientX);
-  });
-
-  window.addEventListener('touchend', () => {
-    pointerUp();
-  });
-
-  window.addEventListener('mousedown', (e) => {
-    pointerDown(e.clientX);
-  });
-
-  window.addEventListener('mousemove', (e) => {
-    if (!pointerState.down) return;
-    pointerMove(e.clientX);
-  });
-
-  window.addEventListener('touchmove', (e) => {
-    pointerMove(e.touches[0].clientX);
-  });
-
-  window.addEventListener('mouseup', () => {
-    pointerUp();
-  });
-
-  window.addEventListener('resize', resize);
+  // window.addEventListener('resize', resize);
   load();
   // window.addEventListener('load', load);
 

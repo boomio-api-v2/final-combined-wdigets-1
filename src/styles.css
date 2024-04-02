@@ -47,7 +47,9 @@
 .boomio--animation__wrapper {
     text-align: center;
     position: fixed;
-    z-index: 9999;
+    z-index: 999999999999999999;
+    left:0px;
+    top:0px;
     visibility: visible;
     background-size: cover;
     opacity: 1;
@@ -674,6 +676,3 @@ h4.boomio--animation__heading {
 }
 
 
-.boomio--animation__wrapper {
-    outline: none !important;
-}

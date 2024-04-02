@@ -1,5 +1,48 @@
 import { widgetHtmlService } from '@/services';
 import CMain from './js/CMain.js';
+// import './js/jquery-3.2.1.min.js';
+// import './js/easeljs-NEXT.min.js';
+// import './js/tweenjs.js';
+// import './js/screenfull.js';
+// import './js/howler.min.js';
+// import './js/platform.js';
+// import './js/ios_fullscreen.js';
+// import './js/ctl_utils.js';
+// import './js/sprite_lib.js';
+// import './js/settings.js';
+// import './js/CLang.min.js';
+// import './js/CPreloader.js';
+// import './js/CTextButton.js';
+// import './js/CToggle.js';
+// import './js/CGfxButton.js';
+// import './js/CMenu.js';
+// import './js/CGame.js';
+// import './js/CInterface.js';
+// import './js/cannon.js';
+// import './js/cannon.demo.js';
+// import './js/CBall.js';
+// import './js/CScenario.js';
+// import './js/Three.js';
+// import './js/Detector.js';
+// import './js/smoothie.js';
+// import './js/Stats.js';
+// import './js/TrackballControls.js';
+// import './js/dat.gui.js';
+// import './js/CWinPanel.js';
+// import './js/CAreYouSurePanel.js';
+// import './js/CCreditsPanel.js';
+// import './js/CPause.js';
+// import './js/CGoalKeeper.js';
+// import './js/CStartBall.js';
+// import './js/CVector2.js';
+// import './js/CPlayer.js';
+// import './js/CScoreBoard.js';
+// import './js/CRollingScore.js';
+// import './js/CLaunchBoard.js';
+// import './js/CHandSwipeAnim.js';
+// import './js/CHelpText.js';
+// import './js/CGoal.js';
+// import './js/CCTLText.js';
 
 class FootballWidget {
   static ctx;
@@ -25,80 +68,10 @@ class FootballWidget {
 
     `;
     widgetHtmlService.container.appendChild(myCanvas);
-    this.loadScripts(
-      [
-        'js/jquery-3.2.1.min.js',
-        'js/easeljs-NEXT.min.js',
-        'js/tweenjs.js',
-        'js/screenfull.js',
-        'js/howler.min.js',
-        'js/platform.js',
-        'js/ios_fullscreen.js',
-        'js/ctl_utils.js',
-        'js/sprite_lib.js',
-        'js/settings.js',
-        'js/CLang.min.js',
-        'js/CPreloader.js',
-        'js/CMain.js',
-        'js/CTextButton.js',
-        'js/CToggle.js',
-        'js/CGfxButton.js',
-        'js/CMenu.js',
-        'js/CGame.js',
-        'js/CInterface.js',
-        'js/cannon.js',
-        'js/cannon.demo.js',
-        'js/CBall.js',
-        'js/CScenario.js',
-        'js/Three.js',
-        'js/Detector.js',
-        'js/smoothie.js',
-        'js/Stats.js',
-        'js/TrackballControls.js',
-        'js/dat.gui.js',
-        'js/CWinPanel.js',
-        'js/CAreYouSurePanel.js',
-        'js/CCreditsPanel.js',
-        'js/CPause.js',
-        'js/CGoalKeeper.js',
-        'js/CStartBall.js',
-        'js/CVector2.js',
-        'js/CPlayer.js',
-        'js/CScoreBoard.js',
-        'js/CRollingScore.js',
-        'js/CLaunchBoard.js',
-        'js/CHandSwipeAnim.js',
-        'js/CHelpText.js',
-        'js/CGoal.js',
-        'js/CCTLText.js',
-      ],
-      () => {
-        // Scripts loaded callback
-        this.initFootballGame();
-      },
-    );
+    this.initFootballGame();
   };
 
-  loadScripts(sources, callback) {
-    let loadedScripts = 0;
-
-    sources.forEach((src) => {
-      const script = document.createElement('script');
-      script.src = src;
-      script.async = false; // Ensure scripts are loaded in order
-      script.onload = () => {
-        loadedScripts++;
-        if (loadedScripts === sources.length) {
-          callback();
-        }
-      };
-      document.head.appendChild(script);
-    });
-  }
-
   initFootballGame() {
-    // Now that all scripts are loaded, you can initialize your game
-    // For example:
     const oMain = new CMain({
       area_goal: [
         { id: 0, probability: 100 },

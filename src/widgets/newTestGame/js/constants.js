@@ -49,3 +49,6 @@ export const cloudsImageData = [
 export const treeImageData = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/tree-big.png',
 ];
+
+export const intro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Barbora/BarboraDoodleIntro.gif?raw=true';
