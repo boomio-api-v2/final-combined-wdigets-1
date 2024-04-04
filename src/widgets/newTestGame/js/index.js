@@ -62,7 +62,7 @@ function startGame(scoreTableContainerInstance) {
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
   const MAX_POSITIVE_VEL = -JUMP_VELOCITY;
   const GROUND_PERCENT = 0.5;
-  const ROAD_WIDTH_PERCENT = 1.5;
+  const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -210,7 +210,6 @@ function startGame(scoreTableContainerInstance) {
 
   let maxWhiteLineWidth = width * maxWhiteLineWidthPercent;
   let skyHeight = 400;
-  console.log(skyHeight);
   let groundHeight = floor(height * GROUND_PERCENT);
   let roadStartX = (width - width * ROAD_WIDTH_PERCENT) / 2;
   let realTime = null;
@@ -751,7 +750,6 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function initGame(t) {
-    console.log('init');
     // setTimeout(() => {
     //   if (showCompetitiveRegistration) {
     //     boomioService
@@ -895,7 +893,6 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function restartGame() {
-    console.log('restart');
     gameCount++;
     playElectionDay();
     // Stop playing the song from the previous game over
@@ -1334,9 +1331,6 @@ function startGame(scoreTableContainerInstance) {
     if (bestScore < gameVars.currentScore) {
       newHighScoreReached = true;
     }
-    console.log(gameVars.currentScore);
-
-    console.log(bestScore);
     bestScore = Math.max(bestScore, gameVars.currentScore);
   }
 
@@ -1440,7 +1434,7 @@ function startGame(scoreTableContainerInstance) {
       player.pos,
       // Want car to be at the middle so start there and subtract off the player position
       xCenter - player.pos.x,
-      playerI - getIntroOffset(),
+      playerI - getIntroOffset() + 120,
       player.dimensions,
       true,
       player.alpha,
@@ -2013,41 +2007,33 @@ function startGame(scoreTableContainerInstance) {
     const scaledSpriteDimensions = scale * sprite.dimensions;
     const r2y = sprite.i + scaledSpriteDimensions;
     const notThereYet = r2y < playerI;
-
     const collisionDivisor = sprite.name === 'wall' ? 3 : 1;
 
-    const past = r2y > playerI + BIG_SPRITE_DIMENSIONS / collisionDivisor;
+    const past = r2y - 110 > playerI + BIG_SPRITE_DIMENSIONS / collisionDivisor;
+
     if (notThereYet || past) return;
 
     const playerOffset = xCenter;
 
-    const r1x = playerOffset - BIG_SPRITE_DIMENSIONS / 2;
+    const r1x = playerOffset - player.dimensions / 2;
     const r2x = spriteOffset(sprite) - (scale * sprite.dimensions) / 2;
-    const r1w = BIG_SPRITE_DIMENSIONS;
+    const r1w = player.dimensions;
     const r2w = sprite.dimensions * scale;
 
-    const r1y = playerI + player.pos.y;
-    const r1h = BIG_SPRITE_DIMENSIONS;
+    // Adjusted player position and height for increased height
+    const r1y = playerI + player.pos.y + 110; // Adding 120 to account for increased height
+    const r1h = player.dimensions + 110; // Adding 120 to account for increased height
     const r2h = scaledSpriteDimensions;
 
     const h = r1y < r2y + r2h && r1y + r1h > r2y ? true : false;
     const w = r1x < r2x + r2w && r1x + r1w > r2x ? true : false;
-    /*
-    ctx.fillStyle = "green";
-    ctx.fillRect(r2x, r2y, r2w, r2h);
-
-    ctx.fillStyle = "red";
-    ctx.fillRect(r1x, r1y, r1w, r1h);*/
 
     if (h && w) {
-      /*ctx.fillStyle = "pink";
-      ctx.fillRect(r1x, r1y, r1w, r1h);*/
       return true;
     } else {
       return false;
     }
   }
-
   function range(number) {
     return Array.from(Array(number).keys());
   }
