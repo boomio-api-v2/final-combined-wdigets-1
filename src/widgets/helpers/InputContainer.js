@@ -19,7 +19,7 @@ export class InputContainer {
         ? `none`
         : 'white';
     containerDiv.style.backgroundSize = 'cover';
-
+    containerDiv.style.zIndex = 99999999999;
     containerDiv.innerHTML = `
 
     

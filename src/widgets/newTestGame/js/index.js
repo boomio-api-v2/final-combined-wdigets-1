@@ -32,7 +32,7 @@ import {
   treeImageData,
 } from './constants';
 
-function startGame() {
+function startGame(scoreTableContainerInstance) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
@@ -40,9 +40,7 @@ function startGame() {
   let showCompetitiveRegistration = config.game_type ?? 'competitive';
   let userBestPlace = 0;
   let scoreTable = {};
-  let scoreTableContainerInstance;
   let gameCount = 0;
-  let currentScore = 0;
   let bestScore = 0;
 
   const { random, floor, round, min, max, sin } = Math;
@@ -64,7 +62,7 @@ function startGame() {
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
   const MAX_POSITIVE_VEL = -JUMP_VELOCITY;
   const GROUND_PERCENT = 0.5;
-  const ROAD_WIDTH_PERCENT = 1.2;
+  const ROAD_WIDTH_PERCENT = 1.5;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -96,11 +94,9 @@ function startGame() {
   const COLLECTABLE_DIMENSION = 16;
   const ENVELOPE_TIME = 5;
   const ENVELOPE_DELAY = 100;
-  const GAME_OVER_FUNDING_TEXT = 'No energy';
-  const GAME_OVER_TIME_TEXT = 'Time out';
   const ROAD_SPRITE_SPAWN_X = width / 4;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 90;
+  const START_TIME = 180;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SHADOW_COLOR = '#EEE';
@@ -124,8 +120,6 @@ function startGame() {
 
   let dx = 0;
   let ddx = 0;
-  let gameOverText = '';
-  let ballotText = '';
   let instructionsAlpha = 1.0;
   let restartTimeout = null;
   let gameOverElectionDaySong = null;
@@ -135,7 +129,7 @@ function startGame() {
     funding: START_FUNDING,
     visibleFunding: START_FUNDING,
     timeLeft: START_TIME,
-    ballots: 0,
+    currentScore: 0,
     countdownBeepsPlayed: [],
     gameOver: false,
     readyToRestart: false,
@@ -146,6 +140,8 @@ function startGame() {
     lastFlashedAt: null,
     lastTimeDecrementedAt: null,
     lastFlashedInstructionsAt: null,
+    rulesShow: false,
+    rulesHide: false,
   };
 
   const OVLERLAP_MAP = {
@@ -213,13 +209,14 @@ function startGame() {
   const sideLineWidth = 1;
 
   let maxWhiteLineWidth = width * maxWhiteLineWidthPercent;
-  let skyHeight = height * (1.0 - GROUND_PERCENT);
+  let skyHeight = 400;
+  console.log(skyHeight);
   let groundHeight = floor(height * GROUND_PERCENT);
   let roadStartX = (width - width * ROAD_WIDTH_PERCENT) / 2;
   let realTime = null;
   let gameTime = 0;
   let gameTimeAbsolute = 0;
-
+  let newHighScoreReached = false;
   const curveOffsets = [];
   const cameraY = 30;
   const zMap = [];
@@ -535,8 +532,10 @@ function startGame() {
     spriteIncrease = SIDE_SPRITE_INCREASE * graceMultiplier;
 
     if (gameVars.started) {
+      initGame(t);
     } else {
       runTitleScreen(t);
+      gameVars.rulesShow = true;
     }
 
     if (!instructionsFlashedRecently()) {
@@ -552,20 +551,23 @@ function startGame() {
 
   function runTitleScreen(t) {
     boundUpdateTitleScreen(t);
-    setTimeout(() => {
-      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-      document.getElementById('background_intro').style.opacity = 0;
-      if (gameCount === 0) {
-        document.getElementById('background_blur').style.display = 'block';
-        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-      }
 
-      showRulesOrRegistration();
+    if (!gameVars.rulesShow) {
       setTimeout(() => {
-        document.getElementById('background_intro').style.display = 'none';
-        // createHandlers(t);
-      }, 2000);
-    }, 500); //intro speed
+        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+        document.getElementById('background_intro').style.opacity = 0;
+        if (gameCount === 0) {
+          document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+        }
+
+        showRulesOrRegistration();
+        setTimeout(() => {
+          document.getElementById('background_intro').style.display = 'none';
+          createHandlers(t);
+        }, 2000);
+      }, 500); //intro speed
+    }
     drawTitleScreen();
   }
 
@@ -649,16 +651,56 @@ function startGame() {
 
   function createHandlers(t) {
     const start = document.getElementById('control-button');
-    start.addEventListener('click', initGame(t));
+    start.addEventListener('click', function () {
+      removeRules(t);
+    });
 
     if (showCompetitiveRegistration) {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
-      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules());
+      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
       const competitionRestart = document.getElementById('boomio-competition-play-again');
-      competitionRestart.addEventListener('click', restartGame());
+      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }
   }
+
+  const clickEventHandlerResetGame = () => {
+    const competitionRestart = document.getElementById('boomio-competition-play-again');
+    competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+    setTimeout(() => {
+      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+    }, 2000);
+
+    const controlButton = document.querySelector('.control-button1');
+    const competitionTableContainer = document.querySelector('.competition-table-container');
+
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      competitionTableContainer.style.height = '10px';
+      competitionTableContainer.style.top = 'calc(50% + 330px)';
+      competitionTableContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      competitionTableContainer.style.display = 'none';
+    }, 1000);
+
+    setTimeout(() => {
+      if (showCompetitiveRegistration) {
+        boomioService
+          .signal('ROUND_STARTED', 'signal')
+          .then((response) => {
+            document.getElementById('background_blur').style.display = 'none';
+            const canvas = document.getElementById('boomio-newGame-canvas');
+            canvas.style.transition = 'filter 1s ease';
+            canvas.style.filter = 'none';
+            restartGame();
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    }, 400);
+  };
 
   function showRulesOrRegistration() {
     if (showCompetitiveRegistration) {
@@ -709,7 +751,7 @@ function startGame() {
   }
 
   function initGame(t) {
-    removeRules();
+    console.log('init');
     // setTimeout(() => {
     //   if (showCompetitiveRegistration) {
     //     boomioService
@@ -724,7 +766,7 @@ function startGame() {
     runGame(t);
   }
 
-  function removeRules() {
+  function removeRules(t) {
     const inputContainer = document.querySelector('.input-container');
     const controlButton = document.querySelector('.control-button');
 
@@ -743,6 +785,15 @@ function startGame() {
       const controlButton = document.querySelector('.control-button');
       controlButton.style.display = 'none';
     }
+
+    setTimeout(() => {
+      document.getElementById('background_blur').style.display = 'none';
+      const canvas = document.getElementById('boomio-newGame-canvas');
+      canvas.style.transition = 'filter 1s ease';
+      canvas.style.filter = 'none';
+    }, 400);
+    gameVars.rulesHide = true;
+    initGame(t);
   }
 
   function updateTitleScreen() {
@@ -782,28 +833,30 @@ function startGame() {
       ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
     });
 
-    drawText(canvas, 'Collect Points', 100, UI_PADDING, FONT_SIZE);
+    if (gameVars.rulesHide) {
+      drawText(canvas, 'Collect Points', 100, UI_PADDING, FONT_SIZE);
 
-    drawText(
-      canvas,
-      'TAP OR PRESS KEY',
-      100,
-      UI_PADDING * 40,
-      FONT_SIZE,
-      BLACK,
-      SHADOW_COLOR,
-      instructionsAlpha,
-    );
-    drawText(
-      canvas,
-      'TO PLAY',
-      100,
-      UI_PADDING * 40 + SECOND_ROW_Y,
-      FONT_SIZE,
-      BLACK,
-      SHADOW_COLOR,
-      instructionsAlpha,
-    );
+      drawText(
+        canvas,
+        'TAP OR PRESS KEY',
+        100,
+        UI_PADDING * 40,
+        FONT_SIZE,
+        BLACK,
+        SHADOW_COLOR,
+        instructionsAlpha,
+      );
+      drawText(
+        canvas,
+        'TO PLAY',
+        150,
+        UI_PADDING * 40 + SECOND_ROW_Y,
+        FONT_SIZE,
+        BLACK,
+        SHADOW_COLOR,
+        instructionsAlpha,
+      );
+    }
   }
 
   function drawInstructions() {
@@ -842,6 +895,7 @@ function startGame() {
   }
 
   function restartGame() {
+    console.log('restart');
     gameCount++;
     playElectionDay();
     // Stop playing the song from the previous game over
@@ -855,7 +909,7 @@ function startGame() {
       funding: START_FUNDING,
       visibleFunding: START_FUNDING,
       timeLeft: START_TIME,
-      ballots: 0,
+      currentScore: 0,
       gameOver: false,
       playedGameOverSound: false,
       readyToRestart: false,
@@ -893,7 +947,7 @@ function startGame() {
     const { timeLeft } = gameVars;
 
     if (gameVars.gameOver) {
-      if (gameVars.readyToRestart && isButtonPressed()) restartGame();
+      // if (gameVars.readyToRestart && isButtonPressed()) restartGame();
     } else {
       handlePlayerInput(turningSpeed);
       advanceRoadSprites(roadSprites);
@@ -1076,43 +1130,10 @@ function startGame() {
     player.alpha = 1;
     unsetShake();
     quietAllEngines();
-
-    const textOffset = getGameOverTextOffset();
-
-    drawText(canvas, gameOverText, 2 * UI_PADDING + textOffset, UI_PADDING, FONT_SIZE);
-    drawText(canvas, ballotText, 2 * UI_PADDING + textOffset, 2 * SECOND_ROW_Y, FONT_SIZE);
-
-    if (gameVars.readyToRestart) {
-      const tapText = 'TAP OR PRESS KEY';
-      drawText(
-        canvas,
-        tapText,
-        8 * UI_PADDING + textOffset,
-        UI_PADDING * 40,
-        FONT_SIZE,
-        BLACK,
-        SHADOW_COLOR,
-        instructionsAlpha,
-      );
-
-      const playAgainText = 'TO PLAY AGAIN';
-      drawText(
-        canvas,
-        playAgainText,
-        12 * UI_PADDING + textOffset,
-        UI_PADDING * 40 + SECOND_ROW_Y,
-        FONT_SIZE,
-        BLACK,
-        SHADOW_COLOR,
-        instructionsAlpha,
-      );
-    }
   }
 
   function gameOverFundingZero() {
     configureGameOver();
-    gameOverText = GAME_OVER_FUNDING_TEXT;
-    ballotText = ` TRY AGAIN PLEASE!`;
     if (!gameVars.playedGameOverSound) {
       playNoFunds();
       gameVars.playedGameOverSound = true;
@@ -1121,8 +1142,6 @@ function startGame() {
 
   function gameOverTimeZero() {
     configureGameOver();
-    gameOverText = GAME_OVER_TIME_TEXT;
-    ballotText = `YOU GOT ${gameVars.ballots} BALLOTS!`;
     if (!gameVars.playedGameOverSound) {
       gameOverElectionDaySong = playElectionDay();
       gameVars.playedGameOverSound = true;
@@ -1134,6 +1153,65 @@ function startGame() {
     if (!gameVars.gameOverAt) gameVars.gameOverAt = gameTime;
     if (!restartTimeout) {
       restartTimeout = window.setTimeout(() => {
+        setTimeout(
+          () => {
+            if (showCompetitiveRegistration) {
+              boomioService
+                .signal('ROUND_FINISHED', 'signal', {
+                  score: gameVars.currentScore,
+                })
+                .then((response) => {
+                  userBestPlace = response.user_best_place;
+
+                  scoreTable = response;
+
+                  scoreTableContainerInstance.updateProps(customer, scoreTable);
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
+            }
+            if (showCompetitiveRegistration) {
+              const competitionTableContainer = document.querySelector(
+                '.competition-table-container',
+              );
+              const canvas = document.getElementById('boomio-newGame-canvas');
+              canvas.style.transition = 'filter 0.6s ease';
+              canvas.style.filter = 'blur(2px)';
+              document.getElementById('background_blur').style.display = 'block';
+              competitionTableContainer.style.transition =
+                'height 1s ease, top 1s ease, opacity 1s ease';
+              competitionTableContainer.style.display = 'block';
+              setTimeout(() => {
+                competitionTableContainer.style.height = '680px';
+                competitionTableContainer.style.top = 'calc(50%)';
+                competitionTableContainer.style.opacity = 1;
+              }, 100);
+            } else {
+              const inputContainer = document.querySelector('.input-container1');
+              const canvas = document.getElementById('boomio-newGame-canvas');
+              canvas.style.transition = 'filter 0.6s ease';
+              canvas.style.filter = 'blur(2px)';
+              document.getElementById('background_blur').style.display = 'block';
+              inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+              inputContainer.style.display = 'block';
+              setTimeout(() => {
+                inputContainer.style.height = '332px';
+                inputContainer.style.top = 'calc(50% + 170px)';
+                inputContainer.style.opacity = 1;
+              }, 100);
+            }
+            const currectScoreDiv = document.getElementsByClassName(
+              'boomio-score-input-container',
+            )[0];
+            currectScoreDiv.style.opacity = 0;
+            setTimeout(() => {
+              currectScoreDiv.style.display = 'none';
+            }, 300);
+          },
+
+          newHighScoreReached ? 2500 : 100,
+        );
         gameVars.readyToRestart = true;
       }, RESTART_TIMEOUT_TIME);
     }
@@ -1244,7 +1322,22 @@ function startGame() {
         envelope.pos.x = spriteOffset(sprite);
       }, ENVELOPE_DELAY * i);
     });
-    gameVars.ballots += min(MAILBOX_HIT_AMOUNT, 999);
+    gameVars.currentScore += min(MAILBOX_HIT_AMOUNT, 999);
+
+    if (gameVars.currentScore > 1) {
+      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      currectScoreDiv.style.transition = 'opacity 0.8s ease';
+      currectScoreDiv.style.display = 'block';
+      currectScoreDiv.style.opacity = 1;
+    }
+
+    if (bestScore < gameVars.currentScore) {
+      newHighScoreReached = true;
+    }
+    console.log(gameVars.currentScore);
+
+    console.log(bestScore);
+    bestScore = Math.max(bestScore, gameVars.currentScore);
   }
 
   function isLucky(percentChance) {
@@ -1393,7 +1486,6 @@ function startGame() {
       horizonI - BIG_SPRITE_DIMENSIONS,
       BIG_SPRITE_DIMENSIONS,
     );
-
     drawImage(
       city2,
       ZERO_POS,
@@ -1415,7 +1507,7 @@ function startGame() {
     const introOffset = getIntroOffset();
     drawText(
       canvas,
-      `${pad(gameVars.ballots)} Points`,
+      `${pad(gameVars.currentScore)} Points`,
       UI_PADDING,
       UI_PADDING + introOffset,
       FONT_SIZE,
@@ -1879,9 +1971,7 @@ function startGame() {
     player.pos.x = pointerState.playerX + diff;
   }
 
-  // window.addEventListener('resize', resize);
   load();
-  // window.addEventListener('load', load);
 
   function addFavicon() {
     const link = document.createElement('link');

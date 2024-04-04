@@ -128,7 +128,6 @@ class DoodleWidget {
   createHandlers = () => {
     const restart = document.getElementById('startButtonClick1');
     restart.addEventListener('click', this.resetGame);
-
     const start = document.getElementById('control-button');
     start.addEventListener('click', this.initGame);
 
@@ -196,6 +195,8 @@ class DoodleWidget {
   };
 
   initGame = () => {
+    console.log('start');
+
     this.removeRules();
     if (!this.tutorial || !this.isMobile) {
       setTimeout(() => {
