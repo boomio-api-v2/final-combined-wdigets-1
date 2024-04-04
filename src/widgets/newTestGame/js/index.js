@@ -62,7 +62,7 @@ function startGame(scoreTableContainerInstance) {
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
   const MAX_POSITIVE_VEL = -JUMP_VELOCITY;
   const GROUND_PERCENT = 0.5;
-  const ROAD_WIDTH_PERCENT = 1.3;
+  const ROAD_WIDTH_PERCENT = 1.2;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -198,7 +198,7 @@ function startGame(scoreTableContainerInstance) {
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
 
-  const sky = '#6c82a6';
+  const sky = '#F9F1DD';
   const grass1 = '#37946e';
   const grass2 = '#306b40';
   const GOOD_FUNDING_COLOR = grass2;
@@ -624,6 +624,7 @@ function startGame(scoreTableContainerInstance) {
                 setTimeout(() => {
                   const canvas = document.getElementById('boomio-newGame-canvas');
                   document.getElementById('background_blur').style.opacity = 0.37;
+                  document.getElementById('background_blur').style.zIndex = 3;
                   canvas.style.transition = 'filter 0.6s ease';
                   canvas.style.filter = 'blur(2px)';
                   const inputContainer = document.querySelector('.input-container');
@@ -847,7 +848,7 @@ function startGame(scoreTableContainerInstance) {
       drawText(
         canvas,
         'TO PLAY',
-        150,
+        180,
         UI_PADDING * 40 + SECOND_ROW_Y,
         FONT_SIZE,
         BLACK,

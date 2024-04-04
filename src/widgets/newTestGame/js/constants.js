@@ -3,7 +3,7 @@ export const brickWallImageData = [
 ];
 
 export const carImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/mailtruck-sheet-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/bike.png',
 ];
 
 export const goldImageData = [
@@ -15,31 +15,31 @@ export const mailboxImageData = [
 ];
 
 export const wh1ImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/whitehouse1-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/gym1.png',
 ];
 
 export const wh2ImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/whitehouse2-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/gym2.png',
 ];
 
 export const wh3ImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/whitehouse3-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/gym3.png',
 ];
 
 export const city1ImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/city1-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/gym1.png',
 ];
 
 export const city2ImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/city2-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/gym2.png',
 ];
 
 export const city3ImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/city3-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/gym3.png',
 ];
 
 export const envelopeImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/envelope2.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/lemon.png',
 ];
 
 export const cloudsImageData = [
