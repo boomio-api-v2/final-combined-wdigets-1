@@ -47,7 +47,7 @@ export const cloudsImageData = [
 ];
 
 export const treeImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/assets/tree.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/tree.png?raw=true',
 ];
 
 export const intro =
