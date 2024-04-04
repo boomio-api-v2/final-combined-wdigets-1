@@ -1,5 +1,5 @@
 export const brickWallImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/brick-wall.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/sign.png',
 ];
 
 export const carImageData = [
@@ -11,7 +11,7 @@ export const goldImageData = [
 ];
 
 export const mailboxImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/mailbox-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/lemon.png',
 ];
 
 export const wh1ImageData = [
