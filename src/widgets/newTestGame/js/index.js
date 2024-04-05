@@ -58,7 +58,8 @@ function startGame(scoreTableContainerInstance) {
   canvas.height = height;
   canvas.width = width;
   const SPRITE_DIMENSIONS = 32;
-  const BIG_SPRITE_DIMENSIONS = 128;
+  const BIG_SPRITE_DIMENSIONS = 64;
+  const HOUSE_BIG_SPRITE_DIMENSIONS = 128;
   const JUMP_VELOCITY = -10;
   const GRAVITY = 0.3;
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
@@ -1469,20 +1470,26 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawWhiteHouse() {
-    drawImage(wh1, ZERO_POS, whStartPos, horizonI - BIG_SPRITE_DIMENSIONS, BIG_SPRITE_DIMENSIONS);
+    drawImage(
+      wh1,
+      ZERO_POS,
+      whStartPos,
+      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      HOUSE_BIG_SPRITE_DIMENSIONS,
+    );
     drawImage(
       wh2,
       ZERO_POS,
-      whStartPos + BIG_SPRITE_DIMENSIONS,
-      horizonI - BIG_SPRITE_DIMENSIONS,
-      BIG_SPRITE_DIMENSIONS,
+      whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
+      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       wh3,
       ZERO_POS,
-      whStartPos + 2 * BIG_SPRITE_DIMENSIONS,
-      horizonI - BIG_SPRITE_DIMENSIONS,
-      BIG_SPRITE_DIMENSIONS,
+      whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
+      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      HOUSE_BIG_SPRITE_DIMENSIONS,
     );
   }
 
@@ -1493,22 +1500,22 @@ function startGame(scoreTableContainerInstance) {
       city1,
       ZERO_POS,
       whOffset + whStartPos,
-      horizonI - BIG_SPRITE_DIMENSIONS,
-      BIG_SPRITE_DIMENSIONS,
+      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city2,
       ZERO_POS,
-      whOffset + whStartPos + BIG_SPRITE_DIMENSIONS,
-      horizonI - BIG_SPRITE_DIMENSIONS,
-      BIG_SPRITE_DIMENSIONS,
+      whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
+      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city3,
       ZERO_POS,
-      whOffset + whStartPos + 2 * BIG_SPRITE_DIMENSIONS,
-      horizonI - BIG_SPRITE_DIMENSIONS,
-      BIG_SPRITE_DIMENSIONS,
+      whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
+      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      HOUSE_BIG_SPRITE_DIMENSIONS,
     );
   }
 
