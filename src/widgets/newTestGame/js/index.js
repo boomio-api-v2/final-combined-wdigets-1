@@ -65,8 +65,9 @@ function startGame(scoreTableContainerInstance) {
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
   const MAX_POSITIVE_VEL = -JUMP_VELOCITY;
   const GROUND_PERCENT = 0.5;
-  const ROAD_WIDTH_PERCENT = 1.2;
+  const ROAD_WIDTH_PERCENT = 1;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
+  const HOUSE_ZERO_POS = { x: -60, y: 0, z: 0 };
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
   const WALL_PARTICLES = 55;
@@ -97,7 +98,7 @@ function startGame(scoreTableContainerInstance) {
   const COLLECTABLE_DIMENSION = 16;
   const ENVELOPE_TIME = 5;
   const ENVELOPE_DELAY = 100;
-  const ROAD_SPRITE_SPAWN_X = width / 4;
+  const ROAD_SPRITE_SPAWN_X = width / 3;
   const RESTART_TIMEOUT_TIME = 1000;
   const START_TIME = 180;
   const START_FUNDING = 100;
@@ -108,9 +109,9 @@ function startGame(scoreTableContainerInstance) {
   const MAILBOX_CHANCE_SPAWN = 0.02;
   const MAILBOX_TIME_OFFSCREEN = 1;
   const INITIAL_WALLS = 2;
-  const INTRO_TIME = 2;
+  const INTRO_TIME = 3;
   const GAME_START_DELAY = 18;
-  const CURVE_AMPLITUDE = 0.003;
+  const CURVE_AMPLITUDE = 0.001;
   const CURVE_FREQUENCY = 10;
   const NUM_TREES = 30;
   const TREE_CHANCE_SPAWN = 0.05;
@@ -1110,7 +1111,7 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function curveOffsetForSprite(sprite) {
-    let i = floor(sprite.i + sprite.dimensions * scaleForI(sprite.i));
+    let i = floor(sprite.i + sprite.dimensions);
     i = clamp(i, height - 1, skyHeight + 1);
 
     let curveOffset = curveOffsets[i - skyHeight];
@@ -1120,7 +1121,6 @@ function startGame(scoreTableContainerInstance) {
   function spriteOffset(sprite) {
     const roadWidth = roadWidths[sprite.i];
     let curveOffset = curveOffsetForSprite(sprite);
-
     return (
       roadWidth.x1 + (roadWidth.x2 - roadWidth.x1) * sprite.roadPercent - player.pos.x + curveOffset
     );
@@ -1472,21 +1472,22 @@ function startGame(scoreTableContainerInstance) {
   function drawWhiteHouse() {
     drawImage(
       wh1,
-      ZERO_POS,
+      HOUSE_ZERO_POS,
       whStartPos,
       horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
+
     drawImage(
       wh2,
-      ZERO_POS,
+      HOUSE_ZERO_POS,
       whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
       horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       wh3,
-      ZERO_POS,
+      HOUSE_ZERO_POS,
       whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
       horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
       HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1495,24 +1496,23 @@ function startGame(scoreTableContainerInstance) {
 
   function drawCity() {
     const whOffset = xCenter - xOffset;
-    console.log; // + curveOffsets[1];
     drawImage(
       city1,
-      ZERO_POS,
+      HOUSE_ZERO_POS,
       whOffset + whStartPos,
       horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city2,
-      ZERO_POS,
+      HOUSE_ZERO_POS,
       whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
       horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city3,
-      ZERO_POS,
+      HOUSE_ZERO_POS,
       whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
       horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
       HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1657,6 +1657,7 @@ function startGame(scoreTableContainerInstance) {
     const t = clamp((gameTime - activatedAt) / ENVELOPE_TIME, 0, 1);
     const x2 = lerp(x, 0, t);
     const y2 = lerp(y, yEndPosition, t);
+
     return { x: x2, y: y2 };
   }
 
@@ -1699,7 +1700,6 @@ function startGame(scoreTableContainerInstance) {
       .filter((sprite) => sprite.active)
       .forEach((gold) => {
         const { x, y } = getCollectablePosition(gold, SECOND_ROW_Y);
-
         if (y === SECOND_ROW_Y) {
           gold.active = false;
           return;
@@ -1709,7 +1709,22 @@ function startGame(scoreTableContainerInstance) {
       });
   }
 
-  // Copy pasted from drawRoadSprite :grimace:
+  function drawEnvelopes() {
+    envelopes
+      .filter((sprite) => sprite.active)
+      .forEach((envelope) => {
+        const { x, y } = getCollectablePosition(envelope, SECOND_ROW_Y);
+
+        if (y === SECOND_ROW_Y) {
+          envelope.active = false;
+          return;
+        }
+
+        const image = new Image();
+        ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
+      });
+  }
+
   function drawTrees() {
     if (gameVars.timeLeft >= START_TIME) return;
     advanceRoadSprites(trees);
@@ -1767,22 +1782,6 @@ function startGame(scoreTableContainerInstance) {
       });
   }
 
-  function drawEnvelopes() {
-    envelopes
-      .filter((sprite) => sprite.active)
-      .forEach((envelope) => {
-        const { x, y } = getCollectablePosition(envelope, SECOND_ROW_Y);
-
-        if (y === SECOND_ROW_Y) {
-          envelope.active = false;
-          return;
-        }
-
-        const image = new Image();
-        ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
-      });
-  }
-
   function drawImage(
     image,
     pos,
@@ -1825,7 +1824,7 @@ function startGame(scoreTableContainerInstance) {
         round(dimensions * scale),
       );
     }
-
+    console.log();
     ctx.globalAlpha = oldAlpha;
   }
 
@@ -1835,7 +1834,6 @@ function startGame(scoreTableContainerInstance) {
 
     const image = new Image();
     image.src = imageData;
-    addFavicon();
     rightMailboxes.forEach((mb) => (mb.image = image));
     buildUpRoadSprites();
   }
@@ -1986,14 +1984,6 @@ function startGame(scoreTableContainerInstance) {
   }
 
   load();
-
-  function addFavicon() {
-    const link = document.createElement('link');
-    link.type = "image/png'";
-    link.rel = 'icon';
-    link.href = envelopeImageData;
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
 
   async function flipImage(imageData) {
     const imgCanvas = document.createElement('canvas');
