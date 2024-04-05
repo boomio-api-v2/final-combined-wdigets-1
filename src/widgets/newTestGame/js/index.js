@@ -30,6 +30,8 @@ import {
   envelopeImageData,
   cloudsImageData,
   treeImageData,
+  checkIcon,
+  uncheckIcon,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -56,7 +58,7 @@ function startGame(scoreTableContainerInstance) {
   canvas.height = height;
   canvas.width = width;
   const SPRITE_DIMENSIONS = 32;
-  const BIG_SPRITE_DIMENSIONS = 64;
+  const BIG_SPRITE_DIMENSIONS = 128;
   const JUMP_VELOCITY = -10;
   const GRAVITY = 0.3;
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
@@ -209,7 +211,7 @@ function startGame(scoreTableContainerInstance) {
   const sideLineWidth = 1;
 
   let maxWhiteLineWidth = width * maxWhiteLineWidthPercent;
-  let skyHeight = 400;
+  let skyHeight = height * (1.0 - GROUND_PERCENT);
   let groundHeight = floor(height * GROUND_PERCENT);
   let roadStartX = (width - width * ROAD_WIDTH_PERCENT) / 2;
   let realTime = null;
@@ -1275,22 +1277,22 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function handleWallOverlap(sprite) {
-    // if (inGracePeriod()) return;
-    // const halfWidth = player.dimensions / 3;
-    // gameVars.lastHitAt = gameTime;
-    // gameVars.funding = max(gameVars.funding - FUNDING_HIT_AMOUNT, 0);
-    // setShake();
-    // playHitWall();
-    // const inactive = wallParts.filter((part) => part.active !== true);
-    // const toActivate = wallParts.slice(Math.max(inactive.length - WALL_PARTICLES, 0));
-    // toActivate.forEach((part, i) => {
-    //   setTimeout(() => {
-    //     part.active = true;
-    //     part.activatedAt = gameTime;
-    //     part.pos.y = playerI + randomFloatBetween(-halfWidth, halfWidth);
-    //     part.pos.x = spriteOffset(sprite) + randomFloatBetween(-halfWidth, halfWidth);
-    //   }, WALL_PARTICLE_DELAY * i);
-    // });
+    if (inGracePeriod()) return;
+    const halfWidth = player.dimensions / 3;
+    gameVars.lastHitAt = gameTime;
+    gameVars.currentScore -= min(FUNDING_HIT_AMOUNT, 999);
+    setShake();
+    playHitWall();
+    const inactive = wallParts.filter((part) => part.active !== true);
+    const toActivate = wallParts.slice(Math.max(inactive.length - WALL_PARTICLES, 0));
+    toActivate.forEach((part, i) => {
+      setTimeout(() => {
+        part.active = true;
+        part.activatedAt = gameTime;
+        part.pos.y = playerI + randomFloatBetween(-halfWidth, halfWidth);
+        part.pos.x = spriteOffset(sprite) + randomFloatBetween(-halfWidth, halfWidth);
+      }, WALL_PARTICLE_DELAY * i);
+    });
   }
 
   function handleGoldOverlap(sprite) {
@@ -1485,7 +1487,8 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawCity() {
-    const whOffset = xCenter - xOffset; // + curveOffsets[1];
+    const whOffset = xCenter - xOffset;
+    console.log; // + curveOffsets[1];
     drawImage(
       city1,
       ZERO_POS,
@@ -1761,18 +1764,15 @@ function startGame(scoreTableContainerInstance) {
     envelopes
       .filter((sprite) => sprite.active)
       .forEach((envelope) => {
-        const { x, y } = getCollectablePosition(envelope);
+        const { x, y } = getCollectablePosition(envelope, SECOND_ROW_Y);
 
-        if (y === 0) {
+        if (y === SECOND_ROW_Y) {
           envelope.active = false;
           return;
         }
 
         const image = new Image();
-        image.onload = () => {
-          ctx.drawImage(image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
-        };
-        image.src = envelope.image.src;
+        ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
       });
   }
 
