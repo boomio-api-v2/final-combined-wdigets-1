@@ -82,7 +82,7 @@ function startGame(scoreTableContainerInstance) {
   const FLASH_TIME = 0.25;
   const ANIMATION_TIME = 0.25;
   const INSTRUCTIONS_FLASH_TIME = 5;
-  const FUNDING_HIT_AMOUNT = 20;
+  const FUNDING_HIT_AMOUNT = 10;
   const MAILBOX_HIT_AMOUNT = 5;
   const GOLD_HIT_AMOUNT = 5;
   const PLAYER_EDGE = width / 2;
@@ -199,13 +199,13 @@ function startGame(scoreTableContainerInstance) {
   // resize();
 
   const sky = '#F9F1DD';
-  const grass1 = '#37946e';
-  const grass2 = '#306b40';
+  const grass1 = '#F9F1DD';
+  const grass2 = '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR = '#852217';
-  const road1 = '#8c8e91';
-  const road2 = '#e2ebda';
-  const maxWhiteLineWidthPercent = 0.009;
+  const road1 = '#F9F1DD';
+  const road2 = 'black';
+  const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
 
   let maxWhiteLineWidth = width * maxWhiteLineWidthPercent;
@@ -1275,26 +1275,25 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function handleWallOverlap(sprite) {
-    if (inGracePeriod()) return;
-    const halfWidth = player.dimensions / 3;
-    gameVars.lastHitAt = gameTime;
-    gameVars.funding = max(gameVars.funding - FUNDING_HIT_AMOUNT, 0);
-    setShake();
-    playHitWall();
-    const inactive = wallParts.filter((part) => part.active !== true);
-    const toActivate = wallParts.slice(Math.max(inactive.length - WALL_PARTICLES, 0));
-    toActivate.forEach((part, i) => {
-      setTimeout(() => {
-        part.active = true;
-        part.activatedAt = gameTime;
-        part.pos.y = playerI + randomFloatBetween(-halfWidth, halfWidth);
-        part.pos.x = spriteOffset(sprite) + randomFloatBetween(-halfWidth, halfWidth);
-      }, WALL_PARTICLE_DELAY * i);
-    });
+    // if (inGracePeriod()) return;
+    // const halfWidth = player.dimensions / 3;
+    // gameVars.lastHitAt = gameTime;
+    // gameVars.funding = max(gameVars.funding - FUNDING_HIT_AMOUNT, 0);
+    // setShake();
+    // playHitWall();
+    // const inactive = wallParts.filter((part) => part.active !== true);
+    // const toActivate = wallParts.slice(Math.max(inactive.length - WALL_PARTICLES, 0));
+    // toActivate.forEach((part, i) => {
+    //   setTimeout(() => {
+    //     part.active = true;
+    //     part.activatedAt = gameTime;
+    //     part.pos.y = playerI + randomFloatBetween(-halfWidth, halfWidth);
+    //     part.pos.x = spriteOffset(sprite) + randomFloatBetween(-halfWidth, halfWidth);
+    //   }, WALL_PARTICLE_DELAY * i);
+    // });
   }
 
   function handleGoldOverlap(sprite) {
-    gameVars.funding = min(gameVars.funding + GOLD_HIT_AMOUNT, START_FUNDING);
     playHitGold();
     const inactive = golds2.filter((gold) => gold.active !== true);
     const toActivate = golds2.slice(Math.max(inactive.length - GOLD_HIT_AMOUNT, 0));
@@ -1306,6 +1305,19 @@ function startGame(scoreTableContainerInstance) {
         gold.pos.x = spriteOffset(sprite);
       }, ENVELOPE_DELAY * i);
     });
+    gameVars.currentScore += min(FUNDING_HIT_AMOUNT, 999);
+
+    if (gameVars.currentScore > 1) {
+      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      currectScoreDiv.style.transition = 'opacity 0.8s ease';
+      currectScoreDiv.style.display = 'block';
+      currectScoreDiv.style.opacity = 1;
+    }
+
+    if (bestScore < gameVars.currentScore) {
+      newHighScoreReached = true;
+    }
+    bestScore = Math.max(bestScore, gameVars.currentScore);
   }
 
   function handleMailboxOverlap(sprite) {
@@ -1574,9 +1586,9 @@ function startGame(scoreTableContainerInstance) {
       );
     }
 
-    const width = floor((MAX_FUNDING_BAR * gameVars.visibleFunding) / 100);
-    ctx.fillRect(UI_PADDING, SECOND_ROW_Y + introOffset, width, FONT_SIZE + 1);
-    drawText(canvas, 'POWER', UI_PADDING, SECOND_ROW_Y + introOffset, FONT_SIZE);
+    // const width = floor((MAX_FUNDING_BAR * gameVars.visibleFunding) / 100);
+    // ctx.fillRect(UI_PADDING, SECOND_ROW_Y + introOffset, width, FONT_SIZE + 1);
+    // drawText(canvas, 'POWER', UI_PADDING, SECOND_ROW_Y + introOffset, FONT_SIZE);
   }
 
   function getWallParticlePosition(particle) {

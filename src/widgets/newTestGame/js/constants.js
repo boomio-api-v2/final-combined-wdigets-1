@@ -7,7 +7,7 @@ export const carImageData = [
 ];
 
 export const goldImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/gold.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/cone.png',
 ];
 
 export const mailboxImageData = [
@@ -43,7 +43,7 @@ export const envelopeImageData = [
 ];
 
 export const cloudsImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/01df138d4bffb5a382b993efa8767cc5a1215940/images/assets/clouds-big.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/cloud.png?raw=true',
 ];
 
 export const treeImageData = [
