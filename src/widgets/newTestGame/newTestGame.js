@@ -1,6 +1,6 @@
 import { localStorageService, widgetHtmlService } from '@/services';
 import startGame from './js/index.js';
-import { intro } from './js/constants';
+import { intro, tapImageBarbora } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -33,6 +33,12 @@ class NewGame {
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
 
+    <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
+    ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+        <div>BAKST</div>
+        <div>BAKST</div>
+      </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`}
+      </div>
     <div class="boomio-score-input-container" style="display:none;width:188px;height">
     <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
   <img src='' alt="" style="width: 100%; height: 100%;"></img>

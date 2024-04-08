@@ -52,7 +52,7 @@ function startGame(scoreTableContainerInstance) {
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
   const MAX_POSITIVE_VEL = -JUMP_VELOCITY;
   const GROUND_PERCENT = 0.5;
-  const ROAD_WIDTH_PERCENT = 1.1;
+  const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const HOUSE_ZERO_POS = { x: -60, y: 0, z: 0 };
   const UI_PADDING = 4;
@@ -87,7 +87,7 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 2;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 180;
+  const START_TIME = 90;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SHADOW_COLOR = '#EEE';
@@ -108,6 +108,7 @@ function startGame(scoreTableContainerInstance) {
   const VISIBILE_FUNDING_INCREASE = 0.5;
   const WARNING_FUNDING_LIMIT = 50;
   const TERRIBLE_FUNDING_LIMIT = 25;
+  let startHandler = true;
 
   let dx = 0;
   let ddx = 0;
@@ -549,11 +550,9 @@ function startGame(scoreTableContainerInstance) {
       setTimeout(() => {
         document.getElementById('background_intro').style.transition = 'opacity 1s ease';
         document.getElementById('background_intro').style.opacity = 0;
-        if (gameCount === 0) {
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-        }
 
+        document.getElementById('background_blur').style.display = 'block';
+        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
         showRulesOrRegistration();
         setTimeout(() => {
           document.getElementById('background_intro').style.display = 'none';
@@ -684,6 +683,8 @@ function startGame(scoreTableContainerInstance) {
           .signal('ROUND_STARTED', 'signal')
           .then((response) => {
             document.getElementById('background_blur').style.display = 'none';
+            console.log('block1234');
+
             const canvas = document.getElementById('boomio-newGame-canvas');
             canvas.style.transition = 'filter 1s ease';
             canvas.style.filter = 'none';
@@ -780,7 +781,6 @@ function startGame(scoreTableContainerInstance) {
     }
 
     setTimeout(() => {
-      document.getElementById('background_blur').style.display = 'none';
       const canvas = document.getElementById('boomio-newGame-canvas');
       canvas.style.transition = 'filter 1s ease';
       canvas.style.filter = 'none';
@@ -824,40 +824,19 @@ function startGame(scoreTableContainerInstance) {
     });
 
     if (gameVars.rulesHide) {
-      drawText(
-        canvas,
-        'TAP OR PRESS KEY',
-        100,
-        UI_PADDING * 40,
-        FONT_SIZE,
-        BLACK,
-        SHADOW_COLOR,
-        instructionsAlpha,
-      );
-      drawText(
-        canvas,
-        'TO PLAY',
-        180,
-        UI_PADDING * 40 + SECOND_ROW_Y,
-        FONT_SIZE,
-        BLACK,
-        SHADOW_COLOR,
-        instructionsAlpha,
-      );
+      if (gameCount === 0) {
+        const tutorial = document.querySelector('.tutorial');
+        tutorial.style.display = 'block';
+        document.getElementById('background_blur').style.display = 'block';
+      }
     }
   }
 
   function drawInstructions() {
-    const yOffset = 50;
-    const yOffset2 = 70;
-    const instructionsOffset = getInstructionsOffset();
-    drawText(
-      canvas,
-      'COLLECT POINTS',
-      UI_PADDING + 10 * UI_PADDING + instructionsOffset,
-      UI_PADDING + yOffset,
-      FONT_SIZE,
-    );
+    const tutorial = document.querySelector('.tutorial');
+    tutorial.style.display = 'none';
+    console.log('b');
+    document.getElementById('background_blur').style.display = 'none';
   }
 
   function advanceRoadSprites(sprites) {
@@ -866,7 +845,7 @@ function startGame(scoreTableContainerInstance) {
       const increase = spriteIncrease;
       sprite.iCoord = clamp(
         sprite.iCoord + increase,
-        skyHeight - sprite.dimensions * scaleForI(skyHeight) - SPRITE_HORIZON_OFFSET,
+        skyHeight - sprite.dimensions - SPRITE_HORIZON_OFFSET,
         height - 1,
       );
       sprite.i = round(sprite.iCoord);
@@ -991,14 +970,28 @@ function startGame(scoreTableContainerInstance) {
 
     drawRoadSprites();
     drawTrees();
-    drawUi();
     drawWallParticles();
     drawEnvelopes();
     drawGolds();
     drawTruck();
     drawTruckSparks();
-    drawInstructions();
+    drawUi();
+
     drawGameOver();
+
+    const clickHandler = function () {
+      console.log('a');
+      startHandler = false;
+      gameCount = 1;
+      const canvas = document.getElementById('boomio-newGame-canvas');
+      canvas.removeEventListener('click', clickHandler);
+      drawInstructions();
+    };
+
+    if (startHandler) {
+      const canvas = document.getElementById('boomio-newGame-canvas');
+      canvas.addEventListener('click', clickHandler);
+    }
   }
 
   function drawRoadSprites() {
@@ -1153,6 +1146,8 @@ function startGame(scoreTableContainerInstance) {
               canvas.style.transition = 'filter 0.6s ease';
               canvas.style.filter = 'blur(2px)';
               document.getElementById('background_blur').style.display = 'block';
+              console.log('block');
+
               competitionTableContainer.style.transition =
                 'height 1s ease, top 1s ease, opacity 1s ease';
               competitionTableContainer.style.display = 'block';
@@ -1167,6 +1162,8 @@ function startGame(scoreTableContainerInstance) {
               canvas.style.transition = 'filter 0.6s ease';
               canvas.style.filter = 'blur(2px)';
               document.getElementById('background_blur').style.display = 'block';
+              console.log('block1');
+
               inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
               inputContainer.style.display = 'block';
               setTimeout(() => {
@@ -1342,7 +1339,7 @@ function startGame(scoreTableContainerInstance) {
 
   function activateSprite(sprite) {
     sprite.active = true;
-    let i = round(skyHeight - sprite.dimensions * scaleForI(skyHeight)) - SPRITE_HORIZON_OFFSET;
+    let i = round(skyHeight - sprite.dimensions) - SPRITE_HORIZON_OFFSET;
     sprite.i = i;
     sprite.iCoord = i;
     sprite.roadPercent = random();
@@ -1659,7 +1656,6 @@ function startGame(scoreTableContainerInstance) {
           return;
         }
         ctx.fillStyle = currentFillColor;
-        console.log(currentFillColor);
         ctx.fillRect(x, y, part.dimensions * 2, part.dimensions);
         currentFillColor =
           currentFillColor === BAD_FUNDING_COLOR1 ? BAD_FUNDING_COLOR : BAD_FUNDING_COLOR1;
@@ -1795,7 +1791,6 @@ function startGame(scoreTableContainerInstance) {
         round(dimensions * scale),
       );
     }
-    console.log();
     ctx.globalAlpha = oldAlpha;
   }
 
@@ -1987,7 +1982,7 @@ function startGame(scoreTableContainerInstance) {
     const notThereYet = r2y < playerI;
     const collisionDivisor = sprite.name === 'wall' ? 3 : 1;
 
-    const past = r2y - 110 > playerI + BIG_SPRITE_DIMENSIONS / collisionDivisor;
+    const past = r2y - 120 > playerI + BIG_SPRITE_DIMENSIONS / collisionDivisor;
 
     if (notThereYet || past) return;
 
@@ -1999,8 +1994,8 @@ function startGame(scoreTableContainerInstance) {
     const r2w = sprite.dimensions * scale;
 
     // Adjusted player position and height for increased height
-    const r1y = playerI + player.pos.y + 110; // Adding 120 to account for increased height
-    const r1h = player.dimensions + 110; // Adding 120 to account for increased height
+    const r1y = playerI + player.pos.y + 120; // Adding 120 to account for increased height
+    const r1h = player.dimensions + 120; // Adding 120 to account for increased height
     const r2h = scaledSpriteDimensions;
 
     const h = r1y < r2y + r2h && r1y + r1h > r2y ? true : false;
