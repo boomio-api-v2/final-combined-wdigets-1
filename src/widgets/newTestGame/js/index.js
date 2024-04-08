@@ -19,6 +19,7 @@ import {
   treeImageData,
   checkIcon,
   uncheckIcon,
+  line,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -47,7 +48,7 @@ function startGame(scoreTableContainerInstance) {
   const SPRITE_DIMENSIONS = 32;
   const BIG_SPRITE_DIMENSIONS = 64;
   const HOUSE_BIG_SPRITE_DIMENSIONS = 128;
-  const JUMP_VELOCITY = -10;
+  const JUMP_VELOCITY = -4;
   const GRAVITY = 0.3;
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
   const MAX_POSITIVE_VEL = -JUMP_VELOCITY;
@@ -176,9 +177,12 @@ function startGame(scoreTableContainerInstance) {
   const wh1 = new Image();
   const wh2 = new Image();
   const wh3 = new Image();
+  const lineImg = new Image();
+
   wh1.src = wh1ImageData;
   wh2.src = wh2ImageData;
   wh3.src = wh3ImageData;
+  lineImg.src = line;
 
   const city1 = new Image();
   const city2 = new Image();
@@ -807,7 +811,7 @@ function startGame(scoreTableContainerInstance) {
       drawRoad(i, textureCoord);
     }
 
-    drawWhiteHouse();
+    drawCityHouse();
 
     envelopes.forEach((envelope) => {
       if (envelope.pos.y > height) {
@@ -1231,12 +1235,13 @@ function startGame(scoreTableContainerInstance) {
     const halfWidth = floor(player.dimensions / 2);
     const inactive = truckSparks.filter((spark) => spark.active !== true);
     const toActivate = truckSparks.slice(Math.max(inactive.length - TRUCK_SPARKS, 0));
+
     toActivate.forEach((spark, i) => {
       const left = random() > 0.5 ? -1 : 1;
       setTimeout(() => {
         spark.active = true;
         spark.activatedAt = gameTime;
-        spark.pos.y = playerI + player.dimensions;
+        spark.pos.y = playerI + player.dimensions + 120;
         spark.pos.x = xCenter + left * halfWidth;
       }, TRUCK_SPARK_DELAY * i);
     });
@@ -1436,7 +1441,7 @@ function startGame(scoreTableContainerInstance) {
     ctx.fillRect(0, skyHeight, width, groundHeight);
   }
 
-  function drawWhiteHouse() {
+  function drawCityHouse() {
     drawImage(wh1, HOUSE_ZERO_POS, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
 
     drawImage(
@@ -1453,6 +1458,7 @@ function startGame(scoreTableContainerInstance) {
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
+    ctx.drawImage(lineImg, 0, 326, 426, 5);
   }
 
   function drawCity() {
@@ -1478,6 +1484,7 @@ function startGame(scoreTableContainerInstance) {
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
+    ctx.drawImage(lineImg, 0, 326, 426, 5);
   }
 
   function drawUi() {
