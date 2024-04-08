@@ -7,7 +7,7 @@ export const carImageData = [
 ];
 
 export const goldImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/lemon.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/lemonade.png',
 ];
 
 export const mailboxImageData = [
