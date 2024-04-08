@@ -3,7 +3,7 @@ export const brickWallImageData = [
 ];
 
 export const carImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/bike1.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/bike.png',
 ];
 
 export const goldImageData = [

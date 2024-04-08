@@ -2,19 +2,6 @@ import './index.css';
 
 import { drawText } from './font';
 import { localStorageService, boomioService } from '@/services';
-import {
-  engineAlreadyStarted,
-  startEngines,
-  playHitWall,
-  playHitMailbox,
-  playHitGold,
-  playAirEngine,
-  playGroundEngine,
-  quietAllEngines,
-  playElectionDay,
-  playNoFunds,
-  countdownBeeps,
-} from './audio';
 
 import {
   brickWallImageData,
@@ -65,7 +52,7 @@ function startGame(scoreTableContainerInstance) {
   const MAX_NEGATIVE_VEL = JUMP_VELOCITY;
   const MAX_POSITIVE_VEL = -JUMP_VELOCITY;
   const GROUND_PERCENT = 0.5;
-  const ROAD_WIDTH_PERCENT = 1;
+  const ROAD_WIDTH_PERCENT = 1.1;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const HOUSE_ZERO_POS = { x: -60, y: 0, z: 0 };
   const UI_PADDING = 4;
@@ -98,7 +85,7 @@ function startGame(scoreTableContainerInstance) {
   const COLLECTABLE_DIMENSION = 16;
   const ENVELOPE_TIME = 5;
   const ENVELOPE_DELAY = 100;
-  const ROAD_SPRITE_SPAWN_X = width / 3;
+  const ROAD_SPRITE_SPAWN_X = width / 2;
   const RESTART_TIMEOUT_TIME = 1000;
   const START_TIME = 180;
   const START_FUNDING = 100;
@@ -474,7 +461,7 @@ function startGame(scoreTableContainerInstance) {
       lastOnScreenAt: null,
       roadPercent: random(),
       active: false,
-      dimensions: SPRITE_DIMENSIONS,
+      dimensions: BIG_SPRITE_DIMENSIONS,
       debug: false,
     };
   });
@@ -801,9 +788,6 @@ function startGame(scoreTableContainerInstance) {
 
   function updateTitleScreen() {
     if (isButtonPressed()) {
-      if (!engineAlreadyStarted()) startEngines();
-
-      playElectionDay();
       gameVars.startedAt = gameTime;
       gameVars.started = true;
     }
@@ -837,8 +821,6 @@ function startGame(scoreTableContainerInstance) {
     });
 
     if (gameVars.rulesHide) {
-      drawText(canvas, 'Collect Points', 100, UI_PADDING, FONT_SIZE);
-
       drawText(
         canvas,
         'TAP OR PRESS KEY',
@@ -899,12 +881,8 @@ function startGame(scoreTableContainerInstance) {
 
   function restartGame() {
     gameCount++;
-    playElectionDay();
     // Stop playing the song from the previous game over
-    if (gameOverElectionDaySong) {
-      gameOverElectionDaySong.oscillatorNodes.forEach((node) => node.disconnect());
-      gameOverElectionDaySong = null;
-    }
+
     gameVars.gameOver = false;
     gameVars = {
       started: true,
@@ -957,11 +935,6 @@ function startGame(scoreTableContainerInstance) {
     }
 
     if (timeLeft <= 10) {
-      if (!gameVars.countdownBeepsPlayed.includes(timeLeft)) {
-        gameVars.countdownBeepsPlayed.push(timeLeft);
-        const sound = countdownBeeps[timeLeft];
-        if (sound) sound();
-      }
     }
 
     if (gameVars.funding <= 0) gameOverFundingZero();
@@ -1111,7 +1084,7 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function curveOffsetForSprite(sprite) {
-    let i = floor(sprite.i + sprite.dimensions);
+    let i = floor(sprite.i + sprite.dimensions * scaleForI(sprite.i));
     i = clamp(i, height - 1, skyHeight + 1);
 
     let curveOffset = curveOffsets[i - skyHeight];
@@ -1130,13 +1103,11 @@ function startGame(scoreTableContainerInstance) {
     if (!gameVars.gameOver) return;
     player.alpha = 1;
     unsetShake();
-    quietAllEngines();
   }
 
   function gameOverFundingZero() {
     configureGameOver();
     if (!gameVars.playedGameOverSound) {
-      playNoFunds();
       gameVars.playedGameOverSound = true;
     }
   }
@@ -1144,7 +1115,6 @@ function startGame(scoreTableContainerInstance) {
   function gameOverTimeZero() {
     configureGameOver();
     if (!gameVars.playedGameOverSound) {
-      gameOverElectionDaySong = playElectionDay();
       gameVars.playedGameOverSound = true;
     }
   }
@@ -1245,7 +1215,6 @@ function startGame(scoreTableContainerInstance) {
     if (player.pos.y > 0) {
       player.vel.y = 0;
       player.pos.y = 0;
-      playGroundEngine();
       unsetLand();
       window.setTimeout(() => setLand(), 0);
       activateTruckSparks();
@@ -1283,7 +1252,6 @@ function startGame(scoreTableContainerInstance) {
     gameVars.lastHitAt = gameTime;
     gameVars.currentScore -= min(FUNDING_HIT_AMOUNT, 999);
     setShake();
-    playHitWall();
     const inactive = wallParts.filter((part) => part.active !== true);
     const toActivate = wallParts.slice(Math.max(inactive.length - WALL_PARTICLES, 0));
     toActivate.forEach((part, i) => {
@@ -1297,7 +1265,6 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function handleGoldOverlap(sprite) {
-    playHitGold();
     const inactive = golds2.filter((gold) => gold.active !== true);
     const toActivate = golds2.slice(Math.max(inactive.length - GOLD_HIT_AMOUNT, 0));
     toActivate.forEach((gold, i) => {
@@ -1324,7 +1291,6 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function handleMailboxOverlap(sprite) {
-    playHitMailbox();
     const inactive = envelopes.filter((envelope) => envelope.active !== true);
     const toActivate = inactive.slice(Math.max(inactive.length - MAILBOX_HIT_AMOUNT, 0));
     toActivate.forEach((envelope, i) => {
@@ -1852,7 +1818,6 @@ function startGame(scoreTableContainerInstance) {
     if (getIntroOffset() !== 0) return;
     if (player.pos.y !== 0) return;
     player.vel.y = JUMP_VELOCITY;
-    playAirEngine();
   }
 
   function updatePlayerPos(x, y) {
@@ -1968,8 +1933,6 @@ function startGame(scoreTableContainerInstance) {
       jump();
       pointerState.upAt = gameTime;
     }
-
-    startEngines();
     pointerState.downAt = null;
   }
 
