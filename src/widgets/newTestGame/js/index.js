@@ -20,6 +20,7 @@ import {
   checkIcon,
   uncheckIcon,
   line,
+  background,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -178,11 +179,14 @@ function startGame(scoreTableContainerInstance) {
   const wh2 = new Image();
   const wh3 = new Image();
   const lineImg = new Image();
+  const backgroundImg = new Image();
 
   wh1.src = wh1ImageData;
   wh2.src = wh2ImageData;
   wh3.src = wh3ImageData;
   lineImg.src = line;
+
+  backgroundImg.src = background;
 
   const city1 = new Image();
   const city2 = new Image();
@@ -1442,26 +1446,29 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawCityHouse() {
-    drawImage(wh1, HOUSE_ZERO_POS, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+    drawImage(wh1, { x: -60, y: 0, z: 1 }, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
 
     drawImage(
       wh2,
-      HOUSE_ZERO_POS,
+      { x: -60, y: 0, z: 1 },
       whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       wh3,
-      HOUSE_ZERO_POS,
+      { x: -60, y: 0, z: 1 },
       whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
-    ctx.drawImage(lineImg, 0, 326, 426, 5);
+    ctx.drawImage(lineImg, 0, 328, 426, 5);
   }
 
   function drawCity() {
+    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+
     const whOffset = xCenter - xOffset;
     drawImage(
       city1,
@@ -1484,7 +1491,7 @@ function startGame(scoreTableContainerInstance) {
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
-    ctx.drawImage(lineImg, 0, 326, 426, 5);
+    ctx.drawImage(lineImg, 0, 328, 426, 5);
   }
 
   function drawUi() {
