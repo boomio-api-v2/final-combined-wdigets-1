@@ -70,6 +70,8 @@ export class InputContainer {
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
+              : this.prop === 'lemon'
+              ? 'href=https://www.lemongym.lt/nestabdyk/#zaidimas'
               : this.prop === 'Babune'
               ? 'href=https://docs.google.com/document/d/1B5ONINFe4nlWECE6anCa7H-YuO-HpdaqSm5pjKS6HQk/edit'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'

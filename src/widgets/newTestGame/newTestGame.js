@@ -58,7 +58,7 @@ class NewGame {
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
     }
-    ${new InputContainer(this.customer, 'doodle').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
 
       <canvas id="boomio-newGame-canvas" class="boomio-newGame-canvas" style="${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
