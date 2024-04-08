@@ -927,7 +927,7 @@ function startGame(scoreTableContainerInstance) {
     drawSky();
     drawGround(road1);
     drawClouds();
-    drawCity();
+
     let textureCoord = 0;
     movingSegment.i -= spriteIncrease;
 
@@ -992,6 +992,7 @@ function startGame(scoreTableContainerInstance) {
       const canvas = document.getElementById('boomio-newGame-canvas');
       canvas.addEventListener('click', clickHandler);
     }
+    drawCity();
   }
 
   function drawRoadSprites() {
@@ -1436,26 +1437,20 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawWhiteHouse() {
-    drawImage(
-      wh1,
-      HOUSE_ZERO_POS,
-      whStartPos,
-      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
+    drawImage(wh1, HOUSE_ZERO_POS, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
 
     drawImage(
       wh2,
       HOUSE_ZERO_POS,
       whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
-      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       wh3,
       HOUSE_ZERO_POS,
       whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
-      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
   }
@@ -1464,23 +1459,23 @@ function startGame(scoreTableContainerInstance) {
     const whOffset = xCenter - xOffset;
     drawImage(
       city1,
-      HOUSE_ZERO_POS,
+      { x: -60, y: 0, z: 1 },
       whOffset + whStartPos,
-      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city2,
-      HOUSE_ZERO_POS,
+      { x: -60, y: 0, z: 1 },
       whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
-      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city3,
-      HOUSE_ZERO_POS,
+      { x: -60, y: 0, z: 1 },
       whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
-      horizonI - HOUSE_BIG_SPRITE_DIMENSIONS,
+      200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
   }
