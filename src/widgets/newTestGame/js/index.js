@@ -194,7 +194,7 @@ function startGame(scoreTableContainerInstance) {
   const grass2 = '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR = '#FFF100';
-  const BAD_FUNDING_COLOR1 = '##1D1D1B';
+  const BAD_FUNDING_COLOR1 = '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
   const road1 = '#F9F1DD';
@@ -1659,6 +1659,7 @@ function startGame(scoreTableContainerInstance) {
           return;
         }
         ctx.fillStyle = currentFillColor;
+        console.log(currentFillColor);
         ctx.fillRect(x, y, part.dimensions * 2, part.dimensions);
         currentFillColor =
           currentFillColor === BAD_FUNDING_COLOR1 ? BAD_FUNDING_COLOR : BAD_FUNDING_COLOR1;
