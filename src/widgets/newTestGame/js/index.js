@@ -193,7 +193,10 @@ function startGame(scoreTableContainerInstance) {
   const grass1 = '#F9F1DD';
   const grass2 = '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
-  const BAD_FUNDING_COLOR = '#852217';
+  const BAD_FUNDING_COLOR = '#FFF100';
+  const BAD_FUNDING_COLOR1 = '##1D1D1B';
+  let currentFillColor = BAD_FUNDING_COLOR1;
+
   const road1 = '#F9F1DD';
   const road2 = 'black';
   const maxWhiteLineWidthPercent = 0.01;
@@ -1084,7 +1087,7 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function curveOffsetForSprite(sprite) {
-    let i = floor(sprite.i + sprite.dimensions * scaleForI(sprite.i));
+    let i = floor(sprite.i + sprite.dimensions);
     i = clamp(i, height - 1, skyHeight + 1);
 
     let curveOffset = curveOffsets[i - skyHeight];
@@ -1655,9 +1658,10 @@ function startGame(scoreTableContainerInstance) {
           part.vel.y = WALL_PARTICLE_Y_VEL;
           return;
         }
-
-        ctx.fillStyle = BAD_FUNDING_COLOR;
+        ctx.fillStyle = currentFillColor;
         ctx.fillRect(x, y, part.dimensions * 2, part.dimensions);
+        currentFillColor =
+          currentFillColor === BAD_FUNDING_COLOR1 ? BAD_FUNDING_COLOR : BAD_FUNDING_COLOR1;
       });
   }
 

@@ -39,7 +39,7 @@ export const city3ImageData = [
 ];
 
 export const envelopeImageData = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/lemon.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/Smalllemon.png',
 ];
 
 export const cloudsImageData = [
