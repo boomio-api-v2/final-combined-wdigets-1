@@ -1561,14 +1561,7 @@ function startGame(scoreTableContainerInstance) {
     if (gameVars.gameOver) return;
     const introOffset = getIntroOffset();
     const timeColor = gameVars.timeLeft > 10 ? BLACK : SPARK_COLOR;
-    drawText(
-      canvas,
-      pad(gameVars.timeLeft),
-      width - 3 * (FONT_SIZE * 0.8),
-      UI_PADDING + introOffset,
-      FONT_SIZE,
-      timeColor,
-    );
+    drawText(canvas, pad(gameVars.timeLeft), 350, 43, FONT_SIZE, timeColor);
     drawFundingMeter();
   }
 

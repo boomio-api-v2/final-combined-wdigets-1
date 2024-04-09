@@ -60,7 +60,7 @@ export class InputContainer {
                 ? 'gimtadienio prizus iškart!'
                 : this.prop === 'Penki Sezonai'
                 ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
-                : '50€ ir kitus Babūnė kuponus.&nbsp&nbsp&nbsp&nbsp Net 30 laimėtojų!'
+                : 'prizus kas mėnesį!'
             }
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">
