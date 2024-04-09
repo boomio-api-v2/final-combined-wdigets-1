@@ -6,7 +6,7 @@ import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 
-class NewGame {
+class driveWidget {
   static ctx;
 
   constructor() {
@@ -115,5 +115,5 @@ class NewGame {
 }
 
 export default () => {
-  new NewGame();
+  new driveWidget();
 };
