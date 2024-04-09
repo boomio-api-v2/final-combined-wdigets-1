@@ -691,8 +691,6 @@ function startGame(scoreTableContainerInstance) {
           .signal('ROUND_STARTED', 'signal')
           .then((response) => {
             document.getElementById('background_blur').style.display = 'none';
-            console.log('block1234');
-
             const canvas = document.getElementById('boomio-newGame-canvas');
             canvas.style.transition = 'filter 1s ease';
             canvas.style.filter = 'none';
@@ -754,16 +752,6 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function initGame(t) {
-    // setTimeout(() => {
-    //   if (showCompetitiveRegistration) {
-    //     boomioService
-    //       .signal('ROUND_STARTED', 'signal')
-    //       .then((response) => {})
-    //       .catch((error) => {
-    //         console.error('Error:', error);
-    //       });
-    //   }
-    // }, 50);
     eventHandler();
     runGame(t);
   }
@@ -843,8 +831,18 @@ function startGame(scoreTableContainerInstance) {
   function drawInstructions() {
     const tutorial = document.querySelector('.tutorial');
     tutorial.style.display = 'none';
-    console.log('b');
     document.getElementById('background_blur').style.display = 'none';
+    boomioService
+      .signal('ROUND_STARTED', 'signal')
+      .then((response) => {
+        document.getElementById('background_blur').style.display = 'none';
+        const canvas = document.getElementById('boomio-newGame-canvas');
+        canvas.style.transition = 'filter 1s ease';
+        canvas.style.filter = 'none';
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
   function advanceRoadSprites(sprites) {
@@ -988,7 +986,6 @@ function startGame(scoreTableContainerInstance) {
     drawGameOver();
 
     const clickHandler = function () {
-      console.log('a');
       startHandler = false;
       gameCount = 1;
       const canvas = document.getElementById('boomio-newGame-canvas');
@@ -1155,8 +1152,6 @@ function startGame(scoreTableContainerInstance) {
               canvas.style.transition = 'filter 0.6s ease';
               canvas.style.filter = 'blur(2px)';
               document.getElementById('background_blur').style.display = 'block';
-              console.log('block');
-
               competitionTableContainer.style.transition =
                 'height 1s ease, top 1s ease, opacity 1s ease';
               competitionTableContainer.style.display = 'block';
@@ -1171,8 +1166,6 @@ function startGame(scoreTableContainerInstance) {
               canvas.style.transition = 'filter 0.6s ease';
               canvas.style.filter = 'blur(2px)';
               document.getElementById('background_blur').style.display = 'block';
-              console.log('block1');
-
               inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
               inputContainer.style.display = 'block';
               setTimeout(() => {
@@ -1900,28 +1893,28 @@ function startGame(scoreTableContainerInstance) {
           break;
       }
     });
-    window.addEventListener('touchstart', (e) => {
+    document.getElementById('boomio-newGame-canvas').addEventListener('touchstart', (e) => {
       pointerDown(e.touches[0].clientX);
     });
 
-    window.addEventListener('touchend', () => {
+    document.getElementById('boomio-newGame-canvas').addEventListener('touchend', () => {
       pointerUp();
     });
 
-    window.addEventListener('mousedown', (e) => {
+    document.getElementById('boomio-newGame-canvas').addEventListener('mousedown', (e) => {
       pointerDown(e.clientX);
     });
 
-    window.addEventListener('mousemove', (e) => {
+    document.getElementById('boomio-newGame-canvas').addEventListener('mousemove', (e) => {
       if (!pointerState.down) return;
       pointerMove(e.clientX);
     });
 
-    window.addEventListener('touchmove', (e) => {
+    document.getElementById('boomio-newGame-canvas').addEventListener('touchmove', (e) => {
       pointerMove(e.touches[0].clientX);
     });
 
-    window.addEventListener('mouseup', () => {
+    document.getElementById('boomio-newGame-canvas').addEventListener('mouseup', () => {
       pointerUp();
     });
   }

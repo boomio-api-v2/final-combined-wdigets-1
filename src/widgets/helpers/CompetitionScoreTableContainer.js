@@ -31,10 +31,16 @@ export class CompetitionScoreTableContainer {
 
       const color =
         index + 1 === userBestPlace
-          ? this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+          ? this.prop === 'Barbora' ||
+            this.prop === 'Penki Sezonai' ||
+            this.prop === 'Babune' ||
+            this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
-          : this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+          : this.prop === 'Barbora' ||
+            this.prop === 'Penki Sezonai' ||
+            this.prop === 'Babune' ||
+            this.prop === 'LemonGym'
           ? 'white'
           : 'white';
       const boxShadow =
@@ -55,14 +61,20 @@ export class CompetitionScoreTableContainer {
             <td style="padding-left:17px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
               <td style="padding-left:17px;text-align:start;width: 142px; color: ${
-                this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+                this.prop === 'Barbora' ||
+                this.prop === 'Penki Sezonai' ||
+                this.prop === 'Babune' ||
+                this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
         playerNameInput?.value
       }</td>
               <td style="width: 48px; color: ${
-                this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+                this.prop === 'Barbora' ||
+                this.prop === 'Penki Sezonai' ||
+                this.prop === 'Babune' ||
+                this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word">${userBestScore}</td>
@@ -70,21 +82,33 @@ export class CompetitionScoreTableContainer {
     }
 
     let textColor =
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+      this.prop === 'Barbora' ||
+      this.prop === 'Penki Sezonai' ||
+      this.prop === 'Babune' ||
+      this.prop === 'LemonGym'
         ? 'white'
         : 'white';
     let fontSize =
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+      this.prop === 'Barbora' ||
+      this.prop === 'Penki Sezonai' ||
+      this.prop === 'Babune' ||
+      this.prop === 'LemonGym'
         ? '14px'
         : '10px';
     let fontWeight =
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+      this.prop === 'Barbora' ||
+      this.prop === 'Penki Sezonai' ||
+      this.prop === 'Babune' ||
+      this.prop === 'LemonGym'
         ? '900'
         : '700';
 
     let scoreboardText = `
       ${
-        this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+        this.prop === 'Barbora' ||
+        this.prop === 'Penki Sezonai' ||
+        this.prop === 'Babune' ||
+        this.prop === 'LemonGym'
           ? this.scoreTable.user_best_place <
               (this.prop === 'Barbora' ? 0 : this.prop === 'Penki Sezonai' ? 5 : 30) ||
             (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500)
@@ -146,7 +170,10 @@ export class CompetitionScoreTableContainer {
     containerDiv.classList.add('competition-table-container');
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background =
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+      this.prop === 'Barbora' ||
+      this.prop === 'Penki Sezonai' ||
+      this.prop === 'Babune' ||
+      this.prop === 'LemonGym'
         ? 'none'
         : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
@@ -157,7 +184,10 @@ export class CompetitionScoreTableContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
-        this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+        this.prop === 'Barbora' ||
+        this.prop === 'Penki Sezonai' ||
+        this.prop === 'Babune' ||
+        this.prop === 'LemonGym'
           ? 'white'
           : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
@@ -184,12 +214,18 @@ export class CompetitionScoreTableContainer {
         </div>
       </div>
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:570px;position:absolute; height: 46px; background: ${
-        this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+        this.prop === 'Barbora' ||
+        this.prop === 'Penki Sezonai' ||
+        this.prop === 'Babune' ||
+        this.prop === 'LemonGym'
           ? 'white'
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-competition-play-again">
         <div style="text-align: center; color: ${
-          this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+          this.prop === 'Barbora' ||
+          this.prop === 'Penki Sezonai' ||
+          this.prop === 'Babune' ||
+          this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : '#FF3183'
         } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">PAGERINK REZULTATĄ</div>

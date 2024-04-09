@@ -68,3 +68,6 @@ export const line = [
 export const background = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/background.png?raw=true',
 ];
+
+export const scoreImage =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/score.png?raw=true';
