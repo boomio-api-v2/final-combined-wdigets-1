@@ -1080,7 +1080,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       document.getElementById('competition-email-error').style.border = 'none';
                     }
                   } else {
-                    this.bestScore = response.user_best_score;
+                    this.bestScore = response.user_best_score ?? 0;
                     const inpuRegisterContainer = document.querySelector(
                       '.input-register-container',
                     );

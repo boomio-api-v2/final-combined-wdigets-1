@@ -93,7 +93,7 @@ export class CompetitionScoreTableContainer {
       this.prop === 'Penki Sezonai' ||
       this.prop === 'Babune' ||
       this.prop === 'LemonGym'
-        ? '14px'
+        ? '16px'
         : '10px';
     let fontWeight =
       this.prop === 'Barbora' ||
@@ -110,25 +110,29 @@ export class CompetitionScoreTableContainer {
         this.prop === 'Babune' ||
         this.prop === 'LemonGym'
           ? this.scoreTable.user_best_place <
-              (this.prop === 'Barbora' ? 0 : this.prop === 'Penki Sezonai' ? 5 : 30) ||
+              (this.prop === 'Barbora'
+                ? 0
+                : this.prop === 'Penki Sezonai'
+                ? 5
+                : this.prop === 'LemonGym'
+                ? 3
+                : 30) ||
             (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500)
-            ? `<div style="width:100%; top: ${
-                this.prop === 'Barbora' ? '450px' : '495px'
-              }; position: absolute; text-align: center; color: ${textColor}; font-size: ${
+            ? `<div style="width:100%; top: ${'450px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
                 this.prop === 'Barbora' ? '18px' : fontSize
               }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora' ? 'DOVANA tau!' : 'Valio, tau puikiai sekasi!'
               }</div>
-            <div style="width:100%; top: ${
-              this.prop === 'Barbora' ? '484px' : '524px'
-            }; position: absolute; text-align: center; color: ${textColor}; font-size:${
+            <div style="width:100%; top: ${'484px'}; position: absolute; text-align: center; color: ${textColor}; font-size:${
                 this.prop ? '12px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                   : this.prop === 'Penki Sezonai'
                   ? 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
-                  : 'Balandžio 5 d.  net 30 geriausių žaidėjų laimės prizus!'
+                  : this.prop === 'LemonGym'
+                  ? 'Mėnesio gale 3 geriausi žaidėjai laimės metines</br> Lemon Gym PREMIUM PLUS narystes!'
+                  : ''
               }</div>
             <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
@@ -145,6 +149,8 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? ''
+                  : this.prop === 'LemonGym'
+                  ? 'Pagerink rezultatą nes mėnesio gale 3 geriausi žaidėjai'
                   : this.prop === 'Penki Sezonai'
                   ? 'Pagerink rezultatą nes balandžio 1d.'
                   : 'Pagerink rezultatą nes balandžio 5d.'
@@ -152,6 +158,8 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? ''
+                  : this.prop === 'LemonGym'
+                  ? 'laimės metines Lemon Gym PREMIUM PLUS narystes!'
                   : this.prop === 'Penki Sezonai'
                   ? '5 geriausi žaidėjai laimės prizus!'
                   : 'net 30 geriausių žaidėjų laimės prizus!'
@@ -200,9 +208,7 @@ export class CompetitionScoreTableContainer {
               
 
 
-      <div  style="width: calc(100% - 56px); height: ${
-        this.prop === 'Barbora' ? '302px' : '352px'
-      }; left: 32px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
+      <div  style="width: calc(100% - 56px); height: ${'302px'}; left: 32px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
             <tbody class="boomio-tbody">

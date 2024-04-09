@@ -21,6 +21,10 @@ class NewGame {
   createContainer = () => {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
+    const newHighscoreStarsImage = new Image();
+    newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
+    const newHighscoreImage = new Image();
+    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
 
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-NewGame-container');
@@ -33,6 +37,33 @@ class NewGame {
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
 
+    <img class="new_highscore_stars" src=${
+      newHighscoreStarsImage.src
+    } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+    </img>
+    <div class="new_highscore"><img src=${
+      newHighscoreImage.src
+    } alt="Image Description" style="width: 100%; height: 100%;">
+    </div>
+    <div class="numbers" style="z-index:10">
+    <span class="numbers__window">
+        <span class="numbers__window__digit numbers__window__digit--1" data-fake="8642519073" id="bestScore1"></span>
+    </span>
+    <span class="numbers__window">
+        <span class="numbers__window__digit numbers__window__digit--2" data-fake="5207186394" id="bestScore2"></span>
+    </span>
+    <span class="numbers__window">
+        <span class="numbers__window__digit numbers__window__digit--3" data-fake="8395216407" id="bestScore3"></span>
+    </span>
+    <span class="numbers__window">
+    <span class="numbers__window__digit numbers__window__digit--4" data-fake="8395216407" id="bestScore4"></span>
+  </span>
+  <span class="numbers__window">
+  <span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
+  </span>
+  </div>
+
+
     <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
         <div>BAKST</div>
@@ -43,7 +74,7 @@ class NewGame {
     <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
 
-  <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
+  <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
 

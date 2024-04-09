@@ -27,7 +27,7 @@ function startGame(scoreTableContainerInstance) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Barbora';
+  const customer = config.business_name ? config.business_name : 'LemonGym';
   let showCompetitiveRegistration = config.game_type ?? 'competitive';
   let userBestPlace = 0;
   let scoreTable = {};
@@ -610,7 +610,7 @@ function startGame(scoreTableContainerInstance) {
                   document.getElementById('competition-email-error').style.border = 'none';
                 }
               } else {
-                bestScore = response.user_best_score;
+                bestScore = response.user_best_score ?? 0;
                 const inpuRegisterContainer = document.querySelector('.input-register-container');
                 inpuRegisterContainer.style.transition =
                   'height 1s ease, top 1s ease, opacity 1s ease';
@@ -663,6 +663,25 @@ function startGame(scoreTableContainerInstance) {
       const competitionRestart = document.getElementById('boomio-competition-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }
+  }
+
+  function hideScore() {
+    const new_highscore = document.querySelector('.new_highscore');
+    const new_highscore_stars = document.querySelector('.new_highscore_stars');
+    const numbers = document.querySelector('.numbers');
+
+    numbers.style.transition = 'opacity 0.5s ease';
+    numbers.style.opacity = 0;
+    new_highscore.style.transition = 'opacity 0.5s ease';
+    new_highscore.style.opacity = 0;
+    new_highscore_stars.style.transition = 'opacity 0.5s ease';
+    new_highscore_stars.style.opacity = 0;
+
+    setTimeout(() => {
+      new_highscore.style.display = 'none';
+      new_highscore_stars.style.display = 'none';
+      numbers.style.display = 'none';
+    }, 500);
   }
 
   const clickEventHandlerResetGame = () => {
@@ -1126,25 +1145,72 @@ function startGame(scoreTableContainerInstance) {
     if (!gameVars.gameOverAt) gameVars.gameOverAt = gameTime;
     if (!restartTimeout) {
       restartTimeout = window.setTimeout(() => {
-        setTimeout(
-          () => {
-            if (showCompetitiveRegistration) {
+        setTimeout(() => {
+          if (newHighScoreReached) {
+            if (true) {
+              const numbers = document.querySelector('.numbers');
+              const new_highscore = document.querySelector('.new_highscore');
+              const new_highscore_stars = document.querySelector('.new_highscore_stars');
+              new_highscore_stars.style.display = 'block';
+
+              new_highscore.style.display = 'block';
+              numbers.style.display = 'block';
+
+              setTimeout(() => {
+                new_highscore.style.opacity = 1;
+                new_highscore_stars.style.opacity = 1;
+
+                numbers.style.opacity = 1;
+              }, 200);
+
+              const scoreDigits = document.querySelectorAll('.numbers__window__digit');
+
+              // Update the score digits content
+              const scoreString = gameVars.currentScore.toString();
+
+              // Determine the number of leading zeros to hide
+              let leadingZeros = 0;
+              while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
+                leadingZeros++;
+              }
+
+              // Hide all digits initially
+              scoreDigits.forEach((digit) => {
+                digit.style.display = 'none';
+              });
+
+              // Display each digit individually, starting from the first non-zero digit
+              for (let i = leadingZeros; i < scoreString.length; i++) {
+                scoreDigits[i - leadingZeros].textContent = scoreString[i];
+                scoreDigits[i - leadingZeros].style.display = 'block';
+                scoreDigits[i - leadingZeros].classList.add('boomio-counting-animation');
+              }
+
+              // Remove the counting class after a short delay
+              setTimeout(() => {
+                setTimeout(() => {
+                  newHighScoreReached = false;
+                }, 2000);
+                scoreDigits.forEach((digit) => {
+                  digit.classList.remove('boomio-counting-animation');
+                });
+              }, 1000);
+            }
+            setTimeout(() => {
+              hideScore();
               boomioService
                 .signal('ROUND_FINISHED', 'signal', {
                   score: gameVars.currentScore,
                 })
                 .then((response) => {
                   userBestPlace = response.user_best_place;
-
                   scoreTable = response;
-
                   scoreTableContainerInstance.updateProps(customer, scoreTable);
                 })
                 .catch((error) => {
                   console.error('Error:', error);
                 });
-            }
-            if (showCompetitiveRegistration) {
+
               const competitionTableContainer = document.querySelector(
                 '.competition-table-container',
               );
@@ -1160,31 +1226,29 @@ function startGame(scoreTableContainerInstance) {
                 competitionTableContainer.style.top = 'calc(50%)';
                 competitionTableContainer.style.opacity = 1;
               }, 100);
-            } else {
-              const inputContainer = document.querySelector('.input-container1');
-              const canvas = document.getElementById('boomio-newGame-canvas');
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
-              document.getElementById('background_blur').style.display = 'block';
-              inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-              inputContainer.style.display = 'block';
-              setTimeout(() => {
-                inputContainer.style.height = '332px';
-                inputContainer.style.top = 'calc(50% + 170px)';
-                inputContainer.style.opacity = 1;
-              }, 100);
-            }
-            const currectScoreDiv = document.getElementsByClassName(
-              'boomio-score-input-container',
-            )[0];
-            currectScoreDiv.style.opacity = 0;
+            }, 2000);
+          } else {
+            const inputContainer = document.querySelector('.input-container1');
+            const canvas = document.getElementById('boomio-newGame-canvas');
+            canvas.style.transition = 'filter 0.6s ease';
+            canvas.style.filter = 'blur(2px)';
+            document.getElementById('background_blur').style.display = 'block';
+            inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+            inputContainer.style.display = 'block';
             setTimeout(() => {
-              currectScoreDiv.style.display = 'none';
-            }, 300);
-          },
-
-          newHighScoreReached ? 2500 : 100,
-        );
+              inputContainer.style.height = '332px';
+              inputContainer.style.top = 'calc(50% + 170px)';
+              inputContainer.style.opacity = 1;
+            }, 100);
+          }
+          const currectScoreDiv = document.getElementsByClassName(
+            'boomio-score-input-container',
+          )[0];
+          currectScoreDiv.style.opacity = 0;
+          setTimeout(() => {
+            currectScoreDiv.style.display = 'none';
+          }, 300);
+        }, 100);
         gameVars.readyToRestart = true;
       }, RESTART_TIMEOUT_TIME);
     }
@@ -1253,7 +1317,10 @@ function startGame(scoreTableContainerInstance) {
     if (inGracePeriod()) return;
     const halfWidth = player.dimensions / 3;
     gameVars.lastHitAt = gameTime;
-    gameVars.currentScore -= min(FUNDING_HIT_AMOUNT, 999);
+    if (gameVars.currentScore > 100) {
+      gameVars.currentScore -= min(100, 999);
+    }
+    document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
     setShake();
     const inactive = wallParts.filter((part) => part.active !== true);
     const toActivate = wallParts.slice(Math.max(inactive.length - WALL_PARTICLES, 0));
@@ -1278,7 +1345,7 @@ function startGame(scoreTableContainerInstance) {
         gold.pos.x = spriteOffset(sprite);
       }, ENVELOPE_DELAY * i);
     });
-    gameVars.currentScore += min(FUNDING_HIT_AMOUNT, 999);
+    gameVars.currentScore += min(100, 999);
 
     if (gameVars.currentScore > 1) {
       const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
@@ -1287,10 +1354,12 @@ function startGame(scoreTableContainerInstance) {
       currectScoreDiv.style.opacity = 1;
     }
 
+    console.log(bestScore, gameVars.currentScore);
     if (bestScore < gameVars.currentScore) {
       newHighScoreReached = true;
     }
     bestScore = Math.max(bestScore, gameVars.currentScore);
+    document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
   }
 
   function handleMailboxOverlap(sprite) {
@@ -1304,7 +1373,7 @@ function startGame(scoreTableContainerInstance) {
         envelope.pos.x = spriteOffset(sprite);
       }, ENVELOPE_DELAY * i);
     });
-    gameVars.currentScore += min(MAILBOX_HIT_AMOUNT, 999);
+    gameVars.currentScore += min(50, 999);
 
     if (gameVars.currentScore > 1) {
       const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
@@ -1317,6 +1386,7 @@ function startGame(scoreTableContainerInstance) {
       newHighScoreReached = true;
     }
     bestScore = Math.max(bestScore, gameVars.currentScore);
+    document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
   }
 
   function isLucky(percentChance) {
@@ -1490,14 +1560,6 @@ function startGame(scoreTableContainerInstance) {
   function drawUi() {
     if (gameVars.gameOver) return;
     const introOffset = getIntroOffset();
-    drawText(
-      canvas,
-      `${pad(gameVars.currentScore)} Points`,
-      UI_PADDING,
-      UI_PADDING + introOffset,
-      FONT_SIZE,
-    );
-
     const timeColor = gameVars.timeLeft > 10 ? BLACK : SPARK_COLOR;
     drawText(
       canvas,
