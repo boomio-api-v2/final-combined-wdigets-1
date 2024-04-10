@@ -1,6 +1,6 @@
 import { localStorageService, widgetHtmlService } from '@/services';
 import startGame from './js/index.js';
-import { intro, tapImageBarbora, stopwatch, star } from './js/constants';
+import { intro, tapImageBarbora, stopwatch, star, newRecord } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -43,9 +43,7 @@ class driveWidget {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${
-      newHighscoreImage.src
-    } alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers" style="z-index:10">
     <span class="numbers__window">
