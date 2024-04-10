@@ -1237,8 +1237,11 @@ function startGame(scoreTableContainerInstance) {
           const currectScoreDiv = document.getElementsByClassName(
             'boomio-score-input-container',
           )[0];
+          const currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+          currectTimeDiv.style.opacity = 0;
           currectScoreDiv.style.opacity = 0;
           setTimeout(() => {
+            currectTimeDiv.style.display = 'none';
             currectScoreDiv.style.display = 'none';
           }, 300);
         }, 100);
@@ -1551,11 +1554,15 @@ function startGame(scoreTableContainerInstance) {
 
   function drawUi() {
     if (gameVars.gameOver) return;
-    const introOffset = getIntroOffset();
-    const timeColor = gameVars.timeLeft > 10 ? BLACK : SPARK_COLOR;
+    const timeColor = gameVars.timeLeft > 20 ? 'white' : SPARK_COLOR;
 
-    drawText(canvas, pad(gameVars.timeLeft), 350, 43, FONT_SIZE, timeColor);
+    document.getElementById('currentTime').innerHTML = `${gameVars.timeLeft}`;
 
+    const currectScoreDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+    currectScoreDiv.style.transition = 'opacity 0.8s ease';
+    currectScoreDiv.style.display = 'block';
+    document.getElementById('currentTime').style.color = timeColor;
+    currectScoreDiv.style.opacity = 1;
     drawFundingMeter();
   }
 
