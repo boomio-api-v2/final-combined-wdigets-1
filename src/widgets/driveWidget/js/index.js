@@ -21,6 +21,7 @@ import {
   uncheckIcon,
   line,
   background,
+  stopwatch,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -37,7 +38,7 @@ function startGame(scoreTableContainerInstance) {
   const { random, floor, round, min, max, sin } = Math;
 
   const canvasWrapper = document.querySelector('#canvas-wrapper');
-  const canvas = document.querySelector('#boomio-newGame-canvas');
+  const canvas = document.querySelector('#boomio-drive-canvas');
   const ctx = canvas.getContext('2d');
 
   let width = 418;
@@ -623,7 +624,7 @@ function startGame(scoreTableContainerInstance) {
                   inpuRegisterContainer.style.display = 'none';
                 }, 1000);
                 setTimeout(() => {
-                  const canvas = document.getElementById('boomio-newGame-canvas');
+                  const canvas = document.getElementById('boomio-drive-canvas');
                   document.getElementById('background_blur').style.opacity = 0.37;
                   document.getElementById('background_blur').style.zIndex = 3;
                   canvas.style.transition = 'filter 0.6s ease';
@@ -710,7 +711,7 @@ function startGame(scoreTableContainerInstance) {
           .signal('ROUND_STARTED', 'signal')
           .then((response) => {
             document.getElementById('background_blur').style.display = 'none';
-            const canvas = document.getElementById('boomio-newGame-canvas');
+            const canvas = document.getElementById('boomio-drive-canvas');
             canvas.style.transition = 'filter 1s ease';
             canvas.style.filter = 'none';
             restartGame();
@@ -737,7 +738,7 @@ function startGame(scoreTableContainerInstance) {
       playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-NewGame-container');
+        const canvas = document.getElementById('boomio-drive-container');
         document.getElementById('background_blur').style.opacity = 0.37;
         const inpuRegisterContainer = document.querySelector('.input-register-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -752,7 +753,7 @@ function startGame(scoreTableContainerInstance) {
       }, 300);
     } else {
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-NewGame-container');
+        const canvas = document.getElementById('boomio-drive-container');
         document.getElementById('background_blur').style.opacity = 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
@@ -796,7 +797,7 @@ function startGame(scoreTableContainerInstance) {
     }
 
     setTimeout(() => {
-      const canvas = document.getElementById('boomio-newGame-canvas');
+      const canvas = document.getElementById('boomio-drive-canvas');
       canvas.style.transition = 'filter 1s ease';
       canvas.style.filter = 'none';
     }, 400);
@@ -855,7 +856,7 @@ function startGame(scoreTableContainerInstance) {
       .signal('ROUND_STARTED', 'signal')
       .then((response) => {
         document.getElementById('background_blur').style.display = 'none';
-        const canvas = document.getElementById('boomio-newGame-canvas');
+        const canvas = document.getElementById('boomio-drive-canvas');
         canvas.style.transition = 'filter 1s ease';
         canvas.style.filter = 'none';
       })
@@ -1007,13 +1008,13 @@ function startGame(scoreTableContainerInstance) {
     const clickHandler = function () {
       startHandler = false;
       gameCount = 1;
-      const canvas = document.getElementById('boomio-newGame-canvas');
+      const canvas = document.getElementById('boomio-drive-canvas');
       canvas.removeEventListener('click', clickHandler);
       drawInstructions();
     };
 
     if (startHandler) {
-      const canvas = document.getElementById('boomio-newGame-canvas');
+      const canvas = document.getElementById('boomio-drive-canvas');
       canvas.addEventListener('click', clickHandler);
     }
     drawCity();
@@ -1214,7 +1215,7 @@ function startGame(scoreTableContainerInstance) {
               const competitionTableContainer = document.querySelector(
                 '.competition-table-container',
               );
-              const canvas = document.getElementById('boomio-newGame-canvas');
+              const canvas = document.getElementById('boomio-drive-canvas');
               canvas.style.transition = 'filter 0.6s ease';
               canvas.style.filter = 'blur(2px)';
               document.getElementById('background_blur').style.display = 'block';
@@ -1228,18 +1229,10 @@ function startGame(scoreTableContainerInstance) {
               }, 100);
             }, 2000);
           } else {
-            const inputContainer = document.querySelector('.input-container1');
-            const canvas = document.getElementById('boomio-newGame-canvas');
+            const canvas = document.getElementById('boomio-drive-canvas');
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             document.getElementById('background_blur').style.display = 'block';
-            inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            inputContainer.style.display = 'block';
-            setTimeout(() => {
-              inputContainer.style.height = '332px';
-              inputContainer.style.top = 'calc(50% + 170px)';
-              inputContainer.style.opacity = 1;
-            }, 100);
           }
           const currectScoreDiv = document.getElementsByClassName(
             'boomio-score-input-container',
@@ -1354,7 +1347,6 @@ function startGame(scoreTableContainerInstance) {
       currectScoreDiv.style.opacity = 1;
     }
 
-    console.log(bestScore, gameVars.currentScore);
     if (bestScore < gameVars.currentScore) {
       newHighScoreReached = true;
     }
@@ -1561,7 +1553,9 @@ function startGame(scoreTableContainerInstance) {
     if (gameVars.gameOver) return;
     const introOffset = getIntroOffset();
     const timeColor = gameVars.timeLeft > 10 ? BLACK : SPARK_COLOR;
+
     drawText(canvas, pad(gameVars.timeLeft), 350, 43, FONT_SIZE, timeColor);
+
     drawFundingMeter();
   }
 
@@ -1678,9 +1672,8 @@ function startGame(scoreTableContainerInstance) {
     const { x, y } = sprite.pos;
     const { activatedAt } = sprite;
     const t = clamp((gameTime - activatedAt) / ENVELOPE_TIME, 0, 1);
-    const x2 = lerp(x, 0, t);
-    const y2 = lerp(y, yEndPosition, t);
-
+    const x2 = lerp(x, 50, t);
+    const y2 = lerp(y + 100, yEndPosition, t);
     return { x: x2, y: y2 };
   }
 
@@ -1713,7 +1706,7 @@ function startGame(scoreTableContainerInstance) {
           return;
         }
         ctx.fillStyle = currentFillColor;
-        ctx.fillRect(x, y, part.dimensions * 2, part.dimensions);
+        ctx.fillRect(x, y + 100, part.dimensions * 2, part.dimensions);
         currentFillColor =
           currentFillColor === BAD_FUNDING_COLOR1 ? BAD_FUNDING_COLOR : BAD_FUNDING_COLOR1;
       });
@@ -1948,28 +1941,28 @@ function startGame(scoreTableContainerInstance) {
           break;
       }
     });
-    document.getElementById('boomio-newGame-canvas').addEventListener('touchstart', (e) => {
+    document.getElementById('boomio-drive-canvas').addEventListener('touchstart', (e) => {
       pointerDown(e.touches[0].clientX);
     });
 
-    document.getElementById('boomio-newGame-canvas').addEventListener('touchend', () => {
+    document.getElementById('boomio-drive-canvas').addEventListener('touchend', () => {
       pointerUp();
     });
 
-    document.getElementById('boomio-newGame-canvas').addEventListener('mousedown', (e) => {
+    document.getElementById('boomio-drive-canvas').addEventListener('mousedown', (e) => {
       pointerDown(e.clientX);
     });
 
-    document.getElementById('boomio-newGame-canvas').addEventListener('mousemove', (e) => {
+    document.getElementById('boomio-drive-canvas').addEventListener('mousemove', (e) => {
       if (!pointerState.down) return;
       pointerMove(e.clientX);
     });
 
-    document.getElementById('boomio-newGame-canvas').addEventListener('touchmove', (e) => {
+    document.getElementById('boomio-drive-canvas').addEventListener('touchmove', (e) => {
       pointerMove(e.touches[0].clientX);
     });
 
-    document.getElementById('boomio-newGame-canvas').addEventListener('mouseup', () => {
+    document.getElementById('boomio-drive-canvas').addEventListener('mouseup', () => {
       pointerUp();
     });
   }

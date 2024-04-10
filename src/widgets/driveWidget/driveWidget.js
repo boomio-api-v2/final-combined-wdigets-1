@@ -1,6 +1,6 @@
 import { localStorageService, widgetHtmlService } from '@/services';
 import startGame from './js/index.js';
-import { intro, tapImageBarbora, scoreImage } from './js/constants';
+import { intro, tapImageBarbora, scoreImage, star } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -16,6 +16,8 @@ class driveWidget {
     this.scoreTable = {};
     this.scoreTableContainerInstance;
     this.createContainer();
+    document.querySelector('.game-container').style.backgroundColor =
+      window.innerWidth <= 768 ? 'black' : 'none';
   }
 
   createContainer = () => {
@@ -27,7 +29,7 @@ class driveWidget {
     newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
 
     const myCanvas = document.createElement('div');
-    myCanvas.setAttribute('id', 'boomio-NewGame-container');
+    myCanvas.setAttribute('id', 'boomio-drive-container');
     myCanvas.classList.add(
       'boomio--animation__wrapper',
       'boomio--animation__wrapper--initial',
@@ -72,7 +74,7 @@ class driveWidget {
       </div>
     <div class="boomio-score-input-container" style="display:none;width:188px;height">
     <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-    <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
+    <img src=${star} alt="Image Description" style="width: 100%; height: 100%;"></img>
 
   <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
@@ -92,7 +94,7 @@ class driveWidget {
     }
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
 
-      <canvas id="boomio-newGame-canvas" class="boomio-newGame-canvas" style="${
+      <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
       }">
       </canvas>
