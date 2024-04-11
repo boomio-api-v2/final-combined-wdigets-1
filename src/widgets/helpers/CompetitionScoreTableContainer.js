@@ -127,7 +127,7 @@ export class CompetitionScoreTableContainer {
                 this.prop ? '12px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
+                  ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                   : this.prop === 'Penki Sezonai'
                   ? 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
                   : this.prop === 'LemonGym'
