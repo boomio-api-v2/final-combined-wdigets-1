@@ -17,7 +17,8 @@ import {
   startPacmanWidget,
   startFlappyBird,
   startDoodleWidget,
-  startNewTestGame,
+  startDriveWidget,
+  startFootballWidget,
 } from '@/widgets';
 
 import { localStorageService, widgetHtmlService, UserService } from '@/services';
@@ -49,7 +50,8 @@ class BoomioService extends UserService {
       pacman: startPacmanWidget,
       flappy: startFlappyBird,
       doodle: startDoodleWidget,
-      newGame: startNewTestGame,
+      drive: startDriveWidget,
+      football: startFootballWidget,
     };
     createWidgetMap[widget_type]();
   };

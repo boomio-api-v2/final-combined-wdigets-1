@@ -15,11 +15,14 @@ export class InputContainer {
     containerDiv.style.width =
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
     containerDiv.style.background =
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+      this.prop === 'Barbora' ||
+      this.prop === 'Penki Sezonai' ||
+      this.prop === 'Babune' ||
+      this.prop === 'LemonGym'
         ? `none`
         : 'white';
     containerDiv.style.backgroundSize = 'cover';
-
+    containerDiv.style.zIndex = 99999999999;
     containerDiv.innerHTML = `
 
     
@@ -27,29 +30,37 @@ export class InputContainer {
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${
-      this.prop !== 'Barbora' && this.prop !== 'Penki Sezonai' && this.prop !== 'Babune'
+      this.prop !== 'Barbora' &&
+      this.prop !== 'Penki Sezonai' &&
+      this.prop !== 'Babune' &&
+      this.prop !== 'LemonGym'
         ? `<img style="width:150px;height:75px" src=${rules} alt="Image Description" >`
         : '<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">TAISYKLĖS</div>'
     }</div>
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
-      this.prop !== 'Barbora' && this.prop !== 'Penki Sezonai' && this.prop !== 'Babune'
+      this.prop !== 'Barbora' &&
+      this.prop !== 'Penki Sezonai' &&
+      this.prop !== 'Babune' &&
+      this.prop !== 'LemonGym'
         ? `<img src=${
             this.isMobile ? rules2Mobile : rules2
           } alt="Image Description" style="width:270px;height:100%">`
         : `<div style="width: 100%; height: 139px; position: relative">
-          <div style="width: 142px; left: 160px; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
-            kad skristum
+          <div style="width: 172px; left: 160px; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+            ${this.game === 'drive' ? 'į šonus kad vairuotum' : 'kad skristum'}
           </div>
           <div style="width: 229px; left: 160px; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             dėl geresnio rezultato
           </div>
           <div style="width: 236px; left: 160px; top: 85px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
             ${
-              this.prop === 'Barbora'
+              this.prop === 'LemonGym'
+                ? 'Lemon Gym narystes</br> kas mėnesį!'
+                : this.prop === 'Barbora'
                 ? 'gimtadienio prizus iškart!'
                 : this.prop === 'Penki Sezonai'
                 ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
-                : '50€ ir kitus Babūnė kuponus.&nbsp&nbsp&nbsp&nbsp Net 30 laimėtojų!'
+                : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">
@@ -66,10 +77,15 @@ export class InputContainer {
         </div>`
     }</div>
     ${
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+      this.prop === 'Barbora' ||
+      this.prop === 'Penki Sezonai' ||
+      this.prop === 'Babune' ||
+      this.prop === 'LemonGym'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
+              : this.prop === 'LemonGym'
+              ? 'href=https://www.lemongym.lt/nestabdyk/#zaidimas'
               : this.prop === 'Babune'
               ? 'href=https://docs.google.com/document/d/1B5ONINFe4nlWECE6anCa7H-YuO-HpdaqSm5pjKS6HQk/edit'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
@@ -88,11 +104,17 @@ export class InputContainer {
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
-                this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+                this.prop === 'Barbora' ||
+                this.prop === 'Penki Sezonai' ||
+                this.prop === 'Babune' ||
+                this.prop === 'LemonGym'
                   ? '#3D4928'
                   : '#FF3183'
               }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+      this.prop === 'Barbora' ||
+      this.prop === 'Penki Sezonai' ||
+      this.prop === 'Babune' ||
+      this.prop === 'LemonGym'
         ? 'PIRMYN'
         : 'LET’S PLAY'
     }</div></div>
