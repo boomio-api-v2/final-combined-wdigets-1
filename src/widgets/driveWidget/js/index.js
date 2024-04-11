@@ -90,7 +90,7 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 2;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 90;
+  const START_TIME = 20;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SHADOW_COLOR = '#EEE';

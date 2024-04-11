@@ -55,12 +55,12 @@ export class InputContainer {
           <div style="width: 236px; left: 160px; top: 85px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
             ${
               this.prop === 'LemonGym'
-                ? 'prizus kas mėnesį!'
+                ? 'Lemon Gym narystes</br> kas mėnesį!'
                 : this.prop === 'Barbora'
                 ? 'gimtadienio prizus iškart!'
                 : this.prop === 'Penki Sezonai'
                 ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
-                : 'prizus kas mėnesį!'
+                : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
           <div style="width: 145px; height: 139px; left: 40px; top: 0px; position: absolute">

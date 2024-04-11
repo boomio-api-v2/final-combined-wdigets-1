@@ -115,7 +115,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Penki Sezonai'
                 ? 5
                 : this.prop === 'LemonGym'
-                ? 3
+                ? 11
                 : 30) ||
             (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500)
             ? `<div style="width:100%; top: ${'450px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
@@ -131,7 +131,7 @@ export class CompetitionScoreTableContainer {
                   : this.prop === 'Penki Sezonai'
                   ? 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
                   : this.prop === 'LemonGym'
-                  ? 'Mėnesio gale 3 geriausi žaidėjai laimės metines</br> Lemon Gym PREMIUM PLUS narystes!'
+                  ? 'Mėnesio gale 11 geriausių žaidėjų laimės</br> Lemon Gym PREMIUM PLUS  narystes!'
                   : ''
               }</div>
             <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -150,7 +150,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Barbora'
                   ? ''
                   : this.prop === 'LemonGym'
-                  ? 'Pagerink rezultatą nes mėnesio gale 3 geriausi žaidėjai'
+                  ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės'
                   : this.prop === 'Penki Sezonai'
                   ? 'Pagerink rezultatą nes balandžio 1d.'
                   : 'Pagerink rezultatą nes balandžio 5d.'
@@ -159,7 +159,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Barbora'
                   ? ''
                   : this.prop === 'LemonGym'
-                  ? 'laimės metines Lemon Gym PREMIUM PLUS narystes!'
+                  ? 'Lemon Gym PREMIUM PLUS  narystes!'
                   : this.prop === 'Penki Sezonai'
                   ? '5 geriausi žaidėjai laimės prizus!'
                   : 'net 30 geriausių žaidėjų laimės prizus!'
