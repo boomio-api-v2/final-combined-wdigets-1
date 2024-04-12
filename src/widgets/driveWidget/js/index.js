@@ -1142,61 +1142,61 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function configureGameOver() {
+    console.log('game over');
     gameVars.gameOver = true;
     if (!gameVars.gameOverAt) gameVars.gameOverAt = gameTime;
     if (!restartTimeout) {
       restartTimeout = window.setTimeout(() => {
         setTimeout(() => {
           if (newHighScoreReached) {
-            if (true) {
-              const numbers = document.querySelector('.numbers');
-              const new_highscore = document.querySelector('.new_highscore');
-              const new_highscore_stars = document.querySelector('.new_highscore_stars');
-              new_highscore_stars.style.display = 'block';
+            const numbers = document.querySelector('.numbers');
+            const new_highscore = document.querySelector('.new_highscore');
+            const new_highscore_stars = document.querySelector('.new_highscore_stars');
+            new_highscore_stars.style.display = 'block';
 
-              new_highscore.style.display = 'block';
-              numbers.style.display = 'block';
+            new_highscore.style.display = 'block';
+            numbers.style.display = 'block';
 
-              setTimeout(() => {
-                new_highscore.style.opacity = 1;
-                new_highscore_stars.style.opacity = 1;
+            setTimeout(() => {
+              new_highscore.style.opacity = 1;
+              new_highscore_stars.style.opacity = 1;
 
-                numbers.style.opacity = 1;
-              }, 200);
+              numbers.style.opacity = 1;
+            }, 200);
 
-              const scoreDigits = document.querySelectorAll('.numbers__window__digit');
+            const scoreDigits = document.querySelectorAll('.numbers__window__digit');
 
-              // Update the score digits content
-              const scoreString = gameVars.currentScore.toString();
+            // Update the score digits content
+            const scoreString = gameVars.currentScore.toString();
 
-              // Determine the number of leading zeros to hide
-              let leadingZeros = 0;
-              while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
-                leadingZeros++;
-              }
-
-              // Hide all digits initially
-              scoreDigits.forEach((digit) => {
-                digit.style.display = 'none';
-              });
-
-              // Display each digit individually, starting from the first non-zero digit
-              for (let i = leadingZeros; i < scoreString.length; i++) {
-                scoreDigits[i - leadingZeros].textContent = scoreString[i];
-                scoreDigits[i - leadingZeros].style.display = 'block';
-                scoreDigits[i - leadingZeros].classList.add('boomio-counting-animation');
-              }
-
-              // Remove the counting class after a short delay
-              setTimeout(() => {
-                setTimeout(() => {
-                  newHighScoreReached = false;
-                }, 2000);
-                scoreDigits.forEach((digit) => {
-                  digit.classList.remove('boomio-counting-animation');
-                });
-              }, 1000);
+            // Determine the number of leading zeros to hide
+            let leadingZeros = 0;
+            while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
+              leadingZeros++;
             }
+
+            // Hide all digits initially
+            scoreDigits.forEach((digit) => {
+              digit.style.display = 'none';
+            });
+
+            // Display each digit individually, starting from the first non-zero digit
+            for (let i = leadingZeros; i < scoreString.length; i++) {
+              scoreDigits[i - leadingZeros].textContent = scoreString[i];
+              scoreDigits[i - leadingZeros].style.display = 'block';
+              scoreDigits[i - leadingZeros].classList.add('boomio-counting-animation');
+            }
+
+            // Remove the counting class after a short delay
+            setTimeout(() => {
+              setTimeout(() => {
+                newHighScoreReached = false;
+              }, 2000);
+              scoreDigits.forEach((digit) => {
+                digit.classList.remove('boomio-counting-animation');
+              });
+            }, 1000);
+
             setTimeout(() => {
               hideScore();
               boomioService
