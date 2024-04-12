@@ -567,7 +567,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 500); //intro speed
+      }, 5000); //intro speed
     }
     drawTitleScreen();
   }
