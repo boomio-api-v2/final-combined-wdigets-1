@@ -1142,7 +1142,6 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function configureGameOver() {
-    console.log('game over');
     gameVars.gameOver = true;
     if (!gameVars.gameOverAt) gameVars.gameOverAt = gameTime;
     if (!restartTimeout) {
@@ -1198,7 +1197,10 @@ function startGame(scoreTableContainerInstance) {
             }, 1000);
 
             setTimeout(() => {
-              hideScore();
+              if (newHighScoreReached) {
+                hideScore();
+              }
+
               boomioService
                 .signal('ROUND_FINISHED', 'signal', {
                   score: gameVars.currentScore,
