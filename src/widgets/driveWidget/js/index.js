@@ -1195,47 +1195,47 @@ function startGame(scoreTableContainerInstance) {
                 digit.classList.remove('boomio-counting-animation');
               });
             }, 1000);
-
-            setTimeout(() => {
-              if (newHighScoreReached) {
-                hideScore();
-              }
-
-              boomioService
-                .signal('ROUND_FINISHED', 'signal', {
-                  score: gameVars.currentScore,
-                })
-                .then((response) => {
-                  userBestPlace = response.user_best_place;
-                  scoreTable = response;
-                  scoreTableContainerInstance.updateProps(customer, scoreTable);
-                })
-                .catch((error) => {
-                  console.error('Error:', error);
-                });
-
-              const competitionTableContainer = document.querySelector(
-                '.competition-table-container',
-              );
-              const canvas = document.getElementById('boomio-drive-canvas');
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
-              document.getElementById('background_blur').style.display = 'block';
-              competitionTableContainer.style.transition =
-                'height 1s ease, top 1s ease, opacity 1s ease';
-              competitionTableContainer.style.display = 'block';
-              setTimeout(() => {
-                competitionTableContainer.style.height = '680px';
-                competitionTableContainer.style.top = 'calc(50%)';
-                competitionTableContainer.style.opacity = 1;
-              }, 100);
-            }, 2000);
           } else {
             const canvas = document.getElementById('boomio-drive-canvas');
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             document.getElementById('background_blur').style.display = 'block';
           }
+          setTimeout(() => {
+            if (newHighScoreReached) {
+              hideScore();
+            }
+
+            boomioService
+              .signal('ROUND_FINISHED', 'signal', {
+                score: gameVars.currentScore,
+              })
+              .then((response) => {
+                userBestPlace = response.user_best_place;
+                scoreTable = response;
+                scoreTableContainerInstance.updateProps(customer, scoreTable);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+
+            const competitionTableContainer = document.querySelector(
+              '.competition-table-container',
+            );
+            const canvas = document.getElementById('boomio-drive-canvas');
+            canvas.style.transition = 'filter 0.6s ease';
+            canvas.style.filter = 'blur(2px)';
+            document.getElementById('background_blur').style.display = 'block';
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.display = 'block';
+            setTimeout(() => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = 'calc(50%)';
+              competitionTableContainer.style.opacity = 1;
+            }, 100);
+          }, 2000);
+
           const currectScoreDiv = document.getElementsByClassName(
             'boomio-score-input-container',
           )[0];
