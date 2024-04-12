@@ -51,7 +51,7 @@ export const treeImageData = [
 ];
 
 export const intro =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/intro.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/LemonGIF.gif?raw=true';
 export const checkIcon =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxCheck.png';
 
@@ -80,3 +80,7 @@ export const star =
 
 export const newRecord =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecord.png?raw=true';
+
+export const close = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/whiteClose.png',
+];

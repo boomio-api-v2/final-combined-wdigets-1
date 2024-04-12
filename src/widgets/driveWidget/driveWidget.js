@@ -1,6 +1,6 @@
 import { localStorageService, widgetHtmlService } from '@/services';
 import startGame from './js/index.js';
-import { intro, tapImageBarbora, stopwatch, star, newRecord } from './js/constants';
+import { intro, tapImageBarbora, stopwatch, star, newRecord, close } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -38,6 +38,7 @@ class driveWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+
 
     <img class="new_highscore_stars" src=${
       newHighscoreStarsImage.src
