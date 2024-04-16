@@ -103,6 +103,10 @@ class driveWidget {
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
     }
+
+    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 280px);display:block;width:32px;height:32px;">
+<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+</div>
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
 
       <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${
@@ -122,7 +126,15 @@ class driveWidget {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
+    const closeGame = () => {
+      const element = document.getElementById('boomio-widget-content');
+      if (element && element.parentNode) {
+        this.gameClosed = true;
+        element.parentNode.removeChild(element);
+      }
+    };
 
+    document.getElementById('close-game-container').addEventListener('click', closeGame);
     startGame(this.scoreTableContainerInstance);
   };
 }
