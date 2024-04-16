@@ -65,19 +65,13 @@ export class InputRegisterContainer {
           this.prop === 'LemonGym'
             ? 'white'
             : 'white'
-        }; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 32px; word-wrap: break-word;text-align:start;">${
-      this.prop === 'Barbora' ||
-      this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
-      this.prop === 'LemonGym'
+        }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
+      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
         ? 'Sutinku gauti naujienas.'
-        : `Sutinku su ${
-            this.prop === 'Barbora' ||
-            this.prop === 'Penki Sezonai' ||
-            this.prop === 'Babune' ||
+        : `Sutinku  ${
             this.prop === 'LemonGym'
-              ? 'Barbora'
-              : 'Penki sezonai'
+              ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
+              : 'gauti naujienas'
           } `
     }
     ${
