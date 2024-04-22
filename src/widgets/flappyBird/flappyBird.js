@@ -20,9 +20,9 @@ import {
   mainPenki,
   introGifPenki,
   scoreImageGreen,
-  mainBabune,
-  scoreImageBabune,
-  introGifBabune,
+  mainFantazijos,
+  scoreImageFantazijos,
+  introGifFantazijos,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -32,7 +32,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Babune';
+    this.customer = this.config.business_name ? this.config.business_name : 'Fantazijos';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -73,8 +73,8 @@ class FlappyBird {
     img.src =
       this.customer === 'Barbora'
         ? mainBarbora
-        : this.customer === 'Babune'
-        ? mainBabune
+        : this.customer === 'Fantazijos'
+        ? mainFantazijos
         : mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -619,8 +619,8 @@ class FlappyBird {
     <img src=${
       this.customer === 'Barbora'
         ? introGif
-        : this.customer === 'Babune'
-        ? introGifBabune
+        : this.customer === 'Fantazijos'
+        ? introGifFantazijos
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -660,7 +660,7 @@ class FlappyBird {
 
 <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${
-  this.customer === 'Barbora' || this.customer === 'Penki Sezonai' || this.customer === 'Babune'
+  this.customer === 'Barbora' || this.customer === 'Penki Sezonai' || this.customer === 'Fantazijos'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>BAKST</div>
     <div>BAKST</div>
@@ -675,8 +675,8 @@ ${
       <img src=${
         this.customer === 'Barbora'
           ? scoreImage
-          : this.customer === 'Babune'
-          ? scoreImageBabune
+          : this.customer === 'Fantazijos'
+          ? scoreImageFantazijos
           : scoreImageGreen
       } alt="Image Description" style="width: 100%; height: 100%;"></img>
       <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>

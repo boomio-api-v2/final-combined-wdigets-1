@@ -8,17 +8,17 @@ export const introGif =
 export const mainBarbora =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/BarboraFlappyBackgroundCampaign.png';
 
-export const scoreImageBabune =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Babune/scoreImageBabune.png';
+export const scoreImageFantazijos =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Fantazijos/Fantazijos-score.png';
 
-export const mainBabune =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Babune/FlappyBabuneBackground.png';
+export const mainFantazijos =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/Fantazijos/Fantazijos-background.png';
 
 export const mainPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Penki/BoomioPenkiSezonaiBackground.png';
 
-export const introGifBabune =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Babune/BabuneBoomioIntro.gif';
+export const introGifFantazijos =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Fantazijos/Fantazijos-background.gif';
 
 export const introGifPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/Penki/BoomioPenkiSezonaiIntro.gif';
