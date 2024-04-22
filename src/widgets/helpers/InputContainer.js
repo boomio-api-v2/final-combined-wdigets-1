@@ -58,8 +58,8 @@ export class InputContainer {
                 ? 'Lemon Gym narystes</br> kas mėnesį!'
                 : this.prop === 'Barbora'
                 ? 'gimtadienio prizus iškart!'
-                : this.prop === 'Penki Sezonai'
-                ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                : this.prop === 'Fantazijos'
+                ? 'Laimėk net 69 <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a></br> prizus!'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
@@ -87,7 +87,7 @@ export class InputContainer {
               : this.prop === 'LemonGym'
               ? 'href=https://www.lemongym.lt/nestabdyk/#zaidimas'
               : this.prop === 'Fantazijos'
-              ? 'href=https://docs.google.com/document/d/1B5ONINFe4nlWECE6anCa7H-YuO-HpdaqSm5pjKS6HQk/edit'
+              ? 'href=https://www.fantazijos.lt'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>`
         : ''
