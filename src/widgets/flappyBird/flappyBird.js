@@ -227,6 +227,25 @@ class FlappyBird {
       lastUpdateTime = currentTime;
     };
 
+    function hideScore() {
+      const new_highscore = document.querySelector('.new_highscore');
+      const new_highscore_stars = document.querySelector('.new_highscore_stars');
+      const numbers = document.querySelector('.numbers');
+
+      numbers.style.transition = 'opacity 0.5s ease';
+      numbers.style.opacity = 0;
+      new_highscore.style.transition = 'opacity 0.5s ease';
+      new_highscore.style.opacity = 0;
+      new_highscore_stars.style.transition = 'opacity 0.5s ease';
+      new_highscore_stars.style.opacity = 0;
+
+      setTimeout(() => {
+        new_highscore.style.display = 'none';
+        new_highscore_stars.style.display = 'none';
+        numbers.style.display = 'none';
+      }, 500);
+    }
+
     const render = () => {
       if (!this.gameClosed) {
         updateElapsedTime();
@@ -296,7 +315,6 @@ class FlappyBird {
                 currectScoreDiv.style.display = 'block';
                 currectScoreDiv.style.opacity = 1;
               }
-
               if (this.bestScore < this.currentScore) {
                 this.newHighScoreReached = true;
               }
@@ -345,6 +363,9 @@ class FlappyBird {
                 () => {
                   const inputContainer = document.querySelector('.input-container1');
                   if (this.showCompetitiveRegistration) {
+                    if (this.newHighScoreReached) {
+                      hideScore();
+                    }
                     boomioService
                       .signal('ROUND_FINISHED', 'signal', {
                         score: this.currentScore,
