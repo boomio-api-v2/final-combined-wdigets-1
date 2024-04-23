@@ -24,6 +24,7 @@ import {
   scoreImageFantazijos,
   introGifFantazijos,
   newRecord,
+  snowFantazijos,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -512,9 +513,21 @@ class FlappyBird {
         }
         ctx.globalAlpha = 0.1; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
-        if (!this.gameEnded && this.customer === 'Barbora') {
-          ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
-          ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
+        if (!this.gameEnded && (this.customer === 'Barbora' || this.customer === 'Fantazijos')) {
+          ctx.drawImage(
+            this.customer === 'Fantazijos' ? snowFantazijos : snowImg,
+            0,
+            snowOffset,
+            canvas.width,
+            canvas.height,
+          );
+          ctx.drawImage(
+            this.customer === 'Fantazijos' ? snowFantazijos : snowImg,
+            0,
+            snowOffset - canvas.height,
+            canvas.width,
+            canvas.height,
+          );
         }
 
         ctx.globalAlpha = 1; // Reset transparency to fully opaque
