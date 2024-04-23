@@ -630,7 +630,9 @@ class FlappyBird {
     }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
-    <img class="new_highscore_stars" src=${newRecord} alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+    <img class="new_highscore_stars" src=${
+      newHighscoreStarsImage.src
+    } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
     </div>
