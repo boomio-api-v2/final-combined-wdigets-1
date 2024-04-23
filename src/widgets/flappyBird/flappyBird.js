@@ -23,6 +23,7 @@ import {
   mainFantazijos,
   scoreImageFantazijos,
   introGifFantazijos,
+  newRecord,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -574,9 +575,6 @@ class FlappyBird {
     const useCuponImage = new Image();
     useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
 
-    const newHighscoreImage = new Image();
-    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
-
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
 
@@ -632,13 +630,9 @@ class FlappyBird {
     }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
-    <img class="new_highscore_stars" src=${
-      newHighscoreStarsImage.src
-    } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+    <img class="new_highscore_stars" src=${newRecord} alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${
-      newHighscoreImage.src
-    } alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers">
   <span class="numbers__window">

@@ -59,7 +59,7 @@ export class InputContainer {
                 : this.prop === 'Barbora'
                 ? 'gimtadienio prizus iškart!'
                 : this.prop === 'Fantazijos'
-                ? 'Laimėk net 69 <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a></br> prizus!'
+                ? 'net 69 Fantazijos.lt prizus!'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
