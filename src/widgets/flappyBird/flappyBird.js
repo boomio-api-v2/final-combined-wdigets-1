@@ -532,7 +532,7 @@ class FlappyBird {
           }
           ctx.font = 'bold 30px monospace';
         }
-        ctx.globalAlpha = 0.1; // Set transparency level (0 = fully transparent, 1 = fully opaque)
+        ctx.globalAlpha = 0.6; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
         if (!this.gameEnded && this.customer === 'Fantazijos') {
           ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
