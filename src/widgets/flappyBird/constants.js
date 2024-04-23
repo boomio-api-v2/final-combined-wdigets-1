@@ -14,6 +14,9 @@ export const scoreImageFantazijos =
 export const mainFantazijos =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-background.png';
 
+export const snowFantazijos =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-snow.gif';
+
 export const mainPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Penki/BoomioPenkiSezonaiBackground.png';
 
