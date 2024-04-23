@@ -88,7 +88,7 @@ class FlappyBird {
     img3.src = 'https://i.ibb.co/xq7Yf83/Boomio-demo-3-1.png';
 
     const snowImg = new Image();
-    snowImg.src = 'https://i.ibb.co/qrM7nV8/giphy-4.gif';
+    snowImg.src = snowFantazijos;
 
     let snowOffset = 0; // Initial offset for snow GIF animation
     let snowSpeed = 0.4; // Adjust the this.speed of the falling snow
@@ -514,12 +514,8 @@ class FlappyBird {
         ctx.globalAlpha = 0.1; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
         if (!this.gameEnded && this.customer === 'Fantazijos') {
-          var img = new Image();
-          img.onload = function () {
-            ctx.drawImage(img, 0, snowOffset, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, snowOffset - canvas.height, canvas.width, canvas.height);
-          };
-          img.src = snowFantazijos;
+          ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
+          ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
         }
 
         ctx.globalAlpha = 1; // Reset transparency to fully opaque
