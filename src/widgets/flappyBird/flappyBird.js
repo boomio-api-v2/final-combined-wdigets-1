@@ -513,21 +513,13 @@ class FlappyBird {
         }
         ctx.globalAlpha = 0.1; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
-        if (!this.gameEnded && (this.customer === 'Barbora' || this.customer === 'Fantazijos')) {
-          ctx.drawImage(
-            this.customer === 'Fantazijos' ? snowFantazijos : snowImg,
-            0,
-            snowOffset,
-            canvas.width,
-            canvas.height,
-          );
-          ctx.drawImage(
-            this.customer === 'Fantazijos' ? snowFantazijos : snowImg,
-            0,
-            snowOffset - canvas.height,
-            canvas.width,
-            canvas.height,
-          );
+        if (!this.gameEnded && this.customer === 'Fantazijos') {
+          var img = new Image();
+          img.onload = function () {
+            ctx.drawImage(img, 0, snowOffset, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, snowOffset - canvas.height, canvas.width, canvas.height);
+          };
+          img.src = snowFantazijos;
         }
 
         ctx.globalAlpha = 1; // Reset transparency to fully opaque
