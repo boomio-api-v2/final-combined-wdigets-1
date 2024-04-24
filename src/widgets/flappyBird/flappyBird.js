@@ -534,7 +534,7 @@ class FlappyBird {
         }
         ctx.globalAlpha = 0.6; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
-        if (!this.gameEnded && this.customer === 'Fantazijos') {
+        if (!this.gameEnded && this.customer === '123') {
           ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
           ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
         }
@@ -788,7 +788,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
-            if (this.showCompetitiveRegistration && this.checkboxChange) {
+            if (this.showCompetitiveRegistration) {
               boomioService
                 .signal('', 'user_info', {
                   user_email: emailInput?.value,
@@ -809,7 +809,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').style.backgroundColor =
                         'transparent';
                       document.getElementById('competition-name-error').style.border = 'none';
-                    } else if (response.res_code === 'NAME_EXIST') {
+                    } else if (response.res_code === 'NICKNAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
                         'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =
