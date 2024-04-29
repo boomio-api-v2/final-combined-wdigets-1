@@ -110,14 +110,9 @@ export class CompetitionScoreTableContainer {
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? this.scoreTable.user_best_place <
-              (this.prop === 'Barbora'
-                ? 0
-                : this.prop === 'Fantazijos'
-                ? 69
-                : this.prop === 'LemonGym'
-                ? 11
-                : 30) ||
-            (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500)
+              (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
+            (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500) ||
+            (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500)
             ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
                 this.prop === 'Barbora' ? '18px' : fontSize
               }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -138,14 +133,14 @@ export class CompetitionScoreTableContainer {
                 this.prop ? '10px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Fantazijos'
-                  ? `O PERKANT <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:16px">FANTAZUOK69</a></div>`
+                  ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:16px">69diena</a></div>`
                   : ''
               }</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? '(Galioja pristatymams iki 04 14 d.)'
                   : this.prop === 'Fantazijos'
-                  ? 'GAUK PAPILDOMĄ NUOLAIDĄ!'
+                  ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                   : 'Apie laimėjimą informuosime nurodytu el. paštu.'
               } </div> `
             : `<div style="width:100%; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -166,14 +161,14 @@ export class CompetitionScoreTableContainer {
                 this.prop ? '10px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Fantazijos'
-                  ? `O PERKANT <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:16px">FANTAZUOK69</a></div>`
+                  ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:16px">69diena</a></div>`
                   : ''
               }</div>
               <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? '(Galioja pristatymams iki 04 14 d.)'
                   : this.prop === 'Fantazijos'
-                  ? 'GAUK PAPILDOMĄ NUOLAIDĄ!'
+                  ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                   : 'Apie laimėjimą informuosime nurodytu el. paštu.'
               } </div>
         `
