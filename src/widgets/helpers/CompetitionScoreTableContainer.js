@@ -33,13 +33,13 @@ export class CompetitionScoreTableContainer {
         index + 1 === userBestPlace
           ? this.prop === 'Barbora' ||
             this.prop === 'Penki Sezonai' ||
-            this.prop === 'Babune' ||
+            this.prop === 'Fantazijos' ||
             this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
           : this.prop === 'Barbora' ||
             this.prop === 'Penki Sezonai' ||
-            this.prop === 'Babune' ||
+            this.prop === 'Fantazijos' ||
             this.prop === 'LemonGym'
           ? 'white'
           : 'white';
@@ -63,7 +63,7 @@ export class CompetitionScoreTableContainer {
               <td style="padding-left:17px;text-align:start;width: 142px; color: ${
                 this.prop === 'Barbora' ||
                 this.prop === 'Penki Sezonai' ||
-                this.prop === 'Babune' ||
+                this.prop === 'Fantazijos' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -73,7 +73,7 @@ export class CompetitionScoreTableContainer {
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
                 this.prop === 'Penki Sezonai' ||
-                this.prop === 'Babune' ||
+                this.prop === 'Fantazijos' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -84,21 +84,21 @@ export class CompetitionScoreTableContainer {
     let textColor =
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'white'
         : 'white';
     let fontSize =
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? '16px'
         : '10px';
     let fontWeight =
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? '900'
         : '700';
@@ -107,63 +107,71 @@ export class CompetitionScoreTableContainer {
       ${
         this.prop === 'Barbora' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune' ||
+        this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? this.scoreTable.user_best_place <
-              (this.prop === 'Barbora'
-                ? 0
-                : this.prop === 'Penki Sezonai'
-                ? 5
-                : this.prop === 'LemonGym'
-                ? 11
-                : 30) ||
-            (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500)
-            ? `<div style="width:100%; top: ${'450px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
+              (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
+            (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500) ||
+            (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500)
+            ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
                 this.prop === 'Barbora' ? '18px' : fontSize
               }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora' ? 'DOVANA tau!' : 'Valio, tau puikiai sekasi!'
               }</div>
-            <div style="width:100%; top: ${'484px'}; position: absolute; text-align: center; color: ${textColor}; font-size:${
-                this.prop ? '12px' : '10px'
+            <div style="width:100%; top: ${'470px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+                this.prop ? '10px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
-                  : this.prop === 'Penki Sezonai'
-                  ? 'Balandžio 1 d. 5 geriausi žaidėjai laimės prizus!'
+                  : this.prop === 'Fantazijos'
+                  ? '2024. 06. 09 d. net 69 geriausių žaidėjų laimės prizus!</br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
                   : this.prop === 'LemonGym'
                   ? 'Mėnesio gale 11 geriausių žaidėjų laimės</br> Lemon Gym PREMIUM PLUS  narystes!'
                   : ''
               }</div>
-            <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+              <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+                this.prop ? '10px' : '10px'
+              } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+                this.prop === 'Fantazijos'
+                  ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:16px">69diena</a></div>`
+                  : ''
+              }</div>
+            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? '(Galioja pristatymams iki 04 14 d.)'
-                  : this.prop === 'Penki Sezonai'
-                  ? 'Apie laimėjimą informuosime nurodytu el. paštu. '
-                  : 'Apie laimėjimą informuosime nurodytu el. paštu. '
+                  : this.prop === 'Fantazijos'
+                  ? 'GAUK 19% NUOLAIDĄ VISKAM!'
+                  : 'Apie laimėjimą informuosime nurodytu el. paštu.'
               } </div> `
-            : `<div style="width:100%; top: 495px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
+            : `<div style="width:100%; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                   : 'Tu gali!'
               }</div>
-            <div style="width:100%; top: 524px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+            <div style="width:100%; top: 470px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? ''
                   : this.prop === 'LemonGym'
-                  ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės'
+                  ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                   : this.prop === 'Penki Sezonai'
                   ? 'Pagerink rezultatą nes balandžio 1d.'
-                  : 'Pagerink rezultatą nes balandžio 5d.'
+                  : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
               }</div>
-            <div style="width:100%; top: 540px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+              <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+                this.prop ? '10px' : '10px'
+              } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+                this.prop === 'Fantazijos'
+                  ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:16px">69diena</a></div>`
+                  : ''
+              }</div>
+              <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? ''
-                  : this.prop === 'LemonGym'
-                  ? 'Lemon Gym PREMIUM PLUS  narystes!'
-                  : this.prop === 'Penki Sezonai'
-                  ? '5 geriausi žaidėjai laimės prizus!'
-                  : 'net 30 geriausių žaidėjų laimės prizus!'
-              }</div> `
+                  ? '(Galioja pristatymams iki 04 14 d.)'
+                  : this.prop === 'Fantazijos'
+                  ? 'GAUK 19% NUOLAIDĄ VISKAM!'
+                  : 'Apie laimėjimą informuosime nurodytu el. paštu.'
+              } </div>
+        `
           : ''
       }
     `;
@@ -180,7 +188,7 @@ export class CompetitionScoreTableContainer {
     containerDiv.style.background =
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'none'
         : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
@@ -194,7 +202,7 @@ export class CompetitionScoreTableContainer {
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune' ||
+        this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
@@ -219,10 +227,10 @@ export class CompetitionScoreTableContainer {
           </table>
         </div>
       </div>
-      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:570px;position:absolute; height: 46px; background: ${
+      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${
         this.prop === 'Barbora' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune' ||
+        this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
@@ -230,7 +238,7 @@ export class CompetitionScoreTableContainer {
         <div style="text-align: center; color: ${
           this.prop === 'Barbora' ||
           this.prop === 'Penki Sezonai' ||
-          this.prop === 'Babune' ||
+          this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : '#FF3183'

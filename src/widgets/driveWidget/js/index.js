@@ -598,7 +598,7 @@ function startGame(scoreTableContainerInstance) {
                   document.getElementById('competition-name-error').style.backgroundColor =
                     'transparent';
                   document.getElementById('competition-name-error').style.border = 'none';
-                } else if (response.res_code === 'NAME_EXIST') {
+                } else if (response.res_code === 'NICKNAME_EXIST') {
                   document.getElementById('competition-name-error').innerText =
                     'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-name-error').style.backgroundColor =

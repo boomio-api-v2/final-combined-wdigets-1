@@ -20,9 +20,11 @@ import {
   mainPenki,
   introGifPenki,
   scoreImageGreen,
-  mainBabune,
-  scoreImageBabune,
-  introGifBabune,
+  mainFantazijos,
+  scoreImageFantazijos,
+  introGifFantazijos,
+  newRecord,
+  snowFantazijos,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -32,7 +34,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Babune';
+    this.customer = this.config.business_name ? this.config.business_name : 'Fantazijos';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -73,8 +75,8 @@ class FlappyBird {
     img.src =
       this.customer === 'Barbora'
         ? mainBarbora
-        : this.customer === 'Babune'
-        ? mainBabune
+        : this.customer === 'Fantazijos'
+        ? mainFantazijos
         : mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -86,7 +88,7 @@ class FlappyBird {
     img3.src = 'https://i.ibb.co/xq7Yf83/Boomio-demo-3-1.png';
 
     const snowImg = new Image();
-    snowImg.src = 'https://i.ibb.co/qrM7nV8/giphy-4.gif';
+    snowImg.src = snowFantazijos;
 
     let snowOffset = 0; // Initial offset for snow GIF animation
     let snowSpeed = 0.4; // Adjust the this.speed of the falling snow
@@ -225,6 +227,25 @@ class FlappyBird {
       lastUpdateTime = currentTime;
     };
 
+    function hideScore() {
+      const new_highscore = document.querySelector('.new_highscore');
+      const new_highscore_stars = document.querySelector('.new_highscore_stars');
+      const numbers = document.querySelector('.numbers');
+
+      numbers.style.transition = 'opacity 0.5s ease';
+      numbers.style.opacity = 0;
+      new_highscore.style.transition = 'opacity 0.5s ease';
+      new_highscore.style.opacity = 0;
+      new_highscore_stars.style.transition = 'opacity 0.5s ease';
+      new_highscore_stars.style.opacity = 0;
+
+      setTimeout(() => {
+        new_highscore.style.display = 'none';
+        new_highscore_stars.style.display = 'none';
+        numbers.style.display = 'none';
+      }, 500);
+    }
+
     const render = () => {
       if (!this.gameClosed) {
         updateElapsedTime();
@@ -294,7 +315,6 @@ class FlappyBird {
                 currectScoreDiv.style.display = 'block';
                 currectScoreDiv.style.opacity = 1;
               }
-
               if (this.bestScore < this.currentScore) {
                 this.newHighScoreReached = true;
               }
@@ -343,6 +363,9 @@ class FlappyBird {
                 () => {
                   const inputContainer = document.querySelector('.input-container1');
                   if (this.showCompetitiveRegistration) {
+                    if (this.newHighScoreReached) {
+                      hideScore();
+                    }
                     boomioService
                       .signal('ROUND_FINISHED', 'signal', {
                         score: this.currentScore,
@@ -509,9 +532,9 @@ class FlappyBird {
           }
           ctx.font = 'bold 30px monospace';
         }
-        ctx.globalAlpha = 0.1; // Set transparency level (0 = fully transparent, 1 = fully opaque)
+        ctx.globalAlpha = 0.6; // Set transparency level (0 = fully transparent, 1 = fully opaque)
 
-        if (!this.gameEnded && this.customer === 'Barbora') {
+        if (!this.gameEnded && this.customer === '123') {
           ctx.drawImage(snowImg, 0, snowOffset, canvas.width, canvas.height);
           ctx.drawImage(snowImg, 0, snowOffset - canvas.height, canvas.width, canvas.height);
         }
@@ -574,9 +597,6 @@ class FlappyBird {
     const useCuponImage = new Image();
     useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
 
-    const newHighscoreImage = new Image();
-    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
-
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
 
@@ -619,8 +639,8 @@ class FlappyBird {
     <img src=${
       this.customer === 'Barbora'
         ? introGif
-        : this.customer === 'Babune'
-        ? introGifBabune
+        : this.customer === 'Fantazijos'
+        ? introGifFantazijos
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -636,9 +656,7 @@ class FlappyBird {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${
-      newHighscoreImage.src
-    } alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers">
   <span class="numbers__window">
@@ -660,7 +678,7 @@ class FlappyBird {
 
 <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${
-  this.customer === 'Barbora' || this.customer === 'Penki Sezonai' || this.customer === 'Babune'
+  this.customer === 'Barbora' || this.customer === 'Penki Sezonai' || this.customer === 'Fantazijos'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>BAKST</div>
     <div>BAKST</div>
@@ -675,8 +693,8 @@ ${
       <img src=${
         this.customer === 'Barbora'
           ? scoreImage
-          : this.customer === 'Babune'
-          ? scoreImageBabune
+          : this.customer === 'Fantazijos'
+          ? scoreImageFantazijos
           : scoreImageGreen
       } alt="Image Description" style="width: 100%; height: 100%;"></img>
       <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
@@ -770,7 +788,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
-            if (this.showCompetitiveRegistration && this.checkboxChange) {
+            if (this.showCompetitiveRegistration) {
               boomioService
                 .signal('', 'user_info', {
                   user_email: emailInput?.value,
@@ -791,7 +809,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').style.backgroundColor =
                         'transparent';
                       document.getElementById('competition-name-error').style.border = 'none';
-                    } else if (response.res_code === 'NAME_EXIST') {
+                    } else if (response.res_code === 'NICKNAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
                         'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =

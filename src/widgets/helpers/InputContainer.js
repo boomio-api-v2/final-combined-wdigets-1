@@ -17,7 +17,7 @@ export class InputContainer {
     containerDiv.style.background =
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? `none`
         : 'white';
@@ -32,7 +32,7 @@ export class InputContainer {
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${
       this.prop !== 'Barbora' &&
       this.prop !== 'Penki Sezonai' &&
-      this.prop !== 'Babune' &&
+      this.prop !== 'Fantazijos' &&
       this.prop !== 'LemonGym'
         ? `<img style="width:150px;height:75px" src=${rules} alt="Image Description" >`
         : '<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">TAISYKLĖS</div>'
@@ -40,7 +40,7 @@ export class InputContainer {
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
       this.prop !== 'Barbora' &&
       this.prop !== 'Penki Sezonai' &&
-      this.prop !== 'Babune' &&
+      this.prop !== 'Fantazijos' &&
       this.prop !== 'LemonGym'
         ? `<img src=${
             this.isMobile ? rules2Mobile : rules2
@@ -58,8 +58,8 @@ export class InputContainer {
                 ? 'Lemon Gym narystes</br> kas mėnesį!'
                 : this.prop === 'Barbora'
                 ? 'gimtadienio prizus iškart!'
-                : this.prop === 'Penki Sezonai'
-                ? 'pavasario batukus, arba lietaus pirštinės REIMA KURA'
+                : this.prop === 'Fantazijos'
+                ? 'net 69 Fantazijos.lt prizus!'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
@@ -79,15 +79,15 @@ export class InputContainer {
     ${
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'LemonGym'
               ? 'href=https://www.lemongym.lt/nestabdyk/#zaidimas'
-              : this.prop === 'Babune'
-              ? 'href=https://docs.google.com/document/d/1B5ONINFe4nlWECE6anCa7H-YuO-HpdaqSm5pjKS6HQk/edit'
+              : this.prop === 'Fantazijos'
+              ? 'href=https://www.fantazijos.lt'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>`
         : ''
@@ -106,14 +106,14 @@ export class InputContainer {
               <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
                 this.prop === 'Barbora' ||
                 this.prop === 'Penki Sezonai' ||
-                this.prop === 'Babune' ||
+                this.prop === 'Fantazijos' ||
                 this.prop === 'LemonGym'
                   ? '#3D4928'
                   : '#FF3183'
               }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'PIRMYN'
         : 'LET’S PLAY'

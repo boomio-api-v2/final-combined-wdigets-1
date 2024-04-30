@@ -16,6 +16,7 @@ import {
   useButton,
   checkIcon,
   uncheckIcon,
+  newRecord,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -921,8 +922,6 @@ class DoodleWidget {
   createContainer = () => {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
-    const newHighscoreImage = new Image();
-    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
     const playAgain = new Image();
     playAgain.src = 'https://i.ibb.co/0Bqvttk/PLAY-AGAIN.png';
 
@@ -984,9 +983,7 @@ class DoodleWidget {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${
-      newHighscoreImage.src
-    } alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
     </div>
 
 
@@ -1045,7 +1042,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
-            if (this.showCompetitiveRegistration && this.checkboxChange) {
+            if (this.showCompetitiveRegistration) {
               boomioService
                 .signal('', 'user_info', {
                   user_email: emailInput?.value,
@@ -1066,7 +1063,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').style.backgroundColor =
                         'transparent';
                       document.getElementById('competition-name-error').style.border = 'none';
-                    } else if (response.res_code === 'NAME_EXIST') {
+                    } else if (response.res_code === 'NICKNAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
                         'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =

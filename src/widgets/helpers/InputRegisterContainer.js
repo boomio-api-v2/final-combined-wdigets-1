@@ -13,7 +13,7 @@ export class InputRegisterContainer {
     containerDiv.style.background =
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? `none`
         : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
@@ -27,7 +27,7 @@ export class InputRegisterContainer {
       <div style="height: 124px; top: 50px; position: relative; text-align: center;margin:10px; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune' ||
+        this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
@@ -35,7 +35,7 @@ export class InputRegisterContainer {
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
         this.prop === 'Barbora' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune' ||
+        this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
@@ -43,7 +43,7 @@ export class InputRegisterContainer {
         <div style="text-align: center; color: ${
           this.prop === 'Barbora' ||
           this.prop === 'Penki Sezonai' ||
-          this.prop === 'Babune' ||
+          this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym'
             ? '#3D4928'
             : '#FF3183'
@@ -61,12 +61,12 @@ export class InputRegisterContainer {
         <div style="color: ${
           this.prop === 'Barbora' ||
           this.prop === 'Penki Sezonai' ||
-          this.prop === 'Babune' ||
+          this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym'
             ? 'white'
             : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Babune'
+      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Fantazijos'
         ? 'Sutinku gauti naujienas.'
         : `Sutinku  ${
             this.prop === 'LemonGym'
@@ -77,12 +77,12 @@ export class InputRegisterContainer {
     ${
       this.prop !== 'Barbora' &&
       this.prop !== 'Penki Sezonai' &&
-      this.prop !== 'Babune' &&
+      this.prop !== 'Fantazijos' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||
             this.prop === 'Penki Sezonai' ||
-            this.prop === 'Babune' ||
+            this.prop === 'Fantazijos' ||
             this.prop === 'LemonGym'
               ? 'https://www.barbora.lt/info/privatumo-politika'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
@@ -123,14 +123,14 @@ export class InputRegisterContainer {
         this.prop === 'LemonGym' ||
         this.prop === 'Penki Sezonai' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune'
+        this.prop === 'Fantazijos'
           ? 'white'
           : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? '1px rgba(164,164,164,0.9) solid'
         : ' 1px #FF3284 solid'
@@ -142,7 +142,7 @@ export class InputRegisterContainer {
         this.prop === 'Barbora' ||
         this.prop === 'Penki Sezonai' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune' ||
+        this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
@@ -150,7 +150,7 @@ export class InputRegisterContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? '1px rgba(164,164,164,0.9) solid'
         : ' 1px #FF3284 solid'
@@ -159,7 +159,7 @@ export class InputRegisterContainer {
         this.prop === 'Barbora' ||
         this.prop === 'Penki Sezonai' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune' ||
+        this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
@@ -167,7 +167,7 @@ export class InputRegisterContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
@@ -176,7 +176,7 @@ export class InputRegisterContainer {
         this.prop === 'Barbora' ||
         this.prop === 'Penki Sezonai' ||
         this.prop === 'Penki Sezonai' ||
-        this.prop === 'Babune' ||
+        this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
@@ -184,7 +184,7 @@ export class InputRegisterContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Penki Sezonai' ||
       this.prop === 'Penki Sezonai' ||
-      this.prop === 'Babune' ||
+      this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
