@@ -69,6 +69,8 @@
     -ms-user-select: none;
     user-select: none;
     font-family: 'Montserrat';
+    padding:0px;
+    margin:0px;
 }
 
 .boomio--animation--moveRight { animation-name: boomio-animate--moveRight; animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28); }
