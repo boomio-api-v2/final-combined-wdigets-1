@@ -93,7 +93,7 @@ export class CompetitionScoreTableContainer {
       this.prop === 'Penki Sezonai' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
-        ? '16px'
+        ? '14px'
         : '10px';
     let fontWeight =
       this.prop === 'Barbora' ||
@@ -137,7 +137,7 @@ export class CompetitionScoreTableContainer {
                 this.prop ? '10px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Fantazijos'
-                  ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:16px">69diena</a></div>`
+                  ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
                   : ''
               }</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -165,7 +165,7 @@ export class CompetitionScoreTableContainer {
                 this.prop ? '10px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Fantazijos'
-                  ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:16px">69diena</a></div>`
+                  ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
                   : ''
               }</div>
               <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
