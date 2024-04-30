@@ -116,7 +116,11 @@ export class CompetitionScoreTableContainer {
             ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
                 this.prop === 'Barbora' ? '18px' : fontSize
               }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
-                this.prop === 'Barbora' ? 'DOVANA tau!' : 'Valio, tau puikiai sekasi!'
+                this.prop === 'Barbora'
+                  ? 'DOVANA tau!'
+                  : this.prop === 'Fantazijos'
+                  ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
+                  : 'Valio, tau puikiai sekasi!'
               }</div>
             <div style="width:100%; top: ${'470px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
                 this.prop ? '10px' : '10px'
@@ -124,7 +128,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Barbora'
                   ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                   : this.prop === 'Fantazijos'
-                  ? '2024. 06. 09 d. net 69 geriausių žaidėjų laimės prizus!</br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
+                  ? 'net 69 geriausių žaidėjų laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
                   : this.prop === 'LemonGym'
                   ? 'Mėnesio gale 11 geriausių žaidėjų laimės</br> Lemon Gym PREMIUM PLUS  narystes!'
                   : ''

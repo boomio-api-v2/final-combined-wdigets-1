@@ -66,8 +66,10 @@ export class InputRegisterContainer {
             ? 'white'
             : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
-      this.prop === 'Barbora' || this.prop === 'Penki Sezonai' || this.prop === 'Fantazijos'
+      this.prop === 'Barbora' || this.prop === 'Penki Sezonai'
         ? 'Sutinku gauti naujienas.'
+        : this.prop === 'Fantazijos'
+        ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
