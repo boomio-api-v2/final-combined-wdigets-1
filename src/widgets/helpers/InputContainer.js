@@ -87,7 +87,7 @@ export class InputContainer {
               : this.prop === 'LemonGym'
               ? 'href=https://www.lemongym.lt/nestabdyk/#zaidimas'
               : this.prop === 'Fantazijos'
-              ? 'href=https://www.fantazijos.lt'
+              ? 'href=https://www.fantazijos.lt/zaidimo-taisykles'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">Skaityk pilnas žaidimo taisykles. </a></div>`
         : ''
