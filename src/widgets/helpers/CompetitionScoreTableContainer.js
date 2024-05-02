@@ -128,7 +128,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Barbora'
                   ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                   : this.prop === 'Fantazijos'
-                  ? 'net 69 geriausių žaidėjų laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
+                  ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
                   : this.prop === 'LemonGym'
                   ? 'Mėnesio gale 11 geriausių žaidėjų laimės</br> Lemon Gym PREMIUM PLUS  narystes!'
                   : ''
