@@ -21,7 +21,7 @@ export const mainPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Penki/BoomioPenkiSezonaiBackground.png';
 
 export const introGifFantazijos =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/New-Fantazijos-intro.gif.gif';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/New-Fantazijos-intro.gif';
 
 export const introGifPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Penki/BoomioPenkiSezonaiIntro.gif';
