@@ -46,3 +46,12 @@ export const uncheckIcon =
 
 export const newRecord =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecord.png?raw=true';
+
+export const F1FlappyButton =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/F1/F1FlappyButton.png';
+
+export const F1FlappyIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/F1/F1FlappyIntro.png';
+
+export const F1FlappyBackground =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/F1/F1FlappyBackground.png';
