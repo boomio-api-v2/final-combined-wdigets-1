@@ -25,6 +25,9 @@ import {
   introGifFantazijos,
   newRecord,
   snowFantazijos,
+  F1FlappyScore,
+  F1FlappyIntro,
+  F1FlappyBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -34,7 +37,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Fantazijos';
+    this.customer = this.config.business_name ? this.config.business_name : 'F1';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -77,6 +80,8 @@ class FlappyBird {
         ? mainBarbora
         : this.customer === 'Fantazijos'
         ? mainFantazijos
+        : this.customer === 'F1'
+        ? F1FlappyBackground
         : mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -641,6 +646,8 @@ class FlappyBird {
         ? introGif
         : this.customer === 'Fantazijos'
         ? introGifFantazijos
+        : this.customer === 'F1'
+        ? F1FlappyIntro
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -678,7 +685,10 @@ class FlappyBird {
 
 <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${
-  this.customer === 'Barbora' || this.customer === 'Penki Sezonai' || this.customer === 'Fantazijos'
+  this.customer === 'Barbora' ||
+  this.customer === 'Penki Sezonai' ||
+  this.customer === 'Fantazijos' ||
+  this.customer === 'F1'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>BAKST</div>
     <div>BAKST</div>
@@ -695,6 +705,8 @@ ${
           ? scoreImage
           : this.customer === 'Fantazijos'
           ? scoreImageFantazijos
+          : this.customer === 'F1'
+          ? F1FlappyScore
           : scoreImageGreen
       } alt="Image Description" style="width: 100%; height: 100%;"></img>
       <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>

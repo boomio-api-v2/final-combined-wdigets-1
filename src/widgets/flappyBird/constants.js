@@ -47,7 +47,7 @@ export const uncheckIcon =
 export const newRecord =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecord.png?raw=true';
 
-export const F1FlappyButton =
+export const F1FlappyScore =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/F1/F1FlappyButton.png';
 
 export const F1FlappyIntro =
