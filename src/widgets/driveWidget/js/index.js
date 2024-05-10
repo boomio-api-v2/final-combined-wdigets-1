@@ -581,6 +581,7 @@ function startGame(scoreTableContainerInstance) {
         if (showCompetitiveRegistration && checkboxChange) {
           boomioService
             .signal('', 'user_info', {
+              emails_consent: checkboxChange,
               user_email: emailInput?.value,
               user_name: playerNameInput?.value,
             })

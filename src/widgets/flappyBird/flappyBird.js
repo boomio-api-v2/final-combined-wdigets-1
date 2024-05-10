@@ -799,10 +799,10 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-
             if (this.showCompetitiveRegistration) {
               boomioService
                 .signal('', 'user_info', {
+                  emails_consent: this.checkboxChange,
                   user_email: emailInput?.value,
                   user_name: playerNameInput?.value,
                 })
