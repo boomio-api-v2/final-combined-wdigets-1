@@ -32,13 +32,13 @@ export class CompetitionScoreTableContainer {
       const color =
         index + 1 === userBestPlace
           ? this.prop === 'Barbora' ||
-            this.prop === 'Penki Sezonai' ||
+            this.prop === 'F1' ||
             this.prop === 'Fantazijos' ||
             this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
           : this.prop === 'Barbora' ||
-            this.prop === 'Penki Sezonai' ||
+            this.prop === 'F1' ||
             this.prop === 'Fantazijos' ||
             this.prop === 'LemonGym'
           ? 'white'
@@ -62,7 +62,7 @@ export class CompetitionScoreTableContainer {
 
               <td style="padding-left:17px;text-align:start;width: 142px; color: ${
                 this.prop === 'Barbora' ||
-                this.prop === 'Penki Sezonai' ||
+                this.prop === 'F1' ||
                 this.prop === 'Fantazijos' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -72,7 +72,7 @@ export class CompetitionScoreTableContainer {
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
-                this.prop === 'Penki Sezonai' ||
+                this.prop === 'F1' ||
                 this.prop === 'Fantazijos' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -83,21 +83,21 @@ export class CompetitionScoreTableContainer {
 
     let textColor =
       this.prop === 'Barbora' ||
-      this.prop === 'Penki Sezonai' ||
+      this.prop === 'F1' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'white'
         : 'white';
     let fontSize =
       this.prop === 'Barbora' ||
-      this.prop === 'Penki Sezonai' ||
+      this.prop === 'F1' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? '14px'
         : '10px';
     let fontWeight =
       this.prop === 'Barbora' ||
-      this.prop === 'Penki Sezonai' ||
+      this.prop === 'F1' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? '900'
@@ -106,7 +106,7 @@ export class CompetitionScoreTableContainer {
     let scoreboardText = `
       ${
         this.prop === 'Barbora' ||
-        this.prop === 'Penki Sezonai' ||
+        this.prop === 'F1' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? this.scoreTable.user_best_place <
@@ -191,7 +191,7 @@ export class CompetitionScoreTableContainer {
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background =
       this.prop === 'Barbora' ||
-      this.prop === 'Penki Sezonai' ||
+      this.prop === 'F1' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'none'
@@ -205,7 +205,7 @@ export class CompetitionScoreTableContainer {
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
         this.prop === 'Barbora' ||
-        this.prop === 'Penki Sezonai' ||
+        this.prop === 'F1' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
@@ -233,7 +233,7 @@ export class CompetitionScoreTableContainer {
       </div>
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${
         this.prop === 'Barbora' ||
-        this.prop === 'Penki Sezonai' ||
+        this.prop === 'F1' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
@@ -241,7 +241,7 @@ export class CompetitionScoreTableContainer {
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-competition-play-again">
         <div style="text-align: center; color: ${
           this.prop === 'Barbora' ||
-          this.prop === 'Penki Sezonai' ||
+          this.prop === 'F1' ||
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
