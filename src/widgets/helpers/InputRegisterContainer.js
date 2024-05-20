@@ -98,7 +98,7 @@ export class InputRegisterContainer {
       </div>
 
 
-      <div style="width: calc(100% - 90px); height: 24px; left: 45px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
+      <div style="width: calc(100% - 70px); height: 24px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
       font-size: 11px;
       font-style: normal;
@@ -109,7 +109,7 @@ export class InputRegisterContainer {
       " id="competition-name-error"></div>
 
 
-      <div style="width: calc(100% - 90px); height: 24px; left: 45px; top: 338px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
+      <div style="width: calc(100% - 70px); height: 24px; left: 35px; top: 338px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
       font-size: 11px;
       font-style: normal;
