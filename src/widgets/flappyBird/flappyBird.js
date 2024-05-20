@@ -33,7 +33,7 @@ class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competitive';
+    this.showCompetitiveRegistration = this.config.game_type ?? 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -148,7 +148,10 @@ class FlappyBird {
         document.getElementById('flappy-canvas').style.opacity = 1;
 
         if (this.gameCount === 0) {
-          if (this.showCompetitiveRegistration) {
+          if (
+            this.showCompetitiveRegistration === 'competitive' ||
+            this.showCompetitiveRegistration === 'point'
+          ) {
             const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
             checkboxImg.addEventListener('click', () => {
               this.checkboxChange = !this.checkboxChange;
@@ -357,17 +360,16 @@ class FlappyBird {
                   .getElementById('startButtonClick1')
                   .addEventListener('click', this.clickEventHandlerButton);
 
-                document
-                  .getElementById('claimReward')
-                  .addEventListener('click', this.clickEventHandlerClaimButton);
-
                 this.gameCount++;
               }
 
               setTimeout(
                 () => {
                   const inputContainer = document.querySelector('.input-container1');
-                  if (this.showCompetitiveRegistration) {
+                  if (
+                    this.showCompetitiveRegistration === 'competitive' ||
+                    this.showCompetitiveRegistration === 'point'
+                  ) {
                     if (this.newHighScoreReached) {
                       hideScore();
                     }
@@ -390,7 +392,7 @@ class FlappyBird {
                       });
                   }
 
-                  if (this.showCompetitiveRegistration) {
+                  if (this.showCompetitiveRegistration === 'competitive') {
                     const canvas = document.getElementById('flappy-canvas');
                     const competitionTableContainer = document.querySelector(
                       '.competition-table-container',
@@ -414,6 +416,9 @@ class FlappyBird {
                       currectScoreDiv.style.display = 'none';
                     }, 300);
                   } else {
+                    console.log(this.showCompetitiveRegistration);
+
+                    this.clickEventHandlerClaimButton();
                     const canvas = document.getElementById('flappy-canvas');
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
@@ -623,7 +628,8 @@ class FlappyBird {
     <div class="game-container game-container-flappy">
 
     ${
-      this.showCompetitiveRegistration
+      this.showCompetitiveRegistration === 'competitive' ||
+      this.showCompetitiveRegistration === 'point'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
     }
@@ -752,9 +758,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         playAgain.src
       } alt="Image Description"></div>
   </div>
-  <div id="claimReward" style="box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 220px; top: 255px; position: absolute; border-radius: 35px; overflow: hidden; border: 3px white solid; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-      <div style="line-height:24pxtext-align: center; color: white; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">CLAIM</div>
-  </div>
 
 
 
@@ -783,7 +786,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
     widgetHtmlService.container.appendChild(myCanvas);
 
-    if (this.showCompetitiveRegistration) {
+    if (this.showCompetitiveRegistration === 'competitive') {
       const gameContainer = document.querySelector('.game-container-flappy');
 
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
@@ -793,13 +796,19 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
 
-    if (this.showCompetitiveRegistration) {
+    if (
+      this.showCompetitiveRegistration === 'competitive' ||
+      this.showCompetitiveRegistration === 'point'
+    ) {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-            if (this.showCompetitiveRegistration) {
+            if (
+              this.showCompetitiveRegistration === 'competitive' ||
+              this.showCompetitiveRegistration === 'point'
+            ) {
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange,
@@ -901,7 +910,10 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         }, 1000);
 
         setTimeout(() => {
-          if (this.showCompetitiveRegistration) {
+          if (
+            this.showCompetitiveRegistration === 'competitive' ||
+            this.showCompetitiveRegistration === 'point'
+          ) {
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
@@ -979,7 +991,10 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             setTimeout(() => {
               canvas.onclick = () => {
                 if (this.gameStarted === false) {
-                  if (this.showCompetitiveRegistration) {
+                  if (
+                    this.showCompetitiveRegistration === 'competitive' ||
+                    this.showCompetitiveRegistration === 'point'
+                  ) {
                     boomioService
                       .signal('ROUND_STARTED', 'signal')
                       .then((response) => {})
