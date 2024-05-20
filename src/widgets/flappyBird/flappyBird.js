@@ -370,9 +370,7 @@ class FlappyBird {
                     this.showCompetitiveRegistration === 'competition' ||
                     this.showCompetitiveRegistration === 'point'
                   ) {
-                    if (this.newHighScoreReached) {
-                      hideScore();
-                    }
+                    hideScore();
                     boomioService
                       .signal('ROUND_FINISHED', 'signal', {
                         score: this.currentScore,
