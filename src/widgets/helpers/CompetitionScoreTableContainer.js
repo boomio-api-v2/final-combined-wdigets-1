@@ -48,15 +48,11 @@ export class CompetitionScoreTableContainer {
 
       tableHTML += `
             <tr style="background: ${background};box-shadow:${boxShadow};margin: 0;height:44px ">
-            <td style="padding-left:17px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        item.place
-      }</td>
-      <td style="padding-left:17px;text-align:start;width: 142px; color: ${color}; border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
-      ${item.user_name.length > 20 ? item.user_name.slice(0, 20) + '..' : item.user_name}
+            <td style="padding-left:17px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${item.place}</td>
+      <td style="padding-left:10px;text-align:start;width: 130px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
+      ${item.user_name}
     </td>
-              <td style="width: 48px; color: ${color}; border: none;font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word">${
-        item.score
-      }</td>
+              <td style="width: 48px; color: ${color}; border: none;font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word">${item.score}</td>
             </tr>`;
     });
 
