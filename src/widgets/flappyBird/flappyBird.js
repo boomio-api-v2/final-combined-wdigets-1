@@ -149,7 +149,7 @@ class FlappyBird {
 
         if (this.gameCount === 0) {
           if (
-            this.showCompetitiveRegistration === 'competitive' ||
+            this.showCompetitiveRegistration === 'competition' ||
             this.showCompetitiveRegistration === 'point'
           ) {
             const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
@@ -367,7 +367,7 @@ class FlappyBird {
                 () => {
                   const inputContainer = document.querySelector('.input-container1');
                   if (
-                    this.showCompetitiveRegistration === 'competitive' ||
+                    this.showCompetitiveRegistration === 'competition' ||
                     this.showCompetitiveRegistration === 'point'
                   ) {
                     if (this.newHighScoreReached) {
@@ -392,7 +392,7 @@ class FlappyBird {
                       });
                   }
 
-                  if (this.showCompetitiveRegistration === 'competitive') {
+                  if (this.showCompetitiveRegistration === 'competition') {
                     const canvas = document.getElementById('flappy-canvas');
                     const competitionTableContainer = document.querySelector(
                       '.competition-table-container',
@@ -628,7 +628,7 @@ class FlappyBird {
     <div class="game-container game-container-flappy">
 
     ${
-      this.showCompetitiveRegistration === 'competitive' ||
+      this.showCompetitiveRegistration === 'competition' ||
       this.showCompetitiveRegistration === 'point'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
@@ -786,7 +786,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
     widgetHtmlService.container.appendChild(myCanvas);
 
-    if (this.showCompetitiveRegistration === 'competitive') {
+    if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container-flappy');
 
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
@@ -797,7 +797,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     }
 
     if (
-      this.showCompetitiveRegistration === 'competitive' ||
+      this.showCompetitiveRegistration === 'competition' ||
       this.showCompetitiveRegistration === 'point'
     ) {
       const clickEventHandlerShowRules = () => {
@@ -806,7 +806,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             if (
-              this.showCompetitiveRegistration === 'competitive' ||
+              this.showCompetitiveRegistration === 'competition' ||
               this.showCompetitiveRegistration === 'point'
             ) {
               boomioService
@@ -911,7 +911,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
         setTimeout(() => {
           if (
-            this.showCompetitiveRegistration === 'competitive' ||
+            this.showCompetitiveRegistration === 'competition' ||
             this.showCompetitiveRegistration === 'point'
           ) {
             boomioService
@@ -992,7 +992,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
               canvas.onclick = () => {
                 if (this.gameStarted === false) {
                   if (
-                    this.showCompetitiveRegistration === 'competitive' ||
+                    this.showCompetitiveRegistration === 'competition' ||
                     this.showCompetitiveRegistration === 'point'
                   ) {
                     boomioService

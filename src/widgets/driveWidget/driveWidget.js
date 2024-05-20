@@ -12,7 +12,7 @@ class driveWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'LemonGym';
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competitive';
+    this.showCompetitiveRegistration = this.config.game_type ?? 'competition';
     this.scoreTable = {};
     this.scoreTableContainerInstance;
     this.createContainer();

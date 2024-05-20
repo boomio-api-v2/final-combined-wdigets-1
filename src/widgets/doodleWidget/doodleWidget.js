@@ -32,7 +32,7 @@ class DoodleWidget {
 
     this.isMobile = window.innerWidth <= 1280;
     this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competitive';
+    this.showCompetitiveRegistration = this.config.game_type ?? 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.scoreTableContainerInstance;
