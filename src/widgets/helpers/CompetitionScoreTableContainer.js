@@ -62,7 +62,7 @@ export class CompetitionScoreTableContainer {
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
             <td style="padding-left:17px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 18px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
-              <td style="padding-left:17px;text-align:start;width: 142px; color: ${
+              <td style="padding-left:10px;text-align:start;width: 142px; color: ${
                 this.prop === 'Barbora' ||
                 this.prop === 'F1' ||
                 this.prop === 'Fantazijos' ||
