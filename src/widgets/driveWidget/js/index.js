@@ -29,7 +29,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'LemonGym';
-  let showCompetitiveRegistration = config.game_type ?? 'competitive';
+  let showCompetitiveRegistration = config.game_type ?? 'competition';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
