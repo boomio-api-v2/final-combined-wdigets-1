@@ -9,6 +9,7 @@ import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
+import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 import {
   close,
   introGif,
@@ -217,7 +218,7 @@ class FlappyBird {
             background.style.display = 'none';
           }
         }, 2000);
-      }, 3500);
+      }, 100);
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -599,9 +600,6 @@ class FlappyBird {
     const tapImage = new Image();
     tapImage.src = 'https://i.ibb.co/LdbY1B8/tap.png';
 
-    const introImage = new Image();
-    introImage.src = 'https://i.ibb.co/XFgPwS0/Winter-game-2024-intro.gif';
-
     const useCuponImage = new Image();
     useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
 
@@ -625,12 +623,14 @@ class FlappyBird {
     myCanvas.innerHTML = `    
     <div class="game-container game-container-flappy">
 
+    
+
     ${
       this.showCompetitiveRegistration === 'competition' ||
       this.showCompetitiveRegistration === 'point'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
-    }
+    } 
 
 
     <img src=${
@@ -768,14 +768,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 <div style="color: white; font-size: 25px; font-family: Poppins; font-weight: 900; line-height: 24px; letter-spacing: 0.25px; word-wrap: break-word;" id="startButton">Play</div>
 </div>
 </div>
-
-
-
       </div>
-
-
-      
-      
       <canvas id="flappy-canvas" width=${
         document.body.offsetWidth < 418 ? document.body.offsetWidth : '418'
       } height="668" class="flappy-game"></canvas>
@@ -896,8 +889,9 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       };
 
       const clickEventHandlerResetGame = () => {
-        const competitionRestart = document.getElementById('boomio-competition-play-again');
+        const competitionRestart = document.getElementById('boomio-game-play-again');
         competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+
         setTimeout(() => {
           competitionRestart.addEventListener('click', clickEventHandlerResetGame);
         }, 2000);
@@ -905,6 +899,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         const controlButton = document.querySelector('.control-button1');
         this.index = 0;
         this.currentScore = 0;
+
         const competitionTableContainer = document.querySelector('.competition-table-container');
 
         competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -943,7 +938,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
-      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }
 

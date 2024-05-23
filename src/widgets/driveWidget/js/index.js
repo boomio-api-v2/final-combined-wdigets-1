@@ -662,7 +662,7 @@ function startGame(scoreTableContainerInstance) {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
-      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }
   }
@@ -687,7 +687,7 @@ function startGame(scoreTableContainerInstance) {
   }
 
   const clickEventHandlerResetGame = () => {
-    const competitionRestart = document.getElementById('boomio-competition-play-again');
+    const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
     setTimeout(() => {
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
