@@ -16,7 +16,7 @@ export class InputContainer {
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
     containerDiv.style.background =
       this.prop === 'Barbora' ||
-      this.prop === 'F1' ||
+      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? `none`
@@ -31,7 +31,7 @@ export class InputContainer {
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${
       this.prop !== 'Barbora' &&
-      this.prop !== 'F1' &&
+      this.prop !== 'Fpro' &&
       this.prop !== 'Fantazijos' &&
       this.prop !== 'LemonGym'
         ? `<img style="width:150px;height:75px" src=${rules} alt="Image Description" >`
@@ -39,7 +39,7 @@ export class InputContainer {
     }</div>
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
       this.prop !== 'Barbora' &&
-      this.prop !== 'F1' &&
+      this.prop !== 'Fpro' &&
       this.prop !== 'Fantazijos' &&
       this.prop !== 'LemonGym'
         ? `<img src=${
@@ -78,7 +78,7 @@ export class InputContainer {
     }</div>
     ${
       this.prop === 'Barbora' ||
-      this.prop === 'F1' ||
+      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
@@ -105,14 +105,14 @@ export class InputContainer {
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
                 this.prop === 'Barbora' ||
-                this.prop === 'F1' ||
+                this.prop === 'Fpro' ||
                 this.prop === 'Fantazijos' ||
                 this.prop === 'LemonGym'
                   ? '#3D4928'
                   : '#FF3183'
               }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
       this.prop === 'Barbora' ||
-      this.prop === 'F1' ||
+      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'PIRMYN'

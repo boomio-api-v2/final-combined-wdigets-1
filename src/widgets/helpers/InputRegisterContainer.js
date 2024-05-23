@@ -12,7 +12,7 @@ export class InputRegisterContainer {
     containerDiv.setAttribute('id', 'input-register-container');
     containerDiv.style.background =
       this.prop === 'Barbora' ||
-      this.prop === 'F1' ||
+      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? `none`
@@ -26,7 +26,7 @@ export class InputRegisterContainer {
     containerDiv.innerHTML = `
       <div style="height: 124px; top: 50px; position: relative; text-align: center;margin:10px; color: ${
         this.prop === 'Barbora' ||
-        this.prop === 'F1' ||
+        this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
@@ -34,7 +34,7 @@ export class InputRegisterContainer {
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">REGISTRUOKIS ŽAISTI</div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
         this.prop === 'Barbora' ||
-        this.prop === 'F1' ||
+        this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
@@ -42,7 +42,7 @@ export class InputRegisterContainer {
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: ${
           this.prop === 'Barbora' ||
-          this.prop === 'F1' ||
+          this.prop === 'Fpro' ||
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym'
             ? '#3D4928'
@@ -60,13 +60,13 @@ export class InputRegisterContainer {
 
         <div style="color: ${
           this.prop === 'Barbora' ||
-          this.prop === 'F1' ||
+          this.prop === 'Fpro' ||
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym'
             ? 'white'
             : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
-      this.prop === 'Barbora' || this.prop === 'F1'
+      this.prop === 'Barbora' || this.prop === 'Fpro'
         ? 'Sutinku gauti naujienas.'
         : this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
@@ -78,12 +78,12 @@ export class InputRegisterContainer {
     }
     ${
       this.prop !== 'Barbora' &&
-      this.prop !== 'F1' &&
+      this.prop !== 'Fpro' &&
       this.prop !== 'Fantazijos' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||
-            this.prop === 'F1' ||
+            this.prop === 'Fpro' ||
             this.prop === 'Fantazijos' ||
             this.prop === 'LemonGym'
               ? 'https://www.barbora.lt/info/privatumo-politika'
@@ -123,13 +123,13 @@ export class InputRegisterContainer {
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: 287px; position: absolute; background: ${
         this.prop === 'Barbora' ||
         this.prop === 'LemonGym' ||
-        this.prop === 'F1' ||
+        this.prop === 'Fpro' ||
         this.prop === 'Fantazijos'
           ? 'white'
           : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
       this.prop === 'Barbora' ||
-      this.prop === 'F1' ||
+      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? '1px rgba(164,164,164,0.9) solid'
@@ -140,14 +140,14 @@ export class InputRegisterContainer {
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: 204px; position: absolute; background: ${
         this.prop === 'Barbora' ||
-        this.prop === 'F1' ||
+        this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
       }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${
       this.prop === 'Barbora' ||
-      this.prop === 'F1' ||
+      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? '1px rgba(164,164,164,0.9) solid'
@@ -155,14 +155,14 @@ export class InputRegisterContainer {
     }"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 299px; opacity: 0.60;background-color: ${
         this.prop === 'Barbora' ||
-        this.prop === 'F1' ||
+        this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
       }; text-align: start; color:  ${
       this.prop === 'Barbora' ||
-      this.prop === 'F1' ||
+      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
@@ -170,14 +170,14 @@ export class InputRegisterContainer {
     } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="Elektroninio pašto adresas">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
         this.prop === 'Barbora' ||
-        this.prop === 'F1' ||
+        this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
       }; text-align: start; color:  ${
       this.prop === 'Barbora' ||
-      this.prop === 'F1' ||
+      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'

@@ -25,19 +25,19 @@ import {
   introGifFantazijos,
   newRecord,
   snowFantazijos,
-  F1FlappyScore,
-  F1FlappyIntro,
-  F1FlappyBackground,
+  FproFlappyScore,
+  FproFlappyIntro,
+  FproFlappyBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competition';
+    this.showCompetitiveRegistration = this.config.game_type ?? 'point';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'F1';
+    this.customer = this.config.business_name ? this.config.business_name : 'Fpro';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -80,8 +80,8 @@ class FlappyBird {
         ? mainBarbora
         : this.customer === 'Fantazijos'
         ? mainFantazijos
-        : this.customer === 'F1'
-        ? F1FlappyBackground
+        : this.customer === 'Fpro'
+        ? FproFlappyBackground
         : mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -414,20 +414,20 @@ class FlappyBird {
                       currectScoreDiv.style.display = 'none';
                     }, 300);
                   } else {
-                    console.log(this.showCompetitiveRegistration);
-
-                    this.clickEventHandlerClaimButton();
                     const canvas = document.getElementById('flappy-canvas');
+                    const competitionTableContainer = document.querySelector(
+                      '.competition-table-container',
+                    );
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     document.getElementById('background_blur').style.display = 'block';
-                    inputContainer.style.transition =
+                    competitionTableContainer.style.transition =
                       'height 1s ease, top 1s ease, opacity 1s ease';
-                    inputContainer.style.display = 'block';
+                    competitionTableContainer.style.display = 'block';
                     setTimeout(() => {
-                      inputContainer.style.height = '332px';
-                      inputContainer.style.top = 'calc(50% + 170px)';
-                      inputContainer.style.opacity = 1;
+                      competitionTableContainer.style.height = '680px';
+                      competitionTableContainer.style.top = 'calc(50%)';
+                      competitionTableContainer.style.opacity = 1;
                     }, 100);
                     const currectScoreDiv = document.getElementsByClassName(
                       'boomio-score-input-container',
@@ -650,8 +650,8 @@ class FlappyBird {
         ? introGif
         : this.customer === 'Fantazijos'
         ? introGifFantazijos
-        : this.customer === 'F1'
-        ? F1FlappyIntro
+        : this.customer === 'Fpro'
+        ? FproFlappyIntro
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -692,7 +692,7 @@ ${
   this.customer === 'Barbora' ||
   this.customer === 'Penki Sezonai' ||
   this.customer === 'Fantazijos' ||
-  this.customer === 'F1'
+  this.customer === 'Fpro'
     ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>BAKST</div>
     <div>BAKST</div>
@@ -709,8 +709,8 @@ ${
           ? scoreImage
           : this.customer === 'Fantazijos'
           ? scoreImageFantazijos
-          : this.customer === 'F1'
-          ? F1FlappyScore
+          : this.customer === 'Fpro'
+          ? FproFlappyScore
           : scoreImageGreen
       } alt="Image Description" style="width: 100%; height: 100%;"></img>
       <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
@@ -785,6 +785,16 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     widgetHtmlService.container.appendChild(myCanvas);
 
     if (this.showCompetitiveRegistration === 'competition') {
+      const gameContainer = document.querySelector('.game-container-flappy');
+
+      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
+    if (this.showCompetitiveRegistration === 'point') {
       const gameContainer = document.querySelector('.game-container-flappy');
 
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
