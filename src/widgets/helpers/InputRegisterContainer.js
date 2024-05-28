@@ -31,7 +31,9 @@ export class InputRegisterContainer {
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">REGISTRUOKIS ŽAISTI</div>
+      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">${
+      this.prop === 'Fpro' ? 'Register to play' : 'REGISTRUOKIS ŽAISTI'
+    }</div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
@@ -47,7 +49,9 @@ export class InputRegisterContainer {
           this.prop === 'LemonGym'
             ? '#3D4928'
             : '#FF3183'
-        } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >TOLIAU</div>
+        } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >${
+      this.prop === 'Fpro' ? 'NEXT' : 'TOLIAU'
+    }</div>
       </div>
       <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:pointer;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       
@@ -67,7 +71,7 @@ export class InputRegisterContainer {
             : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Barbora' || this.prop === 'Fpro'
-        ? 'Sutinku gauti naujienas.'
+        ? 'Agree to get newsletters.'
         : this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
         : `Sutinku  ${
@@ -167,7 +171,9 @@ export class InputRegisterContainer {
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
-    } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="Elektroninio pašto adresas">
+    } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+      this.prop === 'Fpro' ? 'Email address' : 'Elektroninio pašto adresas'
+    }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
@@ -182,7 +188,9 @@ export class InputRegisterContainer {
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
-    } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="Žaidėjo slapyvardis">
+    } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+      this.prop === 'Fpro' ? 'Players Nickname' : 'Žaidėjo slapyvardis'
+    }">
     `;
 
     return containerDiv;

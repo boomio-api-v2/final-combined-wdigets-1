@@ -191,13 +191,7 @@ export class CompetitionScoreTableContainer {
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('competition-table-container');
     containerDiv.setAttribute('id', 'competition-table-container');
-    containerDiv.style.background =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'none'
-        : 'linear-gradient(0deg, rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.19)),linear-gradient(166.42deg, rgba(255, 49, 131, 0.9) 9.98%, rgba(101, 123, 234, 0.9) 96.82%)';
+    containerDiv.style.background = 'none';
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
     containerDiv.style.width =
@@ -241,14 +235,7 @@ export class CompetitionScoreTableContainer {
           ? 'white'
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${
-          this.prop === 'Barbora' ||
-          this.prop === 'Fpro' ||
-          this.prop === 'Fantazijos' ||
-          this.prop === 'LemonGym'
-            ? 'rgba(61, 73, 40, 1)'
-            : '#FF3183'
-        } ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">PAGERINK REZULTATĄ</div>
+        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">PAGERINK REZULTATĄ</div>
       </div>
 
       <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">

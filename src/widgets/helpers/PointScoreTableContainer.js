@@ -2,23 +2,9 @@ import './styles.css';
 
 import { boomioLogo } from './constants';
 
-export class CollectionScoreTableContainer {
+export class PointScoreTableContainer {
   constructor(prop, scoreTable) {
     this.prop = prop;
-    this.scoreTable = [
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-    ];
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
     this.render();
@@ -32,26 +18,26 @@ export class CollectionScoreTableContainer {
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const scoreboard = this.scoreTable;
-
+    const userBestScore = parseInt(this?.scoreTable?.user_best_score);
     let tableHTML = '';
 
-    scoreboard.forEach((item, index) => {
-      if (index % 4 === 0) {
-        tableHTML += '<tr>';
-      }
+    tableHTML += '<div>';
 
-      tableHTML += `
-        <td style="text-align: center; border: none;">
-        <div id="image-${index}">
-        <img class='image-container'  src=${item} alt="Scoreboard Image" class="scoreboard-image">
-        </div>
-        </td>`;
+    tableHTML += `
 
-      if ((index + 1) % 4 === 0 || index === scoreboard.length - 1) {
-        tableHTML += '</tr>';
-      }
-    });
+    <div style="margin-top:10px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(to bottom,rgba(83, 209, 182, 1),rgba(42, 107, 93, 1));">
+    <div style="width:100%;margin-top:40px; text-align: center; color: white; font-size: 20px; font-family: Georama; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
+    your SCORE:  ${userBestScore} </div>
+    <div style="width:100%;margin-top:20px; text-align: center; color: white; font-size: 20px; font-family: Georama; font-weight:600; text-transform: uppercase; word-wrap: break-word"> 
+    You won </div>
+    <div style="width:100%;text-align: center; color: white; font-size: 42px; font-family: Georama; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
+    15% </div>
+    <div style="line-height: 150%;margin-bottom:40px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 14px; font-family: Georama; font-weight:400; word-wrap: break-word;max-width:250px;"> 
+    discount for FPro special edition Ball Mastery Mat! </div>
+</div>
+        `;
+
+    tableHTML += '</div>';
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
@@ -75,7 +61,7 @@ export class CollectionScoreTableContainer {
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
-          ? this.scoreTable.user_best_place <
+          ? this.scoreTable?.user_best_place <
               (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
             (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500) ||
             (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500)
@@ -116,6 +102,8 @@ export class CollectionScoreTableContainer {
             : `<div style="width:100%; top: 440px; position: absolute; text-align: center; color: white; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
                   ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
+                  : this.prop === 'Fpro'
+                  ? 'IMPROVE RESULT FOR HIGHER PRIZE'
                   : 'Tu gali!'
               }</div>
             <div style="width:100%; top: 470px;line-height:18px; position: absolute; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -125,6 +113,8 @@ export class CollectionScoreTableContainer {
                 ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
+                : this.prop === 'Fpro'
+                ? 'On June 10th the prize will be sent to your provided email.</br>Order a Mat and enter the competition to win 300 eur coupon'
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${
@@ -132,6 +122,8 @@ export class CollectionScoreTableContainer {
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Fantazijos'
                   ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
+                  : this.prop === 'Fpro'
+                  ? 'for shopping at nike.com store, winner will be announced on july 14th.  '
                   : ''
               }</div>
               <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -139,6 +131,8 @@ export class CollectionScoreTableContainer {
                   ? '(Galioja pristatymams iki 04 14 d.)'
                   : this.prop === 'Fantazijos'
                   ? 'GAUK 19% NUOLAIDĄ VISKAM!'
+                  : this.prop === 'Fpro'
+                  ? ''
                   : 'Apie laimėjimą informuosime nurodytu el. paštu.'
               } </div>
         `
@@ -149,42 +143,6 @@ export class CollectionScoreTableContainer {
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
-    this.addfunc();
-  }
-
-  addfunc() {
-    const scoreboard = this.scoreTable;
-    // Attach event listeners after the images are added to the DOM
-    for (let index = 0; index < scoreboard.length; index++) {
-      const image = document.getElementById(`image-${index}`);
-      console.log(image);
-      if (image) {
-        image.addEventListener('click', () => {
-          this.handleImageClick(image);
-        });
-      }
-    }
-  }
-  handleImageClick(image) {
-    // Toggle a class to make the image larger and centered
-    image.classList.toggle('enlarge-image');
-
-    // Toggle the class for each child element of the clicked image
-    const children = image.children;
-    for (let i = 0; i < children.length; i++) {
-      children[i].classList.toggle('enlarge-image');
-    }
-
-    // Add event listener to handle clicking outside of the enlarged image to revert it back to normal size
-    document.addEventListener('click', function closeImage(event) {
-      if (!image.contains(event.target)) {
-        image.classList.remove('enlarge-image');
-        for (let i = 0; i < children.length; i++) {
-          children[i].classList.remove('enlarge-image');
-        }
-        document.removeEventListener('click', closeImage);
-      }
-    });
   }
 
   render() {
@@ -206,22 +164,22 @@ export class CollectionScoreTableContainer {
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">REZULTATAI</div>
+      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+      this.prop === 'Fpro' ? 'Congrats!' : 'REZULTATAI'
+    }</div>
       
       <div class="boomio-scoreboard-text">
       `;
 
     containerDiv.innerHTML += `
               </div>
-      <div  style="margin-left:14px;height: ${'302px'}; top: 114px; position: absolute; border-right:none;">
-        <div class="boomio-custom-scrollbar">
-          <table style="padding:10px">
-            <tbody class="boomio-tbody">
+              <div  style="width: calc(100% - 64px); height: ${'302px'}; left: 32px; top: 124px; position: absolute;border-right:none; backdrop-filter: blur(4px)">
+              <div >
+            <div class="boomio-tbody">
     `;
 
     containerDiv.innerHTML += `
-            </tbody>
-          </table>
+            </div>
         </div>
       </div>
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${
@@ -232,7 +190,9 @@ export class CollectionScoreTableContainer {
           ? 'white'
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">ŽAISK DAR KARTĄ</div>
+        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
+      this.prop === 'Fpro' ? 'IMPROVE RESULT' : 'ŽAISK DAR KARTĄ'
+    }</div>
       </div>
 
       <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">

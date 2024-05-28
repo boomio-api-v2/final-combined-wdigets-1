@@ -8,6 +8,7 @@ import {
 import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
+import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 import {
@@ -34,7 +35,8 @@ class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
-    this.showCompetitiveRegistration = this.config.game_type ?? 'point';
+    this.showCompetitiveRegistration =
+      this?.config?.game_type !== '' ? this.config.game_type : 'point';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -48,6 +50,8 @@ class FlappyBird {
     this.isMobile = window.innerWidth <= 768;
     this.newHighScoreReached = false;
     this.scoreTableContainerInstance;
+
+    console.log(this.showCompetitiveRegistration);
   }
 
   startFlappy() {
@@ -623,15 +627,12 @@ class FlappyBird {
     myCanvas.innerHTML = `    
     <div class="game-container game-container-flappy">
 
-    
-
     ${
       this.showCompetitiveRegistration === 'competition' ||
       this.showCompetitiveRegistration === 'point'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
     } 
-
 
     <img src=${
       endingBackground.src
@@ -790,7 +791,16 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     if (this.showCompetitiveRegistration === 'point') {
       const gameContainer = document.querySelector('.game-container-flappy');
 
-      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+      this.scoreTableContainerInstance = new PointScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    if (this.showCompetitiveRegistration === 'collection') {
+      const gameContainer = document.querySelector('.game-container-flappy');
+
+      this.scoreTableContainerInstance = new CollectionScoreTableContainer(
         this.customer,
         this.scoreTable,
       );
@@ -1018,39 +1028,39 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
           canvas.addEventListener('click', this.clickEventHandler);
         }
 
-        this.clickEventHandlerClaimButton = () => {
-          const inputContainer = document.querySelector('.input-container1');
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          setTimeout(() => {
-            inputContainer.style.height = '10px';
-            inputContainer.style.top = 'calc(50% + 330px)';
-            inputContainer.style.opacity = 0;
-          }, 100);
-          setTimeout(() => {
-            inputContainer.style.display = 'none';
-          }, 400);
+        // this.clickEventHandlerClaimButton = () => {
+        //   const inputContainer = document.querySelector('.input-container1');
+        //   inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        //   setTimeout(() => {
+        //     inputContainer.style.height = '10px';
+        //     inputContainer.style.top = 'calc(50% + 330px)';
+        //     inputContainer.style.opacity = 0;
+        //   }, 100);
+        //   setTimeout(() => {
+        //     inputContainer.style.display = 'none';
+        //   }, 400);
 
-          setTimeout(() => {
-            document.getElementById('useCuponImage').style.display = 'block';
-            document.getElementById('background_blur').style.transition = 'opacity 1s ease';
-            document.getElementById('ending_background').style.display = 'block';
-            document.getElementById('snow_background_qr').style.display = 'block';
+        //   setTimeout(() => {
+        //     document.getElementById('useCuponImage').style.display = 'block';
+        //     document.getElementById('background_blur').style.transition = 'opacity 1s ease';
+        //     document.getElementById('ending_background').style.display = 'block';
+        //     document.getElementById('snow_background_qr').style.display = 'block';
 
-            setTimeout(() => {
-              document.getElementById('background_blur').style.opacity = 0;
-              document.getElementById('ending_background').style.transition = 'opacity 1s ease';
-              document.getElementById('ending_background').style.opacity = 1;
+        //     setTimeout(() => {
+        //       document.getElementById('background_blur').style.opacity = 0;
+        //       document.getElementById('ending_background').style.transition = 'opacity 1s ease';
+        //       document.getElementById('ending_background').style.opacity = 1;
 
-              document.getElementById('snow_background_qr').style.transition = 'opacity 1s ease';
-              document.getElementById('snow_background_qr').style.opacity = 0.3;
-            }, 100);
+        //       document.getElementById('snow_background_qr').style.transition = 'opacity 1s ease';
+        //       document.getElementById('snow_background_qr').style.opacity = 0.3;
+        //     }, 100);
 
-            this.gameEnded = true;
-            setTimeout(() => {
-              new QrCodeModal(true, this.discount);
-            }, 200);
-          }, 500);
-        };
+        //     this.gameEnded = true;
+        //     setTimeout(() => {
+        //       new QrCodeModal(true, this.discount);
+        //     }, 200);
+        //   }, 500);
+        // };
 
         this.clickEventHandlerButton = () => {
           const controlButton = document.querySelector('.control-button1');
