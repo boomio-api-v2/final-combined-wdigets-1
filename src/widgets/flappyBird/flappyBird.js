@@ -30,6 +30,9 @@ import {
   FproFlappyScore,
   FproFlappyIntro,
   FproFlappyBackground,
+  MakaliusFlappyScore,
+  MakaliusFlappyIntro,
+  MakaliusFlappyBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -40,7 +43,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Fpro';
+    this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -87,6 +90,8 @@ class FlappyBird {
         ? mainFantazijos
         : this.customer === 'Fpro'
         ? FproFlappyBackground
+        : this.customer === 'Makalius'
+        ? MakaliusFlappyBackground
         : mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -653,6 +658,8 @@ class FlappyBird {
         ? introGifFantazijos
         : this.customer === 'Fpro'
         ? FproFlappyIntro
+        : this.customer === 'Makalius'
+        ? MakaliusFlappyIntro
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -712,6 +719,8 @@ ${
           ? scoreImageFantazijos
           : this.customer === 'Fpro'
           ? FproFlappyScore
+          : this.customer === 'Makalius'
+          ? MakaliusFlappyScore
           : scoreImageGreen
       } alt="Image Description" style="width: 100%; height: 100%;"></img>
       <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
