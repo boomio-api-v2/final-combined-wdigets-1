@@ -34,12 +34,14 @@ export class CompetitionScoreTableContainer {
           ? this.prop === 'Barbora' ||
             this.prop === 'Fpro' ||
             this.prop === 'Fantazijos' ||
+            this.prop === 'Makalius' ||
             this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
           : this.prop === 'Barbora' ||
             this.prop === 'Fpro' ||
             this.prop === 'Fantazijos' ||
+            this.prop === 'Makalius' ||
             this.prop === 'LemonGym'
           ? 'white'
           : 'white';
@@ -66,6 +68,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Barbora' ||
                 this.prop === 'Fpro' ||
                 this.prop === 'Fantazijos' ||
+                this.prop === 'Makalius' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -76,6 +79,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Barbora' ||
                 this.prop === 'Fpro' ||
                 this.prop === 'Fantazijos' ||
+                this.prop === 'Makalius' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -83,13 +87,7 @@ export class CompetitionScoreTableContainer {
             </tr>`;
     }
 
-    let textColor =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'white'
-        : 'white';
+    let textColor = 'white';
     let fontSize =
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -208,14 +206,7 @@ export class CompetitionScoreTableContainer {
 
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
-      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
+      <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
       
       <div class="boomio-scoreboard-text">
       `;

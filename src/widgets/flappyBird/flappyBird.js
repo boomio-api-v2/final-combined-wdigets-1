@@ -43,7 +43,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
+    this.customer = this.config.business_name ? this.config.business_name : 'FPro';
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
