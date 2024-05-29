@@ -53,8 +53,9 @@ class FlappyBird {
     this.isMobile = window.innerWidth <= 768;
     this.newHighScoreReached = false;
     this.scoreTableContainerInstance;
+    const params = new URLSearchParams(window.location.search);
 
-    console.log(this.showCompetitiveRegistration);
+    this.game_code = params.get('game_code');
   }
 
   startFlappy() {
@@ -824,6 +825,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                   emails_consent: this.checkboxChange,
                   user_email: emailInput?.value,
                   user_name: playerNameInput?.value,
+                  game_code: this.game_code,
                 })
                 .then((response) => {
                   if (response.success === false) {
