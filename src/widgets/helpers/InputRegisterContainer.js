@@ -61,6 +61,8 @@ export class InputRegisterContainer {
         ? 'Agree to get newsletters.'
         : this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
+        : this.prop === 'Makalius'
+        ? 'Sutinku gauti Makaliaus naujienlaiškius.'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -71,6 +73,7 @@ export class InputRegisterContainer {
       this.prop !== 'Barbora' &&
       this.prop !== 'Fpro' &&
       this.prop !== 'Fantazijos' &&
+      this.prop !== 'Makalius' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||

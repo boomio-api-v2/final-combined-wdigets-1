@@ -98,7 +98,8 @@ export class InputContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
+      this.prop === 'LemonGym' ||
+      this.prop === 'Makalius'
         ? 'PIRMYN'
         : 'LET’S PLAY'
     }</div></div>
