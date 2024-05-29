@@ -1,5 +1,4 @@
 import './styles.css';
-import { rules, rules2, rules2Mobile } from './constants';
 import { localStorageService } from '@/services';
 export class InputContainer {
   constructor(prop, game) {
@@ -14,13 +13,7 @@ export class InputContainer {
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
-    containerDiv.style.background =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? `none`
-        : 'white';
+    containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
     containerDiv.innerHTML = `
@@ -29,25 +22,10 @@ export class InputContainer {
     <div style="width: 100%; height: 180px;box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${
-      this.prop !== 'Barbora' &&
-      this.prop !== 'Fpro' &&
-      this.prop !== 'Fantazijos' &&
-      this.prop !== 'LemonGym'
-        ? `<img style="width:150px;height:75px" src=${rules} alt="Image Description" >`
-        : `<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${
-            this.prop === 'Fpro' ? 'RULLES' : 'TAISYKLĖS'
-          }</div>`
-    }</div>
-    <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${
-      this.prop !== 'Barbora' &&
-      this.prop !== 'Fpro' &&
-      this.prop !== 'Fantazijos' &&
-      this.prop !== 'LemonGym'
-        ? `<img src=${
-            this.isMobile ? rules2Mobile : rules2
-          } alt="Image Description" style="width:270px;height:100%">`
-        : `<div style="width: 100%; height: 139px; position: relative">
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${
+      this.prop === 'Fpro' ? 'RULLES' : 'TAISYKLĖS'
+    }</div>`}</div>
+    <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
           <div style="width: 172px; left: 160px; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             ${
               this.game === 'drive'
@@ -70,6 +48,8 @@ export class InputContainer {
                 ? 'gimtadienio prizus iškart!'
                 : this.prop === 'Fantazijos'
                 ? 'net 69 Fantazijos.lt prizus!'
+                : this.prop === 'Makalius'
+                ? 'MAKALIAUS kuponus!'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
@@ -84,8 +64,7 @@ export class InputContainer {
             3. ${this.prop === 'Fpro' ? 'WIN' : 'Laimėk'} 
             </div>
           </div>
-        </div>`
-    }</div>
+        </div>`}</div>
     ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -115,14 +94,7 @@ export class InputContainer {
               };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${
-                this.prop === 'Barbora' ||
-                this.prop === 'Fpro' ||
-                this.prop === 'Fantazijos' ||
-                this.prop === 'LemonGym'
-                  ? '#3D4928'
-                  : '#FF3183'
-              }; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
+              <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||

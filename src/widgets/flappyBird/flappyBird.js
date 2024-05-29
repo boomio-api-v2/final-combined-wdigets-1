@@ -39,7 +39,7 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'point';
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -227,7 +227,7 @@ class FlappyBird {
             background.style.display = 'none';
           }
         }, 2000);
-      }, 100);
+      }, 3000);
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -606,9 +606,6 @@ class FlappyBird {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
 
-    const tapImage = new Image();
-    tapImage.src = 'https://i.ibb.co/LdbY1B8/tap.png';
-
     const useCuponImage = new Image();
     useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
 
@@ -696,17 +693,10 @@ class FlappyBird {
 </div>
 
 <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
-${
-  this.customer === 'Barbora' ||
-  this.customer === 'Penki Sezonai' ||
-  this.customer === 'Fantazijos' ||
-  this.customer === 'Fpro'
-    ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>BAKST</div>
     <div>BAKST</div>
-  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`
-    : `<img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px"><img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px"><img src=${clickImg.src} alt="Image Description" style="width: 71px; height: 54px;">`
-}
+  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`}
 
 </div>
       <div class="flappy-container">
