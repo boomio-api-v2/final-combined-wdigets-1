@@ -301,7 +301,7 @@ class FlappyBird {
             ctx.drawImage(
               img,
               419,
-              595 - pipe[1],
+              604 - pipe[1],
               pipeWidth,
               pipe[1],
               pipe[0],
