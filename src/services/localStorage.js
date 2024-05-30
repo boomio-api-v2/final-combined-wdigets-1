@@ -82,7 +82,7 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const business_name = config?.business_name ?? '';
-
+    const collectables = config?.collectables ?? [];
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
     const p_button_text_line1 = config?.p_button_text_line1 ?? 'Open';
     const p_button_text_line2 = config?.p_button_text_line2 ?? 'boomio app';
@@ -138,6 +138,7 @@ class LocalStorageService {
       p_button_text_line1,
       p_button_text_line2,
       business_name,
+      collectables,
       static_text,
       boomioStopTill,
       m,

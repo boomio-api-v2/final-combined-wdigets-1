@@ -3,8 +3,9 @@ import './styles.css';
 import { boomioLogo } from './constants';
 
 export class CollectionScoreTableContainer {
-  constructor(prop, scoreTable) {
+  constructor(prop, collectables) {
     this.prop = prop;
+    console.log('test', collectables);
     this.scoreTable = [
       'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
       'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
