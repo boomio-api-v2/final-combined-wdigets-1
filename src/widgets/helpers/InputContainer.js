@@ -69,12 +69,15 @@ export class InputContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
+      this.prop === 'LemonGym' ||
+      this.prop === 'Makalius'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'LemonGym'
               ? 'href=https://www.lemongym.lt/nestabdyk/#zaidimas'
+              : this.prop === 'Makalius'
+              ? 'href=https://www.makalius.lt/gimtadienio-zaidimo-taisykles/'
               : this.prop === 'Fantazijos'
               ? 'href=https://www.fantazijos.lt/zaidimo-taisykles'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'

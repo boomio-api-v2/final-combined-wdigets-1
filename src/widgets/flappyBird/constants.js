@@ -60,7 +60,7 @@ export const MakaliusFlappyScore =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Makalius/MakaliusFlappyScore.png';
 
 export const MakaliusFlappyIntro =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Makalius/MakaliusFlappyIntro.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Makalius/MakaliusFlappyIntro.gif';
 
 export const MakaliusFlappyBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Makalius/MakaliusFlappyBackground.png';
