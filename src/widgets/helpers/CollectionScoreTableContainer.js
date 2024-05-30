@@ -6,20 +6,7 @@ export class CollectionScoreTableContainer {
   constructor(prop, collectables) {
     this.prop = prop;
     console.log('test', collectables);
-    this.scoreTable = [
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
-    ];
+    this.scoreTable = collectables;
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
     this.render();
@@ -45,7 +32,7 @@ export class CollectionScoreTableContainer {
       tableHTML += `
         <td style="text-align: center; border: none;">
         <div id="image-${index}">
-        <img class='image-container'  src=${item} alt="Scoreboard Image" class="scoreboard-image">
+        <img class='image-container'  src=${item.url} alt="Scoreboard Image" class="scoreboard-image">
         </div>
         </td>`;
 
@@ -76,7 +63,7 @@ export class CollectionScoreTableContainer {
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
-          ? this.scoreTable.user_best_place <
+          ? this.scoreTable?.user_best_place <
               (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
             (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500) ||
             (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500)
@@ -158,7 +145,6 @@ export class CollectionScoreTableContainer {
     // Attach event listeners after the images are added to the DOM
     for (let index = 0; index < scoreboard.length; index++) {
       const image = document.getElementById(`image-${index}`);
-      console.log(image);
       if (image) {
         image.addEventListener('click', () => {
           this.handleImageClick(image);

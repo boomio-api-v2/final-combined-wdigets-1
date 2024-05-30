@@ -380,7 +380,6 @@ class FlappyBird {
 
               setTimeout(
                 () => {
-                  const inputContainer = document.querySelector('.input-container1');
                   if (
                     this.showCompetitiveRegistration === 'competition' ||
                     this.showCompetitiveRegistration === 'point' ||
@@ -398,7 +397,9 @@ class FlappyBird {
 
                         this.scoreTableContainerInstance.updateProps(
                           this.customer,
-                          this.scoreTable,
+                          this.showCompetitiveRegistration === 'collectable'
+                            ? this.collectables
+                            : this.scoreTable,
                         );
                       })
                       .catch((error) => {
