@@ -45,7 +45,7 @@ class FlappyBird {
     this.isJumping = false;
     this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
     this.collectables = this.config.collectables ? this.config.collectables : [];
-    console.log('test1', collectables);
+    console.log('test1', this.collectables);
 
     this.startFlappy();
     this.gameStarted = false;
