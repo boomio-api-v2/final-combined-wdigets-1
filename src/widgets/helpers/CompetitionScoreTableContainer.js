@@ -92,6 +92,7 @@ export class CompetitionScoreTableContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
+      this.prop === 'Makalius' ||
       this.prop === 'LemonGym'
         ? '14px'
         : '10px';

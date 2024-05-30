@@ -6,18 +6,18 @@ export class CollectionScoreTableContainer {
   constructor(prop, scoreTable) {
     this.prop = prop;
     this.scoreTable = [
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
-      'https://i.ibb.co/HzQ1Mpt/b-sticker-removebg-preview-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
+      'https://i.ibb.co/sqsQQhm/b-sticker-removebg-preview-1-1-1.png',
     ];
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
