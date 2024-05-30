@@ -26,7 +26,7 @@ export class CollectionScoreTableContainer {
 
     scoreboard.forEach((item, index) => {
       if (index % 4 === 0) {
-        tableHTML += '<tr>';
+        tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
 
       tableHTML += `
@@ -202,7 +202,7 @@ export class CollectionScoreTableContainer {
               </div>
       <div  style="margin-left:14px;height: ${'302px'}; top: 114px; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
-          <table style="padding:10px">
+          <table style="margin:10px">
             <tbody class="boomio-tbody">
     `;
 
