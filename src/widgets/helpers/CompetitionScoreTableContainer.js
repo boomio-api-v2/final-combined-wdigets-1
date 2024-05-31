@@ -129,7 +129,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'LemonGym'
                 ? 'Mėnesio gale 11 geriausių žaidėjų laimės</br> Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Makalius'
-                ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € arba 100 € '
+                ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 €'
                 : ''
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -138,7 +138,7 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
                 : this.prop === 'Makalius'
-                ? 'MAKALIAUS paslaugoms įsigyti!'
+                ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -165,7 +165,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Makalius'
-                ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d.</br>Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € arba 100 €'
+                ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d.</br>Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -174,7 +174,7 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
                 : this.prop === 'Makalius'
-                ? 'MAKALIAUS paslaugoms įsigyti!'
+                ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
               <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
