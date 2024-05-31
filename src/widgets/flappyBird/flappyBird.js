@@ -8,7 +8,9 @@ import {
 import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
+import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { InputContainer } from '../helpers/InputContainer';
+import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 import {
   close,
   introGif,
@@ -25,19 +27,25 @@ import {
   introGifFantazijos,
   newRecord,
   snowFantazijos,
-  F1FlappyScore,
-  F1FlappyIntro,
-  F1FlappyBackground,
+  FproFlappyScore,
+  FproFlappyIntro,
+  FproFlappyBackground,
+  MakaliusFlappyScore,
+  MakaliusFlappyIntro,
+  MakaliusFlappyBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competition';
+    this.showCompetitiveRegistration =
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'F1';
+    this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
+    this.collectables = this.config.collectables ? this.config.collectables : [];
+
     this.startFlappy();
     this.gameStarted = false;
     this.bestScore = 0;
@@ -47,6 +55,9 @@ class FlappyBird {
     this.isMobile = window.innerWidth <= 768;
     this.newHighScoreReached = false;
     this.scoreTableContainerInstance;
+    const params = new URLSearchParams(window.location.search);
+
+    this.game_code = params.get('game_code');
   }
 
   startFlappy() {
@@ -80,8 +91,10 @@ class FlappyBird {
         ? mainBarbora
         : this.customer === 'Fantazijos'
         ? mainFantazijos
-        : this.customer === 'F1'
-        ? F1FlappyBackground
+        : this.customer === 'Fpro'
+        ? FproFlappyBackground
+        : this.customer === 'Makalius'
+        ? MakaliusFlappyBackground
         : mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -150,7 +163,8 @@ class FlappyBird {
         if (this.gameCount === 0) {
           if (
             this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'point'
+            this.showCompetitiveRegistration === 'point' ||
+            this.showCompetitiveRegistration === 'collectable'
           ) {
             const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
             checkboxImg.addEventListener('click', () => {
@@ -217,7 +231,7 @@ class FlappyBird {
             background.style.display = 'none';
           }
         }, 2000);
-      }, 3500);
+      }, 3000);
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -290,7 +304,7 @@ class FlappyBird {
             ctx.drawImage(
               img,
               419,
-              595 - pipe[1],
+              604 - pipe[1],
               pipeWidth,
               pipe[1],
               pipe[0],
@@ -365,10 +379,10 @@ class FlappyBird {
 
               setTimeout(
                 () => {
-                  const inputContainer = document.querySelector('.input-container1');
                   if (
                     this.showCompetitiveRegistration === 'competition' ||
-                    this.showCompetitiveRegistration === 'point'
+                    this.showCompetitiveRegistration === 'point' ||
+                    this.showCompetitiveRegistration === 'collectable'
                   ) {
                     hideScore();
                     boomioService
@@ -382,7 +396,9 @@ class FlappyBird {
 
                         this.scoreTableContainerInstance.updateProps(
                           this.customer,
-                          this.scoreTable,
+                          this.showCompetitiveRegistration === 'collectable'
+                            ? this.collectables
+                            : this.scoreTable,
                         );
                       })
                       .catch((error) => {
@@ -414,20 +430,20 @@ class FlappyBird {
                       currectScoreDiv.style.display = 'none';
                     }, 300);
                   } else {
-                    console.log(this.showCompetitiveRegistration);
-
-                    this.clickEventHandlerClaimButton();
                     const canvas = document.getElementById('flappy-canvas');
+                    const competitionTableContainer = document.querySelector(
+                      '.competition-table-container',
+                    );
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     document.getElementById('background_blur').style.display = 'block';
-                    inputContainer.style.transition =
+                    competitionTableContainer.style.transition =
                       'height 1s ease, top 1s ease, opacity 1s ease';
-                    inputContainer.style.display = 'block';
+                    competitionTableContainer.style.display = 'block';
                     setTimeout(() => {
-                      inputContainer.style.height = '332px';
-                      inputContainer.style.top = 'calc(50% + 170px)';
-                      inputContainer.style.opacity = 1;
+                      competitionTableContainer.style.height = '680px';
+                      competitionTableContainer.style.top = 'calc(50%)';
+                      competitionTableContainer.style.opacity = 1;
                     }, 100);
                     const currectScoreDiv = document.getElementsByClassName(
                       'boomio-score-input-container',
@@ -596,12 +612,6 @@ class FlappyBird {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
 
-    const tapImage = new Image();
-    tapImage.src = 'https://i.ibb.co/LdbY1B8/tap.png';
-
-    const introImage = new Image();
-    introImage.src = 'https://i.ibb.co/XFgPwS0/Winter-game-2024-intro.gif';
-
     const useCuponImage = new Image();
     useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
 
@@ -627,11 +637,11 @@ class FlappyBird {
 
     ${
       this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'point'
+      this.showCompetitiveRegistration === 'point' ||
+      this.showCompetitiveRegistration === 'collectable'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
-    }
-
+    } 
 
     <img src=${
       endingBackground.src
@@ -650,8 +660,10 @@ class FlappyBird {
         ? introGif
         : this.customer === 'Fantazijos'
         ? introGifFantazijos
-        : this.customer === 'F1'
-        ? F1FlappyIntro
+        : this.customer === 'Fpro'
+        ? FproFlappyIntro
+        : this.customer === 'Makalius'
+        ? MakaliusFlappyIntro
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -688,17 +700,10 @@ class FlappyBird {
 </div>
 
 <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
-${
-  this.customer === 'Barbora' ||
-  this.customer === 'Penki Sezonai' ||
-  this.customer === 'Fantazijos' ||
-  this.customer === 'F1'
-    ? `<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>BAKST</div>
     <div>BAKST</div>
-  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`
-    : `<img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:-26px"><img src=${tapImage.src} alt="Image Description" style="width: 53px; height: 34px;margin-left:-60px;position:absolute;top:-30px;margin-left:23px"><img src=${clickImg.src} alt="Image Description" style="width: 71px; height: 54px;">`
-}
+  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`}
 
 </div>
       <div class="flappy-container">
@@ -709,8 +714,10 @@ ${
           ? scoreImage
           : this.customer === 'Fantazijos'
           ? scoreImageFantazijos
-          : this.customer === 'F1'
-          ? F1FlappyScore
+          : this.customer === 'Fpro'
+          ? FproFlappyScore
+          : this.customer === 'Makalius'
+          ? MakaliusFlappyScore
           : scoreImageGreen
       } alt="Image Description" style="width: 100%; height: 100%;"></img>
       <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
@@ -768,14 +775,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 <div style="color: white; font-size: 25px; font-family: Poppins; font-weight: 900; line-height: 24px; letter-spacing: 0.25px; word-wrap: break-word;" id="startButton">Play</div>
 </div>
 </div>
-
-
-
       </div>
-
-
-      
-      
       <canvas id="flappy-canvas" width=${
         document.body.offsetWidth < 418 ? document.body.offsetWidth : '418'
       } height="668" class="flappy-game"></canvas>
@@ -794,9 +794,29 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
 
+    if (this.showCompetitiveRegistration === 'point') {
+      const gameContainer = document.querySelector('.game-container-flappy');
+
+      this.scoreTableContainerInstance = new PointScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    if (this.showCompetitiveRegistration === 'collectable') {
+      const gameContainer = document.querySelector('.game-container-flappy');
+
+      this.scoreTableContainerInstance = new CollectionScoreTableContainer(
+        this.customer,
+        this.collectables,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
     if (
       this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'point'
+      this.showCompetitiveRegistration === 'point' ||
+      this.showCompetitiveRegistration === 'collectable'
     ) {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
@@ -805,13 +825,15 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             if (
               this.showCompetitiveRegistration === 'competition' ||
-              this.showCompetitiveRegistration === 'point'
+              this.showCompetitiveRegistration === 'point' ||
+              this.showCompetitiveRegistration === 'collectable'
             ) {
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange,
                   user_email: emailInput?.value,
                   user_name: playerNameInput?.value,
+                  game_code: this.game_code,
                 })
                 .then((response) => {
                   if (response.success === false) {
@@ -886,8 +908,9 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       };
 
       const clickEventHandlerResetGame = () => {
-        const competitionRestart = document.getElementById('boomio-competition-play-again');
+        const competitionRestart = document.getElementById('boomio-game-play-again');
         competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+
         setTimeout(() => {
           competitionRestart.addEventListener('click', clickEventHandlerResetGame);
         }, 2000);
@@ -895,6 +918,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         const controlButton = document.querySelector('.control-button1');
         this.index = 0;
         this.currentScore = 0;
+
         const competitionTableContainer = document.querySelector('.competition-table-container');
 
         competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -910,7 +934,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         setTimeout(() => {
           if (
             this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'point'
+            this.showCompetitiveRegistration === 'point' ||
+            this.showCompetitiveRegistration === 'collectable'
           ) {
             boomioService
               .signal('ROUND_STARTED', 'signal')
@@ -933,7 +958,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
-      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }
 
@@ -991,7 +1016,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                 if (this.gameStarted === false) {
                   if (
                     this.showCompetitiveRegistration === 'competition' ||
-                    this.showCompetitiveRegistration === 'point'
+                    this.showCompetitiveRegistration === 'point' ||
+                    this.showCompetitiveRegistration === 'collectable'
                   ) {
                     boomioService
                       .signal('ROUND_STARTED', 'signal')
@@ -1013,39 +1039,39 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
           canvas.addEventListener('click', this.clickEventHandler);
         }
 
-        this.clickEventHandlerClaimButton = () => {
-          const inputContainer = document.querySelector('.input-container1');
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          setTimeout(() => {
-            inputContainer.style.height = '10px';
-            inputContainer.style.top = 'calc(50% + 330px)';
-            inputContainer.style.opacity = 0;
-          }, 100);
-          setTimeout(() => {
-            inputContainer.style.display = 'none';
-          }, 400);
+        // this.clickEventHandlerClaimButton = () => {
+        //   const inputContainer = document.querySelector('.input-container1');
+        //   inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        //   setTimeout(() => {
+        //     inputContainer.style.height = '10px';
+        //     inputContainer.style.top = 'calc(50% + 330px)';
+        //     inputContainer.style.opacity = 0;
+        //   }, 100);
+        //   setTimeout(() => {
+        //     inputContainer.style.display = 'none';
+        //   }, 400);
 
-          setTimeout(() => {
-            document.getElementById('useCuponImage').style.display = 'block';
-            document.getElementById('background_blur').style.transition = 'opacity 1s ease';
-            document.getElementById('ending_background').style.display = 'block';
-            document.getElementById('snow_background_qr').style.display = 'block';
+        //   setTimeout(() => {
+        //     document.getElementById('useCuponImage').style.display = 'block';
+        //     document.getElementById('background_blur').style.transition = 'opacity 1s ease';
+        //     document.getElementById('ending_background').style.display = 'block';
+        //     document.getElementById('snow_background_qr').style.display = 'block';
 
-            setTimeout(() => {
-              document.getElementById('background_blur').style.opacity = 0;
-              document.getElementById('ending_background').style.transition = 'opacity 1s ease';
-              document.getElementById('ending_background').style.opacity = 1;
+        //     setTimeout(() => {
+        //       document.getElementById('background_blur').style.opacity = 0;
+        //       document.getElementById('ending_background').style.transition = 'opacity 1s ease';
+        //       document.getElementById('ending_background').style.opacity = 1;
 
-              document.getElementById('snow_background_qr').style.transition = 'opacity 1s ease';
-              document.getElementById('snow_background_qr').style.opacity = 0.3;
-            }, 100);
+        //       document.getElementById('snow_background_qr').style.transition = 'opacity 1s ease';
+        //       document.getElementById('snow_background_qr').style.opacity = 0.3;
+        //     }, 100);
 
-            this.gameEnded = true;
-            setTimeout(() => {
-              new QrCodeModal(true, this.discount);
-            }, 200);
-          }, 500);
-        };
+        //     this.gameEnded = true;
+        //     setTimeout(() => {
+        //       new QrCodeModal(true, this.discount);
+        //     }, 200);
+        //   }, 500);
+        // };
 
         this.clickEventHandlerButton = () => {
           const controlButton = document.querySelector('.control-button1');
