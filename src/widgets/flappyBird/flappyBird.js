@@ -39,12 +39,14 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+      this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
     this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
     this.collectables = this.config.collectables ? this.config.collectables : [];
+    this.collection = this.config.collection ? this.config.collection : [];
+    this.just_won = this.config.just_won ? this.config.just_won : null;
 
     this.startFlappy();
     this.gameStarted = false;
@@ -397,7 +399,7 @@ class FlappyBird {
                         this.scoreTableContainerInstance.updateProps(
                           this.customer,
                           this.showCompetitiveRegistration === 'collectable'
-                            ? this.collectables
+                            ? (this.collectables, this.collection, this.just_won)
                             : this.scoreTable,
                         );
                       })
@@ -809,6 +811,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       this.scoreTableContainerInstance = new CollectionScoreTableContainer(
         this.customer,
         this.collectables,
+        this.collection,
+        this.just_won,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }

@@ -82,6 +82,7 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const business_name = config?.business_name ?? '';
+    const collection = config?.collection ?? [17];
     const collectables = config?.collectables ?? [
       {
         url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/1.png',
@@ -132,6 +133,8 @@ class LocalStorageService {
         period_id: 24,
       },
     ];
+    const coupon_code = config?.coupon_code ?? '';
+    const just_won = config?.just_won ?? '';
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
     const p_button_text_line1 = config?.p_button_text_line1 ?? 'Open';
     const p_button_text_line2 = config?.p_button_text_line2 ?? 'boomio app';
@@ -184,10 +187,13 @@ class LocalStorageService {
       p_bottom_text_end_m,
       p_coupon_text_line1,
       p_coupon_text_line2,
+      just_won,
+      collection,
+      coupon_code,
+      collectables,
       p_button_text_line1,
       p_button_text_line2,
       business_name,
-      collectables,
       static_text,
       boomioStopTill,
       m,

@@ -3,10 +3,12 @@ import './styles.css';
 import { boomioLogo } from './constants';
 
 export class CollectionScoreTableContainer {
-  constructor(prop, collectables) {
+  constructor(prop, collectables, collection, just_won) {
     this.prop = prop;
-    console.log('test', collectables);
+    console.log('test', prop, collectables, collection, just_won);
     this.scoreTable = collectables;
+
+    this.collection = collection;
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
     this.render();
@@ -20,23 +22,25 @@ export class CollectionScoreTableContainer {
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const scoreboard = this.scoreTable;
-
     let tableHTML = '';
 
-    scoreboard.forEach((item, index) => {
+    this.scoreTable.forEach((item, index) => {
       if (index % 4 === 0) {
         tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
 
+      const isInCollection = this.collection.includes(item.period_id);
+      const divStyle = isInCollection ? '' : 'border-radius:20px;background:white;';
+      const imgStyle = isInCollection ? '' : 'opacity:0.1;';
+
       tableHTML += `
         <td style="text-align: center; border: none;">
-        <div id="image-${index}">
-        <img class='image-container'  src=${item.url} alt="Scoreboard Image" class="scoreboard-image">
+        <div id="image-${index}" style="${divStyle}">
+        <img class='image-container' style="${imgStyle}" src=${item.url} alt="Scoreboard Image" >
         </div>
         </td>`;
 
-      if ((index + 1) % 4 === 0 || index === scoreboard.length - 1) {
+      if ((index + 1) % 4 === 0 || index === this.scoreTable.length - 1) {
         tableHTML += '</tr>';
       }
     });
@@ -145,7 +149,7 @@ export class CollectionScoreTableContainer {
     // Attach event listeners after the images are added to the DOM
     for (let index = 0; index < scoreboard.length; index++) {
       const image = document.getElementById(`image-${index}`);
-      if (image) {
+      if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
         image.addEventListener('click', () => {
           this.handleImageClick(image);
         });
