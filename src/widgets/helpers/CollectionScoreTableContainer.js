@@ -5,7 +5,6 @@ import { boomioLogo } from './constants';
 export class CollectionScoreTableContainer {
   constructor(prop, collectables, collection, just_won) {
     this.prop = prop;
-    console.log('test', prop, collectables, collection, just_won);
     this.scoreTable = collectables;
 
     this.collection = collection;
@@ -24,7 +23,7 @@ export class CollectionScoreTableContainer {
     if (!this.containerDiv) return;
     let tableHTML = '';
 
-    this.scoreTable.forEach((item, index) => {
+    this.scoreTable?.forEach((item, index) => {
       if (index % 4 === 0) {
         tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
