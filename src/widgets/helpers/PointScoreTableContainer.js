@@ -19,6 +19,8 @@ export class PointScoreTableContainer {
   updateVisuals() {
     if (!this.containerDiv) return;
     const userBestScore = parseInt(this?.scoreTable?.user_best_score);
+    const userPercentageDiscount = parseInt(this?.scoreTable?.user_discount);
+
     let tableHTML = '';
 
     tableHTML += '<div>';
@@ -31,7 +33,7 @@ export class PointScoreTableContainer {
     <div style="width:100%;margin-top:20px; text-align: center; color: white; font-size: 20px; font-family: Georama; font-weight:600; text-transform: uppercase; word-wrap: break-word"> 
     You won </div>
     <div style="width:100%;text-align: center; color: white; font-size: 42px; font-family: Georama; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
-    15% </div>
+    ${userBestScore}% </div>
     <div style="line-height: 150%;margin-bottom:40px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 14px; font-family: Georama; font-weight:400; word-wrap: break-word;max-width:250px;"> 
     discount for FPro special edition Ball Mastery Mat! </div>
 </div>
