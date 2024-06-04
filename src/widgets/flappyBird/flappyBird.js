@@ -298,7 +298,7 @@ class FlappyBird {
         );
 
         if (this.gamePlaying) {
-          if (canvas.width > 500 || canvas.height < 600) {
+          if (canvas.width > 450 || canvas.height < 600) {
             canvas.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : '418';
             canvas.height = '668';
           }
