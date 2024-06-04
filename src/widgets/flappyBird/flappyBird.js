@@ -39,11 +39,11 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'point';
+      this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Fpro';
+    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
     this.collectables = this.config.collectables ? this.config.collectables : [];
     this.collection = this.config.collection ? this.config.collection : [];
     this.just_won = this.config.just_won ? this.config.just_won : null;
@@ -401,15 +401,18 @@ class FlappyBird {
                           this.scoreTable = response;
                         }
                         if (this.showCompetitiveRegistration === 'collectable') {
-                          this.collection = response.collection;
-                          this.just_won = response.just_won;
+                          this.collection = response?.collection
+                            ? response?.collection
+                            : this.collection;
+                          this.just_won = response?.just_won ? response?.just_won : this.just_won;
                         }
-
                         this.scoreTableContainerInstance.updateProps(
                           this.customer,
-                          this.showCompetitiveRegistration === 'collectable'
-                            ? (this.collectables, this.collection, this.just_won)
-                            : this.scoreTable,
+                          this.showCompetitiveRegistration === 'competition'
+                            ? this.scoreTable
+                            : this.collectables,
+                          this.collection,
+                          this.just_won,
                         );
                       })
                       .catch((error) => {
@@ -824,7 +827,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     }
     if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container-flappy');
-
       this.scoreTableContainerInstance = new CollectionScoreTableContainer(
         this.customer,
         this.collectables,

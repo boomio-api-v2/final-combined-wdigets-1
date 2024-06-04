@@ -2,15 +2,14 @@ import './styles.css';
 
 import { boomioLogo } from './constants';
 
-export class CollectioncollectablesContainer {
+export class CollectionScoreTableContainer {
   constructor(prop, collectables, collection, just_won) {
     this.prop = prop;
     this.collectables = collectables;
     this.collection = collection;
     this.just_won = just_won;
-    console.log(prop, collectables, collection);
     this.isMobile = window.innerWidth <= 1280;
-    this.containerDiv = null; // Store container reference
+    this.containerDiv = null;
     this.render();
   }
 
@@ -19,20 +18,21 @@ export class CollectioncollectablesContainer {
     this.collectables = collectables;
     this.collection = collection;
     this.just_won = just_won;
-
+    console.log(this.collectables, this.collection);
     this.updateVisuals();
   }
 
   updateVisuals() {
+    console.log(this.collectables, this.collection);
+
     if (!this.containerDiv) return;
     let tableHTML = '';
-
     this.collectables?.forEach((item, index) => {
       if (index % 4 === 0) {
         tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
 
-      const isInCollection = this.collection.includes(item.period_id);
+      const isInCollection = this.collection?.includes(item?.period_id);
       const divStyle = isInCollection ? '' : 'border-radius:20px;background:white;';
       const imgStyle = isInCollection ? '' : 'opacity:0.1;';
 
@@ -87,7 +87,7 @@ export class CollectioncollectablesContainer {
                 this.prop ? '10px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
+                  ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> </br>GIMTADIENIS&apos;</b> ir gauk dovanų!'
                   : this.prop === 'Fantazijos'
                   ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
                   : this.prop === 'LemonGym'
@@ -149,7 +149,7 @@ export class CollectioncollectablesContainer {
 
   addfunc() {
     // Attach event listeners after the images are added to the DOM
-    for (let index = 0; index < this.collectables.length; index++) {
+    for (let index = 0; index < this.collectables?.length; index++) {
       const image = document.getElementById(`image-${index}`);
       if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
         image.addEventListener('click', () => {
