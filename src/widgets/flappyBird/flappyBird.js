@@ -139,7 +139,6 @@ class FlappyBird {
       this.gravity = 0.3;
       this.flight = this.jump / 2;
 
-      // console.log('stars');
       const new_highscore = document.querySelector('.new_highscore');
       const new_highscore_stars = document.querySelector('.new_highscore_stars');
       const numbers = document.querySelector('.numbers');
@@ -150,7 +149,6 @@ class FlappyBird {
       new_highscore.style.opacity = 0;
       new_highscore_stars.style.transition = 'opacity 0.5s ease';
       new_highscore_stars.style.opacity = 0;
-      // console.log('remove stars');
 
       setTimeout(() => {
         new_highscore.style.display = 'none';

@@ -18,13 +18,10 @@ export class CollectionScoreTableContainer {
     this.collectables = collectables;
     this.collection = collection;
     this.just_won = just_won;
-    console.log(this.collectables, this.collection);
     this.updateVisuals();
   }
 
   updateVisuals() {
-    console.log(this.collectables, this.collection);
-
     if (!this.containerDiv) return;
     let tableHTML = '';
     this.collectables?.forEach((item, index) => {
