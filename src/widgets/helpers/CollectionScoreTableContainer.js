@@ -2,20 +2,24 @@ import './styles.css';
 
 import { boomioLogo } from './constants';
 
-export class CollectionScoreTableContainer {
+export class CollectioncollectablesContainer {
   constructor(prop, collectables, collection, just_won) {
     this.prop = prop;
-    this.scoreTable = collectables;
-
+    this.collectables = collectables;
     this.collection = collection;
+    this.just_won = just_won;
+    console.log(prop, collectables, collection);
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
     this.render();
   }
 
-  updateProps(prop, scoreTable) {
+  updateProps(prop, collectables, collection, just_won) {
     this.prop = prop;
-    this.scoreTable = scoreTable;
+    this.collectables = collectables;
+    this.collection = collection;
+    this.just_won = just_won;
+
     this.updateVisuals();
   }
 
@@ -23,7 +27,7 @@ export class CollectionScoreTableContainer {
     if (!this.containerDiv) return;
     let tableHTML = '';
 
-    this.scoreTable?.forEach((item, index) => {
+    this.collectables?.forEach((item, index) => {
       if (index % 4 === 0) {
         tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
@@ -39,7 +43,7 @@ export class CollectionScoreTableContainer {
         </div>
         </td>`;
 
-      if ((index + 1) % 4 === 0 || index === this.scoreTable.length - 1) {
+      if ((index + 1) % 4 === 0 || index === this.collectables.length - 1) {
         tableHTML += '</tr>';
       }
     });
@@ -66,7 +70,7 @@ export class CollectionScoreTableContainer {
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
-          ? this.scoreTable?.user_best_place <
+          ? this.collectables?.user_best_place <
               (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
             this.prop === 'Barbora' ||
             this.prop === 'Fantazijos'
@@ -144,9 +148,8 @@ export class CollectionScoreTableContainer {
   }
 
   addfunc() {
-    const scoreboard = this.scoreTable;
     // Attach event listeners after the images are added to the DOM
-    for (let index = 0; index < scoreboard.length; index++) {
+    for (let index = 0; index < this.collectables.length; index++) {
       const image = document.getElementById(`image-${index}`);
       if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
         image.addEventListener('click', () => {

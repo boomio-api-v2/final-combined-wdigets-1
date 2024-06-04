@@ -397,8 +397,13 @@ class FlappyBird {
                       })
                       .then((response) => {
                         this.userBestPlace = response.user_best_place;
-
-                        this.scoreTable = response;
+                        if (this.showCompetitiveRegistration === 'competition') {
+                          this.scoreTable = response;
+                        }
+                        if (this.showCompetitiveRegistration === 'collectable') {
+                          this.collection = response.collection;
+                          this.just_won = response.just_won;
+                        }
 
                         this.scoreTableContainerInstance.updateProps(
                           this.customer,
