@@ -298,6 +298,10 @@ class FlappyBird {
         );
 
         if (this.gamePlaying) {
+          if (canvas.width > 500 || canvas.height < 600) {
+            canvas.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : '418';
+            canvas.height = '668';
+          }
           pipes.map((pipe) => {
             // pipe moving
             pipe[0] -= this.speed;
@@ -585,6 +589,14 @@ class FlappyBird {
     setup();
     img.onload = render;
   }
+
+  closeGame = () => {
+    const element = document.getElementById('boomio-flappy-container');
+    if (element && element.parentNode) {
+      this.gameClosed = true;
+      element.parentNode.removeChild(element);
+    }
+  };
 
   createContainer = () => {
     const starImg = new Image();
@@ -1120,16 +1132,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       }
     });
 
-    const closeGame = () => {
-      const element = document.getElementById('boomio-flappy-container');
-      if (element && element.parentNode) {
-        this.gameClosed = true;
-        element.parentNode.removeChild(element);
-      }
-    };
-
     document.getElementById('close-game-container').addEventListener('click', () => {
-      closeGame();
+      this.closeGame();
     });
   };
 }
