@@ -39,11 +39,11 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
     this.collectables = this.config.collectables ? this.config.collectables : [];
     this.collection = this.config.collection ? this.config.collection : [];
     this.just_won = this.config.just_won ? this.config.just_won : null;
