@@ -3,40 +3,44 @@ import './styles.css';
 import { boomioLogo } from './constants';
 
 export class CollectionScoreTableContainer {
-  constructor(prop, collectables) {
+  constructor(prop, collectables, collection, just_won) {
     this.prop = prop;
-    console.log('test', collectables);
-    this.scoreTable = collectables;
+    this.collectables = collectables;
+    this.collection = collection;
+    this.just_won = just_won;
     this.isMobile = window.innerWidth <= 1280;
-    this.containerDiv = null; // Store container reference
+    this.containerDiv = null;
     this.render();
   }
 
-  updateProps(prop, scoreTable) {
+  updateProps(prop, collectables, collection, just_won) {
     this.prop = prop;
-    this.scoreTable = scoreTable;
+    this.collectables = collectables;
+    this.collection = collection;
+    this.just_won = just_won;
     this.updateVisuals();
   }
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const scoreboard = this.scoreTable;
-
     let tableHTML = '';
-
-    scoreboard.forEach((item, index) => {
+    this.collectables?.forEach((item, index) => {
       if (index % 4 === 0) {
         tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
 
+      const isInCollection = this.collection?.includes(item?.period_id);
+      const divStyle = isInCollection ? '' : 'border-radius:20px;background:white;';
+      const imgStyle = isInCollection ? '' : 'opacity:0.1;';
+
       tableHTML += `
         <td style="text-align: center; border: none;">
-        <div id="image-${index}">
-        <img class='image-container'  src=${item.url} alt="Scoreboard Image" class="scoreboard-image">
+        <div id="image-${index}" style="${divStyle}">
+        <img class='image-container' style="${imgStyle}" src=${item.url} alt="Scoreboard Image" >
         </div>
         </td>`;
 
-      if ((index + 1) % 4 === 0 || index === scoreboard.length - 1) {
+      if ((index + 1) % 4 === 0 || index === this.collectables.length - 1) {
         tableHTML += '</tr>';
       }
     });
@@ -63,10 +67,10 @@ export class CollectionScoreTableContainer {
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
-          ? this.scoreTable?.user_best_place <
+          ? this.collectables?.user_best_place <
               (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
-            (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500) ||
-            (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500)
+            this.prop === 'Barbora' ||
+            this.prop === 'Fantazijos'
             ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: white; font-size: ${
                 this.prop === 'Barbora' ? '18px' : fontSize
               }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -80,7 +84,7 @@ export class CollectionScoreTableContainer {
                 this.prop ? '10px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
                 this.prop === 'Barbora'
-                  ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
+                  ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> </br>GIMTADIENIS&apos;</b> ir gauk dovanų!'
                   : this.prop === 'Fantazijos'
                   ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
                   : this.prop === 'LemonGym'
@@ -141,11 +145,10 @@ export class CollectionScoreTableContainer {
   }
 
   addfunc() {
-    const scoreboard = this.scoreTable;
     // Attach event listeners after the images are added to the DOM
-    for (let index = 0; index < scoreboard.length; index++) {
+    for (let index = 0; index < this.collectables?.length; index++) {
       const image = document.getElementById(`image-${index}`);
-      if (image) {
+      if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
         image.addEventListener('click', () => {
           this.handleImageClick(image);
         });

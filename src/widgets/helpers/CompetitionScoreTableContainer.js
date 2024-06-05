@@ -109,7 +109,8 @@ export class CompetitionScoreTableContainer {
         this.scoreTable.user_best_place <
           (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
         (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500) ||
-        (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500)
+        (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
+        (this.prop === 'Makalius' && this.scoreTable.user_best_place > 500)
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -154,7 +155,7 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.prop === 'Makalius'
-                ? 'VALIO, TAU PUIKIAI SEKASI!'
+                ? 'TU GALI!'
                 : 'Tu gali!'
             }</div>
             <div style="width:100%; top: 470px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -165,7 +166,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Makalius'
-                ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d.</br>Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
+                ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${

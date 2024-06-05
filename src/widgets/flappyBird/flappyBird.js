@@ -45,6 +45,8 @@ class FlappyBird {
     this.isJumping = false;
     this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
     this.collectables = this.config.collectables ? this.config.collectables : [];
+    this.collection = this.config.collection ? this.config.collection : [];
+    this.just_won = this.config.just_won ? this.config.just_won : null;
 
     this.startFlappy();
     this.gameStarted = false;
@@ -137,7 +139,6 @@ class FlappyBird {
       this.gravity = 0.3;
       this.flight = this.jump / 2;
 
-      // console.log('stars');
       const new_highscore = document.querySelector('.new_highscore');
       const new_highscore_stars = document.querySelector('.new_highscore_stars');
       const numbers = document.querySelector('.numbers');
@@ -148,7 +149,6 @@ class FlappyBird {
       new_highscore.style.opacity = 0;
       new_highscore_stars.style.transition = 'opacity 0.5s ease';
       new_highscore_stars.style.opacity = 0;
-      // console.log('remove stars');
 
       setTimeout(() => {
         new_highscore.style.display = 'none';
@@ -296,6 +296,10 @@ class FlappyBird {
         );
 
         if (this.gamePlaying) {
+          if (canvas.width > 450 || canvas.height < 600) {
+            canvas.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : '418';
+            canvas.height = '668';
+          }
           pipes.map((pipe) => {
             // pipe moving
             pipe[0] -= this.speed;
@@ -391,14 +395,22 @@ class FlappyBird {
                       })
                       .then((response) => {
                         this.userBestPlace = response.user_best_place;
-
-                        this.scoreTable = response;
-
+                        if (this.showCompetitiveRegistration === 'competition') {
+                          this.scoreTable = response;
+                        }
+                        if (this.showCompetitiveRegistration === 'collectable') {
+                          this.collection = response?.collection
+                            ? response?.collection
+                            : this.collection;
+                          this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                        }
                         this.scoreTableContainerInstance.updateProps(
                           this.customer,
-                          this.showCompetitiveRegistration === 'collectable'
-                            ? this.collectables
-                            : this.scoreTable,
+                          this.showCompetitiveRegistration === 'competition'
+                            ? this.scoreTable
+                            : this.collectables,
+                          this.collection,
+                          this.just_won,
                         );
                       })
                       .catch((error) => {
@@ -583,6 +595,14 @@ class FlappyBird {
     setup();
     img.onload = render;
   }
+
+  closeGame = () => {
+    const element = document.getElementById('boomio-flappy-container');
+    if (element && element.parentNode) {
+      this.gameClosed = true;
+      element.parentNode.removeChild(element);
+    }
+  };
 
   createContainer = () => {
     const starImg = new Image();
@@ -805,10 +825,11 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     }
     if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container-flappy');
-
       this.scoreTableContainerInstance = new CollectionScoreTableContainer(
         this.customer,
         this.collectables,
+        this.collection,
+        this.just_won,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
@@ -1116,16 +1137,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       }
     });
 
-    const closeGame = () => {
-      const element = document.getElementById('boomio-flappy-container');
-      if (element && element.parentNode) {
-        this.gameClosed = true;
-        element.parentNode.removeChild(element);
-      }
-    };
-
     document.getElementById('close-game-container').addEventListener('click', () => {
-      closeGame();
+      this.closeGame();
     });
   };
 }

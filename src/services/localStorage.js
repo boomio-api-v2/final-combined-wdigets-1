@@ -82,56 +82,10 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const business_name = config?.business_name ?? '';
-    const collectables = config?.collectables ?? [
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/1.png',
-        period_id: 13,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/2.png',
-        period_id: 14,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/3.png',
-        period_id: 15,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/4.png',
-        period_id: 16,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/5.png',
-        period_id: 17,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/6.png',
-        period_id: 18,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/7.png',
-        period_id: 19,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/8.png',
-        period_id: 20,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/9.png',
-        period_id: 21,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/10.png',
-        period_id: 22,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/11.png',
-        period_id: 23,
-      },
-      {
-        url: 'https://d16wkmeil0du4q.cloudfront.net/collectables/barbora-demo/12.png',
-        period_id: 24,
-      },
-    ];
+    const collection = config?.collection ?? [];
+    const collectables = config?.collectables ?? [];
+    const coupon_code = config?.coupon_code ?? '';
+    const just_won = config?.just_won ?? '';
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
     const p_button_text_line1 = config?.p_button_text_line1 ?? 'Open';
     const p_button_text_line2 = config?.p_button_text_line2 ?? 'boomio app';
@@ -184,10 +138,13 @@ class LocalStorageService {
       p_bottom_text_end_m,
       p_coupon_text_line1,
       p_coupon_text_line2,
+      just_won,
+      collection,
+      coupon_code,
+      collectables,
       p_button_text_line1,
       p_button_text_line2,
       business_name,
-      collectables,
       static_text,
       boomioStopTill,
       m,
