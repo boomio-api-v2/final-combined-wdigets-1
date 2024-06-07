@@ -106,6 +106,7 @@ export class CompetitionScoreTableContainer {
 
     let scoreboardText = `
       ${
+        (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500)
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
