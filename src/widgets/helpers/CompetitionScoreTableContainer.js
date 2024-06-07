@@ -106,8 +106,7 @@ export class CompetitionScoreTableContainer {
 
     let scoreboardText = `
       ${
-        this.scoreTable.user_best_place <
-          (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
+        (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||
         (this.prop === 'Barbora' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Makalius' && this.scoreTable.user_best_place > 500)
