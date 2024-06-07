@@ -205,7 +205,7 @@ export class CollectionScoreTableContainer {
               </div>
       <div  style="margin-left:14px;height: ${'302px'}; top: 114px; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
-          <table style="margin:10px;border-spacing:4px;border-collapse:separate">
+          <table style="margin:10px;border-spacing:3px;border-collapse:separate">
             <tbody class="boomio-tbody">
     `;
 

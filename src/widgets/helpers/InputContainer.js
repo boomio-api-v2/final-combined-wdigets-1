@@ -80,6 +80,8 @@ export class InputContainer {
               ? 'href=https://www.makalius.lt/gimtadienio-zaidimo-taisykles/'
               : this.prop === 'Fantazijos'
               ? 'href=https://www.fantazijos.lt/zaidimo-taisykles'
+              : this.prop === 'Fpro'
+              ? 'href=https://fpro.com/'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">${
             this.prop === 'Fpro' ? 'Read full games rules. ' : 'Skaityk pilnas žaidimo taisykles.'
