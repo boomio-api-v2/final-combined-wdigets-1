@@ -163,7 +163,7 @@ class FlappyBird {
         if (this.gameCount === 0) {
           if (
             this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'point' ||
+            this.showCompetitiveRegistration === 'points' ||
             this.showCompetitiveRegistration === 'collectable'
           ) {
             const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
@@ -385,7 +385,7 @@ class FlappyBird {
                 () => {
                   if (
                     this.showCompetitiveRegistration === 'competition' ||
-                    this.showCompetitiveRegistration === 'point' ||
+                    this.showCompetitiveRegistration === 'points' ||
                     this.showCompetitiveRegistration === 'collectable'
                   ) {
                     hideScore();
@@ -657,7 +657,7 @@ class FlappyBird {
 
     ${
       this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'point' ||
+      this.showCompetitiveRegistration === 'points' ||
       this.showCompetitiveRegistration === 'collectable'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
@@ -814,7 +814,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
 
-    if (this.showCompetitiveRegistration === 'point') {
+    if (this.showCompetitiveRegistration === 'points') {
       const gameContainer = document.querySelector('.game-container-flappy');
 
       this.scoreTableContainerInstance = new PointScoreTableContainer(
@@ -836,7 +836,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
     if (
       this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'point' ||
+      this.showCompetitiveRegistration === 'points' ||
       this.showCompetitiveRegistration === 'collectable'
     ) {
       const clickEventHandlerShowRules = () => {
@@ -846,7 +846,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             if (
               this.showCompetitiveRegistration === 'competition' ||
-              this.showCompetitiveRegistration === 'point' ||
+              this.showCompetitiveRegistration === 'points' ||
               this.showCompetitiveRegistration === 'collectable'
             ) {
               boomioService
@@ -955,7 +955,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         setTimeout(() => {
           if (
             this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'point' ||
+            this.showCompetitiveRegistration === 'points' ||
             this.showCompetitiveRegistration === 'collectable'
           ) {
             boomioService
@@ -1037,7 +1037,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                 if (this.gameStarted === false) {
                   if (
                     this.showCompetitiveRegistration === 'competition' ||
-                    this.showCompetitiveRegistration === 'point' ||
+                    this.showCompetitiveRegistration === 'points' ||
                     this.showCompetitiveRegistration === 'collectable'
                   ) {
                     boomioService

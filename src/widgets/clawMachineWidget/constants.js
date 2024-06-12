@@ -43,10 +43,6 @@ export const ClawClose = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/ClawClose.png',
 ];
 
-export const PlayButton = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/PlayButton.png',
-];
-
 export const ClawButton = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/ClawButton.png',
 ];
