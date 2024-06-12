@@ -456,10 +456,9 @@ export default class {
     <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your email for verification</div>
     </div>
-    <div style="font-family:Paytone One;width: 100%; text-align: center; color: white; font-size: 42px; font-weight: 400;text-transform: uppercase; line-height: 54.60px; letter-spacing: 3.34px; word-wrap: break-word" id="p_coupon_text_line1">
-    ${'10 %'} </div>
+
    <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
    
    <div style='width:100%'>
@@ -539,10 +538,8 @@ export default class {
     <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your code for confirmation</div>
     </div>
-    <div style="font-family:Paytone One;width: 100%; text-align: center; color: white; font-size: 42px; font-weight: 400;text-transform: uppercase; line-height: 54.60px; letter-spacing: 3.34px; word-wrap: break-word" id="p_coupon_text_line1">
-    ${'10 %'} </div>
    <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
    
    <div style='width:100%'>
@@ -551,7 +548,7 @@ export default class {
    <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Verification code" id="boomio-copy-modal-btn">
    <div style="left: 200px; top: 11px;cursor:pointer; position: absolute; color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" id='boomio-email-btn'>Confirm</div>
 </div>
-<div id="email-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid email address.</div>
+<div id="code-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Code not valid</div>
 </div> 
 
   </div>
@@ -567,7 +564,7 @@ export default class {
     }
 
     const emailInput = document.getElementById('boomio-copy-modal-btn');
-    const emailErrorMessage = document.getElementById('email-error-message');
+    const emailErrorMessage = document.getElementById('code-error-message');
     const emailInputErrors = document.getElementById('textfield-email');
 
     const emailBtn = document.getElementById('boomio-email-btn');
@@ -576,8 +573,7 @@ export default class {
         const emailValue = emailInput.value;
 
         // Validate email format using a regular expression
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(emailValue)) {
+        if (emailValue.length <= 5) {
           // Invalid email format, show error message and add red border
           emailInputErrors.style.border = '2px solid red';
 
