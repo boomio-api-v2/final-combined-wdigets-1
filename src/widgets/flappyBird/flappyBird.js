@@ -395,23 +395,33 @@ class FlappyBird {
                       })
                       .then((response) => {
                         this.userBestPlace = response.user_best_place;
+                        if (this.showCompetitiveRegistration === 'points') {
+                          this.scoreTable = response;
+                          this.scoreTableContainerInstance.updateProps(
+                            this.customer,
+                            this.scoreTable,
+                            this.currentScore,
+                          );
+                        }
                         if (this.showCompetitiveRegistration === 'competition') {
                           this.scoreTable = response;
+                          this.scoreTableContainerInstance.updateProps(
+                            this.customer,
+                            this.scoreTable,
+                          );
                         }
                         if (this.showCompetitiveRegistration === 'collectable') {
                           this.collection = response?.collection
                             ? response?.collection
                             : this.collection;
                           this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                          this.scoreTableContainerInstance.updateProps(
+                            this.customer,
+                            this.collectables,
+                            this.collection,
+                            this.just_won,
+                          );
                         }
-                        this.scoreTableContainerInstance.updateProps(
-                          this.customer,
-                          this.showCompetitiveRegistration === 'competition'
-                            ? this.scoreTable
-                            : this.collectables,
-                          this.collection,
-                          this.just_won,
-                        );
                       })
                       .catch((error) => {
                         console.error('Error:', error);
@@ -824,6 +834,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       this.scoreTableContainerInstance = new PointScoreTableContainer(
         this.customer,
         this.scoreTable,
+        this.currentScore,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }

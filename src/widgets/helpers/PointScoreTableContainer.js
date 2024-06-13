@@ -3,23 +3,26 @@ import './styles.css';
 import { boomioLogo } from './constants';
 
 export class PointScoreTableContainer {
-  constructor(prop, scoreTable) {
+  constructor(prop, scoreTable, currentScore) {
     this.prop = prop;
     this.isMobile = window.innerWidth <= 1280;
+    this.scoreTable = scoreTable;
+    this.currentScore = currentScore;
     this.containerDiv = null; // Store container reference
     this.render();
   }
 
-  updateProps(prop, scoreTable) {
+  updateProps(prop, scoreTable, currentScore) {
     this.prop = prop;
     this.scoreTable = scoreTable;
+    this.currentScore = currentScore;
+
     this.updateVisuals();
   }
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const userBestScore = parseInt(this?.scoreTable?.user_best_score);
-    const userPercentageDiscount = parseInt(this?.scoreTable?.user_discount);
+    const userPercentageDiscount = parseInt(this?.scoreTable?.best_discount);
 
     let tableHTML = '';
 
@@ -29,11 +32,11 @@ export class PointScoreTableContainer {
 
     <div style="margin-top:10px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(to bottom,rgba(83, 209, 182, 1),rgba(42, 107, 93, 1));">
     <div style="width:100%;margin-top:40px; text-align: center; color: white; font-size: 20px; font-family: Georama; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
-    your SCORE:  ${userBestScore} </div>
+    your SCORE:  ${this.currentScore ?? 0} </div>
     <div style="width:100%;margin-top:20px; text-align: center; color: white; font-size: 20px; font-family: Georama; font-weight:600; text-transform: uppercase; word-wrap: break-word"> 
     You won </div>
     <div style="width:100%;margin-top:10px;text-align: center; color: white; font-size: 42px; font-family: Georama; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
-    ${userPercentageDiscount}% </div>
+    ${userPercentageDiscount ?? 0}% </div>
     <div style="line-height: 150%;margin-bottom:40px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 14px; font-family: Georama; font-weight:400; word-wrap: break-word;max-width:250px;"> 
     discount for FPro special edition Ball Mastery Mat! </div>
 </div>
