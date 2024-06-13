@@ -101,11 +101,12 @@ export class InputContainer {
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
       this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Makalius'
         ? 'PIRMYN'
+        : this.prop === 'Fpro'
+        ? 'Go'
         : 'LET’S PLAY'
     }</div></div>
     </div>
