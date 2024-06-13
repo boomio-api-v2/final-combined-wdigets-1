@@ -455,7 +455,7 @@ export default class {
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
   </div>
-    <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
+    <div style="width: 100%; height: 100%; flex-direction: column;align-items: center; gap: 9px; display: inline-flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your email for verification</div>
     </div>
 
@@ -537,7 +537,7 @@ export default class {
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
   </div>
-    <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
+    <div style="width: 100%; height: 100%; flex-direction: column; align-items: center; gap: 9px; display: inline-flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your code for confirmation</div>
     </div>
    <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
