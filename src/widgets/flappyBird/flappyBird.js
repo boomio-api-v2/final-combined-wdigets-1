@@ -39,7 +39,7 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;

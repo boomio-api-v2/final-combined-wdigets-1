@@ -116,7 +116,7 @@ export class PointScoreTableContainer {
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Fpro'
-                ? 'On June 10th the prize will be sent to your provided email.</br>Order a Mat and enter the competition to win 300 eur coupon'
+                ? 'On June 10th the prize will be sent to your provided email.</br>Order a Mat and enter the competition to win'
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${
@@ -125,7 +125,7 @@ export class PointScoreTableContainer {
                 this.prop === 'Fantazijos'
                   ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
                   : this.prop === 'Fpro'
-                  ? 'for shopping at nike.com store, winner will be announced on july 14th.  '
+                  ? '300 eur coupon for shopping at nike.com store, winner </br>  will be announced on july 14th.  '
                   : ''
               }</div>
               <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
