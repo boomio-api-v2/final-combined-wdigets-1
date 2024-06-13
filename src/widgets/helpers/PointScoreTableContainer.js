@@ -59,7 +59,7 @@ export class PointScoreTableContainer {
         : '700';
     let scoreboardText = `
       ${
-        this.prop === 'Fpro'
+        false
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: white; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
