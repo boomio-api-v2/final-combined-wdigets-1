@@ -719,11 +719,15 @@ class FlappyBird {
 </span>
 </div>
 
-<div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
-${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+<div style="left:calc(50% - ${
+      this.customer === 'Fpro' ? '70px' : '100px'
+    });position: absolute;z-index:999;pointer-events:none" class="tutorial">
+${`<div style="${
+  this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
+};display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>${this.customer === 'Fpro' ? 'TAP' : 'BAKST'}</div>
     <div>${this.customer === 'Fpro' ? 'TAP' : 'BAKST'}</div>
-  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`}
+  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:50px;width: 71px; height: 54px;">`}
 
 </div>
       <div class="flappy-container">
