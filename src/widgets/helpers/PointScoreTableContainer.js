@@ -16,7 +16,6 @@ export class PointScoreTableContainer {
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.currentScore = currentScore;
-
     this.updateVisuals();
   }
 
