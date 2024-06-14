@@ -879,7 +879,9 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                   if (response.success === false) {
                     if (response.res_code === 'EMAIL_EXIST') {
                       document.getElementById('competition-email-error').innerText =
-                        'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        this.customer === 'Fpro'
+                          ? 'This email address already exists. Please use another one.'
+                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor =
                         '#FFBABA';
                       document.getElementById('competition-email-error').style.border =
@@ -892,7 +894,9 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').style.border = 'none';
                     } else if (response.res_code === 'NICKNAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
-                        'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                        this.customer === 'Fpro'
+                          ? 'This nickname already exists. Please use another one.'
+                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =
                         '#FFBABA';
                       document.getElementById('competition-name-error').style.border =
