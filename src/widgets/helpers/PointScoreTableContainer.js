@@ -111,7 +111,7 @@ export class PointScoreTableContainer {
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Fpro'
-                ? 'On June 10th the prize will be sent to your provided email.</br>Order a Mat and enter the competition to win'
+                ? 'Your discount code will be sent to your provided email.</br>Order a Mat and enter the competition to win'
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${
