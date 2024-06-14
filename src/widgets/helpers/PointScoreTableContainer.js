@@ -37,7 +37,7 @@ export class PointScoreTableContainer {
     <div style="width:100%;margin-top:10px;text-align: center; color: white; font-size: 42px; font-family: Georama; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     ${userPercentageDiscount ?? 0}% </div>
     <div style="line-height: 150%;margin-bottom:40px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 14px; font-family: Georama; font-weight:400; word-wrap: break-word;max-width:250px;"> 
-    discount for FPro special edition Ball Mastery Mat! </div>
+    discount for FPRO special edition Ball Mastery Mat! </div>
 </div>
         `;
 
