@@ -15,7 +15,7 @@ export default class {
     this.demoValue = value;
     this.updateConfigData();
     this.mainContainer = widgetHtmlService.container;
-    if (!this.config?.email_collection_required) {
+    if (this.config?.email_collection_required) {
       this.showQrCode();
     } else {
       this.updateConfigData();
@@ -455,11 +455,10 @@ export default class {
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
   </div>
-    <div style="width: 100%; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: 9px; display: inline-flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
+    <div style="width: 100%; height: 100%; flex-direction: column;align-items: center; gap: 9px; display: inline-flex">
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your email for verification</div>
     </div>
-    <div style="font-family:Paytone One;width: 100%; text-align: center; color: white; font-size: 42px; font-weight: 400;text-transform: uppercase; line-height: 54.60px; letter-spacing: 3.34px; word-wrap: break-word" id="p_coupon_text_line1">
-    ${'10 %'} </div>
+
    <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
    
    <div style='width:100%'>
@@ -515,12 +514,93 @@ export default class {
           existingConfig.user_email = emailValue;
           localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
         }
+        this.loadQrCodeData();
+
+        this.showVerificationfield();
+      };
+    }
+  };
+
+  showVerificationfield = () => {
+    this.modal.classList.add('desktop-qr-modal');
+
+    this.modal.style.background = 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
+    this.modal.style.paddingBottom = '50px';
+    this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
+
+    this.modal.innerHTML = `
+    <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
+      <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
+    </div>
+    <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
+    <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
+    <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
+  </div>
+    <div style="width: 100%; height: 100%; flex-direction: column; align-items: center; gap: 9px; display: inline-flex">
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your code for confirmation</div>
+    </div>
+   <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
+   
+   <div style='width:100%'>
+   <div style="width: 100%; height: 50px; position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
+   <div style="width: 76px; height: 47px; left: 210px;cursor:pointer; top: 1px; position: absolute; border-top-right-radius: 24.50px; border-bottom-right-radius: 24.50px" id=boomio-copy-modal-btn' id='boomio-email-btn'></div>
+   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Verification code" id="boomio-copy-modal-btn">
+   <div style="left: 200px; top: 11px;cursor:pointer; position: absolute; color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" id='boomio-email-btn'>Confirm</div>
+</div>
+<div id="code-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Code not valid</div>
+</div> 
+
+  </div>
+    `;
+
+    this.modal.style.justifyContent = 'start';
+    const closeBtn = document.getElementById('boomio-close-modal-btn');
+    if (closeBtn) {
+      closeBtn.onclick = () => {
+        this.modalBackground.remove();
+        this.showSavingOrExitEmailModal();
+      };
+    }
+
+    const emailInput = document.getElementById('boomio-copy-modal-btn');
+    const emailErrorMessage = document.getElementById('code-error-message');
+    const emailInputErrors = document.getElementById('textfield-email');
+
+    const emailBtn = document.getElementById('boomio-email-btn');
+    if (emailBtn) {
+      emailBtn.onclick = () => {
+        const emailValue = emailInput.value;
+
+        // Validate email format using a regular expression
+        if (emailValue.length <= 5) {
+          // Invalid email format, show error message and add red border
+          emailInputErrors.style.border = '2px solid red';
+
+          emailErrorMessage.style.display = 'block';
+          return;
+        } else {
+          // Reset styling and hide error message
+          emailInputErrors.style.border = ''; // Reset border to default
+          emailErrorMessage.style.display = 'none';
+        }
+
+        // Proceed with storing the email in local storage and showing the QR code
+        const localStoragePropertyName = 'boomioPluginConfig';
+        const existingConfigJSON = localStorage.getItem(localStoragePropertyName);
+
+        if (existingConfigJSON) {
+          const existingConfig = JSON.parse(existingConfigJSON);
+          existingConfig.user_email = emailValue;
+          localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
+        }
 
         this.modalBackground.remove();
         this.showQrCode();
       };
     }
   };
+
   showQRDesktop = () => {
     this.createModalWindow(335, 358);
     this.modal.classList.add('desktop-qr-modal');

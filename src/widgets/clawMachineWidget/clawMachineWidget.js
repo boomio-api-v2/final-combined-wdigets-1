@@ -483,7 +483,7 @@ class ClawMachineWidget {
       containerWidth = window.innerWidth - 80;
     }
 
-    const totalPresents = this.isMobile ? 6 : 10;
+    const totalPresents = this.isMobile ? 6 : 12;
 
     const presents = [];
     for (let i = 0; i < totalPresents; i++) {

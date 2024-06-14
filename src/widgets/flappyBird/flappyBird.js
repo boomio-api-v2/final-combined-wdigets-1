@@ -33,17 +33,18 @@ import {
   MakaliusFlappyScore,
   MakaliusFlappyIntro,
   MakaliusFlappyBackground,
+  newRecordEn,
 } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
+    this.customer = this.config.business_name ? this.config.business_name : 'Fpro';
     this.collectables = this.config.collectables ? this.config.collectables : [];
     this.collection = this.config.collection ? this.config.collection : [];
     this.just_won = this.config.just_won ? this.config.just_won : null;
@@ -163,7 +164,7 @@ class FlappyBird {
         if (this.gameCount === 0) {
           if (
             this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'point' ||
+            this.showCompetitiveRegistration === 'points' ||
             this.showCompetitiveRegistration === 'collectable'
           ) {
             const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
@@ -385,7 +386,7 @@ class FlappyBird {
                 () => {
                   if (
                     this.showCompetitiveRegistration === 'competition' ||
-                    this.showCompetitiveRegistration === 'point' ||
+                    this.showCompetitiveRegistration === 'points' ||
                     this.showCompetitiveRegistration === 'collectable'
                   ) {
                     hideScore();
@@ -394,24 +395,35 @@ class FlappyBird {
                         score: this.currentScore,
                       })
                       .then((response) => {
+                        hideScore();
                         this.userBestPlace = response.user_best_place;
+                        if (this.showCompetitiveRegistration === 'points') {
+                          this.scoreTable = response;
+                          this.scoreTableContainerInstance.updateProps(
+                            this.customer,
+                            this.scoreTable,
+                            this.currentScore,
+                          );
+                        }
                         if (this.showCompetitiveRegistration === 'competition') {
                           this.scoreTable = response;
+                          this.scoreTableContainerInstance.updateProps(
+                            this.customer,
+                            this.scoreTable,
+                          );
                         }
                         if (this.showCompetitiveRegistration === 'collectable') {
                           this.collection = response?.collection
                             ? response?.collection
                             : this.collection;
                           this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                          this.scoreTableContainerInstance.updateProps(
+                            this.customer,
+                            this.collectables,
+                            this.collection,
+                            this.just_won,
+                          );
                         }
-                        this.scoreTableContainerInstance.updateProps(
-                          this.customer,
-                          this.showCompetitiveRegistration === 'competition'
-                            ? this.scoreTable
-                            : this.collectables,
-                          this.collection,
-                          this.just_won,
-                        );
                       })
                       .catch((error) => {
                         console.error('Error:', error);
@@ -657,7 +669,7 @@ class FlappyBird {
 
     ${
       this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'point' ||
+      this.showCompetitiveRegistration === 'points' ||
       this.showCompetitiveRegistration === 'collectable'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
@@ -699,7 +711,9 @@ class FlappyBird {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${
+      this.customer === 'Fpro' ? newRecordEn : newRecord
+    } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers">
   <span class="numbers__window">
@@ -719,11 +733,15 @@ class FlappyBird {
 </span>
 </div>
 
-<div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
-${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-    <div>BAKST</div>
-    <div>BAKST</div>
-  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`}
+<div style="left:calc(50% - ${
+      this.customer === 'Fpro' ? '70px' : '100px'
+    });position: absolute;z-index:999;pointer-events:none" class="tutorial">
+${`<div style="${
+  this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
+};display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+    <div>${this.customer === 'Fpro' ? 'TAP' : 'BAKST'}</div>
+    <div>${this.customer === 'Fpro' ? 'TAP' : 'BAKST'}</div>
+  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:50px;width: 71px; height: 54px;">`}
 
 </div>
       <div class="flappy-container">
@@ -814,12 +832,13 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
 
-    if (this.showCompetitiveRegistration === 'point') {
+    if (this.showCompetitiveRegistration === 'points') {
       const gameContainer = document.querySelector('.game-container-flappy');
 
       this.scoreTableContainerInstance = new PointScoreTableContainer(
         this.customer,
         this.scoreTable,
+        this.currentScore,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
@@ -836,7 +855,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
     if (
       this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'point' ||
+      this.showCompetitiveRegistration === 'points' ||
       this.showCompetitiveRegistration === 'collectable'
     ) {
       const clickEventHandlerShowRules = () => {
@@ -846,7 +865,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             if (
               this.showCompetitiveRegistration === 'competition' ||
-              this.showCompetitiveRegistration === 'point' ||
+              this.showCompetitiveRegistration === 'points' ||
               this.showCompetitiveRegistration === 'collectable'
             ) {
               boomioService
@@ -860,7 +879,9 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                   if (response.success === false) {
                     if (response.res_code === 'EMAIL_EXIST') {
                       document.getElementById('competition-email-error').innerText =
-                        'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        this.customer === 'Fpro'
+                          ? 'This email address already exists. Please use another one.'
+                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor =
                         '#FFBABA';
                       document.getElementById('competition-email-error').style.border =
@@ -873,7 +894,9 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').style.border = 'none';
                     } else if (response.res_code === 'NICKNAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
-                        'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                        this.customer === 'Fpro'
+                          ? 'This nickname already exists. Please use another one.'
+                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =
                         '#FFBABA';
                       document.getElementById('competition-name-error').style.border =
@@ -955,7 +978,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         setTimeout(() => {
           if (
             this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'point' ||
+            this.showCompetitiveRegistration === 'points' ||
             this.showCompetitiveRegistration === 'collectable'
           ) {
             boomioService
@@ -1037,7 +1060,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                 if (this.gameStarted === false) {
                   if (
                     this.showCompetitiveRegistration === 'competition' ||
-                    this.showCompetitiveRegistration === 'point' ||
+                    this.showCompetitiveRegistration === 'points' ||
                     this.showCompetitiveRegistration === 'collectable'
                   ) {
                     boomioService

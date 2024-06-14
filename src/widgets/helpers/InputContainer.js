@@ -23,10 +23,12 @@ export class InputContainer {
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${
-      this.prop === 'Fpro' ? 'RULLES' : 'TAISYKLĖS'
+      this.prop === 'Fpro' ? 'RULES' : 'TAISYKLĖS'
     }</div>`}</div>
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
-          <div style="width: 172px; left: 160px; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          <div style="width: 172px; left: ${
+            this.prop === 'Fpro' ? '130px' : '160px'
+          }; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             ${
               this.game === 'drive'
                 ? 'į šonus kad vairuotum'
@@ -35,15 +37,19 @@ export class InputContainer {
                 : 'kad skristum'
             }
           </div>
-          <div style="width: 229px; left: 160px; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          <div style="width: 229px; left: ${
+            this.prop === 'Fpro' ? '150px' : '160px'
+          }; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             ${this.prop === 'Fpro' ? 'FOR BETTER RESULT' : 'dėl geresnio rezultato'}
           </div>
-          <div style="width: 236px; left: 160px; top: 85px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
+          <div style="width: 236px; left: ${
+            this.prop === 'Fpro' ? '105px' : '160px'
+          }; top: 85px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
             ${
               this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes</br> kas mėnesį!'
                 : this.prop === 'Fpro'
-                ? '100 PRIZES!'
+                ? 'INSTANT PRIZES!'
                 : this.prop === 'Barbora'
                 ? 'gimtadienio prizus iškart!'
                 : this.prop === 'Fantazijos'
@@ -101,11 +107,12 @@ export class InputContainer {
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
       this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Makalius'
         ? 'PIRMYN'
+        : this.prop === 'Fpro'
+        ? 'PLAY'
         : 'LET’S PLAY'
     }</div></div>
     </div>
