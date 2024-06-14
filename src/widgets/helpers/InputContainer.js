@@ -26,7 +26,9 @@ export class InputContainer {
       this.prop === 'Fpro' ? 'RULLES' : 'TAISYKLĖS'
     }</div>`}</div>
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
-          <div style="width: 172px; left: 160px; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          <div style="width: 172px; left: ${
+            this.prop === 'Fpro' ? '130px' : '160px'
+          }; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             ${
               this.game === 'drive'
                 ? 'į šonus kad vairuotum'
@@ -35,10 +37,14 @@ export class InputContainer {
                 : 'kad skristum'
             }
           </div>
-          <div style="width: 229px; left: 160px; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          <div style="width: 229px; left: ${
+            this.prop === 'Fpro' ? '150px' : '160px'
+          }; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
             ${this.prop === 'Fpro' ? 'FOR BETTER RESULT' : 'dėl geresnio rezultato'}
           </div>
-          <div style="width: 236px; left: 160px; top: 85px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
+          <div style="width: 236px; left: ${
+            this.prop === 'Fpro' ? '105px' : '160px'
+          }; top: 85px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
             ${
               this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes</br> kas mėnesį!'

@@ -29,7 +29,7 @@ export class PointScoreTableContainer {
 
     tableHTML += `
 
-    <div style="margin-top:10px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(to bottom,rgba(83, 209, 182, 1),rgba(42, 107, 93, 1));">
+    <div style="margin-top:10px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(to bottom,rgba(62, 161, 123, 1),rgba(28, 90, 48, 1));">
     <div style="width:100%;margin-top:40px; text-align: center; color: white; font-size: 20px; font-family: Georama; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     your SCORE:  ${this.currentScore ?? 0} </div>
     <div style="width:100%;margin-top:20px; text-align: center; color: white; font-size: 20px; font-family: Georama; font-weight:600; text-transform: uppercase; word-wrap: break-word"> 
