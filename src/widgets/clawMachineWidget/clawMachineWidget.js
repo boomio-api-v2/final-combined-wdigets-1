@@ -25,6 +25,8 @@ import {
   DePratiGiftTwo,
   DePraticlawPoleImg,
   DePraticlawClosed,
+  DePratiClawClose,
+  DePratiGifTwo,
 } from './constants';
 import boomio from '@/services/boomio';
 
@@ -61,6 +63,7 @@ class ClawMachineWidget {
       DePratiGiftTwo,
       DePraticlawPoleImg,
       DePraticlawClosed,
+      DePratiGifTwo,
     ];
 
     const imagePromises = imageUrls.map((imageUrl) => {
@@ -311,7 +314,7 @@ class ClawMachineWidget {
               setTimeout(() => {
                 if (presentType.includes('GiftTwo')) {
                   function restartGif(animationElement) {
-                    const Opened = `url(${GifTwo})`;
+                    const Opened = `url(${this.customer === 'DePrati' ? DePratiGifTwo : GifTwo})`;
                     setTimeout(() => {
                       animationElement.style.backgroundImage = Opened;
                       setTimeout(() => {
@@ -459,7 +462,9 @@ class ClawMachineWidget {
     clawClose.style.backgroundSize = 'contain'; // Adjust as needed
     clawClose.style.width = '52px';
     clawClose.style.height = '50px';
-    clawClose.style.backgroundImage = `url(${ClawClose})`; // Use the imported clawImg as the background image
+    clawClose.style.backgroundImage = `url(${
+      this.customer === 'DePrati' ? DePratiClawClose : ClawClose
+    })`; // Use the imported clawImg as the background image
     clawClose.style.top = '0px';
     clawClose.style.right = '5%';
     clawClose.style.cursor = 'pointer';
