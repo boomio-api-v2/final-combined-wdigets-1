@@ -10,9 +10,7 @@ export const clawClosed = [
 export const buttonImg = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/claw-machine-auto-with-close/images/clawWidget/ButtonBackground.png',
 ];
-export const clawPoleImg = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/clawPole.png',
-];
+
 export const ClawLineImg = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/ClawLine.png',
 ];
@@ -49,4 +47,33 @@ export const ClawButton = [
 
 export const ButtonBackground = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/Group.png',
+];
+
+export const DePratiButtonBackground = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/DePrati/Group.png',
+];
+
+export const DePratiClawLineImg = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/DePrati/ClawLine.png',
+];
+
+export const DePratiClawLineBackground = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/DePrati/ClawLineBackground.png',
+];
+
+export const DePraticlawRelease = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/DePrati/ClawRelease.gif',
+];
+export const DePraticlawPick = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/DePrati/ClawPick.gif',
+];
+export const DePratiGiftOne = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/DePrati/GiftOne.png',
+];
+export const DePratiGiftTwo = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/DePrati/GiftTwo.png',
+];
+
+export const DePraticlawClosed = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/DePrati/ClawClosed.png',
 ];
