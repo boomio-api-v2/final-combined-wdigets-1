@@ -1,9 +1,7 @@
 export const clawImg = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/Claw.png',
 ];
-export const chainImg = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/claw_detail.png',
-];
+
 export const clawClosed = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/ClawClosed.png',
 ];
@@ -75,9 +73,17 @@ export const DePratiGiftTwo = [
 ];
 
 export const DePratiClawClose = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/ClawClosed.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/ClawClose.png',
 ];
 
 export const DePratiGifTwo = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GifTwo.gif',
+];
+
+export const DePratiClawClosed = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/ClawClosed.png',
+];
+
+export const chainImg = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/claw_detail.png',
 ];
