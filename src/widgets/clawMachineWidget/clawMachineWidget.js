@@ -170,7 +170,7 @@ class ClawMachineWidget {
     this.clawLine.style.width = '323px';
     this.clawLine.style.height = '80px';
     this.clawLine.style.marginTop = '-185px';
-    this.clawLine.style.marginLeft = this.isMobile ? '-295px' : '-295px';
+    this.clawLine.style.marginLeft = this.isMobile ? '-290px' : '-290px';
     this.clawLine.style.backgroundColor = 'transparent';
     this.clawLine.style.border = 'none';
     this.clawLine.setAttribute('id', 'boomio-claw-line');
@@ -185,7 +185,7 @@ class ClawMachineWidget {
     this.clawPole.style.zIndex = 2;
     this.clawPole.style.background =
       this.customer === 'DePrati'
-        ? 'rgba(220, 7, 20, 1)'
+        ? `linear-gradient(205deg, #C32128 31.89%, #5D1013 100%);`
         : `linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)`; // Use the imported clawImg as the background image
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = this.isMobile ? '24px' : '28px';
@@ -282,6 +282,7 @@ class ClawMachineWidget {
 
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
+    console.log(this.clawPole.style);
     this.clawPole.style.height = `calc(100vh - ${
       this.isMobile ? (isFirefox ? '312px' : '315px') : '405px'
     })`;
@@ -429,7 +430,7 @@ class ClawMachineWidget {
     }, 1500);
   }
   startAutomaticClawMovement() {
-    const clawSpeed = this.isMobile ? 1 : 2; // Adjust the speed as needed
+    const clawSpeed = this.isMobile ? 5 : 2; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
 
     const moveClaw = () => {
