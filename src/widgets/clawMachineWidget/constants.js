@@ -79,5 +79,5 @@ export const DePraticlawClosed = [
 ];
 
 export const DePratiGifTwo = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/GifTwo.gif',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GifTwo.gif',
 ];

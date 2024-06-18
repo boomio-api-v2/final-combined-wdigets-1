@@ -32,6 +32,9 @@ import boomio from '@/services/boomio';
 
 class ClawMachineWidget {
   constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name ? this.config.business_name : 'DePrati';
+
     this.preloadImages().then(() => {
       this.startClawMachine();
     });
@@ -82,9 +85,6 @@ class ClawMachineWidget {
 
   startClawMachine() {
     this.isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
-
-    this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'DePrati';
 
     this.createContainer();
     this.clawDiv = document.querySelector('.claw-div');
@@ -142,7 +142,7 @@ class ClawMachineWidget {
       controlButton.style.transform = 'scale(1)';
       controlButton.style.transition = 'transform 0.2s ease';
 
-      this.activateGrabbing();
+      this.activateGrabbing(this.customer);
       setTimeout(() => {}, 2600);
     });
 
@@ -159,9 +159,9 @@ class ClawMachineWidget {
     })`; // Use the imported clawImg as the background image
     this.clawLine.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawLine.style.width = '323px';
-    this.clawLine.style.height = '138px';
+    this.clawLine.style.height = '80px';
     this.clawLine.style.marginTop = '-185px';
-    this.clawLine.style.marginLeft = this.isMobile ? '-303px' : '-300px';
+    this.clawLine.style.marginLeft = this.isMobile ? '-295px' : '-295px';
     this.clawLine.style.backgroundColor = 'transparent';
     this.clawLine.style.border = 'none';
     this.clawLine.setAttribute('id', 'boomio-claw-line');
@@ -214,7 +214,7 @@ class ClawMachineWidget {
     controlButton.setAttribute('id', 'boomio-control-button');
 
     controlButton.addEventListener('click', () => {
-      this.activateGrabbing();
+      this.activateGrabbing(this.customer);
       setTimeout(() => {
         controlButton.style.backgroundColor =
           'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
@@ -250,7 +250,8 @@ class ClawMachineWidget {
     // Append the button to the document body
     background.appendChild(controlButton);
   }
-  activateGrabbing() {
+  activateGrabbing(customer) {
+    console.log(customer);
     if (this.animationInProgress || this.isHoldingclawPresentDivs.some((held) => held)) {
       return;
     }
@@ -273,14 +274,15 @@ class ClawMachineWidget {
     this.clawPole.style.height = `calc(100vh - ${
       this.isMobile ? (isFirefox ? '312px' : '315px') : '405px'
     })`;
+
     setTimeout(() => {
       function restartGif(animationElement) {
-        const release = `url(${this.customer === 'DePrati' ? DePraticlawPick : clawPick})`;
+        const release = `url(${customer === 'DePrati' ? DePraticlawPick : clawPick})`;
 
         setTimeout(() => {
           animationElement.style.backgroundImage = release;
           setTimeout(() => {
-            const gifUrl = `url(${this.customer === 'DePrati' ? DePraticlawClosed : clawClosed})`;
+            const gifUrl = `url(${customer === 'DePrati' ? DePraticlawClosed : clawClosed})`;
             animationElement.style.backgroundImage = gifUrl;
           }, 500);
         }, 10);
@@ -314,7 +316,8 @@ class ClawMachineWidget {
               setTimeout(() => {
                 if (presentType.includes('GiftTwo')) {
                   function restartGif(animationElement) {
-                    const Opened = `url(${this.customer === 'DePrati' ? DePratiGifTwo : GifTwo})`;
+                    console.log(customer);
+                    const Opened = `url(${customer === 'DePrati' ? DePratiGifTwo : GifTwo})`;
                     setTimeout(() => {
                       animationElement.style.backgroundImage = Opened;
                       setTimeout(() => {
@@ -365,9 +368,7 @@ class ClawMachineWidget {
             ) {
               function restartGif(animationElement) {
                 const randomQueryParam = `?a=${Math.random()}`;
-                const release = `url(${
-                  this.customer === 'DePrati' ? DePraticlawRelease : clawRelease
-                })`;
+                const release = `url(${customer === 'DePrati' ? DePraticlawRelease : clawRelease})`;
 
                 setTimeout(() => {
                   animationElement.style.backgroundImage = release;
