@@ -26,6 +26,11 @@ import {
   DePraticlawPoleImg,
   DePratiClawClose,
   DePratiGifTwo,
+  DePratichainImg,
+  DePratiClawClosed,
+  DePraticlawImg,
+  DePratiClawButton,
+  DePratiGiftOpened,
 } from './constants';
 import boomio from '@/services/boomio';
 
@@ -66,6 +71,11 @@ class ClawMachineWidget {
       DePratiClawClose,
       DePraticlawPoleImg,
       DePratiGifTwo,
+      DePratichainImg,
+      DePratiClawClosed,
+      DePraticlawImg,
+      DePratiClawButton,
+      DePratiGiftOpened,
     ];
 
     const imagePromises = imageUrls.map((imageUrl) => {
@@ -196,7 +206,9 @@ class ClawMachineWidget {
 
     const controlButton = document.createElement('button');
     controlButton.classList.add('boomio-control-button');
-    controlButton.style.background = `url(${ClawButton})`;
+    controlButton.style.background = `url(${
+      this.customer === 'DePrati' ? DePratiClawButton : ClawButton
+    })`;
     controlButton.style.width = this.isMobile ? '48px' : '48px';
     controlButton.style.height = this.isMobile ? '48px' : '48px';
     controlButton.style.transform = this.isMobile && 'scale(0.90)';
@@ -320,7 +332,9 @@ class ClawMachineWidget {
                     setTimeout(() => {
                       animationElement.style.backgroundImage = Opened;
                       setTimeout(() => {
-                        const gifUrl = `url(${GiftOpened})`;
+                        const gifUrl = `url(${
+                          customer === 'DePrati' ? DePratiGiftOpened : GiftOpened
+                        })`;
                         animationElement.style.backgroundImage = gifUrl;
                       }, 500);
                     }, 10);
@@ -372,7 +386,7 @@ class ClawMachineWidget {
                 setTimeout(() => {
                   animationElement.style.backgroundImage = release;
                   setTimeout(() => {
-                    const gifUrl = `url(${clawImg})`;
+                    const gifUrl = `url(${customer === 'DePrati' ? DePraticlawImg : clawImg})`;
                     animationElement.style.backgroundImage = gifUrl;
                     animationElement.classList.add('claw-div-transition');
                   }, 500);
@@ -392,7 +406,9 @@ class ClawMachineWidget {
 
           setTimeout(() => {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
-              this.clawDiv.style.backgroundImage = `url(${clawImg})`;
+              this.clawDiv.style.backgroundImage = `url(${
+                customer === 'DePrati' ? DePraticlawImg : clawImg
+              })`;
             }
             if (this.clawPresentDiv) {
               const presentType = this.clawPresentDiv.style.backgroundImage;
@@ -641,7 +657,9 @@ class ClawMachineWidget {
     // Create the existing Claw div
     const clawDiv = document.createElement('div');
     clawDiv.classList.add('claw-div');
-    clawDiv.style.backgroundImage = `url(${clawImg})`; // Use the imported clawImg as the background image
+    clawDiv.style.backgroundImage = `url(${
+      this.customer === 'DePrati' ? DePraticlawImg : clawImg
+    })`; // Use the imported clawImg as the background image
     clawDiv.style.backgroundSize = 'cover'; // Adjust as needed
 
     clawDiv.style.transform = 'translateY(-100px)';
@@ -651,7 +669,9 @@ class ClawMachineWidget {
 
     const chainDiv = document.createElement('div');
     chainDiv.classList.add('chain-div');
-    chainDiv.style.backgroundImage = `url(${chainImg})`; // Use the imported clawImg as the background image
+    chainDiv.style.backgroundImage = `url(${
+      this.customer === 'DePrati' ? DePratichainImg : chainImg
+    })`; // Use the imported clawImg as the background image
     chainDiv.style.backgroundSize = 'cover'; // Adjust as needed
 
     // Set initial position of the chain div
