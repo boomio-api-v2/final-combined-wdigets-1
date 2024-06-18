@@ -170,7 +170,7 @@ class ClawMachineWidget {
     this.clawLine.style.width = '323px';
     this.clawLine.style.height = '80px';
     this.clawLine.style.marginTop = '-185px';
-    this.clawLine.style.marginLeft = this.isMobile ? '-290px' : '-290px';
+    this.clawLine.style.marginLeft = this.isMobile ? '-295px' : '-295px';
     this.clawLine.style.backgroundColor = 'transparent';
     this.clawLine.style.border = 'none';
     this.clawLine.setAttribute('id', 'boomio-claw-line');
@@ -183,19 +183,19 @@ class ClawMachineWidget {
     this.clawPole = document.createElement('div');
     this.clawPole.classList.add('boomio-claw-pole');
     this.clawPole.style.zIndex = 2;
-    this.clawPole.style.background =
-      this.customer === 'DePrati'
-        ? `linear-gradient(205deg, #C32128 31.89%, #5D1013 100%);`
-        : `linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)`; // Use the imported clawImg as the background image
+
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = this.isMobile ? '24px' : '28px';
     this.clawPole.style.height = this.isMobile ? '65px' : '65px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
-
     this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '18px' : '20px') : '14px';
     this.clawPole.style.marginLeft = '28px';
-    this.clawPole.style.backgroundColor = 'transparent';
     this.clawPole.style.border = 'none';
+    this.clawPole.style.background = `linear-gradient${
+      this.customer === 'DePrati'
+        ? '(205deg, #C32128 31.89%, #5D1013 100%)'
+        : '(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)'
+    };`;
     this.clawPole.setAttribute('id', 'boomio-claw-pole');
     this.chainDiv.appendChild(this.clawPole);
   }
