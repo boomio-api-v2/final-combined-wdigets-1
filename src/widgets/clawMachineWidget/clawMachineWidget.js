@@ -24,7 +24,6 @@ import {
   DePratiGiftOne,
   DePratiGiftTwo,
   DePraticlawPoleImg,
-  DePraticlawClosed,
   DePratiClawClose,
   DePratiGifTwo,
 } from './constants';
@@ -64,8 +63,8 @@ class ClawMachineWidget {
       DePraticlawPick,
       DePratiGiftOne,
       DePratiGiftTwo,
+      DePratiClawClose,
       DePraticlawPoleImg,
-      DePraticlawClosed,
       DePratiGifTwo,
     ];
 
@@ -282,7 +281,7 @@ class ClawMachineWidget {
         setTimeout(() => {
           animationElement.style.backgroundImage = release;
           setTimeout(() => {
-            const gifUrl = `url(${customer === 'DePrati' ? DePraticlawClosed : clawClosed})`;
+            const gifUrl = `url(${customer === 'DePrati' ? DePratiClawClosed : clawClosed})`;
             animationElement.style.backgroundImage = gifUrl;
           }, 500);
         }, 10);
@@ -463,6 +462,7 @@ class ClawMachineWidget {
     clawClose.style.backgroundSize = 'contain'; // Adjust as needed
     clawClose.style.width = '52px';
     clawClose.style.height = '50px';
+    console.log(this.customer);
     clawClose.style.backgroundImage = `url(${
       this.customer === 'DePrati' ? DePratiClawClose : ClawClose
     })`; // Use the imported clawImg as the background image
@@ -542,8 +542,8 @@ class ClawMachineWidget {
         (presents[i] === this.customer) === 'DePrati'
           ? DePratiGiftOne
           : GiftOne
-          ? 504 / 688
-          : 504 / 704; // Aspect ratio of the original size (width / height)
+          ? 149 / 154
+          : 149 / 154; // Aspect ratio of the original size (width / height)
       const randomWidth = Math.floor(randomHeight * aspectRatio);
 
       if (leftPosition + randomWidth < containerWidth) {

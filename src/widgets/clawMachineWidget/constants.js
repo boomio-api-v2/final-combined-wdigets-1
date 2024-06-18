@@ -2,7 +2,7 @@ export const clawImg = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/Claw.png',
 ];
 export const chainImg = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/claw_detail.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/claw_detail.png',
 ];
 export const clawClosed = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/ClawClosed.png',
@@ -74,7 +74,7 @@ export const DePratiGiftTwo = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GiftTwo.png',
 ];
 
-export const DePraticlawClosed = [
+export const DePratiClawClose = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/ClawClosed.png',
 ];
 
