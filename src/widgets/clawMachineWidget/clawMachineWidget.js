@@ -186,16 +186,16 @@ class ClawMachineWidget {
 
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = this.isMobile ? '24px' : '28px';
-    this.clawPole.style.height = this.isMobile ? '65px' : '65px';
+    this.clawPole.style.height = this.isMobile ? '65px' : '75px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
-    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '18px' : '20px') : '14px';
-    this.clawPole.style.marginLeft = '28px';
+    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '18px' : '20px') : '75px';
+    this.clawPole.style.marginLeft = '30px';
     this.clawPole.style.border = 'none';
-    this.clawPole.style.background = `linear-gradient${
+    this.clawPole.style.background =
       this.customer === 'DePrati'
-        ? '(205deg, #C32128 31.89%, #5D1013 100%)'
-        : '(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)'
-    };`;
+        ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
+        : 'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
+
     this.clawPole.setAttribute('id', 'boomio-claw-pole');
     this.chainDiv.appendChild(this.clawPole);
   }
@@ -284,7 +284,7 @@ class ClawMachineWidget {
     this.clawPole.style.transition = 'height 1s, transform 1s';
     console.log(this.clawPole.style);
     this.clawPole.style.height = `calc(100vh - ${
-      this.isMobile ? (isFirefox ? '312px' : '315px') : '405px'
+      this.isMobile ? (isFirefox ? '312px' : '315px') : '395px'
     })`;
 
     setTimeout(() => {
@@ -403,7 +403,7 @@ class ClawMachineWidget {
           this.clawDiv.style.top = this.isMobile ? '175px' : '182px';
 
           this.clawPole.style.transition = 'height 1s, transform 1s';
-          this.clawPole.style.height = this.isMobile ? '64px' : '65px';
+          this.clawPole.style.height = this.isMobile ? '64px' : '75px';
 
           setTimeout(() => {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
@@ -559,8 +559,8 @@ class ClawMachineWidget {
         (presents[i] === this.customer) === 'DePrati'
           ? DePratiGiftOne
           : GiftOne
-          ? 149 / 154
-          : 149 / 154; // Aspect ratio of the original size (width / height)
+          ? 504 / 704
+          : 504 / 704; // Aspect ratio of the original size (width / height)
       const randomWidth = Math.floor(randomHeight * aspectRatio);
 
       if (leftPosition + randomWidth < containerWidth) {
