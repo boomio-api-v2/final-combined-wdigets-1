@@ -262,7 +262,6 @@ class ClawMachineWidget {
     background.appendChild(controlButton);
   }
   activateGrabbing(customer) {
-    console.log(customer);
     if (this.animationInProgress || this.isHoldingclawPresentDivs.some((held) => held)) {
       return;
     }
@@ -282,7 +281,6 @@ class ClawMachineWidget {
 
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
-    console.log(this.clawPole.style);
     this.clawPole.style.height = `calc(100vh - ${
       this.isMobile ? (isFirefox ? '312px' : '315px') : '395px'
     })`;
@@ -328,7 +326,6 @@ class ClawMachineWidget {
               setTimeout(() => {
                 if (presentType.includes('GiftTwo')) {
                   function restartGif(animationElement) {
-                    console.log(customer);
                     const Opened = `url(${customer === 'DePrati' ? DePratiGifTwo : GifTwo})`;
                     setTimeout(() => {
                       animationElement.style.backgroundImage = Opened;
@@ -479,7 +476,6 @@ class ClawMachineWidget {
     clawClose.style.backgroundSize = 'contain'; // Adjust as needed
     clawClose.style.width = '52px';
     clawClose.style.height = '50px';
-    console.log(this.customer);
     clawClose.style.backgroundImage = `url(${
       this.customer === 'DePrati' ? DePratiClawClose : ClawClose
     })`; // Use the imported clawImg as the background image
