@@ -186,9 +186,9 @@ class ClawMachineWidget {
 
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = this.isMobile ? '24px' : '28px';
-    this.clawPole.style.height = this.isMobile ? '65px' : '78px';
+    this.clawPole.style.height = this.isMobile ? '78px' : '78px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
-    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '18px' : '20px') : '70px';
+    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '77px' : '77px') : '70px';
     this.clawPole.style.marginLeft = '30px';
     this.clawPole.style.border = 'none';
     this.clawPole.style.background =
@@ -282,7 +282,7 @@ class ClawMachineWidget {
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${
-      this.isMobile ? (isFirefox ? '312px' : '315px') : '395px'
+      this.isMobile ? (isFirefox ? '300px' : '300px') : '395px'
     })`;
 
     setTimeout(() => {
@@ -400,7 +400,7 @@ class ClawMachineWidget {
           this.clawDiv.style.top = this.isMobile ? '175px' : '182px';
 
           this.clawPole.style.transition = 'height 1s, transform 1s';
-          this.clawPole.style.height = this.isMobile ? '64px' : '78px';
+          this.clawPole.style.height = this.isMobile ? '78px' : '78px';
 
           setTimeout(() => {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
