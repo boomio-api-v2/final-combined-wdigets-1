@@ -17,7 +17,7 @@ export default class {
     this.mainContainer = widgetHtmlService.container;
     this.customer = this.config.business_name ? this.config.business_name : 'Deprati';
 
-    if (!this.config?.email_collection_required) {
+    if (this.config?.email_collection_required) {
       this.showQrCode();
     } else {
       this.updateConfigData();
@@ -58,6 +58,8 @@ export default class {
     try {
       this.loading = true;
       await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal', {
+        user_last_name: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_last_name,
+        user_first_name: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_first_name,
         user_email: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_email,
       });
       this.updateConfigData();
@@ -446,7 +448,7 @@ export default class {
   };
 
   showTextfield = () => {
-    this.createModalWindow(335, 358);
+    this.createModalWindow(335, 400);
     this.modal.classList.add('desktop-qr-modal');
 
     this.modal.style.background =
@@ -463,21 +465,31 @@ export default class {
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">De Prati</div>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column;align-items: center; gap: 9px; display: inline-flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your email for verification</div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:20px;">Enter your information for prizes</div>
     </div>
-
-   <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
-   
    <div style='width:100%'>
-   <div style="width: 100%; height: 50px; position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
-   <div style="width: 76px; height: 47px; left: 210px;cursor:pointer; top: 1px; position: absolute; border-top-right-radius: 24.50px; border-bottom-right-radius: 24.50px" id=boomio-copy-modal-btn' id='boomio-email-btn'></div>
-   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your email" id="boomio-copy-modal-btn">
-   <div style="left: 225px; top: 11px;cursor:pointer; position: absolute; color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" id='boomio-email-btn'>Send</div>
+   <div style="width: 100%; height: 50px;position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-first-name'>
+   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your first name" id="boomio-textfield-first-name">
+</div>
+<div id="first-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid first name.</div>
+
+   <div style="width: 100%; height: 50px;margin-top:10px;  position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-last-name'>
+   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your last name" id="boomio-textfield-last-name">
+</div>
+<div id="last-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid last name.</div>
+
+   <div style="width: 100%; height: 50px;margin-top:10px; position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
+   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your email" id="boomio-textfield-email">
 </div>
 <div id="email-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid email address.</div>
+
+    <div style="margin-top:20px; display:flex;cursor:pointer; justify-content:center;align-items:center;border:2px solid white;padding:4px;border-radius:10px;" id='boomio-email-btn'>
+
+   <div style="left: 225px; top: 11px;color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" >Send</div>
+</div> 
 </div> 
 
   </div>
@@ -492,26 +504,54 @@ export default class {
       };
     }
 
-    const emailInput = document.getElementById('boomio-copy-modal-btn');
+    const emailInput = document.getElementById('boomio-textfield-email');
+    const firstNameInput = document.getElementById('boomio-textfield-first-name');
+    const lastNameInput = document.getElementById('boomio-textfield-last-name');
+
     const emailErrorMessage = document.getElementById('email-error-message');
+    const firstNameErrorMessage = document.getElementById('first-name-error-message');
+    const lastNameErrorMessage = document.getElementById('last-name-error-message');
+
     const emailInputErrors = document.getElementById('textfield-email');
+    const firstNameInputErrors = document.getElementById('textfield-first-name');
+    const lastNameInputErrors = document.getElementById('textfield-last-name');
 
     const emailBtn = document.getElementById('boomio-email-btn');
     if (emailBtn) {
       emailBtn.onclick = () => {
         const emailValue = emailInput.value;
+        const firstNameValue = firstNameInput.value;
+        const lastNameValue = lastNameInput.value;
 
         // Validate email format using a regular expression
+
+        if (!firstNameValue) {
+          firstNameInputErrors.style.border = '2px solid red';
+          firstNameErrorMessage.style.display = 'block';
+          return;
+        } else {
+          firstNameInputErrors.style.border = '';
+          firstNameErrorMessage.style.display = 'none';
+        }
+
+        if (!lastNameValue) {
+          lastNameInputErrors.style.border = '2px solid red';
+
+          lastNameErrorMessage.style.display = 'block';
+          return;
+        } else {
+          lastNameInputErrors.style.border = '';
+          lastNameErrorMessage.style.display = 'none';
+        }
+
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(emailValue)) {
-          // Invalid email format, show error message and add red border
           emailInputErrors.style.border = '2px solid red';
 
           emailErrorMessage.style.display = 'block';
           return;
         } else {
-          // Reset styling and hide error message
-          emailInputErrors.style.border = ''; // Reset border to default
+          emailInputErrors.style.border = '';
           emailErrorMessage.style.display = 'none';
         }
 
@@ -522,6 +562,8 @@ export default class {
         if (existingConfigJSON) {
           const existingConfig = JSON.parse(existingConfigJSON);
           existingConfig.user_email = emailValue;
+          existingConfig.user_last_name = lastNameValue;
+          existingConfig.user_first_name = firstNameValue;
           localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
         }
         this.loadQrCodeData();
@@ -548,18 +590,16 @@ export default class {
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="width: 27.06px; height: 27.06px; left: 51%; top: 3px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
     <div style="width: 27.06px; height: 27.06px; left: 47%; top: 30px; position: absolute; transform: rotate(19deg); transform-origin: 0 0; background: rgba(255, 255, 255, 0.6); border-radius: 9999px; filter: blur(15px); z-index: 1;"></div>
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column; align-items: center; gap: 9px; display: inline-flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your code for confirmation</div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Enter your information for prize</div>
     </div>
-   <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px"> </div>
-   
-   <div style='width:100%'>
+   <div style='width:100%;margin-top:10px;'>
    <div style="width: 100%; height: 50px; position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
    <div style="width: 76px; height: 47px; left: 210px;cursor:pointer; top: 1px; position: absolute; border-top-right-radius: 24.50px; border-bottom-right-radius: 24.50px" id=boomio-copy-modal-btn' id='boomio-email-btn'></div>
    <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Verification code" id="boomio-copy-modal-btn">
-   <div style="left: 200px; top: 11px;cursor:pointer; position: absolute; color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" id='boomio-email-btn'>Confirm</div>
+   <div style="left: 200px; top: 11px;cursor:pointer; color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" id='boomio-email-btn'>Confirm</div>
 </div>
 <div id="code-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Code not valid</div>
 </div> 

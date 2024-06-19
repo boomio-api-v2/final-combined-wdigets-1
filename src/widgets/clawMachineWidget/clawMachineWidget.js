@@ -186,9 +186,9 @@ class ClawMachineWidget {
 
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
     this.clawPole.style.width = this.isMobile ? '24px' : '28px';
-    this.clawPole.style.height = this.isMobile ? '65px' : '75px';
+    this.clawPole.style.height = this.isMobile ? '65px' : '78px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
-    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '18px' : '20px') : '75px';
+    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '18px' : '20px') : '70px';
     this.clawPole.style.marginLeft = '30px';
     this.clawPole.style.border = 'none';
     this.clawPole.style.background =
@@ -400,7 +400,7 @@ class ClawMachineWidget {
           this.clawDiv.style.top = this.isMobile ? '175px' : '182px';
 
           this.clawPole.style.transition = 'height 1s, transform 1s';
-          this.clawPole.style.height = this.isMobile ? '64px' : '75px';
+          this.clawPole.style.height = this.isMobile ? '64px' : '78px';
 
           setTimeout(() => {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
