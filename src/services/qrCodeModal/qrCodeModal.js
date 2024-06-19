@@ -15,7 +15,7 @@ export default class {
     this.demoValue = value;
     this.updateConfigData();
     this.mainContainer = widgetHtmlService.container;
-    this.customer = this.config.business_name ? this.config.business_name : 'DePrati';
+    this.customer = this.config.business_name ? this.config.business_name : 'Deprati';
 
     if (!this.config?.email_collection_required) {
       this.showQrCode();
@@ -259,7 +259,7 @@ export default class {
 
     textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
     this.modal.style.background =
-      this.customer === 'DePrati'
+      this.customer === 'Deprati'
         ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
@@ -348,7 +348,7 @@ export default class {
     saveBtn.style.fontSize = '14px';
     saveBtn.innerHTML = 'Yes, I want!';
     this.modal.style.background =
-      this.customer === 'DePrati'
+      this.customer === 'Deprati'
         ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
@@ -450,7 +450,7 @@ export default class {
     this.modal.classList.add('desktop-qr-modal');
 
     this.modal.style.background =
-      this.customer === 'DePrati'
+      this.customer === 'Deprati'
         ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
@@ -525,8 +525,8 @@ export default class {
           localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
         }
         this.loadQrCodeData();
-
-        this.showVerificationfield();
+        this.modalBackground.remove();
+        // this.showVerificationfield();
       };
     }
   };
@@ -535,7 +535,7 @@ export default class {
     this.modal.classList.add('desktop-qr-modal');
 
     this.modal.style.background =
-      this.customer === 'DePrati'
+      this.customer === 'Deprati'
         ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
@@ -619,7 +619,7 @@ export default class {
     this.modal.classList.add('desktop-qr-modal');
 
     this.modal.style.background =
-      this.customer === 'DePrati'
+      this.customer === 'Deprati'
         ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
