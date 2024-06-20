@@ -114,7 +114,6 @@ class ClawMachineWidget {
     this.setupControlButton();
     this.setupClawLine();
     this.setupPole();
-    new QrCodeModal();
   }
 
   setupControlButtonBackground() {
