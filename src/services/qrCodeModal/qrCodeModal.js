@@ -17,7 +17,7 @@ export default class {
     this.mainContainer = widgetHtmlService.container;
     this.customer = this.config.business_name ? this.config.business_name : 'Deprati';
 
-    if (!this.config?.email_collection_required) {
+    if (this.config?.email_collection_required) {
       this.showQrCode();
     } else {
       this.updateConfigData();
@@ -58,8 +58,7 @@ export default class {
     try {
       this.loading = true;
       await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal', {
-        user_last_name: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_last_name,
-        user_first_name: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_first_name,
+        user_name: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_name,
         user_email: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_email,
       });
       this.updateConfigData();
@@ -472,17 +471,11 @@ export default class {
     </div>
    <div style='width:100%'>
    <div style="width: 100%; height: 50px;position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-first-name'>
-   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your first name" id="boomio-textfield-first-name">
+   <input type="text" style="width:220px;height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your full name" id="boomio-textfield-first-name">
 </div>
-<div id="first-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid first name.</div>
-
-   <div style="width: 100%; height: 50px;margin-top:10px;  position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-last-name'>
-   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your last name" id="boomio-textfield-last-name">
-</div>
-<div id="last-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid last name.</div>
-
+<div id="first-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid full name.</div>
    <div style="width: 100%; height: 50px;margin-top:10px; position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
-   <input type="text" style="height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your email" id="boomio-textfield-email">
+   <input type="text" style="width:220px;height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your email" id="boomio-textfield-email">
 </div>
 <div id="email-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid email address.</div>
 
@@ -506,22 +499,18 @@ export default class {
 
     const emailInput = document.getElementById('boomio-textfield-email');
     const firstNameInput = document.getElementById('boomio-textfield-first-name');
-    const lastNameInput = document.getElementById('boomio-textfield-last-name');
 
     const emailErrorMessage = document.getElementById('email-error-message');
     const firstNameErrorMessage = document.getElementById('first-name-error-message');
-    const lastNameErrorMessage = document.getElementById('last-name-error-message');
 
     const emailInputErrors = document.getElementById('textfield-email');
     const firstNameInputErrors = document.getElementById('textfield-first-name');
-    const lastNameInputErrors = document.getElementById('textfield-last-name');
 
     const emailBtn = document.getElementById('boomio-email-btn');
     if (emailBtn) {
       emailBtn.onclick = () => {
         const emailValue = emailInput.value;
         const firstNameValue = firstNameInput.value;
-        const lastNameValue = lastNameInput.value;
 
         // Validate email format using a regular expression
 
@@ -532,16 +521,6 @@ export default class {
         } else {
           firstNameInputErrors.style.border = '';
           firstNameErrorMessage.style.display = 'none';
-        }
-
-        if (!lastNameValue) {
-          lastNameInputErrors.style.border = '2px solid red';
-
-          lastNameErrorMessage.style.display = 'block';
-          return;
-        } else {
-          lastNameInputErrors.style.border = '';
-          lastNameErrorMessage.style.display = 'none';
         }
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -562,8 +541,7 @@ export default class {
         if (existingConfigJSON) {
           const existingConfig = JSON.parse(existingConfigJSON);
           existingConfig.user_email = emailValue;
-          existingConfig.user_last_name = lastNameValue;
-          existingConfig.user_first_name = firstNameValue;
+          existingConfig.user_name = firstNameValue;
           localStorage.setItem(localStoragePropertyName, JSON.stringify(existingConfig));
         }
         this.loadQrCodeData();

@@ -68,8 +68,8 @@ class ClawMachineWidget {
       DePraticlawPick,
       DePratiGiftOne,
       DePratiGiftTwo,
-      DePratiClawClose,
       DePraticlawPoleImg,
+      DePratiClawClose,
       DePratiGifTwo,
       DePratichainImg,
       DePratiClawClosed,
@@ -114,6 +114,7 @@ class ClawMachineWidget {
     this.setupControlButton();
     this.setupClawLine();
     this.setupPole();
+    new QrCodeModal();
   }
 
   setupControlButtonBackground() {
@@ -330,9 +331,7 @@ class ClawMachineWidget {
                     setTimeout(() => {
                       animationElement.style.backgroundImage = Opened;
                       setTimeout(() => {
-                        const gifUrl = `url(${
-                          customer === 'Deprati' ? DePratiGiftOpened : GiftOpened
-                        })`;
+                        const gifUrl = `url(${DePratiGiftOpened})`;
                         animationElement.style.backgroundImage = gifUrl;
                       }, 500);
                     }, 10);
