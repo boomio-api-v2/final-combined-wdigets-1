@@ -10,7 +10,6 @@ import {
   GiftOne,
   GiftTwo,
   ClawLineBackground,
-  GifTwo,
   clawClosed,
   GiftOpened,
   ClawClose,
@@ -55,7 +54,6 @@ class ClawMachineWidget {
       GiftOne,
       GiftTwo,
       ClawLineBackground,
-      GifTwo,
       clawClosed,
       GiftOpened,
       ClawClose,
@@ -326,7 +324,7 @@ class ClawMachineWidget {
               setTimeout(() => {
                 if (presentType.includes('GiftTwo')) {
                   function restartGif(animationElement) {
-                    const Opened = `url(${customer === 'Deprati' ? DePratiGifTwo : GifTwo})`;
+                    const Opened = `url(${DePratiGifTwo})`;
                     setTimeout(() => {
                       animationElement.style.backgroundImage = Opened;
                       setTimeout(() => {

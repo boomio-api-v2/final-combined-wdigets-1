@@ -31,10 +31,6 @@ export const ClawLineBackground = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/ClawLineBackground.png',
 ];
 
-export const GifTwo = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/GifTwo.gif',
-];
-
 export const ClawClose = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/claw-machine-icon-button/images/clawWidget/ClawClose.png',
 ];
