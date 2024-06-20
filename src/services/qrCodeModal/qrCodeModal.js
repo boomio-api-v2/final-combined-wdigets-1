@@ -57,7 +57,7 @@ export default class {
   async loadQrCodeData() {
     try {
       this.loading = true;
-      await boomioService.signal('PUZZLE_CODE_REVEALED', 'signal', {
+      await boomioService.signal('TEST', 'signal', {
         user_name: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_name,
         user_email: JSON.parse(localStorage.getItem('boomioPluginConfig'))?.user_email,
       });
