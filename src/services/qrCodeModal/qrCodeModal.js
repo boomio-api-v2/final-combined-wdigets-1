@@ -334,7 +334,7 @@ export default class {
     textTitle.classList.add('exist-or-saving-modal-title');
     textTitle.style.color = 'white';
 
-    textTitle.innerHTML = 'Are you sure you don’t want your reward?';
+    textTitle.innerHTML = '¿Estás seguro de que no quieres tu premio?';
     textTitle.style.fontSize = '32px';
     textTitle.style.marginTop = '50px';
     textTitle.style.lineHeight = '40px';
@@ -347,20 +347,22 @@ export default class {
     };
     saveBtn.classList.add('save');
     saveBtn.style.fontSize = '14px';
-    saveBtn.innerHTML = 'Yes, I want!';
+    saveBtn.innerHTML = 'Si, lo quiero!';
     this.modal.style.background =
       this.customer === 'Deprati'
         ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
-    const exitBtn = document.createElement('div');
+    const exitBtn = document.createElement('button');
     exitBtn.onclick = () => {
       boomioService.signal('exit_yes');
       this.closeModal(true);
       // this.showRatingModal();
     };
+    exitBtn.style.fontSize = '14px';
+    exitBtn.classList.add('save');
     exitBtn.style.cursor = 'pointer';
-    exitBtn.innerHTML = exitBtnEmailHtml;
+    exitBtn.innerHTML = 'No, lo quiero';
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('modal-buttons');
     buttonContainer.appendChild(saveBtn);
@@ -447,7 +449,7 @@ export default class {
   };
 
   showTextfield = () => {
-    this.createModalWindow(335, 400);
+    this.createModalWindow(335, 440);
     this.modal.classList.add('desktop-qr-modal');
 
     this.modal.style.background =
@@ -467,26 +469,46 @@ export default class {
     <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">De Prati</div>
   </div>
     <div style="width: 100%; height: 100%; flex-direction: column;align-items: center; gap: 9px; display: inline-flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:20px;">Enter your information for prizes</div>
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:10px;">Ganaste un descuento del 20%</div>
     </div>
    <div style='width:100%'>
    <div style="width: 100%; height: 50px;position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-first-name'>
-   <input type="text" style="width:220px;height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your full name" id="boomio-textfield-first-name">
+   <input type="text" style="width:220px;height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Nombre Completo" id="boomio-textfield-first-name">
 </div>
-<div id="first-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid full name.</div>
+<div id="first-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Por favor agregue un nombre válido</div>
    <div style="width: 100%; height: 50px;margin-top:10px; position: relative; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
-   <input type="text" style="width:220px;height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Your email" id="boomio-textfield-email">
+   <input type="text" style="width:220px;height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Ingresa tu email " id="boomio-textfield-email">
 </div>
-<div id="email-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Please enter a valid email address.</div>
+<div id="email-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Por favor agregué una cuenta de email válida</div>
+  <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-start;">
+    <label style="color: white; font-size: 10px; font-family: Montserrat; font-weight: 500;">
+      <input type="checkbox" id="checkbox1" style="margin-right: 5px;"> He leído, entiendo y acepto la Política de Privacidad de Almacenes De Prati S.A., al igual que los Términos de uso y condiciones de deprati.com
 
+    </label>
+    <label style="color: white; font-size: 10px; font-family: Montserrat; font-weight: 500;">
+      <input type="checkbox" id="checkbox2" style="margin-right: 5px;"> Quiero recibir ofertas, novedades y comunicaciones comerciales personalizadas de De Prati y sus otras marcas a través de e-mail y otros medios de comunicación y correspondencia.
+
+    </label>
+  </div>
     <div style="margin-top:20px; display:flex;cursor:pointer; justify-content:center;align-items:center;border:2px solid white;padding:4px;border-radius:10px;" id='boomio-email-btn'>
 
-   <div style="left: 225px; top: 11px;color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" >Send</div>
+   <div style="left: 225px; top: 11px;color: white; font-size: 14px; font-family: Montserrat; font-weight: 600; text-transform: uppercase; line-height: 32px; word-wrap: break-word;text-decoration:underline" >Enviar </div>
 </div> 
 </div> 
 
   </div>
     `;
+
+    let checkboxFirst = false;
+    let checkboxSecond = false;
+
+    document.getElementById('checkbox1').addEventListener('change', function () {
+      checkboxFirst = this.checked;
+    });
+
+    document.getElementById('checkbox2').addEventListener('change', function () {
+      checkboxSecond = this.checked;
+    });
 
     this.modal.style.justifyContent = 'start';
     const closeBtn = document.getElementById('boomio-close-modal-btn');
@@ -533,7 +555,9 @@ export default class {
           emailInputErrors.style.border = '';
           emailErrorMessage.style.display = 'none';
         }
-
+        if (checkboxFirst === false || checkboxSecond === false) {
+          return;
+        }
         // Proceed with storing the email in local storage and showing the QR code
         const localStoragePropertyName = 'boomioPluginConfig';
         const existingConfigJSON = localStorage.getItem(localStoragePropertyName);
