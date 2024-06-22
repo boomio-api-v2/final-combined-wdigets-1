@@ -482,11 +482,11 @@ export default class {
 <div id="email-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Por favor agregué una cuenta de email válida</div>
   <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-start;">
     <label style="color: white; font-size: 10px; font-family: Montserrat; font-weight: 500;">
-      <input type="checkbox" id="checkbox1" style="margin-right: 5px;"> He leído, entiendo y acepto la Política de Privacidad de Almacenes De Prati S.A., al igual que los Términos de uso y condiciones de deprati.com
+      <input type="checkbox" id="checkbox1" style="margin-right: 5px;line-height:12px;"> He leído, entiendo y acepto la Política de Privacidad de Almacenes De Prati S.A., al igual que los Términos de uso y condiciones de deprati.com
 
     </label>
     <label style="color: white; font-size: 10px; font-family: Montserrat; font-weight: 500;">
-      <input type="checkbox" id="checkbox2" style="margin-right: 5px;"> Quiero recibir ofertas, novedades y comunicaciones comerciales personalizadas de De Prati y sus otras marcas a través de e-mail y otros medios de comunicación y correspondencia.
+      <input type="checkbox" id="checkbox2" style="margin-right: 5px;line-height:12px;"> Quiero recibir ofertas, novedades y comunicaciones comerciales personalizadas de De Prati y sus otras marcas a través de e-mail y otros medios de comunicación y correspondencia.
 
     </label>
   </div>
