@@ -100,7 +100,7 @@ export class PointScoreTableContainer {
               this.prop === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.prop === 'Fpro'
-                ? 'IMPROVE RESULT FOR HIGHER PRIZE'
+                ? 'CHECK YOUR INBOX TO CLAIM YOUR PRIZE!'
                 : 'Tu gali!'
             }</div>
             <div style="width:100%; top: 470px;line-height:18px; position: absolute; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -111,7 +111,7 @@ export class PointScoreTableContainer {
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Fpro'
-                ? 'Your discount code will be sent to your provided email.</br>Order a Mat and enter the competition to win'
+                ? 'IMPROVE RESULTS FOR A HIGHER PRIZE.</br>Order a Mat and enter the competition to win'
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${
