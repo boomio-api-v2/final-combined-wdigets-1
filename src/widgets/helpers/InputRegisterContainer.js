@@ -40,15 +40,16 @@ export class InputRegisterContainer {
       this.prop === 'Fpro' ? 'NEXT' : 'TOLIAU'
     }</div>
       </div>
-      <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:pointer;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
-      
-      <div  style="cursor: pointer;">
+      <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
+        this.prop === 'Fpro' ? 'auto' : 'pointer'
+      } ;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+      <div  style=" display: ${this.prop === 'Fpro' ? 'none' : 'inline-flex'};cursor: ${
+      this.prop === 'Fpro' ? 'auto' : 'pointer'
+    };">
             <img id="privacyCheckboxImg" src="${
               privacyCheckboxChecked ? checkIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
-
-
         <div style="color: ${
           this.prop === 'Barbora' ||
           this.prop === 'Fpro' ||
@@ -58,7 +59,7 @@ export class InputRegisterContainer {
             : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Barbora' || this.prop === 'Fpro'
-        ? 'Agree to get newsletters.'
+        ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
         : this.prop === 'Makalius'
@@ -90,7 +91,7 @@ export class InputRegisterContainer {
 
     </div>
       </div>
-
+   
 
       <div style="width: calc(100% - 70px); height: 24px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
