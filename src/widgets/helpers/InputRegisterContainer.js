@@ -58,7 +58,7 @@ export class InputRegisterContainer {
             ? 'white'
             : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
-      this.prop === 'Barbora' || this.prop === 'Fpro'
+      this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
