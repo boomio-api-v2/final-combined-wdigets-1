@@ -58,7 +58,7 @@ export class InputRegisterContainer {
             ? 'white'
             : 'white'
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
-      this.prop === 'Barbora' || this.prop === 'Fpro'
+      this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
@@ -166,7 +166,7 @@ export class InputRegisterContainer {
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
     } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-      this.prop === 'Fpro' ? 'Players nickname' : 'Žaidėjo slapyvardis'
+      this.prop === 'Fpro' ? 'Players Full name' : 'Žaidėjo slapyvardis'
     }">
     `;
 
