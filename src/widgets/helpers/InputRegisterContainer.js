@@ -166,7 +166,7 @@ export class InputRegisterContainer {
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
     } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-      this.prop === 'Fpro' ? 'Players Full name' : 'Žaidėjo slapyvardis'
+      this.prop === 'Fpro' ? 'Players full name' : 'Žaidėjo slapyvardis'
     }">
     `;
 

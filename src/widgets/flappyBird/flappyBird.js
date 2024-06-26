@@ -49,7 +49,14 @@ class FlappyBird {
     this.collection = this.config.collection ? this.config.collection : [];
     this.just_won = this.config.just_won ? this.config.just_won : null;
 
-    this.startFlappy();
+    if (this.customer === 'Fpro') {
+      setTimeout(() => {
+        this.startFlappy();
+      }, 8000);
+    } else {
+      this.startFlappy();
+    }
+
     this.gameStarted = false;
     this.bestScore = 0;
     this.discount = '0%';
@@ -1047,6 +1054,33 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             new_highscore_stars.style.display = 'none';
 
             numbers.style.display = 'none';
+
+            if (this.gameStarted === false) {
+              if (
+                this.showCompetitiveRegistration === 'competition' ||
+                this.showCompetitiveRegistration === 'points' ||
+                this.showCompetitiveRegistration === 'collectable'
+              ) {
+                boomioService
+                  .signal('ROUND_STARTED', 'signal')
+                  .then((response) => {
+                    this.gameStarted = true;
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+              }
+            }
+
+            setTimeout(() => {
+              canvas.onclick = () => {
+                this.flight = this.jump;
+                this.isJumping = true;
+                setTimeout(() => {
+                  this.isJumping = false;
+                }, 300);
+              };
+            }, 50);
             this.gamePlaying = true;
             document.getElementById('background_blur').style.display = 'none';
             const canvas = document.getElementById('flappy-canvas');
@@ -1054,31 +1088,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             canvas.style.filter = 'none';
 
             controlButton.style.opacity = 0;
-
-            setTimeout(() => {
-              canvas.onclick = () => {
-                if (this.gameStarted === false) {
-                  if (
-                    this.showCompetitiveRegistration === 'competition' ||
-                    this.showCompetitiveRegistration === 'points' ||
-                    this.showCompetitiveRegistration === 'collectable'
-                  ) {
-                    boomioService
-                      .signal('ROUND_STARTED', 'signal')
-                      .then((response) => {})
-                      .catch((error) => {
-                        console.error('Error:', error);
-                      });
-                  }
-                }
-                this.flight = this.jump;
-                this.isJumping = true;
-                this.gameStarted = true;
-                setTimeout(() => {
-                  this.isJumping = false;
-                }, 300);
-              };
-            }, 50);
           };
           canvas.addEventListener('click', this.clickEventHandler);
         }
