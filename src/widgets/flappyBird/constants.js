@@ -12,7 +12,7 @@ export const scoreImageFantazijos =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-score.png';
 
 export const mainFantazijos =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-background.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-background-new.png';
 
 export const snowFantazijos =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-snow.gif';
