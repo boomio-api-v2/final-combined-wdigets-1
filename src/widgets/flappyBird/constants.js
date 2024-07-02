@@ -54,7 +54,7 @@ export const FproFlappyScore =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/FPro/FProFlappyButton.png';
 
 export const FproFlappyIntro =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/FPro/FProFlappyIntro.gif';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/FPro/FProFlappyIntroNew.gif';
 
 export const FproFlappyBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/FPro/FProFlappyBackground.png';
