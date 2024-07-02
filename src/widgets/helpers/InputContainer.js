@@ -49,7 +49,7 @@ export class InputContainer {
               this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes</br> kas mėnesį!'
                 : this.prop === 'Fpro'
-                ? 'INSTANT PRIZES!'
+                ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
                 ? 'gimtadienio prizus iškart!'
                 : this.prop === 'Fantazijos'
