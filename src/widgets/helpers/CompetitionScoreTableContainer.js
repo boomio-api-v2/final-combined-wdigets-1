@@ -177,7 +177,7 @@ export class CompetitionScoreTableContainer {
                 : this.language === 'LV'
                 ? 'un laimējiet līdz 30 balvām! Par laimestu informēsim e-pastā.</br> IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv style="color:white"> YESYES.LV </a>  ATLAIŽU KODU:'
                 : this.language === 'RU'
-                ? 'и выиграйте до 30 призов! Уведомление о </br> выигрыше придет на вашу электронную почту.'
+                ? 'и выиграйте до 30 призов! Уведомление о выигрыше придет на вашу</br> электронную почту.ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv style="color:white"> YESYES.LV </a>:'
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
