@@ -10,9 +10,7 @@ export class CompetitionScoreTableContainer {
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
-
     this.language = this.config.language ? this.config.language : 'EN';
-
     this.render();
   }
 
@@ -25,12 +23,12 @@ export class CompetitionScoreTableContainer {
   updateVisuals() {
     if (!this.containerDiv) return;
     const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-    // Update styles
     const scoreboard = this.scoreTable.scoreboard || [];
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
 
     let tableHTML = '';
+    console.log(scoreboard);
     scoreboard.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 

@@ -408,6 +408,7 @@ class FlappyBird {
                       .then((response) => {
                         hideScore();
                         this.userBestPlace = response.user_best_place;
+                        console.log(response);
                         if (this.showCompetitiveRegistration === 'points') {
                           this.scoreTable = response;
                           this.scoreTableContainerInstance.updateProps(
