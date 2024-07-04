@@ -1,6 +1,7 @@
 import './styles.css';
 
 import { boomioLogo } from './constants';
+import { localStorageService } from '@/services';
 
 export class CompetitionScoreTableContainer {
   constructor(prop, scoreTable) {
@@ -8,13 +9,17 @@ export class CompetitionScoreTableContainer {
     this.scoreTable = scoreTable; // Store the prop in a class property
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
+    this.config = localStorageService.getDefaultConfig();
+
+    this.language = this.config.language ? this.config.language : 'EN';
+
     this.render();
   }
 
   updateProps(prop, scoreTable) {
     this.prop = prop;
     this.scoreTable = scoreTable;
-    this.updateVisuals();
+    this.language = this.config.language ? this.config.language : 'EN';
   }
 
   updateVisuals() {
@@ -206,7 +211,9 @@ export class CompetitionScoreTableContainer {
 
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">REZULTATAI</div>
+      <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
+      this.language === 'LV' ? 'REZULTĀTI' : this.language === 'RU' ? 'РЕЗУЛЬТАТЫ' : 'REZULTATAI'
+    }</div>
       
       <div class="boomio-scoreboard-text">
       `;
@@ -235,7 +242,13 @@ export class CompetitionScoreTableContainer {
           ? 'white'
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">PAGERINK REZULTATĄ</div>
+        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
+      this.language === 'LV'
+        ? 'UZLABOT REZULTĀTU'
+        : this.language === 'RU'
+        ? 'УЛУЧШИТЬ РЕЗУЛЬТАТ'
+        : 'PAGERINK REZULTATĄ'
+    }</div>
       </div>
 
       <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">

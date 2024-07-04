@@ -196,7 +196,7 @@ export class CollectionScoreTableContainer {
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">REZULTATAI</div>
+      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${'REZULTATAI'}</div>
       
       <div class="boomio-scoreboard-text">
       `;
