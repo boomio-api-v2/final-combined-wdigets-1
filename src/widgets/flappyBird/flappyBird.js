@@ -34,6 +34,7 @@ import {
   MakaliusFlappyIntro,
   MakaliusFlappyBackground,
   introGifFantazijosLV,
+  introGifFantazijosEE,
   introGifFantazijosRU,
   newRecordEn,
 } from './constants';
@@ -408,7 +409,6 @@ class FlappyBird {
                       .then((response) => {
                         hideScore();
                         this.userBestPlace = response.user_best_place;
-                        console.log(response);
                         if (this.showCompetitiveRegistration === 'points') {
                           this.scoreTable = response;
                           this.scoreTableContainerInstance.updateProps(
@@ -707,6 +707,8 @@ class FlappyBird {
           ? introGifFantazijosLV
           : this.language === 'RU'
           ? introGifFantazijosRU
+          : this.language === 'EE'
+          ? introGifFantazijosEE
           : introGifFantazijos
         : this.customer === 'Fpro'
         ? FproFlappyIntro
@@ -760,6 +762,8 @@ ${`<div style="${
         ? 'KLIK'
         : this.language === 'RU'
         ? 'КЛИК'
+        : this.language === 'EE'
+        ? 'TAP'
         : this.customer === 'Fpro'
         ? 'TAP'
         : 'BAKST'
@@ -769,6 +773,8 @@ ${`<div style="${
         ? 'KLIK'
         : this.language === 'RU'
         ? 'КЛИК'
+        : this.language === 'EE'
+        ? 'TAP'
         : this.customer === 'Fpro'
         ? 'TAP'
         : 'BAKST'

@@ -29,6 +29,9 @@ export const introGifFantazijosLV =
 export const introGifFantazijosRU =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Yesyes.lvru.gif';
 
+export const introGifFantazijosEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/yesyes.ee.gif';
+
 export const introGifPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Penki/BoomioPenkiSezonaiIntro.gif';
 

@@ -30,13 +30,15 @@ export class InputContainer {
         ? 'NOTEIKUMI'
         : this.language === 'RU'
         ? 'ПРАВИЛА'
+        : this.language === 'EE'
+        ? 'REEGLID'
         : this.prop === 'Fpro'
         ? 'RULES'
         : 'TAISYKLĖS'
     }</div>`}</div>
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
           <div style="width: 172px; left: ${
-            this.language === 'LV' || this.language === 'RU'
+            this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
               ? '180px'
               : this.prop === 'Fpro'
               ? '130px'
@@ -47,6 +49,8 @@ export class InputContainer {
                 ? 'lai lidotu'
                 : this.language === 'RU'
                 ? 'чтобы лететь'
+                : this.language === 'EE'
+                ? 'lendamiseks'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
@@ -55,7 +59,7 @@ export class InputContainer {
             }
           </div>
           <div style="width: 229px; left: ${
-            this.language === 'LV' || this.language === 'RU'
+            this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
               ? '180px'
               : this.prop === 'Fpro'
               ? '150px'
@@ -66,13 +70,15 @@ export class InputContainer {
                 ? 'labākam rezultātam'
                 : this.language === 'RU'
                 ? 'для лучшего результата'
+                : this.language === 'EE'
+                ? 'parema tulemuse saavutamiseks'
                 : this.prop === 'Fpro'
                 ? 'FOR BETTER RESULT'
                 : 'dėl geresnio rezultato'
             }
           </div>
           <div style="width: 236px; left: ${
-            this.language === 'LV' || this.language === 'RU'
+            this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
               ? '180px'
               : this.prop === 'Fpro'
               ? '105px'
@@ -83,6 +89,8 @@ export class InputContainer {
                 ? 'līdz pat 30 Yesyes.lv balvām!'
                 : this.language === 'RU'
                 ? 'до 30 призов от Yesyes.lv!'
+                : this.language === 'EE'
+                ? 'kuni 30 yesyes.ee auhinda!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes</br> kas mėnesį!'
                 : this.prop === 'Fpro'
@@ -97,42 +105,56 @@ export class InputContainer {
             }
           </div>
           <div style="width: ${
-            this.language === 'LV' || this.language === 'RU' ? '165px' : '145px'
+            this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+              ? '165px'
+              : '145px'
           }; height: 139px; left: 20px; top: 0px; position: absolute">
             <div style="left: 0px; top: 0px; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' ? '20px' : '24px'
+              this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+                ? '20px'
+                : '24px'
             }; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
               1. ${
                 this.language === 'LV'
                   ? 'NOSPIEDIET'
                   : this.language === 'RU'
                   ? 'ПРАВИЛА'
+                  : this.language === 'EE'
+                  ? 'KLÕPSA'
                   : this.prop === 'Fpro'
                   ? 'CLICK'
                   : 'Spausk'
               }
             </div>
             <div style="left: 0px; top: 36px; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' ? '20px' : '24px'
+              this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+                ? '20px'
+                : '24px'
             }; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
             2.  ${
               this.language === 'LV'
                 ? 'ATKĀRTOT'
                 : this.language === 'RU'
                 ? 'ПОВТОРИТЬ'
+                : this.language === 'EE'
+                ? 'KORDA'
                 : this.prop === 'Fpro'
                 ? 'REPEAT'
                 : 'Kartok'
             }
             </div>
             <div style="left: 1px; top: 70px; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' ? '20px' : '24px'
+              this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+                ? '20px'
+                : '24px'
             }; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
             3. ${
               this.language === 'LV'
                 ? 'LAIMĒT'
                 : this.language === 'RU'
                 ? 'ВЫИГРАЙТЕ'
+                : this.language === 'EE'
+                ? 'VÕIDA'
                 : this.prop === 'Fpro'
                 ? 'WIN'
                 : 'Laimėk'
@@ -157,6 +179,8 @@ export class InputContainer {
               ? 'href=https://docs.google.com/document/d/1QNzkm_j-Sn73LsykBYgFAfwg0Ij2TeM5/edit'
               : this.language === 'RU'
               ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
+              : this.language === 'EE'
+              ? 'href=https://docs.google.com/document/d/1OeMh9o3FeQMj00XRvsxlvwbUpaYuBgRsVLUZMCPWfdo/edit'
               : this.prop === 'Fantazijos'
               ? 'href=https://www.fantazijos.lt/zaidimo-taisykles'
               : this.prop === 'Fpro'
@@ -167,6 +191,8 @@ export class InputContainer {
               ? 'Lasīt pilnus spēles noteikumus. '
               : this.language === 'RU'
               ? 'Читайте полные правила игры.'
+              : this.language === 'EE'
+              ? 'Loe kõik mängureeglid läbi.'
               : this.prop === 'Fpro'
               ? 'Read full games rules. '
               : 'Skaityk pilnas žaidimo taisykles.'
@@ -189,6 +215,8 @@ export class InputContainer {
         ? 'TĀLĀK'
         : this.language === 'RU'
         ? 'ДАЛЕЕ'
+        : this.language === 'EE'
+        ? 'EDASI'
         : this.prop === 'Barbora' ||
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
