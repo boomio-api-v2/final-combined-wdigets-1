@@ -159,6 +159,10 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.prop === 'Makalius'
                 ? 'TU GALI!'
+                : this.language === 'LV'
+                ? 'Atzīmējiet karstāko vasaru'
+                : this.language === 'RU'
+                ? 'Отпразднуйте самый жаркий месяц лета'
                 : 'Tu gali!'
             }</div>
             <div style="width:100%; top: 470px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -170,12 +174,20 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Makalius'
                 ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
+                : this.language === 'LV'
+                ? 'un laimējiet līdz 30 balvām! Par laimestu informēsim e-pastā.</br> IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv style="color:white"> YESYES.LV </a>  ATLAIŽU KODU:'
+                : this.language === 'RU'
+                ? 'и выиграйте до 30 призов! Уведомление о </br> выигрыше придет на вашу электронную почту.'
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
               <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
-              this.prop === 'Fantazijos'
+              this.language === 'LV'
+                ? 'vasara'
+                : this.language === 'RU'
+                ? 'лето'
+                : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
                 : this.prop === 'Makalius'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
@@ -184,6 +196,10 @@ export class CompetitionScoreTableContainer {
               <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
+                : this.language === 'LV'
+                ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
+                : this.language === 'RU'
+                ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : this.prop === 'Makalius'
