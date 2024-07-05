@@ -127,7 +127,7 @@ class ClawMachineWidget {
     controlButton.style.width = this.isMobile ? '123px' : '143px';
     controlButton.style.height = this.isMobile ? '123px' : '143px';
     controlButton.style.marginTop = '30px';
-    controlButton.style.marginLeft = this.isMobile ? '-16px' : '-23px';
+    controlButton.style.marginLeft = this.isMobile ? '-16px' : '-20px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
     controlButton.setAttribute('id', 'boomio-control-button-background');

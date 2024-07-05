@@ -449,7 +449,7 @@ export default class {
   };
 
   showTextfield = () => {
-    this.createModalWindow(345, 480);
+    this.createModalWindow(345, 500);
     this.modal.classList.add('desktop-qr-modal');
 
     this.modal.style.background =
@@ -460,13 +460,13 @@ export default class {
     this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
 
     this.modal.innerHTML = `
-    <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
-      <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/logo.png" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
-    </div>
-
         <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
+                    <div style="width: 100%; height: 100%; flex-direction: column;align-items: center; gap: 9px; display: inline-flex">
+      <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/logo.png" style="margin-left:22px;width:162px;height:70px;"/>
+  </div>
       <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
-    </div>
+      </div>
+
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px;font-family: Montserrat; font-weight: 400; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">Ganaste</div>
   </div>
@@ -474,15 +474,15 @@ export default class {
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:10px;">$10 dólares </div>
     </div>
    <div style='width:100%'>
-   <div style="width: 100%; height: 50px;position: relative; background: rgba(221, 219, 210, 0.70);border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-first-name'>
-   <input type="text" style="width:220px;height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Nombre Completo" id="boomio-textfield-first-name">
+   <div style="width: 100%; height: 40px;position: relative; background: rgba(221, 219, 210, 0.70);border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-first-name'>
+   <input type="text" style="width:220px;height: 17px; left: 24px; top: 10px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Nombre Completo" id="boomio-textfield-first-name">
 </div>
 <div id="first-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Por favor agregue un nombre válido</div>
-   <div style="width: 100%; height: 50px;margin-top:10px; position: relative;  background: rgba(221, 219, 210, 0.70); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
-   <input type="text" style="width:220px;height: 17px; left: 24px; top: 19px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Ingresa tu email " id="boomio-textfield-email">
+   <div style="width: 100%; height: 40px;margin-top:10px; position: relative;  background: rgba(221, 219, 210, 0.70); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
+   <input type="text" style="width:220px;height: 17px; left: 24px; top: 10px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Ingresa tu email " id="boomio-textfield-email">
 </div>
 <div id="email-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Por favor agregué una cuenta de email válida</div>
-  <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-start;">
+  <div style="margin-top: 10px; display: flex; flex-direction: column; align-items: flex-start;">
     <label style="color: white; font-size: 10px; font-family: Montserrat; font-weight: 500;line-height:12px;">
       <input type="checkbox" id="checkbox1" style="margin-right: 5px;line-height:12px;"> He leído, entiendo y acepto la Política de Privacidad de Almacenes De Prati S.A., al igual que los Términos de uso y condiciones de deprati.com
 
@@ -492,7 +492,7 @@ export default class {
 
     </label>
   </div>
-    <div style="margin-top:20px; display:flex;cursor:pointer; justify-content:center;align-items:center;border:2px solid white;padding:4px;border-radius: 35px;background: #FFF;box-shadow: 0px 6px 20px 0px rgba(179, 197, 234, 0.50), 2px 2px 4px 0px rgba(238, 243, 255, 0.75) inset, -4px -4px 8px 0px #DFE6F5 inset;" id='boomio-email-btn'>
+    <div style="margin-top:10px; display:flex;cursor:pointer; justify-content:center;align-items:center;border:2px solid white;padding:4px;border-radius: 35px;background: #FFF;box-shadow: 0px 6px 20px 0px rgba(179, 197, 234, 0.50), 2px 2px 4px 0px rgba(238, 243, 255, 0.75) inset, -4px -4px 8px 0px #DFE6F5 inset;" id='boomio-email-btn'>
 
    <div style="left: 225px; top: 11px;color: #738078; font-size: 24px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; line-height: 32px; word-wrap: break-word;" >Enviar </div>
 </div> 
