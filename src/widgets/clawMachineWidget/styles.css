@@ -2,8 +2,8 @@
   position: fixed; /* Use position: fixed to make it relative to the viewport */
   top: 0px; /* Position it at 100 pixels from the top of the viewport */
   left: 50px; /* Position it at the left of the viewport */
-  width:76px; /* Set the width of the custom-div */
-  height:238px; /* Set the height of the custom-div */
+  width:83px; /* Set the width of the custom-div */
+  height:220px; /* Set the height of the custom-div */
   margin-top:-15px;
 z-index: 9999999999999;
 }
@@ -52,7 +52,7 @@ z-index: 9999999999999;
     top: 0px; /* Position it at 100 pixels from the top of the viewport */
     left: 25px; /* Position it at the left of the viewport */
     width: 82px; /* Set the width of the custom-div */
-    height: 220px; /* Set the height of the custom-div */
+    height: 207px; /* Set the height of the custom-div */
   }
 
   

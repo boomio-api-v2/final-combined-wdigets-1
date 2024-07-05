@@ -17,7 +17,6 @@ export class CompetitionScoreTableContainer {
   updateProps(prop, scoreTable) {
     this.prop = prop;
     this.scoreTable = scoreTable;
-    this.language = this.config.language ? this.config.language : 'EN';
     this.updateVisuals();
   }
 

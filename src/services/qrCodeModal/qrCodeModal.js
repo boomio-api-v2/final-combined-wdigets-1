@@ -17,7 +17,7 @@ export default class {
     this.mainContainer = widgetHtmlService.container;
     this.customer = this.config.business_name ? this.config.business_name : 'Deprati';
 
-    if (!this.config?.email_collection_required) {
+    if (this.config?.email_collection_required) {
       this.showQrCode();
     } else {
       this.updateConfigData();
