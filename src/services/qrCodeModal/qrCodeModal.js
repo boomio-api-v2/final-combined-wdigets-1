@@ -350,7 +350,7 @@ export default class {
     saveBtn.innerHTML = 'Si, lo quiero!';
     this.modal.style.background =
       this.customer === 'Deprati'
-        ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
+        ? 'linear-gradient(164deg, #738078 35.28%, #899D8F 62.29%, #738078 82.47%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
     const exitBtn = document.createElement('button');
@@ -475,7 +475,7 @@ export default class {
     </div>
    <div style='width:100%'>
    <div style="width: 100%; height: 40px;position: relative; background: rgba(221, 219, 210, 0.70);border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-first-name'>
-   <input type="text" style="width:220px;height: 17px; left: 24px; top: 10px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Nombre Completo" id="boomio-textfield-first-name">
+   <input type="text" style="width:220px;height: 17px; left: 24px; top: 10px; position: absolute; color: white; font-size: 12px; font-family: Montserrat; font-weight: 500; line-height: 12px; word-wrap: break-word; padding: 0; border: none; outline: none; background: transparent;" placeholder="Nombre completo" id="boomio-textfield-first-name">
 </div>
 <div id="first-name-error-message" style="color: white; margin-top: 4px; display: none;font-size:12px;">Por favor agregue un nombre válido</div>
    <div style="width: 100%; height: 40px;margin-top:10px; position: relative;  background: rgba(221, 219, 210, 0.70); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid" id='textfield-email'>
