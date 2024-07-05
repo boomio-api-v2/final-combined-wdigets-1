@@ -134,7 +134,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 €'
                 : ''
             }</div>
-              <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+              <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Fantazijos'
@@ -175,22 +175,22 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Makalius'
                 ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
                 : this.language === 'LV'
-                ? 'un laimējiet līdz 30 balvām! Par laimestu informēsim e-pastā.</br> IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv style="color:white"> YESYES.LV </a>  ATLAIŽU KODU:'
+                ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
                 : this.language === 'RU'
-                ? 'и выиграйте до 30 призов! Уведомление о выигрыше придет на вашу</br> электронную почту.ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv style="color:white"> YESYES.LV </a>:'
+                ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
                 : this.language === 'EE'
-                ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks. Võitjaid teavitatakse nende</br> määratud e-posti teel. Ostes YESYES.EE-st SOODUSKOODIGA'
+                ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
                 : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
             }</div>
-              <div style="width:100%; top: ${'510px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+              <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.language === 'LV'
-                ? 'vasara'
+                ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
                 : this.language === 'RU'
-                ? 'лето'
+                ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">лето</a></div>'
                 : this.language === 'EE'
-                ? 'suvi'
+                ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
                 : this.prop === 'Makalius'
@@ -234,7 +234,13 @@ export class CompetitionScoreTableContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
-      this.language === 'LV' ? 'REZULTĀTI' : this.language === 'RU' ? 'РЕЗУЛЬТАТЫ' : 'REZULTATAI'
+      this.language === 'LV'
+        ? 'REZULTĀTI'
+        : this.language === 'RU'
+        ? 'РЕЗУЛЬТАТЫ'
+        : this.language === 'EE'
+        ? 'TULEMUSED'
+        : 'REZULTATAI'
     }</div>
       
       <div class="boomio-scoreboard-text">
@@ -269,6 +275,8 @@ export class CompetitionScoreTableContainer {
         ? 'UZLABOT REZULTĀTU'
         : this.language === 'RU'
         ? 'УЛУЧШИТЬ РЕЗУЛЬТАТ'
+        : this.language === 'EE'
+        ? 'PARANDA TULEMUST'
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>

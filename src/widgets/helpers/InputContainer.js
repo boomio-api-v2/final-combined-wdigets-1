@@ -38,7 +38,7 @@ export class InputContainer {
     }</div>`}</div>
     <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
           <div style="width: 172px; left: ${
-            this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+            this.language === 'LV' || this.language === 'RU'
               ? '180px'
               : this.prop === 'Fpro'
               ? '130px'
@@ -59,7 +59,7 @@ export class InputContainer {
             }
           </div>
           <div style="width: 229px; left: ${
-            this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+            this.language === 'LV' || this.language === 'RU'
               ? '180px'
               : this.prop === 'Fpro'
               ? '150px'
@@ -78,7 +78,7 @@ export class InputContainer {
             }
           </div>
           <div style="width: 236px; left: ${
-            this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+            this.language === 'LV' || this.language === 'RU'
               ? '180px'
               : this.prop === 'Fpro'
               ? '105px'
