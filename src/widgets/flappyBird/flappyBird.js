@@ -26,6 +26,9 @@ import {
   scoreImageFantazijos,
   introGifFantazijos,
   newRecord,
+  newRecordRU,
+  newRecordEE,
+  newRecordLV,
   snowFantazijos,
   FproFlappyScore,
   FproFlappyIntro,
@@ -730,7 +733,15 @@ class FlappyBird {
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      this.customer === 'Fpro' ? newRecordEn : newRecord
+      this.customer === 'Fpro'
+        ? newRecordEn
+        : this.language === 'EE'
+        ? newRecordEE
+        : this.language === 'LV'
+        ? newRecordLV
+        : this.language === 'RU'
+        ? newRecordRU
+        : newRecord
     } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers">
