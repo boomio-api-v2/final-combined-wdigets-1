@@ -186,8 +186,8 @@ class ClawMachineWidget {
     this.clawPole.style.width = this.isMobile ? '24px' : '32px';
     this.clawPole.style.height = this.isMobile ? '82px' : '84px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
-    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '77px' : '77px') : '68px';
-    this.clawPole.style.marginLeft = '32px';
+    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '75px' : '75px') : '68px';
+    this.clawPole.style.marginLeft = this.isMobile ? '32px' : '32px';
     this.clawPole.style.border = 'none';
     this.clawPole.style.background =
       this.customer === 'Deprati'
@@ -280,7 +280,7 @@ class ClawMachineWidget {
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${
-      this.isMobile ? (isFirefox ? '300px' : '300px') : '390px'
+      this.isMobile ? (isFirefox ? '297px' : '297px') : '390px'
     })`;
 
     setTimeout(() => {
@@ -448,7 +448,7 @@ class ClawMachineWidget {
 
       // Update the chain's position to move together with the claw
       const chainDivLeft =
-        this.clawPosition + this.clawDiv.clientWidth / 2 - (this.isMobile ? 40 : 50);
+        this.clawPosition + this.clawDiv.clientWidth / 2 - (this.isMobile ? 42 : 50);
       this.chainDiv.style.left = `${chainDivLeft}px`;
 
       // Schedule the next movement
