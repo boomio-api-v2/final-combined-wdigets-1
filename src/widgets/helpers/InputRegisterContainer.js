@@ -1,10 +1,12 @@
 import './styles.css';
 import { checkIcon } from './constants';
-
+import { localStorageService } from '@/services';
 export class InputRegisterContainer {
   constructor(prop) {
     this.prop = prop; // Store the this.prop in a class this.property
     this.isMobile = window.innerWidth <= 1280;
+    this.config = localStorageService.getDefaultConfig();
+    this.language = this.config.language ? this.config.language : 'EN';
   }
   createInputRegisterContainer() {
     const containerDiv = document.createElement('div');
@@ -25,8 +27,18 @@ export class InputRegisterContainer {
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">${
-      this.prop === 'Fpro' ? 'Register to play' : 'REGISTRUOKIS ŽAISTI'
+      }; font-size: ${
+      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '30px' : '40px'
+    }; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">${
+      this.language === 'LV'
+        ? 'REĢISTRĒTIES SPĒLĒŠANAI'
+        : this.language === 'RU'
+        ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
+        : this.language === 'EE'
+        ? 'Registreeri mängimiseks'
+        : this.prop === 'Fpro'
+        ? 'Register to play'
+        : 'REGISTRUOKIS ŽAISTI'
     }</div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
         this.prop === 'Barbora' ||
@@ -37,7 +49,15 @@ export class InputRegisterContainer {
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: ${'#3D4928'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >${
-      this.prop === 'Fpro' ? 'NEXT' : 'TOLIAU'
+      this.language === 'LV'
+        ? 'TĀLĀK'
+        : this.language === 'RU'
+        ? 'ДАЛЕЕ'
+        : this.language === 'EE'
+        ? 'EDASI'
+        : this.prop === 'Fpro'
+        ? 'NEXT'
+        : 'TOLIAU'
     }</div>
       </div>
       <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
@@ -60,6 +80,12 @@ export class InputRegisterContainer {
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
+        : this.language === 'LV'
+        ? 'Es piekrītu saņemt Yesyes.lv jaunumus.'
+        : this.language === 'RU'
+        ? 'Я согласен получать рассылки Yesyes.lv.'
+        : this.language === 'EE'
+        ? 'Nõustun saama yesyes.ee uudiskirju.'
         : this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
         : this.prop === 'Makalius'
@@ -149,7 +175,15 @@ export class InputRegisterContainer {
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
     } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-      this.prop === 'Fpro' ? 'Email address' : 'Elektroninio pašto adresas'
+      this.language === 'LV'
+        ? 'Spēlētāja e-pasts'
+        : this.language === 'RU'
+        ? 'Емейл игрока'
+        : this.language === 'EE'
+        ? 'Mängija e-post'
+        : this.prop === 'Fpro'
+        ? 'Email address'
+        : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
         this.prop === 'Barbora' ||
@@ -166,7 +200,15 @@ export class InputRegisterContainer {
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
     } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-      this.prop === 'Fpro' ? 'Players full name' : 'Žaidėjo slapyvardis'
+      this.language === 'LV'
+        ? 'Spēlētāja lietotājvārds'
+        : this.language === 'RU'
+        ? 'Псевдоним игрока'
+        : this.language === 'EE'
+        ? 'Mängija hüüdnimi'
+        : this.prop === 'Fpro'
+        ? 'Players full name'
+        : 'Žaidėjo slapyvardis'
     }">
     `;
 

@@ -26,6 +26,9 @@ import {
   scoreImageFantazijos,
   introGifFantazijos,
   newRecord,
+  newRecordRU,
+  newRecordEE,
+  newRecordLV,
   snowFantazijos,
   FproFlappyScore,
   FproFlappyIntro,
@@ -33,6 +36,9 @@ import {
   MakaliusFlappyScore,
   MakaliusFlappyIntro,
   MakaliusFlappyBackground,
+  introGifFantazijosLV,
+  introGifFantazijosEE,
+  introGifFantazijosRU,
   newRecordEn,
 } from './constants';
 class FlappyBird {
@@ -40,11 +46,13 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'points';
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Fpro';
+    this.customer = this.config.business_name ? this.config.business_name : 'Fantazijos';
+    this.language = this.config.language ? this.config.language : 'EN';
+
     this.collectables = this.config.collectables ? this.config.collectables : [];
     this.collection = this.config.collection ? this.config.collection : [];
     this.just_won = this.config.just_won ? this.config.just_won : null;
@@ -698,7 +706,13 @@ class FlappyBird {
       this.customer === 'Barbora'
         ? introGif
         : this.customer === 'Fantazijos'
-        ? introGifFantazijos
+        ? this.language === 'LV'
+          ? introGifFantazijosLV
+          : this.language === 'RU'
+          ? introGifFantazijosRU
+          : this.language === 'EE'
+          ? introGifFantazijosEE
+          : introGifFantazijos
         : this.customer === 'Fpro'
         ? FproFlappyIntro
         : this.customer === 'Makalius'
@@ -719,7 +733,15 @@ class FlappyBird {
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      this.customer === 'Fpro' ? newRecordEn : newRecord
+      this.customer === 'Fpro'
+        ? newRecordEn
+        : this.language === 'EE'
+        ? newRecordEE
+        : this.language === 'LV'
+        ? newRecordLV
+        : this.language === 'RU'
+        ? newRecordRU
+        : newRecord
     } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers">
@@ -746,8 +768,28 @@ class FlappyBird {
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-    <div>${this.customer === 'Fpro' ? 'TAP' : 'BAKST'}</div>
-    <div>${this.customer === 'Fpro' ? 'TAP' : 'BAKST'}</div>
+    <div>${
+      this.language === 'LV'
+        ? 'KLIK'
+        : this.language === 'RU'
+        ? 'КЛИК'
+        : this.language === 'EE'
+        ? 'TAP'
+        : this.customer === 'Fpro'
+        ? 'TAP'
+        : 'BAKST'
+    }</div>
+    <div>${
+      this.language === 'LV'
+        ? 'KLIK'
+        : this.language === 'RU'
+        ? 'КЛИК'
+        : this.language === 'EE'
+        ? 'TAP'
+        : this.customer === 'Fpro'
+        ? 'TAP'
+        : 'BAKST'
+    }</div>
   </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:50px;width: 71px; height: 54px;">`}
 
 </div>

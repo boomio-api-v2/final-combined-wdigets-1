@@ -12,7 +12,7 @@ export const scoreImageFantazijos =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-score.png';
 
 export const mainFantazijos =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-background.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-background-new.png';
 
 export const snowFantazijos =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Fantazijos-snow.gif';
@@ -22,6 +22,15 @@ export const mainPenki =
 
 export const introGifFantazijos =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/New-Fantazijos-intro.gif';
+
+export const introGifFantazijosLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Yesyes.lv.gif';
+
+export const introGifFantazijosRU =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/Yesyes.lvru.gif';
+
+export const introGifFantazijosEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Fantazijos/yesyes.ee.gif';
 
 export const introGifPenki =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Penki/BoomioPenkiSezonaiIntro.gif';
@@ -46,6 +55,15 @@ export const uncheckIcon =
 
 export const newRecord =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecord.png?raw=true';
+
+export const newRecordRU =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordRU.png?raw=true';
+
+export const newRecordLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordLV.png?raw=true';
+
+export const newRecordEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEE.png?raw=true';
 
 export const newRecordEn =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';

@@ -127,7 +127,7 @@ class ClawMachineWidget {
     controlButton.style.width = this.isMobile ? '123px' : '143px';
     controlButton.style.height = this.isMobile ? '123px' : '143px';
     controlButton.style.marginTop = '30px';
-    controlButton.style.marginLeft = this.isMobile ? '-16px' : '-23px';
+    controlButton.style.marginLeft = this.isMobile ? '-16px' : '-20px';
     controlButton.style.backgroundColor = 'transparent';
     controlButton.style.border = 'none';
     controlButton.setAttribute('id', 'boomio-control-button-background');
@@ -183,15 +183,15 @@ class ClawMachineWidget {
     this.clawPole.style.zIndex = 2;
 
     this.clawPole.style.backgroundSize = 'contain'; // Adjust as needed
-    this.clawPole.style.width = this.isMobile ? '24px' : '28px';
-    this.clawPole.style.height = this.isMobile ? '78px' : '78px';
+    this.clawPole.style.width = this.isMobile ? '24px' : '32px';
+    this.clawPole.style.height = this.isMobile ? '82px' : '84px';
     const isFirefox = typeof InstallTrigger !== 'undefined';
-    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '77px' : '77px') : '70px';
-    this.clawPole.style.marginLeft = '30px';
+    this.clawPole.style.marginTop = this.isMobile ? (isFirefox ? '75px' : '75px') : '68px';
+    this.clawPole.style.marginLeft = this.isMobile ? '32px' : '32px';
     this.clawPole.style.border = 'none';
     this.clawPole.style.background =
       this.customer === 'Deprati'
-        ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
+        ? 'linear-gradient(205deg, #86998B 31.89%, #515D54 100%)'
         : 'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
 
     this.clawPole.setAttribute('id', 'boomio-claw-pole');
@@ -280,7 +280,7 @@ class ClawMachineWidget {
     this.clawDiv.style.top = `calc(100vh - ${this.isMobile ? '204px' : '290px'})`;
     this.clawPole.style.transition = 'height 1s, transform 1s';
     this.clawPole.style.height = `calc(100vh - ${
-      this.isMobile ? (isFirefox ? '300px' : '300px') : '395px'
+      this.isMobile ? (isFirefox ? '297px' : '297px') : '390px'
     })`;
 
     setTimeout(() => {
@@ -396,7 +396,7 @@ class ClawMachineWidget {
           this.clawDiv.style.top = this.isMobile ? '175px' : '182px';
 
           this.clawPole.style.transition = 'height 1s, transform 1s';
-          this.clawPole.style.height = this.isMobile ? '78px' : '78px';
+          this.clawPole.style.height = this.isMobile ? '82px' : '82px';
 
           setTimeout(() => {
             if (!this.isHoldingclawPresentDivs.some((item) => item === true)) {
@@ -447,7 +447,8 @@ class ClawMachineWidget {
       this.clawDiv.style.left = `${this.clawPosition}px`;
 
       // Update the chain's position to move together with the claw
-      const chainDivLeft = this.clawPosition + this.clawDiv.clientWidth / 2 - 40;
+      const chainDivLeft =
+        this.clawPosition + this.clawDiv.clientWidth / 2 - (this.isMobile ? 42 : 50);
       this.chainDiv.style.left = `${chainDivLeft}px`;
 
       // Schedule the next movement
