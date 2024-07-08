@@ -11,12 +11,16 @@ export class CompetitionScoreTableContainer {
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
+    console.log(this.language);
     this.render();
   }
 
   updateProps(prop, scoreTable) {
     this.prop = prop;
     this.scoreTable = scoreTable;
+    this.language = this.config.language ? this.config.language : 'EN';
+    console.log(this.language);
+
     this.updateVisuals();
   }
 
@@ -204,7 +208,7 @@ export class CompetitionScoreTableContainer {
                 : this.language === 'RU'
                 ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
                 : this.language === 'EE'
-                ? 'SAATE 20% ALLAHINDLUST KÕIGELE! '
+                ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : this.prop === 'Makalius'
