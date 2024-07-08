@@ -11,7 +11,6 @@ export class CompetitionScoreTableContainer {
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
-    console.log(this.language);
     this.render();
   }
 
@@ -19,8 +18,6 @@ export class CompetitionScoreTableContainer {
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
-    console.log(this.language);
-
     this.updateVisuals();
   }
 
@@ -110,7 +107,6 @@ export class CompetitionScoreTableContainer {
         ? '900'
         : '700';
 
-    console.log(this.language);
     let scoreboardText = `
       ${
         (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
