@@ -110,6 +110,7 @@ export class CompetitionScoreTableContainer {
         ? '900'
         : '700';
 
+    console.log(this.language);
     let scoreboardText = `
       ${
         (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
@@ -120,6 +121,12 @@ export class CompetitionScoreTableContainer {
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'DOVANA tau!'
+                : this.language === 'LV'
+                ? 'Atzīmējiet karstāko vasaru'
+                : this.language === 'RU'
+                ? 'Отпразднуйте самый жаркий месяц лета'
+                : this.language === 'EE'
+                ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Fantazijos'
                 ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
                 : 'Valio, tau puikiai sekasi!'
@@ -129,6 +136,12 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
+                : this.language === 'LV'
+                ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
+                : this.language === 'RU'
+                ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
+                : this.language === 'EE'
+                ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
                 : this.prop === 'Fantazijos'
                 ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
                 : this.prop === 'LemonGym'
@@ -140,7 +153,13 @@ export class CompetitionScoreTableContainer {
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
-              this.prop === 'Fantazijos'
+              this.language === 'LV'
+                ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
+                : this.language === 'RU'
+                ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">лето</a></div>'
+                : this.language === 'EE'
+                ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
+                : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
                 : this.prop === 'Makalius'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
@@ -149,6 +168,12 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
+                : this.language === 'LV'
+                ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
+                : this.language === 'RU'
+                ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
+                : this.language === 'EE'
+                ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : this.prop === 'Makalius'
