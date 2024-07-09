@@ -22,6 +22,10 @@ import {
   line,
   background,
   stopwatch,
+  backgroundBarbora,
+  goldImageDataBarbora,
+  envelopeImageDataBarbora,
+  carImageDataBarbora,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -90,7 +94,7 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 2;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 90;
+  const START_TIME = 1;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SHADOW_COLOR = '#EEE';
@@ -153,7 +157,7 @@ function startGame(scoreTableContainerInstance) {
   ];
 
   const carImage = new Image();
-  carImage.src = carImageData;
+  carImage.src = 'Barbora' ? carImageDataBarbora : carImageData;
 
   const rightMailboxImage = new Image();
   rightMailboxImage.src = mailboxImageData;
@@ -162,13 +166,13 @@ function startGame(scoreTableContainerInstance) {
   leftMailboxImage.src = mailboxImageData;
 
   const goldImage = new Image();
-  goldImage.src = goldImageData;
+  goldImage.src = 'Barbora' ? goldImageDataBarbora : goldImageData;
 
   const wallImage = new Image();
   wallImage.src = brickWallImageData;
 
   const envelopeImage = new Image();
-  envelopeImage.src = envelopeImageData;
+  envelopeImage.src = 'Barbora' ? envelopeImageDataBarbora : goldImageData;
 
   const cloudsImage = new Image();
   cloudsImage.src = cloudsImageData;
@@ -187,7 +191,7 @@ function startGame(scoreTableContainerInstance) {
   wh3.src = wh3ImageData;
   lineImg.src = line;
 
-  backgroundImg.src = background;
+  backgroundImg.src = customer === 'Barbora' ? backgroundBarbora : background;
 
   const city1 = new Image();
   const city2 = new Image();
@@ -628,8 +632,6 @@ function startGame(scoreTableContainerInstance) {
                   const canvas = document.getElementById('boomio-drive-canvas');
                   document.getElementById('background_blur').style.opacity = 0.37;
                   document.getElementById('background_blur').style.zIndex = 3;
-                  canvas.style.transition = 'filter 0.6s ease';
-                  canvas.style.filter = 'blur(2px)';
                   const inputContainer = document.querySelector('.input-container');
                   document.getElementById('control-button').style.transition = 'opacity 2s ease';
                   document.getElementById('control-button').style.opacity = 1;
@@ -756,8 +758,6 @@ function startGame(scoreTableContainerInstance) {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-drive-container');
         document.getElementById('background_blur').style.opacity = 0.37;
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -1198,8 +1198,6 @@ function startGame(scoreTableContainerInstance) {
             }, 1000);
           } else {
             const canvas = document.getElementById('boomio-drive-canvas');
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
             document.getElementById('background_blur').style.display = 'block';
           }
           setTimeout(() => {
@@ -1214,7 +1212,7 @@ function startGame(scoreTableContainerInstance) {
               .then((response) => {
                 userBestPlace = response.user_best_place;
                 scoreTable = response;
-                scoreTableContainerInstance.updateProps(customer, scoreTable);
+                scoreTableContainerInstance.updateProps(customer, scoreTable, currentScore);
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -1224,11 +1222,7 @@ function startGame(scoreTableContainerInstance) {
               '.competition-table-container',
             );
             const canvas = document.getElementById('boomio-drive-canvas');
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
             document.getElementById('background_blur').style.display = 'block';
-            competitionTableContainer.style.transition =
-              'height 1s ease, top 1s ease, opacity 1s ease';
             competitionTableContainer.style.display = 'block';
             setTimeout(() => {
               competitionTableContainer.style.height = '680px';

@@ -84,3 +84,19 @@ export const newRecord =
 export const close = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/whiteClose.png',
 ];
+
+export const backgroundBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/background.png?raw=true',
+];
+
+export const goldImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bags.png',
+];
+
+export const envelopeImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bag.png',
+];
+
+export const carImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bike.png',
+];
