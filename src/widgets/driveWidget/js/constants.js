@@ -140,3 +140,7 @@ export const cloudsImageDataBarbora = [
 export const grassBarbora = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/grass.png?raw=true',
 ];
+
+export const lineBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/line.png?raw=true',
+];

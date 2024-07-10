@@ -5,6 +5,8 @@ import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
+import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 
 class driveWidget {
   static ctx;
@@ -13,7 +15,7 @@ class driveWidget {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -125,6 +127,26 @@ class driveWidget {
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
         this.customer,
         this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    if (this.showCompetitiveRegistration === 'points') {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.scoreTableContainerInstance = new PointScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+        this.currentScore,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    if (this.showCompetitiveRegistration === 'collectable') {
+      const gameContainer = document.querySelector('.game-container');
+      this.scoreTableContainerInstance = new CollectionScoreTableContainer(
+        this.customer,
+        this.collectables,
+        this.collection,
+        this.just_won,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }

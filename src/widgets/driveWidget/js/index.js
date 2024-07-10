@@ -31,6 +31,8 @@ import {
   city3ImageDataBarbora,
   cloudsImageDataBarbora,
   brickWallImageDataBarbora,
+  grassBarbora,
+  lineBarbora,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -38,7 +40,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'Barbora';
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
 
   let userBestPlace = 0;
   let scoreTable = {};
@@ -195,7 +197,7 @@ function startGame(scoreTableContainerInstance) {
   wh1.src = customer === 'Barbora' ? wh1ImageDataBarbora : wh1ImageData;
   wh2.src = customer === 'Barbora' ? wh2ImageDataBarbora : wh2ImageData;
   wh3.src = customer === 'Barbora' ? wh3ImageDataBarbora : wh3ImageData;
-  lineImg.src = line;
+  lineImg.src = customer === 'Barbora' ? lineBarbora : line;
 
   backgroundImg.src = customer === 'Barbora' ? backgroundBarbora : background;
 
@@ -1062,7 +1064,27 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawRoad(i, textureCoord) {
-    if (customer !== 'Barbora') {
+    if (customer === 'Barbora') {
+      const grass = new Image();
+      grass.src = grassBarbora;
+
+      const zWorld = zMap[i];
+      const index = (textureCoord + gameTime + zWorld) % MAX_TEX;
+
+      const whiteLineWidth = whiteLineWidths[i];
+      const roadWidth = roadWidths[i];
+      const percent = Math.max(i / groundHeight, 0.3);
+      const curve = curveOffsets[i - skyHeight];
+
+      const currentRoadWidth = roadWidthForI(i);
+
+      // Draw grass image on the left
+      const x1 = Math.floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
+      ctx.drawImage(grass, 0, i, x1, 1);
+
+      // Draw grass image on the right
+      const x2 = Math.floor(currentRoadWidth + x1);
+      ctx.drawImage(grass, x2, i, width - x2, 1);
     } else {
       const zWorld = zMap[i];
       const index = (textureCoord + gameTime + zWorld) % MAX_TEX;
