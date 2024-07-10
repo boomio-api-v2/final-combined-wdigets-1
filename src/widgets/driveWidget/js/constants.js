@@ -106,25 +106,37 @@ export const mailboxImageDataBarbora = [
 ];
 
 export const wh1ImageDataBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/Barbora/Bigcity1Barbora.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity1.png',
 ];
 
 export const wh2ImageDataBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/Barbora/Bigcity2Barbora.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity2.png',
 ];
 
 export const wh3ImageDataBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/Barbora/Bigcity3Barbora.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity3.png',
 ];
 
 export const city1ImageDataBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/Barbora/Bigcity1Barbora.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity1.png',
 ];
 
 export const city2ImageDataBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/Barbora/Bigcity2Barbora.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity2.png',
 ];
 
 export const city3ImageDataBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/Barbora/Bigcity3Barbora.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity3.png',
+];
+
+export const brickWallImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/sign.png',
+];
+
+export const cloudsImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/cloud.png?raw=true',
+];
+
+export const grassBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/grass.png?raw=true',
 ];

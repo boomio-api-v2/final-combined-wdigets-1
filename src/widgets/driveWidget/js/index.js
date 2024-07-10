@@ -23,6 +23,14 @@ import {
   goldImageDataBarbora,
   envelopeImageDataBarbora,
   carImageDataBarbora,
+  wh1ImageDataBarbora,
+  wh2ImageDataBarbora,
+  wh3ImageDataBarbora,
+  city1ImageDataBarbora,
+  city2ImageDataBarbora,
+  city3ImageDataBarbora,
+  cloudsImageDataBarbora,
+  brickWallImageDataBarbora,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -155,7 +163,7 @@ function startGame(scoreTableContainerInstance) {
   ];
 
   const carImage = new Image();
-  carImage.src = 'Barbora' ? carImageDataBarbora : carImageData;
+  carImage.src = customer === 'Barbora' ? carImageDataBarbora : carImageData;
 
   const rightMailboxImage = new Image();
   rightMailboxImage.src = mailboxImageData;
@@ -164,16 +172,16 @@ function startGame(scoreTableContainerInstance) {
   leftMailboxImage.src = mailboxImageData;
 
   const goldImage = new Image();
-  goldImage.src = 'Barbora' ? goldImageDataBarbora : goldImageData;
+  goldImage.src = customer === 'Barbora' ? goldImageDataBarbora : goldImageData;
 
   const wallImage = new Image();
-  wallImage.src = brickWallImageData;
+  wallImage.src = customer === 'Barbora' ? brickWallImageDataBarbora : brickWallImageData;
 
   const envelopeImage = new Image();
-  envelopeImage.src = 'Barbora' ? envelopeImageDataBarbora : envelopeImageData;
+  envelopeImage.src = customer === 'Barbora' ? envelopeImageDataBarbora : envelopeImageData;
 
   const cloudsImage = new Image();
-  cloudsImage.src = cloudsImageData;
+  cloudsImage.src = customer === 'Barbora' ? cloudsImageDataBarbora : cloudsImageData;
 
   const treeImage = new Image();
   treeImage.src = treeImageData;
@@ -184,9 +192,9 @@ function startGame(scoreTableContainerInstance) {
   const lineImg = new Image();
   const backgroundImg = new Image();
 
-  wh1.src = wh1ImageData;
-  wh2.src = wh2ImageData;
-  wh3.src = wh3ImageData;
+  wh1.src = customer === 'Barbora' ? wh1ImageDataBarbora : wh1ImageData;
+  wh2.src = customer === 'Barbora' ? wh2ImageDataBarbora : wh2ImageData;
+  wh3.src = customer === 'Barbora' ? wh3ImageDataBarbora : wh3ImageData;
   lineImg.src = line;
 
   backgroundImg.src = customer === 'Barbora' ? backgroundBarbora : background;
@@ -194,23 +202,23 @@ function startGame(scoreTableContainerInstance) {
   const city1 = new Image();
   const city2 = new Image();
   const city3 = new Image();
-  city1.src = city1ImageData;
-  city2.src = city2ImageData;
-  city3.src = city3ImageData;
+  city1.src = customer === 'Barbora' ? city1ImageDataBarbora : city1ImageData;
+  city2.src = customer === 'Barbora' ? city2ImageDataBarbora : city2ImageData;
+  city3.src = customer === 'Barbora' ? city3ImageDataBarbora : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
 
-  const sky = '#F9F1DD';
-  const grass1 = '#F9F1DD';
-  const grass2 = '#F9F1DD';
+  const sky = customer === 'Barbora' ? '#AEDDFF' : '#F9F1DD';
+  const grass1 = customer === 'Barbora' ? 'red' : '#F9F1DD';
+  const grass2 = customer === 'Barbora' ? 'blue' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR = '#FFF100';
   const BAD_FUNDING_COLOR1 = '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
-  const road1 = '#F9F1DD';
-  const road2 = 'black';
+  const road1 = customer === 'Barbora' ? '#959595' : '#F9F1DD';
+  const road2 = customer === 'Barbora' ? 'white' : 'black';
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
 
@@ -1054,52 +1062,55 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawRoad(i, textureCoord) {
-    const zWorld = zMap[i];
-    const index = (textureCoord + gameTime + zWorld) % MAX_TEX;
+    if (customer !== 'Barbora') {
+    } else {
+      const zWorld = zMap[i];
+      const index = (textureCoord + gameTime + zWorld) % MAX_TEX;
 
-    const whiteLineWidth = whiteLineWidths[i];
-    const roadWidth = roadWidths[i];
-    const percent = max(i / groundHeight, 0.3);
-    const curve = curveOffsets[i - skyHeight];
+      const whiteLineWidth = whiteLineWidths[i];
+      const roadWidth = roadWidths[i];
+      const percent = max(i / groundHeight, 0.3);
+      const curve = curveOffsets[i - skyHeight];
 
-    const currentRoadWidth = roadWidthForI(i);
-    ctx.strokeStyle = index < MAX_TEX / 2 ? grass1 : grass2;
-    ctx.beginPath();
-    ctx.moveTo(round(0), i);
-    const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
-    ctx.lineTo(x1, i);
-    ctx.closePath();
-    ctx.stroke();
+      const currentRoadWidth = roadWidthForI(i);
+      ctx.strokeStyle = index < MAX_TEX / 2 ? grass1 : grass2;
+      ctx.beginPath();
+      ctx.moveTo(round(0), i);
+      const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
+      ctx.lineTo(x1, i);
+      ctx.closePath();
+      ctx.stroke();
 
-    const x2 = floor(currentRoadWidth + x1);
-    ctx.beginPath();
-    ctx.moveTo(x2, i);
-    ctx.lineTo(width, i);
-    ctx.closePath();
-    ctx.stroke();
+      const x2 = floor(currentRoadWidth + x1);
+      ctx.beginPath();
+      ctx.moveTo(x2, i);
+      ctx.lineTo(width, i);
+      ctx.closePath();
+      ctx.stroke();
 
-    ctx.strokeStyle = road2;
-    ctx.beginPath();
-    ctx.moveTo(round(roadWidth.x1 - xOffset + xCenter + curve), i);
-    ctx.lineTo(round(roadWidth.x1 + sideLineWidth * percent - xOffset + xCenter + curve), i);
-    ctx.closePath();
-    ctx.stroke();
+      ctx.strokeStyle = road2;
+      ctx.beginPath();
+      ctx.moveTo(round(roadWidth.x1 - xOffset + xCenter + curve), i);
+      ctx.lineTo(round(roadWidth.x1 + sideLineWidth * percent - xOffset + xCenter + curve), i);
+      ctx.closePath();
+      ctx.stroke();
 
-    ctx.strokeStyle = road2;
-    ctx.beginPath();
-    ctx.moveTo(round(roadWidth.x2 - xOffset + xCenter + curve), i);
-    ctx.lineTo(round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve), i);
-    ctx.closePath();
-    ctx.stroke();
+      ctx.strokeStyle = road2;
+      ctx.beginPath();
+      ctx.moveTo(round(roadWidth.x2 - xOffset + xCenter + curve), i);
+      ctx.lineTo(round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve), i);
+      ctx.closePath();
+      ctx.stroke();
 
-    ctx.strokeStyle = index < MAX_TEX / 2 ? road1 : road2;
-    ctx.beginPath();
-    ctx.moveTo(round(whiteLineWidth.x1 - xOffset + xCenter + curve), i);
-    ctx.lineTo(round(whiteLineWidth.x2 - xOffset + xCenter + curve), i);
-    ctx.closePath();
-    ctx.stroke();
+      ctx.strokeStyle = index < MAX_TEX / 2 ? road1 : road2;
+      ctx.beginPath();
+      ctx.moveTo(round(whiteLineWidth.x1 - xOffset + xCenter + curve), i);
+      ctx.lineTo(round(whiteLineWidth.x2 - xOffset + xCenter + curve), i);
+      ctx.closePath();
+      ctx.stroke();
 
-    textureCoord %= MAX_TEX;
+      textureCoord %= MAX_TEX;
+    }
   }
 
   function curveOffsetForSprite(sprite) {
@@ -1512,8 +1523,21 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawGround(fillStyle) {
-    ctx.fillStyle = fillStyle;
-    ctx.fillRect(0, skyHeight, width, groundHeight);
+    if (customer === 'Barbora') {
+      const gradient = ctx.createLinearGradient(0, 0, width, 0);
+      // Add color stops to the gradient
+      gradient.addColorStop(0.1457, '#707070');
+      gradient.addColorStop(0.5042, '#959595');
+      gradient.addColorStop(0.8626, '#707070');
+
+      // Set the fill style to the gradient
+      ctx.fillStyle = gradient;
+      // Draw the rectangle with the gradient fill
+      ctx.fillRect(0, skyHeight, width, groundHeight);
+    } else {
+      ctx.fillStyle = fillStyle;
+      ctx.fillRect(0, skyHeight, width, groundHeight);
+    }
   }
 
   function drawCityHouse() {
