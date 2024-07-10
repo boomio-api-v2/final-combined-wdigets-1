@@ -172,7 +172,7 @@ function startGame(scoreTableContainerInstance) {
   wallImage.src = brickWallImageData;
 
   const envelopeImage = new Image();
-  envelopeImage.src = 'Barbora' ? envelopeImageDataBarbora : goldImageData;
+  envelopeImage.src = 'Barbora' ? envelopeImageDataBarbora : envelopeImageData;
 
   const cloudsImage = new Image();
   cloudsImage.src = cloudsImageData;

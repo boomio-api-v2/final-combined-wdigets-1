@@ -100,3 +100,7 @@ export const envelopeImageDataBarbora = [
 export const carImageDataBarbora = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bike.png',
 ];
+
+export const mailboxImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bag.png',
+];
