@@ -1,8 +1,6 @@
 import './index.css';
-
 import { drawText } from './font';
 import { localStorageService, boomioService } from '@/services';
-
 import {
   brickWallImageData,
   carImageData,
@@ -21,7 +19,6 @@ import {
   uncheckIcon,
   line,
   background,
-  stopwatch,
   backgroundBarbora,
   goldImageDataBarbora,
   envelopeImageDataBarbora,
@@ -32,8 +29,9 @@ function startGame(scoreTableContainerInstance) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'LemonGym';
-  let showCompetitiveRegistration = config.game_type ?? 'competition';
+  const customer = config.business_name ? config.business_name : 'Barbora';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
+
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -571,7 +569,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 4000); //intro speed
+      }, 100); //intro speed
     }
     drawTitleScreen();
   }
@@ -629,7 +627,6 @@ function startGame(scoreTableContainerInstance) {
                   inpuRegisterContainer.style.display = 'none';
                 }, 1000);
                 setTimeout(() => {
-                  const canvas = document.getElementById('boomio-drive-canvas');
                   document.getElementById('background_blur').style.opacity = 0.37;
                   document.getElementById('background_blur').style.zIndex = 3;
                   const inputContainer = document.querySelector('.input-container');
@@ -756,7 +753,6 @@ function startGame(scoreTableContainerInstance) {
       }, 300);
     } else {
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-drive-container');
         document.getElementById('background_blur').style.opacity = 0.37;
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -1210,9 +1206,26 @@ function startGame(scoreTableContainerInstance) {
                 score: gameVars.currentScore,
               })
               .then((response) => {
+                hideScore();
                 userBestPlace = response.user_best_place;
-                scoreTable = response;
-                scoreTableContainerInstance.updateProps(customer, scoreTable, currentScore);
+                if (showCompetitiveRegistration === 'points') {
+                  scoreTable = response;
+                  scoreTableContainerInstance.updateProps(customer, scoreTable, currentScore);
+                }
+                if (showCompetitiveRegistration === 'competition') {
+                  scoreTable = response;
+                  scoreTableContainerInstance.updateProps(customer, scoreTable);
+                }
+                if (showCompetitiveRegistration === 'collectable') {
+                  collection = response?.collection ? response?.collection : collection;
+                  just_won = response?.just_won ? response?.just_won : just_won;
+                  scoreTableContainerInstance.updateProps(
+                    customer,
+                    collectables,
+                    collection,
+                    just_won,
+                  );
+                }
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -1223,6 +1236,9 @@ function startGame(scoreTableContainerInstance) {
             );
             const canvas = document.getElementById('boomio-drive-canvas');
             document.getElementById('background_blur').style.display = 'block';
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+
             competitionTableContainer.style.display = 'block';
             setTimeout(() => {
               competitionTableContainer.style.height = '680px';

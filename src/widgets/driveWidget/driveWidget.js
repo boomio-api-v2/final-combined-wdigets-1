@@ -12,7 +12,9 @@ class driveWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competition';
+    this.showCompetitiveRegistration =
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+
     this.scoreTable = {};
     this.scoreTableContainerInstance;
     this.createContainer();
@@ -117,7 +119,7 @@ class driveWidget {
     `;
     widgetHtmlService.container.appendChild(myCanvas);
 
-    if (this.showCompetitiveRegistration) {
+    if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
 
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
