@@ -6,6 +6,7 @@ import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
+import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 
 class driveWidget {
@@ -15,7 +16,7 @@ class driveWidget {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'points';
+      this?.config?.game_type !== '' ? this.config.game_type : 'download';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -134,6 +135,16 @@ class driveWidget {
       const gameContainer = document.querySelector('.game-container');
 
       this.scoreTableContainerInstance = new PointScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+        this.currentScore,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    if (this.showCompetitiveRegistration === 'download') {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.scoreTableContainerInstance = new DownloadScoreTableContainer(
         this.customer,
         this.scoreTable,
         this.currentScore,

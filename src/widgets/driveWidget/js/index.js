@@ -40,8 +40,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'Barbora';
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
-
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'download';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -1580,7 +1579,13 @@ function startGame(scoreTableContainerInstance) {
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
-    ctx.drawImage(lineImg, 0, 328, 426, 5);
+    ctx.drawImage(
+      lineImg,
+      0,
+      customer === 'Barbora' ? 300 : 328,
+      426,
+      customer === 'Barbora' ? 35 : 5,
+    );
   }
 
   function drawCity() {
@@ -1608,7 +1613,13 @@ function startGame(scoreTableContainerInstance) {
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
-    ctx.drawImage(lineImg, 0, 328, 426, 5);
+    ctx.drawImage(
+      lineImg,
+      0,
+      customer === 'Barbora' ? 300 : 328,
+      426,
+      customer === 'Barbora' ? 35 : 5,
+    );
   }
 
   function drawUi() {
