@@ -210,7 +210,7 @@ function startGame(scoreTableContainerInstance) {
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
 
-  const sky = customer === 'Barbora' ? '#AEDDFF' : '#F9F1DD';
+  const sky = customer === 'Barbora' ? '#E84B4B' : '#F9F1DD';
   const grass1 = customer === 'Barbora' ? 'red' : '#F9F1DD';
   const grass2 = customer === 'Barbora' ? 'blue' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
@@ -770,7 +770,7 @@ function startGame(scoreTableContainerInstance) {
         inputContainer.style.display = 'block';
         setTimeout(() => {
           inputContainer.style.height = '332px';
-          inputContainer.style.top = 'calc(50% + 170px)';
+          inputContainer.style.top = 'calc(50% + 165px)';
           inputContainer.style.opacity = 1;
         }, 100);
       }, 300);

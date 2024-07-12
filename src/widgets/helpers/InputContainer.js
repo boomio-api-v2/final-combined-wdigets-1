@@ -96,7 +96,7 @@ export class InputContainer {
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
-                ? 'gimtadienio prizus iškart!'
+                ? 'iš karto!'
                 : this.prop === 'Fantazijos'
                 ? 'net 69 Fantazijos.lt prizus!'
                 : this.prop === 'Makalius'

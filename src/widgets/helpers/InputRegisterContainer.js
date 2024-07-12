@@ -80,6 +80,8 @@ export class InputRegisterContainer {
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
+        : this.prop === 'Barbora'
+        ? 'Sutinku gauti Barboros naujienas.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Yesyes.lv jaunumus.'
         : this.language === 'RU'
