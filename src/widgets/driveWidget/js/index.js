@@ -31,6 +31,7 @@ import {
   city3ImageDataBarbora,
   cloudsImageDataBarbora,
   brickWallImageDataBarbora,
+  mailboxImageDataBarbora,
   grassBarbora,
   lineBarbora,
   BarboraTree1,
@@ -104,12 +105,10 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 2;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 1;
+  const START_TIME = 31;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
-  const SHADOW_COLOR = '#EEE';
   const SPARK_COLOR = '#fc9003';
-  const BLACK = '#000';
   const MAILBOX_CHANCE_SPAWN = 0.02;
   const MAILBOX_TIME_OFFSCREEN = 1;
   const INITIAL_WALLS = 2;
@@ -170,10 +169,10 @@ function startGame(scoreTableContainerInstance) {
   carImage.src = customer === 'Barbora' ? carImageDataBarbora : carImageData;
 
   const rightMailboxImage = new Image();
-  rightMailboxImage.src = mailboxImageData;
+  rightMailboxImage.src = customer === 'Barbora' ? mailboxImageDataBarbora : mailboxImageData;
 
   const leftMailboxImage = new Image();
-  leftMailboxImage.src = mailboxImageData;
+  leftMailboxImage.src = customer === 'Barbora' ? mailboxImageDataBarbora : mailboxImageData;
 
   const goldImage = new Image();
   goldImage.src = customer === 'Barbora' ? goldImageDataBarbora : goldImageData;
@@ -187,8 +186,32 @@ function startGame(scoreTableContainerInstance) {
   const cloudsImage = new Image();
   cloudsImage.src = customer === 'Barbora' ? cloudsImageDataBarbora : cloudsImageData;
 
-  const treeImage = new Image();
-  treeImage.src = treeImageData;
+  const treeImage =
+    customer == 'Barbora'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = BarboraTree1;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = BarboraTree2;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = BarboraTree3;
+            return img;
+          })(),
+        ]
+      : [
+          (() => {
+            const img = new Image();
+            img.src = treeImageData;
+            return img;
+          })(),
+        ];
 
   const wh1 = new Image();
   const wh2 = new Image();
@@ -218,7 +241,7 @@ function startGame(scoreTableContainerInstance) {
   const grass2 = customer === 'Barbora' ? 'blue' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR = '#FFF100';
-  const BAD_FUNDING_COLOR1 = '#1D1D1B';
+  const BAD_FUNDING_COLOR1 = customer === 'Barbora' ? '#d18a26' : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
   const road1 = customer === 'Barbora' ? '#959595' : '#F9F1DD';
@@ -401,9 +424,10 @@ function startGame(scoreTableContainerInstance) {
   });
 
   const trees = range(NUM_TREES).map(() => {
+    const randomTreeImage = treeImage[Math.floor(Math.random() * treeImage.length)];
     const i = randomIntBetween(skyHeight, height);
     return {
-      image: treeImage,
+      image: randomTreeImage,
       pos: {
         x: randomIntBetween(-width, -ROAD_SPRITE_SPAWN_X),
         y: 0,
@@ -1066,37 +1090,30 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawRoad(i, textureCoord) {
-    if (customer !== 'Barbora') {
+    const zWorld = zMap[i];
+    const index = (textureCoord + gameTime + zWorld) % MAX_TEX;
+
+    const whiteLineWidth = whiteLineWidths[i];
+    const roadWidth = roadWidths[i];
+    const percent = Math.max(i / groundHeight, 0.3);
+    const curve = curveOffsets[i - skyHeight];
+
+    const currentRoadWidth = roadWidthForI(i);
+
+    // Draw grass image or color
+    if (customer === 'Barbora') {
       const grass = new Image();
       grass.src = grassBarbora;
-
-      const zWorld = zMap[i];
-      const index = (textureCoord + gameTime + zWorld) % MAX_TEX;
-
-      const whiteLineWidth = whiteLineWidths[i];
-      const roadWidth = roadWidths[i];
-      const percent = Math.max(i / groundHeight, 0.3);
-      const curve = curveOffsets[i - skyHeight];
-
-      const currentRoadWidth = roadWidthForI(i);
 
       // Draw grass image on the left
       const x1 = Math.floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
       ctx.drawImage(grass, 0, i, x1, 1);
 
-      // Draw grass image on the right
-      const x2 = Math.floor(currentRoadWidth + x1);
-      ctx.drawImage(grass, x2, i, width - x2, 1);
+      // // Draw grass image on the right
+      // const x2 = Math.floor(currentRoadWidth + x1);
+      // ctx.drawImage(grass, x2, i, width - x2, 1);
     } else {
-      const zWorld = zMap[i];
-      const index = (textureCoord + gameTime + zWorld) % MAX_TEX;
-
-      const whiteLineWidth = whiteLineWidths[i];
-      const roadWidth = roadWidths[i];
-      const percent = max(i / groundHeight, 0.3);
-      const curve = curveOffsets[i - skyHeight];
-
-      const currentRoadWidth = roadWidthForI(i);
+      // Draw grass color based on index
       ctx.strokeStyle = index < MAX_TEX / 2 ? grass1 : grass2;
       ctx.beginPath();
       ctx.moveTo(round(0), i);
@@ -1111,30 +1128,31 @@ function startGame(scoreTableContainerInstance) {
       ctx.lineTo(width, i);
       ctx.closePath();
       ctx.stroke();
-
-      ctx.strokeStyle = road2;
-      ctx.beginPath();
-      ctx.moveTo(round(roadWidth.x1 - xOffset + xCenter + curve), i);
-      ctx.lineTo(round(roadWidth.x1 + sideLineWidth * percent - xOffset + xCenter + curve), i);
-      ctx.closePath();
-      ctx.stroke();
-
-      ctx.strokeStyle = road2;
-      ctx.beginPath();
-      ctx.moveTo(round(roadWidth.x2 - xOffset + xCenter + curve), i);
-      ctx.lineTo(round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve), i);
-      ctx.closePath();
-      ctx.stroke();
-
-      ctx.strokeStyle = index < MAX_TEX / 2 ? road1 : road2;
-      ctx.beginPath();
-      ctx.moveTo(round(whiteLineWidth.x1 - xOffset + xCenter + curve), i);
-      ctx.lineTo(round(whiteLineWidth.x2 - xOffset + xCenter + curve), i);
-      ctx.closePath();
-      ctx.stroke();
-
-      textureCoord %= MAX_TEX;
     }
+
+    // Draw road lines
+    ctx.strokeStyle = road2;
+    ctx.beginPath();
+    ctx.moveTo(Math.round(roadWidth.x1 - xOffset + xCenter + curve), i);
+    ctx.lineTo(Math.round(roadWidth.x1 + sideLineWidth * percent - xOffset + xCenter + curve), i);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.strokeStyle = road2;
+    ctx.beginPath();
+    ctx.moveTo(Math.round(roadWidth.x2 - xOffset + xCenter + curve), i);
+    ctx.lineTo(Math.round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve), i);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.strokeStyle = index < MAX_TEX / 2 ? road1 : road2;
+    ctx.beginPath();
+    ctx.moveTo(Math.round(whiteLineWidth.x1 - xOffset + xCenter + curve), i);
+    ctx.lineTo(Math.round(whiteLineWidth.x2 - xOffset + xCenter + curve), i);
+    ctx.closePath();
+    ctx.stroke();
+
+    textureCoord %= MAX_TEX;
   }
 
   function curveOffsetForSprite(sprite) {
@@ -1568,14 +1586,14 @@ function startGame(scoreTableContainerInstance) {
     ctx.drawImage(
       backgroundImg,
       customer === 'Barbora' ? 100 : -3,
-      customer === 'Barbora' ? 205 : 228,
+      customer === 'Barbora' ? 200 : 228,
       customer === 'Barbora' ? 130 : 426,
       customer === 'Barbora' ? 130 : 105,
     );
 
     drawImage(
       wh1,
-      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
       whStartPos,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1583,7 +1601,7 @@ function startGame(scoreTableContainerInstance) {
 
     drawImage(
       wh2,
-      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
       whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1591,27 +1609,33 @@ function startGame(scoreTableContainerInstance) {
 
     drawImage(
       wh3,
-      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
       whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
 
-    ctx.drawImage(lineImg, 0, 328, 426, customer === 'Barbora' ? 8 : 5);
+    ctx.drawImage(
+      lineImg,
+      0,
+      customer === 'Barbora' ? 330 : 328,
+      426,
+      customer === 'Barbora' ? 8 : 5,
+    );
   }
 
   function drawCity() {
     ctx.drawImage(
       backgroundImg,
       customer === 'Barbora' ? 100 : -3,
-      customer === 'Barbora' ? 205 : 228,
+      customer === 'Barbora' ? 200 : 228,
       customer === 'Barbora' ? 130 : 426,
       customer === 'Barbora' ? 130 : 105,
     );
     const whOffset = xCenter - xOffset;
     drawImage(
       city1,
-      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 9 : 0, z: 1 },
       whOffset + whStartPos,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1625,12 +1649,18 @@ function startGame(scoreTableContainerInstance) {
     );
     drawImage(
       city3,
-      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 9 : 0, z: 1 },
       whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
-    ctx.drawImage(lineImg, 0, 328, 426, customer === 'Barbora' ? 8 : 5);
+    ctx.drawImage(
+      lineImg,
+      0,
+      customer === 'Barbora' ? 332 : 328,
+      426,
+      customer === 'Barbora' ? 7 : 5,
+    );
   }
 
   function drawUi() {

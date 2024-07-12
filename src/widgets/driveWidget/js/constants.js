@@ -106,7 +106,7 @@ export const mailboxImageDataBarbora = [
 ];
 
 export const wh1ImageDataBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity1.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/test.png',
 ];
 
 export const wh2ImageDataBarbora = [
@@ -118,7 +118,7 @@ export const wh3ImageDataBarbora = [
 ];
 
 export const city1ImageDataBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity1.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/test.png',
 ];
 
 export const city2ImageDataBarbora = [
