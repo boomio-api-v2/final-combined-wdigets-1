@@ -71,9 +71,9 @@ LKBARBOHGFD
      <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">PANAUDOK KODĄ PROGRAMĖLĖJE</div>
              </div>
              <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">NETURI PROGRAMĖLĖS? PARSISIŲSK:</div>
-                          <div style="width:100%; top: 500px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
-                          <img src=${BarboraAppleStore} alt="Image Description" style="width: 100%; height: 100%;">
-                          <img src=${BarboraGoogleStore} alt="Image Description" style="width: 100%; height: 100%;"></div>
+                          <div style="width:100%; top: 480px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
+                          <img src=${BarboraAppleStore} alt="Image Description" style="margin-right:10px;width: 147px; height: 49px;">
+                          <img src=${BarboraGoogleStore} alt="Image Description" style="margin-left:10px;width: 147px; height: 49px;"></div>
 
              </div>
        

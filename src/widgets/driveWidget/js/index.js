@@ -1562,7 +1562,7 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawCityHouse() {
-    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+    ctx.drawImage(backgroundImg, -3, 228, 426, customer === 'Barbora' ? 105 : 105);
     drawImage(wh1, { x: -60, y: 0, z: 1 }, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
 
     drawImage(
@@ -1579,11 +1579,11 @@ function startGame(scoreTableContainerInstance) {
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
-    ctx.drawImage(lineImg, 0, 328, 426, 5);
+    ctx.drawImage(lineImg, 0, 328, 426, customer === 'Barbora' ? 10 : 5);
   }
 
   function drawCity() {
-    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+    ctx.drawImage(backgroundImg, -3, 228, 426, customer === 'Barbora' ? 105 : 105);
 
     const whOffset = xCenter - xOffset;
     drawImage(

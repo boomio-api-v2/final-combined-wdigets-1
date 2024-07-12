@@ -151,4 +151,4 @@ export const BarboraIntro =
 export const BarboraAppleStore =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/AppleStore.png?raw=true';
 export const BarboraGoogleStore =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/BarboraGoogleStore.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/GoogleStore.png?raw=true';
