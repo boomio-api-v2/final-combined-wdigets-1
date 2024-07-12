@@ -1,6 +1,14 @@
 import { localStorageService, widgetHtmlService } from '@/services';
 import startGame from './js/index.js';
-import { intro, tapImageBarbora, stopwatch, star, newRecord, close } from './js/constants';
+import {
+  intro,
+  tapImageBarbora,
+  stopwatch,
+  star,
+  newRecord,
+  close,
+  BarboraIntro,
+} from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -100,7 +108,9 @@ class driveWidget {
 
 
 
-    <img src=${intro} alt="Image Description" style="z-index:4;width:${
+    <img src=${
+      this.customer === 'Barbora' ? BarboraIntro : intro
+    } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
     <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${

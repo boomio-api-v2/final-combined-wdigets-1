@@ -50,6 +50,9 @@ export const treeImageData = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/tree.png?raw=true',
 ];
 
+export const BarboraIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/BarboraIntro.gif?raw=true';
+
 export const intro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/LemonGymIntro.gif?raw=true';
 export const checkIcon =
