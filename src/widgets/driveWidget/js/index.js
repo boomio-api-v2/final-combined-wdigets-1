@@ -1579,13 +1579,7 @@ function startGame(scoreTableContainerInstance) {
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
-    ctx.drawImage(
-      lineImg,
-      0,
-      customer === 'Barbora' ? 300 : 328,
-      426,
-      customer === 'Barbora' ? 35 : 5,
-    );
+    ctx.drawImage(lineImg, 0, 328, 426, 5);
   }
 
   function drawCity() {
@@ -1613,13 +1607,7 @@ function startGame(scoreTableContainerInstance) {
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
-    ctx.drawImage(
-      lineImg,
-      0,
-      customer === 'Barbora' ? 300 : 328,
-      426,
-      customer === 'Barbora' ? 35 : 5,
-    );
+    ctx.drawImage(lineImg, 0, 328, 426, 5);
   }
 
   function drawUi() {
