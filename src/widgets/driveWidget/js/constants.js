@@ -86,7 +86,7 @@ export const close = [
 ];
 
 export const backgroundBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/citrus.png?raw=true',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/citrus.png',
 ];
 
 export const goldImageDataBarbora = [
@@ -150,5 +150,15 @@ export const BarboraIntro =
 
 export const BarboraAppleStore =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/AppleStore.png?raw=true';
+
 export const BarboraGoogleStore =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/GoogleStore.png?raw=true';
+
+export const BarboraTree1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Tree1.png?raw=true';
+
+export const BarboraTree2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Tree2.png?raw=true';
+
+export const BarboraTree3 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Tree3.png?raw=true';

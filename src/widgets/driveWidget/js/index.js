@@ -33,6 +33,9 @@ import {
   brickWallImageDataBarbora,
   grassBarbora,
   lineBarbora,
+  BarboraTree1,
+  BarboraTree2,
+  BarboraTree3,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -1063,7 +1066,7 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawRoad(i, textureCoord) {
-    if (customer === 'Barbora') {
+    if (customer !== 'Barbora') {
       const grass = new Image();
       grass.src = grassBarbora;
 
@@ -1562,53 +1565,67 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawCityHouse() {
-    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
-    drawImage(wh1, { x: -60, y: 0, z: 1 }, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+    ctx.drawImage(
+      backgroundImg,
+      customer === 'Barbora' ? 100 : -3,
+      customer === 'Barbora' ? 205 : 228,
+      customer === 'Barbora' ? 130 : 426,
+      customer === 'Barbora' ? 130 : 105,
+    );
+
+    drawImage(
+      wh1,
+      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
+      whStartPos,
+      200,
+      HOUSE_BIG_SPRITE_DIMENSIONS,
+    );
 
     drawImage(
       wh2,
-      { x: -60, y: 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
       whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
+
     drawImage(
       wh3,
-      { x: -60, y: 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
       whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
+
     ctx.drawImage(lineImg, 0, 328, 426, customer === 'Barbora' ? 8 : 5);
   }
 
   function drawCity() {
     ctx.drawImage(
       backgroundImg,
-      -3,
-      customer === 'Barbora' ? 228 : 228,
-      426,
-      customer === 'Barbora' ? 105 : 105,
+      customer === 'Barbora' ? 100 : -3,
+      customer === 'Barbora' ? 205 : 228,
+      customer === 'Barbora' ? 130 : 426,
+      customer === 'Barbora' ? 130 : 105,
     );
-
     const whOffset = xCenter - xOffset;
     drawImage(
       city1,
-      { x: -60, y: 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
       whOffset + whStartPos,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city2,
-      { x: -60, y: 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
       whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city3,
-      { x: -60, y: 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
       whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
