@@ -1618,7 +1618,7 @@ function startGame(scoreTableContainerInstance) {
     ctx.drawImage(
       lineImg,
       0,
-      customer === 'Barbora' ? 330 : 328,
+      customer === 'Barbora' ? 331 : 328,
       426,
       customer === 'Barbora' ? 8 : 5,
     );
@@ -1635,21 +1635,21 @@ function startGame(scoreTableContainerInstance) {
     const whOffset = xCenter - xOffset;
     drawImage(
       city1,
-      { x: -60, y: customer === 'Barbora' ? 9 : 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
       whOffset + whStartPos,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city2,
-      { x: -60, y: customer === 'Barbora' ? 8 : 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
       whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
     );
     drawImage(
       city3,
-      { x: -60, y: customer === 'Barbora' ? 9 : 0, z: 1 },
+      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
       whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
       200,
       HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1657,9 +1657,9 @@ function startGame(scoreTableContainerInstance) {
     ctx.drawImage(
       lineImg,
       0,
-      customer === 'Barbora' ? 332 : 328,
+      customer === 'Barbora' ? 331 : 328,
       426,
-      customer === 'Barbora' ? 7 : 5,
+      customer === 'Barbora' ? 8 : 5,
     );
   }
 
