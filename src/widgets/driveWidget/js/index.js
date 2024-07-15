@@ -44,7 +44,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'Barbora';
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'download';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'collectable';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -105,7 +105,7 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 2;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 90;
+  const START_TIME = 20;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -605,7 +605,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 5000); //intro speed
+      }, 10); //intro speed
     }
     drawTitleScreen();
   }
@@ -1102,16 +1102,20 @@ function startGame(scoreTableContainerInstance) {
 
     // Draw grass image or color
     if (customer === 'Barbora') {
-      const grass = new Image();
-      grass.src = grassBarbora;
+      ctx.strokeStyle = index < MAX_TEX / 2 ? '#1d5c02' : '#1c5901';
+      ctx.beginPath();
+      ctx.moveTo(round(0), i);
+      const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
+      ctx.lineTo(x1, i);
+      ctx.closePath();
+      ctx.stroke();
 
-      // Draw grass image on the left
-      const x1 = Math.floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
-      ctx.drawImage(grass, 0, i, x1, 1);
-
-      // // Draw grass image on the right
-      // const x2 = Math.floor(currentRoadWidth + x1);
-      // ctx.drawImage(grass, x2, i, width - x2, 1);
+      const x2 = floor(currentRoadWidth + x1);
+      ctx.beginPath();
+      ctx.moveTo(x2, i);
+      ctx.lineTo(width, i);
+      ctx.closePath();
+      ctx.stroke();
     } else {
       // Draw grass color based on index
       ctx.strokeStyle = index < MAX_TEX / 2 ? grass1 : grass2;
@@ -1270,14 +1274,7 @@ function startGame(scoreTableContainerInstance) {
                   scoreTableContainerInstance.updateProps(customer, scoreTable);
                 }
                 if (showCompetitiveRegistration === 'collectable') {
-                  collection = response?.collection ? response?.collection : collection;
-                  just_won = response?.just_won ? response?.just_won : just_won;
-                  scoreTableContainerInstance.updateProps(
-                    customer,
-                    collectables,
-                    collection,
-                    just_won,
-                  );
+                  scoreTableContainerInstance.updateProps(customer);
                 }
               })
               .catch((error) => {

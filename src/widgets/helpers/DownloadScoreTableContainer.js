@@ -17,6 +17,16 @@ export class DownloadScoreTableContainer {
     this.scoreTable = scoreTable;
     this.currentScore = currentScore;
     this.updateVisuals();
+    const appleStore = document.getElementById('boomio-barbora-apple-store');
+    const googleStore = document.getElementById('boomio-barbora-google-store');
+    function clickHandler(event) {
+      event.preventDefault(); // Prevent any default behavior
+
+      const url = event.currentTarget.getAttribute('href');
+      window.location.href = url; // Redirect to the URL
+    }
+    appleStore.addEventListener('click', clickHandler);
+    googleStore.addEventListener('click', clickHandler);
   }
 
   updateVisuals() {
@@ -72,8 +82,8 @@ LKBARBOHGFD
              </div>
              <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">NETURI PROGRAMĖLĖS? PARSISIŲSK:</div>
                           <div style="width:100%; top: 480px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
-                          <img src=${BarboraAppleStore} alt="Image Description" style="margin-right:10px;width: 147px; height: 49px;">
-                          <img src=${BarboraGoogleStore} alt="Image Description" style="margin-left:10px;width: 147px; height: 49px;"></div>
+                          <img src=${BarboraAppleStore} href="https://apps.apple.com/lt/app/barbora-lt/id903888629" id='boomio-barbora-apple-store' alt="Image Description" style="cursor:pointer;margin-right:10px;width: 147px; height: 49px;">
+                          <img src=${BarboraGoogleStore} href="https://play.google.com/store/apps/details?id=lt.barbora&hl=lt" id='boomio-barbora-google-store'alt="Image Description" style="cursor:pointer;margin-left:10px;width: 147px; height: 49px;"></div>
 
              </div>
        
@@ -127,7 +137,7 @@ LKBARBOHGFD
    ŽAISK DAR  IR PAGERINK REZULTATĄ
       </div>
 
-      <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
+      <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " >
       </div>
     </div>`;
     this.containerDiv = containerDiv;

@@ -24,7 +24,7 @@ class driveWidget {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'download';
+      this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -155,6 +155,7 @@ class driveWidget {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
+
     if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container');
 
