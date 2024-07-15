@@ -155,7 +155,7 @@ class driveWidget {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
-    if (this.showCompetitiveRegistration === 'download') {
+    if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container');
 
       this.scoreTableContainerInstance = new DownloadScoreTableContainer(
@@ -165,16 +165,16 @@ class driveWidget {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
-    if (this.showCompetitiveRegistration === 'collectable') {
-      const gameContainer = document.querySelector('.game-container');
-      this.scoreTableContainerInstance = new CollectionScoreTableContainer(
-        this.customer,
-        this.collectables,
-        this.collection,
-        this.just_won,
-      );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-    }
+    // if (this.showCompetitiveRegistration === 'collectable') {
+    //   const gameContainer = document.querySelector('.game-container');
+    //   this.scoreTableContainerInstance = new CollectionScoreTableContainer(
+    //     this.customer,
+    //     this.collectables,
+    //     this.collection,
+    //     this.just_won,
+    //   );
+    //   gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    // }
     const closeGame = () => {
       const element = document.getElementById('boomio-widget-content');
       if (element && element.parentNode) {
