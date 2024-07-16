@@ -146,7 +146,7 @@ export const lineBarbora = [
 ];
 
 export const BarboraIntro =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/BarboraIntro.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/BarboraIntro.gif?raw=true';
 
 export const BarboraAppleStore =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/AppleStore.png?raw=true';
