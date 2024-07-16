@@ -1584,7 +1584,7 @@ function startGame(scoreTableContainerInstance) {
 
   function drawCityHouse() {
     if (customer === 'Barbora') {
-      ctx.drawImage(backgroundImg2, 100, 200, 130, 130);
+      ctx.drawImage(backgroundImg2, 100, 180, 130, 130);
     }
     ctx.drawImage(backgroundImg, -3, 228, 426, 105);
 
@@ -1623,7 +1623,7 @@ function startGame(scoreTableContainerInstance) {
 
   function drawCity() {
     if (customer === 'Barbora') {
-      ctx.drawImage(backgroundImg2, 100, 200, 130, 130);
+      ctx.drawImage(backgroundImg2, 100, 180, 130, 130);
     }
     ctx.drawImage(backgroundImg, -3, 228, 426, 105);
 
