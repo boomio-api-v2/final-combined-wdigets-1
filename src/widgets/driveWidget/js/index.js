@@ -105,7 +105,7 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 2;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 90;
+  const START_TIME = 20;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -532,7 +532,7 @@ function startGame(scoreTableContainerInstance) {
       name: 'wall',
       percentChanceOfSpawning: 0.05,
       minTimeOffScreen: 5,
-      roadPercent: random(),
+      roadPercent: random() + 5,
       lastOnScreenAt: null,
       active: false,
       dimensions: BIG_SPRITE_DIMENSIONS,
@@ -605,7 +605,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 5000); //intro speed
+      }, 100); //intro speed
     }
     drawTitleScreen();
   }
