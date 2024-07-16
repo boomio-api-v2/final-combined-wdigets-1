@@ -106,7 +106,7 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 2;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 20;
+  const START_TIME = 90;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -243,8 +243,8 @@ function startGame(scoreTableContainerInstance) {
   const grass1 = customer === 'Barbora' ? 'red' : '#F9F1DD';
   const grass2 = customer === 'Barbora' ? 'blue' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
-  const BAD_FUNDING_COLOR = '#FFF100';
-  const BAD_FUNDING_COLOR1 = customer === 'Barbora' ? '#d18a26' : '#1D1D1B';
+  const BAD_FUNDING_COLOR = customer === 'Barbora' ? '#545151' : '#FFF100';
+  const BAD_FUNDING_COLOR1 = customer === 'Barbora' ? '#FFCA00' : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
   const road1 = customer === 'Barbora' ? '#959595' : '#F9F1DD';
@@ -608,7 +608,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 100); //intro speed
+      }, 5000); //intro speed
     }
     drawTitleScreen();
   }
