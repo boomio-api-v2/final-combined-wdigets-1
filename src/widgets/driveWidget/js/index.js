@@ -20,6 +20,7 @@ import {
   line,
   background,
   backgroundBarbora,
+  backgroundBarbora2,
   goldImageDataBarbora,
   envelopeImageDataBarbora,
   carImageDataBarbora,
@@ -218,6 +219,7 @@ function startGame(scoreTableContainerInstance) {
   const wh3 = new Image();
   const lineImg = new Image();
   const backgroundImg = new Image();
+  const backgroundImg2 = new Image();
 
   wh1.src = customer === 'Barbora' ? wh1ImageDataBarbora : wh1ImageData;
   wh2.src = customer === 'Barbora' ? wh2ImageDataBarbora : wh2ImageData;
@@ -225,6 +227,7 @@ function startGame(scoreTableContainerInstance) {
   lineImg.src = customer === 'Barbora' ? lineBarbora : line;
 
   backgroundImg.src = customer === 'Barbora' ? backgroundBarbora : background;
+  backgroundImg2.src = customer === 'Barbora' ? backgroundBarbora2 : background;
 
   const city1 = new Image();
   const city2 = new Image();
@@ -1581,10 +1584,9 @@ function startGame(scoreTableContainerInstance) {
 
   function drawCityHouse() {
     if (customer === 'Barbora') {
-      ctx.drawImage(backgroundImg, 100, 200, 130, 130);
-    } else {
-      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+      ctx.drawImage(backgroundImg2, 100, 200, 130, 130);
     }
+    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
 
     drawImage(
       wh1,
@@ -1621,10 +1623,10 @@ function startGame(scoreTableContainerInstance) {
 
   function drawCity() {
     if (customer === 'Barbora') {
-      ctx.drawImage(backgroundImg, 100, 200, 130, 130);
-    } else {
-      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+      ctx.drawImage(backgroundImg2, 100, 200, 130, 130);
     }
+    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+
     const whOffset = xCenter - xOffset;
     drawImage(
       city1,
