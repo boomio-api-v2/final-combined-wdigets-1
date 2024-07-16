@@ -1580,13 +1580,11 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawCityHouse() {
-    ctx.drawImage(
-      backgroundImg,
-      customer === 'Barbora' ? 100 : -3,
-      customer === 'Barbora' ? 200 : 228,
-      customer === 'Barbora' ? 130 : 426,
-      customer === 'Barbora' ? 130 : 105,
-    );
+    if (customer === 'Barbora') {
+      ctx.drawImage(backgroundImg, 100, 200, 130, 130);
+    } else {
+      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+    }
 
     drawImage(
       wh1,
@@ -1622,13 +1620,11 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawCity() {
-    ctx.drawImage(
-      backgroundImg,
-      customer === 'Barbora' ? 100 : -3,
-      customer === 'Barbora' ? 200 : 228,
-      customer === 'Barbora' ? 130 : 426,
-      customer === 'Barbora' ? 130 : 105,
-    );
+    if (customer === 'Barbora') {
+      ctx.drawImage(backgroundImg, 100, 200, 130, 130);
+    } else {
+      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+    }
     const whOffset = xCenter - xOffset;
     drawImage(
       city1,
