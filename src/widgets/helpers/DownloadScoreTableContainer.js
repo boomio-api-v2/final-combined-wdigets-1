@@ -44,7 +44,7 @@ export class DownloadScoreTableContainer {
     NUOLAIDOS KODĄ PIRMAM APSIPIRKIMUI</div>
     <div style="width:100%;text-align: center;margin-top:5px; color: white; font-size: 14px; font-family: Montserrat; font-weight:700; text-transform: uppercase; word-wrap: break-word"> 
     BARBOROS PROGRAMĖLĖJE </div>
-    <div style="width:100%;margin-top:10px;margin-bottom:10px;text-align: center; color: white; font-size: 42px; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
+    <div style="width:100%;margin-bottom:10px;margin-top:10px;margin-bottom:10px;text-align: center; color: white; font-size: 42px; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     ${userPercentageDiscount ?? 0}% </div>
        <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:250px;">
 <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text">
@@ -83,7 +83,7 @@ LKBARBOHGFD
              <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">NETURI PROGRAMĖLĖS? PARSISIŲSK:</div>
                           <div style="width:100%; top: 480px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
                           <img src=${BarboraAppleStore} href="https://apps.apple.com/lt/app/barbora-lt/id903888629" id='boomio-barbora-apple-store' alt="Image Description" style="cursor:pointer;margin-right:10px;width: 147px; height: 49px;">
-                          <img src=${BarboraGoogleStore} href="https://play.google.com/store/apps/details?id=lt.barbora&hl=lt" id='boomio-barbora-google-store'alt="Image Description" style="cursor:pointer;margin-left:10px;width: 147px; height: 49px;"></div>
+                          <img src=${BarboraGoogleStore} href="https://play.google.com/store/apps/details?id=lt.barbora&hl=lt&gl=US&pli=1" id='boomio-barbora-google-store'alt="Image Description" style="cursor:pointer;margin-left:10px;width: 147px; height: 49px;"></div>
 
              </div>
        
@@ -106,7 +106,7 @@ LKBARBOHGFD
 
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-        <div style="width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
+        <div style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
       <div style="width:100%;top: 70px; position: absolute; text-align: center; color: ${
         this.prop === 'Barbora' ||
