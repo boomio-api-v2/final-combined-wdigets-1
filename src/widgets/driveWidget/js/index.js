@@ -610,7 +610,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 4000); //intro speed
+      }, 1); //intro speed
     }
     drawTitleScreen();
   }
@@ -1123,21 +1123,16 @@ function startGame(scoreTableContainerInstance) {
       ctx.closePath();
       ctx.stroke();
     } else {
-      // Draw grass color based on index
-      ctx.strokeStyle = index < MAX_TEX / 2 ? grass1 : grass2;
-      ctx.beginPath();
-      ctx.moveTo(round(0), i);
-      const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
-      ctx.lineTo(x1, i);
-      ctx.closePath();
-      ctx.stroke();
+      const grass = new Image();
+      grass.src = grassBarbora;
 
-      const x2 = floor(currentRoadWidth + x1);
-      ctx.beginPath();
-      ctx.moveTo(x2, i);
-      ctx.lineTo(width, i);
-      ctx.closePath();
-      ctx.stroke();
+      // Draw grass image on the left
+      const x1 = Math.floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
+      ctx.drawImage(grass, 0, i, x1, 1);
+
+      // Draw grass image on the right
+      const x2 = Math.floor(currentRoadWidth + x1);
+      ctx.drawImage(grass, x2, i, width - x2, 1);
     }
 
     // Draw road lines
