@@ -239,9 +239,10 @@ function startGame(scoreTableContainerInstance) {
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
+
   const sky = customer === 'Barbora' ? '#E84B4B' : '#F9F1DD';
-  const grass1 = customer === 'Barbora' ? '#1d5c02' : '#F9F1DD';
-  const grass2 = customer === 'Barbora' ? '#1c5901' : '#F9F1DD';
+  const grass1 = customer === 'Barbora' ? '#85B62D' : '#F9F1DD';
+  const grass2 = customer === 'Barbora' ? '#A9C734' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR = customer === 'Barbora' ? '#545151' : '#FFF100';
   const BAD_FUNDING_COLOR1 = customer === 'Barbora' ? '#FFCA00' : '#1D1D1B';
@@ -1107,7 +1108,7 @@ function startGame(scoreTableContainerInstance) {
 
     // Draw grass image or color
     if (customer === 'LemonGym') {
-      ctx.strokeStyle = index < MAX_TEX / 2 ? '#1d5c02' : '#1c5901';
+      ctx.strokeStyle = index < MAX_TEX / 2 ? '#85B62D' : '#A9C734';
       ctx.beginPath();
       ctx.moveTo(round(0), i);
       const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
