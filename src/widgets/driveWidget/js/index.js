@@ -1585,10 +1585,17 @@ function startGame(scoreTableContainerInstance) {
   function drawCityHouse() {
     if (customer === 'Barbora') {
       ctx.drawImage(backgroundImg2, 100, 180, 130, 130);
+      ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
-    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
-
+    ctx.drawImage(
+      lineImg,
+      0,
+      customer === 'Barbora' ? 331 : 328,
+      426,
+      customer === 'Barbora' ? 13 : 5,
+    );
     if (customer !== 'Barbora') {
+      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       drawImage(
         wh1,
         { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
@@ -1613,21 +1620,20 @@ function startGame(scoreTableContainerInstance) {
         HOUSE_BIG_SPRITE_DIMENSIONS,
       );
     }
-    ctx.drawImage(
-      lineImg,
-      0,
-      customer === 'Barbora' ? 331 : 328,
-      426,
-      customer === 'Barbora' ? 8 : 5,
-    );
   }
 
   function drawCity() {
     if (customer === 'Barbora') {
       ctx.drawImage(backgroundImg2, 100, 180, 130, 130);
+      ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
-    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
-
+    ctx.drawImage(
+      lineImg,
+      0,
+      customer === 'Barbora' ? 331 : 328,
+      426,
+      customer === 'Barbora' ? 13 : 5,
+    );
     const whOffset = xCenter - xOffset;
     if (customer !== 'Barbora') {
       drawImage(
@@ -1652,13 +1658,6 @@ function startGame(scoreTableContainerInstance) {
         HOUSE_BIG_SPRITE_DIMENSIONS,
       );
     }
-    ctx.drawImage(
-      lineImg,
-      0,
-      customer === 'Barbora' ? 331 : 328,
-      426,
-      customer === 'Barbora' ? 8 : 5,
-    );
   }
 
   function drawUi() {
@@ -1747,41 +1746,6 @@ function startGame(scoreTableContainerInstance) {
     const t = clamp((gameTime - startedAt) / INTRO_TIME, 0, 1);
     const y = lerp(-height / 4, 0, t);
     return y;
-  }
-
-  function getInstructionsOffset() {
-    const { startedAt } = gameVars;
-    const timePassed = gameTime - startedAt;
-
-    let x = -width;
-
-    if (timePassed < INTRO_TIME) {
-      const t = clamp(timePassed / INTRO_TIME, 0, 1);
-      x = lerp(-width, 0, t);
-    } else if (timePassed > INTRO_TIME && timePassed < GAME_START_DELAY) {
-      x = 0;
-    } else {
-      const t = clamp((timePassed - GAME_START_DELAY) / INTRO_TIME, 0, 1);
-      x = lerp(0, width, t);
-    }
-
-    return x;
-  }
-
-  function getGameOverTextOffset() {
-    const { gameOverAt } = gameVars;
-    const timePassed = gameTime - gameOverAt;
-
-    let x = -width;
-
-    if (timePassed < INTRO_TIME) {
-      const t = clamp(timePassed / INTRO_TIME, 0, 1);
-      x = lerp(-width, 0, t);
-    } else {
-      x = 0;
-    }
-
-    return x;
   }
 
   function getCollectablePosition(sprite, yEndPosition = 0) {
