@@ -1596,9 +1596,9 @@ function startGame(scoreTableContainerInstance) {
     ctx.drawImage(
       lineImg,
       0,
-      customer === 'Barbora' ? 331 : 328,
+      customer === 'Barbora' ? 340 : 328,
       426,
-      customer === 'Barbora' ? 13 : 5,
+      customer === 'Barbora' ? 7 : 5,
     );
     if (customer !== 'Barbora') {
       ctx.drawImage(backgroundImg, -3, 228, 426, 105);
