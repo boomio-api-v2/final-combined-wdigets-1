@@ -608,7 +608,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 5000); //intro speed
+      }, 10); //intro speed
     }
     drawTitleScreen();
   }
@@ -1140,15 +1140,21 @@ function startGame(scoreTableContainerInstance) {
     // Draw road lines
     ctx.strokeStyle = road2;
     ctx.beginPath();
-    ctx.moveTo(Math.round(roadWidth.x1 - xOffset + xCenter + curve), i);
-    ctx.lineTo(Math.round(roadWidth.x1 + sideLineWidth * percent - xOffset + xCenter + curve), i);
+    ctx.moveTo(Math.round(roadWidth.x1 - xOffset + xCenter + curve) + 20, i);
+    ctx.lineTo(
+      Math.round(roadWidth.x1 + sideLineWidth * percent - xOffset + xCenter + curve) + 20,
+      i,
+    );
     ctx.closePath();
     ctx.stroke();
 
     ctx.strokeStyle = road2;
     ctx.beginPath();
-    ctx.moveTo(Math.round(roadWidth.x2 - xOffset + xCenter + curve), i);
-    ctx.lineTo(Math.round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve), i);
+    ctx.moveTo(Math.round(roadWidth.x2 - xOffset + xCenter + curve) - 20, i);
+    ctx.lineTo(
+      Math.round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve) - 20,
+      i,
+    );
     ctx.closePath();
     ctx.stroke();
 
@@ -1871,7 +1877,7 @@ function startGame(scoreTableContainerInstance) {
           (cloud.frame * cloud.dimensions) / 2,
           cloud.dimensions,
           cloud.dimensions / 2,
-          cloud.pos.x - player.pos.x,
+          cloud.pos.x,
           cloud.pos.y,
           cloud.dimensions,
           cloud.dimensions / 2,
