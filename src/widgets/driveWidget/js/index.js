@@ -1588,30 +1588,31 @@ function startGame(scoreTableContainerInstance) {
     }
     ctx.drawImage(backgroundImg, -3, 228, 426, 105);
 
-    drawImage(
-      wh1,
-      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
-      whStartPos,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
+    if (customer !== 'Barbora') {
+      drawImage(
+        wh1,
+        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        whStartPos,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
 
-    drawImage(
-      wh2,
-      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
-      whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
+      drawImage(
+        wh2,
+        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
 
-    drawImage(
-      wh3,
-      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
-      whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
-
+      drawImage(
+        wh3,
+        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+    }
     ctx.drawImage(
       lineImg,
       0,
@@ -1628,27 +1629,29 @@ function startGame(scoreTableContainerInstance) {
     ctx.drawImage(backgroundImg, -3, 228, 426, 105);
 
     const whOffset = xCenter - xOffset;
-    drawImage(
-      city1,
-      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
-      whOffset + whStartPos,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
-    drawImage(
-      city2,
-      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
-      whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
-    drawImage(
-      city3,
-      { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
-      whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
+    if (customer !== 'Barbora') {
+      drawImage(
+        city1,
+        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        whOffset + whStartPos,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+      drawImage(
+        city2,
+        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+      drawImage(
+        city3,
+        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+    }
     ctx.drawImage(
       lineImg,
       0,
