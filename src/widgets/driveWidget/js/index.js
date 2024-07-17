@@ -238,10 +238,9 @@ function startGame(scoreTableContainerInstance) {
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
-
   const sky = customer === 'Barbora' ? '#E84B4B' : '#F9F1DD';
-  const grass1 = customer === 'Barbora' ? 'red' : '#F9F1DD';
-  const grass2 = customer === 'Barbora' ? 'blue' : '#F9F1DD';
+  const grass1 = customer === 'Barbora' ? '#1d5c02' : '#F9F1DD';
+  const grass2 = customer === 'Barbora' ? '#1c5901' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR = customer === 'Barbora' ? '#545151' : '#FFF100';
   const BAD_FUNDING_COLOR1 = customer === 'Barbora' ? '#FFCA00' : '#1D1D1B';
@@ -1104,7 +1103,7 @@ function startGame(scoreTableContainerInstance) {
     const currentRoadWidth = roadWidthForI(i);
 
     // Draw grass image or color
-    if (customer === 'Barbora') {
+    if (customer === 'LemonGym') {
       ctx.strokeStyle = index < MAX_TEX / 2 ? '#1d5c02' : '#1c5901';
       ctx.beginPath();
       ctx.moveTo(round(0), i);
@@ -1590,7 +1589,7 @@ function startGame(scoreTableContainerInstance) {
 
   function drawCityHouse() {
     if (customer === 'Barbora') {
-      ctx.drawImage(backgroundImg2, 100, 180, 130, 130);
+      ctx.drawImage(backgroundImg2, 100, 200, 130, 130);
       ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
     ctx.drawImage(
@@ -1630,18 +1629,20 @@ function startGame(scoreTableContainerInstance) {
 
   function drawCity() {
     if (customer === 'Barbora') {
-      ctx.drawImage(backgroundImg2, 100, 180, 130, 130);
+      ctx.drawImage(backgroundImg2, 100, 200, 130, 130);
       ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
     ctx.drawImage(
       lineImg,
       0,
-      customer === 'Barbora' ? 331 : 328,
+      customer === 'Barbora' ? 340 : 328,
       426,
-      customer === 'Barbora' ? 13 : 5,
+      customer === 'Barbora' ? 7 : 5,
     );
     const whOffset = xCenter - xOffset;
     if (customer !== 'Barbora') {
+      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+
       drawImage(
         city1,
         { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
