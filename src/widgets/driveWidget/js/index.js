@@ -126,6 +126,7 @@ function startGame(scoreTableContainerInstance) {
   const WARNING_FUNDING_LIMIT = 50;
   const TERRIBLE_FUNDING_LIMIT = 25;
   let startHandler = true;
+  let angle = 0; // Initialize the angle
 
   let dx = 0;
   let ddx = 0;
@@ -1589,9 +1590,15 @@ function startGame(scoreTableContainerInstance) {
 
   function drawCityHouse() {
     if (customer === 'Barbora') {
-      ctx.drawImage(backgroundImg2, 100, 200, 130, 130);
+      ctx.save();
+      ctx.translate(100 + 130 / 2, 200 + 130 / 2); // Move to the center of the image
+      ctx.rotate(angle); // Rotate the image
+      ctx.drawImage(backgroundImg2, -130 / 2, -130 / 2, 130, 130); // Draw the image, centered at the origin
+      ctx.restore();
+
       ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
+
     ctx.drawImage(
       lineImg,
       0,
@@ -1625,13 +1632,20 @@ function startGame(scoreTableContainerInstance) {
         HOUSE_BIG_SPRITE_DIMENSIONS,
       );
     }
+    angle += 0.01;
   }
 
   function drawCity() {
     if (customer === 'Barbora') {
-      ctx.drawImage(backgroundImg2, 100, 200, 130, 130);
+      ctx.save();
+      ctx.translate(100 + 130 / 2, 200 + 130 / 2); // Move to the center of the image
+      ctx.rotate(angle); // Rotate the image
+      ctx.drawImage(backgroundImg2, -130 / 2, -130 / 2, 130, 130); // Draw the image, centered at the origin
+      ctx.restore();
+
       ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
+
     ctx.drawImage(
       lineImg,
       0,
@@ -1665,6 +1679,7 @@ function startGame(scoreTableContainerInstance) {
         HOUSE_BIG_SPRITE_DIMENSIONS,
       );
     }
+    angle += 0.01;
   }
 
   function drawUi() {
