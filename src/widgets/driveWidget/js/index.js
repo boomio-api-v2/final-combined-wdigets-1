@@ -565,8 +565,9 @@ function startGame(scoreTableContainerInstance) {
   function tick(t) {
     realTime = t;
     ctx.globalAlpha = 1.0;
-    requestAnimationFrame(tick);
-
+    if (document.getElementById('boomio-widget-content')) {
+      requestAnimationFrame(tick);
+    }
     const divisor = inGracePeriod() ? slowTime : normalTime;
     gameTime += 10 / divisor;
     gameTimeAbsolute += 10 / normalTime;
@@ -608,7 +609,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 10); //intro speed
+      }, 4000); //intro speed
     }
     drawTitleScreen();
   }
@@ -1030,16 +1031,17 @@ function startGame(scoreTableContainerInstance) {
       movingSegment.id = roadSegments[segmentIndex].id;
     }
 
-    drawRoadSprites();
-    drawTrees();
-    drawWallParticles();
-    drawEnvelopes();
-    drawGolds();
-    drawTruck();
-    drawTruckSparks();
-    drawUi();
-
-    drawGameOver();
+    if (document.getElementById('boomio-widget-content')) {
+      drawRoadSprites();
+      drawTrees();
+      drawWallParticles();
+      drawEnvelopes();
+      drawGolds();
+      drawTruck();
+      drawTruckSparks();
+      drawUi();
+      drawGameOver();
+    }
 
     const clickHandler = function () {
       startHandler = false;
@@ -1694,10 +1696,6 @@ function startGame(scoreTableContainerInstance) {
     document.getElementById('currentTime').style.color = timeColor;
     currectScoreDiv.style.opacity = 1;
     drawFundingMeter();
-  }
-
-  function pad(num) {
-    return `000${num}`.slice(-3);
   }
 
   function addWall() {

@@ -184,7 +184,9 @@ class driveWidget {
       }
     };
 
-    document.getElementById('close-game-container').addEventListener('click', closeGame);
+    document.getElementById('close-game-container').addEventListener('click', () => {
+      closeGame();
+    });
     startGame(this.scoreTableContainerInstance);
   };
 }
