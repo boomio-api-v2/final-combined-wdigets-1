@@ -1,18 +1,32 @@
 import { localStorageService, widgetHtmlService } from '@/services';
 import startGame from './js/index.js';
-import { intro, tapImageBarbora, stopwatch, star, newRecord, close } from './js/constants';
+import {
+  intro,
+  tapImageBarbora,
+  stopwatch,
+  star,
+  newRecord,
+  close,
+  BarboraIntro,
+  IkeaIntro,
+} from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
+import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
+import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 
 class driveWidget {
   static ctx;
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'LemonGym';
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competition';
+    this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
+    this.showCompetitiveRegistration =
+      this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
+
     this.scoreTable = {};
     this.scoreTableContainerInstance;
     this.createContainer();
@@ -71,7 +85,9 @@ class driveWidget {
         <div>BAKST</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`}
       </div>
-    <div class="boomio-score-input-container" style="display:none;width:150px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:#FFE92D;border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
+      this.customer === 'Barbora' ? '#CC0001' : '#FFE92D'
+    };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
@@ -81,7 +97,9 @@ class driveWidget {
 
 
 
-<div class="boomio-time-input-container" style="display:none;width:150px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:#FFE92D;border-radius:35px">
+<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
+      this.customer === 'Barbora' ? '#CC0001' : '#FFE92D'
+    };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
@@ -91,7 +109,9 @@ class driveWidget {
 
 
 
-    <img src=${intro} alt="Image Description" style="z-index:4;width:${
+    <img src=${
+      this.customer === 'Barbora' ? BarboraIntro : this.customer === 'Ikea' ? IkeaIntro : intro
+    } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
     <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
@@ -117,7 +137,7 @@ class driveWidget {
     `;
     widgetHtmlService.container.appendChild(myCanvas);
 
-    if (this.showCompetitiveRegistration) {
+    if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
 
       this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
@@ -126,6 +146,37 @@ class driveWidget {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
+    if (this.showCompetitiveRegistration === 'points') {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.scoreTableContainerInstance = new PointScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+        this.currentScore,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
+    if (this.showCompetitiveRegistration === 'collectable') {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.scoreTableContainerInstance = new DownloadScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+        this.currentScore,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    // if (this.showCompetitiveRegistration === 'collectable') {
+    //   const gameContainer = document.querySelector('.game-container');
+    //   this.scoreTableContainerInstance = new CollectionScoreTableContainer(
+    //     this.customer,
+    //     this.collectables,
+    //     this.collection,
+    //     this.just_won,
+    //   );
+    //   gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    // }
     const closeGame = () => {
       const element = document.getElementById('boomio-widget-content');
       if (element && element.parentNode) {
@@ -134,7 +185,9 @@ class driveWidget {
       }
     };
 
-    document.getElementById('close-game-container').addEventListener('click', closeGame);
+    document.getElementById('close-game-container').addEventListener('click', () => {
+      closeGame();
+    });
     startGame(this.scoreTableContainerInstance);
   };
 }

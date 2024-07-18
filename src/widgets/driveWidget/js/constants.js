@@ -84,3 +84,156 @@ export const newRecord =
 export const close = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/whiteClose.png',
 ];
+
+export const backgroundBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/background.png',
+];
+
+export const backgroundBarbora2 = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/citrus.png',
+];
+
+export const goldImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bags.png',
+];
+
+export const envelopeImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bag.png',
+];
+
+export const carImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bike.png',
+];
+
+export const mailboxImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/bag.png',
+];
+
+export const wh1ImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity1New.png',
+];
+
+export const wh2ImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity2New.png',
+];
+
+export const wh3ImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity3New.png',
+];
+
+export const city1ImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity1New.png',
+];
+
+export const city2ImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity2New.png',
+];
+
+export const city3ImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Bigcity3New.png',
+];
+
+export const brickWallImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/sign.png',
+];
+
+export const cloudsImageDataBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/cloud.png?raw=true',
+];
+
+export const grassBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/grassSmall.png?raw=true',
+];
+
+export const lineBarbora = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/line.png?raw=true',
+];
+
+export const BarboraIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/BarboraIntro.gif?raw=true';
+
+export const BarboraAppleStore =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/AppleStore.png?raw=true';
+
+export const BarboraGoogleStore =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/GoogleStore.png?raw=true';
+
+export const BarboraTree1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Tree1.png?raw=true';
+
+export const BarboraTree2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Tree2.png?raw=true';
+
+export const BarboraTree3 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Tree3.png?raw=true';
+
+export const backgroundIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/background.png',
+];
+
+export const goldImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/bags.png',
+];
+
+export const envelopeImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/bag.png',
+];
+
+export const carImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/bike.png',
+];
+
+export const mailboxImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/bag.png',
+];
+
+export const wh1ImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Bigcity1.png',
+];
+
+export const wh2ImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Bigcity2.png',
+];
+
+export const wh3ImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Bigcity3.png',
+];
+
+export const city1ImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Bigcity1.png',
+];
+
+export const city2ImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Bigcity2.png',
+];
+
+export const city3ImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Bigcity3.png',
+];
+
+export const brickWallImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/sign.png',
+];
+
+export const cloudsImageDataIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/cloud.png?raw=true',
+];
+
+export const lineIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/line.png?raw=true',
+];
+
+export const IkeaTree1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Tree1.png?raw=true';
+
+export const IkeaTree2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Tree2.png?raw=true';
+
+export const IkeaTree3 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Tree3.png?raw=true';
+
+export const IkeaIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/IkeaIntro.png?raw=true';
+
+export const grassIkea =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/grassSmall.png?raw=true';

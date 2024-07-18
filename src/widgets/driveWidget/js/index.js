@@ -1,8 +1,6 @@
 import './index.css';
-
 import { drawText } from './font';
 import { localStorageService, boomioService } from '@/services';
-
 import {
   brickWallImageData,
   carImageData,
@@ -21,15 +19,51 @@ import {
   uncheckIcon,
   line,
   background,
-  stopwatch,
+  backgroundBarbora,
+  backgroundBarbora2,
+  goldImageDataBarbora,
+  envelopeImageDataBarbora,
+  carImageDataBarbora,
+  wh1ImageDataBarbora,
+  wh2ImageDataBarbora,
+  wh3ImageDataBarbora,
+  city1ImageDataBarbora,
+  city2ImageDataBarbora,
+  city3ImageDataBarbora,
+  cloudsImageDataBarbora,
+  brickWallImageDataBarbora,
+  mailboxImageDataBarbora,
+  grassBarbora,
+  lineBarbora,
+  BarboraTree1,
+  BarboraTree2,
+  BarboraTree3,
+  backgroundIkea,
+  goldImageDataIkea,
+  envelopeImageDataIkea,
+  carImageDataIkea,
+  mailboxImageDataIkea,
+  wh1ImageDataIkea,
+  wh2ImageDataIkea,
+  wh3ImageDataIkea,
+  city1ImageDataIkea,
+  city2ImageDataIkea,
+  city3ImageDataIkea,
+  brickWallImageDataIkea,
+  cloudsImageDataIkea,
+  lineIkea,
+  IkeaTree1,
+  IkeaTree2,
+  IkeaTree3,
+  grassIkea,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'LemonGym';
-  let showCompetitiveRegistration = config.game_type ?? 'competition';
+  const customer = config.business_name ? config.business_name : 'Ikea';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'collectable';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -93,9 +127,7 @@ function startGame(scoreTableContainerInstance) {
   const START_TIME = 90;
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
-  const SHADOW_COLOR = '#EEE';
   const SPARK_COLOR = '#fc9003';
-  const BLACK = '#000';
   const MAILBOX_CHANCE_SPAWN = 0.02;
   const MAILBOX_TIME_OFFSCREEN = 1;
   const INITIAL_WALLS = 2;
@@ -112,6 +144,7 @@ function startGame(scoreTableContainerInstance) {
   const WARNING_FUNDING_LIMIT = 50;
   const TERRIBLE_FUNDING_LIMIT = 25;
   let startHandler = true;
+  let angle = 0; // Initialize the angle
 
   let dx = 0;
   let ddx = 0;
@@ -153,62 +186,173 @@ function startGame(scoreTableContainerInstance) {
   ];
 
   const carImage = new Image();
-  carImage.src = carImageData;
+  carImage.src =
+    customer === 'Barbora'
+      ? carImageDataBarbora
+      : customer === 'Ikea'
+      ? carImageDataIkea
+      : carImageData;
 
   const rightMailboxImage = new Image();
-  rightMailboxImage.src = mailboxImageData;
+  rightMailboxImage.src =
+    customer === 'Barbora'
+      ? mailboxImageDataBarbora
+      : customer === 'Ikea'
+      ? mailboxImageDataIkea
+      : mailboxImageData;
 
   const leftMailboxImage = new Image();
-  leftMailboxImage.src = mailboxImageData;
+  leftMailboxImage.src =
+    customer === 'Barbora'
+      ? mailboxImageDataBarbora
+      : customer === 'Ikea'
+      ? mailboxImageDataIkea
+      : mailboxImageData;
 
   const goldImage = new Image();
-  goldImage.src = goldImageData;
+  goldImage.src =
+    customer === 'Barbora'
+      ? goldImageDataBarbora
+      : customer === 'Ikea'
+      ? goldImageDataIkea
+      : goldImageData;
 
   const wallImage = new Image();
-  wallImage.src = brickWallImageData;
+  wallImage.src =
+    customer === 'Barbora'
+      ? brickWallImageDataBarbora
+      : customer === 'Ikea'
+      ? brickWallImageDataIkea
+      : brickWallImageData;
 
   const envelopeImage = new Image();
-  envelopeImage.src = envelopeImageData;
+  envelopeImage.src =
+    customer === 'Barbora'
+      ? envelopeImageDataBarbora
+      : customer === 'Ikea'
+      ? envelopeImageDataIkea
+      : envelopeImageData;
 
   const cloudsImage = new Image();
-  cloudsImage.src = cloudsImageData;
+  cloudsImage.src =
+    customer === 'Barbora'
+      ? cloudsImageDataBarbora
+      : customer === 'Ikea'
+      ? cloudsImageDataIkea
+      : cloudsImageData;
 
-  const treeImage = new Image();
-  treeImage.src = treeImageData;
+  const treeImage =
+    customer == 'Barbora'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = BarboraTree1;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = BarboraTree2;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = BarboraTree3;
+            return img;
+          })(),
+        ]
+      : customer === 'Ikea'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = IkeaTree1;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = IkeaTree2;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = IkeaTree3;
+            return img;
+          })(),
+        ]
+      : [
+          (() => {
+            const img = new Image();
+            img.src = treeImageData;
+            return img;
+          })(),
+        ];
 
   const wh1 = new Image();
   const wh2 = new Image();
   const wh3 = new Image();
   const lineImg = new Image();
   const backgroundImg = new Image();
+  const backgroundImg2 = new Image();
 
-  wh1.src = wh1ImageData;
-  wh2.src = wh2ImageData;
-  wh3.src = wh3ImageData;
-  lineImg.src = line;
+  wh1.src =
+    customer === 'Barbora'
+      ? wh1ImageDataBarbora
+      : customer === 'Ikea'
+      ? wh1ImageDataIkea
+      : wh1ImageData;
+  wh2.src =
+    customer === 'Barbora'
+      ? wh2ImageDataBarbora
+      : customer === 'Ikea'
+      ? wh2ImageDataIkea
+      : wh2ImageData;
+  wh3.src =
+    customer === 'Barbora'
+      ? wh3ImageDataBarbora
+      : customer === 'Ikea'
+      ? wh3ImageDataIkea
+      : wh3ImageData;
+  lineImg.src = customer === 'Barbora' ? lineBarbora : customer === 'Ikea' ? lineIkea : line;
 
-  backgroundImg.src = background;
+  backgroundImg.src =
+    customer === 'Barbora' ? backgroundBarbora : customer === 'Ikea' ? backgroundIkea : background;
+  backgroundImg2.src =
+    customer === 'Barbora' ? backgroundBarbora2 : customer === 'Ikea' ? backgroundIkea : background;
 
   const city1 = new Image();
   const city2 = new Image();
   const city3 = new Image();
-  city1.src = city1ImageData;
-  city2.src = city2ImageData;
-  city3.src = city3ImageData;
+  city1.src =
+    customer === 'Barbora'
+      ? city1ImageDataBarbora
+      : customer === 'Ikea'
+      ? city1ImageDataIkea
+      : city1ImageData;
+  city2.src =
+    customer === 'Barbora'
+      ? city2ImageDataBarbora
+      : customer === 'Ikea'
+      ? city2ImageDataIkea
+      : city2ImageData;
+  city3.src =
+    customer === 'Barbora'
+      ? city3ImageDataBarbora
+      : customer === 'Ikea'
+      ? city3ImageDataIkea
+      : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
 
-  const sky = '#F9F1DD';
-  const grass1 = '#F9F1DD';
-  const grass2 = '#F9F1DD';
+  const sky = customer === 'Barbora' ? '#E84B4B' : customer === 'Ikea' ? '#959595' : '#F9F1DD';
+  const grass1 = customer === 'Barbora' ? '#85B62D' : '#F9F1DD';
+  const grass2 = customer === 'Barbora' ? '#A9C734' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
-  const BAD_FUNDING_COLOR = '#FFF100';
-  const BAD_FUNDING_COLOR1 = '#1D1D1B';
+  const BAD_FUNDING_COLOR = customer === 'Barbora' ? '#545151' : '#FFF100';
+  const BAD_FUNDING_COLOR1 = customer === 'Barbora' ? '#FFCA00' : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
-  const road1 = '#F9F1DD';
-  const road2 = 'black';
+  const road1 = customer === 'Barbora' ? '#959595' : customer === 'Ikea' ? '#959595' : '#F9F1DD';
+  const road2 = customer === 'Barbora' ? 'white' : customer === 'Ikea' ? 'white' : 'black';
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
 
@@ -387,9 +531,10 @@ function startGame(scoreTableContainerInstance) {
   });
 
   const trees = range(NUM_TREES).map(() => {
+    const randomTreeImage = treeImage[Math.floor(Math.random() * treeImage.length)];
     const i = randomIntBetween(skyHeight, height);
     return {
-      image: treeImage,
+      image: randomTreeImage,
       pos: {
         x: randomIntBetween(-width, -ROAD_SPRITE_SPAWN_X),
         y: 0,
@@ -494,7 +639,7 @@ function startGame(scoreTableContainerInstance) {
       name: 'wall',
       percentChanceOfSpawning: 0.05,
       minTimeOffScreen: 5,
-      roadPercent: random(),
+      roadPercent: random() + 5,
       lastOnScreenAt: null,
       active: false,
       dimensions: BIG_SPRITE_DIMENSIONS,
@@ -524,8 +669,9 @@ function startGame(scoreTableContainerInstance) {
   function tick(t) {
     realTime = t;
     ctx.globalAlpha = 1.0;
-    requestAnimationFrame(tick);
-
+    if (document.getElementById('boomio-widget-content')) {
+      requestAnimationFrame(tick);
+    }
     const divisor = inGracePeriod() ? slowTime : normalTime;
     gameTime += 10 / divisor;
     gameTimeAbsolute += 10 / normalTime;
@@ -567,7 +713,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 4000); //intro speed
+      }, 1); //intro speed
     }
     drawTitleScreen();
   }
@@ -625,11 +771,8 @@ function startGame(scoreTableContainerInstance) {
                   inpuRegisterContainer.style.display = 'none';
                 }, 1000);
                 setTimeout(() => {
-                  const canvas = document.getElementById('boomio-drive-canvas');
                   document.getElementById('background_blur').style.opacity = 0.37;
                   document.getElementById('background_blur').style.zIndex = 3;
-                  canvas.style.transition = 'filter 0.6s ease';
-                  canvas.style.filter = 'blur(2px)';
                   const inputContainer = document.querySelector('.input-container');
                   document.getElementById('control-button').style.transition = 'opacity 2s ease';
                   document.getElementById('control-button').style.opacity = 1;
@@ -754,10 +897,7 @@ function startGame(scoreTableContainerInstance) {
       }, 300);
     } else {
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-drive-container');
         document.getElementById('background_blur').style.opacity = 0.37;
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -765,7 +905,7 @@ function startGame(scoreTableContainerInstance) {
         inputContainer.style.display = 'block';
         setTimeout(() => {
           inputContainer.style.height = '332px';
-          inputContainer.style.top = 'calc(50% + 170px)';
+          inputContainer.style.top = 'calc(50% + 165px)';
           inputContainer.style.opacity = 1;
         }, 100);
       }, 300);
@@ -995,16 +1135,17 @@ function startGame(scoreTableContainerInstance) {
       movingSegment.id = roadSegments[segmentIndex].id;
     }
 
-    drawRoadSprites();
-    drawTrees();
-    drawWallParticles();
-    drawEnvelopes();
-    drawGolds();
-    drawTruck();
-    drawTruckSparks();
-    drawUi();
-
-    drawGameOver();
+    if (document.getElementById('boomio-widget-content')) {
+      drawRoadSprites();
+      drawTrees();
+      drawWallParticles();
+      drawEnvelopes();
+      drawGolds();
+      drawTruck();
+      drawTruckSparks();
+      drawUi();
+      drawGameOver();
+    }
 
     const clickHandler = function () {
       startHandler = false;
@@ -1063,43 +1204,65 @@ function startGame(scoreTableContainerInstance) {
 
     const whiteLineWidth = whiteLineWidths[i];
     const roadWidth = roadWidths[i];
-    const percent = max(i / groundHeight, 0.3);
+    const percent = Math.max(i / groundHeight, 0.3);
     const curve = curveOffsets[i - skyHeight];
 
     const currentRoadWidth = roadWidthForI(i);
-    ctx.strokeStyle = index < MAX_TEX / 2 ? grass1 : grass2;
-    ctx.beginPath();
-    ctx.moveTo(round(0), i);
-    const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
-    ctx.lineTo(x1, i);
-    ctx.closePath();
-    ctx.stroke();
 
-    const x2 = floor(currentRoadWidth + x1);
+    // Draw grass image or color
+    if (customer === 'LemonGym') {
+      ctx.strokeStyle = index < MAX_TEX / 2 ? '#85B62D' : '#A9C734';
+      ctx.beginPath();
+      ctx.moveTo(round(0), i);
+      const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
+      ctx.lineTo(x1, i);
+      ctx.closePath();
+      ctx.stroke();
+
+      const x2 = floor(currentRoadWidth + x1);
+      ctx.beginPath();
+      ctx.moveTo(x2, i);
+      ctx.lineTo(width, i);
+      ctx.closePath();
+      ctx.stroke();
+    } else {
+      const grass = new Image();
+      grass.src = customer === 'Barbora' ? grassBarbora : grassIkea;
+
+      // Draw grass image on the left
+      const x1 = Math.floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
+      ctx.drawImage(grass, 0, i, x1, 1);
+
+      // Draw grass image on the right
+      const x2 = Math.floor(currentRoadWidth + x1);
+      ctx.drawImage(grass, x2, i, width - x2, 1);
+    }
+
+    // Draw road lines
+    ctx.strokeStyle = road2;
     ctx.beginPath();
-    ctx.moveTo(x2, i);
-    ctx.lineTo(width, i);
+    ctx.moveTo(Math.round(roadWidth.x1 - xOffset + xCenter + curve) + 20, i);
+    ctx.lineTo(
+      Math.round(roadWidth.x1 + sideLineWidth * percent - xOffset + xCenter + curve) + 20,
+      i,
+    );
     ctx.closePath();
     ctx.stroke();
 
     ctx.strokeStyle = road2;
     ctx.beginPath();
-    ctx.moveTo(round(roadWidth.x1 - xOffset + xCenter + curve), i);
-    ctx.lineTo(round(roadWidth.x1 + sideLineWidth * percent - xOffset + xCenter + curve), i);
-    ctx.closePath();
-    ctx.stroke();
-
-    ctx.strokeStyle = road2;
-    ctx.beginPath();
-    ctx.moveTo(round(roadWidth.x2 - xOffset + xCenter + curve), i);
-    ctx.lineTo(round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve), i);
+    ctx.moveTo(Math.round(roadWidth.x2 - xOffset + xCenter + curve) - 20, i);
+    ctx.lineTo(
+      Math.round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve) - 20,
+      i,
+    );
     ctx.closePath();
     ctx.stroke();
 
     ctx.strokeStyle = index < MAX_TEX / 2 ? road1 : road2;
     ctx.beginPath();
-    ctx.moveTo(round(whiteLineWidth.x1 - xOffset + xCenter + curve), i);
-    ctx.lineTo(round(whiteLineWidth.x2 - xOffset + xCenter + curve), i);
+    ctx.moveTo(Math.round(whiteLineWidth.x1 - xOffset + xCenter + curve), i);
+    ctx.lineTo(Math.round(whiteLineWidth.x2 - xOffset + xCenter + curve), i);
     ctx.closePath();
     ctx.stroke();
 
@@ -1198,8 +1361,6 @@ function startGame(scoreTableContainerInstance) {
             }, 1000);
           } else {
             const canvas = document.getElementById('boomio-drive-canvas');
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
             document.getElementById('background_blur').style.display = 'block';
           }
           setTimeout(() => {
@@ -1212,9 +1373,19 @@ function startGame(scoreTableContainerInstance) {
                 score: gameVars.currentScore,
               })
               .then((response) => {
+                hideScore();
                 userBestPlace = response.user_best_place;
-                scoreTable = response;
-                scoreTableContainerInstance.updateProps(customer, scoreTable);
+                if (showCompetitiveRegistration === 'points') {
+                  scoreTable = response;
+                  scoreTableContainerInstance.updateProps(customer, scoreTable, currentScore);
+                }
+                if (showCompetitiveRegistration === 'competition') {
+                  scoreTable = response;
+                  scoreTableContainerInstance.updateProps(customer, scoreTable);
+                }
+                if (showCompetitiveRegistration === 'collectable') {
+                  scoreTableContainerInstance.updateProps(customer);
+                }
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -1224,11 +1395,10 @@ function startGame(scoreTableContainerInstance) {
               '.competition-table-container',
             );
             const canvas = document.getElementById('boomio-drive-canvas');
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
             document.getElementById('background_blur').style.display = 'block';
             competitionTableContainer.style.transition =
               'height 1s ease, top 1s ease, opacity 1s ease';
+
             competitionTableContainer.style.display = 'block';
             setTimeout(() => {
               competitionTableContainer.style.height = '680px';
@@ -1497,62 +1667,143 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawSky() {
-    ctx.fillStyle = sky;
-    ctx.fillRect(0, 0, width, height);
+    if (customer === 'Ikea') {
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+
+      gradient.addColorStop(0, '#48BCFD'); // Start color at 0%
+      gradient.addColorStop(0.585, '#A1D4E0'); // End color at 58.5%
+
+      ctx.fillStyle = gradient;
+
+      ctx.fillRect(0, 0, width, height);
+    } else {
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, width, height);
+    }
   }
 
   function drawGround(fillStyle) {
-    ctx.fillStyle = fillStyle;
-    ctx.fillRect(0, skyHeight, width, groundHeight);
+    if (customer === 'Barbora') {
+      const gradient = ctx.createLinearGradient(0, 0, width, 0);
+      // Add color stops to the gradient
+      gradient.addColorStop(0.1457, '#707070');
+      gradient.addColorStop(0.5042, '#959595');
+      gradient.addColorStop(0.8626, '#707070');
+
+      // Set the fill style to the gradient
+      ctx.fillStyle = gradient;
+      // Draw the rectangle with the gradient fill
+      ctx.fillRect(0, skyHeight, width, groundHeight);
+    } else if (customer === 'Ikea') {
+      const gradient = ctx.createLinearGradient(0, 0, width, 0);
+      // Add color stops to the gradient
+      gradient.addColorStop(0.1457, '#AAAAAA');
+      gradient.addColorStop(0.5042, '#959595');
+      gradient.addColorStop(0.8626, '#AAAAAA');
+
+      // Set the fill style to the gradient
+      ctx.fillStyle = gradient;
+      // Draw the rectangle with the gradient fill
+      ctx.fillRect(0, skyHeight, width, groundHeight);
+    } else {
+      ctx.fillStyle = fillStyle;
+      ctx.fillRect(0, skyHeight, width, groundHeight);
+    }
   }
 
   function drawCityHouse() {
-    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
-    drawImage(wh1, { x: -60, y: 0, z: 1 }, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+    if (customer === 'Barbora') {
+      ctx.save();
+      ctx.translate(100 + 130 / 2, 200 + 130 / 2); // Move to the center of the image
+      ctx.rotate(angle); // Rotate the image
+      ctx.drawImage(backgroundImg2, -130 / 2, -130 / 2, 130, 130); // Draw the image, centered at the origin
+      ctx.restore();
 
-    drawImage(
-      wh2,
-      { x: -60, y: 0, z: 1 },
-      whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
+      ctx.drawImage(backgroundImg, -15, 229, 455, 115);
+    }
+
+    ctx.drawImage(
+      lineImg,
+      0,
+      customer === 'Barbora' ? 340 : 325,
+      426,
+      customer === 'Barbora' ? 7 : 5,
     );
-    drawImage(
-      wh3,
-      { x: -60, y: 0, z: 1 },
-      whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
-    ctx.drawImage(lineImg, 0, 328, 426, 5);
+
+    if (customer !== 'Barbora') {
+      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+      drawImage(
+        wh1,
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
+        whStartPos,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+
+      drawImage(
+        wh2,
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
+        whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+
+      drawImage(
+        wh3,
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
+        whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+    }
+    angle += 0.01;
   }
 
   function drawCity() {
-    ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+    if (customer === 'Barbora') {
+      ctx.save();
+      ctx.translate(100 + 130 / 2, 200 + 130 / 2); // Move to the center of the image
+      ctx.rotate(angle); // Rotate the image
+      ctx.drawImage(backgroundImg2, -130 / 2, -130 / 2, 130, 130); // Draw the image, centered at the origin
+      ctx.restore();
 
+      ctx.drawImage(backgroundImg, -15, 229, 455, 115);
+    }
+
+    ctx.drawImage(
+      lineImg,
+      0,
+      customer === 'Barbora' ? 340 : 328,
+      426,
+      customer === 'Barbora' ? 7 : 5,
+    );
     const whOffset = xCenter - xOffset;
-    drawImage(
-      city1,
-      { x: -60, y: 0, z: 1 },
-      whOffset + whStartPos,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
-    drawImage(
-      city2,
-      { x: -60, y: 0, z: 1 },
-      whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
-    drawImage(
-      city3,
-      { x: -60, y: 0, z: 1 },
-      whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
-      200,
-      HOUSE_BIG_SPRITE_DIMENSIONS,
-    );
-    ctx.drawImage(lineImg, 0, 328, 426, 5);
+    if (customer !== 'Barbora') {
+      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+
+      drawImage(
+        city1,
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
+        whOffset + whStartPos,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+      drawImage(
+        city2,
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
+        whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+      drawImage(
+        city3,
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
+        whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
+        200,
+        HOUSE_BIG_SPRITE_DIMENSIONS,
+      );
+    }
+    angle += 0.01;
   }
 
   function drawUi() {
@@ -1567,10 +1818,6 @@ function startGame(scoreTableContainerInstance) {
     document.getElementById('currentTime').style.color = timeColor;
     currectScoreDiv.style.opacity = 1;
     drawFundingMeter();
-  }
-
-  function pad(num) {
-    return `000${num}`.slice(-3);
   }
 
   function addWall() {
@@ -1641,41 +1888,6 @@ function startGame(scoreTableContainerInstance) {
     const t = clamp((gameTime - startedAt) / INTRO_TIME, 0, 1);
     const y = lerp(-height / 4, 0, t);
     return y;
-  }
-
-  function getInstructionsOffset() {
-    const { startedAt } = gameVars;
-    const timePassed = gameTime - startedAt;
-
-    let x = -width;
-
-    if (timePassed < INTRO_TIME) {
-      const t = clamp(timePassed / INTRO_TIME, 0, 1);
-      x = lerp(-width, 0, t);
-    } else if (timePassed > INTRO_TIME && timePassed < GAME_START_DELAY) {
-      x = 0;
-    } else {
-      const t = clamp((timePassed - GAME_START_DELAY) / INTRO_TIME, 0, 1);
-      x = lerp(0, width, t);
-    }
-
-    return x;
-  }
-
-  function getGameOverTextOffset() {
-    const { gameOverAt } = gameVars;
-    const timePassed = gameTime - gameOverAt;
-
-    let x = -width;
-
-    if (timePassed < INTRO_TIME) {
-      const t = clamp(timePassed / INTRO_TIME, 0, 1);
-      x = lerp(-width, 0, t);
-    } else {
-      x = 0;
-    }
-
-    return x;
   }
 
   function getCollectablePosition(sprite, yEndPosition = 0) {
@@ -1801,7 +2013,7 @@ function startGame(scoreTableContainerInstance) {
           (cloud.frame * cloud.dimensions) / 2,
           cloud.dimensions,
           cloud.dimensions / 2,
-          cloud.pos.x - player.pos.x,
+          cloud.pos.x,
           cloud.pos.y,
           cloud.dimensions,
           cloud.dimensions / 2,

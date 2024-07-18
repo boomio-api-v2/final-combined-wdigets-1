@@ -40,14 +40,7 @@ export class InputRegisterContainer {
         ? 'Register to play'
         : 'REGISTRUOKIS ŽAISTI'
     }</div>
-      <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
-      }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: ${'#3D4928'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >${
       this.language === 'LV'
         ? 'TĀLĀK'
@@ -57,6 +50,8 @@ export class InputRegisterContainer {
         ? 'EDASI'
         : this.prop === 'Fpro'
         ? 'NEXT'
+        : this.prop === 'Ikea'
+        ? 'Toliau'
         : 'TOLIAU'
     }</div>
       </div>
@@ -80,6 +75,8 @@ export class InputRegisterContainer {
         }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
+        : this.prop === 'Barbora'
+        ? 'Sutinku gauti Barboros naujienas.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Yesyes.lv jaunumus.'
         : this.language === 'RU'
@@ -90,6 +87,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
         : this.prop === 'Makalius'
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
+        : this.prop === 'Ikea'
+        ? 'Sutinku su'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -108,8 +107,12 @@ export class InputRegisterContainer {
             this.prop === 'Fantazijos' ||
             this.prop === 'LemonGym'
               ? 'https://www.barbora.lt/info/privatumo-politika'
+              : this.prop === 'Ikea'
+              ? 'https://www.ikea.lt/lt/privacy-policy'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
-          }" style="color:white;text-decoration: underline;font-size:14px;">privatumo politika.</a> `
+          }" style="color:white;text-decoration: underline;font-size:14px;">${
+            this.prop === 'Ikea' ? 'IKEA privatumo politika.' : 'privatumo politika'
+          }.</a> `
         : ''
     }
       
