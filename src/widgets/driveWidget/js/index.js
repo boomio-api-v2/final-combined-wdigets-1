@@ -343,7 +343,7 @@ function startGame(scoreTableContainerInstance) {
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
 
-  const sky = customer === 'Barbora' ? '#E84B4B' : '#F9F1DD';
+  const sky = customer === 'Barbora' ? '#E84B4B' : customer === 'Ikea' ? '#959595' : '#F9F1DD';
   const grass1 = customer === 'Barbora' ? '#85B62D' : '#F9F1DD';
   const grass2 = customer === 'Barbora' ? '#A9C734' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
@@ -1667,8 +1667,19 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawSky() {
-    ctx.fillStyle = sky;
-    ctx.fillRect(0, 0, width, height);
+    if (customer === 'Ikea') {
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+
+      gradient.addColorStop(0, '#48BCFD'); // Start color at 0%
+      gradient.addColorStop(0.585, '#A1D4E0'); // End color at 58.5%
+
+      ctx.fillStyle = gradient;
+
+      ctx.fillRect(0, 0, width, height);
+    } else {
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, width, height);
+    }
   }
 
   function drawGround(fillStyle) {
@@ -1714,7 +1725,7 @@ function startGame(scoreTableContainerInstance) {
     ctx.drawImage(
       lineImg,
       0,
-      customer === 'Barbora' ? 340 : 330,
+      customer === 'Barbora' ? 340 : 325,
       426,
       customer === 'Barbora' ? 7 : 5,
     );
@@ -1723,7 +1734,7 @@ function startGame(scoreTableContainerInstance) {
       ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       drawImage(
         wh1,
-        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
         whStartPos,
         200,
         HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1731,7 +1742,7 @@ function startGame(scoreTableContainerInstance) {
 
       drawImage(
         wh2,
-        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
         whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
         200,
         HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1739,7 +1750,7 @@ function startGame(scoreTableContainerInstance) {
 
       drawImage(
         wh3,
-        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
         whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
         200,
         HOUSE_BIG_SPRITE_DIMENSIONS,
@@ -1772,21 +1783,21 @@ function startGame(scoreTableContainerInstance) {
 
       drawImage(
         city1,
-        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
         whOffset + whStartPos,
         200,
         HOUSE_BIG_SPRITE_DIMENSIONS,
       );
       drawImage(
         city2,
-        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
         whOffset + whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS,
         200,
         HOUSE_BIG_SPRITE_DIMENSIONS,
       );
       drawImage(
         city3,
-        { x: -60, y: customer === 'Barbora' ? 10 : 0, z: 1 },
+        { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
         whOffset + whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS,
         200,
         HOUSE_BIG_SPRITE_DIMENSIONS,
