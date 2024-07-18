@@ -930,6 +930,12 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-email-error').innerText =
                         this.customer === 'Fpro'
                           ? 'This email address already exists. Please use another one.'
+                          : this.language === 'LV'
+                          ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                          : this.language === 'RU'
+                          ? 'Этот е-мейл адрес уже существует. Используйте другой.'
+                          : this.language === 'EE'
+                          ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                           : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor =
                         '#FFBABA';
@@ -945,6 +951,12 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').innerText =
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
+                          : this.language === 'LV'
+                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                          : this.language === 'RU'
+                          ? 'Этот псевдоним уже существует. Используйте другой.'
+                          : this.language === 'EE'
+                          ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                           : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =
                         '#FFBABA';

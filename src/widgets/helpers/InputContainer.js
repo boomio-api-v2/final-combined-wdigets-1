@@ -97,6 +97,8 @@ export class InputContainer {
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
                 ? 'iš karto!'
+                : this.prop === 'Ikea'
+                ? 'iš karto! '
                 : this.prop === 'Fantazijos'
                 ? 'net 69 Fantazijos.lt prizus!'
                 : this.prop === 'Makalius'
@@ -167,7 +169,8 @@ export class InputContainer {
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym' ||
-      this.prop === 'Makalius'
+      this.prop === 'Makalius' ||
+      this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
@@ -224,6 +227,8 @@ export class InputContainer {
         ? 'PIRMYN'
         : this.prop === 'Fpro'
         ? 'PLAY'
+        : this.prop === 'Ikea'
+        ? 'Pirmyn'
         : 'LET’S PLAY'
     }</div></div>
     </div>
