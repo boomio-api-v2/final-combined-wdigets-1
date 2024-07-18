@@ -62,7 +62,7 @@ function startGame(scoreTableContainerInstance) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = true;
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Ikea';
+  const customer = config.business_name ? config.business_name : 'LemonGym';
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'collectable';
   let userBestPlace = 0;
   let scoreTable = {};
@@ -1718,6 +1718,7 @@ function startGame(scoreTableContainerInstance) {
       426,
       customer === 'Barbora' ? 7 : 5,
     );
+
     if (customer !== 'Barbora') {
       ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       drawImage(
