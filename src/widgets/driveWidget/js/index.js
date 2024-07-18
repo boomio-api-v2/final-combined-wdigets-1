@@ -55,7 +55,7 @@ import {
   IkeaTree1,
   IkeaTree2,
   IkeaTree3,
-  IkeaIntro,
+  grassSmall,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -187,13 +187,17 @@ function startGame(scoreTableContainerInstance) {
 
   const carImage = new Image();
   carImage.src =
-    customer === 'Barbora' ? carImageDataBarbora : 'Ikea' ? carImageDataIkea : carImageData;
+    customer === 'Barbora'
+      ? carImageDataBarbora
+      : customer === 'Ikea'
+      ? carImageDataIkea
+      : carImageData;
 
   const rightMailboxImage = new Image();
   rightMailboxImage.src =
     customer === 'Barbora'
       ? mailboxImageDataBarbora
-      : 'Ikea'
+      : customer === 'Ikea'
       ? mailboxImageDataIkea
       : mailboxImageData;
 
@@ -201,19 +205,23 @@ function startGame(scoreTableContainerInstance) {
   leftMailboxImage.src =
     customer === 'Barbora'
       ? mailboxImageDataBarbora
-      : 'Ikea'
+      : customer === 'Ikea'
       ? mailboxImageDataIkea
       : mailboxImageData;
 
   const goldImage = new Image();
   goldImage.src =
-    customer === 'Barbora' ? goldImageDataBarbora : 'Ikea' ? goldImageDataIkea : goldImageData;
+    customer === 'Barbora'
+      ? goldImageDataBarbora
+      : customer === 'Ikea'
+      ? goldImageDataIkea
+      : goldImageData;
 
   const wallImage = new Image();
   wallImage.src =
     customer === 'Barbora'
       ? brickWallImageDataBarbora
-      : 'Ikea'
+      : customer === 'Ikea'
       ? brickWallImageDataIkea
       : brickWallImageData;
 
@@ -221,7 +229,7 @@ function startGame(scoreTableContainerInstance) {
   envelopeImage.src =
     customer === 'Barbora'
       ? envelopeImageDataBarbora
-      : 'Ikea'
+      : customer === 'Ikea'
       ? envelopeImageDataIkea
       : envelopeImageData;
 
@@ -229,7 +237,7 @@ function startGame(scoreTableContainerInstance) {
   cloudsImage.src =
     customer === 'Barbora'
       ? cloudsImageDataBarbora
-      : 'Ikea'
+      : customer === 'Ikea'
       ? cloudsImageDataIkea
       : cloudsImageData;
 
@@ -252,7 +260,7 @@ function startGame(scoreTableContainerInstance) {
             return img;
           })(),
         ]
-      : customer == 'Ikea'
+      : customer === 'Ikea'
       ? [
           (() => {
             const img = new Image();
@@ -285,25 +293,52 @@ function startGame(scoreTableContainerInstance) {
   const backgroundImg = new Image();
   const backgroundImg2 = new Image();
 
-  wh1.src = customer === 'Barbora' ? wh1ImageDataBarbora : 'Ikea' ? wh1ImageDataIkea : wh1ImageData;
-  wh2.src = customer === 'Barbora' ? wh2ImageDataBarbora : 'Ikea' ? wh2ImageDataIkea : wh2ImageData;
-  wh3.src = customer === 'Barbora' ? wh3ImageDataBarbora : 'Ikea' ? wh3ImageDataIkea : wh3ImageData;
-  lineImg.src = customer === 'Barbora' ? lineBarbora : 'Ikea' ? lineIkea : line;
+  wh1.src =
+    customer === 'Barbora'
+      ? wh1ImageDataBarbora
+      : customer === 'Ikea'
+      ? wh1ImageDataIkea
+      : wh1ImageData;
+  wh2.src =
+    customer === 'Barbora'
+      ? wh2ImageDataBarbora
+      : customer === 'Ikea'
+      ? wh2ImageDataIkea
+      : wh2ImageData;
+  wh3.src =
+    customer === 'Barbora'
+      ? wh3ImageDataBarbora
+      : customer === 'Ikea'
+      ? wh3ImageDataIkea
+      : wh3ImageData;
+  lineImg.src = customer === 'Barbora' ? lineBarbora : customer === 'Ikea' ? lineIkea : line;
 
   backgroundImg.src =
-    customer === 'Barbora' ? backgroundBarbora : 'Ikea' ? backgroundIkea : background;
+    customer === 'Barbora' ? backgroundBarbora : customer === 'Ikea' ? backgroundIkea : background;
   backgroundImg2.src =
-    customer === 'Barbora' ? backgroundBarbora2 : 'Ikea' ? backgroundIkea : background;
+    customer === 'Barbora' ? backgroundBarbora2 : customer === 'Ikea' ? backgroundIkea : background;
 
   const city1 = new Image();
   const city2 = new Image();
   const city3 = new Image();
   city1.src =
-    customer === 'Barbora' ? city1ImageDataBarbora : 'Ikea' ? city1ImageDataIkea : city1ImageData;
+    customer === 'Barbora'
+      ? city1ImageDataBarbora
+      : customer === 'Ikea'
+      ? city1ImageDataIkea
+      : city1ImageData;
   city2.src =
-    customer === 'Barbora' ? city2ImageDataBarbora : 'Ikea' ? city2ImageDataIkea : city2ImageData;
+    customer === 'Barbora'
+      ? city2ImageDataBarbora
+      : customer === 'Ikea'
+      ? city2ImageDataIkea
+      : city2ImageData;
   city3.src =
-    customer === 'Barbora' ? city3ImageDataBarbora : 'Ikea' ? city3ImageDataIkea : city3ImageData;
+    customer === 'Barbora'
+      ? city3ImageDataBarbora
+      : customer === 'Ikea'
+      ? city3ImageDataIkea
+      : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
@@ -316,8 +351,8 @@ function startGame(scoreTableContainerInstance) {
   const BAD_FUNDING_COLOR1 = customer === 'Barbora' ? '#FFCA00' : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
-  const road1 = customer === 'Barbora' ? '#959595' : '#F9F1DD';
-  const road2 = customer === 'Barbora' ? 'white' : 'black';
+  const road1 = customer === 'Barbora' ? '#959595' : customer === 'Ikea' ? '#959595' : '#F9F1DD';
+  const road2 = customer === 'Barbora' ? 'white' : customer === 'Ikea' ? 'white' : 'black';
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
 
@@ -1192,7 +1227,7 @@ function startGame(scoreTableContainerInstance) {
       ctx.stroke();
     } else {
       const grass = new Image();
-      grass.src = grassBarbora;
+      grass.src = grassSmall;
 
       // Draw grass image on the left
       const x1 = Math.floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
@@ -1648,7 +1683,7 @@ function startGame(scoreTableContainerInstance) {
       ctx.fillStyle = gradient;
       // Draw the rectangle with the gradient fill
       ctx.fillRect(0, skyHeight, width, groundHeight);
-    } else if (customer === 'Barbora') {
+    } else if (customer === 'Ikea') {
       const gradient = ctx.createLinearGradient(0, 0, width, 0);
       // Add color stops to the gradient
       gradient.addColorStop(0.1457, '#AAAAAA');
