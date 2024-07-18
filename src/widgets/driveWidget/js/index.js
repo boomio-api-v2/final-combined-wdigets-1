@@ -55,6 +55,7 @@ import {
   IkeaTree1,
   IkeaTree2,
   IkeaTree3,
+  IkeaIntro,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -1642,6 +1643,17 @@ function startGame(scoreTableContainerInstance) {
       gradient.addColorStop(0.1457, '#707070');
       gradient.addColorStop(0.5042, '#959595');
       gradient.addColorStop(0.8626, '#707070');
+
+      // Set the fill style to the gradient
+      ctx.fillStyle = gradient;
+      // Draw the rectangle with the gradient fill
+      ctx.fillRect(0, skyHeight, width, groundHeight);
+    } else if (customer === 'Barbora') {
+      const gradient = ctx.createLinearGradient(0, 0, width, 0);
+      // Add color stops to the gradient
+      gradient.addColorStop(0.1457, '#AAAAAA');
+      gradient.addColorStop(0.5042, '#959595');
+      gradient.addColorStop(0.8626, '#AAAAAA');
 
       // Set the fill style to the gradient
       ctx.fillStyle = gradient;

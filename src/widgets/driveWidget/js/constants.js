@@ -231,3 +231,6 @@ export const IkeaTree2 =
 
 export const IkeaTree3 =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Tree3.png?raw=true';
+
+export const IkeaIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/IkeaIntro.png?raw=true';
