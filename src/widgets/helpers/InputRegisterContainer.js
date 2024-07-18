@@ -57,7 +57,7 @@ export class InputRegisterContainer {
       </div>
       <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
         this.prop === 'Fpro' ? 'auto' : 'pointer'
-      } ;left: 34px; top: 385px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+      } ;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${this.prop === 'Fpro' ? 'none' : 'inline-flex'};cursor: ${
       this.prop === 'Fpro' ? 'auto' : 'pointer'
     };">
