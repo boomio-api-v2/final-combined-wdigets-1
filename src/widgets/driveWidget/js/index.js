@@ -55,7 +55,7 @@ import {
   IkeaTree1,
   IkeaTree2,
   IkeaTree3,
-  grassSmall,
+  grassIkea,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -1227,7 +1227,7 @@ function startGame(scoreTableContainerInstance) {
       ctx.stroke();
     } else {
       const grass = new Image();
-      grass.src = grassSmall;
+      grass.src = customer === 'Barbora' ? grassBarbora : grassIkea;
 
       // Draw grass image on the left
       const x1 = Math.floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);

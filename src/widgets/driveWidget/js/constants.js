@@ -142,7 +142,7 @@ export const cloudsImageDataBarbora = [
 ];
 
 export const grassBarbora = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/grass.png?raw=true',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/grassSmallNew.png?raw=true',
 ];
 
 export const lineBarbora = [
@@ -235,8 +235,5 @@ export const IkeaTree3 =
 export const IkeaIntro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/IkeaIntro.png?raw=true';
 
-export const grassSmall1 =
+export const grassIkea =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/grassSmall.png?raw=true';
-
-export const grassSmall =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/grassSmallNew.jpg';
