@@ -86,7 +86,7 @@ class driveWidget {
       </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`}
       </div>
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
-      this.customer === 'Barbora' ? '#CC0001' : '#FFE92D'
+      this.customer === 'Barbora' ? '#CC0001' : this.customer === 'Ikea' ? '#0058A3' : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
@@ -98,7 +98,7 @@ class driveWidget {
 
 
 <div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
-      this.customer === 'Barbora' ? '#CC0001' : '#FFE92D'
+      this.customer === 'Barbora' ? '#CC0001' : this.customer === 'Ikea' ? '#0058A3' : '#FFE92D'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
