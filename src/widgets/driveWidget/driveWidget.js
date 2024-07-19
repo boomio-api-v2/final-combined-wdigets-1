@@ -26,6 +26,7 @@ class driveWidget {
     this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
+    this.language = this.config.language ? this.config.language : 'EN';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -81,9 +82,13 @@ class driveWidget {
 
     <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-        <div>BAKST</div>
-        <div>BAKST</div>
-      </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:70px;width: 71px; height: 54px;">`}
+        <div>${
+          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'BRŪKŠT'
+        }</div>
+        <div>${
+          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'BRŪKŠT'
+        }</div>
+      </div><img src=${tapImageBarbora} alt="Image Description" style="width: 71px; height: 54px;">`}
       </div>
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
       this.customer === 'Barbora' ? '#CC0001' : this.customer === 'Ikea' ? '#0058A3' : '#FFE92D'

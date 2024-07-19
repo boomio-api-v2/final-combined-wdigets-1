@@ -13,6 +13,7 @@ export class DownloadScoreTableContainer {
   }
 
   updateProps(prop, scoreTable, currentScore) {
+    console.log(prop, scoreTable, currentScore);
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.currentScore = currentScore;

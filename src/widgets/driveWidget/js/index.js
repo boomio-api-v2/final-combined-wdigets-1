@@ -61,6 +61,8 @@ import {
 function startGame(scoreTableContainerInstance) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = true;
+  let checkboxChange2 = true;
+
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'Ikea';
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'collectable';
@@ -347,8 +349,10 @@ function startGame(scoreTableContainerInstance) {
   const grass1 = customer === 'Barbora' ? '#85B62D' : '#F9F1DD';
   const grass2 = customer === 'Barbora' ? '#A9C734' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
-  const BAD_FUNDING_COLOR = customer === 'Barbora' ? '#545151' : '#FFF100';
-  const BAD_FUNDING_COLOR1 = customer === 'Barbora' ? '#FFCA00' : '#1D1D1B';
+  const BAD_FUNDING_COLOR =
+    customer === 'Barbora' ? '#545151' : customer === 'Ikea' ? '#DEB47C' : '#FFF100';
+  const BAD_FUNDING_COLOR1 =
+    customer === 'Barbora' ? '#FFCA00' : customer === 'Ikea' ? '#B58E5B' : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
   const road1 = customer === 'Barbora' ? '#959595' : customer === 'Ikea' ? '#959595' : '#F9F1DD';
@@ -876,6 +880,13 @@ function startGame(scoreTableContainerInstance) {
         checkboxImgChange.src = checkboxChange ? checkIcon : uncheckIcon;
       });
 
+      const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+      checkboxImg2.addEventListener('click', () => {
+        checkboxChange2 = !checkboxChange2;
+        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+        checkboxImgChange2.src = checkboxChange2 ? checkIcon : uncheckIcon;
+      });
+
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
       emailInput.addEventListener('input', () => {});
@@ -1384,7 +1395,8 @@ function startGame(scoreTableContainerInstance) {
                   scoreTableContainerInstance.updateProps(customer, scoreTable);
                 }
                 if (showCompetitiveRegistration === 'collectable') {
-                  scoreTableContainerInstance.updateProps(customer);
+                  scoreTable = response;
+                  scoreTableContainerInstance.updateProps(customer, scoreTable);
                 }
               })
               .catch((error) => {
@@ -1721,15 +1733,15 @@ function startGame(scoreTableContainerInstance) {
 
       ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
-
-    ctx.drawImage(
-      lineImg,
-      0,
-      customer === 'Barbora' ? 340 : 325,
-      426,
-      customer === 'Barbora' ? 7 : 5,
-    );
-
+    if (customer !== 'Ikea') {
+      ctx.drawImage(
+        lineImg,
+        0,
+        customer === 'Barbora' ? 340 : 325,
+        426,
+        customer === 'Barbora' ? 7 : 5,
+      );
+    }
     if (customer !== 'Barbora') {
       ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       drawImage(
@@ -1769,14 +1781,15 @@ function startGame(scoreTableContainerInstance) {
 
       ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
-
-    ctx.drawImage(
-      lineImg,
-      0,
-      customer === 'Barbora' ? 340 : 328,
-      426,
-      customer === 'Barbora' ? 7 : 5,
-    );
+    if (customer !== 'Ikea') {
+      ctx.drawImage(
+        lineImg,
+        0,
+        customer === 'Barbora' ? 340 : 328,
+        426,
+        customer === 'Barbora' ? 7 : 5,
+      );
+    }
     const whOffset = xCenter - xOffset;
     if (customer !== 'Barbora') {
       ctx.drawImage(backgroundImg, -3, 228, 426, 105);

@@ -19,6 +19,8 @@ export class InputRegisterContainer {
       document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
 
     let privacyCheckboxChecked = true; // Use let instead of const to allow reassignment
+    let privacyCheckboxChecked2 = true; // Use let instead of const to allow reassignment
+
     containerDiv.innerHTML = `
       <div style="height: 124px; top: 50px; position: relative; text-align: center;margin:10px; color: ${
         this.prop === 'Barbora' ||
@@ -40,7 +42,9 @@ export class InputRegisterContainer {
         ? 'Register to play'
         : 'REGISTRUOKIS ŽAISTI'
     }</div>
-      <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <div id="boomio-competition-confirm-field" disabled=${
+        privacyCheckboxChecked ? true : false
+      } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: ${'#3D4928'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >${
       this.language === 'LV'
         ? 'TĀLĀK'
@@ -55,9 +59,27 @@ export class InputRegisterContainer {
         : 'TOLIAU'
     }</div>
       </div>
-      <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
-        this.prop === 'Fpro' ? 'auto' : 'pointer'
-      } ;left: 34px; top: 375px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+
+
+      
+       <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style="cursor:${
+         this.prop === 'Fpro' ? 'auto' : 'pointer'
+       } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+      <div  style=" display: ${this.prop !== 'Ikea' ? 'none' : 'inline-flex'};cursor: ${
+      this.prop === 'Fpro' ? 'auto' : 'pointer'
+    };">
+            <img id="privacyCheckboxImg2" src="${
+              privacyCheckboxChecked2 ? checkIcon : ''
+            }" style="width: 20px; height: 20px;">
+        </div>
+        <div style="color: ${'white'}; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">
+Sutinku gauti IKEA naujienas.
+    </div>
+      </div>
+
+        <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
+          this.prop === 'Fpro' ? 'auto' : 'pointer'
+        } ;left: 34px; top: 385px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${this.prop === 'Fpro' ? 'none' : 'inline-flex'};cursor: ${
       this.prop === 'Fpro' ? 'auto' : 'pointer'
     };">
@@ -111,7 +133,7 @@ export class InputRegisterContainer {
               ? 'https://www.ikea.lt/lt/privacy-policy'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline;font-size:14px;">${
-            this.prop === 'Ikea' ? 'IKEA privatumo politika.' : 'privatumo politika'
+            this.prop === 'Ikea' ? 'IKEA privatumo politika' : 'privatumo politika'
           }.</a> `
         : ''
     }
@@ -120,6 +142,7 @@ export class InputRegisterContainer {
 
     </div>
       </div>
+   
    
 
       <div style="width: calc(100% - 70px); height: 24px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
@@ -211,6 +234,8 @@ export class InputRegisterContainer {
         ? 'Mängija hüüdnimi'
         : this.prop === 'Fpro'
         ? 'Players full name'
+        : this.prop === 'Ikea'
+        ? 'Žaidėjo vardas'
         : 'Žaidėjo slapyvardis'
     }">
     `;
