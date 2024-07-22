@@ -161,17 +161,6 @@ class driveWidget {
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
     if (this.showCompetitiveRegistration === 'points') {
-      const gameContainer = document.querySelector('.game-container');
-
-      this.scoreTableContainerInstance = new PointScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-        this.currentScore,
-      );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-    }
-
-    if (this.showCompetitiveRegistration === 'collectable') {
       if (this.customer === 'Ikea') {
         const gameContainer = document.querySelector('.game-container');
 
@@ -184,13 +173,24 @@ class driveWidget {
       } else {
         const gameContainer = document.querySelector('.game-container');
 
-        this.scoreTableContainerInstance = new DownloadScoreTableContainer(
+        this.scoreTableContainerInstance = new PointScoreTableContainer(
           this.customer,
           this.scoreTable,
           this.currentScore,
         );
         gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
       }
+    }
+
+    if (this.showCompetitiveRegistration === 'collectable') {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.scoreTableContainerInstance = new DownloadScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+        this.currentScore,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
     // if (this.showCompetitiveRegistration === 'collectable') {
     //   const gameContainer = document.querySelector('.game-container');
