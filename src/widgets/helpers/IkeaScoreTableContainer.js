@@ -44,7 +44,7 @@ export class IkeaScoreTableContainer {
     <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 60px); display:flex; padding:30px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:#0058A3;filter;box-sizing:content-box !important;">
 
 
-    <div style="width:100%;margin-top:20px;text-align: start; color: white; font-size: 60px;font-family:${
+    <div style="width:100%;margin-top:20px;margin-bottom:20px;text-align: start; color: white; font-size: 60px;font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     ${userPercentageDiscount ?? 0}% </div>
@@ -105,7 +105,7 @@ ar daugiau.</div>
 
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-        <div style="margin-bottom:10px;width:100%;margin-top:30px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family:${
+        <div style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
         } ; font-weight:400; text-transform:${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
