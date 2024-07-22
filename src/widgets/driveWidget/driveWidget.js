@@ -17,13 +17,14 @@ import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTable
 import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
+import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
 
 class driveWidget {
   static ctx;
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
+    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
     this.language = this.config.language ? this.config.language : 'EN';
@@ -163,14 +164,25 @@ class driveWidget {
     }
 
     if (this.showCompetitiveRegistration === 'collectable') {
-      const gameContainer = document.querySelector('.game-container');
+      if (this.customer === 'Ikea') {
+        const gameContainer = document.querySelector('.game-container');
 
-      this.scoreTableContainerInstance = new DownloadScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-        this.currentScore,
-      );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+        this.scoreTableContainerInstance = new IkeaScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
+        );
+        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+      } else {
+        const gameContainer = document.querySelector('.game-container');
+
+        this.scoreTableContainerInstance = new DownloadScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
+        );
+        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+      }
     }
     // if (this.showCompetitiveRegistration === 'collectable') {
     //   const gameContainer = document.querySelector('.game-container');

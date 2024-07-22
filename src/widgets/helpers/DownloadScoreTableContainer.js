@@ -32,8 +32,8 @@ export class DownloadScoreTableContainer {
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const userPercentageDiscount = parseInt(this?.scoreTable?.best_discount);
-    const userDiscountCode = parseInt(this?.scoreTable?.discount_code);
+    const userPercentageDiscount = parseInt(this?.scoreTable?.collection?.discount);
+    const userDiscountCode = parseInt(this?.scoreTable?.collection?.coupon_code);
 
     let tableHTML = '';
 
