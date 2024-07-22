@@ -41,10 +41,10 @@ export class IkeaScoreTableContainer {
 
     tableHTML += `
 
-    <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 40px); display:flex; padding:20px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:#0058A3;filter;box-sizing:content-box !important;">
+    <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 60px); display:flex; padding:30px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:#0058A3;filter;box-sizing:content-box !important;">
 
 
-    <div style="width:100%;margin-top:20px;text-align: start; color: white; font-size: 42px;font-family:${
+    <div style="width:100%;margin-top:20px;text-align: start; color: white; font-size: 60px;font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     ${userPercentageDiscount ?? 0}% </div>
@@ -80,7 +80,7 @@ ar daugiau.</div>
         ? '900'
         : '700';
     let scoreboardText = `
-     <div style="width:100%; top: 430px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family:${
+     <div style="width:100%; top: 400px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family:${
        this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
      } ;font-weight: ${fontWeight};  word-wrap: break-word">Pagerink rezultatą, nes surinkus daugiau nei</br><div style='font-weight:500'> 2000 taškų laimėsi nuolaidą!</div></div>
              </div>
@@ -105,13 +105,13 @@ ar daugiau.</div>
 
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-        <div style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family:${
+        <div style="margin-bottom:10px;width:100%;margin-top:30px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
         } ; font-weight:400; text-transform:${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
     } ; word-wrap: break-word"> 
-    TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
-      <div style="width:100%;top: 70px; position: absolute; text-align: center; color: ${
+    Tavo rezultatas:  ${this.currentScore ?? 0} </div>
+      <div style="width:100%;top: 85px; position: absolute; text-align: center; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
@@ -121,7 +121,7 @@ ar daugiau.</div>
       }; font-size: 40px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ; font-weight: 900; ; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Fpro' ? 'Congrats!' : 'Laimejai'
+      this.prop === 'Fpro' ? 'Congrats!' : 'Laimėjai'
     }</div>
       
       <div class="boomio-scoreboard-text">
@@ -129,7 +129,7 @@ ar daugiau.</div>
 
     containerDiv.innerHTML += `
               </div>
-              <div  style="width: calc(100% - 40px); height: ${'280px'}; left: 20px; top: 124px; position: absolute;border-right:none; backdrop-filter: blur(4px);filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));">
+              <div  style="width: calc(100% - 40px); height: ${'250px'}; left: 20px; top: 124px; position: absolute;border-right:none; backdrop-filter: blur(4px);filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));">
               <div >
             <div class="boomio-tbody">
     `;
