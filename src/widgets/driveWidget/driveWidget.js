@@ -24,7 +24,7 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
     this.language = this.config.language ? this.config.language : 'EN';
@@ -82,12 +82,16 @@ class driveWidget {
 
 
     <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
-    ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+    ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${
+      this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
+    };font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${
+      this.customer === 'Ikea' ? 'none' : 'uppercase'
+    };">
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'BRŪKŠT'
+          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'Brūkšt'
         }</div>
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'BRŪKŠT'
+          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'Brūkšt'
         }</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 71px; height: 54px;">`}
       </div>
@@ -97,7 +101,9 @@ class driveWidget {
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
-  <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentScore"></div>
+  <div style="text-align: center; color: white; font-size: 20px; font-family:${
+    this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
+  }; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
 
@@ -109,7 +115,9 @@ class driveWidget {
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
-<div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
+<div style="text-align: center; color: white; font-size: 20px; font-family:${
+      this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
+    } ;font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
 </div>
 </div>
 

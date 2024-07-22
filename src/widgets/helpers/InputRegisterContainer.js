@@ -31,21 +31,27 @@ export class InputRegisterContainer {
           : 'white'
       }; font-size: ${
       this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '30px' : '40px'
-    }; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">${
+    }; font-family: ${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+    }; font-weight: 700; text-transform: ${
+      this.prop === 'Ikea' ? 'none' : 'uppercase'
+    }; line-height: 62.40px; word-wrap: break-word">${
       this.language === 'LV'
         ? 'REĢISTRĒTIES SPĒLĒŠANAI'
         : this.language === 'RU'
         ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
         : this.language === 'EE'
-        ? 'Registreeri mängimiseks'
+        ? 'REGISTREERI MÄNGIMISEKS'
         : this.prop === 'Fpro'
-        ? 'Register to play'
-        : 'REGISTRUOKIS ŽAISTI'
+        ? 'REGISTER TO PLAY'
+        : 'Registruokis</br> Žaisti'
     }</div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="text-align: center; color: ${'#3D4928'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word" >${
+        <div style="text-align: center;font-family:${
+          this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+        };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: 700; line-height: 24px; word-wrap: break-word" >${
       this.language === 'LV'
         ? 'TĀLĀK'
         : this.language === 'RU'
@@ -72,7 +78,9 @@ export class InputRegisterContainer {
               privacyCheckboxChecked2 ? checkIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
-        <div style="color: ${'white'}; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">
+        <div style="color: ${'white'}; font-size: 14px; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+    };font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">
 Sutinku gauti IKEA naujienas.
     </div>
       </div>
@@ -94,7 +102,9 @@ Sutinku gauti IKEA naujienas.
           this.prop === 'LemonGym'
             ? 'white'
             : 'white'
-        }; font-size: 14px; font-family: Montserrat; font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
+        }; font-size: 14px; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+    } ;  font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Barbora'
@@ -149,7 +159,7 @@ Sutinku gauti IKEA naujienas.
       font-family: Montserrat;
       font-size: 11px;
       font-style: normal;
-      font-weight: 900;
+      font-weight: 700;
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;
@@ -160,7 +170,7 @@ Sutinku gauti IKEA naujienas.
       font-family: Montserrat;
       font-size: 11px;
       font-style: normal;
-      font-weight: 900;
+      font-weight: 700;
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;
@@ -200,7 +210,9 @@ Sutinku gauti IKEA naujienas.
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
-    } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+    } ; font-size: 18px; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    }; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
       this.language === 'LV'
         ? 'Spēlētāja e-pasts'
         : this.language === 'RU'
@@ -225,7 +237,9 @@ Sutinku gauti IKEA naujienas.
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
-    } ; font-size: 18px; font-family: Georama; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+    } ; font-size: 18px; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    }; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
       this.language === 'LV'
         ? 'Spēlētāja lietotājvārds'
         : this.language === 'RU'
