@@ -26,7 +26,7 @@ class driveWidget {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.language = this.config.language ? this.config.language : 'EN';
 
     this.scoreTable = {};
@@ -93,7 +93,7 @@ class driveWidget {
         <div>${
           this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'Brūkšt'
         }</div>
-      </div><img src=${tapImageBarbora} alt="Image Description" style="width: 71px; height: 54px;">`}
+      </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
       this.customer === 'Barbora' ? '#CC0001' : this.customer === 'Ikea' ? '#0058A3' : '#FFE92D'

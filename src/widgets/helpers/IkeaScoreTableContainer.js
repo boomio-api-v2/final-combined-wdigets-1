@@ -50,13 +50,13 @@ export class IkeaScoreTableContainer {
     ${userPercentageDiscount ?? 0}% </div>
         <div style="letter-spacing: -0.3px;margin-top:10px;line-height: 150%;width:100%;text-align: start; color: white; font-size: 12px; font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-        } ; font-weight:400; word-wrap: break-word;"> 
+        } ; font-weight:300; word-wrap: break-word;"> 
    Nuolaida jūsų pirkinių krepšeliui, perkant už 50 € 
 ar daugiau.</div>
 
     <div style="letter-spacing: -0.3px;line-height: 150%;margin-bottom:15px;width:100%;margin-top:10px; text-align: start; color: white; font-size: 10px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ; font-weight:400; word-wrap: break-word;"> 
+    } ; font-weight:300; word-wrap: break-word;"> 
     <strong>Pasiūlymas galioja X d. , parodžius šį žaidimo langą kasoje.</strong></br>Kuponas galioja vieno apsipirkimo metu (nuolaidos nesumuojamos) įsigijus prekių IKEA fizinėje parduotuvėje Vilniuje. Kuponas negalioja pirkinių krepšeliui Švediškame restorane, bistro bei lauko kavinėje ir negali būti naudojamas alkoholiniams gėrimams įsigyti.</div>
 </div></div>
         `;

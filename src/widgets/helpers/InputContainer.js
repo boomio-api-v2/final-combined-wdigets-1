@@ -27,7 +27,7 @@ export class InputContainer {
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="color: #FFF;text-align: center;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: ${
+    }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="color: #FFF;text-align: center;font-size: 40px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: ${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
     };">${
       this.language === 'LV'
@@ -47,7 +47,7 @@ export class InputContainer {
               : this.prop === 'Fpro'
               ? '130px'
               : '160px'
-          }; top: 9px; position: absolute; color: white; font-size: 14px;  font-weight: 800; font-family:${
+          }; top: 9px; position: absolute; color: white; font-size: 14px;  font-weight: 700; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     };line-height: 31.50px; word-wrap: break-word">
             ${
@@ -72,7 +72,7 @@ export class InputContainer {
               : '160px'
           }; top: 46px; position: absolute; color: white; font-size: 14px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+    }; font-weight: 700; line-height: 31.50px; word-wrap: break-word">
             ${
               this.language === 'LV'
                 ? 'labākam rezultātam'
@@ -93,7 +93,7 @@ export class InputContainer {
               : '160px'
           }; top: 85px; position: absolute; color: white; font-size: 14px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 800; line-height: 18px; word-wrap: break-word">
+    }; font-weight: 700; line-height: 18px; word-wrap: break-word">
             ${
               this.language === 'LV'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
@@ -127,7 +127,7 @@ export class InputContainer {
                 : '24px'
             }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+    }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
                 this.language === 'LV'
                   ? 'NOSPIEDIET'
@@ -146,7 +146,7 @@ export class InputContainer {
                 : '24px'
             }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+    }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             2.  ${
               this.language === 'LV'
                 ? 'ATKĀRTOT'
@@ -165,7 +165,7 @@ export class InputContainer {
                 : '24px'
             }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+    }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             3. ${
               this.language === 'LV'
                 ? 'LAIMĒT'
@@ -189,7 +189,7 @@ export class InputContainer {
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-          }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
+          }; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'LemonGym'
@@ -222,7 +222,7 @@ export class InputContainer {
           } </a></div>`
         : ''
     }
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  
       </div>
     </div>
     <div>
