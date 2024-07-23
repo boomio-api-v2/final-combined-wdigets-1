@@ -65,16 +65,13 @@ export class InputRegisterContainer {
         : 'TOLIAU'
     }</div>
       </div>
-
-
-      
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
       this.prop !== 'Ikea' ? 'none' : 'inline-flex'
     }">
       <div  style=" ;cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
-            <img id="privacyCheckboxImg2" src="${
+            <img id=" " src="${
               privacyCheckboxChecked2 ? checkIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
