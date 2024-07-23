@@ -13,7 +13,6 @@ export class IkeaScoreTableContainer {
   }
 
   updateProps(prop, scoreTable, currentScore) {
-    console.log(prop, scoreTable, currentScore);
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.currentScore = currentScore;
@@ -120,7 +119,7 @@ ar daugiau.</div>
           : 'white'
       }; font-size: 40px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ; font-weight: 900;line-height:20px ; word-wrap: break-word" id="boomio-collection-scoreboard-name">'Laimėjai'
+    } ; font-weight: 900;line-height:20px ; word-wrap: break-word" id="boomio-collection-scoreboard-name">Laimėjai
     </div>
       
       <div class="boomio-scoreboard-text">

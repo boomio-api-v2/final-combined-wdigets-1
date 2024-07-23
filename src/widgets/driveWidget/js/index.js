@@ -1388,7 +1388,11 @@ function startGame(scoreTableContainerInstance) {
                 userBestPlace = response.user_best_place;
                 if (showCompetitiveRegistration === 'points') {
                   scoreTable = response;
-                  scoreTableContainerInstance.updateProps(customer, scoreTable, currentScore);
+                  scoreTableContainerInstance.updateProps(
+                    customer,
+                    scoreTable,
+                    gameVars.currentScore,
+                  );
                 }
                 if (showCompetitiveRegistration === 'competition') {
                   scoreTable = response;
