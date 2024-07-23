@@ -296,7 +296,7 @@ export const lineUnisend = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/line.png?raw=true',
 ];
 
-export const IkeaUnisend =
+export const treeUnisend =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Tree.png?raw=true';
 
 export const UnisendIntro =
