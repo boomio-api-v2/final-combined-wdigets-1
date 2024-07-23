@@ -56,6 +56,22 @@ import {
   IkeaTree2,
   IkeaTree3,
   grassIkea,
+  grassUnisend,
+  backgroundUnisend,
+  goldImageDataUnisend,
+  envelopeImageDataUnisend,
+  carImageDataUnisend,
+  mailboxImageDataUnisend,
+  wh1ImageDataUnisend,
+  wh2ImageDataUnisend,
+  wh3ImageDataUnisend,
+  city1ImageDataUnisend,
+  city2ImageDataUnisend,
+  city3ImageDataUnisend,
+  brickWallImageDataUnisend,
+  cloudsImageDataUnisend,
+  lineUnisend,
+  treeUnisend,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -64,7 +80,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = true;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Ikea';
+  const customer = config.business_name ? config.business_name : 'Unisend';
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'collectable';
   let userBestPlace = 0;
   let scoreTable = {};
@@ -193,6 +209,8 @@ function startGame(scoreTableContainerInstance) {
       ? carImageDataBarbora
       : customer === 'Ikea'
       ? carImageDataIkea
+      : customer === 'Unisend'
+      ? carImageDataUnisend
       : carImageData;
 
   const rightMailboxImage = new Image();
@@ -201,6 +219,8 @@ function startGame(scoreTableContainerInstance) {
       ? mailboxImageDataBarbora
       : customer === 'Ikea'
       ? mailboxImageDataIkea
+      : customer === 'Unisend'
+      ? mailboxImageDataUnisend
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -209,6 +229,8 @@ function startGame(scoreTableContainerInstance) {
       ? mailboxImageDataBarbora
       : customer === 'Ikea'
       ? mailboxImageDataIkea
+      : customer === 'Unisend'
+      ? mailboxImageDataUnisend
       : mailboxImageData;
 
   const goldImage = new Image();
@@ -217,6 +239,8 @@ function startGame(scoreTableContainerInstance) {
       ? goldImageDataBarbora
       : customer === 'Ikea'
       ? goldImageDataIkea
+      : customer === 'Unisend'
+      ? goldImageDataUnisend
       : goldImageData;
 
   const wallImage = new Image();
@@ -225,6 +249,8 @@ function startGame(scoreTableContainerInstance) {
       ? brickWallImageDataBarbora
       : customer === 'Ikea'
       ? brickWallImageDataIkea
+      : customer === 'Unisend'
+      ? brickWallImageDataUnisend
       : brickWallImageData;
 
   const envelopeImage = new Image();
@@ -233,6 +259,8 @@ function startGame(scoreTableContainerInstance) {
       ? envelopeImageDataBarbora
       : customer === 'Ikea'
       ? envelopeImageDataIkea
+      : customer === 'Unisend'
+      ? envelopeImageDataUnisend
       : envelopeImageData;
 
   const cloudsImage = new Image();
@@ -241,6 +269,8 @@ function startGame(scoreTableContainerInstance) {
       ? cloudsImageDataBarbora
       : customer === 'Ikea'
       ? cloudsImageDataIkea
+      : customer === 'Unisend'
+      ? cloudsImageDataUnisend
       : cloudsImageData;
 
   const treeImage =
@@ -283,7 +313,7 @@ function startGame(scoreTableContainerInstance) {
       : [
           (() => {
             const img = new Image();
-            img.src = treeImageData;
+            img.src = customer === 'Unisend' ? treeUnisend : treeImageData;
             return img;
           })(),
         ];
@@ -300,25 +330,50 @@ function startGame(scoreTableContainerInstance) {
       ? wh1ImageDataBarbora
       : customer === 'Ikea'
       ? wh1ImageDataIkea
+      : customer === 'Unisend'
+      ? wh1ImageDataUnisend
       : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
       ? wh2ImageDataBarbora
       : customer === 'Ikea'
       ? wh2ImageDataIkea
+      : customer === 'Unisend'
+      ? wh2ImageDataUnisend
       : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
       ? wh3ImageDataBarbora
       : customer === 'Ikea'
       ? wh3ImageDataIkea
+      : customer === 'Unisend'
+      ? wh3ImageDataUnisend
       : wh3ImageData;
-  lineImg.src = customer === 'Barbora' ? lineBarbora : customer === 'Ikea' ? lineIkea : line;
+  lineImg.src =
+    customer === 'Barbora'
+      ? lineBarbora
+      : customer === 'Ikea'
+      ? lineIkea
+      : customer === 'Unisend'
+      ? lineUnisend
+      : line;
 
   backgroundImg.src =
-    customer === 'Barbora' ? backgroundBarbora : customer === 'Ikea' ? backgroundIkea : background;
+    customer === 'Barbora'
+      ? backgroundBarbora
+      : customer === 'Ikea'
+      ? backgroundIkea
+      : customer === 'Unisend'
+      ? backgroundUnisend
+      : background;
   backgroundImg2.src =
-    customer === 'Barbora' ? backgroundBarbora2 : customer === 'Ikea' ? backgroundIkea : background;
+    customer === 'Barbora'
+      ? backgroundBarbora2
+      : customer === 'Ikea'
+      ? backgroundIkea
+      : customer === 'Unisend'
+      ? backgroundUnisend
+      : background;
 
   const city1 = new Image();
   const city2 = new Image();
@@ -328,18 +383,24 @@ function startGame(scoreTableContainerInstance) {
       ? city1ImageDataBarbora
       : customer === 'Ikea'
       ? city1ImageDataIkea
+      : customer === 'Unisend'
+      ? city1ImageDataUnisend
       : city1ImageData;
   city2.src =
     customer === 'Barbora'
       ? city2ImageDataBarbora
       : customer === 'Ikea'
       ? city2ImageDataIkea
+      : customer === 'Unisend'
+      ? city2ImageDataUnisend
       : city2ImageData;
   city3.src =
     customer === 'Barbora'
       ? city3ImageDataBarbora
       : customer === 'Ikea'
       ? city3ImageDataIkea
+      : customer === 'Unisend'
+      ? city3ImageDataUnisend
       : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
@@ -717,7 +778,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 1); //intro speed
+      }, 4000); //intro speed
     }
     drawTitleScreen();
   }

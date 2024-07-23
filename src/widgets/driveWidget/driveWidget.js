@@ -9,6 +9,7 @@ import {
   close,
   BarboraIntro,
   IkeaIntro,
+  UnisendIntro,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -24,7 +25,7 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
+    this.customer = this.config.business_name ? this.config.business_name : 'Unisend';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.language = this.config.language ? this.config.language : 'EN';
@@ -96,7 +97,13 @@ class driveWidget {
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
-      this.customer === 'Barbora' ? '#CC0001' : this.customer === 'Ikea' ? '#0058A3' : '#FFE92D'
+      this.customer === 'Barbora'
+        ? '#CC0001'
+        : this.customer === 'Ikea'
+        ? '#0058A3'
+        : this.customer === 'Unisend'
+        ? '#376728'
+        : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
@@ -110,7 +117,13 @@ class driveWidget {
 
 
 <div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
-      this.customer === 'Barbora' ? '#CC0001' : this.customer === 'Ikea' ? '#0058A3' : '#FFE92D'
+      this.customer === 'Barbora'
+        ? '#CC0001'
+        : this.customer === 'Ikea'
+        ? '#0058A3'
+        : this.customer === 'Unisend'
+        ? '#376728'
+        : '#FFE92D'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
@@ -124,7 +137,13 @@ class driveWidget {
 
 
     <img src=${
-      this.customer === 'Barbora' ? BarboraIntro : this.customer === 'Ikea' ? IkeaIntro : intro
+      this.customer === 'Barbora'
+        ? BarboraIntro
+        : this.customer === 'Unisend'
+        ? UnisendIntro
+        : this.customer === 'Ikea'
+        ? IkeaIntro
+        : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
