@@ -1,5 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;500;600;700;800;900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;600;700;800;900&display=swap');
+
+
+.ikea-bold {
+  font-family: 'NotoIKEALatin';
+  font-weight: bold;
+  font-style: normal;
+}
+
+.ikea-bold-italic {
+  font-family: 'NotoIKEALatin';
+  font-weight: bold;
+  font-style: italic;
+}
+
+.ikea-italic {
+  font-family: 'NotoIKEALatin';
+  font-weight: normal;
+  font-style: italic;
+}
+
+.ikea-regular {
+  font-family: 'NotoIKEALatin';
+  font-weight: normal;
+  font-style: normal;
+}
 
 
 .image-container {

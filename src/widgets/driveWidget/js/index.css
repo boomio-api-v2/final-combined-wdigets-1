@@ -1,3 +1,31 @@
+@font-face {
+  font-family: 'NotoIKEALatin';
+  src: url('Noto IKEA Latin/NotoIKEALatin-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NotoIKEALatin';
+  src: url('Noto IKEA Latin/NotoIKEALatin-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'NotoIKEALatin';
+  src: url('Noto IKEA Latin/NotoIKEALatin-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'NotoIKEALatin';
+  src: url('Noto IKEA Latin/NotoIKEALatin-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 #boomio-newGame-canvas {
   background-color: #000;

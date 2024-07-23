@@ -25,7 +25,11 @@ export class InputContainer {
     <div style="width: 100%; height: 180px;box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="color: #FFF;text-align: center;font-family: Georama;font-size: 40px;font-style: normal;font-weight: 900;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="color: #FFF;text-align: center;font-size: 40px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: ${
+      this.prop === 'Ikea' ? 'none' : 'uppercase'
+    };">${
       this.language === 'LV'
         ? 'NOTEIKUMI'
         : this.language === 'RU'
@@ -34,16 +38,18 @@ export class InputContainer {
         ? 'REEGLID'
         : this.prop === 'Fpro'
         ? 'RULES'
-        : 'TAISYKLĖS'
+        : 'Taisyklės'
     }</div>`}</div>
-    <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px; font-family: Poppins; font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
+    <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
           <div style="width: 172px; left: ${
             this.language === 'LV' || this.language === 'RU'
               ? '180px'
               : this.prop === 'Fpro'
               ? '130px'
               : '160px'
-          }; top: 9px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          }; top: 9px; position: absolute; color: white; font-size: 14px;  font-weight: 700; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    };line-height: 31.50px; word-wrap: break-word">
             ${
               this.language === 'LV'
                 ? 'lai lidotu'
@@ -64,7 +70,9 @@ export class InputContainer {
               : this.prop === 'Fpro'
               ? '150px'
               : '160px'
-          }; top: 46px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 31.50px; word-wrap: break-word">
+          }; top: 46px; position: absolute; color: white; font-size: 14px; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    }; font-weight: 700; line-height: 31.50px; word-wrap: break-word">
             ${
               this.language === 'LV'
                 ? 'labākam rezultātam'
@@ -83,7 +91,9 @@ export class InputContainer {
               : this.prop === 'Fpro'
               ? '105px'
               : '160px'
-          }; top: 85px; position: absolute; color: white; font-size: 14px; font-family: Georama; font-weight: 800; line-height: 18px; word-wrap: break-word">
+          }; top: 85px; position: absolute; color: white; font-size: 14px; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    }; font-weight: 700; line-height: 18px; word-wrap: break-word">
             ${
               this.language === 'LV'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
@@ -115,7 +125,9 @@ export class InputContainer {
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
                 ? '20px'
                 : '24px'
-            }; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+            }; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
                 this.language === 'LV'
                   ? 'NOSPIEDIET'
@@ -132,7 +144,9 @@ export class InputContainer {
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
                 ? '20px'
                 : '24px'
-            }; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+            }; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             2.  ${
               this.language === 'LV'
                 ? 'ATKĀRTOT'
@@ -149,7 +163,9 @@ export class InputContainer {
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
                 ? '20px'
                 : '24px'
-            }; font-family: Georama; font-weight: 800; line-height: 43.50px; word-wrap: break-word">
+            }; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+    }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             3. ${
               this.language === 'LV'
                 ? 'LAIMĒT'
@@ -171,7 +187,9 @@ export class InputContainer {
       this.prop === 'LemonGym' ||
       this.prop === 'Makalius' ||
       this.prop === 'Ikea'
-        ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
+        ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
+            this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+          }; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'LemonGym'
@@ -189,7 +207,9 @@ export class InputContainer {
               : this.prop === 'Fpro'
               ? 'href=https://fpro.com/'
               : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
-          } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;">${
+          } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
+            this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+          };">${
             this.language === 'LV'
               ? 'Lasīt pilnus spēles noteikumus. '
               : this.language === 'RU'
@@ -202,7 +222,7 @@ export class InputContainer {
           } </a></div>`
         : ''
     }
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 900; line-height: 21.60px; word-wrap: break-word;">  
+    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family: Poppins; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  
       </div>
     </div>
     <div>
@@ -213,7 +233,9 @@ export class InputContainer {
               };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; font-size: 24px; font-family: Oswald; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word">${
+              <div style="text-align: center; font-size: 24px; font-family:${
+                this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+              }; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px;  font-weight: 700; line-height: 24px; word-wrap: break-word">${
       this.language === 'LV'
         ? 'TĀLĀK'
         : this.language === 'RU'
