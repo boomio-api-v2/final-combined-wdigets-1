@@ -46,7 +46,7 @@ export class IkeaScoreTableContainer {
 
     <div style="width:100%;margin-top:20px;margin-bottom:20px;text-align: start; color: white; font-size: 60px;font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
+    } ; font-weight:800; text-transform: uppercase; word-wrap: break-word;line-height:20px ;"> 
     ${userPercentageDiscount ?? 0}% </div>
         <div style="letter-spacing: -0.3px;margin-top:10px;line-height: 150%;width:100%;text-align: start; color: white; font-size: 12px; font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
@@ -57,7 +57,7 @@ ar daugiau.</div>
     <div style="letter-spacing: -0.3px;line-height: 150%;margin-bottom:15px;width:100%;margin-top:10px; text-align: start; color: white; font-size: 10px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ; font-weight:300; word-wrap: break-word;"> 
-    <strong>Pasiūlymas galioja X d. , parodžius šį žaidimo langą kasoje.</strong></br>Kuponas galioja vieno apsipirkimo metu (nuolaidos nesumuojamos) įsigijus prekių IKEA fizinėje parduotuvėje Vilniuje. Kuponas negalioja pirkinių krepšeliui Švediškame restorane, bistro bei lauko kavinėje ir negali būti naudojamas alkoholiniams gėrimams įsigyti.</div>
+    <strong style="font-weight:700">Pasiūlymas galioja X d. , parodžius šį žaidimo langą kasoje.</strong></br>Kuponas galioja vieno apsipirkimo metu (nuolaidos nesumuojamos) įsigijus prekių IKEA fizinėje parduotuvėje Vilniuje. Kuponas negalioja pirkinių krepšeliui Švediškame restorane, bistro bei lauko kavinėje ir negali būti naudojamas alkoholiniams gėrimams įsigyti.</div>
 </div></div>
         `;
 
@@ -120,9 +120,8 @@ ar daugiau.</div>
           : 'white'
       }; font-size: 40px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ; font-weight: 900; ; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Fpro' ? 'Congrats!' : 'Laimėjai'
-    }</div>
+    } ; font-weight: 900;line-height:20px ; word-wrap: break-word" id="boomio-collection-scoreboard-name">'Laimėjai'
+    </div>
       
       <div class="boomio-scoreboard-text">
       `;
