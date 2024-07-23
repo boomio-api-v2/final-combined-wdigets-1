@@ -235,5 +235,67 @@ export const IkeaTree3 =
 export const IkeaIntro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/IkeaIntro.png?raw=true';
 
-export const grassIkea =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/grassSmall.png?raw=true';
+export const grassUnisend =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/grassSmall.png?raw=true';
+
+export const backgroundUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/background.png',
+];
+
+export const goldImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bags.png',
+];
+
+export const envelopeImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bag.png',
+];
+
+export const carImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bike.png',
+];
+
+export const mailboxImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bag.png',
+];
+
+export const wh1ImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Bigcity1.png',
+];
+
+export const wh2ImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Bigcity2.png',
+];
+
+export const wh3ImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Bigcity3.png',
+];
+
+export const city1ImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Bigcity1.png',
+];
+
+export const city2ImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Bigcity2.png',
+];
+
+export const city3ImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Bigcity3.png',
+];
+
+export const brickWallImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/sign.png',
+];
+
+export const cloudsImageDataUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/cloud.png?raw=true',
+];
+
+export const lineUnisend = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/line.png?raw=true',
+];
+
+export const IkeaUnisend =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Tree.png?raw=true';
+
+export const UnisendIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/introUnisend.png?raw=true';

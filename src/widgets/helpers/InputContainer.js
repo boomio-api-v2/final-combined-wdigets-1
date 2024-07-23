@@ -194,6 +194,8 @@ export class InputContainer {
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'LemonGym'
               ? 'href=https://www.lemongym.lt/nestabdyk/#zaidimas'
+              : this.prop === 'Ikea'
+              ? 'href=https://www.ikea.lt/en'
               : this.prop === 'Makalius'
               ? 'href=https://www.makalius.lt/gimtadienio-zaidimo-taisykles/'
               : this.language === 'LV'
