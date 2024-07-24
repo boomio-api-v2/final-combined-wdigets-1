@@ -30,9 +30,9 @@ export class InputRegisterContainer {
           ? 'white'
           : 'white'
       }; font-size: ${
-      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '30px' : '40px'
+      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '34px' : '40px'
     }; font-family: ${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; text-transform: ${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
     }; line-height: 62.40px; word-wrap: break-word">${
@@ -68,7 +68,7 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-      this.prop !== 'Ikea' ? 'none' : 'inline-flex'
+      this.prop !== 'Ikea' && this.prop !== 'Unisend' ? 'none' : 'inline-flex'
     }">
       <div  style=" ;cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
             <img id=" " src="${
@@ -77,8 +77,13 @@ export class InputRegisterContainer {
         </div>
         <div style="color: ${'white'}; font-size: 14px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    };font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">
-Sutinku gauti IKEA naujienas.
+    };font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
+      this.prop === 'Ikea'
+        ? 'Sutinku gauti IKEA naujienas.'
+        : this.language === 'LV'
+        ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
+        : 'Nõustun saama Unisend.ee uudiskirju.'
+    }
     </div>
       </div>
 
@@ -106,6 +111,10 @@ Sutinku gauti IKEA naujienas.
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
+        : this.prop === 'Unisend' && this.language === 'LV'
+        ? 'Es piekrītu Unisend privātuma politikai.'
+        : this.prop === 'Unisend' && this.language === 'EE'
+        ? 'Nõustun Unisendi privaatsuspoliitikaga.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Yesyes.lv jaunumus.'
         : this.language === 'RU'
@@ -129,6 +138,7 @@ Sutinku gauti IKEA naujienas.
       this.prop !== 'Fpro' &&
       this.prop !== 'Fantazijos' &&
       this.prop !== 'Makalius' &&
+      this.prop !== 'Unisend' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||

@@ -51,10 +51,14 @@ export class InputContainer {
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     };line-height: 31.50px; word-wrap: break-word">
             ${
-              this.language === 'LV'
+              this.language === 'LV' && this.game === 'drive'
+                ? 'uz sāniem braukt.'
+                : this.language === 'LV'
                 ? 'lai lidotu'
                 : this.language === 'RU'
                 ? 'чтобы лететь'
+                : this.language === 'LV' && this.game === 'drive'
+                ? 'külgsuunas sõitmiseks.'
                 : this.language === 'EE'
                 ? 'lendamiseks'
                 : this.game === 'drive'
@@ -95,10 +99,14 @@ export class InputContainer {
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 18px; word-wrap: break-word">
             ${
-              this.language === 'LV'
+              this.language === 'LV' && this.game === 'drive'
+                ? 'līdz pat 500 Unisend balvām!'
+                : this.language === 'LV'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
                 : this.language === 'RU'
                 ? 'до 30 призов от Yesyes.lv!'
+                : this.language === 'LV' && this.game === 'drive'
+                ? 'kuni 500 Unisend.ee auhinda!'
                 : this.language === 'EE'
                 ? 'kuni 30 yesyes.ee auhinda!'
                 : this.prop === 'LemonGym'
@@ -129,10 +137,14 @@ export class InputContainer {
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
-                this.language === 'LV'
+                this.language === 'LV' && this.game === 'drive'
+                  ? 'velciet'
+                  : this.language === 'LV'
                   ? 'NOSPIEDIET'
                   : this.language === 'RU'
                   ? 'ПРАВИЛА'
+                  : this.language === 'LV' && this.game === 'drive'
+                  ? 'pühkige'
                   : this.language === 'EE'
                   ? 'KLÕPSA'
                   : this.prop === 'Fpro'
@@ -186,6 +198,7 @@ export class InputContainer {
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Makalius' ||
+      this.prop === 'Unisend' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
