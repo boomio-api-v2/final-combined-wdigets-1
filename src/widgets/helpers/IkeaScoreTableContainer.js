@@ -81,7 +81,9 @@ ar daugiau.</div>
     let scoreboardText = `
      <div style="width:100%; top: 400px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family:${
        this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-     } ;font-weight: ${fontWeight};  word-wrap: break-word">Pagerink rezultatą, nes surinkus daugiau nei</br><div style='font-weight:500'> 2000 taškų laimėsi nuolaidą!</div></div>
+     } ;font-weight: ${fontWeight};  word-wrap: break-word;display: ${
+      this.currentScore > 2000 ? 'none' : 'block'
+    };">Pagerink rezultatą, nes surinkus daugiau nei</br><div style='font-weight:500'> 2000 taškų laimėsi nuolaidą!</div></div>
              </div>
 
        

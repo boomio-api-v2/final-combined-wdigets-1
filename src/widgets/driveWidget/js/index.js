@@ -80,8 +80,8 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = true;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Unisend';
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
+  const customer = config.business_name ? config.business_name : 'Ikea';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
