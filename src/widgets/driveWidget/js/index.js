@@ -416,7 +416,7 @@ function startGame(scoreTableContainerInstance) {
       : customer === 'Ikea'
       ? '#DEB47C'
       : customer === 'Unisend'
-      ? '#DEB47C'
+      ? '#545151'
       : '#FFF100';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
@@ -424,7 +424,7 @@ function startGame(scoreTableContainerInstance) {
       : customer === 'Ikea'
       ? '#B58E5B'
       : customer === 'Unisend'
-      ? '#B58E5B'
+      ? '#FFCA00'
       : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
@@ -1868,9 +1868,9 @@ function startGame(scoreTableContainerInstance) {
       ctx.drawImage(
         lineImg,
         0,
-        customer === 'Barbora' ? 340 : 325,
+        customer === 'Barbora' ? 340 : 330,
         426,
-        customer === 'Barbora' ? 7 : 5,
+        customer === 'Barbora' ? 7 : 6,
       );
     }
     if (customer !== 'Barbora') {
