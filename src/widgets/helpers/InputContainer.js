@@ -40,14 +40,14 @@ export class InputContainer {
         ? 'RULES'
         : 'Taisyklės'
     }</div>`}</div>
-    <div style="width: 360px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
-          <div style="width: 172px; left: ${
-            this.language === 'LV' || this.language === 'RU'
-              ? '180px'
-              : this.prop === 'Fpro'
-              ? '130px'
-              : '160px'
-          }; top: 9px; position: absolute; color: white; font-size: 14px;  font-weight: 700; font-family:${
+    <div style="width: 390px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
+          <div style="width:${this.prop === 'Ikea' ? '210px' : '172px'}; left: ${
+      this.language === 'LV' || this.language === 'RU'
+        ? '180px'
+        : this.prop === 'Fpro'
+        ? '130px'
+        : '160px'
+    }; top: 9px; position: absolute; color: white; font-size: 13px;  font-weight: 700; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     };line-height: 31.50px; word-wrap: break-word">
             ${
@@ -61,6 +61,8 @@ export class InputContainer {
                 ? 'külgsuunas sõitmiseks.'
                 : this.language === 'EE'
                 ? 'lendamiseks'
+                : this.game === 'drive' && this.prop === 'Ikea'
+                ? 'baksnodami kairiau ar dešiniau'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
@@ -74,7 +76,7 @@ export class InputContainer {
               : this.prop === 'Fpro'
               ? '150px'
               : '160px'
-          }; top: 46px; position: absolute; color: white; font-size: 14px; font-family:${
+          }; top: 46px; position: absolute; color: white; font-size: 13px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 31.50px; word-wrap: break-word">
             ${
@@ -84,6 +86,8 @@ export class InputContainer {
                 ? 'для лучшего результата'
                 : this.language === 'EE'
                 ? 'parema tulemuse saavutamiseks'
+                : this.game === 'drive' && this.prop === 'Ikea'
+                ? 'jei nesate patenkinti rezultatu'
                 : this.prop === 'Fpro'
                 ? 'FOR BETTER RESULT'
                 : 'dėl geresnio rezultato'
@@ -95,7 +99,7 @@ export class InputContainer {
               : this.prop === 'Fpro'
               ? '105px'
               : '160px'
-          }; top: 85px; position: absolute; color: white; font-size: 14px; font-family:${
+          }; top: 85px; position: absolute; color: white; font-size: 13px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 18px; word-wrap: break-word">
             ${
@@ -116,7 +120,7 @@ export class InputContainer {
                 : this.prop === 'Barbora'
                 ? 'iš karto!'
                 : this.prop === 'Ikea'
-                ? 'iš karto! '
+                ? 'ir prizą atsiimkite iš karto!'
                 : this.prop === 'Fantazijos'
                 ? 'net 69 Fantazijos.lt prizus!'
                 : this.prop === 'Makalius'
@@ -127,10 +131,14 @@ export class InputContainer {
           <div style="width: ${
             this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
               ? '165px'
+              : this.prop === 'Ikea'
+              ? '164px'
               : '145px'
           }; height: 139px; left: 20px; top: 0px; position: absolute">
             <div style="left: 0px; top: 0px; position: absolute; color: white; font-size: ${
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+                ? '20px'
+                : this.prop === 'Ikea'
                 ? '20px'
                 : '24px'
             }; font-family:${
@@ -149,11 +157,15 @@ export class InputContainer {
                   ? 'KLÕPSA'
                   : this.prop === 'Fpro'
                   ? 'CLICK'
+                  : this.prop === 'Ikea'
+                  ? 'Vairuokite,'
                   : 'Spausk'
               }
             </div>
             <div style="left: 0px; top: 36px; position: absolute; color: white; font-size: ${
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+                ? '20px'
+                : this.prop === 'Ikea'
                 ? '20px'
                 : '24px'
             }; font-family:${
@@ -168,11 +180,15 @@ export class InputContainer {
                 ? 'KORDA'
                 : this.prop === 'Fpro'
                 ? 'REPEAT'
+                : this.prop === 'Ikea'
+                ? 'Kartokite,'
                 : 'Kartok'
             }
             </div>
             <div style="left: 1px; top: 70px; position: absolute; color: white; font-size: ${
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+                ? '20px'
+                : this.prop === 'Ikea'
                 ? '20px'
                 : '24px'
             }; font-family:${
@@ -187,6 +203,8 @@ export class InputContainer {
                 ? 'VÕIDA'
                 : this.prop === 'Fpro'
                 ? 'WIN'
+                : this.prop === 'Ikea'
+                ? 'Laimėkite,'
                 : 'Laimėk'
             } 
             </div>
@@ -208,7 +226,7 @@ export class InputContainer {
               : this.prop === 'LemonGym'
               ? 'href=https://www.lemongym.lt/nestabdyk/#zaidimas'
               : this.prop === 'Ikea'
-              ? 'href=https://www.ikea.lt/en'
+              ? 'href=https://www.ikea.lt/en/zaidimo-ar-gerai-vairuojate-taisykles'
               : this.prop === 'Makalius'
               ? 'href=https://www.makalius.lt/gimtadienio-zaidimo-taisykles/'
               : this.language === 'LV'
@@ -233,6 +251,8 @@ export class InputContainer {
               ? 'Loe kõik mängureeglid läbi.'
               : this.prop === 'Fpro'
               ? 'Read full games rules. '
+              : this.prop === 'Ikea'
+              ? 'Visos žaidimo taisyklės'
               : 'Skaityk pilnas žaidimo taisykles.'
           } </a></div>`
         : ''

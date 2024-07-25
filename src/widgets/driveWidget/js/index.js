@@ -804,7 +804,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 4000); //intro speed
+      }, 1); //intro speed
     }
     drawTitleScreen();
   }
@@ -1477,7 +1477,6 @@ function startGame(scoreTableContainerInstance) {
             if (newHighScoreReached) {
               hideScore();
             }
-
             boomioService
               .signal('ROUND_FINISHED', 'signal', {
                 score: gameVars.currentScore,
@@ -1492,14 +1491,24 @@ function startGame(scoreTableContainerInstance) {
                     scoreTable,
                     gameVars.currentScore,
                   );
+                  const competitionRestart = document.getElementById('boomio-game-play-again');
+                  competitionRestart.addEventListener('click', clickEventHandlerResetGame);
                 }
                 if (showCompetitiveRegistration === 'competition') {
                   scoreTable = response;
-                  scoreTableContainerInstance.updateProps(customer, scoreTable);
+                  scoreTableContainerInstance.updateProps(
+                    customer,
+                    scoreTable,
+                    gameVars.currentScore,
+                  );
                 }
                 if (showCompetitiveRegistration === 'collectable') {
                   scoreTable = response;
-                  scoreTableContainerInstance.updateProps(customer, scoreTable);
+                  scoreTableContainerInstance.updateProps(
+                    customer,
+                    scoreTable,
+                    gameVars.currentScore,
+                  );
                 }
               })
               .catch((error) => {

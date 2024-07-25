@@ -44,6 +44,8 @@ export class InputRegisterContainer {
         ? 'REGISTREERI MÄNGIMISEKS'
         : this.prop === 'Fpro'
         ? 'REGISTER TO PLAY'
+        : this.prop === 'Ikea'
+        ? 'Registracija'
         : 'Registruokis</br> Žaisti'
     }</div>
       <div id="boomio-competition-confirm-field" disabled=${
@@ -71,7 +73,7 @@ export class InputRegisterContainer {
       this.prop !== 'Ikea' && this.prop !== 'Unisend' ? 'none' : 'inline-flex'
     }">
       <div  style=" ;cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
-            <img id=" " src="${
+            <img id="privacyCheckboxImg2" src="${
               privacyCheckboxChecked2 ? checkIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
@@ -228,6 +230,8 @@ export class InputRegisterContainer {
         ? 'Mängija e-post'
         : this.prop === 'Fpro'
         ? 'Email address'
+        : this.prop === 'Ikea'
+        ? 'El. pašto adresas'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
