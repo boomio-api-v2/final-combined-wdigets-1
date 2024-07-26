@@ -27,7 +27,11 @@ export class InputContainer {
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="color: #FFF;text-align: center;font-size: 40px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: ${
+    }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="${
+      this.prop === 'Ikea' ? 'margin-left:20px' : ''
+    };color: #FFF;text-align: ${
+      this.prop === 'Ikea' ? 'start' : 'center'
+    } ;font-size: 40px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: ${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
     };">${
       this.language === 'LV'

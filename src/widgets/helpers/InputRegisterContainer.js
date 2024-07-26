@@ -22,14 +22,16 @@ export class InputRegisterContainer {
     let privacyCheckboxChecked2 = true; // Use let instead of const to allow reassignment
 
     containerDiv.innerHTML = `
-      <div style="height: 124px; top: 50px; position: relative; text-align: center;margin:10px; color: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
-      }; font-size: ${
+      <div style="height: 124px; top: 70px; position: relative; text-align:${
+        this.prop === 'Ikea' ? 'start' : 'center'
+      } ;left:34px;margin-right:68px; color: ${
+      this.prop === 'Barbora' ||
+      this.prop === 'Fpro' ||
+      this.prop === 'Fantazijos' ||
+      this.prop === 'LemonGym'
+        ? 'white'
+        : 'white'
+    }; font-size: ${
       this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '34px' : '40px'
     }; font-family: ${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'

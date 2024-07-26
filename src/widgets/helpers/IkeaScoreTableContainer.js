@@ -26,13 +26,13 @@ export class IkeaScoreTableContainer {
     const containerDiv = document.querySelector('.competition-table-container');
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-        <div style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family:${
+        <div style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute;margin-left:55px; text-align: start; color: white; font-size: 16px; font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
         } ; font-weight:400; text-transform:${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
     } ; word-wrap: break-word"> 
-    Tavo rezultatas - ${this.currentScore ?? 0} </div>
-      <div style="width:100%;top: 85px; position: absolute; text-align: center; color: ${
+    Jūsų rezultatas - ${this.currentScore ?? 0} </div>
+      <div style="width:100%;top: 85px; position: absolute; text-align: start; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
@@ -41,7 +41,7 @@ export class IkeaScoreTableContainer {
           : 'white'
       }; font-size: 36px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ; font-weight: 700;line-height:normal ; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+    } ; margin-left:55px;font-weight: 700;line-height:normal ; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.currentScore > 500 ? 'Sveikiname!' : 'Mes žinome, </br> kad galite geriau!'
     }
     </div>
@@ -105,7 +105,7 @@ ar daugiau.</div>
     tableHTML += '</div>';
 
     let scoreboardText = `
-     <div style="width:100%; top: 400px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family:${
+     <div style="width:100%; top: 400px;margin-top:10px; margin-left:55px;position: absolute; text-align: start; color: white; font-size: 14px; font-family:${
        this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
      } ;font-weight: 300;  word-wrap: break-word;display:${
       this.currentScore < 500 ? 'block' : 'none'
