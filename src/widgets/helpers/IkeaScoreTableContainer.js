@@ -98,7 +98,7 @@ ar daugiau.</div>
     <div style="letter-spacing: -0.3px;line-height: 150%;margin-bottom:15px;width:100%;margin-top:10px; text-align: start; color: white; font-size: 10px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ; font-weight:300; word-wrap: break-word;"> 
-    <strong style="font-weight:700">Kuponas galioja  <span id="current-date"></span> d.</strong></br>Atsiskaitydami už pirkinius, parodykite šį langą kasoje. </br>Kuponas skirtas vienam apsipirkimui (nuolaidos nesumuojamos) parduotuvėje IKEA Vilniuje. Juo negalima atsiskaityti Švediškame restorane, Švediškame bistro ir Švediškoje lauko kavinėje. Nuolaida netaikoma alkoholiniams gėrimams.</div>
+    <strong style="font-weight:700">Kuponas galioja  <span id="current-date"></span></strong></br>Atsiskaitydami už pirkinius, parodykite šį langą kasoje. </br>Kuponas skirtas vienam apsipirkimui (nuolaidos nesumuojamos) parduotuvėje IKEA Vilniuje. Juo negalima atsiskaityti Švediškame restorane, Švediškame bistro ir Švediškoje lauko kavinėje. Nuolaida netaikoma alkoholiniams gėrimams.</div>
 </div></div>
         `;
 
@@ -118,7 +118,6 @@ ar daugiau.</div>
     containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     const currentDate = new Date().toLocaleDateString('lt-LT', {
-      year: 'numeric',
       month: 'long',
       day: 'numeric',
     });
