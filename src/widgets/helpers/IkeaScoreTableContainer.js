@@ -31,7 +31,7 @@ export class IkeaScoreTableContainer {
         } ; font-weight:400; text-transform:${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
     } ; word-wrap: break-word"> 
-    Tavo rezultatas:  ${this.currentScore ?? 0} </div>
+    Tavo rezultatas - ${this.currentScore ?? 0} </div>
       <div style="width:100%;top: 85px; position: absolute; text-align: center; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
@@ -66,7 +66,7 @@ export class IkeaScoreTableContainer {
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${'Žaisti dar kartą'}</div>
+    } ; font-weight: 400; line-height: 24px; word-wrap: break-word;cursor:pointer;">${'Žaisti dar kartą'}</div>
       </div>
 
       <div style="left:calc(50% - 40px);width:80px;top:625px;position:absolute;height: 45px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " >
@@ -88,9 +88,7 @@ export class IkeaScoreTableContainer {
     <div style="width:100%;text-align: start; color: white; font-size: 60px;font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ; font-weight:800; text-transform: uppercase; word-wrap: break-word;line-height:normal;"> 
-    ${
-      isNaN(userPercentageDiscount) ? 0 : userPercentageDiscount
-    }<sup style="font-size:30px">€</sup></div>
+    ${5}<sup style="font-size:30px">€</sup></div>
         <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;text-align: start; color: white; font-size: 12px; font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
         } ; font-weight:300; word-wrap: break-word;"> 
@@ -100,7 +98,7 @@ ar daugiau.</div>
     <div style="letter-spacing: -0.3px;line-height: 150%;margin-bottom:15px;width:100%;margin-top:10px; text-align: start; color: white; font-size: 10px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ; font-weight:300; word-wrap: break-word;"> 
-    <strong style="font-weight:700">Kuponas galioja xxxxx d.</strong></br>Atsiskaitydami už pirkinius, parodykite šį langą kasoje. </br>Kuponas skirtas vienam apsipirkimui (nuolaidos nesumuojamos) parduotuvėje IKEA Vilniuje. Juo negalima atsiskaityti Švediškame restorane, Švediškame bistro ir Švediškoje lauko kavinėje. Nuolaida netaikoma alkoholiniams gėrimams.</div>
+    <strong style="font-weight:700">Kuponas galioja  <span id="current-date"></span> d.</strong></br>Atsiskaitydami už pirkinius, parodykite šį langą kasoje. </br>Kuponas skirtas vienam apsipirkimui (nuolaidos nesumuojamos) parduotuvėje IKEA Vilniuje. Juo negalima atsiskaityti Švediškame restorane, Švediškame bistro ir Švediškoje lauko kavinėje. Nuolaida netaikoma alkoholiniams gėrimams.</div>
 </div></div>
         `;
 
@@ -109,15 +107,23 @@ ar daugiau.</div>
     let scoreboardText = `
      <div style="width:100%; top: 400px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family:${
        this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-     } ;font-weight: 400;  word-wrap: break-word;display:${
+     } ;font-weight: 300;  word-wrap: break-word;display:${
       this.currentScore < 500 ? 'block' : 'none'
-    };">Deja, šį kartą nieko nelaimėjote.</br><div style='margin-top:10px;font-weight:400;font-family:'Noto Sans';'> 2000 taškų laimėsi nuolaidą!</div><div style='font-weight:400;font-family:'Noto Sans'; >Surinkę daugiau nei 2000 taškų,</div><divstyle='font-weight:400;font-family:'Noto Sans'; > gausite nuolaidą IKEA pirkinių krepšeliui.
+    };">Deja, šį kartą nieko nelaimėjote.</br><div style='margin-top:10px;font-weight:300;font-family:'Noto Sans';'> 2000 taškų laimėsi nuolaidą!</div><div style='font-weight:300;font-family:'Noto Sans'; >Surinkę daugiau nei 2000 taškų,</div><divstyle='font-weight:300;font-family:'Noto Sans'; > gausite nuolaidą IKEA pirkinių krepšeliui.
 </div></div>
              </div>
     `;
 
     containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
     containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+
+    const currentDate = new Date().toLocaleDateString('lt-LT', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    document.getElementById('current-date').textContent = currentDate;
+
     this.containerDiv = containerDiv;
   }
 

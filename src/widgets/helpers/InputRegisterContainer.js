@@ -53,7 +53,9 @@ export class InputRegisterContainer {
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center;font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-        };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: 700; line-height: 24px; word-wrap: break-word" >${
+        };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: ${
+      this.prop === 'Ikea' ? '400' : '700'
+    }; line-height: 24px; word-wrap: break-word" >${
       this.language === 'LV'
         ? 'TĀLĀK'
         : this.language === 'RU'
@@ -70,7 +72,9 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-      this.prop !== 'Ikea' && this.prop !== 'Unisend' ? 'none' : 'inline-flex'
+      this.prop !== 'Ikea' && this.prop !== 'Unisend' && this.prop !== 'Corepetitus'
+        ? 'none'
+        : 'inline-flex'
     }">
       <div  style=" ;cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg2" src="${
@@ -82,6 +86,8 @@ export class InputRegisterContainer {
     };font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
+        : this.prop === 'Corepetitus'
+        ? 'Sutinku gauti Corepetitus naujienlaiškius.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
@@ -129,6 +135,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
         : this.prop === 'Ikea'
         ? 'Sutinku su'
+        : this.prop === 'Corepetitus'
+        ? 'Sutinku su'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -150,9 +158,15 @@ export class InputRegisterContainer {
               ? 'https://www.barbora.lt/info/privatumo-politika'
               : this.prop === 'Ikea'
               ? 'https://www.ikea.lt/lt/privacy-policy'
+              : this.prop === 'Corepetitus'
+              ? 'https://www.corepetitus.lt/privatumo-politika'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline;font-size:14px;">${
-            this.prop === 'Ikea' ? 'IKEA privatumo politika' : 'privatumo politika'
+            this.prop === 'Ikea'
+              ? 'IKEA privatumo politika'
+              : this.prop === 'Corepetitus'
+              ? 'Corepetitus privatumo politika'
+              : 'privatumo politika'
           }.</a> `
         : ''
     }

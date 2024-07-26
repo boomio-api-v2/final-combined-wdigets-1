@@ -38,6 +38,8 @@ export class InputContainer {
         ? 'REEGLID'
         : this.prop === 'Fpro'
         ? 'RULES'
+        : this.prop === 'Ikea'
+        ? 'Kaip žaisti?'
         : 'Taisyklės'
     }</div>`}</div>
     <div style="width: 390px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
@@ -46,6 +48,8 @@ export class InputContainer {
         ? '180px'
         : this.prop === 'Fpro'
         ? '130px'
+        : this.prop === 'Ikea'
+        ? '155px'
         : '160px'
     }; top: 9px; position: absolute; color: white; font-size: 13px;  font-weight: 700; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -75,6 +79,8 @@ export class InputContainer {
               ? '180px'
               : this.prop === 'Fpro'
               ? '150px'
+              : this.prop === 'Ikea'
+              ? '155px'
               : '160px'
           }; top: 46px; position: absolute; color: white; font-size: 13px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -98,6 +104,8 @@ export class InputContainer {
               ? '180px'
               : this.prop === 'Fpro'
               ? '105px'
+              : this.prop === 'Ikea'
+              ? '155px'
               : '160px'
           }; top: 85px; position: absolute; color: white; font-size: 13px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -119,6 +127,8 @@ export class InputContainer {
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
                 ? 'iš karto!'
+                : this.prop === 'Corepetitus'
+                ? 'COREPETITUS priedą!'
                 : this.prop === 'Ikea'
                 ? 'ir prizą atsiimkite iš karto!'
                 : this.prop === 'Fantazijos'
@@ -217,6 +227,7 @@ export class InputContainer {
       this.prop === 'LemonGym' ||
       this.prop === 'Makalius' ||
       this.prop === 'Unisend' ||
+      this.prop === 'Corepetitus' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -239,7 +250,7 @@ export class InputContainer {
               ? 'href=https://www.fantazijos.lt/zaidimo-taisykles'
               : this.prop === 'Fpro'
               ? 'href=https://fpro.com/'
-              : 'href=https://drive.google.com/file/d/1UdSXF9ekFoyyzB4S1swMj7uAEtMa91c0/view?usp=sharing'
+              : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
           };">${
@@ -270,7 +281,9 @@ export class InputContainer {
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family:${
                 this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-              }; font-weight: 700; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px;  font-weight: 700; line-height: 24px; word-wrap: break-word">${
+              }; font-weight: ${
+      this.prop === 'Ikea' ? '400' : '700'
+    }; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px;  line-height: 24px; word-wrap: break-word">${
       this.language === 'LV'
         ? 'TĀLĀK'
         : this.language === 'RU'
