@@ -297,6 +297,7 @@ export class InputContainer {
         : this.prop === 'Barbora' ||
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
+          this.prop === 'Corepetitus' ||
           this.prop === 'Makalius'
         ? 'PIRMYN'
         : this.prop === 'Fpro'
