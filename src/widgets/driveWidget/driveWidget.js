@@ -86,9 +86,7 @@ class driveWidget {
   </div>
 
 
-    <div style="left:${
-      this.language !== 'LT' ? 'calc(50% - 150px)' : 'calc(50% - 100px)'
-    };position: absolute;z-index:999;pointer-events:none" class="tutorial">
+    <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${
       this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
     };font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${

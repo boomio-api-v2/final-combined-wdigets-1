@@ -47,26 +47,28 @@ export class InputContainer {
         : 'Taisyklės'
     }</div>`}</div>
     <div style="width: 390px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
-          <div style="width:${this.prop === 'Ikea' ? '210px' : '172px'}; left: ${
-      this.language === 'LV' && this.prop === 'Unisend'
-        ? '155px'
-        : this.language === 'LV' || this.language === 'RU'
-        ? '180px'
-        : this.prop === 'Fpro'
-        ? '130px'
-        : this.prop === 'Ikea'
-        ? '155px'
-        : this.prop === 'Unisend'
-        ? '140px'
-        : '160px'
-    }; top: 9px; position: absolute; color: white; font-size: 13px;  font-weight: 700; font-family:${
+          <div style="left: ${
+            this.language === 'LV' && this.prop === 'Unisend'
+              ? '155px'
+              : this.language === 'LV' || this.language === 'RU'
+              ? '180px'
+              : this.prop === 'Fpro'
+              ? '130px'
+              : this.prop === 'Ikea'
+              ? '155px'
+              : this.prop === 'Unisend' && this.language === 'EE'
+              ? '180px'
+              : this.prop === 'Unisend'
+              ? '140px'
+              : '160px'
+          }; top: 9px; position: absolute; color: white; font-size: 13px;  font-weight: 700; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     };line-height: 31.50px; word-wrap: break-word">
             ${
               this.language === 'LV' && this.game === 'drive'
                 ? 'uz sāniem braukt.'
-                : this.language === 'LV' && this.game === 'drive'
-                ? 'külgsuunas sõitmiseks.'
+                : this.language === 'EE' && this.game === 'drive'
+                ? '- libista sõrmega küljelt küljele.'
                 : this.language === 'LV'
                 ? 'lai lidotu'
                 : this.language === 'RU'
@@ -103,7 +105,7 @@ export class InputContainer {
                 : this.language === 'RU'
                 ? 'для лучшего результата'
                 : this.language === 'EE'
-                ? 'parema tulemuse saavutamiseks'
+                ? 'parema tulemuse saavutamiseks.'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
@@ -129,7 +131,7 @@ export class InputContainer {
             ${
               this.language === 'LV' && this.game === 'drive'
                 ? 'līdz pat 500 Unisend balvām!'
-                : this.language === 'LV' && this.game === 'drive'
+                : this.language === 'EE' && this.game === 'drive'
                 ? 'kuni 500 Unisend.ee auhinda!'
                 : this.language === 'LV'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
@@ -173,8 +175,8 @@ export class InputContainer {
               1. ${
                 this.language === 'LV' && this.game === 'drive'
                   ? 'Velciet'
-                  : this.language === 'LV' && this.game === 'drive'
-                  ? 'pühkige'
+                  : this.language === 'EE' && this.game === 'drive'
+                  ? 'LIIKUMISEKS'
                   : this.language === 'LV'
                   ? 'NOSPIEDIET'
                   : this.language === 'RU'

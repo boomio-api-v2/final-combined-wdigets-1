@@ -1922,9 +1922,9 @@ function startGame(scoreTableContainerInstance) {
       ctx.drawImage(
         lineImg,
         0,
-        customer === 'Barbora' ? 340 : 328,
+        customer === 'Barbora' ? 340 : 330,
         426,
-        customer === 'Barbora' ? 7 : 5,
+        customer === 'Barbora' ? 7 : 6,
       );
     }
     const whOffset = xCenter - xOffset;
