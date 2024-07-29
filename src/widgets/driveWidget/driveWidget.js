@@ -27,10 +27,10 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
+    this.customer = this.config.business_name ? this.config.business_name : 'Unisend';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'points';
-    this.language = this.config.language ? this.config.language : '';
+    this.language = this.config.language ? this.config.language : 'EE';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -95,10 +95,10 @@ class driveWidget {
       this.customer === 'Ikea' ? 'none' : 'uppercase'
     };">
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'pühkige' : 'Brūkšt'
+          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'LIIGU' : 'Brūkšt'
         }</div>
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'pühkige' : 'Brūkšt'
+          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'LIIGU' : 'Brūkšt'
         }</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>

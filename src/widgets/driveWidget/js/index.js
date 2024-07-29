@@ -80,7 +80,9 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = true;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Ikea';
+  const customer = config.business_name ? config.business_name : 'Unisend';
+  const language = config.language ? config.language : 'EE';
+
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
   let userBestPlace = 0;
   let scoreTable = {};
@@ -804,7 +806,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 1); //intro speed
+      }, 4000); //intro speed
     }
     drawTitleScreen();
   }
@@ -826,11 +828,11 @@ function startGame(scoreTableContainerInstance) {
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
                   document.getElementById('competition-email-error').innerText =
-                    this.language === 'LV'
+                    language === 'LV'
                       ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                      : this.language === 'RU'
+                      : language === 'RU'
                       ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                      : this.language === 'EE'
+                      : language === 'EE'
                       ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
@@ -844,11 +846,11 @@ function startGame(scoreTableContainerInstance) {
                   document.getElementById('competition-name-error').style.border = 'none';
                 } else if (response.res_code === 'NICKNAME_EXIST') {
                   document.getElementById('competition-name-error').innerText =
-                    this.language === 'LV'
+                    language === 'LV'
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                      : this.language === 'RU'
+                      : language === 'RU'
                       ? 'Этот псевдоним уже существует. Используйте другой.'
-                      : this.language === 'EE'
+                      : language === 'EE'
                       ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-name-error').style.backgroundColor =
