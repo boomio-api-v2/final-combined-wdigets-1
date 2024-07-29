@@ -81,7 +81,7 @@ function startGame(scoreTableContainerInstance) {
 
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'Unisend';
-  const language = config.language ? config.language : 'EE';
+  const language = config.language ? config.language : '';
 
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
   let userBestPlace = 0;
