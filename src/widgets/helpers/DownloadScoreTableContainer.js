@@ -13,7 +13,6 @@ export class DownloadScoreTableContainer {
   }
 
   updateProps(prop, scoreTable, currentScore) {
-    console.log(prop, scoreTable, currentScore);
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.currentScore = currentScore;
@@ -108,7 +107,7 @@ export class DownloadScoreTableContainer {
 
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-        <div style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
+        <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
       <div style="width:100%;top: 85px; position: absolute; text-align: center; color: ${
         this.prop === 'Barbora' ||

@@ -1,5 +1,5 @@
 import './styles.css';
-import { checkIcon } from './constants';
+import { uncheckIcon } from './constants';
 import { localStorageService } from '@/services';
 export class InputRegisterContainer {
   constructor(prop) {
@@ -74,13 +74,11 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-      this.prop !== 'Ikea' && this.prop !== 'Unisend' && this.prop !== 'Corepetitus'
-        ? 'none'
-        : 'inline-flex'
+      this.prop !== 'Unisend' && this.prop !== 'Corepetitus' ? 'none' : 'inline-flex'
     }">
       <div  style=" ;cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg2" src="${
-              privacyCheckboxChecked2 ? checkIcon : ''
+              privacyCheckboxChecked2 ? uncheckIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: 14px; font-family:${
@@ -104,7 +102,7 @@ export class InputRegisterContainer {
       this.prop === 'Fpro' ? 'auto' : 'pointer'
     };">
             <img id="privacyCheckboxImg" src="${
-              privacyCheckboxChecked ? checkIcon : ''
+              privacyCheckboxChecked ? uncheckIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${

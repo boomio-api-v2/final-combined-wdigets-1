@@ -76,14 +76,14 @@ import {
 
 function startGame(scoreTableContainerInstance) {
   let config = localStorageService.getDefaultConfig();
-  let checkboxChange = true;
-  let checkboxChange2 = true;
+  let checkboxChange = false;
+  let checkboxChange2 = false;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : '';
+  const customer = config.business_name ? config.business_name : 'Ikea';
   const language = config.language ? config.language : '';
 
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : '';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -1505,6 +1505,9 @@ function startGame(scoreTableContainerInstance) {
                   );
                 }
                 if (showCompetitiveRegistration === 'collectable') {
+                  const scoreDiv = document.getElementById('boomio-your-score');
+                  scoreDiv.textContent = `TAVO REZULTATAS: ${gameVars.currentScore}`;
+
                   scoreTable = response;
                   scoreTableContainerInstance.updateProps(
                     customer,
