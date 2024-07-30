@@ -42,7 +42,7 @@ export class IkeaScoreTableContainer {
       }; font-size: 36px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ; margin-left:55px;font-weight: 700;line-height:normal ; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.currentScore > 500 ? 'Sveikiname!' : 'Mes žinome, </br> kad galite geriau!'
+      this.currentScore > 2000 ? 'Sveikiname!' : 'Mes žinome, </br> kad galite geriau!'
     }
     </div>
       
@@ -52,7 +52,7 @@ export class IkeaScoreTableContainer {
     containerDiv.innerHTML += `
               </div>
               <div  style="width: calc(100% - 40px); display:${
-                this.currentScore > 500 ? 'block' : 'none'
+                this.currentScore > 2000 ? 'block' : 'none'
               };left: 20px; top: 124px; position: absolute;border-right:none;  backdrop-filter: blur(4px);filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));">
               <div >
             <div class="boomio-tbody">
@@ -108,7 +108,7 @@ ar daugiau.</div>
      <div style="width:100%; top: 400px;margin-top:10px; margin-left:55px;position: absolute; text-align: start; color: white; font-size: 14px; font-family:${
        this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
      } ;font-weight: 300;  word-wrap: break-word;display:${
-      this.currentScore < 500 ? 'block' : 'none'
+      this.currentScore < 2000 ? 'block' : 'none'
     };">Deja, šį kartą nieko nelaimėjote.</br><div style='margin-top:10px;font-weight:300;font-family:'Noto Sans';'> Žaiskite vėl ir pagerinkite rezultatą.</div><div style='font-weight:300;font-family:'Noto Sans'; >Surinkę daugiau nei 2000 taškų,</div><divstyle='font-weight:300;font-family:'Noto Sans'; > gausite nuolaidą IKEA pirkinių krepšeliui.
 </div></div>
              </div>
