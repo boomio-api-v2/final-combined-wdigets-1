@@ -92,7 +92,7 @@ export class IkeaScoreTableContainer {
         <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;text-align: start; color: white; font-size: 12px; font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
         } ; font-weight:300; word-wrap: break-word;"> 
-   Nuolaida jūsų pirkinių krepšeliui,</br> perkant už 50 € 
+   muolaidą jūsų pirkinių krepšeliui,</br> perkant už 50 € 
 ar daugiau.</div>
 
     <div style="letter-spacing: -0.3px;line-height: 150%;margin-bottom:15px;width:100%;margin-top:10px; text-align: start; color: white; font-size: 10px; font-family:${
