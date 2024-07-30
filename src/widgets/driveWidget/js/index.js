@@ -80,10 +80,10 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = true;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : '';
+  const customer = config.business_name ? config.business_name : 'Barbora';
   const language = config.language ? config.language : '';
 
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : '';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'collectable';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -1505,6 +1505,9 @@ function startGame(scoreTableContainerInstance) {
                   );
                 }
                 if (showCompetitiveRegistration === 'collectable') {
+                  const scoreDiv = document.getElementById('boomio-your-score');
+                  scoreDiv.textContent = `TAVO REZULTATAS: ${gameVars.currentScore}`;
+
                   scoreTable = response;
                   scoreTableContainerInstance.updateProps(
                     customer,
