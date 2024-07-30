@@ -304,5 +304,8 @@ export const lineUnisend = [
 export const treeUnisend =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Tree.png?raw=true';
 
-export const UnisendIntro =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/introUnisend.png?raw=true';
+export const UnisendIntroLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/unisendIntro-lv.gif?raw=true';
+
+export const UnisendIntroEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/unisendIntro-ee.gif?raw=true';

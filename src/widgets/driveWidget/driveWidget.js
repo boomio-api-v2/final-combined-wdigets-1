@@ -11,7 +11,8 @@ import {
   close,
   BarboraIntro,
   IkeaIntro,
-  UnisendIntro,
+  UnisendIntroLV,
+  UnisendIntroEE,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -142,8 +143,10 @@ class driveWidget {
     <img src=${
       this.customer === 'Barbora'
         ? BarboraIntro
-        : this.customer === 'Unisend'
-        ? UnisendIntro
+        : this.customer === 'Unisend' && this.language === 'EE'
+        ? UnisendIntroEE
+        : this.customer === 'Unisend' && this.language === 'LV'
+        ? UnisendIntroLV
         : this.customer === 'Ikea'
         ? IkeaIntro
         : intro
