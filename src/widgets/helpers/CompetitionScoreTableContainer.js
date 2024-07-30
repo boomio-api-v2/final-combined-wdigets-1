@@ -38,6 +38,8 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Fpro' ||
             this.prop === 'Fantazijos' ||
             this.prop === 'Makalius' ||
+            this.prop === 'Ikea' ||
+            this.prop === 'Unisend' ||
             this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
@@ -91,14 +93,7 @@ export class CompetitionScoreTableContainer {
     }
 
     let textColor = 'white';
-    let fontSize =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'Makalius' ||
-      this.prop === 'LemonGym'
-        ? '14px'
-        : '10px';
+    let fontSize = '14px';
     let fontWeight =
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -117,10 +112,14 @@ export class CompetitionScoreTableContainer {
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'DOVANA tau!'
+                : this.prop === 'Unisend' && this.language === 'LV'
+                ? 'TEV VEICAS LIELISKI!'
                 : this.language === 'LV'
                 ? 'Atzīmējiet karstāko vasaru'
                 : this.language === 'RU'
                 ? 'Отпразднуйте самый жаркий месяц лета'
+                : this.prop === 'Unisend' && this.language === 'EE'
+                ? 'SUL LÄHEB HÄSTI!'
                 : this.language === 'EE'
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Fantazijos'
@@ -132,11 +131,15 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
-                : this.language === 'LV'
+                : this.prop === 'Unisend' && this.language === 'LV'
+                ? '500 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 1. </br> septembrī! Uzvarētāji tiks informēti e-pastā.'
+                : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
-                : this.language === 'RU'
+                : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
-                : this.language === 'EE'
+                : this.prop === 'Unisend' && this.language === 'EE'
+                ? 'Koguni 500 enim punkte kogunud mängijat </br> võidavad 1. septembril auhindu!'
+                : this.language === 'EE' && this.prop === 'Fantazijos'
                 ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
                 : this.prop === 'Fantazijos'
                 ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
@@ -149,11 +152,13 @@ export class CompetitionScoreTableContainer {
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
-              this.language === 'LV'
+              this.prop === 'Unisend' && this.language === 'EE'
+                ? 'Võitjatega võetakse ühendust e-posti teel.'
+                : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
-                : this.language === 'RU'
+                : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
-                : this.language === 'EE'
+                : this.language === 'EE' && this.prop === 'Fantazijos'
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
@@ -181,10 +186,14 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.prop === 'Makalius'
                 ? 'TU GALI!'
+                : this.prop === 'Unisend' && this.language === 'LV'
+                ? 'TEV VEICAS LIELISKI!'
                 : this.language === 'LV'
                 ? 'Atzīmējiet karstāko vasaru'
                 : this.language === 'RU'
                 ? 'Отпразднуйте самый жаркий месяц лета'
+                : this.prop === 'Unisend' && this.language === 'EE'
+                ? 'SUL LÄHEB HÄSTI!'
                 : this.language === 'EE'
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : 'Tu gali!'
@@ -198,22 +207,28 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Makalius'
                 ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
-                : this.language === 'LV'
+                : this.prop === 'Unisend' && this.language === 'LV'
+                ? '500 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 1. </br> septembrī! Uzvarētāji tiks informēti e-pastā.'
+                : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
-                : this.language === 'RU'
+                : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
-                : this.language === 'EE'
+                : this.prop === 'Unisend' && this.language === 'EE'
+                ? 'Koguni 500 enim punkte kogunud mängijat </br> võidavad 1. septembril auhindu!'
+                : this.language === 'EE' && this.prop === 'Fantazijos'
                 ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
-                : 'Pagerink rezultatą nes 2024. 06. 09 d.</br>net 69 geriausi žaidėjai laimės prizus!'
+                : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
-              this.language === 'LV'
+              this.prop === 'Unisend' && this.language === 'EE'
+                ? 'Võitjatega võetakse ühendust e-posti teel.'
+                : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
-                : this.language === 'RU'
+                : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">vasara </a></div>'
-                : this.language === 'EE'
+                : this.language === 'EE' && this.prop === 'Fantazijos'
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
@@ -224,15 +239,15 @@ export class CompetitionScoreTableContainer {
               <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
-                : this.language === 'LV'
+                : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
-                : this.language === 'RU'
+                : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
-                : this.language === 'EE'
+                : this.language === 'EE' && this.prop === 'Fantazijos'
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
-                : this.prop === 'Makalius'
+                : this.prop === 'Makalius' || this.prop === 'Unisend'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div>

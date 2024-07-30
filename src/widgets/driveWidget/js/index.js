@@ -80,8 +80,10 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = true;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Unisend';
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'collectable';
+  const customer = config.business_name ? config.business_name : '';
+  const language = config.language ? config.language : '';
+
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : '';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -411,13 +413,39 @@ function startGame(scoreTableContainerInstance) {
   const grass2 = customer === 'Barbora' ? '#A9C734' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR =
-    customer === 'Barbora' ? '#545151' : customer === 'Ikea' ? '#DEB47C' : '#FFF100';
+    customer === 'Barbora'
+      ? '#545151'
+      : customer === 'Ikea'
+      ? '#DEB47C'
+      : customer === 'Unisend'
+      ? '#545151'
+      : '#FFF100';
   const BAD_FUNDING_COLOR1 =
-    customer === 'Barbora' ? '#FFCA00' : customer === 'Ikea' ? '#B58E5B' : '#1D1D1B';
+    customer === 'Barbora'
+      ? '#FFCA00'
+      : customer === 'Ikea'
+      ? '#B58E5B'
+      : customer === 'Unisend'
+      ? '#FFCA00'
+      : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
-  const road1 = customer === 'Barbora' ? '#959595' : customer === 'Ikea' ? '#959595' : '#F9F1DD';
-  const road2 = customer === 'Barbora' ? 'white' : customer === 'Ikea' ? 'white' : 'black';
+  const road1 =
+    customer === 'Barbora'
+      ? '#959595'
+      : customer === 'Ikea'
+      ? '#959595'
+      : customer === 'Unisend'
+      ? '#959595'
+      : '#F9F1DD';
+  const road2 =
+    customer === 'Barbora'
+      ? 'white'
+      : customer === 'Ikea'
+      ? 'white'
+      : customer === 'Unisend'
+      ? 'white'
+      : 'black';
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
 
@@ -800,7 +828,13 @@ function startGame(scoreTableContainerInstance) {
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
                   document.getElementById('competition-email-error').innerText =
-                    'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                    language === 'LV'
+                      ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                      : language === 'RU'
+                      ? 'Этот е-мейл адрес уже существует. Используйте другой.'
+                      : language === 'EE'
+                      ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                      : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
                     '#FFBABA';
                   document.getElementById('competition-email-error').style.border = '1px solid red';
@@ -812,7 +846,13 @@ function startGame(scoreTableContainerInstance) {
                   document.getElementById('competition-name-error').style.border = 'none';
                 } else if (response.res_code === 'NICKNAME_EXIST') {
                   document.getElementById('competition-name-error').innerText =
-                    'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                    language === 'LV'
+                      ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                      : language === 'RU'
+                      ? 'Этот псевдоним уже существует. Используйте другой.'
+                      : language === 'EE'
+                      ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                      : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-name-error').style.backgroundColor =
                     '#FFBABA';
                   document.getElementById('competition-name-error').style.border = '1px solid red';
@@ -1439,7 +1479,6 @@ function startGame(scoreTableContainerInstance) {
             if (newHighScoreReached) {
               hideScore();
             }
-
             boomioService
               .signal('ROUND_FINISHED', 'signal', {
                 score: gameVars.currentScore,
@@ -1454,14 +1493,24 @@ function startGame(scoreTableContainerInstance) {
                     scoreTable,
                     gameVars.currentScore,
                   );
+                  const competitionRestart = document.getElementById('boomio-game-play-again');
+                  competitionRestart.addEventListener('click', clickEventHandlerResetGame);
                 }
                 if (showCompetitiveRegistration === 'competition') {
                   scoreTable = response;
-                  scoreTableContainerInstance.updateProps(customer, scoreTable);
+                  scoreTableContainerInstance.updateProps(
+                    customer,
+                    scoreTable,
+                    gameVars.currentScore,
+                  );
                 }
                 if (showCompetitiveRegistration === 'collectable') {
                   scoreTable = response;
-                  scoreTableContainerInstance.updateProps(customer, scoreTable);
+                  scoreTableContainerInstance.updateProps(
+                    customer,
+                    scoreTable,
+                    gameVars.currentScore,
+                  );
                 }
               })
               .catch((error) => {
@@ -1753,6 +1802,15 @@ function startGame(scoreTableContainerInstance) {
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
+    } else if (customer === 'Unisend') {
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+
+      gradient.addColorStop(0, '#FFF7CC'); // Start color at 0%
+      gradient.addColorStop(0.396, '#FFDC00'); // End color at 58.5%
+
+      ctx.fillStyle = gradient;
+
+      ctx.fillRect(0, 0, width, height);
     } else {
       ctx.fillStyle = sky;
       ctx.fillRect(0, 0, width, height);
@@ -1782,6 +1840,16 @@ function startGame(scoreTableContainerInstance) {
       ctx.fillStyle = gradient;
       // Draw the rectangle with the gradient fill
       ctx.fillRect(0, skyHeight, width, groundHeight);
+    } else if (customer === 'Unisend') {
+      const gradient = ctx.createLinearGradient(0, 0, width, 0);
+      // Add color stops to the gradient
+      gradient.addColorStop(0.1457, '#959595');
+      gradient.addColorStop(0.5042, '#AAA');
+      gradient.addColorStop(0.8626, '#959595');
+      // Set the fill style to the gradient
+      ctx.fillStyle = gradient;
+      // Draw the rectangle with the gradient fill
+      ctx.fillRect(0, skyHeight, width, groundHeight);
     } else {
       ctx.fillStyle = fillStyle;
       ctx.fillRect(0, skyHeight, width, groundHeight);
@@ -1802,13 +1870,17 @@ function startGame(scoreTableContainerInstance) {
       ctx.drawImage(
         lineImg,
         0,
-        customer === 'Barbora' ? 340 : 325,
+        customer === 'Barbora' ? 340 : 330,
         426,
-        customer === 'Barbora' ? 7 : 5,
+        customer === 'Barbora' ? 7 : 6,
       );
     }
     if (customer !== 'Barbora') {
-      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+      if (customer === 'Unisend') {
+        ctx.drawImage(backgroundImg, -50, 148, 476, 185);
+      } else {
+        ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+      }
       drawImage(
         wh1,
         { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },
@@ -1850,15 +1922,18 @@ function startGame(scoreTableContainerInstance) {
       ctx.drawImage(
         lineImg,
         0,
-        customer === 'Barbora' ? 340 : 328,
+        customer === 'Barbora' ? 340 : 330,
         426,
-        customer === 'Barbora' ? 7 : 5,
+        customer === 'Barbora' ? 7 : 6,
       );
     }
     const whOffset = xCenter - xOffset;
     if (customer !== 'Barbora') {
-      ctx.drawImage(backgroundImg, -3, 228, 426, 105);
-
+      if (customer === 'Unisend') {
+        ctx.drawImage(backgroundImg, -50, 148, 476, 185);
+      } else {
+        ctx.drawImage(backgroundImg, -3, 228, 426, 105);
+      }
       drawImage(
         city1,
         { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 },

@@ -77,6 +77,11 @@ export const stopwatch =
 
 export const star =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/star.png?raw=true';
+export const newRecordLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordLV.png?raw=true';
+
+export const newRecordEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEE.png?raw=true';
 
 export const newRecord =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecord.png?raw=true';
@@ -233,7 +238,7 @@ export const IkeaTree3 =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/Tree3.png?raw=true';
 
 export const IkeaIntro =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/IkeaIntro.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/IkeaIntro.gif?raw=true';
 
 export const grassIkea =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/grassSmall.png?raw=true';
@@ -299,5 +304,8 @@ export const lineUnisend = [
 export const treeUnisend =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/Tree.png?raw=true';
 
-export const UnisendIntro =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/introUnisend.png?raw=true';
+export const UnisendIntroLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/unisendIntro-lv.gif?raw=true';
+
+export const UnisendIntroEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/unisendIntro-ee.gif?raw=true';

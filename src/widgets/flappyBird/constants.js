@@ -85,3 +85,9 @@ export const MakaliusFlappyIntro =
 
 export const MakaliusFlappyBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Makalius/MakaliusFlappyBackground.png';
+
+export const CorepetitusFlappyIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/corepetitus/corepetitusIntro.gif';
+
+export const CorepetitusFlappyBackground =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/corepetitus/corepetitusBackground.png';

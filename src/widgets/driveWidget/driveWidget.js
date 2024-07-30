@@ -6,10 +6,13 @@ import {
   stopwatch,
   star,
   newRecord,
+  newRecordEE,
+  newRecordLV,
   close,
   BarboraIntro,
   IkeaIntro,
-  UnisendIntro,
+  UnisendIntroLV,
+  UnisendIntroEE,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -25,10 +28,9 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Unisend';
-    this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'points';
-    this.language = this.config.language ? this.config.language : 'EN';
+    this.customer = this.config.business_name ? this.config.business_name : '';
+    this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : '';
+    this.language = this.config.language ? this.config.language : '';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -61,7 +63,9 @@ class driveWidget {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${
+      this.language === 'EE' ? newRecordEE : this.language === 'LV' ? newRecordLV : newRecord
+    }  alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers" style="z-index:10">
     <span class="numbers__window">
@@ -82,17 +86,17 @@ class driveWidget {
   </div>
 
 
-    <div style="left:calc(50% - 100px);position: absolute;z-index:999;pointer-events:none" class="tutorial">
+    <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${
       this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
     };font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${
       this.customer === 'Ikea' ? 'none' : 'uppercase'
     };">
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'Brūkšt'
+          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'LIIGU' : 'Brūkšt'
         }</div>
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'liigutama' : 'Brūkšt'
+          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'LIIGU' : 'Brūkšt'
         }</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
@@ -139,8 +143,10 @@ class driveWidget {
     <img src=${
       this.customer === 'Barbora'
         ? BarboraIntro
-        : this.customer === 'Unisend'
-        ? UnisendIntro
+        : this.customer === 'Unisend' && this.language === 'EE'
+        ? UnisendIntroEE
+        : this.customer === 'Unisend' && this.language === 'LV'
+        ? UnisendIntroLV
         : this.customer === 'Ikea'
         ? IkeaIntro
         : intro

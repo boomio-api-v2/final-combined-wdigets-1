@@ -39,6 +39,8 @@ import {
   introGifFantazijosLV,
   introGifFantazijosEE,
   introGifFantazijosRU,
+  CorepetitusFlappyIntro,
+  CorepetitusFlappyBackground,
   newRecordEn,
 } from './constants';
 class FlappyBird {
@@ -46,7 +48,7 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -113,6 +115,8 @@ class FlappyBird {
         ? FproFlappyBackground
         : this.customer === 'Makalius'
         ? MakaliusFlappyBackground
+        : this.customer === 'Corepetitus'
+        ? CorepetitusFlappyBackground
         : mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -717,6 +721,8 @@ class FlappyBird {
         ? FproFlappyIntro
         : this.customer === 'Makalius'
         ? MakaliusFlappyIntro
+        : this.customer === 'Corepetitus'
+        ? CorepetitusFlappyIntro
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
