@@ -28,7 +28,7 @@ class DoodleWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.checkboxChange = true;
+    this.checkboxChange = false;
 
     this.isMobile = window.innerWidth <= 1280;
     this.customer = this.config.business_name ? this.config.business_name : 'Barbora';

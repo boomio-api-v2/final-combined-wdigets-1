@@ -84,7 +84,7 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
 
-    this.checkboxChange = true;
+    this.checkboxChange = false;
 
     this.flappy = document.getElementById('boomio-flappy-container');
 

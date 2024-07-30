@@ -109,7 +109,7 @@ ar daugiau.</div>
        this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
      } ;font-weight: 300;  word-wrap: break-word;display:${
       this.currentScore < 500 ? 'block' : 'none'
-    };">Deja, šį kartą nieko nelaimėjote.</br><div style='margin-top:10px;font-weight:300;font-family:'Noto Sans';'> 2000 taškų laimėsi nuolaidą!</div><div style='font-weight:300;font-family:'Noto Sans'; >Surinkę daugiau nei 2000 taškų,</div><divstyle='font-weight:300;font-family:'Noto Sans'; > gausite nuolaidą IKEA pirkinių krepšeliui.
+    };">Deja, šį kartą nieko nelaimėjote.</br><div style='margin-top:10px;font-weight:300;font-family:'Noto Sans';'> Žaiskite vėl ir pagerinkite rezultatą.</div><div style='font-weight:300;font-family:'Noto Sans'; >Surinkę daugiau nei 2000 taškų,</div><divstyle='font-weight:300;font-family:'Noto Sans'; > gausite nuolaidą IKEA pirkinių krepšeliui.
 </div></div>
              </div>
     `;
