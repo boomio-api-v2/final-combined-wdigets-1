@@ -811,17 +811,31 @@ function startGame(scoreTableContainerInstance) {
     drawTitleScreen();
   }
 
-  function clickEventHandlerShowRules() {
+  async function hashString(message) {
+    if (!message) {
+      throw new Error('Invalid input: Cannot hash an empty or undefined string.');
+    }
+
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map((byte) => byte.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+  }
+
+  async function clickEventHandlerShowRules() {
     if (gameCount === 0) {
-      setTimeout(() => {
+      setTimeout(async () => {
         const emailInput = document.querySelector('.boomio-competition-email-input-field');
         const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-
+        const email = emailInput?.value;
+        console.log(email);
+        const userEmail = customer === 'Ikea' ? await hashString(email) : emailInput?.value;
         if (showCompetitiveRegistration && checkboxChange) {
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange,
-              user_email: emailInput?.value,
+              user_email: userEmail,
               user_name: playerNameInput?.value,
             })
             .then((response) => {
