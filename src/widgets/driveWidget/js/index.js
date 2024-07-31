@@ -829,7 +829,6 @@ function startGame(scoreTableContainerInstance) {
         const emailInput = document.querySelector('.boomio-competition-email-input-field');
         const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
         const email = emailInput?.value;
-        console.log(email);
         const userEmail = customer === 'Ikea' ? await hashString(email) : emailInput?.value;
         if (showCompetitiveRegistration && checkboxChange) {
           boomioService
