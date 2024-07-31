@@ -112,15 +112,15 @@ export class PointCopyTableContainer {
         ? '900'
         : '700';
     let scoreboardText = `
-     <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
+     <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
       this.currentScore > 600 ? 'Registruokis COREPETITUS.LT platformoje,' : 'TU GALI!'
     } </div>
              </div>
-             <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
-      this.currentScore > 600
-        ? 'Panaudok laimėtą kodą ir gauk papildomą priedą prie pajamų! Mėgaukis nuotoline veikla, lanksčiomis valandomis, reguliariai kylančiu apmokėjimu bei didžiausia Lietuvoje korepetitorių bendruomene.'
-        : 'Pagerink rezultatą, nes surinkus daugiau nei 600 taškų laimėsi papildomą priedą prie pajamų!'
-    } </div>
+             <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight: 400; text-transform: uppercase; word-wrap: break-word">${
+               this.currentScore > 600
+                 ? 'Panaudok laimėtą kodą ir gauk papildomą priedą prie pajamų! Mėgaukis nuotoline veikla, lanksčiomis valandomis, reguliariai kylančiu apmokėjimu bei didžiausia Lietuvoje korepetitorių bendruomene.'
+                 : 'Pagerink rezultatą, nes surinkus daugiau nei 600 taškų laimėsi papildomą priedą prie pajamų!'
+             } </div>
 
              </div>
        
