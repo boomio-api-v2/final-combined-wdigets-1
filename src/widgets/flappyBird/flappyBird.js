@@ -43,6 +43,7 @@ import {
   introGifFantazijosRU,
   CorepetitusFlappyIntro,
   CorepetitusFlappyBackground,
+  CorepetituslappyScore,
   newRecordEn,
 } from './constants';
 class FlappyBird {
@@ -50,7 +51,7 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -876,6 +877,8 @@ ${`<div style="${
           ? scoreImage
           : this.customer === 'Fantazijos'
           ? scoreImageFantazijos
+          : this.customer === 'Corepetitus'
+          ? CorepetituslappyScore
           : this.customer === 'Fpro'
           ? FproFlappyScore
           : this.customer === 'Makalius'
@@ -957,16 +960,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     }
 
     if (this.showCompetitiveRegistration === 'points') {
-      const gameContainer = document.querySelector('.game-container-flappy');
-
-      this.scoreTableContainerInstance = new PointScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-        this.currentScore,
-      );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-    }
-    if (this.showCompetitiveRegistration === 'collectable') {
       if (this.customer === 'Corepetitus') {
         const gameContainer = document.querySelector('.game-container');
 
@@ -978,14 +971,24 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
       } else {
         const gameContainer = document.querySelector('.game-container-flappy');
-        this.scoreTableContainerInstance = new CollectionScoreTableContainer(
+
+        this.scoreTableContainerInstance = new PointScoreTableContainer(
           this.customer,
-          this.collectables,
-          this.collection,
-          this.just_won,
+          this.scoreTable,
+          this.currentScore,
         );
         gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
       }
+    }
+    if (this.showCompetitiveRegistration === 'collectable') {
+      const gameContainer = document.querySelector('.game-container-flappy');
+      this.scoreTableContainerInstance = new CollectionScoreTableContainer(
+        this.customer,
+        this.collectables,
+        this.collection,
+        this.just_won,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
 
     if (
