@@ -93,4 +93,4 @@ export const CorepetitusFlappyBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/corepetitus/corepetitusBackground.png';
 
 export const CorepetituslappyScore =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/Corepetitus/corepetitusScore.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/corepetitus/corepetitusScore.png';
