@@ -87,7 +87,7 @@ export class PointCopyTableContainer {
     <div style="letter-spacing: -0.3px;line-height: 150%;margin-bottom:5px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 11px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
     ${
       this.currentScore > 600
-        ? 'Kodas papildomam priedui gauti gali būti panaudotas vieną kartą.Piniginis prizas bus gaunamas tik tuo atveju, jei paslaugas Corepetitus teiks bent 1 mėn. '
+        ? 'Kodas papildomam priedui gauti gali būti panaudotas vieną kartą. Piniginis prizas bus gaunamas tik tuo atveju, jei paslaugas Corepetitus teiks bent 1 mėn. '
         : 'Kodas papildomam priedui gauti gali būti panaudotas vieną kartą. Piniginis prizas bus gaunamas tik tuo atveju, jei paslaugas Corepetitus teiks bent 1 mėn.  '
     }</div>
 </div>
