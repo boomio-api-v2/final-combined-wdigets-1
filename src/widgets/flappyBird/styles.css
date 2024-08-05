@@ -174,10 +174,6 @@ cursor:pointer;
 }
 
 .numbers { 
-  text-shadow: 2px 0 #FF9161
-  , -2px 0 #FF9161, 0 2px #FF9161
-  , 0 -2px #FF9161,
-  1px 1px #FF9161, -1px -1px #FF9161, 1px -1px #FF9161, -1px 1px #FF9161;
   z-index: 3;
   font-family: Georama;
   font-size: 44px;
