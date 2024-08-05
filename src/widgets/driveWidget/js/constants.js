@@ -172,6 +172,9 @@ export const BarboraTree2 =
 export const BarboraTree3 =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/barbora/Tree3.png?raw=true';
 
+export const newRecordIkea = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/newRecord.png',
+];
 export const backgroundIkea = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/ikea/background.png',
 ];
