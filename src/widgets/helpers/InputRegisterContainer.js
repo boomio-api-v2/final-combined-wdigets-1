@@ -74,9 +74,9 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-      this.prop !== 'Unisend' && this.prop !== 'Corepetitus' ? 'none' : 'inline-flex'
+      this.prop !== 'Unisend' ? 'none' : 'inline-flex'
     }">
-      <div  style=" ;cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
+      <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg2" src="${
               privacyCheckboxChecked2 ? uncheckIcon : ''
             }" style="width: 20px; height: 20px;">
@@ -98,9 +98,9 @@ export class InputRegisterContainer {
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
         } ;left: 34px; top: 385px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
-      <div  style=" display: ${this.prop === 'Fpro' ? 'none' : 'inline-flex'};cursor: ${
-      this.prop === 'Fpro' ? 'auto' : 'pointer'
-    };">
+      <div  style=" display: ${
+        this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'
+      };cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg" src="${
               privacyCheckboxChecked ? uncheckIcon : ''
             }" style="width: 20px; height: 20px;">
@@ -123,13 +123,13 @@ export class InputRegisterContainer {
         ? 'Es piekrītu Unisend privātuma politikai.'
         : this.prop === 'Unisend' && this.language === 'EE'
         ? 'Nõustun Unisendi privaatsuspoliitikaga.'
-        : this.language === 'LV'
-        ? 'Es piekrītu saņemt Yesyes.lv jaunumus.'
-        : this.language === 'RU'
-        ? 'Я согласен получать рассылки Yesyes.lv.'
-        : this.language === 'EE'
-        ? 'Nõustun saama yesyes.ee uudiskirju.'
-        : this.prop === 'Fantazijos'
+        : this.prop === 'Fantazijos' && this.language === 'LV'
+        ? 'Turpinot spēlēt, es piekrītu saņemt yesyes.lv jaunumus.'
+        : this.prop === 'Fantazijos' && this.language === 'RU'
+        ? 'Продолжая играть, я соглашаюсь получать информационную рассылку yesyes.lv.'
+        : this.prop === 'Fantazijos' && this.language === 'EE'
+        ? 'Mängu jätkates nõustun yesyes.ee uudiskirja saamisega.'
+        : this.prop === 'Fantazijos' && this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
         : this.prop === 'Makalius'
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'

@@ -11,6 +11,8 @@ import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
+import { PointCopyTableContainer } from '../helpers/PointCopyTableContainer';
+
 import {
   close,
   introGif,
@@ -41,6 +43,7 @@ import {
   introGifFantazijosRU,
   CorepetitusFlappyIntro,
   CorepetitusFlappyBackground,
+  CorepetituslappyScore,
   newRecordEn,
 } from './constants';
 class FlappyBird {
@@ -432,16 +435,83 @@ class FlappyBird {
                           );
                         }
                         if (this.showCompetitiveRegistration === 'collectable') {
-                          this.collection = response?.collection
-                            ? response?.collection
-                            : this.collection;
-                          this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                          if (this.customer !== 'Corepetitus') {
+                            this.collection = response?.collection
+                              ? response?.collection
+                              : this.collection;
+                            this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                            this.scoreTableContainerInstance.updateProps(
+                              this.customer,
+                              this.collectables,
+                              this.collection,
+                              this.just_won,
+                            );
+                          }
+                        }
+                        if (this.customer === 'Corepetitus') {
+                          this.scoreTable = response;
                           this.scoreTableContainerInstance.updateProps(
                             this.customer,
-                            this.collectables,
-                            this.collection,
-                            this.just_won,
+                            this.scoreTable,
+                            this.currentScore,
                           );
+                          const clickEventHandlerResetGame = () => {
+                            const controlButton = document.querySelector('.control-button1');
+                            this.index = 0;
+                            this.currentScore = 0;
+
+                            const competitionTableContainer = document.querySelector(
+                              '.competition-table-container',
+                            );
+
+                            competitionTableContainer.style.transition =
+                              'height 1s ease, top 1s ease, opacity 1s ease';
+                            setTimeout(() => {
+                              competitionTableContainer.style.height = '10px';
+                              competitionTableContainer.style.top = 'calc(50% + 330px)';
+                              competitionTableContainer.style.opacity = 0;
+                            }, 100);
+                            setTimeout(() => {
+                              competitionTableContainer.style.display = 'none';
+                            }, 1000);
+
+                            setTimeout(() => {
+                              if (
+                                this.showCompetitiveRegistration === 'competition' ||
+                                this.showCompetitiveRegistration === 'points' ||
+                                this.showCompetitiveRegistration === 'collectable'
+                              ) {
+                                boomioService
+                                  .signal('ROUND_STARTED', 'signal')
+                                  .then((response) => {
+                                    document.getElementById('background_blur').style.display =
+                                      'none';
+                                    const canvas = document.getElementById('flappy-canvas');
+                                    canvas.style.transition = 'filter 1s ease';
+                                    canvas.style.filter = 'none';
+                                    this.gamePlaying = true;
+                                  })
+                                  .catch((error) => {
+                                    console.error('Error:', error);
+                                  });
+                              }
+                            }, 400);
+                            controlButton.style.display = 'none';
+                            controlButton.style.opacity = 0;
+                          };
+                          const competitionRestart =
+                            document.getElementById('boomio-game-play-again');
+                          competitionRestart.removeEventListener(
+                            'click',
+                            clickEventHandlerResetGame,
+                          );
+
+                          setTimeout(() => {
+                            competitionRestart.addEventListener(
+                              'click',
+                              clickEventHandlerResetGame,
+                            );
+                          }, 1000);
                         }
                       })
                       .catch((error) => {
@@ -807,6 +877,8 @@ ${`<div style="${
           ? scoreImage
           : this.customer === 'Fantazijos'
           ? scoreImageFantazijos
+          : this.customer === 'Corepetitus'
+          ? CorepetituslappyScore
           : this.customer === 'Fpro'
           ? FproFlappyScore
           : this.customer === 'Makalius'
@@ -888,14 +960,25 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     }
 
     if (this.showCompetitiveRegistration === 'points') {
-      const gameContainer = document.querySelector('.game-container-flappy');
+      if (this.customer === 'Corepetitus') {
+        const gameContainer = document.querySelector('.game-container');
 
-      this.scoreTableContainerInstance = new PointScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-        this.currentScore,
-      );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+        this.scoreTableContainerInstance = new PointCopyTableContainer(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
+        );
+        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+      } else {
+        const gameContainer = document.querySelector('.game-container-flappy');
+
+        this.scoreTableContainerInstance = new PointScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
+        );
+        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+      }
     }
     if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container-flappy');
@@ -918,10 +1001,13 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
+
             if (
-              this.showCompetitiveRegistration === 'competition' ||
-              this.showCompetitiveRegistration === 'points' ||
-              this.showCompetitiveRegistration === 'collectable'
+              (this.showCompetitiveRegistration === 'competition' ||
+                this.showCompetitiveRegistration === 'points' ||
+                this.showCompetitiveRegistration === 'collectable') &&
+              checkboxChange
             ) {
               boomioService
                 .signal('', 'user_info', {

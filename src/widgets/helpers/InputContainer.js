@@ -81,7 +81,7 @@ export class InputContainer {
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
                 ? 'TO FLY'
-                : 'kad skristum'
+                : 'kad skristum.'
             }
           </div>
           <div style="width: 229px; left: ${
@@ -110,7 +110,7 @@ export class InputContainer {
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
                 ? 'FOR BETTER RESULT'
-                : 'dėl geresnio rezultato'
+                : 'dėl geresnio rezultato.'
             }
           </div>
           <div style="width: 236px; left: ${
@@ -272,6 +272,8 @@ export class InputContainer {
               ? 'href=https://www.fantazijos.lt/zaidimo-taisykles'
               : this.prop === 'Fpro'
               ? 'href=https://fpro.com/'
+              : this.prop === 'Corepetitus'
+              ? 'href=https://www.corepetitus.lt/zaidimo-taisykles'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'

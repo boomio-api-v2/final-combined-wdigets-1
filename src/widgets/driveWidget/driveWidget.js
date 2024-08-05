@@ -13,6 +13,7 @@ import {
   IkeaIntro,
   UnisendIntroLV,
   UnisendIntroEE,
+  newRecordIkea,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -28,7 +29,7 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
+    this.customer = this.config.business_name ? this.config.business_name : 'Corepetitus';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.language = this.config.language ? this.config.language : '';
@@ -65,7 +66,13 @@ class driveWidget {
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      this.language === 'EE' ? newRecordEE : this.language === 'LV' ? newRecordLV : newRecord
+      this.customer === 'Ikea'
+        ? newRecordIkea
+        : this.language === 'EE'
+        ? newRecordEE
+        : this.language === 'LV'
+        ? newRecordLV
+        : newRecord
     }  alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers" style="z-index:10">

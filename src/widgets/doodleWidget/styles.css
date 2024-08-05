@@ -94,18 +94,15 @@
 
 
 .numbers { 
-	text-shadow: 2px 0 #FF9161
-	, -2px 0 #FF9161, 0 2px #FF9161
-	, 0 -2px #FF9161,
-	1px 1px #FF9161, -1px -1px #FF9161, 1px -1px #FF9161, -1px 1px #FF9161;
 	z-index: 3;
-	font-family: Oswald;
+	font-family: Noto Sans;
 	font-size: 44px;
 	line-height: 1em;
 	text-align: center;
 	overflow: hidden;
 	position: absolute;
-	margin-bottom: 58px;
+	margin-bottom: 58px;  font-weight:700;
+
 	margin-left: 80px;
 	color:white;
 	display:none;
