@@ -175,13 +175,14 @@ cursor:pointer;
 
 .numbers { 
   z-index: 3;
-  font-family: Georama;
+  font-family: Noto Sans;
   font-size: 44px;
   line-height: 1em;
   text-align: center;
   overflow: hidden;
   position: absolute;
   margin-bottom: 58px;
+  font-weight:700;
   margin-left: 80px;
   color:white;
   display:none;
