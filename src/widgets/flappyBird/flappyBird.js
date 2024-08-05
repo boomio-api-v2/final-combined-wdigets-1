@@ -320,7 +320,12 @@ class FlappyBird {
 
         if (this.gamePlaying) {
           if (canvas.width > 450 || canvas.height < 600) {
-            canvas.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : '418';
+            canvas.width =
+              document.body.offsetWidth < 418
+                ? document.body.offsetWidth < 321
+                  ? '375px'
+                  : document.body.offsetWidth
+                : '418';
             canvas.height = '668';
           }
           pipes.map((pipe) => {
@@ -769,11 +774,20 @@ class FlappyBird {
     } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
     </img>
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
+      document.body.offsetWidth < 418
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '418px'
+    };
+       height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
     </img>
           <img  style="z-index:1;width: ${
-            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+            document.body.offsetWidth < 418
+              ? document.body.offsetWidth < 321
+                ? '375px'
+                : document.body.offsetWidth + 'px'
+              : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
     <img src=${
@@ -795,7 +809,11 @@ class FlappyBird {
         ? CorepetitusFlappyIntro
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.body.offsetWidth < 418
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
     </img>
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
@@ -901,7 +919,11 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
      
         <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
-          document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          document.body.offsetWidth < 418
+            ? document.body.offsetWidth < 321
+              ? '375px'
+              : document.body.offsetWidth + 'px'
+            : '418px'
         };display:none;" class="control-button" id="control-button">
         <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
@@ -910,7 +932,11 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 </div>
 </div>
 <div class="input-container1" style="width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.body.offsetWidth < 418
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '418px'
     }">
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
   <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
@@ -934,7 +960,11 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 </div>
         </div>
         <div style="justify-content: center; align-items: center; gap: 24px;width:${
-          document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          document.body.offsetWidth < 418
+            ? document.body.offsetWidth < 321
+              ? '375px'
+              : document.body.offsetWidth + 'px'
+            : '418px'
         };" class="control-button1">
         <div  style="margin-left: 46px; margin-right: 46px; padding-top: 14px; padding-bottom: 14px; width:100%;background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 32px; border: 2px rgba(255, 255, 255, 0.20) solid; justify-content: center; align-items: center; gap: 8px; display: flex;">
 <div style="color: white; font-size: 25px; font-family: Poppins; font-weight: 900; line-height: 24px; letter-spacing: 0.25px; word-wrap: break-word;" id="startButton">Play</div>
@@ -942,7 +972,11 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 </div>
       </div>
       <canvas id="flappy-canvas" width=${
-        document.body.offsetWidth < 418 ? document.body.offsetWidth : '418'
+        document.body.offsetWidth < 418
+          ? document.body.offsetWidth < 321
+            ? '375px'
+            : document.body.offsetWidth + 'px'
+          : '418px'
       } height="668" class="flappy-game"></canvas>
     </div>
   `;

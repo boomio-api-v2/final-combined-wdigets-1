@@ -16,8 +16,11 @@ export class InputRegisterContainer {
     containerDiv.style.backgroundSize = 'cover';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
-
+      document.body.offsetWidth < 426
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '426px';
     let privacyCheckboxChecked = true; // Use let instead of const to allow reassignment
     let privacyCheckboxChecked2 = true; // Use let instead of const to allow reassignment
 

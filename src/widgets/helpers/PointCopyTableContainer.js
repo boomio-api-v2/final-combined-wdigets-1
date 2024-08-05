@@ -151,7 +151,11 @@ export class PointCopyTableContainer {
     containerDiv.style.background = 'none';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
+      document.body.offsetWidth < 426
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '426px';
     this.containerDiv = containerDiv;
 
     const existingContainer = document.getElementById('collection-table-container');

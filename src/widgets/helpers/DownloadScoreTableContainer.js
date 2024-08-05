@@ -103,8 +103,11 @@ export class DownloadScoreTableContainer {
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
-
+      document.body.offsetWidth < 426
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
         <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 

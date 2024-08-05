@@ -268,8 +268,11 @@ export class CompetitionScoreTableContainer {
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
-
+      document.body.offsetWidth < 426
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
