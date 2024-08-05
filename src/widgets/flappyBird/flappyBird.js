@@ -55,7 +55,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Corepetitus';
+    this.customer = this.config.business_name ? this.config.business_name : 'Fantazijos';
     this.language = this.config.language ? this.config.language : 'EN';
 
     this.collectables = this.config.collectables ? this.config.collectables : [];
