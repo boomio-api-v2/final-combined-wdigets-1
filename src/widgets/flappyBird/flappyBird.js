@@ -55,7 +55,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Fantazijos';
+    this.customer = this.config.business_name ? this.config.business_name : 'Corepetitus';
     this.language = this.config.language ? this.config.language : 'EN';
 
     this.collectables = this.config.collectables ? this.config.collectables : [];
@@ -1001,10 +1001,13 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
+
             if (
-              this.showCompetitiveRegistration === 'competition' ||
-              this.showCompetitiveRegistration === 'points' ||
-              this.showCompetitiveRegistration === 'collectable'
+              (this.showCompetitiveRegistration === 'competition' ||
+                this.showCompetitiveRegistration === 'points' ||
+                this.showCompetitiveRegistration === 'collectable') &&
+              checkboxChange
             ) {
               boomioService
                 .signal('', 'user_info', {
