@@ -15,7 +15,11 @@ export class InputContainer {
     containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
-      document.body.offsetWidth < 426 ? document.body.offsetWidth + 'px' : '426px';
+      document.body.offsetWidth < 426
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '426px';
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
@@ -299,7 +303,11 @@ export class InputContainer {
     </div>
               </div>
               <div style="z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
-                document.body.offsetWidth < 430 ? document.body.offsetWidth + 'px' : '430px'
+                document.body.offsetWidth < 426
+                  ? document.body.offsetWidth < 321
+                    ? '375px'
+                    : document.body.offsetWidth + 'px'
+                  : '426px'
               };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">

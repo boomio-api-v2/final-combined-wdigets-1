@@ -80,7 +80,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = false;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Corepetitus';
+  const customer = config.business_name ? config.business_name : 'Unisend';
   const language = config.language ? config.language : '';
 
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
@@ -133,7 +133,7 @@ function startGame(scoreTableContainerInstance) {
   const FUNDING_HIT_AMOUNT = 10;
   const MAILBOX_HIT_AMOUNT = 5;
   const GOLD_HIT_AMOUNT = 5;
-  const PLAYER_EDGE = width / 2;
+  const PLAYER_EDGE = width / 2.3;
   const GAME_UPDATE_TIME = 5;
   const MAX_ROAD_WIDTH = width * ROAD_WIDTH_PERCENT;
   const SHAKE_CLASS_NAME = 'shake';
@@ -1359,7 +1359,7 @@ function startGame(scoreTableContainerInstance) {
       ctx.drawImage(grass, 0, i, x1, 1);
 
       // Draw grass image on the right
-      const x2 = Math.floor(currentRoadWidth + x1);
+      const x2 = Math.floor(currentRoadWidth + x1 + 20);
       ctx.drawImage(grass, x2, i, width - x2, 1);
     }
 
@@ -1376,11 +1376,8 @@ function startGame(scoreTableContainerInstance) {
 
     ctx.strokeStyle = road2;
     ctx.beginPath();
-    ctx.moveTo(Math.round(roadWidth.x2 - xOffset + xCenter + curve) - 20, i);
-    ctx.lineTo(
-      Math.round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve) - 20,
-      i,
-    );
+    ctx.moveTo(Math.round(roadWidth.x2 - xOffset + xCenter + curve), i);
+    ctx.lineTo(Math.round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve), i);
     ctx.closePath();
     ctx.stroke();
 
@@ -1580,7 +1577,7 @@ function startGame(scoreTableContainerInstance) {
       player.pos.x += turningSpeed;
     }
 
-    if (inputState.jump) jump();
+    // if (inputState.jump) jump();
 
     if (player.pos.y < 0)
       player.vel.y = clamp(
@@ -2307,12 +2304,12 @@ function startGame(scoreTableContainerInstance) {
         case 'ArrowRight':
           inputState.right = true;
           break;
-        case 'ArrowUp':
-          inputState.jump = true;
-          break;
-        case ' ':
-          inputState.jump = true;
-          break;
+        // case 'ArrowUp':
+        //   inputState.jump = true;
+        //   break;
+        // case ' ':
+        //   inputState.jump = true;
+        //   break;
       }
     });
 
@@ -2324,12 +2321,12 @@ function startGame(scoreTableContainerInstance) {
         case 'ArrowRight':
           inputState.right = false;
           break;
-        case 'ArrowUp':
-          inputState.jump = false;
-          break;
-        case ' ':
-          inputState.jump = false;
-          break;
+        // case 'ArrowUp':
+        //   inputState.jump = false;
+        //   break;
+        // case ' ':
+        //   inputState.jump = false;
+        //   break;
       }
     });
     document.getElementById('boomio-drive-canvas')?.addEventListener('touchstart', (e) => {
@@ -2371,7 +2368,7 @@ function startGame(scoreTableContainerInstance) {
   function pointerUp() {
     pointerState.down = false;
     if (realTime - pointerState.downAt < TOUCH_TIME) {
-      jump();
+      // jump();
       pointerState.upAt = gameTime;
     }
     pointerState.downAt = null;
