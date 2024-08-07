@@ -97,5 +97,5 @@ export const DePratiClawButton = [
 ];
 
 export const DePratiGiftOpened = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GiftOpened.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GiftTwoOpened.png',
 ];
