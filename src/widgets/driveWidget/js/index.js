@@ -1335,7 +1335,7 @@ function startGame(scoreTableContainerInstance) {
     const currentRoadWidth = roadWidthForI(i);
 
     // Draw grass image or color
-    if (customer === 'LemonGym') {
+    if (customer === 'LemonGym' || customer === 'Ikea') {
       ctx.strokeStyle = index < MAX_TEX / 2 ? '#85B62D' : '#A9C734';
       ctx.beginPath();
       ctx.moveTo(round(0), i);
