@@ -577,8 +577,6 @@ class ClawMachineWidget {
     shuffleArray(presents);
     // Create and display the presents
     for (let i = 0; i < totalPresents; i++) {
-      console.log(presents);
-
       const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
       const aspectRatio =
         (presents[i] === this.customer) === 'Deprati'
