@@ -99,3 +99,14 @@ export const DePratiClawButton = [
 export const DePratiGiftOpened = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GiftTwoOpened.png',
 ];
+
+export const DePratiThreeGiftOpened = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GiftThreeOpened.png',
+];
+export const DePratiGiftThree = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GiftThree.png',
+];
+
+export const DePratiGifThree = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/GifThree.gif',
+];

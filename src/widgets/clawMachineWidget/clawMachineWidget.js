@@ -191,7 +191,7 @@ class ClawMachineWidget {
     this.clawPole.style.border = 'none';
     this.clawPole.style.background =
       this.customer === 'Deprati'
-        ? 'linear-gradient(205deg, #86998B 31.89%, #515D54 100%)'
+        ? 'linear-gradient(205deg, #A0D3D7 31.89%, #66A3A6 100%)'
         : 'linear-gradient(180deg, #E89D9B 2.68%, #F17879 35.09%, #D85E99 63.96%, #C54AB5 99.91%)';
 
     this.clawPole.setAttribute('id', 'boomio-claw-pole');
