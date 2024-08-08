@@ -30,6 +30,9 @@ import {
   DePraticlawImg,
   DePratiClawButton,
   DePratiGiftOpened,
+  DePratiThreeGiftOpened,
+  DePratiGiftThree,
+  DePratiGifThree,
 } from './constants';
 import boomio from '@/services/boomio';
 
@@ -168,7 +171,7 @@ class ClawMachineWidget {
     this.clawLine.style.width = '323px';
     this.clawLine.style.height = '80px';
     this.clawLine.style.marginTop = '-185px';
-    this.clawLine.style.marginLeft = this.isMobile ? '-295px' : '-295px';
+    this.clawLine.style.marginLeft = this.isMobile ? '-295px' : '-285px';
     this.clawLine.style.backgroundColor = 'transparent';
     this.clawLine.style.border = 'none';
     this.clawLine.setAttribute('id', 'boomio-claw-line');
