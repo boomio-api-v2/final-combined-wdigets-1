@@ -262,6 +262,7 @@ class ClawMachineWidget {
     // Append the button to the document body
     background.appendChild(controlButton);
   }
+
   activateGrabbing(customer) {
     if (this.animationInProgress || this.isHoldingclawPresentDivs.some((held) => held)) {
       return;
@@ -313,7 +314,7 @@ class ClawMachineWidget {
           if (!this.isHoldingclawPresentDivs[index]) {
             this.isHoldingclawPresentDivs[index] = true;
 
-            clawPresentDiv.style.top = '60px';
+            clawPresentDiv.style.top = '40px';
             clawPresentDiv.style.left = `${clawDivRect.width / 2 - clawPresentDivRect.width / 2}px`;
 
             this.clawPresentDiv = clawPresentDiv;
@@ -325,13 +326,21 @@ class ClawMachineWidget {
             }
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
-                if (presentType.includes('GiftTwo')) {
+                if (presentType.includes('GiftTwo') || presentType.includes('GiftThree')) {
                   function restartGif(animationElement) {
-                    const Opened = `url(${DePratiGifTwo})`;
+                    const Opened = `url(${
+                      presentType.includes('GiftTwo')
+                        ? DePratiGifTwo
+                        : presentType.includes('GiftThree') && DePratiGifThree
+                    })`;
                     setTimeout(() => {
                       animationElement.style.backgroundImage = Opened;
                       setTimeout(() => {
-                        const gifUrl = `url(${DePratiGiftOpened})`;
+                        const gifUrl = `url(${
+                          presentType.includes('GiftTwo')
+                            ? DePratiGiftOpened
+                            : presentType.includes('GiftThree') && DePratiThreeGiftOpened
+                        })`;
                         animationElement.style.backgroundImage = gifUrl;
                       }, 500);
                     }, 10);
@@ -373,8 +382,9 @@ class ClawMachineWidget {
           if (this.clawPresentDiv) {
             const presentType = this.clawPresentDiv.style.backgroundImage;
             if (
-              this.isHoldingclawPresentDivs.some((item) => item === true) &&
-              presentType.includes('GiftTwo')
+              (this.isHoldingclawPresentDivs.some((item) => item === true) &&
+                presentType.includes('GiftTwo')) ||
+              presentType.includes('GiftThree')
             ) {
               function restartGif(animationElement) {
                 const randomQueryParam = `?a=${Math.random()}`;
@@ -425,6 +435,7 @@ class ClawMachineWidget {
       }, 200);
     }, 1500);
   }
+
   startAutomaticClawMovement() {
     const clawSpeed = this.isMobile ? 1 : 2; // Adjust the speed as needed
     const maxX = window.innerWidth - this.clawDiv.clientWidth;
@@ -538,15 +549,18 @@ class ClawMachineWidget {
     const presents = [];
     for (let i = 0; i < totalPresents; i++) {
       presents.push(
-        i < (this.isMobile ? 2 : 4)
-          ? this.customer === 'Deprati'
+        this.customer === 'Deprati'
+          ? i < (this.isMobile ? 3 : 5)
             ? DePratiGiftTwo
-            : GiftTwo
-          : this.customer === 'Deprati'
-          ? DePratiGiftOne
+            : i < (this.isMobile ? 6 : 10)
+            ? DePratiGiftThree
+            : DePratiGiftOne
+          : i < (this.isMobile ? 3 : 5)
+          ? GiftTwo
           : GiftOne,
       );
     }
+    DePratiGiftThree;
     shuffleArray(presents);
     // Create and display the presents
     for (let i = 0; i < totalPresents; i++) {
@@ -696,7 +710,7 @@ class ClawMachineWidget {
   endGame = () => {
     const presentType = this.clawPresentDiv.style.backgroundImage;
 
-    if (!presentType.includes('GiftTwo')) {
+    if (!presentType.includes('GiftTwo') && !presentType.includes('GiftThree')) {
       setTimeout(() => {
         const element = document.getElementById('clawMachine-container');
         if (element && element.parentNode) {
