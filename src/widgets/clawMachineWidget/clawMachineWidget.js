@@ -326,7 +326,6 @@ class ClawMachineWidget {
             this.gameTimer = setTimeout(() => {
               setTimeout(() => {
                 if (presentType.includes('GiftTwo')) {
-                  console.log(DePratiGifTwo);
                   function restartGif(animationElement) {
                     const Opened = `url(${DePratiGifTwo})`;
                     setTimeout(() => {
