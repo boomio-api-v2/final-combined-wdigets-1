@@ -547,23 +547,38 @@ class ClawMachineWidget {
     const totalPresents = this.isMobile ? 6 : 12;
 
     const presents = [];
+    let giftOneAdded = false;
+
     for (let i = 0; i < totalPresents; i++) {
-      presents.push(
-        this.customer === 'Deprati'
-          ? i < (this.isMobile ? 3 : 5)
-            ? DePratiGiftTwo
-            : i < (this.isMobile ? 6 : 10)
-            ? DePratiGiftThree
-            : DePratiGiftOne
-          : i < (this.isMobile ? 3 : 5)
-          ? GiftTwo
-          : GiftOne,
-      );
+      if (i === totalPresents - 1 && !giftOneAdded) {
+        presents.push(this.customer === 'Deprati' ? DePratiGiftOne : GiftOne);
+      } else {
+        if (this.customer === 'Deprati') {
+          if (i < (this.isMobile ? 3 : 5)) {
+            presents.push(DePratiGiftTwo);
+          } else if (i < (this.isMobile ? 6 : 10)) {
+            presents.push(DePratiGiftThree);
+          } else {
+            presents.push(DePratiGiftOne);
+            giftOneAdded = true;
+          }
+        } else {
+          if (i < (this.isMobile ? 3 : 5)) {
+            presents.push(GiftTwo);
+          } else {
+            presents.push(GiftOne);
+            giftOneAdded = true;
+          }
+        }
+      }
     }
+
     DePratiGiftThree;
     shuffleArray(presents);
     // Create and display the presents
     for (let i = 0; i < totalPresents; i++) {
+      console.log(presents);
+
       const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
       const aspectRatio =
         (presents[i] === this.customer) === 'Deprati'
@@ -659,12 +674,29 @@ class ClawMachineWidget {
 
     // Function to shuffle an array using the Fisher-Yates algorithm
     function shuffleArray(array) {
+      const giftOne = DePratiGiftOne;
+
+      // Ensure that GiftOne or DePratiGiftOne is in the array
+      if (!array.includes(giftOne)) {
+        array.push(giftOne);
+      }
+
+      // Shuffle the array
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
       }
-    }
 
+      // Ensure GiftOne is in the first few spots (let's say within the first three positions)
+      const maxSpots = Math.min(3, array.length);
+      let giftOneIndex = array.indexOf(giftOne);
+
+      if (giftOneIndex >= maxSpots) {
+        // Swap GiftOne with a random position within the first few spots
+        const swapIndex = Math.floor(Math.random() * maxSpots);
+        [array[swapIndex], array[giftOneIndex]] = [array[giftOneIndex], array[swapIndex]];
+      }
+    }
     // Create the existing Claw div
     const clawDiv = document.createElement('div');
     clawDiv.classList.add('claw-div');

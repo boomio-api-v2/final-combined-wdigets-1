@@ -134,3 +134,18 @@
     display: block;
   }
   
+  #boomio-textfield-first-name::placeholder {
+    color: #37676D;
+  }
+  
+  #boomio-textfield-first-name::-ms-input-placeholder { /* Edge 12 -18 */
+    color: #37676D;
+  }
+
+  #boomio-textfield-email::placeholder {
+    color: #37676D;
+  }
+  
+  #boomio-textfield-email::-ms-input-placeholder { /* Edge 12 -18 */
+    color: #37676D;
+  }

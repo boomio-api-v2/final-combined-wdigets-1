@@ -17,7 +17,7 @@ export default class {
     this.mainContainer = widgetHtmlService.container;
     this.customer = this.config.business_name ? this.config.business_name : 'Deprati';
 
-    if (!this.config?.email_collection_required) {
+    if (this.config?.email_collection_required) {
       this.showQrCode();
     } else {
       this.updateConfigData();
@@ -454,7 +454,7 @@ export default class {
 
     this.modal.style.background =
       this.customer === 'Deprati'
-        ? 'linear-gradient(164deg, #738078 35.28%, #899D8F 62.29%, #738078 82.47%)'
+        ? 'linear-gradient(164deg, #4A7F85 35.28%, #78BDC2 62.29%, #53878B 82.47%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
     this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
