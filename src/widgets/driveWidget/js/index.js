@@ -80,7 +80,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = false;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Unisend';
+  const customer = config.business_name ? config.business_name : 'Ikea';
   const language = config.language ? config.language : '';
 
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
@@ -1336,7 +1336,14 @@ function startGame(scoreTableContainerInstance) {
 
     // Draw grass image or color
     if (customer === 'LemonGym' || customer === 'Ikea') {
-      ctx.strokeStyle = index < MAX_TEX / 2 ? '#85B62D' : '#A9C734';
+      ctx.strokeStyle =
+        index < MAX_TEX / 2
+          ? customer === 'Ikea'
+            ? '#489B2D'
+            : '#85B62D'
+          : customer === 'Ikea'
+          ? '#489B2D'
+          : '#A9C734';
       ctx.beginPath();
       ctx.moveTo(round(0), i);
       const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
