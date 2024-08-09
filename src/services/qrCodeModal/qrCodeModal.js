@@ -350,7 +350,7 @@ export default class {
     saveBtn.innerHTML = 'Si, lo quiero!';
     this.modal.style.background =
       this.customer === 'Deprati'
-        ? 'linear-gradient(164deg, #738078 35.28%, #899D8F 62.29%, #738078 82.47%)'
+        ? 'linear-gradient(164deg, #4A7F85 35.28%, #78BDC2 62.29%, #53878B 82.47%)'
         : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
     const exitBtn = document.createElement('button');
