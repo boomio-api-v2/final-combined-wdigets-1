@@ -29,7 +29,7 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Ikea';
+    this.customer = this.config.business_name ? this.config.business_name : 'Unisend';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.language = this.config.language ? this.config.language : '';

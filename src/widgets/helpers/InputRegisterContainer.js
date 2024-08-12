@@ -77,7 +77,7 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-      this.prop !== 'Unisend' ? 'none' : 'inline-flex'
+      this.prop !== 'Unisend' ? 'none' : 'none'
     }">
       <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg2" src="${
@@ -123,9 +123,9 @@ export class InputRegisterContainer {
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
         : this.prop === 'Unisend' && this.language === 'LV'
-        ? 'Es piekrītu Unisend privātuma politikai.'
+        ? `Esmu izlasījis <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.lv'} style="color:white;"> spēles noteikumus</a>  un piekrītu tiem.`
         : this.prop === 'Unisend' && this.language === 'EE'
-        ? 'Nõustun Unisendi privaatsuspoliitikaga.'
+        ? `Olen <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.ee'} style="color:white;"> mängureeglitega</a> tutvunud ja nõustun nendega.`
         : this.prop === 'Fantazijos' && this.language === 'LV'
         ? 'Turpinot spēlēt, es piekrītu saņemt yesyes.lv jaunumus.'
         : this.prop === 'Fantazijos' && this.language === 'RU'

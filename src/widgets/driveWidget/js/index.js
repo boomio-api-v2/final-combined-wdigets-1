@@ -80,7 +80,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = false;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Ikea';
+  const customer = config.business_name ? config.business_name : 'Unisend';
   const language = config.language ? config.language : '';
 
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
@@ -133,7 +133,7 @@ function startGame(scoreTableContainerInstance) {
   const FUNDING_HIT_AMOUNT = 10;
   const MAILBOX_HIT_AMOUNT = 5;
   const GOLD_HIT_AMOUNT = 5;
-  const PLAYER_EDGE = width / 2.3;
+  const PLAYER_EDGE = width / 2.2;
   const GAME_UPDATE_TIME = 5;
   const MAX_ROAD_WIDTH = width * ROAD_WIDTH_PERCENT;
   const SHAKE_CLASS_NAME = 'shake';
@@ -142,7 +142,7 @@ function startGame(scoreTableContainerInstance) {
   const COLLECTABLE_DIMENSION = 16;
   const ENVELOPE_TIME = 5;
   const ENVELOPE_DELAY = 100;
-  const ROAD_SPRITE_SPAWN_X = width / 2;
+  const ROAD_SPRITE_SPAWN_X = width / 4;
   const RESTART_TIMEOUT_TIME = 1000;
   const START_TIME = 90;
   const START_FUNDING = 100;
@@ -153,7 +153,7 @@ function startGame(scoreTableContainerInstance) {
   const INITIAL_WALLS = 2;
   const INTRO_TIME = 3;
   const GAME_START_DELAY = 18;
-  const CURVE_AMPLITUDE = 0.001;
+  const CURVE_AMPLITUDE = 0.0008;
   const CURVE_FREQUENCY = 10;
   const NUM_TREES = 30;
   const TREE_CHANCE_SPAWN = 0.05;
@@ -648,7 +648,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const leftMailboxes = range(1).map(() => {
+  const leftMailboxes = range(customer === 'Unisend' ? 2 : 1).map(() => {
     return {
       image: leftMailboxImage,
       pos: {
@@ -671,7 +671,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const rightMailboxes = range(1).map(() => {
+  const rightMailboxes = range(customer === 'Unisend' ? 2 : 1).map(() => {
     return {
       image: rightMailboxImage,
       pos: {
@@ -694,7 +694,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const golds = range(2).map(() => {
+  const golds = range(customer === 'Unisend' ? 2 : 2).map(() => {
     return {
       image: goldImage,
       pos: {
@@ -1650,57 +1650,53 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function handleGoldOverlap(sprite) {
-    const inactive = golds2.filter((gold) => gold.active !== true);
-    const toActivate = golds2.slice(Math.max(inactive.length - GOLD_HIT_AMOUNT, 0));
-    toActivate.forEach((gold, i) => {
-      setTimeout(() => {
-        gold.active = true;
-        gold.activatedAt = gameTime;
-        gold.pos.y = playerI;
-        gold.pos.x = spriteOffset(sprite);
-      }, ENVELOPE_DELAY * i);
-    });
-    gameVars.currentScore += min(100, 999);
-
-    if (gameVars.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-      currectScoreDiv.style.transition = 'opacity 0.8s ease';
-      currectScoreDiv.style.display = 'block';
-      currectScoreDiv.style.opacity = 1;
-    }
-
-    if (bestScore < gameVars.currentScore) {
-      newHighScoreReached = true;
-    }
-    bestScore = Math.max(bestScore, gameVars.currentScore);
-    document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
+    // const inactive = golds2.filter((gold) => gold.active !== true);
+    // const toActivate = golds2.slice(Math.max(inactive.length - GOLD_HIT_AMOUNT, 0));
+    // toActivate.forEach((gold, i) => {
+    //   setTimeout(() => {
+    //     gold.active = true;
+    //     gold.activatedAt = gameTime;
+    //     gold.pos.y = playerI;
+    //     gold.pos.x = spriteOffset(sprite);
+    //   }, ENVELOPE_DELAY * i);
+    // });
+    // gameVars.currentScore += min(100, 999);
+    // if (gameVars.currentScore > 1) {
+    //   const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+    //   currectScoreDiv.style.transition = 'opacity 0.8s ease';
+    //   currectScoreDiv.style.display = 'block';
+    //   currectScoreDiv.style.opacity = 1;
+    // }
+    // if (bestScore < gameVars.currentScore) {
+    //   newHighScoreReached = true;
+    // }
+    // bestScore = Math.max(bestScore, gameVars.currentScore);
+    // document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
   }
 
   function handleMailboxOverlap(sprite) {
-    const inactive = envelopes.filter((envelope) => envelope.active !== true);
-    const toActivate = inactive.slice(Math.max(inactive.length - MAILBOX_HIT_AMOUNT, 0));
-    toActivate.forEach((envelope, i) => {
-      setTimeout(() => {
-        envelope.active = true;
-        envelope.activatedAt = gameTime;
-        envelope.pos.y = playerI;
-        envelope.pos.x = spriteOffset(sprite);
-      }, ENVELOPE_DELAY * i);
-    });
-    gameVars.currentScore += min(50, 999);
-
-    if (gameVars.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-      currectScoreDiv.style.transition = 'opacity 0.8s ease';
-      currectScoreDiv.style.display = 'block';
-      currectScoreDiv.style.opacity = 1;
-    }
-
-    if (bestScore < gameVars.currentScore) {
-      newHighScoreReached = true;
-    }
-    bestScore = Math.max(bestScore, gameVars.currentScore);
-    document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
+    // const inactive = envelopes.filter((envelope) => envelope.active !== true);
+    // const toActivate = inactive.slice(Math.max(inactive.length - MAILBOX_HIT_AMOUNT, 0));
+    // toActivate.forEach((envelope, i) => {
+    //   setTimeout(() => {
+    //     envelope.active = true;
+    //     envelope.activatedAt = gameTime;
+    //     envelope.pos.y = playerI;
+    //     envelope.pos.x = spriteOffset(sprite);
+    //   }, ENVELOPE_DELAY * i);
+    // });
+    // gameVars.currentScore += min(50, 999);
+    // if (gameVars.currentScore > 1) {
+    //   const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+    //   currectScoreDiv.style.transition = 'opacity 0.8s ease';
+    //   currectScoreDiv.style.display = 'block';
+    //   currectScoreDiv.style.opacity = 1;
+    // }
+    // if (bestScore < gameVars.currentScore) {
+    //   newHighScoreReached = true;
+    // }
+    // bestScore = Math.max(bestScore, gameVars.currentScore);
+    // document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
   }
 
   function isLucky(percentChance) {
