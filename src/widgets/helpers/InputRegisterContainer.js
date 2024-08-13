@@ -55,7 +55,7 @@ export class InputRegisterContainer {
     }</div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
-      } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 430px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 435px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center;font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
         };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: ${
