@@ -163,7 +163,7 @@ function startGame(scoreTableContainerInstance) {
   const TERRIBLE_FUNDING_LIMIT = 25;
   let textColor = 'white';
   let displayText = '';
-  const fadeDuration = 300;
+  const fadeDuration = 1000;
   let fadeStartTime = 0;
   let isFading = false;
   let fadeTriggered = false;

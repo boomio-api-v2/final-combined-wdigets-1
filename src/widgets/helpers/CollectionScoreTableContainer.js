@@ -228,7 +228,7 @@ export class CollectionScoreTableContainer {
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">ŽAISK DAR KARTĄ</div>
       </div>
 
-      <div style="left:calc(50% - 40px);width:90px;top:625px;position:absolute;margin-top:5px;height: 25px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
+      <div style="left:calc(50% - 40px);width:76px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
       </div>
     </div>`;
     this.containerDiv = containerDiv;
