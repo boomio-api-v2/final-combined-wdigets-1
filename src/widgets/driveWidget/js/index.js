@@ -163,10 +163,10 @@ function startGame(scoreTableContainerInstance) {
   const TERRIBLE_FUNDING_LIMIT = 25;
   let textColor = 'white';
   let displayText = '';
-  const fadeDuration = 1000;
+  const fadeDuration = 300;
   let fadeStartTime = 0;
   let isFading = false;
-  let fadeTriggered = false;
+  let textShouldBeVisible = false; // Flag to determine if text should be displayed
 
   let startHandler = true;
   let angle = 0;
@@ -2079,6 +2079,9 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawEnvelopes() {
+    // Reset `triggerText` to ensure we only trigger text once
+    let triggerText = false;
+
     // Handle wall parts
     wallParts
       .filter((sprite) => sprite.active)
@@ -2094,12 +2097,13 @@ function startGame(scoreTableContainerInstance) {
         currentFillColor =
           currentFillColor === BAD_FUNDING_COLOR1 ? BAD_FUNDING_COLOR : BAD_FUNDING_COLOR1;
 
-        if (!isFading && !fadeTriggered) {
-          displayText = '-100'; // Trigger text display
+        if (!isFading && !triggerText) {
+          displayText = '-100'; // Set text
           textColor = 'red';
           fadeStartTime = performance.now(); // Start fade effect
-          isFading = true; // Set flag indicating text is fading
-          fadeTriggered = true; // Ensure fade is only triggered once
+          isFading = true; // Mark as fading
+          textShouldBeVisible = true; // Flag to ensure text visibility
+          triggerText = true; // Mark that text has been triggered
         }
       });
 
@@ -2113,12 +2117,13 @@ function startGame(scoreTableContainerInstance) {
           return;
         }
 
-        if (!isFading && !fadeTriggered) {
-          displayText = '+100'; // Trigger text display
+        if (!isFading && !triggerText) {
+          displayText = '+100'; // Set text
           textColor = 'white';
           fadeStartTime = performance.now(); // Start fade effect
-          isFading = true; // Set flag indicating text is fading
-          fadeTriggered = true; // Ensure fade is only triggered once
+          isFading = true; // Mark as fading
+          textShouldBeVisible = true; // Flag to ensure text visibility
+          triggerText = true; // Mark that text has been triggered
         }
       });
 
@@ -2132,17 +2137,18 @@ function startGame(scoreTableContainerInstance) {
           return;
         }
 
-        if (!isFading && !fadeTriggered) {
-          displayText = '+50'; // Trigger text display
+        if (!isFading && !triggerText) {
+          displayText = '+50'; // Set text
           textColor = 'white';
           fadeStartTime = performance.now(); // Start fade effect
-          isFading = true; // Set flag indicating text is fading
-          fadeTriggered = true; // Ensure fade is only triggered once
+          isFading = true; // Mark as fading
+          textShouldBeVisible = true; // Flag to ensure text visibility
+          triggerText = true; // Mark that text has been triggered
         }
       });
 
-    // Draw the text with fading effect if there's something to display
-    if (isFading) {
+    // Draw the text with fading effect if it's visible
+    if (textShouldBeVisible) {
       const elapsedTime = performance.now() - fadeStartTime;
       const fadeProgress = Math.min(elapsedTime / fadeDuration, 1); // Calculate fade progress
       const opacity = 1 - fadeProgress; // Calculate opacity (fading out)
@@ -2158,9 +2164,9 @@ function startGame(scoreTableContainerInstance) {
 
       // Clear text and reset state after fade effect is completed
       if (fadeProgress >= 1) {
-        displayText = ''; // Clear text after fade completes
+        textShouldBeVisible = false; // Hide text
         isFading = false; // Reset fading flag
-        fadeTriggered = false; // Allow fade to be triggered again
+        displayText = ''; // Clear text
       }
     }
   }
