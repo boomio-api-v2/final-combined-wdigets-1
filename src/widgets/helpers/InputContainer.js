@@ -248,7 +248,6 @@ export class InputContainer {
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Makalius' ||
-      this.prop === 'Unisend' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${

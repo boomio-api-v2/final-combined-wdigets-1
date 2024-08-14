@@ -80,7 +80,7 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = false;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Ikea';
+  const customer = config.business_name ? config.business_name : 'Unisend';
   const language = config.language ? config.language : '';
 
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
@@ -111,7 +111,6 @@ function startGame(scoreTableContainerInstance) {
   const GROUND_PERCENT = 0.5;
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
-  const HOUSE_ZERO_POS = { x: -60, y: 0, z: 0 };
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
   const WALL_PARTICLES = 55;
@@ -130,10 +129,9 @@ function startGame(scoreTableContainerInstance) {
   const FLASH_TIME = 0.25;
   const ANIMATION_TIME = 0.25;
   const INSTRUCTIONS_FLASH_TIME = 5;
-  const FUNDING_HIT_AMOUNT = 10;
   const MAILBOX_HIT_AMOUNT = 5;
   const GOLD_HIT_AMOUNT = 5;
-  const PLAYER_EDGE = width / 2.3;
+  const PLAYER_EDGE = width / 2.2;
   const GAME_UPDATE_TIME = 5;
   const MAX_ROAD_WIDTH = width * ROAD_WIDTH_PERCENT;
   const SHAKE_CLASS_NAME = 'shake';
@@ -142,7 +140,7 @@ function startGame(scoreTableContainerInstance) {
   const COLLECTABLE_DIMENSION = 16;
   const ENVELOPE_TIME = 5;
   const ENVELOPE_DELAY = 100;
-  const ROAD_SPRITE_SPAWN_X = width / 2;
+  const ROAD_SPRITE_SPAWN_X = width / 10;
   const RESTART_TIMEOUT_TIME = 1000;
   const START_TIME = 90;
   const START_FUNDING = 100;
@@ -152,8 +150,8 @@ function startGame(scoreTableContainerInstance) {
   const MAILBOX_TIME_OFFSCREEN = 1;
   const INITIAL_WALLS = 2;
   const INTRO_TIME = 3;
-  const GAME_START_DELAY = 18;
-  const CURVE_AMPLITUDE = 0.001;
+  const GAME_START_DELAY = 4;
+  const CURVE_AMPLITUDE = 0.0007;
   const CURVE_FREQUENCY = 10;
   const NUM_TREES = 30;
   const TREE_CHANCE_SPAWN = 0.05;
@@ -163,14 +161,20 @@ function startGame(scoreTableContainerInstance) {
   const VISIBILE_FUNDING_INCREASE = 0.5;
   const WARNING_FUNDING_LIMIT = 50;
   const TERRIBLE_FUNDING_LIMIT = 25;
+  let textColor = 'white';
+  let displayText = '';
+  const fadeDuration = 300;
+  let fadeStartTime = 0;
+  let isFading = false;
+  let textShouldBeVisible = false; // Flag to determine if text should be displayed
+
   let startHandler = true;
-  let angle = 0; // Initialize the angle
+  let angle = 0;
 
   let dx = 0;
   let ddx = 0;
   let instructionsAlpha = 1.0;
   let restartTimeout = null;
-  let gameOverElectionDaySong = null;
 
   let gameVars = {
     started: false,
@@ -202,7 +206,7 @@ function startGame(scoreTableContainerInstance) {
     { time: START_TIME, walls: 2 },
     { time: 60, walls: 3 },
     { time: 30, walls: 4 },
-    { time: 10, walls: 5 },
+    { time: 10, walls: 3 },
   ];
 
   const carImage = new Image();
@@ -648,7 +652,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const leftMailboxes = range(1).map(() => {
+  const leftMailboxes = range(customer === 'Unisend' ? 2 : 1).map(() => {
     return {
       image: leftMailboxImage,
       pos: {
@@ -671,7 +675,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const rightMailboxes = range(1).map(() => {
+  const rightMailboxes = range(customer === 'Unisend' ? 2 : 1).map(() => {
     return {
       image: rightMailboxImage,
       pos: {
@@ -694,7 +698,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const golds = range(2).map(() => {
+  const golds = range(customer === 'Unisend' ? 2 : 2).map(() => {
     return {
       image: goldImage,
       pos: {
@@ -806,7 +810,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 4000); //intro speed
+      }, 10); //intro speed
     }
     drawTitleScreen();
   }
@@ -1096,7 +1100,6 @@ function startGame(scoreTableContainerInstance) {
         envelope.pos.x = randomIntBetween(0, width);
         envelope.pos.y = randomIntBetween(-height, 0);
       }
-
       envelope.pos.x += envelope.vel.x;
       envelope.pos.y += envelope.vel.y;
 
@@ -1263,9 +1266,7 @@ function startGame(scoreTableContainerInstance) {
     if (document.getElementById('boomio-widget-content')) {
       drawRoadSprites();
       drawTrees();
-      drawWallParticles();
       drawEnvelopes();
-      drawGolds();
       drawTruck();
       drawTruckSparks();
       drawUi();
@@ -1335,40 +1336,27 @@ function startGame(scoreTableContainerInstance) {
     const currentRoadWidth = roadWidthForI(i);
 
     // Draw grass image or color
-    if (customer === 'LemonGym' || customer === 'Ikea') {
-      ctx.strokeStyle =
-        index < MAX_TEX / 2
-          ? customer === 'Ikea'
-            ? '#489B2D'
-            : '#85B62D'
-          : customer === 'Ikea'
+    ctx.strokeStyle =
+      index < MAX_TEX / 2
+        ? customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
-          : '#A9C734';
-      ctx.beginPath();
-      ctx.moveTo(round(0), i);
-      const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
-      ctx.lineTo(x1, i);
-      ctx.closePath();
-      ctx.stroke();
+          : '#85B62D'
+        : customer === 'Ikea' || customer === 'Unisend'
+        ? '#489B2D'
+        : '#A9C734';
+    ctx.beginPath();
+    ctx.moveTo(round(0), i);
+    const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve) - 10;
+    ctx.lineTo(x1, i);
+    ctx.closePath();
+    ctx.stroke();
 
-      const x2 = floor(currentRoadWidth + x1);
-      ctx.beginPath();
-      ctx.moveTo(x2, i);
-      ctx.lineTo(width, i);
-      ctx.closePath();
-      ctx.stroke();
-    } else {
-      const grass = new Image();
-      grass.src = customer === 'Barbora' ? grassBarbora : grassIkea;
-
-      // Draw grass image on the left
-      const x1 = Math.floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve);
-      ctx.drawImage(grass, 0, i, x1, 1);
-
-      // Draw grass image on the right
-      const x2 = Math.floor(currentRoadWidth + x1 + 20);
-      ctx.drawImage(grass, x2, i, width - x2, 1);
-    }
+    const x2 = floor(currentRoadWidth + x1) + 20;
+    ctx.beginPath();
+    ctx.moveTo(x2, i);
+    ctx.lineTo(width, i);
+    ctx.closePath();
+    ctx.stroke();
 
     // Draw road lines
     ctx.strokeStyle = road2;
@@ -1383,8 +1371,11 @@ function startGame(scoreTableContainerInstance) {
 
     ctx.strokeStyle = road2;
     ctx.beginPath();
-    ctx.moveTo(Math.round(roadWidth.x2 - xOffset + xCenter + curve), i);
-    ctx.lineTo(Math.round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve), i);
+    ctx.moveTo(Math.round(roadWidth.x2 - xOffset + xCenter + curve) - 20, i);
+    ctx.lineTo(
+      Math.round(roadWidth.x2 - sideLineWidth * percent - xOffset + xCenter + curve) - 20,
+      i,
+    );
     ctx.closePath();
     ctx.stroke();
 
@@ -1688,14 +1679,12 @@ function startGame(scoreTableContainerInstance) {
       }, ENVELOPE_DELAY * i);
     });
     gameVars.currentScore += min(50, 999);
-
     if (gameVars.currentScore > 1) {
       const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
       currectScoreDiv.style.transition = 'opacity 0.8s ease';
       currectScoreDiv.style.display = 'block';
       currectScoreDiv.style.opacity = 1;
     }
-
     if (bestScore < gameVars.currentScore) {
       newHighScoreReached = true;
     }
@@ -2089,12 +2078,15 @@ function startGame(scoreTableContainerInstance) {
       });
   }
 
-  function drawWallParticles() {
+  function drawEnvelopes() {
+    // Reset `triggerText` to ensure we only trigger text once
+    let triggerText = false;
+
+    // Handle wall parts
     wallParts
       .filter((sprite) => sprite.active)
       .forEach((part) => {
         const { x, y } = getWallParticlePosition(part);
-
         if (y >= height) {
           part.active = false;
           part.vel.y = WALL_PARTICLE_Y_VEL;
@@ -2104,10 +2096,18 @@ function startGame(scoreTableContainerInstance) {
         ctx.fillRect(x, y + 100, part.dimensions * 2, part.dimensions);
         currentFillColor =
           currentFillColor === BAD_FUNDING_COLOR1 ? BAD_FUNDING_COLOR : BAD_FUNDING_COLOR1;
-      });
-  }
 
-  function drawGolds() {
+        if (!isFading && !triggerText) {
+          displayText = '-100'; // Set text
+          textColor = 'red';
+          fadeStartTime = performance.now(); // Start fade effect
+          isFading = true; // Mark as fading
+          textShouldBeVisible = true; // Flag to ensure text visibility
+          triggerText = true; // Mark that text has been triggered
+        }
+      });
+
+    // Handle golds2
     golds2
       .filter((sprite) => sprite.active)
       .forEach((gold) => {
@@ -2117,24 +2117,58 @@ function startGame(scoreTableContainerInstance) {
           return;
         }
 
-        ctx.drawImage(gold.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
+        if (!isFading && !triggerText) {
+          displayText = '+100'; // Set text
+          textColor = 'white';
+          fadeStartTime = performance.now(); // Start fade effect
+          isFading = true; // Mark as fading
+          textShouldBeVisible = true; // Flag to ensure text visibility
+          triggerText = true; // Mark that text has been triggered
+        }
       });
-  }
 
-  function drawEnvelopes() {
+    // Handle envelopes
     envelopes
       .filter((sprite) => sprite.active)
       .forEach((envelope) => {
         const { x, y } = getCollectablePosition(envelope, SECOND_ROW_Y);
-
         if (y === SECOND_ROW_Y) {
           envelope.active = false;
           return;
         }
 
-        const image = new Image();
-        ctx.drawImage(envelope.image, x, y, COLLECTABLE_DIMENSION, COLLECTABLE_DIMENSION);
+        if (!isFading && !triggerText) {
+          displayText = '+50'; // Set text
+          textColor = 'white';
+          fadeStartTime = performance.now(); // Start fade effect
+          isFading = true; // Mark as fading
+          textShouldBeVisible = true; // Flag to ensure text visibility
+          triggerText = true; // Mark that text has been triggered
+        }
       });
+
+    // Draw the text with fading effect if it's visible
+    if (textShouldBeVisible) {
+      const elapsedTime = performance.now() - fadeStartTime;
+      const fadeProgress = Math.min(elapsedTime / fadeDuration, 1); // Calculate fade progress
+      const opacity = 1 - fadeProgress; // Calculate opacity (fading out)
+
+      ctx.globalAlpha = opacity; // Set text opacity
+
+      ctx.font = '900 20px Georama';
+      ctx.fillStyle = textColor;
+      ctx.fillText(displayText, width / 2 - 20, 430); // Adjust the position as needed
+
+      // Reset globalAlpha for other drawing operations
+      ctx.globalAlpha = 1.0;
+
+      // Clear text and reset state after fade effect is completed
+      if (fadeProgress >= 1) {
+        textShouldBeVisible = false; // Hide text
+        isFading = false; // Reset fading flag
+        displayText = ''; // Clear text
+      }
+    }
   }
 
   function drawTrees() {
