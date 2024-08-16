@@ -256,6 +256,10 @@ export const goldImageDataUnisend = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bags.png',
 ];
 
+export const goldImageDataUnisendES = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bagsES.png',
+];
+
 export const envelopeImageDataUnisend = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bag.png',
 ];

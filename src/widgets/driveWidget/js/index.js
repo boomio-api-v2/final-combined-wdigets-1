@@ -59,6 +59,7 @@ import {
   grassUnisend,
   backgroundUnisend,
   goldImageDataUnisend,
+  goldImageDataUnisendES,
   envelopeImageDataUnisend,
   carImageDataUnisend,
   mailboxImageDataUnisend,
@@ -245,6 +246,8 @@ function startGame(scoreTableContainerInstance) {
       ? goldImageDataBarbora
       : customer === 'Ikea'
       ? goldImageDataIkea
+      : customer === 'Unisend' && language === 'EE'
+      ? goldImageDataUnisendES
       : customer === 'Unisend'
       ? goldImageDataUnisend
       : goldImageData;
@@ -810,7 +813,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 10); //intro speed
+      }, 4000); //intro speed
     }
     drawTitleScreen();
   }
