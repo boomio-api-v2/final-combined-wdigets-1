@@ -164,7 +164,7 @@ function startGame(scoreTableContainerInstance) {
   const TERRIBLE_FUNDING_LIMIT = 25;
   let textColor = 'white';
   let displayText = '';
-  const fadeDuration = 300;
+  const fadeDuration = 1000;
   let fadeStartTime = 0;
   let isFading = false;
   let textShouldBeVisible = false; // Flag to determine if text should be displayed
@@ -531,7 +531,7 @@ function startGame(scoreTableContainerInstance) {
     dimensions: BIG_SPRITE_DIMENSIONS,
   };
 
-  const envelopes = range(MAILBOX_HIT_AMOUNT * 20).map((_) => {
+  const envelopes = range(MAILBOX_HIT_AMOUNT * 10).map((_) => {
     return {
       image: envelopeImage,
       pos: {
@@ -568,7 +568,7 @@ function startGame(scoreTableContainerInstance) {
   });
 
   // These golds are the ones that are for the UI, not for picking up in the road
-  const golds2 = range(GOLD_HIT_AMOUNT * 20).map((_) => {
+  const golds2 = range(GOLD_HIT_AMOUNT * 10).map((_) => {
     return {
       image: goldImage,
       pos: {
@@ -586,7 +586,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const wallParts = range(WALL_PARTICLES * 20).map(() => {
+  const wallParts = range(WALL_PARTICLES * 10).map(() => {
     return {
       image: null,
       pos: {
@@ -608,7 +608,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const truckSparks = range(TRUCK_SPARKS * 20).map(() => {
+  const truckSparks = range(TRUCK_SPARKS * 10).map(() => {
     return {
       image: null,
       pos: {
@@ -2084,7 +2084,6 @@ function startGame(scoreTableContainerInstance) {
   function drawEnvelopes() {
     // Reset `triggerText` to ensure we only trigger text once
     let triggerText = false;
-
     // Handle wall parts
     wallParts
       .filter((sprite) => sprite.active)
@@ -2153,7 +2152,7 @@ function startGame(scoreTableContainerInstance) {
     // Draw the text with fading effect if it's visible
     if (textShouldBeVisible) {
       const elapsedTime = performance.now() - fadeStartTime;
-      const fadeProgress = Math.min(elapsedTime / fadeDuration, 1); // Calculate fade progress
+      const fadeProgress = Math.min(elapsedTime / fadeDuration, 1);
       const opacity = 1 - fadeProgress; // Calculate opacity (fading out)
 
       ctx.globalAlpha = opacity; // Set text opacity
@@ -2253,13 +2252,6 @@ function startGame(scoreTableContainerInstance) {
 
     ctx.globalAlpha = alpha;
     if (debug) {
-      /*    ctx.fillStyle = "red";*/
-      //ctx.fillRect(
-      //round(xOffset + pos.x - xScaleOffset),
-      //round(yOffset + pos.y + pos.z + yScaleOffset),
-      //round(dimensions * scale),
-      //round(dimensions * scale)
-      /*);*/
     } else {
       ctx.drawImage(
         image,
