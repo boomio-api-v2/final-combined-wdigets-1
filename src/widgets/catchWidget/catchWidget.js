@@ -1,65 +1,88 @@
-import { assignStyleOnElement } from '@/utils';
-import {
-  fruitImages,
-  basketImage,
-  backgroundSrc,
-  catchSoundSrc,
-  smashSoundSrc,
-  musicSrc,
-} from './constants';
+import { basket2, banana2, apple2, orange2, pineapple2, melon2, jungle } from './constants';
 
-class FruitCatcher {
+class CatchGame {
   constructor() {
-    this.canvas = document.createElement('canvas');
+    // Create canvas elements
+    this.createCanvasElements();
+
+    // Set up the contexts for the canvases
     this.context = this.canvas.getContext('2d');
-    this.canvasBack = document.createElement('canvas');
     this.contextBack = this.canvasBack.getContext('2d');
 
+    // Load images
+    this.background = new Image();
+    this.background.src = jungle;
+
+    // Set up sounds
+    this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
+    this.music = new Audio('Audio/MarimbaBoy.wav');
+    this.music.loop = true;
+    this.smashSounds = Array.from({ length: 5 }, () => new Audio('Audio/smash.mp3'));
+
+    // Initialize game variables
     this.timer = null;
     this.hiscore = 0;
-    this.player = null;
     this.fruits = [];
     this.numberOfFruits = 15;
+    this.smashCounter = 0;
+    this.catchSoundCounter = 0;
 
-    this.initCanvas();
-    this.start();
+    // Initialize and start the game
+    this.init();
   }
 
-  initCanvas() {
-    this.canvas.setAttribute('id', 'canvas');
-    this.canvasBack.setAttribute('id', 'backgroundCanvas');
-    this.canvas.width = this.canvasBack.width = 1024;
-    this.canvas.height = this.canvasBack.height = 650;
-
+  createCanvasElements() {
+    // Create and configure background canvas
+    this.canvasBack = document.createElement('canvas');
+    this.canvasBack.id = 'backgroundCanvas';
+    this.canvasBack.width = 1024;
+    this.canvasBack.height = 650;
     document.body.appendChild(this.canvasBack);
+
+    // Create and configure main canvas
+    this.canvas = document.createElement('canvas');
+    this.canvas.id = 'canvas';
+    this.canvas.width = 1024;
+    this.canvas.height = 650;
     document.body.appendChild(this.canvas);
-
-    this.background = new Image();
-    this.background.src = backgroundSrc;
-
-    this.catchSounds = Array(5)
-      .fill()
-      .map(() => new Audio(catchSoundSrc));
-    this.smashSounds = Array(5)
-      .fill()
-      .map(() => new Audio(smashSoundSrc));
-    this.music = new Audio(musicSrc);
-    this.music.loop = true;
   }
 
-  start() {
-    this.player = new this.Player(this.canvas);
-    this.fruits = Array.from(
-      { length: this.numberOfFruits },
-      () => new this.Fruit(this.canvas, this.context, this.player),
-    );
-
+  init() {
+    this.createPlayer();
+    this.createFruits();
+    this.addEventListeners();
     this.startGame();
+  }
+
+  createPlayer() {
+    this.player = new Player(this.canvas, this.context);
+  }
+
+  createFruits() {
+    this.fruits = [];
+    for (let i = 0; i < this.numberOfFruits; i++) {
+      const fruit = new Fruit(this.canvas, this.context, this.player);
+      fruit.chooseFruit();
+      this.fruits.push(fruit);
+    }
+  }
+
+  addEventListeners() {
+    window.addEventListener('keydown', (e) => {
+      e.preventDefault();
+      if (e.keyCode === 37) {
+        this.player.moveLeft();
+      } else if (e.keyCode === 39) {
+        this.player.moveRight();
+      } else if (e.keyCode === 13 && this.player.gameOver) {
+        this.resetGame();
+      }
+    });
   }
 
   startGame() {
     this.updateGame();
-    window.requestAnimationFrame(this.drawGame.bind(this));
+    window.requestAnimationFrame(() => this.drawGame());
   }
 
   updateGame() {
@@ -68,7 +91,8 @@ class FruitCatcher {
     }
 
     this.fruits.forEach((fruit) => fruit.fall());
-    this.timer = window.setTimeout(this.updateGame.bind(this), 30);
+
+    this.timer = window.setTimeout(() => this.updateGame(), 30);
   }
 
   drawGame() {
@@ -80,44 +104,44 @@ class FruitCatcher {
       this.player.render();
 
       this.fruits.forEach((fruit) => fruit.render());
+
+      this.contextBack.font = 'bold 23px Velvetica';
+      this.contextBack.fillStyle = 'WHITE';
       this.contextBack.fillText(`SCORE: ${this.player.score}`, 50, 50);
       this.contextBack.fillText(`HI SCORE: ${this.hiscore}`, 250, 50);
       this.contextBack.fillText(`FRUIT CAUGHT: ${this.player.fruitsCollected}`, 500, 50);
       this.contextBack.fillText(`FRUIT MISSED: ${this.player.fruitsMissed}`, 780, 50);
     } else {
-      this.endGame();
-    }
-    window.requestAnimationFrame(this.drawGame.bind(this));
-  }
+      this.fruits.length = 0;
 
-  endGame() {
-    this.fruits.length = 0;
-
-    if (this.hiscore < this.player.score) {
-      this.hiscore = this.player.score;
-      this.contextBack.fillText(
-        `NEW HI SCORE: ${this.hiscore}`,
-        this.canvas.width / 2 - 100,
-        this.canvas.height / 2,
-      );
-    }
-
-    this.contextBack.fillText(
-      'PRESS ENTER TO RESTART',
-      this.canvas.width / 2 - 140,
-      this.canvas.height / 2 + 50,
-    );
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    window.clearTimeout(this.timer);
-
-    window.addEventListener('keydown', (e) => {
-      if (e.keyCode === 13) {
-        this.start();
+      if (this.hiscore < this.player.score) {
+        this.hiscore = this.player.score;
+        this.contextBack.fillText(
+          `NEW HI SCORE: ${this.hiscore}`,
+          this.canvas.width / 2 - 100,
+          this.canvas.height / 2,
+        );
       }
-    });
+      this.contextBack.fillText(
+        'PRESS ENTER TO RESTART',
+        this.canvas.width / 2 - 140,
+        this.canvas.height / 2 + 50,
+      );
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    window.requestAnimationFrame(() => this.drawGame());
   }
 
-  Player(canvas) {
+  resetGame() {
+    this.init();
+  }
+}
+
+class Player {
+  constructor(canvas, context) {
+    this.canvas = canvas;
+    this.context = context;
     this.gameOver = false;
     this.score = 0;
     this.fruitsCollected = 0;
@@ -125,37 +149,34 @@ class FruitCatcher {
     this.playerWidth = 150;
     this.playerHeight = 90;
     this.playerSpeed = 10;
-    this.x = canvas.width / 2;
-    this.y = canvas.height - this.playerHeight;
+    this.x = this.canvas.width / 2;
+    this.y = this.canvas.height - this.playerHeight;
     this.playerImage = new Image();
-    this.playerImage.src = basketImage;
-
-    this.render = () => {
-      context.drawImage(this.playerImage, this.x, this.y);
-    };
-
-    this.moveLeft = () => {
-      if (this.x > 0) {
-        this.x -= this.playerSpeed;
-      }
-    };
-
-    this.moveRight = () => {
-      if (this.x < canvas.width - this.playerWidth) {
-        this.x += this.playerSpeed;
-      }
-    };
-
-    window.addEventListener('keydown', (e) => {
-      if (e.keyCode === 37) {
-        this.moveLeft();
-      } else if (e.keyCode === 39) {
-        this.moveRight();
-      }
-    });
+    this.playerImage.src = basket2;
   }
 
-  Fruit(canvas, context, player) {
+  render() {
+    this.context.drawImage(this.playerImage, this.x, this.y);
+  }
+
+  moveLeft() {
+    if (this.x > 0) {
+      this.x -= this.playerSpeed;
+    }
+  }
+
+  moveRight() {
+    if (this.x < this.canvas.width - this.playerWidth) {
+      this.x += this.playerSpeed;
+    }
+  }
+}
+
+class Fruit {
+  constructor(canvas, context, player) {
+    this.canvas = canvas;
+    this.context = context;
+    this.player = player;
     this.fruitNumber = Math.floor(Math.random() * 5);
     this.fruitType = '';
     this.fruitScore = 0;
@@ -163,57 +184,55 @@ class FruitCatcher {
     this.fruitHeight = 50;
     this.fruitImage = new Image();
     this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
-    this.x = Math.random() * (canvas.width - this.fruitWidth);
-    this.y = Math.random() * -canvas.height - this.fruitHeight;
+    this.x = Math.random() * (this.canvas.width - this.fruitWidth);
+    this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
-    this.chooseFruit = () => {
-      const fruitData = fruitImages[this.fruitNumber];
-      this.fruitType = fruitData.type;
-      this.fruitScore = fruitData.score * this.fruitSpeed;
-      this.fruitImage.src = fruitData.src;
-    };
+    // Fruit images
+    this.images = [banana2, apple2, orange2, pineapple2, melon2];
+  }
 
-    this.fall = () => {
-      if (this.y < canvas.height - this.fruitHeight) {
-        this.y += this.fruitSpeed;
-      } else {
-        player.fruitsMissed += 1;
+  chooseFruit() {
+    this.fruitType = ['banana', 'apple', 'orange', 'pineapple', 'melon'][this.fruitNumber];
+    this.fruitScore = [5, 10, 15, 20, 25][this.fruitNumber] * this.fruitSpeed;
+    this.fruitImage.src = this.images[this.fruitNumber];
+  }
+
+  fall() {
+    if (this.y < this.canvas.height - this.fruitHeight) {
+      this.y += this.fruitSpeed;
+    } else {
+      // Handle fruit miss
+      this.changeState();
+      this.chooseFruit();
+    }
+    this.checkIfCaught();
+  }
+
+  checkIfCaught() {
+    if (this.y >= this.player.y) {
+      if (
+        (this.x > this.player.x && this.x < this.player.x + this.player.playerWidth) ||
+        (this.x + this.fruitWidth > this.player.x &&
+          this.x + this.fruitWidth < this.player.x + this.player.playerWidth)
+      ) {
         this.changeState();
         this.chooseFruit();
       }
-      this.checkIfCaught();
-    };
+    }
+  }
 
-    this.checkIfCaught = () => {
-      if (this.y >= player.y) {
-        if (
-          (this.x > player.x && this.x < player.x + player.playerWidth) ||
-          (this.x + this.fruitWidth > player.x &&
-            this.x + this.fruitWidth < player.x + player.playerWidth)
-        ) {
-          player.score += this.fruitScore;
-          player.fruitsCollected += 1;
-          this.changeState();
-          this.chooseFruit();
-        }
-      }
-    };
+  changeState() {
+    this.fruitNumber = Math.floor(Math.random() * 5);
+    this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
+    this.x = Math.random() * (this.canvas.width - this.fruitWidth);
+    this.y = Math.random() * -this.canvas.height - this.fruitHeight;
+  }
 
-    this.changeState = () => {
-      this.fruitNumber = Math.floor(Math.random() * 5);
-      this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
-      this.x = Math.random() * (canvas.width - this.fruitWidth);
-      this.y = Math.random() * -canvas.height - this.fruitHeight;
-    };
-
-    this.render = () => {
-      context.drawImage(this.fruitImage, this.x, this.y);
-    };
-
-    this.chooseFruit();
+  render() {
+    this.context.drawImage(this.fruitImage, this.x, this.y);
   }
 }
 
 export default () => {
-  new FruitCatcher();
+  new CatchGame();
 };

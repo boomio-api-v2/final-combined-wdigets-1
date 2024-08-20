@@ -1271,41 +1271,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
           };
           canvas.addEventListener('click', this.clickEventHandler);
         }
-
-        // this.clickEventHandlerClaimButton = () => {
-        //   const inputContainer = document.querySelector('.input-container1');
-        //   inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        //   setTimeout(() => {
-        //     inputContainer.style.height = '10px';
-        //     inputContainer.style.top = 'calc(50% + 330px)';
-        //     inputContainer.style.opacity = 0;
-        //   }, 100);
-        //   setTimeout(() => {
-        //     inputContainer.style.display = 'none';
-        //   }, 400);
-
-        //   setTimeout(() => {
-        //     document.getElementById('useCuponImage').style.display = 'block';
-        //     document.getElementById('background_blur').style.transition = 'opacity 1s ease';
-        //     document.getElementById('ending_background').style.display = 'block';
-        //     document.getElementById('snow_background_qr').style.display = 'block';
-
-        //     setTimeout(() => {
-        //       document.getElementById('background_blur').style.opacity = 0;
-        //       document.getElementById('ending_background').style.transition = 'opacity 1s ease';
-        //       document.getElementById('ending_background').style.opacity = 1;
-
-        //       document.getElementById('snow_background_qr').style.transition = 'opacity 1s ease';
-        //       document.getElementById('snow_background_qr').style.opacity = 0.3;
-        //     }, 100);
-
-        //     this.gameEnded = true;
-        //     setTimeout(() => {
-        //       new QrCodeModal(true, this.discount);
-        //     }, 200);
-        //   }, 500);
-        // };
-
         this.clickEventHandlerButton = () => {
           const controlButton = document.querySelector('.control-button1');
           const inputContainer = document.querySelector('.input-container1');

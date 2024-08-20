@@ -1,1 +1,1 @@
-// export { default as startCatchWidget } from './catchWidget';
+export { default as startCatchWidget } from './catchWidget';
