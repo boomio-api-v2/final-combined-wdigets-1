@@ -1,4 +1,4 @@
-import { catch1, catch2, catch3, catch4, background } from './constants';
+import { catch1, catch2, catch3, catch4, catch5, player, background } from './constants';
 import {
   widgetHtmlService,
   AnimationService,
@@ -165,7 +165,7 @@ class Player {
     this.x = this.canvas.width / 2;
     this.y = this.canvas.height - this.playerHeight;
     this.playerImage = new Image();
-    this.playerImage.src = basket2;
+    this.playerImage.src = player;
   }
 
   render() {
@@ -205,7 +205,7 @@ class Fruit {
   }
 
   chooseFruit() {
-    this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4'][this.fruitNumber];
+    this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
     this.fruitScore = [5, 10, 15, 20][this.fruitNumber] * this.fruitSpeed;
     this.fruitImage.src = this.images[this.fruitNumber];
   }
@@ -235,7 +235,7 @@ class Fruit {
   }
 
   changeState() {
-    this.fruitNumber = Math.floor(Math.random() * 4);
+    this.fruitNumber = Math.floor(Math.random() * 5);
     this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
