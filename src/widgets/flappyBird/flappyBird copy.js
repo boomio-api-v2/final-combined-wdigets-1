@@ -583,7 +583,3 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     };
   }
 }
-
-export default () => {
-  new FlappyBird();
-};
