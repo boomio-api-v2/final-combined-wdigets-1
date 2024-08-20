@@ -1,19 +1,29 @@
-import { basket2, banana2, apple2, orange2, pineapple2, melon2, jungle } from './constants';
+import { catch1, catch2, catch3, catch4, background } from './constants';
+import {
+  widgetHtmlService,
+  AnimationService,
+  QrCodeModal,
+  localStorageService,
+  boomioService,
+} from '@/services';
+import './styles.css';
 
 class CatchGame {
   constructor() {
-    // Create canvas elements
-    this.createCanvasElements();
+    // Create and configure the game container
+    this.createContainer();
 
-    // Set up the contexts for the canvases
+    // Get canvas elements and their contexts
+    this.canvas = document.getElementById('gameCanvas');
     this.context = this.canvas.getContext('2d');
+    this.canvasBack = document.getElementById('backgroundCanvas');
     this.contextBack = this.canvasBack.getContext('2d');
 
-    // Load images
+    // Background image setup
     this.background = new Image();
-    this.background.src = jungle;
+    this.background.src = background;
 
-    // Set up sounds
+    // Sound setup
     this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
     this.music = new Audio('Audio/MarimbaBoy.wav');
     this.music.loop = true;
@@ -27,24 +37,27 @@ class CatchGame {
     this.smashCounter = 0;
     this.catchSoundCounter = 0;
 
-    // Initialize and start the game
+    // Start the game
     this.init();
   }
 
-  createCanvasElements() {
-    // Create and configure background canvas
-    this.canvasBack = document.createElement('canvas');
-    this.canvasBack.id = 'backgroundCanvas';
-    this.canvasBack.width = 1024;
-    this.canvasBack.height = 650;
-    document.body.appendChild(this.canvasBack);
+  createContainer() {
+    // Create and configure the game container
+    const gameContainer = document.createElement('div');
+    gameContainer.setAttribute('id', 'boomio-catch-container');
+    gameContainer.classList.add(
+      'boomio--animation__wrapper',
+      'boomio--animation__wrapper--initial',
+      'box',
+    );
+    gameContainer.innerHTML = `
+      <div class="game-container game-container-catch">
+        <canvas id="backgroundCanvas" width="418px" height="668px"></canvas>
+        <canvas id="gameCanvas" width="418px" height="668px"></canvas>
+      </div>
+    `;
 
-    // Create and configure main canvas
-    this.canvas = document.createElement('canvas');
-    this.canvas.id = 'canvas';
-    this.canvas.width = 1024;
-    this.canvas.height = 650;
-    document.body.appendChild(this.canvas);
+    widgetHtmlService.container.appendChild(gameContainer);
   }
 
   init() {
@@ -188,12 +201,12 @@ class Fruit {
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
     // Fruit images
-    this.images = [banana2, apple2, orange2, pineapple2, melon2];
+    this.images = [catch1, catch2, catch3, catch4];
   }
 
   chooseFruit() {
-    this.fruitType = ['banana', 'apple', 'orange', 'pineapple', 'melon'][this.fruitNumber];
-    this.fruitScore = [5, 10, 15, 20, 25][this.fruitNumber] * this.fruitSpeed;
+    this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4'][this.fruitNumber];
+    this.fruitScore = [5, 10, 15, 20][this.fruitNumber] * this.fruitSpeed;
     this.fruitImage.src = this.images[this.fruitNumber];
   }
 
@@ -222,7 +235,7 @@ class Fruit {
   }
 
   changeState() {
-    this.fruitNumber = Math.floor(Math.random() * 5);
+    this.fruitNumber = Math.floor(Math.random() * 4);
     this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
