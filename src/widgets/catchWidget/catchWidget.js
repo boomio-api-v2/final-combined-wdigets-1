@@ -1,352 +1,219 @@
-<!--
-In this game you need to move the basket right of left across the screen
-using left and right arrow buttons trying to catch as many fruit
-as you can. The fruit are continuously falling from above. Different types of fruit give you
-different score. The order is this (from highest to lowest scoring:)
-melon -> pineapple -> orange -> apple -> banana. The score also depends on the speed
-the fruit is falling at. The faster it is falling, the more score you get.
-The game keeps tracks of your total score, the number of fruit you missed, and how many you caught.
-Upon missing 10 pieces of fruit, the game is over. You can restart the game by pressing ENTER
-on the game over screen. The game also shows the hi score which updates at the game over screen
-if you succeeded to beat it.
+import { assignStyleOnElement } from '@/utils';
+import {
+  fruitImages,
+  basketImage,
+  backgroundSrc,
+  catchSoundSrc,
+  smashSoundSrc,
+  musicSrc,
+} from './constants';
 
-The game also uses music and a couple of sound effects.
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Fruit Catcher</title>
-        <meta charset="UTF-8">
-    </head>
-    <style type="text/css">
-		canvas	
-		{
-            border: 1px solid black;
-            position: absolute;
-            background-color: transparent;
-		}
+class FruitCatcher {
+  constructor() {
+    this.canvas = document.createElement('canvas');
+    this.context = this.canvas.getContext('2d');
+    this.canvasBack = document.createElement('canvas');
+    this.contextBack = this.canvasBack.getContext('2d');
 
-	</style>
-    
-    <script type="text/javascript">
-        
-        window.onload = function()
-        {
-            var canvas = document.getElementById("canvas");
-            var context = canvas.getContext("2d");
-            var canvasBack = document.getElementById("backgroundCanvas");
-            var contextBack = canvasBack.getContext("2d");
-            
-            //Timer for the Timeout - needed in order to clear it
-            var timer;
-            
-            //Keeps track of hi score
-            var hiscore = 0;
-            
-            //Background image, music track, and arrays of sounds.
-            //Arrays are needed so that the same sounds
-            //can overlap with each other
-            var background = new Image();
-            background.src = 'Images/jungle.jpg';
-            var catchSounds = [];
-            var catchSoundCounter = 0;
-            for(var i = 0; i < 5; i++)
-            {
-                var catchSound = new Audio();
-                catchSound.src = 'Audio/bleep.wav';
-                catchSounds.push(catchSound);
-            }
-            
-            var music = new Audio();
-            music.src = 'Audio/MarimbaBoy.wav';
-            music.loop = true;
-            
-            var smashSounds = [];
-            var smashCounter = 0;
-            for(var i = 0; i < 5; i++)
-            {
-                var smash = new Audio();
-                smash.src = 'Audio/smash.mp3';
-                smashSounds.push(smash);
-            }
-            
-            var player;
-            var fruits = [];
-            var numberOfFruits = 15;
-            
-            //Player constructor
-            function Player()
-            {
-                this.gameOver = false;
-                this.score = 0;
-                this.fruitsCollected = 0;
-                this.fruitsMissed = 0;
-                this.playerWidth = 150;
-                this.playerHeight = 90;
-                this.playerSpeed = 10;
-                this.x = canvas.width / 2;
-                this.y = canvas.height - this.playerHeight;
-                this.playerImage = new Image();
-                this.playerImage.src = 'Images/basket2.png';
-                
-                //Draws the player
-                this.render = function()
-                {
-                    context.drawImage(this.playerImage, this.x, this.y);
-                }
-                
-                //Moves the player left
-                this.moveLeft = function()
-                {
-                    if(this.x > 0)
-                    {
-                        this.x -= this.playerSpeed;
-                    }
-                }
-                
-                //Moves the player right
-                this.moveRight = function()
-                {
-                    if(this.x < canvas.width - this.playerWidth)
-                    {
-                        this.x += this.playerSpeed;
-                    }
-                }
-            }
-            
-            //Fruit constructor
-            function Fruit()
-            {
-                this.fruitNumber = Math.floor(Math.random() * 5);
-                this.fruitType = "";
-                this.fruitScore = 0;
-                this.fruitWidth = 50;
-                this.fruitHeight = 50;
-                this.fruitImage = new Image();
-                this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
-                this.x = Math.random() * (canvas.width - this.fruitWidth);
-                this.y = Math.random() * -canvas.height - this.fruitHeight;
-                
-                //Creates a different kind of fruit depending on the fruit number
-                //which is generated randomly
-                this.chooseFruit = function()
-                {
-                    if(this.fruitNumber == 0)
-                    {
-                        this.fruitType = "banana";
-                        this.fruitScore = 5 * this.fruitSpeed;
-                        this.fruitImage.src = 'Images/banana2.png';
-                    }
-                    else if(this.fruitNumber == 1)
-                    {
-                        this.fruitType = "apple";
-                        this.fruitScore = 10 * this.fruitSpeed;
-                        this.fruitImage.src = 'Images/apple2.png';
-                    }
-                    else if(this.fruitNumber == 2)
-                    {
-                        this.fruitType = "orange";
-                        this.fruitScore = 15 * this.fruitSpeed;
-                        this.fruitImage.src = 'Images/orange2.png';
-                    }
-                    else if(this.fruitNumber == 3)
-                    {
-                        this.fruitType = "pineapple";
-                        this.fruitScore = 20 * this.fruitSpeed;
-                        this.fruitImage.src = 'Images/pineapple2.png';
-                    }
-                    else if(this.fruitNumber == 4)
-                    {
-                        this.fruitType = "melon";
-                        this.fruitScore = 25 * this.fruitSpeed;
-                        this.fruitImage.src = 'Images/melon2.png';
-                    }
-                }
-                
-                //Makes the fruit descend.
-                //While falling checks if the fruit has been caught by the player
-                //Or if it hit the floor.
-                this.fall = function()
-                {
-                    if(this.y < canvas.height - this.fruitHeight)
-                    {
-                        this.y += this.fruitSpeed;
-                    }
-                    else
-                    {
-                        // smashSounds[smashCounter].play();
-                        if(smashCounter == 4)
-                        {
-                            smashCounter = 0;
-                        }
-                        else
-                        {
-                            smashCounter++;
-                        }
-                        
-                        player.fruitsMissed += 1;
-                        this.changeState();
-                        this.chooseFruit();
-                    }
-                    this.checkIfCaught();
-                }
-                
-                //Checks if the fruit has been caught by the player
-                //If it is caught, the player score and fruit counter is increased, and
-                //the current fruit changes its state and becomes a different fruit.
-                this.checkIfCaught = function()
-                {
-                    if(this.y >= player.y)
-                    {
-                        if((this.x > player.x && this.x < (player.x + player.playerWidth)) ||
-                          (this.x + this.fruitWidth > player.x && this.x + this.fruitWidth < (player.x + player.playerWidth)))
-                        {
-                            // catchSounds[catchSoundCounter].play();
-                            if(catchSoundCounter == 4)
-                            {
-                                catchSoundCounter = 0;
-                            }
-                            else
-                            {
-                                catchSoundCounter++;
-                            }
-                            
-                            player.score += this.fruitScore;
-                            player.fruitsCollected += 1;
-                            
-                            this.changeState();
-                            this.chooseFruit();
-                        }
-                    }
-                }
-                
-                //Randomly updates the fruit speed, fruit number, which defines the type of fruit
-                //And also changes its x and y position on the canvas.
-                this.changeState = function()
-                {
-                    this.fruitNumber = Math.floor(Math.random() * 5);
-                    this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
-                    this.x = Math.random() * (canvas.width - this.fruitWidth);
-                    this.y = Math.random() * -canvas.height - this.fruitHeight;
-                }
-                
-                //Draws the fruit.
-                this.render = function()
-                {
-                    context.drawImage(this.fruitImage, this.x, this.y);
-                }
-            }
-            
-            //Adds controls. Left arrow to move left, right arrow to move right.
-            //ENTER to restart only works at the game over screen.
-            window.addEventListener("keydown", function(e)
-            {
-		 	    e.preventDefault();
-                if(e.keyCode == 37)
-                {
-                    player.moveLeft();
-                }
-                else if(e.keyCode == 39)
-                {
-                    player.moveRight();
-                }
-                else if(e.keyCode == 13 && player.gameOver == true)
-                {
-                    main();
-                    window.clearTimeout(timer);
-                }
-             });
-            
-            main();
+    this.timer = null;
+    this.hiscore = 0;
+    this.player = null;
+    this.fruits = [];
+    this.numberOfFruits = 15;
 
-            //Fills an array of fruits, creates a player and starts the game
-            function main()
-            {
-                contextBack.font = "bold 23px Velvetica";
-                contextBack.fillStyle = "WHITE";
-                player = new Player();
-                fruits = [];
+    this.initCanvas();
+    this.start();
+  }
 
-                for(var i = 0; i < numberOfFruits; i++)
-                {
-                    var fruit = new Fruit();
-                    fruit.chooseFruit();
-                    fruits.push(fruit);
-                }
-                
-                startGame();
-            }
-            
-            function startGame()
-            {
-                updateGame();
-                window.requestAnimationFrame(drawGame);
-            }
+  initCanvas() {
+    this.canvas.setAttribute('id', 'canvas');
+    this.canvasBack.setAttribute('id', 'backgroundCanvas');
+    this.canvas.width = this.canvasBack.width = 1024;
+    this.canvas.height = this.canvasBack.height = 650;
 
-            //Checks for gameOver and makes each fruit in the array fall down.
-            function updateGame()
-            {
-                // music.play();
-                if(player.fruitsMissed >= 10)
-                {
-                    player.gameOver = true;
-                }
-                
-                for(var j = 0; j < fruits.length; j++)
-                {
-                    fruits[j].fall();
-                }
-                timer = window.setTimeout(updateGame, 30);
-            }
-            
-            //Draws the player and fruits on the screen as well as info in the HUD.
-            function drawGame()
-            {
-                if(player.gameOver == false)
-                {
-                    context.clearRect(0, 0, canvas.width, canvas.height);
-                    contextBack.clearRect(0, 0, canvasBack.width, canvasBack.height);
+    document.body.appendChild(this.canvasBack);
+    document.body.appendChild(this.canvas);
 
-                    contextBack.drawImage(background, 0, 0);
-                    player.render();
+    this.background = new Image();
+    this.background.src = backgroundSrc;
 
-                    for(var j = 0; j < fruits.length; j++)
-                    {
-                        fruits[j].render();
-                    }
-                    contextBack.fillText("SCORE: " + player.score, 50, 50);
-                    contextBack.fillText("HI SCORE: " + hiscore, 250, 50);
-                    contextBack.fillText("FRUIT CAUGHT: " + player.fruitsCollected, 500, 50);
-                    contextBack.fillText("FRUIT MISSED: " + player.fruitsMissed, 780, 50);
-                }
-                else
-                {
-                    //Different screen for game over.
-                    for(var i = 0; i < numberOfFruits; i++)
-                    {
-                        console.log("Speed was" + fruits[fruits.length - 1].fruitSpeed);
-                        fruits.pop();
-                    }
-                    
-                    if(hiscore < player.score)
-                    {
-                        hiscore = player.score;
-                        contextBack.fillText("NEW HI SCORE: " + hiscore, (canvas.width / 2) - 100, canvas.height / 2);
-                    }
-                    contextBack.fillText("PRESS ENTER TO RESTART", (canvas.width / 2) - 140, canvas.height / 2 + 50);
-                    context.clearRect(0, 0, canvas.width, canvas.height);
-                    
-                }
-                window.requestAnimationFrame(drawGame);
-                
-            }
+    this.catchSounds = Array(5)
+      .fill()
+      .map(() => new Audio(catchSoundSrc));
+    this.smashSounds = Array(5)
+      .fill()
+      .map(() => new Audio(smashSoundSrc));
+    this.music = new Audio(musicSrc);
+    this.music.loop = true;
+  }
+
+  start() {
+    this.player = new this.Player(this.canvas);
+    this.fruits = Array.from(
+      { length: this.numberOfFruits },
+      () => new this.Fruit(this.canvas, this.context, this.player),
+    );
+
+    this.startGame();
+  }
+
+  startGame() {
+    this.updateGame();
+    window.requestAnimationFrame(this.drawGame.bind(this));
+  }
+
+  updateGame() {
+    if (this.player.fruitsMissed >= 10) {
+      this.player.gameOver = true;
+    }
+
+    this.fruits.forEach((fruit) => fruit.fall());
+    this.timer = window.setTimeout(this.updateGame.bind(this), 30);
+  }
+
+  drawGame() {
+    if (!this.player.gameOver) {
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.contextBack.clearRect(0, 0, this.canvasBack.width, this.canvasBack.height);
+
+      this.contextBack.drawImage(this.background, 0, 0);
+      this.player.render();
+
+      this.fruits.forEach((fruit) => fruit.render());
+      this.contextBack.fillText(`SCORE: ${this.player.score}`, 50, 50);
+      this.contextBack.fillText(`HI SCORE: ${this.hiscore}`, 250, 50);
+      this.contextBack.fillText(`FRUIT CAUGHT: ${this.player.fruitsCollected}`, 500, 50);
+      this.contextBack.fillText(`FRUIT MISSED: ${this.player.fruitsMissed}`, 780, 50);
+    } else {
+      this.endGame();
+    }
+    window.requestAnimationFrame(this.drawGame.bind(this));
+  }
+
+  endGame() {
+    this.fruits.length = 0;
+
+    if (this.hiscore < this.player.score) {
+      this.hiscore = this.player.score;
+      this.contextBack.fillText(
+        `NEW HI SCORE: ${this.hiscore}`,
+        this.canvas.width / 2 - 100,
+        this.canvas.height / 2,
+      );
+    }
+
+    this.contextBack.fillText(
+      'PRESS ENTER TO RESTART',
+      this.canvas.width / 2 - 140,
+      this.canvas.height / 2 + 50,
+    );
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    window.clearTimeout(this.timer);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.keyCode === 13) {
+        this.start();
+      }
+    });
+  }
+
+  Player(canvas) {
+    this.gameOver = false;
+    this.score = 0;
+    this.fruitsCollected = 0;
+    this.fruitsMissed = 0;
+    this.playerWidth = 150;
+    this.playerHeight = 90;
+    this.playerSpeed = 10;
+    this.x = canvas.width / 2;
+    this.y = canvas.height - this.playerHeight;
+    this.playerImage = new Image();
+    this.playerImage.src = basketImage;
+
+    this.render = () => {
+      context.drawImage(this.playerImage, this.x, this.y);
+    };
+
+    this.moveLeft = () => {
+      if (this.x > 0) {
+        this.x -= this.playerSpeed;
+      }
+    };
+
+    this.moveRight = () => {
+      if (this.x < canvas.width - this.playerWidth) {
+        this.x += this.playerSpeed;
+      }
+    };
+
+    window.addEventListener('keydown', (e) => {
+      if (e.keyCode === 37) {
+        this.moveLeft();
+      } else if (e.keyCode === 39) {
+        this.moveRight();
+      }
+    });
+  }
+
+  Fruit(canvas, context, player) {
+    this.fruitNumber = Math.floor(Math.random() * 5);
+    this.fruitType = '';
+    this.fruitScore = 0;
+    this.fruitWidth = 50;
+    this.fruitHeight = 50;
+    this.fruitImage = new Image();
+    this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
+    this.x = Math.random() * (canvas.width - this.fruitWidth);
+    this.y = Math.random() * -canvas.height - this.fruitHeight;
+
+    this.chooseFruit = () => {
+      const fruitData = fruitImages[this.fruitNumber];
+      this.fruitType = fruitData.type;
+      this.fruitScore = fruitData.score * this.fruitSpeed;
+      this.fruitImage.src = fruitData.src;
+    };
+
+    this.fall = () => {
+      if (this.y < canvas.height - this.fruitHeight) {
+        this.y += this.fruitSpeed;
+      } else {
+        player.fruitsMissed += 1;
+        this.changeState();
+        this.chooseFruit();
+      }
+      this.checkIfCaught();
+    };
+
+    this.checkIfCaught = () => {
+      if (this.y >= player.y) {
+        if (
+          (this.x > player.x && this.x < player.x + player.playerWidth) ||
+          (this.x + this.fruitWidth > player.x &&
+            this.x + this.fruitWidth < player.x + player.playerWidth)
+        ) {
+          player.score += this.fruitScore;
+          player.fruitsCollected += 1;
+          this.changeState();
+          this.chooseFruit();
         }
-    
-    </script>
-    
-    </head>
-    <body style="margin-left:15%; margin-top:3%;">
-        <canvas id="backgroundCanvas" width="1024" height="650"></canvas>
-        <canvas id="canvas" width="1024" height="650"></canvas>
-    </body>
-</html>
+      }
+    };
+
+    this.changeState = () => {
+      this.fruitNumber = Math.floor(Math.random() * 5);
+      this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
+      this.x = Math.random() * (canvas.width - this.fruitWidth);
+      this.y = Math.random() * -canvas.height - this.fruitHeight;
+    };
+
+    this.render = () => {
+      context.drawImage(this.fruitImage, this.x, this.y);
+    };
+
+    this.chooseFruit();
+  }
+}
+
+export default () => {
+  new FruitCatcher();
+};

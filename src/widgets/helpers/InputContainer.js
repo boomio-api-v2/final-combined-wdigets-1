@@ -138,9 +138,9 @@ export class InputContainer {
     }; font-weight: 700; line-height: 18px; word-wrap: break-word">
             ${
               this.language === 'LV' && this.game === 'drive'
-                ? 'līdz pat 500 Unisend balvām!'
+                ? 'līdz pat 100 Unisend balvām!'
                 : this.language === 'EE' && this.game === 'drive'
-                ? 'kuni 500 Unisend.ee auhinda!'
+                ? 'kuni 100 Unisend.ee auhinda!'
                 : this.language === 'LV'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
                 : this.language === 'RU'
