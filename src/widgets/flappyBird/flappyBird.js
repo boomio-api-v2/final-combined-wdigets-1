@@ -913,11 +913,6 @@ ${`<div style="${
 
 
 ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
-
-
-
-
-     
         <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
           document.body.offsetWidth < 418
             ? document.body.offsetWidth < 321
