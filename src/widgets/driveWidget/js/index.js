@@ -710,10 +710,9 @@ function startGame(scoreTableContainerInstance) {
 
   const golds = range(customer === 'Unisend' ? 4 : 2).map(() => {
     randomNumber = randomNumber + 1;
-    console.log(randomNumber);
     return {
       image:
-        customer === 'Unisend'
+        customer === 'Unisend' && language === 'LV'
           ? randomNumber % 2 === 1
             ? goldImageUnisendLV1
             : goldImageUnisendLV2
