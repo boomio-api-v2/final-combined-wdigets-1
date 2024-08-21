@@ -73,6 +73,8 @@ import {
   cloudsImageDataUnisend,
   lineUnisend,
   treeUnisend,
+  goldImageDataUnisendLV2,
+  goldImageDataUnisendLV1,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -83,7 +85,6 @@ function startGame(scoreTableContainerInstance) {
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'Unisend';
   const language = config.language ? config.language : '';
-
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
   let userBestPlace = 0;
   let scoreTable = {};
@@ -142,6 +143,7 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_TIME = 5;
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 10;
+  let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
   const START_TIME = 90;
   const START_FUNDING = 100;
@@ -239,6 +241,11 @@ function startGame(scoreTableContainerInstance) {
       : customer === 'Unisend'
       ? mailboxImageDataUnisend
       : mailboxImageData;
+
+  const goldImageUnisendLV1 = new Image();
+  goldImageUnisendLV1.src = goldImageDataUnisendLV1;
+  const goldImageUnisendLV2 = new Image();
+  goldImageUnisendLV2.src = goldImageDataUnisendLV2;
 
   const goldImage = new Image();
   goldImage.src =
@@ -701,9 +708,16 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const golds = range(customer === 'Unisend' ? 2 : 2).map(() => {
+  const golds = range(customer === 'Unisend' ? 4 : 2).map(() => {
+    randomNumber = randomNumber + 1;
+    console.log(randomNumber);
     return {
-      image: goldImage,
+      image:
+        customer === 'Unisend'
+          ? randomNumber % 2 === 1
+            ? goldImageUnisendLV1
+            : goldImageUnisendLV2
+          : goldImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
         y: 0,

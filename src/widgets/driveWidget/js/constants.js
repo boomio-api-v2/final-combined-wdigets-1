@@ -260,8 +260,16 @@ export const goldImageDataUnisendES = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bagsES.png',
 ];
 
+export const goldImageDataUnisendLV1 = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bagsES.png',
+];
+
+export const goldImageDataUnisendLV2 = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bagsLV1.png',
+];
+
 export const envelopeImageDataUnisend = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bag.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/bagsLV2.png',
 ];
 
 export const carImageDataUnisend = [
