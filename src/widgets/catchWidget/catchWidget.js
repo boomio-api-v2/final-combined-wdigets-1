@@ -11,7 +11,7 @@ import {
   intro,
   tapImageBarbora,
   star,
-  stopwatch,
+  life,
   checkIcon,
   uncheckIcon,
 } from './constants';
@@ -56,6 +56,8 @@ class CatchGame {
     this.numberOfFruits = 15;
     this.smashCounter = 0;
     this.catchSoundCounter = 0;
+    this.animationFrame = null;
+
     this.startCatch();
   }
 
@@ -153,7 +155,7 @@ class CatchGame {
           background.style.display = 'none';
         }
       }, 2000);
-    }, 3000);
+    }, 10);
     //gifas
   };
 
@@ -201,8 +203,8 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${'Brūkšt'}</div>
-        <div>${'Brūkšt'}</div>
+        <div>${'kustēties'}</div>
+        <div>${'kustēties'}</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${'#18904A'};border-radius:35px">
@@ -217,7 +219,7 @@ class CatchGame {
 
 <div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${'#18904A'};border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-<img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
+<img src=${life} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
 <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
 </div>
@@ -410,7 +412,6 @@ class CatchGame {
           competitionRestart.addEventListener('click', clickEventHandlerResetGame);
         }, 2000);
 
-        const controlButton = document.querySelector('.control-button1');
         this.index = 0;
         this.currentScore = 0;
 
@@ -445,8 +446,6 @@ class CatchGame {
               });
           }
         }, 400);
-        controlButton.style.display = 'none';
-        controlButton.style.opacity = 0;
       };
 
       document.getElementById('startButtonClick').addEventListener('click', () => {
@@ -507,26 +506,28 @@ class CatchGame {
                     });
                 }
               }
+              if (this.gameCount === 0) {
+                console.log('f');
+                this.init();
 
-              this.init();
-              this.gamePlaying = true;
-              document.getElementById('background_blur').style.display = 'none';
-              const canvas = document.getElementById('boomio-catch-canvas');
-              canvas.style.transition = 'filter 1s ease';
-              canvas.style.filter = 'none';
+                this.gameCount++;
+                this.gamePlaying = true;
+                document.getElementById('background_blur').style.display = 'none';
+                const canvas = document.getElementById('boomio-catch-canvas');
+                canvas.style.transition = 'filter 1s ease';
+                canvas.style.filter = 'none';
 
-              controlButton.style.opacity = 0;
+                controlButton.style.opacity = 0;
+              }
             };
             canvas.addEventListener('click', this.clickEventHandler);
           }
 
           this.clickEventHandlerButton = () => {
-            const controlButton = document.querySelector('.control-button1');
             const inputContainer = document.querySelector('.input-container1');
             this.index = 0;
             this.currentScore = 0;
             inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            controlButton.style.transition = 'opacity 0.6s ease';
             setTimeout(() => {
               inputContainer.style.height = '10px';
               inputContainer.style.top = 'calc(50% + 330px)';
@@ -622,20 +623,117 @@ class CatchGame {
 
     this.fruits.forEach((fruit) => fruit.fall());
 
+    // Store the timeout so that it can be cleared
     this.timer = window.setTimeout(() => this.updateGame(), 30);
   }
 
   drawGame() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
     if (!this.player.gameOver) {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.player.render();
       this.fruits.forEach((fruit) => fruit.render());
     } else {
+      setTimeout(
+        () => {
+          if (
+            this.showCompetitiveRegistration === 'competition' ||
+            this.showCompetitiveRegistration === 'points' ||
+            this.showCompetitiveRegistration === 'collectable'
+          ) {
+            this.hideScore();
+            boomioService
+              .signal('ROUND_FINISHED', 'signal', {
+                score: this.currentScore,
+              })
+              .then((response) => {
+                this.hideScore();
+                this.userBestPlace = response.user_best_place;
+                if (this.showCompetitiveRegistration === 'points') {
+                  this.scoreTable = response;
+                  this.scoreTableContainerInstance.updateProps(
+                    this.customer,
+                    this.scoreTable,
+                    this.currentScore,
+                  );
+                }
+                if (this.showCompetitiveRegistration === 'competition') {
+                  this.scoreTable = response;
+                  this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+                }
+                if (this.showCompetitiveRegistration === 'collectable') {
+                  this.collection = response?.collection ? response?.collection : this.collection;
+                  this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                  this.scoreTableContainerInstance.updateProps(
+                    this.customer,
+                    this.collectables,
+                    this.collection,
+                    this.just_won,
+                  );
+                }
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+
+          if (this.showCompetitiveRegistration === 'competition') {
+            const canvas = document.getElementById('boomio-catch-canvas');
+            const competitionTableContainer = document.querySelector(
+              '.competition-table-container',
+            );
+            canvas.style.transition = 'filter 0.6s ease';
+            canvas.style.filter = 'blur(2px)';
+            document.getElementById('background_blur').style.display = 'block';
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.display = 'block';
+            setTimeout(() => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = 'calc(50%)';
+              competitionTableContainer.style.opacity = 1;
+            }, 100);
+            const currectScoreDiv = document.getElementsByClassName(
+              'boomio-score-input-container',
+            )[0];
+            currectScoreDiv.style.opacity = 0;
+            setTimeout(() => {
+              currectScoreDiv.style.display = 'none';
+            }, 300);
+          } else {
+            const canvas = document.getElementById('boomio-catch-canvas');
+            const competitionTableContainer = document.querySelector(
+              '.competition-table-container',
+            );
+            canvas.style.transition = 'filter 0.6s ease';
+            canvas.style.filter = 'blur(2px)';
+            document.getElementById('background_blur').style.display = 'block';
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.display = 'block';
+            setTimeout(() => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = 'calc(50%)';
+              competitionTableContainer.style.opacity = 1;
+            }, 100);
+            const currectScoreDiv = document.getElementsByClassName(
+              'boomio-score-input-container',
+            )[0];
+            currectScoreDiv.style.opacity = 0;
+            setTimeout(() => {
+              currectScoreDiv.style.display = 'none';
+            }, 300);
+          }
+          this.startCatch();
+        },
+        this.newHighScoreReached ? 2500 : 100,
+      );
       this.resetGame();
       this.fruits.length = 0;
     }
 
-    window.requestAnimationFrame(() => this.drawGame());
+    this.animationFrame = window.requestAnimationFrame(() => this.drawGame());
   }
 
   resetGame() {
@@ -646,9 +744,14 @@ class CatchGame {
       currectScoreDiv.style.display = 'none';
     }, 300);
 
-    // Clear the existing timer to stop the current game loop
     if (this.timer) {
       clearTimeout(this.timer);
+      this.timer = null;
+    }
+
+    if (this.animationFrame) {
+      cancelAnimationFrame(this.animationFrame);
+      this.animationFrame = null;
     }
 
     // Reset player and game state
@@ -701,7 +804,9 @@ class Player {
   }
 
   render() {
-    this.context.drawImage(this.playerImage, this.x, this.y, this.playerWidth, this.playerHeight);
+    if (!this.gameOver) {
+      this.context.drawImage(this.playerImage, this.x, this.y, this.playerWidth, this.playerHeight);
+    }
   }
 
   moveLeft() {

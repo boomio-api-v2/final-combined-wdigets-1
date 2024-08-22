@@ -196,8 +196,6 @@ class DoodleWidget {
   };
 
   initGame = () => {
-    console.log('start');
-
     this.removeRules();
     if (!this.tutorial || !this.isMobile) {
       setTimeout(() => {

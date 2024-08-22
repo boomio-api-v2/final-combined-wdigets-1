@@ -27,14 +27,7 @@ export class InputRegisterContainer {
     containerDiv.innerHTML = `
       <div style="height: 124px; top: 70px; position: relative; text-align:${
         this.prop === 'Ikea' ? 'start' : 'center'
-      } ;left:34px;margin-right:68px; color: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'white'
-        : 'white'
-    }; font-size: ${
+      } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
       this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '34px' : '40px'
     }; font-family: ${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -51,6 +44,8 @@ export class InputRegisterContainer {
         ? 'REGISTER TO PLAY'
         : this.prop === 'Ikea'
         ? 'Registracija'
+        : this.prop === 'Eurovaistine'
+        ? 'REĢISTRĒJIES'
         : 'Registruokis</br> Žaisti'
     }</div>
       <div id="boomio-competition-confirm-field" disabled=${
@@ -71,13 +66,15 @@ export class InputRegisterContainer {
         ? 'NEXT'
         : this.prop === 'Ikea'
         ? 'Toliau'
+        : this.prop === 'Eurovaistine'
+        ? 'TĀLĀK'
         : 'TOLIAU'
     }</div>
       </div>
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-      this.prop !== 'Unisend' ? 'none' : 'none'
+      this.prop === 'Eurovaistine' ? 'inline-flex' : 'none'
     }">
       <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg2" src="${
@@ -89,6 +86,8 @@ export class InputRegisterContainer {
     };font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
+        : this.prop === 'Eurovaistine'
+        ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
         : this.prop === 'Corepetitus'
         ? 'Sutinku gauti Corepetitus naujienlaiškius.'
         : this.language === 'LV'
@@ -108,14 +107,7 @@ export class InputRegisterContainer {
               privacyCheckboxChecked ? uncheckIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
-        <div style="color: ${
-          this.prop === 'Barbora' ||
-          this.prop === 'Fpro' ||
-          this.prop === 'Fantazijos' ||
-          this.prop === 'LemonGym'
-            ? 'white'
-            : 'white'
-        }; font-size: 14px; font-family:${
+        <div style="color: ${'white'}; font-size: 14px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ;  font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Fpro'
@@ -138,6 +130,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
         : this.prop === 'Ikea'
         ? 'Sutinku su'
+        : this.prop === 'Eurovaistine'
+        ? 'Piekrītu Euroaptiekas'
         : this.prop === 'Corepetitus'
         ? 'Sutinku su'
         : `Sutinku  ${
@@ -167,6 +161,8 @@ export class InputRegisterContainer {
           }" style="color:white;text-decoration: underline;font-size:14px;">${
             this.prop === 'Ikea'
               ? 'IKEA privatumo politika'
+              : this.prop === 'Eurovaistine'
+              ? 'privātuma politikai'
               : this.prop === 'Corepetitus'
               ? 'Corepetitus privatumo politika'
               : 'privatumo politika'
@@ -249,6 +245,8 @@ export class InputRegisterContainer {
         ? 'Email address'
         : this.prop === 'Ikea'
         ? 'El. pašto adresas'
+        : this.prop === 'Eurovaistine'
+        ? 'Spēlētāja e-pasts'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
@@ -278,6 +276,8 @@ export class InputRegisterContainer {
         ? 'Players full name'
         : this.prop === 'Ikea'
         ? 'Žaidėjo vardas'
+        : this.prop === 'Eurovaistine'
+        ? 'Spēlētāja lietotājvārds'
         : 'Žaidėjo slapyvardis'
     }">
     `;
