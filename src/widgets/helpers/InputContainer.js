@@ -278,6 +278,8 @@ export class InputContainer {
           }; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
+              : this.prop === 'Eurovaistine'
+              ? ''
               : this.prop === 'Unisend' && this.language === 'LV'
               ? 'href=https://unisend.lv'
               : this.prop === 'Unisend' && this.language === 'EE'

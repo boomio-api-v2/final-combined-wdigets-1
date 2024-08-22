@@ -40,6 +40,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Makalius' ||
             this.prop === 'Ikea' ||
             this.prop === 'Unisend' ||
+            this.prop === 'Eurovaistine' ||
             this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
