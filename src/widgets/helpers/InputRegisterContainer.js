@@ -82,8 +82,8 @@ export class InputRegisterContainer {
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
-      this.prop === 'Eurovaistine' ? '12px' : '14p'
-    }x; font-family:${
+      this.prop === 'Eurovaistine' ? '12px' : '14px'
+    }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     };font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Ikea'
