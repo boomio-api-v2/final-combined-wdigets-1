@@ -114,6 +114,8 @@ export class CompetitionScoreTableContainer {
                 ? 'DOVANA tau!'
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? 'TEV VEICAS LIELISKI!'
+                : this.prop === 'Eurovaistine'
+                ? 'TEV VEICAS LIELISKI!'
                 : this.language === 'LV'
                 ? 'Atzīmējiet karstāko vasaru'
                 : this.language === 'RU'
@@ -169,6 +171,8 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
+                : this.prop === 'Eurovaistine'
+                ? 'Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU'
@@ -186,6 +190,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.prop === 'Makalius'
                 ? 'TU GALI!'
+                : this.prop === 'Eurovaistine'
+                ? 'TEV VEICAS LIELISKI!'
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? 'TEV VEICAS LIELISKI!'
                 : this.language === 'LV'
@@ -201,6 +207,8 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: 470px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
+                : this.prop === 'Eurovaistine'
+                ? '50 spēlētāji, kuri iegūs vislielāko punktu skaitu, saņems E-</br>EUROAPTIEKA dāvanu, kuponus 100EUR, 50EUR, 25EUR, 15UR,'
                 : this.prop === 'LemonGym'
                 ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Penki Sezonai'
@@ -224,6 +232,8 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
+                : this.prop === 'Eurovaistine'
+                ? '10EUR, 5EUR vērtībā. Uzvarētāju paziņošana 1.oktobrī!'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
@@ -239,6 +249,8 @@ export class CompetitionScoreTableContainer {
               <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
+                : this.prop === 'Eurovaistine'
+                ? 'Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
@@ -313,7 +325,9 @@ export class CompetitionScoreTableContainer {
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
-      this.language === 'LV'
+      this.prop === 'Eurovaistine'
+        ? 'UZLABOT REZULTĀTU'
+        : this.language === 'LV'
         ? 'UZLABOT REZULTĀTU'
         : this.language === 'RU'
         ? 'УЛУЧШИТЬ РЕЗУЛЬТАТ'

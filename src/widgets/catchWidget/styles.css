@@ -45,11 +45,7 @@
   font-family: 'Georama';
 }
 
-#flappy-canvas {
-  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
-  transition:filter 1s ease;
-  opacity: 0;
-}
+
 
 .startButton{
   /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
@@ -60,10 +56,7 @@
 
 }
 
-.game-container-flappy{
-  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
 
-}
 .intro-screen{
   z-index: 99999;
 }
@@ -77,8 +70,7 @@
 }
 
 
-.flappy-game{
-}
+
 
 .boomio-score-input-container{
   transition :opacity 0.8s ease;
@@ -93,13 +85,13 @@ flex-direction: column;
 }
 
 
-.boomio-time-input-container{
+.boomio-life-input-container{
   transition :opacity 0.8s ease;
   opacity:0;
   z-index: 3;
 position: absolute;
 top : calc(50% - 280px);
-left :calc(50% + 110px);
+left :calc(50% + 130px);
 transform : translate(-50%, -50%);
 display:flex;
 flex-direction: column;

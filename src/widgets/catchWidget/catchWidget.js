@@ -217,11 +217,11 @@ class CatchGame {
 
 
 
-<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${'#18904A'};border-radius:35px">
-<div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-<img src=${life} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
+<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${'#18904A'};border-radius:35px">
+<div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+<img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
-<div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
+<div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife"></div>
 </div>
 </div>
 
@@ -405,6 +405,9 @@ class CatchGame {
       };
 
       const clickEventHandlerResetGame = () => {
+        console.log('reseted');
+        this.resetGame();
+        this.menuShown = false;
         const competitionRestart = document.getElementById('boomio-game-play-again');
         competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
 
@@ -507,7 +510,6 @@ class CatchGame {
                 }
               }
               if (this.gameCount === 0) {
-                console.log('f');
                 this.init();
 
                 this.gameCount++;
@@ -580,10 +582,20 @@ class CatchGame {
   }
 
   init() {
+    console.log('init');
+    this.setLife();
     this.createPlayer();
     this.createFruits();
     this.addEventListeners();
     this.startGame();
+  }
+
+  setLife() {
+    const currectScoreDiv = document.getElementsByClassName('boomio-life-input-container')[0];
+    currectScoreDiv.style.transition = 'opacity 0.8s ease';
+    currectScoreDiv.style.display = 'block';
+    document.getElementById('currentLife').innerHTML = `3/3`;
+    currectScoreDiv.style.opacity = 1;
   }
 
   createPlayer() {
@@ -600,15 +612,22 @@ class CatchGame {
   }
 
   addEventListeners() {
-    window.addEventListener('keydown', (e) => {
+    // Remove the old event listener if it exists
+    window.removeEventListener('keydown', this.handleKeyDown);
+    // Add the new event listener
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = (e) => {
+    if (!this.player.gameOver) {
       e.preventDefault();
       if (e.keyCode === 37) {
         this.player.moveLeft();
       } else if (e.keyCode === 39) {
         this.player.moveRight();
       }
-    });
-  }
+    }
+  };
 
   startGame() {
     this.updateGame();
@@ -628,57 +647,69 @@ class CatchGame {
   }
 
   drawGame() {
+    // Clear the canvas before each frame
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (!this.player.gameOver) {
+      // Game is running
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.player.render();
       this.fruits.forEach((fruit) => fruit.render());
+
+      // Continue the game loop
+      this.animationFrame = window.requestAnimationFrame(() => this.drawGame());
     } else {
-      setTimeout(
-        () => {
-          if (
-            this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'points' ||
-            this.showCompetitiveRegistration === 'collectable'
-          ) {
-            this.hideScore();
-            boomioService
-              .signal('ROUND_FINISHED', 'signal', {
-                score: this.currentScore,
-              })
-              .then((response) => {
-                this.hideScore();
-                this.userBestPlace = response.user_best_place;
-                if (this.showCompetitiveRegistration === 'points') {
-                  this.scoreTable = response;
-                  this.scoreTableContainerInstance.updateProps(
-                    this.customer,
-                    this.scoreTable,
-                    this.currentScore,
-                  );
-                }
-                if (this.showCompetitiveRegistration === 'competition') {
-                  this.scoreTable = response;
-                  this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
-                }
-                if (this.showCompetitiveRegistration === 'collectable') {
-                  this.collection = response?.collection ? response?.collection : this.collection;
-                  this.just_won = response?.just_won ? response?.just_won : this.just_won;
-                  this.scoreTableContainerInstance.updateProps(
-                    this.customer,
-                    this.collectables,
-                    this.collection,
-                    this.just_won,
-                  );
-                }
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
-          }
+      console.log('overrr');
 
-          if (this.showCompetitiveRegistration === 'competition') {
+      // Trigger the menu UI (only once)
+      if (!this.menuShown) {
+        this.fruits.length = 0;
+        this.menuShown = true; // Set a flag to ensure the menu is only shown once
+
+        setTimeout(
+          () => {
+            if (
+              this.showCompetitiveRegistration === 'competition' ||
+              this.showCompetitiveRegistration === 'points' ||
+              this.showCompetitiveRegistration === 'collectable'
+            ) {
+              this.hideScore();
+              boomioService
+                .signal('ROUND_FINISHED', 'signal', {
+                  score: this.currentScore,
+                })
+                .then((response) => {
+                  this.hideScore();
+                  this.userBestPlace = response.user_best_place;
+                  if (this.showCompetitiveRegistration === 'points') {
+                    this.scoreTable = response;
+                    this.scoreTableContainerInstance.updateProps(
+                      this.customer,
+                      this.scoreTable,
+                      this.currentScore,
+                    );
+                  }
+                  if (this.showCompetitiveRegistration === 'competition') {
+                    this.scoreTable = response;
+                    this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+                  }
+                  if (this.showCompetitiveRegistration === 'collectable') {
+                    this.collection = response?.collection ? response?.collection : this.collection;
+                    this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                    this.scoreTableContainerInstance.updateProps(
+                      this.customer,
+                      this.collectables,
+                      this.collection,
+                      this.just_won,
+                    );
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
+            }
+
+            // Displaying the competition table container
             const canvas = document.getElementById('boomio-catch-canvas');
             const competitionTableContainer = document.querySelector(
               '.competition-table-container',
@@ -689,51 +720,32 @@ class CatchGame {
             competitionTableContainer.style.transition =
               'height 1s ease, top 1s ease, opacity 1s ease';
             competitionTableContainer.style.display = 'block';
+
             setTimeout(() => {
               competitionTableContainer.style.height = '680px';
               competitionTableContainer.style.top = 'calc(50%)';
               competitionTableContainer.style.opacity = 1;
             }, 100);
+
             const currectScoreDiv = document.getElementsByClassName(
               'boomio-score-input-container',
             )[0];
-            currectScoreDiv.style.opacity = 0;
-            setTimeout(() => {
-              currectScoreDiv.style.display = 'none';
-            }, 300);
-          } else {
-            const canvas = document.getElementById('boomio-catch-canvas');
-            const competitionTableContainer = document.querySelector(
-              '.competition-table-container',
-            );
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
-            document.getElementById('background_blur').style.display = 'block';
-            competitionTableContainer.style.transition =
-              'height 1s ease, top 1s ease, opacity 1s ease';
-            competitionTableContainer.style.display = 'block';
-            setTimeout(() => {
-              competitionTableContainer.style.height = '680px';
-              competitionTableContainer.style.top = 'calc(50%)';
-              competitionTableContainer.style.opacity = 1;
-            }, 100);
-            const currectScoreDiv = document.getElementsByClassName(
-              'boomio-score-input-container',
+            const currectTimeDiv = document.getElementsByClassName(
+              'boomio-life-input-container',
             )[0];
+            currectTimeDiv.style.opacity = 0;
+
             currectScoreDiv.style.opacity = 0;
             setTimeout(() => {
+              currectTimeDiv.style.display = 'none';
+
               currectScoreDiv.style.display = 'none';
             }, 300);
-          }
-          this.startCatch();
-        },
-        this.newHighScoreReached ? 2500 : 100,
-      );
-      this.resetGame();
-      this.fruits.length = 0;
+          },
+          this.newHighScoreReached ? 2500 : 100,
+        );
+      }
     }
-
-    this.animationFrame = window.requestAnimationFrame(() => this.drawGame());
   }
 
   resetGame() {
@@ -798,7 +810,7 @@ class Player {
     this.playerHeight = 90;
     this.playerSpeed = 10;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
-    this.y = this.canvas.height - this.playerHeight;
+    this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
     this.playerImage.src = player;
   }
@@ -854,6 +866,11 @@ class Fruit {
     } else {
       // Handle fruit miss
       this.player.fruitsMissed++;
+      document.getElementById('currentLife').innerHTML = `${Math.max(
+        0,
+        3 - this.player.fruitsMissed,
+      )}/3`;
+
       this.changeState();
     }
 
