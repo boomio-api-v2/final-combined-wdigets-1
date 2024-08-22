@@ -21,19 +21,19 @@ import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
-import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Unisend';
+    this.customer = this.config.business_name ? this.config.business_name : 'Eurovaistine';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
     this.gameCount = 0;
     this.checkboxChange = false;
     this.gameStarted = false;
+    this.currentScore = 0;
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -425,7 +425,6 @@ class CatchGame {
         setTimeout(() => {
           competitionTableContainer.style.display = 'none';
         }, 1000);
-        console.log('asdsad');
         setTimeout(() => {
           if (
             this.showCompetitiveRegistration === 'competition' ||
@@ -508,6 +507,7 @@ class CatchGame {
                     });
                 }
               }
+
               this.init();
               this.gamePlaying = true;
               document.getElementById('background_blur').style.display = 'none';
@@ -592,7 +592,7 @@ class CatchGame {
   createFruits() {
     this.fruits = [];
     for (let i = 0; i < this.numberOfFruits; i++) {
-      const fruit = new Fruit(this.canvas, this.context, this.player);
+      const fruit = new Fruit(this.canvas, this.context, this.player, this);
       fruit.chooseFruit();
       this.fruits.push(fruit);
     }
@@ -611,6 +611,7 @@ class CatchGame {
 
   startGame() {
     this.updateGame();
+
     window.requestAnimationFrame(() => this.drawGame());
   }
 
@@ -626,33 +627,12 @@ class CatchGame {
 
   drawGame() {
     if (!this.player.gameOver) {
-      // Clear canvas and draw background
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-      // Draw player and fruits
       this.player.render();
       this.fruits.forEach((fruit) => fruit.render());
-
-      // Draw game info
-      this.context.font = 'bold 12px Velvetica';
-      this.context.fillStyle = 'black';
-      this.context.fillText(`HI SCORE: ${this.hiscore}`, 100, 50);
-      this.context.fillText(`FRUIT CAUGHT: ${this.player.fruitsCollected}`, 200, 50);
-      this.context.fillText(`FRUIT MISSED: ${this.player.fruitsMissed}`, 300, 50);
     } else {
+      this.resetGame();
       this.fruits.length = 0;
-
-      // Show game over text and high score
-      this.context.fillText(
-        `NEW HI SCORE: ${this.hiscore}`,
-        this.canvas.width / 2 - 100,
-        this.canvas.height / 2,
-      );
-      this.context.fillText(
-        'PRESS ENTER TO RESTART',
-        this.canvas.width / 2 - 140,
-        this.canvas.height / 2 + 50,
-      );
     }
 
     window.requestAnimationFrame(() => this.drawGame());
@@ -665,14 +645,21 @@ class CatchGame {
     setTimeout(() => {
       currectScoreDiv.style.display = 'none';
     }, 300);
-    console.log('clear');
-    clearTimeout(this.timer);
+
+    // Clear the existing timer to stop the current game loop
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+
+    // Reset player and game state
     this.player.gameOver = false;
     this.currentScore = 0;
     this.player.fruitsCollected = 0;
     this.player.fruitsMissed = 0;
     this.fruits = [];
     this.gameCount++;
+
+    // Reinitialize the game
     this.init();
   }
 
@@ -731,10 +718,11 @@ class Player {
 }
 
 class Fruit {
-  constructor(canvas, context, player) {
+  constructor(canvas, context, player, game) {
     this.canvas = canvas;
     this.context = context;
     this.player = player;
+    this.game = game;
     this.fruitNumber = Math.floor(Math.random() * 5);
     this.fruitType = '';
     this.fruitScore = 0;
@@ -763,6 +751,7 @@ class Fruit {
       this.player.fruitsMissed++;
       this.changeState();
     }
+
     this.checkIfCaught();
   }
 
@@ -774,27 +763,31 @@ class Fruit {
           this.x + this.fruitWidth < this.player.x + this.player.playerWidth)
       ) {
         this.player.fruitsCollected++;
+
         this.updateScore();
         this.changeState();
       }
     }
   }
-  updateScore = () => {
-    this.currentScore = this.currentScore += this.fruitScore;
-    document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
 
-    if (this.currentScore > 1) {
+  updateScore() {
+    this.game.currentScore += this.fruitScore;
+    document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+
+    if (this.game.currentScore > 1) {
       const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
       currectScoreDiv.style.transition = 'opacity 0.8s ease';
       currectScoreDiv.style.display = 'block';
       currectScoreDiv.style.opacity = 1;
     }
-    if (this.bestScore < this.currentScore) {
-      this.newHighScoreReached = true;
+
+    if (this.game.bestScore < this.game.currentScore) {
+      this.game.newHighScoreReached = true;
     }
+
     // check if it's the best score
-    this.bestScore = Math.max(this.bestScore, this.currentScore);
-  };
+    this.game.bestScore = Math.max(this.game.bestScore, this.game.currentScore);
+  }
 
   changeState() {
     this.fruitNumber = Math.floor(Math.random() * 5);
