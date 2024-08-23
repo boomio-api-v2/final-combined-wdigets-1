@@ -32,6 +32,8 @@ class CatchGame {
     this.language = this.config.language ? this.config.language : '';
     this.gameCount = 0;
     this.checkboxChange = false;
+    this.checkboxChange2 = false;
+
     this.gameStarted = false;
     this.currentScore = 0;
     this.movement = { left: false, right: false }; // To track current movement state
@@ -96,6 +98,13 @@ class CatchGame {
             const checkboxImgChange = document.getElementById('privacyCheckboxImg');
             checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
           });
+          const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+          checkboxImg2.addEventListener('click', () => {
+            this.checkboxChange2 = !this.checkboxChange2;
+            const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+            checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+          });
+
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity = 0.37;
@@ -873,7 +882,7 @@ class Player {
     this.fruitsMissed = 0;
     this.playerWidth = 150;
     this.playerHeight = 90;
-    this.playerSpeed = 2;
+    this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
@@ -908,8 +917,8 @@ class Fruit {
     this.fruitNumber = Math.floor(Math.random() * 5);
     this.fruitType = '';
     this.fruitScore = 0;
-    this.fruitWidth = 50;
-    this.fruitHeight = 50;
+    this.fruitWidth = 40;
+    this.fruitHeight = 40;
     this.fruitImage = new Image();
     this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);

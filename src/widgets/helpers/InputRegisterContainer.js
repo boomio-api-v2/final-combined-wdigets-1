@@ -162,7 +162,9 @@ export class InputRegisterContainer {
               : this.prop === 'Corepetitus'
               ? 'https://www.corepetitus.lt/privatumo-politika'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
-          }" style="color:white;text-decoration: underline;font-size:14px;">${
+          }" style="color:white;text-decoration: underline; font-size: ${
+            this.prop === 'Eurovaistine' ? '12px' : '14px'
+          }; ">${
             this.prop === 'Ikea'
               ? 'IKEA privatumo politika'
               : this.prop === 'Eurovaistine'
