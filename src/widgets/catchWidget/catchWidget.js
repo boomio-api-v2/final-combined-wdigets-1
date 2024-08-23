@@ -34,7 +34,8 @@ class CatchGame {
     this.checkboxChange = false;
     this.gameStarted = false;
     this.currentScore = 0;
-
+    this.movement = { left: false, right: false }; // To track current movement state
+    this.touchMoveActive = false; // To track touch hold state for mobile
     this.scoreTable = {};
     this.scoreTableContainerInstance;
     this.createContainer();
@@ -53,7 +54,7 @@ class CatchGame {
     this.timer = null;
     this.hiscore = 0;
     this.fruits = [];
-    this.numberOfFruits = 15;
+    this.numberOfFruits = 8;
     this.smashCounter = 0;
     this.catchSoundCounter = 0;
     this.animationFrame = null;
@@ -604,6 +605,7 @@ class CatchGame {
 
   createFruits() {
     this.fruits = [];
+    console.log(this.numberOfFruits);
     for (let i = 0; i < this.numberOfFruits; i++) {
       const fruit = new Fruit(this.canvas, this.context, this.player, this);
       fruit.chooseFruit();
@@ -612,22 +614,75 @@ class CatchGame {
   }
 
   addEventListeners() {
-    // Remove the old event listener if it exists
+    // Remove old listeners to avoid duplicates
     window.removeEventListener('keydown', this.handleKeyDown);
-    // Add the new event listener
+    window.removeEventListener('keyup', this.handleKeyUp);
+    window.removeEventListener('touchstart', this.handleTouchStart);
+    window.removeEventListener('touchend', this.handleTouchEnd);
+
+    // Add new listeners for keyboard
     window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keyup', this.handleKeyUp);
+
+    // Add new listeners for mobile touch
+    window.addEventListener('touchstart', this.handleTouchStart);
+    window.addEventListener('touchend', this.handleTouchEnd);
   }
 
   handleKeyDown = (e) => {
     if (!this.player.gameOver) {
       e.preventDefault();
       if (e.keyCode === 37) {
-        this.player.moveLeft();
+        // Left arrow key
+        this.movement.left = true;
       } else if (e.keyCode === 39) {
-        this.player.moveRight();
+        // Right arrow key
+        this.movement.right = true;
       }
     }
   };
+
+  handleKeyUp = (e) => {
+    if (e.keyCode === 37) {
+      // Left arrow key
+      this.movement.left = false;
+    } else if (e.keyCode === 39) {
+      // Right arrow key
+      this.movement.right = false;
+    }
+  };
+
+  // Handle touch start event for mobile
+  handleTouchStart = (e) => {
+    if (!this.player.gameOver) {
+      const touchX = e.touches[0].clientX;
+      const canvasMiddle = window.innerWidth / 2;
+
+      if (touchX < canvasMiddle) {
+        this.movement.left = true;
+      } else {
+        this.movement.right = true;
+      }
+
+      this.touchMoveActive = true; // Indicate that touch is active
+    }
+  };
+
+  handleTouchEnd = () => {
+    // Stop movement when the touch ends
+    this.movement.left = false;
+    this.movement.right = false;
+    this.touchMoveActive = false; // Indicate that touch is no longer active
+  };
+
+  updatePlayerMovement() {
+    if (this.movement.left) {
+      this.player.moveLeft();
+    }
+    if (this.movement.right) {
+      this.player.moveRight();
+    }
+  }
 
   startGame() {
     this.updateGame();
@@ -642,7 +697,15 @@ class CatchGame {
 
     this.fruits.forEach((fruit) => fruit.fall());
 
-    // Store the timeout so that it can be cleared
+    const newNumberOfFruits = 8 + Math.floor(this.currentScore / 500);
+    if (this.fruits.length < newNumberOfFruits) {
+      // Create additional fruits to reach the new number
+      for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
+        const fruit = new Fruit(this.canvas, this.context, this.player, this);
+        fruit.chooseFruit();
+        this.fruits.push(fruit);
+      }
+    }
     this.timer = window.setTimeout(() => this.updateGame(), 30);
   }
 
@@ -651,6 +714,8 @@ class CatchGame {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (!this.player.gameOver) {
+      this.updatePlayerMovement(); // Continuously update player movement
+
       // Game is running
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.player.render();
@@ -808,7 +873,7 @@ class Player {
     this.fruitsMissed = 0;
     this.playerWidth = 150;
     this.playerHeight = 90;
-    this.playerSpeed = 10;
+    this.playerSpeed = 2;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
@@ -856,7 +921,7 @@ class Fruit {
 
   chooseFruit() {
     this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
-    this.fruitScore = [5, 10, 15, 20, 25][this.fruitNumber] * this.fruitSpeed;
+    this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
     this.fruitImage.src = this.images[this.fruitNumber];
   }
 
@@ -913,7 +978,10 @@ class Fruit {
 
   changeState() {
     this.fruitNumber = Math.floor(Math.random() * 5);
-    this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
+
+    this.fruitSpeed = Math.floor(
+      (Math.random() * 2 + 1) * (1 + Math.floor(this.game.currentScore / 500) * 0.1),
+    );
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
     this.chooseFruit();

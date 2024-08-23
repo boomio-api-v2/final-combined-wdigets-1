@@ -112,13 +112,15 @@ export class PointCopyTableContainer {
         ? '900'
         : '700';
     let scoreboardText = `
-     <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
-      this.currentScore > 600 ? 'Registruokis COREPETITUS.LT platformoje,' : 'TU GALI!'
+     <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
+      this.currentScore > 600
+        ? `<a onclick="event.stopPropagation();" target="_blank" href="${'https://www.corepetitus.lt/tapk-korepetitoriumi'}" style="color:white;text-decoration: underline;font-size:12px;">Aplikuok ir tapk „Corepetitus“ korepetitoriumi!.</a> `
+        : 'TU GALI!'
     } </div>
              </div>
-             <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight: 400; text-transform: uppercase; word-wrap: break-word">${
+             <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 11px; font-family: Montserrat; text-transform: none;font-weight: 400; word-wrap: break-word">${
                this.currentScore > 600
-                 ? 'Panaudok laimėtą kodą ir gauk papildomą priedą prie pajamų! Mėgaukis nuotoline veikla, lanksčiomis valandomis, reguliariai kylančiu apmokėjimu bei didžiausia Lietuvoje korepetitorių bendruomene.'
+                 ? `Panaudok laimėtą kodą aplikuojant: korepetitoriaus <a onclick="event.stopPropagation();" target="_blank" href="${'https://www.corepetitus.lt/tapk-korepetitoriumi'}" style="color:white;text-decoration: underline;">aplikacijoje</a></br> spausk <i>Kita</i> ir įvesk laimėjimo kodą laukelyje <i>Kaip sužinojai </br> apie mus?</i> ir gauk papildomą priedą prie pajamų!`
                  : 'Pagerink rezultatą, nes surinkus daugiau nei 600 taškų laimėsi papildomą priedą prie pajamų!'
              } </div>
 
