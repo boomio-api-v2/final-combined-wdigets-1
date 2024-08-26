@@ -14,6 +14,7 @@ import {
   life,
   checkIcon,
   uncheckIcon,
+  test1,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -33,7 +34,6 @@ class CatchGame {
     this.gameCount = 0;
     this.checkboxChange = false;
     this.checkboxChange2 = false;
-
     this.gameStarted = false;
     this.currentScore = 0;
     this.movement = { left: false, right: false }; // To track current movement state
@@ -415,7 +415,6 @@ class CatchGame {
       };
 
       const clickEventHandlerResetGame = () => {
-        console.log('reseted');
         this.resetGame();
         this.menuShown = false;
         const competitionRestart = document.getElementById('boomio-game-play-again');
@@ -452,7 +451,6 @@ class CatchGame {
                 const canvas = document.getElementById('boomio-catch-canvas');
                 canvas.style.transition = 'filter 1s ease';
                 canvas.style.filter = 'none';
-                this.gamePlaying = true;
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -523,7 +521,7 @@ class CatchGame {
                 this.init();
 
                 this.gameCount++;
-                this.gamePlaying = true;
+
                 document.getElementById('background_blur').style.display = 'none';
                 const canvas = document.getElementById('boomio-catch-canvas');
                 canvas.style.transition = 'filter 1s ease';
@@ -558,7 +556,6 @@ class CatchGame {
               const canvas = document.getElementById('boomio-catch-canvas');
               canvas.style.transition = 'filter 1s ease';
               canvas.style.filter = 'none';
-              this.gamePlaying = true;
             }, 400);
             controlButton.style.display = 'none';
             controlButton.style.opacity = 0;
@@ -592,12 +589,10 @@ class CatchGame {
   }
 
   init() {
-    console.log('init');
     this.setLife();
     this.createPlayer();
     this.createFruits();
     this.addEventListeners();
-    this.gamePlaying = true;
     this.startGame();
   }
 
@@ -615,7 +610,6 @@ class CatchGame {
 
   createFruits() {
     this.fruits = [];
-    console.log(this.numberOfFruits);
     for (let i = 0; i < this.numberOfFruits; i++) {
       const fruit = new Fruit(this.canvas, this.context, this.player, this);
       fruit.chooseFruit();
@@ -695,36 +689,37 @@ class CatchGame {
   }
 
   startGame() {
-    if (this.gamePlaying) {
-      this.updateGame();
-    }
+    this.updateGame();
 
     window.requestAnimationFrame(() => this.drawGame());
   }
 
   updateGame() {
-    if (this.player.fruitsMissed >= 3) {
-      this.player.gameOver = true;
-    }
-
-    this.fruits.forEach((fruit) => fruit.fall());
-
-    const newNumberOfFruits = 8 + Math.floor(this.currentScore / 500);
-    if (this.fruits.length < newNumberOfFruits) {
-      // Create additional fruits to reach the new number
-      for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
-        const fruit = new Fruit(this.canvas, this.context, this.player, this);
-        fruit.chooseFruit();
-        this.fruits.push(fruit);
+    if (!this.player.gameOver) {
+      if (this.player.fruitsMissed >= 3) {
+        this.player.gameOver = true;
       }
+
+      this.fruits.forEach((fruit) => fruit.fall());
+
+      const newNumberOfFruits = 8 + Math.floor(this.currentScore / 500);
+      if (this.fruits.length < newNumberOfFruits) {
+        // Create additional fruits to reach the new number
+        for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
+          const fruit = new Fruit(this.canvas, this.context, this.player, this);
+          fruit.chooseFruit();
+          this.fruits.push(fruit);
+        }
+      }
+      this.timer = window.setTimeout(() => this.updateGame(), 30);
     }
-    this.timer = window.setTimeout(() => this.updateGame(), 30);
   }
 
   drawGame() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (!this.player.gameOver) {
+      console.log('playing');
       // Game is running
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -753,7 +748,6 @@ class CatchGame {
               this.showCompetitiveRegistration === 'points' ||
               this.showCompetitiveRegistration === 'collectable'
             ) {
-              this.gamePlaying = false;
               this.hideScore();
               boomioService
                 .signal('ROUND_FINISHED', 'signal', {
@@ -887,8 +881,8 @@ class Player {
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
-    this.playerWidth = 150;
-    this.playerHeight = 90;
+    this.playerWidth = 113;
+    this.playerHeight = 74;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
@@ -934,7 +928,7 @@ class Fruit {
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
     // Fruit images
-    this.images = [catch1, catch2, catch3, catch4, catch5];
+    this.images = [catch1, catch2, catch3, test1, catch5];
   }
 
   chooseFruit() {
@@ -985,7 +979,6 @@ class Fruit {
       currectScoreDiv.style.display = 'block';
       currectScoreDiv.style.opacity = 1;
     }
-
     if (this.game.bestScore < this.game.currentScore) {
       this.game.newHighScoreReached = true;
     }
