@@ -14,8 +14,6 @@ import {
   life,
   checkIcon,
   uncheckIcon,
-  test1,
-  test2,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -929,11 +927,11 @@ class Fruit {
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
     // Fruit images
-    this.images = [test1, test1, test2, test2, test2];
+    this.images = [catch1, catch2, catch3, catch4, catch5];
   }
 
   chooseFruit() {
-    this.fruitType = ['test1', 'test1', 'test2', 'test2', 'test2'][this.fruitNumber];
+    this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
     this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
     this.fruitImage.src = this.images[this.fruitNumber];
   }
