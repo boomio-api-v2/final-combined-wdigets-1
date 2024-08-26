@@ -718,7 +718,6 @@ class CatchGame {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (!this.player.gameOver) {
-      console.log('playing');
       // Game is running
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -733,8 +732,6 @@ class CatchGame {
 
       this.animationFrame = window.requestAnimationFrame(() => this.drawGame());
     } else {
-      console.log('overrr');
-
       // Trigger the menu UI (only once)
       if (!this.menuShown) {
         this.fruits.length = 0;
@@ -880,8 +877,8 @@ class Player {
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
-    this.playerWidth = 113;
-    this.playerHeight = 74;
+    this.playerWidth = 110;
+    this.playerHeight = 80;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
