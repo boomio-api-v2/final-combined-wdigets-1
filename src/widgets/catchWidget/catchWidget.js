@@ -216,17 +216,17 @@ class CatchGame {
         <div>${'kustēties'}</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${'#18904A'};border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#18904A'};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
+    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
-  <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentScore"></div>
+  <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
 
 
 
-<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${'#18904A'};border-radius:35px">
+<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#18904A'};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
@@ -249,7 +249,7 @@ class CatchGame {
         : ''
     }
 
-    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 280px);display:block;width:32px;height:32px;">
+    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 280px);display:block;width:25px;height:25px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
