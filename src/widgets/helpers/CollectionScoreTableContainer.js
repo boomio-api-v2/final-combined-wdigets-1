@@ -189,7 +189,7 @@ export class CollectionScoreTableContainer {
         ? document.body.offsetWidth < 321
           ? '375px'
           : document.body.offsetWidth + 'px'
-        : '426px';
+        : '380px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${

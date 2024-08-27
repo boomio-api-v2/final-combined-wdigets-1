@@ -14,6 +14,7 @@ import {
   life,
   checkIcon,
   uncheckIcon,
+  backgroundMobile,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -45,7 +46,9 @@ class CatchGame {
 
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
-    this.canvas.style.background = `url(${background}) center`;
+    this.canvas.style.background = `url(${
+      window.innerWidth <= 768 ? backgroundMobile : background
+    }) center`;
 
     this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
     this.music = new Audio('Audio/MarimbaBoy.wav');
