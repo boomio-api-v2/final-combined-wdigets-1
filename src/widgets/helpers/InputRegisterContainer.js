@@ -82,7 +82,7 @@ export class InputRegisterContainer {
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
-      this.prop === 'Eurovaistine' ? '12px' : '14px'
+      this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     };font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
@@ -110,7 +110,7 @@ export class InputRegisterContainer {
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
-      this.prop === 'Eurovaistine' ? '12px' : '14px'
+      this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ;  font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
@@ -163,7 +163,7 @@ export class InputRegisterContainer {
               ? 'https://www.corepetitus.lt/privatumo-politika'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${
-            this.prop === 'Eurovaistine' ? '12px' : '14px'
+            this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
           }; ">${
             this.prop === 'Ikea'
               ? 'IKEA privatumo politika'

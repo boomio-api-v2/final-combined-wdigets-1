@@ -54,7 +54,9 @@ export class InputContainer {
     }</div>`}</div>
     <div style="width: 390px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
           <div style="left: ${
-            this.language === 'LV' && this.prop === 'Unisend'
+            this.prop === 'Eurovaistine'
+              ? '120px'
+              : this.language === 'LV' && this.prop === 'Unisend'
               ? '155px'
               : this.language === 'LV' || this.language === 'RU'
               ? '180px'
@@ -67,12 +69,12 @@ export class InputContainer {
               : this.prop === 'Unisend'
               ? '140px'
               : '160px'
-          }; top: 9px; position: absolute; color: white; font-size: 13px;  font-weight: 700; font-family:${
+          }; top: 9px; position: absolute; color: white; font-size: 12px;  font-weight: 700; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     };line-height: 31.50px; word-wrap: break-word">
             ${
               this.prop === 'Eurovaistine'
-                ? 'velkot iepirkuma grozu uz sāniem.'
+                ? 'pārvietojoties uz sāniem.'
                 : this.language === 'LV' && this.game === 'drive'
                 ? 'uz sāniem braukt.'
                 : this.language === 'EE' && this.game === 'drive'
@@ -93,7 +95,9 @@ export class InputContainer {
             }
           </div>
           <div style="width: 229px; left: ${
-            this.language === 'LV' && this.prop === 'Unisend'
+            this.prop === 'Eurovaistine'
+              ? '160px'
+              : this.language === 'LV' && this.prop === 'Unisend'
               ? '155px'
               : this.language === 'LV' || this.language === 'RU'
               ? '180px'
@@ -108,7 +112,7 @@ export class InputContainer {
               : this.prop === 'Eurovaistine'
               ? '175px'
               : '160px'
-          }; top: 46px; position: absolute; color: white; font-size: 13px; font-family:${
+          }; top: 46px; position: absolute; color: white; font-size: 12px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 31.50px; word-wrap: break-word">
             ${
@@ -128,7 +132,9 @@ export class InputContainer {
             }
           </div>
           <div style="width: 236px; left: ${
-            this.language === 'LV' && this.prop === 'Unisend'
+            this.prop === 'Eurovaistine'
+              ? '140px'
+              : this.language === 'LV' && this.prop === 'Unisend'
               ? '155px'
               : this.language === 'LV' || this.language === 'RU'
               ? '180px'
@@ -141,7 +147,7 @@ export class InputContainer {
               : this.prop === 'Unisend'
               ? '140px'
               : '160px'
-          }; top: 85px; position: absolute; color: white; font-size: 13px; font-family:${
+          }; top: 85px; position: absolute; color: white; font-size: 12px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 18px; word-wrap: break-word">
             ${
@@ -194,7 +200,7 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
                 this.language === 'LV' && this.game === 'drive'
-                  ? 'Velciet'
+                  ? 'Noķer,'
                   : this.language === 'EE' && this.game === 'drive'
                   ? 'LIIKUMISEKS —'
                   : this.language === 'LV'
@@ -279,7 +285,7 @@ export class InputContainer {
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'Eurovaistine'
-              ? ''
+              ? 'href=https://www.e-euroaptieka.lv/ker-un-laime-speles-noteikumi'
               : this.prop === 'Unisend' && this.language === 'LV'
               ? 'href=https://unisend.lv'
               : this.prop === 'Unisend' && this.language === 'EE'
@@ -335,7 +341,7 @@ export class InputContainer {
                     : document.body.offsetWidth + 'px'
                   : '426px'
               };" id="control-button" class="control-button">
-              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: white
+              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 12px; padding-bottom: 12px; background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family:${
                 this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
