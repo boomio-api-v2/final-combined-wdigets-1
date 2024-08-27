@@ -48,11 +48,15 @@ export class InputContainer {
         ? 'RULES'
         : this.prop === 'Ikea'
         ? 'Kaip žaisti?'
+        : this.prop === 'Eurovaistine'
+        ? 'NOTEIKUMI'
         : 'Taisyklės'
     }</div>`}</div>
     <div style="width: 390px;margin-top:10px;margin-bottom:10px;height:120px; color: white; font-size: 16px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
           <div style="left: ${
-            this.language === 'LV' && this.prop === 'Unisend'
+            this.prop === 'Eurovaistine'
+              ? '120px'
+              : this.language === 'LV' && this.prop === 'Unisend'
               ? '155px'
               : this.language === 'LV' || this.language === 'RU'
               ? '180px'
@@ -61,18 +65,20 @@ export class InputContainer {
               : this.prop === 'Ikea'
               ? '155px'
               : this.prop === 'Unisend' && this.language === 'EE'
-              ? '180px'
+              ? '190px'
               : this.prop === 'Unisend'
               ? '140px'
               : '160px'
-          }; top: 9px; position: absolute; color: white; font-size: 13px;  font-weight: 700; font-family:${
+          }; top: 9px; position: absolute; color: white; font-size: 12px;  font-weight: 700; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     };line-height: 31.50px; word-wrap: break-word">
             ${
-              this.language === 'LV' && this.game === 'drive'
+              this.prop === 'Eurovaistine'
+                ? 'pārvietojoties uz sāniem.'
+                : this.language === 'LV' && this.game === 'drive'
                 ? 'uz sāniem braukt.'
                 : this.language === 'EE' && this.game === 'drive'
-                ? '- libista sõrmega küljelt küljele.'
+                ? 'libista sõrmega küljelt küljele.'
                 : this.language === 'LV'
                 ? 'lai lidotu'
                 : this.language === 'RU'
@@ -89,7 +95,9 @@ export class InputContainer {
             }
           </div>
           <div style="width: 229px; left: ${
-            this.language === 'LV' && this.prop === 'Unisend'
+            this.prop === 'Eurovaistine'
+              ? '160px'
+              : this.language === 'LV' && this.prop === 'Unisend'
               ? '155px'
               : this.language === 'LV' || this.language === 'RU'
               ? '180px'
@@ -97,14 +105,20 @@ export class InputContainer {
               ? '150px'
               : this.prop === 'Ikea'
               ? '155px'
+              : this.prop === 'Unisend' && this.language === 'EE'
+              ? '135px'
               : this.prop === 'Unisend'
               ? '140px'
+              : this.prop === 'Eurovaistine'
+              ? '175px'
               : '160px'
-          }; top: 46px; position: absolute; color: white; font-size: 13px; font-family:${
+          }; top: 46px; position: absolute; color: white; font-size: 12px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 31.50px; word-wrap: break-word">
             ${
-              this.language === 'LV'
+              this.prop === 'Eurovaistine'
+                ? 'un uzlabo savu rezultātu.'
+                : this.language === 'LV'
                 ? 'labākam rezultātam'
                 : this.language === 'RU'
                 ? 'для лучшего результата'
@@ -118,7 +132,9 @@ export class InputContainer {
             }
           </div>
           <div style="width: 236px; left: ${
-            this.language === 'LV' && this.prop === 'Unisend'
+            this.prop === 'Eurovaistine'
+              ? '140px'
+              : this.language === 'LV' && this.prop === 'Unisend'
               ? '155px'
               : this.language === 'LV' || this.language === 'RU'
               ? '180px'
@@ -126,17 +142,21 @@ export class InputContainer {
               ? '105px'
               : this.prop === 'Ikea'
               ? '155px'
+              : this.prop === 'Unisend' && this.language === 'EE'
+              ? '130px'
               : this.prop === 'Unisend'
               ? '140px'
               : '160px'
-          }; top: 85px; position: absolute; color: white; font-size: 13px; font-family:${
+          }; top: 85px; position: absolute; color: white; font-size: 12px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 18px; word-wrap: break-word">
             ${
-              this.language === 'LV' && this.game === 'drive'
-                ? 'līdz pat 500 Unisend balvām!'
+              this.prop === 'Eurovaistine'
+                ? 'kādu no 50 balvām!'
+                : this.language === 'LV' && this.game === 'drive'
+                ? 'līdz pat 100 Unisend balvām!'
                 : this.language === 'EE' && this.game === 'drive'
-                ? 'kuni 500 Unisend.ee auhinda!'
+                ? 'kuni 100 Unisend.ee auhinda!'
                 : this.language === 'LV'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
                 : this.language === 'RU'
@@ -165,6 +185,8 @@ export class InputContainer {
               ? '165px'
               : this.prop === 'Ikea'
               ? '164px'
+              : this.prop === 'Eurovaistine'
+              ? '155px'
               : '145px'
           }; height: 139px; left: 20px; top: 0px; position: absolute">
             <div style="left: 0px; top: 0px; position: absolute; color: white; font-size: ${
@@ -178,9 +200,9 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
                 this.language === 'LV' && this.game === 'drive'
-                  ? 'Velciet'
+                  ? 'Noķer,'
                   : this.language === 'EE' && this.game === 'drive'
-                  ? 'LIIKUMISEKS'
+                  ? 'LIIKUMISEKS —'
                   : this.language === 'LV'
                   ? 'NOSPIEDIET'
                   : this.language === 'RU'
@@ -191,6 +213,8 @@ export class InputContainer {
                   ? 'CLICK'
                   : this.prop === 'Ikea'
                   ? 'Vairuokite,'
+                  : this.prop === 'Eurovaistine'
+                  ? 'SAŅEMT'
                   : 'Spausk'
               }
             </div>
@@ -209,11 +233,13 @@ export class InputContainer {
                 : this.language === 'RU'
                 ? 'ПОВТОРИТЬ'
                 : this.language === 'EE'
-                ? 'KORDA'
+                ? 'KORDA —'
                 : this.prop === 'Fpro'
                 ? 'REPEAT'
                 : this.prop === 'Ikea'
                 ? 'Kartokite,'
+                : this.prop === 'Eurovaistine'
+                ? 'ATKĀRTOT'
                 : 'Kartok'
             }
             </div>
@@ -232,11 +258,13 @@ export class InputContainer {
                 : this.language === 'RU'
                 ? 'ВЫИГРАЙТЕ'
                 : this.language === 'EE'
-                ? 'VÕIDA'
+                ? 'VÕIDA —'
                 : this.prop === 'Fpro'
                 ? 'WIN'
                 : this.prop === 'Ikea'
                 ? 'Laimėkite,'
+                : this.prop === 'Eurovaistine'
+                ? 'LAIMĒT'
                 : 'Laimėk'
             } 
             </div>
@@ -249,12 +277,15 @@ export class InputContainer {
       this.prop === 'LemonGym' ||
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
+      this.prop === 'Eurovaistine' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
           }; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
+              : this.prop === 'Eurovaistine'
+              ? 'href=https://www.e-euroaptieka.lv/ker-un-laime-speles-noteikumi'
               : this.prop === 'Unisend' && this.language === 'LV'
               ? 'href=https://unisend.lv'
               : this.prop === 'Unisend' && this.language === 'EE'
@@ -281,7 +312,9 @@ export class InputContainer {
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
           };">${
-            this.language === 'LV'
+            this.prop === 'Eurovaistine'
+              ? 'Izlasiet pilnus spēles noteikumus.'
+              : this.language === 'LV'
               ? 'Lasīt pilnus spēles noteikumus. '
               : this.language === 'RU'
               ? 'Читайте полные правила игры.'
@@ -308,7 +341,7 @@ export class InputContainer {
                     : document.body.offsetWidth + 'px'
                   : '426px'
               };" id="control-button" class="control-button">
-              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 13px; padding-bottom: 13px; background: white
+              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 12px; padding-bottom: 12px; background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family:${
                 this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -331,6 +364,8 @@ export class InputContainer {
         ? 'PLAY'
         : this.prop === 'Ikea'
         ? 'Pirmyn'
+        : this.prop === 'Eurovaistine'
+        ? 'TĀLĀK'
         : 'LET’S PLAY'
     }</div></div>
     </div>

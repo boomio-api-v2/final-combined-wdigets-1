@@ -59,6 +59,7 @@ import {
   grassUnisend,
   backgroundUnisend,
   goldImageDataUnisend,
+  goldImageDataUnisendES,
   envelopeImageDataUnisend,
   carImageDataUnisend,
   mailboxImageDataUnisend,
@@ -72,6 +73,8 @@ import {
   cloudsImageDataUnisend,
   lineUnisend,
   treeUnisend,
+  goldImageDataUnisendLV2,
+  goldImageDataUnisendLV1,
 } from './constants';
 
 function startGame(scoreTableContainerInstance) {
@@ -82,7 +85,6 @@ function startGame(scoreTableContainerInstance) {
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'Unisend';
   const language = config.language ? config.language : '';
-
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
   let userBestPlace = 0;
   let scoreTable = {};
@@ -141,6 +143,7 @@ function startGame(scoreTableContainerInstance) {
   const ENVELOPE_TIME = 5;
   const ENVELOPE_DELAY = 100;
   const ROAD_SPRITE_SPAWN_X = width / 10;
+  let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
   const START_TIME = 90;
   const START_FUNDING = 100;
@@ -163,7 +166,7 @@ function startGame(scoreTableContainerInstance) {
   const TERRIBLE_FUNDING_LIMIT = 25;
   let textColor = 'white';
   let displayText = '';
-  const fadeDuration = 300;
+  const fadeDuration = 1000;
   let fadeStartTime = 0;
   let isFading = false;
   let textShouldBeVisible = false; // Flag to determine if text should be displayed
@@ -239,12 +242,19 @@ function startGame(scoreTableContainerInstance) {
       ? mailboxImageDataUnisend
       : mailboxImageData;
 
+  const goldImageUnisendLV1 = new Image();
+  goldImageUnisendLV1.src = goldImageDataUnisendLV1;
+  const goldImageUnisendLV2 = new Image();
+  goldImageUnisendLV2.src = goldImageDataUnisendLV2;
+
   const goldImage = new Image();
   goldImage.src =
     customer === 'Barbora'
       ? goldImageDataBarbora
       : customer === 'Ikea'
       ? goldImageDataIkea
+      : customer === 'Unisend' && language === 'EE'
+      ? goldImageDataUnisendES
       : customer === 'Unisend'
       ? goldImageDataUnisend
       : goldImageData;
@@ -528,7 +538,7 @@ function startGame(scoreTableContainerInstance) {
     dimensions: BIG_SPRITE_DIMENSIONS,
   };
 
-  const envelopes = range(MAILBOX_HIT_AMOUNT * 20).map((_) => {
+  const envelopes = range(MAILBOX_HIT_AMOUNT * 10).map((_) => {
     return {
       image: envelopeImage,
       pos: {
@@ -565,7 +575,7 @@ function startGame(scoreTableContainerInstance) {
   });
 
   // These golds are the ones that are for the UI, not for picking up in the road
-  const golds2 = range(GOLD_HIT_AMOUNT * 20).map((_) => {
+  const golds2 = range(GOLD_HIT_AMOUNT * 10).map((_) => {
     return {
       image: goldImage,
       pos: {
@@ -583,7 +593,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const wallParts = range(WALL_PARTICLES * 20).map(() => {
+  const wallParts = range(WALL_PARTICLES * 10).map(() => {
     return {
       image: null,
       pos: {
@@ -605,7 +615,7 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const truckSparks = range(TRUCK_SPARKS * 20).map(() => {
+  const truckSparks = range(TRUCK_SPARKS * 10).map(() => {
     return {
       image: null,
       pos: {
@@ -698,9 +708,15 @@ function startGame(scoreTableContainerInstance) {
     };
   });
 
-  const golds = range(customer === 'Unisend' ? 2 : 2).map(() => {
+  const golds = range(customer === 'Unisend' ? 4 : 2).map(() => {
+    randomNumber = randomNumber + 1;
     return {
-      image: goldImage,
+      image:
+        customer === 'Unisend' && language === 'LV'
+          ? randomNumber % 2 === 1
+            ? goldImageUnisendLV1
+            : goldImageUnisendLV2
+          : goldImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
         y: 0,
@@ -810,7 +826,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 10); //intro speed
+      }, 4000); //intro speed
     }
     drawTitleScreen();
   }
@@ -2081,7 +2097,6 @@ function startGame(scoreTableContainerInstance) {
   function drawEnvelopes() {
     // Reset `triggerText` to ensure we only trigger text once
     let triggerText = false;
-
     // Handle wall parts
     wallParts
       .filter((sprite) => sprite.active)
@@ -2150,7 +2165,7 @@ function startGame(scoreTableContainerInstance) {
     // Draw the text with fading effect if it's visible
     if (textShouldBeVisible) {
       const elapsedTime = performance.now() - fadeStartTime;
-      const fadeProgress = Math.min(elapsedTime / fadeDuration, 1); // Calculate fade progress
+      const fadeProgress = Math.min(elapsedTime / fadeDuration, 1);
       const opacity = 1 - fadeProgress; // Calculate opacity (fading out)
 
       ctx.globalAlpha = opacity; // Set text opacity
@@ -2250,13 +2265,6 @@ function startGame(scoreTableContainerInstance) {
 
     ctx.globalAlpha = alpha;
     if (debug) {
-      /*    ctx.fillStyle = "red";*/
-      //ctx.fillRect(
-      //round(xOffset + pos.x - xScaleOffset),
-      //round(yOffset + pos.y + pos.z + yScaleOffset),
-      //round(dimensions * scale),
-      //round(dimensions * scale)
-      /*);*/
     } else {
       ctx.drawImage(
         image,
