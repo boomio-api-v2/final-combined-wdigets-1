@@ -164,7 +164,7 @@ class CatchGame {
           background.style.display = 'none';
         }
       }, 2000);
-    }, 3000);
+    }, 4000);
     //gifas
   };
 
