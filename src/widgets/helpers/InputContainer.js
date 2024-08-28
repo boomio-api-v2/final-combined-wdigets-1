@@ -200,7 +200,7 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
                 this.language === 'LV' && this.game === 'drive'
-                  ? 'Noķer,'
+                  ? 'NOĶER,'
                   : this.language === 'EE' && this.game === 'drive'
                   ? 'LIIKUMISEKS —'
                   : this.language === 'LV'
