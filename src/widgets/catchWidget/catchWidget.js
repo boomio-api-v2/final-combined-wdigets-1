@@ -15,6 +15,9 @@ import {
   checkIcon,
   uncheckIcon,
   backgroundMobile,
+  controllLeft,
+  controllRight,
+  Controlls,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -24,6 +27,7 @@ import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
+
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
@@ -47,7 +51,7 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
-      window.innerWidth <= 768 ? backgroundMobile : background
+      window.innerWidth <= 768 ? background : background
     }) center`;
 
     this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
@@ -215,10 +219,17 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${'kustēties'}</div>
-        <div>${'kustēties'}</div>
-      </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
+        <div>${'KLIK'}</div>
+        <div>${'KLIK'}</div>
+      </div><img src=${Controlls} alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
+       ${
+         window.innerWidth <= 768
+           ? `
+      <img src=${controllLeft} alt="Image Description" style="width: 40px; height: 40px;top:calc(50% + 200px);position:absolute;left:calc(50% - 150px);" id="controllLeft">
+      <img src=${controllRight} alt="Image Description" style="width: 40px; height: 40px;top:calc(50% + 200px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
+           : ''
+       }
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#18904A'};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
