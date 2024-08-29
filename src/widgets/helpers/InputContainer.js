@@ -200,7 +200,7 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
                 this.language === 'LV' && this.game === 'drive'
-                  ? 'Noķer,'
+                  ? 'NOĶER,'
                   : this.language === 'EE' && this.game === 'drive'
                   ? 'LIIKUMISEKS —'
                   : this.language === 'LV'
@@ -229,7 +229,7 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             2.  ${
               this.language === 'LV'
-                ? 'ATKĀRTOT'
+                ? 'ATKĀRTO'
                 : this.language === 'RU'
                 ? 'ПОВТОРИТЬ'
                 : this.language === 'EE'
@@ -254,7 +254,7 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             3. ${
               this.language === 'LV'
-                ? 'LAIMĒT'
+                ? 'LAIMĒ'
                 : this.language === 'RU'
                 ? 'ВЫИГРАЙТЕ'
                 : this.language === 'EE'
@@ -264,7 +264,7 @@ export class InputContainer {
                 : this.prop === 'Ikea'
                 ? 'Laimėkite,'
                 : this.prop === 'Eurovaistine'
-                ? 'LAIMĒT'
+                ? 'LAIMĒ'
                 : 'Laimėk'
             } 
             </div>
@@ -313,7 +313,7 @@ export class InputContainer {
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
           };">${
             this.prop === 'Eurovaistine'
-              ? 'Izlasiet pilnus spēles noteikumus.'
+              ? 'Pilni spēles noteikumi šeit.'
               : this.language === 'LV'
               ? 'Lasīt pilnus spēles noteikumus. '
               : this.language === 'RU'
