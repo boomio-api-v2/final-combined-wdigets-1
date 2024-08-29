@@ -161,6 +161,8 @@ export class InputRegisterContainer {
               ? 'https://www.ikea.lt/lt/privacy-policy'
               : this.prop === 'Corepetitus'
               ? 'https://www.corepetitus.lt/privatumo-politika'
+              : this.prop === 'Eurovaistine'
+              ? ''
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
