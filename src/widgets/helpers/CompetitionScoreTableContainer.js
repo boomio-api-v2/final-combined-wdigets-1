@@ -234,7 +234,7 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
                 : this.prop === 'Eurovaistine'
-                ? '10€, 5€ vērtība'
+                ? '10€, 5€ vērtība.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
