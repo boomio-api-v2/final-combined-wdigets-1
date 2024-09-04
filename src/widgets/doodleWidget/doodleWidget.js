@@ -1202,8 +1202,8 @@ class Platform {
     //Sprite clipping
     this.cx = 0;
     this.cy = 0;
-    this.cwidth = 110;
-    this.cheight = 30;
+    this.cwidth = 120;
+    this.cheight = 20;
 
     this.moved = 0;
     this.vx = 1;
