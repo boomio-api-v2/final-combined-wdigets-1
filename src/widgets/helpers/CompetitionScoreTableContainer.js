@@ -165,7 +165,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
-                : this.prop === 'Makalius'
+                : this.prop === 'Makalius' || this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
@@ -189,8 +189,8 @@ export class CompetitionScoreTableContainer {
           : `<div style="width:100%; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
-                : this.prop === 'Makalius'
-                ? 'TU GALI!'
+                : this.language === 'ES'
+                ? 'LO ESTÁS HACIENDO MUY BIEN'
                 : this.prop === 'Eurovaistine'
                 ? 'TEV VEICAS LIELISKI!'
                 : this.prop === 'Unisend' && this.language === 'LV'
@@ -214,6 +214,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
+                : this.language === 'ES'
+                ? 'En Diciembre, Los mejors 100 jugadores recibiran un premio!</br>Ganadores serán contactados al email del registro'
                 : this.prop === 'Makalius'
                 ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
                 : this.prop === 'Unisend' && this.language === 'LV'
@@ -243,7 +245,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
-                : this.prop === 'Makalius'
+                : this.prop === 'Makalius' && this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
@@ -295,6 +297,8 @@ export class CompetitionScoreTableContainer {
         ? 'РЕЗУЛЬТАТЫ'
         : this.language === 'EE'
         ? 'TULEMUSED'
+        : this.language === 'ES'
+        ? 'RESULTADOS'
         : 'REZULTATAI'
     }</div>
       
@@ -334,6 +338,8 @@ export class CompetitionScoreTableContainer {
         ? 'УЛУЧШИТЬ РЕЗУЛЬТАТ'
         : this.language === 'EE'
         ? 'PARANDA TULEMUST'
+        : this.language === 'ES'
+        ? 'MEJORAR EL RESULTADO'
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>

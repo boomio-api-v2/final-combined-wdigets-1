@@ -46,6 +46,8 @@ export class InputRegisterContainer {
         ? 'Registracija'
         : this.prop === 'Eurovaistine'
         ? 'REĢISTRĒJIES'
+        : this.language === 'ES'
+        ? 'REGISTRATE </br>PARA JUGAR '
         : 'Registruokis</br> Žaisti'
     }</div>
       <div id="boomio-competition-confirm-field" disabled=${
@@ -62,6 +64,8 @@ export class InputRegisterContainer {
         ? 'ДАЛЕЕ'
         : this.language === 'EE'
         ? 'EDASI'
+        : this.language === 'ES'
+        ? 'SIGUIENTE'
         : this.prop === 'Fpro'
         ? 'NEXT'
         : this.prop === 'Ikea'
@@ -130,6 +134,8 @@ export class InputRegisterContainer {
         ? 'Mängu jätkates nõustun yesyes.ee uudiskirja saamisega.'
         : this.prop === 'Fantazijos' && this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
+        : this.language === 'ES'
+        ? 'Acepto recibir noticias y actualizaciones.'
         : this.prop === 'Makalius'
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
         : this.prop === 'Ikea'
@@ -252,6 +258,8 @@ export class InputRegisterContainer {
         ? 'El. pašto adresas'
         : this.prop === 'Eurovaistine'
         ? 'Spēlētāja e-pasts'
+        : this.language === 'ES'
+        ? 'Email'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
@@ -283,6 +291,8 @@ export class InputRegisterContainer {
         ? 'Žaidėjo vardas'
         : this.prop === 'Eurovaistine'
         ? 'Spēlētāja lietotājvārds'
+        : this.language === 'ES'
+        ? 'Nickname del jugador'
         : 'Žaidėjo slapyvardis'
     }">
     `;

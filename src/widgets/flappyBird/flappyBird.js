@@ -51,12 +51,12 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'points';
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Corepetitus';
-    this.language = this.config.language ? this.config.language : 'EN';
+    this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
+    this.language = this.config.language ? this.config.language : 'ES';
 
     this.collectables = this.config.collectables ? this.config.collectables : [];
     this.collection = this.config.collection ? this.config.collection : [];
@@ -869,6 +869,8 @@ ${`<div style="${
         ? 'КЛИК'
         : this.language === 'EE'
         ? 'TAP'
+        : this.language === 'ES'
+        ? 'TAP'
         : this.customer === 'Fpro'
         ? 'TAP'
         : 'BAKST'
@@ -879,6 +881,8 @@ ${`<div style="${
         : this.language === 'RU'
         ? 'КЛИК'
         : this.language === 'EE'
+        ? 'TAP'
+        : this.language === 'ES'
         ? 'TAP'
         : this.customer === 'Fpro'
         ? 'TAP'
@@ -1053,6 +1057,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                           ? 'This email address already exists. Please use another one.'
                           : this.language === 'LV'
                           ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                          : this.language === 'ES'
+                          ? 'Este email ya está en uso. Use otro email.'
                           : this.language === 'RU'
                           ? 'Этот е-мейл адрес уже существует. Используйте другой.'
                           : this.language === 'EE'
@@ -1072,6 +1078,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       document.getElementById('competition-name-error').innerText =
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
+                          : this.language === 'ES'
+                          ? 'Este nickname ya está en uso. Use otro nickname.'
                           : this.language === 'LV'
                           ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                           : this.language === 'RU'
