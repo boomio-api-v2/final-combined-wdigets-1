@@ -17,6 +17,8 @@ import {
   checkIcon,
   uncheckIcon,
   newRecord,
+  backgroundRedAkropolis,
+  mainImageAkropolis,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -31,8 +33,10 @@ class DoodleWidget {
     this.checkboxChange = false;
 
     this.isMobile = window.innerWidth <= 1280;
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
-    this.showCompetitiveRegistration = this.config.game_type ?? 'competition';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.showCompetitiveRegistration =
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -44,7 +48,7 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = mainImage;
+    this.image.src = this.customer === 'Akropolis' ? mainImageAkropolis : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -74,7 +78,9 @@ class DoodleWidget {
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.style.background = `url(${backgroundRed}) center`;
+    canvas.style.background = `url(${
+      this.customer === 'Akropolis' ? backgroundRedAkropolis : backgroundRed
+    }) center`;
 
     // Updated here
 
