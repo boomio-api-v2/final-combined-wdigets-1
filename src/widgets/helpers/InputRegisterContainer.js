@@ -102,10 +102,14 @@ export class InputRegisterContainer {
     }
     </div>
       </div>
+      
+
 
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
-        } ;left: 34px; top: 385px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+        } ;left: 34px; top: ${
+      this.prop === 'Akropolis' ? '355px' : '385px'
+    }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
         this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'
       };cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
@@ -142,6 +146,8 @@ export class InputRegisterContainer {
         ? 'Sutinku su'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu Euroaptiekas'
+        : this.prop === 'Akropolis'
+        ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
         : this.prop === 'Corepetitus'
         ? 'Sutinku su'
         : `Sutinku  ${
@@ -156,6 +162,7 @@ export class InputRegisterContainer {
       this.prop !== 'Fantazijos' &&
       this.prop !== 'Makalius' &&
       this.prop !== 'Unisend' &&
+      this.prop !== 'Akropolis' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||
@@ -184,6 +191,13 @@ export class InputRegisterContainer {
         : ''
     }
     </div>
+      </div>
+
+      
+        <div id="boomio-privacyCheckbox" style="display:${
+          this.prop === 'Akropolis' ? 'block' : 'none'
+        } ;left: 34px; top:375px; position: absolute; justify-content: center; align-items: center; gap: 5px;font-size:8px;color:white;">
+    Informuojame, kad Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu Jūsų sutikimo pagrindu. Patvirtinę sutikimą visuomet turėsite teisę bet kuriuo metu šį sutikimą atšaukti, spaudžiant atšaukimo nuorodą gautame naujienlaiškyje arba kreipiantis el. paštu<a style="text-decoration: underline;">privatumas@akropolis.lt.</a>Plačiau apie Jūsų asmens duomenų tvarkymą skaitykite <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;">www.akropolis.lt</a>pateiktame privatumo pranešime.
       </div>
    
    

@@ -19,6 +19,7 @@ import {
   newRecord,
   backgroundRedAkropolis,
   mainImageAkropolis,
+  introAkropolis,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -962,7 +963,9 @@ class DoodleWidget {
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
 
 
-    <img src=${intro} alt="Image Description" style="z-index:4;width:${
+    <img src=${
+      this.prop === 'Akropolis' ? introAkropolis : intro
+    } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 

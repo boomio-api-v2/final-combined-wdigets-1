@@ -95,6 +95,8 @@ export class InputContainer {
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
                 ? 'TO FLY'
+                : this.prop === 'Akropolis'
+                ? 'į šonus kad  nenukristum.'
                 : 'kad skristum.'
             }
           </div>
@@ -185,6 +187,8 @@ export class InputContainer {
                 ? 'net 69 Fantazijos.lt prizus!'
                 : this.prop === 'Makalius'
                 ? 'MAKALIAUS kuponus!'
+                : this.prop === 'Akropolis'
+                ? 'kasdien!'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
@@ -225,6 +229,8 @@ export class InputContainer {
                   ? 'Vairuokite,'
                   : this.prop === 'Eurovaistine'
                   ? 'SAŅEMT'
+                  : this.prop === 'Akropolis'
+                  ? 'Judėk'
                   : 'Spausk'
               }
             </div>
@@ -292,6 +298,7 @@ export class InputContainer {
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Eurovaistine' ||
+      this.prop === 'Akropolis' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
