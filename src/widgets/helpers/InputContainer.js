@@ -329,6 +329,8 @@ export class InputContainer {
               ? 'href=https://fpro.com/'
               : this.prop === 'Corepetitus'
               ? 'href=https://www.corepetitus.lt/zaidimo-taisykles'
+              : this.prop === 'Akropolis'
+              ? 'href=https://www.akropolis.lt/lt/akcija/zaisk-ir-laimek-kasdien/41169'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -391,6 +393,8 @@ export class InputContainer {
         ? 'Pirmyn'
         : this.prop === 'Eurovaistine'
         ? 'TĀLĀK'
+        : this.prop === 'Akropolis'
+        ? 'SUTINKU'
         : 'LET’S PLAY'
     }</div></div>
     </div>

@@ -108,7 +108,7 @@ export class InputRegisterContainer {
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
         } ;left: 34px; top: ${
-      this.prop === 'Akropolis' ? '355px' : '385px'
+      this.prop === 'Akropolis' ? '360px' : '385px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
         this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'
@@ -194,10 +194,10 @@ export class InputRegisterContainer {
       </div>
 
       
-        <div id="boomio-privacyCheckbox" style="display:${
+        <div style="margin-left:25px;margin-right:20px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
-        } ;left: 34px; top:375px; position: absolute; justify-content: center; align-items: center; gap: 5px;font-size:8px;color:white;">
-    Informuojame, kad Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu Jūsų sutikimo pagrindu. Patvirtinę sutikimą visuomet turėsite teisę bet kuriuo metu šį sutikimą atšaukti, spaudžiant atšaukimo nuorodą gautame naujienlaiškyje arba kreipiantis el. paštu<a style="text-decoration: underline;">privatumas@akropolis.lt.</a>Plačiau apie Jūsų asmens duomenų tvarkymą skaitykite <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;">www.akropolis.lt</a>pateiktame privatumo pranešime.
+        } ;left: 34px; top:380px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:7px;color:white;text-align:start;">
+    Informuojame, kad Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu Jūsų sutikimo pagrindu. Patvirtinę sutikimą visuomet turėsite teisę bet kuriuo metu šį sutikimą atšaukti, spaudžiant atšaukimo nuorodą gautame naujienlaiškyje arba kreipiantis el. paštu<a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt.</a> Plačiau apie Jūsų asmens duomenų tvarkymą skaitykite <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;">www.akropolis.lt</a> pateiktame privatumo pranešime.
       </div>
    
    
