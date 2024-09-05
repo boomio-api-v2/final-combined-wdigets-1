@@ -21,8 +21,8 @@ export class InputRegisterContainer {
           ? '375px'
           : document.body.offsetWidth + 'px'
         : '426px';
-    let privacyCheckboxChecked = true; // Use let instead of const to allow reassignment
-    let privacyCheckboxChecked2 = true; // Use let instead of const to allow reassignment
+    let privacyCheckboxChecked = true;
+    let privacyCheckboxChecked2 = true;
 
     containerDiv.innerHTML = `
       <div style="height: 124px; top: 70px; position: relative; text-align:${
@@ -197,7 +197,7 @@ export class InputRegisterContainer {
         <div style="margin-left:25px;margin-right:20px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
         } ;left: 34px; top:380px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:7px;color:white;text-align:start;line-height:8px;">
-    Informuojame, kad Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu Jūsų sutikimo pagrindu. Patvirtinę sutikimą visuomet turėsite teisę bet kuriuo metu šį sutikimą atšaukti, spaudžiant atšaukimo nuorodą gautame naujienlaiškyje arba kreipiantis el. paštu<a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt.</a> Plačiau apie Jūsų asmens duomenų tvarkymą skaitykite <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;">www.akropolis.lt</a> pateiktame privatumo pranešime.
+    Informuojame, kad Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu Jūsų sutikimo pagrindu. Patvirtinę sutikimą visuomet turėsite teisę bet kuriuo metu šį sutikimą atšaukti, spaudžiant atšaukimo nuorodą gautame naujienlaiškyje arba kreipiantis el. paštu<a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt.</a> Plačiau apie Jūsų asmens duomenų tvarkymą skaitykite <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a> pateiktame privatumo pranešime.
       </div>
    
    

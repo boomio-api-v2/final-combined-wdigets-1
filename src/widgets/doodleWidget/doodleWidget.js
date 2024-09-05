@@ -20,6 +20,8 @@ import {
   backgroundRedAkropolis,
   mainImageAkropolis,
   introAkropolis,
+  Controlls,
+  star,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -221,30 +223,30 @@ class DoodleWidget {
       this.gameLoop();
       this.Spring = new Spring(this.image);
     } else {
-      this.showTutorialArrows();
+      this.showtutorial();
     }
   };
 
-  showTutorialArrows = () => {
+  showtutorial = () => {
     if (this.tutorial) {
-      document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
-      document.getElementById('tutorialArrows').style.opacity = 1;
-      document.getElementById('tutorialArrows').style.display = 'block';
+      document.getElementById('tutorial').style.transition = 'opacity 1s ease';
+      document.getElementById('tutorial').style.opacity = 1;
+      document.getElementById('tutorial').style.display = 'block';
       this.tutorial = false;
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        canvas.addEventListener('click', this.removeTutorialArrows);
+        canvas.addEventListener('click', this.removetutorial);
       }, 100);
     }
   };
 
-  removeTutorialArrows = () => {
+  removetutorial = () => {
     const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.removeEventListener('click', this.removeTutorialArrows);
+    canvas.removeEventListener('click', this.removetutorial);
 
-    document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
-    document.getElementById('tutorialArrows').style.opacity = 0;
-    document.getElementById('tutorialArrows').style.display = 'none';
+    document.getElementById('tutorial').style.transition = 'opacity 1s ease';
+    document.getElementById('tutorial').style.opacity = 0;
+    document.getElementById('tutorial').style.display = 'none';
 
     setTimeout(() => {
       this.initGame();
@@ -958,9 +960,12 @@ class DoodleWidget {
     }">
 		</canvas>
 
-    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
+    <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
+    ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
+        <div>${'KLIK'}</div>
+        <div>${'KLIK'}</div>
+      </div><img src=${Controlls} alt="Image Description" style="width: 110px; height: 50px;">`}
+      </div>
 
 
     <img src=${
@@ -1016,11 +1021,13 @@ class DoodleWidget {
 </div>
 
 
-          <div class="boomio-score-input-container" style="display:none;width:148px;height;left:calc(50% - 110px);top:calc(50% - 270px);">
-          <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-        <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
-        <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:85px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
-</div></div>
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#045222'};border-radius:35px">
+    <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
+
+  <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
+</div>
+</div>
 
 
 ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
@@ -1049,7 +1056,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
-            if (this.showCompetitiveRegistration) {
+            if (this.showCompetitiveRegistration && this.checkboxChange) {
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange,
