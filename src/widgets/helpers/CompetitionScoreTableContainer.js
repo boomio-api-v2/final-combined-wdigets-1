@@ -169,7 +169,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
-                : this.prop === 'Makalius' || this.language === 'LT'
+                : this.prop === 'Makalius' && this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
@@ -187,6 +187,8 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : this.prop === 'Makalius'
+                ? ''
+                : this.prop === 'Akropolis'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
