@@ -1344,9 +1344,9 @@ class Spring {
     this.moved = 0;
     this.vx = 1;
     this.cx = 5;
-    this.cy = 475;
+    this.cy = 465;
     this.cwidth = 110;
-    this.cheight = 60;
+    this.cheight = 70;
     this.state = 0;
     this.width = 65;
     this.height = 38;
