@@ -11,6 +11,7 @@ import {
   couponBackground,
   intro,
   howToPlay,
+  close,
   backgroundRed,
   mainImage,
   useButton,
@@ -948,7 +949,9 @@ class DoodleWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
-
+<div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
+<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+</div>
     ${
       this.showCompetitiveRegistration
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
@@ -1182,6 +1185,16 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+    }
+    document.getElementById('close-game-container').addEventListener('click', () => {
+      this.closeGame();
+    });
+  };
+  closeGame = () => {
+    const element = document.getElementById('boomio-doodle-container');
+    if (element && element.parentNode) {
+      this.gameClosed = true;
+      element.parentNode.removeChild(element);
     }
   };
 }

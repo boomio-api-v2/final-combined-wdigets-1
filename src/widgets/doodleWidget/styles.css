@@ -91,7 +91,16 @@
 
 .boomio-doodle-info .boomio-doodle-key.left {background-position: -92px -621px;}
 .boomio-doodle-info .boomio-doodle-key.right {background-position: -92px -641px;}
-
+.close-game-container{
+	z-index: 99999999999999999999999;
+  position: absolute;
+  top : calc(50% - 285px);
+  left :calc(50% + 165px);
+  transform : translate(-50%, -50%);
+  display:flex;
+  flex-direction: column;
+  cursor:pointer;
+  }
 
 .numbers { 
 	z-index: 3;
