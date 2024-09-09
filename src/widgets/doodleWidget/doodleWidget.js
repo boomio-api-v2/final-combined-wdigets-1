@@ -591,7 +591,7 @@ class DoodleWidget {
       this.player.y + this.player.height < s.y + s.height
     ) {
       s.state = 1;
-      // this.player.jumpHigh();
+      this.player.jumpHigh();
     }
   };
 
