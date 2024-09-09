@@ -71,7 +71,9 @@ export class InputContainer {
               : this.prop === 'Unisend'
               ? '140px'
               : '160px'
-          }; top: 9px; position: absolute; color: white; font-size: 12px;  font-weight: 700; font-family:${
+          }; top: 9px; position: absolute; color: white; font-size: ${
+      this.prop === 'Akropolis' ? '18px' : '12px'
+    };  font-weight: 700; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     };line-height: 31.50px; word-wrap: break-word">
             ${
@@ -118,7 +120,9 @@ export class InputContainer {
               : this.prop === 'Eurovaistine'
               ? '175px'
               : '160px'
-          }; top: 46px; position: absolute; color: white; font-size: 12px; font-family:${
+          }; top: 46px; position: absolute; color: white; font-size: ${
+      this.prop === 'Akropolis' ? '18px' : '12px'
+    }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 31.50px; word-wrap: break-word">
             ${
@@ -155,7 +159,9 @@ export class InputContainer {
               : this.prop === 'Unisend'
               ? '140px'
               : '160px'
-          }; top: 85px; position: absolute; color: white; font-size: 12px; font-family:${
+          }; top: 85px; position: absolute; color: white; font-size: ${
+      this.prop === 'Akropolis' ? '18px' : '12px'
+    }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 18px; word-wrap: break-word">
             ${
