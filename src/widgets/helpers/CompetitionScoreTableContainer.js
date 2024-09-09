@@ -41,6 +41,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Ikea' ||
             this.prop === 'Unisend' ||
             this.prop === 'Eurovaistine' ||
+            this.prop === 'Akropolis' ||
             this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
@@ -107,7 +108,8 @@ export class CompetitionScoreTableContainer {
       ${
         (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
-        (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500)
+        (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
+        (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 35)
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -140,6 +142,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
+                : this.prop === 'Akropolis'
+                ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
                 : this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
                 : this.language === 'EE' && this.prop === 'Fantazijos'
@@ -165,7 +169,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
-                : this.prop === 'Makalius'
+                : this.prop === 'Makalius' && this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
@@ -184,13 +188,15 @@ export class CompetitionScoreTableContainer {
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : this.prop === 'Makalius'
                 ? ''
+                : this.prop === 'Akropolis'
+                ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
           : `<div style="width:100%; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
-                : this.prop === 'Makalius'
-                ? 'TU GALI!'
+                : this.language === 'ES'
+                ? 'LO ESTÁS HACIENDO MUY BIEN'
                 : this.prop === 'Eurovaistine'
                 ? 'TEV VEICAS LIELISKI!'
                 : this.prop === 'Unisend' && this.language === 'LV'
@@ -214,6 +220,10 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
+                : this.prop === 'Akropolis'
+                ? 'Pagerink rezultatą ir kasdien laimėk vieną CAIF CAFE kavos </br>puodelį, o atsiėmęs prizą turėk galimybę laimėti 100 EUR</br>AKROPOLIO dovanų kortelę!'
+                : this.language === 'ES'
+                ? 'En Diciembre, Los mejors 100 jugadores recibiran un premio!</br>Ganadores serán contactados al email del registro'
                 : this.prop === 'Makalius'
                 ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
                 : this.prop === 'Unisend' && this.language === 'LV'
@@ -243,7 +253,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
-                : this.prop === 'Makalius'
+                : this.prop === 'Makalius' && this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
@@ -260,7 +270,7 @@ export class CompetitionScoreTableContainer {
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
-                : this.prop === 'Makalius' || this.prop === 'Unisend'
+                : this.prop === 'Makalius' || this.prop === 'Unisend' || this.prop === 'Akropolis'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div>
@@ -295,6 +305,8 @@ export class CompetitionScoreTableContainer {
         ? 'РЕЗУЛЬТАТЫ'
         : this.language === 'EE'
         ? 'TULEMUSED'
+        : this.language === 'ES'
+        ? 'RESULTADOS'
         : 'REZULTATAI'
     }</div>
       
@@ -334,6 +346,8 @@ export class CompetitionScoreTableContainer {
         ? 'УЛУЧШИТЬ РЕЗУЛЬТАТ'
         : this.language === 'EE'
         ? 'PARANDA TULEMUST'
+        : this.language === 'ES'
+        ? 'MEJORAR EL RESULTADO'
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>

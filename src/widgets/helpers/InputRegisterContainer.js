@@ -21,8 +21,8 @@ export class InputRegisterContainer {
           ? '375px'
           : document.body.offsetWidth + 'px'
         : '426px';
-    let privacyCheckboxChecked = true; // Use let instead of const to allow reassignment
-    let privacyCheckboxChecked2 = true; // Use let instead of const to allow reassignment
+    let privacyCheckboxChecked = true;
+    let privacyCheckboxChecked2 = true;
 
     containerDiv.innerHTML = `
       <div style="height: 124px; top: 70px; position: relative; text-align:${
@@ -46,6 +46,8 @@ export class InputRegisterContainer {
         ? 'Registracija'
         : this.prop === 'Eurovaistine'
         ? 'REĢISTRĒJIES'
+        : this.language === 'ES'
+        ? 'REGISTRATE </br>PARA JUGAR '
         : 'Registruokis</br> Žaisti'
     }</div>
       <div id="boomio-competition-confirm-field" disabled=${
@@ -62,6 +64,8 @@ export class InputRegisterContainer {
         ? 'ДАЛЕЕ'
         : this.language === 'EE'
         ? 'EDASI'
+        : this.language === 'ES'
+        ? 'SIGUIENTE'
         : this.prop === 'Fpro'
         ? 'NEXT'
         : this.prop === 'Ikea'
@@ -98,10 +102,14 @@ export class InputRegisterContainer {
     }
     </div>
       </div>
+      
+
 
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
-        } ;left: 34px; top: 385px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+        } ;left: 34px; top: ${
+      this.prop === 'Akropolis' ? '360px' : '385px'
+    }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
         this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'
       };cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
@@ -130,12 +138,16 @@ export class InputRegisterContainer {
         ? 'Mängu jätkates nõustun yesyes.ee uudiskirja saamisega.'
         : this.prop === 'Fantazijos' && this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
+        : this.language === 'ES'
+        ? 'Acepto recibir noticias y actualizaciones.'
         : this.prop === 'Makalius'
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
         : this.prop === 'Ikea'
         ? 'Sutinku su'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu Euroaptiekas'
+        : this.prop === 'Akropolis'
+        ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
         : this.prop === 'Corepetitus'
         ? 'Sutinku su'
         : `Sutinku  ${
@@ -150,6 +162,7 @@ export class InputRegisterContainer {
       this.prop !== 'Fantazijos' &&
       this.prop !== 'Makalius' &&
       this.prop !== 'Unisend' &&
+      this.prop !== 'Akropolis' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||
@@ -178,6 +191,13 @@ export class InputRegisterContainer {
         : ''
     }
     </div>
+      </div>
+
+      
+        <div style="margin-left:25px;margin-right:20px;display:${
+          this.prop === 'Akropolis' ? 'block' : 'none'
+        } ;left: 34px; top:384px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:7px;color:white;text-align:start;line-height:8px;">
+    Informuojame, kad Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu Jūsų sutikimo pagrindu. Patvirtinę sutikimą visuomet turėsite teisę bet kuriuo metu šį sutikimą atšaukti, spaudžiant atšaukimo nuorodą gautame naujienlaiškyje arba kreipiantis el. paštu<a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt.</a> Plačiau apie Jūsų asmens duomenų tvarkymą skaitykite <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a> pateiktame privatumo pranešime.
       </div>
    
    
@@ -252,6 +272,8 @@ export class InputRegisterContainer {
         ? 'El. pašto adresas'
         : this.prop === 'Eurovaistine'
         ? 'Spēlētāja e-pasts'
+        : this.language === 'ES'
+        ? 'Email'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: 215px; opacity: 0.60;background-color: ${
@@ -283,6 +305,8 @@ export class InputRegisterContainer {
         ? 'Žaidėjo vardas'
         : this.prop === 'Eurovaistine'
         ? 'Spēlētāja lietotājvārds'
+        : this.language === 'ES'
+        ? 'Nickname del jugador'
         : 'Žaidėjo slapyvardis'
     }">
     `;

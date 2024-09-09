@@ -44,6 +44,8 @@ export class InputContainer {
         ? 'ПРАВИЛА'
         : this.language === 'EE'
         ? 'REEGLID'
+        : this.language === 'ES'
+        ? 'REGLAS'
         : this.prop === 'Fpro'
         ? 'RULES'
         : this.prop === 'Ikea'
@@ -85,12 +87,16 @@ export class InputContainer {
                 ? 'чтобы лететь'
                 : this.language === 'EE'
                 ? 'lendamiseks'
+                : this.language === 'ES'
+                ? 'para volar'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'braukdami kairiau ar dešiniau.'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
                 ? 'TO FLY'
+                : this.prop === 'Akropolis'
+                ? 'į šonus kad  nenukristum.'
                 : 'kad skristum.'
             }
           </div>
@@ -122,6 +128,8 @@ export class InputContainer {
                 ? 'labākam rezultātam'
                 : this.language === 'RU'
                 ? 'для лучшего результата'
+                : this.language === 'ES'
+                ? 'para un mejor resultado'
                 : this.language === 'EE'
                 ? 'parema tulemuse saavutamiseks.'
                 : this.game === 'drive' && this.prop === 'Ikea'
@@ -162,7 +170,9 @@ export class InputContainer {
                 : this.language === 'RU'
                 ? 'до 30 призов от Yesyes.lv!'
                 : this.language === 'EE'
-                ? 'kuni 30 yesyes.ee auhinda!'
+                ? 'до 30 призов от Yesyes.lv!'
+                : this.language === 'ES'
+                ? '100 premios!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes</br> kas mėnesį!'
                 : this.prop === 'Fpro'
@@ -177,6 +187,8 @@ export class InputContainer {
                 ? 'net 69 Fantazijos.lt prizus!'
                 : this.prop === 'Makalius'
                 ? 'MAKALIAUS kuponus!'
+                : this.prop === 'Akropolis'
+                ? 'kasdien!'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
@@ -209,12 +221,16 @@ export class InputContainer {
                   ? 'ПРАВИЛА'
                   : this.language === 'EE'
                   ? 'KLÕPSA'
+                  : this.language === 'ES'
+                  ? 'Click '
                   : this.prop === 'Fpro'
                   ? 'CLICK'
                   : this.prop === 'Ikea'
                   ? 'Vairuokite,'
                   : this.prop === 'Eurovaistine'
                   ? 'SAŅEMT'
+                  : this.prop === 'Akropolis'
+                  ? 'Judėk'
                   : 'Spausk'
               }
             </div>
@@ -234,6 +250,8 @@ export class InputContainer {
                 ? 'ПОВТОРИТЬ'
                 : this.language === 'EE'
                 ? 'KORDA —'
+                : this.language === 'ES'
+                ? 'Repetir'
                 : this.prop === 'Fpro'
                 ? 'REPEAT'
                 : this.prop === 'Ikea'
@@ -259,6 +277,8 @@ export class InputContainer {
                 ? 'ВЫИГРАЙТЕ'
                 : this.language === 'EE'
                 ? 'VÕIDA —'
+                : this.language === 'ES'
+                ? 'Gana'
                 : this.prop === 'Fpro'
                 ? 'WIN'
                 : this.prop === 'Ikea'
@@ -278,6 +298,7 @@ export class InputContainer {
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Eurovaistine' ||
+      this.prop === 'Akropolis' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -308,6 +329,8 @@ export class InputContainer {
               ? 'href=https://fpro.com/'
               : this.prop === 'Corepetitus'
               ? 'href=https://www.corepetitus.lt/zaidimo-taisykles'
+              : this.prop === 'Akropolis'
+              ? 'href=https://www.akropolis.lt/lt/akcija/zaisk-ir-laimek-kasdien/41169'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -320,6 +343,8 @@ export class InputContainer {
               ? 'Читайте полные правила игры.'
               : this.language === 'EE'
               ? 'Loe kõik mängureeglid läbi.'
+              : this.language === 'ES'
+              ? 'Leer las reglas del juego.'
               : this.prop === 'Fpro'
               ? 'Read full games rules. '
               : this.prop === 'Ikea'
@@ -354,6 +379,8 @@ export class InputContainer {
         ? 'ДАЛЕЕ'
         : this.language === 'EE'
         ? 'EDASI'
+        : this.language === 'ES'
+        ? 'SIGUIENTE'
         : this.prop === 'Barbora' ||
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
@@ -366,6 +393,8 @@ export class InputContainer {
         ? 'Pirmyn'
         : this.prop === 'Eurovaistine'
         ? 'TĀLĀK'
+        : this.prop === 'Akropolis'
+        ? 'SUTINKU'
         : 'LET’S PLAY'
     }</div></div>
     </div>
