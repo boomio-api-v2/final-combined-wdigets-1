@@ -979,11 +979,11 @@ class DoodleWidget {
       this.customer === 'Akropolis' ? introAkropolis : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:none;" id="background_intro">
+    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:block;opacity:0;transitio:opacity 0.8s ease;" id="background_effect">
+    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1496,12 +1496,18 @@ class Player {
 
   jumpHigh = () => {
     this.vy = -14;
+    const effectElement = document.getElementById('background_effect');
+    effectElement.style.display = 'block';
+    effectElement.style.opacity = 1;
+
     setTimeout(() => {
-      document.getElementById('background_effect').style.display = 'block';
-      document.getElementById('background_effect').style.opacity = 1;
-    }, 500);
-    document.getElementById('background_effect').style.display = 'none';
-    document.getElementById('background_effect').style.opacity = 0;
+      effectElement.style.opacity = 0;
+
+      // Delay hiding the element until after the opacity transition is complete
+      setTimeout(() => {
+        effectElement.style.display = 'none';
+      }, 800); // Match this duration to the CSS transition duration
+    }, 800);
   };
 }
 
