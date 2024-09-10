@@ -747,7 +747,6 @@ class DoodleWidget {
       if (this.player.vx > 3) this.player.vx = 3;
       else if (this.player.vx < -3) this.player.vx = -3;
     }
-    console;
     //Jump the player when it hits the base
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height)
       this.player.jump();
@@ -828,11 +827,9 @@ class DoodleWidget {
 
     if (this.dir == 'left') {
       this.player.dir = 'left_land';
-      console.log(';1');
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
     } else if (this.dir == 'right') {
       this.player.dir = 'right_land';
-      console.log(';2');
 
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
