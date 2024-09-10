@@ -23,6 +23,7 @@ import {
   introAkropolis,
   Controlls,
   star,
+  jumpEffect,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -978,7 +979,11 @@ class DoodleWidget {
       this.customer === 'Akropolis' ? introAkropolis : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    }; height: 674px;position:absolute;pointer-events: none; display:none;" id="background_intro">
+
+        <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none; display:block;opacity:0;transitio:opacity 0.8s ease;" id="background_effect">
 
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1491,6 +1496,12 @@ class Player {
 
   jumpHigh = () => {
     this.vy = -14;
+    setTimeout(() => {
+      document.getElementById('background_effect').style.display = 'block';
+      document.getElementById('background_effect').style.opacity = 1;
+    }, 500);
+    document.getElementById('background_effect').style.display = 'none';
+    document.getElementById('background_effect').style.opacity = 0;
   };
 }
 
