@@ -1069,18 +1069,15 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
-              document.getElementById('competition-checkbox-error').style.border = '1px solid red';
 
               document.getElementById('competition-email-error').innerText = '';
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
-              document.getElementById('competition-email-error').style.border = 'none';
 
               document.getElementById('competition-name-error').innerText = '';
 
               document.getElementById('competition-name-error').style.backgroundColor =
                 'transparent';
-              document.getElementById('competition-name-error').style.border = 'none';
             } else {
               if (this.showCompetitiveRegistration) {
                 boomioService
@@ -1096,36 +1093,27 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                           'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-email-error').style.backgroundColor =
                           '#FFBABA';
-                        document.getElementById('competition-email-error').style.border =
-                          '1px solid red';
-
                         document.getElementById('competition-name-error').innerText = '';
 
                         document.getElementById('competition-name-error').style.backgroundColor =
                           'transparent';
-                        document.getElementById('competition-name-error').style.border = 'none';
                         document.getElementById('competition-checkbox-error').innerText = '';
                         document.getElementById(
                           'competition-checkbox-error',
                         ).style.backgroundColor = 'transparent';
-                        document.getElementById('competition-checkbox-error').style.border = 'none';
                       } else if (response.res_code === 'NICKNAME_EXIST') {
                         document.getElementById('competition-name-error').innerText =
                           'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-name-error').style.backgroundColor =
                           '#FFBABA';
-                        document.getElementById('competition-name-error').style.border =
-                          '1px solid red';
 
                         document.getElementById('competition-email-error').innerText = '';
                         document.getElementById('competition-email-error').style.backgroundColor =
                           'transparent';
-                        document.getElementById('competition-email-error').style.border = 'none';
                         document.getElementById('competition-checkbox-error').innerText = '';
                         document.getElementById(
                           'competition-checkbox-error',
                         ).style.backgroundColor = 'transparent';
-                        document.getElementById('competition-checkbox-error').style.border = 'none';
                       }
                     } else {
                       this.bestScore = response.user_best_score ?? 0;
