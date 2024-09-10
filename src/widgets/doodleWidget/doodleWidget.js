@@ -23,6 +23,7 @@ import {
   introAkropolis,
   Controlls,
   star,
+  jumpEffect,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -207,7 +208,7 @@ class DoodleWidget {
 
   initGame = () => {
     this.removeRules();
-    if (!this.tutorial || !this.isMobile) {
+    if (!this.tutorial) {
       setTimeout(() => {
         if (this.showCompetitiveRegistration) {
           boomioService
@@ -746,7 +747,6 @@ class DoodleWidget {
       if (this.player.vx > 3) this.player.vx = 3;
       else if (this.player.vx < -3) this.player.vx = -3;
     }
-    console;
     //Jump the player when it hits the base
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height)
       this.player.jump();
@@ -826,10 +826,11 @@ class DoodleWidget {
       this.player.jump();
 
     if (this.dir == 'left') {
-      this.player.dir = 'left';
+      this.player.dir = 'left_land';
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
     } else if (this.dir == 'right') {
-      this.player.dir = 'right';
+      this.player.dir = 'right_land';
+
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
@@ -977,6 +978,10 @@ class DoodleWidget {
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
+        <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
+
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
@@ -1059,80 +1064,97 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
-            if (this.showCompetitiveRegistration && this.checkboxChange) {
-              boomioService
-                .signal('', 'user_info', {
-                  emails_consent: this.checkboxChange,
-                  user_email: emailInput?.value,
-                  user_name: playerNameInput?.value,
-                })
-                .then((response) => {
-                  if (response.success === false) {
-                    if (response.res_code === 'EMAIL_EXIST') {
-                      document.getElementById('competition-email-error').innerText =
-                        'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        '#FFBABA';
-                      document.getElementById('competition-email-error').style.border =
-                        '1px solid red';
+            if (!this.checkboxChange) {
+              document.getElementById('competition-checkbox-error').innerText =
+                'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                '#FFBABA';
 
-                      document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
 
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        'transparent';
-                      document.getElementById('competition-name-error').style.border = 'none';
-                    } else if (response.res_code === 'NICKNAME_EXIST') {
-                      document.getElementById('competition-name-error').innerText =
-                        'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        '#FFBABA';
-                      document.getElementById('competition-name-error').style.border =
-                        '1px solid red';
+              document.getElementById('competition-name-error').innerText = '';
 
-                      document.getElementById('competition-email-error').innerText = '';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        'transparent';
-                      document.getElementById('competition-email-error').style.border = 'none';
-                    }
-                  } else {
-                    this.bestScore = response.user_best_score ?? 0;
-                    const inpuRegisterContainer = document.querySelector(
-                      '.input-register-container',
-                    );
-                    inpuRegisterContainer.style.transition =
-                      'height 1s ease, top 1s ease, opacity 1s ease';
-                    setTimeout(() => {
-                      inpuRegisterContainer.style.height = '10px';
-                      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-                      inpuRegisterContainer.style.opacity = 0;
-                    }, 100);
-                    setTimeout(() => {
-                      inpuRegisterContainer.style.display = 'none';
-                    }, 1000);
-                    setTimeout(() => {
-                      const canvas = document.getElementById('boomio-doodle-canvas');
-                      document.getElementById('background_blur').style.opacity = 0.37;
-                      canvas.style.transition = 'filter 0.6s ease';
-                      canvas.style.filter = 'blur(2px)';
-                      const inputContainer = document.querySelector('.input-container');
-                      document.getElementById('control-button').style.transition =
-                        'opacity 2s ease';
-                      document.getElementById('control-button').style.opacity = 1;
-                      document.getElementById('control-button').style.display = 'flex';
-                      inputContainer.style.transition =
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+            } else {
+              if (this.showCompetitiveRegistration) {
+                boomioService
+                  .signal('', 'user_info', {
+                    emails_consent: this.checkboxChange,
+                    user_email: emailInput?.value,
+                    user_name: playerNameInput?.value,
+                  })
+                  .then((response) => {
+                    if (response.success === false) {
+                      if (response.res_code === 'EMAIL_EXIST') {
+                        document.getElementById('competition-email-error').innerText =
+                          'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        document.getElementById('competition-email-error').style.backgroundColor =
+                          '#FFBABA';
+                        document.getElementById('competition-name-error').innerText = '';
+
+                        document.getElementById('competition-name-error').style.backgroundColor =
+                          'transparent';
+                        document.getElementById('competition-checkbox-error').innerText = '';
+                        document.getElementById(
+                          'competition-checkbox-error',
+                        ).style.backgroundColor = 'transparent';
+                      } else if (response.res_code === 'NICKNAME_EXIST') {
+                        document.getElementById('competition-name-error').innerText =
+                          'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                        document.getElementById('competition-name-error').style.backgroundColor =
+                          '#FFBABA';
+
+                        document.getElementById('competition-email-error').innerText = '';
+                        document.getElementById('competition-email-error').style.backgroundColor =
+                          'transparent';
+                        document.getElementById('competition-checkbox-error').innerText = '';
+                        document.getElementById(
+                          'competition-checkbox-error',
+                        ).style.backgroundColor = 'transparent';
+                      }
+                    } else {
+                      this.bestScore = response.user_best_score ?? 0;
+                      const inpuRegisterContainer = document.querySelector(
+                        '.input-register-container',
+                      );
+                      inpuRegisterContainer.style.transition =
                         'height 1s ease, top 1s ease, opacity 1s ease';
-                      inputContainer.style.display = 'block';
                       setTimeout(() => {
-                        inputContainer.style.height = '332px';
-                        inputContainer.style.top = 'calc(50% + 170px)';
-                        inputContainer.style.opacity = 1;
+                        inpuRegisterContainer.style.height = '10px';
+                        inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                        inpuRegisterContainer.style.opacity = 0;
                       }, 100);
-                    }, 300);
-                  }
-                })
-                .catch((error) => {
-                  console.error('Error:', error);
-                });
+                      setTimeout(() => {
+                        inpuRegisterContainer.style.display = 'none';
+                      }, 1000);
+                      setTimeout(() => {
+                        const canvas = document.getElementById('boomio-doodle-canvas');
+                        document.getElementById('background_blur').style.opacity = 0.37;
+                        canvas.style.transition = 'filter 0.6s ease';
+                        canvas.style.filter = 'blur(2px)';
+                        const inputContainer = document.querySelector('.input-container');
+                        document.getElementById('control-button').style.transition =
+                          'opacity 2s ease';
+                        document.getElementById('control-button').style.opacity = 1;
+                        document.getElementById('control-button').style.display = 'flex';
+                        inputContainer.style.transition =
+                          'height 1s ease, top 1s ease, opacity 1s ease';
+                        inputContainer.style.display = 'block';
+                        setTimeout(() => {
+                          inputContainer.style.height = '332px';
+                          inputContainer.style.top = 'calc(50% + 170px)';
+                          inputContainer.style.opacity = 1;
+                        }, 100);
+                      }, 300);
+                    }
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+              }
             }
           }, 300);
         }
@@ -1459,6 +1481,18 @@ class Player {
 
   jumpHigh = () => {
     this.vy = -14;
+    const effectElement = document.getElementById('background_effect');
+    effectElement.style.display = 'block';
+    effectElement.style.opacity = 1;
+
+    setTimeout(() => {
+      effectElement.style.opacity = 0;
+
+      // Delay hiding the element until after the opacity transition is complete
+      setTimeout(() => {
+        effectElement.style.display = 'none';
+      }, 800); // Match this duration to the CSS transition duration
+    }, 800);
   };
 }
 

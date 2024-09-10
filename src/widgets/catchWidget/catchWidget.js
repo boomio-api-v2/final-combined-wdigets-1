@@ -354,14 +354,11 @@ class CatchGame {
                           : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor =
                         '#FFBABA';
-                      document.getElementById('competition-email-error').style.border =
-                        '1px solid red';
 
                       document.getElementById('competition-name-error').innerText = '';
 
                       document.getElementById('competition-name-error').style.backgroundColor =
                         'transparent';
-                      document.getElementById('competition-name-error').style.border = 'none';
                     } else if (response.res_code === 'NICKNAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
                         this.customer === 'Fpro'
@@ -375,13 +372,10 @@ class CatchGame {
                           : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =
                         '#FFBABA';
-                      document.getElementById('competition-name-error').style.border =
-                        '1px solid red';
 
                       document.getElementById('competition-email-error').innerText = '';
                       document.getElementById('competition-email-error').style.backgroundColor =
                         'transparent';
-                      document.getElementById('competition-email-error').style.border = 'none';
                     }
                   } else {
                     this.bestScore = response.user_best_score;

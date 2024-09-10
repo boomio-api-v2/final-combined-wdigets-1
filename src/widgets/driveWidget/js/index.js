@@ -870,13 +870,11 @@ function startGame(scoreTableContainerInstance) {
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
                     '#FFBABA';
-                  document.getElementById('competition-email-error').style.border = '1px solid red';
 
                   document.getElementById('competition-name-error').innerText = '';
 
                   document.getElementById('competition-name-error').style.backgroundColor =
                     'transparent';
-                  document.getElementById('competition-name-error').style.border = 'none';
                 } else if (response.res_code === 'NICKNAME_EXIST') {
                   document.getElementById('competition-name-error').innerText =
                     language === 'LV'
@@ -888,12 +886,10 @@ function startGame(scoreTableContainerInstance) {
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-name-error').style.backgroundColor =
                     '#FFBABA';
-                  document.getElementById('competition-name-error').style.border = '1px solid red';
 
                   document.getElementById('competition-email-error').innerText = '';
                   document.getElementById('competition-email-error').style.backgroundColor =
                     'transparent';
-                  document.getElementById('competition-email-error').style.border = 'none';
                 }
               } else {
                 bestScore = response.user_best_score ?? 0;
