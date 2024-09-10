@@ -196,13 +196,13 @@ export class InputRegisterContainer {
       
         <div style="margin-left:25px;margin-right:20px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
-        } ;left: 34px; top:384px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:7px;color:white;text-align:start;line-height:8px;">
+        } ;left: 34px; top:384px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:6px;color:white;text-align:start;line-height:8px;">
 Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis <a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt.</a>. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.      </div>
    
    
         <div id="competition-checkbox-error" style="margin-left:25px;margin-right:30px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
-        } ;left: 34px; top:410px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:7px;color:red;text-align:start;line-height:8px;">
+        } ;left: 34px; top:410px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:6px;color:red;text-align:start;line-height:8px;">
 </div>
 
 
