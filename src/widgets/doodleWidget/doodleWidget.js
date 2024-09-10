@@ -642,10 +642,12 @@ class DoodleWidget {
   playerCalc = () => {
     if (this.dir == 'left') {
       this.player.dir = 'left';
-      if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
+      if (this.player.vy > -7 && this.player.vy < 0) this.player.dir = 'left_jump';
+      else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
     } else if (this.dir == 'right') {
       this.player.dir = 'right';
-      if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
+      if (this.player.vy > -7 && this.player.vy < 0) this.player.dir = 'right_jump';
+      else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
     //Adding keyboard controls
@@ -1345,7 +1347,7 @@ class Platform_broken_substitute {
 
     //Sprite clipping
     this.cx = 0;
-    this.cy = 554;
+    this.cy = 690;
     this.cwidth = 105;
     this.cheight = 60;
 
@@ -1379,7 +1381,7 @@ class Spring {
     this.moved = 0;
     this.vx = 1;
     this.cx = 5;
-    this.cy = 465;
+    this.cy = 628;
     this.cwidth = 110;
     this.cheight = 70;
     this.state = 0;
@@ -1458,8 +1460,10 @@ class Player {
     try {
       if (this.dir == 'right') this.cy = 124;
       else if (this.dir == 'left') this.cy = 204;
-      else if (this.dir == 'right_land') this.cy = 282;
-      else if (this.dir == 'left_land') this.cy = 364;
+      else if (this.dir == 'right_land') this.cy = 446;
+      else if (this.dir == 'left_land') this.cy = 528;
+      else if (this.dir == 'right_jump') this.cy = 282;
+      else if (this.dir == 'left_jump') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(
         this.image,
