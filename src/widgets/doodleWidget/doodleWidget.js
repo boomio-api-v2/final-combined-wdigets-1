@@ -826,11 +826,14 @@ class DoodleWidget {
       this.player.jump();
 
     if (this.dir == 'left') {
-      this.player.dir = 'left';
-      if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
+      this.player.dir = 'left_land';
+      console.log(';1');
+      // if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
     } else if (this.dir == 'right') {
-      this.player.dir = 'right';
-      if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
+      this.player.dir = 'right_land';
+      console.log(';2');
+
+      // if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
     document.onkeydown = (e) => {

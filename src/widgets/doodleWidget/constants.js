@@ -45,13 +45,13 @@ export const newRecord =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecord.png?raw=true';
 
 export const mainImageAkropolis =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Test/game.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/game.png?raw=true';
 
 export const backgroundRedAkropolis =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Test/background.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/background.gif?raw=true';
 
 export const introAkropolis =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Test/intro.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/intro.png?raw=true';
 export const Controlls =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Controlls.png';
 export const star =
