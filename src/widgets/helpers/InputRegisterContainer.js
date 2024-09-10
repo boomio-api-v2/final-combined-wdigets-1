@@ -210,9 +210,9 @@ Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėto
 
 
 
-      <div style="width: calc(100% - 70px); height: 24px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
+      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
-      font-size: 11px;
+      font-size: 10px;
       font-style: normal;
       font-weight: 700;
       letter-spacing: -0.42px;
@@ -221,9 +221,9 @@ Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėto
       " id="competition-name-error"></div>
 
 
-      <div style="width: calc(100% - 70px); height: 24px; left: 35px; top: 338px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
+      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 338px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
       font-family: Montserrat;
-      font-size: 11px;
+      font-size: 10px;
       font-style: normal;
       font-weight: 700;
       letter-spacing: -0.42px;
