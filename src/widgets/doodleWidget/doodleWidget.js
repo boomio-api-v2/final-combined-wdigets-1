@@ -242,27 +242,27 @@ class DoodleWidget {
         if (this.isMobile) {
           canvas.addEventListener('click', this.removetutorial);
         } else {
-          document.addEventListener('keydown', (event) => {
-            // Check if the pressed key is an arrow key
-            if (
-              event.key === 'ArrowUp' ||
-              event.key === 'ArrowDown' ||
-              event.key === 'ArrowLeft' ||
-              event.key === 'ArrowRight'
-            ) {
-              // Call the removetutorial function when an arrow key is pressed
-              this.removetutorial();
-            }
-          });
+          document.addEventListener('keydown', this.handleArrowKeyPress);
         }
       }, 100);
+    }
+  };
+
+  handleArrowKeyPress = (event) => {
+    if (
+      event.key === 'ArrowUp' ||
+      event.key === 'ArrowDown' ||
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowRight'
+    ) {
+      this.removetutorial();
     }
   };
 
   removetutorial = () => {
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.removeEventListener('click', this.removetutorial);
-    canvas.removeEventListener('keydown', this.removetutorial);
+    document.removeEventListener('keydown', this.handleArrowKeyPress);
 
     document.getElementById('tutorial').style.transition = 'opacity 1s ease';
     document.getElementById('tutorial').style.opacity = 0;
