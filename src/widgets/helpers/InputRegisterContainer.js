@@ -52,7 +52,7 @@ export class InputRegisterContainer {
     }</div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
-      } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 435px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 445px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center;font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
         };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: ${
@@ -203,7 +203,7 @@ Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėto
         <div id="competition-checkbox-error" style="margin-right:30px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
         } ;left: 34px; top:410px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-      this.isMobile ? '7px' : '8px'
+      this.isMobile ? '9px' : '10px'
     };color:red;text-align:start;line-height:8px;">
 </div>
 

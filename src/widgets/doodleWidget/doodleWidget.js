@@ -1462,8 +1462,8 @@ class Player {
     this.image = image;
     this.vy = 11;
     this.vx = 0;
-    this.width = 99;
-    this.height = 72;
+    this.width = 110;
+    this.height = 75;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
