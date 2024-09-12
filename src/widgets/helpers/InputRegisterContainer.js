@@ -52,7 +52,7 @@ export class InputRegisterContainer {
     }</div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
-      } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 435px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center;font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
         };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: ${
@@ -196,13 +196,15 @@ export class InputRegisterContainer {
       
         <div style="margin-right:20px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
-        } ;left: 34px; top:384px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:7px;color:white;text-align:start;line-height:8px;">
+        } ;left: 34px; top:384px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:8px;color:white;text-align:start;line-height:8px;">
 Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis <a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt</a>. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.      </div>
    
    
-        <div id="competition-checkbox-error" style="margin-right:30px;display:${
+        <div id="competition-checkbox-error" style="padding-top:1px;height:28px;margin-right:30px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
-        } ;left: 34px; top:410px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:7px;color:red;text-align:start;line-height:8px;">
+        } ;left: 34px; top:420px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
+      this.isMobile ? '9px' : '10px'
+    };color:red;text-align:start;line-height:8px;">
 </div>
 
 

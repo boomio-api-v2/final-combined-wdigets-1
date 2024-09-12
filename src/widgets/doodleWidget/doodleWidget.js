@@ -24,6 +24,7 @@ import {
   Controlls,
   star,
   jumpEffect,
+  ControlsDesktop,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -237,14 +238,31 @@ class DoodleWidget {
       this.tutorial = false;
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        canvas.addEventListener('click', this.removetutorial);
+
+        if (this.isMobile) {
+          canvas.addEventListener('click', this.removetutorial);
+        } else {
+          document.addEventListener('keydown', this.handleArrowKeyPress);
+        }
       }, 100);
+    }
+  };
+
+  handleArrowKeyPress = (event) => {
+    if (
+      event.key === 'ArrowUp' ||
+      event.key === 'ArrowDown' ||
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowRight'
+    ) {
+      this.removetutorial();
     }
   };
 
   removetutorial = () => {
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.removeEventListener('click', this.removetutorial);
+    document.removeEventListener('keydown', this.handleArrowKeyPress);
 
     document.getElementById('tutorial').style.transition = 'opacity 1s ease';
     document.getElementById('tutorial').style.opacity = 0;
@@ -970,7 +988,9 @@ class DoodleWidget {
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
         <div>${'KLIK'}</div>
         <div>${'KLIK'}</div>
-      </div><img src=${Controlls} alt="Image Description" style="width: 110px; height: 50px;">`}
+      </div><img src=${
+        this.isMobile ? Controlls : ControlsDesktop
+      } alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
 
 
@@ -1442,8 +1462,8 @@ class Player {
     this.image = image;
     this.vy = 11;
     this.vx = 0;
-    this.width = 99;
-    this.height = 72;
+    this.width = 110;
+    this.height = 75;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
