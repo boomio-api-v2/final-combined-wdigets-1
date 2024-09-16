@@ -42,9 +42,9 @@ export class DownloadScoreTableContainer {
 
     <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%);filter;box-sizing:content-box !important;">
     <div style="width:100%;margin-top:20px; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
-    NUOLAIDOS KODĄ PIRMAM APSIPIRKIMUI</div>
+    NUOLAIDA APSIPIRKIMUI </div>
     <div style="width:100%;margin-bottom:10px;text-align: center;color: white; font-size: 14px; font-family: Montserrat; font-weight:700; text-transform: uppercase; word-wrap: break-word"> 
-    BARBOROS PROGRAMĖLĖJE </div>
+    „BARBORA“ PROGRAMĖLĖJE </div>
     <div style="width:100%;text-align: center; color: white; font-size: 42px; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     ${userPercentageDiscount ?? 0}% </div>
        <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:250px;margin-top:20px;">
@@ -56,7 +56,7 @@ export class DownloadScoreTableContainer {
     </svg>
 </div> 
     <div style="letter-spacing: -0.3px;line-height: 150%;margin-bottom:15px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 11px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
-    Parsisiųsk programėlę, naudok kodą ir iš karto dalyvauk konkurse laimėti vieną iš 50 Makaliaus dovanų kuponų, vertų 25 ir 50 eurų!</div>
+    Atsisiųk „Barbora“ programėlę, panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.</div>
 </div>
         `;
 
@@ -79,9 +79,8 @@ export class DownloadScoreTableContainer {
         ? '900'
         : '700';
     let scoreboardText = `
-     <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">PANAUDOK KODĄ PROGRAMĖLĖJE</div>
+     <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">ATSISIŲSK PROGRAMĖLĘ</div>
              </div>
-             <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">NETURI PROGRAMĖLĖS? PARSISIŲSK:</div>
                           <div style="width:100%; top: 480px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
                           <img src=${BarboraAppleStore} href="https://apps.apple.com/lt/app/barbora-lt/id903888629" id='boomio-barbora-apple-store' alt="Image Description" style="cursor:pointer;margin-right:10px;width: 147px; height: 49px;">
                           <img src=${BarboraGoogleStore} href="https://play.google.com/store/apps/details?id=lt.barbora&hl=lt&gl=US&pli=1" id='boomio-barbora-google-store'alt="Image Description" style="cursor:pointer;margin-left:10px;width: 147px; height: 49px;"></div>
@@ -120,7 +119,7 @@ export class DownloadScoreTableContainer {
           ? 'white'
           : 'white'
       }; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Fpro' ? 'Congrats!' : 'LAIMEJAI'
+      this.prop === 'Fpro' ? 'Congrats!' : 'LAIMĖJAI'
     }</div>
       
       <div class="boomio-scoreboard-text">
@@ -138,7 +137,7 @@ export class DownloadScoreTableContainer {
         </div>
       </div>
       <div style="width: calc(100% - 40px);font-weight:700;font-size:16px;margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; text-decoration: underline;color: #FFF;overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-   ŽAISK DAR  IR PAGERINK REZULTATĄ
+   ŽAISTI DAR
       </div>
 
       <div style="left:calc(50% - 40px);width:76px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " >

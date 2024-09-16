@@ -83,9 +83,9 @@ function startGame(scoreTableContainerInstance) {
   let checkboxChange2 = false;
 
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Unisend';
+  const customer = config.business_name ? config.business_name : 'Barbora';
   const language = config.language ? config.language : '';
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'collectable';
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
