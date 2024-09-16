@@ -76,6 +76,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Fpro' ||
                 this.prop === 'Fantazijos' ||
                 this.prop === 'Makalius' ||
+                this.prop === 'Akropolis' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -87,6 +88,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Fpro' ||
                 this.prop === 'Fantazijos' ||
                 this.prop === 'Makalius' ||
+                this.prop === 'Akropolis' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
