@@ -1,5 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;500;600;700;800;900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;600;700;800;900&display=swap');
+
+
+.ikea-bold {
+  font-family: 'NotoIKEALatin';
+  font-weight: bold;
+  font-style: normal;
+}
+
+.ikea-bold-italic {
+  font-family: 'NotoIKEALatin';
+  font-weight: bold;
+  font-style: italic;
+}
+
+.ikea-italic {
+  font-family: 'NotoIKEALatin';
+  font-weight: normal;
+  font-style: italic;
+}
+
+.ikea-regular {
+  font-family: 'NotoIKEALatin';
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.image-container {
+  border-radius: 20px;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+}
+
+.enlarge-image {
+  transform: scale(1.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width:100%;
+  height:100%;
+  max-width:270px;
+  max-height:270px;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Ensure the enlarged image is on top of other elements */
+}
 .input-register-container{
     overflow: hidden;
     position: absolute;
@@ -29,6 +76,21 @@
         display: none;
         ;
         }
+
+        .collection-table-container{
+          overflow: hidden;
+          position: absolute;
+          left :50%;
+          transform : translate(-50%, -50%);
+          flex-direction: column;
+          z-index: 3;  
+          height :680px;
+          top :calc(50%);
+          opacity: 1;
+          /* display: none; */
+          ;
+          }
+      
     
 
         .boomio-competition-email-input-field:focus {

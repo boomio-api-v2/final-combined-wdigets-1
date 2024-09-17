@@ -70,7 +70,9 @@ class LocalStorageService {
       'To have immediate access for all your great rewards open or download ';
     const p_bottom_text_end_pc = config?.p_bottom_text_end_pc ?? 'Boomio app by scanning this code';
     const discountType = 'percentage';
-    const game_type = config?.game_type ?? 'point';
+    const game_type = config?.game_type ?? '';
+    const best_discount = config?.best_discount ?? 0;
+
     const p_bottom_text_start_m =
       config?.p_bottom_text_start_m ?? 'To have immediate access for all your great rewards ';
     const p_bottom_text_end_m = config?.p_bottom_text_end_m ?? 'open or download';
@@ -82,7 +84,10 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const business_name = config?.business_name ?? '';
-
+    const collection = config?.collection ?? [];
+    const collectables = config?.collectables ?? [];
+    const coupon_code = config?.coupon_code ?? '';
+    const just_won = config?.just_won ?? '';
     const p_coupon_text_line2 = config?.p_coupon_text_line2 ?? 'DISCOUNT';
     const p_button_text_line1 = config?.p_button_text_line1 ?? 'Open';
     const p_button_text_line2 = config?.p_button_text_line2 ?? 'boomio app';
@@ -108,8 +113,10 @@ class LocalStorageService {
     const widget_subtype = config?.subtype ?? false;
     const email_collection_required = config?.email_collection_required ?? false;
     const product = config?.product ?? '???';
+    const language = config?.language ?? '';
 
     return {
+      language,
       widget_subtype,
       success,
       qrcode,
@@ -135,6 +142,11 @@ class LocalStorageService {
       p_bottom_text_end_m,
       p_coupon_text_line1,
       p_coupon_text_line2,
+      just_won,
+      collection,
+      coupon_code,
+      collectables,
+      best_discount,
       p_button_text_line1,
       p_button_text_line2,
       business_name,

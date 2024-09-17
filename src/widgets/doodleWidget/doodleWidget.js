@@ -1,14 +1,30 @@
-import { widgetHtmlService, QrCodeModal, AnimationService, localStorageService } from '@/services';
+import {
+  widgetHtmlService,
+  QrCodeModal,
+  AnimationService,
+  boomioService,
+  localStorageService,
+} from '@/services';
 import './styles.css';
 import {
   scoreImage,
   couponBackground,
-  cursor,
   intro,
   howToPlay,
+  close,
   backgroundRed,
   mainImage,
   useButton,
+  checkIcon,
+  uncheckIcon,
+  newRecord,
+  backgroundRedAkropolis,
+  mainImageAkropolis,
+  introAkropolis,
+  Controlls,
+  star,
+  jumpEffect,
+  ControlsDesktop,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -19,8 +35,18 @@ class DoodleWidget {
   static ctx;
 
   constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    this.checkboxChange = false;
+
     this.isMobile = window.innerWidth <= 1280;
-    this.showCompetitiveRegistration = false;
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.showCompetitiveRegistration =
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+
+    this.userBestPlace = 0;
+    this.scoreTable = {};
+    this.scoreTableContainerInstance;
+
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
     this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418;
@@ -28,7 +54,7 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = mainImage;
+    this.image.src = this.customer === 'Akropolis' ? mainImageAkropolis : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -58,13 +84,9 @@ class DoodleWidget {
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.style.background = `url(${backgroundRed}) center`;
-
-    const backgroundCursor = document.getElementById('game-container');
-    backgroundCursor.style.cursor = `url(${cursor}) 10 10, auto`;
-
-    const inputContainerCursor = document.getElementById('input-container');
-    inputContainerCursor.style.cursor = `url(${cursor}) 10 10, auto`;
+    canvas.style.background = `url(${
+      this.customer === 'Akropolis' ? backgroundRedAkropolis : backgroundRed
+    }) center`;
 
     // Updated here
 
@@ -113,13 +135,12 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 5000);
+    }, 3000); //intro speed
   }
 
   createHandlers = () => {
     const restart = document.getElementById('startButtonClick1');
     restart.addEventListener('click', this.resetGame);
-
     const start = document.getElementById('control-button');
     start.addEventListener('click', this.initGame);
 
@@ -130,7 +151,7 @@ class DoodleWidget {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
 
-      const competitionRestart = document.getElementById('boomio-competition-play-again');
+      const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', this.resetGame);
     }
   };
@@ -141,21 +162,13 @@ class DoodleWidget {
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-        checkboxImgChange.src = this.checkboxChange
-          ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
-          : 'none';
+        checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-
-      emailInput.addEventListener('input', () => {
-        console.log('Email input changed:', emailInput.value);
-      });
-
-      playerNameInput.addEventListener('input', () => {
-        console.log('Player name input changed:', playerNameInput.value);
-      });
+      emailInput.addEventListener('input', () => {});
+      playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
@@ -194,72 +207,67 @@ class DoodleWidget {
     }
   };
 
-  clickEventHandlerShowRules = () => {
-    if (this.gameCount === 0) {
-      setTimeout(() => {
-        const inpuRegisterContainer = document.querySelector('.input-register-container');
-        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        setTimeout(() => {
-          inpuRegisterContainer.style.height = '10px';
-          inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-          inpuRegisterContainer.style.opacity = 0;
-        }, 100);
-        setTimeout(() => {
-          inpuRegisterContainer.style.display = 'none';
-        }, 1000);
-        setTimeout(() => {
-          const canvas = document.getElementById('boomio-doodle-canvas');
-          document.getElementById('background_blur').style.opacity = 0.37;
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
-          const inputContainer = document.querySelector('.input-container');
-          document.getElementById('control-button').style.transition = 'opacity 2s ease';
-          document.getElementById('control-button').style.opacity = 1;
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          inputContainer.style.display = 'block';
-          setTimeout(() => {
-            inputContainer.style.height = '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
-            inputContainer.style.opacity = 1;
-          }, 100);
-        }, 300);
-      }, 300);
-    }
-  };
-
   initGame = () => {
     this.removeRules();
-    if (!this.tutorial || !this.isMobile) {
-      this.Spring = new Spring(this.image);
+    if (!this.tutorial) {
+      setTimeout(() => {
+        if (this.showCompetitiveRegistration) {
+          boomioService
+            .signal('ROUND_STARTED', 'signal')
+            .then((response) => {})
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+      }, 50);
       this.player = new Player(this.image);
       this.hideMenu();
       this.resetGame();
       this.gameLoop();
+      this.Spring = new Spring(this.image);
     } else {
-      this.showTutorialArrows();
+      this.showtutorial();
     }
   };
 
-  showTutorialArrows = () => {
+  showtutorial = () => {
     if (this.tutorial) {
-      document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
-      document.getElementById('tutorialArrows').style.opacity = 1;
-      document.getElementById('tutorialArrows').style.display = 'block';
+      document.getElementById('tutorial').style.transition = 'opacity 1s ease';
+      document.getElementById('tutorial').style.opacity = 1;
+      document.getElementById('tutorial').style.display = 'block';
       this.tutorial = false;
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        canvas.addEventListener('click', this.removeTutorialArrows);
+
+        if (this.isMobile) {
+          canvas.addEventListener('click', this.removetutorial);
+        } else {
+          document.addEventListener('keydown', this.handleArrowKeyPress);
+        }
       }, 100);
     }
   };
 
-  removeTutorialArrows = () => {
-    const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.removeEventListener('click', this.removeTutorialArrows);
+  handleArrowKeyPress = (event) => {
+    if (
+      event.key === 'ArrowUp' ||
+      event.key === 'ArrowDown' ||
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowRight'
+    ) {
+      this.removetutorial();
+    }
+  };
 
-    document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
-    document.getElementById('tutorialArrows').style.opacity = 0;
-    document.getElementById('tutorialArrows').style.display = 'none';
+  removetutorial = () => {
+    const canvas = document.getElementById('boomio-doodle-canvas');
+    canvas.removeEventListener('click', this.removetutorial);
+    document.removeEventListener('keydown', this.handleArrowKeyPress);
+
+    document.getElementById('tutorial').style.transition = 'opacity 1s ease';
+    document.getElementById('tutorial').style.opacity = 0;
+    document.getElementById('tutorial').style.display = 'none';
+
     setTimeout(() => {
       this.initGame();
     }, 100);
@@ -364,13 +372,13 @@ class DoodleWidget {
     this.base = new Base(this.image);
     this.player = new Player(this.image);
 
-    this.Spring = new Spring(this.image);
     this.platform_broken_substitute = new Platform_broken_substitute(this.image);
 
     this.platforms = [];
     for (let i = 0; i < this.platformCount; i++) {
       this.platforms.push(new Platform(this.image, this.currentScore));
     }
+    this.Spring = new Spring(this.image);
   };
 
   updateScore = () => {
@@ -459,6 +467,22 @@ class DoodleWidget {
 
     setTimeout(
       () => {
+        if (this.showCompetitiveRegistration) {
+          boomioService
+            .signal('ROUND_FINISHED', 'signal', {
+              score: this.currentScore,
+            })
+            .then((response) => {
+              this.userBestPlace = response.user_best_place;
+
+              this.scoreTable = response;
+
+              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
         if (this.showCompetitiveRegistration) {
           const competitionTableContainer = document.querySelector('.competition-table-container');
           const canvas = document.getElementById('boomio-doodle-canvas');
@@ -625,7 +649,6 @@ class DoodleWidget {
     if (p.type == 1 || p.type == 2) {
       s.x = p.x + p.width / 2 - s.width / 2;
       s.y = p.y - p.height - 10;
-
       if (s.y > this.height / 1.1) s.state = 0;
       s.draw(this.image);
     } else {
@@ -637,10 +660,12 @@ class DoodleWidget {
   playerCalc = () => {
     if (this.dir == 'left') {
       this.player.dir = 'left';
-      if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
+      if (this.player.vy > -7 && this.player.vy < 0) this.player.dir = 'left_jump';
+      else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
     } else if (this.dir == 'right') {
       this.player.dir = 'right';
-      if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
+      if (this.player.vy > -7 && this.player.vy < 0) this.player.dir = 'right_jump';
+      else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
     //Adding keyboard controls
@@ -655,9 +680,9 @@ class DoodleWidget {
         this.player.isMovingRight = true;
       }
 
-      if (key == 32) {
-        this.resetGame();
-      }
+      // if (key == 32) {
+      //   this.resetGame();
+      // }
     };
 
     document.onkeyup = (e) => {
@@ -697,28 +722,51 @@ class DoodleWidget {
         this.player.isMovingRight = false;
       });
     }
-
+    this.speed = 0.16;
+    if (this.currentScore >= 5000) {
+      this.speed = 0.4;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      this.speed = 0.35;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      this.speed = 0.3;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      this.speed = 0.2;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) this.speed = 0.16;
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
-      this.player.vx -= 0.06;
+      this.player.vx -= this.speed;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx < 0) this.player.vx += 0.06;
+      if (this.player.vx < 0) this.player.vx += this.speed;
     }
 
     if (this.player.isMovingRight === true) {
       this.player.x += this.player.vx;
-      this.player.vx += 0.06;
+      this.player.vx += this.speed;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx > 0) this.player.vx -= 0.06;
+      if (this.player.vx > 0) this.player.vx -= this.speed;
     }
 
     // Speed limits!
-    if (this.player.vx > 3) this.player.vx = 3;
-    else if (this.player.vx < -3) this.player.vx = -3;
 
+    if (this.currentScore >= 5000) {
+      if (this.player.vx > 7) this.player.vx = 7;
+      else if (this.player.vx < -7) this.player.vx = -7;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      if (this.player.vx > 6) this.player.vx = 6;
+      else if (this.player.vx < -6) this.player.vx = -6;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      if (this.player.vx > 5) this.player.vx = 5;
+      else if (this.player.vx < -5) this.player.vx = -5;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      if (this.player.vx > 4) this.player.vx = 4;
+      else if (this.player.vx < -4) this.player.vx = -4;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) {
+      if (this.player.vx > 3) this.player.vx = 3;
+      else if (this.player.vx < -3) this.player.vx = -3;
+    }
     //Jump the player when it hits the base
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height)
       this.player.jump();
@@ -798,10 +846,11 @@ class DoodleWidget {
       this.player.jump();
 
     if (this.dir == 'left') {
-      this.player.dir = 'left';
+      this.player.dir = 'left_land';
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
     } else if (this.dir == 'right') {
-      this.player.dir = 'right';
+      this.player.dir = 'right_land';
+
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
@@ -862,18 +911,18 @@ class DoodleWidget {
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
-      this.player.vx -= 0.15;
+      this.player.vx -= 0.3;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx < 0) this.player.vx += 0.1;
+      if (this.player.vx < 0) this.player.vx += 0.2;
     }
 
     if (this.player.isMovingRight === true) {
       this.player.x += this.player.vx;
-      this.player.vx += 0.15;
+      this.player.vx += 0.3;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx > 0) this.player.vx -= 0.1;
+      if (this.player.vx > 0) this.player.vx -= 0.2;
     }
 
     //Jump the player when it hits the base
@@ -892,17 +941,16 @@ class DoodleWidget {
     this.paintCanvas();
     this.base.draw();
     this.playerCalc();
-    this.springCalc();
     this.updateScore();
     this.platformCalc();
+    this.springCalc();
+
     this.player.draw();
   };
 
   createContainer = () => {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
-    const newHighscoreImage = new Image();
-    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
     const playAgain = new Image();
     playAgain.src = 'https://i.ibb.co/0Bqvttk/PLAY-AGAIN.png';
 
@@ -922,31 +970,39 @@ class DoodleWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+<div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
+<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+</div>
+    ${
+      this.showCompetitiveRegistration
+        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
+        : ''
+    }
+
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }">
 		</canvas>
-    
-    ${
-      this.showCompetitiveRegistration
-        ? new InputRegisterContainer('Barbora').createInputRegisterContainer().outerHTML
-        : ''
-    }
-    ${
-      this.showCompetitiveRegistration
-        ? new CompetitionScoreTableContainer('#3BAF29').createCompetitionScoreTableContainer()
-            .outerHTML
-        : ''
-    }
 
-    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:${
+    <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
+    ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
+        <div>${'KLIK'}</div>
+        <div>${'KLIK'}</div>
+      </div><img src=${
+        this.isMobile ? Controlls : ControlsDesktop
+      } alt="Image Description" style="width: 110px; height: 50px;">`}
+      </div>
+
+
+    <img src=${
+      this.customer === 'Akropolis' ? introAkropolis : intro
+    } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
+    }; height: 674px;position:absolute;min-width:418px;pointer-events: none; display:block;" id="background_intro">
 
-
-    <img src=${intro} alt="Image Description" style="z-index:4;width:${
+        <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -969,13 +1025,11 @@ class DoodleWidget {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${
-      newHighscoreImage.src
-    } alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
     </div>
 
 
-    ${new InputContainer('', 'doodle').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'doodle').createInputContainerDiv().outerHTML}
 
 
     <div class="numbers">
@@ -997,11 +1051,13 @@ class DoodleWidget {
 </div>
 
 
-          <div class="boomio-score-input-container" style="display:none;width:148px;height;left:calc(50% - 110px);top:calc(50% - 270px);">
-          <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-        <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
-        <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:85px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
-</div></div>
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#045222'};border-radius:35px">
+    <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
+
+  <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
+</div>
+</div>
 
 
 ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
@@ -1012,6 +1068,178 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 	</div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
+
+    if (this.showCompetitiveRegistration) {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
+    if (this.showCompetitiveRegistration) {
+      const clickEventHandlerShowRules = () => {
+        if (this.gameCount === 0) {
+          setTimeout(() => {
+            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+
+            if (!this.checkboxChange) {
+              document.getElementById('competition-checkbox-error').innerText =
+                'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                '#FFBABA';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-name-error').innerText = '';
+
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+            } else {
+              if (this.showCompetitiveRegistration) {
+                boomioService
+                  .signal('', 'user_info', {
+                    emails_consent: this.checkboxChange,
+                    user_email: emailInput?.value,
+                    user_name: playerNameInput?.value,
+                  })
+                  .then((response) => {
+                    if (response.success === false) {
+                      if (response.res_code === 'EMAIL_EXIST') {
+                        document.getElementById('competition-email-error').innerText =
+                          'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        document.getElementById('competition-email-error').style.backgroundColor =
+                          '#FFBABA';
+                        document.getElementById('competition-name-error').innerText = '';
+
+                        document.getElementById('competition-name-error').style.backgroundColor =
+                          'transparent';
+                        document.getElementById('competition-checkbox-error').innerText = '';
+                        document.getElementById(
+                          'competition-checkbox-error',
+                        ).style.backgroundColor = 'transparent';
+                      } else if (response.res_code === 'NICKNAME_EXIST') {
+                        document.getElementById('competition-name-error').innerText =
+                          'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                        document.getElementById('competition-name-error').style.backgroundColor =
+                          '#FFBABA';
+
+                        document.getElementById('competition-email-error').innerText = '';
+                        document.getElementById('competition-email-error').style.backgroundColor =
+                          'transparent';
+                        document.getElementById('competition-checkbox-error').innerText = '';
+                        document.getElementById(
+                          'competition-checkbox-error',
+                        ).style.backgroundColor = 'transparent';
+                      }
+                    } else {
+                      this.bestScore = response.user_best_score ?? 0;
+                      const inpuRegisterContainer = document.querySelector(
+                        '.input-register-container',
+                      );
+                      inpuRegisterContainer.style.transition =
+                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      setTimeout(() => {
+                        inpuRegisterContainer.style.height = '10px';
+                        inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                        inpuRegisterContainer.style.opacity = 0;
+                      }, 100);
+                      setTimeout(() => {
+                        inpuRegisterContainer.style.display = 'none';
+                      }, 1000);
+                      setTimeout(() => {
+                        const canvas = document.getElementById('boomio-doodle-canvas');
+                        document.getElementById('background_blur').style.opacity = 0.37;
+                        canvas.style.transition = 'filter 0.6s ease';
+                        canvas.style.filter = 'blur(2px)';
+                        const inputContainer = document.querySelector('.input-container');
+                        document.getElementById('control-button').style.transition =
+                          'opacity 2s ease';
+                        document.getElementById('control-button').style.opacity = 1;
+                        document.getElementById('control-button').style.display = 'flex';
+                        inputContainer.style.transition =
+                          'height 1s ease, top 1s ease, opacity 1s ease';
+                        inputContainer.style.display = 'block';
+                        setTimeout(() => {
+                          inputContainer.style.height = '332px';
+                          inputContainer.style.top = 'calc(50% + 170px)';
+                          inputContainer.style.opacity = 1;
+                        }, 100);
+                      }, 300);
+                    }
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+              }
+            }
+          }, 300);
+        }
+      };
+
+      const clickEventHandlerResetGame = () => {
+        const competitionRestart = document.getElementById('boomio-game-play-again');
+        competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+        setTimeout(() => {
+          competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+        }, 2000);
+
+        const controlButton = document.querySelector('.control-button1');
+        this.index = 0;
+        this.currentScore = 0;
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          competitionTableContainer.style.height = '10px';
+          competitionTableContainer.style.top = 'calc(50% + 330px)';
+          competitionTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          competitionTableContainer.style.display = 'none';
+        }, 1000);
+
+        setTimeout(() => {
+          if (this.showCompetitiveRegistration) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                document.getElementById('background_blur').style.display = 'none';
+                const canvas = document.getElementById('boomio-doodle-canvas');
+                canvas.style.transition = 'filter 1s ease';
+                canvas.style.filter = 'none';
+                this.gamePlaying = true;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }, 400);
+        // controlButton.style.display = 'none';
+        // controlButton.style.opacity = 0;
+      };
+
+      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+
+      const competitionRestart = document.getElementById('boomio-game-play-again');
+      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+    }
+    document.getElementById('close-game-container').addEventListener('click', () => {
+      this.closeGame();
+    });
+  };
+  closeGame = () => {
+    const element = document.getElementById('boomio-doodle-container');
+    if (element && element.parentNode) {
+      this.gameClosed = true;
+      element.parentNode.removeChild(element);
+    }
   };
 }
 
@@ -1020,6 +1248,16 @@ class Platform {
     this.image = image;
     this.currentScore = score;
     this.width = 100;
+    if (this.currentScore >= 5000) {
+      this.width = 40;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      this.width = 60;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      this.width = 70;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      this.width = 80;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) this.width = 100;
+
     this.height = 20;
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
     this.y = DoodleWidget.position;
@@ -1031,8 +1269,8 @@ class Platform {
     //Sprite clipping
     this.cx = 0;
     this.cy = 0;
-    this.cwidth = 105;
-    this.cheight = 30;
+    this.cwidth = 120;
+    this.cheight = 20;
 
     this.moved = 0;
     this.vx = 1;
@@ -1074,16 +1312,35 @@ class Platform {
     //4: Vanishable
 
     // Set initial platform types
-    if (this.currentScore >= 5000) this.types = [2, 3, 3, 3, 4, 4, 4, 4];
-    else if (this.currentScore >= 2000 && this.currentScore < 5000)
+    if (this.currentScore >= 7000) {
+      this.types = [2, 2, 2, 3, 3, 4, 4, 4, 4];
+      this.gravity = 0.3;
+      this.vx = 6;
+    } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
+      this.types = [2, 3, 2, 3, 4, 4, 4, 4];
+      this.gravity = 0.2;
+      this.vx = 5;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
-    else if (this.currentScore >= 1000 && this.currentScore < 2000)
+      this.gravity = 0.18;
+      this.vx = 4;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 3];
-    else if (this.currentScore >= 500 && this.currentScore < 1000)
+      this.gravity = 0.16;
+      this.vx = 3;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
       this.types = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
-    else if (this.currentScore >= 100 && this.currentScore < 500) this.types = [1, 1, 1, 1, 2, 2];
-    else this.types = [1];
-
+      this.gravity = 0.14;
+      this.vx = 2;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) {
+      this.gravity = 0.12;
+      this.types = [1, 1, 1, 1, 2, 2];
+      this.vx = 1.5;
+    } else {
+      this.gravity = 0.1;
+      this.types = [1];
+      this.vx = 1;
+    }
     // Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
 
@@ -1096,7 +1353,6 @@ class Platform {
     }
 
     this.moved = 0;
-    this.vx = 1;
   }
 }
 
@@ -1111,7 +1367,7 @@ class Platform_broken_substitute {
 
     //Sprite clipping
     this.cx = 0;
-    this.cy = 554;
+    this.cy = 690;
     this.cwidth = 105;
     this.cheight = 60;
 
@@ -1145,12 +1401,12 @@ class Spring {
     this.moved = 0;
     this.vx = 1;
     this.cx = 5;
-    this.cy = 452;
-    this.cwidth = 90;
-    this.cheight = 100;
+    this.cy = 625;
+    this.cwidth = 110;
+    this.cheight = 70;
     this.state = 0;
-    this.width = 35;
-    this.height = 32;
+    this.width = 65;
+    this.height = 38;
   }
 
   draw() {
@@ -1206,8 +1462,8 @@ class Player {
     this.image = image;
     this.vy = 11;
     this.vx = 0;
-    this.width = 66;
-    this.height = 48;
+    this.width = 110;
+    this.height = 75;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
@@ -1224,8 +1480,10 @@ class Player {
     try {
       if (this.dir == 'right') this.cy = 124;
       else if (this.dir == 'left') this.cy = 204;
-      else if (this.dir == 'right_land') this.cy = 292;
-      else if (this.dir == 'left_land') this.cy = 374;
+      else if (this.dir == 'right_land') this.cy = 446;
+      else if (this.dir == 'left_land') this.cy = 528;
+      else if (this.dir == 'right_jump') this.cy = 282;
+      else if (this.dir == 'left_jump') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(
         this.image,
@@ -1247,6 +1505,18 @@ class Player {
 
   jumpHigh = () => {
     this.vy = -14;
+    const effectElement = document.getElementById('background_effect');
+    effectElement.style.display = 'block';
+    effectElement.style.opacity = 1;
+
+    setTimeout(() => {
+      effectElement.style.opacity = 0;
+
+      // Delay hiding the element until after the opacity transition is complete
+      setTimeout(() => {
+        effectElement.style.display = 'none';
+      }, 800); // Match this duration to the CSS transition duration
+    }, 800);
   };
 }
 
