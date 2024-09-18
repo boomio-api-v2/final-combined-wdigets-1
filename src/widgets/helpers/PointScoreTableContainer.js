@@ -194,7 +194,7 @@ export class PointScoreTableContainer {
     }</div>
       </div>
 
-      <div style="left:calc(50% - 40px);width:76px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
+      <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
       </div>
     </div>`;
     this.containerDiv = containerDiv;
