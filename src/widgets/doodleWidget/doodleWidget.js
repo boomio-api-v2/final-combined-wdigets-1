@@ -1092,13 +1092,13 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
 
-              document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
-
               document.getElementById('competition-name-error').innerText = '';
 
               document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
@@ -1126,9 +1126,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 'transparent';
             }
             if (
-              playerNameInput?.value === '' ||
-              (playerNameInput?.value === null && playerNameInput?.value === '') ||
-              playerNameInput?.value === null
+              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+              (playerNameInput?.value === '' || playerNameInput?.value === null)
             ) {
               document.getElementById('competition-name-error').innerText =
                 'Norint tęsti privaloma užpildyti.';
@@ -1137,7 +1136,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
             } else {
-              if (this.showCompetitiveRegistration) {
+              if (this.showCompetitiveRegistration && this.checkboxChange) {
                 boomioService
                   .signal('', 'user_info', {
                     emails_consent: this.checkboxChange,
