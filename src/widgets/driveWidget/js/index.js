@@ -1355,6 +1355,8 @@ function startGame(scoreTableContainerInstance) {
           : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
         ? '#489B2D'
+        : customer === 'Barbora'
+        ? '#85B62D'
         : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
