@@ -34,7 +34,9 @@ export class InputRegisterContainer {
     }; font-weight: 700; text-transform: ${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
     }; line-height: 62.40px; word-wrap: break-word">${
-      this.language === 'LV'
+      this.language === 'LV' && this.prop === 'Akropolis'
+        ? 'REĢISTRĒJIES'
+        : this.language === 'LV'
         ? 'REĢISTRĒTIES SPĒLĒŠANAI'
         : this.language === 'RU'
         ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'

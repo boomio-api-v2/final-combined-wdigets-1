@@ -119,6 +119,8 @@ export class CompetitionScoreTableContainer {
                 ? 'DOVANA tau!'
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? 'TEV VEICAS LIELISKI!'
+                : this.prop === 'Akropolos' && this.language === 'LV'
+                ? 'TEV VEICAS LIELISKI!'
                 : this.prop === 'Eurovaistine'
                 ? 'TEV VEICAS LIELISKI!'
                 : this.language === 'LV'
@@ -146,6 +148,8 @@ export class CompetitionScoreTableContainer {
                 ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
                 : this.prop === 'Akropolis'
                 ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
+                : this.prop === 'Akropolis' && this.language === 'LV'
+                ? 'Uzlabo savu rezultātu un saņem kādu no KFC balvām un pēc </br>balvas saņemšanas - automātiski piedalīsies  AKROPOLE  </br>dāvanu kartes izlozē 100 eur vērtībā.'
                 : this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
                 : this.language === 'EE' && this.prop === 'Fantazijos'
@@ -340,7 +344,9 @@ export class CompetitionScoreTableContainer {
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
-      this.prop === 'Eurovaistine'
+      this.prop === 'Akropolis' && this.language === 'LV'
+        ? 'Spēlēt vēlreiz'
+        : this.prop === 'Eurovaistine'
         ? 'UZLABOT REZULTĀTU'
         : this.language === 'LV'
         ? 'UZLABOT REZULTĀTU'

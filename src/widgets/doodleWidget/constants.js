@@ -52,6 +52,16 @@ export const backgroundRedAkropolis =
 
 export const introAkropolis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/intro.gif?raw=true';
+
+export const mainImageAkropolisLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/AkropolisLV/game.png?raw=true';
+
+export const backgroundRedAkropolisLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/AkropolisLV/background.png?raw=true';
+
+export const introAkropolisLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/AkropolisLV/intro.gif?raw=true';
+
 export const Controlls =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Controlls.png';
 
@@ -63,3 +73,5 @@ export const star =
 
 export const jumpEffect =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true';
+export const newRecordLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordLV.png?raw=true';

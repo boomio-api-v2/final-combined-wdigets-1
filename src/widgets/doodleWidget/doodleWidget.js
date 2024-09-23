@@ -7,6 +7,7 @@ import {
 } from '@/services';
 import './styles.css';
 import {
+  newRecordLV,
   scoreImage,
   couponBackground,
   intro,
@@ -21,6 +22,9 @@ import {
   backgroundRedAkropolis,
   mainImageAkropolis,
   introAkropolis,
+  backgroundRedAkropolisLV,
+  mainImageAkropolisLV,
+  introAkropolisLV,
   Controlls,
   star,
   jumpEffect,
@@ -42,7 +46,7 @@ class DoodleWidget {
     this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
-
+    this.language = this.config.language ? this.config.language : 'LV';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -54,7 +58,12 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = this.customer === 'Akropolis' ? mainImageAkropolis : mainImage;
+    this.image.src =
+      this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? mainImageAkropolisLV
+          : mainImageAkropolis
+        : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -85,7 +94,11 @@ class DoodleWidget {
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.style.background = `url(${
-      this.customer === 'Akropolis' ? backgroundRedAkropolis : backgroundRed
+      this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? backgroundRedAkropolisLV
+          : backgroundRedAkropolis
+        : backgroundRed
     }) center`;
 
     // Updated here
@@ -986,8 +999,8 @@ class DoodleWidget {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${'KLIK'}</div>
-        <div>${'KLIK'}</div>
+       <div>${this.language === 'LV' ? 'Lec pa labi, ' : 'KLIK'}</div>
+        <div>${this.language === 'LV' ? 'lec pa kreisi' : 'KLIK'}</div>
       </div><img src=${
         this.isMobile ? Controlls : ControlsDesktop
       } alt="Image Description" style="width: 110px; height: 50px;">`}
@@ -995,7 +1008,11 @@ class DoodleWidget {
 
 
     <img src=${
-      this.customer === 'Akropolis' ? introAkropolis : intro
+      this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? introAkropolisLV
+          : introAkropolis
+        : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;min-width:418px;pointer-events: none; display:block;" id="background_intro">
@@ -1025,7 +1042,9 @@ class DoodleWidget {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${
+      this.language === 'LV' ? newRecordLV : newRecord
+    } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
 
 
@@ -1088,7 +1107,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
             if (!this.checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
-                'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+                this.language === 'LV'
+                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
 
@@ -1103,7 +1124,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
-                'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
 
@@ -1115,7 +1138,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             }
             if (playerNameInput?.value === '' || playerNameInput?.value === null) {
               document.getElementById('competition-name-error').innerText =
-                'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
               document.getElementById('competition-email-error').innerText = '';
@@ -1130,10 +1155,14 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               (playerNameInput?.value === '' || playerNameInput?.value === null)
             ) {
               document.getElementById('competition-name-error').innerText =
-                'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-email-error').innerText =
-                'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
             } else {
               if (this.showCompetitiveRegistration && this.checkboxChange) {
@@ -1147,7 +1176,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                     if (response.success === false) {
                       if (response.res_code === 'EMAIL_EXIST') {
                         document.getElementById('competition-email-error').innerText =
-                          'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                          this.language === 'LV'
+                            ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
+                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-email-error').style.backgroundColor =
                           '#FFBABA';
                         document.getElementById('competition-name-error').innerText = '';
@@ -1160,7 +1191,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                         ).style.backgroundColor = 'transparent';
                       } else if (response.res_code === 'NICKNAME_EXIST') {
                         document.getElementById('competition-name-error').innerText =
-                          'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                          this.language === 'LV'
+                            ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                            : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-name-error').style.backgroundColor =
                           '#FFBABA';
 
