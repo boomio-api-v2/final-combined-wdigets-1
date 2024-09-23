@@ -120,7 +120,13 @@ export class InputRegisterContainer {
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
-      this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
+      this.isMobile
+        ? '10px'
+        : this.prop === 'Eurovaistine'
+        ? '12px'
+        : this.prop === 'Akropolis' && this.language === 'LV'
+        ? '10px'
+        : '14px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ;  font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
