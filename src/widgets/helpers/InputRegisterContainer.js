@@ -148,6 +148,8 @@ export class InputRegisterContainer {
         ? 'Sutinku su'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu Euroaptiekas'
+        : this.prop === 'Akropolis' && this.language === 'LV'
+        ? 'Piekrītu saņemt AKROPOLE iepirkšanās centru jaunumus e-pastā.'
         : this.prop === 'Akropolis'
         ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
         : this.prop === 'Corepetitus'
