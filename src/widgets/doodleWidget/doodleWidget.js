@@ -1124,8 +1124,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             if (containsCyrillic(emailInput)) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV'
-                  ? 'E-pastā nedrīkst būt krievu burti.'
-                  : 'El. pašto adresas neturi būti su rusiškais simboliais.';
+                  ? 'E-pastā ir nederīgas rakstzīmes'
+                  : 'El. pašte yra neteisingų simbolių';
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               return;
             }
@@ -1133,8 +1133,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             if (containsCyrillic(playerNameInput)) {
               document.getElementById('competition-name-error').innerText =
                 this.language === 'LV'
-                  ? 'Segvārdā nedrīkst būt krievu burti.'
-                  : 'Slapyvardis neturi būti su rusiškais simboliais.';
+                  ? 'Lietotāja varde yra neteisingi simbolių'
+                  : 'Vartotojo varde yra neteisingų simbolių';
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
               return;
             }
