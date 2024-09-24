@@ -1108,13 +1108,42 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             const cyrillicRegex = /[\u0400-\u04FF]/;
             const containsCyrillic = (input) => cyrillicRegex.test(input.value);
+
             if (containsCyrillic(emailInput)) {
-              return; // Stop the process if there's an error
+              console.log('1212');
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
             }
 
             if (containsCyrillic(playerNameInput)) {
-              return; // Stop the process if there's an error
+              console.log('ass');
+              document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
             }
+
+            if (containsCyrillic(emailInput)) {
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'LV'
+                  ? 'E-pastā nedrīkst būt krievu burti.'
+                  : 'El. pašto adresas neturi būti su rusiškais simboliais.';
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              return;
+            }
+
+            if (containsCyrillic(playerNameInput)) {
+              console.log('2', playerNameInput);
+
+              document.getElementById('competition-name-error').innerText =
+                this.language === 'LV'
+                  ? 'Segvārdā nedrīkst būt krievu burti.'
+                  : 'Slapyvardis neturi būti su rusiškais simboliais.';
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              return;
+            }
+
             if (!this.checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
