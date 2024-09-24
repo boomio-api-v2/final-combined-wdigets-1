@@ -392,7 +392,7 @@ export class InputContainer {
       this.prop === 'Ikea' ? '400' : '700'
     }; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px;  line-height: 24px; word-wrap: break-word">${
       this.language === 'LV' && this.prop === 'Akropolis'
-        ? 'Piekrītu noteikumiem'
+        ? 'PIEKRĪTU NOTEIKUMIEM'
         : this.language === 'LV'
         ? 'TĀLĀK'
         : this.language === 'RU'

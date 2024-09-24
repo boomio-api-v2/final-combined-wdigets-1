@@ -351,7 +351,7 @@ export class CompetitionScoreTableContainer {
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
       this.prop === 'Akropolis' && this.language === 'LV'
-        ? 'Spēlēt vēlreiz'
+        ? 'SPĒLĒT VĒLREIZ'
         : this.prop === 'Eurovaistine'
         ? 'UZLABOT REZULTĀTU'
         : this.language === 'LV'

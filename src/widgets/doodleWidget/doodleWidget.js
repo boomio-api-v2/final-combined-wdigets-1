@@ -1106,7 +1106,15 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const cyrillicRegex = /[\u0400-\u04FF]/;
+            const containsCyrillic = (input) => cyrillicRegex.test(input.value);
+            if (containsCyrillic(emailInput)) {
+              return; // Stop the process if there's an error
+            }
 
+            if (containsCyrillic(playerNameInput)) {
+              return; // Stop the process if there's an error
+            }
             if (!this.checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
@@ -1411,7 +1419,7 @@ class Platform {
       this.types = [1];
       this.vx = 1;
     }
-    // Choose a random type from the available types
+    //Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
 
     //We can't have two consecutive breakable platforms otherwise it will be impossible to reach another platform sometimes!
