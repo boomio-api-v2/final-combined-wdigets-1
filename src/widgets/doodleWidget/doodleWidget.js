@@ -1110,15 +1110,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             const containsCyrillic = (input) => cyrillicRegex.test(input.value);
 
             if (containsCyrillic(emailInput)) {
-              console.log('1212');
-
               document.getElementById('competition-email-error').innerText = '';
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
             }
 
             if (containsCyrillic(playerNameInput)) {
-              console.log('ass');
               document.getElementById('competition-name-error').innerText = '';
               document.getElementById('competition-name-error').style.backgroundColor =
                 'transparent';
@@ -1134,8 +1131,6 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             }
 
             if (containsCyrillic(playerNameInput)) {
-              console.log('2', playerNameInput);
-
               document.getElementById('competition-name-error').innerText =
                 this.language === 'LV'
                   ? 'Segvārdā nedrīkst būt krievu burti.'
