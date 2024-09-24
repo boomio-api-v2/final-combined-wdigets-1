@@ -216,9 +216,11 @@ export class InputRegisterContainer {
 </div>
    
    
-        <div id="competition-checkbox-error" style="padding-top:1px;height:28px;margin-right:30px;display:${
-          this.prop === 'Akropolis' ? 'block' : 'none'
-        } ;left: 34px; top:420px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
+        <div id="competition-checkbox-error" style="padding-top:1px;height:${
+          this.language === 'LV' ? '14px' : '28px'
+        } ;margin-right:30px;display:${
+      this.prop === 'Akropolis' ? 'block' : 'none'
+    } ;left: 34px; top:420px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '9px' : '10px'
     };color:red;text-align:start;line-height:8px;">
 </div>
