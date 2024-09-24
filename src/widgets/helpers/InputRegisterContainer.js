@@ -206,8 +206,14 @@ export class InputRegisterContainer {
       
         <div style="margin-right:20px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
-        } ;left: 34px; top:384px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:8px;color:white;text-align:start;line-height:8px;">
-Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis <a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt</a>. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.      </div>
+        } ;left: 34px; top:384px; position: absolute; justify-content: start;line-height:14px; align-items: start; gap: 5px;font-size:8px;color:white;text-align:start;line-height:8px;">
+        ${
+          this.language === 'LV'
+            ? ''
+            : `Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis <a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt</a>. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.`
+        } 
+
+</div>
    
    
         <div id="competition-checkbox-error" style="padding-top:1px;height:28px;margin-right:30px;display:${
