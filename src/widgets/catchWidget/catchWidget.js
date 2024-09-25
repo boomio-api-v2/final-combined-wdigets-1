@@ -787,7 +787,6 @@ class CatchGame {
                   console.error('Error:', error);
                 });
             }
-
             // Displaying the competition table container
             const canvas = document.getElementById('boomio-catch-canvas');
             const competitionTableContainer = document.querySelector(

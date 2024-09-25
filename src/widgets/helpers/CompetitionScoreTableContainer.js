@@ -149,7 +149,7 @@ export class CompetitionScoreTableContainer {
                 : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
                 : this.prop === 'Akropolis' && this.language === 'LV'
-                ? 'Ja saglabāsi savu pozīciju 500 labāko sarakstā, tu saņemsi</br>balvu no KFC. un pēc balvas saņemšanas - automātiski</br>piedalīsies  AKROPOLE dāvanu kartes izlozē 100 eur vērtībā. </br>Tev ir iespēja savu rezultātu uzlabot, spēlējot vēlreiz!'
+                ? 'Ja saglabāsi savu pozīciju 500 labāko sarakstā, tu saņemsi </br>balvu no KFC, un pēc balvas izņemšanas – automātiski </br>piedalīsies AKROPOLE dāvanu kartes izlozē 100 EUR vērtībā.  </br>Tev ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
                 : this.prop === 'Akropolis'
                 ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
                 : this.prop === 'Unisend' && this.language === 'EE'
