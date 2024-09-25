@@ -41,6 +41,7 @@ class DoodleWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.checkboxChange = false;
+    this.checkboxChange2 = false;
 
     this.isMobile = window.innerWidth <= 1280;
     this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
@@ -178,6 +179,13 @@ class DoodleWidget {
         checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
       });
 
+      const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+      checkboxImg2.addEventListener('click', () => {
+        this.checkboxChange2 = !this.checkboxChange2;
+        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+        checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+      });
+
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
       emailInput.addEventListener('input', () => {});
@@ -185,7 +193,8 @@ class DoodleWidget {
 
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        document.getElementById('background_blur').style.opacity = 0.37;
+        document.getElementById('background_blur').style.opacity =
+          this.language === 'LV' ? 0.7 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
 
@@ -203,7 +212,8 @@ class DoodleWidget {
     } else {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        document.getElementById('background_blur').style.opacity = 0.37;
+        document.getElementById('background_blur').style.opacity =
+          this.language === 'LV' ? 0.7 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
@@ -1020,10 +1030,16 @@ class DoodleWidget {
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
+${
+  this.language === 'LV'
+    ? `<div alt="Image Description" style="z-index:1;width: ${
+        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#FE0000" id="background_blur"></div>`
+    : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
+        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
+}
 
-    <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
 
 
     <img src=${couponBackground} alt="Image Description" style="z-index:1;width:    ${
@@ -1256,7 +1272,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       }, 1000);
                       setTimeout(() => {
                         const canvas = document.getElementById('boomio-doodle-canvas');
-                        document.getElementById('background_blur').style.opacity = 0.37;
+                        document.getElementById('background_blur').style.opacity =
+                          this.language === 'LV' ? 0.7 : 0.37;
                         canvas.style.transition = 'filter 0.6s ease';
                         canvas.style.filter = 'blur(2px)';
                         const inputContainer = document.querySelector('.input-container');

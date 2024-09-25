@@ -79,8 +79,10 @@ export class InputRegisterContainer {
       </div>
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
-       } ;left: 34px; top: 360px; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-      this.prop === 'Eurovaistine' ? 'inline-flex' : 'none'
+       } ;left: 34px; top: ${'360px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+      this.prop === 'Eurovaistine' || (this.prop === 'Akropolis' && this.language === 'LV')
+        ? 'inline-flex'
+        : 'none'
     }">
       <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg2" src="${
@@ -88,16 +90,18 @@ export class InputRegisterContainer {
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
-      this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
+      this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '10px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    };font-weight: 400; width:330px;word-wrap: break-word;text-align:start;">${
+    };font-weight: 400; width:350px;word-wrap: break-word;text-align:start;">${
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
         : this.prop === 'Corepetitus'
         ? 'Sutinku gauti Corepetitus naujienlaiškius.'
+        : this.language === 'LV' && this.prop === 'Akropolis'
+        ? 'Piekrītu “AKROPOLE” privātuma politikai.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
@@ -110,7 +114,11 @@ export class InputRegisterContainer {
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
         } ;left: 34px; top: ${
-      this.prop === 'Akropolis' ? '360px' : '385px'
+      this.prop === 'Akropolis' && this.language === 'LV'
+        ? '380px'
+        : this.prop === 'Akropolis'
+        ? '360px'
+        : '385px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
         this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'
@@ -126,10 +134,10 @@ export class InputRegisterContainer {
         ? '12px'
         : this.prop === 'Akropolis' && this.language === 'LV'
         ? '10px'
-        : '14px'
+        : '13px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ;  font-weight: 400; width:330px;word-wrap: break-word;line-height:14px;text-align:start;">${
+    } ;  font-weight: 400; width:350px;word-wrap: break-word;line-height:14px;text-align:start;">${
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Barbora'
@@ -206,10 +214,12 @@ export class InputRegisterContainer {
       
         <div style="margin-right:20px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
-        } ;left: 34px; top:384px; position: absolute; justify-content: start;line-height:14px; align-items: start; gap: 5px;font-size:8px;color:white;text-align:start;line-height:8px;">
+        } ;left: 34px; top:${
+      this.language === 'LV' ? '404px' : '384px'
+    }; position: absolute; justify-content: start;line-height:14px; align-items: start; gap: 5px;font-size:8px;color:white;text-align:start;line-height:8px;">
         ${
           this.language === 'LV'
-            ? ''
+            ? `Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis <a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt</a>. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.`
             : `Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis <a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt</a>. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.`
         } 
 
@@ -220,7 +230,9 @@ export class InputRegisterContainer {
           this.language === 'LV' ? '14px' : '28px'
         } ;margin-right:30px;display:${
       this.prop === 'Akropolis' ? 'block' : 'none'
-    } ;left: 34px; top:420px; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
+    } ;left: 34px; top:${
+      this.language === 'LV' ? '440px' : '420px'
+    }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '9px' : '10px'
     };color:red;text-align:start;line-height:8px;">
 </div>

@@ -524,9 +524,7 @@ h4.boomio--animation__heading {
 }
 
 
-#boomio-widget-content div:empty {
-    display: block !important;
-}
+
 #boomio-widget-content iframe:empty {
     display: block !important;
 }
