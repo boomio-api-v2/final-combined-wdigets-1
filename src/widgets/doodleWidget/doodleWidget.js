@@ -377,6 +377,9 @@ class DoodleWidget {
         inputContainer.style.display = 'none';
       }, 1000);
     }
+    setTimeout(() => {
+      document.getElementById('background_blur').style.opacity = 0;
+    }, 200);
 
     setTimeout(() => {
       document.getElementById('background_blur').style.display = 'none';
@@ -512,6 +515,8 @@ class DoodleWidget {
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
           document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.opacity =
+            this.language === 'LV' ? 0.7 : 0.37;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
