@@ -76,6 +76,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Fpro' ||
                 this.prop === 'Fantazijos' ||
                 this.prop === 'Makalius' ||
+                this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -88,6 +89,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Fpro' ||
                 this.prop === 'Fantazijos' ||
                 this.prop === 'Makalius' ||
+                this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -119,6 +121,8 @@ export class CompetitionScoreTableContainer {
                 ? 'DOVANA tau!'
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? 'TEV VEICAS LIELISKI!'
+                : this.prop === 'Akropolis' && this.language === 'LV'
+                ? 'Tev veicās lieliski!'
                 : this.prop === 'Eurovaistine'
                 ? 'TEV VEICAS LIELISKI!'
                 : this.language === 'LV'
@@ -144,6 +148,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
+                : this.prop === 'Akropolis' && this.language === 'LV'
+                ? 'Ja saglabāsi savu pozīciju 500 labāko sarakstā, tu saņemsi</br>balvu no KFC. un pēc balvas saņemšanas - automātiski</br>piedalīsies  AKROPOLE dāvanu kartes izlozē 100 eur vērtībā. </br>Tev ir iespēja savu rezultātu uzlabot, spēlējot vēlreiz!'
                 : this.prop === 'Akropolis'
                 ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
                 : this.prop === 'Unisend' && this.language === 'EE'
@@ -180,7 +186,7 @@ export class CompetitionScoreTableContainer {
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
                 ? 'Uzvarētāji tiks informēti e-pastā.'
-                : this.language === 'LV'
+                : this.language === 'LV' && this.prop !== 'Akropolis'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU'
                 ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
@@ -201,6 +207,8 @@ export class CompetitionScoreTableContainer {
                 ? 'LO ESTÁS HACIENDO MUY BIEN'
                 : this.prop === 'Eurovaistine'
                 ? 'TEV VEICAS LIELISKI!'
+                : this.prop === 'Akropolis' && this.language === 'LV'
+                ? 'Mēģini vēlreiz, tev izdosies!'
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? 'TEV VEICAS LIELISKI!'
                 : this.language === 'LV'
@@ -222,6 +230,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
+                : this.prop === 'Akropolis' && this.language === 'LV'
+                ? 'Uzlabo savu rezultātu un saņem kādu no KFC balvām un pēc</br>balvas saņemšanas - automātiski piedalīsies  AKROPOLE</br>dāvanu kartes izlozē 100 eur vērtībā.'
                 : this.prop === 'Akropolis'
                 ? 'Pagerink rezultatą ir kasdien laimėk vieną CAIF CAFE kavos </br>puodelį, o atsiėmęs prizą turėk galimybę laimėti 100 EUR</br>AKROPOLIO dovanų kortelę!'
                 : this.language === 'ES'
@@ -340,7 +350,9 @@ export class CompetitionScoreTableContainer {
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
-      this.prop === 'Eurovaistine'
+      this.prop === 'Akropolis' && this.language === 'LV'
+        ? 'SPĒLĒT VĒLREIZ'
+        : this.prop === 'Eurovaistine'
         ? 'UZLABOT REZULTĀTU'
         : this.language === 'LV'
         ? 'UZLABOT REZULTĀTU'

@@ -7,6 +7,7 @@ import {
 } from '@/services';
 import './styles.css';
 import {
+  newRecordLV,
   scoreImage,
   couponBackground,
   intro,
@@ -21,6 +22,9 @@ import {
   backgroundRedAkropolis,
   mainImageAkropolis,
   introAkropolis,
+  backgroundRedAkropolisLV,
+  mainImageAkropolisLV,
+  introAkropolisLV,
   Controlls,
   star,
   jumpEffect,
@@ -37,12 +41,13 @@ class DoodleWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.checkboxChange = false;
+    this.checkboxChange2 = false;
 
     this.isMobile = window.innerWidth <= 1280;
     this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
-
+    this.language = this.config.language ? this.config.language : 'LV';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -54,7 +59,12 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = this.customer === 'Akropolis' ? mainImageAkropolis : mainImage;
+    this.image.src =
+      this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? mainImageAkropolisLV
+          : mainImageAkropolis
+        : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -85,7 +95,11 @@ class DoodleWidget {
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.style.background = `url(${
-      this.customer === 'Akropolis' ? backgroundRedAkropolis : backgroundRed
+      this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? backgroundRedAkropolisLV
+          : backgroundRedAkropolis
+        : backgroundRed
     }) center`;
 
     // Updated here
@@ -165,6 +179,13 @@ class DoodleWidget {
         checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
       });
 
+      const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+      checkboxImg2.addEventListener('click', () => {
+        this.checkboxChange2 = !this.checkboxChange2;
+        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+        checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+      });
+
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
       emailInput.addEventListener('input', () => {});
@@ -172,7 +193,8 @@ class DoodleWidget {
 
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        document.getElementById('background_blur').style.opacity = 0.37;
+        document.getElementById('background_blur').style.opacity =
+          this.language === 'LV' ? 0.7 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
 
@@ -190,7 +212,8 @@ class DoodleWidget {
     } else {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        document.getElementById('background_blur').style.opacity = 0.37;
+        document.getElementById('background_blur').style.opacity =
+          this.language === 'LV' ? 0.7 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
@@ -354,6 +377,9 @@ class DoodleWidget {
         inputContainer.style.display = 'none';
       }, 1000);
     }
+    setTimeout(() => {
+      document.getElementById('background_blur').style.opacity = 0;
+    }, 200);
 
     setTimeout(() => {
       document.getElementById('background_blur').style.display = 'none';
@@ -489,6 +515,8 @@ class DoodleWidget {
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
           document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.opacity =
+            this.language === 'LV' ? 0.7 : 0.37;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
@@ -986,8 +1014,8 @@ class DoodleWidget {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${'KLIK'}</div>
-        <div>${'KLIK'}</div>
+       <div>${this.language === 'LV' ? 'Lec pa labi, ' : 'KLIK'}</div>
+        <div>${this.language === 'LV' ? 'lec pa kreisi' : 'KLIK'}</div>
       </div><img src=${
         this.isMobile ? Controlls : ControlsDesktop
       } alt="Image Description" style="width: 110px; height: 50px;">`}
@@ -995,7 +1023,11 @@ class DoodleWidget {
 
 
     <img src=${
-      this.customer === 'Akropolis' ? introAkropolis : intro
+      this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? introAkropolisLV
+          : introAkropolis
+        : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;min-width:418px;pointer-events: none; display:block;" id="background_intro">
@@ -1003,10 +1035,16 @@ class DoodleWidget {
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
+${
+  this.language === 'LV'
+    ? `<div alt="Image Description" style="z-index:1;width: ${
+        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#FE0000" id="background_blur"></div>`
+    : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
+        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
+}
 
-    <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
 
 
     <img src=${couponBackground} alt="Image Description" style="z-index:1;width:    ${
@@ -1025,7 +1063,9 @@ class DoodleWidget {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${newRecord} alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${
+      this.language === 'LV' ? newRecordLV : newRecord
+    } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
 
 
@@ -1051,7 +1091,9 @@ class DoodleWidget {
 </div>
 
 
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#045222'};border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+      this.language === 'LV' ? '#F40027' : '#045222'
+    };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -1085,10 +1127,44 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const cyrillicRegex = /[\u0400-\u04FF]/;
+            const containsCyrillic = (input) => cyrillicRegex.test(input.value);
+
+            if (containsCyrillic(emailInput)) {
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+            }
+
+            if (containsCyrillic(playerNameInput)) {
+              document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+            }
+
+            if (containsCyrillic(emailInput)) {
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'LV'
+                  ? 'E-pastā ir nederīgas rakstzīmes'
+                  : 'El. pašte yra neteisingų simbolių';
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              return;
+            }
+
+            if (containsCyrillic(playerNameInput)) {
+              document.getElementById('competition-name-error').innerText =
+                this.language === 'LV'
+                  ? 'Lietotāja varde yra neteisingi simbolių'
+                  : 'Vartotojo varde yra neteisingų simbolių';
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              return;
+            }
 
             if (!this.checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
-                'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+                this.language === 'LV'
+                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
 
@@ -1103,7 +1179,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
-                'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
 
@@ -1115,7 +1193,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             }
             if (playerNameInput?.value === '' || playerNameInput?.value === null) {
               document.getElementById('competition-name-error').innerText =
-                'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
               document.getElementById('competition-email-error').innerText = '';
@@ -1130,10 +1210,14 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               (playerNameInput?.value === '' || playerNameInput?.value === null)
             ) {
               document.getElementById('competition-name-error').innerText =
-                'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-email-error').innerText =
-                'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
             } else {
               if (this.showCompetitiveRegistration && this.checkboxChange) {
@@ -1147,7 +1231,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                     if (response.success === false) {
                       if (response.res_code === 'EMAIL_EXIST') {
                         document.getElementById('competition-email-error').innerText =
-                          'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                          this.language === 'LV'
+                            ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
+                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-email-error').style.backgroundColor =
                           '#FFBABA';
                         document.getElementById('competition-name-error').innerText = '';
@@ -1160,7 +1246,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                         ).style.backgroundColor = 'transparent';
                       } else if (response.res_code === 'NICKNAME_EXIST') {
                         document.getElementById('competition-name-error').innerText =
-                          'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                          this.language === 'LV'
+                            ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                            : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-name-error').style.backgroundColor =
                           '#FFBABA';
 
@@ -1189,7 +1277,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       }, 1000);
                       setTimeout(() => {
                         const canvas = document.getElementById('boomio-doodle-canvas');
-                        document.getElementById('background_blur').style.opacity = 0.37;
+                        document.getElementById('background_blur').style.opacity =
+                          this.language === 'LV' ? 0.7 : 0.37;
                         canvas.style.transition = 'filter 0.6s ease';
                         canvas.style.filter = 'blur(2px)';
                         const inputContainer = document.querySelector('.input-container');
@@ -1376,7 +1465,7 @@ class Platform {
       this.types = [1];
       this.vx = 1;
     }
-    // Choose a random type from the available types
+    //Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
 
     //We can't have two consecutive breakable platforms otherwise it will be impossible to reach another platform sometimes!
