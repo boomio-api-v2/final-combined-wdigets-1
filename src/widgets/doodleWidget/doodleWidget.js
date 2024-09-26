@@ -1147,7 +1147,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.language === 'LV'
                   ? 'E-pastā ir nederīgas rakstzīmes'
                   : 'El. pašte yra neteisingų simbolių';
-              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               return;
             }
 
@@ -1156,7 +1157,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.language === 'LV'
                   ? 'Lietotāja varde yra neteisingi simbolių'
                   : 'Vartotojo varde yra neteisingų simbolių';
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               return;
             }
 
@@ -1165,8 +1167,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+
               document.getElementById('competition-checkbox-error').style.backgroundColor =
-                '#FFBABA';
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
 
               document.getElementById('competition-name-error').innerText = '';
 
@@ -1182,7 +1185,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
 
               document.getElementById('competition-name-error').style.backgroundColor =
@@ -1196,7 +1200,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
 
               document.getElementById('competition-email-error').innerText = '';
               document.getElementById('competition-email-error').style.backgroundColor =
@@ -1213,12 +1218,14 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
             } else {
               if (this.showCompetitiveRegistration && this.checkboxChange) {
                 boomioService
@@ -1235,7 +1242,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                             ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-email-error').style.backgroundColor =
-                          '#FFBABA';
+                          this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
                         document.getElementById('competition-name-error').innerText = '';
 
                         document.getElementById('competition-name-error').style.backgroundColor =
@@ -1250,7 +1257,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                             ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                             : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-name-error').style.backgroundColor =
-                          '#FFBABA';
+                          this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
 
                         document.getElementById('competition-email-error').innerText = '';
                         document.getElementById('competition-email-error').style.backgroundColor =

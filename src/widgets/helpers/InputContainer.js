@@ -95,7 +95,7 @@ export class InputContainer {
               }
                             <div style="top: 9px;  color: white; font-size: ${
                               this.prop === 'Akropolis' ? '14px' : '12px'
-                            };  font-weight: 700;margin-left:10px; font-family:${
+                            };  font-weight: 700;margin-left:4px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; word-wrap: break-word">
             ${
@@ -155,7 +155,7 @@ export class InputContainer {
                 ? 'ATKĀRTOT'
                 : 'Kartok'
             }
-                         <div style=" top: 46px;margin-left:10px; color: white; font-size: ${
+                         <div style=" top: 46px;margin-left:4px; color: white; font-size: ${
                            this.prop === 'Akropolis' ? '14px' : '12px'
                          }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -211,7 +211,7 @@ export class InputContainer {
                             this.prop === 'Akropolis' ? '14px' : '12px'
                           }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 700;margin-left:10px; word-wrap: break-word">
+    }; font-weight: 700;margin-left:4px; word-wrap: break-word">
             ${
               this.prop === 'Eurovaistine'
                 ? 'kādu no 50 balvām!'

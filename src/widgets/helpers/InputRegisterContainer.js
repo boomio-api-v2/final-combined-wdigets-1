@@ -14,7 +14,6 @@ export class InputRegisterContainer {
     containerDiv.setAttribute('id', 'input-register-container');
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
-
     containerDiv.style.width =
       document.body.offsetWidth < 426
         ? document.body.offsetWidth < 321
@@ -229,12 +228,14 @@ export class InputRegisterContainer {
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
           this.language === 'LV' ? '14px' : '28px'
         } ;margin-right:30px;display:${
-      this.prop === 'Akropolis' ? 'block' : 'none'
+      this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'
     } ;left: 34px; top:${
       this.language === 'LV' ? '440px' : '420px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '9px' : '10px'
-    };color:red;text-align:start;line-height:8px;">
+    };color:${
+      this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
+    };text-align:start;line-height:8px;">
 </div>
 
 
@@ -242,7 +243,9 @@ export class InputRegisterContainer {
 
 
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
+      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: ${
+        this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
+      };
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
@@ -253,7 +256,9 @@ export class InputRegisterContainer {
       " id="competition-name-error"></div>
 
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 338px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
+      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 338px; position: absolute;text-align:start;z-index:99999;color: ${
+        this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
+      };
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
