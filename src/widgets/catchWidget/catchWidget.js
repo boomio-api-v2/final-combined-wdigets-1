@@ -18,6 +18,9 @@ import {
   controllLeft,
   controllRight,
   Controlls,
+  introGamtosAteitis,
+  backgroundGamtosAteitis,
+  playerGamtosAteitis,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -32,7 +35,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Eurovaistine';
+    this.customer = this.config.business_name ? this.config.business_name : 'GamtosAteitis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -53,7 +56,7 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
-      window.innerWidth <= 768 ? background : background
+      this.customer === 'GamtosAteitis' ? introGamtosAteitis : background
     }) center`;
 
     this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
@@ -252,7 +255,9 @@ class CatchGame {
 
 
 
-    <img src=${intro} alt="Image Description" style="z-index:4;width:${
+    <img src=${
+      this.customer === 'GamtosAteitis' ? introGamtosAteitis : intro
+    } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
     <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
@@ -997,7 +1002,7 @@ class Player {
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
-    this.playerImage.src = player;
+    this.playerImage.src = this.customer === 'GamtosAteitis' ? playerGamtosAteitis : player;
     this.defaultscore = defaultscore;
   }
 
