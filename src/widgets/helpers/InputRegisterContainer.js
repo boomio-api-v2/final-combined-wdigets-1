@@ -141,6 +141,8 @@ export class InputRegisterContainer {
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
+        : this.prop === 'GamtosAteitis'
+        ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“ '
         : this.prop === 'Unisend' && this.language === 'LV'
         ? `Esmu izlasījis <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.lv/spelesnoteikumi/'} style="color:white;text-decoration: underline;"> spēles noteikumus</a>  un piekrītu tiem.`
         : this.prop === 'Unisend' && this.language === 'EE'

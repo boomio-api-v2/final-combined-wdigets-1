@@ -91,6 +91,8 @@ export class InputContainer {
                   ? 'SAŅEMT'
                   : this.prop === 'Akropolis'
                   ? 'Judėk'
+                  : this.prop === 'GamtosAteitis'
+                  ? 'Gaudyk'
                   : 'Spausk'
               }
                             <div style="top: 9px;  color: white; font-size: ${
@@ -117,6 +119,8 @@ export class InputContainer {
                 ? 'para volar'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'braukdami kairiau ar dešiniau.'
+                : this.prop === 'GamtosAteitis'
+                ? 'plastiko pakuočių atliekas.'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
@@ -173,6 +177,8 @@ export class InputContainer {
                 ? 'para un mejor resultado'
                 : this.language === 'EE'
                 ? 'parema tulemuse saavutamiseks.'
+                : this.game === 'drive'
+                ? 'siekdamas geresnio rezultato.'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
@@ -229,8 +235,10 @@ export class InputContainer {
                 ? 'до 30 призов от Yesyes.lv!'
                 : this.language === 'ES'
                 ? '100 premios!'
+                : this.prop === 'GamtosAteitis'
+                ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
                 : this.prop === 'LemonGym'
-                ? 'Lemon Gym narystes</br> kas mėnesį!'
+                ? 'Lemon Gym narystes kas mėnesį!'
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
@@ -259,6 +267,7 @@ export class InputContainer {
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Eurovaistine' ||
+      this.prop === 'GamtosAteitis' ||
       this.prop === 'Akropolis' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
@@ -350,12 +359,11 @@ export class InputContainer {
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
           this.prop === 'Corepetitus' ||
+          this.prop === 'GamtosAteitis' ||
           this.prop === 'Makalius'
         ? 'PIRMYN'
         : this.prop === 'Fpro'
         ? 'PLAY'
-        : this.prop === 'Ikea'
-        ? 'Pirmyn'
         : this.prop === 'Eurovaistine'
         ? 'TĀLĀK'
         : this.prop === 'Akropolis'

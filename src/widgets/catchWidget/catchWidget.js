@@ -56,7 +56,7 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
-      this.customer === 'GamtosAteitis' ? introGamtosAteitis : background
+      this.customer === 'GamtosAteitis' ? backgroundGamtosAteitis : background
     }) center`;
 
     this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
@@ -224,8 +224,8 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${'KLIK'}</div>
-        <div>${'KLIK'}</div>
+        <div>${this.customer === 'GamtosAteitis' ? 'BRŪKŠT' : 'KLIK'}</div>
+        <div>${this.customer === 'GamtosAteitis' ? 'BRŪKŠT' : 'KLIK'}</div>
       </div><img src=${Controlls} alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
        ${
@@ -235,7 +235,9 @@ class CatchGame {
       <img src=${controllRight} alt="Image Description" style="width: 40px; height: 40px;top:calc(50% + 200px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
            : ''
        }
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#18904A'};border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+      this.customer === 'GamtosAteitis' ? '#FBCA00' : '#18904A'
+    };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -245,7 +247,9 @@ class CatchGame {
 
 
 
-<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#18904A'};border-radius:35px">
+<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+      this.customer === 'GamtosAteitis' ? '#FBCA00' : '#18904A'
+    };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
@@ -718,7 +722,7 @@ class CatchGame {
   }
 
   createPlayer() {
-    this.player = new Player(this.canvas, this.context, this.defaultscore);
+    this.player = new Player(this.customer, this.canvas, this.context, this.defaultscore);
   }
 
   createFruits() {
@@ -809,7 +813,7 @@ class CatchGame {
 
   updateGame() {
     if (!this.player.gameOver) {
-      if (this.player.fruitsMissed >= 3) {
+      if (this.player.fruitsMissed >= (this.customer === 'GamtosAteitis' ? 5 : 3)) {
         this.player.gameOver = true;
       }
 
@@ -989,7 +993,7 @@ class CatchGame {
 }
 
 class Player {
-  constructor(canvas, context, defaultscore) {
+  constructor(customer, canvas, context, defaultscore) {
     this.canvas = canvas;
     this.context = context;
     this.gameOver = false;
@@ -1002,7 +1006,7 @@ class Player {
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
-    this.playerImage.src = this.customer === 'GamtosAteitis' ? playerGamtosAteitis : player;
+    this.playerImage.src = customer === 'GamtosAteitis' ? playerGamtosAteitis : player;
     this.defaultscore = defaultscore;
   }
 
