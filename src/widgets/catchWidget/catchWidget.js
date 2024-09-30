@@ -21,6 +21,29 @@ import {
   introGamtosAteitis,
   backgroundGamtosAteitis,
   playerGamtosAteitis,
+  item1,
+  item2,
+  item3,
+  item4,
+  item5,
+  item6,
+  item7,
+  item8,
+  item9,
+  item10,
+  item11,
+  item12,
+  item13,
+  item14,
+  item15,
+  item16,
+  item17,
+  item18,
+  item19,
+  item20,
+  item21,
+  item22,
+  item23,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -35,7 +58,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'GamtosAteitis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Eurovaistine';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -728,7 +751,7 @@ class CatchGame {
   createFruits() {
     this.fruits = [];
     for (let i = 0; i < this.numberOfFruits; i++) {
-      const fruit = new Fruit(this.canvas, this.context, this.player, this);
+      const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
       fruit.chooseFruit();
       this.fruits.push(fruit);
     }
@@ -823,7 +846,7 @@ class CatchGame {
       if (this.fruits.length < newNumberOfFruits) {
         // Create additional fruits to reach the new number
         for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
-          const fruit = new Fruit(this.canvas, this.context, this.player, this);
+          const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
           fruit.chooseFruit();
           this.fruits.push(fruit);
         }
@@ -897,7 +920,6 @@ class CatchGame {
                   console.error('Error:', error);
                 });
             }
-            console.log('a');
             // Displaying the competition table container
             const canvas = document.getElementById('boomio-catch-canvas');
 
@@ -1030,12 +1052,13 @@ class Player {
 }
 
 class Fruit {
-  constructor(canvas, context, player, game) {
+  constructor(customer, canvas, context, player, game) {
     this.canvas = canvas;
     this.context = context;
     this.player = player;
     this.game = game;
-    this.fruitNumber = Math.floor(Math.random() * 5);
+    this.customer = customer;
+    this.fruitNumber = Math.floor(Math.random() * (this.customer === 'GamtosAteitis' ? 23 : 5));
     this.fruitType = '';
     this.fruitScore = 0;
     this.fruitWidth = 40;
@@ -1048,12 +1071,76 @@ class Fruit {
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
     // Fruit images
-    this.images = [catch1, catch2, catch3, catch4, catch5];
+    if (this.customer === 'GamtosAteitis') {
+      this.images = [
+        item1,
+        item2,
+        item3,
+        item4,
+        item5,
+        item6,
+        item7,
+        item8,
+        item9,
+        item10,
+        item11,
+        item12,
+        item13,
+        item14,
+        item15,
+        item16,
+        item17,
+        item18,
+        item19,
+        item20,
+        item21,
+        item22,
+        item23,
+      ];
+    } else {
+      this.images = [catch1, catch2, catch3, catch4, catch5];
+    }
   }
 
   chooseFruit() {
-    this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
-    this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
+    if (this.customer === 'GamtosAteitis') {
+      this.fruitType = [
+        'item1',
+        'item2',
+        'item3',
+        'item4',
+        'item5',
+        'item6',
+        'item7',
+        'item8',
+        'item9',
+        'item10',
+        'item11',
+        'item12',
+        'item13',
+        'item14',
+        'item15',
+        'item16',
+        'item17',
+        'item18',
+        'item19',
+        'item20',
+        'item21',
+        'item22',
+        'item23',
+      ][this.fruitNumber];
+    } else {
+      this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
+    }
+
+    if (this.customer === 'GamtosAteitis') {
+      this.fruitScore = [
+        50, 50, 100, 100, 150, 50, 50, 100, 100, 150, 50, 50, 100, 100, 150, 50, 50, 100, 100, 150,
+        150, 150, 150,
+      ][this.fruitNumber];
+    } else {
+      this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
+    }
     this.fruitImage.src = this.images[this.fruitNumber];
   }
 
@@ -1061,7 +1148,6 @@ class Fruit {
     if (this.y < this.canvas.height - this.fruitHeight) {
       this.y += this.fruitSpeed;
     } else {
-      console.log(this.player.defaultscore);
       // Handle fruit miss
       this.player.fruitsMissed++;
       document.getElementById('currentLife').innerHTML = `${Math.max(
@@ -1109,7 +1195,7 @@ class Fruit {
   }
 
   changeState() {
-    this.fruitNumber = Math.floor(Math.random() * 5);
+    this.fruitNumber = Math.floor(Math.random() * (this.customer === 'GamtosAteitis' ? 23 : 5));
 
     this.fruitSpeed = Math.floor(
       (Math.random() * 2 + 1) * (1 + Math.floor(this.game.currentScore / 500) * 0.1),

@@ -1,23 +1,92 @@
 import './styles.css';
 
-import { boomioLogo } from './constants';
+import {
+  boomioLogo,
+  item1,
+  item2,
+  item3,
+  item4,
+  item5,
+  item6,
+  item7,
+  item8,
+  item9,
+  item10,
+  item11,
+  item12,
+  item13,
+  item14,
+  item15,
+  item16,
+  item17,
+  item18,
+  item19,
+  item20,
+  item21,
+  item22,
+  item23,
+} from './constants';
 
 export class DidYouKnowContainer {
-  constructor(prop, collectables, collection, just_won) {
+  constructor(prop) {
     this.prop = prop;
-    this.collectables = collectables;
-    this.collection = collection;
-    this.just_won = just_won;
+    this.collectables = [
+      item1,
+      item2,
+      item3,
+      item4,
+      item5,
+      item6,
+      item7,
+      item8,
+      item9,
+      item10,
+      item11,
+      item12,
+      item13,
+      item14,
+      item15,
+      item16,
+      item17,
+      item18,
+      item19,
+      item20,
+      item21,
+      item22,
+      item23,
+    ];
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
     this.render();
   }
 
-  updateProps(prop, collectables, collection, just_won) {
+  updateProps(prop) {
     this.prop = prop;
-    this.collectables = collectables;
-    this.collection = collection;
-    this.just_won = just_won;
+    this.collectables = [
+      item1,
+      item2,
+      item3,
+      item4,
+      item5,
+      item6,
+      item7,
+      item8,
+      item9,
+      item10,
+      item11,
+      item12,
+      item13,
+      item14,
+      item15,
+      item16,
+      item17,
+      item18,
+      item19,
+      item20,
+      item21,
+      item22,
+      item23,
+    ];
     this.updateVisuals();
   }
 
@@ -29,14 +98,10 @@ export class DidYouKnowContainer {
         tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
 
-      const isInCollection = this.collection?.includes(item?.period_id);
-      const divStyle = isInCollection ? '' : 'border-radius:20px;background:white;';
-      const imgStyle = isInCollection ? '' : 'opacity:0.1;';
-
       tableHTML += `
         <td style="text-align: center; border: none;">
-        <div id="image-${index}" style="${divStyle}">
-        <img class='image-container' style="${imgStyle}" src=${item.url} alt="Scoreboard Image" >
+        <div id="image-${index}" style="border-radius:20px;background:white;">
+        <img class='image-container' style="opacity:0.1;" src=${item.url} alt="Scoreboard Image" >
         </div>
         </td>`;
 
