@@ -91,11 +91,13 @@ export class InputContainer {
                   ? 'SAŅEMT'
                   : this.prop === 'Akropolis'
                   ? 'Judėk'
+                  : this.prop === 'GamtosAteitis'
+                  ? 'Gaudyk'
                   : 'Spausk'
               }
                             <div style="top: 9px;  color: white; font-size: ${
                               this.prop === 'Akropolis' ? '14px' : '12px'
-                            };  font-weight: 700;margin-left:10px; font-family:${
+                            };  font-weight: 700;margin-left:4px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; word-wrap: break-word">
             ${
@@ -117,6 +119,8 @@ export class InputContainer {
                 ? 'para volar'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'braukdami kairiau ar dešiniau.'
+                : this.prop === 'GamtosAteitis'
+                ? 'plastiko pakuočių atliekas.'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
@@ -155,7 +159,7 @@ export class InputContainer {
                 ? 'ATKĀRTOT'
                 : 'Kartok'
             }
-                         <div style=" top: 46px;margin-left:10px; color: white; font-size: ${
+                         <div style=" top: 46px;margin-left:4px; color: white; font-size: ${
                            this.prop === 'Akropolis' ? '14px' : '12px'
                          }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -173,6 +177,8 @@ export class InputContainer {
                 ? 'para un mejor resultado'
                 : this.language === 'EE'
                 ? 'parema tulemuse saavutamiseks.'
+                : this.game === 'drive'
+                ? 'siekdamas geresnio rezultato.'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
@@ -211,7 +217,7 @@ export class InputContainer {
                             this.prop === 'Akropolis' ? '14px' : '12px'
                           }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 700;margin-left:10px; word-wrap: break-word">
+    }; font-weight: 700;margin-left:4px; word-wrap: break-word">
             ${
               this.prop === 'Eurovaistine'
                 ? 'kādu no 50 balvām!'
@@ -229,8 +235,10 @@ export class InputContainer {
                 ? 'до 30 призов от Yesyes.lv!'
                 : this.language === 'ES'
                 ? '100 premios!'
+                : this.prop === 'GamtosAteitis'
+                ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
                 : this.prop === 'LemonGym'
-                ? 'Lemon Gym narystes</br> kas mėnesį!'
+                ? 'Lemon Gym narystes kas mėnesį!'
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
@@ -259,6 +267,7 @@ export class InputContainer {
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Eurovaistine' ||
+      this.prop === 'GamtosAteitis' ||
       this.prop === 'Akropolis' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
@@ -286,6 +295,8 @@ export class InputContainer {
               ? 'href=https://fpro.com/'
               : this.prop === 'Corepetitus'
               ? 'href=https://www.corepetitus.lt/zaidimo-taisykles'
+              : this.prop === 'Akropolis' && this.language === 'LV'
+              ? 'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'
               : this.prop === 'Akropolis'
               ? 'href=https://www.akropolis.lt/lt/akcija/zaisk-ir-laimek-kasdien/41169'
               : this.language === 'LV'
@@ -350,12 +361,11 @@ export class InputContainer {
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
           this.prop === 'Corepetitus' ||
+          this.prop === 'GamtosAteitis' ||
           this.prop === 'Makalius'
         ? 'PIRMYN'
         : this.prop === 'Fpro'
         ? 'PLAY'
-        : this.prop === 'Ikea'
-        ? 'Pirmyn'
         : this.prop === 'Eurovaistine'
         ? 'TĀLĀK'
         : this.prop === 'Akropolis'

@@ -14,7 +14,6 @@ export class InputRegisterContainer {
     containerDiv.setAttribute('id', 'input-register-container');
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
-
     containerDiv.style.width =
       document.body.offsetWidth < 426
         ? document.body.offsetWidth < 321
@@ -142,6 +141,8 @@ export class InputRegisterContainer {
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
+        : this.prop === 'GamtosAteitis'
+        ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“ '
         : this.prop === 'Unisend' && this.language === 'LV'
         ? `Esmu izlasījis <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.lv/spelesnoteikumi/'} style="color:white;text-decoration: underline;"> spēles noteikumus</a>  un piekrītu tiem.`
         : this.prop === 'Unisend' && this.language === 'EE'
@@ -219,7 +220,7 @@ export class InputRegisterContainer {
     }; position: absolute; justify-content: start;line-height:14px; align-items: start; gap: 5px;font-size:8px;color:white;text-align:start;line-height:8px;">
         ${
           this.language === 'LV'
-            ? `Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis <a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt</a>. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.`
+            ? ``
             : `Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis <a style="text-decoration: underline;color:white;"> privatumas@akropolis.lt</a>. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.`
         } 
 
@@ -229,12 +230,14 @@ export class InputRegisterContainer {
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
           this.language === 'LV' ? '14px' : '28px'
         } ;margin-right:30px;display:${
-      this.prop === 'Akropolis' ? 'block' : 'none'
+      this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'
     } ;left: 34px; top:${
       this.language === 'LV' ? '440px' : '420px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '9px' : '10px'
-    };color:red;text-align:start;line-height:8px;">
+    };color:${
+      this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
+    };text-align:start;line-height:8px;">
 </div>
 
 
@@ -242,7 +245,9 @@ export class InputRegisterContainer {
 
 
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
+      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 258px; position: absolute;text-align:start;z-index:99999;color: ${
+        this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
+      };
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
@@ -253,7 +258,9 @@ export class InputRegisterContainer {
       " id="competition-name-error"></div>
 
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 338px; position: absolute;text-align:start;z-index:99999;color: #D8000C;
+      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: 338px; position: absolute;text-align:start;z-index:99999;color: ${
+        this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
+      };
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
