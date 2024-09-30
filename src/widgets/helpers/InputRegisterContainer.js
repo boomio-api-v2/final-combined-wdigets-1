@@ -164,7 +164,7 @@ export class InputRegisterContainer {
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu Euroaptiekas'
         : this.prop === 'Akropolis' && this.language === 'LV'
-        ? 'Piekrītu “AKROPOLE” privātuma politikai '
+        ? `Piekrītu <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'} style="color:white;text-decoration: underline;"> spēles noteikumiem un privātuma politikai</a>. `
         : this.prop === 'Akropolis'
         ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
         : this.prop === 'Corepetitus'
