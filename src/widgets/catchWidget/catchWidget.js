@@ -58,7 +58,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Eurovaistine';
+    this.customer = this.config.business_name ? this.config.business_name : 'GamtosAteitis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -750,10 +750,23 @@ class CatchGame {
 
   createFruits() {
     this.fruits = [];
-    for (let i = 0; i < this.numberOfFruits; i++) {
-      const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
-      fruit.chooseFruit();
-      this.fruits.push(fruit);
+    if (this.customer === 'GamtosAteitis') {
+      for (let i = 0; i < this.numberOfFruits - 2; i++) {
+        const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
+        fruit.chooseFruit();
+        this.fruits.push(fruit);
+      }
+      for (let i = 0; i < 2; i++) {
+        const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this, 'bad');
+        fruit.chooseFruitBad();
+        this.fruits.push(fruit);
+      }
+    } else {
+      for (let i = 0; i < this.numberOfFruits; i++) {
+        const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
+        fruit.chooseFruit();
+        this.fruits.push(fruit);
+      }
     }
   }
 
@@ -841,16 +854,44 @@ class CatchGame {
       }
 
       this.fruits.forEach((fruit) => fruit.fall());
+      if (this.customer === 'GamtosAteitis') {
+        const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
+        if (this.fruits.length < newNumberOfFruits) {
+          // Create additional fruits to reach the new number
+          for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
+            const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
+            fruit.chooseFruit();
+            this.fruits.push(fruit);
+          }
+        }
 
-      const newNumberOfFruits = 8 + Math.floor(this.currentScore / 500);
-      if (this.fruits.length < newNumberOfFruits) {
-        // Create additional fruits to reach the new number
-        for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
-          const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
-          fruit.chooseFruit();
-          this.fruits.push(fruit);
+        if (this.fruits.length < newNumberOfFruits + 2) {
+          // Create additional fruits to reach the new number
+          for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
+            const fruit = new Fruit(
+              this.customer,
+              this.canvas,
+              this.context,
+              this.player,
+              this,
+              'bad',
+            );
+            fruit.chooseFruit();
+            this.fruits.push(fruit);
+          }
+        }
+      } else {
+        const newNumberOfFruits = 8 + Math.floor(this.currentScore / 500);
+        if (this.fruits.length < newNumberOfFruits) {
+          // Create additional fruits to reach the new number
+          for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
+            const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
+            fruit.chooseFruit();
+            this.fruits.push(fruit);
+          }
         }
       }
+
       this.timer = window.setTimeout(() => this.updateGame(), 30);
     }
   }
@@ -1052,13 +1093,24 @@ class Player {
 }
 
 class Fruit {
-  constructor(customer, canvas, context, player, game) {
+  constructor(customer, canvas, context, player, game, type) {
     this.canvas = canvas;
     this.context = context;
     this.player = player;
     this.game = game;
+    this.type = type;
     this.customer = customer;
-    this.fruitNumber = Math.floor(Math.random() * (this.customer === 'GamtosAteitis' ? 23 : 5));
+
+    if (this.customer === 'GamtosAteitis') {
+      if (type === 'bad') {
+        this.fruitNumber = Math.floor(1);
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 23);
+      }
+    } else {
+      this.fruitNumber = Math.floor(Math.random() * 5);
+    }
+
     this.fruitType = '';
     this.fruitScore = 0;
     this.fruitWidth = 40;
@@ -1141,6 +1193,12 @@ class Fruit {
     } else {
       this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
     }
+    this.fruitImage.src = this.images[this.fruitNumber];
+  }
+
+  chooseFruitBad() {
+    this.fruitType = ['item1', 'item2', 'item3'][this.fruitNumber];
+    this.fruitScore = [-50, -50, -100][this.fruitNumber];
     this.fruitImage.src = this.images[this.fruitNumber];
   }
 
