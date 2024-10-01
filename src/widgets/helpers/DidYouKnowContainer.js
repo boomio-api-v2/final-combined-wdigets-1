@@ -31,18 +31,18 @@ export class DidYouKnowContainer {
   constructor(prop) {
     this.prop = prop;
     this.collectables = [
-      item1,
-      item2,
-      item3,
+      item16,
       item4,
-      item5,
-      item6,
-      item7,
-      item8,
-      item9,
+      item14,
+      item1,
+      item23,
+      item20,
       item10,
-      item11,
+      item8,
+      item6,
       item12,
+      item19,
+      item7,
     ];
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
@@ -52,18 +52,18 @@ export class DidYouKnowContainer {
   updateProps(prop) {
     this.prop = prop;
     this.collectables = [
-      item1,
-      item2,
-      item3,
+      item16,
       item4,
-      item5,
-      item6,
-      item7,
-      item8,
-      item9,
+      item14,
+      item1,
+      item23,
+      item20,
       item10,
-      item11,
+      item8,
+      item6,
       item12,
+      item19,
+      item7,
     ];
     this.updateVisuals();
   }
@@ -104,14 +104,14 @@ export class DidYouKnowContainer {
 
   addfunc() {
     // Attach event listeners after the images are added to the DOM
-    for (let index = 0; index < this.collectables?.length; index++) {
-      const image = document.getElementById(`image-${index}`);
-      if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
-        image.addEventListener('click', () => {
-          this.handleImageClick(image);
-        });
-      }
-    }
+    // for (let index = 0; index < this.collectables?.length; index++) {
+    //   const image = document.getElementById(`image-${index}`);
+    //   if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
+    //     image.addEventListener('click', () => {
+    //       this.handleImageClick(image);
+    //     });
+    //   }
+    // }
   }
   handleImageClick(image) {
     // Toggle a class to make the image larger and centered

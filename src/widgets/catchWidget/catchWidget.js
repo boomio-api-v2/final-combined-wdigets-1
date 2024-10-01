@@ -756,7 +756,7 @@ class CatchGame {
         fruit.chooseFruit();
         this.fruits.push(fruit);
       }
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this, 'bad');
         fruit.chooseFruitBad();
         this.fruits.push(fruit);
@@ -853,7 +853,7 @@ class CatchGame {
         this.player.gameOver = true;
       }
 
-      this.fruits.forEach((fruit) => fruit.fall());
+      this.fruits.forEach((fruit) => fruit.fall(fruit));
       if (this.customer === 'GamtosAteitis') {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
@@ -1100,12 +1100,13 @@ class Fruit {
     this.game = game;
     this.type = type;
     this.customer = customer;
-
     if (this.customer === 'GamtosAteitis') {
       if (type === 'bad') {
-        this.fruitNumber = Math.floor(1);
+        this.fruitNumber = Math.floor(Math.random() * 10);
+        console.log('bad', this.fruitNumber);
       } else {
-        this.fruitNumber = Math.floor(Math.random() * 23);
+        this.fruitNumber = Math.floor(Math.random() * 13 + 10);
+        console.log('good', this.fruitNumber);
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 5);
@@ -1125,28 +1126,28 @@ class Fruit {
     // Fruit images
     if (this.customer === 'GamtosAteitis') {
       this.images = [
-        item1,
         item2,
         item3,
+        item9,
+        item11,
+        item13,
+        item15,
+        item17,
+        item18,
+        item21,
+        item22,
+        item1,
         item4,
         item5,
         item6,
         item7,
         item8,
-        item9,
         item10,
-        item11,
         item12,
-        item13,
         item14,
-        item15,
         item16,
-        item17,
-        item18,
         item19,
         item20,
-        item21,
-        item22,
         item23,
       ];
     } else {
@@ -1157,28 +1158,28 @@ class Fruit {
   chooseFruit() {
     if (this.customer === 'GamtosAteitis') {
       this.fruitType = [
-        'item1',
         'item2',
         'item3',
+        'item9',
+        'item11',
+        'item13',
+        'item15',
+        'item17',
+        'item18',
+        'item21',
+        'item22',
+        'item1',
         'item4',
         'item5',
         'item6',
         'item7',
         'item8',
-        'item9',
         'item10',
-        'item11',
         'item12',
-        'item13',
         'item14',
-        'item15',
         'item16',
-        'item17',
-        'item18',
         'item19',
         'item20',
-        'item21',
-        'item22',
         'item23',
       ][this.fruitNumber];
     } else {
@@ -1187,8 +1188,8 @@ class Fruit {
 
     if (this.customer === 'GamtosAteitis') {
       this.fruitScore = [
-        50, 50, 100, 100, 150, 50, 50, 100, 100, 150, 50, 50, 100, 100, 150, 50, 50, 100, 100, 150,
-        150, 150, 150,
+        -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100,
       ][this.fruitNumber];
     } else {
       this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
@@ -1197,22 +1198,49 @@ class Fruit {
   }
 
   chooseFruitBad() {
-    this.fruitType = ['item1', 'item2', 'item3'][this.fruitNumber];
-    this.fruitScore = [-50, -50, -100][this.fruitNumber];
+    this.fruitType = [
+      'item2',
+      'item3',
+      'item9',
+      'item11',
+      'item13',
+      'item15',
+      'item17',
+      'item18',
+      'item21',
+      'item22',
+      'item1',
+      'item4',
+      'item5',
+      'item6',
+      'item7',
+      'item8',
+      'item10',
+      'item12',
+      'item14',
+      'item16',
+      'item19',
+      'item20',
+      'item23',
+    ][this.fruitNumber];
+    this.fruitScore = [
+      -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+      100, 100, 100, 100,
+    ][this.fruitNumber];
     this.fruitImage.src = this.images[this.fruitNumber];
   }
 
-  fall() {
+  fall(fruit) {
     if (this.y < this.canvas.height - this.fruitHeight) {
       this.y += this.fruitSpeed;
     } else {
-      // Handle fruit miss
-      this.player.fruitsMissed++;
-      document.getElementById('currentLife').innerHTML = `${Math.max(
-        0,
-        this.player.defaultscore - this.player.fruitsMissed,
-      )}/${this.player.defaultscore}`;
-
+      if (fruit.fruitScore > 0) {
+        this.player.fruitsMissed++;
+        document.getElementById('currentLife').innerHTML = `${Math.max(
+          0,
+          this.player.defaultscore - this.player.fruitsMissed,
+        )}/${this.player.defaultscore}`;
+      }
       this.changeState();
     }
 
@@ -1235,6 +1263,7 @@ class Fruit {
   }
 
   updateScore() {
+    console.log(this.fruitScore);
     this.game.currentScore += this.fruitScore;
     document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
