@@ -43,17 +43,6 @@ export class DidYouKnowContainer {
       item10,
       item11,
       item12,
-      item13,
-      item14,
-      item15,
-      item16,
-      item17,
-      item18,
-      item19,
-      item20,
-      item21,
-      item22,
-      item23,
     ];
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
@@ -75,17 +64,6 @@ export class DidYouKnowContainer {
       item10,
       item11,
       item12,
-      item13,
-      item14,
-      item15,
-      item16,
-      item17,
-      item18,
-      item19,
-      item20,
-      item21,
-      item22,
-      item23,
     ];
     this.updateVisuals();
   }
@@ -94,18 +72,18 @@ export class DidYouKnowContainer {
     if (!this.containerDiv) return;
     let tableHTML = '';
     this.collectables?.forEach((item, index) => {
-      if (index % 4 === 0) {
+      if (index % 3 === 0) {
         tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
 
       tableHTML += `
-        <td style="text-align: center; border: none;">
-        <div id="image-${index}" style="border-radius:20px;background:white;">
-        <img class='image-container' style="opacity:0.1;" src=${item.url} alt="Scoreboard Image" >
+        <td style="padding:5px;text-align: center; border: none;">
+        <div id="image-${index}" style="border-radius:20px;">
+        <img class='image-container' style="opacity:1;" src=${item} alt="Scoreboard Image" >
         </div>
         </td>`;
 
-      if ((index + 1) % 4 === 0 || index === this.collectables.length - 1) {
+      if ((index + 1) % 3 === 0 || index === this.collectables.length - 1) {
         tableHTML += '</tr>';
       }
     });
@@ -186,9 +164,9 @@ export class DidYouKnowContainer {
 
     containerDiv.innerHTML += `
               </div>
-      <div  style="margin-left:14px;height: ${'302px'}; top: 114px; position: absolute; border-right:none;">
+      <div  style="width:100%;height: ${'302px'}; top: 114px; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
-          <table style="margin:10px;border-spacing:3px;border-collapse:separate">
+          <table style="margin:10px;border-spacing:3px;width:100%;border-collapse:separate">
             <tbody class="boomio-tbody">
     `;
 

@@ -751,15 +751,34 @@ class DoodleWidget {
       });
     }
     this.speed = 0.16;
-    if (this.currentScore >= 5000) {
-      this.speed = 0.4;
-    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+
+    if (this.currentScore >= 2000) {
+      this.speed = 0.95;
+    } else if (this.currentScore >= 1500 && this.currentScore < 2000) {
+      this.speed = 0.9;
+    } else if (this.currentScore >= 1300 && this.currentScore < 1500) {
+      this.speed = 0.85;
+    } else if (this.currentScore >= 1100 && this.currentScore < 1300) {
+      this.speed = 0.8;
+    } else if (this.currentScore >= 900 && this.currentScore < 1100) {
+      this.speed = 0.75;
+    } else if (this.currentScore >= 800 && this.currentScore < 900) {
+      this.speed = 0.65;
+    } else if (this.currentScore >= 700 && this.currentScore < 800) {
+      this.speed = 0.6;
+    } else if (this.currentScore >= 600 && this.currentScore < 700) {
+      this.speed = 0.55;
+    } else if (this.currentScore >= 500 && this.currentScore < 600) {
+      this.speed = 0.5;
+    } else if (this.currentScore >= 150 && this.currentScore < 500) {
       this.speed = 0.35;
-    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+    } else if (this.currentScore >= 70 && this.currentScore < 150) {
       this.speed = 0.3;
-    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+    } else if (this.currentScore >= 50 && this.currentScore < 70) {
       this.speed = 0.2;
-    } else if (this.currentScore >= 100 && this.currentScore < 500) this.speed = 0.16;
+    } else if (this.currentScore >= 10 && this.currentScore < 50) {
+      this.speed = 0.16;
+    }
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
@@ -779,19 +798,31 @@ class DoodleWidget {
 
     // Speed limits!
 
-    if (this.currentScore >= 5000) {
+    if (this.currentScore >= 2000) {
+      if (this.player.vx > 10) this.player.vx = 10;
+      else if (this.player.vx < -10) this.player.vx = -10;
+    } else if (this.currentScore >= 1500 && this.currentScore < 2000) {
+      if (this.player.vx > 9.5) this.player.vx = 9.5;
+      else if (this.player.vx < -9.5) this.player.vx = -9.5;
+    } else if (this.currentScore >= 1000 && this.currentScore < 1500) {
+      if (this.player.vx > 10) this.player.vx = 10;
+      else if (this.player.vx < -10) this.player.vx = -10;
+    } else if (this.currentScore >= 700 && this.currentScore < 1000) {
+      if (this.player.vx > 8) this.player.vx = 8;
+      else if (this.player.vx < -8) this.player.vx = -8;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
       if (this.player.vx > 7) this.player.vx = 7;
       else if (this.player.vx < -7) this.player.vx = -7;
-    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+    } else if (this.currentScore >= 150 && this.currentScore < 500) {
       if (this.player.vx > 6) this.player.vx = 6;
       else if (this.player.vx < -6) this.player.vx = -6;
-    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+    } else if (this.currentScore >= 70 && this.currentScore < 150) {
       if (this.player.vx > 5) this.player.vx = 5;
       else if (this.player.vx < -5) this.player.vx = -5;
-    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+    } else if (this.currentScore >= 50 && this.currentScore < 70) {
       if (this.player.vx > 4) this.player.vx = 4;
       else if (this.player.vx < -4) this.player.vx = -4;
-    } else if (this.currentScore >= 100 && this.currentScore < 500) {
+    } else if (this.currentScore >= 10 && this.currentScore < 50) {
       if (this.player.vx > 3) this.player.vx = 3;
       else if (this.player.vx < -3) this.player.vx = -3;
     }
@@ -1379,15 +1410,25 @@ class Platform {
     this.image = image;
     this.currentScore = score;
     this.width = 100;
-    if (this.currentScore >= 5000) {
+    if (this.currentScore >= 2000) {
+      this.width = 30;
+    } else if (this.currentScore >= 1500 && this.currentScore < 2000) {
+      this.width = 35;
+    } else if (this.currentScore >= 1000 && this.currentScore < 1500) {
       this.width = 40;
-    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
-      this.width = 60;
-    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
-      this.width = 70;
+    } else if (this.currentScore >= 700 && this.currentScore < 1000) {
+      this.width = 45;
     } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      this.width = 50;
+    } else if (this.currentScore >= 150 && this.currentScore < 500) {
+      this.width = 60;
+    } else if (this.currentScore >= 70 && this.currentScore < 150) {
+      this.width = 70;
+    } else if (this.currentScore >= 50 && this.currentScore < 70) {
       this.width = 80;
-    } else if (this.currentScore >= 100 && this.currentScore < 500) this.width = 100;
+    } else if (this.currentScore >= 10 && this.currentScore < 50) {
+      this.width = 100;
+    }
 
     this.height = 20;
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
@@ -1447,15 +1488,15 @@ class Platform {
       this.types = [2, 2, 2, 3, 3, 4, 4, 4, 4];
       this.gravity = 0.3;
       this.vx = 6;
-    } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
+    } else if (this.currentScore >= 6000 && this.currentScore < 8000) {
       this.types = [2, 3, 2, 3, 4, 4, 4, 4];
       this.gravity = 0.2;
       this.vx = 5;
-    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+    } else if (this.currentScore >= 2500 && this.currentScore < 5000) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
       this.gravity = 0.18;
       this.vx = 4;
-    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+    } else if (this.currentScore >= 700 && this.currentScore < 2500) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 3];
       this.gravity = 0.16;
       this.vx = 3;
