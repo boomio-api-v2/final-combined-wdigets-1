@@ -1100,11 +1100,9 @@ class Fruit {
     this.game = game;
     this.type = type;
     this.customer = customer;
-    console.log(type);
 
     if (this.customer === 'GamtosAteitis') {
       if (type === 'bad') {
-        console.log('bad');
         this.fruitNumber = Math.floor(1);
       } else {
         this.fruitNumber = Math.floor(Math.random() * 23);
@@ -1202,7 +1200,6 @@ class Fruit {
     this.fruitType = ['item1', 'item2', 'item3'][this.fruitNumber];
     this.fruitScore = [-50, -50, -100][this.fruitNumber];
     this.fruitImage.src = this.images[this.fruitNumber];
-    console.log(this.fruitScore);
   }
 
   fall() {
@@ -1239,7 +1236,6 @@ class Fruit {
 
   updateScore() {
     this.game.currentScore += this.fruitScore;
-    console.log(this.fruitScore);
     document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
     if (this.game.currentScore > 1) {
