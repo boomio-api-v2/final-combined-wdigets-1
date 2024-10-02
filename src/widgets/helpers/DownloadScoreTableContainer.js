@@ -30,6 +30,7 @@ export class DownloadScoreTableContainer {
   }
 
   updateVisuals() {
+    console.log(this.currentScore);
     if (!this.containerDiv) return;
     const userPercentageDiscount = parseInt(this?.scoreTable?.best_discount) || 0;
     const userDiscountCode = this?.scoreTable?.coupon_code || '';
@@ -41,6 +42,9 @@ export class DownloadScoreTableContainer {
     tableHTML += `
 
     <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%);filter;box-sizing:content-box !important;">
+            <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-110px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
+    TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
+
     <div style="width:100%;margin-top:20px; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     NUOLAIDA APSIPIRKIMUI </div>
     <div style="width:100%;margin-bottom:10px;text-align: center;color: white; font-size: 14px; font-family: Montserrat; font-weight:700; text-transform: uppercase; word-wrap: break-word"> 
@@ -120,8 +124,6 @@ export class DownloadScoreTableContainer {
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-        <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
-    TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
       <div style="width:100%;top: 85px; position: absolute; text-align: center; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
