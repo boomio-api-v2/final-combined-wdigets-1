@@ -113,7 +113,7 @@ class LocalStorageService {
     const widget_subtype = config?.subtype ?? false;
     const email_collection_required = config?.email_collection_required ?? false;
     const product = config?.product ?? '???';
-    const language = config?.language ?? 'LV';
+    const language = config?.language ?? '';
 
     return {
       language,
