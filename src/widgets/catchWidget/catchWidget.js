@@ -758,7 +758,7 @@ class CatchGame {
       }
       for (let i = 0; i < 1; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this, 'bad');
-        fruit.chooseFruitBad();
+        fruit.chooseFruit();
         this.fruits.push(fruit);
       }
     } else {
@@ -1102,11 +1102,9 @@ class Fruit {
     this.customer = customer;
     if (this.customer === 'Gamtos Ateitis') {
       if (type === 'bad') {
-        this.fruitNumber = Math.floor(Math.random() * 10);
-        console.log('bad', this.fruitNumber);
+        this.fruitNumber = Math.floor(Math.random() * 13);
       } else {
-        this.fruitNumber = Math.floor(Math.random() * 13 + 10);
-        console.log('good', this.fruitNumber);
+        this.fruitNumber = Math.floor(Math.random() * 10 + 13);
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 5);
@@ -1126,16 +1124,6 @@ class Fruit {
     // Fruit images
     if (this.customer === 'Gamtos Ateitis') {
       this.images = [
-        item2,
-        item3,
-        item9,
-        item11,
-        item13,
-        item15,
-        item17,
-        item18,
-        item21,
-        item22,
         item1,
         item4,
         item5,
@@ -1149,6 +1137,16 @@ class Fruit {
         item19,
         item20,
         item23,
+        item2,
+        item3,
+        item9,
+        item11,
+        item13,
+        item15,
+        item17,
+        item18,
+        item21,
+        item22,
       ];
     } else {
       this.images = [catch1, catch2, catch3, catch4, catch5];
@@ -1158,16 +1156,6 @@ class Fruit {
   chooseFruit() {
     if (this.customer === 'Gamtos Ateitis') {
       this.fruitType = [
-        'item2',
-        'item3',
-        'item9',
-        'item11',
-        'item13',
-        'item15',
-        'item17',
-        'item18',
-        'item21',
-        'item22',
         'item1',
         'item4',
         'item5',
@@ -1181,6 +1169,16 @@ class Fruit {
         'item19',
         'item20',
         'item23',
+        'item2',
+        'item3',
+        'item9',
+        'item11',
+        'item13',
+        'item15',
+        'item17',
+        'item18',
+        'item21',
+        'item22',
       ][this.fruitNumber];
     } else {
       this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
@@ -1188,45 +1186,12 @@ class Fruit {
 
     if (this.customer === 'Gamtos Ateitis') {
       this.fruitScore = [
-        -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100, 100, 100, 100,
+        -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100,
         100, 100, 100, 100, 100,
       ][this.fruitNumber];
     } else {
       this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
     }
-    this.fruitImage.src = this.images[this.fruitNumber];
-  }
-
-  chooseFruitBad() {
-    this.fruitType = [
-      'item2',
-      'item3',
-      'item9',
-      'item11',
-      'item13',
-      'item15',
-      'item17',
-      'item18',
-      'item21',
-      'item22',
-      'item1',
-      'item4',
-      'item5',
-      'item6',
-      'item7',
-      'item8',
-      'item10',
-      'item12',
-      'item14',
-      'item16',
-      'item19',
-      'item20',
-      'item23',
-    ][this.fruitNumber];
-    this.fruitScore = [
-      -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100, 100, 100, 100, 100,
-      100, 100, 100, 100,
-    ][this.fruitNumber];
     this.fruitImage.src = this.images[this.fruitNumber];
   }
 

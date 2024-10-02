@@ -203,6 +203,8 @@ export class InputRegisterContainer {
               ? 'https://www.corepetitus.lt/privatumo-politika'
               : this.prop === 'Eurovaistine'
               ? 'https://www.e-euroaptieka.lv/privatuma-politika'
+              : this.prop === 'Gamtos Ateitis'
+              ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
