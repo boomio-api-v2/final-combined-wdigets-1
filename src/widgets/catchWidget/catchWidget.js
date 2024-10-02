@@ -1199,13 +1199,22 @@ class Fruit {
     if (this.y < this.canvas.height - this.fruitHeight) {
       this.y += this.fruitSpeed;
     } else {
-      if (fruit.fruitScore > 0) {
-        this.player.fruitsMissed++;
-        document.getElementById('currentLife').innerHTML = `${Math.max(
-          0,
-          this.player.defaultscore - this.player.fruitsMissed,
-        )}/${this.player.defaultscore}`;
+      if (this.customer === 'Gamtos Ateitis') {
+        if (fruit.fruitScore > 0) {
+          this.game.currentScore += -50;
+          document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+        }
+      } else {
+        if (fruit.fruitScore > 0) {
+          this.player.fruitsMissed++;
+          document.getElementById('currentLife').innerHTML = `${Math.max(
+            0,
+            this.player.defaultscore - this.player.fruitsMissed,
+          )}/${this.player.defaultscore}`;
+        }
+        this.changeState();
       }
+
       this.changeState();
     }
 
@@ -1228,9 +1237,16 @@ class Fruit {
   }
 
   updateScore() {
-    console.log(this.fruitScore);
-    this.game.currentScore += this.fruitScore;
-    document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+    if (this.fruitScore > 0) {
+      this.game.currentScore += this.fruitScore;
+      document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+    } else {
+      this.player.fruitsMissed++;
+      document.getElementById('currentLife').innerHTML = `${Math.max(
+        0,
+        this.player.defaultscore - this.player.fruitsMissed,
+      )}/${this.player.defaultscore}`;
+    }
 
     if (this.game.currentScore > 1) {
       const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
