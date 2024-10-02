@@ -92,6 +92,17 @@ export class DownloadScoreTableContainer {
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+
+    document.getElementById('boomio-copy-modal-btn').onclick = () => {
+      const textToCopy = userDiscountCode;
+      const textarea = document.createElement('textarea');
+      textarea.value = textToCopy;
+      document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    };
   }
 
   render() {
