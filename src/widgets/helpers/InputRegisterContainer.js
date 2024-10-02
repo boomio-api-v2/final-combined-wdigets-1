@@ -89,7 +89,13 @@ export class InputRegisterContainer {
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
-      this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '10px'
+      this.isMobile
+        ? this.language === 'LV' && this.prop === 'Akropolis'
+          ? '8px'
+          : '10px'
+        : this.prop === 'Eurovaistine'
+        ? '12px'
+        : '10px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     };font-weight: 400; width:350px;word-wrap: break-word;text-align:start;">${
@@ -128,7 +134,9 @@ export class InputRegisterContainer {
         </div>
         <div style="color: ${'white'}; font-size: ${
       this.isMobile
-        ? '10px'
+        ? this.prop === 'Akropolis' && this.language === 'LV'
+          ? '8px'
+          : '10px'
         : this.prop === 'Eurovaistine'
         ? '12px'
         : this.prop === 'Akropolis' && this.language === 'LV'
