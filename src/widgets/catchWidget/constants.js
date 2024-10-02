@@ -5,7 +5,7 @@ export const intro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/catchIntro.gif';
 
 export const introGamtosAteitis =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitis/catchIntro.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitis/catchIntro.gif';
 
 export const backgroundGamtosAteitis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitis/background.png';
