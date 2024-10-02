@@ -1293,8 +1293,13 @@ function startGame(scoreTableContainerInstance) {
       drawInstructions();
     };
 
+    if (startHandler) {
+      const canvas = document.getElementById('boomio-drive-canvas');
+      canvas.addEventListener('click', clickHandler);
+    }
     const keyHandler = function (event) {
       if (startHandler && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
+        // Trigger clickHandler on arrow key press
         clickHandler();
       }
     };
