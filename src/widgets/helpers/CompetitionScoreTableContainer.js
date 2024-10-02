@@ -114,7 +114,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
         (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 35) ||
-        (this.prop === 'GamtosAteitis' && this.scoreTable?.user_best_place < 10)
+        (this.prop === 'Gamtos Ateitis' && this.scoreTable?.user_best_place < 10)
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -153,7 +153,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Ja saglabāsi savu pozīciju 500 labāko sarakstā, tu saņemsi </br>balvu no KFC, un pēc balvas izņemšanas – automātiski </br>piedalīsies AKROPOLE dāvanu kartes izlozē 100 EUR vērtībā.  </br>Tev ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
                 : this.prop === 'Akropolis'
                 ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
-                : this.prop === 'GamtosAteitis'
+                : this.prop === 'Gamtos Ateitis'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių –</br> kiekvieną savaitę!'
                 : this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
@@ -201,7 +201,7 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.prop === 'Akropolis'
                 ? ''
-                : this.prop === 'GamtosAteitis'
+                : this.prop === 'Gamtos Ateitis'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
@@ -239,7 +239,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Uzlabo savu rezultātu un saņem kādu no KFC balvām un pēc</br>balvas saņemšanas - automātiski piedalīsies  AKROPOLE</br>dāvanu kartes izlozē 100 eur vērtībā.'
                 : this.prop === 'Akropolis'
                 ? 'Pagerink rezultatą ir kasdien laimėk vieną CAIF CAFE kavos </br>puodelį, o atsiėmęs prizą turėk galimybę laimėti 100 EUR</br>AKROPOLIO dovanų kortelę!'
-                : this.prop === 'GamtosAteitis'
+                : this.prop === 'Gamtos Ateitis'
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 10 prizų – „Gamtos ateities“ </br>stalo žaidimų „MisijaEkomiestas“ arba rūšiavimo namuose</br> rinkinių – kiekvieną savaitę!'
                 : this.language === 'ES'
                 ? 'En Diciembre, Los mejors 100 jugadores recibiran un premio!</br>Ganadores serán contactados al email del registro'
@@ -292,7 +292,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Makalius' ||
                   this.prop === 'Unisend' ||
                   this.prop === 'Akropolis' ||
-                  this.prop === 'GamtosAteitis'
+                  this.prop === 'Gamtos Ateitis'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div>

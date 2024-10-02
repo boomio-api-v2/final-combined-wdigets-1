@@ -91,7 +91,7 @@ export class InputContainer {
                   ? 'SAŅEMT'
                   : this.prop === 'Akropolis'
                   ? 'Judėk'
-                  : this.prop === 'GamtosAteitis'
+                  : this.prop === 'Gamtos Ateitis'
                   ? 'Gaudyk'
                   : 'Spausk'
               }
@@ -119,7 +119,7 @@ export class InputContainer {
                 ? 'para volar'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'braukdami kairiau ar dešiniau.'
-                : this.prop === 'GamtosAteitis'
+                : this.prop === 'Gamtos Ateitis'
                 ? 'plastiko pakuočių atliekas.'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
@@ -235,7 +235,7 @@ export class InputContainer {
                 ? 'до 30 призов от Yesyes.lv!'
                 : this.language === 'ES'
                 ? '100 premios!'
-                : this.prop === 'GamtosAteitis'
+                : this.prop === 'Gamtos Ateitis'
                 ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
@@ -267,7 +267,7 @@ export class InputContainer {
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Eurovaistine' ||
-      this.prop === 'GamtosAteitis' ||
+      this.prop === 'Gamtos Ateitis' ||
       this.prop === 'Akropolis' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
@@ -361,7 +361,7 @@ export class InputContainer {
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
           this.prop === 'Corepetitus' ||
-          this.prop === 'GamtosAteitis' ||
+          this.prop === 'Gamtos Ateitis' ||
           this.prop === 'Makalius'
         ? 'PIRMYN'
         : this.prop === 'Fpro'
