@@ -31,8 +31,8 @@ export class DownloadScoreTableContainer {
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const userPercentageDiscount = parseInt(this?.scoreTable?.collection?.[0]?.discount) || 0;
-    const userDiscountCode = this?.scoreTable?.collection?.[0]?.coupon_code || '';
+    const userPercentageDiscount = parseInt(this?.scoreTable?.best_discount) || 0;
+    const userDiscountCode = this?.scoreTable?.coupon_code || '';
 
     let tableHTML = '';
 
