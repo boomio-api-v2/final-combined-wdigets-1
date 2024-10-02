@@ -42,6 +42,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Unisend' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
+            this.prop === 'Gamtos Ateitis' ||
             this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
@@ -49,6 +50,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Fpro' ||
             this.prop === 'Fantazijos' ||
             this.prop === 'Makalius' ||
+            this.prop === 'Gamtos Ateitis' ||
             this.prop === 'LemonGym'
           ? 'white'
           : 'white';
@@ -78,6 +80,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Makalius' ||
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
+                this.prop === 'Gamtos Ateitis' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -91,6 +94,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Makalius' ||
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
+                this.prop === 'Gamtos Ateitis' ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -104,6 +108,7 @@ export class CompetitionScoreTableContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
+      this.prop === 'Gamtos Ateitis' ||
       this.prop === 'LemonGym'
         ? '900'
         : '700';
