@@ -141,7 +141,7 @@ export class InputRegisterContainer {
         ? '12px'
         : this.prop === 'Akropolis' && this.language === 'LV'
         ? '10px'
-        : '13px'
+        : '14px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ;  font-weight: 400; width:350px;word-wrap: break-word;line-height:14px;text-align:start;">${
@@ -207,7 +207,7 @@ export class InputRegisterContainer {
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${
-            this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
+            this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
           }; ">${
             this.prop === 'Ikea'
               ? 'IKEA privatumo politika'
