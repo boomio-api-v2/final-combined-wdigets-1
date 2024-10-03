@@ -1200,9 +1200,10 @@ class Fruit {
       this.y += this.fruitSpeed;
     } else {
       if (this.customer === 'Gamtos Ateitis') {
-        if (fruit.fruitScore > 0) {
+        if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
           document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+          this.showScoreEffect('-50');
         }
       } else {
         if (fruit.fruitScore > 0) {
@@ -1236,16 +1237,68 @@ class Fruit {
     }
   }
 
+  showScoreEffect(score, showLife) {
+    const x = this.canvas.width / 2 - this.playerWidth / 2;
+    const y = this.canvas.height - this.playerHeight - 200;
+
+    const gameContainer = document.querySelector('.game-container');
+
+    const scoreContainer = document.createElement('div');
+    scoreContainer.classList.add('float-score');
+    scoreContainer.style.left = `${x}px`;
+    scoreContainer.style.top = `${y}px`;
+    scoreContainer.style.position = 'absolute';
+    scoreContainer.style.display = 'flex';
+
+    if (showLife) {
+      const scoreText = document.createElement('div');
+      scoreText.innerHTML = `-`;
+      scoreText.style.color = '#fff';
+      scoreText.style.fontSize = '24px';
+      scoreText.style.fontWeight = 'bold';
+      scoreText.style.marginRight = '10px';
+      scoreText.style.marginTop = '25px';
+
+      const lifeImg = document.createElement('img');
+      lifeImg.src = life;
+      lifeImg.alt = 'Image Description';
+      lifeImg.style.width = '70px';
+      lifeImg.style.height = '50px';
+      lifeImg.style.marginTop = '15px';
+      lifeImg.style.marginLeft = '-20px';
+      scoreContainer.appendChild(scoreText);
+      scoreContainer.appendChild(lifeImg);
+    } else {
+      const scoreText = document.createElement('div');
+      scoreText.innerHTML = `${score}`;
+      scoreText.style.color = '#fff';
+      scoreText.style.fontSize = '24px';
+      scoreText.style.fontWeight = 'bold';
+      scoreText.style.marginRight = '10px'; // Add space between text and image
+      scoreContainer.appendChild(scoreText);
+    }
+    gameContainer.appendChild(scoreContainer);
+
+    setTimeout(() => {
+      scoreContainer.remove();
+    }, 1000);
+  }
+
   updateScore() {
     if (this.fruitScore > 0) {
       this.game.currentScore += this.fruitScore;
       document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+
+      const x = 200;
+      const y = 300;
+      this.showScoreEffect('+100');
     } else {
       this.player.fruitsMissed++;
       document.getElementById('currentLife').innerHTML = `${Math.max(
         0,
         this.player.defaultscore - this.player.fruitsMissed,
       )}/${this.player.defaultscore}`;
+      this.showScoreEffect('-1', true);
     }
 
     if (this.game.currentScore > 1) {

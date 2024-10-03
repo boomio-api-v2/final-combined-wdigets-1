@@ -248,3 +248,24 @@ cursor:pointer;
   display:none;
   top:50%;
 }
+
+@keyframes floatScore {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+.float-score {
+  position: absolute;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  pointer-events: none;
+  animation: floatScore 1s ease-in-out forwards;
+  z-index: 9999;
+}
