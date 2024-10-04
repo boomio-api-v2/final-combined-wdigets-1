@@ -76,9 +76,7 @@ import {
 export class DidYouKnowContainer {
   constructor(prop) {
     this.prop = prop;
-    // Initializing collectables based on customer type
     if (this.prop && this.prop.includes('Plastic')) {
-      // Handle Gamtos Ateitis collectables
       this.collectables = [
         item16,
         item4,
@@ -125,9 +123,6 @@ export class DidYouKnowContainer {
         item19Glass,
         item7Glass,
       ];
-    } else {
-      // Default collectables if none of the above conditions are met
-      this.collectables = [catch1, catch2, catch3, catch4, catch5];
     }
 
     this.isMobile = window.innerWidth <= 1280;
@@ -187,9 +182,6 @@ export class DidYouKnowContainer {
         item19Glass,
         item7Glass,
       ];
-    } else {
-      // Default collectables if none of the above conditions are met
-      this.collectables = [catch1, catch2, catch3, catch4, catch5];
     }
 
     this.updateVisuals();
@@ -218,9 +210,9 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let scoreboardText = `
-      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat;  word-wrap: break-word">${`Šių atliekų mesti į ${
+      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat;  word-wrap: break-word">${`Šių atliekų mesti į ${
         this.prop === 'Gamtos Ateitis Paper'
-          ? 'plastikui'
+          ? 'popieriui'
           : this.prop === 'Gamtos Ateitis Plastic'
           ? 'plastikui'
           : this.prop === 'Gamtos Ateitis Glass' && 'stiklui'

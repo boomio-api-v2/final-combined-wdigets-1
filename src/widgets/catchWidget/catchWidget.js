@@ -110,9 +110,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name
-      ? this.config.business_name
-      : 'Gamtos Ateitis Plastic';
+    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Glass';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -133,11 +131,11 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
-      this.customer === 'Gamtos Ateitis Paper'
+      this.customer.includes('Paper')
         ? backgroundGamtosAteitisPaper
-        : this.customer === 'Gamtos Ateitis Plastic'
+        : this.customer.includes('Plastic')
         ? backgroundGamtosAteitis
-        : this.customer === 'Gamtos Ateitis Glass'
+        : this.customer.includes('Glass')
         ? backgroundGamtosAteitisGlass
         : background
     }) center`;
@@ -359,11 +357,11 @@ class CatchGame {
 
 
     <img src=${
-      this.customer === 'Gamtos Ateitis Paper'
+      this.customer.includes('Paper')
         ? introGamtosAteitisPaper
-        : this.customer === 'Gamtos Ateitis Plastic'
+        : this.customer.includes('Plastic')
         ? introGamtosAteitis
-        : this.customer === 'Gamtos Ateitis Glass'
+        : this.customer.includes('Glass')
         ? introGamtosAteitisGlass
         : intro
     } alt="Image Description" style="z-index:4;width:${
@@ -432,7 +430,7 @@ class CatchGame {
     if (this.customer.includes('Gamtos Ateitis')) {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer();
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
 
@@ -1151,14 +1149,13 @@ class Player {
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
-    this.playerImage.src =
-      this.customer === 'Gamtos Ateitis Paper'
-        ? playerGamtosAteitisPaper
-        : this.customer === 'Gamtos Ateitis Plastic'
-        ? playerGamtosAteitis
-        : this.customer === 'Gamtos Ateitis Glass'
-        ? playerGamtosAteitisGlass
-        : player;
+    this.playerImage.src = customer.includes('Paper')
+      ? playerGamtosAteitisPaper
+      : customer.includes('Plastic')
+      ? playerGamtosAteitis
+      : customer.includes('Glass')
+      ? playerGamtosAteitisGlass
+      : player;
     this.defaultscore = defaultscore;
   }
 
