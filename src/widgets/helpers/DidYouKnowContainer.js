@@ -25,46 +25,173 @@ import {
   item21,
   item22,
   item23,
+  item1Paper,
+  item2Paper,
+  item3Paper,
+  item4Paper,
+  item5Paper,
+  item6Paper,
+  item7Paper,
+  item8Paper,
+  item9Paper,
+  item10Paper,
+  item11Paper,
+  item12Paper,
+  item13Paper,
+  item14Paper,
+  item15Paper,
+  item16Paper,
+  item17Paper,
+  item18Paper,
+  item19Paper,
+  item20Paper,
+  item21Paper,
+  item22Paper,
+  item23Paper,
+  item1Glass,
+  item2Glass,
+  item3Glass,
+  item4Glass,
+  item5Glass,
+  item6Glass,
+  item7Glass,
+  item8Glass,
+  item9Glass,
+  item10Glass,
+  item11Glass,
+  item12Glass,
+  item13Glass,
+  item14Glass,
+  item15Glass,
+  item16Glass,
+  item17Glass,
+  item18Glass,
+  item19Glass,
+  item20Glass,
+  item21Glass,
+  item22Glass,
+  item23Glass,
 } from './constants';
 
 export class DidYouKnowContainer {
   constructor(prop) {
     this.prop = prop;
-    this.collectables = [
-      item16,
-      item4,
-      item14,
-      item1,
-      item23,
-      item20,
-      item10,
-      item8,
-      item6,
-      item12,
-      item19,
-      item7,
-    ];
+    // Initializing collectables based on customer type
+    if (this.prop && this.prop.includes('Plastic')) {
+      // Handle Gamtos Ateitis collectables
+      this.collectables = [
+        item16,
+        item4,
+        item14,
+        item1,
+        item23,
+        item20,
+        item10,
+        item8,
+        item6,
+        item12,
+        item19,
+        item7,
+      ];
+    } else if (this.prop && this.prop.includes('Paper')) {
+      // Handle Paper collectables
+      this.collectables = [
+        item16Paper,
+        item4Paper,
+        item14Paper,
+        item1Paper,
+        item23Paper,
+        item20Paper,
+        item10Paper,
+        item8Paper,
+        item6Paper,
+        item12Paper,
+        item19Paper,
+        item7Paper,
+      ];
+    } else if (this.prop && this.prop.includes('Glass')) {
+      // Handle Glass collectables
+      this.collectables = [
+        item16Glass,
+        item4Glass,
+        item14Glass,
+        item1Glass,
+        item23Glass,
+        item20Glass,
+        item10Glass,
+        item8Glass,
+        item6Glass,
+        item12Glass,
+        item19Glass,
+        item7Glass,
+      ];
+    } else {
+      // Default collectables if none of the above conditions are met
+      this.collectables = [catch1, catch2, catch3, catch4, catch5];
+    }
+
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
     this.render();
   }
 
+  // Update properties method
   updateProps(prop) {
     this.prop = prop;
-    this.collectables = [
-      item16,
-      item4,
-      item14,
-      item1,
-      item23,
-      item20,
-      item10,
-      item8,
-      item6,
-      item12,
-      item19,
-      item7,
-    ];
+
+    if (this.prop && this.prop.includes('Plastic')) {
+      // Handle Gamtos Ateitis collectables
+      this.collectables = [
+        item16,
+        item4,
+        item14,
+        item1,
+        item23,
+        item20,
+        item10,
+        item8,
+        item6,
+        item12,
+        item19,
+        item7,
+      ];
+    } else if (this.prop && this.prop.includes('Paper')) {
+      // Handle Paper collectables
+      this.collectables = [
+        item16Paper,
+        item4Paper,
+        item14Paper,
+        item1Paper,
+        item23Paper,
+        item20Paper,
+        item10Paper,
+        item8Paper,
+        item6Paper,
+        item12Paper,
+        item19Paper,
+        item7Paper,
+      ];
+    } else if (this.prop && this.prop.includes('Glass')) {
+      // Handle Glass collectables
+      this.collectables = [
+        item16Glass,
+        item4Glass,
+        item14Glass,
+        item1Glass,
+        item23Glass,
+        item20Glass,
+        item10Glass,
+        item8Glass,
+        item6Glass,
+        item12Glass,
+        item19Glass,
+        item7Glass,
+      ];
+    } else {
+      // Default collectables if none of the above conditions are met
+      this.collectables = [catch1, catch2, catch3, catch4, catch5];
+    }
+
     this.updateVisuals();
   }
 
