@@ -50,6 +50,52 @@ import {
   item21,
   item22,
   item23,
+  item1Paper,
+  item2Paper,
+  item3Paper,
+  item4Paper,
+  item5Paper,
+  item6Paper,
+  item7Paper,
+  item8Paper,
+  item9Paper,
+  item10Paper,
+  item11Paper,
+  item12Paper,
+  item13Paper,
+  item14Paper,
+  item15Paper,
+  item16Paper,
+  item17Paper,
+  item18Paper,
+  item19Paper,
+  item20Paper,
+  item21Paper,
+  item22Paper,
+  item23Paper,
+  item1Glass,
+  item2Glass,
+  item3Glass,
+  item4Glass,
+  item5Glass,
+  item6Glass,
+  item7Glass,
+  item8Glass,
+  item9Glass,
+  item10Glass,
+  item11Glass,
+  item12Glass,
+  item13Glass,
+  item14Glass,
+  item15Glass,
+  item16Glass,
+  item17Glass,
+  item18Glass,
+  item19Glass,
+  item20Glass,
+  item21Glass,
+  item22Glass,
+  item23Glass,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -87,11 +133,11 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
-      this.prop === 'Gamtos Ateitis Paper'
+      this.customer === 'Gamtos Ateitis Paper'
         ? backgroundGamtosAteitisPaper
-        : this.prop === 'Gamtos Ateitis Plastic'
+        : this.customer === 'Gamtos Ateitis Plastic'
         ? backgroundGamtosAteitis
-        : this.prop === 'Gamtos Ateitis Glass'
+        : this.customer === 'Gamtos Ateitis Glass'
         ? backgroundGamtosAteitisGlass
         : background
     }) center`;
@@ -313,11 +359,11 @@ class CatchGame {
 
 
     <img src=${
-      this.prop === 'Gamtos Ateitis Paper'
+      this.customer === 'Gamtos Ateitis Paper'
         ? introGamtosAteitisPaper
-        : this.prop === 'Gamtos Ateitis Plastic'
+        : this.customer === 'Gamtos Ateitis Plastic'
         ? introGamtosAteitis
-        : this.prop === 'Gamtos Ateitis Glass'
+        : this.customer === 'Gamtos Ateitis Glass'
         ? introGamtosAteitisGlass
         : intro
     } alt="Image Description" style="z-index:4;width:${
@@ -1106,11 +1152,11 @@ class Player {
     this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
     this.playerImage.src =
-      this.prop === 'Gamtos Ateitis Paper'
+      this.customer === 'Gamtos Ateitis Paper'
         ? playerGamtosAteitisPaper
-        : this.prop === 'Gamtos Ateitis Plastic'
+        : this.customer === 'Gamtos Ateitis Plastic'
         ? playerGamtosAteitis
-        : this.prop === 'Gamtos Ateitis Glass'
+        : this.customer === 'Gamtos Ateitis Glass'
         ? playerGamtosAteitisGlass
         : player;
     this.defaultscore = defaultscore;
@@ -1165,7 +1211,8 @@ class Fruit {
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
     // Fruit images
-    if (this.customer.includes('Gamtos Ateitis')) {
+    if (this.customer && this.customer.includes('Plastic')) {
+      // Handle Gamtos Ateitis images
       this.images = [
         item1,
         item4,
@@ -1191,13 +1238,69 @@ class Fruit {
         item21,
         item22,
       ];
+    } else if (this.customer && this.customer.includes('Paper')) {
+      // Handle Paper images
+      this.images = [
+        item1Paper,
+        item4Paper,
+        item5Paper,
+        item6Paper,
+        item7Paper,
+        item8Paper,
+        item10Paper,
+        item12Paper,
+        item14Paper,
+        item16Paper,
+        item19Paper,
+        item20Paper,
+        item23Paper,
+        item2Paper,
+        item3Paper,
+        item9Paper,
+        item11Paper,
+        item13Paper,
+        item15Paper,
+        item17Paper,
+        item18Paper,
+        item21Paper,
+        item22Paper,
+      ];
+    } else if (this.customer && this.customer.includes('Glass')) {
+      // Handle Glass images
+      this.images = [
+        item1Glass,
+        item4Glass,
+        item5Glass,
+        item6Glass,
+        item7Glass,
+        item8Glass,
+        item10Glass,
+        item12Glass,
+        item14Glass,
+        item16Glass,
+        item19Glass,
+        item20Glass,
+        item23Glass,
+        item2Glass,
+        item3Glass,
+        item9Glass,
+        item11Glass,
+        item13Glass,
+        item15Glass,
+        item17Glass,
+        item18Glass,
+        item21Glass,
+        item22Glass,
+      ];
     } else {
+      // Default catch images if none of the above conditions are met
       this.images = [catch1, catch2, catch3, catch4, catch5];
     }
   }
 
   chooseFruit() {
-    if (this.customer.includes('Gamtos Ateitis')) {
+    if (this.customer && this.customer.includes('Plastic')) {
+      // Handle Gamtos Ateitis fruit types
       this.fruitType = [
         'item1',
         'item4',
@@ -1223,7 +1326,62 @@ class Fruit {
         'item21',
         'item22',
       ][this.fruitNumber];
+    } else if (this.customer && this.customer.includes('Paper')) {
+      // Handle Paper fruit types
+      this.fruitType = [
+        'item1Paper',
+        'item4Paper',
+        'item5Paper',
+        'item6Paper',
+        'item7Paper',
+        'item8Paper',
+        'item10Paper',
+        'item12Paper',
+        'item14Paper',
+        'item16Paper',
+        'item19Paper',
+        'item20Paper',
+        'item23Paper',
+        'item2Paper',
+        'item3Paper',
+        'item9Paper',
+        'item11Paper',
+        'item13Paper',
+        'item15Paper',
+        'item17Paper',
+        'item18Paper',
+        'item21Paper',
+        'item22Paper',
+      ][this.fruitNumber];
+    } else if (this.customer && this.customer.includes('Glass')) {
+      // Handle Glass fruit types
+      this.fruitType = [
+        'item1Glass',
+        'item4Glass',
+        'item5Glass',
+        'item6Glass',
+        'item7Glass',
+        'item8Glass',
+        'item10Glass',
+        'item12Glass',
+        'item14Glass',
+        'item16Glass',
+        'item19Glass',
+        'item20Glass',
+        'item23Glass',
+        'item2Glass',
+        'item3Glass',
+        'item9Glass',
+        'item11Glass',
+        'item13Glass',
+        'item15Glass',
+        'item17Glass',
+        'item18Glass',
+        'item21Glass',
+        'item22Glass',
+      ][this.fruitNumber];
     } else {
+      // Default catch fruit types if none of the above conditions are met
       this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
     }
 

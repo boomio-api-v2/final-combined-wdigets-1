@@ -146,3 +146,97 @@ export const item22 =
 
 export const item23 =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPlastic/items/item23.png';
+
+export const item1Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item1.png';
+export const item2Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item2.png';
+export const item3Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item3.png';
+export const item4Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item4.png';
+export const item5Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item5.png';
+export const item6Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item6.png';
+export const item7Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item7.png';
+export const item8Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item8.png';
+export const item9Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item9.png';
+export const item10Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item10.png';
+export const item11Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item11.png';
+export const item12Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item12.png';
+export const item13Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item13.png';
+export const item14Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item14.png';
+export const item15Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item15.png';
+export const item16Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item16.png';
+export const item17Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item17.png';
+export const item18Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item18.png';
+export const item19Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item19.png';
+export const item20Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item20.png';
+export const item21Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item21.png';
+export const item22Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item22.png';
+export const item23Paper =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPaper/items/item23.png';
+
+export const item1Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item1.png';
+export const item2Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item2.png';
+export const item3Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item3.png';
+export const item4Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item4.png';
+export const item5Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item5.png';
+export const item6Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item6.png';
+export const item7Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item7.png';
+export const item8Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item8.png';
+export const item9Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item9.png';
+export const item10Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item10.png';
+export const item11Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item11.png';
+export const item12Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item12.png';
+export const item13Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item13.png';
+export const item14Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item14.png';
+export const item15Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item15.png';
+export const item16Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item16.png';
+export const item17Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item17.png';
+export const item18Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item18.png';
+export const item19Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item19.png';
+export const item20Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item20.png';
+export const item21Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item21.png';
+export const item22Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item22.png';
+export const item23Glass =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item23.png';
