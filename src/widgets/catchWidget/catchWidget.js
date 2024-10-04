@@ -446,16 +446,17 @@ class CatchGame {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-            const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
-
-            if (!this.checkboxChange) {
+            const checkboxChange = this.checkboxChange;
+            console.log(checkboxChange);
+            if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
-                  ? 'Norint tęsti, privaloma sutikti su privatumo politika.'
-                  : 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.';
-
+                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : 'Norint tęsti, privaloma sutikti su privatumo politika.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
+              document.getElementById('competition-checkbox-error').style.display = 'block';
+              document.getElementById('competition-checkbox-error').style.height = '14px';
 
               document.getElementById('competition-name-error').innerText = '';
 
