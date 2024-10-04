@@ -91,7 +91,13 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let scoreboardText = `
-      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat;  word-wrap: break-word">${'Šios atliekos ne plastiko kategorijoje.'}</div>
+      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat;  word-wrap: break-word">${`Šių atliekų mesti į ${
+        this.prop === 'Gamtos Ateitis Paper'
+          ? 'plastikui'
+          : this.prop === 'Gamtos Ateitis Plastic'
+          ? 'plastikui'
+          : this.prop === 'Gamtos Ateitis Glass' && 'stiklui'
+      } skirtą konteinerį negalima.`}</div>
               <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'}</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a onclick="event.stopPropagation();" target="_blank" href=https://gamtosateitis.lt/rusiavimo-abc style="color:white"> ${'https://gamtosateitis.lt/rusiavimo-abc/'}</a> </div> `}
     `;

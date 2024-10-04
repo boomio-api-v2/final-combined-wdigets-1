@@ -21,6 +21,12 @@ import {
   introGamtosAteitis,
   backgroundGamtosAteitis,
   playerGamtosAteitis,
+  introGamtosAteitisPaper,
+  backgroundGamtosAteitisPaper,
+  playerGamtosAteitisPaper,
+  introGamtosAteitisGlass,
+  backgroundGamtosAteitisGlass,
+  playerGamtosAteitisGlass,
   item1,
   item2,
   item3,
@@ -58,7 +64,9 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis';
+    this.customer = this.config.business_name
+      ? this.config.business_name
+      : 'Gamtos Ateitis Plastic';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -79,7 +87,13 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
-      this.customer === 'Gamtos Ateitis' ? backgroundGamtosAteitis : background
+      this.prop === 'Gamtos Ateitis Paper'
+        ? backgroundGamtosAteitisPaper
+        : this.prop === 'Gamtos Ateitis Plastic'
+        ? backgroundGamtosAteitis
+        : this.prop === 'Gamtos Ateitis Glass'
+        ? backgroundGamtosAteitisGlass
+        : background
     }) center`;
 
     this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
@@ -247,8 +261,8 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${this.customer === 'Gamtos Ateitis' ? 'BRŪKŠT' : 'KLIK'}</div>
-        <div>${this.customer === 'Gamtos Ateitis' ? 'BRŪKŠT' : 'KLIK'}</div>
+        <div>${this.customer.includes('Gamtos Ateitis') ? 'BRŪKŠT' : 'KLIK'}</div>
+        <div>${this.customer.includes('Gamtos Ateitis') ? 'BRŪKŠT' : 'KLIK'}</div>
       </div><img src=${Controlls} alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
        ${
@@ -259,7 +273,15 @@ class CatchGame {
            : ''
        }
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Gamtos Ateitis' ? '#FBCA00' : '#18904A'
+      this.customer.includes('Gamtos Ateitis')
+        ? this.customer.includes('Glass')
+          ? '#18904A'
+          : this.customer.includes('Plastic')
+          ? '#FBCA00'
+          : this.customer.includes('Paper')
+          ? '#488DB0'
+          : '#18904A'
+        : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -271,7 +293,15 @@ class CatchGame {
 
 
 <div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Gamtos Ateitis' ? '#FBCA00' : '#18904A'
+      this.customer.includes('Gamtos Ateitis')
+        ? this.customer.includes('Glass')
+          ? '#18904A'
+          : this.customer.includes('Plastic')
+          ? '#FBCA00'
+          : this.customer.includes('Paper')
+          ? '#488DB0'
+          : '#18904A'
+        : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
@@ -283,7 +313,13 @@ class CatchGame {
 
 
     <img src=${
-      this.customer === 'Gamtos Ateitis' ? introGamtosAteitis : intro
+      this.prop === 'Gamtos Ateitis Paper'
+        ? introGamtosAteitisPaper
+        : this.prop === 'Gamtos Ateitis Plastic'
+        ? introGamtosAteitis
+        : this.prop === 'Gamtos Ateitis Glass'
+        ? introGamtosAteitisGlass
+        : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
@@ -347,7 +383,7 @@ class CatchGame {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
-    if (this.customer === 'Gamtos Ateitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer();
@@ -706,7 +742,7 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      if (this.customer === 'Gamtos Ateitis') {
+      if (this.customer.includes('Gamtos Ateitis')) {
         const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
@@ -750,7 +786,7 @@ class CatchGame {
 
   createFruits() {
     this.fruits = [];
-    if (this.customer === 'Gamtos Ateitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
         fruit.chooseFruit();
@@ -849,12 +885,12 @@ class CatchGame {
 
   updateGame() {
     if (!this.player.gameOver) {
-      if (this.player.fruitsMissed >= (this.customer === 'Gamtos Ateitis' ? 5 : 3)) {
+      if (this.player.fruitsMissed >= (this.customer.includes('Gamtos Ateitis') ? 5 : 3)) {
         this.player.gameOver = true;
       }
 
       this.fruits.forEach((fruit) => fruit.fall(fruit));
-      if (this.customer === 'Gamtos Ateitis') {
+      if (this.customer.includes('Gamtos Ateitis')) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
           // Create additional fruits to reach the new number
@@ -967,7 +1003,7 @@ class CatchGame {
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             let competitionTableContainer = '';
-            if (this.customer === 'Gamtos Ateitis') {
+            if (this.customer.includes('Gamtos Ateitis')) {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
@@ -1069,7 +1105,14 @@ class Player {
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
-    this.playerImage.src = customer === 'Gamtos Ateitis' ? playerGamtosAteitis : player;
+    this.playerImage.src =
+      this.prop === 'Gamtos Ateitis Paper'
+        ? playerGamtosAteitisPaper
+        : this.prop === 'Gamtos Ateitis Plastic'
+        ? playerGamtosAteitis
+        : this.prop === 'Gamtos Ateitis Glass'
+        ? playerGamtosAteitisGlass
+        : player;
     this.defaultscore = defaultscore;
   }
 
@@ -1100,7 +1143,7 @@ class Fruit {
     this.game = game;
     this.type = type;
     this.customer = customer;
-    if (this.customer === 'Gamtos Ateitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 13);
       } else {
@@ -1122,7 +1165,7 @@ class Fruit {
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
     // Fruit images
-    if (this.customer === 'Gamtos Ateitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       this.images = [
         item1,
         item4,
@@ -1154,7 +1197,7 @@ class Fruit {
   }
 
   chooseFruit() {
-    if (this.customer === 'Gamtos Ateitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       this.fruitType = [
         'item1',
         'item4',
@@ -1184,7 +1227,7 @@ class Fruit {
       this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
     }
 
-    if (this.customer === 'Gamtos Ateitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       this.fruitScore = [
         -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100,
         100, 100, 100, 100, 100,
@@ -1199,7 +1242,7 @@ class Fruit {
     if (this.y < this.canvas.height - this.fruitHeight) {
       this.y += this.fruitSpeed;
     } else {
-      if (this.customer === 'Gamtos Ateitis') {
+      if (this.customer.includes('Gamtos Ateitis')) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
           document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
@@ -1316,7 +1359,9 @@ class Fruit {
   }
 
   changeState() {
-    this.fruitNumber = Math.floor(Math.random() * (this.customer === 'Gamtos Ateitis' ? 23 : 5));
+    this.fruitNumber = Math.floor(
+      Math.random() * (this.customer.includes('Gamtos Ateitis') ? 23 : 5),
+    );
 
     this.fruitSpeed = Math.floor(
       (Math.random() * 2 + 1) * (1 + Math.floor(this.game.currentScore / 500) * 0.1),

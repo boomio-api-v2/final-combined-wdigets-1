@@ -51,7 +51,7 @@ export class CollectionScoreTableContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
-      this.prop === 'Gamtos Ateitis' ||
+      this.customer.includes('Gamtos Ateitis') ||
       this.prop === 'LemonGym'
         ? '14px'
         : '10px';
@@ -59,7 +59,7 @@ export class CollectionScoreTableContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
-      this.prop === 'Gamtos Ateitis' ||
+      this.customer.includes('Gamtos Ateitis') ||
       this.prop === 'LemonGym'
         ? '900'
         : '700';
@@ -68,7 +68,7 @@ export class CollectionScoreTableContainer {
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
-        this.prop === 'Gamtos Ateitis' ||
+        this.customer.includes('Gamtos Ateitis') ||
         this.prop === 'LemonGym'
           ? this.collectables?.user_best_place <
               (this.prop === 'Barbora' ? 0 : this.prop === 'LemonGym' ? 11 : 30) ||

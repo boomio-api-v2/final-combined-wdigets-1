@@ -91,7 +91,7 @@ export class InputContainer {
                   ? 'SAŅEMT'
                   : this.prop === 'Akropolis'
                   ? 'Judėk'
-                  : this.prop === 'Gamtos Ateitis'
+                  : this.prop.includes('Gamtos Ateitis')
                   ? 'Gaudyk'
                   : 'Spausk'
               }
@@ -119,8 +119,12 @@ export class InputContainer {
                 ? 'para volar'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'braukdami kairiau ar dešiniau.'
-                : this.prop === 'Gamtos Ateitis'
+                : this.prop === 'Gamtos Ateitis Paper'
+                ? 'popieriaus pakuočių atliekas.'
+                : this.prop === 'Gamtos Ateitis Plastic'
                 ? 'plastiko pakuočių atliekas.'
+                : this.prop === 'Gamtos Ateitis Glass'
+                ? 'stiklo pakuočių atliekas.'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
@@ -235,7 +239,7 @@ export class InputContainer {
                 ? 'до 30 призов от Yesyes.lv!'
                 : this.language === 'ES'
                 ? '100 premios!'
-                : this.prop === 'Gamtos Ateitis'
+                : this.prop.includes('Gamtos Ateitis')
                 ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
@@ -267,7 +271,7 @@ export class InputContainer {
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Eurovaistine' ||
-      this.prop === 'Gamtos Ateitis' ||
+      this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Akropolis' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
@@ -361,7 +365,7 @@ export class InputContainer {
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
           this.prop === 'Corepetitus' ||
-          this.prop === 'Gamtos Ateitis' ||
+          this.prop.includes('Gamtos Ateitis') ||
           this.prop === 'Makalius'
         ? 'PIRMYN'
         : this.prop === 'Fpro'
