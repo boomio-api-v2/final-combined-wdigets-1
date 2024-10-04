@@ -144,7 +144,9 @@ export class InputRegisterContainer {
         : '14px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ;  font-weight: 400; width:350px;word-wrap: break-word;line-height:14px;text-align:start;">${
+    } ;  font-weight: 400; width:${
+      this.prop?.includes('Gamtos Ateitis') ? '320px' : '350px'
+    };word-wrap: break-word;line-height:14px;text-align:start;">${
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Barbora'

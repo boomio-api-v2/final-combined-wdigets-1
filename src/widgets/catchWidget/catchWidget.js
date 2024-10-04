@@ -382,7 +382,9 @@ class CatchGame {
 </div>
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
 
-        <canvas id="boomio-catch-canvas" width="418px" height="668px"></canvas>
+        <canvas id="boomio-catch-canvas" width=${
+          document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        }; height="668px"></canvas>
       </div>
     `;
     widgetHtmlService.container.appendChild(gameContainer);
