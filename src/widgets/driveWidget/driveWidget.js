@@ -31,7 +31,7 @@ class driveWidget {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'collectable';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.language = this.config.language ? this.config.language : '';
 
     this.scoreTable = {};
@@ -193,29 +193,29 @@ class driveWidget {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
+    // if (this.showCompetitiveRegistration === 'points') {
+    //   if (this.customer === 'Ikea') {
+    //     const gameContainer = document.querySelector('.game-container');
+
+    //     this.scoreTableContainerInstance = new IkeaScoreTableContainer(
+    //       this.customer,
+    //       this.scoreTable,
+    //       this.currentScore,
+    //     );
+    //     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    //   } else {
+    //     const gameContainer = document.querySelector('.game-container');
+
+    //     this.scoreTableContainerInstance = new PointScoreTableContainer(
+    //       this.customer,
+    //       this.scoreTable,
+    //       this.currentScore,
+    //     );
+    //     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    //   }
+    // }
+
     if (this.showCompetitiveRegistration === 'points') {
-      if (this.customer === 'Ikea') {
-        const gameContainer = document.querySelector('.game-container');
-
-        this.scoreTableContainerInstance = new IkeaScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
-        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-      } else {
-        const gameContainer = document.querySelector('.game-container');
-
-        this.scoreTableContainerInstance = new PointScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
-        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-      }
-    }
-
-    if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container');
 
       this.scoreTableContainerInstance = new DownloadScoreTableContainer(

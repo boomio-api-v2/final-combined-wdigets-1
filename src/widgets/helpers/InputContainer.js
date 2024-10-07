@@ -91,11 +91,11 @@ export class InputContainer {
                   ? 'SAŅEMT'
                   : this.prop === 'Akropolis'
                   ? 'Judėk'
-                  : this.prop === 'GamtosAteitis'
+                  : this.prop.includes('Gamtos Ateitis')
                   ? 'Gaudyk'
                   : 'Spausk'
               }
-                            <div style="top: 9px;  color: white; font-size: ${
+                            <div style="top: 9px;margin-top:3px;  color: white; font-size: ${
                               this.prop === 'Akropolis' ? '14px' : '12px'
                             };  font-weight: 700;margin-left:4px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -119,8 +119,12 @@ export class InputContainer {
                 ? 'para volar'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'braukdami kairiau ar dešiniau.'
-                : this.prop === 'GamtosAteitis'
+                : this.prop === 'Gamtos Ateitis Paper'
+                ? 'popieriaus pakuočių atliekas.'
+                : this.prop === 'Gamtos Ateitis Plastic'
                 ? 'plastiko pakuočių atliekas.'
+                : this.prop === 'Gamtos Ateitis Glass'
+                ? 'stiklo pakuočių atliekas.'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
@@ -159,7 +163,7 @@ export class InputContainer {
                 ? 'ATKĀRTOT'
                 : 'Kartok'
             }
-                         <div style=" top: 46px;margin-left:4px; color: white; font-size: ${
+                         <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${
                            this.prop === 'Akropolis' ? '14px' : '12px'
                          }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -213,7 +217,7 @@ export class InputContainer {
                 ? 'LAIMĒ'
                 : 'Laimėk'
             } 
-                          <div style="top: 85px; color: white; font-size: ${
+                          <div style="top: 85px;margin-top:3px; color: white; font-size: ${
                             this.prop === 'Akropolis' ? '14px' : '12px'
                           }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -235,7 +239,7 @@ export class InputContainer {
                 ? 'до 30 призов от Yesyes.lv!'
                 : this.language === 'ES'
                 ? '100 premios!'
-                : this.prop === 'GamtosAteitis'
+                : this.prop.includes('Gamtos Ateitis')
                 ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
@@ -267,7 +271,7 @@ export class InputContainer {
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Eurovaistine' ||
-      this.prop === 'GamtosAteitis' ||
+      this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Akropolis' ||
       this.prop === 'Ikea'
         ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
@@ -303,6 +307,8 @@ export class InputContainer {
               ? 'href=https://docs.google.com/document/d/1QNzkm_j-Sn73LsykBYgFAfwg0Ij2TeM5/edit'
               : this.language === 'RU'
               ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
+              : this.prop.includes('Gamtos Ateitis')
+              ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -323,6 +329,8 @@ export class InputContainer {
               ? 'Read full games rules. '
               : this.prop === 'Ikea'
               ? 'Visos žaidimo taisyklės'
+              : this.prop.includes('Gamtos Ateitis')
+              ? 'Skaityk išsamias žaidimo taisykles.'
               : 'Skaityk pilnas žaidimo taisykles.'
           } </a></div>`
         : ''
@@ -361,7 +369,7 @@ export class InputContainer {
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
           this.prop === 'Corepetitus' ||
-          this.prop === 'GamtosAteitis' ||
+          this.prop.includes('Gamtos Ateitis') ||
           this.prop === 'Makalius'
         ? 'PIRMYN'
         : this.prop === 'Fpro'

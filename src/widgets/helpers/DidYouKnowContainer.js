@@ -25,46 +25,165 @@ import {
   item21,
   item22,
   item23,
+  item1Paper,
+  item2Paper,
+  item3Paper,
+  item4Paper,
+  item5Paper,
+  item6Paper,
+  item7Paper,
+  item8Paper,
+  item9Paper,
+  item10Paper,
+  item11Paper,
+  item12Paper,
+  item13Paper,
+  item14Paper,
+  item15Paper,
+  item16Paper,
+  item17Paper,
+  item18Paper,
+  item19Paper,
+  item20Paper,
+  item21Paper,
+  item22Paper,
+  item23Paper,
+  item1Glass,
+  item2Glass,
+  item3Glass,
+  item4Glass,
+  item5Glass,
+  item6Glass,
+  item7Glass,
+  item8Glass,
+  item9Glass,
+  item10Glass,
+  item11Glass,
+  item12Glass,
+  item13Glass,
+  item14Glass,
+  item15Glass,
+  item16Glass,
+  item17Glass,
+  item18Glass,
+  item19Glass,
+  item20Glass,
+  item21Glass,
+  item22Glass,
+  item23Glass,
 } from './constants';
 
 export class DidYouKnowContainer {
   constructor(prop) {
     this.prop = prop;
-    this.collectables = [
-      item1,
-      item2,
-      item3,
-      item4,
-      item5,
-      item6,
-      item7,
-      item8,
-      item9,
-      item10,
-      item11,
-      item12,
-    ];
+    if (this.prop && this.prop.includes('Plastic')) {
+      this.collectables = [
+        item16,
+        item4,
+        item14,
+        item1,
+        item23,
+        item20,
+        item10,
+        item8,
+        item6,
+        item12,
+        item19,
+        item7,
+      ];
+    } else if (this.prop && this.prop.includes('Paper')) {
+      // Handle Paper collectables
+      this.collectables = [
+        item16Paper,
+        item4Paper,
+        item14Paper,
+        item1Paper,
+        item23Paper,
+        item20Paper,
+        item10Paper,
+        item8Paper,
+        item6Paper,
+        item12Paper,
+        item19Paper,
+        item7Paper,
+      ];
+    } else if (this.prop && this.prop.includes('Glass')) {
+      // Handle Glass collectables
+      this.collectables = [
+        item16Glass,
+        item4Glass,
+        item14Glass,
+        item1Glass,
+        item23Glass,
+        item20Glass,
+        item10Glass,
+        item8Glass,
+        item6Glass,
+        item12Glass,
+        item19Glass,
+        item7Glass,
+      ];
+    }
+
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
     this.render();
   }
 
+  // Update properties method
   updateProps(prop) {
     this.prop = prop;
-    this.collectables = [
-      item1,
-      item2,
-      item3,
-      item4,
-      item5,
-      item6,
-      item7,
-      item8,
-      item9,
-      item10,
-      item11,
-      item12,
-    ];
+
+    if (this.prop && this.prop.includes('Plastic')) {
+      // Handle Gamtos Ateitis collectables
+      this.collectables = [
+        item16,
+        item4,
+        item14,
+        item1,
+        item23,
+        item20,
+        item10,
+        item8,
+        item6,
+        item12,
+        item19,
+        item7,
+      ];
+    } else if (this.prop && this.prop.includes('Paper')) {
+      // Handle Paper collectables
+      this.collectables = [
+        item16Paper,
+        item4Paper,
+        item14Paper,
+        item1Paper,
+        item23Paper,
+        item20Paper,
+        item10Paper,
+        item8Paper,
+        item6Paper,
+        item12Paper,
+        item19Paper,
+        item7Paper,
+      ];
+    } else if (this.prop && this.prop.includes('Glass')) {
+      // Handle Glass collectables
+      this.collectables = [
+        item16Glass,
+        item4Glass,
+        item14Glass,
+        item1Glass,
+        item23Glass,
+        item20Glass,
+        item10Glass,
+        item8Glass,
+        item6Glass,
+        item12Glass,
+        item19Glass,
+        item7Glass,
+      ];
+    }
+
     this.updateVisuals();
   }
 
@@ -91,7 +210,14 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let scoreboardText = `
-      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat;  word-wrap: break-word">${'Šios atliekos ne plastiko kategorijoje.'}</div>
+      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat;  word-wrap: break-word">${`Šių atliekų negalima mesti į
+${
+  this.prop === 'Gamtos Ateitis Paper'
+    ? 'popieriui'
+    : this.prop === 'Gamtos Ateitis Plastic'
+    ? 'plastikui'
+    : this.prop === 'Gamtos Ateitis Glass' && 'stiklui'
+} skirtus konteinerius.`}</div>
               <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'}</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a onclick="event.stopPropagation();" target="_blank" href=https://gamtosateitis.lt/rusiavimo-abc style="color:white"> ${'https://gamtosateitis.lt/rusiavimo-abc/'}</a> </div> `}
     `;
@@ -104,14 +230,14 @@ export class DidYouKnowContainer {
 
   addfunc() {
     // Attach event listeners after the images are added to the DOM
-    for (let index = 0; index < this.collectables?.length; index++) {
-      const image = document.getElementById(`image-${index}`);
-      if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
-        image.addEventListener('click', () => {
-          this.handleImageClick(image);
-        });
-      }
-    }
+    // for (let index = 0; index < this.collectables?.length; index++) {
+    //   const image = document.getElementById(`image-${index}`);
+    //   if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
+    //     image.addEventListener('click', () => {
+    //       this.handleImageClick(image);
+    //     });
+    //   }
+    // }
   }
   handleImageClick(image) {
     // Toggle a class to make the image larger and centered

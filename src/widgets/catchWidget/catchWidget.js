@@ -21,6 +21,12 @@ import {
   introGamtosAteitis,
   backgroundGamtosAteitis,
   playerGamtosAteitis,
+  introGamtosAteitisPaper,
+  backgroundGamtosAteitisPaper,
+  playerGamtosAteitisPaper,
+  introGamtosAteitisGlass,
+  backgroundGamtosAteitisGlass,
+  playerGamtosAteitisGlass,
   item1,
   item2,
   item3,
@@ -44,6 +50,52 @@ import {
   item21,
   item22,
   item23,
+  item1Paper,
+  item2Paper,
+  item3Paper,
+  item4Paper,
+  item5Paper,
+  item6Paper,
+  item7Paper,
+  item8Paper,
+  item9Paper,
+  item10Paper,
+  item11Paper,
+  item12Paper,
+  item13Paper,
+  item14Paper,
+  item15Paper,
+  item16Paper,
+  item17Paper,
+  item18Paper,
+  item19Paper,
+  item20Paper,
+  item21Paper,
+  item22Paper,
+  item23Paper,
+  item1Glass,
+  item2Glass,
+  item3Glass,
+  item4Glass,
+  item5Glass,
+  item6Glass,
+  item7Glass,
+  item8Glass,
+  item9Glass,
+  item10Glass,
+  item11Glass,
+  item12Glass,
+  item13Glass,
+  item14Glass,
+  item15Glass,
+  item16Glass,
+  item17Glass,
+  item18Glass,
+  item19Glass,
+  item20Glass,
+  item21Glass,
+  item22Glass,
+  item23Glass,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -58,7 +110,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'GamtosAteitis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Glass';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -79,7 +131,13 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
-      this.customer === 'GamtosAteitis' ? backgroundGamtosAteitis : background
+      this.customer.includes('Paper')
+        ? backgroundGamtosAteitisPaper
+        : this.customer.includes('Plastic')
+        ? backgroundGamtosAteitis
+        : this.customer.includes('Glass')
+        ? backgroundGamtosAteitisGlass
+        : background
     }) center`;
 
     this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
@@ -247,8 +305,8 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${this.customer === 'GamtosAteitis' ? 'BRŪKŠT' : 'KLIK'}</div>
-        <div>${this.customer === 'GamtosAteitis' ? 'BRŪKŠT' : 'KLIK'}</div>
+        <div>${this.customer.includes('Gamtos Ateitis') ? 'BRŪKŠT' : 'KLIK'}</div>
+        <div>${this.customer.includes('Gamtos Ateitis') ? 'BRŪKŠT' : 'KLIK'}</div>
       </div><img src=${Controlls} alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
        ${
@@ -259,7 +317,15 @@ class CatchGame {
            : ''
        }
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'GamtosAteitis' ? '#FBCA00' : '#18904A'
+      this.customer.includes('Gamtos Ateitis')
+        ? this.customer.includes('Glass')
+          ? '#18904A'
+          : this.customer.includes('Plastic')
+          ? '#FBCA00'
+          : this.customer.includes('Paper')
+          ? '#488DB0'
+          : '#18904A'
+        : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -271,7 +337,15 @@ class CatchGame {
 
 
 <div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'GamtosAteitis' ? '#FBCA00' : '#18904A'
+      this.customer.includes('Gamtos Ateitis')
+        ? this.customer.includes('Glass')
+          ? '#18904A'
+          : this.customer.includes('Plastic')
+          ? '#FBCA00'
+          : this.customer.includes('Paper')
+          ? '#488DB0'
+          : '#18904A'
+        : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
@@ -283,7 +357,13 @@ class CatchGame {
 
 
     <img src=${
-      this.customer === 'GamtosAteitis' ? introGamtosAteitis : intro
+      this.customer.includes('Paper')
+        ? introGamtosAteitisPaper
+        : this.customer.includes('Plastic')
+        ? introGamtosAteitis
+        : this.customer.includes('Glass')
+        ? introGamtosAteitisGlass
+        : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
@@ -302,7 +382,9 @@ class CatchGame {
 </div>
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
 
-        <canvas id="boomio-catch-canvas" width="418px" height="668px"></canvas>
+        <canvas id="boomio-catch-canvas" width=${
+          document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        }; height="668px"></canvas>
       </div>
     `;
     widgetHtmlService.container.appendChild(gameContainer);
@@ -347,10 +429,10 @@ class CatchGame {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
-    if (this.customer === 'GamtosAteitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer();
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
 
@@ -364,16 +446,16 @@ class CatchGame {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-            const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
-
-            if (!this.checkboxChange) {
+            const checkboxChange = this.checkboxChange;
+            if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
-                  ? 'Norint tęsti, privaloma sutikti su privatumo politika.'
-                  : 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.';
-
+                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : 'Norint tęsti, privaloma sutikti su privatumo politika.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
+              document.getElementById('competition-checkbox-error').style.display = 'block';
+              document.getElementById('competition-checkbox-error').style.height = '14px';
 
               document.getElementById('competition-name-error').innerText = '';
 
@@ -706,7 +788,7 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      if (this.customer === 'GamtosAteitis') {
+      if (this.customer.includes('Gamtos Ateitis')) {
         const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
@@ -750,15 +832,15 @@ class CatchGame {
 
   createFruits() {
     this.fruits = [];
-    if (this.customer === 'GamtosAteitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
         fruit.chooseFruit();
         this.fruits.push(fruit);
       }
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this, 'bad');
-        fruit.chooseFruitBad();
+        fruit.chooseFruit();
         this.fruits.push(fruit);
       }
     } else {
@@ -849,12 +931,12 @@ class CatchGame {
 
   updateGame() {
     if (!this.player.gameOver) {
-      if (this.player.fruitsMissed >= (this.customer === 'GamtosAteitis' ? 5 : 3)) {
+      if (this.player.fruitsMissed >= (this.customer.includes('Gamtos Ateitis') ? 5 : 3)) {
         this.player.gameOver = true;
       }
 
-      this.fruits.forEach((fruit) => fruit.fall());
-      if (this.customer === 'GamtosAteitis') {
+      this.fruits.forEach((fruit) => fruit.fall(fruit));
+      if (this.customer.includes('Gamtos Ateitis')) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
           // Create additional fruits to reach the new number
@@ -967,7 +1049,7 @@ class CatchGame {
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             let competitionTableContainer = '';
-            if (this.customer === 'GamtosAteitis') {
+            if (this.customer.includes('Gamtos Ateitis')) {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
@@ -1069,7 +1151,13 @@ class Player {
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
     this.playerImage = new Image();
-    this.playerImage.src = customer === 'GamtosAteitis' ? playerGamtosAteitis : player;
+    this.playerImage.src = customer.includes('Paper')
+      ? playerGamtosAteitisPaper
+      : customer.includes('Plastic')
+      ? playerGamtosAteitis
+      : customer.includes('Glass')
+      ? playerGamtosAteitisGlass
+      : player;
     this.defaultscore = defaultscore;
   }
 
@@ -1100,12 +1188,11 @@ class Fruit {
     this.game = game;
     this.type = type;
     this.customer = customer;
-
-    if (this.customer === 'GamtosAteitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       if (type === 'bad') {
-        this.fruitNumber = Math.floor(1);
+        this.fruitNumber = Math.floor(Math.random() * 13);
       } else {
-        this.fruitNumber = Math.floor(Math.random() * 23);
+        this.fruitNumber = Math.floor(Math.random() * 10 + 13);
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 5);
@@ -1123,72 +1210,184 @@ class Fruit {
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
     // Fruit images
-    if (this.customer === 'GamtosAteitis') {
+    if (this.customer && this.customer.includes('Plastic')) {
+      // Handle Gamtos Ateitis images
       this.images = [
         item1,
-        item2,
-        item3,
         item4,
         item5,
         item6,
         item7,
         item8,
-        item9,
         item10,
-        item11,
         item12,
-        item13,
         item14,
-        item15,
         item16,
-        item17,
-        item18,
         item19,
         item20,
+        item23,
+        item2,
+        item3,
+        item9,
+        item11,
+        item13,
+        item15,
+        item17,
+        item18,
         item21,
         item22,
-        item23,
+      ];
+    } else if (this.customer && this.customer.includes('Paper')) {
+      // Handle Paper images
+      this.images = [
+        item1Paper,
+        item4Paper,
+        item5Paper,
+        item6Paper,
+        item7Paper,
+        item8Paper,
+        item10Paper,
+        item12Paper,
+        item14Paper,
+        item16Paper,
+        item19Paper,
+        item20Paper,
+        item23Paper,
+        item2Paper,
+        item3Paper,
+        item9Paper,
+        item11Paper,
+        item13Paper,
+        item15Paper,
+        item17Paper,
+        item18Paper,
+        item21Paper,
+        item22Paper,
+      ];
+    } else if (this.customer && this.customer.includes('Glass')) {
+      // Handle Glass images
+      this.images = [
+        item1Glass,
+        item4Glass,
+        item5Glass,
+        item6Glass,
+        item7Glass,
+        item8Glass,
+        item10Glass,
+        item12Glass,
+        item14Glass,
+        item16Glass,
+        item19Glass,
+        item20Glass,
+        item23Glass,
+        item2Glass,
+        item3Glass,
+        item9Glass,
+        item11Glass,
+        item13Glass,
+        item15Glass,
+        item17Glass,
+        item18Glass,
+        item21Glass,
+        item22Glass,
       ];
     } else {
+      // Default catch images if none of the above conditions are met
       this.images = [catch1, catch2, catch3, catch4, catch5];
     }
   }
 
   chooseFruit() {
-    if (this.customer === 'GamtosAteitis') {
+    if (this.customer && this.customer.includes('Plastic')) {
+      // Handle Gamtos Ateitis fruit types
       this.fruitType = [
         'item1',
-        'item2',
-        'item3',
         'item4',
         'item5',
         'item6',
         'item7',
         'item8',
-        'item9',
         'item10',
-        'item11',
         'item12',
-        'item13',
         'item14',
-        'item15',
         'item16',
-        'item17',
-        'item18',
         'item19',
         'item20',
+        'item23',
+        'item2',
+        'item3',
+        'item9',
+        'item11',
+        'item13',
+        'item15',
+        'item17',
+        'item18',
         'item21',
         'item22',
-        'item23',
+      ][this.fruitNumber];
+    } else if (this.customer && this.customer.includes('Paper')) {
+      // Handle Paper fruit types
+      this.fruitType = [
+        'item1Paper',
+        'item4Paper',
+        'item5Paper',
+        'item6Paper',
+        'item7Paper',
+        'item8Paper',
+        'item10Paper',
+        'item12Paper',
+        'item14Paper',
+        'item16Paper',
+        'item19Paper',
+        'item20Paper',
+        'item23Paper',
+        'item2Paper',
+        'item3Paper',
+        'item9Paper',
+        'item11Paper',
+        'item13Paper',
+        'item15Paper',
+        'item17Paper',
+        'item18Paper',
+        'item21Paper',
+        'item22Paper',
+      ][this.fruitNumber];
+    } else if (this.customer && this.customer.includes('Glass')) {
+      // Handle Glass fruit types
+      this.fruitType = [
+        'item1Glass',
+        'item4Glass',
+        'item5Glass',
+        'item6Glass',
+        'item7Glass',
+        'item8Glass',
+        'item10Glass',
+        'item12Glass',
+        'item14Glass',
+        'item16Glass',
+        'item19Glass',
+        'item20Glass',
+        'item23Glass',
+        'item2Glass',
+        'item3Glass',
+        'item9Glass',
+        'item11Glass',
+        'item13Glass',
+        'item15Glass',
+        'item17Glass',
+        'item18Glass',
+        'item21Glass',
+        'item22Glass',
       ][this.fruitNumber];
     } else {
+      // Default catch fruit types if none of the above conditions are met
       this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
     }
 
-    if (this.customer === 'GamtosAteitis') {
+    if (this.customer.includes('Gamtos Ateitis')) {
       this.fruitScore = [
-        50, 50, 100, 100, 150, 50, 50, 100, 100, 150, 50, 50, 100, 100, 150, 50, 50, 100, 100, 150,
-        150, 150, 150,
+        -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100,
+        100, 100, 100, 100, 100,
       ][this.fruitNumber];
     } else {
       this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
@@ -1196,22 +1395,26 @@ class Fruit {
     this.fruitImage.src = this.images[this.fruitNumber];
   }
 
-  chooseFruitBad() {
-    this.fruitType = ['item1', 'item2', 'item3'][this.fruitNumber];
-    this.fruitScore = [-50, -50, -100][this.fruitNumber];
-    this.fruitImage.src = this.images[this.fruitNumber];
-  }
-
-  fall() {
+  fall(fruit) {
     if (this.y < this.canvas.height - this.fruitHeight) {
       this.y += this.fruitSpeed;
     } else {
-      // Handle fruit miss
-      this.player.fruitsMissed++;
-      document.getElementById('currentLife').innerHTML = `${Math.max(
-        0,
-        this.player.defaultscore - this.player.fruitsMissed,
-      )}/${this.player.defaultscore}`;
+      if (this.customer.includes('Gamtos Ateitis')) {
+        if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
+          this.game.currentScore += -50;
+          document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+          this.showScoreEffect('-50');
+        }
+      } else {
+        if (fruit.fruitScore > 0) {
+          this.player.fruitsMissed++;
+          document.getElementById('currentLife').innerHTML = `${Math.max(
+            0,
+            this.player.defaultscore - this.player.fruitsMissed,
+          )}/${this.player.defaultscore}`;
+        }
+        this.changeState();
+      }
 
       this.changeState();
     }
@@ -1234,9 +1437,69 @@ class Fruit {
     }
   }
 
+  showScoreEffect(score, showLife) {
+    const x = this.canvas.width / 2 - this.playerWidth / 2;
+    const y = this.canvas.height - this.playerHeight - 200;
+
+    const gameContainer = document.querySelector('.game-container');
+
+    const scoreContainer = document.createElement('div');
+    scoreContainer.classList.add('float-score');
+    scoreContainer.style.left = `${x}px`;
+    scoreContainer.style.top = `${y}px`;
+    scoreContainer.style.position = 'absolute';
+    scoreContainer.style.display = 'flex';
+
+    if (showLife) {
+      const scoreText = document.createElement('div');
+      scoreText.innerHTML = `-`;
+      scoreText.style.color = '#fff';
+      scoreText.style.fontSize = '24px';
+      scoreText.style.fontWeight = 'bold';
+      scoreText.style.marginRight = '10px';
+      scoreText.style.marginTop = '25px';
+
+      const lifeImg = document.createElement('img');
+      lifeImg.src = life;
+      lifeImg.alt = 'Image Description';
+      lifeImg.style.width = '70px';
+      lifeImg.style.height = '50px';
+      lifeImg.style.marginTop = '15px';
+      lifeImg.style.marginLeft = '-20px';
+      scoreContainer.appendChild(scoreText);
+      scoreContainer.appendChild(lifeImg);
+    } else {
+      const scoreText = document.createElement('div');
+      scoreText.innerHTML = `${score}`;
+      scoreText.style.color = '#fff';
+      scoreText.style.fontSize = '24px';
+      scoreText.style.fontWeight = 'bold';
+      scoreText.style.marginRight = '10px'; // Add space between text and image
+      scoreContainer.appendChild(scoreText);
+    }
+    gameContainer.appendChild(scoreContainer);
+
+    setTimeout(() => {
+      scoreContainer.remove();
+    }, 1000);
+  }
+
   updateScore() {
-    this.game.currentScore += this.fruitScore;
-    document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+    if (this.fruitScore > 0) {
+      this.game.currentScore += this.fruitScore;
+      document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
+
+      const x = 200;
+      const y = 300;
+      this.showScoreEffect('+100');
+    } else {
+      this.player.fruitsMissed++;
+      document.getElementById('currentLife').innerHTML = `${Math.max(
+        0,
+        this.player.defaultscore - this.player.fruitsMissed,
+      )}/${this.player.defaultscore}`;
+      this.showScoreEffect('-1', true);
+    }
 
     if (this.game.currentScore > 1) {
       const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
@@ -1253,7 +1516,9 @@ class Fruit {
   }
 
   changeState() {
-    this.fruitNumber = Math.floor(Math.random() * (this.customer === 'GamtosAteitis' ? 23 : 5));
+    this.fruitNumber = Math.floor(
+      Math.random() * (this.customer.includes('Gamtos Ateitis') ? 23 : 5),
+    );
 
     this.fruitSpeed = Math.floor(
       (Math.random() * 2 + 1) * (1 + Math.floor(this.game.currentScore / 500) * 0.1),

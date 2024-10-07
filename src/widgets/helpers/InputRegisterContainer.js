@@ -89,7 +89,13 @@ export class InputRegisterContainer {
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
-      this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '10px'
+      this.isMobile
+        ? this.language === 'LV' && this.prop === 'Akropolis'
+          ? '8px'
+          : '10px'
+        : this.prop === 'Eurovaistine'
+        ? '12px'
+        : '10px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     };font-weight: 400; width:350px;word-wrap: break-word;text-align:start;">${
@@ -128,20 +134,24 @@ export class InputRegisterContainer {
         </div>
         <div style="color: ${'white'}; font-size: ${
       this.isMobile
-        ? '10px'
+        ? this.prop === 'Akropolis' && this.language === 'LV'
+          ? '8px'
+          : '10px'
         : this.prop === 'Eurovaistine'
         ? '12px'
         : this.prop === 'Akropolis' && this.language === 'LV'
         ? '10px'
-        : '13px'
+        : '14px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ;  font-weight: 400; width:350px;word-wrap: break-word;line-height:14px;text-align:start;">${
+    } ;  font-weight: 400; width:${
+      this.prop?.includes('Gamtos Ateitis') ? '320px' : '350px'
+    };word-wrap: break-word;line-height:14px;text-align:start;">${
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
-        : this.prop === 'GamtosAteitis'
+        : this.prop?.includes('Gamtos Ateitis')
         ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“ '
         : this.prop === 'Unisend' && this.language === 'LV'
         ? `Esmu izlasījis <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.lv/spelesnoteikumi/'} style="color:white;text-decoration: underline;"> spēles noteikumus</a>  un piekrītu tiem.`
@@ -195,9 +205,11 @@ export class InputRegisterContainer {
               ? 'https://www.corepetitus.lt/privatumo-politika'
               : this.prop === 'Eurovaistine'
               ? 'https://www.e-euroaptieka.lv/privatuma-politika'
+              : this.prop.includes('Gamtos Ateitis')
+              ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${
-            this.isMobile ? '11px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
+            this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
           }; ">${
             this.prop === 'Ikea'
               ? 'IKEA privatumo politika'
