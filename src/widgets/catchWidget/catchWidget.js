@@ -447,7 +447,6 @@ class CatchGame {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             const checkboxChange = this.checkboxChange;
-            console.log(checkboxChange);
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'

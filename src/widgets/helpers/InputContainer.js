@@ -307,6 +307,8 @@ export class InputContainer {
               ? 'href=https://docs.google.com/document/d/1QNzkm_j-Sn73LsykBYgFAfwg0Ij2TeM5/edit'
               : this.language === 'RU'
               ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
+              : this.prop.includes('Gamtos Ateitis')
+              ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -327,6 +329,8 @@ export class InputContainer {
               ? 'Read full games rules. '
               : this.prop === 'Ikea'
               ? 'Visos žaidimo taisyklės'
+              : this.prop.includes('Gamtos Ateitis')
+              ? 'Skaityk išsamias žaidimo taisykles.'
               : 'Skaityk pilnas žaidimo taisykles.'
           } </a></div>`
         : ''
