@@ -850,7 +850,7 @@ function startGame(scoreTableContainerInstance) {
         const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
         const email = emailInput?.value;
         const userEmail = customer === 'Ikea' ? await hashString(email) : emailInput?.value;
-        const checkboxChange = this.checkboxChange;
+        const checkboxChange = checkboxChange;
         if (!checkboxChange) {
           document.getElementById('competition-checkbox-error').innerText =
             'Norint tęsti, privaloma sutikti su naujienomis.';
