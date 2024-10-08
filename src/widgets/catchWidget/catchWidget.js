@@ -140,11 +140,6 @@ class CatchGame {
         : background
     }) center`;
 
-    this.catchSounds = Array.from({ length: 5 }, () => new Audio('Audio/bleep.wav'));
-    this.music = new Audio('Audio/MarimbaBoy.wav');
-    this.music.loop = true;
-    this.smashSounds = Array.from({ length: 5 }, () => new Audio('Audio/smash.mp3'));
-
     this.timer = null;
     this.highscore = 0;
     this.fruits = [];

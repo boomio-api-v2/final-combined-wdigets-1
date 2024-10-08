@@ -81,7 +81,6 @@ function startGame(scoreTableContainerInstance) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = false;
   let checkboxChange2 = false;
-
   const isMobile = window.innerWidth <= 1280;
   const customer = config.business_name ? config.business_name : 'Barbora';
   const language = config.language ? config.language : '';
@@ -850,7 +849,11 @@ function startGame(scoreTableContainerInstance) {
         const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
         const email = emailInput?.value;
         const userEmail = customer === 'Ikea' ? await hashString(email) : emailInput?.value;
-        const checkboxChange = checkboxChange;
+        const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+
+        const checkboxImgSrc = checkboxImgChange.src; // Get the 'src' attribute of the image
+        const checkboxChange = checkboxImgSrc.includes('Uncheck') ? false : true;
+
         if (!checkboxChange) {
           document.getElementById('competition-checkbox-error').innerText =
             'Norint tęsti, privaloma sutikti su naujienomis.';
