@@ -91,7 +91,7 @@ export class InputContainer {
                   ? 'SAŅEMT'
                   : this.prop === 'Akropolis'
                   ? 'Judėk'
-                  : this.prop.includes('Gamtos Ateitis')
+                  : this.prop === 'Pieno Žvaigždės'
                   ? 'Gaudyk'
                   : 'Spausk'
               }
@@ -125,6 +125,8 @@ export class InputContainer {
                 ? 'plastiko pakuočių atliekas.'
                 : this.prop === 'Gamtos Ateitis Glass'
                 ? 'stiklo pakuočių atliekas.'
+                : this.prop === 'Pieno Žvaigždės'
+                ? '“MIAU” produktus.'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
@@ -181,6 +183,8 @@ export class InputContainer {
                 ? 'para un mejor resultado'
                 : this.language === 'EE'
                 ? 'parema tulemuse saavutamiseks.'
+                : this.prop === 'Pieno Žvaigždės'
+                ? 'siekdamas kuo geresnio rezultato.'
                 : this.game === 'drive'
                 ? 'siekdamas geresnio rezultato.'
                 : this.game === 'drive' && this.prop === 'Ikea'
@@ -199,7 +203,7 @@ export class InputContainer {
                 : '24px'
             }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
+    }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             3. ${
               this.language === 'LV'
                 ? 'LAIMĒ'
@@ -217,11 +221,15 @@ export class InputContainer {
                 ? 'LAIMĒ'
                 : 'Laimėk'
             } 
-                          <div style="top: 85px;margin-top:3px; color: white; font-size: ${
-                            this.prop === 'Akropolis' ? '14px' : '12px'
-                          }; font-family:${
+                          <div style="top: 85px;margin-top:${
+                            this.prop === 'Pieno Žvaigždės' ? '13px' : '3px'
+                          }; color: white; font-size: ${
+      this.prop === 'Akropolis' ? '14px' : '12px'
+    }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-    }; font-weight: 700;margin-left:4px; word-wrap: break-word">
+    }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
+      this.prop === 'Pieno Žvaigždės' ? 'white-space:normal;' : ''
+    }${this.prop === 'Pieno Žvaigždės' ? 'line-height:25px;' : ''}">
             ${
               this.prop === 'Eurovaistine'
                 ? 'kādu no 50 balvām!'
@@ -241,6 +249,8 @@ export class InputContainer {
                 ? '100 premios!'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
+                : this.prop === 'Pieno Žvaigždės'
+                ? 'kassavaitinius Forum Cinema bilietus ir pagrindinius MIAU prizus!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
                 : this.prop === 'Fpro'
@@ -270,6 +280,7 @@ export class InputContainer {
       this.prop === 'LemonGym' ||
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
+      this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
       this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Akropolis' ||
@@ -369,6 +380,7 @@ export class InputContainer {
           this.prop === 'Fantazijos' ||
           this.prop === 'LemonGym' ||
           this.prop === 'Corepetitus' ||
+          this.prop === 'Pieno Žvaigždės' ||
           this.prop.includes('Gamtos Ateitis') ||
           this.prop === 'Makalius'
         ? 'PIRMYN'

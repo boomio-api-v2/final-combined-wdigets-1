@@ -148,6 +148,8 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
+                : this.prop === 'Pieno Žvaigždės'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį </br> fondą sudaro jogurtai, sūrio lazdelės, pieno gėrimai ir </br> varškytės - Su Miau gyvent linksmiau!'
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -208,6 +210,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.prop.includes('Gamtos Ateitis')
                 ? ''
+                : this.prop === 'Pieno Žvaigždės'
+                ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
           : `<div style="width:100%; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -236,6 +240,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.prop === 'Eurovaistine'
                 ? '50 spēlētāji, kuri iegūs vislielāko punktu skaitu, saņems </br>E-EUROAPTIEKA dāvanu, kuponus: 100€, 50€, 25€, 15€,'
+                : this.prop === 'Pieno Žvaigždės'
+                ? 'Pagerink rezultatą, nes kas dvi savaites geriausi žaidėjai </br>laimės prizus! Prizinį fondą sudaro jogurtai, sūrio lazdelės,</br> pieno gėrimai ir varškytės - Su Miau gyvent linksmiau!'
                 : this.prop === 'LemonGym'
                 ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Penki Sezonai'
@@ -297,6 +303,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Makalius' ||
                   this.prop === 'Unisend' ||
                   this.prop === 'Akropolis' ||
+                  this.prop === 'Pieno Žvaigždės' ||
                   this.prop.includes('Gamtos Ateitis')
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
