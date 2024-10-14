@@ -96,6 +96,9 @@ import {
   item21Glass,
   item22Glass,
   item23Glass,
+  introPienoZvaigzdes,
+  backgroundPienoZvaigzdes,
+  playerPienoZvaigzdes,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -110,7 +113,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Glass';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pieno Žvaigždės';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -137,6 +140,8 @@ class CatchGame {
         ? backgroundGamtosAteitis
         : this.customer.includes('Glass')
         ? backgroundGamtosAteitisGlass
+        : this.customer === 'Pieno Žvaigždės'
+        ? backgroundPienoZvaigzdes
         : background
     }) center`;
 
@@ -320,6 +325,8 @@ class CatchGame {
           : this.customer.includes('Paper')
           ? '#488DB0'
           : '#18904A'
+        : this.customer === 'Pieno Žvaigždės'
+        ? '#ED1846'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -340,6 +347,8 @@ class CatchGame {
           : this.customer.includes('Paper')
           ? '#488DB0'
           : '#18904A'
+        : this.customer === 'Pieno Žvaigždės'
+        ? '#ED1846'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -358,6 +367,8 @@ class CatchGame {
         ? introGamtosAteitis
         : this.customer.includes('Glass')
         ? introGamtosAteitisGlass
+        : this.customer === 'Pieno Žvaigždės'
+        ? introPienoZvaigzdes
         : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1152,6 +1163,8 @@ class Player {
       ? playerGamtosAteitis
       : customer.includes('Glass')
       ? playerGamtosAteitisGlass
+      : this.customer === 'Pieno Žvaigždės'
+      ? playerPienoZvaigzdes
       : player;
     this.defaultscore = defaultscore;
   }
