@@ -40,6 +40,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Makalius' ||
             this.prop === 'Ikea' ||
             this.prop === 'Unisend' ||
+            this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
             this.prop.includes('Gamtos Ateitis') ||
@@ -50,6 +51,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Fpro' ||
             this.prop === 'Fantazijos' ||
             this.prop === 'Makalius' ||
+            this.prop === 'Pieno Žvaigždės' ||
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym'
           ? 'white'
@@ -80,6 +82,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Makalius' ||
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
+                this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -94,6 +97,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Makalius' ||
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
+                this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -109,6 +113,7 @@ export class CompetitionScoreTableContainer {
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop.includes('Gamtos Ateitis') ||
+      this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'LemonGym'
         ? '900'
         : '700';
@@ -119,6 +124,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
         (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 35) ||
+        (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10)
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize

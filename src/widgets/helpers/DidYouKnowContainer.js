@@ -252,7 +252,7 @@ ${
 } skirtus konteinerius.`
           : 'SU MIAU GYVENT LINKSMIAU!'
       }</div>
-              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${
+              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${
         this.prop === 'Pieno Žvaigždės'
           ? 'Daugiau “MIAU” produktų rasi'
           : 'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'
