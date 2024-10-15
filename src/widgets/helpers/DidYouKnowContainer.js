@@ -73,18 +73,9 @@ import {
   item23Glass,
   item1PienoZvaigzdes,
   item2PienoZvaigzdes,
-  item3PienoZvaigzdes,
-  item4PienoZvaigzdes,
   item5PienoZvaigzdes,
-  item6PienoZvaigzdes,
   item7PienoZvaigzdes,
   item8PienoZvaigzdes,
-  item9PienoZvaigzdes,
-  item10PienoZvaigzdes,
-  item11PienoZvaigzdes,
-  item12PienoZvaigzdes,
-  item13PienoZvaigzdes,
-  item14PienoZvaigzdes,
   item15PienoZvaigzdes,
 } from './constants';
 
@@ -233,7 +224,11 @@ export class DidYouKnowContainer {
       tableHTML += `
         <td style="padding:5px;text-align: center; border: none;">
         <div id="image-${index}" style="border-radius:20px;">
-        <img class='image-container' style="opacity:1;" src=${item} alt="Scoreboard Image" >
+        <img class='image-container' style='opacity:1;width:${
+          this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
+        };height:${
+        this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
+      }' src=${item} alt="Scoreboard Image" >
         </div>
         </td>`;
 
@@ -262,13 +257,17 @@ ${
           ? 'Daugiau “MIAU” produktų rasi'
           : 'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'
       }</div>
-            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a onclick="event.stopPropagation();" target="_blank" ${
-              this.prop === 'Pieno Žvaigždės'
-                ? 'href='
-                : 'href=https://gamtosateitis.lt/rusiavimo-abc'
-            } style="color:white"> ${
-        this.prop === 'Pieno Žvaigždės' ? 'DAUGIAU MIAU' : 'https://gamtosateitis.lt/rusiavimo-abc/'
-      }</a> </div> `}
+            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a 
+  onclick="event.stopPropagation();" 
+  target="_blank" 
+  href="${
+    this.prop === 'Pieno Žvaigždės'
+      ? 'https://test.lt/test'
+      : 'https://gamtosateitis.lt/rusiavimo-abc'
+  }" 
+  style="color:white">
+  ${this.prop === 'Pieno Žvaigždės' ? 'DAUGIAU MIAU' : 'https://gamtosateitis.lt/rusiavimo-abc/'}
+</a> </div> `}
     `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
@@ -341,7 +340,9 @@ ${
 
     containerDiv.innerHTML += `
               </div>
-      <div  style="width:100%;height: ${'302px'}; top: 114px; position: absolute; border-right:none;">
+      <div  style="width:100%;height: ${'302px'}; top: ${
+      this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
+    }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin:10px;border-spacing:3px;width:100%;border-collapse:separate">
             <tbody class="boomio-tbody">
