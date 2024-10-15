@@ -449,7 +449,7 @@ class CatchGame {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
-    if (this.customer.includes('Gamtos Ateitis')) {
+    if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
@@ -808,7 +808,7 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      if (this.customer.includes('Gamtos Ateitis')) {
+      if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
         const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
@@ -852,7 +852,7 @@ class CatchGame {
 
   createFruits() {
     this.fruits = [];
-    if (this.customer.includes('Gamtos Ateitis')) {
+    if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
         fruit.chooseFruit();
@@ -948,15 +948,20 @@ class CatchGame {
 
     window.requestAnimationFrame(() => this.drawGame());
   }
-
   updateGame() {
     if (!this.player.gameOver) {
-      if (this.player.fruitsMissed >= (this.customer.includes('Gamtos Ateitis') ? 5 : 3)) {
+      const count = this.customer.includes('Gamtos Ateitis')
+        ? 5
+        : this.customer === 'Pieno Žvaigždės'
+        ? 5
+        : 3;
+      if (this.player.fruitsMissed >= count) {
+        console.log('wtf', this.player.fruitsMissed);
         this.player.gameOver = true;
       }
 
       this.fruits.forEach((fruit) => fruit.fall(fruit));
-      if (this.customer.includes('Gamtos Ateitis')) {
+      if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
           // Create additional fruits to reach the new number
@@ -1069,7 +1074,7 @@ class CatchGame {
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             let competitionTableContainer = '';
-            if (this.customer.includes('Gamtos Ateitis')) {
+            if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
@@ -1216,6 +1221,12 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 10 + 13);
       }
+    } else if (this.customer === 'Pieno Žvaigždės') {
+      if (type === 'bad') {
+        this.fruitNumber = Math.floor(Math.random() * 6 + 8);
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 8);
+      }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 5);
     }
@@ -1313,6 +1324,24 @@ class Fruit {
         item21Glass,
         item22Glass,
       ];
+    } else if (this.customer && this.customer === 'Pieno Žvaigždės') {
+      // Handle Glass images
+      this.images = [
+        item1PienoZvaigzdes,
+        item2PienoZvaigzdes,
+        item3PienoZvaigzdes,
+        item4PienoZvaigzdes,
+        item5PienoZvaigzdes,
+        item6PienoZvaigzdes,
+        item7PienoZvaigzdes,
+        item8PienoZvaigzdes,
+        item9PienoZvaigzdes,
+        item10PienoZvaigzdes,
+        item11PienoZvaigzdes,
+        item12PienoZvaigzdes,
+        item13PienoZvaigzdes,
+        item14PienoZvaigzdes,
+      ];
     } else {
       // Default catch images if none of the above conditions are met
       this.images = [catch1, catch2, catch3, catch4, catch5];
@@ -1401,6 +1430,24 @@ class Fruit {
         'item21Glass',
         'item22Glass',
       ][this.fruitNumber];
+    } else if (this.customer === 'Pieno Žvaigždės') {
+      // Handle Glass fruit types
+      this.fruitType = [
+        'item1PienoZvaigzdes',
+        'item2PienoZvaigzdes',
+        'item3PienoZvaigzdes',
+        'item4PienoZvaigzdes',
+        'item5PienoZvaigzdes',
+        'item6PienoZvaigzdes',
+        'item7PienoZvaigzdes',
+        'item8PienoZvaigzdes',
+        'item9PienoZvaigzdes',
+        'item10PienoZvaigzdes',
+        'item11PienoZvaigzdes',
+        'item12PienoZvaigzdes',
+        'item13PienoZvaigzdes',
+        'item14PienoZvaigzdes',
+      ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
       this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
@@ -1411,6 +1458,10 @@ class Fruit {
         -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100,
         100, 100, 100, 100, 100,
       ][this.fruitNumber];
+    } else if (this.customer === 'Pieno Žvaigždės') {
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50, -50][
+        this.fruitNumber
+      ];
     } else {
       this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
     }
@@ -1421,7 +1472,7 @@ class Fruit {
     if (this.y < this.canvas.height - this.fruitHeight) {
       this.y += this.fruitSpeed;
     } else {
-      if (this.customer.includes('Gamtos Ateitis')) {
+      if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
           document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
@@ -1539,7 +1590,12 @@ class Fruit {
 
   changeState() {
     this.fruitNumber = Math.floor(
-      Math.random() * (this.customer.includes('Gamtos Ateitis') ? 23 : 5),
+      Math.random() *
+        (this.customer.includes('Gamtos Ateitis')
+          ? 23
+          : this.customer === 'Pieno Žvaigždės'
+          ? 14
+          : 5),
     );
 
     this.fruitSpeed = Math.floor(

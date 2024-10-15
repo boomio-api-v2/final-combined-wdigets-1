@@ -181,3 +181,34 @@ export const item22Glass =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item22.png';
 export const item23Glass =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisGlass/items/item23.png';
+
+export const item1PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item1.png';
+export const item2PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item2.png';
+export const item3PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item3.png';
+export const item4PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item4.png';
+export const item5PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item5.png';
+export const item6PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item6.png';
+export const item7PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item7.png';
+export const item8PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item8.png';
+export const item9PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item9.png';
+export const item10PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item10.png';
+export const item11PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item11.png';
+export const item12PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item12.png';
+export const item13PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item13.png';
+export const item14PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item14.png';
+export const item15PienoZvaigzdes =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item15.png';

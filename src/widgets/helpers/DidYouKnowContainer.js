@@ -71,6 +71,21 @@ import {
   item21Glass,
   item22Glass,
   item23Glass,
+  item1PienoZvaigzdes,
+  item2PienoZvaigzdes,
+  item3PienoZvaigzdes,
+  item4PienoZvaigzdes,
+  item5PienoZvaigzdes,
+  item6PienoZvaigzdes,
+  item7PienoZvaigzdes,
+  item8PienoZvaigzdes,
+  item9PienoZvaigzdes,
+  item10PienoZvaigzdes,
+  item11PienoZvaigzdes,
+  item12PienoZvaigzdes,
+  item13PienoZvaigzdes,
+  item14PienoZvaigzdes,
+  item15PienoZvaigzdes,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -122,6 +137,16 @@ export class DidYouKnowContainer {
         item12Glass,
         item19Glass,
         item7Glass,
+      ];
+    } else if (this.prop === 'Pieno Žvaigždės') {
+      // Handle Glass collectables
+      this.collectables = [
+        item15PienoZvaigzdes,
+        item1PienoZvaigzdes,
+        item8PienoZvaigzdes,
+        item2PienoZvaigzdes,
+        item7PienoZvaigzdes,
+        item5PienoZvaigzdes,
       ];
     }
 
@@ -182,6 +207,16 @@ export class DidYouKnowContainer {
         item19Glass,
         item7Glass,
       ];
+    } else if (this.prop === 'Pieno Žvaigždės') {
+      // Handle Glass collectables
+      this.collectables = [
+        item15PienoZvaigzdes,
+        item1PienoZvaigzdes,
+        item8PienoZvaigzdes,
+        item2PienoZvaigzdes,
+        item7PienoZvaigzdes,
+        item5PienoZvaigzdes,
+      ];
     }
 
     this.updateVisuals();
@@ -210,16 +245,30 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let scoreboardText = `
-      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat;  word-wrap: break-word">${`Šių atliekų negalima mesti į
+      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat;  word-wrap: break-word">${
+        this.prop.includes('Gamtos Ateitis')
+          ? `Šių atliekų negalima mesti į
 ${
   this.prop === 'Gamtos Ateitis Paper'
     ? 'popieriui'
     : this.prop === 'Gamtos Ateitis Plastic'
     ? 'plastikui'
     : this.prop === 'Gamtos Ateitis Glass' && 'stiklui'
-} skirtus konteinerius.`}</div>
-              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'}</div>
-            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a onclick="event.stopPropagation();" target="_blank" href=https://gamtosateitis.lt/rusiavimo-abc style="color:white"> ${'https://gamtosateitis.lt/rusiavimo-abc/'}</a> </div> `}
+} skirtus konteinerius.`
+          : 'SU MIAU GYVENT LINKSMIAU!'
+      }</div>
+              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${
+        this.prop === 'Pieno Žvaigždės'
+          ? 'Daugiau “MIAU” produktų rasi'
+          : 'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'
+      }</div>
+            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a onclick="event.stopPropagation();" target="_blank" ${
+              this.prop === 'Pieno Žvaigždės'
+                ? 'href='
+                : 'href=https://gamtosateitis.lt/rusiavimo-abc'
+            } style="color:white"> ${
+        this.prop === 'Pieno Žvaigždės' ? 'DAUGIAU MIAU' : 'https://gamtosateitis.lt/rusiavimo-abc/'
+      }</a> </div> `}
     `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
@@ -283,7 +332,9 @@ ${
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">Ar žinojai?</div>
+      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+      this.prop === 'Pieno Žvaigždės' ? 'Ar visus RAGAVAI?' : 'Ar žinojai?'
+    }</div>
       
       <div class="boomio-scoreboard-text">
       `;
