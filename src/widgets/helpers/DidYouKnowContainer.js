@@ -324,7 +324,7 @@ ${
         : '380px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
+      <div style="width:100%;top: 52px; position: absolute; text-align: center;line-height:42px; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
