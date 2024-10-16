@@ -262,7 +262,7 @@ ${
   target="_blank" 
   href="${
     this.prop === 'Pieno Žvaigždės'
-      ? 'https://test.lt/test'
+      ? 'https://pienozvaigzdes.lt/lt/20_miau'
       : 'https://gamtosateitis.lt/rusiavimo-abc'
   }" 
   style="color:white">
