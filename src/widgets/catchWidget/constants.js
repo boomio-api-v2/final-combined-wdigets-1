@@ -14,7 +14,7 @@ export const playerGamtosAteitis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/GamtosAteitisPlastic/player.png';
 
 export const introPienoZvaigzdes =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/catchIntro.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/catchIntro.gif';
 
 export const backgroundPienoZvaigzdes =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/background.png';
