@@ -956,7 +956,6 @@ class CatchGame {
         ? 5
         : 3;
       if (this.player.fruitsMissed >= count) {
-        console.log('wtf', this.player.fruitsMissed);
         this.player.gameOver = true;
       }
 
@@ -1233,12 +1232,14 @@ class Fruit {
 
     this.fruitType = '';
     this.fruitScore = 0;
-    this.fruitWidth = 40;
-    this.fruitHeight = 40;
+    this.fruitWidth = this.customer === 'Pieno Žvaigždės' ? 50 : 40;
+    this.fruitHeight = this.customer === 'Pieno Žvaigždės' ? 50 : 40;
     this.fruitWidthArray = [40, 40, 40, 40, 30];
     this.fruitHeightArray = [40, 40, 40, 40, 30];
     this.fruitImage = new Image();
-    this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
+    this.fruitSpeed = Math.floor(
+      Math.random() * 3 + (this.customer === 'Pieno Žvaigždės' ? 1.3 : 1),
+    );
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
@@ -1599,7 +1600,8 @@ class Fruit {
     );
 
     this.fruitSpeed = Math.floor(
-      (Math.random() * 2 + 1) * (1 + Math.floor(this.game.currentScore / 500) * 0.1),
+      (Math.random() * 2 + (this.customer === 'Pieno Žvaigždės' ? 1.3 : 1)) *
+        (1 + Math.floor(this.game.currentScore / 500) * 0.1),
     );
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
