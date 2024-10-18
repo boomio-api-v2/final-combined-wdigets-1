@@ -47,7 +47,7 @@ class LocalStorageService {
       ...content,
     };
     localStorage.setItem(localStoragePropertyName, JSON.stringify(this.config));
-    this.сheckOnInstruction(content);
+    // this.сheckOnInstruction(content);
   }
 
   getDefaultConfig() {
