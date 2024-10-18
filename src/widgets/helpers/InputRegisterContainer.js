@@ -156,7 +156,7 @@ export class InputRegisterContainer {
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Pieno Žvaigždės'
-        ? 'Sutinku su „Pieno žvaigždės“ privatumo politika.'
+        ? 'Sutinku su „Pieno žvaigždės“'
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
         : this.prop?.includes('Gamtos Ateitis')
@@ -200,7 +200,6 @@ export class InputRegisterContainer {
       this.prop !== 'Makalius' &&
       this.prop !== 'Unisend' &&
       this.prop !== 'Akropolis' &&
-      this.prop !== 'Pieno Žvaigždės' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||
@@ -214,6 +213,8 @@ export class InputRegisterContainer {
               ? 'https://www.corepetitus.lt/privatumo-politika'
               : this.prop === 'Eurovaistine'
               ? 'https://www.e-euroaptieka.lv/privatuma-politika'
+              : this.prop === 'Pieno Žvaigždės'
+              ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
