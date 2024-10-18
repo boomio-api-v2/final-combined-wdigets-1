@@ -92,11 +92,13 @@ export class InputRegisterContainer {
         </div>
         <div style="color: ${'white'}; font-size: ${
       this.isMobile
-        ? this.language === 'LV' && this.prop === 'Akropolis'
+        ? this.prop === 'Akropolis' && this.language === 'LV'
           ? '8px'
           : '10px'
-        : this.prop === 'Eurovaistine' || 'Pieno Žvaigždės'
+        : this.prop === 'Pieno Žvaigždės'
         ? '12px'
+        : this.prop === 'Akropolis' && this.language === 'LV'
+        ? '10px'
         : '10px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
