@@ -252,7 +252,7 @@ ${
     ? 'plastikui'
     : this.prop === 'Gamtos Ateitis Glass' && 'stiklui'
 } skirtus konteinerius.`
-          : 'SU MIAU GYVENT LINKSMIAU!'
+          : 'SU MIAU GYVENT SMAGIAU'
       }</div>
               <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
         this.prop === 'Pieno Žvaigždės' ? 500 : 400
