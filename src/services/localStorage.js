@@ -12,7 +12,7 @@ class LocalStorageService {
     // localStorage.removeItem(localStoragePropertyName);
   }
 
-  сheckOnInstruction(content) {
+  checkOnInstruction(content) {
     if (content?.instruction === 'stop') {
       const boomioStopTill = new Date(new Date().getTime() + 1000 * content.stop_for_sec);
       this.updateConfig({ boomioStopTill });
@@ -47,7 +47,7 @@ class LocalStorageService {
       ...content,
     };
     localStorage.setItem(localStoragePropertyName, JSON.stringify(this.config));
-    this.сheckOnInstruction(content);
+    this.checkOnInstruction(content);
   }
 
   getDefaultConfig() {
