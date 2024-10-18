@@ -79,7 +79,9 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: ${'360px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-      this.prop === 'Eurovaistine' || (this.prop === 'Akropolis' && this.language === 'LV')
+      this.prop === 'Pieno Žvaigždės' ||
+      this.prop === 'Eurovaistine' ||
+      (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
     }">
@@ -90,11 +92,13 @@ export class InputRegisterContainer {
         </div>
         <div style="color: ${'white'}; font-size: ${
       this.isMobile
-        ? this.language === 'LV' && this.prop === 'Akropolis'
+        ? this.prop === 'Akropolis' && this.language === 'LV'
           ? '8px'
           : '10px'
-        : this.prop === 'Eurovaistine'
+        : this.prop === 'Pieno Žvaigždės'
         ? '12px'
+        : this.prop === 'Akropolis' && this.language === 'LV'
+        ? '10px'
         : '10px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
@@ -103,6 +107,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti IKEA naujienas.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
+        : this.prop === 'Pieno Žvaigždės'
+        ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
         : this.prop === 'Corepetitus'
         ? 'Sutinku gauti Corepetitus naujienlaiškius.'
         : this.language === 'LV' && this.prop === 'Akropolis'
@@ -141,7 +147,7 @@ export class InputRegisterContainer {
         ? '12px'
         : this.prop === 'Akropolis' && this.language === 'LV'
         ? '10px'
-        : '14px'
+        : '12px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
     } ;  font-weight: 400; width:${
@@ -149,6 +155,8 @@ export class InputRegisterContainer {
     };word-wrap: break-word;line-height:14px;text-align:start;">${
       this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
+        : this.prop === 'Pieno Žvaigždės'
+        ? 'Sutinku su „Pieno žvaigždės“'
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
         : this.prop?.includes('Gamtos Ateitis')
@@ -205,11 +213,13 @@ export class InputRegisterContainer {
               ? 'https://www.corepetitus.lt/privatumo-politika'
               : this.prop === 'Eurovaistine'
               ? 'https://www.e-euroaptieka.lv/privatuma-politika'
+              : this.prop === 'Pieno Žvaigždės'
+              ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${
-            this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '14px'
+            this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'
           }; ">${
             this.prop === 'Ikea'
               ? 'IKEA privatumo politika'

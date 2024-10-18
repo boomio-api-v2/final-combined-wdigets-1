@@ -40,6 +40,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Makalius' ||
             this.prop === 'Ikea' ||
             this.prop === 'Unisend' ||
+            this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
             this.prop.includes('Gamtos Ateitis') ||
@@ -50,6 +51,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Fpro' ||
             this.prop === 'Fantazijos' ||
             this.prop === 'Makalius' ||
+            this.prop === 'Pieno Žvaigždės' ||
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym'
           ? 'white'
@@ -80,6 +82,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Makalius' ||
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
+                this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -94,6 +97,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Makalius' ||
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
+                this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -109,6 +113,7 @@ export class CompetitionScoreTableContainer {
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop.includes('Gamtos Ateitis') ||
+      this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'LemonGym'
         ? '900'
         : '700';
@@ -119,6 +124,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
         (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 35) ||
+        (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10)
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
@@ -148,6 +154,8 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
+                : this.prop === 'Pieno Žvaigždės'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro Forum Cinemas bilietai - Su Miau gyvent</br> linksmiau!'
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -208,6 +216,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.prop.includes('Gamtos Ateitis')
                 ? ''
+                : this.prop === 'Pieno Žvaigždės'
+                ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
           : `<div style="width:100%; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -236,6 +246,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.prop === 'Eurovaistine'
                 ? '50 spēlētāji, kuri iegūs vislielāko punktu skaitu, saņems </br>E-EUROAPTIEKA dāvanu, kuponus: 100€, 50€, 25€, 15€,'
+                : this.prop === 'Pieno Žvaigždės'
+                ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai - Su Miau</br> gyvent linksmiau!'
                 : this.prop === 'LemonGym'
                 ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Penki Sezonai'
@@ -297,6 +309,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Makalius' ||
                   this.prop === 'Unisend' ||
                   this.prop === 'Akropolis' ||
+                  this.prop === 'Pieno Žvaigždės' ||
                   this.prop.includes('Gamtos Ateitis')
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'

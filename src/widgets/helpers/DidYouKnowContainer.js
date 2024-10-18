@@ -71,6 +71,12 @@ import {
   item21Glass,
   item22Glass,
   item23Glass,
+  item1PienoZvaigzdes,
+  item2PienoZvaigzdes,
+  item5PienoZvaigzdes,
+  item7PienoZvaigzdes,
+  item8PienoZvaigzdes,
+  item15PienoZvaigzdes,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -122,6 +128,16 @@ export class DidYouKnowContainer {
         item12Glass,
         item19Glass,
         item7Glass,
+      ];
+    } else if (this.prop === 'Pieno Žvaigždės') {
+      // Handle Glass collectables
+      this.collectables = [
+        item15PienoZvaigzdes,
+        item1PienoZvaigzdes,
+        item8PienoZvaigzdes,
+        item2PienoZvaigzdes,
+        item7PienoZvaigzdes,
+        item5PienoZvaigzdes,
       ];
     }
 
@@ -182,6 +198,16 @@ export class DidYouKnowContainer {
         item19Glass,
         item7Glass,
       ];
+    } else if (this.prop === 'Pieno Žvaigždės') {
+      // Handle Glass collectables
+      this.collectables = [
+        item15PienoZvaigzdes,
+        item1PienoZvaigzdes,
+        item8PienoZvaigzdes,
+        item2PienoZvaigzdes,
+        item7PienoZvaigzdes,
+        item5PienoZvaigzdes,
+      ];
     }
 
     this.updateVisuals();
@@ -198,7 +224,11 @@ export class DidYouKnowContainer {
       tableHTML += `
         <td style="padding:5px;text-align: center; border: none;">
         <div id="image-${index}" style="border-radius:20px;">
-        <img class='image-container' style="opacity:1;" src=${item} alt="Scoreboard Image" >
+        <img class='image-container' style='opacity:1;width:${
+          this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
+        };height:${
+        this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
+      }' src=${item} alt="Scoreboard Image" >
         </div>
         </td>`;
 
@@ -210,16 +240,51 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let scoreboardText = `
-      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat;  word-wrap: break-word">${`Šių atliekų negalima mesti į
+      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
+        this.prop === 'Pieno Žvaigždės' ? '18px' : '12px'
+      } ; font-family: Montserrat;  word-wrap: break-word">${
+        this.prop.includes('Gamtos Ateitis')
+          ? `Šių atliekų negalima mesti į
 ${
   this.prop === 'Gamtos Ateitis Paper'
     ? 'popieriui'
     : this.prop === 'Gamtos Ateitis Plastic'
     ? 'plastikui'
     : this.prop === 'Gamtos Ateitis Glass' && 'stiklui'
-} skirtus konteinerius.`}</div>
-              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'14px'} ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'}</div>
-            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a onclick="event.stopPropagation();" target="_blank" href=https://gamtosateitis.lt/rusiavimo-abc style="color:white"> ${'https://gamtosateitis.lt/rusiavimo-abc/'}</a> </div> `}
+} skirtus konteinerius.`
+          : 'SU MIAU GYVENT SMAGIAU'
+      }</div>
+              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
+        this.prop === 'Pieno Žvaigždės' ? 500 : 400
+      };  word-wrap: break-word;text-decoration:${
+        this.prop === 'Pieno Žvaigždės' ? 'underline' : ''
+      } ">${
+        this.prop === 'Pieno Žvaigždės' ? '' : 'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'
+      }${
+        this.prop === 'Pieno Žvaigždės'
+          ? `<a 
+  onclick="event.stopPropagation();" 
+  target="_blank" 
+  href="https://pienozvaigzdes.lt/lt/20_miau" 
+  style="color:white">
+  DAUGIAU MIAU!
+</a> `
+          : ''
+      }
+          
+      
+      </div>
+            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a 
+  onclick="event.stopPropagation();" 
+  target="_blank" 
+  href="${
+    this.prop === 'Pieno Žvaigždės'
+      ? 'https://pienozvaigzdes.lt/lt/20_miau'
+      : 'https://gamtosateitis.lt/rusiavimo-abc'
+  }" 
+  style="color:white">
+  ${this.prop === 'Pieno Žvaigždės' ? '' : 'https://gamtosateitis.lt/rusiavimo-abc/'}
+</a> </div> `}
     `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
@@ -276,21 +341,25 @@ ${
         : '380px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${
+      <div style="width:100%;top: 52px; position: absolute; text-align: center;line-height:42px; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">Ar žinojai?</div>
+      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+      this.prop === 'Pieno Žvaigždės' ? 'Ar visus RAGAVAI?' : 'Ar žinojai?'
+    }</div>
       
       <div class="boomio-scoreboard-text">
       `;
 
     containerDiv.innerHTML += `
               </div>
-      <div  style="width:100%;height: ${'302px'}; top: 114px; position: absolute; border-right:none;">
+      <div  style="width:100%;height: ${'302px'}; top: ${
+      this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
+    }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin:10px;border-spacing:3px;width:100%;border-collapse:separate">
             <tbody class="boomio-tbody">
