@@ -240,7 +240,9 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let scoreboardText = `
-      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat;  word-wrap: break-word">${
+      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
+        this.prop === 'Pieno Žvaigždės' ? '18px' : '12px'
+      } ; font-family: Montserrat;  word-wrap: break-word">${
         this.prop.includes('Gamtos Ateitis')
           ? `Šių atliekų negalima mesti į
 ${
@@ -252,9 +254,7 @@ ${
 } skirtus konteinerius.`
           : 'SU MIAU GYVENT LINKSMIAU!'
       }</div>
-              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${
-        this.prop === 'Pieno Žvaigždės' ? '16px' : '12px'
-      } ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${
+              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">${
         this.prop === 'Pieno Žvaigždės'
           ? 'Daugiau “MIAU” produktų rasi'
           : 'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'
