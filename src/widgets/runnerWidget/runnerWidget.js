@@ -580,7 +580,11 @@ class runnerWidget {
       localStorage.getItem('boosterLevel') > 1 ? localStorage.getItem('boosterLevel') : 1;
 
     // Load sprites
-    const runSprites = loadSprites(loader, './assets/sprites/run', 8);
+    const runSprites = loadSprites(
+      loader,
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/6823c695645059309df3dbf37840360a5cf94e0c/src/widgets/runnerWidget/assets/sprites/run',
+      8,
+    );
     const slideSprites = loadSprites(loader, './assets/sprites/slide', 6);
     const jumpSprites = loadSprites(loader, './assets/sprites/jump', 6);
     const deathSprites = loadSprites(loader, './assets/sprites/death', 4);
@@ -854,7 +858,7 @@ class runnerWidget {
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
       Start();
     };
-    document.querySelector('.playButton').addEventListener('click', PlayButtonActivate());
+    document.querySelector('.playButton').addEventListener('click', PlayButtonActivate);
 
     const PauseToggle = () => {
       const toggleHide = (block) => block.classList.toggle('hide');
@@ -867,10 +871,13 @@ class runnerWidget {
       toggleHide(pauseButton);
     };
 
-    function loadSprites(loader, path, count) {
+    function loadSprites(loader, basePath, count) {
       const sprites = [];
       for (let i = 1; i <= count; i += 1) {
-        sprites.push(loader.addImage(`${path}/${i}.png`));
+        // Construct the full URL for each sprite image
+        const spriteUrl = `${basePath}/${i}.png`;
+        // Add the image to the loader
+        sprites.push(loader.addImage(spriteUrl));
       }
       return sprites;
     }
