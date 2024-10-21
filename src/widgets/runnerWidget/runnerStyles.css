@@ -1,19 +1,19 @@
 @font-face {
 	font-family: 'pixelFlag'; 
-	src: url('assets/fonts/000webfont1.ttf') 
+	src: url('./assets/fonts/000webfont1.ttf') 
 }
 
 @font-face {
 	font-family: 'Botsmatic3d'; 
-	src: url('assets/fonts/Botsmatic3d.ttf') 
+	src: url('./assets/fonts/Botsmatic3d.ttf') 
 }
 @font-face {
 	font-family: 'BotsmaticOutline'; 
-	src: url('assets/fonts/BotsmaticOutline.ttf') 
+	src: url('./assets/fonts/BotsmaticOutline.ttf') 
 }
 @font-face {
 	font-family: 'BotsmaticDemo'; 
-	src: url('assets/fonts/BotsmaticDemo.ttf') 
+	src: url('./assets/fonts/BotsmaticDemo.ttf') 
 }
 ::-webkit-scrollbar {
 	width: 0;
@@ -228,7 +228,7 @@ main{
 .pause,
 .gameOver,
 .mainMenu, 
-.credits, .tutorial, .achives, .store{
+.credits, .runner-tutorial, .achives, .store{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -259,7 +259,7 @@ main{
 
 }
 .pause, .gameOver{
-	background: url('assets/gui/popup.png');
+	background: url('./assets/gui/popup.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
@@ -303,7 +303,7 @@ main{
   width:150px;
   height: 80px;
   padding: 10px 20px;
-  background-image: url('assets/gui/midBtn.png');
+  background-image: url('./assets/gui/midBtn.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -343,7 +343,7 @@ main{
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
-	background-image: url('assets/gui/smallBtn.png');
+	background-image: url('./assets/gui/smallBtn.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	image-rendering: pixelated;
@@ -355,10 +355,10 @@ margin-right: 10px;}
 .soundBtn{
   height: 50px ;
   width: 50px ;
-	content: url('assets/gui/soundOn.png');
+	content: url('./assets/gui/soundOn.png');
 }
 .soundBtnOff{
-	content: url('assets/gui/soundOff.png');
+	content: url('./assets/gui/soundOff.png');
 	filter: brightness(0.6) !important;
 }
 .playOnPauseButton{
@@ -422,7 +422,7 @@ margin-right: 10px;}
 	filter: brightness(0.9);
 	background-size: cover;
 	background-position:top;
-	background-image: url('stuff/bg.png');
+	background-image: url('./stuff/bg.png');
 }
 .mainLeftInfo{
   position: absolute;
@@ -504,7 +504,7 @@ margin-right: 10px;}
   animation: fellOnTop 0.6s ease-in;
 }
 .storeBack{
-  content: url('assets/gui/store.png');
+  content: url('./assets/gui/store.png');
   height: 80%;
   position: relative;
 }
@@ -517,7 +517,7 @@ margin-right: 10px;}
   align-items: center;
   top: 30%;
   right: 10%;
-  content: url(assets/gui/addBook.png);
+  content: url(./assets/gui/addBook.png);
   height: 40%;
   cursor: pointer;
   background-size: contain;
@@ -532,7 +532,7 @@ margin-right: 10px;}
 }
 .saveMeAdd{
   align-items: center;
-  background-image: url(assets/gui/smallBtn.png);
+  background-image: url(./assets/gui/smallBtn.png);
   height: 40%;
   cursor: pointer;
   background-size: contain;
@@ -609,7 +609,7 @@ margin-right: 10px;}
   text-align: left;
 }
 .upgradeHolder{
-  background-image: url('assets/gui/btn.png');
+  background-image: url('./assets/gui/btn.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -696,7 +696,7 @@ margin-right: 10px;}
 	cursor: pointer;
 	font-family: 'pixelFlag';
 	background: none;
-	background-image: url('assets/gui/btn.png');
+	background-image: url('./assets/gui/btn.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position:right;
