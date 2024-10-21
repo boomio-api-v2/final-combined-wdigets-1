@@ -127,6 +127,8 @@ export class InputContainer {
                 ? 'stiklo pakuočių atliekas.'
                 : this.prop === 'Pieno Žvaigždės'
                 ? '“MIAU” produktus.'
+                : this.prop === 'Pegasas'
+                ? ' Pegaso produktus.'
                 : this.game === 'drive'
                 ? 'į šonus kad vairuotum'
                 : this.prop === 'Fpro'
@@ -184,6 +186,8 @@ export class InputContainer {
                 : this.language === 'EE'
                 ? 'parema tulemuse saavutamiseks.'
                 : this.prop === 'Pieno Žvaigždės'
+                ? 'siekdamas kuo geresnio rezultato.'
+                : this.prop === 'Pegasas'
                 ? 'siekdamas kuo geresnio rezultato.'
                 : this.game === 'drive'
                 ? 'siekdamas geresnio rezultato.'
@@ -251,6 +255,8 @@ export class InputContainer {
                 ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'kassavaitinius Forum Cinema bilietus ir pagrindinius MIAU prizus!'
+                : this.prop === 'Pegasas'
+                ? '1 iš 80 Pegaso knygų, kas dvi savaites!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
                 : this.prop === 'Fpro'
@@ -281,6 +287,7 @@ export class InputContainer {
       this.prop === 'Makalius' ||
       this.prop === 'Corepetitus' ||
       this.prop === 'Pieno Žvaigždės' ||
+      this.prop === 'Pegasas' ||
       this.prop === 'Eurovaistine' ||
       this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Akropolis' ||
@@ -312,6 +319,8 @@ export class InputContainer {
               ? 'href=https://www.corepetitus.lt/zaidimo-taisykles'
               : this.prop === 'Pieno Žvaigždės'
               ? 'href=https://www.boomio.com/pieno-zvaigzdes-miau-zaidimo-taisykles'
+              : this.prop === 'Pegasas'
+              ? 'href=https://www.pegasas.lt/c/pegaso-zaidimo-taisykles/'
               : this.prop === 'Akropolis' && this.language === 'LV'
               ? 'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'
               : this.prop === 'Akropolis'

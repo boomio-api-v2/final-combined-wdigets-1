@@ -346,6 +346,8 @@ class CatchGame {
           : '#18904A'
         : this.customer === 'Pieno Žvaigždės'
         ? '#ED1846'
+        : this.customer === 'Pegasas'
+        ? '#A40033'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -368,6 +370,8 @@ class CatchGame {
           : '#18904A'
         : this.customer === 'Pieno Žvaigždės'
         ? '#ED1846'
+        : this.customer === 'Pegasas'
+        ? '#A40033'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">

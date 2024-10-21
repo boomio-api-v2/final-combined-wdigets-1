@@ -79,6 +79,7 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: ${'360px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+      this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
@@ -95,7 +96,7 @@ export class InputRegisterContainer {
         ? this.prop === 'Akropolis' && this.language === 'LV'
           ? '8px'
           : '10px'
-        : this.prop === 'Pieno Žvaigždės'
+        : this.prop === 'Pieno Žvaigždės' || this.prop === 'Pegasas'
         ? '12px'
         : this.prop === 'Akropolis' && this.language === 'LV'
         ? '10px'
@@ -109,6 +110,8 @@ export class InputRegisterContainer {
         ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
         : this.prop === 'Pieno Žvaigždės'
         ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
+        : this.prop === 'Pegasas'
+        ? 'Sutinku gauti Pegaso naujienlaiškius.'
         : this.prop === 'Corepetitus'
         ? 'Sutinku gauti Corepetitus naujienlaiškius.'
         : this.language === 'LV' && this.prop === 'Akropolis'
@@ -157,6 +160,8 @@ export class InputRegisterContainer {
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Pieno Žvaigždės'
         ? 'Sutinku su „Pieno žvaigždės“'
+        : this.prop === 'Pegasas'
+        ? 'Sutinku su Pegaso'
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
         : this.prop?.includes('Gamtos Ateitis')
@@ -215,6 +220,8 @@ export class InputRegisterContainer {
               ? 'https://www.e-euroaptieka.lv/privatuma-politika'
               : this.prop === 'Pieno Žvaigždės'
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
+              : this.prop === 'Pegasas'
+              ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
               : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
