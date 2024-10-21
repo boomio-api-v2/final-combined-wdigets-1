@@ -27,7 +27,10 @@ import { localStorageService, widgetHtmlService, UserService } from '@/services'
 class BoomioService extends UserService {
   constructor() {
     super();
-    this.current_page_url = window.location.href;
+    this.current_page_url =
+      window.location.href === 'https://boomio-web.webflow.io/demo-pigu-lt'
+        ? 'https://pigu.lt/lt/test'
+        : window.location.href;
     this.setInitialConfiguration();
   }
 

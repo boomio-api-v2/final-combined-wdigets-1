@@ -361,7 +361,7 @@ ${
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    if (this.scoreTable.user_best_score > 1500) {
+    if (this.scoreTable.user_best_score > 1) {
       document.getElementById('boomio-copy-modal-btn').onclick = () => {
         const textToCopy = this.userDiscountCode;
         const textarea = document.createElement('textarea');
@@ -371,6 +371,13 @@ ${
         textarea.setSelectionRange(0, textarea.value.length);
         document.execCommand('copy');
         document.body.removeChild(textarea);
+
+        const copyButton = document.getElementById('p_code_text');
+        copyButton.textContent = 'Copied';
+
+        setTimeout(() => {
+          copyButton.textContent = this.userDiscountCode;
+        }, 2000);
       };
     }
   }
