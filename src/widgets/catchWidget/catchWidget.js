@@ -113,6 +113,9 @@ import {
   item12PienoZvaigzdes,
   item13PienoZvaigzdes,
   item14PienoZvaigzdes,
+  introPegasas,
+  backgroundPegasas,
+  playerPegasass,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -127,7 +130,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Pieno Žvaigždės';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pegasas';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -156,6 +159,8 @@ class CatchGame {
         ? backgroundGamtosAteitisGlass
         : this.customer === 'Pieno Žvaigždės'
         ? backgroundPienoZvaigzdes
+        : this.customer === 'Pegasas'
+        ? backgroundPegasas
         : background
     }) center`;
 
@@ -383,6 +388,8 @@ class CatchGame {
         ? introGamtosAteitisGlass
         : this.customer === 'Pieno Žvaigždės'
         ? introPienoZvaigzdes
+        : this.customer === 'Pegasas'
+        ? introPegasas
         : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1183,6 +1190,8 @@ class Player {
       ? playerGamtosAteitisGlass
       : customer === 'Pieno Žvaigždės'
       ? playerPienoZvaigzdes
+      : customer === 'Pegasas'
+      ? playerPegasass
       : player;
     this.defaultscore = defaultscore;
   }
