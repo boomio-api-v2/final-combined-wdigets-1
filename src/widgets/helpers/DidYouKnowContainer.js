@@ -77,6 +77,18 @@ import {
   item7PienoZvaigzdes,
   item8PienoZvaigzdes,
   item15PienoZvaigzdes,
+  item1pegasas,
+  item2pegasas,
+  item3pegasas,
+  item4pegasas,
+  item5pegasas,
+  item6pegasas,
+  item7pegasas,
+  item8pegasas,
+  item9pegasas,
+  item10pegasas,
+  item11pegasas,
+  item12pegasas,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -138,6 +150,22 @@ export class DidYouKnowContainer {
         item2PienoZvaigzdes,
         item7PienoZvaigzdes,
         item5PienoZvaigzdes,
+      ];
+    } else if (this.prop === 'Pegasas') {
+      // Handle Glass collectables
+      this.collectables = [
+        item1pegasas,
+        item2pegasas,
+        item3pegasas,
+        item4pegasas,
+        item5pegasas,
+        item6pegasas,
+        item7pegasas,
+        item8pegasas,
+        item9pegasas,
+        item10pegasas,
+        item11pegasas,
+        item12pegasas,
       ];
     }
 
@@ -208,6 +236,22 @@ export class DidYouKnowContainer {
         item7PienoZvaigzdes,
         item5PienoZvaigzdes,
       ];
+    } else if (this.prop === 'Pegasas') {
+      // Handle Glass collectables
+      this.collectables = [
+        item1pegasas,
+        item2pegasas,
+        item3pegasas,
+        item4pegasas,
+        item5pegasas,
+        item6pegasas,
+        item7pegasas,
+        item8pegasas,
+        item9pegasas,
+        item10pegasas,
+        item11pegasas,
+        item12pegasas,
+      ];
     }
 
     this.updateVisuals();
@@ -223,7 +267,7 @@ export class DidYouKnowContainer {
 
       tableHTML += `
         <td style="padding:5px;text-align: center; border: none;">
-        <div id="image-${index}" style="border-radius:20px;">
+        <div id="image-${index}" >
         <img class='image-container' style='opacity:1;width:${
           this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
         };height:${
@@ -241,7 +285,7 @@ export class DidYouKnowContainer {
 
     let scoreboardText = `
       ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
-        this.prop === 'Pieno Žvaigždės' ? '18px' : '12px'
+        this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' ? '18px' : '12px'
       } ; font-family: Montserrat;  word-wrap: break-word">${
         this.prop.includes('Gamtos Ateitis')
           ? `Šių atliekų negalima mesti į
@@ -252,6 +296,8 @@ ${
     ? 'plastikui'
     : this.prop === 'Gamtos Ateitis Glass' && 'stiklui'
 } skirtus konteinerius.`
+          : this.prop === 'Pegasas'
+          ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
           : 'SU MIAU GYVENT SMAGIAU'
       }</div>
               <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
@@ -259,7 +305,11 @@ ${
       };  word-wrap: break-word;text-decoration:${
         this.prop === 'Pieno Žvaigždės' ? 'underline' : ''
       } ">${
-        this.prop === 'Pieno Žvaigždės' ? '' : 'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'
+        this.prop === 'Pegasas'
+          ? ''
+          : this.prop === 'Pieno Žvaigždės'
+          ? ''
+          : 'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'
       }${
         this.prop === 'Pieno Žvaigždės'
           ? `<a 
@@ -271,6 +321,17 @@ ${
 </a> `
           : ''
       }
+          ${
+            this.prop === 'Pegasas'
+              ? `<a 
+  onclick="event.stopPropagation();" 
+  target="_blank" 
+  href="https://www.pegasas.lt/" 
+  style="color:white;font-size:16px;">
+  Pegasas.lt
+</a> `
+              : ''
+          }
           
       
       </div>
@@ -280,29 +341,38 @@ ${
   href="${
     this.prop === 'Pieno Žvaigždės'
       ? 'https://pienozvaigzdes.lt/lt/20_miau'
+      : this.prop === 'Pegasas'
+      ? 'https://www.pegasas.lt/'
       : 'https://gamtosateitis.lt/rusiavimo-abc'
   }" 
   style="color:white">
-  ${this.prop === 'Pieno Žvaigždės' ? '' : 'https://gamtosateitis.lt/rusiavimo-abc/'}
+  ${
+    this.prop === 'Pegasas'
+      ? ''
+      : this.prop === 'Pieno Žvaigždės'
+      ? ''
+      : 'https://gamtosateitis.lt/rusiavimo-abc/'
+  }
 </a> </div> `}
     `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
-    this.addfunc();
+    if (this.prop === 'Pegasas') {
+      this.addfunc();
+    }
   }
 
   addfunc() {
-    // Attach event listeners after the images are added to the DOM
-    // for (let index = 0; index < this.collectables?.length; index++) {
-    //   const image = document.getElementById(`image-${index}`);
-    //   if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
-    //     image.addEventListener('click', () => {
-    //       this.handleImageClick(image);
-    //     });
-    //   }
-    // }
+    for (let index = 0; index < this.collectables?.length; index++) {
+      const image = document.getElementById(`image-${index}`);
+      if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
+        image.addEventListener('click', () => {
+          this.handleImageClick(image);
+        });
+      }
+    }
   }
   handleImageClick(image) {
     // Toggle a class to make the image larger and centered
@@ -349,7 +419,11 @@ ${
           ? 'white'
           : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Pieno Žvaigždės' ? 'Ar visus RAGAVAI?' : 'Ar žinojai?'
+      this.prop === 'Pieno Žvaigždės'
+        ? 'Ar visus RAGAVAI?'
+        : this.prop === 'Pegasas'
+        ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
+        : 'Ar žinojai?'
     }</div>
       
       <div class="boomio-scoreboard-text">
@@ -358,7 +432,7 @@ ${
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-      this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
+      this.prop === 'Pegasas' ? '150px' : this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
     }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin:10px;border-spacing:3px;width:100%;border-collapse:separate">
