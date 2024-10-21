@@ -361,7 +361,7 @@ ${
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    if (this.scoreTable.user_best_score > 1) {
+    if (this.scoreTable.user_best_score > 1500) {
       document.getElementById('boomio-copy-modal-btn').onclick = () => {
         const textToCopy = this.userDiscountCode;
         const textarea = document.createElement('textarea');
