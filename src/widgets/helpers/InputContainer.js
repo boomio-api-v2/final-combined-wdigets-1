@@ -93,6 +93,8 @@ export class InputContainer {
                   ? 'Judėk'
                   : this.prop === 'Pieno Žvaigždės'
                   ? 'Gaudyk'
+                  : this.prop === 'Pegasas'
+                  ? 'Gaudyk'
                   : 'Spausk'
               }
                             <div style="top: 9px;margin-top:5px;  color: white; font-size: ${
