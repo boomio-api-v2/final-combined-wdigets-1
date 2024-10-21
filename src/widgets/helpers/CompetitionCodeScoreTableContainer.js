@@ -126,7 +126,7 @@ export class CompetitionCodeScoreTableContainer {
 
     let scoreboardText = `
       ${
-        true
+        this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20
           ? `<div style="width:100%; top: ${'400px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -158,7 +158,11 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">ir </br>pagrindiniai <u style="text-transform:uppercase">MIAU prizai  </u></u>- Su Miau gyvent linksmiau!'
                 : this.prop === 'Pegasas'
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro 80 Pegaso knygų.</br></br>O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU '
+                ? `Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro 80 Pegaso knygų.</br></br>${
+                    this.scoreTable.user_best_score > 1500
+                      ? 'O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU'
+                      : ''
+                  }`
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -205,7 +209,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
                 ? 'Uzvarētāji tiks informēti e-pastā.'
-                : this.prop === 'Pegasas'
+                : this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500
                 ? 'gauk 5€ vertės nuolaidą perkant internetu bent už 50 EUR.'
                 : this.language === 'LV' && this.prop !== 'Akropolis'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
@@ -218,6 +222,8 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Makalius'
                 ? ''
                 : this.prop === 'Akropolis'
+                ? ''
+                : this.prop === 'Pegasas'
                 ? ''
                 : this.prop.includes('Gamtos Ateitis')
                 ? ''
@@ -252,7 +258,11 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Eurovaistine'
                 ? '50 spēlētāji, kuri iegūs vislielāko punktu skaitu, saņems </br>E-EUROAPTIEKA dāvanu, kuponus: 100€, 50€, 25€, 15€,'
                 : this.prop === 'Pegasas'
-                ? 'Pagerink rezultatą, nes kas dvi savaites geriausi žaidėjai</br> laimės prizus! Prizinį fondą sudaro 80 Pegaso knygų.</br></br>O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU '
+                ? `Pagerink rezultatą, nes kas dvi savaites geriausi žaidėjai</br> laimės prizus! Prizinį fondą sudaro 80 Pegaso knygų.</br></br>${
+                    this.scoreTable.user_best_score > 1500
+                      ? 'O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU'
+                      : ''
+                  }`
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">ir </br>pagrindiniai <u style="text-transform:uppercase">MIAU prizai  </u></u> - Su Miau gyvent linksmiau!'
                 : this.prop === 'LemonGym'
@@ -305,7 +315,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
                 ? 'Uzvarētāji tiks informēti e-pastā.'
-                : this.prop === 'Pegasas'
+                : this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500
                 ? 'gauk 5€ vertės nuolaidą perkant internetu bent už 50 EUR.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
@@ -321,11 +331,16 @@ export class CompetitionCodeScoreTableContainer {
                   this.prop === 'Pieno Žvaigždės' ||
                   this.prop.includes('Gamtos Ateitis')
                 ? ''
+                : this.prop === 'Pegasas'
+                ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div>
         `
       }
-           <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:#A40033; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:505px;left:calc(50% - 130px);">
+
+${
+  this.scoreTable.user_best_score
+    ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:#A40033; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:505px;left:calc(50% - 130px);">
 <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text">
  ${this.userDiscountCode ?? 'CODE'}
     </div>
@@ -334,21 +349,30 @@ export class CompetitionCodeScoreTableContainer {
     </svg>
 </div> 
       <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
-      </div>`;
+      </div>`
+    : ''
+}
+
+      
+      
+      `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
-    document.getElementById('boomio-copy-modal-btn').onclick = () => {
-      const textToCopy = this.userDiscountCode;
-      const textarea = document.createElement('textarea');
-      textarea.value = textToCopy;
-      document.body.appendChild(textarea);
-      textarea.select();
-      textarea.setSelectionRange(0, textarea.value.length);
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-    };
+
+    if (this.scoreTable.user_best_score > 1500) {
+      document.getElementById('boomio-copy-modal-btn').onclick = () => {
+        const textToCopy = this.userDiscountCode;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      };
+    }
   }
 
   render() {
