@@ -158,7 +158,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">ir </br>pagrindiniai <u style="text-transform:uppercase">MIAU prizai  </u></u>- Su Miau gyvent linksmiau!'
                 : this.prop === 'Pegasas'
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. </br>Prizinį fondą sudaro 80 Pegaso knygų.</br></br>O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU '
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro 80 Pegaso knygų.</br></br>O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU '
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -170,7 +170,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Akropolis'
                 ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
                 : this.prop.includes('Gamtos Ateitis')
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. </br>Prizinį fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių –</br> kiekvieną savaitę!'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių –</br> kiekvieną savaitę!'
                 : this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
                 : this.language === 'EE' && this.prop === 'Fantazijos'
@@ -200,7 +200,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
-            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
+            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
@@ -246,7 +246,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : 'Tu gali!'
             }</div>
-            <div style="width:100%; top: 430px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
+            <div style="width:100%; top: 430px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
                 : this.prop === 'Eurovaistine'
@@ -325,7 +325,16 @@ export class CompetitionCodeScoreTableContainer {
             } </div>
         `
       }
-    `;
+           <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:#A40033; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:505px;left:calc(50% - 130px);">
+<div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text">
+ ${this.userDiscountCode ?? 'CODE'}
+    </div>
+    <svg width="22" height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn" style="cursor:pointer">
+    <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
+    </svg>
+</div> 
+      <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
+      </div>`;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
@@ -412,16 +421,7 @@ export class CompetitionCodeScoreTableContainer {
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>
-       <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:#A40033; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:505px;left:calc(50% - 130px);">
-<div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text">
- ${this.userDiscountCode ?? 'CODE'}
-    </div>
-    <svg width="22" height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn" style="cursor:pointer">
-    <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
-    </svg>
-</div> 
-      <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
-      </div>
+
     </div>`;
     this.containerDiv = containerDiv;
 
