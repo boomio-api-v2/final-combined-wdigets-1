@@ -1533,7 +1533,7 @@ class Fruit {
         this.fruitNumber
       ];
     } else {
-      this.fruitScore = [50, 50, 100, 100, 150, 50, 50, 100, 100, 150][this.fruitNumber];
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
     this.fruitImage.src = this.images[this.fruitNumber];
   }
