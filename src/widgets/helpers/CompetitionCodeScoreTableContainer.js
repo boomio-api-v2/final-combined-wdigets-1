@@ -27,6 +27,7 @@ export class CompetitionCodeScoreTableContainer {
     const scoreboard = this.scoreTable.scoreboard || [];
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
+    this.userDiscountCode = this?.scoreTable?.coupon_code || '';
 
     let tableHTML = '';
     scoreboard.forEach((item, index) => {
@@ -41,6 +42,7 @@ export class CompetitionCodeScoreTableContainer {
             this.prop === 'Ikea' ||
             this.prop === 'Unisend' ||
             this.prop === 'Pieno Žvaigždės' ||
+            this.prop === 'Pegasas' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
             this.prop.includes('Gamtos Ateitis') ||
@@ -52,6 +54,7 @@ export class CompetitionCodeScoreTableContainer {
             this.prop === 'Fantazijos' ||
             this.prop === 'Makalius' ||
             this.prop === 'Pieno Žvaigždės' ||
+            this.prop === 'Pegasas' ||
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym'
           ? 'white'
@@ -65,7 +68,7 @@ export class CompetitionCodeScoreTableContainer {
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
       ${item.user_name}
     </td>
-              <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${item.score}</td>
+              <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:11px;">${item.score}</td>
             </tr>`;
     });
 
@@ -83,6 +86,7 @@ export class CompetitionCodeScoreTableContainer {
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
                 this.prop === 'Pieno Žvaigždės' ||
+                this.prop === 'Pegasas' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -98,35 +102,32 @@ export class CompetitionCodeScoreTableContainer {
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
                 this.prop === 'Pieno Žvaigždės' ||
+                this.prop === 'Pegasas' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
-              }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
+              }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:11px;">${userBestScore}</td>
             </tr>`;
     }
 
     let textColor = 'white';
-    let fontSize = '14px';
+    let fontSize = '16px';
     let fontWeight =
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Pieno Žvaigždės' ||
+      this.prop === 'Pegasas' ||
       this.prop === 'LemonGym'
         ? '900'
         : '700';
 
     let scoreboardText = `
       ${
-        (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
-        (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
-        (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
-        (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 35) ||
-        (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
-        (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10)
-          ? `<div style="width:100%; top: ${'380px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
+        true
+          ? `<div style="width:100%; top: ${'400px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
@@ -149,15 +150,15 @@ export class CompetitionCodeScoreTableContainer {
                 ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
                 : 'Valio, tau puikiai sekasi!'
             }</div>
-            <div style="width:100%; top: ${'410px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.prop ? '10px' : '10px'
-            } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+            <div style="width:100%; top: ${'430px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+              this.prop ? '11px' : '11px'
+            } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">ir </br>pagrindiniai <u style="text-transform:uppercase">MIAU prizai  </u></u>- Su Miau gyvent linksmiau!'
                 : this.prop === 'Pegasas'
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro 80 Pegaso knygų.</br></br>O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU '
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. </br>Prizinį fondą sudaro 80 Pegaso knygų.</br></br>O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU '
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -169,7 +170,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Akropolis'
                 ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
                 : this.prop.includes('Gamtos Ateitis')
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių –</br> kiekvieną savaitę!'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. </br>Prizinį fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių –</br> kiekvieną savaitę!'
                 : this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
                 : this.language === 'EE' && this.prop === 'Fantazijos'
@@ -183,7 +184,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.prop ? '10px' : '10px'
+              this.prop ? '11px' : '11px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
@@ -199,7 +200,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
-            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+            <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
@@ -224,7 +225,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
-          : `<div style="width:100%; top: 380px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
+          : `<div style="width:100%; top: 400px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.language === 'ES'
@@ -245,7 +246,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : 'Tu gali!'
             }</div>
-            <div style="width:100%; top: 410px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+            <div style="width:100%; top: 430px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
                 : this.prop === 'Eurovaistine'
@@ -281,7 +282,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.prop ? '10px' : '10px'
+              this.prop ? '11px' : '11px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
@@ -299,7 +300,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
-              <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+              <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
@@ -330,7 +331,7 @@ export class CompetitionCodeScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     document.getElementById('boomio-copy-modal-btn').onclick = () => {
-      const textToCopy = userDiscountCode;
+      const textToCopy = this.userDiscountCode;
       const textarea = document.createElement('textarea');
       textarea.value = textToCopy;
       document.body.appendChild(textarea);
@@ -376,7 +377,7 @@ export class CompetitionCodeScoreTableContainer {
               
 
 
-      <div  style="width: calc(100% - 32px); height: ${'240px'}; left: 16px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
+      <div  style="width: calc(100% - 32px); height: ${'260px'}; left: 16px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
             <tbody class="boomio-tbody">
@@ -394,7 +395,7 @@ export class CompetitionCodeScoreTableContainer {
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
+      }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? 'SPĒLĒT VĒLREIZ'
@@ -411,7 +412,7 @@ export class CompetitionCodeScoreTableContainer {
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>
-       <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:250px;margin-top:20px;position:absolute;top:470px">
+       <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:#A40033; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:505px;left:calc(50% - 130px);">
 <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text">
  ${this.userDiscountCode ?? 'CODE'}
     </div>
