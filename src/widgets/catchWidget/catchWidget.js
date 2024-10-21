@@ -131,6 +131,8 @@ import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
+
 import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
@@ -181,7 +183,7 @@ class CatchGame {
     this.smashCounter = 0;
     this.catchSoundCounter = 0;
     this.animationFrame = null;
-    this.defaultscore = this.customer === 'Eurovaistine' ? 3 : 5;
+    this.defaultscore = this.customer === 'Eurovaistine' || this.customer === 'Pegasas' ? 3 : 5;
     this.startCatch();
   }
 
@@ -432,10 +434,18 @@ class CatchGame {
     if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-      );
+      if (this.customer === 'Pegasas') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+      } else {
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+      }
+
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
     if (this.showCompetitiveRegistration === 'points') {
@@ -470,7 +480,11 @@ class CatchGame {
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
-    if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
+    if (
+      this.customer.includes('Gamtos Ateitis') ||
+      this.customer === 'Pieno Žvaigždės' ||
+      this.customer === 'Pegasas'
+    ) {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
@@ -829,7 +843,11 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
+      if (
+        this.customer.includes('Gamtos Ateitis') ||
+        this.customer === 'Pieno Žvaigždės' ||
+        this.customer === 'Pegasas'
+      ) {
         const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
@@ -1094,7 +1112,11 @@ class CatchGame {
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             let competitionTableContainer = '';
-            if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
+            if (
+              this.customer.includes('Gamtos Ateitis') ||
+              this.customer === 'Pieno Žvaigždės' ||
+              this.customer === 'Pegasas'
+            ) {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
@@ -1250,7 +1272,7 @@ class Fruit {
         this.fruitNumber = Math.floor(Math.random() * 8);
       }
     } else {
-      this.fruitNumber = Math.floor(Math.random() * 5);
+      this.fruitNumber = Math.floor(Math.random() * 10);
     }
 
     this.fruitType = '';
@@ -1509,7 +1531,7 @@ class Fruit {
         this.fruitNumber
       ];
     } else {
-      this.fruitScore = [50, 50, 100, 100, 150][this.fruitNumber];
+      this.fruitScore = [50, 50, 100, 100, 150, 50, 50, 100, 100, 150][this.fruitNumber];
     }
     this.fruitImage.src = this.images[this.fruitNumber];
   }
@@ -1531,6 +1553,9 @@ class Fruit {
             0,
             this.player.defaultscore - this.player.fruitsMissed,
           )}/${this.player.defaultscore}`;
+          if (this.customer === 'Pegasas') {
+            this.showScoreEffect('-1', true);
+          }
         }
         this.changeState();
       }
