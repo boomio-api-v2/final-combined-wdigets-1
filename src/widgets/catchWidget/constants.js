@@ -27,7 +27,7 @@ export const introPegasas =
 export const backgroundPegasas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/background.png';
 
-export const playerPegasass =
+export const playerPegasas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/player.png';
 
 export const introGamtosAteitisPaper =
@@ -286,3 +286,24 @@ export const item13PienoZvaigzdes =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item13.png';
 export const item14PienoZvaigzdes =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/PienoZvaigzdes/items/item14.png';
+
+export const item1Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item1.png';
+export const item2Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item2.png';
+export const item3Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item3.png';
+export const item4Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item4.png';
+export const item5Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item5.png';
+export const item6Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item6.png';
+export const item7Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item7.png';
+export const item8Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item8.png';
+export const item9Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item9.png';
+export const item10Pegasas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item10.png';

@@ -115,7 +115,17 @@ import {
   item14PienoZvaigzdes,
   introPegasas,
   backgroundPegasas,
-  playerPegasass,
+  playerPegasas,
+  item1Pegasas,
+  item2Pegasas,
+  item3Pegasas,
+  item4Pegasas,
+  item5Pegasas,
+  item6Pegasas,
+  item7Pegasas,
+  item8Pegasas,
+  item9Pegasas,
+  item10Pegasas,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -1195,7 +1205,7 @@ class Player {
       : customer === 'Pieno Žvaigždės'
       ? playerPienoZvaigzdes
       : customer === 'Pegasas'
-      ? playerPegasass
+      ? playerPegasas
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1358,7 +1368,18 @@ class Fruit {
       ];
     } else {
       // Default catch images if none of the above conditions are met
-      this.images = [catch1, catch2, catch3, catch4, catch5];
+      this.images = [
+        item1Pegasas,
+        item2Pegasas,
+        item3Pegasas,
+        item4Pegasas,
+        item5Pegasas,
+        item6Pegasas,
+        item7Pegasas,
+        item8Pegasas,
+        item9Pegasas,
+        item10Pegasas,
+      ];
     }
   }
 
@@ -1464,7 +1485,18 @@ class Fruit {
       ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
-      this.fruitType = ['catch1', 'catch2', 'catch3', 'catch4', 'catch5'][this.fruitNumber];
+      this.fruitType = [
+        'item1Pegasas',
+        'item2Pegasas',
+        'item3Pegasas',
+        'item4Pegasas',
+        'item5Pegasas',
+        'item6Pegasas',
+        'item7Pegasas',
+        'item8Pegasas',
+        'item9Pegasas',
+        'item10Pegasas',
+      ][this.fruitNumber];
     }
 
     if (this.customer.includes('Gamtos Ateitis')) {
