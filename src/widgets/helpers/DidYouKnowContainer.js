@@ -267,7 +267,7 @@ export class DidYouKnowContainer {
 
       tableHTML += `
         <td style="padding:5px;text-align: center; border: none;">
-        <div id="image-${index}" style="border-radius:20px;">
+        <div id="image-${index}" >
         <img class='image-container' style='opacity:1;width:${
           this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
         };height:${
@@ -432,7 +432,7 @@ ${
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-      this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
+      this.prop === 'Pegasas' ? '140px' : this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
     }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin:10px;border-spacing:3px;width:100%;border-collapse:separate">

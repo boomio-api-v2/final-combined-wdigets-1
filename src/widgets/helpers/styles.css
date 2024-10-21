@@ -29,7 +29,6 @@
 
 
 .image-container {
-  border-radius: 20px;
   width: 60px;
   height: 60px;
   cursor: pointer;
@@ -43,7 +42,7 @@
   height:100%;
   max-width:230px;
   max-height:230px;
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(2.2);
   z-index: 9999; /* Ensure the enlarged image is on top of other elements */
 }
 .input-register-container{
