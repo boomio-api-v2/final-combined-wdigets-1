@@ -12,12 +12,14 @@
 	src: url('./assets/fonts/BotsmaticOutline.ttf') 
 }
 @font-face {
-	font-family: 'BotsmaticDemo'; 
+	font-family: Pixelify Sans; 
 	src: url('./assets/fonts/BotsmaticDemo.ttf') 
 }
 ::-webkit-scrollbar {
 	width: 0;
   }
+
+  @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap');
 
 body,
 html {
@@ -242,7 +244,7 @@ main{
 	font-size: 35px;
 }
 .mainTitle{
-	font-family: 'BotsmaticDemo';
+	font-family: Pixelify Sans;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -259,7 +261,7 @@ main{
 
 }
 .pause, .gameOver{
-	background: url('./assets/gui/popup.png');
+	background: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/popup.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
@@ -290,7 +292,7 @@ main{
 	display: flex;
 	justify-content: space-evenly;
 	z-index: 100;
-  font-family: 'BotsmaticDemo';
+  font-family: Pixelify Sans;
 
 }
 
@@ -303,7 +305,7 @@ main{
   width:150px;
   height: 80px;
   padding: 10px 20px;
-  background-image: url('./assets/gui/midBtn.png');
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/midBtn.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -326,7 +328,7 @@ main{
 	right: 20px;
 	top: 20px;
 }
-.replayButton, .homeButton, .playOnPauseButton {
+.replayButton, .replayButton1, .homeButton,.homeButton1, .playOnPauseButton {
 	height: 55px;
 	width: 55px;
 	margin: 20px;
@@ -343,7 +345,8 @@ main{
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
-	background-image: url('./assets/gui/smallBtn.png');
+	background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/smallBtn.png');
+  
 	background-size: contain;
 	background-repeat: no-repeat;
 	image-rendering: pixelated;
@@ -355,12 +358,14 @@ margin-right: 10px;}
 .soundBtn{
   height: 50px ;
   width: 50px ;
-	content: url('./assets/gui/soundOn.png');
+	content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/soundOn.png');
 }
 .soundBtnOff{
-	content: url('./assets/gui/soundOff.png');
+	content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/soundOff.png');
 	filter: brightness(0.6) !important;
 }
+
+
 .playOnPauseButton{
 	width: 50px;
 }
@@ -377,7 +382,7 @@ margin-right: 10px;}
 	left: 20px;
 	top: 5px;
 	color: #fff;
-	font-size: 60px;
+	font-size: 40px;
 }
 .coins{
 	position: absolute;
@@ -385,9 +390,9 @@ margin-right: 10px;}
   justify-content: baseline;
   align-items: baseline;
 	left: 20px;
-	top: 45px;
+	top: 55px;
 	color: #ffd502;
-	font-size: 45px;
+	font-size: 25px;
 }
 .coins img{
   width: 20px;
@@ -422,7 +427,8 @@ margin-right: 10px;}
 	filter: brightness(0.9);
 	background-size: cover;
 	background-position:top;
-	background-image: url('./stuff/bg.png');
+	background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/stuff/bg.png');
+  
 }
 .mainLeftInfo{
   position: absolute;
@@ -504,7 +510,7 @@ margin-right: 10px;}
   animation: fellOnTop 0.6s ease-in;
 }
 .storeBack{
-  content: url('./assets/gui/store.png');
+  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/store.png');
   height: 80%;
   position: relative;
 }
@@ -517,7 +523,7 @@ margin-right: 10px;}
   align-items: center;
   top: 30%;
   right: 10%;
-  content: url(./assets/gui/addBook.png);
+  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/addBook.png');
   height: 40%;
   cursor: pointer;
   background-size: contain;
@@ -532,7 +538,7 @@ margin-right: 10px;}
 }
 .saveMeAdd{
   align-items: center;
-  background-image: url(./assets/gui/smallBtn.png);
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/smallBtn.png');
   height: 40%;
   cursor: pointer;
   background-size: contain;
@@ -609,7 +615,7 @@ margin-right: 10px;}
   text-align: left;
 }
 .upgradeHolder{
-  background-image: url('./assets/gui/btn.png');
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/btn.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -696,7 +702,7 @@ margin-right: 10px;}
 	cursor: pointer;
 	font-family: 'pixelFlag';
 	background: none;
-	background-image: url('./assets/gui/btn.png');
+	background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/btn.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position:right;
@@ -735,8 +741,7 @@ margin-right: 10px;}
 }
 .credits{
   font-size: 30px;
-
-	font-family: 'BotsmaticDemo';
+	font-family: Pixelify Sans;
 }
 .credits a{
 	font-family: 'pixelFlag';
@@ -763,7 +768,6 @@ margin-right: 10px;}
 .loader {
   display: inline-block;
   position: relative;
-  left: 50%;
   top:40%;
   transform: translateX(-50%);
   width: 80px;
@@ -1001,7 +1005,7 @@ margin-right: 10px;}
     width: 30px;
     height: 25px;
   }
-  .replayButton, .homeButton, .playOnPauseButton {
+  .replayButton,.replayButton1, .homeButton,.homeButton1, .playOnPauseButton {
     height: 40px;
     width: 40px;
     margin: 10px;

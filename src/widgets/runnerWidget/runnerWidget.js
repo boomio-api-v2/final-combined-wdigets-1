@@ -18,8 +18,22 @@ import {
   UnisendIntroLV,
   UnisendIntroEE,
   newRecordIkea,
-  runngerbackground,
-} from './scripts/constants';
+  runnerbackground,
+  home,
+  redo,
+  up,
+  down,
+  left,
+  right,
+  coin,
+  add,
+  prize,
+  achieves,
+  cart,
+  play,
+  boost,
+  shield,
+} from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
@@ -43,8 +57,6 @@ class runnerWidget {
   }
 
   createContainer = () => {
-    const blurImage = new Image();
-    blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
     const newHighscoreImage = new Image();
@@ -162,10 +174,6 @@ class runnerWidget {
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
-    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 668px;position:absolute;opacity:0.37;pointer-events: none; display:block;" id="background_blur">
-
     ${
       this.showCompetitiveRegistration
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
@@ -195,10 +203,10 @@ class runnerWidget {
       </div>
       <div class="controlBlock hide">
         Controls
-        <img class='controlButton' src="assets/gui/W.png" alt="">
-        <div><img class='controlButton' src="assets/gui/A.png" alt="">
-          <img class='controlButton' src="assets/gui/S.png" alt="">
-          <img class='controlButton' src="assets/gui/D.png" alt="">
+        <img class='controlButton' src="${up}" alt="">
+        <div><img class='controlButton' src="${left}" alt="">
+          <img class='controlButton' src="${right}" alt="">
+          <img class='controlButton' src="${down}" alt="">
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="${
@@ -210,7 +218,7 @@ class runnerWidget {
       <div class="score hide"></div>
       <div class="coins hide">
         <div class="coinsText"></div>
-        <img src="./assets/sprites/collect/coin.png" alt="">
+        <img src="${coin}" alt="">
       </div>
 
       <div class="leftButtonsBlock hide">
@@ -235,10 +243,10 @@ class runnerWidget {
     <div class="pause insideScreenRatio hide">
       PAUSED
       <div class="buttonHolder ">
-        <img class='replayButton button' src="assets/gui/Redo.png" alt="" onclick="Replay(); ">
+        <img class='replayButton1 button' src="assets/gui/Redo.png" alt="" ">
         <img class="playOnPauseButton button" src="assets/gui/Play.png" alt=""
           onclick="PauseToggle(); ">
-        <img class='homeButton button' src="assets/gui/Home.png" alt="" onclick="GoToHome(); ">
+        <img class='homeButton button' src="${home}" alt=""  ">
       </div>
     </div>
     <div class="gameOver insideScreenRatio hide">
@@ -246,16 +254,16 @@ class runnerWidget {
       <div class="score gameOverScore"></div>      
       <div class="gameOverCoinsHolder">
         <div class="gameOverCoins"></div>
-        <img class='payForLifeImg'src="assets/sprites/collect/coin.png" alt="">
+        <img class='payForLifeImg'src="${coin}" alt="">
      </div>
       <div class="saveMeHolder">
         save me!
         <div class="saveMeButtonsHolder">
           <div class="payForLife smallBtn saveBtn" onclick="payForLife()">
             100
-            <img class='payForLifeImg'src="assets/sprites/collect/coin.png" alt="">
+            <img class='payForLifeImg'src="${coin}" alt="">
          </div>
-           <img class='smallBtn saveBtn' src="assets/gui/add.png" alt=""
+           <img class='smallBtn saveBtn' src="${add}" alt=""
              onclick="showRevawardVideo(saveMe); "><br>
         </div>
         
@@ -263,8 +271,8 @@ class runnerWidget {
       </div>
       
       <div class="buttonHolder">
-        <img class='homeButton button' src="assets/gui/Home.png" alt="" onclick="GoToHome(); ">
-        <img class='replayButton button' src="assets/gui/Redo.png" alt="" onclick="Replay(); ">
+        <img class='homeButton1 button' src="${home}" alt="">
+        <img class='replayButton button' src="${redo}" alt="">
       </div>
     </div>
     <div class="mainMenu mainBg hide screenRatio">
@@ -282,39 +290,33 @@ class runnerWidget {
           <li></li>
         </ul>
         <div class='mainTitle'>
-          hood run
+          runner test
         </div>
 
         <div class="mainMenuButtons">
 
-          <div class='storeButton  menuButton'
-            onclick="toggleHide(storeBlock); storeCoinsText.innerText = Number(mainCoinBlock.innerText); storeSound.play()">
-            <img src="assets/gui/cart.png" alt="">
+          <div class='storeButton  menuButton' >
+            <img src="${cart}" alt="">
             store
           </div>
           <div class='playButton  menuButton' ">
-            <img src="assets/gui/Play.png" alt="">
+            <img src="${play}" alt="">
             play
           </div>
-          <div class='achivesButton  menuButton' onclick="toggleHide(achivesBlock); ">
-            <img src="assets/gui/achives.png" alt="">
+          <div class='achivesButton  menuButton' ">
+            <img src="${achieves}" alt="">
             achives
           </div>
         </div>
         <div class="mainLeftInfo">
           <div class="mainLeftWrapper">
-            <img id='prizeImg' src="assets/gui/prize.png">
+            <img id='prizeImg' src="${prize}">
             <div class='HighScoreBlock mainStatText'></div>
           </div>
           <div class="mainLeftWrapper">
-            <img id='coinImg' src="assets/sprites/collect/coin.png">
+            <img id='coinImg' src="${coin}">
             <div class='mainCoinsText mainStatText'></div>
           </div>
-        </div>
-
-
-        <div class="rightTopBlock">
-          <img class='smallBtn soundBtn' onclick="mutePage(); " alt="">
         </div>
 
       </div>
@@ -393,19 +395,19 @@ class runnerWidget {
             Slide under barriers 300 times
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/sprites/collect/shieldIcon.png" alt="">
+        <div class="achiveBlock lock"><img class='achiveImg' src="${shield}" alt="">
           <div class='achiveText'>
             <p>S.H.I.E.L.D.</p>
             Upgrade shield to max
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/sprites/collect/boosterIcon.png" alt="">
+        <div class="achiveBlock lock"><img class='achiveImg' src="${boost}" alt="">
           <div class='achiveText'>
             <p>Flash</p>
             Upgrade booster to max
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/sprites/collect/coin.png" alt="">
+        <div class="achiveBlock lock"><img class='achiveImg' src="${coin}" alt="">
           <div class='achiveText'>
             <p>Uncle Pennybags</p>
             Earn 1000 coins
@@ -419,7 +421,7 @@ class runnerWidget {
         </div>
       </div>
       <div class="return-btn-holder">
-        <button class='btn return-btn' onclick="toggleHide(achivesBlock); ">
+        <button class='btn return-btn'>
           Return
         </button>
       </div>
@@ -429,16 +431,16 @@ class runnerWidget {
         <div class="storeBack"></div>
         <div class="storeCoins">
           <div class="storeCoinsText"></div>
-          <img src="./assets/sprites/collect/coin.png" alt="">
+          <img src="${coin}" alt="">
         </div>
-          <img class='addBtn' src="assets/gui/add.png" alt=""
+          <img class='addBtn' src="${add}" alt=""
             onclick="showRevawardVideo(addCoins); "><br>
         <div class="upgradesWrapper">
           <div class="upgrade">
             <div class="shieldUpgradeHolder">
               Shield
               <div class="upgradeHolder">
-                <img src="assets/sprites/collect/shieldIcon.png" alt="">
+                <img src="${shield}" alt="">
                 <div class="upgradeProgress">
                   <div class="upgradeLevel shieldLevel"></div>
                   <div class="upgradeLevel shieldLevel"></div>
@@ -450,7 +452,7 @@ class runnerWidget {
             <div class="upgradeBtn smallBtn" onclick="Upgrade('shield')">
               <div class="upgradeBtnContent">
                 <div class="shieldCost"></div>
-                <img src="assets/sprites/collect/coin.png" class="upgradeCoinImg" alt="">
+                <img src="${coin}" class="upgradeCoinImg" alt="">
               </div>
             </div>
           </div>
@@ -458,7 +460,7 @@ class runnerWidget {
             <div class="boosterUpgradeHolder">
               Booster
               <div class="upgradeHolder">
-                <img src="assets/sprites/collect/boosterIcon.png" alt="">
+                <img src="${boost}" alt="">
                 <div class="upgradeProgress">
                   <div class="upgradeLevel boosterLevel"></div>
                   <div class="upgradeLevel boosterLevel"></div>
@@ -470,14 +472,14 @@ class runnerWidget {
             <div class="upgradeBtn smallBtn" onclick="Upgrade('booster')">
               <div class="upgradeBtnContent">
                 <div class="boosterCost"></div>
-                <img src="assets/sprites/collect/coin.png" class="upgradeCoinImg" alt="">
+                <img src="${coin}" class="upgradeCoinImg" alt="">
               </div>
             </div>
           </div>
 
         </div>
       </div>
-      <button class='btn return-btn store-return-btn' onclick="toggleHide(storeBlock); ">
+      <button class='btn return-btn store-return-btn'">
         Return
       </button>
 
@@ -570,11 +572,11 @@ class runnerWidget {
     var player;
     var activeTime;
     const toggleHide = (block) => block.classList.toggle('hide');
-    const highScore = localStorage.getItem('HI') > 0 ? localStorage.getItem('HI') : 0;
-    const myCoins = localStorage.getItem('myCoins') > 0 ? localStorage.getItem('myCoins') : 0;
-    const numberOfJumps = localStorage.getItem('jumps') > 0 ? localStorage.getItem('jumps') : 0;
-    const numberOfDeaths = localStorage.getItem('deaths') > 0 ? localStorage.getItem('deaths') : 0;
-    const numberOfSlides = localStorage.getItem('slides') > 0 ? localStorage.getItem('slides') : 0;
+    let highScore = localStorage.getItem('HI') > 0 ? localStorage.getItem('HI') : 0;
+    let myCoins = localStorage.getItem('myCoins') > 0 ? localStorage.getItem('myCoins') : 0;
+    let numberOfJumps = localStorage.getItem('jumps') > 0 ? localStorage.getItem('jumps') : 0;
+    let numberOfDeaths = localStorage.getItem('deaths') > 0 ? localStorage.getItem('deaths') : 0;
+    let numberOfSlides = localStorage.getItem('slides') > 0 ? localStorage.getItem('slides') : 0;
     const shieldLevel =
       localStorage.getItem('shieldLevel') > 1 ? localStorage.getItem('shieldLevel') : 1;
     const boosterLevel =
@@ -583,21 +585,53 @@ class runnerWidget {
     // Load sprites
     const runSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/6823c695645059309df3dbf37840360a5cf94e0c/src/widgets/runnerWidget/assets/sprites/run',
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/run',
       8,
     );
-    const slideSprites = loadSprites(loader, './assets/sprites/slide', 6);
-    const jumpSprites = loadSprites(loader, './assets/sprites/jump', 6);
-    const deathSprites = loadSprites(loader, './assets/sprites/death', 4);
-    const barriersSprites = loadSprites(loader, './assets/sprites/barriers', 7);
-    const bgSprites = loadSprites(loader, './assets/bg', 8);
-    const fgSprites = loadSprites(loader, './assets/fg', 2);
+    const slideSprites = loadSprites(
+      loader,
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/slide',
+      6,
+    );
+    const jumpSprites = loadSprites(
+      loader,
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/jump',
+      6,
+    );
+    const deathSprites = loadSprites(
+      loader,
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/death',
+      4,
+    );
+    const barriersSprites = loadSprites(
+      loader,
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/barriers',
+      7,
+    );
+    const bgSprites = loadSprites(
+      loader,
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/bg',
+      8,
+    );
+    const fgSprites = loadSprites(
+      loader,
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/fg',
+      2,
+    );
 
     const CollectSprites = [
-      loader.addImage('./assets/sprites/collect/shield.png'),
-      loader.addImage('./assets/sprites/collect/shieldIcon.png'),
-      loader.addImage('./assets/sprites/collect/boosterIcon.png'),
-      loader.addImage('./assets/sprites/collect/coin.png'),
+      loader.addImage(
+        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/shield.png',
+      ),
+      loader.addImage(
+        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/shieldIcon.png',
+      ),
+      loader.addImage(
+        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/boosterIcon.png',
+      ),
+      loader.addImage(
+        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/coin.png',
+      ),
     ];
 
     class GameObject {
@@ -750,8 +784,71 @@ class runnerWidget {
         // Media session logic can be added here
       }
 
+      let ysdk;
+
+      // function showFullAdd() { need to check
+      //   ysdk.adv.showFullscreenAdv({
+      //     callbacks: {
+      //       onClose: function (wasShown) {
+      //         // some action after close
+      //       },
+      //       onError: function (error) {
+      //         // some action on error
+      //       },
+      //     },
+      //   });
+      // }
+
+      function showRevawardVideo(getReward) {
+        ysdk.adv.showRewardedVideo({
+          callbacks: {
+            onOpen: () => {},
+            onRewarded: () => {},
+            onClose: () => {
+              getReward();
+            },
+            onError: (e) => {
+              console.log('Error while open video ad:', e);
+            },
+          },
+        });
+      }
+
+      const addCoins = () => {
+        myCoins = Number(myCoins) + 100;
+        localStorage.setItem('myCoins', myCoins);
+        storeCoinsText.innerText = Number(myCoins);
+        mainCoinBlock.innerText = Number(myCoins);
+
+        coinSound.play();
+      };
+
+      const saveMe = () => {
+        player.rise = true;
+        gameOver = false;
+        stopGame = false;
+        player.dead = false;
+        toggleHide(gameOverBlock);
+        toggleHide(pauseButton);
+        toggleHide(scoreBlock);
+        toggleHide(coinsBlock);
+        player.shield = true;
+        activeTime = 1;
+        Start();
+        canvas.focus();
+      };
+
+      function gameInit() {
+        // YaGames.init()
+        //   .then((_sdk) => {
+        //     ysdk = _sdk;
+        //     ysdk.features.LoadingAPI?.ready(); // Показываем SDK, что игра загрузилась и можно начинать играть
+        //   })
+        //   .catch(console.error);
+      }
+
       loader.addCompletionListener(() => {
-        window.addEventListener('load', function () {
+        const initGame = () => {
           if (
             'ontouchstart' in window ||
             navigator.maxTouchPoints > 0 ||
@@ -762,11 +859,11 @@ class runnerWidget {
           }
 
           for (let i = 0; i < mainBgBlocks.length; i += 1) {
-            mainBgBlocks[i].style.backgroundImage = './stuff/bg.png';
+            mainBgBlocks[i].style.backgroundImage = `url(${runnerbackground})`; // Ensure url syntax
           }
 
           for (let i = 0; i < smallBtnBlocks.length; i += 1) {
-            smallBtnBlocks[i].style.backgroundImage = './stuff/bg.png';
+            smallBtnBlocks[i].style.backgroundImage = `url(${runnerbackground})`; // Ensure url syntax
           }
 
           toggleHide(mainMenuBlock);
@@ -774,12 +871,20 @@ class runnerWidget {
           toggleHide(controlBlock);
           bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
           gameInit();
-        });
+        };
+
+        // Use DOMContentLoaded event
+        if (document.readyState === 'loading') {
+          // Document is still loading
+          document.addEventListener('DOMContentLoaded', initGame);
+        } else {
+          // Document has already loaded
+          initGame();
+        }
       });
     }
 
     const keyRightHandler = (e) => {
-      console.log('asda');
       if (e.keyCode == 39 || e.keyCode == 68) {
         //right
         rightPressed = true;
@@ -804,8 +909,6 @@ class runnerWidget {
     };
 
     const keyLeftHandler = (e) => {
-      console.log('asda');
-
       if (e.keyCode == 39 || e.keyCode == 68) {
         rightPressed = false;
       }
@@ -841,12 +944,9 @@ class runnerWidget {
     };
 
     const PlayButtonActivate = () => {
-      console.log('asda');
-
       const toggleHide = (block) => block.classList.toggle('hide');
 
       ResetGlobalVariables();
-      console.log('a');
       document.addEventListener('keydown', keyRightHandler, false);
       document.addEventListener('keyup', keyLeftHandler, false);
       toggleHide(mainMenuBlock);
@@ -860,7 +960,25 @@ class runnerWidget {
       Start();
     };
     document.querySelector('.playButton').addEventListener('click', PlayButtonActivate);
+    document.querySelector('.homeButton').addEventListener('click', GoToHome);
+    document.querySelector('.homeButton1').addEventListener('click', GoToHome);
 
+    document.querySelector('.replayButton').addEventListener('click', Replay);
+    document.querySelector('.replayButton1').addEventListener('click', Replay);
+
+    document.querySelector('.store-return-btn').addEventListener('click', () => {
+      toggleHide(storeBlock);
+    });
+    document.querySelector('.return-btn').addEventListener('click', () => {
+      toggleHide(achivesBlock);
+    });
+    document.querySelector('.achivesButton').addEventListener('click', () => {
+      toggleHide(achivesBlock);
+    });
+    document.querySelector('.storeButton').addEventListener('click', () => {
+      toggleHide(storeBlock);
+      storeCoinsText.innerText = Number(mainCoinBlock.innerText);
+    });
     const PauseToggle = () => {
       const toggleHide = (block) => block.classList.toggle('hide');
 
@@ -955,32 +1073,6 @@ class runnerWidget {
         }, 75);
       }
     }
-
-    const bg = [
-      new Bg(bgSprites[0], 0, 0.1),
-      new Bg(bgSprites[0], canvas.height * bgRatio, 0.1),
-
-      new Bg(bgSprites[1], 0, 0.15),
-      new Bg(bgSprites[1], canvas.height * bgRatio, 0.15),
-
-      new Bg(bgSprites[2], 0, 0.25),
-      new Bg(bgSprites[2], canvas.height * bgRatio, 0.25),
-
-      new Bg(bgSprites[3], 0, 0.3),
-      new Bg(bgSprites[3], canvas.height * bgRatio, 0.3),
-
-      new Bg(bgSprites[7], 0, 0.4),
-      new Bg(bgSprites[7], canvas.height * bgRatio, 0.4),
-
-      new Bg(bgSprites[4], 0, 0.6),
-      new Bg(bgSprites[4], canvas.height * bgRatio, 0.6),
-
-      new Bg(bgSprites[5], 0, 1),
-      new Bg(bgSprites[5], canvas.height * bgRatio, 1),
-
-      new Bg(bgSprites[6], 0, 1.2),
-      new Bg(bgSprites[6], canvas.height * bgRatio, 1.2),
-    ];
 
     const fg = [
       new Bg(fgSprites[0], 0, 0.3),
@@ -1133,7 +1225,6 @@ class runnerWidget {
       player.shieldTimer = 0;
       player.boostTimer = 0;
       Stop();
-      gameOverSound.play();
       setTimeout(() => {
         player.image = deathSprites[0];
         Draw();
@@ -1155,7 +1246,7 @@ class runnerWidget {
                 gameOverCoinsBlock.innerText =
                   Number(localStorage.getItem('myCoins')) + Number(coins);
                 player.dead = false;
-                showFullAdd();
+                // showFullAdd(); need to check
                 if (score > highScore) {
                   HIandRecord.innerHTML = 'new record!';
                   highScore = Number(score.toFixed(0));
@@ -1175,6 +1266,7 @@ class runnerWidget {
     }
 
     function Replay() {
+      console.log('replay');
       if (gameOver) {
         localStorage.setItem('myCoins', Number(localStorage.getItem('myCoins')) + Number(coins));
         mainCoinBlock.innerText = localStorage.getItem('myCoins');
@@ -1400,10 +1492,37 @@ class runnerWidget {
       }
     }
 
+    const bg = [
+      new Bg(bgSprites[0], 0, 0.1),
+      new Bg(bgSprites[0], canvas.height * bgRatio, 0.1),
+
+      new Bg(bgSprites[1], 0, 0.15),
+      new Bg(bgSprites[1], canvas.height * bgRatio, 0.15),
+
+      new Bg(bgSprites[2], 0, 0.25),
+      new Bg(bgSprites[2], canvas.height * bgRatio, 0.25),
+
+      new Bg(bgSprites[3], 0, 0.3),
+      new Bg(bgSprites[3], canvas.height * bgRatio, 0.3),
+
+      new Bg(bgSprites[7], 0, 0.4),
+      new Bg(bgSprites[7], canvas.height * bgRatio, 0.4),
+
+      new Bg(bgSprites[4], 0, 0.6),
+      new Bg(bgSprites[4], canvas.height * bgRatio, 0.6),
+
+      new Bg(bgSprites[5], 0, 1),
+      new Bg(bgSprites[5], canvas.height * bgRatio, 1),
+
+      new Bg(bgSprites[6], 0, 1.2),
+      new Bg(bgSprites[6], canvas.height * bgRatio, 1.2),
+    ];
+
     function Draw() {
       ctx.imageSmoothingQuality = 'high';
       ctx.imageSmoothingEnabled = true;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       for (var i = 0; i < bg.length; i += 1) {
         bg[i].image.addEventListener(
           'load',
@@ -1687,42 +1806,24 @@ class runnerWidget {
       }
     }
     function DrawObject(object) {
-      // Define widths and heights based on whether the object is the player or not
-      const playerWidth =
+      console.log(object.image);
+      var playerWidth =
         (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-      const playerHeight =
+      var playerHeight =
         (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-      const barrierWidth = canvas.height / 3.5;
-      const barrierHeight =
+      var barrierWidth = canvas.height / 3.5;
+      var barrierHight =
         canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight);
-
-      // Check if the image is loaded
-      if (object.image.complete) {
-        // If image is already loaded, draw immediately
+      object.image.addEventListener(
+        'load',
         ctx.drawImage(
           object.image,
           object.x,
           object.isPlayer ? object.y - jumpHeight : object.y,
           object.isPlayer ? playerWidth : barrierWidth * object.sizeCoef,
-          object.isPlayer ? playerHeight : barrierHeight * object.sizeCoef,
-        );
-      } else {
-        // If image is not loaded, wait for the load event
-        object.image.addEventListener('load', () => {
-          ctx.drawImage(
-            object.image,
-            object.x,
-            object.isPlayer ? object.y - jumpHeight : object.y,
-            object.isPlayer ? playerWidth : barrierWidth * object.sizeCoef,
-            object.isPlayer ? playerHeight : barrierHeight * object.sizeCoef,
-          );
-        });
-
-        // It's also good to handle error in case the image fails to load
-        object.image.addEventListener('error', () => {
-          console.error('Failed to load image:', object.image.src);
-        });
-      }
+          object.isPlayer ? playerHeight : barrierHight * object.sizeCoef,
+        ),
+      );
     }
 
     function RandomInteger(min, max) {
