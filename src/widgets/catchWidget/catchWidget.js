@@ -230,7 +230,8 @@ class CatchGame {
 
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
-            document.getElementById('background_blur').style.opacity = 0.37;
+            document.getElementById('background_blur').style.opacity =
+              this.customer === 'Pegasas' ? 0.5 : 0.37;
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
 
@@ -246,7 +247,8 @@ class CatchGame {
         } else {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
-            document.getElementById('background_blur').style.opacity = 0.37;
+            document.getElementById('background_blur').style.opacity =
+              this.customer === 'Pegasas' ? 0.5 : 0.37;
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             const inputContainer = document.querySelector('.input-container');
@@ -275,7 +277,8 @@ class CatchGame {
         setTimeout(() => {
           const canvas = document.getElementById('boomio-catch-canvas');
 
-          document.getElementById('background_blur').style.opacity = 0.37;
+          document.getElementById('background_blur').style.opacity =
+            this.customer === 'Pegasas' ? 0.5 : 0.37;
 
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
@@ -412,7 +415,9 @@ class CatchGame {
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
     <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 668px;position:absolute;opacity:0.37;pointer-events: none; display:block;" id="background_blur">
+    }; height: 668px;position:absolute;opacity:${
+      this.customer === 'Pegasas' ? 0.5 : 0.37
+    };pointer-events: none; display:block;" id="background_blur">
 
     ${
       this.showCompetitiveRegistration
@@ -420,7 +425,7 @@ class CatchGame {
         : ''
     }
 
-    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 280px);display:block;width:25px;height:25px;">
+    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:block;width:25px;height:25px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
@@ -632,7 +637,8 @@ class CatchGame {
                       }, 1000);
                       setTimeout(() => {
                         const canvas = document.getElementById('boomio-catch-canvas');
-                        document.getElementById('background_blur').style.opacity = 0.37;
+                        document.getElementById('background_blur').style.opacity =
+                          this.customer === 'Pegasas' ? 0.5 : 0.37;
                         canvas.style.transition = 'filter 0.6s ease';
                         canvas.style.filter = 'blur(2px)';
                         const inputContainer = document.querySelector('.input-container');
