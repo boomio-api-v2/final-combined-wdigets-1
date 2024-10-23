@@ -21,9 +21,10 @@
 
   @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap');
 
-body,
-html {
-	width: 100%;
+
+
+.boomio-runner-body{
+  width: 100%;
 	height: 100%;
 	background-color: black;
 	font-family: 'pixelFlag';
@@ -31,8 +32,7 @@ html {
 	overflow: hidden;
 	margin: 0;
 }
-
-.circles{
+.boomio-circles{
 	position: absolute;
     overflow: hidden;
 	height: 100%;
@@ -43,7 +43,7 @@ html {
 	z-index: 0;
 }
 
-.circles li{
+.boomio-circles li{
     position: absolute;
     display: block;
     list-style: none;
@@ -57,7 +57,7 @@ html {
     
 }
 
-.circles li:nth-child(1){
+.boomio-circles li:nth-child(1){
     left: 25%;
     width: 80px;
     height: 80px;
@@ -66,7 +66,7 @@ html {
 }
 
 
-.circles li:nth-child(2){
+.boomio-circles li:nth-child(2){
     left: 10%;
     width: 50px;
     height: 50px;
@@ -74,7 +74,7 @@ html {
     animation-duration: 18s;
 }
 
-.circles li:nth-child(3){
+.boomio-circles li:nth-child(3){
     left: 70%;
     width: 30px;
     height: 30px;
@@ -82,7 +82,7 @@ html {
 	animation-duration: 8s;
 }
 
-.circles li:nth-child(4){
+.boomio-circles li:nth-child(4){
     left: 40%;
     width: 60px;
     height: 60px;
@@ -90,14 +90,14 @@ html {
     animation-duration: 17s;
 }
 
-.circles li:nth-child(5){
+.boomio-circles li:nth-child(5){
     left: 65%;
     width: 20px;
     height: 20px;
     animation-delay: 0s;
 }
 
-.circles li:nth-child(6){
+.boomio-circles li:nth-child(6){
     left: 75%;
     width: 80px;
     height: 80px;
@@ -105,7 +105,7 @@ html {
 	animation-duration: 6s;
 }
 
-.circles li:nth-child(7){
+.boomio-circles li:nth-child(7){
     left: 35%;
     width: 50px;
     height: 50px;
@@ -113,7 +113,7 @@ html {
 	animation-duration: 20s;
 }
 
-.circles li:nth-child(8){
+.boomio-circles li:nth-child(8){
     left: 50%;
     width: 25px;
     height: 25px;
@@ -121,7 +121,7 @@ html {
     animation-duration: 15s;
 }
 
-.circles li:nth-child(9){
+.boomio-circles li:nth-child(9){
     left: 20%;
     width: 40px;
     height: 40px;
@@ -129,7 +129,7 @@ html {
     animation-duration: 10s;
 }
 
-.circles li:nth-child(10){
+.boomio-circles li:nth-child(10){
     left: 85%;
     width: 100px;
     height: 100px;
@@ -161,25 +161,25 @@ main{
 	justify-content: center;
 }
 
-.screenRatio{
+.boomio-screenRatio{
 	padding: 0;
 	margin: 0;
 	width: 100%;
 	height: 100%;
 }
-.insideScreenRatio{
+.boomio-insideScreenRatio{
 	padding: 20px;
 	margin: 0;
 	width: 70%;
 	height: 60%;
 }
 
-.wrapper {
+.boomio-runner-wrapper {
 	position: relative;
 	overflow: hidden;
 }
 
-.canvas{
+.boomio-runner-canvas{
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -188,7 +188,7 @@ main{
 	background: #000;
 	z-index: -10;
 }
-.controlBlock{
+.boomio-runner-controlBlock{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -205,14 +205,14 @@ main{
   	transform: translate(-50%, -50%);
 	transition: 1s;
 }
-.controlButton{
+.boomio-runner-controlButton{
 	
 	height: 45px;
 	width: 45px;
 	margin: 4px;
 	image-rendering: pixelated;
 }
-.mobileControlButt{
+.boomio-runner-mobileControlButt{
 	height:13vh;
 	width: auto;
 	image-rendering: pixelated;
@@ -220,17 +220,17 @@ main{
 	border-radius: 20%;
 	padding: 10px;
 }
-.leftButtonsBlock{
+.boomio-runner-leftButtonsBlock{
 	display: none;
 }
-.rightButtonsBlock{
+.boomio-runner-rightButtonsBlock{
 	display: none;
 }
 
-.pause,
-.gameOver,
-.mainMenu, 
-.credits, .runner-tutorial, .achives, .store{
+.boomio-runner-pause,
+.boomio-runner-gameOver,
+.boomio-runner-mainMenu, 
+.boomio-runner-credits, .runner-tutorial, .boomio-runner-achives, .store{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -243,7 +243,7 @@ main{
 	text-align: center;
 	font-size: 35px;
 }
-.mainTitle{
+.boomio-runner-mainTitle{
 	font-family: Pixelify Sans;
 	display: flex;
 	flex-direction: column;
@@ -253,14 +253,14 @@ main{
 	z-index: 100;
   line-height: 1.3;
 }
-.subtitle{
+.boomio-runner-subtitle{
 	font-family: 'pixelFlag';
 	font-weight: bold;
 	font-size: 40px;
 	letter-spacing: 3px;
 
 }
-.pause, .gameOver{
+.boomio-runner-pause, .boomio-runner-gameOver{
 	background: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/popup.png');
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -285,7 +285,7 @@ main{
     opacity: 1;
   }
 }
-.mainMenuButtons{
+.boomio-runner-mainMenuButtons{
   margin-top:80px;
   width: 100%;
   font-size: 20px;
@@ -296,7 +296,7 @@ main{
 
 }
 
-.menuButton {
+.boomio-runner-menuButton {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -313,11 +313,11 @@ main{
   transition: 0.3s;
 
 }
-.playButton{
+.boomio-runner-playButton{
   position: relative;
   bottom: 100px
 }
-.menuButton img{
+.boomio-runner-menuButton img{
   height: 40px;
   margin-right: 10px;
 }
@@ -333,7 +333,7 @@ main{
 	width: 55px;
 	margin: 20px;
 }
-.rightTopBlock{
+.boomio-rightTopBlock{
 	position:absolute;
 	display: flex;
 	align-items: center;
@@ -397,7 +397,7 @@ margin-right: 10px;}
 .coins img{
   width: 20px;
 }
-.storeCoins{
+.boomio-runner-storeCoins{
   position: absolute;
   display: flex;
   align-items: center;
@@ -405,7 +405,7 @@ margin-right: 10px;}
   top: 20%;
   left: 5%;
 }
-.storeCoins img{
+.boomio-runner-storeCoins img{
   width: 40px;
   height: 35px;
 }
@@ -420,7 +420,7 @@ margin-right: 10px;}
 }
 
 
-.mainBg{
+.boomio-runner-mainBg{
 	font-family: 'pixelFlag';
 	display: flex;
 	flex-direction: row;
@@ -430,7 +430,7 @@ margin-right: 10px;}
 	background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/stuff/bg.png');
   
 }
-.mainLeftInfo{
+.boomio-runner-mainLeftInfo{
   position: absolute;
 	left: 25px;
 	top: 30px;
@@ -443,24 +443,24 @@ margin-right: 10px;}
 	align-items: center;
   margin-bottom: 10px;
 }
-.mainStatText{
+.boomio-runner-mainStatText{
   font-weight: 600;
   font-size: 55px;
   margin-right: 15px;
 }
-#prizeImg{
+#boomio-runner-prizeImg{
 	width: 50px;
 	height: auto;
 	margin-right: 15px;
 }
 
-#coinImg{
+#boomio-runner-coinImg{
 	width: 50px;
 	height: auto;
 	margin-right: 15px;
 }
 
-.credits, .achives, .store{
+.boomio-runner-credits, .boomio-runner-achives, .store{
 	flex-direction: column;
 	font-size: 50px;
 	text-shadow: unset;
@@ -470,7 +470,7 @@ margin-right: 10px;}
 	justify-content: space-between;
 }
 
-.achivesHolder{
+.boomio-runner-achivesHolder{
   animation: fromTop 0.6s ;
 }
 
@@ -496,7 +496,7 @@ margin-right: 10px;}
   padding: 0;
 }
 
-.achivesHolder{
+.boomio-runner-achivesHolder{
 	width: 100%;
 	display: flex;
 	align-items: flex-start;
@@ -504,21 +504,21 @@ margin-right: 10px;}
 	flex-wrap: wrap;
 }
 
-.storeHolder{
+.boomio-runner-storeHolder{
   height: 100%;
   position: relative;
   animation: fellOnTop 0.6s ease-in;
 }
-.storeBack{
+.boomio-runner-storeBack{
   content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/store.png');
   height: 80%;
   position: relative;
 }
-.store-return-btn{
+.boomio-runner-store-return-btn{
   position: absolute;
   bottom: 20px;
 }
-.addBtn{
+.boomio-runner-addBtn{
   position: absolute;
   align-items: center;
   top: 30%;
@@ -529,14 +529,14 @@ margin-right: 10px;}
   background-size: contain;
   background-repeat: no-repeat;
 }
-.addBtn:hover{
+.boomio-runner-addBtn:hover{
   filter: brightness(0.8);
 }
-.saveMeHolder{
+.boomio-runner-saveMeHolder{
   font-weight: normal;
   font-size: 30px;
 }
-.saveMeAdd{
+.boomio-runner-saveMeAdd{
   align-items: center;
   background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/smallBtn.png');
   height: 40%;
@@ -545,11 +545,11 @@ margin-right: 10px;}
   background-repeat: no-repeat;
   position: static;
 }
-.saveMeButtonsHolder{
+.boomio-runner-saveMeButtonsHolder{
   display: flex;
   align-items: flex-start;
 }
-.gameOverCoinsHolder{
+.boomio-runner-gameOverCoinsHolder{
   display: flex;
   align-items: baseline;
   font-size: 50px;
@@ -557,13 +557,13 @@ margin-right: 10px;}
   border-bottom: 5px solid white;
   padding: 0 15px;
 }
-.payForLife{
+.boomio-runner-payForLife{
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 25px;
 }
-.payForLifeImg{
+.boomio-runner-payForLifeImg{
   position: relative;
   top: 2px;
   width: 25px;
@@ -591,22 +591,22 @@ margin-right: 10px;}
   align-items: center;
 }
 
-.upgradeHolder img{
+.boomio-runner-upgradeHolder img{
   width: 50px;
   image-rendering:auto;
 
 }
-.upgradeHolder{
+.boomio-runner-upgradeHolder{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.upgradesWrapper{
+.boomio-runner-upgradesWrapper{
   position: absolute;
   top: 35%;
   left: 10%;
 }
-.shieldUpgradeHolder, .boosterUpgradeHolder{
+.boomio-runner-shieldUpgradeHolder, .boomio-runner-boosterUpgradeHolder{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -614,28 +614,28 @@ margin-right: 10px;}
   image-rendering: pixelated;
   text-align: left;
 }
-.upgradeHolder{
+.boomio-runner-upgradeHolder{
   background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/btn.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   padding: 10px;
 }
-.upgradeLevel{
+.boomio-runner-upgradeLevel{
   width: 20px;
   height: 20px;
   margin-right:10px ;
   border-radius: 50%;
   background-color: #27110938;
 }
-.activeLevel{
+.boomio-runner-activeLevel{
   background-color: #4b0808ad;
 }
-.upgradeProgress{
+.boomio-runner-upgradeProgress{
   margin-left: 15px;
   display: flex;
 }
-.upgradeBtn{
+.boomio-runner-upgradeBtn{
   margin: 0;
   margin-left: 10px;
   font-size:30px;
@@ -658,7 +658,7 @@ margin-right: 10px;}
     display: block;
   }
 }
-.achiveBlock{
+.boomio-runner-achiveBlock{
 	font-family: 'pixelFlag';
 	align-items: center;
 	font-size: 25px;
@@ -672,27 +672,27 @@ margin-right: 10px;}
 	border-radius: 10px 10px;
 }
 
-.achiveText{
+.boomio-achiveText{
 	text-align: center;
 }
-.achiveText p{
+.boomio-achiveText p{
 	margin: 0;
 	font-size: 30px;
 	text-decoration: underline 3px;
 }
-.achiveImg{
+.boomio-achiveImg{
 	height: 50px;
 	margin-right: 20px;
 }
-.lock{
+.boomio-lock{
 	opacity: 0.7;
 }
-.statsHolder{
+.boomio-statsHolder{
 	display: flex;
 	font-size: 30px;
 	margin-bottom: 20px
 }
-.btn {
+.boomio-btn {
 	width: auto;
 	height: auto;
 	padding: 30px;
@@ -711,18 +711,18 @@ margin-right: 10px;}
 	color:rgb(255, 255, 255);
   transition: 0.3s;
 }
-.btn:hover, .menuButton:hover{
+.boomio-btn:hover, .boomio-runner-menuButton:hover{
 	filter: brightness(0.8);
   transform: scale(1.03);
 }
-.return-btn-holder{
+.boomio-runner-return-btn-holder{
 	width: 100%;
 	height: fit-content;
 	position:sticky;
 	right: 10px;
   bottom: 0px;
 }
-.return-btn{
+.boomio-runner-return-btn{
 	font-size: 35px;
   animation: fromBottom 0.6s ease-in-out;
 }
@@ -739,16 +739,16 @@ margin-right: 10px;}
 .stat{
 	margin-right: 20px;
 }
-.credits{
+.boomio-runner-credits{
   font-size: 30px;
 	font-family: Pixelify Sans;
 }
-.credits a{
+.boomio-runner-credits a{
 	font-family: 'pixelFlag';
 	font-weight: bold;
 	color: rgb(30, 0, 94)
 }
-.credits a:hover{
+.boomio-runner-credits a:hover{
 	color: rgb(51, 10, 140)
 }
 
@@ -760,12 +760,12 @@ margin-right: 10px;}
 	align-items: center;
 	justify-content: center;
 }
-.credits{
+.boomio-runner-credits{
 	text-shadow: unset;
 }
 
 
-.loader {
+.boomio-runner-loader {
   display: inline-block;
   position: relative;
   top:40%;
@@ -774,7 +774,7 @@ margin-right: 10px;}
   height: 80px;
   z-index: 1000;
 }
-.loader div {
+.boomio-runner-loader div {
   box-sizing: border-box;
   display: block;
   position: absolute;
@@ -786,13 +786,13 @@ margin-right: 10px;}
   animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #fff transparent transparent transparent;
 }
-.loader div:nth-child(1) {
+.boomio-runner-loader div:nth-child(1) {
   animation-delay: -0.45s;
 }
-.loader div:nth-child(2) {
+.boomio-runner-loader div:nth-child(2) {
   animation-delay: -0.3s;
 }
-.loader div:nth-child(3) {
+.boomio-runner-loader div:nth-child(3) {
   animation-delay: -0.15s;
 }
 @keyframes loader {
@@ -804,7 +804,7 @@ margin-right: 10px;}
   }
 }
 
-.hide {
+.boomio-hide {
 	display: none;
   opacity: 0;
 }
@@ -837,21 +837,21 @@ margin-right: 10px;}
 	}
 }
 @media (max-width: 920px){
-	.screenRatio{
+	.boomio-screenRatio{
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
 
 	}
-  .rightTopBlock{
+  .boomio-rightTopBlock{
     right: 30px;
     top: 30px;
   }
-  .mainTitle{
+  .boomio-runner-mainTitle{
     font-size: 50px;
     line-height: 1.4;
   }
-  .subtitle{
+  .boomio-runner-subtitle{
     font-size: 25px;
   }
   .smallBtn{
@@ -871,47 +871,47 @@ margin-right: 10px;}
     top: 35px;
 
   }
-  .btn{
+  .boomio-btn{
     padding: 18px;
   }
-  .return-btn {
+  .boomio-runner-return-btn {
     font-size: 25px;
 }
-  .playButton{
+  .boomio-runner-playButton{
     bottom: 65px;
   }
-  .menuButton img{
+  .boomio-runner-menuButton img{
     height: 30px;
   }
-  .menuButton {
+  .boomio-runner-menuButton {
     width:120;
     height: 50;
   }
-  .mainMenuButtons{
+  .boomio-runner-mainMenuButtons{
     font-size: 15px;
   }
-	.insideScreenRatio{
+	.boomio-insideScreenRatio{
 		overflow: scroll;
 		width: 85%;
 		height: 85%;
 	}
-  #coinImg {
+  #boomio-runner-coinImg {
     width: 40px;
   }
-  #coinImg {
+  #boomio-runner-coinImg {
     width: 40px;
   }
-	.mainStatText{
+	.boomio-runner-mainStatText{
 		font-size: 40px;
 	}
-	.pause, .gameOver{
+	.boomio-runner-pause, .boomio-runner-gameOver{
 		font-size: 35px;
 	}
   .HIandRecord {
     font-size: 40px;
     line-height: 0;
   } 
-  .saveBtn{
+  .boomio-runner-saveBtn{
     height: 40px;
     width: 40px;
   }
@@ -922,86 +922,86 @@ margin-right: 10px;}
 		height: 30px;
 		width: 30px
 	}
-	.rightTopBlock{
+	.boomio-rightTopBlock{
 		width: 30px;
 		height: 30px;
 	}
   .buttonHolder{
     height: 50px;
   }
-	.achiveImg{
+	.boomio-achiveImg{
 		height: 43px;
 		margin-right: 10px;
 	}
-	.achiveText p{
+	.boomio-achiveText p{
 		font-size: 25px;
 	}
-  .statsHolder{
+  .boomio-statsHolder{
     font-size: 25px;
   }
-	.achiveText{
+	.boomio-achiveText{
 		font-size: 19px;
 	}
-	.achivesHolder{
+	.boomio-runner-achivesHolder{
 		justify-content: space-evenly;
 	}
-	.achiveBlock{
+	.boomio-runner-achiveBlock{
 		justify-content: center;
 		width: 43%;
 	}
-	.achives{
+	.boomio-runner-achives{
 		padding: 10px;
 	}
-	.credits{
+	.boomio-runner-credits{
 		font-size: 30px;
 	}
-	.credits a{
+	.boomio-runner-credits a{
 		font-size: 25px;
 	}
-	.leftButtonsBlock{
+	.boomio-runner-leftButtonsBlock{
 		display: block;
 		position: absolute;
 		left: 40px;
 		bottom: 20px;
 	}
-	.rightButtonsBlock{
+	.boomio-runner-rightButtonsBlock{
 		display: block;
 		position: absolute;
 		right: 40px;
 		bottom: 20px;
 	}
-	.controlBlock{
+	.boomio-runner-controlBlock{
 		display: none;
 	}
-  .upgradesWrapper {
+  .boomio-runner-upgradesWrapper {
     top: 30%;
     left: 7%;
   }
-  .upgradeHolder{
+  .boomio-runner-upgradeHolder{
     padding: 12px;
   }
-  .upgradeHolder img {
+  .boomio-runner-upgradeHolder img {
     width: 34px;
   }
-  .shieldUpgradeHolder, .boosterUpgradeHolder{
+  .boomio-runner-shieldUpgradeHolder, .boomio-runner-boosterUpgradeHolder{
     font-size: 24px;
   }
-  .upgradeLevel{
+  .boomio-runner-upgradeLevel{
     height: 15px;
     width: 15px;
     margin-right: 8px;
   }
-  .storeCoins{
+  .boomio-runner-storeCoins{
     font-size: 35px;
   }
-  .mainLeftInfo{
+  .boomio-runner-mainLeftInfo{
   flex-direction: column;
   align-items: flex-end;    
   }
-  .mainStatText{
+  .boomio-runner-mainStatText{
     margin: 0;
   }
-  .storeCoins img {
+  .boomio-runner-storeCoins img {
     width: 30px;
     height: 25px;
   }
@@ -1010,13 +1010,13 @@ margin-right: 10px;}
     width: 40px;
     margin: 10px;
   }
-  .storeBack{
+  .boomio-runner-storeBack{
     height: 85%;
   }
-  .store-return-btn {
+  .boomio-runner-store-return-btn {
     position: absolute;
     bottom: 0px;}
-  .hide {
+  .boomio-hide {
     display: none;
   }
 }

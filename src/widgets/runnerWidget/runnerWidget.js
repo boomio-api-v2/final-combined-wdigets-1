@@ -33,6 +33,7 @@ import {
   play,
   boost,
   shield,
+  pause,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -161,52 +162,38 @@ class runnerWidget {
 
 
 
-    <img src=${
-      this.customer === 'Barbora'
-        ? BarboraIntro
-        : this.customer === 'Unisend' && this.language === 'EE'
-        ? UnisendIntroEE
-        : this.customer === 'Unisend' && this.language === 'LV'
-        ? UnisendIntroLV
-        : this.customer === 'Ikea'
-        ? IkeaIntro
-        : intro
-    } alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    
     ${
       this.showCompetitiveRegistration
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
     }
 
-    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 280px);display:block;width:32px;height:32px;">
-<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
-</div>
+    
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
 
 
  
-<body oncontextmenu="return false;">
+<div class="boomio-runner-body" oncontextmenu="return false;">
   <div id="turnLandscape">
     rotate your device
     <img style='margin-top: 30px' id='rotateIcon' src="assets/gui/orientation.png" alt="">
   </div>
   <main>
 
-    <div class="wrapper screenRatio">
-      <div class="loader">
+    <div class="boomio-runner-wrapper boomio-screenRatio">
+      <div class="boomio-runner-loader">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
       </div>
-      <div class="controlBlock hide">
+      <div class="boomio-runner-controlBlock boomio-hide">
         Controls
-        <img class='controlButton' src="${up}" alt="">
-        <div><img class='controlButton' src="${left}" alt="">
-          <img class='controlButton' src="${right}" alt="">
-          <img class='controlButton' src="${down}" alt="">
+        <img class='boomio-runner-controlButton' src="${up}" alt="">
+        <div><img class='boomio-runner-controlButton' src="${left}" alt="">
+          <img class='boomio-runner-controlButton' src="${right}" alt="">
+          <img class='boomio-runner-controlButton' src="${down}" alt="">
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="${
@@ -214,70 +201,70 @@ class runnerWidget {
      }">
       </canvas>
 
-      <img class="pauseButton button hide" src="assets/gui/Pause.png" alt="" onclick="PauseToggle(); ">
-      <div class="score hide"></div>
-      <div class="coins hide">
+      <img class="pauseButton button boomio-hide" src="${pause}" alt="">
+      <div class="score boomio-hide"></div>
+      <div class="coins boomio-hide">
         <div class="coinsText"></div>
         <img src="${coin}" alt="">
       </div>
 
-      <div class="leftButtonsBlock hide">
+      <div class="boomio-runner-leftButtonsBlock boomio-hide">
         <img id="mobileLeftButton" ontouchstart="leftPressed = true; this.style.opacity = '0.5'"
-          ontouchend="leftPressed = false;  this.style.opacity = '1'" class="mobileControlButt"
+          ontouchend="leftPressed = false;  this.style.opacity = '1'" class="boomio-runner-mobileControlButt"
           src="assets/gui/left.png" alt="">
         <img id="mobileRightButton" ontouchstart="rightPressed = true; this.style.opacity = '0.5'"
-          ontouchend="rightPressed = false; this.style.opacity = '1'" class="mobileControlButt"
+          ontouchend="rightPressed = false; this.style.opacity = '1'" class="boomio-runner-mobileControlButt"
           src="assets/gui/right.png" alt="">
       </div>
 
-      <div class="rightButtonsBlock hide">
+      <div class="boomio-runner-rightButtonsBlock boomio-hide">
         <img id="mobileUpButton" ontouchstart="jumpBegin(); this.style.opacity = '0.5'"
-          ontouchend="this.style.opacity = '1'" class="mobileControlButt" src="assets/gui/up.png" alt="">
+          ontouchend="this.style.opacity = '1'" class="boomio-runner-mobileControlButt" src="assets/gui/up.png" alt="">
         <img id="mobileDownButton" ontouchstart="slideBegin(); this.style.opacity = '0.5'"
-          ontouchend="slideEnd(); this.style.opacity = '1'" class="mobileControlButt" src="assets/gui/down.png" alt="">
+          ontouchend="slideEnd(); this.style.opacity = '1'" class="boomio-runner-mobileControlButt" src="assets/gui/down.png" alt="">
       </div>
 
 
 
     </div>
-    <div class="pause insideScreenRatio hide">
+    <div class="boomio-runner-pause boomio-insideScreenRatio boomio-hide">
       PAUSED
-      <div class="buttonHolder ">
+      <div class="boomio-buttonHolder ">
         <img class='replayButton1 button' src="assets/gui/Redo.png" alt="" ">
         <img class="playOnPauseButton button" src="assets/gui/Play.png" alt=""
           onclick="PauseToggle(); ">
         <img class='homeButton button' src="${home}" alt=""  ">
       </div>
     </div>
-    <div class="gameOver insideScreenRatio hide">
+    <div class="boomio-runner-gameOver boomio-insideScreenRatio boomio-hide">
       <div class='HIandRecord'></div>
       <div class="score gameOverScore"></div>      
-      <div class="gameOverCoinsHolder">
+      <div class="boomio-runner-gameOverCoinsHolder">
         <div class="gameOverCoins"></div>
-        <img class='payForLifeImg'src="${coin}" alt="">
+        <img class='boomio-runner-payForLifeImg'src="${coin}" alt="">
      </div>
-      <div class="saveMeHolder">
+      <div class="boomio-runner-saveMeHolder">
         save me!
-        <div class="saveMeButtonsHolder">
-          <div class="payForLife smallBtn saveBtn" onclick="payForLife()">
+        <div class="boomio-runner-saveMeButtonsHolder">
+          <div class="boomio-runner-payForLife smallBtn boomio-runner-saveBtn" onclick="boomio-runner-payForLife()">
             100
-            <img class='payForLifeImg'src="${coin}" alt="">
+            <img class='boomio-runner-payForLifeImg'src="${coin}" alt="">
          </div>
-           <img class='smallBtn saveBtn' src="${add}" alt=""
+           <img class='smallBtn boomio-runner-saveBtn' src="${add}" alt=""
              onclick="showRevawardVideo(saveMe); "><br>
         </div>
         
         
       </div>
       
-      <div class="buttonHolder">
+      <div class="boomio-buttonHolder">
         <img class='homeButton1 button' src="${home}" alt="">
         <img class='replayButton button' src="${redo}" alt="">
       </div>
     </div>
-    <div class="mainMenu mainBg hide screenRatio">
+    <div class="boomio-runner-mainMenu boomio-runner-mainBg boomio-hide boomio-screenRatio">
       <div class="mainMenuSide">
-        <ul class="circles">
+        <ul class="boomio-circles">
           <li></li>
           <li></li>
           <li></li>
@@ -289,167 +276,167 @@ class runnerWidget {
           <li></li>
           <li></li>
         </ul>
-        <div class='mainTitle'>
+        <div class='boomio-runner-mainTitle'>
           runner test
         </div>
 
-        <div class="mainMenuButtons">
+        <div class="boomio-runner-mainMenuButtons">
 
-          <div class='storeButton  menuButton' >
+          <div class='storeButton  boomio-runner-menuButton' >
             <img src="${cart}" alt="">
             store
           </div>
-          <div class='playButton  menuButton' ">
+          <div class='boomio-runner-playButton  boomio-runner-menuButton' ">
             <img src="${play}" alt="">
             play
           </div>
-          <div class='achivesButton  menuButton' ">
+          <div class='achivesButton  boomio-runner-menuButton' ">
             <img src="${achieves}" alt="">
             achives
           </div>
         </div>
-        <div class="mainLeftInfo">
+        <div class="boomio-runner-mainLeftInfo">
           <div class="mainLeftWrapper">
-            <img id='prizeImg' src="${prize}">
-            <div class='HighScoreBlock mainStatText'></div>
+            <img id='boomio-runner-prizeImg' src="${prize}">
+            <div class='HighScoreBlock boomio-runner-mainStatText'></div>
           </div>
           <div class="mainLeftWrapper">
-            <img id='coinImg' src="${coin}">
-            <div class='mainCoinsText mainStatText'></div>
+            <img id='boomio-runner-coinImg' src="${coin}">
+            <div class='mainCoinsText boomio-runner-mainStatText'></div>
           </div>
         </div>
 
       </div>
     </div>
-    <div class="tutorial  hide"></div>
-    <div class="achives mainBg screenRatio hide">
-      <div class="statsHolder">
+    <div class="tutorial  boomio-hide"></div>
+    <div class="boomio-runner-achives boomio-runner-mainBg boomio-screenRatio boomio-hide">
+      <div class="boomio-statsHolder">
         <div class="stat" id="numberOfDeathsBlock"></div>
         <div class='stat ' id="numberOfJumpsBlock"></div>
         <div class='stat' id="numberOfSlidesBlock"></div>
       </div>
-      <div class="achivesHolder">
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/pioneer.png" alt="">
-          <div class='achiveText'>
+      <div class="boomio-runner-achivesHolder">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/pioneer.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Pioneer</p>
             Score 100 points
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/bomb.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/bomb.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Extreme</p>
             Score 300 points
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/motorbike.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/motorbike.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Racer</p>
             Score 500 points
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/trees.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/trees.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Run forest, run</p>
             Score 750 points
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/gigachad.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/gigachad.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Gigachad</p>
             Score 1000 points
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/dead cat.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/dead cat.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Puss in boots</p>
             Die 8 times
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/guitar.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/guitar.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Smells like Nirvana</p>
             Die 27 times
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/earth.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/earth.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Main question</p>
             Die 42 times
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/skull.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/skull.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Memento mori</p>
             Die 100 times
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/bouncer.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/bouncer.png" alt="">
+          <div class='boomio-achiveText'>
             <p>Bouncer</p>
             Jump 500 times
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/slide.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/slide.png" alt="">
+          <div class='boomio-achiveText'>
             <p>On the ground</p>
             Slide under barriers 300 times
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="${shield}" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${shield}" alt="">
+          <div class='boomio-achiveText'>
             <p>S.H.I.E.L.D.</p>
             Upgrade shield to max
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="${boost}" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${boost}" alt="">
+          <div class='boomio-achiveText'>
             <p>Flash</p>
             Upgrade booster to max
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="${coin}" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${coin}" alt="">
+          <div class='boomio-achiveText'>
             <p>Uncle Pennybags</p>
             Earn 1000 coins
           </div>
         </div>
-        <div class="achiveBlock lock"><img class='achiveImg' src="assets/gui/success.png" alt="">
-          <div class='achiveText'>
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/success.png" alt="">
+          <div class='boomio-achiveText'>
             <p>All for one</p>
             Unlock all achives
           </div>
         </div>
       </div>
-      <div class="return-btn-holder">
-        <button class='btn return-btn'>
+      <div class="boomio-runner-return-btn-holder">
+        <button class='boomio-btn boomio-runner-return-btn'>
           Return
         </button>
       </div>
     </div>
-    <div class="store mainBg screenRatio hide">
-      <div class="storeHolder">
-        <div class="storeBack"></div>
-        <div class="storeCoins">
+    <div class="store boomio-runner-mainBg boomio-screenRatio boomio-hide">
+      <div class="boomio-runner-storeHolder">
+        <div class="boomio-runner-storeBack"></div>
+        <div class="boomio-runner-storeCoins">
           <div class="storeCoinsText"></div>
           <img src="${coin}" alt="">
         </div>
-          <img class='addBtn' src="${add}" alt=""
+          <img class='boomio-runner-addBtn' src="${add}" alt=""
             onclick="showRevawardVideo(addCoins); "><br>
-        <div class="upgradesWrapper">
+        <div class="boomio-runner-upgradesWrapper">
           <div class="upgrade">
-            <div class="shieldUpgradeHolder">
+            <div class="boomio-runner-shieldUpgradeHolder">
               Shield
-              <div class="upgradeHolder">
+              <div class="boomio-runner-upgradeHolder">
                 <img src="${shield}" alt="">
-                <div class="upgradeProgress">
-                  <div class="upgradeLevel shieldLevel"></div>
-                  <div class="upgradeLevel shieldLevel"></div>
-                  <div class="upgradeLevel shieldLevel"></div>
-                  <div class="upgradeLevel shieldLevel"></div>
+                <div class="boomio-runner-upgradeProgress">
+                  <div class="boomio-runner-upgradeLevel shieldLevel"></div>
+                  <div class="boomio-runner-upgradeLevel shieldLevel"></div>
+                  <div class="boomio-runner-upgradeLevel shieldLevel"></div>
+                  <div class="boomio-runner-upgradeLevel shieldLevel"></div>
                 </div>
               </div>
             </div>
-            <div class="upgradeBtn smallBtn" onclick="Upgrade('shield')">
+            <div class="boomio-runner-upgradeBtn smallBtn" onclick="Upgrade('shield')">
               <div class="upgradeBtnContent">
                 <div class="shieldCost"></div>
                 <img src="${coin}" class="upgradeCoinImg" alt="">
@@ -457,19 +444,19 @@ class runnerWidget {
             </div>
           </div>
           <div class="upgrade">
-            <div class="boosterUpgradeHolder">
+            <div class="boomio-runner-boosterUpgradeHolder">
               Booster
-              <div class="upgradeHolder">
+              <div class="boomio-runner-upgradeHolder">
                 <img src="${boost}" alt="">
-                <div class="upgradeProgress">
-                  <div class="upgradeLevel boosterLevel"></div>
-                  <div class="upgradeLevel boosterLevel"></div>
-                  <div class="upgradeLevel boosterLevel"></div>
-                  <div class="upgradeLevel boosterLevel"></div>
+                <div class="boomio-runner-upgradeProgress">
+                  <div class="boomio-runner-upgradeLevel boosterLevel"></div>
+                  <div class="boomio-runner-upgradeLevel boosterLevel"></div>
+                  <div class="boomio-runner-upgradeLevel boosterLevel"></div>
+                  <div class="boomio-runner-upgradeLevel boosterLevel"></div>
                 </div>
               </div>
             </div>
-            <div class="upgradeBtn smallBtn" onclick="Upgrade('booster')">
+            <div class="boomio-runner-upgradeBtn smallBtn" onclick="Upgrade('booster')">
               <div class="upgradeBtnContent">
                 <div class="boosterCost"></div>
                 <img src="${coin}" class="upgradeCoinImg" alt="">
@@ -479,13 +466,13 @@ class runnerWidget {
 
         </div>
       </div>
-      <button class='btn return-btn store-return-btn'">
+      <button class='boomio-btn boomio-runner-return-btn boomio-runner-store-return-btn'">
         Return
       </button>
 
   </main>
 
-</body>
+</div>
 
     </div>
     `;
@@ -509,19 +496,19 @@ class runnerWidget {
     const loader = new PxLoader();
 
     var ctx = canvas?.getContext('2d');
-    var wrapperBlock = document.getElementsByClassName('wrapper')[0];
+    var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
 
-    var creditsBlock = document.getElementsByClassName('credits')[0];
+    var creditsBlock = document.getElementsByClassName('boomio-runner-credits')[0];
     var storeBlock = document.getElementsByClassName('store')[0];
     var storeCoinsText = document.getElementsByClassName('storeCoinsText')[0];
-    var achivesBlock = document.getElementsByClassName('achives')[0];
-    var achivesBlocks = document.getElementsByClassName('achiveBlock');
+    var achivesBlock = document.getElementsByClassName('boomio-runner-achives')[0];
+    var achivesBlocks = document.getElementsByClassName('boomio-runner-achiveBlock');
 
-    var pauseBlock = document.getElementsByClassName('pause')[0];
+    var pauseBlock = document.getElementsByClassName('boomio-runner-pause')[0];
     var pauseButton = document.getElementsByClassName('pauseButton')[0];
-    var gameOverBlock = document.getElementsByClassName('gameOver')[0];
-    var mainMenuBlock = document.getElementsByClassName('mainMenu')[0];
-    var controlBlock = document.getElementsByClassName('controlBlock')[0];
+    var gameOverBlock = document.getElementsByClassName('boomio-runner-gameOver')[0];
+    var mainMenuBlock = document.getElementsByClassName('boomio-runner-mainMenu')[0];
+    var controlBlock = document.getElementsByClassName('boomio-runner-controlBlock')[0];
 
     var scoreBlock = document.getElementsByClassName('score')[0];
     var highScoreBlock = document.getElementsByClassName('HighScoreBlock')[0];
@@ -534,10 +521,10 @@ class runnerWidget {
     var GameOverScoreBlock = document.getElementsByClassName('score')[1];
     var HIandRecord = document.getElementsByClassName('HIandRecord')[0];
     var soundBtn = document.getElementsByClassName('soundBtn')[0];
-    var rightButtonsBlock = document.getElementsByClassName('rightButtonsBlock')[0];
-    var leftButtonsBlock = document.getElementsByClassName('leftButtonsBlock')[0];
-    var loaderBlock = document.getElementsByClassName('loader')[0];
-    var mainBgBlocks = document.getElementsByClassName('mainBg');
+    var rightButtonsBlock = document.getElementsByClassName('boomio-runner-rightButtonsBlock')[0];
+    var leftButtonsBlock = document.getElementsByClassName('boomio-runner-leftButtonsBlock')[0];
+    var loaderBlock = document.getElementsByClassName('boomio-runner-loader')[0];
+    var mainBgBlocks = document.getElementsByClassName('boomio-runner-mainBg');
     var smallBtnBlocks = document.getElementsByClassName('smallBtn');
 
     var boosterLevels = document.getElementsByClassName('boosterLevel');
@@ -546,7 +533,7 @@ class runnerWidget {
     var boosterCost = document.getElementsByClassName('boosterCost')[0];
     var shieldCost = document.getElementsByClassName('shieldCost')[0];
 
-    var saveMeBlock = document.getElementsByClassName('saveMeHolder')[0];
+    var saveMeBlock = document.getElementsByClassName('boomio-runner-saveMeHolder')[0];
 
     var normalSpeed;
     var speed;
@@ -571,7 +558,7 @@ class runnerWidget {
     var coins = 0;
     var player;
     var activeTime;
-    const toggleHide = (block) => block.classList.toggle('hide');
+    const toggleHide = (block) => block.classList.toggle('boomio-hide');
     let highScore = localStorage.getItem('HI') > 0 ? localStorage.getItem('HI') : 0;
     let myCoins = localStorage.getItem('myCoins') > 0 ? localStorage.getItem('myCoins') : 0;
     let numberOfJumps = localStorage.getItem('jumps') > 0 ? localStorage.getItem('jumps') : 0;
@@ -854,17 +841,17 @@ class runnerWidget {
             navigator.maxTouchPoints > 0 ||
             navigator.msMaxTouchPoints > 0
           ) {
-            rightButtonsBlock.classList.remove('hide');
-            leftButtonsBlock.classList.remove('hide');
+            rightButtonsBlock.classList.remove('boomio-hide');
+            leftButtonsBlock.classList.remove('boomio-hide');
           }
 
           for (let i = 0; i < mainBgBlocks.length; i += 1) {
             mainBgBlocks[i].style.backgroundImage = `url(${runnerbackground})`; // Ensure url syntax
           }
 
-          for (let i = 0; i < smallBtnBlocks.length; i += 1) {
-            smallBtnBlocks[i].style.backgroundImage = `url(${runnerbackground})`; // Ensure url syntax
-          }
+          // for (let i = 0; i < smallBtnBlocks.length; i += 1) {
+          //   smallBtnBlocks[i].style.backgroundImage = `url(${runnerbackground})`; // Ensure url syntax
+          // }
 
           toggleHide(mainMenuBlock);
           toggleHide(loaderBlock);
@@ -942,9 +929,19 @@ class runnerWidget {
       document.removeEventListener('keydown', keyRightHandler, false);
       document.removeEventListener('keyup', keyLeftHandler, false);
     };
+    const PauseToggle = () => {
+      const toggleHide = (block) => block.classList.toggle('boomio-hide');
+
+      stopGame ? Start() : Stop();
+      pause = pauseBlock.classList.contains('boomio-hide') ? true : false;
+      toggleHide(pauseBlock);
+      toggleHide(scoreBlock);
+      toggleHide(coinsBlock);
+      toggleHide(pauseButton);
+    };
 
     const PlayButtonActivate = () => {
-      const toggleHide = (block) => block.classList.toggle('hide');
+      const toggleHide = (block) => block.classList.toggle('boomio-hide');
 
       ResetGlobalVariables();
       document.addEventListener('keydown', keyRightHandler, false);
@@ -953,23 +950,26 @@ class runnerWidget {
       toggleHide(pauseButton);
       toggleHide(scoreBlock);
       toggleHide(coinsBlock);
-      saveMeBlock.classList.remove('hide');
+      saveMeBlock.classList.remove('boomio-hide');
 
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
       Start();
     };
-    document.querySelector('.playButton').addEventListener('click', PlayButtonActivate);
+    document
+      .querySelector('.boomio-runner-playButton')
+      .addEventListener('click', PlayButtonActivate);
     document.querySelector('.homeButton').addEventListener('click', GoToHome);
     document.querySelector('.homeButton1').addEventListener('click', GoToHome);
+    document.querySelector('.pauseButton').addEventListener('click', PauseToggle);
 
     document.querySelector('.replayButton').addEventListener('click', Replay);
     document.querySelector('.replayButton1').addEventListener('click', Replay);
 
-    document.querySelector('.store-return-btn').addEventListener('click', () => {
+    document.querySelector('.boomio-runner-store-return-btn').addEventListener('click', () => {
       toggleHide(storeBlock);
     });
-    document.querySelector('.return-btn').addEventListener('click', () => {
+    document.querySelector('.boomio-runner-return-btn').addEventListener('click', () => {
       toggleHide(achivesBlock);
     });
     document.querySelector('.achivesButton').addEventListener('click', () => {
@@ -979,16 +979,6 @@ class runnerWidget {
       toggleHide(storeBlock);
       storeCoinsText.innerText = Number(mainCoinBlock.innerText);
     });
-    const PauseToggle = () => {
-      const toggleHide = (block) => block.classList.toggle('hide');
-
-      stopGame ? Start() : Stop();
-      pause = pauseBlock.classList.contains('hide') ? true : false;
-      toggleHide(pauseBlock);
-      toggleHide(scoreBlock);
-      toggleHide(coinsBlock);
-      toggleHide(pauseButton);
-    };
 
     function loadSprites(loader, basePath, count) {
       const sprites = [];
@@ -1147,12 +1137,12 @@ class runnerWidget {
       var unlockCount = 0;
       for (var i = 0; i < achivesBlocks.length - 1; i += 1) {
         if (achives[i]) {
-          achivesBlocks[i].classList.remove('lock');
+          achivesBlocks[i].classList.remove('boomio-lock');
           unlockCount += 1;
         }
       }
       if (unlockCount == achivesBlocks.length - 1) {
-        achivesBlocks[achivesBlocks.length - 1].classList.remove('lock');
+        achivesBlocks[achivesBlocks.length - 1].classList.remove('boomio-lock');
       }
       document.getElementById('numberOfJumpsBlock').innerHTML = 'Jumps: ' + numberOfJumps;
       document.getElementById('numberOfDeathsBlock').innerHTML = 'Deaths: ' + numberOfDeaths;
@@ -1161,22 +1151,22 @@ class runnerWidget {
 
     function updateUpgrades() {
       for (let i = 0; i < shieldLevel; i += 1) {
-        shieldLevels[i].classList.add('activeLevel');
+        shieldLevels[i].classList.add('boomio-runner-activeLevel');
       }
       for (let i = 0; i < boosterLevel; i += 1) {
-        boosterLevels[i].classList.add('activeLevel');
+        boosterLevels[i].classList.add('boomio-runner-activeLevel');
       }
       if (shieldLevel < 4) {
         shieldCost.innerHTML = shieldLevel * 150;
       } else {
         shieldCost.innerHTML = 'MAX';
-        document.getElementsByClassName('upgradeCoinImg')[0].classList.add('hide');
+        document.getElementsByClassName('upgradeCoinImg')[0].classList.add('boomio-hide');
       }
       if (boosterLevel < 4) {
         boosterCost.innerHTML = boosterLevel * 150;
       } else {
         boosterCost.innerHTML = 'MAX';
-        document.getElementsByClassName('upgradeCoinImg')[1].classList.add('hide');
+        document.getElementsByClassName('upgradeCoinImg')[1].classList.add('boomio-hide');
       }
     }
     //localStorage.clear()
@@ -1255,7 +1245,7 @@ class runnerWidget {
                   HIandRecord.innerText = 'HighScore: ' + highScore;
                 }
                 if (player.rise) {
-                  saveMeBlock.classList.add('hide');
+                  saveMeBlock.classList.add('boomio-hide');
                 }
                 updateAchives();
               }, 80);
@@ -1274,7 +1264,7 @@ class runnerWidget {
         toggleHide(pauseButton);
         toggleHide(scoreBlock);
         toggleHide(coinsBlock);
-        saveMeBlock.classList.remove('hide');
+        saveMeBlock.classList.remove('boomio-hide');
       }
       if (pause) {
         toggleHide(pauseBlock);
