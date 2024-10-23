@@ -231,7 +231,7 @@ class CatchGame {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.5 : 0.37;
+              this.customer === 'Pegasas' ? 0.8 : 0.37;
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
 
@@ -248,7 +248,7 @@ class CatchGame {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.5 : 0.37;
+              this.customer === 'Pegasas' ? 0.8 : 0.37;
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             const inputContainer = document.querySelector('.input-container');
@@ -278,7 +278,7 @@ class CatchGame {
           const canvas = document.getElementById('boomio-catch-canvas');
 
           document.getElementById('background_blur').style.opacity =
-            this.customer === 'Pegasas' ? 0.5 : 0.37;
+            this.customer === 'Pegasas' ? 0.8 : 0.37;
 
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
@@ -413,11 +413,19 @@ class CatchGame {
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
-    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 668px;position:absolute;opacity:${
-      this.customer === 'Pegasas' ? 0.5 : 0.37
-    };pointer-events: none; display:block;" id="background_blur">
+
+
+    ${
+      this.customer === 'Pegasas'
+        ? `<div alt="Image Description" style="z-index:1;width: ${
+            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#8E1735" id="background_blur"></div>`
+        : `    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
+            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          }; height: 668px;position:absolute;opacity:${
+            this.customer === 'Pegasas' ? 0.8 : 0.37
+          };pointer-events: none; display:block;" id="background_blur">`
+    }
 
     ${
       this.showCompetitiveRegistration
@@ -506,6 +514,8 @@ class CatchGame {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const phone = document.querySelector('.boomio-competition-phone-input-field');
+
             const checkboxChange = this.checkboxChange;
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
@@ -577,10 +587,11 @@ class CatchGame {
               ) {
                 boomioService
                   .signal('', 'user_info', {
-                    emails_consent: this.checkboxChange,
+                    emails_consent: this.checkboxChange2,
                     user_email: emailInput?.value,
                     user_name: playerNameInput?.value,
                     game_code: this.game_code,
+                    phone: phone,
                   })
                   .then((response) => {
                     if (response.success === false) {
@@ -638,7 +649,7 @@ class CatchGame {
                       setTimeout(() => {
                         const canvas = document.getElementById('boomio-catch-canvas');
                         document.getElementById('background_blur').style.opacity =
-                          this.customer === 'Pegasas' ? 0.5 : 0.37;
+                          this.customer === 'Pegasas' ? 0.8 : 0.37;
                         canvas.style.transition = 'filter 0.6s ease';
                         canvas.style.filter = 'blur(2px)';
                         const inputContainer = document.querySelector('.input-container');

@@ -850,9 +850,13 @@ function startGame(scoreTableContainerInstance) {
         const email = emailInput?.value;
         const userEmail = customer === 'Ikea' ? await hashString(email) : emailInput?.value;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
 
         const checkboxImgSrc = checkboxImgChange.src; // Get the 'src' attribute of the image
+        const checkboxImgSrc2 = checkboxImgChange2.src; // Get the 'src' attribute of the image
+
         const checkboxChange = checkboxImgSrc.includes('Uncheck') ? false : true;
+        const checkboxChange2 = checkboxImgSrc2.includes('Uncheck') ? false : true;
 
         if (!checkboxChange) {
           document.getElementById('competition-checkbox-error').innerText =
@@ -904,7 +908,7 @@ function startGame(scoreTableContainerInstance) {
           if (showCompetitiveRegistration && checkboxChange) {
             boomioService
               .signal('', 'user_info', {
-                emails_consent: checkboxChange,
+                emails_consent: checkboxChange2,
                 user_email: userEmail,
                 user_name: playerNameInput?.value,
               })
