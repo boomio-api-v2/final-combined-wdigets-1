@@ -28,11 +28,18 @@
 }
 
 
-.image-container {
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
+
+.image-container-text {
+  display: none; /* Initially hidden */
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;
+  font-size:6px;
+  margin-top:190px;
+  text-decoration: underline;
+  font-weight:800;
 }
+
 
 .enlarge-image {
   position: absolute;
