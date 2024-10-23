@@ -305,7 +305,7 @@ export class DidYouKnowContainer {
       }' src=${item} alt="Scoreboard Image" >
       ${
         this.prop === 'Pegasas' && this.collectablesLinks[index]
-          ? `<div class='image-container-text'><a href="${this.collectablesLinks[index]}" target="_blank" style="color: white; text-decoration: underline;"><p style="max-width:280px">${this.collectablesLinks[index]}<p/></a></div>`
+          ? `<div class='image-container-text'><a href="${this.collectablesLinks[index]}" target="_blank" style="color: white; text-decoration: underline;"><p style="max-width:280px;line-height:10px;">${this.collectablesLinks[index]}<p/></a></div>`
           : ''
       }
         </div>
