@@ -161,7 +161,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? `Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro 80 Pegaso knygų.</br></br>${
                     this.scoreTable.user_best_score > 1500
                       ? 'O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU'
-                      : ''
+                      : 'O surinkus daugiau nei 1500 taškų gauk </br>5€ vertės nuolaidą iškart!'
                   }`
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'

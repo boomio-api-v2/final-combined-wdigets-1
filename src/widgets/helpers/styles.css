@@ -123,6 +123,13 @@
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       }
 
+      .boomio-competition-phone-input-field:focus {
+        outline: none; /* Remove default focus outline */
+        border-color: transparent; /* Change border color on focus */
+      }
+      .boomio-competition-phone-input-field:placeholder {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      }
     .boomio-custom-scrollbar::-webkit-scrollbar {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -171,7 +178,30 @@
   font-weight: 500;
     font-family: Georama;
 }
-
+.boomio-competition-phone-input-field::-webkit-input-placeholder {      color: rgba(61, 73, 40, 1);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  font-family: Georama;
+}
+.boomio-competition-phone-input-field:-moz-placeholder {      color: rgba(61, 73, 40, 1);
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+  font-family: Georama;
+}
+.boomio-competition-phone-input-field::-moz-placeholder {      color: rgba(61, 73, 40, 1);
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+  font-family: Georama;
+}
+.boomio-competition-phone-input-field:-ms-input-placeholder {      color: rgba(61, 73, 40, 1);
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+  font-family: Georama;
+}
   .boomio-competition-email-input-field::-webkit-input-placeholder {      color: rgba(61, 73, 40, 1);
     font-size: 16px;
     font-style: normal;
