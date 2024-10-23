@@ -201,7 +201,7 @@ class runnerWidget {
      }">
       </canvas>
 
-      <img class="pauseButton button boomio-hide" src="${pause}" alt="">
+      <img class="pauseButton boomio-runner-button boomio-hide" src="${pause}" alt="">
       <div class="score boomio-hide"></div>
       <div class="coins boomio-hide">
         <div class="coinsText"></div>
@@ -230,10 +230,10 @@ class runnerWidget {
     <div class="boomio-runner-pause boomio-insideScreenRatio boomio-hide">
       PAUSED
       <div class="boomio-buttonHolder ">
-        <img class='replayButton1 button' src="assets/gui/Redo.png" alt="" ">
-        <img class="playOnPauseButton button" src="assets/gui/Play.png" alt=""
+        <img class='replayButton1 boomio-runner-button' src="assets/gui/Redo.png" alt="" ">
+        <img class="playOnPauseButton boomio-runner-button" src="assets/gui/Play.png" alt=""
           onclick="PauseToggle(); ">
-        <img class='homeButton button' src="${home}" alt=""  ">
+        <img class='homeButton boomio-runner-button' src="${home}" alt=""  ">
       </div>
     </div>
     <div class="boomio-runner-gameOver boomio-insideScreenRatio boomio-hide">
@@ -258,8 +258,8 @@ class runnerWidget {
       </div>
       
       <div class="boomio-buttonHolder">
-        <img class='homeButton1 button' src="${home}" alt="">
-        <img class='replayButton button' src="${redo}" alt="">
+        <img class='homeButton1 boomio-runner-button' src="${home}" alt="">
+        <img class='replayButton boomio-runner-button' src="${redo}" alt="">
       </div>
     </div>
     <div class="boomio-runner-mainMenu boomio-runner-mainBg boomio-hide boomio-screenRatio">
