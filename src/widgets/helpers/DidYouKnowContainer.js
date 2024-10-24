@@ -397,6 +397,14 @@ ${
     if (this.prop === 'Pegasas') {
       this.addfunc();
     }
+
+    // Existing code to add event listener for competitionDidYouKnow
+    if (this.prop === 'Pegasas') {
+      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      competitionDidYouKnow.addEventListener('click', () => {
+        this.closeEnlargedImages();
+      });
+    }
   }
 
   addfunc() {
@@ -440,6 +448,30 @@ ${
         document.removeEventListener('click', closeImage);
       }
     });
+  }
+
+  closeEnlargedImages() {
+    // Find all images that are currently enlarged
+    const enlargedImages = document.querySelectorAll('.enlarge-image');
+
+    // Loop through the images and remove the 'enlarge-image' class
+    enlargedImages.forEach((image) => {
+      image.classList.remove('enlarge-image');
+
+      // If the image has a text container, hide it
+      const textElement = image.querySelector('.image-container-text');
+      if (textElement) {
+        textElement.style.display = 'none';
+      }
+    });
+
+    // Restore scoreboard lines if necessary
+    const firstLine = document.querySelector('.bomio-first-line');
+    const secondLine = document.querySelector('.bomio-second-line');
+    if (firstLine) firstLine.style.display = 'block';
+    if (secondLine) secondLine.style.display = 'block';
+
+    console.log('Images closed');
   }
 
   render() {
