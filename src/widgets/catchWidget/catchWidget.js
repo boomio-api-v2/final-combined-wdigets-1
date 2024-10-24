@@ -585,14 +585,17 @@ class CatchGame {
                   this.showCompetitiveRegistration === 'collectable') &&
                 checkboxChange
               ) {
+                const phoneValue = phone?.value?.trim();
+
                 boomioService
                   .signal('', 'user_info', {
                     emails_consent: this.checkboxChange2,
                     user_email: emailInput?.value,
                     user_name: playerNameInput?.value,
                     game_code: this.game_code,
-                    phone: phone,
+                    ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
                   })
+
                   .then((response) => {
                     if (response.success === false) {
                       if (response.res_code === 'EMAIL_EXIST') {
