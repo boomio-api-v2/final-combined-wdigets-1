@@ -639,9 +639,10 @@ class CatchGame {
                     ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
                   })
                   .then((response) => {
-                    this.loading = false;
                     boomioCatchSpinner.remove();
                     if (response.success === false) {
+                      this.loading = false;
+
                       if (response.res_code === 'EMAIL_EXIST') {
                         document.getElementById('competition-email-error').innerText =
                           this.customer === 'Fpro'
