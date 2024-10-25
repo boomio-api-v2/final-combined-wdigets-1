@@ -601,6 +601,7 @@ class CatchGame {
               ) {
                 const phoneValue = phone?.value?.trim();
                 this.Loading = true;
+
                 const boomioCatchSpinner = document.createElement('div');
                 boomioCatchSpinner.classList.add('boomioCatchSpinner'); // Apply class
 
@@ -637,7 +638,6 @@ class CatchGame {
                     game_code: this.game_code,
                     ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
                   })
-
                   .then((response) => {
                     this.loading = false;
                     boomioCatchSpinner.remove();
@@ -720,6 +720,7 @@ class CatchGame {
                     boomioCatchSpinner.remove();
                     console.error('Error:', error);
                   });
+                this.Loading === false;
               }
             }
           }, 300);
