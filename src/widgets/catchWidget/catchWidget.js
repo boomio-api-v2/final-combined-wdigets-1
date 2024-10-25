@@ -523,7 +523,7 @@ class CatchGame {
           'boomio-competition-confirm-field',
         );
 
-        if (this.gameCount === 0 && this.Loading === false) {
+        if (this.gameCount === 0) {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
@@ -596,10 +596,10 @@ class CatchGame {
                 (this.showCompetitiveRegistration === 'competition' ||
                   this.showCompetitiveRegistration === 'points' ||
                   this.showCompetitiveRegistration === 'collectable') &&
-                checkboxChange
+                checkboxChange &&
+                this.Loading === false
               ) {
                 const phoneValue = phone?.value?.trim();
-
                 this.Loading = true;
                 const boomioCatchSpinner = document.createElement('div');
                 boomioCatchSpinner.classList.add('boomioCatchSpinner'); // Apply class
