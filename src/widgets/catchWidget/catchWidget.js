@@ -159,7 +159,7 @@ class CatchGame {
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor =
       window.innerWidth <= 768 ? 'black' : 'none';
-    this.Loading = false;
+    this.loading = false;
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
@@ -597,10 +597,10 @@ class CatchGame {
                   this.showCompetitiveRegistration === 'points' ||
                   this.showCompetitiveRegistration === 'collectable') &&
                 checkboxChange &&
-                this.Loading === false
+                this.loading === false
               ) {
                 const phoneValue = phone?.value?.trim();
-                this.Loading = true;
+                this.loading = true;
 
                 const boomioCatchSpinner = document.createElement('div');
                 boomioCatchSpinner.classList.add('boomioCatchSpinner'); // Apply class
@@ -721,7 +721,7 @@ class CatchGame {
                     boomioCatchSpinner.remove();
                     console.error('Error:', error);
                   });
-                this.Loading === false;
+                this.loading === false;
               }
             }
           }, 300);
