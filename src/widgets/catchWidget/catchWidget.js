@@ -159,7 +159,7 @@ class CatchGame {
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor =
       window.innerWidth <= 768 ? 'black' : 'none';
-
+    this.Loading = false;
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
@@ -227,6 +227,15 @@ class CatchGame {
             const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
             checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
           });
+          const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
+
+          if (phoneInputField) {
+            phoneInputField.addEventListener('input', (event) => {
+              event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+            });
+          } else {
+            console.error('');
+          }
 
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
@@ -510,7 +519,11 @@ class CatchGame {
       this.showCompetitiveRegistration === 'collectable'
     ) {
       const clickEventHandlerShowRules = () => {
-        if (this.gameCount === 0) {
+        const competitionConfirmFieldBody = document.getElementById(
+          'boomio-competition-confirm-field',
+        );
+
+        if (this.gameCount === 0 && this.Loading === false) {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
@@ -587,6 +600,35 @@ class CatchGame {
               ) {
                 const phoneValue = phone?.value?.trim();
 
+                this.Loading = true;
+                const boomioCatchSpinner = document.createElement('div');
+                boomioCatchSpinner.classList.add('boomioCatchSpinner'); // Apply class
+
+                // Apply inline styles for the button layout
+                boomioCatchSpinner.style.border = '4px solid #f3f3f3';
+                boomioCatchSpinner.style.borderTop = '4px solid #3D4928';
+                boomioCatchSpinner.style.borderRadius = '50%';
+                boomioCatchSpinner.style.width = '20px';
+                boomioCatchSpinner.style.height = '20px';
+
+                // Append the boomioCatchSpinner to the button
+                competitionConfirmFieldBody.appendChild(boomioCatchSpinner);
+
+                // Append styles if not present
+                if (!document.getElementById('boomioCatchSpinner-styles')) {
+                  const style = document.createElement('style');
+                  style.id = 'boomioCatchSpinner-styles';
+                  style.textContent = `
+                    @keyframes spin {
+                      0% { transform: rotate(0deg); }
+                      100% { transform: rotate(360deg); }
+                    }
+                    .boomioCatchSpinner {
+                      animation: spin 1s linear infinite;
+                    }
+                  `;
+                  document.head.appendChild(style);
+                }
                 boomioService
                   .signal('', 'user_info', {
                     emails_consent: this.checkboxChange2,
@@ -597,6 +639,8 @@ class CatchGame {
                   })
 
                   .then((response) => {
+                    this.loading = false;
+                    boomioCatchSpinner.remove();
                     if (response.success === false) {
                       if (response.res_code === 'EMAIL_EXIST') {
                         document.getElementById('competition-email-error').innerText =
@@ -672,6 +716,8 @@ class CatchGame {
                     }
                   })
                   .catch((error) => {
+                    this.loading = false;
+                    boomioCatchSpinner.remove();
                     console.error('Error:', error);
                   });
               }
