@@ -159,7 +159,7 @@ class CatchGame {
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor =
       window.innerWidth <= 768 ? 'black' : 'none';
-
+    this.loading = false;
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
     this.canvas.style.background = `url(${
@@ -227,11 +227,20 @@ class CatchGame {
             const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
             checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
           });
+          const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
+
+          if (phoneInputField) {
+            phoneInputField.addEventListener('input', (event) => {
+              event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+            });
+          } else {
+            console.error('');
+          }
 
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.5 : 0.37;
+              this.customer === 'Pegasas' ? 0.8 : 0.37;
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
 
@@ -248,7 +257,7 @@ class CatchGame {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.5 : 0.37;
+              this.customer === 'Pegasas' ? 0.8 : 0.37;
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
             const inputContainer = document.querySelector('.input-container');
@@ -278,7 +287,7 @@ class CatchGame {
           const canvas = document.getElementById('boomio-catch-canvas');
 
           document.getElementById('background_blur').style.opacity =
-            this.customer === 'Pegasas' ? 0.5 : 0.37;
+            this.customer === 'Pegasas' ? 0.8 : 0.37;
 
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
@@ -413,11 +422,19 @@ class CatchGame {
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
-    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 668px;position:absolute;opacity:${
-      this.customer === 'Pegasas' ? 0.5 : 0.37
-    };pointer-events: none; display:block;" id="background_blur">
+
+
+    ${
+      this.customer === 'Pegasas'
+        ? `<div alt="Image Description" style="z-index:1;width: ${
+            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#8E1735" id="background_blur"></div>`
+        : `    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
+            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          }; height: 668px;position:absolute;opacity:${
+            this.customer === 'Pegasas' ? 0.8 : 0.37
+          };pointer-events: none; display:block;" id="background_blur">`
+    }
 
     ${
       this.showCompetitiveRegistration
@@ -502,10 +519,16 @@ class CatchGame {
       this.showCompetitiveRegistration === 'collectable'
     ) {
       const clickEventHandlerShowRules = () => {
+        const competitionConfirmFieldBody = document.getElementById(
+          'boomio-competition-confirm-field',
+        );
+
         if (this.gameCount === 0) {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const phone = document.querySelector('.boomio-competition-phone-input-field');
+
             const checkboxChange = this.checkboxChange;
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
@@ -573,17 +596,53 @@ class CatchGame {
                 (this.showCompetitiveRegistration === 'competition' ||
                   this.showCompetitiveRegistration === 'points' ||
                   this.showCompetitiveRegistration === 'collectable') &&
-                checkboxChange
+                checkboxChange &&
+                this.loading === false
               ) {
+                const phoneValue = phone?.value?.trim();
+                this.loading = true;
+
+                const boomioCatchSpinner = document.createElement('div');
+                boomioCatchSpinner.classList.add('boomioCatchSpinner'); // Apply class
+
+                // Apply inline styles for the button layout
+                boomioCatchSpinner.style.border = '4px solid #f3f3f3';
+                boomioCatchSpinner.style.borderTop = '4px solid #3D4928';
+                boomioCatchSpinner.style.borderRadius = '50%';
+                boomioCatchSpinner.style.width = '20px';
+                boomioCatchSpinner.style.height = '20px';
+
+                // Append the boomioCatchSpinner to the button
+                competitionConfirmFieldBody.appendChild(boomioCatchSpinner);
+
+                // Append styles if not present
+                if (!document.getElementById('boomioCatchSpinner-styles')) {
+                  const style = document.createElement('style');
+                  style.id = 'boomioCatchSpinner-styles';
+                  style.textContent = `
+                    @keyframes spin {
+                      0% { transform: rotate(0deg); }
+                      100% { transform: rotate(360deg); }
+                    }
+                    .boomioCatchSpinner {
+                      animation: spin 1s linear infinite;
+                    }
+                  `;
+                  document.head.appendChild(style);
+                }
                 boomioService
                   .signal('', 'user_info', {
-                    emails_consent: this.checkboxChange,
+                    emails_consent: this.checkboxChange2,
                     user_email: emailInput?.value,
                     user_name: playerNameInput?.value,
                     game_code: this.game_code,
+                    ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
                   })
                   .then((response) => {
+                    boomioCatchSpinner.remove();
                     if (response.success === false) {
+                      this.loading = false;
+
                       if (response.res_code === 'EMAIL_EXIST') {
                         document.getElementById('competition-email-error').innerText =
                           this.customer === 'Fpro'
@@ -638,7 +697,7 @@ class CatchGame {
                       setTimeout(() => {
                         const canvas = document.getElementById('boomio-catch-canvas');
                         document.getElementById('background_blur').style.opacity =
-                          this.customer === 'Pegasas' ? 0.5 : 0.37;
+                          this.customer === 'Pegasas' ? 0.8 : 0.37;
                         canvas.style.transition = 'filter 0.6s ease';
                         canvas.style.filter = 'blur(2px)';
                         const inputContainer = document.querySelector('.input-container');
@@ -658,6 +717,8 @@ class CatchGame {
                     }
                   })
                   .catch((error) => {
+                    this.loading = false;
+                    boomioCatchSpinner.remove();
                     console.error('Error:', error);
                   });
               }

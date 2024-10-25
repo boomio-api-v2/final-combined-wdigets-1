@@ -168,7 +168,20 @@ export class DidYouKnowContainer {
         item12pegasas,
       ];
     }
-
+    this.collectablesLinks = [
+      'https://www.pegasas.lt/noriu-valgyti-sveikai-bet-skaniai-1114698',
+      'https://www.pegasas.lt/liepsnojantis-kryzius-ciklo-svetimsale-5-knyga-1113987',
+      'https://www.pegasas.lt/sviesos-stygius-1114152',
+      'https://www.pegasas.lt/gliukozes-revoliucija-1114104',
+      'https://www.pegasas.lt/wrendale-kaulinio-porceliano-puodelis-su-padekliuku-oh-christmas-tree-5994082',
+      'https://www.pegasas.lt/kaledos-ateina-1114320',
+      'https://www.pegasas.lt/manifestavimas-1114435',
+      'https://www.pegasas.lt/nesiojama-zaidimu-konsole-my-arcade-go-gamer-tetris-301-zaidimas-viename-530631',
+      'https://www.pegasas.lt/namu-kvapas-the-olphactory-white-musk-250-ml-5338027',
+      'https://www.pegasas.lt/haris-poteris-kaledos-hogvartse-paveiksleliu-knyga-1114472',
+      'https://www.pegasas.lt/lego-city-miesto-centro-tramvajus-ir-stotele-60423-5704456',
+      'https://www.pegasas.lt/sunyciai-patruliai-advento-kalendorius-1114538',
+    ];
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
     this.render();
@@ -254,6 +267,21 @@ export class DidYouKnowContainer {
       ];
     }
 
+    this.collectablesLinks = [
+      'https://www.pegasas.lt/noriu-valgyti-sveikai-bet-skaniai-1114698',
+      'https://www.pegasas.lt/liepsnojantis-kryzius-ciklo-svetimsale-5-knyga-1113987',
+      'https://www.pegasas.lt/sviesos-stygius-1114152',
+      'https://www.pegasas.lt/gliukozes-revoliucija-1114104',
+      'https://www.pegasas.lt/wrendale-kaulinio-porceliano-puodelis-su-padekliuku-oh-christmas-tree-5994082',
+      'https://www.pegasas.lt/kaledos-ateina-1114320',
+      'https://www.pegasas.lt/manifestavimas-1114435',
+      'https://www.pegasas.lt/nesiojama-zaidimu-konsole-my-arcade-go-gamer-tetris-301-zaidimas-viename-530631',
+      'https://www.pegasas.lt/namu-kvapas-the-olphactory-white-musk-250-ml-5338027',
+      'https://www.pegasas.lt/haris-poteris-kaledos-hogvartse-paveiksleliu-knyga-1114472',
+      'https://www.pegasas.lt/lego-city-miesto-centro-tramvajus-ir-stotele-60423-5704456',
+      'https://www.pegasas.lt/sunyciai-patruliai-advento-kalendorius-1114538',
+    ];
+
     this.updateVisuals();
   }
 
@@ -266,13 +294,20 @@ export class DidYouKnowContainer {
       }
 
       tableHTML += `
-        <td style="padding:5px;text-align: center; border: none;">
-        <div id="image-${index}" >
+        <td style="padding:5px;text-align: center; border: none; ${
+          this.prop === 'Pegasas' ? 'cursor:pointer' : ''
+        }">
+        <div id="image-${index}" style="max-width:170px">
         <img class='image-container' style='opacity:1;width:${
           this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
         };height:${
         this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
       }' src=${item} alt="Scoreboard Image" >
+      ${
+        this.prop === 'Pegasas' && this.collectablesLinks[index]
+          ? `<div class='image-container-text'><a href="${this.collectablesLinks[index]}" target="_blank" style="color: white; text-decoration: underline;"><p style="max-width:280px;line-height:10px;">${this.collectablesLinks[index]}<p/></a></div>`
+          : ''
+      }
         </div>
         </td>`;
 
@@ -284,7 +319,7 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let scoreboardText = `
-      ${`<div style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
+      ${`<div class="bomio-first-line" style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
         this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' ? '18px' : '12px'
       } ; font-family: Montserrat;  word-wrap: break-word">${
         this.prop.includes('Gamtos Ateitis')
@@ -300,7 +335,7 @@ ${
           ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
           : 'SU MIAU GYVENT SMAGIAU'
       }</div>
-              <div style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
+              <div class="bomio-second-line" style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
         this.prop === 'Pieno Žvaigždės' ? 500 : 400
       };  word-wrap: break-word;text-decoration:${
         this.prop === 'Pieno Žvaigždės' ? 'underline' : ''
@@ -362,6 +397,14 @@ ${
     if (this.prop === 'Pegasas') {
       this.addfunc();
     }
+
+    // Existing code to add event listener for competitionDidYouKnow
+    if (this.prop === 'Pegasas') {
+      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      competitionDidYouKnow.addEventListener('click', () => {
+        this.closeEnlargedImages();
+      });
+    }
   }
 
   addfunc() {
@@ -377,23 +420,58 @@ ${
   handleImageClick(image) {
     // Toggle a class to make the image larger and centered
     image.classList.toggle('enlarge-image');
+    const textElement = image.querySelector('.image-container-text');
+    if (textElement) {
+      // Toggle the visibility of the text when the image is enlarged
+      textElement.style.display = textElement.style.display === 'block' ? 'none' : 'block';
+    }
+    document.querySelector('.bomio-first-line').style.display =
+      textElement.style.display === 'block' ? 'none' : 'block';
+    document.querySelector('.bomio-second-line').style.display =
+      textElement.style.display === 'block' ? 'none' : 'block';
 
     // Toggle the class for each child element of the clicked image
-    const children = image.children;
-    for (let i = 0; i < children.length; i++) {
-      children[i].classList.toggle('enlarge-image');
+    const imgElement = image.querySelector('img');
+    if (imgElement) {
+      imgElement.classList.toggle('enlarge-image');
     }
-
     // Add event listener to handle clicking outside of the enlarged image to revert it back to normal size
     document.addEventListener('click', function closeImage(event) {
       if (!image.contains(event.target)) {
-        image.classList.remove('enlarge-image');
-        for (let i = 0; i < children.length; i++) {
-          children[i].classList.remove('enlarge-image');
+        if (imgElement) {
+          imgElement.classList.remove('enlarge-image');
+        }
+
+        if (textElement) {
+          textElement.style.display = 'none';
         }
         document.removeEventListener('click', closeImage);
       }
     });
+  }
+
+  closeEnlargedImages() {
+    // Find all images that are currently enlarged
+    const enlargedImages = document.querySelectorAll('.enlarge-image');
+
+    // Loop through the images and remove the 'enlarge-image' class
+    enlargedImages.forEach((image) => {
+      image.classList.remove('enlarge-image');
+
+      // If the image has a text container, hide it
+      const textElement = image.querySelector('.image-container-text');
+      if (textElement) {
+        textElement.style.display = 'none';
+      }
+    });
+
+    // Restore scoreboard lines if necessary
+    const firstLine = document.querySelector('.bomio-first-line');
+    const secondLine = document.querySelector('.bomio-second-line');
+    if (firstLine) firstLine.style.display = 'block';
+    if (secondLine) secondLine.style.display = 'block';
+
+    console.log('Images closed');
   }
 
   render() {

@@ -1259,10 +1259,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               if (this.showCompetitiveRegistration && this.checkboxChange) {
                 boomioService
                   .signal('', 'user_info', {
-                    emails_consent:
-                      this.customer === 'Akropolis' && this.language === 'LV'
-                        ? this.checkboxChange2
-                        : this.checkboxChange,
+                    emails_consent: this.checkboxChange2,
                     user_email: emailInput?.value,
                     user_name: playerNameInput?.value,
                   })
