@@ -152,7 +152,7 @@
     }
 
 }
-main{
+.boomio-runner-main{
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
@@ -321,14 +321,14 @@ main{
   height: 40px;
   margin-right: 10px;
 }
-.pauseButton {
+.boomio-runner-pauseButton {
 	position: absolute;
 	height: 40px;
 	width: 40px;
 	right: 20px;
 	top: 20px;
 }
-.replayButton, .replayButton1, .homeButton,.homeButton1, .playOnPauseButton {
+.boomio-runner-replayButton, .boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1, .playOnPauseButton {
 	height: 55px;
 	width: 55px;
 	margin: 20px;
@@ -341,26 +341,26 @@ main{
 	top: 20px;
 	right: 20px;
 }
-.smallBtn{
+.boomio-runner-smallBtn{
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
-	background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/smallBtn.png');
+	background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/boomio-runner-smallBtn.png');
   
 	background-size: contain;
 	background-repeat: no-repeat;
 	image-rendering: pixelated;
 	padding: 10px;
 margin-right: 10px;}
-.smallBtn:hover{
+.boomio-runner-smallBtn:hover{
 	filter: brightness(0.7);
 }
-.soundBtn{
+.boomio-runner-soundBtn{
   height: 50px ;
   width: 50px ;
 	content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/soundOn.png');
 }
-.soundBtnOff{
+.boomio-runner-soundBtnOff{
 	content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/soundOff.png');
 	filter: brightness(0.6) !important;
 }
@@ -369,7 +369,7 @@ margin-right: 10px;}
 .playOnPauseButton{
 	width: 50px;
 }
-.smallBtn{
+.boomio-runner-smallBtn{
 	filter:drop-shadow(5px 5px 5px #0000004e);
 	cursor: pointer;
 }
@@ -377,14 +377,14 @@ margin-right: 10px;}
 	filter: brightness(0.7);
 
 }
-.score{
+.boomio-runner-score{
 	position: absolute;
 	left: 20px;
 	top: 5px;
 	color: #fff;
 	font-size: 40px;
 }
-.coins{
+.boomio-runner-coins{
 	position: absolute;
   display: flex;
   justify-content: baseline;
@@ -394,7 +394,7 @@ margin-right: 10px;}
 	color: #ffd502;
 	font-size: 25px;
 }
-.coins img{
+.boomio-runner-coins img{
   width: 20px;
 }
 .boomio-runner-storeCoins{
@@ -410,11 +410,11 @@ margin-right: 10px;}
   height: 35px;
 }
 
-.gameOverScore{
+.boomio-runner-gameOverScore{
 	position: unset;
 	font-size: 50px;
 }
-.HIandRecord{
+.boomio-runner-HIandRecord{
   font-size: 50px;
   font-weight: bold;
 }
@@ -483,7 +483,7 @@ margin-right: 10px;}
     display: block;
   }
 }
-.creditsHolder{
+.boomio-runner-creditsHolder{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -736,7 +736,7 @@ margin-right: 10px;}
     display: block;
   }
 }
-.stat{
+.boomio-runner-stat{
 	margin-right: 20px;
 }
 .boomio-runner-credits{
@@ -752,7 +752,7 @@ margin-right: 10px;}
 	color: rgb(51, 10, 140)
 }
 
-.mainMenuSide{
+.boomio-runner-mainMenuSide{
 	height: 100%;
 	width: 50%;
 	display: flex;
@@ -823,7 +823,7 @@ margin-right: 10px;}
 		height: 100px;
 	}
 
-	main {
+	.boomio-runner-main {
 	  display: none;
 	}
 }
@@ -832,7 +832,7 @@ margin-right: 10px;}
 	#turnLandscape{
 		display: none;
 	}
-	main {
+	.boomio-runner-main {
 		display: flex;
 	}
 }
@@ -854,19 +854,19 @@ margin-right: 10px;}
   .boomio-runner-subtitle{
     font-size: 25px;
   }
-  .smallBtn{
+  .boomio-runner-smallBtn{
     width: 24px;
     height: 24px;
   }
-  .soundBtn{
+  .boomio-runner-soundBtn{
     height: 40px ;
     width: 40px ;
   }
-  .score{
+  .boomio-runner-score{
     font-size: 50px;
     
   }
-  .coins{
+  .boomio-runner-coins{
     font-size: 40px;
     top: 35px;
 
@@ -907,7 +907,7 @@ margin-right: 10px;}
 	.boomio-runner-pause, .boomio-runner-gameOver{
 		font-size: 35px;
 	}
-  .HIandRecord {
+  .boomio-runner-HIandRecord {
     font-size: 40px;
     line-height: 0;
   } 
@@ -918,7 +918,7 @@ margin-right: 10px;}
   .gameOverCoins{
     font-size: 35px;
   }
-	.pauseButton {
+	.boomio-runner-pauseButton {
 		height: 30px;
 		width: 30px
 	}
@@ -1005,7 +1005,7 @@ margin-right: 10px;}
     width: 30px;
     height: 25px;
   }
-  .replayButton,.replayButton1, .homeButton,.homeButton1, .playOnPauseButton {
+  .boomio-runner-replayButton,.boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1, .playOnPauseButton {
     height: 40px;
     width: 40px;
     margin: 10px;

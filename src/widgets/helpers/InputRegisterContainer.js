@@ -402,7 +402,7 @@ export class InputRegisterContainer {
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
       this.prop === 'Pegasas' ? 'block' : 'none'
     }"></div>
-    <input id="boomio-competition-phone-input-field" inputmode="numeric" 
+    <input id="boomio-competition-phone-input-field" inputmode="tel" 
  class="boomio-competition-phone-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
       this.prop === 'Pegasas' ? 'block' : 'none'
     }" placeholder="${'Telefono numeris'}">
