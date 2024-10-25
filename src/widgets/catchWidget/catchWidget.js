@@ -592,6 +592,7 @@ class CatchGame {
                   : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
             } else {
+              console.log(this.Loading);
               if (
                 (this.showCompetitiveRegistration === 'competition' ||
                   this.showCompetitiveRegistration === 'points' ||
