@@ -642,7 +642,6 @@ class CatchGame {
                     this.loading = false;
                     boomioCatchSpinner.remove();
                     if (response.success === false) {
-                      this.loading = false;
                       if (response.res_code === 'EMAIL_EXIST') {
                         document.getElementById('competition-email-error').innerText =
                           this.customer === 'Fpro'
@@ -721,7 +720,6 @@ class CatchGame {
                     boomioCatchSpinner.remove();
                     console.error('Error:', error);
                   });
-                this.loading === false;
               }
             }
           }, 300);
