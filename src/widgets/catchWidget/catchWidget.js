@@ -592,7 +592,6 @@ class CatchGame {
                   : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
             } else {
-              console.log(this.Loading);
               if (
                 (this.showCompetitiveRegistration === 'competition' ||
                   this.showCompetitiveRegistration === 'points' ||
@@ -643,6 +642,7 @@ class CatchGame {
                     this.loading = false;
                     boomioCatchSpinner.remove();
                     if (response.success === false) {
+                      this.loading = false;
                       if (response.res_code === 'EMAIL_EXIST') {
                         document.getElementById('competition-email-error').innerText =
                           this.customer === 'Fpro'
