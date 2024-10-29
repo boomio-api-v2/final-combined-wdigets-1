@@ -29,11 +29,15 @@ import {
   star,
   jumpEffect,
   ControlsDesktop,
+  mainImagePigu,
+  introPigu,
+  backgroundPigu,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { GameOverContainer } from '../helpers/GameOverContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 
 class DoodleWidget {
   static ctx;
@@ -44,9 +48,11 @@ class DoodleWidget {
     this.checkboxChange2 = false;
 
     this.isMobile = window.innerWidth <= 1280;
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
+
     this.language = this.config.language ? this.config.language : 'LV';
     this.userBestPlace = 0;
     this.scoreTable = {};
@@ -60,7 +66,9 @@ class DoodleWidget {
     this.tutorial = true;
     this.image = new Image();
     this.image.src =
-      this.customer === 'Akropolis'
+      this.customer === 'Pigu.lt'
+        ? mainImagePigu
+        : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? mainImageAkropolisLV
           : mainImageAkropolis
@@ -95,7 +103,9 @@ class DoodleWidget {
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.style.background = `url(${
-      this.customer === 'Akropolis'
+      this.customer === 'Pigu.lt'
+        ? backgroundPigu
+        : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV
           : backgroundRedAkropolis
@@ -161,7 +171,7 @@ class DoodleWidget {
     const reward = document.getElementById('claimReward');
     reward.addEventListener('click', this.claimReward);
 
-    if (this.showCompetitiveRegistration) {
+    if (this.showCompetitiveRegistration && this.campaignUrl === '') {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
 
@@ -171,7 +181,7 @@ class DoodleWidget {
   };
 
   showRulesOrRegistration = () => {
-    if (this.showCompetitiveRegistration) {
+    if (this.showCompetitiveRegistration && this.campaignUrl === '') {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
@@ -209,6 +219,38 @@ class DoodleWidget {
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
+    } else if (this.campaignUrl === 'https://pigu.lt') {
+      const currentPageUrl = window.location.href;
+      const urlParams = new URL(currentPageUrl).searchParams;
+      const user_id = urlParams.get('user_id');
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          setTimeout(() => {
+            const canvas = document.getElementById('boomio-doodle-canvas');
+            document.getElementById('background_blur').style.opacity =
+              this.language === 'LV' ? 0.7 : 0.37;
+            canvas.style.transition = 'filter 0.6s ease';
+            canvas.style.filter = 'blur(2px)';
+            const inputContainer = document.querySelector('.input-container');
+            document.getElementById('control-button').style.transition = 'opacity 2s ease';
+            document.getElementById('control-button').style.opacity = 1;
+            inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+            inputContainer.style.display = 'block';
+            setTimeout(() => {
+              inputContainer.style.height = '332px';
+              inputContainer.style.top = 'calc(50% + 170px)';
+              inputContainer.style.opacity = 1;
+            }, 100);
+          }, 300);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     } else {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
@@ -1027,14 +1069,21 @@ class DoodleWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+  ${
+    this.campaignUrl === ''
+      ? `
 <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
-</div>
+</div>`
+      : ''
+  }
     ${
-      this.showCompetitiveRegistration
+      this.showCompetitiveRegistration && this.campaignUrl === ''
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
     }
+
+    
 
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1043,8 +1092,8 @@ class DoodleWidget {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-       <div>${this.language === 'LV' ? 'Lec pa labi, ' : 'KLIK'}</div>
-        <div>${this.language === 'LV' ? 'lec pa kreisi' : 'KLIK'}</div>
+       <div>${this.language === 'LV' ? 'Lec pa labi, ' : 'BAKST'}</div>
+        <div>${this.language === 'LV' ? 'lec pa kreisi' : 'BAKST'}</div>
       </div><img src=${
         this.isMobile ? Controlls : ControlsDesktop
       } alt="Image Description" style="width: 110px; height: 50px;">`}
@@ -1052,7 +1101,9 @@ class DoodleWidget {
 
 
     <img src=${
-      this.customer === 'Akropolis'
+      this.customer === 'Pigu.lt'
+        ? introPigu
+        : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV
           : introAkropolis
@@ -1142,11 +1193,18 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
     if (this.showCompetitiveRegistration) {
       const gameContainer = document.querySelector('.game-container');
+      if (this.campaignUrl === 'https://pigu.lt') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+      } else {
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+      }
 
-      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-      );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
 
@@ -1384,15 +1442,19 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         // controlButton.style.opacity = 0;
       };
 
-      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
-      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+      if (this.campaignUrl === '') {
+        const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+        competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+      }
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }
-    document.getElementById('close-game-container').addEventListener('click', () => {
-      this.closeGame();
-    });
+    if (this.campaignUrl === '') {
+      document.getElementById('close-game-container').addEventListener('click', () => {
+        this.closeGame();
+      });
+    }
   };
   closeGame = () => {
     const element = document.getElementById('boomio-doodle-container');

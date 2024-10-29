@@ -11,6 +11,7 @@ export class CompetitionCodeScoreTableContainer {
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
+
     this.render();
   }
 
@@ -18,6 +19,7 @@ export class CompetitionCodeScoreTableContainer {
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
+
     this.updateVisuals();
   }
 
@@ -163,6 +165,8 @@ export class CompetitionCodeScoreTableContainer {
                       ? 'O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU'
                       : 'O surinkus daugiau nei 1500 taškų gauk </br>5€ vertės nuolaidą iškart!'
                   }`
+                : this.prop === 'Pigu.lt'
+                ? `Net 10 geriausių žaidėjų kas savaitę laimės prizus!</br>Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PIRKANT PIGU.LT SU NUOLAIDOS KODU`
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -211,6 +215,8 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'Uzvarētāji tiks informēti e-pastā.'
                 : this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500
                 ? 'gauk 5€ vertės nuolaidą perkant internetu bent už 50 EUR.'
+                : this.prop === 'Pigu.lt'
+                ? 'GAUK 2€ NUOLAIDĄ VISKAM!'
                 : this.language === 'LV' && this.prop !== 'Akropolis'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU'
@@ -263,6 +269,8 @@ export class CompetitionCodeScoreTableContainer {
                       ? 'O PIRKDAMAS PEGASAS.LT SU NUOLAIDOS KODU'
                       : 'O surinkus daugiau nei 1500 taškų gauk </br>5€ vertės nuolaidą iškart!'
                   }`
+                : this.prop === 'Pigu.lt'
+                ? `Pagerink rezultatą, nes net 10 geriausių žaidėjų kas savaitę laimės</br> prizus!  Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PIRKANT PIGU.LT SU NUOLAIDOS KODU`
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">ir </br>pagrindiniai <u style="text-transform:uppercase">MIAU prizai  </u></u> - Su Miau gyvent linksmiau!'
                 : this.prop === 'LemonGym'
@@ -317,6 +325,8 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'Uzvarētāji tiks informēti e-pastā.'
                 : this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500
                 ? 'gauk 5€ vertės nuolaidą perkant internetu bent už 50 EUR.'
+                : this.prop === 'Pigu.lt'
+                ? 'GAUK 2€ NUOLAIDĄ VISKAM!'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
@@ -339,7 +349,7 @@ export class CompetitionCodeScoreTableContainer {
       }
 
 ${
-  this.scoreTable.user_best_score > 1500
+  this.scoreTable.user_best_score > 1500 || this.prop === 'Pigu.lt'
     ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:#A40033; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:505px;left:calc(50% - 130px);">
 <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text">
  ${this.userDiscountCode ?? 'CODE'}
@@ -360,7 +370,7 @@ ${
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    if (this.scoreTable.user_best_score > 1500) {
+    if (this.scoreTable.user_best_score > 1500 || this.prop === 'Pigu.lt') {
       document.getElementById('boomio-copy-modal-btn').onclick = () => {
         const textToCopy = this.userDiscountCode;
         const textarea = document.createElement('textarea');

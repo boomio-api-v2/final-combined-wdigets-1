@@ -119,6 +119,9 @@ class LocalStorageService {
     const email_collection_required = config?.email_collection_required ?? false;
     const product = config?.product ?? '???';
     const language = config?.language ?? 'LT';
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
 
     return {
       language,
@@ -168,6 +171,7 @@ class LocalStorageService {
       p_code_text,
       product,
       game_type,
+      campaignUrl,
     };
   }
 }
