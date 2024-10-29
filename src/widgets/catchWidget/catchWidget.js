@@ -553,7 +553,7 @@ class CatchGame {
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 'transparent';
             }
-            if (!checkboxChange2) {
+            if (!checkboxChange2 && this.customer === 'Pegasas') {
               document.getElementById('competition-checkbox-error2').innerText =
                 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
