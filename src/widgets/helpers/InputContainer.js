@@ -275,6 +275,8 @@ export class InputContainer {
                 ? 'MAKALIAUS kuponus!'
                 : this.prop === 'Akropolis'
                 ? 'kasdien!'
+                : this.prop === 'Pigu.lt'
+                ? 'Pigu.lt prizus!'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
@@ -404,6 +406,8 @@ export class InputContainer {
         : this.prop === 'Akropolis'
         ? 'SUTINKU'
         : this.prop === 'Pegasas'
+        ? 'PIRMYN'
+        : this.prop === 'Pigu.lt'
         ? 'PIRMYN'
         : 'LET’S PLAY'
     }</div></div>
