@@ -522,7 +522,6 @@ class CatchGame {
         const competitionConfirmFieldBody = document.getElementById(
           'boomio-competition-confirm-field',
         );
-
         if (this.gameCount === 0) {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
@@ -530,6 +529,8 @@ class CatchGame {
             const phone = document.querySelector('.boomio-competition-phone-input-field');
 
             const checkboxChange = this.checkboxChange;
+            const checkboxChange2 = this.checkboxChange2;
+
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
@@ -548,6 +549,29 @@ class CatchGame {
               document.getElementById('competition-email-error').innerText = '';
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor =
+                'transparent';
+            }
+            if (!checkboxChange2) {
+              document.getElementById('competition-checkbox-error2').innerText =
+                'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor =
+                '#FFBABA';
+              document.getElementById('competition-checkbox-error2').style.display = 'block';
+              document.getElementById('competition-checkbox-error2').style.height = '14px';
+
+              document.getElementById('competition-name-error').innerText = '';
+
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
@@ -562,6 +586,9 @@ class CatchGame {
               document.getElementById('competition-checkbox-error').innerText = '';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 'transparent';
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor =
+                'transparent';
             }
             if (playerNameInput?.value === '' || playerNameInput?.value === null) {
               document.getElementById('competition-name-error').innerText =
@@ -575,6 +602,9 @@ class CatchGame {
                 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 'transparent';
             }
             if (
@@ -597,7 +627,8 @@ class CatchGame {
                   this.showCompetitiveRegistration === 'points' ||
                   this.showCompetitiveRegistration === 'collectable') &&
                 checkboxChange &&
-                this.loading === false
+                this.loading === false &&
+                (this.customer !== 'Pegasas' || checkboxChange2)
               ) {
                 const phoneValue = phone?.value?.trim();
                 this.loading = true;

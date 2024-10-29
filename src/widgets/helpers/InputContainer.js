@@ -407,6 +407,8 @@ export class InputContainer {
         ? 'SUTINKU'
         : this.prop === 'Pegasas'
         ? 'PIRMYN'
+        : this.prop === 'Pigu.lt'
+        ? 'PIRMYN'
         : 'LET’S PLAY'
     }</div></div>
     </div>
