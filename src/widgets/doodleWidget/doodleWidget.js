@@ -38,6 +38,7 @@ import { InputContainer } from '../helpers/InputContainer';
 import { GameOverContainer } from '../helpers/GameOverContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
+import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 
 class DoodleWidget {
   static ctx;
@@ -180,6 +181,10 @@ class DoodleWidget {
   };
 
   showRulesOrRegistration = () => {
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const user_id = urlParams.get('user_id');
+    console.log(user_id);
     if (this.showCompetitiveRegistration && this.campaignUrl === '') {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
@@ -218,10 +223,7 @@ class DoodleWidget {
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
-    } else if (this.campaignUrl === 'https://pigu.lt') {
-      const currentPageUrl = window.location.href;
-      const urlParams = new URL(currentPageUrl).searchParams;
-      const user_id = urlParams.get('user_id');
+    } else if (this.campaignUrl === 'https://pigu.lt' && user_id !== '') {
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
@@ -229,23 +231,30 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
+          const competitionTableContainer = document.querySelector(
+            '.competition-table-container-pigu',
+          );
+          competitionTableContainer.style.transition =
+            'height 1s ease, top 1s ease, opacity 1s ease';
+          competitionTableContainer.style.display = 'block';
           setTimeout(() => {
-            const canvas = document.getElementById('boomio-doodle-canvas');
-            document.getElementById('background_blur').style.opacity =
-              this.language === 'LV' ? 0.7 : 0.37;
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
-            const inputContainer = document.querySelector('.input-container');
-            document.getElementById('control-button').style.transition = 'opacity 2s ease';
-            document.getElementById('control-button').style.opacity = 1;
-            inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            inputContainer.style.display = 'block';
-            setTimeout(() => {
-              inputContainer.style.height = '332px';
-              inputContainer.style.top = 'calc(50% + 170px)';
-              inputContainer.style.opacity = 1;
-            }, 100);
-          }, 300);
+            competitionTableContainer.style.height = '680px';
+            competitionTableContainer.style.top = 'calc(50%)';
+            competitionTableContainer.style.opacity = 1;
+          }, 100);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else if (this.campaignUrl === 'https://pigu.lt' && user_id === '') {
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          this.showRulesPigu();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -269,6 +278,37 @@ class DoodleWidget {
         }, 100);
       }, 300);
     }
+  };
+
+  showRulesPigu = () => {
+    const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      competitionTableContainer.style.height = '10px';
+      competitionTableContainer.style.top = 'calc(50% + 330px)';
+      competitionTableContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      competitionTableContainer.style.display = 'none';
+    }, 1000);
+    setTimeout(() => {
+      const canvas = document.getElementById('boomio-doodle-canvas');
+      document.getElementById('background_blur').style.opacity =
+        this.language === 'LV' ? 0.7 : 0.37;
+      canvas.style.transition = 'filter 0.6s ease';
+      canvas.style.filter = 'blur(2px)';
+      const inputContainer = document.querySelector('.input-container');
+      document.getElementById('control-button').style.transition = 'opacity 2s ease';
+      document.getElementById('control-button').style.opacity = 1;
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      inputContainer.style.display = 'block';
+      setTimeout(() => {
+        inputContainer.style.height = '332px';
+        inputContainer.style.top = 'calc(50% + 170px)';
+        inputContainer.style.opacity = 1;
+      }, 100);
+    }, 300);
   };
 
   initGame = () => {
@@ -1091,8 +1131,32 @@ class DoodleWidget {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-       <div>${this.language === 'LV' ? 'Lec pa labi, ' : 'BAKST'}</div>
-        <div>${this.language === 'LV' ? 'lec pa kreisi' : 'BAKST'}</div>
+       <div>${
+         this.language === 'EN'
+           ? 'TAP'
+           : this.language === 'LV'
+           ? 'KLIKŠĶINI'
+           : this.language === 'ES'
+           ? 'KLIKI'
+           : this.language === 'FI'
+           ? 'NAPSAUTA'
+           : this.language === 'RU'
+           ? 'НАЖИМАЙ'
+           : 'BAKST'
+       }</div>
+        <div>${
+          this.language === 'EN'
+            ? 'TAP'
+            : this.language === 'LV'
+            ? 'KLIKŠĶINI'
+            : this.language === 'ES'
+            ? 'KLIKI'
+            : this.language === 'FI'
+            ? 'NAPSAUTA'
+            : this.language === 'RU'
+            ? 'НАЖИМАЙ'
+            : 'BAKST'
+        }</div>
       </div><img src=${
         this.isMobile ? Controlls : ControlsDesktop
       } alt="Image Description" style="width: 110px; height: 50px;">`}
@@ -1203,8 +1267,16 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           this.scoreTable,
         );
       }
-
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
+    if (this.campaignUrl === 'https://pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      const competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(competitionCodeScoreTableContainerPigu.containerDiv);
     }
 
     if (this.showCompetitiveRegistration) {
@@ -1444,6 +1516,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       if (this.campaignUrl === '') {
         const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
         competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+      }
+
+      if (this.campaignUrl === 'https://pigu.lt') {
+        const competitionRestart = document.getElementById('boomio-game-play-again-pigu');
+        competitionRestart.addEventListener('click', this.showRulesPigu);
       }
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
