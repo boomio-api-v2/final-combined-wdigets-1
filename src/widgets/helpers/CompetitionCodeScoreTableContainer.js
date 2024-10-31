@@ -182,7 +182,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
                 ? 'Joka viikko 10 parasta pelaajaa voittaa palkintoja!</br>Jos voitat, ilmoitamme voitosta sähköpostilla siihen osoitteeseen, jonka olet ilmoittanut käyttäjätililläsi.</br>Kun shoppailet Hobbyhall.fi-verkkokaupassa ja käytät koodia '
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'ХОРОШАЯ ПОПЫТКА!'
+                ? 'Каждую неделю 10 лучших игроков получают призы!</br>Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.</br>Совершай покупки в 220.lv и используй скидочный код'
                 : this.prop === 'Pigu.lt'
                 ? `Net 10 geriausių žaidėjų kas savaitę laimės prizus!</br>Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PIRKANT PIGU.LT SU NUOLAIDOS KODU`
                 : this.prop === 'Unisend' && this.language === 'LV'
