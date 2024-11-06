@@ -69,6 +69,7 @@ export class CompetitionCodeScoreTableContainerPigu {
             this.prop === 'Unisend' ||
             this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Pegasas' ||
+            this.prop === 'Pigu.lt' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
             this.prop.includes('Gamtos Ateitis') ||
@@ -81,6 +82,7 @@ export class CompetitionCodeScoreTableContainerPigu {
             this.prop === 'Makalius' ||
             this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Pegasas' ||
+            this.prop === 'Pigu.lt' ||
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym'
           ? 'white'
@@ -113,6 +115,7 @@ export class CompetitionCodeScoreTableContainerPigu {
                 this.prop === 'Akropolis' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop === 'Pegasas' ||
+                this.prop === 'Pigu.lt' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -129,6 +132,7 @@ export class CompetitionCodeScoreTableContainerPigu {
                 this.prop === 'Akropolis' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop === 'Pegasas' ||
+                this.prop === 'Pigu.lt' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -146,6 +150,7 @@ export class CompetitionCodeScoreTableContainerPigu {
       this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Pegasas' ||
+      this.prop === 'Pigu.lt' ||
       this.prop === 'LemonGym'
         ? '900'
         : '700';
