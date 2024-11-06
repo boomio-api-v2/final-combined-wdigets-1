@@ -238,6 +238,8 @@ class DoodleWidget {
         }, 100);
       }, 300);
     } else if (this.campaignUrl === 'https://pigu.lt' && user_id !== '') {
+      console.log('a');
+
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
@@ -245,18 +247,23 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
-          this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
-          const competitionTableContainer = document.querySelector(
-            '.competition-table-container-pigu',
-          );
-          competitionTableContainer.style.transition =
-            'height 1s ease, top 1s ease, opacity 1s ease';
-          competitionTableContainer.style.display = 'block';
-          setTimeout(() => {
-            competitionTableContainer.style.height = '680px';
-            competitionTableContainer.style.top = 'calc(50%)';
-            competitionTableContainer.style.opacity = 1;
-          }, 100);
+          this.bestScore = response.user_best_score;
+          if (response.user_best_score > 0) {
+            this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
+            const competitionTableContainer = document.querySelector(
+              '.competition-table-container-pigu',
+            );
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.display = 'block';
+            setTimeout(() => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = 'calc(50%)';
+              competitionTableContainer.style.opacity = 1;
+            }, 100);
+          } else {
+            this.showRulesPigu();
+          }
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -335,7 +342,22 @@ class DoodleWidget {
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
-                logEvent('game_started', { response });
+                if (window.Boomio) {
+                  window.Boomio.logEvent('game_started', JSON.stringify(response));
+                } else if (
+                  window.webkit &&
+                  window.webkit.messageHandlers &&
+                  window.webkit.messageHandlers.Boomio
+                ) {
+                  var message = {
+                    command: 'logEvent',
+                    name: 'game_started',
+                    parameters: { response },
+                  };
+                  window.webkit.messageHandlers.Boomio.postMessage(message);
+                } else {
+                  console.log('No native APIs found.');
+                }
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -608,7 +630,22 @@ class DoodleWidget {
             })
             .then((response) => {
               if (this.customer === 'Pigu.lt') {
-                logEvent('game_finished', { response });
+                if (window.Boomio) {
+                  window.Boomio.logEvent('game_finished', JSON.stringify(response));
+                } else if (
+                  window.webkit &&
+                  window.webkit.messageHandlers &&
+                  window.webkit.messageHandlers.Boomio
+                ) {
+                  var message = {
+                    command: 'logEvent',
+                    name: 'game_finished',
+                    parameters: { response },
+                  };
+                  window.webkit.messageHandlers.Boomio.postMessage(message);
+                } else {
+                  console.log('No native APIs found.');
+                }
               }
               this.userBestPlace = response.user_best_place;
 

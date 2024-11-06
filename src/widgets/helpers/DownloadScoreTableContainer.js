@@ -20,7 +20,6 @@ export class DownloadScoreTableContainer {
   }
 
   updateVisuals() {
-    console.log(this.currentScore);
     if (!this.containerDiv) return;
     const userPercentageDiscount = parseInt(this?.scoreTable?.best_discount) || 0;
     const userDiscountCode = this?.scoreTable?.coupon_code || '';
