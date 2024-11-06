@@ -47,6 +47,7 @@ class DoodleWidget {
     this.config = localStorageService.getDefaultConfig();
     this.checkboxChange = false;
     this.checkboxChange2 = false;
+    this.checkboxChange3 = false;
 
     this.isMobile = window.innerWidth <= 1280;
     this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
@@ -61,7 +62,7 @@ class DoodleWidget {
 
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
-    this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418;
+    this.width = document.body.offsetWidth < 440 ? document.body.offsetWidth : 440;
     this.height = 668;
     this.player;
     this.tutorial = true;
@@ -94,8 +95,13 @@ class DoodleWidget {
       );
     })();
 
-    document.querySelector('.game-container').style.backgroundColor =
-      window.innerWidth <= 768 ? 'black' : 'none';
+    if (this.customer === 'Pigu.lt') {
+      document.querySelector('.game-container').style.backgroundColor =
+        window.innerWidth <= 768 ? 'black' : 'none';
+    } else {
+      document.querySelector('.game-container').style.backgroundColor =
+        window.innerWidth <= 768 ? 'black' : 'none';
+    }
 
     this.config = localStorageService.getDefaultConfig();
 
@@ -184,7 +190,15 @@ class DoodleWidget {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const user_id = urlParams.get('user_id');
-    console.log(user_id);
+
+    if (this.customer === 'Pigu.lt') {
+      const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
+      checkboxImg3.addEventListener('click', () => {
+        this.checkboxChange3 = !this.checkboxChange3;
+        const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
+        checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
+      });
+    }
     if (this.showCompetitiveRegistration && this.campaignUrl === '') {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
@@ -231,6 +245,7 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
+          this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
           const competitionTableContainer = document.querySelector(
             '.competition-table-container-pigu',
           );
@@ -272,7 +287,7 @@ class DoodleWidget {
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         inputContainer.style.display = 'block';
         setTimeout(() => {
-          inputContainer.style.height = '332px';
+          inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
           inputContainer.style.top = 'calc(50% + 170px)';
           inputContainer.style.opacity = 1;
         }, 100);
@@ -304,7 +319,7 @@ class DoodleWidget {
       inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       inputContainer.style.display = 'block';
       setTimeout(() => {
-        inputContainer.style.height = '332px';
+        inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
         inputContainer.style.top = 'calc(50% + 170px)';
         inputContainer.style.opacity = 1;
       }, 100);
@@ -313,24 +328,28 @@ class DoodleWidget {
 
   initGame = () => {
     this.removeRules();
-    if (!this.tutorial) {
-      setTimeout(() => {
-        if (this.showCompetitiveRegistration) {
-          boomioService
-            .signal('ROUND_STARTED', 'signal')
-            .then((response) => {})
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-        }
-      }, 50);
-      this.player = new Player(this.image);
-      this.hideMenu();
-      this.resetGame();
-      this.gameLoop();
-      this.Spring = new Spring(this.image);
-    } else {
-      this.showtutorial();
+    if (this.customer !== 'Pigu.lt' || this.checkboxChange3) {
+      if (!this.tutorial) {
+        setTimeout(() => {
+          if (this.showCompetitiveRegistration) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                logEvent('game_started', { response });
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }, 50);
+        this.player = new Player(this.image);
+        this.hideMenu();
+        this.resetGame();
+        this.gameLoop();
+        this.Spring = new Spring(this.image);
+      } else {
+        this.showtutorial();
+      }
     }
   };
 
@@ -371,7 +390,6 @@ class DoodleWidget {
     document.getElementById('tutorial').style.transition = 'opacity 1s ease';
     document.getElementById('tutorial').style.opacity = 0;
     document.getElementById('tutorial').style.display = 'none';
-
     setTimeout(() => {
       this.initGame();
     }, 100);
@@ -408,24 +426,33 @@ class DoodleWidget {
   };
 
   removeRules = () => {
-    const inputContainer = document.querySelector('.input-container');
-    const controlButton = document.querySelector('.control-button');
+    if (!this.checkboxChange3) {
+      document.getElementById('boomio-rules-checkbox-error').innerText =
+        'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prius.';
+      document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
-    inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-    controlButton.style.transition = 'opacity 0.6s ease';
-    setTimeout(() => {
-      inputContainer.style.height = '10px';
-      inputContainer.style.top = 'calc(50% + 330px)';
-      inputContainer.style.opacity = 0;
-    }, 100);
-    setTimeout(() => {
-      inputContainer.style.display = 'none';
-    }, 1000);
-
-    if (this.gameCount === 0) {
+      document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
+    }
+    if (this.customer !== 'Pigu.lt' || this.checkboxChange3) {
+      const inputContainer = document.querySelector('.input-container');
       const controlButton = document.querySelector('.control-button');
-      controlButton.style.display = 'none';
-      this.index = 0;
+
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      controlButton.style.transition = 'opacity 0.6s ease';
+      setTimeout(() => {
+        inputContainer.style.height = '10px';
+        inputContainer.style.top = 'calc(50% + 330px)';
+        inputContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        inputContainer.style.display = 'none';
+      }, 1000);
+
+      if (this.gameCount === 0) {
+        const controlButton = document.querySelector('.control-button');
+        controlButton.style.display = 'none';
+        this.index = 0;
+      }
     }
   };
 
@@ -580,6 +607,9 @@ class DoodleWidget {
               score: this.currentScore,
             })
             .then((response) => {
+              if (this.customer === 'Pigu.lt') {
+                logEvent('game_finished', { response });
+              }
               this.userBestPlace = response.user_best_place;
 
               this.scoreTable = response;
@@ -615,7 +645,7 @@ class DoodleWidget {
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
           setTimeout(() => {
-            inputContainer.style.height = '332px';
+            inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
             inputContainer.style.top = 'calc(50% + 170px)';
             inputContainer.style.opacity = 1;
           }, 100);
@@ -1125,7 +1155,7 @@ class DoodleWidget {
     
 
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
     }">
 		</canvas>
 
@@ -1172,29 +1202,21 @@ class DoodleWidget {
           : introAkropolis
         : intro
     } alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;min-width:418px;pointer-events: none; display:block;" id="background_intro">
+      document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
+    }; height: 674px;position:absolute;min-width:440px;pointer-events: none; display:block;" id="background_intro">
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 ${
   this.language === 'LV'
     ? `<div alt="Image Description" style="z-index:1;width: ${
-        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#FE0000" id="background_blur"></div>`
     : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
 }
-
-
-
-    <img src=${couponBackground} alt="Image Description" style="z-index:1;width:    ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    };
-    ; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
-      </img>
 
     <a href="https://www.barbora.lt/" style="position:absolute;margin-top:380px;margin-left:-340px">
     <img src="${useButton}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
@@ -1235,7 +1257,7 @@ ${
 
 
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Pigu.lt' ? '#0B7AFF' : this.language === 'LV' ? '#F40027' : '#045222'
+      this.customer === 'Pigu.lt' ? '#000000' : this.language === 'LV' ? '#F40027' : '#045222'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -1272,11 +1294,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
     if (this.campaignUrl === 'https://pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
-      const competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
         this.customer,
         this.scoreTable,
       );
-      gameContainer.appendChild(competitionCodeScoreTableContainerPigu.containerDiv);
+      gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
 
     if (this.showCompetitiveRegistration) {
@@ -1455,7 +1477,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                           'height 1s ease, top 1s ease, opacity 1s ease';
                         inputContainer.style.display = 'block';
                         setTimeout(() => {
-                          inputContainer.style.height = '332px';
+                          inputContainer.style.height =
+                            this.customer === 'Pigu.lt' ? '400px' : '332px';
                           inputContainer.style.top = 'calc(50% + 170px)';
                           inputContainer.style.opacity = 1;
                         }, 100);
@@ -1738,7 +1761,7 @@ class Base {
   constructor(image) {
     this.image = image;
     this.height = 10;
-    this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418; // Adjust the width value accordingly
+    this.width = document.body.offsetWidth < 440 ? document.body.offsetWidth : 440; // Adjust the width value accordingly
     this.cx = 0;
     this.cy = 614;
     this.cwidth = 100;
@@ -1781,7 +1804,7 @@ class Player {
     this.cheight = 75;
     this.dir = 'left';
     this.x =
-      (document.body.offsetWidth < 418 ? document.body.offsetWidth : 418) / 2 - this.width / 2;
+      (document.body.offsetWidth < 440 ? document.body.offsetWidth : 440) / 2 - this.width / 2;
     this.y = 666;
   }
   draw() {
