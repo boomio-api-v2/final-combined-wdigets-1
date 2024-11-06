@@ -98,7 +98,13 @@ export class CompetitionCodeScoreTableContainer {
         item.place
       }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
-      ${this.prop === 'Pigu.lt' ? piguTableLT[index] : item.user_name}
+      ${
+        this.prop === 'Pigu.lt'
+          ? userBestPlace === index + 1
+            ? 'Tavo rezultatas'
+            : piguTableLT[index]
+          : item.user_name
+      }
     </td>
               <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:11px;">${
         item.score
