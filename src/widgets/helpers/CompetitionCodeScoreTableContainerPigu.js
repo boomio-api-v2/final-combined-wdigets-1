@@ -17,6 +17,7 @@ export class CompetitionCodeScoreTableContainerPigu {
   }
 
   updateProps(prop, scoreTable) {
+    console.log('aaa');
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';

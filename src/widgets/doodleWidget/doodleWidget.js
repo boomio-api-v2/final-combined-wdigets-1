@@ -238,8 +238,6 @@ class DoodleWidget {
         }, 100);
       }, 300);
     } else if (this.campaignUrl === 'https://pigu.lt' && user_id !== '') {
-      console.log('a');
-
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
