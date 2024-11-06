@@ -25,6 +25,29 @@ export class CompetitionCodeScoreTableContainer {
 
   updateVisuals() {
     if (!this.containerDiv) return;
+    const piguTableLT = [
+      'BALSUOTOJAS',
+      'AKRIUKAS',
+      'TABU',
+      'BLASH',
+      'BULKIN',
+      'PILKASIS ŠEŲĖLIS',
+      'MONIKA',
+      'GIEDRIUZAS',
+      'ABRIKOSAS',
+      'TRUMPAS',
+      'UGIS',
+      'MIS LIETUVA',
+      'ZORO',
+      'RUKIS',
+      'EMILIUX',
+      'VĖJO DRUMSTĖJAS',
+      'RORO',
+      'HARIS POTERIS',
+      'VAIVORYKŠTĖ',
+      'VALDELIS',
+    ];
+
     const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
     const scoreboard = this.scoreTable.scoreboard || [];
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
@@ -45,6 +68,7 @@ export class CompetitionCodeScoreTableContainer {
             this.prop === 'Unisend' ||
             this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Pegasas' ||
+            this.prop === 'Pigu.lt' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
             this.prop.includes('Gamtos Ateitis') ||
@@ -57,6 +81,7 @@ export class CompetitionCodeScoreTableContainer {
             this.prop === 'Makalius' ||
             this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Pegasas' ||
+            this.prop === 'Pigu.lt' ||
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym'
           ? 'white'
@@ -66,11 +91,15 @@ export class CompetitionCodeScoreTableContainer {
 
       tableHTML += `
             <tr style="background: ${background};box-shadow:${boxShadow};margin: 0;height:44px ">
-            <td style="padding-left:8px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${item.place}</td>
+            <td style="padding-left:8px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+        item.place
+      }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
-      ${item.user_name}
+      ${this.prop === 'Pigu.lt' ? piguTableLT[index] : item.user_name}
     </td>
-              <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:11px;">${item.score}</td>
+              <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:11px;">${
+        item.score
+      }</td>
             </tr>`;
     });
 
@@ -89,12 +118,13 @@ export class CompetitionCodeScoreTableContainer {
                 this.prop === 'Akropolis' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop === 'Pegasas' ||
+                this.prop === 'Pigu.lt' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        playerNameInput?.value
+        this.prop === 'Pigu.lt' ? 'Tavo rezultatas' : playerNameInput?.value
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
@@ -105,6 +135,7 @@ export class CompetitionCodeScoreTableContainer {
                 this.prop === 'Akropolis' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop === 'Pegasas' ||
+                this.prop === 'Pigu.lt' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
@@ -122,6 +153,7 @@ export class CompetitionCodeScoreTableContainer {
       this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Pegasas' ||
+      this.prop === 'Pigu.lt' ||
       this.prop === 'LemonGym'
         ? '900'
         : '700';
