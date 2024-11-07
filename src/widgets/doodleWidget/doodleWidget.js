@@ -446,7 +446,7 @@ class DoodleWidget {
   };
 
   removeRules = () => {
-    if (!this.checkboxChange3) {
+    if (!this.checkboxChange3 && this.customer === 'Pigu.lt') {
       document.getElementById('boomio-rules-checkbox-error').innerText =
         'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prius.';
       document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
@@ -1733,7 +1733,7 @@ class Platform_broken_substitute {
 
     //Sprite clipping
     this.cx = 0;
-    this.cy = 690;
+    this.cy = 692;
     this.cwidth = 105;
     this.cheight = 60;
 

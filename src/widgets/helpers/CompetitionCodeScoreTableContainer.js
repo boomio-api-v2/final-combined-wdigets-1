@@ -483,7 +483,7 @@ ${
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text');
-        copyButton.textContent = 'Copied';
+        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Nukopijuota' : 'Copied';
 
         setTimeout(() => {
           copyButton.textContent = this.userDiscountCode;

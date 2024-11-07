@@ -364,9 +364,13 @@ export class InputContainer {
       this.prop === 'Akropolis' ||
       this.prop === 'Pigu.lt' ||
       this.prop === 'Ikea'
-        ? `<div style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:${
+        ? `<div style="align-self: stretch; text-align: ${
+            this.prop === 'Pigu.lt' ? 'start' : 'center'
+          }; color: white; font-size: 10px; font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
-          }; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
+          };${
+            this.prop === 'Pigu.lt' ? 'margin-left:47px;' : ''
+          } font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'Eurovaistine'
@@ -443,7 +447,7 @@ export class InputContainer {
 
           ${
             this.prop === 'Pigu.lt'
-              ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+              ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:25px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
             <img id="privacyCheckboxImg3" src="${
               piguRulesCheckbox ? uncheckIcon : ''

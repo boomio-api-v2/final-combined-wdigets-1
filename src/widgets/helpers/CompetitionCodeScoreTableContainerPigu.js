@@ -17,7 +17,6 @@ export class CompetitionCodeScoreTableContainerPigu {
   }
 
   updateProps(prop, scoreTable) {
-    console.log('aaa');
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
@@ -315,7 +314,7 @@ ${
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text2');
-        copyButton.textContent = 'Copied';
+        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Nukopijuota' : 'Copied';
 
         setTimeout(() => {
           copyButton.textContent = this.couponCodeNew;
