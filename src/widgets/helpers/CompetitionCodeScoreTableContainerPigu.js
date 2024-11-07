@@ -286,7 +286,7 @@ ${
     ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${
         this.prop === 'Pigu.lt' ? '#000000' : '#A40033'
       }; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:305px;left:calc(50% - 130px);">
-<div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text">
+<div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
  ${this.couponCodeNew ?? 'CODE'}
     </div>
     <svg width="22" height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn2" style="cursor:pointer">
@@ -314,7 +314,7 @@ ${
         document.execCommand('copy');
         document.body.removeChild(textarea);
 
-        const copyButton = document.getElementById('p_code_text');
+        const copyButton = document.getElementById('p_code_text2');
         copyButton.textContent = 'Copied';
 
         setTimeout(() => {
