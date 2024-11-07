@@ -118,10 +118,12 @@ class LocalStorageService {
     const widget_subtype = config?.subtype ?? false;
     const email_collection_required = config?.email_collection_required ?? false;
     const product = config?.product ?? '???';
-    const language = config?.language ?? 'LT';
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
+    const languageParam = urlParams.get('language');
+    const couponCodeNew = config?.coupon_code;
+    const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
 
     return {
       language,
@@ -172,6 +174,7 @@ class LocalStorageService {
       product,
       game_type,
       campaignUrl,
+      couponCodeNew,
     };
   }
 }

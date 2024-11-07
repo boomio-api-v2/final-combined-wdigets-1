@@ -17,20 +17,9 @@ export class DownloadScoreTableContainer {
     this.scoreTable = scoreTable;
     this.currentScore = currentScore;
     this.updateVisuals();
-    const appleStore = document.getElementById('boomio-barbora-apple-store');
-    const googleStore = document.getElementById('boomio-barbora-google-store');
-    function clickHandler(event) {
-      event.preventDefault(); // Prevent any default behavior
-
-      const url = event.currentTarget.getAttribute('href');
-      window.location.href = url; // Redirect to the URL
-    }
-    appleStore.addEventListener('click', clickHandler);
-    googleStore.addEventListener('click', clickHandler);
   }
 
   updateVisuals() {
-    console.log(this.currentScore);
     if (!this.containerDiv) return;
     const userPercentageDiscount = parseInt(this?.scoreTable?.best_discount) || 0;
     const userDiscountCode = this?.scoreTable?.coupon_code || '';
@@ -52,7 +41,7 @@ export class DownloadScoreTableContainer {
     <div style="width:100%;text-align: center; color: white; font-size: 42px; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     ${userPercentageDiscount ?? 0}% </div>
        <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:250px;margin-top:20px;">
-<div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text">
+<div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
  ${userDiscountCode ?? 'CODE'}
     </div>
     <svg width="22" height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn" style="cursor:pointer">
@@ -86,9 +75,14 @@ export class DownloadScoreTableContainer {
      <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">ATSISIŲSK PROGRAMĖLĘ</div>
              </div>
                           <div style="width:100%; top: 480px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
-                          <img src=${BarboraAppleStore} href="https://apps.apple.com/lt/app/barbora-lt/id903888629" id='boomio-barbora-apple-store' alt="Image Description" style="cursor:pointer;margin-right:10px;width: 147px; height: 49px;">
-                          <img src=${BarboraGoogleStore} href="https://play.google.com/store/apps/details?id=lt.barbora&hl=lt&gl=US&pli=1" id='boomio-barbora-google-store'alt="Image Description" style="cursor:pointer;margin-left:10px;width: 147px; height: 49px;"></div>
-
+<div>
+  <a href="https://apps.apple.com/lt/app/barbora-lt/id903888629" target="_blank">
+    <img src="${BarboraAppleStore}" id="boomio-barbora-apple-store" alt="Image Description" style="cursor:pointer;margin-right:10px;width: 147px; height: 49px;">
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=lt.barbora&hl=lt&gl=US&pli=1" target="_blank">
+    <img src="${BarboraGoogleStore}" id="boomio-barbora-google-store" alt="Image Description" style="cursor:pointer;margin-left:10px;width: 147px; height: 49px;">
+  </a>
+</div>
              </div>
        
     `;
@@ -106,6 +100,13 @@ export class DownloadScoreTableContainer {
       textarea.setSelectionRange(0, textarea.value.length);
       document.execCommand('copy');
       document.body.removeChild(textarea);
+
+      const copyButton = document.getElementById('p_code_text2');
+      copyButton.textContent = 'Nukopijuota';
+
+      setTimeout(() => {
+        copyButton.textContent = userDiscountCode;
+      }, 2000);
     };
   }
 
