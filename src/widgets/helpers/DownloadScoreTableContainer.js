@@ -92,7 +92,7 @@ export class DownloadScoreTableContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     document.getElementById('boomio-copy-modal-btn').onclick = () => {
-      const textToCopy = this.userDiscountCode;
+      const textToCopy = userDiscountCode;
       const textarea = document.createElement('textarea');
       textarea.value = textToCopy;
       document.body.appendChild(textarea);
@@ -105,7 +105,7 @@ export class DownloadScoreTableContainer {
       copyButton.textContent = 'Nukopijuota';
 
       setTimeout(() => {
-        copyButton.textContent = this.userDiscountCode;
+        copyButton.textContent = userDiscountCode;
       }, 2000);
     };
   }
