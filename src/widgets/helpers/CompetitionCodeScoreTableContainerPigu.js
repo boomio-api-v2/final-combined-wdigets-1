@@ -305,7 +305,7 @@ ${
 
     if (this.scoreTable.user_best_score > 1500 || this.prop === 'Pigu.lt') {
       document.getElementById('boomio-copy-modal-btn2').onclick = () => {
-        const textToCopy = this.userDiscountCode;
+        const textToCopy = this.couponCodeNew;
         const textarea = document.createElement('textarea');
         textarea.value = textToCopy;
         document.body.appendChild(textarea);
@@ -318,7 +318,7 @@ ${
         copyButton.textContent = 'Copied';
 
         setTimeout(() => {
-          copyButton.textContent = this.userDiscountCode;
+          copyButton.textContent = this.couponCodeNew;
         }, 2000);
       };
     }
