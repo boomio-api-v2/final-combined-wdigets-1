@@ -285,14 +285,14 @@ export class InputContainer {
                 : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${
-                            this.prop === 'Pieno Žvaigždės' ? '13px' : '3px'
+                            this.prop === 'Pieno Žvaigždės' ? '18px' : '3px'
                           }; color: white; font-size: ${
       this.prop === 'Akropolis' ? '14px' : '12px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
       this.prop === 'Pieno Žvaigždės' ? 'white-space:normal;' : ''
-    }${this.prop === 'Pieno Žvaigždės' ? 'line-height:25px;' : ''}">
+    }${this.prop === 'Pieno Žvaigždės' ? 'line-height:14px;' : ''}">
             ${
               this.prop === 'Eurovaistine'
                 ? 'kādu no 50 balvām!'
