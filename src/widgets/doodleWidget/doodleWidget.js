@@ -1190,7 +1190,7 @@ class DoodleWidget {
     
 
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418 px'
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }">
 		</canvas>
 
@@ -1237,19 +1237,19 @@ class DoodleWidget {
           : introAkropolis
         : intro
     } alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418 px'
-    }; height: 674px;position:absolute;min-width:418 px;pointer-events: none; display:block;" id="background_intro">
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;min-width:418px;pointer-events: none; display:block;" id="background_intro">
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418 px'
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 ${
   this.language === 'LV'
     ? `<div alt="Image Description" style="z-index:1;width: ${
-        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418 px'
+        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#FE0000" id="background_blur"></div>`
     : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418 px'
+        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
 }
 
