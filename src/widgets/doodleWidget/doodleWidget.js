@@ -759,8 +759,8 @@ class DoodleWidget {
       if (
         this.player.vy > 0 &&
         p.state === 0 &&
-        this.player.x + 15 < p.x + p.width &&
-        this.player.x + this.player.width - 15 > p.x &&
+        this.player.x + 15 < p.x + p.width - 40 &&
+        this.player.x + this.player.width - 15 > p.x + 30 &&
         this.player.y + this.player.height > p.y &&
         this.player.y + this.player.height < p.y + p.height
       ) {
