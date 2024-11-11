@@ -16,8 +16,6 @@ export class CompetitionCodeScoreTableContainer {
   }
 
   updateProps(prop, scoreTable) {
-    console.log('bbb');
-
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
@@ -26,7 +24,6 @@ export class CompetitionCodeScoreTableContainer {
   }
 
   updateVisuals() {
-    console.log(this.prop);
     if (!this.containerDiv) return;
     const piguTableLT = [
       'BALSUOTOJAS',

@@ -124,6 +124,7 @@ class LocalStorageService {
     const languageParam = urlParams.get('language');
     const couponCodeNew = config?.coupon_code;
     const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
+    const userBestScore = config?.user_best_score;
 
     return {
       language,
@@ -175,6 +176,7 @@ class LocalStorageService {
       game_type,
       campaignUrl,
       couponCodeNew,
+      userBestScore,
     };
   }
 }

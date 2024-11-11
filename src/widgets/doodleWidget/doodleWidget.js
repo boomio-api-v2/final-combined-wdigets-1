@@ -48,6 +48,7 @@ class DoodleWidget {
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
+    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
 
     this.isMobile = window.innerWidth <= 1280;
     this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
@@ -191,7 +192,7 @@ class DoodleWidget {
     const urlParams = new URL(currentPageUrl).searchParams;
     const user_id = urlParams.get('user_id');
 
-    if (this.customer === 'Pigu.lt') {
+    if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
         this.checkboxChange3 = !this.checkboxChange3;
@@ -333,30 +334,33 @@ class DoodleWidget {
 
   initGame = () => {
     this.removeRules();
-    if (this.customer !== 'Pigu.lt' || this.checkboxChange3) {
+    if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
       if (!this.tutorial) {
         setTimeout(() => {
           if (this.showCompetitiveRegistration) {
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
-                if (window.Boomio) {
-                  window.Boomio.logEvent('game_started', JSON.stringify(response));
-                } else if (
-                  window.webkit &&
-                  window.webkit.messageHandlers &&
-                  window.webkit.messageHandlers.Boomio
-                ) {
-                  var message = {
-                    command: 'logEvent',
-                    name: 'game_started',
-                    parameters: { response },
-                  };
-                  window.webkit.messageHandlers.Boomio.postMessage(message);
-                } else {
-                  console.log('No native APIs found.');
+                if (this.customer === 'Pigu.lt') {
+                  if (window.Boomio) {
+                    window.Boomio.logEvent('game_started', JSON.stringify(response));
+                  } else if (
+                    window.webkit &&
+                    window.webkit.messageHandlers &&
+                    window.webkit.messageHandlers.Boomio
+                  ) {
+                    var message = {
+                      command: 'logEvent',
+                      name: 'game_started',
+                      parameters: { response },
+                    };
+                    window.webkit.messageHandlers.Boomio.postMessage(message);
+                  } else {
+                    console.log('No native APIs found.');
+                  }
                 }
               })
+
               .catch((error) => {
                 console.error('Error:', error);
               });
@@ -446,14 +450,15 @@ class DoodleWidget {
   };
 
   removeRules = () => {
-    if (!this.checkboxChange3 && this.customer === 'Pigu.lt') {
+    if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       document.getElementById('boomio-rules-checkbox-error').innerText =
         'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prius.';
       document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
       document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
     }
-    if (this.customer !== 'Pigu.lt' || this.checkboxChange3) {
+
+    if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
       const inputContainer = document.querySelector('.input-container');
       const controlButton = document.querySelector('.control-button');
 
