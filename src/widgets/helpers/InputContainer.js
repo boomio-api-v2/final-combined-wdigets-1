@@ -452,7 +452,7 @@ export class InputContainer {
       <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
             <img id="privacyCheckboxImg3" src="${
               piguRulesCheckbox ? uncheckIcon : ''
-            }" style="width: 20px; height: 20px;">
+            }" style="max-width:fit-content;width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${'12px'}; font-family:${'Montserrat'} ;  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">${`Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.`}
     </div>
