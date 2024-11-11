@@ -62,11 +62,11 @@ export class InputContainer {
         ? 'NOTEIKUMI'
         : 'Taisyklės'
     }</div>`}</div>
-    <div style="width: 390px;margin-top:10px;margin-bottom:10px;height:110px; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 139px; position: relative">
+    <div style="width: 390px;margin-top:10px;margin-bottom:10px;height:110px; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
 
  
 
-          <div style="width:100%; height: 139px; left: 20px; top: 0px; position: absolute">
+          <div style="width:100%; height: 120px; left: 20px; top: 0px; position: absolute">
             <div style="left: 0px; top: 0px;display:flex; position: absolute; color: white; font-size: ${
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
                 ? '20px'
@@ -371,7 +371,7 @@ export class InputContainer {
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
           };${
             this.prop === 'Pigu.lt' ? 'margin-left:47px;' : ''
-          } font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${
+          } font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
             this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'Eurovaistine'
@@ -408,6 +408,16 @@ export class InputContainer {
               ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
               : this.prop.includes('Gamtos Ateitis')
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
+              : this.prop === 'Pigu.lt' && this.language === 'LV'
+              ? 'href=https://220.lv/lv/t/game-rules-jump'
+              : this.prop === 'Pigu.lt' && this.language === 'ET'
+              ? 'href=https://kaup24.ee/et/t/game-rules-jump'
+              : this.prop === 'Pigu.lt' && this.language === 'FI'
+              ? 'href=https://hobbyhall.fi/fi/t/game-rules-jump'
+              : this.prop === 'Pigu.lt' && this.language === 'RU'
+              ? 'href=https://220.lv/lv/t/game-rules-jump'
+              : this.prop === 'Pigu.lt'
+              ? 'href=https://pigu.lt/lt/t/zaidimo-taisykles-jump'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
