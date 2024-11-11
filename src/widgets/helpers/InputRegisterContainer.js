@@ -105,7 +105,7 @@ export class InputRegisterContainer {
         : '10px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    };font-weight: 400; width:350px;word-wrap: break-word;text-align:start;">${
+    };font-weight: 400; word-wrap: break-word;text-align:start;">${
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
         : this.prop === 'Eurovaistine'

@@ -63,7 +63,7 @@ class DoodleWidget {
 
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
-    this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418;
+    this.width = document.body.offsetWidth < 440 ? document.body.offsetWidth : 440;
     this.height = 668;
     this.player;
     this.tutorial = true;
@@ -1195,7 +1195,7 @@ class DoodleWidget {
     
 
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
     }">
 		</canvas>
 
@@ -1242,19 +1242,19 @@ class DoodleWidget {
           : introAkropolis
         : intro
     } alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;min-width:418px;pointer-events: none; display:block;" id="background_intro">
+      document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
+    }; height: 674px;position:absolute;min-width:440px;pointer-events: none; display:block;" id="background_intro">
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 ${
   this.language === 'LV'
     ? `<div alt="Image Description" style="z-index:1;width: ${
-        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#FE0000" id="background_blur"></div>`
     : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        document.body.offsetWidth < 440 ? document.body.offsetWidth + 'px' : '440px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
 }
 
@@ -1801,7 +1801,7 @@ class Base {
   constructor(image) {
     this.image = image;
     this.height = 10;
-    this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418; // Adjust the width value accordingly
+    this.width = document.body.offsetWidth < 440 ? document.body.offsetWidth : 440; // Adjust the width value accordingly
     this.cx = 0;
     this.cy = 614;
     this.cwidth = 100;
@@ -1844,7 +1844,7 @@ class Player {
     this.cheight = 75;
     this.dir = 'left';
     this.x =
-      (document.body.offsetWidth < 418 ? document.body.offsetWidth : 418) / 2 - this.width / 2;
+      (document.body.offsetWidth < 440 ? document.body.offsetWidth : 440) / 2 - this.width / 2;
     this.y = 666;
   }
   draw() {

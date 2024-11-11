@@ -454,9 +454,7 @@ export class InputContainer {
               piguRulesCheckbox ? uncheckIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
-        <div style="color: ${'white'}; font-size: ${'12px'}; font-family:${'Montserrat'} ;  font-weight: 400; width:${
-                  this.prop?.includes('Gamtos Ateitis') ? '320px' : '350px'
-                };word-wrap: break-word;line-height:14px;text-align:start;">${`Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.`}
+        <div style="color: ${'white'}; font-size: ${'12px'}; font-family:${'Montserrat'} ;  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">${`Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.`}
     </div>
       </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;height:${'28px'} ;margin-right:30px;display:${'none'} ;left: 34px; top:${'255px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
                   this.isMobile ? '9px' : '10px'
