@@ -1239,9 +1239,7 @@ class DoodleWidget {
 
 
     <img src=${
-      this.customer === 'Pigu.lt' && this.language === 'EN'
-        ? 'CLICK'
-        : this.customer === 'Pigu.lt' && this.language === 'LV'
+      this.customer === 'Pigu.lt' && this.language === 'LV'
         ? PiguJumpUpIntroLatvian
         : this.customer === 'Pigu.lt' && this.language === 'ET'
         ? PiguJumpUpIntroEstonian
