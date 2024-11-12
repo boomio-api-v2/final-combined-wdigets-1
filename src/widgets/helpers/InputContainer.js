@@ -412,13 +412,13 @@ export class InputContainer {
               : this.prop.includes('Gamtos Ateitis')
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
               : this.campaignUrlProp === 'https://pigu.lt'
-              ? 'href=https://pigu.lt/lt/'
+              ? 'href=https://pigu.lt/lt/t/zaidimo-taisykles-jump'
               : this.campaignUrlProp === 'https://220.lv'
-              ? 'href=https://220.lv/lv/'
+              ? 'href=https://220.lv/lv/t/game-rules-jump'
               : this.campaignUrlProp === 'https://kaup24.ee'
-              ? 'href=https://kaup24.ee/et/'
+              ? 'href=https://kaup24.ee/et/t/game-rules-jump'
               : this.campaignUrlProp === 'https://hobbyhall.fi'
-              ? 'href=https://hobbyhall.fi/fi'
+              ? 'href=https://hobbyhall.fi/fi/t/game-rules-jump'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
