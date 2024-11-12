@@ -11,6 +11,9 @@ export class InputContainer {
 
     this.language = this.config.language ? this.config.language : 'EN';
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    this.campaignUrlProp = urlParams.get('campaign_url');
   }
   createInputContainerDiv() {
     let piguRulesCheckbox = true;
@@ -408,16 +411,14 @@ export class InputContainer {
               ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
               : this.prop.includes('Gamtos Ateitis')
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
-              : this.prop === 'Pigu.lt' && this.language === 'LV'
-              ? 'href=https://220.lv/lv/t/game-rules-jump'
-              : this.prop === 'Pigu.lt' && this.language === 'ET'
-              ? 'href=https://kaup24.ee/et/t/game-rules-jump'
-              : this.prop === 'Pigu.lt' && this.language === 'FI'
-              ? 'href=https://hobbyhall.fi/fi/t/game-rules-jump'
-              : this.prop === 'Pigu.lt' && this.language === 'RU'
-              ? 'href=https://220.lv/lv/t/game-rules-jump'
-              : this.prop === 'Pigu.lt'
-              ? 'href=https://pigu.lt/lt/t/zaidimo-taisykles-jump'
+              : this.campaignUrlProp === 'https://pigu.lt'
+              ? 'href=https://pigu.lt/lt/'
+              : this.campaignUrlProp === 'https://220.lv'
+              ? 'href=https://220.lv/lv/'
+              : this.campaignUrlProp === 'https://kaup24.ee'
+              ? 'href=https://kaup24.ee/et/'
+              : this.campaignUrlProp === 'https://hobbyhall.fi'
+              ? 'href=https://hobbyhall.fi/fi'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
