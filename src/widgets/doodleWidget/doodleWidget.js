@@ -32,6 +32,11 @@ import {
   mainImagePigu,
   introPigu,
   backgroundPigu,
+  PiguJumpUpIntroEstonian,
+  PiguJumpUpIntroFinish,
+  PiguJumpUpIntroLatvian,
+  PiguJumpUpIntroLithuanian,
+  PiguJumpUpIntroRussian,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -167,7 +172,7 @@ class DoodleWidget {
       setTimeout(() => {
         document.getElementById('background_intro').style.display = 'none';
       }, 2000);
-    }, 3000); //intro speed
+    }, 2000); //intro speed
   }
 
   createHandlers = () => {
@@ -1234,8 +1239,18 @@ class DoodleWidget {
 
 
     <img src=${
-      this.customer === 'Pigu.lt'
-        ? introPigu
+      this.prop === 'Pigu.lt' && this.language === 'EN'
+        ? 'CLICK'
+        : this.prop === 'Pigu.lt' && this.language === 'LV'
+        ? PiguJumpUpIntroLatvian
+        : this.prop === 'Pigu.lt' && this.language === 'ET'
+        ? PiguJumpUpIntroEstonian
+        : this.prop === 'Pigu.lt' && this.language === 'FI'
+        ? PiguJumpUpIntroFinish
+        : this.prop === 'Pigu.lt' && this.language === 'RU'
+        ? PiguJumpUpIntroRussian
+        : this.prop === 'Pigu.lt' && this.language === 'LT'
+        ? PiguJumpUpIntroLithuanian
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV

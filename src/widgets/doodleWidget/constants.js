@@ -84,3 +84,14 @@ export const backgroundPigu =
 
 export const introPigu =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/intro.png?raw=true';
+
+export const PiguJumpUpIntroEstonian =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroEstonian.gif?raw=true';
+export const PiguJumpUpIntroFinish =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroFinish.gif?raw=true';
+export const PiguJumpUpIntroLatvian =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroLatvian.gif?raw=true';
+export const PiguJumpUpIntroLithuanian =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroLithuanian.gif?raw=true';
+export const PiguJumpUpIntroRussian =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroRussian.gif?raw=true';
