@@ -228,7 +228,7 @@ class DoodleWidget {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
         document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.7 : 0.37;
+          this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
 
@@ -289,7 +289,7 @@ class DoodleWidget {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
         document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.7 : 0.37;
+          this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
@@ -321,7 +321,7 @@ class DoodleWidget {
     setTimeout(() => {
       const canvas = document.getElementById('boomio-doodle-canvas');
       document.getElementById('background_blur').style.opacity =
-        this.language === 'LV' ? 0.7 : 0.37;
+        this.language === 'LV' ? 0.4 : 0.37;
       canvas.style.transition = 'filter 0.6s ease';
       canvas.style.filter = 'blur(2px)';
       const inputContainer = document.querySelector('.input-container');
@@ -672,7 +672,7 @@ class DoodleWidget {
           canvas.style.filter = 'blur(2px)';
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.opacity =
-            this.language === 'LV' ? 0.7 : 0.37;
+            this.language === 'LV' ? 0.4 : 0.37;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
@@ -1518,7 +1518,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       setTimeout(() => {
                         const canvas = document.getElementById('boomio-doodle-canvas');
                         document.getElementById('background_blur').style.opacity =
-                          this.language === 'LV' ? 0.7 : 0.37;
+                          this.language === 'LV' ? 0.4 : 0.37;
                         canvas.style.transition = 'filter 0.6s ease';
                         canvas.style.filter = 'blur(2px)';
                         const inputContainer = document.querySelector('.input-container');
