@@ -1239,17 +1239,17 @@ class DoodleWidget {
 
 
     <img src=${
-      this.prop === 'Pigu.lt' && this.language === 'EN'
+      this.customer === 'Pigu.lt' && this.language === 'EN'
         ? 'CLICK'
-        : this.prop === 'Pigu.lt' && this.language === 'LV'
+        : this.customer === 'Pigu.lt' && this.language === 'LV'
         ? PiguJumpUpIntroLatvian
-        : this.prop === 'Pigu.lt' && this.language === 'ET'
+        : this.customer === 'Pigu.lt' && this.language === 'ET'
         ? PiguJumpUpIntroEstonian
-        : this.prop === 'Pigu.lt' && this.language === 'FI'
+        : this.customer === 'Pigu.lt' && this.language === 'FI'
         ? PiguJumpUpIntroFinish
-        : this.prop === 'Pigu.lt' && this.language === 'RU'
+        : this.customer === 'Pigu.lt' && this.language === 'RU'
         ? PiguJumpUpIntroRussian
-        : this.prop === 'Pigu.lt' && this.language === 'LT'
+        : this.customer === 'Pigu.lt' && this.language === 'LT'
         ? PiguJumpUpIntroLithuanian
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
