@@ -1262,7 +1262,7 @@ class DoodleWidget {
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 ${
-  this.language === 'LV'
+  this.language === 'LV' && this.customer === 'Akropolis'
     ? `<div alt="Image Description" style="z-index:1;width: ${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#FE0000" id="background_blur"></div>`
