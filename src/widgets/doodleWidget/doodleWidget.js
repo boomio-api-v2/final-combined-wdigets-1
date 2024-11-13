@@ -284,6 +284,7 @@ class DoodleWidget {
             }, 100);
           } else {
             this.userBestScore = response.user_best_score;
+            console.log(this.userBestScore);
 
             this.showRulesPigu();
           }
@@ -300,6 +301,7 @@ class DoodleWidget {
         })
         .then((response) => {
           this.userBestScore = response.user_best_score;
+          console.log(this.userBestScore);
 
           this.showRulesPigu();
         })
@@ -328,6 +330,7 @@ class DoodleWidget {
   };
 
   showRulesPigu = () => {
+    console.log(this.userBestScore);
     if (this.userBestScore > 0) {
       document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
     }
