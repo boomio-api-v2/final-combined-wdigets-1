@@ -323,9 +323,8 @@ class DoodleWidget {
     }
   };
 
-  showRulesPigu = (user_best_score) => {
-    if (this.userBestScore >= 1500) {
-      console.log('a');
+  showRulesPigu = () => {
+    if (this.userBestScore >= 0) {
       document.querySelector('.boomio-rules-privacyCheckbox').display = 'none';
     }
     const competitionTableContainer = document.querySelector('.competition-table-container-pigu');

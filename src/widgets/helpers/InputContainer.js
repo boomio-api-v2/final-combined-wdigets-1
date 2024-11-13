@@ -535,7 +535,6 @@ export class InputContainer {
       if (rulesTableContainer && closeBtn) {
         // Element found, add event listener to 'control-button'
         closeBtn.addEventListener('click', () => {
-          console.log('test');
           rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           setTimeout(() => {
             rulesTableContainer.style.height = '10px';
