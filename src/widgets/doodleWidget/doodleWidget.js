@@ -283,7 +283,7 @@ class DoodleWidget {
               competitionTableContainer.style.opacity = 1;
             }, 100);
           } else {
-            this.showRulesPigu();
+            this.showRulesPigu(response.user_best_score);
           }
         })
         .catch((error) => {
@@ -323,7 +323,10 @@ class DoodleWidget {
     }
   };
 
-  showRulesPigu = () => {
+  showRulesPigu = (user_best_score) => {
+    if (user_best_score >= 1500) {
+      document.querySelector('.boomio-rules-privacyCheckbox').display = 'none';
+    }
     const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
 
     competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
