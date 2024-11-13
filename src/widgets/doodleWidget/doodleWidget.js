@@ -324,6 +324,7 @@ class DoodleWidget {
   };
 
   showRulesPigu = (response) => {
+    console.log(response);
     if (response.user_best_score > 0) {
       document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
     }
