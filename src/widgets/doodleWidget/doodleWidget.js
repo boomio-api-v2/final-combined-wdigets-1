@@ -58,7 +58,7 @@ class DoodleWidget {
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
-    this.userBestScore = this.config.userBestScore ? this.config.animation : 0;
+    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
 
     this.isMobile = window.innerWidth <= 1280;
     this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
@@ -325,6 +325,7 @@ class DoodleWidget {
 
   showRulesPigu = (user_best_score) => {
     if (this.userBestScore >= 1500) {
+      console.log('a');
       document.querySelector('.boomio-rules-privacyCheckbox').display = 'none';
     }
     const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
