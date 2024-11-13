@@ -15,6 +15,7 @@ export class InputContainer {
     const urlParams = new URL(currentPageUrl).searchParams;
     this.campaignUrlProp = urlParams.get('campaign_url');
   }
+
   createInputContainerDiv() {
     let piguRulesCheckbox = true;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
@@ -30,6 +31,7 @@ export class InputContainer {
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
+
     containerDiv.innerHTML = `
 
     
@@ -368,7 +370,7 @@ export class InputContainer {
       this.prop === 'Akropolis' ||
       this.prop === 'Pigu.lt' ||
       this.prop === 'Ikea'
-        ? `<div style="align-self: stretch; text-align: ${
+        ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
           }; color: white; font-size: 10px; font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -411,14 +413,6 @@ export class InputContainer {
               ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
               : this.prop.includes('Gamtos Ateitis')
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
-              : this.campaignUrlProp === 'https://pigu.lt'
-              ? 'href=https://pigu.lt/lt/t/zaidimo-taisykles-jump'
-              : this.campaignUrlProp === 'https://220.lv'
-              ? 'href=https://220.lv/lv/t/game-rules-jump'
-              : this.campaignUrlProp === 'https://kaup24.ee'
-              ? 'href=https://kaup24.ee/et/t/game-rules-jump'
-              : this.campaignUrlProp === 'https://hobbyhall.fi'
-              ? 'href=https://hobbyhall.fi/fi/t/game-rules-jump'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -467,7 +461,7 @@ export class InputContainer {
         </div>
         <div style="color: ${'white'}; font-size: ${'12px'}; font-family:${'Montserrat'} ;  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">${`Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.`}
     </div>
-      </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;height:${'28px'} ;margin-right:30px;display:${'none'} ;left: 34px; top:${'255px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
+      </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;height:${'13px'} ;margin-right:30px;display:${'none'} ;left: 34px; top:${'270px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
                   this.isMobile ? '9px' : '10px'
                 };color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>`
@@ -537,6 +531,32 @@ export class InputContainer {
     </div>
  
     `;
+
+    function showCompetitionTableContainer() {
+      const rulesTableContainer = document.querySelector('.rules-table-container');
+      rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      rulesTableContainer.style.display = 'block';
+      setTimeout(() => {
+        rulesTableContainer.style.height = '500px';
+        rulesTableContainer.style.top = 'calc(50% - 10px)';
+        rulesTableContainer.style.opacity = 1;
+      }, 100);
+    }
+    if (this.prop === 'Pigu.lt') {
+      const observer = new MutationObserver((mutationsList, observer) => {
+        // Check if the element has been added to the DOM
+        const startRulesButton = document.getElementById('startRulesButtonClick');
+        if (startRulesButton) {
+          // Element found, add event listener
+          startRulesButton.addEventListener('click', showCompetitionTableContainer);
+          // Stop observing once the element is found
+          observer.disconnect();
+        }
+      });
+
+      // Start observing the DOM for changes
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
 
     return containerDiv;
   }

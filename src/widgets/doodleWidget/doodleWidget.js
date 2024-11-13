@@ -30,6 +30,10 @@ import {
   jumpEffect,
   ControlsDesktop,
   mainImagePigu,
+  mainImagePiguLT,
+  mainImagePiguLV,
+  mainImagePiguFI,
+  mainImagePiguEE,
   introPigu,
   backgroundPigu,
   PiguJumpUpIntroEstonian,
@@ -44,6 +48,7 @@ import { GameOverContainer } from '../helpers/GameOverContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { RulesContainer } from '../helpers/RulesContainer';
 
 class DoodleWidget {
   static ctx;
@@ -73,9 +78,21 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
+
+    const campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+
     this.image.src =
-      this.customer === 'Pigu.lt'
-        ? mainImagePigu
+      campaignUrlProp === 'https://pigu.lt'
+        ? mainImagePiguLT
+        : campaignUrlProp === 'https://220.lv'
+        ? mainImagePiguLV
+        : campaignUrlProp === 'https://kaup24.ee'
+        ? mainImagePiguEE
+        : campaignUrlProp === 'https://hobbyhall.fi'
+        ? mainImagePiguFI
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? mainImageAkropolisLV
@@ -1352,6 +1369,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         this.scoreTable,
       );
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
+    }
+    if (this.campaignUrl === 'https://pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
 
     if (this.showCompetitiveRegistration) {

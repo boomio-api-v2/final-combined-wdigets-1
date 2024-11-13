@@ -95,3 +95,15 @@ export const PiguJumpUpIntroLithuanian =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroLithuanian.gif?raw=true';
 export const PiguJumpUpIntroRussian =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroRussian.gif?raw=true';
+
+export const mainImagePiguLT =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/gameLT.png?raw=true';
+
+export const mainImagePiguLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/gameLV.png?raw=true';
+
+export const mainImagePiguFI =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/gameFI.png?raw=true';
+
+export const mainImagePiguEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/gameEE.png?raw=true';

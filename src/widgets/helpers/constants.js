@@ -248,3 +248,6 @@ export const item11pegasas =
 
 export const item12pegasas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/DidYouKnow/pegasas12.png';
+export const close = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/whiteClose.png',
+];
