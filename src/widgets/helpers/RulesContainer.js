@@ -98,7 +98,22 @@ ${content}
     `;
 
     this.containerDiv = containerDiv;
+    const closeBtn = document.getElementById('close-rules-container');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        const rulesTableContainer = document.getElementById('rules-table-container');
 
+        rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          rulesTableContainer.style.height = '10px';
+          rulesTableContainer.style.top = 'calc(50% + 330px)';
+          rulesTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          rulesTableContainer.style.display = 'none';
+        }, 1000);
+      });
+    }
     document.getElementById('boomio-copy-modal-btn').onclick = () => {
       const textToCopy = userDiscountCode;
       const textarea = document.createElement('textarea');

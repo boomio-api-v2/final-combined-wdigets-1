@@ -532,13 +532,41 @@ export class InputContainer {
  
     `;
 
+    const observer = new MutationObserver((mutationsList, observer) => {
+      // Check if the 'rules-table-container' and 'control-button' have been added to the DOM
+      const rulesTableContainer = document.getElementById('rules-table-container');
+      const closeBtn = document.getElementById('control-button');
+
+      if (rulesTableContainer && closeBtn) {
+        // Element found, add event listener to 'control-button'
+        closeBtn.addEventListener('click', () => {
+          console.log('test');
+          rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          setTimeout(() => {
+            rulesTableContainer.style.height = '10px';
+            rulesTableContainer.style.top = 'calc(50% + 330px)';
+            rulesTableContainer.style.opacity = 0;
+          }, 100);
+          setTimeout(() => {
+            rulesTableContainer.style.display = 'none';
+          }, 1000);
+        });
+
+        // Stop observing once the elements are found and event listener is added
+        observer.disconnect();
+      }
+    });
+
+    // Start observing the DOM for changes in child elements
+    observer.observe(document.body, { childList: true, subtree: true });
+
     function showCompetitionTableContainer() {
       const rulesTableContainer = document.querySelector('.rules-table-container');
       rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       rulesTableContainer.style.display = 'block';
       setTimeout(() => {
         rulesTableContainer.style.height = '500px';
-        rulesTableContainer.style.top = 'calc(50% - 10px)';
+        rulesTableContainer.style.top = 'calc(50% - 15px)';
         rulesTableContainer.style.opacity = 1;
       }, 100);
     }

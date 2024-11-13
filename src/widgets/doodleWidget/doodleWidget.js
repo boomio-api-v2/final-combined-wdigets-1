@@ -269,7 +269,7 @@ class DoodleWidget {
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
-          if (response.user_best_score > 0) {
+          if (response.user_best_score > 1500) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
             const competitionTableContainer = document.querySelector(
               '.competition-table-container-pigu',
