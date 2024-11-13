@@ -334,7 +334,7 @@ class DoodleWidget {
 
   showRulesPigu = () => {
     this.config = localStorageService.getDefaultConfig();
-    console.log(config);
+    console.log(this.config);
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
 
     if (this.userBestScore > 0) {
