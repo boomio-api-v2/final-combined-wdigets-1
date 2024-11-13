@@ -125,8 +125,6 @@ class LocalStorageService {
     const couponCodeNew = config?.coupon_code;
     const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
     const userBestScore = config?.user_best_score ? config?.user_best_score : 0;
-    console.log(config?.user_best_score);
-
     console.log(userBestScore);
     return {
       language,
