@@ -324,8 +324,8 @@ class DoodleWidget {
   };
 
   showRulesPigu = () => {
-    if (this.userBestScore >= 0) {
-      document.querySelector('.boomio-rules-privacyCheckbox').display = 'none';
+    if (this.userBestScore > 0) {
+      document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
     }
     const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
 
