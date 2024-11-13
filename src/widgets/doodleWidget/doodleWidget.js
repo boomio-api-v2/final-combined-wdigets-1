@@ -283,7 +283,9 @@ class DoodleWidget {
               competitionTableContainer.style.opacity = 1;
             }, 100);
           } else {
-            this.showRulesPigu(response);
+            this.userBestScore = response.user_best_score;
+
+            this.showRulesPigu();
           }
         })
         .catch((error) => {
@@ -297,7 +299,9 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
-          this.showRulesPigu(response);
+          this.userBestScore = response.user_best_score;
+
+          this.showRulesPigu();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -323,9 +327,8 @@ class DoodleWidget {
     }
   };
 
-  showRulesPigu = (response) => {
-    console.log(response);
-    if (response.user_best_score > 0) {
+  showRulesPigu = () => {
+    if (this.userBestScore > 0) {
       document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
     }
     const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
