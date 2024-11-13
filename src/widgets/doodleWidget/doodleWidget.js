@@ -297,7 +297,7 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
-          this.showRulesPigu();
+          this.showRulesPigu(response.user_best_score);
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -324,6 +324,7 @@ class DoodleWidget {
   };
 
   showRulesPigu = (user_best_score) => {
+    console.log(user_best_score);
     if (user_best_score >= 1500) {
       document.querySelector('.boomio-rules-privacyCheckbox').display = 'none';
     }
