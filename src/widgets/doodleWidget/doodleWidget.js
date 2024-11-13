@@ -283,9 +283,7 @@ class DoodleWidget {
               competitionTableContainer.style.opacity = 1;
             }, 100);
           } else {
-            console.log(response);
             this.userBestScore = response.user_best_score;
-            console.log('a', this.userBestScore);
 
             this.showRulesPigu();
           }
@@ -301,10 +299,8 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
-          console.log(response);
 
           this.userBestScore = response.user_best_score;
-          console.log('a', this.userBestScore);
 
           this.showRulesPigu();
         })
@@ -334,7 +330,6 @@ class DoodleWidget {
 
   showRulesPigu = () => {
     this.config = localStorageService.getDefaultConfig();
-    console.log(this.config);
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
 
     if (this.userBestScore > 0) {
