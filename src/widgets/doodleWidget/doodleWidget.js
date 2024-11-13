@@ -260,7 +260,7 @@ class DoodleWidget {
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
-    } else if (this.campaignUrl === 'https://pigu.lt' && user_id !== '') {
+    } else if (this.customer === 'Pigu.lt' && user_id !== '') {
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
@@ -291,7 +291,7 @@ class DoodleWidget {
         .catch((error) => {
           console.error('Error:', error);
         });
-    } else if (this.campaignUrl === 'https://pigu.lt' && user_id === '') {
+    } else if (this.customer === 'Pigu.lt' && user_id === '') {
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
@@ -299,7 +299,6 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
-
           this.userBestScore = response.user_best_score;
 
           this.showRulesPigu();
@@ -1359,7 +1358,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
     if (this.showCompetitiveRegistration) {
       const gameContainer = document.querySelector('.game-container');
-      if (this.campaignUrl === 'https://pigu.lt') {
+      if (this.customer === 'Pigu.lt') {
         this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
           this.customer,
           this.scoreTable,
@@ -1373,7 +1372,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
 
-    if (this.campaignUrl === 'https://pigu.lt') {
+    if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
       this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
         this.customer,
@@ -1381,7 +1380,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       );
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
-    if (this.campaignUrl === 'https://pigu.lt') {
+    if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
@@ -1627,7 +1626,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
       }
 
-      if (this.campaignUrl === 'https://pigu.lt') {
+      if (this.customer === 'Pigu.lt') {
         const competitionRestart = document.getElementById('boomio-game-play-again-pigu');
         competitionRestart.addEventListener('click', this.showRulesPigu);
       }
