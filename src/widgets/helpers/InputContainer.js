@@ -36,7 +36,7 @@ export class InputContainer {
 
     
     <div style="width: 100%; height: ${
-      this.userBestScore <= 0 && this.prop === 'Pigu.lt' ? '220px' : '180px'
+      this.userBestScore >= 0 && this.prop === 'Pigu.lt' ? '220px' : '180px'
     };box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
@@ -452,7 +452,7 @@ export class InputContainer {
            
 
           ${
-            this.userBestScore <= 0 && this.prop === 'Pigu.lt'
+            this.userBestScore >= 0 && this.prop === 'Pigu.lt'
               ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:25px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
             <img id="privacyCheckboxImg3" src="${
