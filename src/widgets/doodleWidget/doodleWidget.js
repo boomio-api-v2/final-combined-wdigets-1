@@ -283,6 +283,7 @@ class DoodleWidget {
               competitionTableContainer.style.opacity = 1;
             }, 100);
           } else {
+            console.log(response);
             this.userBestScore = response.user_best_score;
             console.log('a', this.userBestScore);
 
@@ -300,6 +301,8 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
+          console.log(response);
+
           this.userBestScore = response.user_best_score;
           console.log('a', this.userBestScore);
 
