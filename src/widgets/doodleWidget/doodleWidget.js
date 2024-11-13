@@ -283,7 +283,7 @@ class DoodleWidget {
               competitionTableContainer.style.opacity = 1;
             }, 100);
           } else {
-            this.showRulesPigu();
+            this.showRulesPigu(response);
           }
         })
         .catch((error) => {
@@ -297,7 +297,7 @@ class DoodleWidget {
           user_name: user_id,
         })
         .then((response) => {
-          this.showRulesPigu();
+          this.showRulesPigu(response);
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -323,9 +323,8 @@ class DoodleWidget {
     }
   };
 
-  showRulesPigu = () => {
-    console.log('userBestScore', this.userBestScore);
-    if (this.userBestScore > 0) {
+  showRulesPigu = (response) => {
+    if (response.user_best_score > 0) {
       document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
     }
     const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
