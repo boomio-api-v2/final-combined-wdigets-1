@@ -284,7 +284,7 @@ class DoodleWidget {
             }, 100);
           } else {
             this.userBestScore = response.user_best_score;
-            console.log(this.userBestScore);
+            console.log('a', this.userBestScore);
 
             this.showRulesPigu();
           }
@@ -301,7 +301,7 @@ class DoodleWidget {
         })
         .then((response) => {
           this.userBestScore = response.user_best_score;
-          console.log(this.userBestScore);
+          console.log('a', this.userBestScore);
 
           this.showRulesPigu();
         })
