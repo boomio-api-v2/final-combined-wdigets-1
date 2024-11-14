@@ -150,7 +150,7 @@ export class DownloadScoreTableContainer {
             </div>
         </div>
       </div>
-      <div style="width: calc(100% - 40px);font-weight:700;font-size:16px;margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; text-decoration: underline;color: #FFF;overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
+      <div style="width: calc(100% - 40px);font-weight:700;font-size:16px;margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 38px; text-decoration: underline;color: #FFF;overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
    ŽAISTI DAR
       </div>
 

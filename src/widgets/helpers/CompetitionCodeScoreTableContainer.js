@@ -30,7 +30,6 @@ export class CompetitionCodeScoreTableContainer {
         ? 'Congratulations!'
         : this.prop === 'Pigu.lt' && this.language === 'LV'
         ? [
-            'TAVS REZULTĀTS',
             'Piparkūka',
             'Vārpstiņš',
             'Lāčplēsis',
@@ -63,7 +62,6 @@ export class CompetitionCodeScoreTableContainer {
           ]
         : this.prop === 'Pigu.lt' && this.language === 'ET'
         ? [
-            'SINU TULEMUS',
             'Mannu',
             'Seenekuningas',
             'Tots',
@@ -97,7 +95,6 @@ export class CompetitionCodeScoreTableContainer {
           ]
         : this.prop === 'Pigu.lt' && this.language === 'FI'
         ? [
-            'SINUN TULOKSESI',
             'Tukku',
             'Jonsku',
             'Vampyyri',
@@ -127,7 +124,6 @@ export class CompetitionCodeScoreTableContainer {
           ]
         : this.prop === 'Pigu.lt' && this.language === 'RU'
         ? [
-            'ТВОЙ РЕЗУЛЬТАТ',
             'Piparkūka',
             'Vārpstiņš',
             'Lāčplēsis',
@@ -702,7 +698,7 @@ ${
           </table>
         </div>
       </div>
-      <div style="width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:560px;position:absolute; height: 46px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex" id="boomio-game-play-again">
+      <div style="width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:560px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? 'SPĒLĒT VĒLREIZ'
@@ -735,16 +731,16 @@ ${
       ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
-            ? 'Discover the best>&nbsp;<a style="color:white" target="_blank" href="https://pigu.lt/lt/"> Pigu.lt </a>&nbsp;deals!'
+            ? '<a style="color:white" target="_blank" href="https://pigu.lt/lt/">Discover the best Pigu.lt deals!</a>'
             : this.language === 'LV'
-            ? 'Atklāj labākos&nbsp;<a style="color:white" target="_blank" href="https://220.lv/lv/"> 220.lv </a>&nbsp;piedāvājumus!'
+            ? '<a style="color:white" target="_blank" href="https://220.lv/lv/">Atklāj labākos 220.lv piedāvājumus!</a>'
             : this.language === 'ET'
-            ? 'Avasta&nbsp;<a style="color:white" target="_blank" href="https://kaup24.ee/et/"> Kaup24.ee </a>&nbsp;parimaid ostudiile!'
+            ? '<a style="color:white" target="_blank" href="https://kaup24.ee/et/">Avasta Kaup24.ee parimaid ostudiile!</a>'
             : this.language === 'FI'
-            ? 'Löydä parhaat diilit&nbsp;<a style="color:white" target="_blank" href="https://hobbyhall.fi/fi/"> Hobbyhall.fi </a>&nbsp;verkkokaupasta!'
+            ? '<a style="color:white" target="_blank" href="https://hobbyhall.fi/fi/">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
             : this.language === 'RU'
-            ? 'Открой для себя лучшие предложения&nbsp;<a style="color:white" target="_blank" href="https://220.lv/lv/"> 220.lv </a>&nbsp;!'
-            : 'Atrask geriausius&nbsp;<a style="color:white" target="_blank" href="https://pigu.lt/lt/"> Pigu.lt </a>&nbsp;pasiūlymus!'
+            ? '<a style="color:white" target="_blank" href="https://220.lv/lv/">Открой для себя лучшие предложения 220.lv!</a>'
+            : '<a style="color:white" target="_blank" href="https://pigu.lt/lt/">Atrask geriausius Pigu.lt pasiūlymus!</a>'
           : ''
       }
       

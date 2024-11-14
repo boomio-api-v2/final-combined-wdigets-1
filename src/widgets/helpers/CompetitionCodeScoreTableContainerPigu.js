@@ -499,7 +499,7 @@ ${
           </table>
         </div>
       </div>
-      <div style="width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:575px;position:absolute; height: 46px; background: ${
+      <div style="width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:575px;position:absolute; height: 38px; background: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
