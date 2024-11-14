@@ -458,7 +458,7 @@ export class InputContainer {
               piguRulesCheckbox ? uncheckIcon : ''
             }" style="max-width:fit-content;width: 20px; height: 20px;">
         </div>
-        <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${'Montserrat'} ;  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">
+        <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${'Montserrat'} ;width:calc(100% - 50px);  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">
         ${
           this.prop === 'Pigu.lt' && this.language === 'EN'
             ? 'I agree to receive game news and information about prizes, and for my data to be processed for this purpose.'
@@ -473,8 +473,8 @@ export class InputContainer {
             : 'Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.'
         }
     </div>
-      </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;height:${'13px'} ;margin-right:14px;display:${'none'} ;left: 34px; top:${'270px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-                  this.isMobile ? '9px' : '10px'
+      </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;height:${'13px'} ;margin-right:14px;display:${'none'} ;top:${'270px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
+                  this.isMobile ? '8px' : '10px'
                 };color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>`
               : ''
