@@ -166,7 +166,8 @@ export class CompetitionCodeScoreTableContainer {
 
     let scoreboardText = `
       ${
-        this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20
+        (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) ||
+        (this.prop === 'Pigu.lt' && this.scoreTable?.user_best_score < 1500)
           ? `<div style="width:100%; top: ${'390px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
