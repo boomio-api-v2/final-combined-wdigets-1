@@ -511,7 +511,7 @@ ${
         ? 'РЕЗУЛЬТАТЫ'
         : this.language === 'EE'
         ? 'TULEMUSED'
-        : this.language === 'ES'
+        : this.language === 'ET'
         ? 'RESULTADOS'
         : this.language === 'FI'
         ? 'TULOKSET'

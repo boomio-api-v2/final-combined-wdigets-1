@@ -69,6 +69,12 @@ class DoodleWidget {
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
 
     this.language = this.config.language ? this.config.language : 'LV';
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
+
+    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -80,11 +86,6 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     this.image.src =
       this.campaignUrlProp === 'https://pigu.lt'
@@ -485,7 +486,17 @@ class DoodleWidget {
   removeRules = () => {
     if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       document.getElementById('boomio-rules-checkbox-error').innerText =
-        'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prius.';
+        this.customer === 'Pigu.lt' && this.language === 'EN'
+          ? 'To continue, it is mandatory to agree to receive news and information about prizes.'
+          : this.customer === 'Pigu.lt' && this.language === 'LV'
+          ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
+          : this.customer === 'Pigu.lt' && this.language === 'ET'
+          ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
+          : this.customer === 'Pigu.lt' && this.language === 'FI'
+          ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
+          : this.customer === 'Pigu.lt' && this.language === 'RU'
+          ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
+          : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prius.';
       document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
       document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
@@ -1243,7 +1254,7 @@ class DoodleWidget {
            ? 'TAP'
            : this.language === 'LV'
            ? 'KLIKŠĶINI'
-           : this.language === 'ES'
+           : this.language === 'ET'
            ? 'KLIKI'
            : this.language === 'FI'
            ? 'NAPSAUTA'
@@ -1256,7 +1267,7 @@ class DoodleWidget {
             ? 'TAP'
             : this.language === 'LV'
             ? 'KLIKŠĶINI'
-            : this.language === 'ES'
+            : this.language === 'ET'
             ? 'KLIKI'
             : this.language === 'FI'
             ? 'NAPSAUTA'
@@ -1271,7 +1282,7 @@ class DoodleWidget {
 
     <img src=${
       this.customer === 'Pigu.lt' &&
-      this.language === 'ES' &&
+      this.language === 'ET' &&
       this.campaignUrlProp === 'https://kaup24.ee'
         ? PiguJumpUpIntroEstonian
         : this.customer === 'Pigu.lt' &&

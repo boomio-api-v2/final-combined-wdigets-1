@@ -345,7 +345,7 @@ ${
         ? 'ТВОИ ПОБЕДЫ'
         : this.language === 'EE'
         ? 'SINU VÕIDUD'
-        : this.language === 'ES'
+        : this.language === 'ET'
         ? 'RESULTADOS'
         : this.language === 'FI'
         ? 'VOITTOSI'

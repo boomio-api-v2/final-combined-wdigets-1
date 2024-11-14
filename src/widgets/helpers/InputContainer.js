@@ -55,7 +55,7 @@ export class InputContainer {
         ? 'ПРАВИЛА'
         : this.language === 'EE'
         ? 'REEGLID'
-        : this.language === 'ES'
+        : this.language === 'ES' || this.language === 'ET'
         ? 'REGLAS'
         : this.language === 'FI'
         ? 'Säännöt'
@@ -94,7 +94,7 @@ export class InputContainer {
                   ? 'ПРАВИЛА'
                   : this.language === 'EE'
                   ? 'KLÕPSA'
-                  : this.language === 'ES'
+                  : this.language === 'ES' || this.language === 'ET'
                   ? 'Click '
                   : this.prop === 'Fpro'
                   ? 'CLICK'
@@ -140,7 +140,7 @@ export class InputContainer {
                 ? 'чтобы лететь'
                 : this.language === 'EE'
                 ? 'lendamiseks'
-                : this.language === 'ES'
+                : this.language === 'ES' || this.language === 'ET'
                 ? 'para volar'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'braukdami kairiau ar dešiniau.'
@@ -192,7 +192,7 @@ export class InputContainer {
                 ? 'ПОВТОРИТЬ'
                 : this.language === 'EE'
                 ? 'KORDA —'
-                : this.language === 'ES'
+                : this.language === 'ES' || this.language === 'ET'
                 ? 'Repetir'
                 : this.prop === 'Fpro'
                 ? 'REPEAT'
@@ -226,7 +226,7 @@ export class InputContainer {
                 ? 'labākam rezultātam'
                 : this.language === 'RU'
                 ? 'для лучшего результата'
-                : this.language === 'ES'
+                : this.language === 'ES' || this.language === 'ET'
                 ? 'para un mejor resultado'
                 : this.language === 'EE'
                 ? 'parema tulemuse saavutamiseks.'
@@ -270,7 +270,7 @@ export class InputContainer {
                 ? 'ВЫИГРАЙТЕ'
                 : this.language === 'EE'
                 ? 'VÕIDA —'
-                : this.language === 'ES'
+                : this.language === 'ES' || this.language === 'ET'
                 ? 'Gana'
                 : this.prop === 'Fpro'
                 ? 'WIN'
@@ -314,7 +314,7 @@ export class InputContainer {
                 ? 'до 30 призов от Yesyes.lv!'
                 : this.language === 'EE'
                 ? 'до 30 призов от Yesyes.lv!'
-                : this.language === 'ES'
+                : this.language === 'ES' || this.language === 'ET'
                 ? '100 premios!'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
@@ -439,7 +439,7 @@ export class InputContainer {
               ? 'Читайте полные правила игры.'
               : this.language === 'EE'
               ? 'Loe kõik mängureeglid läbi.'
-              : this.language === 'ES'
+              : this.language === 'ES' || this.language === 'ET'
               ? 'Leer las reglas del juego.'
               : this.prop === 'Fpro'
               ? 'Read full games rules. '
@@ -458,7 +458,20 @@ export class InputContainer {
               piguRulesCheckbox ? uncheckIcon : ''
             }" style="max-width:fit-content;width: 20px; height: 20px;">
         </div>
-        <div style="color: ${'white'}; font-size: ${'12px'}; font-family:${'Montserrat'} ;  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">${`Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.`}
+        <div style="color: ${'white'}; font-size: ${'12px'}; font-family:${'Montserrat'} ;  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">
+        ${
+          this.prop === 'Pigu.lt' && this.language === 'EN'
+            ? 'I agree to receive game news and information about prizes, and for my data to be processed for this purpose.'
+            : this.prop === 'Pigu.lt' && this.language === 'LV'
+            ? 'Es piekrītu saņemt spēles jaunumus un informāciju par balvām, kā arī piekrītu manu datu apstrādei šim nolūkam'
+            : this.prop === 'Pigu.lt' && this.language === 'ET'
+            ? 'Nõustun saama teavet mängu uudiste ja auhindade kohta ning luban oma andmete töötlemise selleks otstarbeks.'
+            : this.prop === 'Pigu.lt' && this.language === 'FI'
+            ? 'Hyväksyn, että minulle lähetetään tietoja pelistä ja palkinnoista, ja että tietojani käsitellään tätä tarkoitusta varten.'
+            : this.prop === 'Pigu.lt' && this.language === 'RU'
+            ? 'Я соглашаюсь получать новости о игре и информацию о призах, а также на обработку моих данных с этой целью.'
+            : 'Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.'
+        }
     </div>
       </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;height:${'13px'} ;margin-right:30px;display:${'none'} ;left: 34px; top:${'270px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
                   this.isMobile ? '9px' : '10px'
@@ -495,7 +508,7 @@ export class InputContainer {
         ? 'ДАЛЕЕ'
         : this.language === 'EE'
         ? 'EDASI'
-        : this.language === 'ES'
+        : this.language === 'ES' || this.language === 'ET'
         ? 'SIGUIENTE'
         : this.prop === 'Barbora' ||
           this.prop === 'Fantazijos' ||
