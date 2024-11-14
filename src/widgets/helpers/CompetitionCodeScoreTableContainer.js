@@ -727,6 +727,24 @@ ${
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>
+      <div style="color:white;width:100%;font-size:11px;text-align:center;top:610px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
+  ${
+    this.prop === 'Pigu.lt'
+      ? this.language === 'EN'
+        ? 'Discover the best Pigu.lt deals!'
+        : this.language === 'LV'
+        ? 'Atklāj labākos 220.lv piedāvājumus!'
+        : this.language === 'ET'
+        ? 'Avasta Kaup24.ee parimaid ostudiile!'
+        : this.language === 'FI'
+        ? 'Löydä parhaat diilit Hobbyhall.fi-verkkokaupasta!'
+        : this.language === 'RU'
+        ? 'Открой для себя лучшие предложения 220.lv!'
+        : 'Atrask geriausius Pigu.lt pasiūlymus!'
+      : ''
+  }
+</div>
+
     <div style="left:calc(50% - 40px);width:78px;top:635px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
       </div>
     </div>`;

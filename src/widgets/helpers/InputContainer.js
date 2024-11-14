@@ -136,6 +136,8 @@ export class InputContainer {
                 ? 'pelataksesi'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
                 ? 'чтобы прыгнуть вверх'
+                : this.prop === 'Pigu.lt' && this.language === 'LT'
+                ? 'kad kiltum'
                 : this.prop === 'Eurovaistine'
                 ? 'pārvietojoties uz sāniem.'
                 : this.language === 'LV' && this.game === 'drive'
