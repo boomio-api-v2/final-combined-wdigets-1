@@ -450,7 +450,9 @@ export class InputContainer {
               : 'Skaityk pilnas žaidimo taisykles.'
           } </a></div>
            
-          ${` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:25px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+          ${
+            this.prop === 'Pigu.lt'
+              ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:25px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
             <img id="privacyCheckboxImg3" src="${
               piguRulesCheckbox ? uncheckIcon : ''
@@ -459,9 +461,11 @@ export class InputContainer {
         <div style="color: ${'white'}; font-size: ${'12px'}; font-family:${'Montserrat'} ;  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">${`Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.`}
     </div>
       </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;height:${'13px'} ;margin-right:30px;display:${'none'} ;left: 34px; top:${'270px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-            this.isMobile ? '9px' : '10px'
-          };color:${'#D8000C'};text-align:start;line-height:8px;">
-</div>`}
+                  this.isMobile ? '9px' : '10px'
+                };color:${'#D8000C'};text-align:start;line-height:8px;">
+</div>`
+              : ''
+          }
           `
         : ''
     }

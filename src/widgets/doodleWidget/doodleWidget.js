@@ -37,10 +37,12 @@ import {
   introPigu,
   backgroundPigu,
   PiguJumpUpIntroEstonian,
+  PiguJumpUpIntroEstoniaRU,
+  PiguJumpUpIntroLithuanian,
+  PiguJumpUpIntroLithuanianRU,
   PiguJumpUpIntroFinish,
   PiguJumpUpIntroLatvian,
-  PiguJumpUpIntroLithuanian,
-  PiguJumpUpIntroRussian,
+  PiguJumpUpIntroLatvianRU,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -623,8 +625,12 @@ class DoodleWidget {
 
       const scoreDigits = document.querySelectorAll('.numbers__window__digit');
 
-      // Update the score digits content
       const scoreString = this.currentScore.toString();
+
+      const initialMargin = 170;
+      const scoreLength = this.currentScore.toString().length;
+      const newMarginLeft = initialMargin - 30 * scoreLength;
+      numbers.style.marginLeft = `${newMarginLeft}px`;
 
       // Determine the number of leading zeros to hide
       let leadingZeros = 0;
@@ -1263,18 +1269,35 @@ class DoodleWidget {
       } alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
 
-
     <img src=${
-      this.customer === 'Pigu.lt' && this.language === 'LV'
-        ? PiguJumpUpIntroLatvian
-        : this.customer === 'Pigu.lt' && this.language === 'ET'
+      this.customer === 'Pigu.lt' &&
+      this.language === 'ES' &&
+      campaignUrlProp === 'https://kaup24.ee'
         ? PiguJumpUpIntroEstonian
-        : this.customer === 'Pigu.lt' && this.language === 'FI'
-        ? PiguJumpUpIntroFinish
-        : this.customer === 'Pigu.lt' && this.language === 'RU'
-        ? PiguJumpUpIntroRussian
-        : this.customer === 'Pigu.lt' && this.language === 'LT'
+        : this.customer === 'Pigu.lt' &&
+          this.language === 'RU' &&
+          campaignUrlProp === 'https://kaup24.ee'
+        ? PiguJumpUpIntroEstoniaRU
+        : this.customer === 'Pigu.lt' &&
+          this.language === 'LT' &&
+          campaignUrlProp === 'https://pigu.lt'
         ? PiguJumpUpIntroLithuanian
+        : this.customer === 'Pigu.lt' &&
+          this.language === 'RU' &&
+          campaignUrlProp === 'https://pigu.lt'
+        ? PiguJumpUpIntroLithuanianRU
+        : this.customer === 'Pigu.lt' &&
+          this.language === 'FI' &&
+          campaignUrlProp === 'https://hobbyhall.fi'
+        ? PiguJumpUpIntroFinish
+        : this.customer === 'Pigu.lt' &&
+          this.language === 'LV' &&
+          campaignUrlProp === 'https://220.lv'
+        ? PiguJumpUpIntroLatvian
+        : this.customer === 'Pigu.lt' &&
+          this.language === 'RU' &&
+          campaignUrlProp === 'https://220.lv'
+        ? PiguJumpUpIntroLatvianRU
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV
