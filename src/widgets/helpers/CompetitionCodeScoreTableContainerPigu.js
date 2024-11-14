@@ -389,7 +389,7 @@ export class CompetitionCodeScoreTableContainerPigu {
           : this.prop === 'Pigu.lt' && this.language === 'LV'
           ? 'Spēlē atkal un uzlabo savu rezultātu'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? 'Mängi uuesti ja paranda oma tulemust'
+          ? 'Mängi uuesti ja paranda oma tulemust,'
           : this.prop === 'Pigu.lt' && this.language === 'FI'
           ? 'Pelaa uudelleen ja paranna tulostasi'
           : this.prop === 'Pigu.lt' && this.language === 'RU'
@@ -449,7 +449,7 @@ ${
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text2');
-        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Nukopijuota' : 'Copied';
+        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Copied' : 'Copied';
 
         setTimeout(() => {
           copyButton.textContent = this.couponCodeNew;
@@ -483,6 +483,8 @@ ${
         : this.language === 'EE'
         ? 'SINU VÕIDUD'
         : this.language === 'ET'
+        ? 'SINU VÕIDUD'
+        : this.language === 'ES'
         ? 'RESULTADOS'
         : this.language === 'FI'
         ? 'VOITTOSI'

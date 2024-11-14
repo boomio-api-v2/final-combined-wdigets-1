@@ -102,7 +102,7 @@ export class DownloadScoreTableContainer {
       document.body.removeChild(textarea);
 
       const copyButton = document.getElementById('p_code_text2');
-      copyButton.textContent = 'Nukopijuota';
+      copyButton.textContent = 'Copied';
 
       setTimeout(() => {
         copyButton.textContent = userDiscountCode;

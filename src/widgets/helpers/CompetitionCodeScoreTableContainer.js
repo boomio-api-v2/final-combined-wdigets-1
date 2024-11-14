@@ -639,7 +639,7 @@ ${
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text');
-        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Nukopijuota' : 'Copied';
+        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Copied' : 'Copied';
 
         setTimeout(() => {
           copyButton.textContent = this.userDiscountCode;
@@ -671,6 +671,8 @@ ${
         : this.language === 'EE'
         ? 'TULEMUSED'
         : this.language === 'ET'
+        ? 'SINU VÕIDUD'
+        : this.language === 'ES'
         ? 'RESULTADOS'
         : this.language === 'FI'
         ? 'TULOKSET'
