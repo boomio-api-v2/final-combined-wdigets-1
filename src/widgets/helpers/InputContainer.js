@@ -67,7 +67,9 @@ export class InputContainer {
         ? 'NOTEIKUMI'
         : 'Taisyklės'
     }</div>`}</div>
-    <div style="width: 390px;margin-top:10px;margin-bottom:10px;height:110px; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
+    <div style="width: ${
+      this.isMobile ? '350px' : '390px'
+    };margin-top:10px;margin-bottom:10px;height:110px; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
 
  
 

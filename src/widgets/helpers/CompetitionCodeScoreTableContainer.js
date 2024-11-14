@@ -493,7 +493,9 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : 'Tu gali!'
             }</div>
-            <div style="margin-left:20px;width:calc(100% - 40px); top: 420px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
+            <div style="margin-left:30px;width:calc(100% - 60px); top: 420px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+              this.isMobile ? '9px' : '11px'
+            }; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
                 : this.prop === 'Eurovaistine'
@@ -689,7 +691,7 @@ ${
               
 
 
-      <div  style="width: calc(100% - 32px); height: ${'250px'}; left: 16px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
+      <div  style="width: calc(100% - 44px); height: ${'250px'}; left: 22px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
             <tbody class="boomio-tbody">
@@ -700,7 +702,7 @@ ${
           </table>
         </div>
       </div>
-      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:560px;position:absolute; height: 46px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex" id="boomio-game-play-again">
+      <div style="width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:560px;position:absolute; height: 46px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? 'SPĒLĒT VĒLREIZ'
@@ -727,24 +729,25 @@ ${
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>
-      <div style="color:white;width:100%;font-size:font-size:${
+      <div style="color:white;width:100%;font-size:${
         this.isMobile ? '9px' : '11px'
       };text-align:center;top:610px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
-  ${
-    this.prop === 'Pigu.lt'
-      ? this.language === 'EN'
-        ? 'Discover the best <a style="color:white" target="_blank" href="https://pigu.lt/lt/">Pigu.lt</a> deals!'
-        : this.language === 'LV'
-        ? 'Atklāj labākos  <a style="color:white" target="_blank" href="https://220.lv/lv/">220.lv</a>  piedāvājumus!'
-        : this.language === 'ET'
-        ? 'Avasta <a style="color:white" target="_blank" href="https://kaup24.ee/et/">Kaup24.ee</a> parimaid ostudiile!'
-        : this.language === 'FI'
-        ? 'Löydä parhaat diilit <a style="color:white" target="_blank" href="https://hobbyhall.fi/fi/">Hobbyhall.fi-verkkokaupasta!</a>'
-        : this.language === 'RU'
-        ? 'Открой для себя лучшие предложения <a style="color:white" target="_blank" href="https://220.lv/lv/">220.lv</a>!'
-        : 'Atrask geriausius <a style="color:white" target="_blank" href="https://pigu.lt/lt/">Pigu.lt</a> pasiūlymus!'
-      : ''
-  }
+      ${
+        this.prop === 'Pigu.lt'
+          ? this.language === 'EN'
+            ? 'Discover the best>&nbsp;<a style="color:white" target="_blank" href="https://pigu.lt/lt/"> Pigu.lt </a>&nbsp;deals!'
+            : this.language === 'LV'
+            ? 'Atklāj labākos&nbsp;<a style="color:white" target="_blank" href="https://220.lv/lv/"> 220.lv </a>&nbsp;piedāvājumus!'
+            : this.language === 'ET'
+            ? 'Avasta&nbsp;<a style="color:white" target="_blank" href="https://kaup24.ee/et/"> Kaup24.ee </a>&nbsp;parimaid ostudiile!'
+            : this.language === 'FI'
+            ? 'Löydä parhaat diilit&nbsp;<a style="color:white" target="_blank" href="https://hobbyhall.fi/fi/"> Hobbyhall.fi </a>&nbsp;verkkokaupasta!'
+            : this.language === 'RU'
+            ? 'Открой для себя лучшие предложения&nbsp;<a style="color:white" target="_blank" href="https://220.lv/lv/"> 220.lv </a>&nbsp;!'
+            : 'Atrask geriausius&nbsp;<a style="color:white" target="_blank" href="https://pigu.lt/lt/"> Pigu.lt </a>&nbsp;pasiūlymus!'
+          : ''
+      }
+      
 </div>
 
     <div style="left:calc(50% - 40px);width:78px;top:635px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">

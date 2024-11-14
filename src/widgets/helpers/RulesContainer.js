@@ -88,10 +88,10 @@ export class RulesContainer {
     const containerDiv = document.querySelector('.rules-table-container');
     containerDiv.innerHTML += `
               </div>
-              <div class="close-rules-container" id="close-rules-container" style="display:block;width:32px;height:32px;">
-<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+              <div id="close-rules-container" style="display:block;width: 100%; display:flex;justify-content:end;align-items:end;padding-top:10px">
+<img src=${close} alt="Image Description" style="width:32px;height:32px;padding-right:10px;"></img>
 </div>
-              <div  class="boomio-custom-scrollbar-rules" style="overflow-x:hidden;overflow-y: scroll;height: calc(100% - 20px);text-align:start;padding-left:10px;font-size:10px;margin-top:50px;">
+              <div  class="boomio-custom-scrollbar-rules" style="overflow-x:hidden;overflow-y: scroll;height: calc(100% - 20px);text-align:start;padding-left:10px;font-size:10px;">
 ${content}
               <div >
               </div>
