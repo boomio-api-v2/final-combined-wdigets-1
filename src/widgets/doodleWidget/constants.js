@@ -42,7 +42,18 @@ export const uncheckIcon =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxUncheck.png';
 
 export const newRecord =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecord.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecord.png?raw=true';
+export const newRecordEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordEE.png?raw=true';
+
+export const newRecordFI =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordFI.png?raw=true';
+
+export const newRecordRU =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordRU.png?raw=true';
+
+export const newRecordLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordLV.png?raw=true';
 
 export const mainImageAkropolis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/game2.png?raw=true';
@@ -73,8 +84,6 @@ export const star =
 
 export const jumpEffect =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true';
-export const newRecordLV =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordLV.png?raw=true';
 
 export const mainImagePigu =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/game.png?raw=true';

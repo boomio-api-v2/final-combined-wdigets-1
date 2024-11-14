@@ -7,7 +7,6 @@ import {
 } from '@/services';
 import './styles.css';
 import {
-  newRecordLV,
   scoreImage,
   couponBackground,
   intro,
@@ -43,6 +42,10 @@ import {
   PiguJumpUpIntroFinish,
   PiguJumpUpIntroLatvian,
   PiguJumpUpIntroLatvianRU,
+  newRecordEE,
+  newRecordFI,
+  newRecordRU,
+  newRecordLV,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -1342,7 +1345,15 @@ ${
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      this.language === 'LV' ? newRecordLV : newRecord
+      this.language === 'LV'
+        ? newRecordLV
+        : this.language === 'ET' || this.language === 'EE'
+        ? newRecordEE
+        : this.language === 'FI'
+        ? newRecordFI
+        : this.language === 'RU'
+        ? newRecordRU
+        : newRecord
     } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
 
