@@ -119,8 +119,7 @@ class DoodleWidget {
     })();
 
     if (this.customer === 'Pigu.lt') {
-      document.querySelector('.game-container').style.backgroundColor =
-        window.innerWidth <= 768 ? 'black' : 'none';
+      document.querySelector('.game-container').style.backgroundColor = 'black';
     } else {
       document.querySelector('.game-container').style.backgroundColor =
         window.innerWidth <= 768 ? 'black' : 'none';
