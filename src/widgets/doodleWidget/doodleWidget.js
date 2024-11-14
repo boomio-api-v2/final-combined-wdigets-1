@@ -84,16 +84,16 @@ class DoodleWidget {
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
 
-    const campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     this.image.src =
-      campaignUrlProp === 'https://pigu.lt'
+      this.campaignUrlProp === 'https://pigu.lt'
         ? mainImagePiguLT
-        : campaignUrlProp === 'https://220.lv'
+        : this.campaignUrlProp === 'https://220.lv'
         ? mainImagePiguLV
-        : campaignUrlProp === 'https://kaup24.ee'
+        : this.campaignUrlProp === 'https://kaup24.ee'
         ? mainImagePiguEE
-        : campaignUrlProp === 'https://hobbyhall.fi'
+        : this.campaignUrlProp === 'https://hobbyhall.fi'
         ? mainImagePiguFI
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
@@ -1272,31 +1272,31 @@ class DoodleWidget {
     <img src=${
       this.customer === 'Pigu.lt' &&
       this.language === 'ES' &&
-      campaignUrlProp === 'https://kaup24.ee'
+      this.campaignUrlProp === 'https://kaup24.ee'
         ? PiguJumpUpIntroEstonian
         : this.customer === 'Pigu.lt' &&
           this.language === 'RU' &&
-          campaignUrlProp === 'https://kaup24.ee'
+          this.campaignUrlProp === 'https://kaup24.ee'
         ? PiguJumpUpIntroEstoniaRU
         : this.customer === 'Pigu.lt' &&
           this.language === 'LT' &&
-          campaignUrlProp === 'https://pigu.lt'
+          this.campaignUrlProp === 'https://pigu.lt'
         ? PiguJumpUpIntroLithuanian
         : this.customer === 'Pigu.lt' &&
           this.language === 'RU' &&
-          campaignUrlProp === 'https://pigu.lt'
+          this.campaignUrlProp === 'https://pigu.lt'
         ? PiguJumpUpIntroLithuanianRU
         : this.customer === 'Pigu.lt' &&
           this.language === 'FI' &&
-          campaignUrlProp === 'https://hobbyhall.fi'
+          this.campaignUrlProp === 'https://hobbyhall.fi'
         ? PiguJumpUpIntroFinish
         : this.customer === 'Pigu.lt' &&
           this.language === 'LV' &&
-          campaignUrlProp === 'https://220.lv'
+          this.campaignUrlProp === 'https://220.lv'
         ? PiguJumpUpIntroLatvian
         : this.customer === 'Pigu.lt' &&
           this.language === 'RU' &&
-          campaignUrlProp === 'https://220.lv'
+          this.campaignUrlProp === 'https://220.lv'
         ? PiguJumpUpIntroLatvianRU
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
