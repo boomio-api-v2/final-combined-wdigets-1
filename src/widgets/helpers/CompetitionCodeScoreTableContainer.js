@@ -167,11 +167,21 @@ export class CompetitionCodeScoreTableContainer {
     let scoreboardText = `
       ${
         (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) ||
-        (this.prop === 'Pigu.lt' && this.scoreTable?.user_best_score < 1500)
+        (this.prop === 'Pigu.lt' && this.scoreTable?.user_best_place <= 10)
           ? `<div style="width:100%; top: ${'390px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
-              this.prop === 'Barbora'
+              this.prop === 'Pigu.lt' && this.language === 'EN'
+                ? 'WELL DONE!'
+                : this.prop === 'Pigu.lt' && this.language === 'LV'
+                ? 'LABS MĒĢINĀJUMS!'
+                : this.prop === 'Pigu.lt' && this.language === 'ET'
+                ? 'HÄSTI TEHTUD!'
+                : this.prop === 'Pigu.lt' && this.language === 'FI'
+                ? 'Hyvä sinä!'
+                : this.prop === 'Pigu.lt' && this.language === 'RU'
+                ? 'ХОРОШАЯ ПОПЫТКА!'
+                : this.prop === 'Barbora'
                 ? 'DOVANA tau!'
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? 'TEV VEICAS LIELISKI!'
@@ -187,16 +197,6 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'SUL LÄHEB HÄSTI!'
                 : this.prop === 'Fantazijos'
                 ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
-                : this.prop === 'Pigu.lt' && this.language === 'EN'
-                ? 'WELL DONE!'
-                : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'LABS MĒĢINĀJUMS!'
-                : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'HÄSTI TEHTUD!'
-                : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'Hyvä sinä!'
-                : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'ХОРОШАЯ ПОПЫТКА!'
                 : 'Valio, tau puikiai sekasi!'
             }</div>
             <div style="width:100%; top: ${'420px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
