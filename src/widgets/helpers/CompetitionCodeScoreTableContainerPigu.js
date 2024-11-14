@@ -351,7 +351,7 @@ export class CompetitionCodeScoreTableContainerPigu {
           : this.prop === 'Pigu.lt' && this.language === 'RU'
           ? 'Совершай покупки в 220.lv и используй скидочный код'
           : this.prop === 'Pigu.lt' && this.language === 'LT'
-          ? `PIRKANT PIGU.LT SU NUOLAIDOS KODU `
+          ? `PERKANT PIGU.LT SU NUOLAIDOS KODU `
           : this.prop === 'Unisend' && this.language === 'EE'
           ? 'Võitjatega võetakse ühendust e-posti teel.'
           : this.prop === 'Eurovaistine'
@@ -380,7 +380,7 @@ export class CompetitionCodeScoreTableContainerPigu {
           : this.prop === 'Pigu.lt' && this.language === 'RU'
           ? 'и получи скидку 2€ на покупки свыше 20€!'
           : this.prop === 'Pigu.lt'
-          ? 'GAUK 2€ NUOLAIDĄ VISKAM!'
+          ? 'GAUK 2€ NUOLAIDĄ VISKAM KREPŠELIUI VIRŠ 20€!'
           : ''
       } </div>
                      <div style="width:100%; top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
@@ -395,7 +395,7 @@ export class CompetitionCodeScoreTableContainerPigu {
           : this.prop === 'Pigu.lt' && this.language === 'RU'
           ? 'Играй снова и улучшай свой результат'
           : this.prop === 'Pigu.lt'
-          ? 'Žaisk dar pagerink rezultatą,'
+          ? 'Žaisk dar ir pagerink rezultatą!'
           : ''
       } </div>
                      <div style="width:100%; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word">${
@@ -410,7 +410,7 @@ export class CompetitionCodeScoreTableContainerPigu {
           : this.prop === 'Pigu.lt' && this.language === 'RU'
           ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты!</br>Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.'
           : this.prop === 'Pigu.lt'
-          ? 'nes net 10 geriausių žaidėjų kas savaitę laimės Pigu.lt dovanų kuponus</br>Jei laimėsi informuosime tavo nurodytu el. paštu.'
+          ? 'net 10 geriausių žaidėjų kas savaitę laimės Pigu.lt dovanų kuponus.</br>Jei laimėsi informuosime tave paskyroje nurodytu el. paštu.'
           : ''
       } </div>
         `}

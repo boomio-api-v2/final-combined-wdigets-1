@@ -356,7 +356,7 @@ export class CompetitionCodeScoreTableContainer {
                 : 'Valio, tau puikiai sekasi!'
             }</div>
             <div style="width:100%; top: ${'420px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isMobile ? '10px' : '11px'
+              this.isMobile ? '9px' : '11px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
@@ -405,7 +405,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${'495px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isMobile ? '10px' : '11px'
+              this.isMobile ? '9px' : '11px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
@@ -422,7 +422,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
             <div style="width:100%; top: 536px; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.isMobile ? '10px' : '11px'
+              this.isMobile ? '9px' : '11px'
             }; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
@@ -545,7 +545,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${'495px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isMobile ? '10px' : '11px'
+              this.isMobile ? '9px' : '11px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
@@ -564,7 +564,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: 536px; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.isMobile ? '10px' : '11px'
+              this.isMobile ? '9px' : '11px'
             }; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
@@ -727,20 +727,22 @@ ${
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>
-      <div style="color:white;width:100%;font-size:11px;text-align:center;top:610px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
+      <div style="color:white;width:100%;font-size:font-size:${
+        this.isMobile ? '9px' : '11px'
+      };text-align:center;top:610px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
   ${
     this.prop === 'Pigu.lt'
       ? this.language === 'EN'
-        ? 'Discover the best Pigu.lt deals!'
+        ? 'Discover the best <a style="color:white" target="_blank" href="https://pigu.lt/lt/">Pigu.lt</a> deals!'
         : this.language === 'LV'
-        ? 'Atklāj labākos 220.lv piedāvājumus!'
+        ? 'Atklāj labākos  <a style="color:white" target="_blank" href="https://220.lv/lv/">220.lv</a>  piedāvājumus!'
         : this.language === 'ET'
-        ? 'Avasta Kaup24.ee parimaid ostudiile!'
+        ? 'Avasta <a style="color:white" target="_blank" href="https://kaup24.ee/et/">Kaup24.ee</a> parimaid ostudiile!'
         : this.language === 'FI'
-        ? 'Löydä parhaat diilit Hobbyhall.fi-verkkokaupasta!'
+        ? 'Löydä parhaat diilit <a style="color:white" target="_blank" href="https://hobbyhall.fi/fi/">Hobbyhall.fi-verkkokaupasta!</a>'
         : this.language === 'RU'
-        ? 'Открой для себя лучшие предложения 220.lv!'
-        : 'Atrask geriausius Pigu.lt pasiūlymus!'
+        ? 'Открой для себя лучшие предложения <a style="color:white" target="_blank" href="https://220.lv/lv/">220.lv</a>!'
+        : 'Atrask geriausius <a style="color:white" target="_blank" href="https://pigu.lt/lt/">Pigu.lt</a> pasiūlymus!'
       : ''
   }
 </div>
