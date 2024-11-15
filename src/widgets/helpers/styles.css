@@ -95,6 +95,19 @@
           display: none;
           ;
           }
+
+          .rules-table-container{
+            overflow: hidden;
+            position: absolute;
+            left :50%;
+            transform : translate(-50%, -50%);
+            flex-direction: column;
+            z-index: 99999999999;  
+            height :0px;
+            top :calc(50% + 330px);
+            opacity: 0;
+            display: none;
+            }
         .did-you-know-container{
           overflow: hidden;
           position: absolute;
@@ -173,6 +186,29 @@
       }
 
 
+      .boomio-custom-scrollbar-rules::-webkit-scrollbar {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 8px;        border-radius: 20px;
+
+      }
+      
+      .boomio-custom-scrollbar-rules::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 20px;
+      }
+      
+      .boomio-custom-scrollbar-rules::-webkit-scrollbar-thumb {
+        background: black;        border-radius: 20px;
+
+      }
+
+      .boomio-custom-scrollbar-rules::-webkit-scrollbar-thumb:hover {
+        background: black;        border-radius: 20px;
+
+      }
+
+
 
   .boomio-competition-name-input-field::-webkit-input-placeholder {      color: rgba(61, 73, 40, 1);
     font-size: 16px;
@@ -246,3 +282,14 @@ font-weight: 500;
   font-weight: 500;
     font-family: Georama;
 }
+
+.close-rules-container{
+	z-index: 99999999999999999999999;
+  position: absolute;
+  top : calc(50% - 225px);
+  left :calc(50% + 155px);
+  transform : translate(-50%, -50%);
+  display:flex;
+  flex-direction: column;
+  cursor:pointer;
+  }

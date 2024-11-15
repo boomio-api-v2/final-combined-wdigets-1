@@ -345,6 +345,8 @@ export class CompetitionScoreTableContainer {
         ? 'РЕЗУЛЬТАТЫ'
         : this.language === 'EE'
         ? 'TULEMUSED'
+        : this.language === 'ET'
+        ? 'SINU VÕIDUD'
         : this.language === 'ES'
         ? 'RESULTADOS'
         : 'REZULTATAI'

@@ -49,7 +49,7 @@ export class InputRegisterContainer {
         ? 'Registracija'
         : this.prop === 'Eurovaistine'
         ? 'REĢISTRĒJIES'
-        : this.language === 'ES'
+        : this.language === 'ES' || this.language === 'ET'
         ? 'REGISTRATE </br>PARA JUGAR '
         : 'Registruokis</br> Žaisti'
     }</div>
@@ -67,7 +67,7 @@ export class InputRegisterContainer {
         ? 'ДАЛЕЕ'
         : this.language === 'EE'
         ? 'EDASI'
-        : this.language === 'ES'
+        : this.language === 'ES' || this.language === 'ET'
         ? 'SIGUIENTE'
         : this.prop === 'Fpro'
         ? 'NEXT'
@@ -105,7 +105,7 @@ export class InputRegisterContainer {
         : '10px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    };font-weight: 400; width:350px;word-wrap: break-word;text-align:start;">${
+    };font-weight: 400; word-wrap: break-word;text-align:start;">${
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
         : this.prop === 'Eurovaistine'
@@ -180,7 +180,7 @@ export class InputRegisterContainer {
         ? 'Mängu jätkates nõustun yesyes.ee uudiskirja saamisega.'
         : this.prop === 'Fantazijos' && this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
-        : this.language === 'ES'
+        : this.language === 'ES' || this.language === 'ET'
         ? 'Acepto recibir noticias y actualizaciones.'
         : this.prop === 'Makalius'
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
@@ -371,7 +371,7 @@ export class InputRegisterContainer {
         ? 'El. pašto adresas'
         : this.prop === 'Eurovaistine'
         ? 'Spēlētāja e-pasts'
-        : this.language === 'ES'
+        : this.language === 'ES' || this.language === 'ET'
         ? 'Email'
         : 'Elektroninio pašto adresas'
     }">
@@ -406,7 +406,7 @@ export class InputRegisterContainer {
         ? 'Žaidėjo vardas'
         : this.prop === 'Eurovaistine'
         ? 'Spēlētāja lietotājvārds'
-        : this.language === 'ES'
+        : this.language === 'ES' || this.language === 'ET'
         ? 'Nickname del jugador'
         : 'Žaidėjo slapyvardis'
     }">
