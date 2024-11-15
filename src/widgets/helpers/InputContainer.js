@@ -93,7 +93,7 @@ export class InputContainer {
                   : this.prop === 'Pigu.lt' && this.language === 'ET'
                   ? 'KLIKI,'
                   : this.prop === 'Pigu.lt' && this.language === 'FI'
-                  ? 'KLIKKAA,'
+                  ? 'KLIKKAA'
                   : this.prop === 'Pigu.lt' && this.language === 'RU'
                   ? 'НАЖИМАЙ,'
                   : this.language === 'LV' && this.game === 'drive'

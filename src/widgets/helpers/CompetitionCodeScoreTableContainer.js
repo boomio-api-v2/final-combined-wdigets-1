@@ -8,6 +8,7 @@ export class CompetitionCodeScoreTableContainer {
     this.prop = prop;
     this.scoreTable = scoreTable; // Store the prop in a class property
     this.isMobile = window.innerWidth <= 1280;
+    this.isSmallMobile = window.innerWidth <= 380;
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
@@ -352,7 +353,7 @@ export class CompetitionCodeScoreTableContainer {
                 : 'Valio, tau puikiai sekasi!'
             }</div>
             <div style="width:100%; top: ${'420px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
@@ -371,11 +372,11 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
                 ? 'Iga nädal võidavad 10 parimat mängijat auhindu! Võidu korral</br>teavitame Sind e-mailiga, millega oled oma konto registeerinud.</br></br> Ja kui šhoppad Kaup24 e-poes kasuta sooduskoodi '
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'Joka viikko 10 parasta pelaajaa voittaa palkintoja!</br>Jos voitat, ilmoitamme voitosta sähköpostilla siihen osoitteeseen, jonka olet ilmoittanut käyttäjätililläsi.</br></br>Kun shoppailet Hobbyhall.fi-verkkokaupassa ja käytät koodia '
+                ? 'Joka viikko 10 parasta pelaajaa voittaa palkintoja! Jos voitat, ilmoitamme</br>siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen</br></br>Shoppaile Hobbyhall.fi-verkkokaupassa ja käytä koodi'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
                 ? 'Каждую неделю 10 лучших игроков получают призы!</br>Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.</br></br>Совершай покупки в 220.lv и используй скидочный код'
                 : this.prop === 'Pigu.lt'
-                ? `Net 10 geriausių žaidėjų kas savaitę laimės prizus!</br>Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PIRKANT PIGU.LT SU NUOLAIDOS KODU`
+                ? `Net 10 geriausių žaidėjų kas savaitę laimės prizus!</br>Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PERKANT PIGU.LT SU NUOLAIDOS KODU`
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br></br> oktobris! Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -401,7 +402,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${'495px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
@@ -418,7 +419,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
             <div style="width:100%; top: 536px; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
             }; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
@@ -490,7 +491,13 @@ export class CompetitionCodeScoreTableContainer {
                 : 'Tu gali!'
             }</div>
             <div style="margin-left:30px;width:calc(100% - 60px); top: 420px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isMobile ? '9px' : '11px'
+              this.isSmallMobile
+                ? '8px'
+                : this.isSmallMobile
+                ? '8px'
+                : this.isMobile
+                ? '9px'
+                : '11px'
             }; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
@@ -509,11 +516,11 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
                 ? 'Paranda oma tulemust, sest 10 parimat mängijat võidavad iga nädal auhindu! Võidu korral</br>teavitame Sind e-mailiga, millega oled oma konto registeerinud.</br></br> Ja kui šhoppad Kaup24 e-poes kasuta sooduskoodi '
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'Joka viikko 10 parasta pelaajaa voittaa palkintoja!</br>Jos voitat, ilmoitamme voitosta sähköpostilla siihen osoitteeseen, jonka olet ilmoittanut käyttäjätililläsi.</br></br>Kun shoppailet Hobbyhall.fi-verkkokaupassa ja käytät koodia '
+                ? 'Paranna pistemäärääsi, sillä joka viikko 10 parasta pelaajaa voittaa palkintoja! Jos</br> voitat, ilmoitamme siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen.</br></br>Shoppaile Hobbyhall.fi-verkkokaupassa ja käytä koodi'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
                 ? 'Каждую неделю 10 лучших игроков получают призы!</br>Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.</br></br>Совершай покупки в 220.lv и используй скидочный код'
                 : this.prop === 'Pigu.lt'
-                ? `Pagerink rezultatą, nes net 10 geriausių žaidėjų kas savaitę laimės</br> prizus!  Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PIRKANT PIGU.LT SU NUOLAIDOS KODU`
+                ? `Pagerink rezultatą, nes net 10 geriausių žaidėjų kas savaitę laimės</br> prizus!  Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PERKANT PIGU.LT SU NUOLAIDOS KODU`
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">ir </br></br>pagrindiniai <u style="text-transform:uppercase">MIAU prizai  </u></u> - Su Miau gyvent linksmiau!'
                 : this.prop === 'LemonGym'
@@ -543,7 +550,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${'495px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
@@ -562,7 +569,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: 536px; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
             }; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
@@ -728,7 +735,7 @@ ${
     }</div>
       </div>
       <div style="color:white;width:100%;font-size:${
-        this.isMobile ? '9px' : '11px'
+        this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
       };text-align:center;top:610px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
       ${
         this.prop === 'Pigu.lt'
