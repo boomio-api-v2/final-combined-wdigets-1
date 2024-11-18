@@ -403,7 +403,7 @@ export class CompetitionCodeScoreTableContainerPigu {
           : this.prop === 'Pigu.lt' && this.language === 'ET'
           ? 'Mängi uuesti ja paranda oma tulemust,'
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? 'Pelaa uudelleen ja paranna tulostasi'
+          ? 'Pelaa uudelleen ja paranna tulostasi,'
           : this.prop === 'Pigu.lt' && this.language === 'RU'
           ? 'Играй снова и улучшай свой результат,'
           : this.prop === 'Pigu.lt'
