@@ -33,6 +33,11 @@ export class CompetitionCodeScoreTableContainerPigu {
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
     this.userDiscountCode = this?.scoreTable?.coupon_code || '';
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
+
+    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     const piguTable =
       this.prop === 'Pigu.lt' && this.language === 'EN'
@@ -331,7 +336,17 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Võitsid täna allahindluskoodi Kaup24 e-poodi. '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
           ? 'Olet voittanut alekoodin Hobbyhall.fi-verkkokauppaan!'
-          : this.prop === 'Pigu.lt' && this.language === 'RU'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://kaup24.ee'
+          ? 'Сегодня ты выиграл скидочный код Kaup24.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://pigu.lt'
+          ? 'Сегодня ты выиграл скидочный код Pigu.lt.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://220.lv'
           ? 'Сегодня ты выиграл скидочный код 220.lv.'
           : this.prop === 'Pigu.lt'
           ? `Laimėjai nuolaidos kodą Pigu.lt svetainėje.`
@@ -348,7 +363,17 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Kui teed ostu Kaup24 e-poes ja kasutad koodi '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
           ? 'Shoppaile Hobbyhall.fi-verkkokaupassa ja käytä koodi'
-          : this.prop === 'Pigu.lt' && this.language === 'RU'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://kaup24.ee'
+          ? 'Совершай покупки в Kaup24 и используй скидочный код'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://pigu.lt'
+          ? 'Совершай покупки в Pigu.lt и используй скидочный код'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://220.lv'
           ? 'Совершай покупки в 220.lv и используй скидочный код'
           : this.prop === 'Pigu.lt' && this.language === 'LT'
           ? `PERKANT PIGU.LT SU NUOLAIDOS KODU `
@@ -407,8 +432,18 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'sest 10 parimat mängijat võidavad igal nädalal Kaup24.ee kinkekaarte.</br>Kui peaksid võitma, teavitame Sind registreeritud e-posti kaudu.'
           : this.prop === 'Pigu.lt' && this.language === 'FI'
           ? 'sillä joka viikko 10 parasta pelaajaa voittaa lahjakortin Hobbyhall.fi-verkkokauppaan!</br>Jos voitat, ilmoitamme siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen.'
-          : this.prop === 'Pigu.lt' && this.language === 'RU'
-          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты!</br>Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://kaup24.ee'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Kaup24.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://pigu.lt'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Pigu.lt.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://220.lv'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.'
           : this.prop === 'Pigu.lt'
           ? 'net 10 geriausių žaidėjų kas savaitę laimės Pigu.lt dovanų kuponus.</br>Jei laimėsi informuosime tave paskyroje nurodytu el. paštu.'
           : ''

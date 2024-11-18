@@ -314,7 +314,17 @@ export class InputContainer {
                 ? 'auhindu!'
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
                 ? 'palkintoja'
-                : this.prop === 'Pigu.lt' && this.language === 'RU'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'RU' &&
+                  this.campaignUrlProp === 'https://kaup24.ee'
+                ? 'призы!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'RU' &&
+                  this.campaignUrlProp === 'https://pigu.lt'
+                ? 'призы от Pigu.lt!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'RU' &&
+                  this.campaignUrlProp === 'https://220.lv'
                 ? 'призы от 220.lv!'
                 : this.prop === 'Pigu.lt'
                 ? 'Pigu.lt prizus!'
