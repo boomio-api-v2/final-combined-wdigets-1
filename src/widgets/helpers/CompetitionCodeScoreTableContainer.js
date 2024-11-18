@@ -20,16 +20,20 @@ export class CompetitionCodeScoreTableContainer {
     this.prop = prop;
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    this.campaignUrlProp = urlParams.get('campaign_url');
 
     this.updateVisuals();
   }
 
   updateVisuals() {
     if (!this.containerDiv) return;
+
     const piguTable =
       this.prop === 'Pigu.lt' && this.language === 'EN'
         ? 'Congratulations!'
-        : this.prop === 'Pigu.lt' && this.language === 'LV'
+        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
         ? [
             'Piparkūka',
             'Vārpstiņš',
@@ -61,7 +65,7 @@ export class CompetitionCodeScoreTableContainer {
             'Viktors',
             'Lielais Karpis',
           ]
-        : this.prop === 'Pigu.lt' && this.language === 'ET'
+        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://kaup24.ee'
         ? [
             'Mannu',
             'Seenekuningas',
@@ -94,7 +98,7 @@ export class CompetitionCodeScoreTableContainer {
             'Zorro',
             'Jannu',
           ]
-        : this.prop === 'Pigu.lt' && this.language === 'FI'
+        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://hobbyhall.fi'
         ? [
             'Tukku',
             'Jonsku',
@@ -123,40 +127,8 @@ export class CompetitionCodeScoreTableContainer {
             'Eltsu',
             'Nani - Banaani',
           ]
-        : this.prop === 'Pigu.lt' && this.language === 'RU'
-        ? [
-            'Piparkūka',
-            'Vārpstiņš',
-            'Lāčplēsis',
-            'Mr kruze',
-            'Tīģeris Miegā',
-            'Kaspars',
-            'Mežsargs',
-            'Vēstnesis',
-            'Latvānija',
-            'Saulīte',
-            'LAUVIŅA',
-            'Punisher',
-            'Tēvzeme',
-            'Skailane',
-            'Freefire',
-            'Zelta Saule',
-            'Tumsas Burvis',
-            'Spīdīgais Runcis',
-            'Krauklis',
-            'Jānis',
-            'Mēness Kafija',
-            'Gints',
-            'Saulīte',
-            'Meža Puika',
-            'Mēness Gaisma',
-            'Orests',
-            'Zane',
-            'Viktors',
-            'Lielais Karpis',
-          ]
         : this.prop === 'Pigu.lt' &&
-          this.language === 'LT' && [
+          this.campaignUrlProp === 'https://pigu.lt' && [
             'AKRIUKAS',
             'PIGUTIS',
             'BLASH',
@@ -715,7 +687,7 @@ ${
         : this.language === 'EE'
         ? 'TULEMUSED'
         : this.language === 'ET'
-        ? 'SINU VÕIDUD'
+        ? 'TULEMUSED'
         : this.language === 'ES'
         ? 'RESULTADOS'
         : this.language === 'FI'

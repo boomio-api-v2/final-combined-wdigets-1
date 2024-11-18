@@ -199,7 +199,7 @@ export class InputContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
                 ? 'TOISTA,'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'ПОВТОРЯЙ ,'
+                ? 'ПОВТОРЯЙ '
                 : this.language === 'LV' && this.game === 'doodle'
                 ? 'SPĒLĒ VĒLREIZ,'
                 : this.language === 'LV'
@@ -256,7 +256,7 @@ export class InputContainer {
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
                 ? 'FOR BETTER RESULT'
-                : 'dėl geresnio rezultato.'
+                : 'dėl geresnio rezultato'
             }
           </div>
             </div>
