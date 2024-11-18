@@ -157,13 +157,11 @@ export class CompetitionCodeScoreTableContainer {
           ]
         : this.prop === 'Pigu.lt' &&
           this.language === 'LT' && [
-            'BALSUOTOJAS',
             'AKRIUKAS',
-            'TABU',
+            'PIGUTIS',
             'BLASH',
             'BULKIN',
-            'PILKASIS ŠEŲĖLIS',
-            'MONIKA',
+            'PILKASIS ŠEŠĖLIS',
             'GIEDRIUZAS',
             'ABRIKOSAS',
             'TRUMPAS',
@@ -177,6 +175,15 @@ export class CompetitionCodeScoreTableContainer {
             'HARIS POTERIS',
             'VAIVORYKŠTĖ',
             'VALDELIS',
+            'ŠOKLIUKĖ',
+            'FANTAZUOTOJAS',
+            'VALDOVAS',
+            'PEMPĖ',
+            'NEWYORKE',
+            'VORIUKAS',
+            'MISTY',
+            'BLACKTHORN',
+            'BLAZING BILL',
           ];
 
     const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
@@ -325,7 +332,7 @@ export class CompetitionCodeScoreTableContainer {
     let scoreboardText = `
       ${
         (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) ||
-        (this.prop === 'Pigu.lt' && this.scoreTable?.user_best_place <= 10)
+        (this.prop === 'Pigu.lt' && this.scoreTable?.user_best_place <= 40)
           ? `<div style="width:100%; top: ${'390px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -391,7 +398,7 @@ export class CompetitionCodeScoreTableContainer {
                   this.campaignUrlProp === 'https://220.lv'
                 ? 'Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.</br></br>Совершай покупки в 220.lv и используй скидочный код'
                 : this.prop === 'Pigu.lt'
-                ? `Net 10 geriausių žaidėjų kas savaitę laimės prizus!</br>Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PERKANT PIGU.LT SU NUOLAIDOS KODU`
+                ? `Net 10 geriausių žaidėjų kas savaitę laimės prizus!</br>Jei laimėsi informuosime tave paskyroje nurodytu el. paštu.</br></br>O PERKANT PIGU.LT SU NUOLAIDOS KODU`
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br></br> oktobris! Uzvarētāji tiks informēti e-pastā.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -453,7 +460,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
                 ? 'и получи скидку 2€ на покупки свыше 20€!'
                 : this.prop === 'Pigu.lt'
-                ? 'GAUK 2€ NUOLAIDĄ VISKAM!'
+                ? 'GAUK 2€ NUOLAIDĄ VISAM KREPŠELIUI VIRŠ 20€!'
                 : this.language === 'LV' && this.prop !== 'Akropolis'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU'
@@ -545,7 +552,7 @@ export class CompetitionCodeScoreTableContainer {
                   this.campaignUrlProp === 'https://220.lv'
                 ? 'Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.</br></br>Совершай покупки в 220.lv и используй скидочный код'
                 : this.prop === 'Pigu.lt'
-                ? `Pagerink rezultatą, nes net 10 geriausių žaidėjų kas savaitę laimės</br> prizus!  Jei laimėsi informuosime tavo nurodytu el. paštu.</br></br>O PERKANT PIGU.LT SU NUOLAIDOS KODU`
+                ? `Pagerink rezultatą, nes net 10 geriausių žaidėjų kas savaitę laimės</br> prizus!  Jei laimėsi informuosime tave paskyroje nurodytu el. paštu.</br></br>O PERKANT PIGU.LT SU NUOLAIDOS KODU`
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">ir </br></br>pagrindiniai <u style="text-transform:uppercase">MIAU prizai  </u></u> - Su Miau gyvent linksmiau!'
                 : this.prop === 'LemonGym'
@@ -613,7 +620,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
                 ? 'и получи скидку 2€ на покупки свыше 20€!'
                 : this.prop === 'Pigu.lt'
-                ? 'GAUK 2€ NUOLAIDĄ VISKAM!'
+                ? 'GAUK 2€ NUOLAIDĄ VISAM KREPŠELIUI VIRŠ 20€!'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
