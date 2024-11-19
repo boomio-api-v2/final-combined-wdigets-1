@@ -470,8 +470,6 @@ ${
     const secondLine = document.querySelector('.bomio-second-line');
     if (firstLine) firstLine.style.display = 'block';
     if (secondLine) secondLine.style.display = 'block';
-
-    console.log('Images closed');
   }
 
   render() {
