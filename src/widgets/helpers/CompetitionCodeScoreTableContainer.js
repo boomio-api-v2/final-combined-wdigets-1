@@ -65,7 +65,7 @@ export class CompetitionCodeScoreTableContainer {
             'Viktors',
             'Lielais Karpis',
           ]
-        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://kaup24.ee'
+        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://kaup.ee'
         ? [
             'Mannu',
             'Seenekuningas',
@@ -371,7 +371,7 @@ export class CompetitionCodeScoreTableContainer {
                   }`
                 : this.prop === 'Pigu.lt' &&
                   this.language === 'RU' &&
-                  this.campaignUrlProp === 'https://kaup24.ee'
+                  this.campaignUrlProp === 'https://kaup.ee'
                 ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Kaup24.</br></br>${
                     this.prop !== 'Pigu.lt'
                       ? 'Совершай покупки в Kaup24 и используй скидочный код'
@@ -553,7 +553,7 @@ export class CompetitionCodeScoreTableContainer {
                   }`
                 : this.prop === 'Pigu.lt' &&
                   this.language === 'RU' &&
-                  this.campaignUrlProp === 'https://kaup24.ee'
+                  this.campaignUrlProp === 'https://kaup.ee'
                 ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Kaup24.</br></br>${
                     this.prop !== 'Pigu.lt'
                       ? 'Совершай покупки в Kaup24 и используй скидочный код'
@@ -820,7 +820,7 @@ ${
             ? '<a style="color:white" target="_blank" href="https://hobbyhall.fi/fi/">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
             : this.prop === 'Pigu.lt' &&
               this.language === 'RU' &&
-              this.campaignUrlProp === 'https://kaup24.ee'
+              this.campaignUrlProp === 'https://kaup.ee'
             ? '<a style="color:white" target="_blank" href="https://kaup24.ee/et/">Открой для себя лучшие предложения Kaup24!</a>'
             : this.prop === 'Pigu.lt' &&
               this.language === 'RU' &&

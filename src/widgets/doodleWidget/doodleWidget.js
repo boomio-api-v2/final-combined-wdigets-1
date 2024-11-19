@@ -97,7 +97,7 @@ class DoodleWidget {
         ? mainImagePiguLT
         : this.campaignUrlProp === 'https://220.lv'
         ? mainImagePiguLV
-        : this.campaignUrlProp === 'https://kaup24.ee'
+        : this.campaignUrlProp === 'https://kaup.ee'
         ? mainImagePiguEE
         : this.campaignUrlProp === 'https://hobbyhall.fi'
         ? mainImagePiguFI
@@ -1290,11 +1290,11 @@ class DoodleWidget {
     <img src=${
       this.customer === 'Pigu.lt' &&
       this.language === 'ET' &&
-      this.campaignUrlProp === 'https://kaup24.ee'
+      this.campaignUrlProp === 'https://kaup.ee'
         ? PiguJumpUpIntroEstonian
         : this.customer === 'Pigu.lt' &&
           this.language === 'RU' &&
-          this.campaignUrlProp === 'https://kaup24.ee'
+          this.campaignUrlProp === 'https://kaup.ee'
         ? PiguJumpUpIntroEstoniaRU
         : this.customer === 'Pigu.lt' &&
           this.language === 'LT' &&
