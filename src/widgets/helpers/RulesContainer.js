@@ -36,7 +36,7 @@ export class RulesContainer {
 
 <p>1.&nbsp; &nbsp; &nbsp;&nbsp;Šios žaidimo taisyklės (toliau – Žaidimo taisyklės) nustato UAB „Pigu“ (įmonės kodas 300866792, buveinė Laisvės pr. 75, LT-06144 Vilnius) (toliau – Akcijos organizatorius) organizuojamo žaidimo vykdymo tvarką, žaidimo dovanas ir jų įteikimo, ginčų sprendimo ir kitą tvarką. &nbsp;</p>
 
-<p>2.&nbsp; &nbsp; &nbsp;&nbsp;Žaidimo vykdymo laikotarpis:&nbsp;2024 m. lapkričio 15 d. – 2024 m. gruodžio 22 d.&nbsp;(imtinai)</p>
+<p>2.&nbsp; &nbsp; &nbsp;&nbsp;Žaidimo vykdymo laikotarpis:&nbsp;2024 m. lapkričio 15 d. – 2024 m. gruodžio 22 d.&nbsp;(imtinai).</p>
 
 <p>3.&nbsp; &nbsp; &nbsp;&nbsp;Žaidimo dalyvis turi būti registruotas pigu.lt narys&nbsp;&nbsp;ir būti sutikęs gauti žaidimo naujienas ir informaciją apie prizus.</p>
 
@@ -46,7 +46,7 @@ export class RulesContainer {
 
 <p>5.&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Žaidimo dovanas sudaro:</p>
 
-<p>5.1.&nbsp;&nbsp;nuolaidos kodai, apsiperkant Pigu.lt programėlėje, kurie galioja tik laimėjimo dieną iki vidurnakčio, nurodytomis sąlygomis žaidimo lange</p>
+<p>5.1.&nbsp;&nbsp;nuolaidos kodai, apsiperkant Pigu.lt programėlėje, kurie galioja tik laimėjimo dieną iki vidurnakčio, nurodytomis sąlygomis žaidimo lange.</p>
 
 <p>5.2.&nbsp;dešimt&nbsp;20€&nbsp;vertės dovanų kuponų, kuriuos laimi 10 daugiausiai taškų pasiekusių žaidimo dalyvių kiekvieną savaitę.</p>
 
@@ -56,21 +56,21 @@ export class RulesContainer {
 
 <p>8.&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Informavimo apie žaidimo dovaną ir jų įteikimo tvarka:</p>
 
-<p>8.1.&nbsp;&nbsp;apie žaidimo dovaną, nurodytą Žaidimo taisyklių 5.1. punkte, žaidimo dalyvis yra informuojamas rezultatų lange, iš karto po žaidimo laimėjimo.</p>
+<p>8.1.&nbsp;&nbsp;Apie žaidimo dovaną, nurodytą Žaidimo taisyklių 5.1. punkte, žaidimo dalyvis yra informuojamas rezultatų lange, iš karto po žaidimo laimėjimo.</p>
 
-<p>8.2.&nbsp;apie žaidimo dovaną, nurodytą Žaidimo taisyklių 5.2. punkte, žaidimo dalyvis yra informuojamas jo nurodytu&nbsp;elektroninio pašto adresu. Informacija apie praėjusios savaitės žaidimo laimėjimą siunčiama pirmadieniais, šiomis dienomis: 2024 m.&nbsp;lapkričio 25 d., 2024 m. gruodžio 2 d., 2024 m. gruodžio 9 d., 2024 m. gruodžio 16 d., 2024 m. gruodžio 23 d.</p>
+<p>8.2.&nbsp;Apie žaidimo dovaną, nurodytą Žaidimo taisyklių 5.2. punkte, žaidimo dalyvis yra informuojamas jo nurodytu&nbsp;elektroninio pašto adresu. Informacija apie praėjusios savaitės žaidimo laimėjimą siunčiama pirmadieniais, šiomis dienomis: 2024 m.&nbsp;lapkričio 25 d., 2024 m. gruodžio 2 d., 2024 m. gruodžio 9 d., 2024 m. gruodžio 16 d., 2024 m. gruodžio 23 d.</p>
 
 <p>9.&nbsp; &nbsp; &nbsp;&nbsp;Žaidimo dovanų kuponų panaudojimo sąlygos:</p>
 
-<p>9.1.&nbsp;dovanų kuponas galioja 1 savaitę nuo jo išsiuntimo dienos;</p>
+<p>9.1.&nbsp;Dovanų kuponas galioja 1 savaitę nuo jo išsiuntimo dienos.</p>
 
-<p>9.2.&nbsp;dovanų kuponas negrąžinamas bei į pinigus nekeičiamas;</p>
+<p>9.2.&nbsp;Dovanų kuponas negrąžinamas bei į pinigus nekeičiamas.</p>
 
-<p>9.3.&nbsp;jei užsakymo, už kurį atsiskaitoma pritaikius dovanų kuponą, suma viršija dovanų kupono vertę, trūkstamą sumą galima sumokėti pasirinkus vieną iš Pigu.lt siūlomų atsiskaitymo būdų;</p>
+<p>9.3.&nbsp;Jei užsakymo, už kurį atsiskaitoma pritaikius dovanų kuponą, suma viršija dovanų kupono vertę, trūkstamą sumą galima sumokėti pasirinkus vieną iš Pigu.lt siūlomų atsiskaitymo būdų.</p>
 
-<p>9.4.&nbsp;dovanų kupono kodas gali būti pritaikytas tik vienam užsakymui. Jei užsakymo, už kurį atsiskaitoma pritaikius dovanų kuponą suma yra mažesnė nei dovanų kupono vertė, susidaręs skirtumas negrąžinamas;</p>
+<p>9.4.&nbsp;Dovanų kupono kodas gali būti pritaikytas tik vienam užsakymui. Jei užsakymo, už kurį atsiskaitoma pritaikius dovanų kuponą suma yra mažesnė nei dovanų kupono vertė, susidaręs skirtumas negrąžinamas.</p>
 
-<p>9.5.&nbsp;dovanų kuponas negalioja PVM mokėtojams - fiziniams ir juridiniams asmenims (išskyrus biudžetines įstaigas), kai bandoma atsiskaityti už prekes, kurioms taikomas atvirkštinis PVM apmokestinimas;</p>
+<p>9.5.&nbsp;Dovanų kuponas negalioja PVM mokėtojams - fiziniams ir juridiniams asmenims (išskyrus biudžetines įstaigas), kai bandoma atsiskaityti už prekes, kurioms taikomas atvirkštinis PVM apmokestinimas.</p>
 
 <p><strong>BAIGIAMOSIOS NUOSTATOS</strong></p>
 
