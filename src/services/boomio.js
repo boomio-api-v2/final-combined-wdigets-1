@@ -40,8 +40,10 @@ class BoomioService extends UserService {
       : currentPageUrl;
 
     if (
-      (language === 'ET' && campaignUrl === 'https://kaup.ee') ||
-      (language === 'RU' && campaignUrl === 'https://kaup.ee') ||
+      (language === 'ET' &&
+        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+      (language === 'RU' &&
+        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
       (language === 'LT' && campaignUrl === 'https://pigu.lt') ||
       (language === 'RU' && campaignUrl === 'https://pigu.lt') ||
       (language === 'FI' && campaignUrl === 'https://hobbyhall.fi') ||
