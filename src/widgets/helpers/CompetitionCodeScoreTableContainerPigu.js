@@ -33,13 +33,17 @@ export class CompetitionCodeScoreTableContainerPigu {
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
     this.userDiscountCode = this?.scoreTable?.coupon_code || '';
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
+
+    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     const piguTable =
       this.prop === 'Pigu.lt' && this.language === 'EN'
         ? 'Congratulations!'
-        : this.prop === 'Pigu.lt' && this.language === 'LV'
+        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
         ? [
-            'TAVS REZULTĀTS',
             'Piparkūka',
             'Vārpstiņš',
             'Lāčplēsis',
@@ -70,9 +74,8 @@ export class CompetitionCodeScoreTableContainerPigu {
             'Viktors',
             'Lielais Karpis',
           ]
-        : this.prop === 'Pigu.lt' && this.language === 'ET'
+        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://kaup24.ee'
         ? [
-            'SINU TULEMUS',
             'Mannu',
             'Seenekuningas',
             'Tots',
@@ -104,9 +107,8 @@ export class CompetitionCodeScoreTableContainerPigu {
             'Zorro',
             'Jannu',
           ]
-        : this.prop === 'Pigu.lt' && this.language === 'FI'
+        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://hobbyhall.fi'
         ? [
-            'SINUN TULOKSESI',
             'Tukku',
             'Jonsku',
             'Vampyyri',
@@ -134,48 +136,13 @@ export class CompetitionCodeScoreTableContainerPigu {
             'Eltsu',
             'Nani - Banaani',
           ]
-        : this.prop === 'Pigu.lt' && this.language === 'RU'
-        ? [
-            'ТВОЙ РЕЗУЛЬТАТ',
-            'Piparkūka',
-            'Vārpstiņš',
-            'Lāčplēsis',
-            'Mr kruze',
-            'Tīģeris Miegā',
-            'Kaspars',
-            'Mežsargs',
-            'Vēstnesis',
-            'Latvānija',
-            'Saulīte',
-            'LAUVIŅA',
-            'Punisher',
-            'Tēvzeme',
-            'Skailane',
-            'Freefire',
-            'Zelta Saule',
-            'Tumsas Burvis',
-            'Spīdīgais Runcis',
-            'Krauklis',
-            'Jānis',
-            'Mēness Kafija',
-            'Gints',
-            'Saulīte',
-            'Meža Puika',
-            'Mēness Gaisma',
-            'Orests',
-            'Zane',
-            'Viktors',
-            'Lielais Karpis',
-          ]
         : this.prop === 'Pigu.lt' &&
-          this.language === 'LT' && [
-            'BALSUOTOJAS',
+          this.campaignUrlProp === 'https://pigu.lt' && [
             'AKRIUKAS',
-            'TABU',
+            'PIGUTIS',
             'BLASH',
             'BULKIN',
-            'PILKASIS ŠEŲĖLIS',
-            'MONIKA',
+            'PILKASIS ŠEŠĖLIS',
             'GIEDRIUZAS',
             'ABRIKOSAS',
             'TRUMPAS',
@@ -189,6 +156,15 @@ export class CompetitionCodeScoreTableContainerPigu {
             'HARIS POTERIS',
             'VAIVORYKŠTĖ',
             'VALDELIS',
+            'ŠOKLIUKĖ',
+            'FANTAZUOTOJAS',
+            'VALDOVAS',
+            'PEMPĖ',
+            'NEWYORKE',
+            'VORIUKAS',
+            'MISTY',
+            'BLACKTHORN',
+            'BLAZING BILL',
           ];
     let tableHTML = '';
     scoreboard.forEach((item, index) => {
@@ -255,7 +231,23 @@ export class CompetitionCodeScoreTableContainerPigu {
                 this.prop === 'LemonGym'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
-              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${'Tavo rezultatas'}</td>
+              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+        this.prop === 'Pigu.lt'
+          ? userBestPlace === index + 1
+            ? this.prop === 'Pigu.lt' && this.language === 'LT'
+              ? 'Tavo rezultatas'
+              : this.prop === 'Pigu.lt' && this.language === 'EN'
+              ? 'Tavo rezultatas'
+              : this.prop === 'Pigu.lt' && this.language === 'LV'
+              ? 'TAVS REZULTĀTS'
+              : this.prop === 'Pigu.lt' && this.language === 'ET'
+              ? 'SINU TULEMUS'
+              : this.prop === 'Pigu.lt' && this.language === 'FI'
+              ? 'SINUN TULOKSESI'
+              : this.prop === 'Pigu.lt' && this.language === 'RU' && 'ТВОЙ РЕЗУЛЬТАТ'
+            : piguTable[index]
+          : item.user_name
+      }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
                 this.prop === 'Fpro' ||
@@ -331,7 +323,17 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Võitsid täna allahindluskoodi Kaup24 e-poodi. '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
           ? 'Olet voittanut alekoodin Hobbyhall.fi-verkkokauppaan!'
-          : this.prop === 'Pigu.lt' && this.language === 'RU'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://kaup24.ee'
+          ? 'Сегодня ты выиграл скидочный код Kaup24.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://pigu.lt'
+          ? 'Сегодня ты выиграл скидочный код Pigu.lt.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://220.lv'
           ? 'Сегодня ты выиграл скидочный код 220.lv.'
           : this.prop === 'Pigu.lt'
           ? `Laimėjai nuolaidos kodą Pigu.lt svetainėje.`
@@ -348,7 +350,17 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Kui teed ostu Kaup24 e-poes ja kasutad koodi '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
           ? 'Shoppaile Hobbyhall.fi-verkkokaupassa ja käytä koodi'
-          : this.prop === 'Pigu.lt' && this.language === 'RU'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://kaup24.ee'
+          ? 'Совершай покупки в Kaup24 и используй скидочный код'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://pigu.lt'
+          ? 'Совершай покупки в Pigu.lt и используй скидочный код'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://220.lv'
           ? 'Совершай покупки в 220.lv и используй скидочный код'
           : this.prop === 'Pigu.lt' && this.language === 'LT'
           ? `PERKANT PIGU.LT SU NUOLAIDOS KODU `
@@ -387,13 +399,13 @@ export class CompetitionCodeScoreTableContainerPigu {
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'Play again and improve your score'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? 'Spēlē atkal un uzlabo savu rezultātu'
+          ? 'Spēlē atkal un uzlabo savu rezultātu,'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
           ? 'Mängi uuesti ja paranda oma tulemust,'
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? 'Pelaa uudelleen ja paranna tulostasi'
+          ? 'Pelaa uudelleen ja paranna tulostasi,'
           : this.prop === 'Pigu.lt' && this.language === 'RU'
-          ? 'Играй снова и улучшай свой результат'
+          ? 'Играй снова и улучшай свой результат,'
           : this.prop === 'Pigu.lt'
           ? 'Žaisk dar ir pagerink rezultatą!'
           : ''
@@ -407,8 +419,18 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'sest 10 parimat mängijat võidavad igal nädalal Kaup24.ee kinkekaarte.</br>Kui peaksid võitma, teavitame Sind registreeritud e-posti kaudu.'
           : this.prop === 'Pigu.lt' && this.language === 'FI'
           ? 'sillä joka viikko 10 parasta pelaajaa voittaa lahjakortin Hobbyhall.fi-verkkokauppaan!</br>Jos voitat, ilmoitamme siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen.'
-          : this.prop === 'Pigu.lt' && this.language === 'RU'
-          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты!</br>Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://kaup24.ee'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Kaup24.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://pigu.lt'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Pigu.lt.'
+          : this.prop === 'Pigu.lt' &&
+            this.language === 'RU' &&
+            this.campaignUrlProp === 'https://220.lv'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.'
           : this.prop === 'Pigu.lt'
           ? 'net 10 geriausių žaidėjų kas savaitę laimės Pigu.lt dovanų kuponus.</br>Jei laimėsi informuosime tave paskyroje nurodytu el. paštu.'
           : ''
@@ -483,7 +505,7 @@ ${
         : this.language === 'EE'
         ? 'SINU VÕIDUD'
         : this.language === 'ET'
-        ? 'SINU VÕIDUD'
+        ? 'TULEMUSED'
         : this.language === 'ES'
         ? 'RESULTADOS'
         : this.language === 'FI'

@@ -199,7 +199,7 @@ export class InputContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
                 ? 'TOISTA,'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'ПОВТОРЯЙ ,'
+                ? 'ПОВТОРЯЙ '
                 : this.language === 'LV' && this.game === 'doodle'
                 ? 'SPĒLĒ VĒLREIZ,'
                 : this.language === 'LV'
@@ -256,7 +256,7 @@ export class InputContainer {
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
                 ? 'FOR BETTER RESULT'
-                : 'dėl geresnio rezultato.'
+                : 'dėl geresnio rezultato'
             }
           </div>
             </div>
@@ -314,7 +314,17 @@ export class InputContainer {
                 ? 'auhindu!'
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
                 ? 'palkintoja'
-                : this.prop === 'Pigu.lt' && this.language === 'RU'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'RU' &&
+                  this.campaignUrlProp === 'https://kaup24.ee'
+                ? 'призы!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'RU' &&
+                  this.campaignUrlProp === 'https://pigu.lt'
+                ? 'призы от Pigu.lt!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'RU' &&
+                  this.campaignUrlProp === 'https://220.lv'
                 ? 'призы от 220.lv!'
                 : this.prop === 'Pigu.lt'
                 ? 'Pigu.lt prizus!'

@@ -305,16 +305,18 @@ export class RulesContainer {
         }, 1000);
       });
     }
-    document.getElementById('boomio-copy-modal-btn').onclick = () => {
-      const textToCopy = userDiscountCode;
-      const textarea = document.createElement('textarea');
-      textarea.value = textToCopy;
-      document.body.appendChild(textarea);
-      textarea.select();
-      textarea.setSelectionRange(0, textarea.value.length);
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-    };
+    if (document.getElementById('boomio-copy-modal-btn')) {
+      document.getElementById('boomio-copy-modal-btn').onclick = () => {
+        const textToCopy = userDiscountCode;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      };
+    }
   }
 
   render() {
