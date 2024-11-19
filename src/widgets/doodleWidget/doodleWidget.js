@@ -66,6 +66,8 @@ class DoodleWidget {
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
 
     this.isMobile = window.innerWidth <= 1280;
+    this.isMobileHeightSmall = window.innerHeight <= 600;
+
     this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
@@ -325,7 +327,7 @@ class DoodleWidget {
         inputContainer.style.display = 'block';
         setTimeout(() => {
           inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
-          inputContainer.style.top = 'calc(50% + 170px)';
+          inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
           inputContainer.style.opacity = 1;
         }, 100);
       }, 300);
@@ -363,7 +365,7 @@ class DoodleWidget {
       inputContainer.style.display = 'block';
       setTimeout(() => {
         inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
-        inputContainer.style.top = 'calc(50% + 170px)';
+        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
         inputContainer.style.opacity = 1;
       }, 100);
     }, 300);
@@ -737,7 +739,9 @@ class DoodleWidget {
           inputContainer.style.display = 'block';
           setTimeout(() => {
             inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.top = `calc(50% + ${
+              this.isMobileHeightSmall ? '110px' : '170px'
+            })`;
             inputContainer.style.opacity = 1;
           }, 100);
         }
@@ -1317,9 +1321,9 @@ class DoodleWidget {
           ? introAkropolisLV
           : introAkropolis
         : intro
-    } alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;min-width:418px;pointer-events: none; display:block;" id="background_intro">
+    } alt="Image Description" style="z-index:4; height: ${
+      this.isMobileHeightSmall ? '100%' : '674px'
+    };position:absolute;pointer-events: none; display:block;" id="background_intro">
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1608,7 +1612,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                         setTimeout(() => {
                           inputContainer.style.height =
                             this.customer === 'Pigu.lt' ? '400px' : '332px';
-                          inputContainer.style.top = 'calc(50% + 170px)';
+                          inputContainer.style.top = `calc(50% + ${
+                            this.isMobileHeightSmall ? '110px' : '170px'
+                          })`;
                           inputContainer.style.opacity = 1;
                         }, 100);
                       }, 300);
