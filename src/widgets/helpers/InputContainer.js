@@ -509,7 +509,7 @@ export class InputContainer {
                     : document.body.offsetWidth + 'px'
                   : '426px'
               };" id="control-button" class="control-button">
-              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-top: 12px; padding-bottom: 12px; background: white
+              <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; height:38px;background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
               <div style="text-align: center; font-size: 24px; font-family:${
                 this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'

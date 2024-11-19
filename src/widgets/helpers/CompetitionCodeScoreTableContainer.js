@@ -728,6 +728,7 @@ ${
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
+    this.isMobileHeightSmall = window.innerHeight <= 550;
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
     containerDiv.style.width =
@@ -738,7 +739,9 @@ ${
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
+      <div style="width:100%;top: ${
+        this.isMobileHeightSmall ? '72px' : '62px'
+      }; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
       this.language === 'LV'
         ? 'REZULTĀTI'
         : this.language === 'RU'
@@ -775,7 +778,7 @@ ${
           </table>
         </div>
       </div>
-      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:560px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex" id="boomio-game-play-again">
+      <div style="width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:560px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? 'SPĒLĒT VĒLREIZ'
@@ -833,7 +836,7 @@ ${
       
 </div>
 
-    <div style="left:calc(50% - 40px);width:78px;background-repeat:no-repeat;top:635px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain; " id="boomio-game-play-again">
+    <div style="left:calc(50% - 40px);width:78px;top:635px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain;background-repeat:no-repeat;" id="boomio-game-play-again">
       </div>
     </div>`;
     this.containerDiv = containerDiv;
