@@ -316,7 +316,8 @@ export class InputContainer {
                 ? 'palkintoja'
                 : this.prop === 'Pigu.lt' &&
                   this.language === 'RU' &&
-                  this.campaignUrlProp === 'https://kaup.ee'
+                  (this.campaignUrlProp === 'https://kaup.ee' ||
+                    this.campaignUrlProp === 'https://kaup24.ee')
                 ? 'призы!'
                 : this.prop === 'Pigu.lt' &&
                   this.language === 'RU' &&

@@ -74,7 +74,9 @@ export class CompetitionCodeScoreTableContainerPigu {
             'Viktors',
             'Lielais Karpis',
           ]
-        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://kaup.ee'
+        : this.prop === 'Pigu.lt' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
         ? [
             'Mannu',
             'Seenekuningas',
@@ -325,7 +327,8 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Olet voittanut alekoodin Hobbyhall.fi-verkkokauppaan!'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
-            this.campaignUrlProp === 'https://kaup.ee'
+            (this.campaignUrlProp === 'https://kaup.ee' ||
+              this.campaignUrlProp === 'https://kaup24.ee')
           ? 'Сегодня ты выиграл скидочный код Kaup24.'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
@@ -352,7 +355,8 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Shoppaile Hobbyhall.fi-verkkokaupassa ja käytä koodi'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
-            this.campaignUrlProp === 'https://kaup.ee'
+            (this.campaignUrlProp === 'https://kaup.ee' ||
+              this.campaignUrlProp === 'https://kaup24.ee')
           ? 'Совершай покупки в Kaup24 и используй скидочный код'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
@@ -421,7 +425,8 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'sillä joka viikko 10 parasta pelaajaa voittaa lahjakortin Hobbyhall.fi-verkkokauppaan!</br>Jos voitat, ilmoitamme siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen.'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
-            this.campaignUrlProp === 'https://kaup.ee'
+            (this.campaignUrlProp === 'https://kaup.ee' ||
+              this.campaignUrlProp === 'https://kaup24.ee')
           ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Kaup24.'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
