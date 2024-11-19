@@ -31,9 +31,26 @@ class BoomioService extends UserService {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
+    const language = urlParams.get('language');
 
-    this.current_page_url = campaignUrl ? campaignUrl : currentPageUrl;
-    this.setInitialConfiguration();
+    this.current_page_url = campaignUrl
+      ? campaignUrl === 'https://kaup.ee'
+        ? 'https://kaup24.ee'
+        : campaignUrl
+      : currentPageUrl;
+
+    if (
+      (language === 'ET' && campaignUrl === 'https://kaup.ee') ||
+      (language === 'RU' && campaignUrl === 'https://kaup.ee') ||
+      (language === 'LT' && campaignUrl === 'https://pigu.lt') ||
+      (language === 'RU' && campaignUrl === 'https://pigu.lt') ||
+      (language === 'FI' && campaignUrl === 'https://hobbyhall.fi') ||
+      (language === 'LV' && campaignUrl === 'https://220.lv') ||
+      (language === 'RU' && campaignUrl === 'https://220.lv') ||
+      (!language && !campaignUrl)
+    ) {
+      this.setInitialConfiguration();
+    }
   }
 
   loadWidget = (widget_type = 'puzzle') => {

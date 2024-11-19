@@ -156,7 +156,7 @@ export class RulesContainer {
 <p>Spēles noteikumiem piemērojami Privātuma politikas noteikumi, ar kuriem varat iepazīties vietnē<a href="https://www.google.com/url?q=https://pigu.lt/lt/t/privatumo-politika&amp;sa=D&amp;source=editors&amp;ust=1731608554330940&amp;usg=AOvVaw0xhPhnLtWuNvBXwUZplShE">&nbsp;</a>https://220.lv/lv/t/privatuma-politika.</p>
 
 <p>Mēs novērtējam Jūsu viedokli un ieteikumus! Gaidīsim tos uz e-pasta adresi&nbsp;<a href="mailto:reklama220@220.lv">reklama220@220.lv</a>.</p></div>`
-        : this.campaignUrlProp === 'https://kaup24.ee'
+        : this.campaignUrlProp === 'https://kaup.ee'
         ? `<div><p><strong>ÜLDISED SÄTTED</strong></p>
 
 <p>1.&nbsp;Käesolevad mängureeglid (edaspidi "mängureeglid") kehtestavad DLB Trading OÜ (ettevõtte reg.nr 11791329, aadressil Peterburi tee 2F, 11415 Tallinn, Eesti) (edaspidi "kampaania korraldaja") korraldatava mängu läbiviimise korra, mängu auhinnad ja nende kättetoimetamise, vaidluste lahendamise ja muud protseduurid.</p>
