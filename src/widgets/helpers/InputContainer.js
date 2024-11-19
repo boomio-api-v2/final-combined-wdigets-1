@@ -489,7 +489,7 @@ export class InputContainer {
             : 'Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.'
         }
     </div>
-      </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;height:${'13px'} ;margin-right:14px;display:${'none'} ;top:${'270px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
+      </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;margin-right:14px;display:${'none'} ;top:${'270px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
                   this.isMobile ? '8px' : '10px'
                 };color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>`
