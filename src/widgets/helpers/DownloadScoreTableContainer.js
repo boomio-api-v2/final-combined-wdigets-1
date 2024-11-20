@@ -75,7 +75,7 @@ export class DownloadScoreTableContainer {
      <div style="width:100%; top: 420px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">ATSISIŲSK PROGRAMĖLĘ</div>
           <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.</div>
              </div>
-                          <div style="width:100%; top: 480px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
+                          <div style="width:100%; top: 500px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
 <div>
   <a href="https://apps.apple.com/lt/app/barbora-lt/id903888629" target="_blank">
     <img src="${BarboraAppleStore}" id="boomio-barbora-apple-store" alt="Image Description" style="cursor:pointer;margin-right:10px;max-width: 167px; height: 49px;">
