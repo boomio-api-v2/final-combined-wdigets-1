@@ -1534,9 +1534,12 @@ function startGame(scoreTableContainerInstance) {
             const scoreString = gameVars.currentScore.toString();
 
             const initialMargin = 170;
-            const scoreLength = this.currentScore.toString().length;
-            const newMarginLeft = initialMargin - 30 * scoreLength;
-            numbers.style.marginLeft = `${newMarginLeft}px`;
+            const scoreLength = gameVars.currentScore?.toString().length;
+            if (scoreLength) {
+              const newMarginLeft = initialMargin - 30 * scoreLength;
+              numbers.style.marginLeft = `${newMarginLeft}px`;
+            }
+
             // Determine the number of leading zeros to hide
             let leadingZeros = 0;
             while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {

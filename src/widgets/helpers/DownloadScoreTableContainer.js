@@ -48,8 +48,8 @@ export class DownloadScoreTableContainer {
     <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
     </svg>
 </div> 
-    <div style="letter-spacing: -0.3px;line-height: 150%;margin-bottom:15px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 11px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
-    Atsisiųk „Barbora“ programėlę, panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.</div>
+    <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;margin-top:20px; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
+    Nuolaida galioja apsiperkant iki 200 eur. Minimali krepšelio suma 29.99 eur Nuolaida netaikoma alkoholinių gėrimų, pradinio maitinimo kūdikių prekių, taip pat pakavimo, pristatymo mokesčių bei pradinio krepšelio papildymo sumoms.</div>
 </div>
         `;
 
@@ -72,15 +72,16 @@ export class DownloadScoreTableContainer {
         ? '900'
         : '700';
     let scoreboardText = `
-     <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">ATSISIŲSK PROGRAMĖLĘ</div>
+     <div style="width:100%; top: 420px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">ATSISIŲSK PROGRAMĖLĘ</div>
+          <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.</div>
              </div>
                           <div style="width:100%; top: 480px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
 <div>
   <a href="https://apps.apple.com/lt/app/barbora-lt/id903888629" target="_blank">
-    <img src="${BarboraAppleStore}" id="boomio-barbora-apple-store" alt="Image Description" style="cursor:pointer;margin-right:10px;width: 147px; height: 49px;">
+    <img src="${BarboraAppleStore}" id="boomio-barbora-apple-store" alt="Image Description" style="cursor:pointer;margin-right:10px;max-width: 167px; height: 49px;">
   </a>
   <a href="https://play.google.com/store/apps/details?id=lt.barbora&hl=lt&gl=US&pli=1" target="_blank">
-    <img src="${BarboraGoogleStore}" id="boomio-barbora-google-store" alt="Image Description" style="cursor:pointer;margin-left:10px;width: 147px; height: 49px;">
+    <img src="${BarboraGoogleStore}" id="boomio-barbora-google-store" alt="Image Description" style="cursor:pointer;margin-left:10px;max-width: 167px; height: 49px;">
   </a>
 </div>
              </div>
