@@ -120,6 +120,8 @@ export class InputContainer {
                   ? 'Judėk'
                   : this.prop === 'Pieno Žvaigždės'
                   ? 'Gaudyk'
+                  : this.prop.includes('Gamtos Ateitis')
+                  ? 'Gaudyk'
                   : this.prop === 'Pegasas'
                   ? 'Gaudyk'
                   : 'Spausk'

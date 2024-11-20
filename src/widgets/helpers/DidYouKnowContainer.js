@@ -317,7 +317,7 @@ export class DidYouKnowContainer {
     });
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
-
+    console.log(this.prop);
     let scoreboardText = `
       ${`<div class="bomio-first-line" style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
         this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' ? '18px' : '12px'

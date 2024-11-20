@@ -27,11 +27,14 @@ export class DownloadScoreTableContainer {
     let tableHTML = '';
 
     tableHTML += '<div>';
-
-    tableHTML += `
+    console.log(this.currentScore);
+    tableHTML +=
+      this.currentScore >= 2000
+        ? `
 
     <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%);filter;box-sizing:content-box !important;">
-            <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
+                  <div style="width:100%;top: -60px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">LAIMĖJAI!</div>
+    <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
 
     <div style="width:100%;margin-top:20px; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
@@ -51,7 +54,12 @@ export class DownloadScoreTableContainer {
     <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;margin-top:20px; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
     Nuolaida galioja apsiperkant iki 200 eur. Minimali krepšelio suma 29.99 eur Nuolaida netaikoma alkoholinių gėrimų, pradinio maitinimo kūdikių prekių, taip pat pakavimo, pristatymo mokesčių bei pradinio krepšelio papildymo sumoms.</div>
 </div>
-        `;
+        `
+        : `<div style="margin-top:20px;height:240px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%);filter;box-sizing:content-box !important;"> <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
+    TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
+<div style="width:100%;text-align: center; color: white; font-size: 42px; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
+    NELAIMĖJAI </div></div>
+`;
 
     tableHTML += '</div>';
 
@@ -72,43 +80,77 @@ export class DownloadScoreTableContainer {
         ? '900'
         : '700';
     let scoreboardText = `
-     <div style="width:100%; top: 420px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">ATSISIŲSK PROGRAMĖLĘ</div>
-          <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.</div>
+
+   <div style="width:calc(100% - 40px);margin-left:20px; top: 420px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">   ${
+      this.currentScore >= 2000
+        ? 'ATSISIŲSK PROGRAMĖLĘ'
+        : 'PAGERINK REZULTATĄ!</br> pasiek daugiau nei 2000 taškų ir laimėk prizus!'
+    }</div>
+  
+          <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word"> ${
+            this.currentScore >= 2000
+              ? 'panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.'
+              : ''
+          }</div>
              </div>
-                          <div style="width:100%; top: 480px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
-<div>
+                          <div style="width:100%; top: 500px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
+                           ${
+                             this.currentScore >= 2000
+                               ? `<div>
   <a href="https://apps.apple.com/lt/app/barbora-lt/id903888629" target="_blank">
     <img src="${BarboraAppleStore}" id="boomio-barbora-apple-store" alt="Image Description" style="cursor:pointer;margin-right:10px;max-width: 167px; height: 49px;">
   </a>
   <a href="https://play.google.com/store/apps/details?id=lt.barbora&hl=lt&gl=US&pli=1" target="_blank">
     <img src="${BarboraGoogleStore}" id="boomio-barbora-google-store" alt="Image Description" style="cursor:pointer;margin-left:10px;max-width: 167px; height: 49px;">
   </a>
-</div>
+</div>`
+                               : ''
+                           }
              </div>
-       
-    `;
+         
+            </div>
+        </div>
+      </div>
+      ${
+        this.currentScore >= 2000
+          ? `
+
+          <div style="width: calc(100% - 40px);font-weight:700;font-size:16px;margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 38px; text-decoration: underline;color: #FFF;overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
+   ŽAISTI DAR
+      </div>
+`
+          : `<div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
+        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${'PAGERINK REZULTATĄ'}</div>
+      </div>`
+      }
+
+      <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain;background-repeat:no-repeat;" >
+      </div>
+    </div>`;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    document.getElementById('boomio-copy-modal-btn').onclick = () => {
-      const textToCopy = userDiscountCode;
-      const textarea = document.createElement('textarea');
-      textarea.value = textToCopy;
-      document.body.appendChild(textarea);
-      textarea.select();
-      textarea.setSelectionRange(0, textarea.value.length);
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
+    if (document.getElementById('boomio-copy-modal-btn')) {
+      document.getElementById('boomio-copy-modal-btn').onclick = () => {
+        const textToCopy = userDiscountCode;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
 
-      const copyButton = document.getElementById('p_code_text2');
-      copyButton.textContent = 'Copied';
+        const copyButton = document.getElementById('p_code_text2');
+        copyButton.textContent = 'Copied';
 
-      setTimeout(() => {
-        copyButton.textContent = userDiscountCode;
-      }, 2000);
-    };
+        setTimeout(() => {
+          copyButton.textContent = userDiscountCode;
+        }, 2000);
+      };
+    }
   }
 
   render() {
@@ -126,16 +168,7 @@ export class DownloadScoreTableContainer {
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 85px; position: absolute; text-align: center; color: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
-      }; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Fpro' ? 'Congrats!' : 'LAIMĖJAI'
-    }</div>
+
       
       <div class="boomio-scoreboard-text">
       `;
@@ -147,17 +180,6 @@ export class DownloadScoreTableContainer {
             <div class="boomio-tbody">
     `;
 
-    containerDiv.innerHTML += `
-            </div>
-        </div>
-      </div>
-      <div style="width: calc(100% - 40px);font-weight:700;font-size:16px;margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 38px; text-decoration: underline;color: #FFF;overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-   ŽAISTI DAR
-      </div>
-
-      <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain;background-repeat:no-repeat;" >
-      </div>
-    </div>`;
     this.containerDiv = containerDiv;
 
     const existingContainer = document.getElementById('collection-table-container');
