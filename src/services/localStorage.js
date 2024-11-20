@@ -85,7 +85,7 @@ class LocalStorageService {
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const business_name =
       config?.business_name === 'Gamtos Ateitis Random'
-        ? ['Gamtos Ateitis Glass', 'Glass Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][
+        ? ['Gamtos Ateitis Glass', 'Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][
             Math.floor(Math.random() * 3)
           ]
         : config?.business_name ?? '';
