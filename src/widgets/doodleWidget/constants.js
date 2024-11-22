@@ -120,6 +120,17 @@ export const PiguJumpUpIntroFinish =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroFinish.gif?raw=true';
 export const PiguJumpUpIntroLatvian =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroLatvian.gif?raw=true';
-
 export const PiguJumpUpIntroLatvianRU =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroLatvianRU.gif?raw=true';
+
+export const PiguJumpUpIntroLatvianEN =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroLatvianEN.gif?raw=true';
+
+export const PiguJumpUpIntroEstonianEN =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroEstonianEN.gif?raw=true';
+
+export const PiguJumpUpIntroLithuanianEN =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroLithuanianEN.gif?raw=true';
+
+export const PiguJumpUpIntroFinishEN =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/PiguJumpUpIntroFinishEN.gif?raw=true';
