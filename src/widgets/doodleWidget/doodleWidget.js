@@ -54,6 +54,7 @@ import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTable
 import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
+import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 
 class DoodleWidget {
   static ctx;
@@ -276,7 +277,7 @@ class DoodleWidget {
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
-          if (response.user_best_score > 1500 && this.customer !== 'Pigu.lt') {
+          if (response.user_best_score > 1500) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
             const competitionTableContainer = document.querySelector(
               '.competition-table-container-pigu',
@@ -501,7 +502,7 @@ class DoodleWidget {
           ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
           : this.customer === 'Pigu.lt' && this.language === 'RU'
           ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
-          : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prius.';
+          : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
       document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
       document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
@@ -1434,7 +1435,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
-
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainer = new RulesContainerPigu(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainer.containerDiv);
+    }
     if (this.showCompetitiveRegistration) {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {

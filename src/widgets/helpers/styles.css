@@ -108,6 +108,18 @@
             opacity: 0;
             display: none;
             }
+            .rules-table-container-pigu{
+              overflow: hidden;
+              position: absolute;
+              left :50%;
+              transform : translate(-50%, -50%);
+              flex-direction: column;
+              z-index: 99999999999;  
+              height :0px;
+              top :calc(50% + 330px);
+              opacity: 0;
+              display: none;
+              }
         .did-you-know-container{
           overflow: hidden;
           position: absolute;
