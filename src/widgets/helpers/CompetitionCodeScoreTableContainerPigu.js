@@ -11,7 +11,11 @@ export class CompetitionCodeScoreTableContainerPigu {
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
-    this.couponCodeNew = this.config.couponCodeNew ? this.config.couponCodeNew : '';
+    this.couponCodeNew = this.config.couponCodeNew
+      ? this.config.couponCodeNew
+      : this.prop === 'Pigu.lt'
+      ? '15WKND1124'
+      : '';
 
     this.render();
   }
@@ -21,7 +25,11 @@ export class CompetitionCodeScoreTableContainerPigu {
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
     this.config = localStorageService.getDefaultConfig();
-    this.couponCodeNew = this.config.couponCodeNew ? this.config.couponCodeNew : '';
+    this.couponCodeNew = this.config.couponCodeNew
+      ? this.config.couponCodeNew
+      : this.prop === 'Pigu.lt'
+      ? '15WKND1124'
+      : '';
 
     this.updateVisuals();
   }

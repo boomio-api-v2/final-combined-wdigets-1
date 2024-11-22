@@ -164,7 +164,11 @@ export class CompetitionCodeScoreTableContainer {
     const scoreboard = this.scoreTable.scoreboard || [];
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
-    this.userDiscountCode = this?.scoreTable?.coupon_code || '';
+    this.userDiscountCode = this?.scoreTable?.coupon_code
+      ? this.scoreTable.coupon_code
+      : this.prop === 'Pigu.lt'
+      ? '15WKND1124'
+      : '';
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
@@ -339,7 +343,7 @@ export class CompetitionCodeScoreTableContainer {
                 : 'Valio, tau puikiai sekasi!'
             }</div>
             <div style="width:100%; top: ${'420px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
@@ -431,7 +435,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${'495px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
@@ -448,7 +452,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
             <div style="width:100%; top: 536px; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '10px'
             }; font-family: Montserrat; font-weight: 700;  display:${
               this.prop === 'Pigu.lt' ? 'none' : 'block'
             };word-wrap: break-word">${
@@ -521,7 +525,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : 'Tu gali!'
             }</div>
-            <div style="margin-left:20px;width:calc(100% - 40px); top: 420px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+            <div style="margin-left:10px;width:calc(100% - 20px); top: 420px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.isSmallMobile
                 ? '8px'
                 : this.isSmallMobile
@@ -624,7 +628,7 @@ export class CompetitionCodeScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${'495px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
@@ -645,7 +649,7 @@ export class CompetitionCodeScoreTableContainer {
               <div style="width:100%;display:${
                 this.prop === 'Pigu.lt' ? 'none' : 'block'
               }; top: 536px; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '10px'
             }; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
@@ -837,7 +841,7 @@ ${
 
 
       <div  style="width: calc(100% - 44px); height: ${'250px'}; left: 22px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
-        <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 40px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
+        <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 20px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
             <tbody class="boomio-tbody">
     `;
@@ -875,7 +879,7 @@ ${
     }</div>
       </div>
             <div style="color:white;width:100%;font-size:${
-              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '11px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '10px'
             };text-align:center;top:528px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
       ${
         this.prop === 'Pigu.lt'
