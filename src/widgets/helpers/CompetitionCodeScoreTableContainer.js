@@ -525,7 +525,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : 'Tu gali!'
             }</div>
-            <div style="margin-left:10px;width:calc(100% - 20px); top: 420px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+            <div style="margin-left:10px;width:calc(100% - 30px); top: 420px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.isSmallMobile
                 ? '7px'
                 : this.isSmallMobile
@@ -841,7 +841,7 @@ ${
 
 
       <div  style="width: calc(100% - 44px); height: ${'250px'}; left: 22px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
-        <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 20px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
+        <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 30px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
             <tbody class="boomio-tbody">
     `;
