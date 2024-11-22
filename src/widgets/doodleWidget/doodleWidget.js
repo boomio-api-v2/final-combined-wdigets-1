@@ -1289,34 +1289,22 @@ class DoodleWidget {
       </div>
 
     <img src=${
-      this.customer === 'Pigu.lt' &&
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
         ? PiguJumpUpIntroEstonian
-        : this.customer === 'Pigu.lt' &&
-          this.language === 'RU' &&
+        : this.language === 'RU' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
         ? PiguJumpUpIntroEstoniaRU
-        : this.customer === 'Pigu.lt' &&
-          this.language === 'LT' &&
-          this.campaignUrlProp === 'https://pigu.lt'
+        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
         ? PiguJumpUpIntroLithuanian
-        : this.customer === 'Pigu.lt' &&
-          this.language === 'RU' &&
-          this.campaignUrlProp === 'https://pigu.lt'
+        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
         ? PiguJumpUpIntroLithuanianRU
-        : this.customer === 'Pigu.lt' &&
-          this.language === 'FI' &&
-          this.campaignUrlProp === 'https://hobbyhall.fi'
+        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
         ? PiguJumpUpIntroFinish
-        : this.customer === 'Pigu.lt' &&
-          this.language === 'LV' &&
-          this.campaignUrlProp === 'https://220.lv'
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
         ? PiguJumpUpIntroLatvian
-        : this.customer === 'Pigu.lt' &&
-          this.language === 'RU' &&
-          this.campaignUrlProp === 'https://220.lv'
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
         ? PiguJumpUpIntroLatvianRU
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
