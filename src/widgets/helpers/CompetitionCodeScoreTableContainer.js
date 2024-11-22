@@ -913,22 +913,22 @@ ${
       ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
-            ? '<a style="color:#C6DF34" target="_blank" href="https://pigu.lt/lt/puslapis/pre-bf-toys">Discover the best Pigu.lt deals!</a>'
+            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://pigu.lt/lt/puslapis/pre-bf-toys">Discover the best Pigu.lt deals!</a>'
             : this.language === 'LV'
-            ? '<a style="color:#C6DF34" target="_blank" href="https://220.lv/lv/lapaspuse/pre-bf-toys">Atklāj labākos 220.lv piedāvājumus!</a>'
+            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://220.lv/lv/lapaspuse/pre-bf-toys">Atklāj labākos 220.lv piedāvājumus!</a>'
             : this.language === 'ET'
-            ? '<a style="color:#C6DF34" target="_blank" href="https://kaup24.ee/et/lehekulg/pre-bf-toys">Avasta Kaup24.ee parimaid ostudiile!</a>'
+            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://kaup24.ee/et/lehekulg/pre-bf-toys">Avasta Kaup24.ee parimaid ostudiile!</a>'
             : this.language === 'FI'
-            ? '<a style="color:#C6DF34" target="_blank" href="https://hobbyhall.fi/fi/sivu/pre-bf-toys">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
+            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://hobbyhall.fi/fi/sivu/pre-bf-toys">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
             : this.language === 'RU' &&
               (this.campaignUrlProp === 'https://kaup.ee' ||
                 this.campaignUrlProp === 'https://kaup24.ee')
-            ? '<a style="color:#C6DF34" target="_blank" href="https://kaup24.ee/et/lehekulg/pre-bf-toys">Открой для себя лучшие предложения Kaup24!</a>'
+            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://kaup24.ee/et/lehekulg/pre-bf-toys">Открой для себя лучшие предложения Kaup24!</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-            ? '<a style="color:#C6DF34" target="_blank" href="https://pigu.lt/lt/puslapis/pre-bf-toys">Открой для себя лучшие предложения Pigu.lt!</a>'
+            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://pigu.lt/lt/puslapis/pre-bf-toys">Открой для себя лучшие предложения Pigu.lt!</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-            ? '<a style="color:#C6DF34" target="_blank" href="https://pigu.lt/lt/puslapis/pre-bf-toys">Открой для себя лучшие предложения 220.lv!</a>'
-            : '<a style="color:#C6DF34" target="_blank" href="https://pigu.lt/lt/puslapis/pre-bf-toys">Atrask geriausius Pigu.lt pasiūlymus!</a>'
+            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://pigu.lt/lt/puslapis/pre-bf-toys">Открой для себя лучшие предложения 220.lv!</a>'
+            : '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://pigu.lt/lt/puslapis/pre-bf-toys">Atrask geriausius Pigu.lt pasiūlymus!</a>'
           : ''
       }
   </div>
