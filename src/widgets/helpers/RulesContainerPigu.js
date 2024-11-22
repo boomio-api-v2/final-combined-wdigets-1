@@ -29,7 +29,6 @@ export class RulesContainerPigu {
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
     const content =
-      this.customer === 'Pigu.lt' &&
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
         ? `*Sooduskood 15WKND1124 kehtib 22.11.2024 kuni 24.11.2024 kl 23:59. registreeritud kasutajatele, kes ostavad spetsiaalselt märgistatud müüja Kaup24.ee tooteid. Kood ei kehti kinkekaartide ostmisel, koos teiste sooduskoodide ja Kaup24-eurodega. Ühe ostu puhul saab kasutada ainult ühte sooduskoodi. `
