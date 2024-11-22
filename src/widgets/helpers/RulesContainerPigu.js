@@ -28,9 +28,6 @@ export class RulesContainerPigu {
     this.language = urlParams.get('language');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
-    console.log(this.language);
-    console.log(this.campaignUrlProp);
-
     const content =
       this.customer === 'Pigu.lt' &&
       this.language === 'ET' &&

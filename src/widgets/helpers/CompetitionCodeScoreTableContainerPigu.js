@@ -354,57 +354,49 @@ export class CompetitionCodeScoreTableContainerPigu {
         this.prop ? '11px' : '11px'
       } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? 'When you shop on Pigu.lt with the discount code'
+          ? '<strong style="text-transform:uppercase">For selected Toys & Fashion <strong style="color:#DFFC38">-15% extra discount</strong> with <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">code*</strong></strong></strong>  '
           : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? 'Iepērcies 220.lv un izmanto atlaižu kodu'
+          ? '<strong style="text-transform:uppercase">Izvēlētām rotaļlietām un apģērbam <strong style="color:#DFFC38">-Papildu -15%</strong> ar <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong> '
           : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? 'Kui teed ostu Kaup24 e-poes ja kasutad koodi '
+          ? '<strong style="text-transform:uppercase">Valitud mänguasjadele ja moekaupadele <strong style="color:#DFFC38">lisaale -15%</strong> <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">koodiga*</strong></strong> '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? 'Shoppaile Hobbyhall.fi-verkkokaupassa ja käytä koodi'
+          ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">15% lisäalennus</strong> valikoidusta muodista ja leluista <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">koodilla*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
               this.campaignUrlProp === 'https://kaup24.ee')
-          ? 'Совершай покупки в Kaup24 и используй скидочный код'
+          ? '<strong style="text-transform:uppercase">На выбранные игрушки и одежду <strong style="color:#DFFC38">Дополнительно -15%</strong> с <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? 'Совершай покупки в Pigu.lt и используй скидочный код'
+          ? '<strong style="text-transform:uppercase">На выбранные игрушки и одежду <strong style="color:#DFFC38">Дополнительно -15%</strong> с <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
-          ? 'Совершай покупки в 220.lv и используй скидочный код'
-          : this.prop === 'Pigu.lt' && this.language === 'LT'
-          ? `PERKANT PIGU.LT SU NUOLAIDOS KODU `
-          : this.prop === 'Unisend' && this.language === 'EE'
-          ? 'Võitjatega võetakse ühendust e-posti teel.'
-          : this.prop === 'Eurovaistine'
-          ? '10€, 5€ vērtība.'
-          : this.language === 'LV' && this.prop === 'Fantazijos'
-          ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
-          : this.language === 'RU' && this.prop === 'Fantazijos'
-          ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">vasara </a></div>'
-          : this.language === 'EE' && this.prop === 'Fantazijos'
-          ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
-          : this.prop === 'Fantazijos'
-          ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
-          : this.prop === 'Makalius' && this.language === 'LT'
-          ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
+          ? 'Н<strong style="text-transform:uppercase">а выбранные игрушки и одежду <strong style="color:#DFFC38">Дополнительно -15%</strong> с <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">кодом*</strong></strong> '
+          : this.prop === 'Pigu.lt'
+          ? '<strong style="text-transform:uppercase">Pažymėtiems žaislams ir aprangai <strong style="color:#DFFC38">Papildomai -15%</strong> su <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong>  '
           : ''
       }</div>
-              <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
-        this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? 'get a €2 discount on €20 carts!'
-          : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? 'un saņem 2€ atlaidi pirkumiem virs 20€!'
-          : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? 'ja saad 2 € allahindlust igalt ostult, mis ületab 20€!'
-          : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? 'saat 2€ alennuksen yli 20€ ostoksesta!'
-          : this.prop === 'Pigu.lt' && this.language === 'RU'
-          ? 'и получи скидку 2€ на покупки свыше 20€!'
-          : this.prop === 'Pigu.lt'
-          ? 'GAUK 2€ NUOLAIDĄ VISKAM KREPŠELIUI VIRŠ 20€!'
+              <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">      ${
+        this.prop === 'Pigu.lt'
+          ? this.language === 'EN'
+            ? 'Only 22.11.-24.11!'
+            : this.language === 'LV'
+            ? 'Tikai 22.11.-24.11.'
+            : this.language === 'ET'
+            ? 'Ainult 22.11.-24.11.'
+            : this.language === 'FI'
+            ? 'Voimassa 22.-24.11.'
+            : this.language === 'RU' &&
+              (this.campaignUrlProp === 'https://kaup.ee' ||
+                this.campaignUrlProp === 'https://kaup24.ee')
+            ? 'Открой для себя лучшие предложения Kaup24!'
+            : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+            ? 'Только до 24.11!'
+            : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+            ? 'Только до 24.11!'
+            : 'Tik iki 11.24!'
           : ''
       } </div>
                      <div style="width:100%; top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
@@ -469,6 +461,59 @@ ${
       
       
       `;
+
+    const observer = new MutationObserver((mutationsList, observer) => {
+      // Check if the 'rules-table-container-pigu' and 'control-button' have been added to the DOM
+      const rulesTableContainer = document.getElementById('rules-table-container-pigu');
+      const closeBtn = document.getElementById('boomio-game-play-again-pigu');
+
+      if (rulesTableContainer && closeBtn) {
+        // Element found, add event listener to 'control-button'
+        closeBtn.addEventListener('click', () => {
+          rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          setTimeout(() => {
+            rulesTableContainer.style.height = '10px';
+            rulesTableContainer.style.top = 'calc(50% + 330px)';
+            rulesTableContainer.style.opacity = 0;
+          }, 100);
+          setTimeout(() => {
+            rulesTableContainer.style.display = 'none';
+          }, 1000);
+        });
+
+        // Stop observing once the elements are found and event listener is added
+        observer.disconnect();
+      }
+    });
+
+    // Start observing the DOM for changes in child elements
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    function showCompetitionTableContainer() {
+      const rulesTableContainer = document.querySelector('.rules-table-container-pigu');
+      rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      rulesTableContainer.style.display = 'block';
+      setTimeout(() => {
+        rulesTableContainer.style.height = '150px';
+        rulesTableContainer.style.top = 'calc(50% + 30px)';
+        rulesTableContainer.style.opacity = 1;
+      }, 100);
+    }
+    if (this.prop === 'Pigu.lt') {
+      const observer = new MutationObserver((mutationsList, observer) => {
+        // Check if the element has been added to the DOM
+        const startRulesButton = document.getElementById('startCodeRulesButtonClickFirst');
+        if (startRulesButton) {
+          // Element found, add event listener
+          startRulesButton.addEventListener('click', showCompetitionTableContainer);
+          // Stop observing once the element is found
+          observer.disconnect();
+        }
+      });
+
+      // Start observing the DOM for changes
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
@@ -572,6 +617,7 @@ ${
       </div>
 
     </div>`;
+
     this.containerDiv = containerDiv;
 
     const existingContainer = document.getElementById('competition-table-container-pigu');

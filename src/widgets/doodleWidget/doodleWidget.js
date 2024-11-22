@@ -1437,8 +1437,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
     }
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
-      this.rulesContainer = new RulesContainerPigu(this.customer, this.scoreTable);
-      gameContainer.appendChild(this.rulesContainer.containerDiv);
+      this.rulesContainerPigu = new RulesContainerPigu(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
     }
     if (this.showCompetitiveRegistration) {
       const clickEventHandlerShowRules = () => {
