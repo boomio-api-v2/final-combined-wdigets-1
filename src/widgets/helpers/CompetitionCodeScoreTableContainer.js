@@ -882,7 +882,7 @@ ${
               this.isSmallMobile ? '7px' : this.isMobile ? '9px' : '10px'
             };text-align:center;top:528px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
       ${
-        this.prop !== 'Pigu.lt'
+        this.prop !== 'Pigu.lt' && false
           ? this.language === 'EN'
             ? 'Only 22.11.-24.11!'
             : this.language === 'LV'
@@ -909,7 +909,9 @@ ${
       };text-align:center;text-transform:uppercase;top:550px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'
-          };border-radius:35px;width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:585px;height: 28px; background: ${'black'}; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
+          };border-radius:35px;width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:585px;height: 28px; background: ${
+      this.prop === 'Pigu.lt' ? 'black' : 'none'
+    }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
