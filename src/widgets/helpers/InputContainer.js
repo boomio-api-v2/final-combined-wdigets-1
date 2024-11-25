@@ -308,8 +308,23 @@ export class InputContainer {
       this.prop === 'Pieno Žvaigždės' ? 'white-space:normal;' : ''
     }${this.prop === 'Pieno Žvaigždės' ? 'line-height:14px;' : ''}">
             ${
-              this.prop === 'Pigu.lt' && this.language === 'EN'
+              this.prop === 'Pigu.lt' &&
+              this.language === 'EN' &&
+              (this.campaignUrlProp === 'https://kaup.ee' ||
+                this.campaignUrlProp === 'https://kaup24.ee')
+                ? 'Kaup24 prizes!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'EN' &&
+                  this.campaignUrlProp === 'https://pigu.lt'
                 ? 'Pigu.lt prizes!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'EN' &&
+                  this.campaignUrlProp === 'https://220.lv'
+                ? '220.lv prizes!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'EN' &&
+                  this.campaignUrlProp === 'https://hobbyhall.fi'
+                ? 'Hobbyhall.fi prizes!'
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
                 ? 'balvas no 220.lv!'
                 : this.prop === 'Pigu.lt' && this.language === 'ET'

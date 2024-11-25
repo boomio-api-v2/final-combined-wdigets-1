@@ -46,6 +46,10 @@ import {
   newRecordFI,
   newRecordRU,
   newRecordLV,
+  PiguJumpUpIntroLatvianEN,
+  PiguJumpUpIntroEstonianEN,
+  PiguJumpUpIntroLithuanianEN,
+  PiguJumpUpIntroFinishEN,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -1306,6 +1310,16 @@ class DoodleWidget {
         ? PiguJumpUpIntroLatvian
         : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
         ? PiguJumpUpIntroLatvianRU
+        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+        ? PiguJumpUpIntroLithuanianEN
+        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? PiguJumpUpIntroFinishEN
+        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+        ? PiguJumpUpIntroLatvianEN
+        : this.language === 'EN' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? PiguJumpUpIntroEstonianEN
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV

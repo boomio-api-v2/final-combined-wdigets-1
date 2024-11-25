@@ -31,9 +31,7 @@ export class CompetitionCodeScoreTableContainer {
     if (!this.containerDiv) return;
 
     const piguTable =
-      this.prop === 'Pigu.lt' && this.language === 'EN'
-        ? 'Congratulations!'
-        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
+      this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
         ? [
             'Piparkūka',
             'Vārpstiņš',
@@ -222,7 +220,7 @@ export class CompetitionCodeScoreTableContainer {
             ? this.prop === 'Pigu.lt' && this.language === 'LT'
               ? 'Tavo rezultatas'
               : this.prop === 'Pigu.lt' && this.language === 'EN'
-              ? 'Tavo rezultatas'
+              ? 'YOUR SCORE'
               : this.prop === 'Pigu.lt' && this.language === 'LV'
               ? 'TAVS REZULTĀTS'
               : this.prop === 'Pigu.lt' && this.language === 'ET'
@@ -264,7 +262,7 @@ export class CompetitionCodeScoreTableContainer {
         this.prop === 'Pigu.lt' && this.language === 'LT'
           ? 'Tavo rezultatas'
           : this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? 'Tavo rezultatas'
+          ? 'YOUR SCORE'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
           ? 'TAVS REZULTĀTS'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
@@ -309,8 +307,7 @@ export class CompetitionCodeScoreTableContainer {
 
     let scoreboardText = `
       ${
-        (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) ||
-        (this.prop === 'Pigu.lt' && this.scoreTable?.user_best_place <= 40)
+        (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) || true
           ? `<div style="width:100%; top: ${'390px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -856,7 +853,7 @@ ${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? 'SPĒLĒT VĒLREIZ'
         : this.prop === 'Pigu.lt' && this.language === 'EN'
-        ? 'IMPROVE RESULT'
+        ? 'IMPROVE SCORE'
         : this.prop === 'Pigu.lt' && this.language === 'LV'
         ? 'UZLABOT REZULTĀTU'
         : this.prop === 'Pigu.lt' && this.language === 'ET'
