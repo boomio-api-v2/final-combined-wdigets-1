@@ -59,6 +59,7 @@ import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeSc
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
+import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 
 class DoodleWidget {
   static ctx;
@@ -719,7 +720,12 @@ class DoodleWidget {
             });
         }
         if (this.showCompetitiveRegistration) {
-          const competitionTableContainer = document.querySelector('.competition-table-container');
+          let competitionTableContainer = '';
+          if (this.customer === 'Pigu.lt') {
+            competitionTableContainer = document.querySelector('.did-you-know-container');
+          } else {
+            competitionTableContainer = document.querySelector('.competition-table-container');
+          }
           const canvas = document.getElementById('boomio-doodle-canvas');
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
@@ -1439,6 +1445,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
     }
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
+
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(didYouKnowContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
       this.rulesContainerPigu = new RulesContainerPigu(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
     }
@@ -1636,6 +1648,29 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           }, 300);
         }
       };
+      const clickEventHandlerDidYouKnow = () => {
+        const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+        didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          didYouKnowTableContainer.style.height = '10px';
+          didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+          didYouKnowTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          didYouKnowTableContainer.style.display = 'none';
+        }, 1000);
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+        document.getElementById('background_blur').style.display = 'block';
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        competitionTableContainer.style.display = 'block';
+
+        setTimeout(() => {
+          competitionTableContainer.style.height = '680px';
+          competitionTableContainer.style.top = 'calc(50%)';
+          competitionTableContainer.style.opacity = 1;
+        }, 100);
+      };
 
       const clickEventHandlerResetGame = () => {
         const competitionRestart = document.getElementById('boomio-game-play-again');
@@ -1647,6 +1682,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         const controlButton = document.querySelector('.control-button1');
         this.index = 0;
         this.currentScore = 0;
+
         const competitionTableContainer = document.querySelector('.competition-table-container');
 
         competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1691,6 +1727,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+
+      if (this.customer === 'Pigu.lt') {
+        const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+      }
     }
     if (this.campaignUrl === '') {
       document.getElementById('close-game-container').addEventListener('click', () => {
