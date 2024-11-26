@@ -1266,11 +1266,11 @@ export class DidYouKnowContainer {
     if (!this.containerDiv) return;
 
     const currentDate = new Date();
-    const startDate = new Date('2024-11-26'); // Set the start date as November 27, 2024
+    const startDate = new Date('2024-11-26'); // Set the start date as November 26, 2024
     const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)); // Calculate days since start date
 
-    // Determine the day index (0 for the first day, 1 for the second, etc.)
-    const dayIndex = dayDiff % 3; // This will give 0, 1, or 2
+    // Determine the day index (0 for the first day, 1 for the second, 2 for the third, and then repeat)
+    const dayIndex = dayDiff % 3; // This will give 0, 1, or 2, and repeat every 3 days
 
     // Determine which part of collectables to show based on the day index
     const startIndex = dayIndex * 9;
