@@ -89,6 +89,33 @@ import {
   item10pegasas,
   item11pegasas,
   item12pegasas,
+  item1Pigu,
+  item2Pigu,
+  item3Pigu,
+  item4Pigu,
+  item5Pigu,
+  item6Pigu,
+  item7Pigu,
+  item8Pigu,
+  item9Pigu,
+  item10Pigu,
+  item11Pigu,
+  item12Pigu,
+  item13Pigu,
+  item14Pigu,
+  item15Pigu,
+  item16Pigu,
+  item17Pigu,
+  item18Pigu,
+  item19Pigu,
+  item20Pigu,
+  item21Pigu,
+  item22Pigu,
+  item23Pigu,
+  item24Pigu,
+  item25Pigu,
+  item26Pigu,
+  item27Pigu,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -105,18 +132,33 @@ export class DidYouKnowContainer {
 
     if (this.prop === 'Pigu.lt') {
       this.collectables = [
-        item1pegasas,
-        item2pegasas,
-        item3pegasas,
-        item4pegasas,
-        item5pegasas,
-        item6pegasas,
-        item7pegasas,
-        item8pegasas,
-        item9pegasas,
-        item10pegasas,
-        item11pegasas,
-        item12pegasas,
+        item1Pigu,
+        item2Pigu,
+        item3Pigu,
+        item4Pigu,
+        item5Pigu,
+        item6Pigu,
+        item7Pigu,
+        item8Pigu,
+        item9Pigu,
+        item10Pigu,
+        item11Pigu,
+        item12Pigu,
+        item13Pigu,
+        item14Pigu,
+        item15Pigu,
+        item16Pigu,
+        item17Pigu,
+        item18Pigu,
+        item19Pigu,
+        item20Pigu,
+        item21Pigu,
+        item22Pigu,
+        item23Pigu,
+        item24Pigu,
+        item25Pigu,
+        item26Pigu,
+        item27Pigu,
       ];
     } else if (this.prop && this.prop.includes('Plastic')) {
       this.collectables = [
@@ -1222,8 +1264,30 @@ export class DidYouKnowContainer {
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
     if (!this.containerDiv) return;
+
+    const currentDate = new Date();
+    const startDate = new Date('2024-11-26'); // Set the start date as November 27, 2024
+    const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)); // Calculate days since start date
+
+    // Determine the day index (0 for the first day, 1 for the second, etc.)
+    const dayIndex = dayDiff % 3; // This will give 0, 1, or 2
+
+    // Determine which part of collectables to show based on the day index
+    const startIndex = dayIndex * 9;
+    const endIndex = startIndex + 9;
+
+    // Slice the collectables array to get the correct range for the current day
+    const dailyCollectables = this.collectables.slice(startIndex, endIndex);
+    const dailyLinks = this.collectablesLinks.slice(startIndex, endIndex);
+
+    // Create the table HTML for the selected collectables
     let tableHTML = '';
-    this.collectables?.forEach((item, index) => {
+
+    const loopingImages = this.prop === 'Pigu.lt' ? dailyCollectables : this.collectables;
+    loopingImages?.forEach((item, index) => {
+      const globalIndex = startIndex + index; // Get the global index for links
+      const link = dailyLinks[index];
+
       if (index % 3 === 0) {
         tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
       }
@@ -1232,31 +1296,43 @@ export class DidYouKnowContainer {
         <td style="padding:5px;text-align: center; border: none; ${
           this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''
         }">
-        <div id="image-${index}" style="max-width:170px">
+        <div id="image-${this.prop === 'Pigu.lt' ? globalIndex : index}" style="max-width:170px;">
         <img class='image-container' style='opacity:1;width:${
-          this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
+          this.prop === 'Pieno Žvaigždės'
+            ? '70px'
+            : this.prop === 'Pieno Žvaigždės'
+            ? '100px'
+            : '60px'
         };height:${
-        this.prop === 'Pieno Žvaigždės' ? '100px' : '60px'
+        this.prop === 'Pieno Žvaigždės'
+          ? '70px'
+          : this.prop === 'Pieno Žvaigždės'
+          ? '100px'
+          : '60px'
       }' src=${item} alt="Scoreboard Image" >
       ${
         this.prop === 'Pegasas'
           ? this.collectablesLinks[index]
-          : this.prop === 'Pigu.lt' && this.collectablesLinks[index].title
+          : this.prop === 'Pigu.lt' && link.title
           ? `<div class='image-container-text'><a href="${
               this.prop === 'Pegasas'
                 ? this.collectablesLinks[index]
-                : this.prop === 'Pigu.lt' && this.collectablesLinks[index].url
-            }" target="_blank" style="color: white; text-decoration: underline;"><p style="max-width:280px;line-height:10px;">${
+                : this.prop === 'Pigu.lt' && link.url
+            }" target="_blank" style="color: white; text-decoration: underline;"><p style="margin-left:10px;margin-right:10px;max-width:280px;line-height:10px;">${
               this.prop === 'Pegasas'
                 ? this.collectablesLinks[index]
-                : this.prop === 'Pigu.lt' && this.collectablesLinks[index].title
+                : this.prop === 'Pigu.lt' && link.title
             }<p/></a></div>`
           : ''
       }
         </div>
         </td>`;
 
-      if ((index + 1) % 3 === 0 || index === this.collectables.length - 1) {
+      if (
+        (index + 1) % 3 === 0 || this.prop === 'Pigu.lt'
+          ? index === dailyCollectables.length - 1
+          : index === this.collectables.length - 1
+      ) {
         tableHTML += '</tr>';
       }
     });
@@ -1461,7 +1537,9 @@ ${
           ? 'white'
           : 'white'
       }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Pieno Žvaigždės'
+      this.prop === 'Pigu.lt'
+        ? 'HAVE YOU SEEN THE TOP DEALS?'
+        : this.prop === 'Pieno Žvaigždės'
         ? 'Ar visus RAGAVAI?'
         : this.prop === 'Pegasas'
         ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
@@ -1477,7 +1555,9 @@ ${
       this.prop === 'Pegasas' ? '150px' : this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
     }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
-          <table style="margin:10px;border-spacing:3px;width:100%;border-collapse:separate">
+          <table style="margin-top:${
+            this.prop === 'Pigu.lt' ? '60px' : '30px'
+          };border-spacing:3px;width:100%;border-collapse:separate">
             <tbody class="boomio-tbody">
     `;
 
