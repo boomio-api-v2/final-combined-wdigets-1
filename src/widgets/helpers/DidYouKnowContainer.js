@@ -1311,9 +1311,8 @@ export class DidYouKnowContainer {
           : '60px'
       }' src=${item} alt="Scoreboard Image" >
       ${
-        this.prop === 'Pegasas'
-          ? this.collectablesLinks[index]
-          : this.prop === 'Pigu.lt' && link.title
+        (this.prop === 'Pegasas' && this.collectablesLinks[index]) ||
+        (this.prop === 'Pigu.lt' && link)
           ? `<div class='image-container-text'><a href="${
               this.prop === 'Pegasas'
                 ? this.collectablesLinks[index]
@@ -1418,15 +1417,23 @@ ${
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     if (this.prop === 'Pegasas' || this.prop === 'Pigu.lt') {
-      this.addfunc();
-    }
+      document.getElementById('boomio-close-did-you-know').addEventListener('click', () => {
+        // Find all enlarged images by checking for the 'enlarge-image' class
+        const enlargedImages = document.querySelectorAll('.enlarge-image');
 
-    // Existing code to add event listener for competitionDidYouKnow
-    if (this.prop === 'Pegasas' || this.prop === 'Pigu.lt') {
-      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
-      competitionDidYouKnow.addEventListener('click', () => {
-        this.closeEnlargedImages();
+        // Loop through each enlarged image and remove the 'enlarge-image' class
+        enlargedImages.forEach((imgElement) => {
+          imgElement.classList.remove('enlarge-image');
+
+          // Also hide the text element associated with the image if it exists
+          const textElement = imgElement.querySelector('.image-container-text');
+          if (textElement) {
+            textElement.style.display = 'none';
+          }
+        });
       });
+
+      this.addfunc(); // Make sure to reapply any additional functions you need
     }
   }
 
@@ -1440,78 +1447,53 @@ ${
       }
     }
   }
+
   handleImageClick(image) {
     // Toggle a class to make the image larger and centered
     image.classList.toggle('enlarge-image');
     const textElement = image.querySelector('.image-container-text');
+
     if (textElement) {
       // Toggle the visibility of the text when the image is enlarged
       textElement.style.display = textElement.style.display === 'block' ? 'none' : 'block';
     }
-    if (this.prop !== 'Pigu.lt') {
+
+    if (this.prop === 'Pegasas') {
       document.querySelector('.bomio-first-line').style.display =
         textElement.style.display === 'block' ? 'none' : 'block';
       document.querySelector('.bomio-second-line').style.display =
         textElement.style.display === 'block' ? 'none' : 'block';
-    } else {
-      const element = document.getElementById('boomio-game-link-to-web');
-
-      // Check if the element exists
-      if (element) {
-        const currentDisplay = window.getComputedStyle(element).display;
-
-        // Toggle the display property
-        element.style.display = currentDisplay === 'none' ? 'block' : 'none';
-      }
     }
 
-    // Toggle the class for each child element of the clicked image
+    // Get the image element (the actual <img> inside the image div)
     const imgElement = image.querySelector('img');
     if (imgElement) {
       imgElement.classList.toggle('enlarge-image');
     }
-    // Add event listener to handle clicking outside of the enlarged image to revert it back to normal size
-    document.addEventListener('click', function closeImage(event) {
+
+    // Add event listener to close image when clicking anywhere on the screen
+    const closeImageHandler = (event) => {
+      const firstLine = document.querySelector('.bomio-first-line');
+      const secondLine = document.querySelector('.bomio-second-line');
+      if (firstLine) firstLine.style.display = 'block';
+      if (secondLine) secondLine.style.display = 'block';
+      // Check if the click is outside the image container (image or text)
       if (!image.contains(event.target)) {
+        // Close the enlarged image by removing the 'enlarge-image' class
+
         if (imgElement) {
           imgElement.classList.remove('enlarge-image');
         }
 
+        // Hide the text element if it exists
         if (textElement) {
           textElement.style.display = 'none';
         }
-        document.removeEventListener('click', closeImage);
+
+        // Remove the event listener after the image is closed to prevent memory leaks
+        document.removeEventListener('click', closeImageHandler);
       }
-    });
-  }
-
-  closeEnlargedImages() {
-    // Find all images that are currently enlarged
-    const enlargedImages = document.querySelectorAll('.enlarge-image');
-
-    // Loop through the images and remove the 'enlarge-image' class
-    enlargedImages.forEach((image) => {
-      image.classList.remove('enlarge-image');
-
-      // If the image has a text container, hide it
-      const textElement = image.querySelector('.image-container-text');
-      if (textElement) {
-        textElement.style.display = 'none';
-      }
-    });
-
-    // Restore scoreboard lines if necessary
-    const firstLine = document.querySelector('.bomio-first-line');
-    let secondLine;
-
-    if (this.prop !== 'Pigu.lt') {
-      secondLine = document.querySelector('.bomio-second-line');
-    } else {
-      secondLine = document.getElementById('.boomio-game-link-to-web');
-    }
-
-    if (firstLine) firstLine.style.display = 'block';
-    if (secondLine) secondLine.style.display = 'block';
+    };
   }
 
   render() {
@@ -1526,17 +1508,17 @@ ${
         ? document.body.offsetWidth < 321
           ? '375px'
           : document.body.offsetWidth + 'px'
-        : '380px';
+        : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 52px; position: absolute; text-align: center;line-height:42px; color: ${
+      <div style="width:calc(100% - 20px);margin-left:10px;top: 42px; position: absolute; text-align: center;line-height:42px; color: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+      }; font-size: 36px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.prop === 'Pigu.lt'
         ? 'HAVE YOU SEEN THE TOP DEALS?'
         : this.prop === 'Pieno Žvaigždės'
@@ -1557,7 +1539,7 @@ ${
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${
             this.prop === 'Pigu.lt' ? '60px' : '30px'
-          };border-spacing:3px;width:100%;border-collapse:separate">
+          };border-spacing:3px;width:calc(100% - 60px);margin-left:30px;border-collapse:separate">
             <tbody class="boomio-tbody">
     `;
 
