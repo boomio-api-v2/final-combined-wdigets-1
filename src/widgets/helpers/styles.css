@@ -43,6 +43,7 @@
 
 
 .enlarge-image {
+  box-sizing: content-box;
   padding-top:30px;
   position: absolute;
   top: 50%;

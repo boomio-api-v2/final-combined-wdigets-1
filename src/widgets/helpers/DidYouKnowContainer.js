@@ -1296,7 +1296,11 @@ export class DidYouKnowContainer {
           this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''
         }">
         <div id="image-${this.prop === 'Pigu.lt' ? globalIndex : index}" style="max-width:200px;">
-        <img class='image-container' style='opacity:1;width: 100%; height: auto; object-fit: contain;max-width:100px;max-height:100px;' src=${item} alt="Scoreboard Image" >
+        <img class='image-container' style='opacity:1;width: 100%; height: auto; object-fit: contain;max-width:${
+          this.prop === 'Pigu.lt' ? '100px' : '70px'
+        };max-height:${
+        this.prop === 'Pigu.lt' ? '100px' : '70px'
+      };' src=${item} alt="Scoreboard Image" >
         
       ${
         (this.prop === 'Pegasas' && this.collectablesLinks[index]) ||
@@ -1462,9 +1466,10 @@ ${
     const imgElement = image.querySelector('img');
     if (imgElement) {
       imgElement.classList.toggle('enlarge-image');
-
-      document.querySelector('.closeDidYouKnow').style.display =
-        document.querySelector('.closeDidYouKnow').style.display === 'none' ? 'block' : 'none';
+      if (this.prop === 'Pigu.lt') {
+        document.querySelector('.closeDidYouKnow').style.display =
+          document.querySelector('.closeDidYouKnow').style.display === 'none' ? 'block' : 'none';
+      }
     }
 
     // Add event listener to close image when clicking anywhere on the screen
@@ -1533,15 +1538,15 @@ ${
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-      this.prop === 'Pegasas' ? '150px' : this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
+      this.prop === 'Pegasas' ? '100px' : this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
     }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${
             this.prop === 'Pigu.lt' ? '20px' : '30px'
           };border-spacing:3px;width:calc(100% - 80px);margin-left:40px;border-collapse:separate">
             <tbody class="boomio-tbody">
-            <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:40px;top:35px;display:none' id='closeDidYouKnow'>
-                            <img  src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
+            <div class='closeDidYouKnow' style='pointer-events: none;position:absolute;z-index:9999999;right:40px;top:35px;display:none' id='closeDidYouKnow'>
+                            <img style="pointer-events: none;" src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
 
     `;
 
