@@ -116,6 +116,7 @@ import {
   item25Pigu,
   item26Pigu,
   item27Pigu,
+  closeDidYouKnow,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -1013,64 +1014,63 @@ export class DidYouKnowContainer {
       this.collectablesLinks = [
         {
           url: 'https://hobbyhall.fi/fi/kodinkoneet-ja-kodinelektroniikka/keittion-pienkoneet/airfryerit-ja-friteerauskeittimet/xiaomi-smart-air-fryer-pro-4l-eu?id=4063996',
-          title: 'Аэрофритюрница Xiaomi Smart Air Fryer Pro 4L EU',
+          title: 'Airfryer Xiaomi Smart Air Fryer Pro 4L EU',
         },
         {
           url: 'https://hobbyhall.fi/fi/kodinkoneet-ja-kodinelektroniikka/kodinkoneet/robotti-imurit/robotti-imuri-xiaomi-x10-plus?id=4423426',
-          title:
-            'Робот-пылесос Xiaomi X10 Plus, с функцией влажной уборки и автоматической очисткой',
+          title: 'Robotti-imuri Xiaomi X10 Plus, Pesutoiminnolla, Automaattisella tyhjennyksellä',
         },
         {
           url: 'https://hobbyhall.fi/fi/kodinkoneet-ja-kodinelektroniikka/kodinkoneet/varsi-imurit/varsi-imuri-dyson-v15s-detect-submarine?id=11847148',
-          title: 'Пылесос-метла Dyson V15s Detect Submarine',
+          title: 'Varsi-imuri Dyson V15s Detect Submarine',
         },
         {
           url: 'https://hobbyhall.fi/fi/tietokoneet-ja-pelaaminen/tabletit-ja-e-lukijat/tabletit/tabletti-samsung-galaxy-tab-a9-wifi-464gb-graphite?id=7599227',
-          title: 'Планшет Samsung Galaxy Tab A9+ WiFi 4/64GB Graphite SM-X210NZAAEUE',
+          title: 'Tabletti Samsung Galaxy Tab A9+ WiFi 4/64GB Graphite SM-X210NZAAEUE',
         },
         {
           url: 'https://hobbyhall.fi/fi/puhelimet-alylaitteet-ja-kamerat/matkapuhelimet-ja-tarvikkeet/matkapuhelimet/matkapuhelin-xiaomi-redmi-note-13-pro-8256gb-midnight?id=8122422',
-          title: 'Смартфон Xiaomi Redmi Note 13 Pro 8/256GB Midnight Black',
+          title: 'Matkapuhelin Xiaomi Redmi Note 13 Pro 8/256GB Midnight Black',
         },
         {
           url: 'https://hobbyhall.fi/fi/kodinkoneet-ja-kodinelektroniikka/televisiot-ja-lisatarvikkeet/televisiot/televisio-samsung-qe43q60dauxxh?id=14981428',
-          title: 'Телевизор Samsung QE43Q60DAUXXH, 43" (~109 см)',
+          title: 'Televisio Samsung QE43Q60DAUXXH, 43" (~109 cm)',
         },
         {
           url: 'https://hobbyhall.fi/fi/tietokoneet-ja-pelaaminen/naytot-ja-kiinnikkeet/naytot/naytto-lg-gaming-monitor-27gp850p-b-27-ips?id=6843',
-          title: 'Монитор LG Gaming Monitor 27GP850P-B 27" IPS QHD 16:9 1 мс 400 кд/м²',
+          title: "Näyttö LG Gaming Monitor 27GP850P-B 27 \" IPS QHD 16:9 1 ms 400 cd/m², 27'' ~69",
         },
         {
           url: 'https://hobbyhall.fi/fi/tietokoneet-ja-pelaaminen/pelaaminen/pelikonsolit/pelikonsoli-playstation-5-slim-disc?id=7649852',
-          title: 'Игровая приставка Playstation 5 Slim Disc',
+          title: 'Pelikonsoli Playstation 5 Slim Disc',
         },
         {
           url: 'https://hobbyhall.fi/fi/tietokoneet-ja-pelaaminen/tietokoneen-lisalaitteet/kuulokkeet/apple-airpods-2nd-generation-mv7n2zma?id=183328',
-          title: 'Наушники Apple AirPods (2nd generation) - MV7N2ZM/A',
+          title: 'Apple AirPods (2nd generation) - MV7N2ZM/A',
         },
         {
           url: 'https://hobbyhall.fi/fi/kodinkoneet-ja-kodinelektroniikka/kauneudenhoitolaitteet/sahkohammasharjat/oral-b-io6-series-black-onyx?id=2562223',
-          title: 'Электрическая зубная щетка Oral-B iO6 Series Black Onyx',
+          title: 'Oral-B iO6 Series Black Onyx',
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/vauvatarvikkeet/lastenvaunut-ja-rattaat/vaunut-ja-rattaat/universaali-lastenvaunu-kinderkraft-moov-2-air-3in1?id=11713458',
-          title: 'Универсальная коляска Kinderkraft Moov 2 Air 3in1, Pure Black',
+          title: 'Universaali lastenvaunu Kinderkraft Moov 2 Air 3in1, Pure Black',
         },
         {
           url: 'https://hobbyhall.fi/fi/kodinkoneet-ja-kodinelektroniikka/keittiolaitteet/mikroaaltouunit/beko-moc20100bfb?id=4026361',
-          title: 'Микроволновая печь Beko MOC20100BFB',
+          title: 'Beko MOC20100BFB',
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/lelut/poikien-lelut/virtual-pet-hologram-spin-master-bitzee-magicals?id=20649793',
-          title: 'Голографический питомец Spin Master Bitzee Magicals',
+          title: 'Virtual Pet Hologram Spin Master Bitzee Magicals',
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/lelut-yli-3-vuotiaille-lapsille/legot-ja-rakennuslelut/42156-lego-technic-peugeot-9x8-24h-le?id=4337191',
-          title: '42156 LEGO® Technic PEUGEOT 9X8 24H Le Mans Гибридный гиперкар',
+          title: '42156 LEGO® Technic PEUGEOT 9X8 24H Le Mans Hybrid Hypercar',
         },
         {
           url: 'https://hobbyhall.fi/fi/kodinkoneet-ja-kodinelektroniikka/kauneudenhoitolaitteet/suoristusraudat-ja-kihartimet/dyson-airstrait-ht01?id=15230603',
-          title: 'Выпрямитель для волос Dyson Airstrait HT01',
+          title: 'Suoristusrauta Dyson Airstrait HT01',
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/lelut/tyttojen-lelut/mattel-barbie-dream-dreamcamper-vehicle?id=3872711',
@@ -1078,62 +1078,61 @@ export class DidYouKnowContainer {
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/lelut/poikien-lelut/leluase-nerf-elite-20-shockwave-rd-15?id=1275248',
-          title: 'Игрушечный пистолет Nerf Elite 2.0 Shockwave RD-15',
+          title: 'Leluase Nerf Elite 2.0 Shockwave RD-15',
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/lelut/tyttojen-lelut/nukkekoti-mattel-hrj77?id=26832933',
-          title: 'Кукольный домик Mattel HRJ77',
+          title: 'Nukkekoti Mattel HRJ77',
         },
         {
           url: 'https://hobbyhall.fi/fi/hajuvedet-ja-kosmetiikka/hiustenhoitotuotteet/shampoot/hiustenhoitosetti-vakavasti-vaurioituneille-hiuksille-tigi-bed-head?id=27678',
           title:
-            'Набор для ухода за волосами Tigi Bed Head Resurrection: шампунь 750 мл + бальзам 750 мл',
+            'Hiustenhoitosetti vakavasti vaurioituneille hiuksille Tigi Bed Head Resurrection: shampoo 750 ml + hoitoaine 750 ml',
         },
         {
           url: 'https://hobbyhall.fi/fi/hajuvedet-ja-kosmetiikka/hajuvedet-ja-tuoksut/miesten-hajuvedet/hajuvesi-armaf-club-de-nuit-intense-edt?id=360193',
-          title: 'Туалетная вода Armaf Club de Nuit Intense EDT для мужчин 105 мл',
+          title: 'Hajuvesi Armaf Club de Nuit Intense EDT miehille 105 ml',
         },
         {
           url: 'https://hobbyhall.fi/fi/puhelimet-alylaitteet-ja-kamerat/alykellot-ja-aktiivisuusrannekkeet/aktiivisuusrannekkeet/aktiiivisuusranneke-huawei-watch-fit-2-active-midnight-black?id=2995568',
-          title: 'Смарт-браслет Huawei Watch Fit 2 Active Midnight Black',
+          title: 'Aktiiivisuusranneke Huawei Watch Fit 2 Active Midnight Black',
         },
         {
           url: 'https://hobbyhall.fi/fi/hajuvedet-ja-kosmetiikka/hiustenhoitotuotteet/naamiot-oljyt-ja-seerumit/hiusnaamio-k18-50-ml?id=2981373',
-          title: 'Маска для волос K18, 50 мл',
+          title: 'Hiusnaamio K18, 50 ml',
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/lelut-yli-3-vuotiaille-lapsille/legot-ja-rakennuslelut/10311-lego-icons-orkidea?id=3034303',
-          title: '10311 LEGO® Icons Орхидея',
+          title: '10311 LEGO® Icons Orkidea',
         },
         {
           url: 'https://hobbyhall.fi/fi/hajuvedet-ja-kosmetiikka/kasvojenhoitotuotteet/kasvovoiteet/kasvojenhoitosetti-lumene-lumo-berry-smooth-vegaani-kollageeni?id=17750128',
           title:
-            'Набор для ухода за лицом Lumene Lumo Berry Smooth: Vegan Collagen эссенция, 30 мл + дневной крем, 50 мл',
+            'Kasvojenhoitosetti Lumene Lumo Berry Smooth: Vegaani Kollageeni esanssi, 30 ml + päivävoide, 50 ml',
         },
         {
           url: 'https://hobbyhall.fi/fi/hajuvedet-ja-kosmetiikka/hiustenhoitotuotteet/naamiot-oljyt-ja-seerumit/korjaava-hiusnaamio-k18-professional-molecular-repair-150?id=4018861',
-          title: 'Восстанавливающая маска для волос K18 Professional Molecular Repair, 150 мл',
+          title: 'Korjaava hiusnaamio K18 Professional Molecular Repair, 150 ml',
         },
         {
           url: 'https://hobbyhall.fi/fi/kodinkoneet-ja-kodinelektroniikka/kauneudenhoitolaitteet/suoristusraudat-ja-kihartimet/dyson-airwrap-hs05-complete-long-prussian-bluerich?id=20680323',
-          title:
-            'Устройство для укладки волос Dyson Airwrap HS05 Complete Long Prussian Blue/Rich Copper',
+          title: 'Hiustenmuotoilulaite Dyson Airwrap HS05 Complete Long Prussian Blue/Rich Copper',
         },
         {
           url: 'https://hobbyhall.fi/fi/muoti/naisille/naisten-vaatteet/naisten-takit/icepeak-naisten-talvitakki-pittsfield-musta?id=10010963',
-          title: 'Женская зимняя куртка Icepeak PITTSFIELD, черная',
+          title: 'Icepeak naisten talvitakki PITTSFIELD, musta',
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/lelut/poikien-lelut/radio-ohjattava-auto-monster-jam?id=19569498',
-          title: 'Радиоуправляемая машина Monster Jam',
+          title: 'Radio-ohjattava auto Monster Jam',
         },
         {
           url: 'https://hobbyhall.fi/fi/lemmikit/kissat/raapimispuut-ja-kiipeilypuut/raapimispuu-villa-delux-tummanharmaa-140-cm?id=1944738',
-          title: 'Когтеточка Villa Delux, темно-серый, 140 см',
+          title: 'Raapimispuu Villa Delux, tummanharmaa, 140 cm',
         },
         {
           url: 'https://hobbyhall.fi/fi/lapset/lelut-yli-3-vuotiaille-lapsille/legot-ja-rakennuslelut/42169-lego-technic-neom-mclaren-formula-e?id=8599922',
-          title: '42169 LEGO® Technic NEOM McLaren Formula E гоночный автомобиль',
+          title: '42169 LEGO® Technic NEOM McLaren Formula E -kilpa-auto',
         },
       ];
     } else {
@@ -1266,7 +1265,7 @@ export class DidYouKnowContainer {
     if (!this.containerDiv) return;
 
     const currentDate = new Date();
-    const startDate = new Date('2024-11-26'); // Set the start date as November 26, 2024
+    const startDate = new Date('2024-11-25'); // Set the start date as November 26, 2024
     const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)); // Calculate days since start date
 
     // Determine the day index (0 for the first day, 1 for the second, 2 for the third, and then repeat)
@@ -1296,20 +1295,8 @@ export class DidYouKnowContainer {
         <td style="padding:5px;text-align: center; border: none; ${
           this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''
         }">
-        <div id="image-${this.prop === 'Pigu.lt' ? globalIndex : index}" style="max-width:170px;">
-        <img class='image-container' style='opacity:1;width:${
-          this.prop === 'Pieno Žvaigždės'
-            ? '70px'
-            : this.prop === 'Pieno Žvaigždės'
-            ? '100px'
-            : '60px'
-        };height:${
-        this.prop === 'Pieno Žvaigždės'
-          ? '70px'
-          : this.prop === 'Pieno Žvaigždės'
-          ? '100px'
-          : '60px'
-      }' src=${item} alt="Scoreboard Image" >
+        <div id="image-${this.prop === 'Pigu.lt' ? globalIndex : index}" style="max-width:200px;">
+        <img class='image-container' style='opacity:1;width: 100%; height: auto; object-fit: contain;max-width:100px;max-height:100px;' src=${item} alt="Scoreboard Image" >
       ${
         (this.prop === 'Pegasas' && this.collectablesLinks[index]) ||
         (this.prop === 'Pigu.lt' && link)
@@ -1518,7 +1505,7 @@ ${
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 36px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+      }; font-size: 34px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.prop === 'Pigu.lt'
         ? 'HAVE YOU SEEN THE TOP DEALS?'
         : this.prop === 'Pieno Žvaigždės'
@@ -1538,8 +1525,8 @@ ${
     }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${
-            this.prop === 'Pigu.lt' ? '60px' : '30px'
-          };border-spacing:3px;width:calc(100% - 60px);margin-left:30px;border-collapse:separate">
+            this.prop === 'Pigu.lt' ? '20px' : '30px'
+          };border-spacing:3px;width:calc(100% - 80px);margin-left:40px;border-collapse:separate">
             <tbody class="boomio-tbody">
     `;
 
@@ -1552,7 +1539,7 @@ ${
           };text-align:center;text-transform:uppercase;top:550px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'
-          };border-radius:35px;width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:585px;height: 28px; background: ${
+          };border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
       this.prop === 'Pigu.lt' ? 'black' : 'none'
     }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${

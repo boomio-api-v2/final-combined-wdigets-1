@@ -306,3 +306,5 @@ export const item26Pigu =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(25).png';
 export const item27Pigu =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(26).png';
+export const closeDidYouKnow =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/close.png';

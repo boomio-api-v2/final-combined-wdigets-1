@@ -34,8 +34,8 @@
   color: #fff;
   text-align: center;
   margin-top: 10px;
-  font-size:4px;
-  margin-top:195px;
+  font-size:5px;
+  margin-top:225px;
   text-decoration: underline;
   font-weight:800;
 
@@ -43,7 +43,7 @@
 
 
 .enlarge-image {
-  padding-top:10px;
+  padding-top:30px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -51,7 +51,7 @@
   height:100%;
   max-width:230px;
   max-height:230px;
-  transform: translate(-50%, -50%) scale(2.3);
+  transform: translate(-50%, -50%) scale(1.9);
   z-index: 9999; /* Ensure the enlarged image is on top of other elements */
 }
 .input-register-container{
