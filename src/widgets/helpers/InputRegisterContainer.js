@@ -49,6 +49,8 @@ export class InputRegisterContainer {
         ? 'Registracija'
         : this.prop === 'Eurovaistine'
         ? 'REĢISTRĒJIES'
+        : this.prop === 'SaludSA'
+        ? 'REGÍSTRATE</br>PARA JUGAR'
         : this.language === 'ES' || this.language === 'ET'
         ? 'REGISTRATE </br>PARA JUGAR '
         : 'Registruokis</br> Žaisti'
@@ -71,6 +73,8 @@ export class InputRegisterContainer {
         ? 'SIGUIENTE'
         : this.prop === 'Fpro'
         ? 'NEXT'
+        : this.prop === 'SaludSA'
+        ? 'SIGUIENTE'
         : this.prop === 'Ikea'
         ? 'Toliau'
         : this.prop === 'Eurovaistine'
@@ -186,6 +190,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
         : this.prop === 'Ikea'
         ? 'Sutinku su'
+        : this.prop === 'SaludSA'
+        ? 'Acepto recibir boletines de SaludSA.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu Euroaptiekas'
         : this.prop === 'Akropolis' && this.language === 'LV'
@@ -207,6 +213,7 @@ export class InputRegisterContainer {
       this.prop !== 'Makalius' &&
       this.prop !== 'Unisend' &&
       this.prop !== 'Akropolis' &&
+      this.prop !== 'SaludSA' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||
@@ -373,6 +380,8 @@ export class InputRegisterContainer {
         ? 'Spēlētāja e-pasts'
         : this.language === 'ES' || this.language === 'ET'
         ? 'Email'
+        : this.prop === 'SaludSA'
+        ? 'Correo electrónico'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
@@ -408,6 +417,8 @@ export class InputRegisterContainer {
         ? 'Spēlētāja lietotājvārds'
         : this.language === 'ES' || this.language === 'ET'
         ? 'Nickname del jugador'
+        : this.prop === 'SaludSA'
+        ? 'Nombre de usuario'
         : 'Žaidėjo slapyvardis'
     }">
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${

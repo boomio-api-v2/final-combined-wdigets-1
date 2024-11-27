@@ -27,13 +27,13 @@ export class DownloadScoreTableContainer {
     let tableHTML = '';
 
     tableHTML += '<div>';
-    console.log(this.currentScore);
     tableHTML +=
       this.currentScore >= 2000
         ? `
 
     <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%);filter;box-sizing:content-box !important;">
-                  <div style="width:100%;top: -60px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">LAIMĖJAI!</div>
+                  <div style="width:100%;top: -60px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">LAIMĖJAI!
+          </div>
     <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
 
@@ -57,6 +57,13 @@ export class DownloadScoreTableContainer {
         `
         : `<div style="margin-top:20px;height:240px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%);filter;box-sizing:content-box !important;"> <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
+    ${
+      this.prop === 'SaludSA'
+        ? `<div style="width:100%;top: -60px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+            this.prop === 'SaludSA' ? '¡Felicidades!' : 'LAIMĖJAI!'
+          }</div>`
+        : ''
+    }
 <div style="width:100%;text-align: center; color: white; font-size: 42px; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     NELAIMĖJAI </div></div>
 `;
@@ -82,7 +89,9 @@ export class DownloadScoreTableContainer {
     let scoreboardText = `
 
    <div style="width:calc(100% - 40px);margin-left:20px; top: 420px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">   ${
-      this.currentScore >= 2000
+      this.prop === 'SaludSA'
+        ? 'Juega de Nuevo'
+        : this.currentScore >= 2000
         ? 'ATSISIŲSK PROGRAMĖLĘ'
         : 'PAGERINK REZULTATĄ!</br> pasiek daugiau nei 2000 taškų ir laimėk prizus!'
     }</div>

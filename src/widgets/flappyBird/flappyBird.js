@@ -12,6 +12,7 @@ import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 import { PointCopyTableContainer } from '../helpers/PointCopyTableContainer';
+import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 
 import {
   close,
@@ -45,6 +46,8 @@ import {
   CorepetitusFlappyBackground,
   CorepetituslappyScore,
   newRecordEn,
+  SaludSAIntro,
+  SaludSABackground,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -55,7 +58,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Makalius';
+    this.customer = this.config.business_name ? this.config.business_name : 'SaludSA';
     this.language = this.config.language ? this.config.language : 'ES';
 
     this.collectables = this.config.collectables ? this.config.collectables : [];
@@ -110,7 +113,9 @@ class FlappyBird {
     const img = new Image();
 
     img.src =
-      this.customer === 'Barbora'
+      this.customer === 'SaludSA'
+        ? SaludSABackground
+        : this.customer === 'Barbora'
         ? mainBarbora
         : this.customer === 'Fantazijos'
         ? mainFantazijos
@@ -795,7 +800,9 @@ class FlappyBird {
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
     <img src=${
-      this.customer === 'Barbora'
+      this.customer === 'SaludSA'
+        ? SaludSAIntro
+        : this.customer === 'Barbora'
         ? introGif
         : this.customer === 'Fantazijos'
         ? this.language === 'LV'
@@ -860,9 +867,7 @@ class FlappyBird {
 </span>
 </div>
 
-<div style="left:calc(50% - ${
-      this.customer === 'Fpro' ? '70px' : '100px'
-    });position: absolute;z-index:999;pointer-events:none" class="tutorial">
+<div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
@@ -877,6 +882,8 @@ ${`<div style="${
         ? 'TAP'
         : this.customer === 'Fpro'
         ? 'TAP'
+        : this.customer === 'SaludSA'
+        ? 'TAP'
         : 'BAKST'
     }</div>
     <div>${
@@ -889,6 +896,8 @@ ${`<div style="${
         : this.language === 'ES'
         ? 'TAP'
         : this.customer === 'Fpro'
+        ? 'TAP'
+        : this.customer === 'SaludSA'
         ? 'TAP'
         : 'BAKST'
     }</div>
@@ -987,13 +996,23 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     widgetHtmlService.container.appendChild(myCanvas);
 
     if (this.showCompetitiveRegistration === 'competition') {
-      const gameContainer = document.querySelector('.game-container-flappy');
+      if (this.customer === 'SaludSA') {
+        const gameContainer = document.querySelector('.game-container-flappy');
 
-      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-      );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+        this.scoreTableContainerInstance = new DownloadScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+      } else {
+        const gameContainer = document.querySelector('.game-container-flappy');
+
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+      }
     }
 
     if (this.showCompetitiveRegistration === 'points') {
