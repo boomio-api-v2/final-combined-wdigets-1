@@ -70,8 +70,28 @@ export class DownloadScoreTableContainer {
           }</div>`
         : ''
     }
-<div style="width:100%;text-align: center; color: white; font-size: 42px; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
-    NELAIMĖJAI </div></div>
+    <div style="width:100%;text-align: center; color: white; font-size:18px;font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
+    ${
+      this.prop === 'SaludSA'
+        ? this.currentScore >= 9999
+          ? '¡GANASTE!'
+          : this.currentScore >= 5000
+          ? '¡GANASTE!'
+          : ''
+        : ''
+    } </div>
+<div style="width:100%;text-align: center; color: white; font-size: ${
+            this.prop === 'SaludSA' ? '32px' : '42px'
+          }; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
+    ${
+      this.prop === 'SaludSA'
+        ? this.currentScore >= 9999
+          ? 'esfero de Julián'
+          : this.currentScore >= 5000
+          ? 'Premio Sorpresa'
+          : 'No ganaste ningún premio'
+        : 'NELAIMĖJAI'
+    } </div></div>
 `;
 
     tableHTML += '</div>';
@@ -96,7 +116,11 @@ export class DownloadScoreTableContainer {
 
    <div style="width:calc(100% - 40px);margin-left:20px; top: 420px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">   ${
       this.prop === 'SaludSA'
-        ? 'Juega de Nuevo'
+        ? this.currentScore >= 9999
+          ? 'además estás participando por un Reloj Garmin. </br>¡Mejora tu puntuación para ganar un premio mayor!'
+          : this.currentScore >= 5000
+          ? 'además estás participando por un Reloj Garmin.'
+          : 'Ya estás participando por un reloj Garmin, si deseas ganar un premio instantáneo de saludsa vitality mejora tu puntaje. '
         : this.currentScore >= 2000 && this.prop === 'Barbora'
         ? 'ATSISIŲSK PROGRAMĖLĘ'
         : 'PAGERINK REZULTATĄ!</br> pasiek daugiau nei 2000 taškų ir laimėk prizus!'
