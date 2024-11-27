@@ -1526,7 +1526,9 @@ ${
         this.prop === 'LemonGym'
           ? 'white'
           : 'white'
-      }; font-size: 34px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+      }; font-size: ${
+      this.isMobileWidthSmall ? '26px' : '30px'
+    }; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.prop === 'Pigu.lt'
         ? this.language === 'EN'
           ? 'HAVE YOU SEEN THE TOP DEALS?'
