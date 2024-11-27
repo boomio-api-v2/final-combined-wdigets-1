@@ -1297,6 +1297,7 @@ export class DidYouKnowContainer {
         }">
         <div id="image-${this.prop === 'Pigu.lt' ? globalIndex : index}" style="max-width:200px;">
         <img class='image-container' style='opacity:1;width: 100%; height: auto; object-fit: contain;max-width:100px;max-height:100px;' src=${item} alt="Scoreboard Image" >
+        
       ${
         (this.prop === 'Pegasas' && this.collectablesLinks[index]) ||
         (this.prop === 'Pigu.lt' && link)
@@ -1407,11 +1408,15 @@ ${
       document.getElementById('boomio-close-did-you-know').addEventListener('click', () => {
         // Find all enlarged images by checking for the 'enlarge-image' class
         const enlargedImages = document.querySelectorAll('.enlarge-image');
-
+        if (this.prop === 'Pigu.lt') {
+          document.querySelector('.closeDidYouKnow').style.display = 'none';
+        }
         // Loop through each enlarged image and remove the 'enlarge-image' class
         enlargedImages.forEach((imgElement) => {
           imgElement.classList.remove('enlarge-image');
-
+          if (this.prop === 'Pigu.lt') {
+            document.querySelector('.closeDidYouKnow').style.display = 'none';
+          }
           // Also hide the text element associated with the image if it exists
           const textElement = imgElement.querySelector('.image-container-text');
           if (textElement) {
@@ -1438,6 +1443,7 @@ ${
   handleImageClick(image) {
     // Toggle a class to make the image larger and centered
     image.classList.toggle('enlarge-image');
+
     const textElement = image.querySelector('.image-container-text');
 
     if (textElement) {
@@ -1456,6 +1462,9 @@ ${
     const imgElement = image.querySelector('img');
     if (imgElement) {
       imgElement.classList.toggle('enlarge-image');
+
+      document.querySelector('.closeDidYouKnow').style.display =
+        document.querySelector('.closeDidYouKnow').style.display === 'none' ? 'block' : 'none';
     }
 
     // Add event listener to close image when clicking anywhere on the screen
@@ -1470,6 +1479,9 @@ ${
 
         if (imgElement) {
           imgElement.classList.remove('enlarge-image');
+          if (this.prop === 'Pigu.lt') {
+            document.querySelector('.closeDidYouKnow').style.display = 'none';
+          }
         }
 
         // Hide the text element if it exists
@@ -1528,12 +1540,16 @@ ${
             this.prop === 'Pigu.lt' ? '20px' : '30px'
           };border-spacing:3px;width:calc(100% - 80px);margin-left:40px;border-collapse:separate">
             <tbody class="boomio-tbody">
+            <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:40px;top:35px;display:none' id='closeDidYouKnow'>
+                            <img  src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
+
     `;
 
     containerDiv.innerHTML += `
             </tbody>
           </table>
         </div>
+
           <div style="color:#DFFC38;width:100%;font-size:${
             this.isSmallMobile ? '7px' : this.isMobile ? '10px' : '12px'
           };text-align:center;text-transform:uppercase;top:550px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
