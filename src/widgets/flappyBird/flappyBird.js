@@ -54,7 +54,7 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -421,6 +421,46 @@ class FlappyBird {
                     this.showCompetitiveRegistration === 'points' ||
                     this.showCompetitiveRegistration === 'collectable'
                   ) {
+                    const clickEventHandlerResetGame = () => {
+                      this.index = 0;
+                      this.currentScore = 0;
+
+                      const competitionTableContainer = document.querySelector(
+                        '.competition-table-container',
+                      );
+
+                      competitionTableContainer.style.transition =
+                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      setTimeout(() => {
+                        competitionTableContainer.style.height = '10px';
+                        competitionTableContainer.style.top = 'calc(50% + 330px)';
+                        competitionTableContainer.style.opacity = 0;
+                      }, 100);
+                      setTimeout(() => {
+                        competitionTableContainer.style.display = 'none';
+                      }, 1000);
+
+                      setTimeout(() => {
+                        if (
+                          this.showCompetitiveRegistration === 'competition' ||
+                          this.showCompetitiveRegistration === 'points' ||
+                          this.showCompetitiveRegistration === 'collectable'
+                        ) {
+                          boomioService
+                            .signal('ROUND_STARTED', 'signal')
+                            .then((response) => {
+                              document.getElementById('background_blur').style.display = 'none';
+                              const canvas = document.getElementById('flappy-canvas');
+                              canvas.style.transition = 'filter 1s ease';
+                              canvas.style.filter = 'none';
+                              this.gamePlaying = true;
+                            })
+                            .catch((error) => {
+                              console.error('Error:', error);
+                            });
+                        }
+                      }, 400);
+                    };
                     hideScore();
                     boomioService
                       .signal('ROUND_FINISHED', 'signal', {
@@ -436,7 +476,12 @@ class FlappyBird {
                             this.scoreTable,
                             this.currentScore,
                           );
+                          const competitionRestart =
+                            document.getElementById('boomio-game-play-again');
+                          competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+                          console.log('aa');
                         }
+
                         if (this.showCompetitiveRegistration === 'competition') {
                           this.scoreTable = response;
                           this.scoreTableContainerInstance.updateProps(
@@ -465,63 +510,6 @@ class FlappyBird {
                             this.scoreTable,
                             this.currentScore,
                           );
-                          const clickEventHandlerResetGame = () => {
-                            const controlButton = document.querySelector('.control-button1');
-                            this.index = 0;
-                            this.currentScore = 0;
-
-                            const competitionTableContainer = document.querySelector(
-                              '.competition-table-container',
-                            );
-
-                            competitionTableContainer.style.transition =
-                              'height 1s ease, top 1s ease, opacity 1s ease';
-                            setTimeout(() => {
-                              competitionTableContainer.style.height = '10px';
-                              competitionTableContainer.style.top = 'calc(50% + 330px)';
-                              competitionTableContainer.style.opacity = 0;
-                            }, 100);
-                            setTimeout(() => {
-                              competitionTableContainer.style.display = 'none';
-                            }, 1000);
-
-                            setTimeout(() => {
-                              if (
-                                this.showCompetitiveRegistration === 'competition' ||
-                                this.showCompetitiveRegistration === 'points' ||
-                                this.showCompetitiveRegistration === 'collectable'
-                              ) {
-                                boomioService
-                                  .signal('ROUND_STARTED', 'signal')
-                                  .then((response) => {
-                                    document.getElementById('background_blur').style.display =
-                                      'none';
-                                    const canvas = document.getElementById('flappy-canvas');
-                                    canvas.style.transition = 'filter 1s ease';
-                                    canvas.style.filter = 'none';
-                                    this.gamePlaying = true;
-                                  })
-                                  .catch((error) => {
-                                    console.error('Error:', error);
-                                  });
-                              }
-                            }, 400);
-                            controlButton.style.display = 'none';
-                            controlButton.style.opacity = 0;
-                          };
-                          const competitionRestart =
-                            document.getElementById('boomio-game-play-again');
-                          competitionRestart.removeEventListener(
-                            'click',
-                            clickEventHandlerResetGame,
-                          );
-
-                          setTimeout(() => {
-                            competitionRestart.addEventListener(
-                              'click',
-                              clickEventHandlerResetGame,
-                            );
-                          }, 1000);
                         }
                       })
                       .catch((error) => {
@@ -586,15 +574,15 @@ class FlappyBird {
 
         if (this.gamePlaying) {
           if (this.isJumping) {
-            ctx.drawImage(img, 506, 0, 77, 80, cTenth, flyHeight, 77, 80);
+            ctx.drawImage(img, 506, 0, 80, 80, cTenth, flyHeight, 77, 80);
           } else {
-            ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
+            ctx.drawImage(img, 424, 0, 80, 80, cTenth, flyHeight, 77, 80);
           }
           this.flight += this.gravity;
           flyHeight = Math.min(flyHeight + this.flight, canvas.height - size[1]);
         } else {
           if (!this.newHighScoreReached) {
-            ctx.drawImage(img, 424, 0, 77, 80, cTenth, flyHeight, 77, 80);
+            ctx.drawImage(img, 424, 0, 80, 80, cTenth, flyHeight, 77, 80);
           }
 
           flyHeight = canvas.height / 2 - size[1] / 2 - 70;
@@ -971,17 +959,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
 </div>
         </div>
-        <div style="justify-content: center; align-items: center; gap: 24px;width:${
-          document.body.offsetWidth < 418
-            ? document.body.offsetWidth < 321
-              ? '375px'
-              : document.body.offsetWidth + 'px'
-            : '418px'
-        };" class="control-button1">
-        <div  style="margin-left: 46px; margin-right: 46px; padding-top: 14px; padding-bottom: 14px; width:100%;background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 32px; border: 2px rgba(255, 255, 255, 0.20) solid; justify-content: center; align-items: center; gap: 8px; display: flex;">
-<div style="color: white; font-size: 25px; font-family: Poppins; font-weight: 900; line-height: 24px; letter-spacing: 0.25px; word-wrap: break-word;" id="startButton">Play</div>
-</div>
-</div>
+      
       </div>
       <canvas id="flappy-canvas" width=${
         document.body.offsetWidth < 418
@@ -996,6 +974,16 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     widgetHtmlService.container.appendChild(myCanvas);
 
     if (this.showCompetitiveRegistration === 'competition') {
+      const gameContainer = document.querySelector('.game-container-flappy');
+
+      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
+    if (this.showCompetitiveRegistration === 'points') {
       if (this.customer === 'SaludSA') {
         const gameContainer = document.querySelector('.game-container-flappy');
 
@@ -1005,35 +993,25 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
         );
         gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
       } else {
-        const gameContainer = document.querySelector('.game-container-flappy');
+        if (this.customer === 'Corepetitus') {
+          const gameContainer = document.querySelector('.game-container');
 
-        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-        );
-        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-      }
-    }
+          this.scoreTableContainerInstance = new PointCopyTableContainer(
+            this.customer,
+            this.scoreTable,
+            this.currentScore,
+          );
+          gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+        } else {
+          const gameContainer = document.querySelector('.game-container-flappy');
 
-    if (this.showCompetitiveRegistration === 'points') {
-      if (this.customer === 'Corepetitus') {
-        const gameContainer = document.querySelector('.game-container');
-
-        this.scoreTableContainerInstance = new PointCopyTableContainer(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
-        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-      } else {
-        const gameContainer = document.querySelector('.game-container-flappy');
-
-        this.scoreTableContainerInstance = new PointScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
-        gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+          this.scoreTableContainerInstance = new PointScoreTableContainer(
+            this.customer,
+            this.scoreTable,
+            this.currentScore,
+          );
+          gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+        }
       }
     }
     if (this.showCompetitiveRegistration === 'collectable') {
@@ -1159,6 +1137,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       };
 
       const clickEventHandlerResetGame = () => {
+        console.log('sadasdsadasas');
+
         const competitionRestart = document.getElementById('boomio-game-play-again');
         competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
 
@@ -1210,7 +1190,9 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
+
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+      console.log(document.getElementById('boomio-game-play-again'));
     }
 
     document.getElementById('startButtonClick').addEventListener('click', () => {

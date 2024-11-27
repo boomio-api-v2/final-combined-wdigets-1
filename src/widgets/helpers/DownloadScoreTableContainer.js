@@ -28,7 +28,7 @@ export class DownloadScoreTableContainer {
 
     tableHTML += '<div>';
     tableHTML +=
-      this.currentScore >= 2000
+      this.currentScore >= 2000 && this.prop === 'Barbora'
         ? `
 
     <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%);filter;box-sizing:content-box !important;">
@@ -60,7 +60,9 @@ export class DownloadScoreTableContainer {
               ? 'linear-gradient(161deg, #1384B9 21.3%, #0377B5 49.66%, #1C3E7E 86.97%)'
               : 'linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%)'
           };filter;box-sizing:content-box !important;"> <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
-    TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
+   ${this.prop === 'SaludSA' ? 'Tu PUNTUACIÓN:' : ' TAVO REZULTATAS:'}  ${
+            this.currentScore ?? 0
+          } </div>
     ${
       this.prop === 'SaludSA'
         ? `<div style="width:100%;top: -60px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
@@ -95,20 +97,20 @@ export class DownloadScoreTableContainer {
    <div style="width:calc(100% - 40px);margin-left:20px; top: 420px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">   ${
       this.prop === 'SaludSA'
         ? 'Juega de Nuevo'
-        : this.currentScore >= 2000
+        : this.currentScore >= 2000 && this.prop === 'Barbora'
         ? 'ATSISIŲSK PROGRAMĖLĘ'
         : 'PAGERINK REZULTATĄ!</br> pasiek daugiau nei 2000 taškų ir laimėk prizus!'
     }</div>
   
           <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word"> ${
-            this.currentScore >= 2000
+            this.currentScore >= 2000 && this.prop === 'Barbora'
               ? 'panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.'
               : ''
           }</div>
              </div>
                           <div style="width:100%; top: 500px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
                            ${
-                             this.currentScore >= 2000
+                             this.currentScore >= 2000 && this.prop === 'Barbora'
                                ? `<div>
   <a href="https://apps.apple.com/lt/app/barbora-lt/id903888629" target="_blank">
     <img src="${BarboraAppleStore}" id="boomio-barbora-apple-store" alt="Image Description" style="cursor:pointer;margin-right:10px;max-width: 167px; height: 49px;">
@@ -125,15 +127,15 @@ export class DownloadScoreTableContainer {
         </div>
       </div>
       ${
-        this.currentScore >= 2000
+        this.currentScore >= 2000 && this.prop === 'Barbora'
           ? `
 
           <div style="width: calc(100% - 40px);font-weight:700;font-size:16px;margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 38px; text-decoration: underline;color: #FFF;overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
    ŽAISTI DAR
       </div>
 `
-          : `<div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
+          : `<div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${'white'};cursor:pointer; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
+        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">${
               this.prop === 'SaludSA' ? 'Juega de Nuevo' : 'PAGERINK REZULTATĄ'
             }</div>
       </div>`
