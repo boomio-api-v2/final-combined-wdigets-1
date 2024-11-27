@@ -127,6 +127,7 @@ export class DidYouKnowContainer {
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
+    this.isMobileWidthSmall = window.innerWidth <= 400;
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
     this.prop = prop;
@@ -1159,6 +1160,7 @@ export class DidYouKnowContainer {
   // Update properties method
   updateProps(prop) {
     this.prop = prop;
+    this.isMobileWidthSmall = window.innerWidth <= 400;
 
     if (this.prop === 'Pigu.lt') {
       this.collectables = [
@@ -1545,7 +1547,9 @@ ${
             this.prop === 'Pigu.lt' ? '20px' : '30px'
           };border-spacing:3px;width:calc(100% - 80px);margin-left:40px;border-collapse:separate">
             <tbody class="boomio-tbody">
-            <div class='closeDidYouKnow' style='pointer-events: none;position:absolute;z-index:9999999;right:40px;top:35px;display:none' id='closeDidYouKnow'>
+            <div class='closeDidYouKnow' style='pointer-events: none;position:absolute;z-index:9999999;right:${
+              this.isMobileWidthSmall ? '20px' : '40px'
+            };top:35px;display:none' id='closeDidYouKnow'>
                             <img style="pointer-events: none;" src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
 
     `;
@@ -1557,7 +1561,7 @@ ${
 
           <div style="color:#DFFC38;width:100%;font-size:${
             this.isSmallMobile ? '7px' : this.isMobile ? '10px' : '12px'
-          };text-align:center;text-transform:uppercase;top:550px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
+          };text-align:center;text-transform:uppercase;top:555px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'
           };border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
