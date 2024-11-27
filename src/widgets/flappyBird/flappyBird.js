@@ -23,6 +23,7 @@ import {
   uncheckIcon,
   mainBarbora,
   mainPenki,
+  star,
   introGifPenki,
   scoreImageGreen,
   mainFantazijos,
@@ -893,22 +894,11 @@ ${`<div style="${
 
 </div>
       <div class="flappy-container">
-        <div class="boomio-score-input-container" style="display:none;width:188px;height">
-        <div style="width: 148px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-      <img src=${
-        this.customer === 'Barbora'
-          ? scoreImage
-          : this.customer === 'Fantazijos'
-          ? scoreImageFantazijos
-          : this.customer === 'Corepetitus'
-          ? CorepetituslappyScore
-          : this.customer === 'Fpro'
-          ? FproFlappyScore
-          : this.customer === 'Makalius'
-          ? MakaliusFlappyScore
-          : scoreImageGreen
-      } alt="Image Description" style="width: 100%; height: 100%;"></img>
-      <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
+            <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#C6152F'};border-radius:35px">
+    <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
+
+  <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
 
