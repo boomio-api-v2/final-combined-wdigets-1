@@ -1553,7 +1553,7 @@ ${
     }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${
-            this.prop === 'Pigu.lt' ? '40px' : '30px'
+            this.prop === 'Pigu.lt' ? (this.isMobileWidthSmall ? '60px' : '40px') : '30px'
           };border-spacing:3px;width:calc(100% - 80px);margin-left:40px;border-collapse:separate">
             <tbody class="boomio-tbody">
             <div class='closeDidYouKnow' style='pointer-events: none;position:absolute;z-index:9999999;right:${
