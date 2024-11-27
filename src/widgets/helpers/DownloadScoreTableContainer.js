@@ -43,7 +43,7 @@ export class DownloadScoreTableContainer {
     „BARBORA“ PROGRAMĖLĖJE </div>
     <div style="width:100%;text-align: center; color: white; font-size: 42px; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     ${userPercentageDiscount ?? 0}% </div>
-       <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background: linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%); border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:250px;margin-top:20px;">
+       <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:     ${'linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%)'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:250px;margin-top:20px;">
 <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
  ${userDiscountCode ?? 'CODE'}
     </div>
@@ -55,7 +55,11 @@ export class DownloadScoreTableContainer {
     Nuolaida galioja apsiperkant iki 200 eur. Minimali krepšelio suma 29.99 eur Nuolaida netaikoma alkoholinių gėrimų, pradinio maitinimo kūdikių prekių, taip pat pakavimo, pristatymo mokesčių bei pradinio krepšelio papildymo sumoms.</div>
 </div>
         `
-        : `<div style="margin-top:20px;height:240px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%);filter;box-sizing:content-box !important;"> <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
+        : `<div style="margin-top:20px;height:240px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background: ${
+            this.prop === 'SaludSA'
+              ? 'linear-gradient(161deg, #1384B9 21.3%, #0377B5 49.66%, #1C3E7E 86.97%)'
+              : 'linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%)'
+          };filter;box-sizing:content-box !important;"> <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
     ${
       this.prop === 'SaludSA'
@@ -129,7 +133,9 @@ export class DownloadScoreTableContainer {
       </div>
 `
           : `<div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${'PAGERINK REZULTATĄ'}</div>
+        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
+              this.prop === 'SaludSA' ? 'Juega de Nuevo' : 'PAGERINK REZULTATĄ'
+            }</div>
       </div>`
       }
 
