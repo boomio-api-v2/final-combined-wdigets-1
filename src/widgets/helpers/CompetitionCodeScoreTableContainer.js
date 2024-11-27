@@ -340,7 +340,7 @@ export class CompetitionCodeScoreTableContainer {
                 : 'Valio, tau puikiai sekasi!'
             }</div>
             <div style="width:100%; top: ${'420px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isSmallMobile ? '7px' : this.isMobile ? '9px' : '10px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
@@ -902,7 +902,7 @@ ${
       
 </div>
       <div style="color:#DFFC38;width:100%;font-size:${
-        this.isSmallMobile ? '7px' : this.isMobile ? '10px' : '12px'
+        this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
       };text-align:center;text-transform:uppercase;top:550px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'

@@ -124,6 +124,7 @@ export class DidYouKnowContainer {
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'LV';
     const currentPageUrl = window.location.href;
+    this.isSmallMobile = window.innerWidth <= 380;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
@@ -1161,6 +1162,7 @@ export class DidYouKnowContainer {
   updateProps(prop) {
     this.prop = prop;
     this.isMobileWidthSmall = window.innerWidth <= 400;
+    this.isSmallMobile = window.innerWidth <= 380;
 
     if (this.prop === 'Pigu.lt') {
       this.collectables = [
@@ -1560,7 +1562,7 @@ ${
         </div>
 
           <div style="color:#DFFC38;width:100%;font-size:${
-            this.isSmallMobile ? '7px' : this.isMobile ? '10px' : '12px'
+            this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
           };text-align:center;text-transform:uppercase;top:555px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'
