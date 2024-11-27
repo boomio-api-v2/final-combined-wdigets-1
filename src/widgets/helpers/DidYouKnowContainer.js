@@ -1520,12 +1520,7 @@ ${
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:calc(100% - 20px);margin-left:10px;top: 42px; position: absolute; text-align: center;line-height:42px; color: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
+        this.prop === 'Pigu.lt' ? '#DFFC38' : 'white'
       }; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
     }; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
@@ -1558,7 +1553,7 @@ ${
     }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${
-            this.prop === 'Pigu.lt' ? '20px' : '30px'
+            this.prop === 'Pigu.lt' ? '40px' : '30px'
           };border-spacing:3px;width:calc(100% - 80px);margin-left:40px;border-collapse:separate">
             <tbody class="boomio-tbody">
             <div class='closeDidYouKnow' style='pointer-events: none;position:absolute;z-index:9999999;right:${
