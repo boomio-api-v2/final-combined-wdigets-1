@@ -44,6 +44,11 @@ class BoomioService extends UserService {
         (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
       (language === 'RU' &&
         (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+      (language === 'EN' &&
+        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+      (language === 'EN' && campaignUrl === 'https://pigu.lt') ||
+      (language === 'EN' && campaignUrl === 'https://hobbyhall.fi') ||
+      (language === 'EN' && campaignUrl === 'https://220.lv') ||
       (language === 'LT' && campaignUrl === 'https://pigu.lt') ||
       (language === 'RU' && campaignUrl === 'https://pigu.lt') ||
       (language === 'FI' && campaignUrl === 'https://hobbyhall.fi') ||

@@ -67,6 +67,8 @@ export class InputContainer {
         ? 'Kaip žaisti?'
         : this.prop === 'Eurovaistine'
         ? 'NOTEIKUMI'
+        : this.prop === 'SaludSA'
+        ? 'Reglas'
         : 'Taisyklės'
     }</div>`}</div>
     <div style="width: ${
@@ -124,6 +126,8 @@ export class InputContainer {
                   ? 'Gaudyk'
                   : this.prop === 'Pegasas'
                   ? 'Gaudyk'
+                  : this.prop === 'SaludSA'
+                  ? 'Presiona'
                   : 'Spausk'
               }
                             <div style="top: 9px;margin-top:5px;  color: white; font-size: ${
@@ -178,6 +182,8 @@ export class InputContainer {
                 ? 'TO FLY'
                 : this.prop === 'Akropolis'
                 ? 'į šonus kad  kiltum.'
+                : this.prop === 'SaludSA'
+                ? 'para volar'
                 : 'kad skristum.'
             }
           </div>
@@ -218,6 +224,8 @@ export class InputContainer {
                 ? 'Kartokite,'
                 : this.prop === 'Eurovaistine'
                 ? 'ATKĀRTOT'
+                : this.prop === 'SaludSA'
+                ? 'Presiona'
                 : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:5px; color: white; font-size: ${
@@ -258,6 +266,8 @@ export class InputContainer {
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
                 ? 'FOR BETTER RESULT'
+                : this.prop === 'SaludSA'
+                ? '3 veces para mejorar'
                 : 'dėl geresnio rezultato'
             }
           </div>
@@ -296,20 +306,39 @@ export class InputContainer {
                 ? 'Laimėkite,'
                 : this.prop === 'Eurovaistine'
                 ? 'LAIMĒ'
+                : this.prop === 'SaludSA'
+                ? '¡Gana!'
                 : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${
-                            this.prop === 'Pieno Žvaigždės' ? '18px' : '3px'
+                            this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės'
+                              ? '18px'
+                              : '3px'
                           }; color: white; font-size: ${
       this.prop === 'Akropolis' ? '14px' : '12px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
-      this.prop === 'Pieno Žvaigždės' ? 'white-space:normal;' : ''
-    }${this.prop === 'Pieno Žvaigždės' ? 'line-height:14px;' : ''}">
+      this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės' ? 'white-space:normal;' : ''
+    }${this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės' ? 'line-height:14px;' : ''}">
             ${
-              this.prop === 'Pigu.lt' && this.language === 'EN'
+              this.prop === 'Pigu.lt' &&
+              this.language === 'EN' &&
+              (this.campaignUrlProp === 'https://kaup.ee' ||
+                this.campaignUrlProp === 'https://kaup24.ee')
+                ? 'Kaup24 prizes!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'EN' &&
+                  this.campaignUrlProp === 'https://pigu.lt'
                 ? 'Pigu.lt prizes!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'EN' &&
+                  this.campaignUrlProp === 'https://220.lv'
+                ? '220.lv prizes!'
+                : this.prop === 'Pigu.lt' &&
+                  this.language === 'EN' &&
+                  this.campaignUrlProp === 'https://hobbyhall.fi'
+                ? 'Hobbyhall.fi prizes!'
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
                 ? 'balvas no 220.lv!'
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
@@ -369,6 +398,8 @@ export class InputContainer {
                 ? 'MAKALIAUS kuponus!'
                 : this.prop === 'Akropolis'
                 ? 'kasdien!'
+                : this.prop === 'SaludSA'
+                ? 'premios Saludsa Vitality y participa</br> por el sorteo de un reloj Garmin.'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
@@ -388,6 +419,7 @@ export class InputContainer {
       this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Akropolis' ||
       this.prop === 'Pigu.lt' ||
+      this.prop === 'SaludSA' ||
       this.prop === 'Ikea'
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
@@ -462,6 +494,8 @@ export class InputContainer {
               ? 'Leer las reglas del juego.'
               : this.prop === 'Fpro'
               ? 'Read full games rules. '
+              : this.prop === 'SaludSA'
+              ? 'Revisa las reglas completas del juego.'
               : this.prop === 'Ikea'
               ? 'Visos žaidimo taisyklės'
               : this.prop.includes('Gamtos Ateitis')
@@ -557,6 +591,8 @@ export class InputContainer {
         ? 'SUTINKU'
         : this.prop === 'Pegasas'
         ? 'PIRMYN'
+        : this.prop === 'SaludSA'
+        ? 'SIGUIENTE'
         : 'LET’S PLAY'
     }</div></div>
     </div>

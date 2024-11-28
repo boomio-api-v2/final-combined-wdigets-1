@@ -27,9 +27,10 @@ export class RulesContainer {
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+    this.language = urlParams.get('language');
 
     const content =
-      this.campaignUrlProp === 'https://pigu.lt'
+      this.campaignUrlProp === 'https://pigu.lt' && this.language === 'LT'
         ? `<div><p><meta charset="utf-8"></p>
 
 <p><strong>BENDROSIOS NUOSTATOS</strong></p>
@@ -93,7 +94,73 @@ export class RulesContainer {
 <p>Su žaidimu susijusių asmens duomenų tvarkymui yra taikomos Privatumo politikos nuostatos, su kuriomis galite susipažinti adresu&nbsp;https://pigu.lt/lt/t/privatumo-politika.</p>
 
 <p>Mums svarbi Jūsų nuomonė bei pasiūlymai! Lauksime jų el.p.&nbsp;<a href="mailto:rinkodara@pigu.lt">rinkodara@pigu.lt</a>.</p></div>`
-        : this.campaignUrlProp === 'https://220.lv'
+        : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'EN'
+        ? `<div>
+    <meta charset="utf-8">
+    <p><strong>GENERAL PROVISIONS</strong></p>
+
+    <p>1. These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by UAB "Pigu" (company code 300866792, registered address Laisvės pr. 75, LT-06144 Vilnius) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution and other procedures.</p>
+
+    <p>2. Game period: November 15, 2024 - December 22, 2024 (inclusive).</p>
+
+    <p>3. The game participant must be a registered pigu.lt member and have agreed to receive game news and information about prizes.</p>
+
+    <p>4. The game is played on the Pigu.lt mobile app. During the game, the game participant controls the game hero, whose goal is to jump on platforms to jump as high as possible without falling. Platforms can break. Each platform jumped on gives points. To improve the result, the game participant can repeat the game.</p>
+
+    <p><strong>GAME PRIZES AND THEIR DELIVERY PROCEDURE</strong></p>
+
+    <p>5. Game prizes consist of:</p>
+
+    <p>5.1. Discount codes, when shopping in the Pigu.lt app, which are valid only on the day of winning until midnight with additional conditions shown in the game window.</p>
+
+    <p>5.2. Ten gift vouchers worth 20€, which are won by the 10 game participants who have scored the most points each week.</p>
+
+    <p>6. Every day, game participants who score more than 1500 points receive a discount code.</p>
+
+    <p>7. Every week, the ten game participants who score the most points will win gift vouchers worth 20€.</p>
+
+    <p>8. The procedure for informing about the game prize and its delivery:</p>
+
+    <p>8.1. The game participant is informed about the game prize specified in clause 5.1 of the Game Rules in the results window, immediately after winning the game.</p>
+
+    <p>8.2. The game participant is informed about the game prize specified in clause 5.2 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: November 25, 2024, December 2, 2024, December 9, 2024, December 16, 2024, December 23, 2024.</p>
+
+    <p>9. Terms of use of game gift vouchers:</p>
+
+    <p>9.1. The gift voucher is valid for 1 week from the date of its dispatch.</p>
+
+    <p>9.2. The gift voucher is non-refundable and cannot be exchanged for cash.</p>
+
+    <p>9.3. If the amount of the order for which payment is made by applying the gift voucher exceeds the value of the gift voucher, the missing amount can be paid by choosing one of the payment methods offered by Pigu.lt.</p>
+
+    <p>9.4. The gift voucher code can only be applied to one order. If the amount of the order for which payment is made by applying the gift voucher is less than the value of the gift voucher, the resulting difference is non-refundable.</p>
+
+    <p>9.5. The gift voucher is not valid for VAT payers - natural and legal persons (except for budgetary institutions), when trying to pay for goods subject to reverse VAT taxation.</p>
+
+    <p><strong>FINAL PROVISIONS</strong></p>
+
+    <p>10. Upon detecting unfair behavior of the game participant, the Promotion Organizer reserves the right to remove the game participant from the game without prior notice.</p>
+
+    <p>11. All disputes arising from the game shall be resolved through negotiation. If no agreement can be reached through negotiations, disputes shall be resolved in a Lithuanian court in accordance with the procedure established by the laws of the Republic of Lithuania according to the location of the Promotion Organizer's registered office.</p>
+
+    <p>12. The Promotion Organizer has the right to unilaterally terminate the game and cancel the prizes due to force majeure circumstances immediately after the participants are informed about the termination of the game publicly.</p>
+
+    <p>13. The Promotion Organizer has the right to unilaterally change or supplement these Game Rules without prior notice, informing the game participants about it on the <a href="https://pigu.lt/lt/t/zaidimo-taisykles" target="_blank">https://pigu.lt/lt/t/zaidimo-taisykles</a> page.</p>
+
+    <p>14. The Promotion Organizer undertakes to ensure the security of personal data transferred to it and not to transfer it to third parties, except in cases where the provision of such data is necessary in accordance with the requirements of legal acts.</p>
+
+    <p>15. You can limit the processing of your personal data and/or exercise your rights as a data subject in the following ways:</p>
+
+    <p>- By contacting us by e-mail: <a href="mailto:duomenuapsauga@pigu.lt" target="_blank">duomenuapsauga@pigu.lt</a>;</p>
+
+    <p>- By contacting us by phone: +370 52073998.</p>
+
+    <p>The provisions of the Privacy Policy, which you can find at <a href="https://pigu.lt/lt/t/privatumo-politika" target="_blank">https://pigu.lt/lt/t/privatumo-politika</a>, apply to the processing of personal data related to the game.</p>
+
+    <p>We value your opinion and suggestions! We will be waiting for them at the e-mail address <a href="mailto:rinkodara@pigu.lt" target="_blank">rinkodara@pigu.lt</a>.</p>
+</div>
+`
+        : this.campaignUrlProp === 'https://220.lv' && this.language === 'LV'
         ? `<div><p><strong>VISPĀRĪGI NOTEIKUMI</strong></p>
 
 <p>1. Šos&nbsp;spēles noteikumus (turpmāk tekstā “Spēles noteikumi”) nosaka&nbsp;SIA "Pigu Latvia"&nbsp;(uzņēmuma kods&nbsp;43603025092, juridiskā adrese&nbsp;Krasta iela 52, Rīga, LV-1003, Latvija) (turpmāk tekstā “Akcijas organizētājs”) organizētās spēles norises kārtību, spēles balvas un to piegādi, strīdu risināšanu un citas procedūras.</p>
@@ -156,7 +223,113 @@ export class RulesContainer {
 <p>Spēles noteikumiem piemērojami Privātuma politikas noteikumi, ar kuriem varat iepazīties vietnē<a href="https://www.google.com/url?q=https://pigu.lt/lt/t/privatumo-politika&amp;sa=D&amp;source=editors&amp;ust=1731608554330940&amp;usg=AOvVaw0xhPhnLtWuNvBXwUZplShE">&nbsp;</a>https://220.lv/lv/t/privatuma-politika.</p>
 
 <p>Mēs novērtējam Jūsu viedokli un ieteikumus! Gaidīsim tos uz e-pasta adresi&nbsp;<a href="mailto:reklama220@220.lv">reklama220@220.lv</a>.</p></div>`
-        : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
+        : this.campaignUrlProp === 'https://220.lv' && this.language === 'RU'
+        ? `<div><p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
+
+<p>1. &nbsp; &nbsp; &nbsp;Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры&nbsp;SIA "Pigu Latvia"&nbsp;(код компании&nbsp;43603025092, юридический адрес Улица Краста, 52, Рига, LV-1003, Латвия) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</p>
+
+<p>2. &nbsp; &nbsp; &nbsp;Период проведения игры: 15 ноября 2024 г. - 22 декабря 2024 г. (включительно).</p>
+
+<p>3. &nbsp; &nbsp; &nbsp;Участник игры должен быть зарегистрированным участником 220.lv и согласиться получать новости игры и информацию о призах.</p>
+
+<p>4. &nbsp; &nbsp; &nbsp;Игра проводится в мобильном приложении 220.lv. Во время игры участник управляет героем игры, цель которого — прыгать по платформам, чтобы прыгнуть как можно выше, не упав. Платформы могут ломаться. Каждая пройденная платформа дает очки. Чтобы улучшить результат, участник игры может повторить игру.</p>
+
+<p><strong>ИГРОВЫЕ ПРИЗЫ И ПОРЯДОК ИХ ДОСТАВКИ</strong></p>
+
+<p>5. &nbsp; Игровые призы состоят из:</p>
+
+<p>5.1. Скидочные коды для покупок в приложении 220.lv, действующие только в день выигрыша до полуночи с дополнительными условиями, отображаются в игровом окне.</p>
+
+<p>5.2. десять подарочных карт на сумму 20 евро, которые выиграют 10 участников игры, набравших наибольшее количество очков каждую неделю.</p>
+
+<p>6. &nbsp; Kаждый день игроки, набравшие более 1500 очков, получают скидочный код.</p>
+
+<p>7. &nbsp; Каждую неделю десять участников игры, набравших наибольшее количество очков, будут выигрывать подарочных карт на сумму 20 евро.</p>
+
+<p>8. &nbsp; Порядок информирования об игровом призе и его доставке:</p>
+
+<p>8.1. &nbsp;участник игры информируется об игровом призе, указанном в пункте 5.1 Правил игры, в окне результатов сразу после выигрыша в игре.</p>
+
+<p>8.2. участник игры информируется об игровом призе, указанном в пункте 5.2 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 25 ноября 2024 г., 2 декабря 2024 г., 9 декабря 2024 г., 16 декабря 2024 г., 23 декабря 2024 г.</p>
+
+<p>9. &nbsp; &nbsp; &nbsp;Условия использования подарочных ваучеров игры:</p>
+
+<p>9.1. подарочная карта действительна в течение 1 недели с даты его отправки;</p>
+
+<p>9.2. подарочная карта возврату не подлежит и не может быть обмененa на наличные;</p>
+
+<p>9.3. если сумма заказа, оплачиваемого с помощью подарочной карты, превышает стоимость подарочной карты, недостающую сумму можно оплатить, выбрав один из способов оплаты, предлагаемых 220.lv;</p>
+
+<p>9.4. подарочная карта может быть применена только к одному заказу. Если сумма заказа, оплачиваемого с помощью подарочной карты, меньше стоимости подарочной карты, образовавшаяся разница возврату не подлежит;</p>
+
+<p>9.5. Подарочные карты не могут быть использованы плательщиками PVN для оплаты товаров, облагаемых обратным налогом;</p>
+
+<p><strong>ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</strong></p>
+
+<p>10. &nbsp; При обнаружении недобросовестного поведения участника игры Организатор акции оставляет за собой право удалить участника игры из игры без предварительного уведомления.</p>
+
+<p>11. Все споры, возникающие в связи с игрой, разрешаются путем переговоров. Если в ходе переговоров не удается достичь соглашения, споры разрешаются в латвийском суде в соответствии с процедурой, установленной законодательством Латвийской Республики, в соответствии с местонахождением зарегистрированного офиса Организатора акции.</p>
+
+<p>12. Организатор акции имеет право в одностороннем порядке прекратить игру и отменить призы в связи с обстоятельствами непреодолимой силы (форс-мажор) сразу же после того, как участники будут публично проинформированы о прекращении игры.</p>
+
+<p>13. Организатор акции имеет право в одностороннем порядке изменять или дополнять настоящие Правила игры без предварительного уведомления, информируя об этом участников игры на странице&nbsp;https://220.lv/ru/t/game-rules-jump.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</p>
+
+<p>14. Организатор акции обязуется обеспечивать безопасность переданных ему персональных данных и не передавать их третьим лицам, за исключением случаев, когда предоставление таких данных необходимо в соответствии с требованиями законодательных актов.</p>
+
+<p>15. Вы можете ограничить обработку своих персональных данных и/или осуществить свои права субъекта данных следующими способами:</p>
+
+<ul>
+	<li>связавшись с нами по электронной почте:&nbsp;<a href="mailto:datuaizsardziba@220.lv">datuaizsardziba@220.lv</a>;</li>
+	<li>связавшись с нами по телефону:&nbsp;+371 60001472.</li>
+</ul>
+
+<p>К обработке персональных данных, связанных с игрой, применяются положения Политики конфиденциальности, с которой вы можете ознакомиться по адресу&nbsp;https://220.lv/ru/t/politika-konfidencialnosti.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</p>
+
+<p>Мы ценим ваше мнение и предложения! Ждем их на электронный адрес&nbsp;<a href="mailto:reklama220@220.lv">reklama220@220.lv</a>.</p></div>`
+        : this.campaignUrlProp === 'https://220.lv' && this.language === 'EN'
+        ? `<div>
+    <p><strong>Game Rules</strong></p>
+
+    <p><strong>GENERAL PROVISIONS</strong></p>
+    <p>1. These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by SIA "Pigu Latvia” (company code 43603025092, registered address Krasta iela 52, Rīga, LV-1003, Latvija) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution and other procedures.</p>
+    <p>2. Game period: November 15, 2024 - December 22, 2024 (inclusive).</p>
+    <p>3. The game participant must be a registered 220.lv member and have agreed to receive game news and information about prizes.</p>
+    <p>4. The game is played on the 220.lv mobile app. During the game, the game participant controls the game hero, whose goal is to jump on platforms to jump as high as possible without falling. Platforms can break. Each platform jumped on gives points. To improve the result, the game participant can repeat the game.</p>
+
+    <p><strong>GAME PRIZES AND THEIR DELIVERY PROCEDURE</strong></p>
+    <p>5. Game prizes consist of:</p>
+    <p>5.1. Discount codes, when shopping in the 220.lv app, which are valid only on the day of winning until midnight with additional conditions shown in the game window.</p>
+    <p>5.2. Ten gift vouchers worth 20€, which are won by the 10 game participants who have scored the most points each week.</p>
+    <p>6. Every day, game participants who score more than 1500 points receive a discount code.</p>
+    <p>7. Every week, the ten game participants who score the most points will win gift vouchers worth 20€.</p>
+    <p>8. The procedure for informing about the game prize and its delivery:</p>
+    <p>8.1. The game participant is informed about the game prize specified in clause 5.1 of the Game Rules in the results window, immediately after winning the game.</p>
+    <p>8.2. The game participant is informed about the game prize specified in clause 5.2 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: November 25, 2024, December 2, 2024, December 9, 2024, December 16, 2024, December 23, 2024.</p>
+    <p>9. Terms of use of game gift vouchers:</p>
+    <p>9.1. The gift voucher is valid for 1 week from the date of its dispatch.</p>
+    <p>9.2. The gift voucher is non-refundable and cannot be exchanged for cash.</p>
+    <p>9.3. If the amount of the order for which payment is made by applying the gift voucher exceeds the value of the gift voucher, the missing amount can be paid by choosing one of the payment methods offered by 220.lv.</p>
+    <p>9.4. The gift voucher code can only be applied to one order. If the amount of the order for which payment is made by applying the gift voucher is less than the value of the gift voucher, the resulting difference is non-refundable.</p>
+    <p>9.5. The gift voucher is not valid for VAT payers - natural and legal persons (except for budgetary institutions), when trying to pay for goods subject to reverse VAT taxation.</p>
+
+    <p><strong>FINAL PROVISIONS</strong></p>
+    <p>10. Upon detecting unfair behavior of the game participant, the Promotion Organizer reserves the right to remove the game participant from the game without prior notice.</p>
+    <p>11. All disputes arising from the game shall be resolved through negotiation. If no agreement can be reached through negotiations, disputes shall be resolved in a Latvian court in accordance with the procedure established by the laws of the Republic of Latvia according to the location of the Promotion Organizer's registered office.</p>
+    <p>12. The Promotion Organizer has the right to unilaterally terminate the game and cancel the prizes due to force majeure circumstances immediately after the participants are informed about the termination of the game publicly.</p>
+    <p>13. The Promotion Organizer has the right to unilaterally change or supplement these Game Rules without prior notice, informing the game participants about it on the <a href="https://220.lv/lv/t/game-rules-jump" target="_blank">https://220.lv/lv/t/game-rules-jump</a> page.</p>
+    <p>14. The Promotion Organizer undertakes to ensure the security of personal data transferred to it and not to transfer it to third parties, except in cases where the provision of such data is necessary in accordance with the requirements of legal acts.</p>
+    <p>15. You can limit the processing of your personal data and/or exercise your rights as a data subject in the following ways:</p>
+    <ul>
+        <li>By contacting us by e-mail: <a href="mailto:datuaizsardziba@220.lv" target="_blank">datuaizsardziba@220.lv</a>.</li>
+        <li>By contacting us by phone: +371 60001472.</li>
+    </ul>
+    <p>The provisions of the Privacy Policy, which you can find at <a href="https://220.lv/lv/t/privatuma-politika" target="_blank">https://220.lv/lv/t/privatuma-politika</a>, apply to the processing of personal data related to the game.</p>
+    <p>We value your opinion and suggestions! We will be waiting for them at the e-mail address <a href="mailto:reklama220@220.lv" target="_blank">reklama220@220.lv</a>.</p>
+</div>
+`
+        : (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee') &&
+          this.language === 'ET'
         ? `<div><p><strong>ÜLDISED SÄTTED</strong></p>
 
 <p>1.&nbsp;Käesolevad mängureeglid (edaspidi "mängureeglid") kehtestavad DLB Trading OÜ (ettevõtte reg.nr 11791329, aadressil Peterburi tee 2F, 11415 Tallinn, Eesti) (edaspidi "kampaania korraldaja") korraldatava mängu läbiviimise korra, mängu auhinnad ja nende kättetoimetamise, vaidluste lahendamise ja muud protseduurid.</p>
@@ -219,8 +392,136 @@ export class RulesContainer {
 <p>Mänguga seotud isikuandmete töötlemisele kohaldatakse privaatsuspoliitika sätteid, millega saab tutvuda aadressil&nbsp;https://kaup24.ee/et/t/privaatsuspoliitika.</p>
 
 <p>Me hindame teie arvamust ja ettepanekuid! Ootame neid e-posti aadressil pood@kaup24.ee.</p></div>`
-        : this.campaignUrlProp === 'https://hobbyhall.fi' &&
-          `<div><p><strong>YLEISET&nbsp;MÄÄRÄYKSET</strong></p>
+        : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'RU'
+        ? `<div><p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
+
+<p>1. &nbsp; &nbsp; &nbsp;Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры UAB «Pigu» (код компании 300866792, юридический адрес Laisvės pr. 75, LT-06144 Вильнюс) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</p>
+
+<p>2. &nbsp; &nbsp; &nbsp;Период проведения игры: 15 ноября 2024 г. - 22 декабря 2024 г. (включительно).</p>
+
+<p>3. &nbsp; &nbsp; &nbsp;Участник игры должен быть зарегистрированным участником pigu.lt и согласиться получать новости игры и информацию о призах.</p>
+
+<p>4. &nbsp; &nbsp; &nbsp;Игра проводится в мобильном приложении Pigu.lt. Во время игры участник управляет героем игры, цель которого — прыгать по платформам, чтобы прыгнуть как можно выше, не упав. Платформы могут ломаться. Каждая пройденная платформа дает очки. Чтобы улучшить результат, участник игры может повторить игру.</p>
+
+<p><strong>ИГРОВЫЕ ПРИЗЫ И ПОРЯДОК ИХ ДОСТАВКИ</strong></p>
+
+<p>5. &nbsp; Игровые призы состоят из:</p>
+
+<p>5.1. &nbsp;Скидочные коды для покупок в приложении pigu.lt, действующие только в день выигрыша до полуночи с дополнительными условиями, отображаются в игровом окне.</p>
+
+<p>5.2. десять подарочных карт на сумму 20 евро, которые выиграют 10 участников игры, набравших наибольшее количество очков каждую неделю.</p>
+
+<p>6. Kаждый день игроки, набравшие более 1500 очков, получают скидочный код.</p>
+
+<p>7. Каждую неделю десять участников игры, набравших наибольшее количество очков, будут выигрывать подарочные карты &nbsp;на сумму 20 евро.</p>
+
+<p>8. Порядок информирования об игровом призе и его доставке:</p>
+
+<p>8.1. &nbsp;участник игры информируется об игровом призе, указанном в пункте 5.1 Правил игры, в окне результатов сразу после выигрыша в игре.</p>
+
+<p>8.2. участник игры информируется об игровом призе, указанном в пункте 5.2 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 25 ноября 2024 г., 2 декабря 2024 г., 9 декабря 2024 г., 16 декабря 2024 г., 23 декабря 2024 г.</p>
+
+<p>9. &nbsp; &nbsp; &nbsp;Условия использования подарочных карт игры:</p>
+
+<p>9.1. подарочная карта действительна в течение 1 недели с даты отправки;</p>
+
+<p>9.2. подарочная карта возврату не подлежит и не может быть обмененa на наличные;</p>
+
+<p>9.3. если сумма заказа, оплачиваемого с помощью подарочной карты, превышает стоимость подарочной карты, недостающую сумму можно оплатить, выбрав один из способов оплаты, предлагаемых Pigu.lt;</p>
+
+<p>9.4. подарочная карта может быть применена только к одному заказу. Если сумма заказа, оплачиваемого с помощью подарочной карты, меньше стоимости подарочной карты, образовавшаяся разница возврату не подлежит;</p>
+
+<p>9.5. Подарочные карты не могут быть использованы плательщиками PVN для оплаты товаров, облагаемых обратным налогом;</p>
+
+<p><strong>ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</strong></p>
+
+<p>10. &nbsp; При обнаружении недобросовестного поведения участника игры Организатор акции оставляет за собой право удалить участника игры из игры без предварительного уведомления.</p>
+
+<p>11. Все споры, возникающие в связи с игрой, разрешаются путем переговоров. Если в ходе переговоров не удается достичь соглашения, споры разрешаются в литовском суде в соответствии с процедурой, установленной законодательством Литовской Республики, в соответствии с местонахождением зарегистрированного офиса Организатора акции.</p>
+
+<p>12. Организатор акции имеет право в одностороннем порядке прекратить игру и отменить призы в связи с обстоятельствами непреодолимой силы (форс-мажор) сразу же после того, как участники будут публично проинформированы о прекращении игры.</p>
+
+<p>13. Организатор акции имеет право в одностороннем порядке изменять или дополнять настоящие Правила игры без предварительного уведомления, информируя об этом участников игры на странице https://pigu.lt/ru/lt/t/zaidimo-taisykles-jump.</p>
+
+<p>14. Организатор акции обязуется обеспечивать безопасность переданных ему персональных данных и не передавать их третьим лицам, за исключением случаев, когда предоставление таких данных необходимо в соответствии с требованиями законодательных актов.</p>
+
+<p>15. Вы можете ограничить обработку своих персональных данных и/или осуществить свои права субъекта данных следующими способами:</p>
+
+<ul>
+	<li>связавшись с нами по электронной почте: duomenuapsauga@pigu.lt;</li>
+	<li>связавшись с нами по телефону: +370 52073998.</li>
+</ul>
+
+<p>К обработке персональных данных, связанных с игрой, применяются положения Политики конфиденциальности, с которой вы можете ознакомиться по адресу<a href="https://www.google.com/url?q=https://pigu.lt/ru/lt/t/privatumo-politika&amp;sa=D&amp;source=editors&amp;ust=1731608554338801&amp;usg=AOvVaw3jd7KZuhrBY-GKsGTIsf7y">&nbsp;</a>https://pigu.lt/ru/lt/t/privatumo-politika.</p>
+
+<p>Мы ценим ваше мнение и предложения! Ждем их на электронный адрес&nbsp;<a href="mailto:rinkodara@pigu.lt">rinkodara@pigu.lt</a>.</p></div>`
+        : (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee') &&
+          this.language === 'RU'
+        ? `<div><p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
+
+<p>1. &nbsp; &nbsp; &nbsp;Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры&nbsp;DLB Trading OÜ&nbsp;(код компании&nbsp;11791329, юридический адрес Peterburi tee 2F, 11415 Таллинн, Эстония) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</p>
+
+<p>2. &nbsp; &nbsp; &nbsp;Период проведения игры: 15 ноября 2024 г. - 22 декабря 2024 г. (включительно).</p>
+
+<p>3. &nbsp; &nbsp; &nbsp;Участник игры должен быть зарегистрированным участником&nbsp;Kaup24.ee&nbsp;и согласиться получать новости игры и информацию о призах.</p>
+
+<p>4. &nbsp; &nbsp; &nbsp;Игра проводится в мобильном приложении&nbsp;Kaup24.ee.&nbsp;Во время игры участник управляет героем игры, цель которого — прыгать по платформам, чтобы прыгнуть как можно выше, не упав. Платформы могут ломаться. Каждая пройденная платформа дает очки. Чтобы улучшить результат, участник игры может повторить игру.</p>
+
+<p><strong>ИГРОВЫЕ ПРИЗЫ И ПОРЯДОК ИХ ДОСТАВКИ</strong></p>
+
+<p>5. &nbsp; Игровые призы состоят из:</p>
+
+<p>5.1. Скидочные коды для покупок в приложении<a href="https://www.google.com/url?q=http://220.lv&amp;sa=D&amp;source=editors&amp;ust=1731660373684228&amp;usg=AOvVaw3X-rIIzt7SzODD9NwZ4hHy">&nbsp;</a>kaup24.ee, действующие только в день выигрыша до полуночи с дополнительными условиями, отображаются в игровом окне.</p>
+
+<p>5.2. десять подарочных карт на сумму 20 евро, которые выиграют 10 участников игры, набравших наибольшее количество очков каждую неделю.</p>
+
+<p>6. &nbsp; Kаждый день игроки, набравшие более 1500 очков, получают скидочный код.</p>
+
+<p>7. &nbsp; Каждую неделю десять участников игры, набравших наибольшее количество очков, будут выигрывать подарочных карт на сумму 20 евро.</p>
+
+<p>8. &nbsp; Порядок информирования об игровом призе и его доставке:</p>
+
+<p>8.1. &nbsp;участник игры информируется об игровом призе, указанном в пункте 5.1 Правил игры, в окне результатов сразу после выигрыша в игре.</p>
+
+<p>8.2. участник игры информируется об игровом призе, указанном в пункте 5.2 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 25 ноября 2024 г., 2 декабря 2024 г., 9 декабря 2024 г., 16 декабря 2024 г., 23 декабря 2024 г.</p>
+
+<p>9. &nbsp; &nbsp; &nbsp;Условия использования подарочных карт игры:</p>
+
+<p>9.1. подарочная карта действительна в течение 1 недели с даты его отправки;</p>
+
+<p>9.2. подарочная карта возврату не подлежит и не может быть обмененa на наличные;</p>
+
+<p>9.3. если сумма заказа, оплачиваемого с помощью подарочной карты, превышает стоимость подарочной карты, недостающую сумму можно оплатить, выбрав один из способов оплаты, предлагаемых&nbsp;Kaup24.ee;</p>
+
+<p>9.4. подарочная карта может быть применен только к одному заказу. Если сумма заказа, оплачиваемого с помощью подарочной карты, меньше стоимости подарочной карты, образовавшаяся разница возврату не подлежит;</p>
+
+<p>9.5. Подарочные карты не могут быть использованы плательщиками PVN для оплаты товаров, облагаемых обратным налогом;</p>
+
+<p><strong>ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</strong></p>
+
+<p>10. &nbsp; При обнаружении недобросовестного поведения участника игры Организатор акции оставляет за собой право удалить участника игры из игры без предварительного уведомления.</p>
+
+<p>11. Все споры, возникающие в связи с игрой, разрешаются путем переговоров. Если в ходе переговоров не удается достичь соглашения, споры разрешаются в эстонском суде в соответствии с процедурой, установленной законодательством Эстонской республики, в соответствии с местонахождением зарегистрированного офиса Организатора акции.</p>
+
+<p>12. Организатор акции имеет право в одностороннем порядке прекратить игру и отменить призы в связи с обстоятельствами непреодолимой силы (форс-мажор) сразу же после того, как участники будут публично проинформированы о прекращении игры.</p>
+
+<p>13. Организатор акции имеет право в одностороннем порядке изменять или дополнять настоящие Правила игры без предварительного уведомления, информируя об этом участников игры на странице<a href="https://www.google.com/url?q=https://pigu.lt/lt/t/zaidimo-taisykles&amp;sa=D&amp;source=editors&amp;ust=1731660373685390&amp;usg=AOvVaw23DTsxh1gr0USMOg46ax-I">&nbsp;</a>https://kaup24.ee/ru/t/game-rules-jump.</p>
+
+<p>14. Организатор акции обязуется обеспечивать безопасность переданных ему персональных данных и не передавать их третьим лицам, за исключением случаев, когда предоставление таких данных необходимо в соответствии с требованиями законодательных актов.</p>
+
+<p>15. Вы можете ограничить обработку своих персональных данных и/или осуществить свои права субъекта данных следующими способами:</p>
+
+<ul>
+<li>связавшись с нами по электронной почте:&nbsp;<a href="mailto:andmekaitse@kaup24.ee">andmekaitse@kaup24.ee</a>;</li>
+<li>связавшись с нами по телефону:&nbsp;+372 6 468 107.</li>
+</ul>
+
+<p>К обработке персональных данных, связанных с игрой, применяются положения Политики конфиденциальности, с которой вы можете ознакомиться по адресу&nbsp;https://kaup24.ee/ru/t/konfidencialnos.</p>
+
+<p>Мы ценим ваше мнение и предложения! Ждем их на электронный адрес&nbsp;<a href="mailto:pood@kaup24.ee">pood@kaup24.ee</a>.</p></div>`
+        : this.campaignUrlProp === 'https://hobbyhall.fi' && this.language === 'FI'
+        ? `<div><p><strong>YLEISET&nbsp;MÄÄRÄYKSET</strong></p>
 
 <p>1.&nbsp;Nämä pelisäännöt (jäljempänä "pelisäännöt") määrittelevät&nbsp;Hobby Hall Suomi Oy&nbsp;(jäljempänä "kampanjan järjestäjä") järjestämän pelin järjestämismenettelyjä, pelin palkintoja ja niiden toimitusta, riitojen ratkaisua ja muita menettelyjä.</p>
 
@@ -271,11 +572,91 @@ export class RulesContainer {
 <p>13. Voit rajoittaa henkilötietojesi käsittelyä ja/tai käyttää oikeuksiasi rekisteröitynä seuraavasti:</p>
 
 <ul>
-	<li>ottamalla meihin yhteyttä sähköpostitse:&nbsp;asiakaspalvelu@hobbyhall.fi</li>
-	<li>ottamalla meihin yhteyttä puhelimitse:&nbsp;09 8566 8000.</li>
+<li>ottamalla meihin yhteyttä sähköpostitse:&nbsp;asiakaspalvelu@hobbyhall.fi</li>
+<li>ottamalla meihin yhteyttä puhelimitse:&nbsp;09 8566 8000.</li>
 </ul>
+<p>Peliin liittyvien henkilötietojen käsittelyyn sovelletaan tietosuojakäytännön määräyksiä, jotka löytyvät osoitteesta https://hobbyhall.fi/fi/t/privacy-policy.</p></div>`
+        : (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee') &&
+          this.language === 'EN'
+        ? `<div>
+    <p><strong>GENERAL PROVISIONS</strong></p>
+    <p>1. These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by DLB Trading OÜ (company code 11791329, registered address Peterburi tee 2F, 11415 Tallinn, Eesti) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution and other procedures.</p>
+    <p>2. Game period: November 15, 2024 - December 22, 2024 (inclusive).</p>
+    <p>3. The game participant must be a registered Kaup24.ee member and have agreed to receive game news and information about prizes.</p>
+    <p>4. The game is played on the Kaup24.ee mobile app. During the game, the game participant controls the game hero, whose goal is to jump on platforms to jump as high as possible without falling. Platforms can break. Each platform jumped on gives points. To improve the result, the game participant can repeat the game.</p>
 
-<p>Peliin liittyvien henkilötietojen käsittelyyn sovelletaan tietosuojakäytännön määräyksiä, jotka löytyvät osoitteesta https://hobbyhall.fi/fi/t/privacy-policy.</p></div>`;
+    <p><strong>GAME PRIZES AND THEIR DELIVERY PROCEDURE</strong></p>
+    <p>5. Game prizes consist of:</p>
+    <p>5.1. Discount codes, when shopping in the Kaup24.ee app, which are valid only on the day of winning until midnight with additional conditions shown in the game window.</p>
+    <p>5.2. Ten gift vouchers worth 20€, which are won by the 10 game participants who have scored the most points each week.</p>
+    <p>6. Every day, game participants who score more than 1500 points receive a discount code.</p>
+    <p>7. Every week, the ten game participants who score the most points will win gift vouchers worth 20€.</p>
+    <p>8. The procedure for informing about the game prize and its delivery:</p>
+    <p>8.1. The game participant is informed about the game prize specified in clause 5.1 of the Game Rules in the results window, immediately after winning the game.</p>
+    <p>8.2. The game participant is informed about the game prize specified in clause 5.2 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: November 25, 2024, December 2, 2024, December 9, 2024, December 16, 2024, December 23, 2024.</p>
+    <p>9. Terms of use of game gift vouchers:</p>
+    <p>9.1. The gift voucher is valid for 1 week from the date of its dispatch.</p>
+    <p>9.2. The gift voucher is non-refundable and cannot be exchanged for cash.</p>
+    <p>9.3. If the amount of the order for which payment is made by applying the gift voucher exceeds the value of the gift voucher, the missing amount can be paid by choosing one of the payment methods offered by Kaup24.ee.</p>
+    <p>9.4. The gift voucher code can only be applied to one order. If the amount of the order for which payment is made by applying the gift voucher is less than the value of the gift voucher, the resulting difference is non-refundable.</p>
+    <p>9.5. The gift voucher is not valid for VAT payers - natural and legal persons (except for budgetary institutions), when trying to pay for goods subject to reverse VAT taxation.</p>
+
+    <p><strong>FINAL PROVISIONS</strong></p>
+    <p>10. Upon detecting unfair behavior of the game participant, the Promotion Organizer reserves the right to remove the game participant from the game without prior notice.</p>
+    <p>11. All disputes arising from the game shall be resolved through negotiation. If no agreement can be reached through negotiations, disputes shall be resolved in an Estonian court in accordance with the procedure established by the laws of the Republic of Estonia according to the location of the Promotion Organizer's registered office.</p>
+    <p>12. The Promotion Organizer has the right to unilaterally terminate the game and cancel the prizes due to force majeure circumstances immediately after the participants are informed about the termination of the game publicly.</p>
+    <p>13. The Promotion Organizer has the right to unilaterally change or supplement these Game Rules without prior notice, informing the game participants about it on the <a href="https://kaup24.ee/et/t/game-rules-jump" target="_blank">https://kaup24.ee/et/t/game-rules-jump</a> page.</p>
+    <p>14. The Promotion Organizer undertakes to ensure the security of personal data transferred to it and not to transfer it to third parties, except in cases where the provision of such data is necessary in accordance with the requirements of legal acts.</p>
+    <p>15. You can limit the processing of your personal data and/or exercise your rights as a data subject in the following ways:</p>
+    <ul>
+        <li>By contacting us by e-mail: <a href="mailto:andmekaitse@kaup24.ee" target="_blank">andmekaitse@kaup24.ee</a>.</li>
+        <li>By contacting us by phone: +372 6 468 107.</li>
+    </ul>
+    <p>The provisions of the Privacy Policy, which you can find at <a href="https://kaup24.ee/et/t/privaatsuspoliitika" target="_blank">https://kaup24.ee/et/t/privaatsuspoliitika</a>, apply to the processing of personal data related to the game.</p>
+    <p>We value your opinion and suggestions! We will be waiting for them at the e-mail address <a href="mailto:pood@kaup24.ee" target="_blank">pood@kaup24.ee</a>.</p>
+</div>
+
+`
+        : this.campaignUrlProp === 'https://hobbyhall.fi' &&
+          this.language === 'EN' &&
+          `<div>
+    <p><strong>GENERAL PROVISIONS</strong></p>
+    <p>1. These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by Hobby Hall Suomi Oy (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution, and other procedures.</p>
+    <p>2. Game period: November 15, 2024 - December 22, 2024 (inclusive).</p>
+    <p>3. The game participant must be a registered Hobbyhall.fi member and have agreed to receive game news and information about prizes.</p>
+    <p>4. The game is played on the Hobbyhall.fi mobile app. During the game, the game participant controls the game hero, whose goal is to jump on platforms to jump as high as possible without falling. Platforms can break. Each platform jumped on gives points. To improve the result, the game participant can repeat the game.</p>
+
+    <p><strong>GAME PRIZES AND THEIR DELIVERY PROCEDURE</strong></p>
+    <p>5. Game prizes consist of:</p>
+    <p>5.1. Discount codes, when shopping in the Hobbyhall.fi app, which are valid only on the day of winning until midnight with additional conditions shown in the game window.</p>
+    <p>5.2. Ten gift vouchers worth 20€, which are won by the 10 game participants who have scored the most points each week.</p>
+    <p>6. Every day, game participants who score more than 1500 points receive a discount code.</p>
+    <p>7. Every week, the ten game participants who score the most points will win gift vouchers worth 20€.</p>
+    <p>8. The procedure for informing about the game prize and its delivery:</p>
+    <p>8.1. The game participant is informed about the game prize specified in clause 5.1 of the Game Rules in the results window, immediately after winning the game.</p>
+    <p>8.2. The game participant is informed about the game prize specified in clause 5.2 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: November 25, 2024, December 2, 2024, December 9, 2024, December 16, 2024, December 23, 2024.</p>
+    <p>9. Terms of use of game gift vouchers:</p>
+    <p>9.1. The gift voucher is valid for 1 week from the date of its dispatch.</p>
+    <p>9.2. The gift voucher is non-refundable and cannot be exchanged for cash.</p>
+    <p>9.3. If the amount of the order for which payment is made by applying the gift voucher exceeds the value of the gift voucher, the missing amount can be paid by choosing one of the payment methods offered by Hobbyhall.fi.</p>
+    <p>9.4. The gift voucher code can only be applied to one order. If the amount of the order for which payment is made by applying the gift voucher is less than the value of the gift voucher, the resulting difference is non-refundable.</p>
+    <p>9.5. The gift voucher is not valid for VAT payers - natural and legal persons (except for budgetary institutions), when trying to pay for goods subject to reverse VAT taxation.</p>
+
+    <p><strong>FINAL PROVISIONS</strong></p>
+    <p>10. Upon detecting unfair behavior of the game participant, the Promotion Organizer reserves the right to remove the game participant from the game without prior notice.</p>
+    <p>11. All disputes arising from the game shall be resolved through negotiation. If no agreement can be reached through negotiations, disputes shall be resolved in a Finnish court in accordance with the procedure established by the laws of the Republic of Finland according to the location of the Promotion Organizer's registered office.</p>
+    <p>12. The Promotion Organizer has the right to unilaterally terminate the game and cancel the prizes due to force majeure circumstances immediately after the participants are informed about the termination of the game publicly.</p>
+    <p>13. The Promotion Organizer has the right to unilaterally change or supplement these Game Rules without prior notice, informing the game participants about it on the <a href="https://hobbyhall.fi/fi/t/game-rules-jump" target="_blank">https://hobbyhall.fi/fi/t/game-rules-jump</a> page.</p>
+    <p>14. The Promotion Organizer undertakes to ensure the security of personal data transferred to it and not to transfer it to third parties, except in cases where the provision of such data is necessary in accordance with the requirements of legal acts.</p>
+    <p>15. You can limit the processing of your personal data and/or exercise your rights as a data subject in the following ways:</p>
+    <ul>
+        <li>By contacting us by e-mail: <a href="mailto:asiakaspalvelu@hobbyhall.fi" target="_blank">asiakaspalvelu@hobbyhall.fi</a>.</li>
+        <li>By contacting us by phone: 09 8566 8000.</li>
+    </ul>
+    <p>The provisions of the Privacy Policy, which you can find at <a href="https://hobbyhall.fi/fi/t/privacy-policy" target="_blank">https://hobbyhall.fi/fi/t/privacy-policy</a>, apply to the processing of personal data related to the game.</p>
+</div>
+`;
     const containerDiv = document.querySelector('.rules-table-container');
     containerDiv.innerHTML += `
               </div>

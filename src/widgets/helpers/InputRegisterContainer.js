@@ -25,7 +25,7 @@ export class InputRegisterContainer {
 
     containerDiv.innerHTML = `
       <div style="height: 124px; top:${
-        this.prop === 'Pegasas' ? '0px' : '70px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '70px'
       }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
@@ -49,6 +49,8 @@ export class InputRegisterContainer {
         ? 'Registracija'
         : this.prop === 'Eurovaistine'
         ? 'REĢISTRĒJIES'
+        : this.prop === 'SaludSA'
+        ? 'REGÍSTRATE</br>PARA JUGAR'
         : this.language === 'ES' || this.language === 'ET'
         ? 'REGISTRATE </br>PARA JUGAR '
         : 'Registruokis</br> Žaisti'
@@ -71,6 +73,8 @@ export class InputRegisterContainer {
         ? 'SIGUIENTE'
         : this.prop === 'Fpro'
         ? 'NEXT'
+        : this.prop === 'SaludSA'
+        ? 'SIGUIENTE'
         : this.prop === 'Ikea'
         ? 'Toliau'
         : this.prop === 'Eurovaistine'
@@ -186,6 +190,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
         : this.prop === 'Ikea'
         ? 'Sutinku su'
+        : this.prop === 'SaludSA'
+        ? 'Acepto recibir boletines de SaludSA.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu Euroaptiekas'
         : this.prop === 'Akropolis' && this.language === 'LV'
@@ -207,6 +213,7 @@ export class InputRegisterContainer {
       this.prop !== 'Makalius' &&
       this.prop !== 'Unisend' &&
       this.prop !== 'Akropolis' &&
+      this.prop !== 'SaludSA' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||
@@ -288,7 +295,7 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-        this.prop === 'Pegasas' ? '178px' : '258px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '178px' : '258px'
       }; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
@@ -303,7 +310,7 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-        this.prop === 'Pegasas' ? '258px' : '338px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '258px' : '338px'
       } ; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
@@ -316,9 +323,20 @@ export class InputRegisterContainer {
       padding:1px 8px 1px 8px;
       " id="competition-email-error"></div>
 
+      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top:350px ; position: absolute;text-align:start;z-index:99999;display:${
+        this.prop === 'SaludSA' ? 'block' : 'none'
+      };color: ${this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'};
+      font-family: Montserrat;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: -0.42px;
+      border-radius:4px;
+      padding:1px 8px 1px 8px;
+      " id="competition-phone-error"></div>
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
-        this.prop === 'Pegasas' ? '207px' : '287px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '207px' : '287px'
       }; position: absolute; background: ${
       this.prop === 'Barbora' ||
       this.prop === 'LemonGym' ||
@@ -331,7 +349,7 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
-        this.prop === 'Pegasas' ? '124px' : '204px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
       }; position: absolute; background: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -341,7 +359,7 @@ export class InputRegisterContainer {
         : 'white'
     }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.prop === 'Pegasas' ? '219px' : '299px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '219px' : '299px'
       };height:30px; opacity: 0.60;background-color: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -373,10 +391,12 @@ export class InputRegisterContainer {
         ? 'Spēlētāja e-pasts'
         : this.language === 'ES' || this.language === 'ET'
         ? 'Email'
+        : this.prop === 'SaludSA'
+        ? 'Correo electrónico'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.prop === 'Pegasas' ? '135px' : '215px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
       };height:30px; opacity: 0.60;background-color: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -408,15 +428,20 @@ export class InputRegisterContainer {
         ? 'Spēlētāja lietotājvārds'
         : this.language === 'ES' || this.language === 'ET'
         ? 'Nickname del jugador'
+        : this.prop === 'SaludSA'
+        ? 'Nombre de usuario'
         : 'Žaidėjo slapyvardis'
     }">
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
-      this.prop === 'Pegasas' ? 'block' : 'none'
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? 'block' : 'none'
+    }"></div>
+          <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? 'block' : 'none'
     }"></div>
     <input id="boomio-competition-phone-input-field" inputmode="tel" 
  class="boomio-competition-phone-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
-      this.prop === 'Pegasas' ? 'block' : 'none'
-    }" placeholder="${'Telefono numeris'}">
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? 'block' : 'none'
+    }" placeholder="${this.prop === 'SaludSA' ? 'Número de teléfono' : 'Telefono numeris'}">
 
     `;
 

@@ -48,9 +48,7 @@ export class CompetitionCodeScoreTableContainerPigu {
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     const piguTable =
-      this.prop === 'Pigu.lt' && this.language === 'EN'
-        ? 'Congratulations!'
-        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
+      this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
         ? [
             'Piparkūka',
             'Vārpstiņš',
@@ -247,7 +245,7 @@ export class CompetitionCodeScoreTableContainerPigu {
             ? this.prop === 'Pigu.lt' && this.language === 'LT'
               ? 'Tavo rezultatas'
               : this.prop === 'Pigu.lt' && this.language === 'EN'
-              ? 'Tavo rezultatas'
+              ? 'YOUR SCORE'
               : this.prop === 'Pigu.lt' && this.language === 'LV'
               ? 'TAVS REZULTĀTS'
               : this.prop === 'Pigu.lt' && this.language === 'ET'
@@ -593,7 +591,7 @@ ${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? 'SPĒLĒT VĒLREIZ'
         : this.prop === 'Pigu.lt' && this.language === 'EN'
-        ? 'IMPROVE RESULT'
+        ? 'IMPROVE SCORE'
         : this.prop === 'Pigu.lt' && this.language === 'LV'
         ? 'UZLABOT REZULTĀTU'
         : this.prop === 'Pigu.lt' && this.language === 'ET'

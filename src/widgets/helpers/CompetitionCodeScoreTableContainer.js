@@ -31,9 +31,7 @@ export class CompetitionCodeScoreTableContainer {
     if (!this.containerDiv) return;
 
     const piguTable =
-      this.prop === 'Pigu.lt' && this.language === 'EN'
-        ? 'Congratulations!'
-        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
+      this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
         ? [
             'Piparkūka',
             'Vārpstiņš',
@@ -222,7 +220,7 @@ export class CompetitionCodeScoreTableContainer {
             ? this.prop === 'Pigu.lt' && this.language === 'LT'
               ? 'Tavo rezultatas'
               : this.prop === 'Pigu.lt' && this.language === 'EN'
-              ? 'Tavo rezultatas'
+              ? 'YOUR SCORE'
               : this.prop === 'Pigu.lt' && this.language === 'LV'
               ? 'TAVS REZULTĀTS'
               : this.prop === 'Pigu.lt' && this.language === 'ET'
@@ -264,7 +262,7 @@ export class CompetitionCodeScoreTableContainer {
         this.prop === 'Pigu.lt' && this.language === 'LT'
           ? 'Tavo rezultatas'
           : this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? 'Tavo rezultatas'
+          ? 'YOUR SCORE'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
           ? 'TAVS REZULTĀTS'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
@@ -309,8 +307,7 @@ export class CompetitionCodeScoreTableContainer {
 
     let scoreboardText = `
       ${
-        (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) ||
-        (this.prop === 'Pigu.lt' && this.scoreTable?.user_best_place <= 40)
+        (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) || true
           ? `<div style="width:100%; top: ${'390px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -343,7 +340,7 @@ export class CompetitionCodeScoreTableContainer {
                 : 'Valio, tau puikiai sekasi!'
             }</div>
             <div style="width:100%; top: ${'420px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.isSmallMobile ? '7px' : this.isMobile ? '9px' : '10px'
+              this.isSmallMobile ? '8px' : this.isMobile ? '9px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
@@ -856,7 +853,7 @@ ${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? 'SPĒLĒT VĒLREIZ'
         : this.prop === 'Pigu.lt' && this.language === 'EN'
-        ? 'IMPROVE RESULT'
+        ? 'IMPROVE SCORE'
         : this.prop === 'Pigu.lt' && this.language === 'LV'
         ? 'UZLABOT REZULTĀTU'
         : this.prop === 'Pigu.lt' && this.language === 'ET'
@@ -905,7 +902,7 @@ ${
       
 </div>
       <div style="color:#DFFC38;width:100%;font-size:${
-        this.isSmallMobile ? '7px' : this.isMobile ? '10px' : '12px'
+        this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
       };text-align:center;text-transform:uppercase;top:550px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'
@@ -915,22 +912,22 @@ ${
       ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
-            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
+            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
             : this.language === 'LV'
-            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://220.lv">Atklāj labākos 220.lv piedāvājumus!</a>'
+            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://220.lv">Atklāj labākos 220.lv piedāvājumus!</a>'
             : this.language === 'ET'
-            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
+            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
             : this.language === 'FI'
-            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
+            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
             : this.language === 'RU' &&
               (this.campaignUrlProp === 'https://kaup.ee' ||
                 this.campaignUrlProp === 'https://kaup24.ee')
-            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
+            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
+            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-            ? '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
-            : '<a style="text-decoration:none;color:#C6DF34" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
+            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
+            : '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
           : ''
       }
   </div>
