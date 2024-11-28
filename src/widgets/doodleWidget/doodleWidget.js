@@ -50,6 +50,7 @@ import {
   PiguJumpUpIntroEstonianEN,
   PiguJumpUpIntroLithuanianEN,
   PiguJumpUpIntroFinishEN,
+  newRecordEn,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -1359,7 +1360,9 @@ ${
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      this.language === 'LV'
+      this.language === 'en'
+        ? newRecordEn
+        : this.language === 'LV'
         ? newRecordLV
         : this.language === 'ET' || this.language === 'EE'
         ? newRecordEE
