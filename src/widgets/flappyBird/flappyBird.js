@@ -1029,101 +1029,212 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             const phone = document.querySelector('.boomio-competition-phone-input-field');
             const phoneValue = phone?.value?.trim();
 
+            if (!checkboxChange) {
+              document.getElementById('competition-checkbox-error').innerText =
+                this.language === 'LV'
+                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : this.customer === 'SaludSA'
+                  ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
+                  : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                '#FFBABA';
+              document.getElementById('competition-checkbox-error').style.display = 'block';
+              document.getElementById('competition-checkbox-error').style.height = '14px';
+
+              document.getElementById('competition-name-error').innerText = '';
+
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-phone-error').innerText = '';
+              document.getElementById('competition-phone-error').style.backgroundColor =
+                'transparent';
+            }
+            if (emailInput?.value === '' || emailInput?.value === null) {
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : this.customer === 'SaludSA'
+                  ? 'Para continuar debes agregar el correo electrónico.'
+                  : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-name-error').innerText = '';
+
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-phone-error').innerText = '';
+              document.getElementById('competition-phone-error').style.backgroundColor =
+                'transparent';
+            }
+            if (phone?.value === '' || (phone?.value === null && this.customer === 'SaludSA')) {
+              console.log('aaa');
+              document.getElementById('competition-phone-error').innerText =
+                'Para continuar debes agregar el número de teléfono.';
+              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+            }
             if (
-              (this.showCompetitiveRegistration === 'competition' ||
-                this.showCompetitiveRegistration === 'points' ||
-                this.showCompetitiveRegistration === 'collectable') &&
-              checkboxChange
+              playerNameInput?.value === '' ||
+              playerNameInput?.value === null ||
+              (phone?.value === null && this.customer === 'SaludSA')
             ) {
-              boomioService
-                .signal('', 'user_info', {
-                  emails_consent: this.checkboxChange,
-                  user_email: emailInput?.value,
-                  user_name: playerNameInput?.value,
-                  game_code: this.game_code,
-                  ...(phoneValue ? { phone: phoneValue } : {}),
-                })
-                .then((response) => {
-                  if (response.success === false) {
-                    if (response.res_code === 'EMAIL_EXIST') {
-                      document.getElementById('competition-email-error').innerText =
-                        this.customer === 'Fpro'
-                          ? 'This email address already exists. Please use another one.'
-                          : this.language === 'LV'
-                          ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                          : this.language === 'ES'
-                          ? 'Este email ya está en uso. Use otro email.'
-                          : this.language === 'RU'
-                          ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                          : this.language === 'EE'
-                          ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        '#FFBABA';
+              document.getElementById('competition-name-error').innerText =
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : this.customer === 'SaludSA'
+                  ? 'Para continuar debes agregar el nombre de usuario.'
+                  : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
-                      document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-phone-error').innerText = '';
+              document.getElementById('competition-phone-error').style.backgroundColor =
+                'transparent';
+            }
+            if (
+              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+              (phone?.value === '' || phone?.value === null) &&
+              this.customer === 'SaludSA'
+            ) {
+              document.getElementById('competition-name-error').innerText =
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : this.customer === 'SaludSA'
+                  ? 'Para continuar debes agregar el nombre de usuario.'
+                  : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : this.customer === 'SaludSA'
+                  ? 'Para continuar debes agregar el correo electrónico.'
+                  : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        'transparent';
-                    } else if (response.res_code === 'NICKNAME_EXIST') {
-                      document.getElementById('competition-name-error').innerText =
-                        this.customer === 'Fpro'
-                          ? 'This nickname already exists. Please use another one.'
-                          : this.language === 'ES'
-                          ? 'Este nickname ya está en uso. Use otro nickname.'
-                          : this.language === 'LV'
-                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                          : this.language === 'RU'
-                          ? 'Этот псевдоним уже существует. Используйте другой.'
-                          : this.language === 'EE'
-                          ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        '#FFBABA';
+              document.getElementById('competition-phone-error').innerText =
+                'Para continuar debes agregar el número de teléfono.';
+              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+            } else {
+              if (
+                (this.showCompetitiveRegistration === 'competition' ||
+                  this.showCompetitiveRegistration === 'points' ||
+                  this.showCompetitiveRegistration === 'collectable') &&
+                checkboxChange
+              ) {
+                boomioService
+                  .signal('', 'user_info', {
+                    emails_consent: this.checkboxChange,
+                    user_email: emailInput?.value,
+                    user_name: playerNameInput?.value,
+                    game_code: this.game_code,
+                    ...(phoneValue ? { phone: phoneValue } : {}),
+                  })
+                  .then((response) => {
+                    if (response.success === false) {
+                      if (response.res_code === 'EMAIL_EXIST') {
+                        document.getElementById('competition-email-error').innerText =
+                          this.customer === 'Fpro'
+                            ? 'This email address already exists. Please use another one.'
+                            : this.language === 'LV'
+                            ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                            : this.customer === 'SaludSA'
+                            ? 'Para continuar debes agregar el correo electrónico.'
+                            : this.language === 'ES'
+                            ? 'Este email ya está en uso. Use otro email.'
+                            : this.language === 'RU'
+                            ? 'Этот е-мейл адрес уже существует. Используйте другой.'
+                            : this.language === 'EE'
+                            ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        document.getElementById('competition-email-error').style.backgroundColor =
+                          '#FFBABA';
 
-                      document.getElementById('competition-email-error').innerText = '';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        'transparent';
-                    }
-                  } else {
-                    this.bestScore = response.user_best_score;
-                    const inpuRegisterContainer = document.querySelector(
-                      '.input-register-container',
-                    );
-                    inpuRegisterContainer.style.transition =
-                      'height 1s ease, top 1s ease, opacity 1s ease';
-                    setTimeout(() => {
-                      inpuRegisterContainer.style.height = '10px';
-                      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-                      inpuRegisterContainer.style.opacity = 0;
-                    }, 100);
-                    setTimeout(() => {
-                      inpuRegisterContainer.style.display = 'none';
-                    }, 1000);
-                    setTimeout(() => {
-                      const canvas = document.getElementById('flappy-canvas');
-                      document.getElementById('background_blur').style.opacity = 0.37;
-                      canvas.style.transition = 'filter 0.6s ease';
-                      canvas.style.filter = 'blur(2px)';
-                      const inputContainer = document.querySelector('.input-container');
-                      document.getElementById('control-button').style.transition =
-                        'opacity 2s ease';
-                      document.getElementById('control-button').style.opacity = 1;
-                      document.getElementById('control-button').style.display = 'flex';
-                      inputContainer.style.transition =
+                        document.getElementById('competition-name-error').innerText = '';
+
+                        document.getElementById('competition-name-error').style.backgroundColor =
+                          'transparent';
+                      } else if (response.res_code === 'NICKNAME_EXIST') {
+                        document.getElementById('competition-name-error').innerText =
+                          this.customer === 'Fpro'
+                            ? 'This nickname already exists. Please use another one.'
+                            : this.language === 'ES'
+                            ? 'Este nickname ya está en uso. Use otro nickname.'
+                            : this.language === 'LV'
+                            ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                            : this.customer === 'SaludSA'
+                            ? 'Para continuar debes agregar el nombre de usuario.'
+                            : this.language === 'RU'
+                            ? 'Этот псевдоним уже существует. Используйте другой.'
+                            : this.language === 'EE'
+                            ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                            : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                        document.getElementById('competition-name-error').style.backgroundColor =
+                          '#FFBABA';
+
+                        document.getElementById('competition-email-error').innerText = '';
+                        document.getElementById('competition-email-error').style.backgroundColor =
+                          'transparent';
+                      }
+                    } else {
+                      this.bestScore = response.user_best_score;
+                      const inpuRegisterContainer = document.querySelector(
+                        '.input-register-container',
+                      );
+                      inpuRegisterContainer.style.transition =
                         'height 1s ease, top 1s ease, opacity 1s ease';
-                      inputContainer.style.display = 'block';
                       setTimeout(() => {
-                        inputContainer.style.height = '332px';
-                        inputContainer.style.top = 'calc(50% + 170px)';
-                        inputContainer.style.opacity = 1;
+                        inpuRegisterContainer.style.height = '10px';
+                        inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                        inpuRegisterContainer.style.opacity = 0;
                       }, 100);
-                    }, 300);
-                  }
-                })
-                .catch((error) => {
-                  console.error('Error:', error);
-                });
+                      setTimeout(() => {
+                        inpuRegisterContainer.style.display = 'none';
+                      }, 1000);
+                      setTimeout(() => {
+                        const canvas = document.getElementById('flappy-canvas');
+                        document.getElementById('background_blur').style.opacity = 0.37;
+                        canvas.style.transition = 'filter 0.6s ease';
+                        canvas.style.filter = 'blur(2px)';
+                        const inputContainer = document.querySelector('.input-container');
+                        document.getElementById('control-button').style.transition =
+                          'opacity 2s ease';
+                        document.getElementById('control-button').style.opacity = 1;
+                        document.getElementById('control-button').style.display = 'flex';
+                        inputContainer.style.transition =
+                          'height 1s ease, top 1s ease, opacity 1s ease';
+                        inputContainer.style.display = 'block';
+                        setTimeout(() => {
+                          inputContainer.style.height = '332px';
+                          inputContainer.style.top = 'calc(50% + 170px)';
+                          inputContainer.style.opacity = 1;
+                        }, 100);
+                      }, 300);
+                    }
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+              }
             }
           }, 300);
         }
