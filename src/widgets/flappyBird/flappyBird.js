@@ -1053,6 +1053,22 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
               document.getElementById('competition-phone-error').style.backgroundColor =
                 'transparent';
             }
+
+            if (phone?.value === '' || (phone?.value === null && this.customer === 'SaludSA')) {
+              console.log('aaa');
+              document.getElementById('competition-phone-error').innerText =
+                'Para continuar debes agregar el número de teléfono.';
+              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+            }
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV'
@@ -1070,21 +1086,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                 'transparent';
               document.getElementById('competition-phone-error').innerText = '';
               document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
-            }
-            if (phone?.value === '' || (phone?.value === null && this.customer === 'SaludSA')) {
-              console.log('aaa');
-              document.getElementById('competition-phone-error').innerText =
-                'Para continuar debes agregar el número de teléfono.';
-              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
-              document.getElementById('competition-name-error').innerText = '';
-              document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
                 'transparent';
             }
             if (
@@ -1116,24 +1117,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
               (phone?.value === '' || phone?.value === null) &&
               this.customer === 'SaludSA'
             ) {
-              document.getElementById('competition-name-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : this.customer === 'SaludSA'
-                  ? 'Para continuar debes agregar el nombre de usuario.'
-                  : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-              document.getElementById('competition-email-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : this.customer === 'SaludSA'
-                  ? 'Para continuar debes agregar el correo electrónico.'
-                  : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-
-              document.getElementById('competition-phone-error').innerText =
-                'Para continuar debes agregar el número de teléfono.';
-              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
             } else {
               if (
                 (this.showCompetitiveRegistration === 'competition' ||
