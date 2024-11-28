@@ -1310,7 +1310,8 @@ export class DidYouKnowContainer {
           ? `<div class='image-container-text'><a href="${
               this.prop === 'Pegasas'
                 ? this.collectablesLinks[index]
-                : this.prop === 'Pigu.lt' && link.url
+                : this.prop === 'Pigu.lt' &&
+                  link.url + '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Black_Friday'
             }" target="_blank" style="color: white; text-decoration: underline;"><p style="margin-left:10px;margin-right:10px;max-width:280px;line-height:10px;">${
               this.prop === 'Pegasas'
                 ? this.collectablesLinks[index]
