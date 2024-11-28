@@ -1026,6 +1026,8 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
+            const phone = document.querySelector('.boomio-competition-phone-input-field');
+            const phoneValue = phone?.value?.trim();
 
             if (
               (this.showCompetitiveRegistration === 'competition' ||
@@ -1039,6 +1041,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                   user_email: emailInput?.value,
                   user_name: playerNameInput?.value,
                   game_code: this.game_code,
+                  ...(phoneValue ? { phone: phoneValue } : {}),
                 })
                 .then((response) => {
                   if (response.success === false) {
