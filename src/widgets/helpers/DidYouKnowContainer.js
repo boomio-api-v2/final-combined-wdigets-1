@@ -1300,11 +1300,9 @@ export class DidYouKnowContainer {
           this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''
         }">
         <div id="image-${this.prop === 'Pigu.lt' ? globalIndex : index}" style="max-width:200px;">
-        <img class='image-container' style='opacity:1;width: 100%; height: auto; object-fit: contain;max-width:${
+        <img class='image-container' style='opacity:1;width: 100%; height: auto; object-fit: contain;max-height:${
           this.prop === 'Pigu.lt' ? '100px' : '70px'
-        };max-height:${
-        this.prop === 'Pigu.lt' ? '100px' : '70px'
-      };' src=${item} alt="Scoreboard Image" >
+        };' src=${item} alt="Scoreboard Image" >
         
       ${
         (this.prop === 'Pegasas' && this.collectablesLinks[index]) ||
