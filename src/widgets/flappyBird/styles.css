@@ -85,7 +85,7 @@
   opacity:0;
   z-index: 3;
 position: absolute;
-top : calc(50% - 280px);
+top : calc(50% - 290px);
 left :calc(50% - 110px);
 transform : translate(-50%, -50%);
 display:flex;
@@ -98,7 +98,7 @@ flex-direction: column;
   opacity:0;
   z-index: 3;
 position: absolute;
-top : calc(50% - 280px);
+top : calc(50% - 290px);
 left :calc(50% + 110px);
 transform : translate(-50%, -50%);
 display:flex;

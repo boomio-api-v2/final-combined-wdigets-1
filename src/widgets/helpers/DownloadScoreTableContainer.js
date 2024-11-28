@@ -82,7 +82,7 @@ export class DownloadScoreTableContainer {
     } </div>
 <div style="width:100%;text-align: center; color: white; font-size: ${
             this.prop === 'SaludSA' ? '32px' : '42px'
-          }; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
+          }; font-family: Montserrat;line-height:32px; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
     ${
       this.prop === 'SaludSA'
         ? this.currentScore >= 9999

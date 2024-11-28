@@ -97,12 +97,15 @@ flex-direction: column;
   flex-direction: column;
   }
 }
+
 @media (max-height: 600px) {
   .boomio-score-input-container{
     top : calc(50% - 240px);
 
   }
 }
+
+
 
 .boomio-life-input-container{
   transition :opacity 0.8s ease;
