@@ -588,6 +588,9 @@ ${
     containerDiv.setAttribute('id', 'competition-table-container-pigu');
     containerDiv.style.background = 'none';
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    this.campaignUrlProp = urlParams.get('campaign_url');
 
     containerDiv.style.width =
       document.body.offsetWidth < 426
@@ -598,23 +601,36 @@ ${
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 100px; position: absolute; text-align: center; color: ${'white'}; font-size: ${
-      this.isMobile ? '34px' : '40px'
+      this.isMobile ? '30px' : '40px'
     }; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
-      this.language === 'LV'
-        ? 'TAVAS UZVARAS'
-        : this.language === 'RU'
-        ? 'ТВОИ ПОБЕДЫ'
-        : this.language === 'EE'
-        ? 'SINU VÕIDUD'
-        : this.language === 'ET'
-        ? 'TULEMUSED'
-        : this.language === 'ES'
-        ? 'RESULTADOS'
-        : this.language === 'FI'
-        ? 'VOITTOSI'
-        : this.language === 'EN'
-        ? 'YOUR WINS'
-        : 'TAVO LAIMĖJIMAI'
+      this.language === 'ET' &&
+      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+        ? 'Avasta Kaup24.ee parimaid ostudiile! '
+        : this.language === 'RU' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? 'Открой для себя лучшие предложения Kaup24!'
+        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+        ? 'Atrask geriausius Pigu.lt pasiūlymus!'
+        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+        ? 'Открой для себя лучшие предложения Pigu.lt!'
+        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? 'Löydä parhaat diilit Hobbyhall.fi-verkkokaupasta!'
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? 'Atklāj labākos 220.lv piedāvājumus!'
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? 'Открой для себя лучшие предложения 220.lv!'
+        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+        ? 'Discover the best Pigu.lt deals!'
+        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? 'Discover the best Hobbyhall.fi deals!'
+        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+        ? 'Discover the best 220.lv deals!'
+        : this.language === 'EN' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? 'Discover the best Kaup24 deals!'
+        : ''
     }</div>
       
       <div class="boomio-scoreboard-text">
