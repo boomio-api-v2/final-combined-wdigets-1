@@ -601,7 +601,7 @@ ${
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: 100px; position: absolute; text-align: center; color: ${'white'}; font-size: ${
-      this.isMobile ? '24px' : '40px'
+      this.isMobile ? '24px' : '34px'
     }; font-family: Georama;line-height:32px; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
