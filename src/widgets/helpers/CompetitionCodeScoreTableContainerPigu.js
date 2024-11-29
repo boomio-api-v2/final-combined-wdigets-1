@@ -335,7 +335,9 @@ export class CompetitionCodeScoreTableContainerPigu {
         : '700';
 
     let scoreboardText = `
-      ${`<div style="width:100%; top: 210px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight};  word-wrap: break-word">${
+      ${`<div style="display:${
+        this.prop === 'Pigu.lt ' ? 'none' : 'none'
+      };width:100%; top: 210px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight};  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'Congratulations!'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
@@ -368,7 +370,9 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Tähistage suve kuumimat kuud ja võitke'
           : 'Sveikiname!'
       }</div>
-            <div style="width:100%; top: 230px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
+            <div style="display:${
+              this.prop === 'Pigu.lt ' ? 'none' : 'none'
+            };width:100%; top: 230px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'Today, you`ve won a discount code for the Pigu.lt website.'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
