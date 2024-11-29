@@ -902,7 +902,7 @@ ${
               this.isSmallMobile ? '7px' : this.isMobile ? '9px' : '10px'
             };text-align:center;top:528px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
       ${
-        this.prop === 'Pigu.lt' && false
+        this.prop === 'Pigu.lt'
           ? this.language === 'EN'
             ? 'Only today!'
             : this.language === 'LV'
