@@ -151,11 +151,19 @@ class BoomioService extends UserService {
     }
     const { user_session, current_page_url } = this;
 
-    const request_data = {
+    // Prepare the raw request body
+    const rawRequestBody = {
       user_session,
       current_page_url,
       extra_data,
     };
+
+    const randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+
+    // Encode the body
+    const encodedBody = btoa(JSON.stringify(rawRequestBody));
+
+    const finalRequestBody = { body: randomLetter + encodedBody };
 
     return new Promise(async (resolve) => {
       const rawResponse = await fetch(newLinkBoomio, {
@@ -163,7 +171,7 @@ class BoomioService extends UserService {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(request_data),
+        body: JSON.stringify(finalRequestBody), // Use the transformed body
       });
       resolve(rawResponse.json());
     });
