@@ -854,7 +854,11 @@ class FlappyBird {
 <span class="numbers__window">
 <span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
 </span>
-</div>
+
+<span class="numbers__window">
+
+<span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
+</span></div>
 
 <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
 ${`<div style="${

@@ -258,7 +258,10 @@ cursor:pointer;
   animation-iteration-count: 5;  
   display:none;
 }
-
+.numbers__window__digit--6 {
+	animation-iteration-count: 5;  
+	display:none;
+  }
 .button_background{
   position: absolute;
   top:-10px;

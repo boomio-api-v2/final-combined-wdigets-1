@@ -650,11 +650,11 @@ class DoodleWidget {
 
       const scoreString = this.currentScore.toString();
 
-      const initialMargin = 170;
+      const initialMargin = 200;
       const scoreLength = this.currentScore.toString().length;
+
       const newMarginLeft = initialMargin - 30 * scoreLength;
       numbers.style.marginLeft = `${newMarginLeft}px`;
-
       // Determine the number of leading zeros to hide
       let leadingZeros = 0;
       while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
@@ -780,7 +780,7 @@ class DoodleWidget {
     else if (this.player.y + this.player.height > this.height) {
       this.showGoMenu();
 
-      this.player.isDead = 'lol';
+      this.player.isDead = 'yes';
     }
   };
 
@@ -1050,7 +1050,7 @@ class DoodleWidget {
     if (
       this.base.y > this.height &&
       this.player.y + this.player.height > this.height &&
-      this.player.isDead != 'lol'
+      this.player.isDead != 'yes'
     )
       this.player.isDead = true;
 
@@ -1393,6 +1393,10 @@ ${
 </span>
 <span class="numbers__window">
 <span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
+</span>
+<span class="numbers__window">
+
+<span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
 </span>
 </div>
 
