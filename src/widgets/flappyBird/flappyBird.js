@@ -638,7 +638,7 @@ class FlappyBird {
             // Update the score digits content
             const scoreString = this.currentScore.toString();
 
-            const initialMargin = 170;
+            const initialMargin = 200;
             const scoreLength = this.currentScore.toString().length;
             const newMarginLeft = initialMargin - 30 * scoreLength;
             numbers.style.marginLeft = `${newMarginLeft}px`;
