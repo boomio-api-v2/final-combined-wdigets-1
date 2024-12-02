@@ -153,25 +153,26 @@
   }
   
   .numbers__window__digit--1 {
-	animation-iteration-count: 25;
+	animation-iteration-count: 30;
 	display:none;
   }
   .numbers__window__digit--2 {
-	animation-iteration-count: 20; 
+	animation-iteration-count: 25; 
 	 display:none;
   }
   .numbers__window__digit--3 {
-	animation-iteration-count: 15; 
+	animation-iteration-count: 20; 
 	 display:none;
   }
   .numbers__window__digit--4 {
-	animation-iteration-count: 10;  
+	animation-iteration-count: 15;  
 	display:none;
   }
   .numbers__window__digit--5 {
+	animation-iteration-count: 10;  
+	display:none;
+  }
+  .numbers__window__digit--6 {
 	animation-iteration-count: 5;  
 	display:none;
   }
-
-
- 
