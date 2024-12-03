@@ -1960,7 +1960,7 @@ ${
         this.prop === 'Pigu.lt' ? '#DFFC38' : 'white'
       }; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
-    }; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+    }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.prop === 'Pigu.lt'
         ? this.language === 'EN'
           ? 'HAVE YOU SEEN THE TOP DEALS?'

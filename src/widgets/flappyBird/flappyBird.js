@@ -1160,7 +1160,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                       this.customer === 'SaludSA'
                         ? new Date().toISOString()
                         : playerNameInput?.value,
-                    game_code: this.game_code,
                   })
                   .then((response) => {
                     if (response.success === false) {
