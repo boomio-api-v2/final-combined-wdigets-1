@@ -1707,7 +1707,7 @@ export class DidYouKnowContainer {
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
     if (!this.containerDiv) return;
     const currentDate = new Date();
-    const startDate = new Date('2024-11-29'); // Set the start date as November 26, 2024
+    const startDate = new Date('2024-12-03'); // Set the start date as November 26, 2024
     const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)); // Calculate days since start date
 
     // Determine the day index (0 for the first day, 1 for the second, 2 for the third, and then repeat)
