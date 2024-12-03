@@ -722,7 +722,7 @@ class DoodleWidget {
         }
         if (this.showCompetitiveRegistration) {
           let competitionTableContainer = '';
-          if (this.customer === 'Pigu.lt' && false) {
+          if (this.customer === 'Pigu.lt') {
             competitionTableContainer = document.querySelector('.did-you-know-container');
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');

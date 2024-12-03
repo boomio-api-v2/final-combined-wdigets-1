@@ -98,6 +98,9 @@ export const CorepetituslappyScore =
 export const SaludSAIntro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/SaludSA/SaludSAIntro.png';
 
+export const SaludSARecord =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/SaludSA/newRecord.png';
+
 export const SaludSABackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/SaludSA/SaludSABackground.png';
 export const star =

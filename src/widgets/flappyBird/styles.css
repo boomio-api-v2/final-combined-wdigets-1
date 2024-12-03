@@ -258,3 +258,8 @@ cursor:pointer;
   display:none;
   top:50%;
 }
+
+.hbspt-form{
+  max-height: 200px;
+  overflow: auto;
+}
