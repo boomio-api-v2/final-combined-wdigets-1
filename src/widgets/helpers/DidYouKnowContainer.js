@@ -116,6 +116,24 @@ import {
   item25Pigu,
   item26Pigu,
   item27Pigu,
+  item28Pigu,
+  item29Pigu,
+  item30Pigu,
+  item31Pigu,
+  item32Pigu,
+  item33Pigu,
+  item34Pigu,
+  item35Pigu,
+  item36Pigu,
+  item37Pigu,
+  item38Pigu,
+  item39Pigu,
+  item40Pigu,
+  item41Pigu,
+  item42Pigu,
+  item43Pigu,
+  item44Pigu,
+  item45Pigu,
   closeDidYouKnow,
 } from './constants';
 
@@ -162,6 +180,24 @@ export class DidYouKnowContainer {
         item25Pigu,
         item26Pigu,
         item27Pigu,
+        item28Pigu,
+        item29Pigu,
+        item30Pigu,
+        item31Pigu,
+        item32Pigu,
+        item33Pigu,
+        item34Pigu,
+        item35Pigu,
+        item36Pigu,
+        item37Pigu,
+        item38Pigu,
+        item39Pigu,
+        item40Pigu,
+        item41Pigu,
+        item42Pigu,
+        item43Pigu,
+        item44Pigu,
+        item45Pigu,
       ];
     } else if (this.prop && this.prop.includes('Plastic')) {
       this.collectables = [
@@ -1671,11 +1707,11 @@ export class DidYouKnowContainer {
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
     if (!this.containerDiv) return;
     const currentDate = new Date();
-    const startDate = new Date('2024-12-02'); // Set the start date as November 26, 2024
+    const startDate = new Date('2024-12-03'); // Set the start date as November 26, 2024
     const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)); // Calculate days since start date
 
     // Determine the day index (0 for the first day, 1 for the second, 2 for the third, and then repeat)
-    const dayIndex = dayDiff % 3; // This will give 0, 1, or 2, and repeat every 3 days
+    const dayIndex = dayDiff % 5; // This will give 0, 1, or 2, and repeat every 3 days
 
     // Determine which part of collectables to show based on the day index
     const startIndex = dayIndex * 9;
@@ -1924,7 +1960,7 @@ ${
         this.prop === 'Pigu.lt' ? '#DFFC38' : 'white'
       }; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
-    }; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+    }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.prop === 'Pigu.lt'
         ? this.language === 'EN'
           ? 'HAVE YOU SEEN THE TOP DEALS?'

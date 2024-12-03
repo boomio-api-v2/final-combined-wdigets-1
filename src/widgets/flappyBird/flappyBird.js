@@ -49,6 +49,7 @@ import {
   newRecordEn,
   SaludSAIntro,
   SaludSABackground,
+  SaludSARecord,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -202,20 +203,22 @@ class FlappyBird {
               checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
             });
             setTimeout(() => {
-              const canvas = document.getElementById('flappy-canvas');
-              document.getElementById('background_blur').style.opacity = 0.37;
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
+              if (this.customer !== 'SaludSA') {
+                const canvas = document.getElementById('flappy-canvas');
+                document.getElementById('background_blur').style.opacity = 0.37;
+                canvas.style.transition = 'filter 0.6s ease';
+                canvas.style.filter = 'blur(2px)';
 
-              const inpuRegisterContainer = document.querySelector('.input-register-container');
-              inpuRegisterContainer.style.transition =
-                'height 1s ease, top 1s ease, opacity 1s ease';
-              inpuRegisterContainer.style.display = 'block';
-              setTimeout(() => {
-                inpuRegisterContainer.style.height = '528px';
-                inpuRegisterContainer.style.top = 'calc(50% + 74px)';
-                inpuRegisterContainer.style.opacity = 1;
-              }, 100);
+                const inpuRegisterContainer = document.querySelector('.input-register-container');
+                inpuRegisterContainer.style.transition =
+                  'height 1s ease, top 1s ease, opacity 1s ease';
+                inpuRegisterContainer.style.display = 'block';
+                setTimeout(() => {
+                  inpuRegisterContainer.style.height = '528px';
+                  inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+                  inpuRegisterContainer.style.opacity = 1;
+                }, 100);
+              }
             }, 300);
           } else {
             setTimeout(() => {
@@ -480,7 +483,6 @@ class FlappyBird {
                           const competitionRestart =
                             document.getElementById('boomio-game-play-again');
                           competitionRestart.addEventListener('click', clickEventHandlerResetGame);
-                          console.log('aa');
                         }
 
                         if (this.showCompetitiveRegistration === 'competition') {
@@ -758,6 +760,7 @@ class FlappyBird {
 
     myCanvas.innerHTML = `    
     <div class="game-container game-container-flappy">
+    <div id="hubspot-form-container" style="position:absolute;z-index:999999999999999999999999999999"></div>
 
     ${
       this.showCompetitiveRegistration === 'competition' ||
@@ -827,7 +830,9 @@ class FlappyBird {
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      this.customer === 'Fpro'
+      this.customer === 'SaludSA'
+        ? SaludSARecord
+        : this.customer === 'Fpro'
         ? newRecordEn
         : this.language === 'EE'
         ? newRecordEE
@@ -964,6 +969,25 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       } height="668" class="flappy-game"></canvas>
     </div>
   `;
+    if (this.customer === 'SaludSA') {
+      const script = document.createElement('script');
+      script.setAttribute('charset', 'utf-8');
+      script.setAttribute('type', 'text/javascript');
+      script.src = '//js.hsforms.net/forms/embed/v2.js';
+
+      script.onload = () => {
+        // Set a timeout of 3 seconds before running the form creation
+        setTimeout(() => {
+          hbspt.forms.create({
+            portalId: '7925267',
+            formId: '28e79f2a-0a97-42ec-8a6d-a86db22e6bfa',
+            target: '#hubspot-form-container',
+          });
+        }, 3000); // 3000ms = 3 seconds
+      };
+
+      document.body.appendChild(script);
+    }
 
     widgetHtmlService.container.appendChild(myCanvas);
 
@@ -1027,114 +1051,115 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           setTimeout(() => {
-            const emailInput = document.querySelector('.boomio-competition-email-input-field');
-            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-            const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
-            const phone = document.querySelector('.boomio-competition-phone-input-field');
-            const phoneValue = phone?.value?.trim();
+            if (this.customer !== 'SaludSA') {
+              const emailInput = document.querySelector('.boomio-competition-email-input-field');
+              const playerNameInput = document.querySelector(
+                '.boomio-competition-name-input-field',
+              );
+              const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
+              const phone = document.querySelector('.boomio-competition-phone-input-field');
+              const phoneValue = phone?.value?.trim();
 
-            if (!checkboxChange) {
-              document.getElementById('competition-checkbox-error').innerText =
-                this.language === 'LV'
-                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                  : this.customer === 'SaludSA'
-                  ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
-                  : 'Norint tęsti, privaloma sutikti su privatumo politika.';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                '#FFBABA';
-              document.getElementById('competition-checkbox-error').style.display = 'block';
-              document.getElementById('competition-checkbox-error').style.height = '14px';
+              if (!checkboxChange) {
+                document.getElementById('competition-checkbox-error').innerText =
+                  this.language === 'LV'
+                    ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                    : this.customer === 'SaludSA'
+                    ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
+                    : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                document.getElementById('competition-checkbox-error').style.backgroundColor =
+                  '#FFBABA';
+                document.getElementById('competition-checkbox-error').style.display = 'block';
+                document.getElementById('competition-checkbox-error').style.height = '14px';
 
-              document.getElementById('competition-name-error').innerText = '';
+                document.getElementById('competition-name-error').innerText = '';
 
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
+                document.getElementById('competition-name-error').style.backgroundColor =
+                  'transparent';
 
-              document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-phone-error').innerText = '';
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
-            }
+                document.getElementById('competition-email-error').innerText = '';
+                document.getElementById('competition-email-error').style.backgroundColor =
+                  'transparent';
+                document.getElementById('competition-phone-error').innerText = '';
+                document.getElementById('competition-phone-error').style.backgroundColor =
+                  'transparent';
+              }
 
-            if (phone?.value === '' || (phone?.value === null && this.customer === 'SaludSA')) {
-              console.log('aaa');
-              document.getElementById('competition-phone-error').innerText =
-                'Para continuar debes agregar el número de teléfono.';
-              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
-              document.getElementById('competition-name-error').innerText = '';
-              document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
-            }
-            if (emailInput?.value === '' || emailInput?.value === null) {
-              document.getElementById('competition-email-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : this.customer === 'SaludSA'
-                  ? 'Para continuar debes agregar el correo electrónico.'
-                  : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-              document.getElementById('competition-name-error').innerText = '';
+              if (phone?.value === '' || (phone?.value === null && this.customer === 'SaludSA')) {
+                document.getElementById('competition-phone-error').innerText =
+                  'Para continuar debes agregar el número de teléfono.';
+                document.getElementById('competition-phone-error').style.backgroundColor =
+                  '#FFBABA';
+                document.getElementById('competition-name-error').innerText = '';
+                document.getElementById('competition-email-error').innerText = '';
+                document.getElementById('competition-email-error').style.backgroundColor =
+                  'transparent';
+                document.getElementById('competition-name-error').style.backgroundColor =
+                  'transparent';
+                document.getElementById('competition-checkbox-error').innerText = '';
+                document.getElementById('competition-checkbox-error').style.backgroundColor =
+                  'transparent';
+              }
+              if (emailInput?.value === '' || emailInput?.value === null) {
+                document.getElementById('competition-email-error').innerText =
+                  this.language === 'LV'
+                    ? 'Obligāti aizpildāmie lauki.'
+                    : this.customer === 'SaludSA'
+                    ? 'Para continuar debes agregar el correo electrónico.'
+                    : 'Norint tęsti privaloma užpildyti.';
+                document.getElementById('competition-email-error').style.backgroundColor =
+                  '#FFBABA';
+                document.getElementById('competition-name-error').innerText = '';
 
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-phone-error').innerText = '';
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
-            }
-            if (
-              playerNameInput?.value === '' ||
-              playerNameInput?.value === null ||
-              (phone?.value === null && this.customer === 'SaludSA')
-            ) {
-              document.getElementById('competition-name-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : this.customer === 'SaludSA'
-                  ? 'Para continuar debes agregar el nombre de usuario.'
-                  : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+                document.getElementById('competition-name-error').style.backgroundColor =
+                  'transparent';
+                document.getElementById('competition-checkbox-error').innerText = '';
+                document.getElementById('competition-checkbox-error').style.backgroundColor =
+                  'transparent';
+                document.getElementById('competition-phone-error').innerText = '';
+                document.getElementById('competition-phone-error').style.backgroundColor =
+                  'transparent';
+              }
+              if (
+                playerNameInput?.value === '' ||
+                playerNameInput?.value === null ||
+                (phone?.value === null && this.customer === 'SaludSA')
+              ) {
+                document.getElementById('competition-name-error').innerText =
+                  this.language === 'LV'
+                    ? 'Obligāti aizpildāmie lauki.'
+                    : this.customer === 'SaludSA'
+                    ? 'Para continuar debes agregar el nombre de usuario.'
+                    : 'Norint tęsti privaloma užpildyti.';
+                document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
-              document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-phone-error').innerText = '';
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
-            }
-            if (
-              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-              (phone?.value === '' || phone?.value === null) &&
-              this.customer === 'SaludSA'
-            ) {
+                document.getElementById('competition-email-error').innerText = '';
+                document.getElementById('competition-email-error').style.backgroundColor =
+                  'transparent';
+                document.getElementById('competition-checkbox-error').innerText = '';
+                document.getElementById('competition-checkbox-error').style.backgroundColor =
+                  'transparent';
+                document.getElementById('competition-phone-error').innerText = '';
+                document.getElementById('competition-phone-error').style.backgroundColor =
+                  'transparent';
+              }
             } else {
               if (
-                (this.showCompetitiveRegistration === 'competition' ||
+                this.customer === 'SaludSA' ||
+                ((this.showCompetitiveRegistration === 'competition' ||
                   this.showCompetitiveRegistration === 'points' ||
                   this.showCompetitiveRegistration === 'collectable') &&
-                checkboxChange
+                  checkboxChange)
               ) {
                 boomioService
                   .signal('', 'user_info', {
                     emails_consent: this.checkboxChange,
-                    user_email: emailInput?.value,
-                    user_name: playerNameInput?.value,
-                    game_code: this.game_code,
-                    ...(phoneValue ? { phone: phoneValue } : {}),
+                    user_email:
+                      this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+                    user_name:
+                      this.customer === 'SaludSA'
+                        ? new Date().toISOString()
+                        : playerNameInput?.value,
                   })
                   .then((response) => {
                     if (response.success === false) {
@@ -1228,8 +1253,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       };
 
       const clickEventHandlerResetGame = () => {
-        console.log('sadasdsadasas');
-
         const competitionRestart = document.getElementById('boomio-game-play-again');
         competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
 
@@ -1280,10 +1303,53 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
+      if (this.customer === 'SaludSA') {
+        const waitForIframe = setInterval(() => {
+          const iframe = document.getElementById('hs-form-iframe-0');
+
+          const form = document.querySelector('hbspt-form');
+          if (form) {
+            iframe.style.maxHeight = '400px';
+            iframe.style.overflow = 'auto';
+          }
+          if (iframe) {
+            clearInterval(waitForIframe);
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const form = iframeDoc.querySelector('form');
+            if (form) {
+              console.log(form);
+              form.style.height = '500px';
+              form.style.overflow = 'auto';
+
+              // Observer for changes within the iframe's document
+              const observer = new MutationObserver((mutationsList) => {
+                for (const mutation of mutationsList) {
+                  if (mutation.type === 'childList') {
+                    // Check if the "Gracias por enviar el formulario" message is in the iframe's document
+                    const message = iframeDoc.body.innerText || iframeDoc.body.textContent;
+                    if (message.includes('Gracias por enviar el formulario')) {
+                      // Find and remove the hubspot-form-container element
+                      const formContainer = document.getElementById('hubspot-form-container');
+                      formContainer.style.display = 'none';
+
+                      // Call showRules when the message is found
+                      clickEventHandlerShowRules();
+                      observer.disconnect(); // Stop observing once the message is found
+                    }
+                  }
+                }
+              });
+
+              // Configure the observer to watch for changes within the iframe's document
+              observer.observe(iframeDoc.body, { childList: true, subtree: true });
+            }
+          }
+        }, 100);
+      }
+
       const competitionRestart = document.getElementById('boomio-game-play-again');
 
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
-      console.log(document.getElementById('boomio-game-play-again'));
     }
 
     document.getElementById('startButtonClick').addEventListener('click', () => {

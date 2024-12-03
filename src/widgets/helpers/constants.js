@@ -252,59 +252,96 @@ export const close = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/whiteClose.png',
 ];
 
-export const item1Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(0).png';
-export const item2Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(1).png';
-export const item3Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(2).png';
-export const item4Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(3).png';
-export const item5Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(4).png';
-export const item6Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(5).png';
-export const item7Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(6).png';
-export const item8Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(7).png';
-export const item9Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(8).png';
-export const item10Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(9).png';
-export const item11Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(10).png';
-export const item12Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(11).png';
-export const item13Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(12).png';
-export const item14Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(13).png';
-export const item15Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(14).png';
-export const item16Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(15).png';
-export const item17Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(16).png';
-export const item18Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(17).png';
-export const item19Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(18).png';
-export const item20Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(19).png';
-export const item21Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(20).png';
-export const item22Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(21).png';
-export const item23Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(22).png';
-export const item24Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(23).png';
-export const item25Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(24).png';
-export const item26Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(25).png';
-export const item27Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Pigu%20product%20(26).png';
 export const closeDidYouKnow =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/close.png';
+
+export const item1Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-1.png';
+export const item2Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-2.png';
+export const item3Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-3.png';
+export const item4Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-4.png';
+export const item5Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-5.png';
+export const item6Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-6.png';
+export const item7Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-7.png';
+export const item8Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-8.png';
+export const item9Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-9.png';
+export const item10Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-10.png';
+export const item11Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-11.png';
+export const item12Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-12.png';
+export const item13Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-13.png';
+export const item14Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-14.png';
+export const item15Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-15.png';
+export const item16Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-16.png';
+export const item17Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-17.png';
+export const item18Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-18.png';
+export const item19Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-19.png';
+export const item20Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-20.png';
+export const item21Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-21.png';
+export const item22Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-22.png';
+export const item23Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-23.png';
+export const item24Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-24.png';
+export const item25Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-25.png';
+export const item26Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-26.png';
+export const item27Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-27.png';
+export const item28Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-28.png';
+export const item29Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-29.png';
+export const item30Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-30.png';
+export const item31Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-31.png';
+export const item32Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-32.png';
+export const item33Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-33.png';
+export const item34Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-34.png';
+export const item35Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-35.png';
+export const item36Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-36.png';
+export const item37Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-37.png';
+export const item38Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-38.png';
+export const item39Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-39.png';
+export const item40Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-40.png';
+export const item41Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-41.png';
+export const item42Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-42.png';
+export const item43Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-43.png';
+export const item44Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-44.png';
+export const item45Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-45.png';
