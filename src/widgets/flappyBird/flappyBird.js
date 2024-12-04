@@ -1304,46 +1304,80 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
       if (this.customer === 'SaludSA') {
+        console.log('Customer is SaludSA, starting process...');
+
         const waitForIframe = setInterval(() => {
+          console.log('Checking for iframe...');
+
           const iframe = document.getElementById('hs-form-iframe-0');
+          console.log('Iframe:', iframe);
 
-          const form = document.querySelector('hbspt-form');
-          if (form) {
-            iframe.style.maxHeight = '400px';
-            iframe.style.overflow = 'auto';
+          if (!iframe) {
+            console.log('Iframe not found, retrying...');
+            return; // Exit this iteration and wait for the next interval tick
           }
-          if (iframe) {
-            clearInterval(waitForIframe);
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            const form = iframeDoc.querySelector('form');
-            if (form) {
-              console.log(form);
-              form.style.height = '500px';
-              form.style.overflow = 'auto';
 
-              // Observer for changes within the iframe's document
-              const observer = new MutationObserver((mutationsList) => {
-                for (const mutation of mutationsList) {
-                  if (mutation.type === 'childList') {
-                    // Check if the "Gracias por enviar el formulario" message is in the iframe's document
-                    const message = iframeDoc.body.innerText || iframeDoc.body.textContent;
-                    if (message.includes('Gracias por enviar el formulario')) {
-                      // Find and remove the hubspot-form-container element
-                      const formContainer = document.getElementById('hubspot-form-container');
-                      formContainer.style.display = 'none';
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          console.log('Iframe document:', iframeDoc);
 
-                      // Call showRules when the message is found
-                      clickEventHandlerShowRules();
-                      observer.disconnect(); // Stop observing once the message is found
-                    }
+          if (!iframeDoc) {
+            console.error('Unable to access iframe document, retrying...');
+            return;
+          }
+
+          const form = iframeDoc.querySelector('form');
+          console.log('Inner form inside iframe:', form);
+
+          if (!form) {
+            console.log('Form not found inside iframe, retrying...');
+            return;
+          }
+
+          console.log('Form found inside iframe, updating styles...');
+          form.style.height = '500px';
+          form.style.overflow = 'auto';
+
+          // Stop checking once styles are updated
+          console.log('Stopping interval after updating styles...');
+          clearInterval(waitForIframe);
+
+          // Observer for changes within the iframe's document
+          const observer = new MutationObserver((mutationsList) => {
+            console.log('MutationObserver triggered, mutations:', mutationsList);
+
+            for (const mutation of mutationsList) {
+              if (mutation.type === 'childList') {
+                console.log('Child list mutation detected, checking for message...');
+
+                const message = iframeDoc.body.innerText || iframeDoc.body.textContent;
+                console.log('Iframe document body text:', message);
+
+                if (message.includes('Gracias por enviar el formulario')) {
+                  console.log('Submission confirmation message detected!');
+
+                  // Find and remove the hubspot-form-container element
+                  const formContainer = document.getElementById('hubspot-form-container');
+                  console.log('HubSpot form container:', formContainer);
+
+                  if (formContainer) {
+                    console.log('Hiding form container...');
+                    formContainer.style.display = 'none';
+                  } else {
+                    console.error('HubSpot form container not found.');
                   }
-                }
-              });
 
-              // Configure the observer to watch for changes within the iframe's document
-              observer.observe(iframeDoc.body, { childList: true, subtree: true });
+                  console.log('Calling clickEventHandlerShowRules...');
+                  clickEventHandlerShowRules();
+
+                  console.log('Disconnecting MutationObserver...');
+                  observer.disconnect(); // Stop observing once the message is found
+                }
+              }
             }
-          }
+          });
+
+          console.log('Setting up MutationObserver...');
+          observer.observe(iframeDoc.body, { childList: true, subtree: true });
         }, 100);
       }
 
