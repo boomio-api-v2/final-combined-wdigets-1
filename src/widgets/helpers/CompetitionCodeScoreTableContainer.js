@@ -327,10 +327,10 @@ export class CompetitionCodeScoreTableContainer {
       this.prop === 'LemonGym'
         ? '900'
         : '700';
-
     let scoreboardText = `
       ${
-        (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) || true
+        (this.prop === 'Pegasas' && this.scoreTable?.user_best_place < 20) ||
+        (this.prop === 'Pigu.lt' && this.scoreTable?.user_best_place <= 10)
           ? `<div style="width:100%; top: ${'390px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
