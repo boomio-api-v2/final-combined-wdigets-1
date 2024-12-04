@@ -13,6 +13,10 @@ import { InputContainer } from '../helpers/InputContainer';
 import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 import { PointCopyTableContainer } from '../helpers/PointCopyTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
+import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
+import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { RulesContainer } from '../helpers/RulesContainer';
+import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 
 import {
   close,
@@ -81,6 +85,8 @@ class FlappyBird {
     this.gameCount = 0;
     this.gameEnded = false;
     this.isMobile = window.innerWidth <= 768;
+    this.isMobileHeightSmall = window.innerHeight <= 600;
+
     this.newHighScoreReached = false;
     this.scoreTableContainerInstance;
     const params = new URLSearchParams(window.location.search);
@@ -234,8 +240,10 @@ class FlappyBird {
               inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
               inputContainer.style.display = 'block';
               setTimeout(() => {
-                inputContainer.style.height = '332px';
-                inputContainer.style.top = 'calc(50% + 170px)';
+                inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+                inputContainer.style.top = `calc(50% + ${
+                  this.isMobileHeightSmall ? '110px' : '170px'
+                })`;
                 inputContainer.style.opacity = 1;
               }, 100);
             }, 300);
@@ -916,7 +924,7 @@ ${`<div style="${
 </div>
 
 
-${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
+${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
           document.body.offsetWidth < 418
             ? document.body.offsetWidth < 321
@@ -1042,6 +1050,30 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(didYouKnowContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainerPigu = new RulesContainerPigu(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
+    }
 
     if (
       this.showCompetitiveRegistration === 'competition' ||
@@ -1050,16 +1082,13 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
     ) {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
+          const emailInput = document.querySelector('.boomio-competition-email-input-field');
+          const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+          const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
+          const phone = document.querySelector('.boomio-competition-phone-input-field');
+
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
-              const emailInput = document.querySelector('.boomio-competition-email-input-field');
-              const playerNameInput = document.querySelector(
-                '.boomio-competition-name-input-field',
-              );
-              const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
-              const phone = document.querySelector('.boomio-competition-phone-input-field');
-              const phoneValue = phone?.value?.trim();
-
               if (!checkboxChange) {
                 document.getElementById('competition-checkbox-error').innerText =
                   this.language === 'LV'
@@ -1085,21 +1114,6 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                   'transparent';
               }
 
-              if (phone?.value === '' || (phone?.value === null && this.customer === 'SaludSA')) {
-                document.getElementById('competition-phone-error').innerText =
-                  'Para continuar debes agregar el número de teléfono.';
-                document.getElementById('competition-phone-error').style.backgroundColor =
-                  '#FFBABA';
-                document.getElementById('competition-name-error').innerText = '';
-                document.getElementById('competition-email-error').innerText = '';
-                document.getElementById('competition-email-error').style.backgroundColor =
-                  'transparent';
-                document.getElementById('competition-name-error').style.backgroundColor =
-                  'transparent';
-                document.getElementById('competition-checkbox-error').innerText = '';
-                document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  'transparent';
-              }
               if (emailInput?.value === '' || emailInput?.value === null) {
                 document.getElementById('competition-email-error').innerText =
                   this.language === 'LV'
@@ -1143,110 +1157,110 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
                 document.getElementById('competition-phone-error').style.backgroundColor =
                   'transparent';
               }
-            } else {
-              if (
-                this.customer === 'SaludSA' ||
-                ((this.showCompetitiveRegistration === 'competition' ||
-                  this.showCompetitiveRegistration === 'points' ||
-                  this.showCompetitiveRegistration === 'collectable') &&
-                  checkboxChange)
-              ) {
-                boomioService
-                  .signal('', 'user_info', {
-                    emails_consent: this.checkboxChange,
-                    user_email:
-                      this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
-                    user_name:
-                      this.customer === 'SaludSA'
-                        ? new Date().toISOString()
-                        : playerNameInput?.value,
-                  })
-                  .then((response) => {
-                    if (response.success === false) {
-                      if (response.res_code === 'EMAIL_EXIST') {
-                        document.getElementById('competition-email-error').innerText =
-                          this.customer === 'Fpro'
-                            ? 'This email address already exists. Please use another one.'
-                            : this.language === 'LV'
-                            ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                            : this.customer === 'SaludSA'
-                            ? 'Para continuar debes agregar el correo electrónico.'
-                            : this.language === 'ES'
-                            ? 'Este email ya está en uso. Use otro email.'
-                            : this.language === 'RU'
-                            ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                            : this.language === 'EE'
-                            ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                        document.getElementById('competition-email-error').style.backgroundColor =
-                          '#FFBABA';
+            }
 
-                        document.getElementById('competition-name-error').innerText = '';
+            if (
+              this.customer === 'SaludSA' ||
+              this.showCompetitiveRegistration === 'competition' ||
+              this.showCompetitiveRegistration === 'points' ||
+              this.showCompetitiveRegistration === 'collectable'
+            ) {
+              boomioService
+                .signal('', 'user_info', {
+                  emails_consent: this.checkboxChange,
+                  user_email:
+                    this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+                  user_name:
+                    this.customer === 'SaludSA' ? new Date().toISOString() : playerNameInput?.value,
+                })
+                .then((response) => {
+                  if (response.success === false) {
+                    if (response.res_code === 'EMAIL_EXIST') {
+                      document.getElementById('competition-email-error').innerText =
+                        this.customer === 'Fpro'
+                          ? 'This email address already exists. Please use another one.'
+                          : this.language === 'LV'
+                          ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                          : this.customer === 'SaludSA'
+                          ? 'Para continuar debes agregar el correo electrónico.'
+                          : this.language === 'ES'
+                          ? 'Este email ya está en uso. Use otro email.'
+                          : this.language === 'RU'
+                          ? 'Этот е-мейл адрес уже существует. Используйте другой.'
+                          : this.language === 'EE'
+                          ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        '#FFBABA';
 
-                        document.getElementById('competition-name-error').style.backgroundColor =
-                          'transparent';
-                      } else if (response.res_code === 'NICKNAME_EXIST') {
-                        document.getElementById('competition-name-error').innerText =
-                          this.customer === 'Fpro'
-                            ? 'This nickname already exists. Please use another one.'
-                            : this.language === 'ES'
-                            ? 'Este nickname ya está en uso. Use otro nickname.'
-                            : this.language === 'LV'
-                            ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                            : this.customer === 'SaludSA'
-                            ? 'Para continuar debes agregar el nombre de usuario.'
-                            : this.language === 'RU'
-                            ? 'Этот псевдоним уже существует. Используйте другой.'
-                            : this.language === 'EE'
-                            ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                            : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                        document.getElementById('competition-name-error').style.backgroundColor =
-                          '#FFBABA';
+                      document.getElementById('competition-name-error').innerText = '';
 
-                        document.getElementById('competition-email-error').innerText = '';
-                        document.getElementById('competition-email-error').style.backgroundColor =
-                          'transparent';
-                      }
-                    } else {
-                      this.bestScore = response.user_best_score;
-                      const inpuRegisterContainer = document.querySelector(
-                        '.input-register-container',
-                      );
-                      inpuRegisterContainer.style.transition =
-                        'height 1s ease, top 1s ease, opacity 1s ease';
-                      setTimeout(() => {
-                        inpuRegisterContainer.style.height = '10px';
-                        inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-                        inpuRegisterContainer.style.opacity = 0;
-                      }, 100);
-                      setTimeout(() => {
-                        inpuRegisterContainer.style.display = 'none';
-                      }, 1000);
-                      setTimeout(() => {
-                        const canvas = document.getElementById('flappy-canvas');
-                        document.getElementById('background_blur').style.opacity = 0.37;
-                        canvas.style.transition = 'filter 0.6s ease';
-                        canvas.style.filter = 'blur(2px)';
-                        const inputContainer = document.querySelector('.input-container');
-                        document.getElementById('control-button').style.transition =
-                          'opacity 2s ease';
-                        document.getElementById('control-button').style.opacity = 1;
-                        document.getElementById('control-button').style.display = 'flex';
-                        inputContainer.style.transition =
-                          'height 1s ease, top 1s ease, opacity 1s ease';
-                        inputContainer.style.display = 'block';
-                        setTimeout(() => {
-                          inputContainer.style.height = '332px';
-                          inputContainer.style.top = 'calc(50% + 170px)';
-                          inputContainer.style.opacity = 1;
-                        }, 100);
-                      }, 300);
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        'transparent';
+                    } else if (response.res_code === 'NICKNAME_EXIST') {
+                      document.getElementById('competition-name-error').innerText =
+                        this.customer === 'Fpro'
+                          ? 'This nickname already exists. Please use another one.'
+                          : this.language === 'ES'
+                          ? 'Este nickname ya está en uso. Use otro nickname.'
+                          : this.language === 'LV'
+                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                          : this.customer === 'SaludSA'
+                          ? 'Para continuar debes agregar el nombre de usuario.'
+                          : this.language === 'RU'
+                          ? 'Этот псевдоним уже существует. Используйте другой.'
+                          : this.language === 'EE'
+                          ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        '#FFBABA';
+
+                      document.getElementById('competition-email-error').innerText = '';
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        'transparent';
                     }
-                  })
-                  .catch((error) => {
-                    console.error('Error:', error);
-                  });
-              }
+                  } else {
+                    this.bestScore = response.user_best_score;
+                    const inpuRegisterContainer = document.querySelector(
+                      '.input-register-container',
+                    );
+                    inpuRegisterContainer.style.transition =
+                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.height = '10px';
+                      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                      inpuRegisterContainer.style.opacity = 0;
+                    }, 100);
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.display = 'none';
+                    }, 1000);
+                    setTimeout(() => {
+                      const canvas = document.getElementById('flappy-canvas');
+                      document.getElementById('background_blur').style.opacity = 0.37;
+                      canvas.style.transition = 'filter 0.6s ease';
+                      canvas.style.filter = 'blur(2px)';
+                      const inputContainer = document.querySelector('.input-container');
+                      document.getElementById('control-button').style.transition =
+                        'opacity 2s ease';
+                      document.getElementById('control-button').style.opacity = 1;
+                      document.getElementById('control-button').style.display = 'flex';
+                      inputContainer.style.transition =
+                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      inputContainer.style.display = 'block';
+                      setTimeout(() => {
+                        inputContainer.style.height =
+                          this.customer === 'Pigu.lt' ? '400px' : '332px';
+                        inputContainer.style.top = `calc(50% + ${
+                          this.isMobileHeightSmall ? '110px' : '170px'
+                        })`;
+                        inputContainer.style.opacity = 1;
+                      }, 100);
+                    }, 300);
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
             }
           }, 300);
         }
@@ -1304,21 +1318,14 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
       competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
       if (this.customer === 'SaludSA') {
-        console.log('Customer is SaludSA, starting process...');
-
         const waitForIframe = setInterval(() => {
-          console.log('Checking for iframe...');
-
           const iframe = document.getElementById('hs-form-iframe-0');
-          console.log('Iframe:', iframe);
 
           if (!iframe) {
-            console.log('Iframe not found, retrying...');
             return; // Exit this iteration and wait for the next interval tick
           }
 
           const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-          console.log('Iframe document:', iframeDoc);
 
           if (!iframeDoc) {
             console.error('Unable to access iframe document, retrying...');
@@ -1326,57 +1333,44 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
           }
 
           const form = iframeDoc.querySelector('form');
-          console.log('Inner form inside iframe:', form);
 
           if (!form) {
-            console.log('Form not found inside iframe, retrying...');
             return;
           }
 
-          console.log('Form found inside iframe, updating styles...');
           form.style.height = '500px';
           form.style.overflow = 'auto';
 
           // Stop checking once styles are updated
-          console.log('Stopping interval after updating styles...');
           clearInterval(waitForIframe);
 
           // Observer for changes within the iframe's document
           const observer = new MutationObserver((mutationsList) => {
-            console.log('MutationObserver triggered, mutations:', mutationsList);
-
             for (const mutation of mutationsList) {
               if (mutation.type === 'childList') {
-                console.log('Child list mutation detected, checking for message...');
-
                 const message = iframeDoc.body.innerText || iframeDoc.body.textContent;
-                console.log('Iframe document body text:', message);
 
-                if (message.includes('Gracias por enviar el formulario')) {
-                  console.log('Submission confirmation message detected!');
-
+                if (
+                  message.includes('Gracias por enviar el formulario') ||
+                  message.includes('¡Listo para comenzar el juego!')
+                ) {
                   // Find and remove the hubspot-form-container element
                   const formContainer = document.getElementById('hubspot-form-container');
-                  console.log('HubSpot form container:', formContainer);
 
                   if (formContainer) {
-                    console.log('Hiding form container...');
                     formContainer.style.display = 'none';
                   } else {
                     console.error('HubSpot form container not found.');
                   }
 
-                  console.log('Calling clickEventHandlerShowRules...');
                   clickEventHandlerShowRules();
 
-                  console.log('Disconnecting MutationObserver...');
                   observer.disconnect(); // Stop observing once the message is found
                 }
               }
             }
           });
 
-          console.log('Setting up MutationObserver...');
           observer.observe(iframeDoc.body, { childList: true, subtree: true });
         }, 100);
       }
@@ -1395,7 +1389,9 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
 
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         controlButton.style.transition = 'opacity 0.6s ease';
+
         setTimeout(() => {
+          console.log('aaa');
           inputContainer.style.height = '10px';
           inputContainer.style.top = 'calc(50% + 330px)';
           inputContainer.style.opacity = 0;
@@ -1404,6 +1400,7 @@ ${new InputContainer(this.customer).createInputContainerDiv().outerHTML}
             tutorial.style.display = 'block';
           }
         }, 100);
+
         setTimeout(() => {
           inputContainer.style.display = 'none';
         }, 1000);

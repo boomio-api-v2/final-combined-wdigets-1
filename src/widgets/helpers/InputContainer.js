@@ -10,13 +10,14 @@ export class InputContainer {
     this.config = localStorageService.getDefaultConfig();
 
     this.language = this.config.language ? this.config.language : 'EN';
+
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     this.campaignUrlProp = urlParams.get('campaign_url');
   }
 
-  createInputContainerDiv() {
+  createInputContainerDiv(game) {
     let piguRulesCheckbox = true;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
     const containerDiv = document.createElement('div');
@@ -31,6 +32,7 @@ export class InputContainer {
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
+    this.game = game;
 
     containerDiv.innerHTML = `
 
@@ -136,7 +138,19 @@ export class InputContainer {
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; word-wrap: break-word">
             ${
-              this.prop === 'Pigu.lt' && this.language === 'EN'
+              this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'flappy'
+                ? 'to fly'
+                : this.prop === 'Pigu.lt' && this.language === 'LV' && this.game === 'flappy'
+                ? 'lai lidotu'
+                : this.prop === 'Pigu.lt' && this.language === 'ET' && this.game === 'flappy'
+                ? 'et lennata'
+                : this.prop === 'Pigu.lt' && this.language === 'FI' && this.game === 'flappy'
+                ? 'hypätäksesi'
+                : this.prop === 'Pigu.lt' && this.language === 'RU' && this.game === 'flappy'
+                ? 'для полета'
+                : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'flappy'
+                ? 'kad skristum'
+                : this.prop === 'Pigu.lt' && this.language === 'EN'
                 ? 'to jump up'
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
                 ? 'lai lēktu uz augšu'
