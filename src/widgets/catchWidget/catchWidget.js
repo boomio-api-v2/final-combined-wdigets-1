@@ -150,6 +150,8 @@ class CatchGame {
     this.didYouKnow = true;
     this.checkboxChange = false;
     this.checkboxChange2 = false;
+    this.checkboxChange3 = false;
+
     this.gameStarted = false;
     this.currentScore = 0;
     this.movement = { left: false, right: false }; // To track current movement state
@@ -226,6 +228,12 @@ class CatchGame {
             this.checkboxChange2 = !this.checkboxChange2;
             const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
             checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+          });
+          const checkboxImg3 = document.querySelector('.boomio-privacyCheckbox3');
+          checkboxImg3.addEventListener('click', () => {
+            this.checkboxChange3 = !this.checkboxChange3;
+            const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
+            checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
           });
           const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
 
@@ -530,7 +538,7 @@ class CatchGame {
 
             const checkboxChange = this.checkboxChange;
             const checkboxChange2 = this.checkboxChange2;
-
+            const checkboxChange3 = this.checkboxChange3;
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
@@ -552,7 +560,37 @@ class CatchGame {
               document.getElementById('competition-checkbox-error2').innerText = '';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 'transparent';
+
+              document.getElementById('competition-checkbox-error3').innerText = '';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor =
+                'transparent';
             }
+
+            if (!checkboxChange3 && this.customer === 'Pegasas' && phone?.value?.trim() !== '') {
+              document.getElementById('competition-checkbox-error3').innerText =
+                'Tai norint tęsti,  privaloma sutikti gauti naujienas SMS žinute.';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor =
+                '#FFBABA';
+              document.getElementById('competition-checkbox-error3').style.display = 'block';
+              document.getElementById('competition-checkbox-error3').style.height = '14px';
+
+              document.getElementById('competition-name-error').innerText = '';
+
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor =
+                'transparent';
+            }
+
             if (!checkboxChange2 && this.customer === 'Pegasas') {
               document.getElementById('competition-checkbox-error2').innerText =
                 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
@@ -572,6 +610,10 @@ class CatchGame {
               document.getElementById('competition-checkbox-error').innerText = '';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 'transparent';
+
+              document.getElementById('competition-checkbox-error3').innerText = '';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor =
+                'transparent';
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
@@ -589,6 +631,10 @@ class CatchGame {
               document.getElementById('competition-checkbox-error2').innerText = '';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 'transparent';
+
+              document.getElementById('competition-checkbox-error3').innerText = '';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor =
+                'transparent';
             }
             if (playerNameInput?.value === '' || playerNameInput?.value === null) {
               document.getElementById('competition-name-error').innerText =
@@ -605,6 +651,9 @@ class CatchGame {
                 'transparent';
               document.getElementById('competition-checkbox-error2').innerText = '';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error3').innerText = '';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
             }
             if (
@@ -628,7 +677,8 @@ class CatchGame {
                   this.showCompetitiveRegistration === 'collectable') &&
                 checkboxChange &&
                 this.loading === false &&
-                (this.customer !== 'Pegasas' || checkboxChange2)
+                (this.customer !== 'Pegasas' || checkboxChange2) &&
+                (this.customer !== 'Pegasas' || phone?.value?.trim() === '' || checkboxChange3)
               ) {
                 const phoneValue = phone?.value?.trim();
                 this.loading = true;

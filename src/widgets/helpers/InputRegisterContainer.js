@@ -84,7 +84,7 @@ export class InputRegisterContainer {
       </div>
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
-       } ;left: 34px; top: ${'360px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+       } ;left: 34px; top: ${'355px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
@@ -129,7 +129,23 @@ export class InputRegisterContainer {
     </div>
       </div>
       
-
+ <div class="boomio-privacyCheckbox3" id="boomio-privacyCheckbox3" style=";cursor:${
+   this.prop === 'Fpro' ? 'auto' : 'pointer'
+ } ;left: 34px; top: ${'375px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+      this.prop === 'Pegasas' ? 'inline-flex' : 'none'
+    }">
+      <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
+            <img id="privacyCheckboxImg3" src="${
+              privacyCheckboxChecked2 ? uncheckIcon : ''
+            }" style="width: 20px; height: 20px;">
+        </div>
+        <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${
+      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+    };font-weight: 400; word-wrap: break-word;text-align:start;">${
+      this.prop === 'Pegasas' ? 'Sutinku gauti Pegaso naujienas SMS žinute.' : ''
+    }
+    </div>
+      </div>
 
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
@@ -138,7 +154,7 @@ export class InputRegisterContainer {
         ? '380px'
         : this.prop === 'Akropolis'
         ? '360px'
-        : '385px'
+        : '395px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
         this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'
@@ -279,6 +295,19 @@ export class InputRegisterContainer {
 </div>
 
         <div id="competition-checkbox-error2" style="padding-top:1px;height:${
+          this.language === 'LV' ? '14px' : '28px'
+        } ;margin-right:30px;display:${
+      this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'
+    } ;left: 34px; top:${
+      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '420px'
+    }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
+      this.isMobile ? '9px' : '10px'
+    };color:${
+      this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
+    };text-align:start;line-height:8px;">
+</div>
+
+        <div id="competition-checkbox-error3" style="padding-top:1px;height:${
           this.language === 'LV' ? '14px' : '28px'
         } ;margin-right:30px;display:${
       this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'

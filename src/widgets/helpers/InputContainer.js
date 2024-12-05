@@ -442,7 +442,9 @@ export class InputContainer {
           };${
             this.prop === 'Pigu.lt' ? 'margin-left:47px;' : ''
           } font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
-            this.prop === 'Barbora'
+            this.prop === 'SaludSA'
+              ? 'href=https://ventas.saludsa.com/reglas-juego'
+              : this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
               : this.prop === 'Eurovaistine'
               ? 'href=https://www.e-euroaptieka.lv/ker-un-laime-speles-noteikumi'
