@@ -51,6 +51,23 @@ import {
   PiguJumpUpIntroLithuanianEN,
   PiguJumpUpIntroFinishEN,
   newRecordEn,
+  ChristmasBackgroundPigu,
+  ChristmasIntroPigu,
+  ChristmasMainImagePiguLT,
+  ChristmasMainImagePiguLV,
+  ChristmasMainImagePiguFI,
+  ChristmasMainImagePiguEE,
+  ChristmasPiguJumpUpIntroEstonian,
+  ChristmasPiguJumpUpIntroEstoniaRU,
+  ChristmasPiguJumpUpIntroLithuanian,
+  ChristmasPiguJumpUpIntroLithuanianRU,
+  ChristmasPiguJumpUpIntroFinish,
+  ChristmasPiguJumpUpIntroLatvian,
+  ChristmasPiguJumpUpIntroLatvianRU,
+  ChristmasPiguJumpUpIntroLatvianEN,
+  ChristmasPiguJumpUpIntroEstonianEN,
+  ChristmasPiguJumpUpIntroLithuanianEN,
+  ChristmasPiguJumpUpIntroFinishEN,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -101,18 +118,18 @@ class DoodleWidget {
 
     this.image.src =
       this.campaignUrlProp === 'https://pigu.lt'
-        ? mainImagePiguLT
+        ? ChristmasMainImagePiguLT
         : this.campaignUrlProp === 'https://220.lv'
-        ? mainImagePiguLV
+        ? ChristmasMainImagePiguLV
         : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
-        ? mainImagePiguEE
+        ? ChristmasMainImagePiguEE
         : this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? mainImagePiguFI
+        ? ChristmasMainImagePiguFI
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
-          ? mainImageAkropolisLV
-          : mainImageAkropolis
-        : mainImage;
+          ? ChristmasMainImageAkropolisLV
+          : ChristmasMainImageAkropolis
+        : ChristmasMainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -148,7 +165,7 @@ class DoodleWidget {
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.style.background = `url(${
       this.customer === 'Pigu.lt'
-        ? backgroundPigu
+        ? ChristmasBackgroundPigu
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV
@@ -1298,42 +1315,46 @@ class DoodleWidget {
       } alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
 
-    <img src=${
+<img src=${
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstonian
+        ? ChristmasPiguJumpUpIntroEstonian
         : this.language === 'RU' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstoniaRU
+        ? ChristmasPiguJumpUpIntroEstoniaRU
         : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanian
+        ? ChristmasPiguJumpUpIntroLithuanian
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanianRU
+        ? ChristmasPiguJumpUpIntroLithuanianRU
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? PiguJumpUpIntroFinish
+        ? ChristmasPiguJumpUpIntroFinish
         : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvian
+        ? ChristmasPiguJumpUpIntroLatvian
         : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvianRU
+        ? ChristmasPiguJumpUpIntroLatvianRU
         : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanianEN
+        ? ChristmasPiguJumpUpIntroLithuanianEN
         : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? PiguJumpUpIntroFinishEN
+        ? ChristmasPiguJumpUpIntroFinishEN
         : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvianEN
+        ? ChristmasPiguJumpUpIntroLatvianEN
         : this.language === 'EN' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstonianEN
+        ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
-          ? introAkropolisLV
-          : introAkropolis
-        : intro
-    } alt="Image Description" style="z-index:4; height: ${
+          ? ChristmasIntroAkropolisLV
+          : ChristmasIntroAkropolis
+        : ChristmasIntro
+    } 
+alt="Image Description" 
+style="z-index:4; height: ${
       this.isMobileHeightSmall ? '100%' : '674px'
-    };position:absolute;pointer-events: none; display:block;" id="background_intro">
+    };position:absolute;pointer-events: none; display:block;" 
+id="background_intro">
+
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
