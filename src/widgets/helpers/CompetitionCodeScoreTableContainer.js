@@ -711,7 +711,8 @@ export class CompetitionCodeScoreTableContainer {
       }
 
 ${
-  this.prop === 'Pigu.lt' && false
+  (this.prop === 'Pigu.lt' && false) ||
+  (this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500)
     ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${
         this.prop === 'Pigu.lt' ? '#000000' : '#A40033'
       }; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:250px;position:absolute;top:495px;left:calc(50% - 130px);">
@@ -787,28 +788,28 @@ ${
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    // if (
-    //   this.prop === 'Pigu.lt' &&
-    //   (this.scoreTable.user_best_score > 1500 || this.prop === 'Pigu.lt')
-    // ) {
-    //   document.getElementById('boomio-copy-modal-btn').onclick = () => {
-    //     const textToCopy = this.userDiscountCode;
-    //     const textarea = document.createElement('textarea');
-    //     textarea.value = textToCopy;
-    //     document.body.appendChild(textarea);
-    //     textarea.select();
-    //     textarea.setSelectionRange(0, textarea.value.length);
-    //     document.execCommand('copy');
-    //     document.body.removeChild(textarea);
+    if (
+      (this.prop === 'Pigu.lt' && false) ||
+      (this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500)
+    ) {
+      document.getElementById('boomio-copy-modal-btn').onclick = () => {
+        const textToCopy = this.userDiscountCode;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
 
-    //     const copyButton = document.getElementById('p_code_text');
-    //     copyButton.textContent = this.prop === 'Pigu.lt' ? 'Copied' : 'Copied';
+        const copyButton = document.getElementById('p_code_text');
+        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Copied' : 'Copied';
 
-    //     setTimeout(() => {
-    //       copyButton.textContent = this.userDiscountCode;
-    //     }, 2000);
-    //   };
-    // }
+        setTimeout(() => {
+          copyButton.textContent = this.userDiscountCode;
+        }, 2000);
+      };
+    }
   }
 
   render() {
@@ -902,7 +903,8 @@ ${
               this.isSmallMobile ? '7px' : this.isMobile ? '9px' : '10px'
             };text-align:center;top:528px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
       ${
-        this.prop === 'Pigu.lt' && false
+        (this.prop === 'Pigu.lt' && false) ||
+        (this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500)
           ? this.language === 'EN'
             ? 'Only today!'
             : this.language === 'LV'
