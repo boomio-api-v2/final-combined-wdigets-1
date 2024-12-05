@@ -1422,7 +1422,7 @@ ${
 
 
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Pigu.lt' ? '#000000' : this.language === 'LV' ? '#F40027' : '#045222'
+      this.customer === 'Pigu.lt' ? '#F34434' : this.language === 'LV' ? '#F40027' : '#045222'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>

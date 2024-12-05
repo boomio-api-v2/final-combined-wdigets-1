@@ -2007,33 +2007,33 @@ ${
           </table>
         </div>
 
-          <div style="color:#DFFC38;width:100%;font-size:${
+          <div style="width:100%;font-size:${
             this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
           };text-align:center;text-transform:uppercase;top:555px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'
           };border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
-      this.prop === 'Pigu.lt' ? 'black' : 'none'
+      this.prop === 'Pigu.lt' ? '#F34434' : 'none'
     }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
-            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
             : this.language === 'LV'
-            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://220.lv">Atklāj labākos 220.lv piedāvājumus!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv">Atklāj labākos 220.lv piedāvājumus!</a>'
             : this.language === 'ET'
-            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
             : this.language === 'FI'
-            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
             : this.language === 'RU' &&
               (this.campaignUrlProp === 'https://kaup.ee' ||
                 this.campaignUrlProp === 'https://kaup24.ee')
-            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-            ? '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
-            : '<a style="text-decoration:none;color:#DFFC38" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
+            : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
           : ''
       }
   </div>
