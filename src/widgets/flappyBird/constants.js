@@ -52,18 +52,19 @@ export const checkIcon =
 
 export const uncheckIcon =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/RegistrationCheckboxUncheck.png';
-
 export const newRecord =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecord.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecord.png?raw=true';
+export const newRecordEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordEE.png?raw=true';
+
+export const newRecordFI =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordFI.png?raw=true';
 
 export const newRecordRU =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordRU.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordRU.png?raw=true';
 
 export const newRecordLV =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordLV.png?raw=true';
-
-export const newRecordEE =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEE.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordLV.png?raw=true';
 
 export const newRecordEn =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
@@ -103,5 +104,10 @@ export const SaludSARecord =
 
 export const SaludSABackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/SaludSA/SaludSABackground.png';
+
+export const PiguBackground =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PiguBackground.png';
+export const PiguIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PiguIntro.png';
 export const star =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/star.png?raw=true';

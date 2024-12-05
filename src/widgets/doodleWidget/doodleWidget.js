@@ -51,6 +51,23 @@ import {
   PiguJumpUpIntroLithuanianEN,
   PiguJumpUpIntroFinishEN,
   newRecordEn,
+  ChristmasBackgroundPigu,
+  ChristmasIntroPigu,
+  ChristmasMainImagePiguLT,
+  ChristmasMainImagePiguLV,
+  ChristmasMainImagePiguFI,
+  ChristmasMainImagePiguEE,
+  ChristmasPiguJumpUpIntroEstonian,
+  ChristmasPiguJumpUpIntroEstoniaRU,
+  ChristmasPiguJumpUpIntroLithuanian,
+  ChristmasPiguJumpUpIntroLithuanianRU,
+  ChristmasPiguJumpUpIntroFinish,
+  ChristmasPiguJumpUpIntroLatvian,
+  ChristmasPiguJumpUpIntroLatvianRU,
+  ChristmasPiguJumpUpIntroLatvianEN,
+  ChristmasPiguJumpUpIntroEstonianEN,
+  ChristmasPiguJumpUpIntroLithuanianEN,
+  ChristmasPiguJumpUpIntroFinishEN,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -101,18 +118,18 @@ class DoodleWidget {
 
     this.image.src =
       this.campaignUrlProp === 'https://pigu.lt'
-        ? mainImagePiguLT
+        ? ChristmasMainImagePiguLT
         : this.campaignUrlProp === 'https://220.lv'
-        ? mainImagePiguLV
+        ? ChristmasMainImagePiguLV
         : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
-        ? mainImagePiguEE
+        ? ChristmasMainImagePiguEE
         : this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? mainImagePiguFI
+        ? ChristmasMainImagePiguFI
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
-          ? mainImageAkropolisLV
-          : mainImageAkropolis
-        : mainImage;
+          ? ChristmasMainImageAkropolisLV
+          : ChristmasMainImageAkropolis
+        : ChristmasMainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -148,7 +165,7 @@ class DoodleWidget {
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.style.background = `url(${
       this.customer === 'Pigu.lt'
-        ? backgroundPigu
+        ? ChristmasBackgroundPigu
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV
@@ -227,7 +244,6 @@ class DoodleWidget {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const user_id = urlParams.get('user_id');
-
     if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
@@ -1299,42 +1315,46 @@ class DoodleWidget {
       } alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
 
-    <img src=${
+<img src=${
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstonian
+        ? ChristmasPiguJumpUpIntroEstonian
         : this.language === 'RU' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstoniaRU
+        ? ChristmasPiguJumpUpIntroEstoniaRU
         : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanian
+        ? ChristmasPiguJumpUpIntroLithuanian
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanianRU
+        ? ChristmasPiguJumpUpIntroLithuanianRU
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? PiguJumpUpIntroFinish
+        ? ChristmasPiguJumpUpIntroFinish
         : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvian
+        ? ChristmasPiguJumpUpIntroLatvian
         : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvianRU
+        ? ChristmasPiguJumpUpIntroLatvianRU
         : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanianEN
+        ? ChristmasPiguJumpUpIntroLithuanianEN
         : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? PiguJumpUpIntroFinishEN
+        ? ChristmasPiguJumpUpIntroFinishEN
         : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvianEN
+        ? ChristmasPiguJumpUpIntroLatvianEN
         : this.language === 'EN' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstonianEN
+        ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
-          ? introAkropolisLV
-          : introAkropolis
-        : intro
-    } alt="Image Description" style="z-index:4; height: ${
+          ? ChristmasIntroAkropolisLV
+          : ChristmasIntroAkropolis
+        : ChristmasIntro
+    } 
+alt="Image Description" 
+style="z-index:4; height: ${
       this.isMobileHeightSmall ? '100%' : '674px'
-    };position:absolute;pointer-events: none; display:block;" id="background_intro">
+    };position:absolute;pointer-events: none; display:block;" 
+id="background_intro">
+
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1402,7 +1422,7 @@ ${
 
 
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Pigu.lt' ? '#000000' : this.language === 'LV' ? '#F40027' : '#045222'
+      this.customer === 'Pigu.lt' ? '#F34434' : this.language === 'LV' ? '#F40027' : '#045222'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>

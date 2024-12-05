@@ -54,7 +54,8 @@ class BoomioService extends UserService {
       (language === 'FI' && campaignUrl === 'https://hobbyhall.fi') ||
       (language === 'LV' && campaignUrl === 'https://220.lv') ||
       (language === 'RU' && campaignUrl === 'https://220.lv') ||
-      (!language && !campaignUrl)
+      (!language && !campaignUrl) ||
+      campaignUrl === 'https://boomio-web.webflow.io/demo-pigu-flap-through'
     ) {
       this.setInitialConfiguration();
     }
