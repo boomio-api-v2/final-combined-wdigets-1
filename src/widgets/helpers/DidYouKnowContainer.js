@@ -1957,7 +1957,7 @@ ${
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:calc(100% - 20px);margin-left:10px;top: 42px; position: absolute; text-align: center;line-height:42px; color: ${
-        this.prop === 'Pigu.lt' ? '#F34434' : 'white'
+        this.prop === 'Pigu.lt' ? 'white' : 'white'
       }; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
     }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
