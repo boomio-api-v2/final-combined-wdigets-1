@@ -794,28 +794,28 @@ ${
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    // if (
-    //   this.prop === 'Pigu.lt' &&
-    //   (this.scoreTable.user_best_score > 1500 || this.prop === 'Pigu.lt')
-    // ) {
-    //   document.getElementById('boomio-copy-modal-btn').onclick = () => {
-    //     const textToCopy = this.userDiscountCode;
-    //     const textarea = document.createElement('textarea');
-    //     textarea.value = textToCopy;
-    //     document.body.appendChild(textarea);
-    //     textarea.select();
-    //     textarea.setSelectionRange(0, textarea.value.length);
-    //     document.execCommand('copy');
-    //     document.body.removeChild(textarea);
+    if (
+      (this.prop === 'Pigu.lt' && false) ||
+      (this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500)
+    ) {
+      document.getElementById('boomio-copy-modal-btn').onclick = () => {
+        const textToCopy = this.userDiscountCode;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
 
-    //     const copyButton = document.getElementById('p_code_text');
-    //     copyButton.textContent = this.prop === 'Pigu.lt' ? 'Copied' : 'Copied';
+        const copyButton = document.getElementById('p_code_text');
+        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Copied' : 'Copied';
 
-    //     setTimeout(() => {
-    //       copyButton.textContent = this.userDiscountCode;
-    //     }, 2000);
-    //   };
-    // }
+        setTimeout(() => {
+          copyButton.textContent = this.userDiscountCode;
+        }, 2000);
+      };
+    }
   }
 
   render() {
