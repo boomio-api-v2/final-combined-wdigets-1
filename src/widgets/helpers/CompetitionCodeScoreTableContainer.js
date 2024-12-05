@@ -792,22 +792,21 @@ ${
       (this.prop === 'Pigu.lt' && false) ||
       (this.prop === 'Pegasas' && this.scoreTable.user_best_score > 1500)
     ) {
-      document.getElementById('boomio-copy-modal-btn').onclick = () => {
+      document.getElementById('boomio-copy-modal-btn').onclick = async () => {
         const textToCopy = this.userDiscountCode;
-        const textarea = document.createElement('textarea');
-        textarea.value = textToCopy;
-        document.body.appendChild(textarea);
-        textarea.select();
-        textarea.setSelectionRange(0, textarea.value.length);
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
 
-        const copyButton = document.getElementById('p_code_text');
-        copyButton.textContent = this.prop === 'Pigu.lt' ? 'Copied' : 'Copied';
+        try {
+          await navigator.clipboard.writeText(textToCopy);
 
-        setTimeout(() => {
-          copyButton.textContent = this.userDiscountCode;
-        }, 2000);
+          const copyButton = document.getElementById('p_code_text');
+          copyButton.textContent = this.prop === 'Pigu.lt' ? 'Copied' : 'Copied';
+
+          setTimeout(() => {
+            copyButton.textContent = this.userDiscountCode;
+          }, 2000);
+        } catch (error) {
+          console.error('Failed to copy text:', error);
+        }
       };
     }
   }
