@@ -157,7 +157,7 @@ export const ChristmasPiguJumpUpIntroEstonian =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/ChristmasPiguJumpUpIntroEstonian.gif?raw=true';
 
 export const ChristmasPiguJumpUpIntroEstoniaRU =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/ChristmasPiguJumpUpIntroEstoniaRU.gif?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/ChristmasPiguJumpUpIntroEstonianRU.gif?raw=true';
 
 export const ChristmasPiguJumpUpIntroLithuanian =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/ChristmasPiguJumpUpIntroLithuanian.gif?raw=true';
