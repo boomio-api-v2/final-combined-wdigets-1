@@ -227,7 +227,6 @@ class DoodleWidget {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const user_id = urlParams.get('user_id');
-
     if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {

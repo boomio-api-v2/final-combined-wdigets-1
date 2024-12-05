@@ -31,7 +31,9 @@ export class CompetitionCodeScoreTableContainer {
     if (!this.containerDiv) return;
 
     const piguTable =
-      this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
+      this.prop === 'Pigu.lt' &&
+      (this.campaignUrlProp === 'https://220.lv' ||
+        this.campaignUrlProp === 'https://boomio-web.webflow.io/demo-pigu-flap-through')
         ? [
             'Piparkūka',
             'Vārpstiņš',
@@ -63,9 +65,10 @@ export class CompetitionCodeScoreTableContainer {
             'Viktors',
             'Lielais Karpis',
           ]
-        : this.prop === 'Pigu.lt' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
+        : (this.prop === 'Pigu.lt' &&
+            (this.campaignUrlProp === 'https://kaup.ee' ||
+              this.campaignUrlProp === 'https://kaup24.ee')) ||
+          this.campaignUrlProp === 'https://boomio-web.webflow.io/demo-pigu-flap-through'
         ? [
             'Mannu',
             'Seenekuningas',
@@ -98,7 +101,9 @@ export class CompetitionCodeScoreTableContainer {
             'Zorro',
             'Jannu',
           ]
-        : this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        : this.prop === 'Pigu.lt' &&
+          (this.campaignUrlProp === 'https://hobbyhall.fi' ||
+            this.campaignUrlProp === 'https://boomio-web.webflow.io/demo-pigu-flap-through')
         ? [
             'Tukku',
             'Jonsku',
@@ -128,7 +133,8 @@ export class CompetitionCodeScoreTableContainer {
             'Nani - Banaani',
           ]
         : this.prop === 'Pigu.lt' &&
-          this.campaignUrlProp === 'https://pigu.lt' && [
+          (this.campaignUrlProp === 'https://pigu.lt' ||
+            this.campaignUrlProp === 'https://boomio-web.webflow.io/demo-pigu-flap-through') && [
             'AKRIUKAS',
             'PIGUTIS',
             'BLASH',

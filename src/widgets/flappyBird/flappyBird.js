@@ -56,6 +56,8 @@ import {
   SaludSAIntro,
   SaludSABackground,
   SaludSARecord,
+  PiguBackground,
+  PiguIntro,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -98,7 +100,6 @@ class FlappyBird {
   }
 
   showRulesOrRegistration() {
-    console.log('aa');
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const user_id = urlParams.get('user_id');
@@ -132,7 +133,6 @@ class FlappyBird {
       playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaa');
         if (this.customer !== 'SaludSA') {
           const canvas = document.getElementById('flappy-canvas');
           document.getElementById('background_blur').style.opacity =
@@ -199,7 +199,6 @@ class FlappyBird {
           console.error('Error:', error);
         });
     } else {
-      console.log('aaaaa');
       setTimeout(() => {
         const canvas = document.getElementById('flappy-canvas');
         document.getElementById('background_blur').style.opacity =
@@ -239,7 +238,6 @@ class FlappyBird {
       competitionTableContainer.style.display = 'none';
     }, 1000);
     setTimeout(() => {
-      console.log('aaaa');
       const canvas = document.getElementById('flappy-canvas');
       document.getElementById('background_blur').style.opacity =
         this.language === 'LV' ? 0.4 : 0.37;
@@ -287,6 +285,8 @@ class FlappyBird {
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
+        : this.customer === 'Pigu.lt'
+        ? PiguBackground
         : this.customer === 'Barbora'
         ? mainBarbora
         : this.customer === 'Fantazijos'
@@ -571,6 +571,7 @@ class FlappyBird {
                           boomioService
                             .signal('ROUND_STARTED', 'signal')
                             .then((response) => {
+                              console.log('a');
                               document.getElementById('background_blur').style.display = 'none';
                               const canvas = document.getElementById('flappy-canvas');
                               canvas.style.transition = 'filter 1s ease';
@@ -918,7 +919,9 @@ class FlappyBird {
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
     <img src=${
-      this.customer === 'SaludSA'
+      this.customer === 'Pigu.lt'
+        ? PiguIntro
+        : this.customer === 'SaludSA'
         ? SaludSAIntro
         : this.customer === 'Barbora'
         ? introGif
@@ -1435,6 +1438,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
+                console.log('aa');
+
                 document.getElementById('background_blur').style.display = 'none';
                 const canvas = document.getElementById('flappy-canvas');
                 canvas.style.transition = 'filter 1s ease';
@@ -1517,6 +1522,26 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     }
 
     document.getElementById('startButtonClick').addEventListener('click', () => {
+      console.log('aaaa');
+      if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.bestScore <= 0) {
+        document.getElementById('boomio-rules-checkbox-error').innerText =
+          this.customer === 'Pigu.lt' && this.language === 'EN'
+            ? 'To continue, it is mandatory to agree to receive news and information about prizes.'
+            : this.customer === 'Pigu.lt' && this.language === 'LV'
+            ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
+            : this.customer === 'Pigu.lt' && this.language === 'ET'
+            ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
+            : this.customer === 'Pigu.lt' && this.language === 'FI'
+            ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
+            : this.customer === 'Pigu.lt' && this.language === 'RU'
+            ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
+            : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
+        document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
+
+        document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
+        return;
+      }
+
       if (!this.gameStarted) {
         let canvas = document.getElementById('flappy-canvas');
 
@@ -1569,6 +1594,22 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 boomioService
                   .signal('ROUND_STARTED', 'signal')
                   .then((response) => {
+                    if (window.Boomio) {
+                      window.Boomio.logEvent('game_started', JSON.stringify(response));
+                    } else if (
+                      window.webkit &&
+                      window.webkit.messageHandlers &&
+                      window.webkit.messageHandlers.Boomio
+                    ) {
+                      var message = {
+                        command: 'logEvent',
+                        name: 'game_started',
+                        parameters: { response },
+                      };
+                      window.webkit.messageHandlers.Boomio.postMessage(message);
+                    } else {
+                      console.log('No native APIs found.');
+                    }
                     this.gameStarted = true;
                   })
                   .catch((error) => {
