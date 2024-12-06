@@ -1006,30 +1006,38 @@ ${`<div style="${
 };display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>${
       this.language === 'LV'
-        ? 'KLIK'
+        ? 'KLIKŠĶINI'
         : this.language === 'RU'
         ? 'КЛИК'
         : this.language === 'EE'
         ? 'TAP'
+        : this.language === 'ET'
+        ? 'TÄPI'
         : this.language === 'ES'
         ? 'TAP'
         : this.customer === 'Fpro'
         ? 'TAP'
+        : this.language === 'FI'
+        ? 'NAPSAUTA'
         : this.customer === 'SaludSA'
         ? 'TAP'
         : 'BAKST'
     }</div>
     <div>${
       this.language === 'LV'
-        ? 'KLIK'
+        ? 'KLIKŠĶINI'
         : this.language === 'RU'
         ? 'КЛИК'
+        : this.language === 'ET'
+        ? 'TÄPI'
         : this.language === 'EE'
         ? 'TAP'
         : this.language === 'ES'
         ? 'TAP'
         : this.customer === 'Fpro'
         ? 'TAP'
+        : this.language === 'FI'
+        ? 'NAPSAUTA'
         : this.customer === 'SaludSA'
         ? 'TAP'
         : 'BAKST'
@@ -1045,10 +1053,15 @@ ${`<div style="${
   <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
-
+  ${
+    this.campaignUrl === ''
+      ? `
 <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
-</div>
+</div>`
+      : ''
+  }
+
 
 
 ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
@@ -1681,10 +1694,11 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         };
       }
     });
-
-    document.getElementById('close-game-container').addEventListener('click', () => {
-      this.closeGame();
-    });
+    if (this.campaignUrl === '') {
+      document.getElementById('close-game-container').addEventListener('click', () => {
+        this.closeGame();
+      });
+    }
   };
 }
 
