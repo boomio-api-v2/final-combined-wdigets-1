@@ -71,11 +71,13 @@ class FlappyBird {
     this.customer = this.config.business_name ? this.config.business_name : 'SaludSA';
     this.language = this.config.language ? this.config.language : 'ES';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
+    this.checkboxChange = false;
+    this.checkboxChange2 = false;
+    this.checkboxChange3 = false;
 
     this.collectables = this.config.collectables ? this.config.collectables : [];
     this.collection = this.config.collection ? this.config.collection : [];
     this.just_won = this.config.just_won ? this.config.just_won : null;
-
     if (this.customer === 'Fpro') {
       setTimeout(() => {
         this.startFlappy();
@@ -108,7 +110,7 @@ class FlappyBird {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
         this.checkboxChange3 = !this.checkboxChange3;
-        const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
+        const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }

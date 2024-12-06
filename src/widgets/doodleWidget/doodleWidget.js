@@ -248,7 +248,7 @@ class DoodleWidget {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
         this.checkboxChange3 = !this.checkboxChange3;
-        const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
+        const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }
