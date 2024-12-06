@@ -127,9 +127,9 @@ class DoodleWidget {
         ? ChristmasMainImagePiguFI
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
-          ? ChristmasMainImageAkropolisLV
-          : ChristmasMainImageAkropolis
-        : ChristmasMainImage;
+          ? mainImageAkropolisLV
+          : mainImageAkropolis
+        : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -1345,9 +1345,9 @@ class DoodleWidget {
         ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
-          ? ChristmasIntroAkropolisLV
-          : ChristmasIntroAkropolis
-        : ChristmasIntro
+          ? introAkropolisLV
+          : introAkropolis
+        : ''
     } 
 alt="Image Description" 
 style="z-index:4; height: ${
