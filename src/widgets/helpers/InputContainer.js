@@ -18,7 +18,6 @@ export class InputContainer {
   }
 
   createInputContainerDiv(game) {
-    let piguRulesCheckbox = true;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-container');
@@ -523,9 +522,7 @@ export class InputContainer {
             this.prop === 'Pigu.lt'
               ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:25px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
-            <img id="privacyCheckboxImg3" src="${
-              piguRulesCheckbox ? uncheckIcon : ''
-            }" style="max-width:fit-content;width: 20px; height: 20px;">
+            <img id="boomio-rules-privacyCheckbox-img" src="${uncheckIcon}" style="max-width:fit-content;width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${'Montserrat'} ;width:calc(100% - 50px);  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">
         ${
