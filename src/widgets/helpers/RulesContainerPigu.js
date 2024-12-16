@@ -31,32 +31,32 @@ export class RulesContainerPigu {
     const content =
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? `*Sooduskood 11CYBER1224 kehtib 02.12.2024 kuni kl 23:59. registreeritud kasutajatele, kes ostavad spetsiaalselt märgistatud müüja Kaup24.ee tooteid. Kood ei kehti kinkekaartide ostmisel, koos teiste sooduskoodide ja Kaup24-eurodega. Ühe ostu puhul saab kasutada ainult ühte sooduskoodi. `
+        ? `*Sooduskood LAPSED1224 kehtib ainult 17.12.2024 kuni kl 23:59. registreeritud kasutajatele, kes ostavad spetsiaalselt märgistatud müüja Kaup24.ee tooteid. Kood ei kehti kinkekaartide ostmisel, koos teiste sooduskoodide ja Kaup24-eurodega. Ühe ostu puhul saab kasutada ainult ühte sooduskoodi. `
         : this.language === 'RU' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? `*Скидочный код 11CYBER1224 в силе c 02.12.2024 до 23:59 для зарегистрированных пользователей, при покупке особо отмеченных товаров продавца Kaup24.ee Скидочный код не действует при покупке подарочных карт и вместе с деньгами Kaup24.ee. Для одной покупки можно использовать только один скидочный код.`
+        ? `*Скидочный код LAPSED1224 в силе только 17.12.2024 до 23:59  для зарегистрированных пользователей, при покупке особо отмеченных товаров продавца Kaup24.ee Скидочный код не действует при покупке подарочных карт и вместе с деньгами Kaup24.ee. Для одной покупки можно использовать только один скидочный код.`
         : this.language === 'EN' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? `*Discount code 11CYBER1224  is valid for specially marked seller Kaup24.ee items on 2.12.2024 till 23:59, for register users. The discount code is not valid when purchasing gift cards and together with Kaup24.ee money or with other codes. Only one discount code can be used per purchase.`
+        ? `*Sooduskood LAPSED1224 kehtib ainult 17.12.2024 kuni kl 23:59. registreeritud kasutajatele, kes ostavad spetsiaalselt märgistatud müüja Kaup24.ee tooteid. Kood ei kehti kinkekaartide ostmisel, koos teiste sooduskoodide ja Kaup24-eurodega. Ühe ostu puhul saab kasutada ainult ühte sooduskoodi.`
         : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? `*Nuolaidos kodas 11PIRMADIENIS1224 galioja iki 2024 12 02 iki 24 val. registruotiems vartotojams, perkantiems spec. ženklu pažymėtų pardavėjo Pigu.lt prekių. Nuolaidos kodas negalioja dovanų kuponams ir negalioja kartu su PiguEurais. Vieno pirkimo metu galima panaudoti tik vieną nuolaidos kodą.`
+        ? `*Nuolaidos kodas ZAISLAI1224 galioja 2024 12 17 iki 24 val. registruotiems vartotojams, perkantiems spec. ženklu pažymėtas pardavėjo Pigu.lt prekes. Nuolaidos kodas negalioja dovanų kuponams ir negalioja kartu su PiguEurais. Vieno pirkimo metu galima panaudoti tik vieną nuolaidos kodą.`
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? `*Скидочный код 11PIRMADIENIS1224 в силе c 02.12.2024 до 23:59 для зарегистрированных пользователей, при покупке особо отмеченных товаров продавца pigu.lt. Скидочный код не действует при покупке подарочных карт и вместе с деньгами pigu.lt. Для одной покупки можно использовать только один скидочный код.`
+        ? `*Скидочный код ZAISLAI1224 в силе только 17.12.2024 до 23:59 для зарегистрированных пользователей, при покупке особо отмеченных товаров продавца Pigu.lt. Скидочный код не действует при покупке подарочных карт и вместе с деньгами Pigu.lt или другими скидочными кодами. Скидочный код, который должен быть использован, указан около товара. Для одной покупки можно использовать только один скидочный код.`
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? `*Alekoodi 22CYBER1224 on voimassa 2.12.2024 klo 23.59 asti, valikoiduista ja merkityistä myyjän Hobbyhall.fi-tuotteista. Voimassa vain rekisteröityneille asiakkaille. Ei voi yhdistää muihin alekoodeihin, Hobby Hall rahaan tai lahjakorttia ostaessa.`
+        ? `*Alekoodi LELUT1224 on voimassa 17.12.2024 klo 23.59 asti, valikoiduista ja merkityistä myyjän Hobbyhall.fi-tuotteista. Voimassa vain rekisteröityneille asiakkaille. Ei voi yhdistää muihin alekoodeihin, Hobby Hall rahaan tai lahjakorttia ostaessa.`
         : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? `*Atlaižu kods 11CYBER1224 ir spēkā 02.12.2024. līdz plkst. 23:59 reģistrētiem lietotājiem, kuri iegādāsies īpaši marķētas pārdevēja 220.lv preces. Atlaižu kods nav derīgs, iegādājoties dāvanu kartes un kopā ar 220.lv naudu. Vienam pirkumam var izmantot tikai vienu atlaižu kodu.`
+        ? `*Atlaižu kods BERNIEM1224 ir spēkā tikai 17.12.2024. līdz plkst. 23:59 reģistrētiem lietotājiem, kuri iegādāsies īpaši marķētas pārdevēja 220.lv preces. Atlaižu kods nav derīgs, iegādājoties dāvanu kartes un kopā ar 220.lv naudu. Vienam pirkumam var izmantot tikai vienu atlaižu kodu.`
         : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? `*Скидочный код 11CYBER1224 в силе c 02.12.2024 до 23:59 для зарегистрированных пользователей, при покупке особо отмеченных товаров продавца 220.lv. Скидочный код не действует при покупке подарочных карт и вместе с деньгами 220.lv. Для одной покупки можно использовать только один скидочный код.`
+        ? `*Скидочный код BERNIEM1224 в силе только 17.12.2024 до 23:59 для зарегистрированных пользователей, при покупке особо отмеченных товаров продавца 220.lv. Скидочный код не действует при покупке подарочных карт и вместе с деньгами 220.lv или другими скидочными кодами. Скидочный код, который должен быть использован, указан около товара. Для одной покупки можно использовать только один скидочный код.`
         : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? `*Discount code 11PIRMADIENIS1224 is valid for specially marked seller Pigu.lt on 2.12.2024 till 23:59, for register users. The discount code is not valid when purchasing gift cards and together with Pigu.lt money or with other codes. Only one discount code can be used per purchase.`
+        ? `*Nuolaidos kodas ZAISLAI1224 galioja 2024 12 17 iki 24 val. registruotiems vartotojams, perkantiems spec. ženklu pažymėtas pardavėjo Pigu.lt prekes. Nuolaidos kodas negalioja dovanų kuponams ir negalioja kartu su PiguEurais. Vieno pirkimo metu galima panaudoti tik vieną nuolaidos kodą.`
         : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? `*Discount code 22CYBER1224 is valid for specially marked seller Hobbyhall.fi items on 2.12.2024 till 23:59, for register users. The discount code is not valid when purchasing gift cards and together with Hobbyhall.fi  money or with other codes. Only one discount code can be used per purchase.`
+        ? `*Alekoodi LELUT1224 on voimassa 17.12.2024 klo 23.59 asti, valikoiduista ja merkityistä myyjän Hobbyhall.fi-tuotteista. Voimassa vain rekisteröityneille asiakkaille. Ei voi yhdistää muihin alekoodeihin, Hobby Hall rahaan tai lahjakorttia ostaessa.`
         : this.language === 'EN' &&
           this.campaignUrlProp === 'https://220.lv' &&
-          `*Discount code 11CYBER1224  is valid for specially marked seller 220.lv items on 2.12.2024 till 23:59, for register users. The discount code is not valid when purchasing gift cards and together with 220.lv money or with other codes. Only one discount code can be used per purchase.`;
+          `*Atlaižu kods BERNIEM1224 ir spēkā tikai 17.12.2024. līdz plkst. 23:59 reģistrētiem lietotājiem, kuri iegādāsies īpaši marķētas pārdevēja 220.lv preces. Atlaižu kods nav derīgs, iegādājoties dāvanu kartes un kopā ar 220.lv naudu. Vienam pirkumam var izmantot tikai vienu atlaižu kodu.`;
 
     const containerDiv = document.querySelector('.rules-table-container-pigu');
     containerDiv.innerHTML += `
