@@ -409,7 +409,7 @@ export class CompetitionCodeScoreTableContainer {
                   this.language === 'RU' &&
                   (this.campaignUrlProp === 'https://kaup.ee' ||
                     this.campaignUrlProp === 'https://kaup24.ee')
-                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .</br>${
+                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
                       ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные игрушки дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
                       : ''
@@ -417,7 +417,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' &&
                   this.language === 'RU' &&
                   this.campaignUrlProp === 'https://pigu.lt'
-                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .</br>${
+                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
                       ? '<strong style="text-transform:uppercase"> <strong style="color:#DFFC38"> </strong> На выбранные игрушки дополнительно -15% с  <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong>  '
                       : ''
@@ -425,7 +425,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' &&
                   this.language === 'RU' &&
                   this.campaignUrlProp === 'https://220.lv'
-                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .</br>${
+                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
                       ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные игрушки дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
                       : ''
@@ -598,7 +598,7 @@ export class CompetitionCodeScoreTableContainer {
                   this.language === 'RU' &&
                   (this.campaignUrlProp === 'https://kaup.ee' ||
                     this.campaignUrlProp === 'https://kaup24.ee')
-                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .</br>${
+                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
                       ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные игрушки дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
                       : ''
@@ -606,7 +606,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' &&
                   this.language === 'RU' &&
                   this.campaignUrlProp === 'https://pigu.lt'
-                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .</br>${
+                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
                       ? '<strong style="text-transform:uppercase"> <strong style="color:#DFFC38"> </strong> На выбранные игрушки дополнительно -15% с  <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong>  '
                       : ''
@@ -614,7 +614,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' &&
                   this.language === 'RU' &&
                   this.campaignUrlProp === 'https://220.lv'
-                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .</br>${
+                ? `Каждую неделю 10 лучших игроков получают призы! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
                       ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные игрушки дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
                       : ''
