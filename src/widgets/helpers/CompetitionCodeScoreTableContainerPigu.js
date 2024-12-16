@@ -475,15 +475,15 @@ export class CompetitionCodeScoreTableContainerPigu {
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
               this.campaignUrlProp === 'https://kaup24.ee')
-          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Kaup24.'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте Pigu.lt.'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
-          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте 220.lv.'
+          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте .'
           : this.prop === 'Pigu.lt'
           ? 'net 10 geriausių žaidėjų kas savaitę laimės Pigu.lt dovanų kuponus.</br>Jei laimėsi informuosime tave paskyroje nurodytu el. paštu.'
           : ''
@@ -653,7 +653,7 @@ ${
           ? 'white'
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex" id="boomio-game-play-again-pigu">
-        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
+        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 20px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? 'SPĒLĒT VĒLREIZ'
         : this.prop === 'Pigu.lt' && this.language === 'EN'
