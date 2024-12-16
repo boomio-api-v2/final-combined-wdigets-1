@@ -413,15 +413,15 @@ export class CompetitionCodeScoreTableContainerPigu {
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
               this.campaignUrlProp === 'https://kaup24.ee')
-          ? '<strong style="text-transform:uppercase">На выбранные игрушки дополнительно<strong style="color:#DFFC38">дополнительно -15%</strong> с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные игрушки дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">На выбранные игрушки дополнительно<strong style="color:#DFFC38">дополнительно -15%</strong> с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные игрушки дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
-          ? '<strong style="text-transform:uppercase">На выбранные игрушки дополнительно<strong style="color:#DFFC38">дополнительно -15%</strong> с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные игрушки дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt'
           ? '<strong style="text-transform:uppercase">Pažymėti žaislai <strong style="color:#DFFC38">Papildomai -15%</strong> su <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong>  '
           : ''
