@@ -58,6 +58,10 @@ import {
   SaludSARecord,
   PiguBackground,
   PiguIntro,
+  PIGUBackgroundfi,
+  PIGUBackgroundlv,
+  PIGUBackgroundlt,
+  PIGUBackgroundee,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -261,6 +265,11 @@ class FlappyBird {
   startFlappy() {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
+
+    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     this.checkboxChange = false;
 
@@ -289,6 +298,14 @@ class FlappyBird {
         ? SaludSABackground
         : this.customer === 'Pigu.lt'
         ? PiguBackground
+        : this.campaignUrlProp === 'https://pigu.lt'
+        ? PIGUBackgroundlt
+        : this.campaignUrlProp === 'https://220.lv'
+        ? PIGUBackgroundlv
+        : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
+        ? PIGUBackgroundee
+        : this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? PIGUBackgroundfi
         : this.customer === 'Barbora'
         ? mainBarbora
         : this.customer === 'Fantazijos'
