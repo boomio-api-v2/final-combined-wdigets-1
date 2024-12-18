@@ -15,29 +15,29 @@ export class CompetitionCodeScoreTableContainerPigu {
       ? this.config.couponCodeNew
       : this.language === 'ET' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'NOUD1224'
+      ? 'ILU1224'
       : this.language === 'RU' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'NOUD1224'
+      ? 'ILU1224'
       : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'INDAI1224'
+      ? 'GROZIS1224'
       : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'INDAI1224'
+      ? 'GROZIS1224'
       : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? 'KATTAUS1224'
+      ? 'KAUNEUS1224'
       : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-      ? 'GALDAM1224'
+      ? 'SKAISTUMAM1224'
       : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-      ? 'GALDAM1224'
+      ? 'SKAISTUMAM1224'
       : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'INDAI1224'
+      ? 'GROZIS1224'
       : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? 'KATTAUS1224'
+      ? 'KAUNEUS1224'
       : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-      ? 'GALDAM1224'
+      ? 'SKAISTUMAM1224'
       : this.language === 'EN' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'NOUD1224'
+      ? 'ILU1224'
       : '';
 
     this.render();
@@ -52,29 +52,29 @@ export class CompetitionCodeScoreTableContainerPigu {
       ? this.config.couponCodeNew
       : this.language === 'ET' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'NOUD1224'
+      ? 'ILU1224'
       : this.language === 'RU' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'NOUD1224'
+      ? 'ILU1224'
       : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'INDAI1224'
+      ? 'GROZIS1224'
       : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'INDAI1224'
+      ? 'GROZIS1224'
       : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? 'KATTAUS1224'
+      ? 'KAUNEUS1224'
       : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-      ? 'GALDAM1224'
+      ? 'SKAISTUMAM1224'
       : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-      ? 'GALDAM1224'
+      ? 'SKAISTUMAM1224'
       : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'INDAI1224'
+      ? 'GROZIS1224'
       : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? 'KATTAUS1224'
+      ? 'KAUNEUS1224'
       : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-      ? 'GALDAM1224'
+      ? 'SKAISTUMAM1224'
       : this.language === 'EN' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'NOUD1224'
+      ? 'ILU1224'
       : '';
 
     this.updateVisuals();
@@ -404,26 +404,26 @@ export class CompetitionCodeScoreTableContainerPigu {
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">11% EXTRA off</strong> selected items with <strong id="startCodeRulesButtonClick" style="text-decoration:underline">code*</strong></strong></strong>  '
           : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? '<strong style="text-transform:uppercase"> <strong style="color:#DFFC38"></strong>Izvēlētiem traukiem papildu -15% ar<strong id="startCodeRulesButtonClick" style="text-decoration:underline">kodu*</strong></strong>'
+          ? '<strong style="text-transform:uppercase"> <strong style="color:#DFFC38"></strong>Izvēlētām smaržām un kosmētikai papildu -15% ar<strong id="startCodeRulesButtonClick" style="text-decoration:underline">kodu*</strong></strong>'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? '<strong style="text-transform:uppercase"> <strong style="color:#DFFC38"> </strong> Valik lauanõusid -15% lisaale <strong id="startCodeRulesButtonClick" style="text-decoration:underline"> koodiga*</strong></strong> '
+          ? '<strong style="text-transform:uppercase"> <strong style="color:#DFFC38"> </strong> Valik parfüüme ja kosmeetikat -15% lisaale <strong id="startCodeRulesButtonClick" style="text-decoration:underline"> koodiga*</strong></strong> '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">15% LISÄALE</strong> lisäale valikoiduista astioista  <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong>'
+          ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">15% LISÄALE</strong> lisäale valikoiduista hajuvesistä ja kosmetiikasta  <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong>'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
               this.campaignUrlProp === 'https://kaup24.ee')
-          ? '<strong style="text-transform:uppercase">На выбранную посуду дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные духи и косметику дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">На выбранную посуду дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные духи и косметику дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
-          ? '<strong style="text-transform:uppercase">На выбранную посуду дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные духи и косметику дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt'
-          ? '<strong style="text-transform:uppercase">Pažymėti stalo indai <strong style="color:#DFFC38">Papildomai -15%</strong> su <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong>  '
+          ? '<strong style="text-transform:uppercase">Pažymėti kvepalai ir kosmetika <strong style="color:#DFFC38">Papildomai -15%</strong> su <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong>  '
           : ''
       }</div>
               <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">      ${
