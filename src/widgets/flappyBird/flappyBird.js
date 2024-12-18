@@ -296,9 +296,7 @@ class FlappyBird {
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
-        : this.customer === 'Pigu.lt'
-        ? PiguBackground
-        : this.campaignUrlProp === 'https://pigu.lt'
+        : this.campaignUrlProp === 'https://boomio-web.webflow.io/demo-pigu-flap-through'
         ? PIGUBackgroundlt
         : this.campaignUrlProp === 'https://220.lv'
         ? PIGUBackgroundlv
