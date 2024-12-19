@@ -153,65 +153,65 @@ export class DidYouKnowContainer {
 
     this.prop = prop;
 
-    if (this.prop === 'Pigu.lt') {
-      const url =
-        this.campaignUrlProp === 'https://pigu.lt'
-          ? 'https://uabpigu.germany-2.evergage.com/api2/authevent/pigult'
-          : this.campaignUrlProp === 'https://220.lv'
-          ? 'https://uabpigu.germany-2.evergage.com/api2/authevent/lv220'
-          : this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee'
-          ? 'https://uabpigu.germany-2.evergage.com/api2/authevent/kaup24ee'
-          : this.campaignUrlProp === 'https://hobbyhall.fi'
-          ? 'https://uabpigu.germany-2.evergage.com/api2/authevent/hobbyhallfi'
-          : '';
+    // if (this.prop === 'Pigu.lt') {
+    //   const url =
+    //     this.campaignUrlProp === 'https://pigu.lt'
+    //       ? 'https://uabpigu.germany-2.evergage.com/api2/authevent/pigult'
+    //       : this.campaignUrlProp === 'https://220.lv'
+    //       ? 'https://uabpigu.germany-2.evergage.com/api2/authevent/lv220'
+    //       : this.campaignUrlProp === 'https://kaup.ee' ||
+    //         this.campaignUrlProp === 'https://kaup24.ee'
+    //       ? 'https://uabpigu.germany-2.evergage.com/api2/authevent/kaup24ee'
+    //       : this.campaignUrlProp === 'https://hobbyhall.fi'
+    //       ? 'https://uabpigu.germany-2.evergage.com/api2/authevent/hobbyhallfi'
+    //       : '';
 
-      const headers = new Headers();
-      headers.append(
-        'Authorization',
-        'Basic ' +
-          btoa('AACE86C4-43A0-40F0-9EDF-8E086C15B6E8:tesos7d13pv3XcFzJACD1MCL-OTbjBFgISalLAdg49E'),
-      );
-      headers.append('Content-Type', 'application/json');
+    //   const headers = new Headers();
+    //   headers.append(
+    //     'Authorization',
+    //     'Basic ' +
+    //       btoa('AACE86C4-43A0-40F0-9EDF-8E086C15B6E8:tesos7d13pv3XcFzJACD1MCL-OTbjBFgISalLAdg49E'),
+    //   );
+    //   headers.append('Content-Type', 'application/json');
 
-      const body = JSON.stringify({
-        user: {
-          identities: {
-            sfmcContactKey: this.user_id,
-          },
-        },
-        source: {
-          channel: 'Server',
-          locale: 'en_US',
-          application: 'boomio',
-        },
-        interaction: {
-          name: 'View Game offer',
-        },
-      });
+    //   const body = JSON.stringify({
+    //     user: {
+    //       identities: {
+    //         sfmcContactKey: this.user_id,
+    //       },
+    //     },
+    //     source: {
+    //       channel: 'Server',
+    //       locale: 'en_US',
+    //       application: 'boomio',
+    //     },
+    //     interaction: {
+    //       name: 'View Game offer',
+    //     },
+    //   });
 
-      const options = {
-        method: 'POST',
-        headers: headers,
-        body: body,
-      };
+    //   const options = {
+    //     method: 'POST',
+    //     headers: headers,
+    //     body: body,
+    //   };
 
-      fetch(url, options)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          this.collectables = data.collectables || [];
-          console.log('Updated collectables:', this.collectables);
-        })
-        .catch((error) => {
-          console.error('Error fetching collectables:', error);
-          this.collectables = [];
-        });
-    }
+    //   fetch(url, options)
+    //     .then((response) => {
+    //       if (!response.ok) {
+    //         throw new Error(`HTTP error! Status: ${response.status}`);
+    //       }
+    //       return response.json();
+    //     })
+    //     .then((data) => {
+    //       this.collectables = data.collectables || [];
+    //       console.log('Updated collectables:', this.collectables);
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error fetching collectables:', error);
+    //       this.collectables = [];
+    //     });
+    // }
     if (this.prop === 'Pigu.lt') {
       this.collectables = [
         item1Pigu,
