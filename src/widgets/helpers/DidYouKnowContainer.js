@@ -149,8 +149,9 @@ export class DidYouKnowContainer {
     this.isMobileWidthSmall = window.innerWidth <= 400;
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
-    this.prop = prop;
+    this.user_id = urlParams.get('user_id');
 
+    this.prop = prop;
     if (this.prop === 'Pigu.lt') {
       this.collectables = [
         item1Pigu,
