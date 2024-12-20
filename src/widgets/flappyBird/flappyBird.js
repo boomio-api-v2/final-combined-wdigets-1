@@ -62,6 +62,17 @@ import {
   PIGUBackgroundlv,
   PIGUBackgroundlt,
   PIGUBackgroundee,
+  ChristmasPiguJumpUpIntroEstonian,
+  ChristmasPiguJumpUpIntroEstoniaRU,
+  ChristmasPiguJumpUpIntroLithuanian,
+  ChristmasPiguJumpUpIntroLithuanianRU,
+  ChristmasPiguJumpUpIntroFinish,
+  ChristmasPiguJumpUpIntroLatvian,
+  ChristmasPiguJumpUpIntroLatvianRU,
+  ChristmasPiguJumpUpIntroLatvianEN,
+  ChristmasPiguJumpUpIntroEstonianEN,
+  ChristmasPiguJumpUpIntroLithuanianEN,
+  ChristmasPiguJumpUpIntroFinishEN,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -936,7 +947,34 @@ class FlappyBird {
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
     <img src=${
-      this.customer === 'Pigu.lt'
+      this.language === 'ET' &&
+      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+        ? ChristmasPiguJumpUpIntroEstonian
+        : this.language === 'RU' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? ChristmasPiguJumpUpIntroEstoniaRU
+        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+        ? ChristmasPiguJumpUpIntroLithuanian
+        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+        ? ChristmasPiguJumpUpIntroLithuanianRU
+        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? ChristmasPiguJumpUpIntroFinish
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguJumpUpIntroLatvian
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguJumpUpIntroLatvianRU
+        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+        ? ChristmasPiguJumpUpIntroLithuanianEN
+        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? ChristmasPiguJumpUpIntroFinishEN
+        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguJumpUpIntroLatvianEN
+        : this.language === 'EN' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? ChristmasPiguJumpUpIntroEstonianEN
+        : this.customer === 'Pigu.lt'
         ? PiguIntro
         : this.customer === 'SaludSA'
         ? SaludSAIntro
