@@ -135,7 +135,6 @@ export class CompetitionCodeScoreTableContainer {
         : this.prop === 'Pigu.lt' &&
           (this.campaignUrlProp === 'https://pigu.lt' ||
             this.campaignUrlProp === 'https://boomio-web.webflow.io/demo-pigu-flap-through') && [
-            'AKRIUKAS',
             'PIGUTIS',
             'BLASH',
             'BULKIN',
@@ -162,6 +161,7 @@ export class CompetitionCodeScoreTableContainer {
             'MISTY',
             'BLACKTHORN',
             'BLAZING BILL',
+            'SKRAIDŪNAS',
           ];
 
     const playerNameInput = document.querySelector('.boomio-competition-name-input-field');

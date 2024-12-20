@@ -192,7 +192,6 @@ export class CompetitionCodeScoreTableContainerPigu {
           ]
         : this.prop === 'Pigu.lt' &&
           this.campaignUrlProp === 'https://pigu.lt' && [
-            'AKRIUKAS',
             'PIGUTIS',
             'BLASH',
             'BULKIN',
@@ -219,6 +218,7 @@ export class CompetitionCodeScoreTableContainerPigu {
             'MISTY',
             'BLACKTHORN',
             'BLAZING BILL',
+            'SKRAIDŪNAS',
           ];
     let tableHTML = '';
     scoreboard.forEach((item, index) => {
