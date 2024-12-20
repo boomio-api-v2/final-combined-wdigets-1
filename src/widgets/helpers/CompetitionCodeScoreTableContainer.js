@@ -128,8 +128,7 @@ export class CompetitionCodeScoreTableContainer {
             'Nani - Banaani',
           ]
         : this.prop === 'Pigu.lt' &&
-          (this.campaignUrlProp === 'https://pigu.lt' ||
-            this.campaignUrlProp === 'https://boomio-web.webflow.io/demo-pigu-flap-through') && [
+          this.campaignUrlProp === 'https://pigu.lt' && [
             'PIGUTIS',
             'BLASH',
             'BULKIN',
@@ -397,7 +396,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
                 ? `Joka viikko 10 parasta pelaajaa voittaa palkintoja! Jos voitat, ilmoitamme</br>siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen</br>${
                     this.prop === 'Pigu.lt'
-                      ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> 15% lisäale valikoiduista hajuvesistä ja kosmetiikasta <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong> '
+                      ? '<strong style="display:none;text-transform:uppercase"><strong style="color:#DFFC38"></strong> 15% lisäale valikoiduista hajuvesistä ja kosmetiikasta <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong> '
                       : ''
                   }`
                 : this.prop === 'Pigu.lt' &&
@@ -406,7 +405,7 @@ export class CompetitionCodeScoreTableContainer {
                     this.campaignUrlProp === 'https://kaup24.ee')
                 ? `Каждую неделю 10 лучших игроков получают призы! Если выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
-                      ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные духи и косметику дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+                      ? '<strong style="display:none;text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные духи и косметику дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
                       : ''
                   }`
                 : this.prop === 'Pigu.lt' &&
@@ -422,7 +421,7 @@ export class CompetitionCodeScoreTableContainer {
                   this.campaignUrlProp === 'https://220.lv'
                 ? `Каждую неделю 10 лучших игроков получают призы! Если выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
-                      ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные духи и косметику дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+                      ? '<strong style="display:none;text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные духи и косметику дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
                       : ''
                   }`
                 : this.prop === 'Pigu.lt'
@@ -586,7 +585,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
                 ? `Joka viikko 10 parasta pelaajaa voittaa palkintoja! Jos voitat, ilmoitamme</br>siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen</br>${
                     this.prop === 'Pigu.lt'
-                      ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> 15% lisäale valikoiduista hajuvesistä ja kosmetiikasta <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong> '
+                      ? '<strong style="display:none;text-transform:uppercase"><strong style="color:#DFFC38"></strong> 15% lisäale valikoiduista hajuvesistä ja kosmetiikasta <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong> '
                       : ''
                   }`
                 : this.prop === 'Pigu.lt' &&
@@ -595,7 +594,7 @@ export class CompetitionCodeScoreTableContainer {
                     this.campaignUrlProp === 'https://kaup24.ee')
                 ? `Каждую неделю 10 лучших игроков получают призы! Если выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
-                      ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные духи и косметику дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+                      ? '<strong style="display:none;text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные духи и косметику дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
                       : ''
                   }`
                 : this.prop === 'Pigu.lt' &&
@@ -611,7 +610,7 @@ export class CompetitionCodeScoreTableContainer {
                   this.campaignUrlProp === 'https://220.lv'
                 ? `Каждую неделю 10 лучших игроков получают призы! Если выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.</br>${
                     this.prop === 'Pigu.lt'
-                      ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные духи и косметику дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+                      ? '<strong style="display:none;text-transform:uppercase"><strong style="color:#DFFC38"></strong> На выбранные духи и косметику дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
                       : ''
                   }`
                 : this.prop === 'Pigu.lt'
