@@ -33,6 +33,8 @@ export class RulesContainer {
       this.campaignUrlProp === 'https://pigu.lt' && this.language === 'LT'
         ? `<div>
     <p><meta charset="utf-8"></p>
+    <p><strong>Žaidimo taisyklės</strong></p>
+    <p>Redakcija nuo 2024-12-23</p>
 
     <p><strong>BENDROSIOS NUOSTATOS</strong></p>
 
@@ -92,7 +94,8 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'EN'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Game Rules</strong></p>
+    <p>Revision from 2024-12-23</p>
     <p><strong>GENERAL PROVISIONS</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by UAB "Pigu" (company code 300866792, registered address Laisvės pr. 75, LT-06144 Vilnius) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution and other procedures.</p>
@@ -152,7 +155,8 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://220.lv' && this.language === 'LV'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Spēles noteikumi</strong></p>
+    <p>Pārskatīts 2024. gada 23. decembrī</p>
     <p><strong>VISPĀRĪGI NOTEIKUMI</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;Šos spēles noteikumus (turpmāk tekstā “Spēles noteikumi”) nosaka SIA "Pigu Latvia" (uzņēmuma kods 43603025092, juridiskā adrese Krasta iela 52, Rīga, LV-1003, Latvija) (turpmāk tekstā “Akcijas organizētājs”) organizētās spēles norises kārtību, spēles balvas un to piegādi, strīdu risināšanu un citas procedūras.</p>
@@ -211,7 +215,8 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://220.lv' && this.language === 'RU'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Правила игры</strong></p>
+    <p>Пересмотрено 23 декабря 2024 г.</p>
     <p><strong>Правила игры</strong><br>Пересмотрено 23 декабря 2024 года</p>
 
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
@@ -272,7 +277,8 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://220.lv' && this.language === 'EN'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Game Rules</strong></p>
+    <p>Revision from 2024-12-23</p>
     <p><strong>GENERAL PROVISIONS</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by SIA "Pigu Latvia” (company code 43603025092, registered address Krasta iela 52, Rīga, LV-1003, Latvija) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution and other procedures.</p>
@@ -334,7 +340,8 @@ export class RulesContainer {
           this.language === 'ET'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Mängureeglid</strong></p>
+    <p>Muudetud 23.12.2024</p>
     <p><strong>ÜLDISED SÄTTED</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;Käesolevad mängureeglid (edaspidi "mängureeglid") kehtestavad DLB Trading OÜ (ettevõtte reg.nr 11791329, aadressil Peterburi tee 2F, 11415 Tallinn, Eesti) (edaspidi "kampaania korraldaja") korraldatava mängu läbiviimise korra, mängu auhinnad ja nende kättetoimetamise, vaidluste lahendamise ja muud protseduurid.</p>
@@ -393,7 +400,8 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'RU'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Правила игры</strong></p>
+    <p>Пересмотрено 23 декабря 2024 г.</p>
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры UAB «Pigu» (код компании 300866792, юридический адрес Laisvės pr. 75, LT-06144 Вильнюс) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</p>
@@ -454,7 +462,8 @@ export class RulesContainer {
           this.language === 'RU'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Правила игры</strong></p>
+    <p>Пересмотрено 23 декабря 2024 г.</p>
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры DLB Trading OÜ (код компании 11791329, юридический адрес Peterburi tee 2F, 11415 Таллинн, Эстония) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</p>
@@ -513,7 +522,8 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://hobbyhall.fi' && this.language === 'FI'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Pelisäännöt</strong></p>
+    <p>Päivitetty 2024-12-23 alkaen</p>
     <p><strong>YLEISET MÄÄRÄYKSET</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;Nämä pelisäännöt (jäljempänä "pelisäännöt") määrittelevät Hobby Hall Suomi Oy (jäljempänä "kampanjan järjestäjä") järjestämän pelin järjestämismenettelyjä, pelin palkintoja ja niiden toimitusta, riitojen ratkaisua ja muita menettelyjä.</p>
@@ -574,7 +584,8 @@ export class RulesContainer {
           this.language === 'EN'
         ? `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Game Rules</strong></p>
+    <p>Revision from 2024-12-23</p>
     <p><strong>GENERAL PROVISIONS</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by DLB Trading OÜ (company code 11791329, registered address Peterburi tee 2F, 11415 Tallinn, Eesti) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution and other procedures.</p>
@@ -636,7 +647,8 @@ export class RulesContainer {
           this.language === 'EN' &&
           `<div>
     <p><meta charset="utf-8"></p>
-
+    <p><strong>Game Rules</strong></p>
+    <p>Revision from 2024-12-23</p>
     <p><strong>GENERAL PROVISIONS</strong></p>
 
     <p>1.&nbsp;&nbsp;&nbsp;These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by Hobby Hall Suomi Oy (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution, and other procedures.</p>
