@@ -409,7 +409,7 @@ class FlappyBird {
             background.style.display = 'none';
           }
         }, 2000);
-      }, 3000);
+      }, 2000);
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
