@@ -975,7 +975,7 @@ class FlappyBird {
             this.campaignUrlProp === 'https://kaup24.ee')
         ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'Pigu.lt'
-        ? PiguIntro
+        ? ChristmasPiguJumpUpIntroLithuanian
         : this.customer === 'SaludSA'
         ? SaludSAIntro
         : this.customer === 'Barbora'
