@@ -145,7 +145,7 @@ export const ChristmasPiguJumpUpIntroLatvian =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/pigu/Pigu-FlapThrough-Xmas_LV.gif?raw=true';
 
 export const ChristmasPiguJumpUpIntroLatvianRU =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/pigu/ChristmasPiguJumpUpIntroLatvianRU.gif?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/pigu/Pigu-FlapThrough-Xmas_LV-RU.gif?raw=true';
 
 export const ChristmasPiguJumpUpIntroLatvianEN =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/pigu/Pigu-FlapThrough-Xmas_LV-en.gif?raw=true';
