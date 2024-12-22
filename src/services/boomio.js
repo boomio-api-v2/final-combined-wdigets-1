@@ -62,7 +62,6 @@ class BoomioService extends UserService {
   }
 
   loadWidget = (widget_type = 'puzzle') => {
-    this.config = localStorageService.getDefaultConfig();
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
       wheel: startWheelWidget,
@@ -87,7 +86,7 @@ class BoomioService extends UserService {
       runner: startRunnerWidget,
       football: startFootballWidget,
     };
-    createWidgetMap[this.config.business_name === 'Pigu.lt' ? 'flappy' : widget_type]();
+    createWidgetMap[widget_type]();
   };
 
   setInitialConfiguration() {
