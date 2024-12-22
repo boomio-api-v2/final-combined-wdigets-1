@@ -62,6 +62,17 @@ import {
   PIGUBackgroundlv,
   PIGUBackgroundlt,
   PIGUBackgroundee,
+  ChristmasPiguJumpUpIntroEstonian,
+  ChristmasPiguJumpUpIntroEstoniaRU,
+  ChristmasPiguJumpUpIntroLithuanian,
+  ChristmasPiguJumpUpIntroLithuanianRU,
+  ChristmasPiguJumpUpIntroFinish,
+  ChristmasPiguJumpUpIntroLatvian,
+  ChristmasPiguJumpUpIntroLatvianRU,
+  ChristmasPiguJumpUpIntroLatvianEN,
+  ChristmasPiguJumpUpIntroEstonianEN,
+  ChristmasPiguJumpUpIntroLithuanianEN,
+  ChristmasPiguJumpUpIntroFinishEN,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -73,7 +84,15 @@ class FlappyBird {
     this.scoreTable = {};
     this.isJumping = false;
     this.customer = this.config.business_name ? this.config.business_name : 'SaludSA';
-    this.language = this.config.language ? this.config.language : 'ES';
+    const currentPageUrl = window.location.href;
+
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const languageParam = urlParams.get('language');
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'ES';
+    const campaignUrl = urlParams.get('campaign_url');
+
+    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
     this.checkboxChange = false;
     this.checkboxChange2 = false;
@@ -265,11 +284,6 @@ class FlappyBird {
   startFlappy() {
     this.config = localStorageService.getDefaultConfig();
     this.createContainer();
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     this.checkboxChange = false;
 
@@ -296,7 +310,7 @@ class FlappyBird {
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
-        : this.campaignUrlProp === 'https://boomio-web.webflow.io/demo-pigu-flap-through'
+        : this.campaignUrlProp === 'https://pigu.lt'
         ? PIGUBackgroundlt
         : this.campaignUrlProp === 'https://220.lv'
         ? PIGUBackgroundlv
@@ -398,7 +412,7 @@ class FlappyBird {
             background.style.display = 'none';
           }
         }, 2000);
-      }, 3000);
+      }, 2000);
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -588,7 +602,6 @@ class FlappyBird {
                           boomioService
                             .signal('ROUND_STARTED', 'signal')
                             .then((response) => {
-                              console.log('a');
                               document.getElementById('background_blur').style.display = 'none';
                               const canvas = document.getElementById('flappy-canvas');
                               canvas.style.transition = 'filter 1s ease';
@@ -936,8 +949,33 @@ class FlappyBird {
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
     <img src=${
-      this.customer === 'Pigu.lt'
-        ? PiguIntro
+      this.language === 'ET' &&
+      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+        ? ChristmasPiguJumpUpIntroEstonian
+        : this.language === 'RU' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? ChristmasPiguJumpUpIntroEstoniaRU
+        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+        ? ChristmasPiguJumpUpIntroLithuanian
+        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+        ? ChristmasPiguJumpUpIntroLithuanianRU
+        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? ChristmasPiguJumpUpIntroFinish
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguJumpUpIntroLatvian
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguJumpUpIntroLatvianRU
+        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+        ? ChristmasPiguJumpUpIntroLithuanianEN
+        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? ChristmasPiguJumpUpIntroFinishEN
+        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguJumpUpIntroLatvianEN
+        : this.language === 'EN' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'SaludSA'
         ? SaludSAIntro
         : this.customer === 'Barbora'
@@ -1022,6 +1060,8 @@ ${`<div style="${
     <div>${
       this.language === 'LV'
         ? 'KLIKŠĶINI'
+        : this.language === 'EN'
+        ? 'TAP'
         : this.language === 'RU'
         ? 'КЛИК'
         : this.language === 'EE'
@@ -1041,6 +1081,8 @@ ${`<div style="${
     <div>${
       this.language === 'LV'
         ? 'KLIKŠĶINI'
+        : this.language === 'EN'
+        ? 'TAP'
         : this.language === 'RU'
         ? 'КЛИК'
         : this.language === 'ET'
@@ -1468,8 +1510,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
-                console.log('aa');
-
                 document.getElementById('background_blur').style.display = 'none';
                 const canvas = document.getElementById('flappy-canvas');
                 canvas.style.transition = 'filter 1s ease';
@@ -1481,8 +1521,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
               });
           }
         }, 400);
-        controlButton.style.display = 'none';
-        controlButton.style.opacity = 0;
       };
 
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
@@ -1552,7 +1590,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     }
 
     document.getElementById('startButtonClick').addEventListener('click', () => {
-      console.log('aaaa');
       if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.bestScore <= 0) {
         document.getElementById('boomio-rules-checkbox-error').innerText =
           this.customer === 'Pigu.lt' && this.language === 'EN'
