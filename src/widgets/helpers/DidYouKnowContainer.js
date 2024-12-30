@@ -97,7 +97,6 @@ export class DidYouKnowContainer {
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'LV';
     this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
-    console.log(this.dynamicData);
 
     const currentPageUrl = window.location.href;
     this.isSmallMobile = window.innerWidth <= 380;
@@ -215,7 +214,6 @@ export class DidYouKnowContainer {
     this.isSmallMobile = window.innerWidth <= 380;
     this.config = localStorageService.getDefaultConfig();
     this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
-    console.log(this.dynamicData);
     if (this.prop === 'Pigu.lt') {
       this.collectablesLinks = this.dynamicData;
     } else if (this.prop && this.prop.includes('Plastic')) {
@@ -476,7 +474,6 @@ ${
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     if (this.prop === 'Pegasas' || this.prop === 'Pigu.lt') {
       document.getElementById('closeDidYouKnow').addEventListener('click', () => {
-        console.log('a');
         // Find all enlarged images by checking for the 'enlarge-image' class
         const enlargedImages = document.querySelectorAll('.enlarge-image');
 
@@ -515,7 +512,6 @@ ${
 
   handleImageClick(image) {
     const enlargedImages = document.querySelectorAll('.enlarge-image');
-    console.log(enlargedImages);
     if (enlargedImages.length === 0) {
       // Toggle enlargement class
       image.classList.toggle('enlarge-image');
