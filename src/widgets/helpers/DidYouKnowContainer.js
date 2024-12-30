@@ -307,7 +307,7 @@ export class DidYouKnowContainer {
     // Placeholder logic for updating visuals with products
     let tableHTML = '';
     this.products =
-      this.dynamicData.campaignResponses[0]?.payload?.products
+      this.dynamicData?.campaignResponses[0]?.payload?.products
         .map((product) => ({
           id: product.id,
           image: product.imageUrl,
