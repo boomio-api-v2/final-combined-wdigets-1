@@ -671,9 +671,14 @@ class FlappyBird {
 
                   if (this.showCompetitiveRegistration === 'competition') {
                     const canvas = document.getElementById('flappy-canvas');
-                    const competitionTableContainer = document.querySelector(
-                      '.competition-table-container',
-                    );
+                    let competitionTableContainer = '';
+                    if (this.customer === 'Pigu.lt') {
+                      competitionTableContainer = document.querySelector('.did-you-know-container');
+                    } else {
+                      competitionTableContainer = document.querySelector(
+                        '.competition-table-container',
+                      );
+                    }
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     document.getElementById('background_blur').style.display = 'block';
@@ -1477,6 +1482,30 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         }
       };
 
+      const clickEventHandlerDidYouKnow = () => {
+        const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+        didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          didYouKnowTableContainer.style.height = '10px';
+          didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+          didYouKnowTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          didYouKnowTableContainer.style.display = 'none';
+        }, 1000);
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+        document.getElementById('background_blur').style.display = 'block';
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        competitionTableContainer.style.display = 'block';
+
+        setTimeout(() => {
+          competitionTableContainer.style.height = '680px';
+          competitionTableContainer.style.top = 'calc(50%)';
+          competitionTableContainer.style.opacity = 1;
+        }, 100);
+      };
+
       const clickEventHandlerResetGame = () => {
         const competitionRestart = document.getElementById('boomio-game-play-again');
         competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
@@ -1585,8 +1614,12 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       }
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
-
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+
+      if (this.customer === 'Pigu.lt') {
+        const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+      }
     }
 
     document.getElementById('startButtonClick').addEventListener('click', () => {

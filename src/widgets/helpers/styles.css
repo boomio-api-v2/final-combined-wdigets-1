@@ -38,7 +38,12 @@
   margin-top:245px;
   text-decoration: underline;
   font-weight:800;
+}
 
+.image-container {
+  width: 70px; 
+  height: 70px; 
+  object-fit: cover; 
 }
 
 
