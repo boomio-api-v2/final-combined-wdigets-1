@@ -315,9 +315,8 @@ export class DidYouKnowContainer {
           title: product.name,
           link: product.url,
         }))
-        .slice(0, 12) || [];
+        .slice(0, 9) || [];
     const loopingImages = this.prop === 'Pigu.lt' ? this.products : this.collectables;
-    const maxImages = 12; // Limit to 12 images
 
     if (this.prop === 'Pigu.lt') {
       loopingImages?.forEach((product, index) => {
@@ -327,8 +326,8 @@ export class DidYouKnowContainer {
 
         tableHTML += `
           <td style="padding:5px;text-align: center; border: none; cursor:pointer;">
-            <div id="image-${index}" style="max-width:200px;">
-              <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:70px;' 
+            <div id="image-${index}" >
+              <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;' 
                 src=${product.image} alt="Product Image">
               
               ${
@@ -365,7 +364,7 @@ export class DidYouKnowContainer {
           <td style="padding:5px;text-align: center; border: none; ${
             this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''
           }">
-          <div id="image-${index}" style="max-width:200px;">
+          <div id="image-${index}" style="max-width:90px;">
           <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:$
             ${this.prop === 'Pigu.lt' ? '100px' : '70px'};' src=${item} alt="Scoreboard Image" >
         
@@ -591,7 +590,7 @@ ${
           <table style="margin-top:${
             this.prop === 'Pigu.lt' ? (this.isMobileWidthSmall ? '30px' : '40px') : '30px'
           };border-spacing:3px;width:${
-      this.isMobileWidthSmall ? 'calc(100% - 60px)' : 'calc(100% - 80px)'
+      this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
     };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
             <tbody class="boomio-tbody">
             <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${
