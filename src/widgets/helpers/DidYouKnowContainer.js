@@ -336,7 +336,10 @@ export class DidYouKnowContainer {
               ${
                 product.link
                   ? `<div class='image-container-text'>
-                       <a href="${product.link}" 
+                       <a href="${
+                         product.link +
+                         '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Products'
+                       }" 
                           target="_blank" style="color: white; text-decoration: underline;">
                          <p style="margin-left:10px;margin-right:10px;max-width:280px;line-height:10px;">
                            ${product.title}
@@ -472,19 +475,20 @@ ${
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     if (this.prop === 'Pegasas' || this.prop === 'Pigu.lt') {
-      document.getElementById('boomio-close-did-you-know').addEventListener('click', () => {
+      document.getElementById('closeDidYouKnow').addEventListener('click', () => {
+        console.log('a');
         // Find all enlarged images by checking for the 'enlarge-image' class
         const enlargedImages = document.querySelectorAll('.enlarge-image');
+
         if (this.prop === 'Pigu.lt') {
-          document.querySelector('.closeDidYouKnow').style.display = 'none';
+          document.querySelector('.closeDidYouKnow').style.display = 'none'; // Hide the close button
         }
+
         // Loop through each enlarged image and remove the 'enlarge-image' class
         enlargedImages.forEach((imgElement) => {
           imgElement.classList.remove('enlarge-image');
-          if (this.prop === 'Pigu.lt') {
-            document.querySelector('.closeDidYouKnow').style.display = 'none';
-          }
-          // Also hide the text element associated with the image if it exists
+
+          // Hide the text element associated with the image if it exists
           const textElement = imgElement.querySelector('.image-container-text');
           if (textElement) {
             textElement.style.display = 'none';
@@ -510,59 +514,34 @@ ${
   }
 
   handleImageClick(image) {
-    // Toggle a class to make the image larger and centered
-    image.classList.toggle('enlarge-image');
+    const enlargedImages = document.querySelectorAll('.enlarge-image');
+    console.log(enlargedImages);
+    if (enlargedImages.length === 0) {
+      // Toggle enlargement class
+      image.classList.toggle('enlarge-image');
 
-    const textElement = image.querySelector('.image-container-text');
+      const textElement = image.querySelector('.image-container-text');
+      if (textElement) {
+        // Show or hide text
+        textElement.style.display = textElement.style.display === 'block' ? 'none' : 'block';
+      }
 
-    if (textElement) {
-      // Toggle the visibility of the text when the image is enlarged
-      textElement.style.display = textElement.style.display === 'block' ? 'none' : 'block';
-    }
-
-    if (this.prop === 'Pegasas') {
-      document.querySelector('.bomio-first-line').style.display =
-        textElement.style.display === 'block' ? 'none' : 'block';
-      document.querySelector('.bomio-second-line').style.display =
-        textElement.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // Get the image element (the actual <img> inside the image div)
-    const imgElement = image.querySelector('img');
-    if (imgElement) {
-      imgElement.classList.toggle('enlarge-image');
-      if (this.prop === 'Pigu.lt') {
-        document.querySelector('.closeDidYouKnow').style.display =
-          document.querySelector('.closeDidYouKnow').style.display === 'none' ? 'block' : 'none';
+      const imgElement = image.querySelector('img');
+      if (imgElement) {
+        imgElement.classList.toggle('enlarge-image');
+        if (this.prop === 'Pigu.lt') {
+          // Toggle the display of the close button
+          document.querySelector('.closeDidYouKnow').style.display =
+            document.querySelector('.closeDidYouKnow').style.display === 'none' ? 'block' : 'none';
+        }
+      }
+    } else {
+      const linkElement = image.querySelector('.image-container-text a');
+      if (linkElement) {
+        const url = linkElement.href; // Get the href attribute of the link
+        window.open(url, '_blank'); // Opens the link in a new tab
       }
     }
-
-    // Add event listener to close image when clicking anywhere on the screen
-    const closeImageHandler = (event) => {
-      const firstLine = document.querySelector('.bomio-first-line');
-      const secondLine = document.querySelector('.bomio-second-line');
-      if (firstLine) firstLine.style.display = 'block';
-      if (secondLine) secondLine.style.display = 'block';
-      // Check if the click is outside the image container (image or text)
-      if (!image.contains(event.target)) {
-        // Close the enlarged image by removing the 'enlarge-image' class
-
-        if (imgElement) {
-          imgElement.classList.remove('enlarge-image');
-          if (this.prop === 'Pigu.lt') {
-            document.querySelector('.closeDidYouKnow').style.display = 'none';
-          }
-        }
-
-        // Hide the text element if it exists
-        if (textElement) {
-          textElement.style.display = 'none';
-        }
-
-        // Remove the event listener after the image is closed to prevent memory leaks
-        document.removeEventListener('click', closeImageHandler);
-      }
-    };
   }
 
   render() {
@@ -619,10 +598,10 @@ ${
       this.isMobileWidthSmall ? 'calc(100% - 60px)' : 'calc(100% - 80px)'
     };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
             <tbody class="boomio-tbody">
-            <div class='closeDidYouKnow' style='pointer-events: none;position:absolute;z-index:9999999;right:${
+            <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${
               this.isMobileWidthSmall ? '20px' : '40px'
             };top:35px;display:none' id='closeDidYouKnow'>
-                            <img style="pointer-events: none;" src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
+                            <img src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
 
     `;
 
