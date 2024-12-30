@@ -186,8 +186,11 @@ class FlappyBird {
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
+          this.didYouKnowContainer.updateProps(this.customer, this.scoreTable);
+
           if (this.customer === 'Pigu.lt' && false) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
+
             const competitionTableContainer = document.querySelector(
               '.competition-table-container-pigu',
             );
@@ -1282,8 +1285,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
-      gameContainer.appendChild(didYouKnowContainer.containerDiv);
+      this.didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(this.didYouKnowContainer.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
