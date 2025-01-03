@@ -158,3 +158,50 @@ export const ChristmasPiguJumpUpIntroLithuanianEN =
 
 export const ChristmasPiguJumpUpIntroFinishEN =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_FI-en.gif?raw=true';
+
+export const ChristmasPiguFlapThroughXmasEEEnNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_EE_en_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasEENew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_EE_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasEERuNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_EE_ru_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasFIEnNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_FI_en_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasFINew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_FI_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasLTEnNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_LT_en_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasLTNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_LT_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasLTRuNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_LT_ru_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasLVEnNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_LV_en_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasLVNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_LV_new.gif?raw=true';
+export const ChristmasPiguFlapThroughXmasLVRuNew =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/Pigu-FlapThrough-Xmas_LV_ru_new.gif?raw=true';
+
+export const PIGUFirstEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUFirstEE.png';
+
+export const PIGUFirstLT =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUFirstLT.png';
+
+export const PIGUFirstFI =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUFirstFI.png';
+
+export const PIGUFirstLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUFirstLV.png';
+
+export const PIGUSecondEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUFirstEE.png';
+
+export const PIGUSecondLT =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUFirstLT.png';
+
+export const PIGUSecondFI =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUFirstFI.png';
+
+export const PIGUSecondLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUFirstLV.png';

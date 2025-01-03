@@ -73,6 +73,25 @@ import {
   ChristmasPiguJumpUpIntroEstonianEN,
   ChristmasPiguJumpUpIntroLithuanianEN,
   ChristmasPiguJumpUpIntroFinishEN,
+  ChristmasPiguFlapThroughXmasEEEnNew,
+  ChristmasPiguFlapThroughXmasEENew,
+  ChristmasPiguFlapThroughXmasEERuNew,
+  ChristmasPiguFlapThroughXmasFIEnNew,
+  ChristmasPiguFlapThroughXmasFINew,
+  ChristmasPiguFlapThroughXmasLTEnNew,
+  ChristmasPiguFlapThroughXmasLTNew,
+  ChristmasPiguFlapThroughXmasLTRuNew,
+  ChristmasPiguFlapThroughXmasLVEnNew,
+  ChristmasPiguFlapThroughXmasLVNew,
+  ChristmasPiguFlapThroughXmasLVRuNew,
+  PIGUFirstEE,
+  PIGUFirstLT,
+  PIGUFirstFI,
+  PIGUFirstLV,
+  PIGUSecondEE,
+  PIGUSecondLT,
+  PIGUSecondFI,
+  PIGUSecondLV,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -309,18 +328,27 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
+    const randomChoice = Math.round(Math.random()); // Randomly 0 or 1
 
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
         : this.campaignUrlProp === 'https://pigu.lt'
-        ? PIGUBackgroundlt
+        ? randomChoice === 0
+          ? PIGUFirstLT
+          : PIGUSecondLT
         : this.campaignUrlProp === 'https://220.lv'
-        ? PIGUBackgroundlv
+        ? randomChoice === 0
+          ? PIGUFirstLV
+          : PIGUSecondLV
         : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
-        ? PIGUBackgroundee
+        ? randomChoice === 0
+          ? PIGUFirstEE
+          : PIGUSecondEE
         : this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? PIGUBackgroundfi
+        ? randomChoice === 0
+          ? PIGUFirstFI
+          : PIGUSecondFI
         : this.customer === 'Barbora'
         ? mainBarbora
         : this.customer === 'Fantazijos'
@@ -956,34 +984,34 @@ class FlappyBird {
               : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
-    <img src=${
+<img src=${
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstonian
+        ? ChristmasPiguFlapThroughXmasEEEnNew
         : this.language === 'RU' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstoniaRU
+        ? ChristmasPiguFlapThroughXmasEERuNew
         : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanian
+        ? ChristmasPiguFlapThroughXmasLTEnNew
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanianRU
+        ? ChristmasPiguFlapThroughXmasLTRuNew
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguJumpUpIntroFinish
-        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvian
-        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvianRU
+        ? ChristmasPiguFlapThroughXmasFIEnNew
         : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanianEN
+        ? ChristmasPiguFlapThroughXmasLTEnNew
         : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguJumpUpIntroFinishEN
+        ? ChristmasPiguFlapThroughXmasFIEnNew
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguFlapThroughXmasLVEnNew
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguFlapThroughXmasLVRuNew
         : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvianEN
+        ? ChristmasPiguFlapThroughXmasLVEnNew
         : this.language === 'EN' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstonianEN
+        ? ChristmasPiguFlapThroughXmasEEEnNew
         : this.customer === 'SaludSA'
         ? SaludSAIntro
         : this.customer === 'Barbora'
@@ -1010,7 +1038,8 @@ class FlappyBird {
           : document.body.offsetWidth + 'px'
         : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
-    </img>
+</img>
+
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
     <img src="${
       useCuponImage.src
