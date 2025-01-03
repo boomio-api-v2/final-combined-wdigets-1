@@ -18,6 +18,7 @@ import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeSc
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 
 import {
   close,
@@ -668,6 +669,7 @@ class FlappyBird {
                           this.scoreTableContainerInstance.updateProps(
                             this.customer,
                             this.scoreTable,
+                            this.currentScore,
                           );
                         }
                         if (this.showCompetitiveRegistration === 'collectable') {
@@ -1234,9 +1236,10 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
-        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
           this.customer,
           this.scoreTable,
+          this.currentScore,
         );
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
