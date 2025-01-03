@@ -489,7 +489,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : this.prop === 'Pigu.lt' && this.language === 'ET'
           ? '<strong style="text-transform:uppercase">10 x 20 € väärtuses kinkekaarte</strong> '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? '<strong style="text-transform:uppercase">10 kpl]20 euron lahjakortteja</strong>'
+          ? '<strong style="text-transform:uppercase">10 kpl 20 euron lahjakortteja</strong>'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
@@ -579,13 +579,13 @@ export class CompetitionCodeScoreTableLastContainerPigu {
       } </div>
                      <div style="margin-left:20px;width:calc(100% - 40px); top: 435px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? 'because the top 10 players each week will win Pigu.lt gift vouchers.</br>If you will win, we’ll notify you via the email address in your account.'
+          ? 'If you will win, we’ll notify you via the email address in your account.'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? 'jo katru nedēļu 10 labākie spēlētāji saņems 220.lv dāvanu kartes.</br>Ja uzvarēsi, mēs informēsim Tevi, izmantojot kontā norādīto e-pasta adresi.'
+          ? 'Ja uzvarēsi, mēs informēsim Tevi, izmantojot kontā norādīto e-pasta adresi.'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? 'sest 10 parimat mängijat võidavad igal nädalal Kaup24.ee kinkekaarte.</br>Kui peaksid võitma, teavitame Sind registreeritud e-posti kaudu.'
+          ? 'Kui peaksid võitma, teavitame Sind registreeritud e-posti kaudu.'
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? 'sillä joka viikko 10 parasta pelaajaa voittaa lahjakortin Hobbyhall.fi-verkkokauppaan!</br>Jos voitat, ilmoitamme siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen.'
+          ? 'Jos voitat, ilmoitamme siitä sähköpostitse käyttäjätililläsi olevaan osoitteeseen.'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
