@@ -297,7 +297,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
         ? 'Твой результат:'
         : this.prop === 'Pigu.lt' && this.language === 'LT' && 'Tavo rezultatas:'
     } ${this.currentScore ?? 0} </div>
-               <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;width:100%;top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word"> 
+               <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;margin-left:20px;width:calc(100% - 40px);top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word"> 
     ${
       this.currentScore >= 1000
         ? this.prop === 'Pigu.lt' && this.language === 'EN'
