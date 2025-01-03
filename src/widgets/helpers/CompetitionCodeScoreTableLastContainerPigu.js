@@ -464,9 +464,13 @@ export class CompetitionCodeScoreTableLastContainerPigu {
               this.campaignUrlProp === 'https://kaup24.ee')
           ? '<strong style="text-transform:uppercase"></strong> '
           : this.prop === 'Pigu.lt' &&
+            this.language === 'EN' &&
+            this.campaignUrlProp === 'https://pigu.lt'
+          ? '<strong style="text-transform:uppercase">JBL Speaker Flip 6</strong> '
+          : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase"></strong> '
+          ? '<strong style="text-transform:uppercase">JBL Колонка Flip 6</strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
