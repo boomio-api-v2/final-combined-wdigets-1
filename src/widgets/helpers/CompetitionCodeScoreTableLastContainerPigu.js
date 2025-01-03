@@ -297,6 +297,32 @@ export class CompetitionCodeScoreTableLastContainerPigu {
         ? 'Твой результат:'
         : this.prop === 'Pigu.lt' && this.language === 'LT' && 'Tavo rezultatas:'
     } ${this.currentScore ?? 0} </div>
+               <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;width:100%;top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word"> 
+    ${
+      this.currentScore >= 1000
+        ? this.prop === 'Pigu.lt' && this.language === 'EN'
+          ? 'Congratulations! '
+          : this.prop === 'Pigu.lt' && this.language === 'LV'
+          ? 'Apsveicam! '
+          : this.prop === 'Pigu.lt' && this.language === 'ET'
+          ? 'Palju õnne! '
+          : this.prop === 'Pigu.lt' && this.language === 'FI'
+          ? 'Onnittelut! '
+          : this.prop === 'Pigu.lt' && this.language === 'RU'
+          ? 'Поздравляем! '
+          : this.prop === 'Pigu.lt' && this.language === 'LT' && 'Sveikiname! '
+        : this.prop === 'Pigu.lt' && this.language === 'EN'
+        ? 'Oh no, you were so close!'
+        : this.prop === 'Pigu.lt' && this.language === 'LV'
+        ? 'Ak nē, tu biji tik tuvu!'
+        : this.prop === 'Pigu.lt' && this.language === 'ET'
+        ? 'Oh ei, olid võidule nii lähedal! '
+        : this.prop === 'Pigu.lt' && this.language === 'FI'
+        ? 'Voi ei, olit niin lähellä!'
+        : this.prop === 'Pigu.lt' && this.language === 'RU'
+        ? 'Как жаль, это  было так близко! '
+        : this.prop === 'Pigu.lt' && this.language === 'LT' && 'O ne, tu buvai taip arti!'
+    } </div>
       ${`<div style="display:${
         this.prop === 'Pigu.lt ' ? 'none' : 'none'
       };width:100%; top: 210px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight};  word-wrap: break-word">${
@@ -361,7 +387,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : ''
       }</div>
       ${
-        this.user_best_score >= 1000
+        this.currentScore >= 1000
           ? `<div style="margin-left:20px;width:calc(100% - 40px);position:absolute;margin-top:200px;">
               <div style="width:100%; top: ${'245px'};line-height:18px; text-align: center; color: #FFD66B; font-size:${
               this.isMobile ? '10px' : '12px'
@@ -599,32 +625,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
   
-           <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;width:100%;top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word"> 
-    ${
-      this.user_best_score >= 1000
-        ? this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? 'Congratulations! '
-          : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? 'Apsveicam! '
-          : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? 'Palju õnne! '
-          : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? 'Onnittelut! '
-          : this.prop === 'Pigu.lt' && this.language === 'RU'
-          ? 'Поздравляем! '
-          : this.prop === 'Pigu.lt' && this.language === 'LT' && 'Sveikiname! '
-        : this.prop === 'Pigu.lt' && this.language === 'EN'
-        ? 'Oh no, you were so close!'
-        : this.prop === 'Pigu.lt' && this.language === 'LV'
-        ? 'Ak nē, tu biji tik tuvu!'
-        : this.prop === 'Pigu.lt' && this.language === 'ET'
-        ? 'Oh ei, olid võidule nii lähedal! '
-        : this.prop === 'Pigu.lt' && this.language === 'FI'
-        ? 'Voi ei, olit niin lähellä!'
-        : this.prop === 'Pigu.lt' && this.language === 'RU'
-        ? 'Как жаль, это  было так близко! '
-        : this.prop === 'Pigu.lt' && this.language === 'LT' && 'O ne, tu buvai taip arti!'
-    } </div>
+
       <div class="boomio-scoreboard-text">
       `;
 
