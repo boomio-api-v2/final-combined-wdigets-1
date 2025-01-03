@@ -562,7 +562,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
   </div>
 </div>
 
-                     <div style="text-transform: uppercase;margin-left:20px;width:calc(100% - 40px); top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 16px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
+                     <div style="display:none;text-transform: uppercase;margin-left:20px;width:calc(100% - 40px); top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'Play again and improve your score'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
@@ -590,15 +590,15 @@ export class CompetitionCodeScoreTableLastContainerPigu {
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
               this.campaignUrlProp === 'https://kaup24.ee')
-          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.'
+          ? 'Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте.'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.'
+          ? 'Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте.'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
-          ? 'ведь каждую неделю 10 лучших игроков получат подарочные карты! Если ты выиграл, мы</br> свяжемся с тобой по электронной почте, указанной в твоем аккаунте.'
+          ? 'Если ты выиграл, мы свяжемся с тобой по электронной почте, указанной в твоем аккаунте.'
           : this.prop === 'Pigu.lt'
           ? 'Jei laimėsi informuosime tave paskyroje nurodytu el. paštu.'
           : ''
