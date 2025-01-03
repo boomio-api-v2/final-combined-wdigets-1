@@ -329,7 +329,7 @@ class FlappyBird {
     const ctx = canvas.getContext('2d');
     const img = new Image();
     const randomChoice = Math.round(Math.random()); // Randomly 0 or 1
-
+    console.log(randomChoice);
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
@@ -360,7 +360,6 @@ class FlappyBird {
         : this.customer === 'Corepetitus'
         ? CorepetitusFlappyBackground
         : mainPenki;
-
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
     const img2 = new Image();
