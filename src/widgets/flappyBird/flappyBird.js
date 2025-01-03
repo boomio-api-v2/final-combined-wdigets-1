@@ -985,23 +985,23 @@ class FlappyBird {
 <img src=${
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguFlapThroughXmasEEEnNew
+        ? ChristmasPiguFlapThroughXmasEENew
         : this.language === 'RU' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
         ? ChristmasPiguFlapThroughXmasEERuNew
         : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguFlapThroughXmasLTEnNew
+        ? ChristmasPiguFlapThroughXmasLTNew
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
         ? ChristmasPiguFlapThroughXmasLTRuNew
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguFlapThroughXmasFIEnNew
+        ? ChristmasPiguFlapThroughXmasFINew
         : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
         ? ChristmasPiguFlapThroughXmasLTEnNew
         : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
         ? ChristmasPiguFlapThroughXmasFIEnNew
         : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguFlapThroughXmasLVEnNew
+        ? ChristmasPiguFlapThroughXmasLVNew
         : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
         ? ChristmasPiguFlapThroughXmasLVRuNew
         : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
