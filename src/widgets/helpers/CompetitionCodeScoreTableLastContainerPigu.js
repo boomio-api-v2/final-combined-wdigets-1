@@ -390,7 +390,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
         this.currentScore >= 1000
           ? `<div style="margin-left:20px;width:calc(100% - 40px);position:absolute;margin-top:200px;">
               <div style="width:100%; top: ${'245px'};line-height:18px; text-align: center; color: #FFD66B; font-size:${
-              this.isMobile ? '10px' : '12px'
+              this.isMobile ? '12px' : '14px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Pigu.lt' && this.language === 'EN'
                 ? '<strong style="text-transform:uppercase">You`ve scored over 1000 points and are eligible to win this week`s prizes:</strong>  '
@@ -448,7 +448,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
             }</div>`
       }
                     <div style="width:100%; margin-top: ${'10px'};line-height:18px; text-align: center; color: #FFD66B; font-size:${
-        this.isMobile ? '16px' : '18px'
+        this.isMobile ? '17px' : '19px'
       } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? '<strong style="text-transform:uppercase"></strong>  '
@@ -480,31 +480,31 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : ''
       }</div>
                     <div style="width:100%; margin-top: ${'10px'};line-height:18px;  text-align: center; color: #FFD66B; font-size:${
-        this.isMobile ? '16px' : '18px'
+        this.isMobile ? '17px' : '19px'
       } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? '<strong style="text-transform:uppercase">[10 x] €20 gift vouchers</strong>  '
+          ? '<strong style="text-transform:uppercase">10 x €20 gift vouchers</strong>  '
           : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? '<strong style="text-transform:uppercase"> [10 gab.] 20€ dāvanu kartes.</strong>'
+          ? '<strong style="text-transform:uppercase"> 10 gab. 20€ dāvanu kartes.</strong>'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? '<strong style="text-transform:uppercase">[10 x] 20 € väärtuses kinkekaarte</strong> '
+          ? '<strong style="text-transform:uppercase">10 x 20 € väärtuses kinkekaarte</strong> '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? '<strong style="text-transform:uppercase">[10 kpl] 20 euron lahjakortteja</strong>'
+          ? '<strong style="text-transform:uppercase">10 kpl]20 euron lahjakortteja</strong>'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
               this.campaignUrlProp === 'https://kaup24.ee')
-          ? '<strong style="text-transform:uppercase">[10 шт.] подарочные карты на 20 €.</strong> '
+          ? '<strong style="text-transform:uppercase">10 шт. подарочные карты на 20 €.</strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">[10 шт.] подарочные карты на 20 €.</strong> '
+          ? '<strong style="text-transform:uppercase">10 шт. подарочные карты на 20 €.</strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
-          ? '<strong style="text-transform:uppercase">[10 шт.] подарочные карты на 20 €.</strong> '
+          ? '<strong style="text-transform:uppercase">10 шт. подарочные карты на 20 €.</strong> '
           : this.prop === 'Pigu.lt'
-          ? '<strong style="text-transform:uppercase">[10 x] 20 € vertės dovanų kuponų</strong>  '
+          ? '<strong style="text-transform:uppercase">10 x 20 € vertės dovanų kuponų</strong>  '
           : ''
       }</div>
       </div>
@@ -562,7 +562,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
   </div>
 </div>
 
-                     <div style="text-transform: uppercase;margin-left:20px;width:calc(100% - 40px); top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
+                     <div style="text-transform: uppercase;margin-left:20px;width:calc(100% - 40px); top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 16px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'Play again and improve your score'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
@@ -577,7 +577,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           ? 'PRIZAI KIEKVIENĄ savaitę!'
           : ''
       } </div>
-                     <div style="margin-left:20px;width:calc(100% - 40px); top: 435px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word">${
+                     <div style="margin-left:20px;width:calc(100% - 40px); top: 435px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'because the top 10 players each week will win Pigu.lt gift vouchers.</br>If you will win, we’ll notify you via the email address in your account.'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
