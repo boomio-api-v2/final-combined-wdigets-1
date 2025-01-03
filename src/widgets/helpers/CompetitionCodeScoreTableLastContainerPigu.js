@@ -422,7 +422,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
             }</div>`
       }
                     <div style="width:100%; margin-top: ${'10px'};line-height:18px; text-align: center; color: #FFD66B; font-size:${
-        this.isMobile ? '14px' : '16px'
+        this.isMobile ? '16px' : '18px'
       } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? '<strong style="text-transform:uppercase"></strong>  '
@@ -450,7 +450,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : ''
       }</div>
                     <div style="width:100%; margin-top: ${'10px'};line-height:18px;  text-align: center; color: #FFD66B; font-size:${
-        this.isMobile ? '14px' : '16px'
+        this.isMobile ? '16px' : '18px'
       } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? '<strong style="text-transform:uppercase">[10 x] €20 gift vouchers</strong>  '
@@ -532,7 +532,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
   </div>
 </div>
 
-                     <div style="margin-left:20px;width:calc(100% - 40px); top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
+                     <div style="text-transform: uppercase;margin-left:20px;width:calc(100% - 40px); top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'Play again and improve your score'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
@@ -599,7 +599,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
   
-           <div id='boomio-your-score' style="margin-bottom:10px;width:100%;top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word"> 
+           <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;width:100%;top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word"> 
     ${
       this.user_best_score >= 1000
         ? this.prop === 'Pigu.lt' && this.language === 'EN'
