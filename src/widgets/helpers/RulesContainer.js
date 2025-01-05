@@ -267,7 +267,7 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://220.lv' && this.language === 'EN'
         ? `<div>
     <p><strong>Правила игры</strong></p>
-    <p>Пересмотрено 6 января 2024 г.</p>
+    <p>Пересмотрено 6 января 2025 г.</p>
 
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
 
@@ -392,7 +392,7 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'RU'
         ? `<div>
     <p><strong>Правила игры</strong></p>
-    <p>Пересмотрено 6 января 2024 г.</p>
+    <p>Пересмотрено 6 января 2025 г.</p>
 
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
 
@@ -456,7 +456,7 @@ export class RulesContainer {
           this.language === 'RU'
         ? `<div>
     <p><strong>Правила игры</strong></p>
-    <p>Пересмотрено 6 января 2024 г.</p>
+    <p>Пересмотрено 6 января 2025 г.</p>
 
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
 
