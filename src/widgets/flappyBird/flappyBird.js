@@ -18,6 +18,7 @@ import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeSc
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 
 import {
   close,
@@ -73,6 +74,25 @@ import {
   ChristmasPiguJumpUpIntroEstonianEN,
   ChristmasPiguJumpUpIntroLithuanianEN,
   ChristmasPiguJumpUpIntroFinishEN,
+  ChristmasPiguFlapThroughXmasEEEnNew,
+  ChristmasPiguFlapThroughXmasEENew,
+  ChristmasPiguFlapThroughXmasEERuNew,
+  ChristmasPiguFlapThroughXmasFIEnNew,
+  ChristmasPiguFlapThroughXmasFINew,
+  ChristmasPiguFlapThroughXmasLTEnNew,
+  ChristmasPiguFlapThroughXmasLTNew,
+  ChristmasPiguFlapThroughXmasLTRuNew,
+  ChristmasPiguFlapThroughXmasLVEnNew,
+  ChristmasPiguFlapThroughXmasLVNew,
+  ChristmasPiguFlapThroughXmasLVRuNew,
+  PIGUFirstEE,
+  PIGUFirstLT,
+  PIGUFirstFI,
+  PIGUFirstLV,
+  PIGUSecondEE,
+  PIGUSecondLT,
+  PIGUSecondFI,
+  PIGUSecondLV,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -186,8 +206,11 @@ class FlappyBird {
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
+          this.didYouKnowContainer.updateProps(this.customer, this.scoreTable);
+
           if (this.customer === 'Pigu.lt' && false) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
+
             const competitionTableContainer = document.querySelector(
               '.competition-table-container-pigu',
             );
@@ -306,18 +329,26 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-
+    const randomChoice = Math.round(Math.random()); // Randomly 0 or 1
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
         : this.campaignUrlProp === 'https://pigu.lt'
-        ? PIGUBackgroundlt
+        ? randomChoice === 0
+          ? PIGUFirstLT
+          : PIGUSecondLT
         : this.campaignUrlProp === 'https://220.lv'
-        ? PIGUBackgroundlv
+        ? randomChoice === 0
+          ? PIGUFirstLV
+          : PIGUSecondLV
         : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
-        ? PIGUBackgroundee
+        ? randomChoice === 0
+          ? PIGUFirstEE
+          : PIGUSecondEE
         : this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? PIGUBackgroundfi
+        ? randomChoice === 0
+          ? PIGUFirstFI
+          : PIGUSecondFI
         : this.customer === 'Barbora'
         ? mainBarbora
         : this.customer === 'Fantazijos'
@@ -329,7 +360,6 @@ class FlappyBird {
         : this.customer === 'Corepetitus'
         ? CorepetitusFlappyBackground
         : mainPenki;
-
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
     const img2 = new Image();
@@ -639,6 +669,7 @@ class FlappyBird {
                           this.scoreTableContainerInstance.updateProps(
                             this.customer,
                             this.scoreTable,
+                            this.currentScore,
                           );
                         }
                         if (this.showCompetitiveRegistration === 'collectable') {
@@ -671,9 +702,14 @@ class FlappyBird {
 
                   if (this.showCompetitiveRegistration === 'competition') {
                     const canvas = document.getElementById('flappy-canvas');
-                    const competitionTableContainer = document.querySelector(
-                      '.competition-table-container',
-                    );
+                    let competitionTableContainer = '';
+                    if (this.customer === 'Pigu.lt') {
+                      competitionTableContainer = document.querySelector('.did-you-know-container');
+                    } else {
+                      competitionTableContainer = document.querySelector(
+                        '.competition-table-container',
+                      );
+                    }
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     document.getElementById('background_blur').style.display = 'block';
@@ -948,34 +984,34 @@ class FlappyBird {
               : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
-    <img src=${
+<img src=${
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstonian
+        ? ChristmasPiguFlapThroughXmasEENew
         : this.language === 'RU' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstoniaRU
+        ? ChristmasPiguFlapThroughXmasEERuNew
         : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanian
+        ? ChristmasPiguFlapThroughXmasLTNew
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanianRU
+        ? ChristmasPiguFlapThroughXmasLTRuNew
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguJumpUpIntroFinish
-        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvian
-        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvianRU
+        ? ChristmasPiguFlapThroughXmasFINew
         : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanianEN
+        ? ChristmasPiguFlapThroughXmasLTEnNew
         : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguJumpUpIntroFinishEN
+        ? ChristmasPiguFlapThroughXmasFIEnNew
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguFlapThroughXmasLVNew
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? ChristmasPiguFlapThroughXmasLVRuNew
         : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvianEN
+        ? ChristmasPiguFlapThroughXmasLVEnNew
         : this.language === 'EN' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstonianEN
+        ? ChristmasPiguFlapThroughXmasEEEnNew
         : this.customer === 'SaludSA'
         ? SaludSAIntro
         : this.customer === 'Barbora'
@@ -1002,7 +1038,8 @@ class FlappyBird {
           : document.body.offsetWidth + 'px'
         : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
-    </img>
+</img>
+
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
     <img src="${
       useCuponImage.src
@@ -1199,9 +1236,10 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
-        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
           this.customer,
           this.scoreTable,
+          this.currentScore,
         );
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
@@ -1277,8 +1315,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
-      gameContainer.appendChild(didYouKnowContainer.containerDiv);
+      this.didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(this.didYouKnowContainer.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
@@ -1477,6 +1515,30 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         }
       };
 
+      const clickEventHandlerDidYouKnow = () => {
+        const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+        didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          didYouKnowTableContainer.style.height = '10px';
+          didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+          didYouKnowTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          didYouKnowTableContainer.style.display = 'none';
+        }, 1000);
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+        document.getElementById('background_blur').style.display = 'block';
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        competitionTableContainer.style.display = 'block';
+
+        setTimeout(() => {
+          competitionTableContainer.style.height = '680px';
+          competitionTableContainer.style.top = 'calc(50%)';
+          competitionTableContainer.style.opacity = 1;
+        }, 100);
+      };
+
       const clickEventHandlerResetGame = () => {
         const competitionRestart = document.getElementById('boomio-game-play-again');
         competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
@@ -1585,8 +1647,12 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       }
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
-
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+
+      if (this.customer === 'Pigu.lt') {
+        const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+      }
     }
 
     document.getElementById('startButtonClick').addEventListener('click', () => {

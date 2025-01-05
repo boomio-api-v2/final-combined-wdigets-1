@@ -126,6 +126,8 @@ class LocalStorageService {
 
     const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
     const userBestScore = config?.user_best_score ? config?.user_best_score : 0;
+    const dynamicData = config?.dynamicData ? config?.dynamicData : null;
+
     return {
       language,
       widget_subtype,
@@ -177,6 +179,7 @@ class LocalStorageService {
       campaignUrl,
       couponCodeNew,
       userBestScore,
+      dynamicData,
     };
   }
 }
