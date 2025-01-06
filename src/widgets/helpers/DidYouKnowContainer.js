@@ -343,12 +343,12 @@ export class DidYouKnowContainer {
                          '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Products'
                        }" 
                           target="_blank" style="color: white; text-decoration: underline;text-align:left;">
-                         <p style="margin-left:10px;margin-right:10px;line-height:10px;color:black;margin-left:20px;margin-left:${
+                         <p style="margin-left:10px;margin-right:10px;line-height:10px;color:black;margin-left:20px;font-weight:700;font-align:start;margin-left:${
                            document.body.offsetWidth < 418 ? '100px' : '110px'
                          };margin-right:${document.body.offsetWidth < 418 ? '100px' : '110px'};">
                            ${product.title}
                          </p>
-                             <p style="margin: 5px; line-height: 10px; color: black; font-size: 12px; margin-left: ${
+                             <p style="margin: 5px; line-height: 10px; color: black; font-size: 12px;font-align:start; margin-left: ${
                                document.body.offsetWidth < 418 ? '100px' : '110px'
                              }; margin-right: ${
                       document.body.offsetWidth < 418 ? '100px' : '110px'
