@@ -325,7 +325,7 @@ export class DidYouKnowContainer {
         }
 
         tableHTML += `
-          <td style="padding:5px;text-align: center; border: none; cursor:pointer;">
+          <td style="padding:5px;text-align: center; border: none; cursor:pointer;background-color:white;">
             <div id="image-${index}" >
               <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;' 
                 src=${product.image} alt="Product Image">
