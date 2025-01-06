@@ -33,16 +33,16 @@ export class RulesContainer {
       this.campaignUrlProp === 'https://pigu.lt' && this.language === 'LT'
         ? `<div>
     <p><meta charset="utf-8"></p>
-    <p><strong>Žainio taisyklės</strong></p>
+    <p><strong>Žaidimo taisyklės</strong></p>
     <p>Redakcija nuo 2025-01-06</p>
 
     <p><strong>BENDROSIOS NUOSTATOS</strong></p>
 
-    <p>1.&nbsp;&nbsp;&nbsp;Šios žaidimo taisyklės (toliau – Žainio taisyklės) nustato UAB „Pigu“ (įmonės kodas 300866792, buveinė Laisvės pr. 75, LT-06144 Vilnius) (toliau – Akcijos organizatorius) organizuojamo žaidimo vykdymo tvarką, žaidimo dovanas ir jų įteikimo, ginčų sprendimo ir kitą tvarką.</p>
+    <p>1.&nbsp;&nbsp;&nbsp;Šios žaidimo taisyklės (toliau – Žaidimo taisyklės) nustato UAB „Pigu“ (įmonės kodas 300866792, buveinė Laisvės pr. 75, LT-06144 Vilnius) (toliau – Akcijos organizatorius) organizuojamo žaidimo vykdymo tvarką, žaidimo dovanas ir jų įteikimo, ginčų sprendimo ir kitą tvarką.</p>
 
-    <p>2.&nbsp;&nbsp;&nbsp;Žainio vykdymo laikotarpis: 2024 m. lapkričio 15 d. – 2025 m. vasario 2 d. (imtinai).</p>
+    <p>2.&nbsp;&nbsp;&nbsp;Žaidimo vykdymo laikotarpis: 2024 m. lapkričio 15 d. – 2025 m. vasario 2 d. (imtinai).</p>
 
-    <p>3.&nbsp;&nbsp;&nbsp;Žainio dalyvis turi būti registruotas pigu.lt narys ir būti sutikęs gauti žaidimo naujienas ir informaciją apie prizus.</p>
+    <p>3.&nbsp;&nbsp;&nbsp;Žaidimo dalyvis turi būti registruotas pigu.lt narys ir būti sutikęs gauti žaidimo naujienas ir informaciją apie prizus.</p>
 
     <p>4.&nbsp;&nbsp;&nbsp;žaidimas vykdomas Pigu.lt mobiliojoje programėlėje. žaidimo metu žaidimo dalyvis kontroliuoja žaidimo herojų, kurio tikslas skrendant neatsitrenkti į kliūtis. Siekiant pagerinti rezultatą, žaidimo dalyvis žaidimą gali kartoti.</p>
 
