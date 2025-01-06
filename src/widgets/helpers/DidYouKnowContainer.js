@@ -309,12 +309,17 @@ export class DidYouKnowContainer {
     let tableHTML = '';
     this.products =
       this.dynamicData?.campaignResponses[0]?.payload?.products
-        .map((product) => ({
-          id: product.id,
-          image: product.imageUrl,
-          title: product.name,
-          link: product.url,
-        }))
+        ?.map((product) => {
+          const [euros, cents] = String(product.price).split('.');
+          return {
+            id: product.id,
+            image: product.imageUrl,
+            title: product.name,
+            link: product.url,
+            price: euros || product.price, // Fallback if there's no decimal part
+            cents: cents && cents.length === 1 ? `${cents}0` : cents || '00', // Add leading zero if cents is 1 digit
+          };
+        })
         .slice(0, 9) || [];
     const loopingImages = this.prop === 'Pigu.lt' ? this.products : this.collectables;
 
@@ -325,7 +330,7 @@ export class DidYouKnowContainer {
         }
 
         tableHTML += `
-          <td style="padding:5px;text-align: center; border: none; cursor:pointer;">
+          <td style="padding:5px;text-align: center; border: none; cursor:pointer;background-color:white;">
             <div id="image-${index}" >
               <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;' 
                 src=${product.image} alt="Product Image">
@@ -337,10 +342,22 @@ export class DidYouKnowContainer {
                          product.link +
                          '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Products'
                        }" 
-                          target="_blank" style="color: white; text-decoration: underline;">
-                         <p style="margin-left:10px;margin-right:10px;max-width:280px;line-height:10px;">
+                          target="_blank" style="color: white; text-decoration: underline;text-align:left;">
+                         <p style="margin-left:10px;margin-right:10px;line-height:10px;color:black;margin-left:20px;font-weight:700;text-align:start;margin-left:${
+                           document.body.offsetWidth < 418 ? '100px' : '110px'
+                         };margin-right:${document.body.offsetWidth < 418 ? '100px' : '110px'};">
                            ${product.title}
                          </p>
+                             <p style="margin: 5px; line-height: 10px; color: black; font-size: 12px;text-align:start; margin-left: ${
+                               document.body.offsetWidth < 418 ? '100px' : '110px'
+                             }; margin-right: ${
+                      document.body.offsetWidth < 418 ? '100px' : '110px'
+                    };">
+  ${product.price}<span style="font-size: 6px; position: relative; top: -4px;left: 1px;">${
+                      product.cents
+                    }</span> €
+</p>
+
                        </a>
                      </div>`
                   : ''

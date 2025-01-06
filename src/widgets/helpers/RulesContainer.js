@@ -705,7 +705,7 @@ export class RulesContainer {
               <div id="close-rules-container" style="display:block;width: 100%; display:flex;justify-content:end;align-items:end;margin-top:10px">
 <img src=${close} alt="Image Description" style="width:32px;height:32px;margin-right:10px;"></img>
 </div>
-<div class="boomio-custom-scrollbar-rules" style="overflow-x:hidden;overflow-y: scroll;height: calc(100% - 20px);text-align:left;padding-left:10px;font-size:10px;line-height:14px;min-width:320px;">
+<div class="boomio-custom-scrollbar-rules" style="overflow-x:hidden;overflow-y: scroll;height: calc(100% - 20px);text-align:left;padding-left:10px;font-size:10px;line-height:14px;">
   ${content}
 </div>
               </div>
