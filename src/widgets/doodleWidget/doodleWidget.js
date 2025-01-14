@@ -7,10 +7,6 @@ import {
 } from '@/services';
 import './styles.css';
 import {
-  scoreImage,
-  couponBackground,
-  intro,
-  howToPlay,
   close,
   backgroundRed,
   mainImage,
@@ -28,31 +24,12 @@ import {
   star,
   jumpEffect,
   ControlsDesktop,
-  mainImagePigu,
-  mainImagePiguLT,
-  mainImagePiguLV,
-  mainImagePiguFI,
-  mainImagePiguEE,
-  introPigu,
-  backgroundPigu,
-  PiguJumpUpIntroEstonian,
-  PiguJumpUpIntroEstoniaRU,
-  PiguJumpUpIntroLithuanian,
-  PiguJumpUpIntroLithuanianRU,
-  PiguJumpUpIntroFinish,
-  PiguJumpUpIntroLatvian,
-  PiguJumpUpIntroLatvianRU,
   newRecordEE,
   newRecordFI,
   newRecordRU,
   newRecordLV,
-  PiguJumpUpIntroLatvianEN,
-  PiguJumpUpIntroEstonianEN,
-  PiguJumpUpIntroLithuanianEN,
-  PiguJumpUpIntroFinishEN,
   newRecordEn,
   ChristmasBackgroundPigu,
-  ChristmasIntroPigu,
   ChristmasMainImagePiguLT,
   ChristmasMainImagePiguLV,
   ChristmasMainImagePiguFI,
@@ -68,6 +45,9 @@ import {
   ChristmasPiguJumpUpIntroEstonianEN,
   ChristmasPiguJumpUpIntroLithuanianEN,
   ChristmasPiguJumpUpIntroFinishEN,
+  introVilvi,
+  mainImageVilvi,
+  backgroundVilvi,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -92,7 +72,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
+    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -125,6 +105,8 @@ class DoodleWidget {
         ? ChristmasMainImagePiguEE
         : this.campaignUrlProp === 'https://hobbyhall.fi'
         ? ChristmasMainImagePiguFI
+        : this.customer === 'Vilvi'
+        ? mainImageVilvi
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? mainImageAkropolisLV
@@ -166,6 +148,8 @@ class DoodleWidget {
     canvas.style.background = `url(${
       this.customer === 'Pigu.lt'
         ? ChristmasBackgroundPigu
+        : this.customer === 'Vilvi'
+        ? backgroundVilvi
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV
@@ -1343,6 +1327,8 @@ class DoodleWidget {
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
         ? ChristmasPiguJumpUpIntroEstonianEN
+        : this.customer === 'Vilvi'
+        ? introVilvi
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV
