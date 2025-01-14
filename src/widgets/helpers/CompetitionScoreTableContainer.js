@@ -125,6 +125,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
         (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 35) ||
         (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
+        (this.prop === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10)
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
@@ -178,6 +179,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Mėnesio gale 11 geriausių žaidėjų laimės</br> Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Makalius'
                 ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 €'
+                : this.prop === 'Vilvi'
+                ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -217,6 +220,8 @@ export class CompetitionScoreTableContainer {
                 : this.prop.includes('Gamtos Ateitis')
                 ? ''
                 : this.prop === 'Pieno Žvaigždės'
+                ? ''
+                : this.prop === 'Vilvi'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
@@ -272,6 +277,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
                 : this.language === 'EE' && this.prop === 'Fantazijos'
                 ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
+                : this.prop === 'Vilvi'
+                ? 'Pagerink rezultatą, nes net 10 geriausių žaidėjų xx dieną </br> laimės VILVI prizus! '
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -310,7 +317,8 @@ export class CompetitionScoreTableContainer {
                   this.prop === 'Unisend' ||
                   this.prop === 'Akropolis' ||
                   this.prop === 'Pieno Žvaigždės' ||
-                  this.prop.includes('Gamtos Ateitis')
+                  this.prop.includes('Gamtos Ateitis') ||
+                  this.prop === 'Vilvi'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div>

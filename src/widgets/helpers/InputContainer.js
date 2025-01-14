@@ -197,6 +197,8 @@ export class InputContainer {
                 ? 'į šonus kad  kiltum.'
                 : this.prop === 'SaludSA'
                 ? 'para volar'
+                : this.prop === 'Vilvi'
+                ? 'į šonus kad  nenukristum.'
                 : 'kad skristum.'
             }
           </div>
@@ -413,6 +415,8 @@ export class InputContainer {
                 ? 'kasdien!'
                 : this.prop === 'SaludSA'
                 ? 'premios Saludsa Vitality y participa</br> por el sorteo de un reloj Garmin.'
+                : this.prop === 'Vilvi'
+                ? 'kasdien!'
                 : 'Lemon Gym narystes</br> kas mėnesį!'
             }
           </div>
@@ -433,6 +437,7 @@ export class InputContainer {
       this.prop === 'Akropolis' ||
       this.prop === 'Pigu.lt' ||
       this.prop === 'SaludSA' ||
+      this.prop === 'Vilvi' ||
       this.prop === 'Ikea'
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
@@ -606,6 +611,8 @@ export class InputContainer {
         ? 'PIRMYN'
         : this.prop === 'SaludSA'
         ? 'SIGUIENTE'
+        : this.prop === 'Vilvi'
+        ? 'SUTINKU'
         : 'LET’S PLAY'
     }</div></div>
     </div>
