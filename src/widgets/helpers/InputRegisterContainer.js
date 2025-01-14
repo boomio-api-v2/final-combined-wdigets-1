@@ -152,7 +152,7 @@ export class InputRegisterContainer {
         } ;left: 34px; top: ${
       this.prop === 'Akropolis' && this.language === 'LV'
         ? '380px'
-        : this.prop === 'Akropolis'
+        : this.prop === 'Vilvi'
         ? '360px'
         : '395px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
@@ -216,6 +216,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
         : this.prop === 'Corepetitus'
         ? 'Sutinku su'
+        : this.prop === 'Vilvi'
+        ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -230,6 +232,7 @@ export class InputRegisterContainer {
       this.prop !== 'Unisend' &&
       this.prop !== 'Akropolis' &&
       this.prop !== 'SaludSA' &&
+      this.prop !== 'Vilvi' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Barbora' ||
@@ -284,7 +287,9 @@ export class InputRegisterContainer {
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
           this.language === 'LV' ? '14px' : '28px'
         } ;margin-right:30px;display:${
-      this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'
+      this.prop === 'Akropolis' || this.prop === 'Eurovaistine' || this.prop === 'Vilvi'
+        ? 'block'
+        : 'none'
     } ;left: 34px; top:${
       this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '420px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${

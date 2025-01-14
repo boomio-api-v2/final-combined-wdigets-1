@@ -7,10 +7,6 @@ import {
 } from '@/services';
 import './styles.css';
 import {
-  scoreImage,
-  couponBackground,
-  intro,
-  howToPlay,
   close,
   backgroundRed,
   mainImage,
@@ -28,31 +24,12 @@ import {
   star,
   jumpEffect,
   ControlsDesktop,
-  mainImagePigu,
-  mainImagePiguLT,
-  mainImagePiguLV,
-  mainImagePiguFI,
-  mainImagePiguEE,
-  introPigu,
-  backgroundPigu,
-  PiguJumpUpIntroEstonian,
-  PiguJumpUpIntroEstoniaRU,
-  PiguJumpUpIntroLithuanian,
-  PiguJumpUpIntroLithuanianRU,
-  PiguJumpUpIntroFinish,
-  PiguJumpUpIntroLatvian,
-  PiguJumpUpIntroLatvianRU,
   newRecordEE,
   newRecordFI,
   newRecordRU,
   newRecordLV,
-  PiguJumpUpIntroLatvianEN,
-  PiguJumpUpIntroEstonianEN,
-  PiguJumpUpIntroLithuanianEN,
-  PiguJumpUpIntroFinishEN,
   newRecordEn,
   ChristmasBackgroundPigu,
-  ChristmasIntroPigu,
   ChristmasMainImagePiguLT,
   ChristmasMainImagePiguLV,
   ChristmasMainImagePiguFI,
@@ -68,6 +45,9 @@ import {
   ChristmasPiguJumpUpIntroEstonianEN,
   ChristmasPiguJumpUpIntroLithuanianEN,
   ChristmasPiguJumpUpIntroFinishEN,
+  introVilvi,
+  mainImageVilvi,
+  backgroundVilvi,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -92,12 +72,12 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
+    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
 
-    this.language = this.config.language ? this.config.language : 'LV';
+    this.language = this.config.language ? this.config.language : 'LT';
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
@@ -125,6 +105,8 @@ class DoodleWidget {
         ? ChristmasMainImagePiguEE
         : this.campaignUrlProp === 'https://hobbyhall.fi'
         ? ChristmasMainImagePiguFI
+        : this.customer === 'Vilvi'
+        ? mainImageVilvi
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? mainImageAkropolisLV
@@ -166,6 +148,8 @@ class DoodleWidget {
     canvas.style.background = `url(${
       this.customer === 'Pigu.lt'
         ? ChristmasBackgroundPigu
+        : this.customer === 'Vilvi'
+        ? backgroundVilvi
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV
@@ -524,7 +508,7 @@ class DoodleWidget {
           ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
           : this.customer === 'Pigu.lt' && this.language === 'RU'
           ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
-          : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
+          : '';
       document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
       document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
@@ -1295,7 +1279,7 @@ class DoodleWidget {
            ? 'NAPSAUTA'
            : this.language === 'RU'
            ? 'НАЖИМАЙ'
-           : 'BAKST'
+           : 'KLIK'
        }</div>
         <div>${
           this.language === 'EN'
@@ -1308,7 +1292,7 @@ class DoodleWidget {
             ? 'NAPSAUTA'
             : this.language === 'RU'
             ? 'НАЖИМАЙ'
-            : 'BAKST'
+            : 'KLIK'
         }</div>
       </div><img src=${
         this.isMobile ? Controlls : ControlsDesktop
@@ -1343,6 +1327,8 @@ class DoodleWidget {
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
         ? ChristmasPiguJumpUpIntroEstonianEN
+        : this.customer === 'Vilvi'
+        ? introVilvi
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV
@@ -1422,7 +1408,13 @@ ${
 
 
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Pigu.lt' ? '#F34434' : this.language === 'LV' ? '#F40027' : '#045222'
+      this.customer === 'Vilvi'
+        ? '#45A2BF'
+        : this.customer === 'Pigu.lt'
+        ? '#F34434'
+        : this.language === 'LV'
+        ? '#F40027'
+        : '#045222'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -1521,11 +1513,14 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               return;
             }
-
             if (!this.checkboxChange) {
+              console.log('a', this.checkboxChange);
+
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : this.customer === 'Vilvi'
+                  ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
                   : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
 
               document.getElementById('competition-checkbox-error').style.backgroundColor =
