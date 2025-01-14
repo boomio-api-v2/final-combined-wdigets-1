@@ -39,6 +39,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Fantazijos' ||
             this.prop === 'Makalius' ||
             this.prop === 'Ikea' ||
+            this.prop === 'Vilvi' ||
             this.prop === 'Unisend' ||
             this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Eurovaistine' ||
@@ -49,6 +50,7 @@ export class CompetitionScoreTableContainer {
             : 'white'
           : this.prop === 'Barbora' ||
             this.prop === 'Fpro' ||
+            this.prop === 'Vilvi' ||
             this.prop === 'Fantazijos' ||
             this.prop === 'Makalius' ||
             this.prop === 'Pieno Žvaigždės' ||
@@ -81,6 +83,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Fantazijos' ||
                 this.prop === 'Makalius' ||
                 this.prop === 'Unisend' ||
+                this.prop === 'Vilvi' ||
                 this.prop === 'Akropolis' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
@@ -95,6 +98,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Fpro' ||
                 this.prop === 'Fantazijos' ||
                 this.prop === 'Makalius' ||
+                this.prop === 'Vilvi' ||
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
                 this.prop === 'Pieno Žvaigždės' ||
@@ -111,6 +115,7 @@ export class CompetitionScoreTableContainer {
     let fontWeight =
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
+      this.prop === 'Vilvi' ||
       this.prop === 'Fantazijos' ||
       this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Pieno Žvaigždės' ||
