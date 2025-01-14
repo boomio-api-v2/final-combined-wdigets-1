@@ -1346,10 +1346,12 @@ id="background_intro">
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 ${
-  this.language === 'LV' && this.customer === 'Akropolis'
+  (this.language === 'LV' && this.customer === 'Akropolis') || this.customer === 'Vilvi'
     ? `<div alt="Image Description" style="z-index:1;width: ${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#FE0000" id="background_blur"></div>`
+      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
+        this.customer === 'Vilvi' ? '#359BB9' : '#FE0000'
+      }" id="background_blur"></div>`
     : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
