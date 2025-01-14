@@ -466,17 +466,17 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : this.prop === 'Pigu.lt' &&
             this.language === 'EN' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">JBL Speaker Flip 6</strong> '
+          ? '<strong style="text-transform:uppercase">LEGO® Technic NASA Mars Rover Perseverance</strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">JBL Колонка Flip 6</strong> '
+          ? '<strong style="text-transform:uppercase">LEGO® Technic NASA Mars Rover Perseverance</strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
           ? '<strong style="text-transform:uppercase"></strong> '
           : this.prop === 'Pigu.lt'
-          ? '<strong style="text-transform:uppercase">JBL kolonėlĘ Flip 6</strong>  '
+          ? '<strong style="text-transform:uppercase">LEGO® Technic NASA Mars Rover Perseverance</strong>  '
           : ''
       }</div>
                     <div style="width:100%; margin-top: ${'10px'};line-height:18px;  text-align: center; color: #FFD66B; font-size:${
