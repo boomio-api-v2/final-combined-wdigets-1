@@ -822,41 +822,52 @@ class DoodleWidget {
     }, 1000 / 120);
   };
   collides = () => {
+    // Platform collisions
     this.platforms.forEach((p, i) => {
       if (
-        this.player.vy > 0 &&
-        p.state === 0 &&
+        this.player.vy > 0 && // Player is falling
+        p.state === 0 && // Platform is active
         this.player.x + 15 < p.x + p.width - 40 &&
         this.player.x + this.player.width - 15 > p.x + 30 &&
         this.player.y + this.player.height > p.y &&
         this.player.y + this.player.height < p.y + p.height
       ) {
         if (p.type == 3 && p.flag === 0) {
+          // Breakable platform logic
           p.flag = 1;
           this.jumpCount = 0;
           return;
         } else if (p.type == 4 && p.state === 0) {
+          // Vanishable platform
           this.player.jump();
           p.state = 1;
         } else if (p.flag == 1) return;
         else {
+          // Normal platform
           this.player.jump();
         }
       }
     });
 
-    //Springs
-    var s = this.Spring;
+    // Spring collision
+    const s = this.Spring;
+
     if (
-      this.player.vy > 0 &&
-      s.state === 0 &&
+      this.player.vy > 0 && // Player is falling
+      s.state === 0 && // Spring is active
       this.player.x + 15 < s.x + s.width &&
       this.player.x + this.player.width - 15 > s.x &&
       this.player.y + this.player.height > s.y &&
       this.player.y + this.player.height < s.y + s.height
     ) {
-      s.state = 1;
+      // Trigger high jump and deactivate the spring temporarily
+      s.state = 1; // Mark spring as used
       this.player.jumpHigh();
+
+      // Reset the spring after a delay (optional)
+      setTimeout(() => {
+        s.state = 0; // Reactivate spring for future collisions
+      }, 1000);
     }
   };
 
@@ -892,11 +903,17 @@ class DoodleWidget {
   springCalc = () => {
     var s = this.Spring;
     var p = this.platforms[0];
+
     if (p.type == 1 || p.type == 2) {
       s.x = p.x + p.width / 2 - s.width / 2;
       s.y = p.y - p.height - 10;
-      if (s.y > this.height / 1.1) s.state = 0;
-      s.draw(this.image);
+
+      // Reset spring if it goes off-screen
+      if (s.y > this.height / 1.1) {
+        s.reset();
+      }
+
+      s.draw();
     } else {
       s.x = 0 - s.width;
       s.y = 0 - s.height;
@@ -1816,7 +1833,6 @@ class Platform {
 
     this.types = [];
     this.type = 1;
-
     this.reset();
   }
   draw() {
@@ -1934,34 +1950,47 @@ class Platform_broken_substitute {
 
 class Spring {
   constructor(image) {
-    this.image = image;
+    this.image = image; // The single sprite image containing all positions
     this.x = 0;
     this.y = 0;
     this.moved = 0;
     this.vx = 1;
-    this.cx = 5;
-    this.cy = 625;
-    this.cwidth = 110;
-    this.cheight = 70;
+    this.cx = 5; // Horizontal position in the sprite sheet
+    this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
+
+    this.possibleValues = this.customer === 'Vilvi' ? [625, 765, 855] : [625]; // Define the possible vertical positions (cy values)
+    this.cwidth = 110; // Width of a single sprite frame
+    this.cheight = 70; // Height of a single sprite frame
     this.state = 0;
-    this.width = 65;
-    this.height = 38;
+    this.width = 65; // Width to draw on canvas
+    this.height = 38; // Height to draw on canvas
+
+    this.reset(); // Initialize with a random cy
   }
 
   draw() {
     try {
+      // Draw the spring at its current position
       DoodleWidget.ctx.drawImage(
-        this.image,
-        this.cx,
-        this.cy,
-        this.cwidth,
-        this.cheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height,
+        this.image, // Source image
+        this.cx, // Horizontal crop in the sprite sheet
+        this.cy, // Vertical crop in the sprite sheet
+        this.cwidth, // Width of the cropped frame
+        this.cheight, // Height of the cropped frame
+        this.x, // X position on canvas
+        this.y, // Y position on canvas
+        this.width, // Width to render on canvas
+        this.height, // Height to render on canvas
       );
-    } catch (e) {}
+    } catch (e) {
+      console.error('Error drawing spring:', e);
+    }
+  }
+
+  reset() {
+    // Randomize the cy value from the possible values
+    this.cy = this.possibleValues[Math.floor(Math.random() * this.possibleValues.length)];
   }
 }
 
