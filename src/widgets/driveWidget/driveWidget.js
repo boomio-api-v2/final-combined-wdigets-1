@@ -23,6 +23,11 @@ import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
 import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
+import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
+import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { RulesContainer } from '../helpers/RulesContainer';
+import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 
 class driveWidget {
   static ctx;
@@ -186,35 +191,43 @@ class driveWidget {
 
     if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
-
-      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+      if (this.customer === 'Pigu.lt') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+      } else {
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+      }
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
         this.customer,
         this.scoreTable,
       );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+      gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
-    // if (this.showCompetitiveRegistration === 'points') {
-    //   if (this.customer === 'Ikea') {
-    //     const gameContainer = document.querySelector('.game-container');
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
 
-    //     this.scoreTableContainerInstance = new IkeaScoreTableContainer(
-    //       this.customer,
-    //       this.scoreTable,
-    //       this.currentScore,
-    //     );
-    //     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-    //   } else {
-    //     const gameContainer = document.querySelector('.game-container');
-
-    //     this.scoreTableContainerInstance = new PointScoreTableContainer(
-    //       this.customer,
-    //       this.scoreTable,
-    //       this.currentScore,
-    //     );
-    //     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-    //   }
-    // }
-
+      this.didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(this.didYouKnowContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainerPigu = new RulesContainerPigu(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
+    }
     if (this.showCompetitiveRegistration === 'points') {
       const gameContainer = document.querySelector('.game-container');
 
@@ -246,7 +259,7 @@ class driveWidget {
     document.getElementById('close-game-container').addEventListener('click', () => {
       closeGame();
     });
-    startGame(this.scoreTableContainerInstance);
+    startGame(this.scoreTableContainerInstance, this.didYouKnowContainer);
   };
 }
 

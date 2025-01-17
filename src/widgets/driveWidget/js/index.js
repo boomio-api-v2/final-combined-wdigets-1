@@ -88,14 +88,26 @@ import {
   PigubikeLT,
 } from './constants';
 
-function startGame(scoreTableContainerInstance) {
+function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = false;
   let checkboxChange2 = false;
+  let checkboxChange3 = false;
+
   const isMobile = window.innerWidth <= 1280;
+  const isMobileHeightSmall = window.innerHeight <= 600;
+
   const customer = config.business_name ? config.business_name : 'Pigu.lt';
-  const language = config.language ? config.language : '';
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
+  const currentPageUrl = window.location.href;
+
+  const urlParams = new URL(currentPageUrl).searchParams;
+  const languageParam = urlParams.get('language');
+  let language = customer === 'Pigu.lt' ? languageParam : config.language ?? 'ES';
+
+  let campaignUrl = config.campaignUrl ? config.campaignUrl : '';
+  const campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -230,6 +242,14 @@ function startGame(scoreTableContainerInstance) {
       ? carImageDataIkea
       : customer === 'Unisend'
       ? carImageDataUnisend
+      : campaignUrlProp === 'https://pigu.lt'
+      ? PigubikeLT
+      : campaignUrlProp === 'https://220.lv'
+      ? PigubikeLV
+      : campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
+      ? PiguBikeEE
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? PigubikeFI
       : carImageData;
 
   const rightMailboxImage = new Image();
@@ -240,6 +260,8 @@ function startGame(scoreTableContainerInstance) {
       ? mailboxImageDataIkea
       : customer === 'Unisend'
       ? mailboxImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? PiguBags2
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -250,6 +272,8 @@ function startGame(scoreTableContainerInstance) {
       ? mailboxImageDataIkea
       : customer === 'Unisend'
       ? mailboxImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? PiguBags2
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
@@ -267,6 +291,14 @@ function startGame(scoreTableContainerInstance) {
       ? goldImageDataUnisendES
       : customer === 'Unisend'
       ? goldImageDataUnisend
+      : campaignUrlProp === 'https://pigu.lt'
+      ? PigubagsLT1
+      : campaignUrlProp === 'https://220.lv'
+      ? PigubagsLV1
+      : campaignUrlProp === 'https://kaup.ee' || campaignUrlProp === 'https://kaup24.ee'
+      ? PigubagsEE1
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? PigubagsFI1
       : goldImageData;
 
   const wallImage = new Image();
@@ -289,6 +321,10 @@ function startGame(scoreTableContainerInstance) {
       ? envelopeImageDataIkea
       : customer === 'Unisend'
       ? envelopeImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? envelopeImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? PiguBags2
       : envelopeImageData;
 
   const cloudsImage = new Image();
@@ -1076,7 +1112,19 @@ function startGame(scoreTableContainerInstance) {
   };
 
   function showRulesOrRegistration() {
-    if (showCompetitiveRegistration) {
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const user_id = urlParams.get('user_id');
+
+    if (customer === 'Pigu.lt' && bestScore <= 0) {
+      const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
+      checkboxImg3.addEventListener('click', () => {
+        checkboxChange3 = !checkboxChange3;
+        const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
+        checkboxImgChange3.src = checkboxChange3 ? checkIcon : uncheckIcon;
+      });
+    }
+    if (showCompetitiveRegistration && campaignUrl === '') {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         checkboxChange = !checkboxChange;
@@ -1097,34 +1145,127 @@ function startGame(scoreTableContainerInstance) {
       playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-drive-container');
-        document.getElementById('background_blur').style.opacity = 0.37;
-        const inpuRegisterContainer = document.querySelector('.input-register-container');
-        document.getElementById('control-button').style.transition = 'opacity 2s ease';
-        document.getElementById('control-button').style.opacity = 1;
-        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        inpuRegisterContainer.style.display = 'block';
-        setTimeout(() => {
-          inpuRegisterContainer.style.height = '528px';
-          inpuRegisterContainer.style.top = 'calc(50% + 74px)';
-          inpuRegisterContainer.style.opacity = 1;
-        }, 100);
+        if (customer !== 'SaludSA') {
+          const canvas = document.getElementById('boomio-drive-canvas');
+          document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+
+          const inpuRegisterContainer = document.querySelector('.input-register-container');
+          document.getElementById('control-button').style.transition = 'opacity 2s ease';
+          document.getElementById('control-button').style.opacity = 1;
+          inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inpuRegisterContainer.style.display = 'block';
+          setTimeout(() => {
+            inpuRegisterContainer.style.height = '528px';
+            inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+            inpuRegisterContainer.style.opacity = 1;
+          }, 100);
+        }
       }, 300);
+    } else if (customer === 'Pigu.lt' && user_id !== '') {
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          bestScore = response.user_best_score;
+          didYouKnowContainer.updateProps(customer, scoreTable);
+
+          if (customer === 'Pigu.lt' && false) {
+            competitionCodeScoreTableContainerPigu.updateProps(customer, scoreTable);
+
+            const competitionTableContainer = document.querySelector(
+              '.competition-table-container-pigu',
+            );
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.display = 'block';
+            setTimeout(() => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = 'calc(50%)';
+              competitionTableContainer.style.opacity = 1;
+            }, 100);
+          } else {
+            bestScore = response.user_best_score;
+
+            showRulesPigu();
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else if (customer === 'Pigu.lt' && user_id === '') {
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          bestScore = response.user_best_score;
+
+          showRulesPigu();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     } else {
       setTimeout(() => {
-        document.getElementById('background_blur').style.opacity = 0.37;
+        const canvas = document.getElementById('boomio-drive-canvas');
+        document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         inputContainer.style.display = 'block';
         setTimeout(() => {
-          inputContainer.style.height = '332px';
-          inputContainer.style.top = 'calc(50% + 165px)';
+          inputContainer.style.height = customer === 'Pigu.lt' ? '400px' : '332px';
+          inputContainer.style.top = `calc(50% + ${isMobileHeightSmall ? '110px' : '170px'})`;
           inputContainer.style.opacity = 1;
         }, 100);
       }, 300);
     }
+  }
+
+  function showRulesPigu() {
+    config = localStorageService.getDefaultConfig();
+    bestScore = config.bestScore ? config.bestScore : 0;
+
+    if (bestScore > 0) {
+      document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
+    }
+    const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      competitionTableContainer.style.height = '10px';
+      competitionTableContainer.style.top = 'calc(50% + 330px)';
+      competitionTableContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      competitionTableContainer.style.display = 'none';
+    }, 1000);
+    setTimeout(() => {
+      const canvas = document.getElementById('boomio-drive-canvas');
+      document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
+      canvas.style.transition = 'filter 0.6s ease';
+      canvas.style.filter = 'blur(2px)';
+      const inputContainer = document.querySelector('.input-container');
+      document.getElementById('control-button').style.transition = 'opacity 2s ease';
+      document.getElementById('control-button').style.opacity = 1;
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      inputContainer.style.display = 'block';
+      setTimeout(() => {
+        inputContainer.style.height = customer === 'Pigu.lt' ? '400px' : '332px';
+        inputContainer.style.top = `calc(50% + ${isMobileHeightSmall ? '110px' : '170px'})`;
+        inputContainer.style.opacity = 1;
+      }, 100);
+    }, 300);
   }
 
   function initGame(t) {
