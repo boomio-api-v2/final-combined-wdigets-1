@@ -34,7 +34,7 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.language = this.config.language ? this.config.language : '';
@@ -106,10 +106,30 @@ class driveWidget {
       this.customer === 'Ikea' ? 'none' : 'uppercase'
     };">
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'LIIGU' : 'Brūkšt'
+          this.language === 'FI'
+            ? 'PYYHKÄISE'
+            : this.language === 'ET'
+            ? 'LIBISTA'
+            : this.language === 'RU'
+            ? 'ПРОВЕДИ '
+            : this.language === 'LV'
+            ? 'kustēties'
+            : this.language === 'EE'
+            ? 'LIIGU'
+            : 'Brūkšt'
         }</div>
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'LIIGU' : 'Brūkšt'
+          this.language === 'FI'
+            ? 'PYYHKÄISE'
+            : this.language === 'ET'
+            ? 'LIBISTA'
+            : this.language === 'RU'
+            ? 'ПРОВЕДИ '
+            : this.language === 'LV'
+            ? 'kustēties'
+            : this.language === 'EE'
+            ? 'LIIGU'
+            : 'Brūkšt'
         }</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
@@ -120,6 +140,8 @@ class driveWidget {
         ? '#0058A3'
         : this.customer === 'Unisend'
         ? '#376728'
+        : this.customer === 'Pigu.lt'
+        ? '#DF503E'
         : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -140,6 +162,8 @@ class driveWidget {
         ? '#0058A3'
         : this.customer === 'Unisend'
         ? '#376728'
+        : this.customer === 'Pigu.lt'
+        ? '#DF503E'
         : '#FFE92D'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">

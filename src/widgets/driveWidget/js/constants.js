@@ -345,7 +345,10 @@ export const PigubikeFI =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bikeFI.png?raw=true';
 export const PigubikeLT =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bikeLT.png?raw=true';
-export const Pigusign =
+export const Pigutree =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/sign.png?raw=true';
 export const Pigusign =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/sign.png?raw=true';
+
+export const Pigucity =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/city.png?raw=true';

@@ -86,6 +86,8 @@ import {
   PigubikeLV,
   PigubikeFI,
   PigubikeLT,
+  Pigucity,
+  Pigutree,
 } from './constants';
 
 function startGame(scoreTableContainerInstance, didYouKnowContainer) {
@@ -106,7 +108,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   let language = customer === 'Pigu.lt' ? languageParam : config.language ?? 'ES';
 
   let campaignUrl = config.campaignUrl ? config.campaignUrl : '';
-  const campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+  const campaignUrlProp = campaignUrl ? campaignUrl : '';
 
   let userBestPlace = 0;
   let scoreTable = {};
@@ -246,7 +248,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? PigubikeLT
       : campaignUrlProp === 'https://220.lv'
       ? PigubikeLV
-      : campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
+      : campaignUrlProp === 'https://kaup.ee' || campaignUrlProp === 'https://kaup24.ee'
       ? PiguBikeEE
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? PigubikeFI
@@ -371,6 +373,14 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
           (() => {
             const img = new Image();
             img.src = IkeaTree3;
+            return img;
+          })(),
+        ]
+      : customer === 'Pigu.lt'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = Pigutree;
             return img;
           })(),
         ]
@@ -503,6 +513,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? '#959595'
       : customer === 'Unisend'
       ? '#959595'
+      : customer === 'Pigu.lt'
+      ? '#A2B0B4'
       : '#F9F1DD';
   const road2 =
     customer === 'Barbora'
@@ -511,6 +523,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? 'white'
       : customer === 'Unisend'
       ? 'white'
+      : customer === 'Pigu.lt'
+      ? '#FFFAE6'
       : 'black';
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
@@ -1577,9 +1591,13 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       index < MAX_TEX / 2
         ? customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
+          : customer === 'Pigu.lt'
+          ? '#9ECEFF'
           : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
         ? '#489B2D'
+        : customer === 'Pigu.lt'
+        ? '#c8e1ff'
         : customer === 'Barbora'
         ? '#85B62D'
         : '#A9C734';
