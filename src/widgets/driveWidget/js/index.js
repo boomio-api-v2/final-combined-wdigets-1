@@ -176,7 +176,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   const ROAD_SPRITE_SPAWN_X = width / 10;
   let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 10; //test
+  const START_TIME = 90; //test
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -911,7 +911,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 4000); //intro speed
+      }, 2000); //intro speed
     }
     drawTitleScreen();
   }
