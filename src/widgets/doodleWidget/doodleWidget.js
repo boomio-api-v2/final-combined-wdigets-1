@@ -2027,11 +2027,14 @@ class Base {
 
 class Player {
   constructor(image) {
+    this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
+
     this.image = image;
     this.vy = 11;
     this.vx = 0;
-    this.width = 110;
-    this.height = 75;
+    this.width = this.customer === 'Vilvi' ? 125 : 110;
+    this.height = 85;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
