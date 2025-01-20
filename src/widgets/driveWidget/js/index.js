@@ -144,6 +144,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   const GROUND_PERCENT = 0.5;
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
+  const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
+
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
   const WALL_PARTICLES = 55;
@@ -2199,15 +2201,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
 
       ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
-    if (customer !== 'Ikea') {
-      ctx.drawImage(
-        lineImg,
-        0,
-        customer === 'Barbora' ? 340 : 330,
-        426,
-        customer === 'Barbora' ? 7 : 6,
-      );
-    }
+
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
@@ -2264,6 +2258,18 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
+      } else if (customer === 'Pigu.lt') {
+        ctx.drawImage(
+          backgroundImg,
+          0,
+          0,
+          432,
+          279, // Use the full image as the source
+          -3,
+          108,
+          426,
+          225, // Destination: position (-3, 228), size (426x105)
+        );
       } else {
         ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       }
@@ -2511,7 +2517,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
 
       drawImage(
         sprite.image,
-        ZERO_POS,
+        ZERO_POS_TREE,
         spriteOffset(sprite) + roadWidthForI(sprite.i) * sign,
         sprite.i,
         sprite.dimensions,
