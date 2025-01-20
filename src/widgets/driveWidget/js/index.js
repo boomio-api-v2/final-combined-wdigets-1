@@ -331,8 +331,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       : customer === 'Unisend'
       ? envelopeImageDataUnisend
       : customer === 'Pigu.lt'
-      ? envelopeImageDataUnisend
-      : customer === 'Pigu.lt'
       ? PiguBags2
       : envelopeImageData;
 
@@ -514,6 +512,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? '#DEB47C'
       : customer === 'Unisend'
       ? '#545151'
+      : customer === 'Pigu.lt'
+      ? 'white'
       : '#FFF100';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
@@ -522,6 +522,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? '#B58E5B'
       : customer === 'Unisend'
       ? '#FFCA00'
+      : customer === 'Pigu.lt'
+      ? '#F24434'
       : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 

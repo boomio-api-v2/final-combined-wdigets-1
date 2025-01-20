@@ -142,7 +142,7 @@ export class InputContainer {
                   ? 'BRAUK '
                   : 'Spausk'
               }
-                            <div style="top: 9px;margin-top:5px;  color: white; font-size: ${
+                            <div style="top: 9px;margin-top:3px;  color: white; font-size: ${
                               this.prop === 'Akropolis' ? '14px' : '12px'
                             };  font-weight: 700;margin-left:4px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'

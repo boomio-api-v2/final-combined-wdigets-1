@@ -40,6 +40,7 @@ import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCo
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
+import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 
 class driveWidget {
   static ctx;
@@ -267,9 +268,10 @@ class driveWidget {
     if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
-        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
           this.customer,
           this.scoreTable,
+          this.currentScore,
         );
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
