@@ -254,7 +254,7 @@ class driveWidget {
     <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:block;width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('drive').outerHTML}
 
       <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
