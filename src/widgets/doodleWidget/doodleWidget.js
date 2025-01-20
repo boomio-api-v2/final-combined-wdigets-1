@@ -72,7 +72,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -1839,7 +1839,7 @@ class Platform {
     try {
       if (this.type == 1) this.cy = 0;
       else if (this.type == 2) this.cy = 61;
-      else if (this.type == 3 && this.flag === 0) this.cy = 31;
+      else if (this.type == 3 && this.flag === 0) this.cy = 39;
       else if (this.type == 3 && this.flag == 1) this.cy = 1000;
       else if (this.type == 4 && this.state === 0) this.cy = 90;
       else if (this.type == 4 && this.state == 1) this.cy = 1000;
