@@ -72,7 +72,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -1961,10 +1961,10 @@ class Spring {
 
     this.possibleValues = this.customer === 'Vilvi' ? [625, 765, 855] : [625]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
-    this.cheight = 70; // Height of a single sprite frame
+    this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width = 65; // Width to draw on canvas
-    this.height = 38; // Height to draw on canvas
+    this.width = this.customer === 'Vilvi' ? 78 : 65; // Width to draw on canvas
+    this.height = this.customer === 'Vilvi' ? 45 : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }
