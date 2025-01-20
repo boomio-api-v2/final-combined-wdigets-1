@@ -88,6 +88,13 @@ import {
   PigubikeLT,
   Pigucity,
   Pigutree,
+  city1ImageDataPigu,
+  city2ImageDataPigu,
+  city3ImageDataPigu,
+  wh1ImageDataPigu,
+  wh2ImageDataPigu,
+  wh3ImageDataPigu,
+  background1Pigu,
 } from './constants';
 
 function startGame(scoreTableContainerInstance, didYouKnowContainer) {
@@ -169,7 +176,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   const ROAD_SPRITE_SPAWN_X = width / 10;
   let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 90;
+  const START_TIME = 10; //test
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -406,6 +413,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? wh1ImageDataIkea
       : customer === 'Unisend'
       ? wh1ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? wh1ImageDataPigu
       : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
@@ -414,6 +423,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? wh2ImageDataIkea
       : customer === 'Unisend'
       ? wh2ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? wh2ImageDataPigu
       : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
@@ -422,6 +433,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? wh3ImageDataIkea
       : customer === 'Unisend'
       ? wh3ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? wh3ImageDataPigu
       : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
@@ -463,6 +476,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? city1ImageDataIkea
       : customer === 'Unisend'
       ? city1ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? city1ImageDataPigu
       : city1ImageData;
   city2.src =
     customer === 'Barbora'
@@ -471,6 +486,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? city2ImageDataIkea
       : customer === 'Unisend'
       ? city2ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? city2ImageDataPigu
       : city2ImageData;
   city3.src =
     customer === 'Barbora'
@@ -479,6 +496,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? city3ImageDataIkea
       : customer === 'Unisend'
       ? city3ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? city3ImageDataPigu
       : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
@@ -1066,6 +1085,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }
+    if (customer === 'Pigu.lt') {
+      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+    }
   }
 
   function hideScore() {
@@ -1086,6 +1109,30 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       numbers.style.display = 'none';
     }, 500);
   }
+
+  const clickEventHandlerDidYouKnow = () => {
+    const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+    didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      didYouKnowTableContainer.style.height = '10px';
+      didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+      didYouKnowTableContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      didYouKnowTableContainer.style.display = 'none';
+    }, 1000);
+    const competitionTableContainer = document.querySelector('.competition-table-container');
+    document.getElementById('background_blur').style.display = 'block';
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    competitionTableContainer.style.display = 'block';
+
+    setTimeout(() => {
+      competitionTableContainer.style.height = '680px';
+      competitionTableContainer.style.top = 'calc(50%)';
+      competitionTableContainer.style.opacity = 1;
+    }, 100);
+  };
 
   const clickEventHandlerResetGame = () => {
     const competitionRestart = document.getElementById('boomio-game-play-again');
@@ -1792,9 +1839,12 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
                 console.error('Error:', error);
               });
 
-            const competitionTableContainer = document.querySelector(
-              '.competition-table-container',
-            );
+            let competitionTableContainer = '';
+            if (customer === 'Pigu.lt') {
+              competitionTableContainer = document.querySelector('.did-you-know-container');
+            } else {
+              competitionTableContainer = document.querySelector('.competition-table-container');
+            }
             const canvas = document.getElementById('boomio-drive-canvas');
             document.getElementById('background_blur').style.display = 'block';
             competitionTableContainer.style.transition =
@@ -2084,6 +2134,14 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
+    } else if (customer === 'Pigu.lt') {
+      const backgroundImage = new Image();
+
+      backgroundImage.src = background1Pigu;
+
+      backgroundImage.onload = () => {
+        ctx.drawImage(backgroundImage, 0, 0, width, height);
+      };
     } else {
       ctx.fillStyle = sky;
       ctx.fillRect(0, 0, width, height);
@@ -2467,28 +2525,30 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   }
 
   function drawClouds() {
-    clouds
-      .filter((sprite) => sprite.active)
-      .forEach((cloud) => {
-        if (cloud.pos.x < -width) {
-          cloud.pos.x = width + cloud.dimensions * 3;
-          cloud.pos.y = randomIntBetween(0, skyHeight - BIG_SPRITE_DIMENSIONS);
-        } else {
-          cloud.pos.x += cloud.vel.x;
-        }
+    if (customer !== 'Pigu.lt') {
+      clouds
+        .filter((sprite) => sprite.active)
+        .forEach((cloud) => {
+          if (cloud.pos.x < -width) {
+            cloud.pos.x = width + cloud.dimensions * 3;
+            cloud.pos.y = randomIntBetween(0, skyHeight - BIG_SPRITE_DIMENSIONS);
+          } else {
+            cloud.pos.x += cloud.vel.x;
+          }
 
-        ctx.drawImage(
-          cloud.image,
-          0,
-          (cloud.frame * cloud.dimensions) / 2,
-          cloud.dimensions,
-          cloud.dimensions / 2,
-          cloud.pos.x,
-          cloud.pos.y,
-          cloud.dimensions,
-          cloud.dimensions / 2,
-        );
-      });
+          ctx.drawImage(
+            cloud.image,
+            0,
+            (cloud.frame * cloud.dimensions) / 2,
+            cloud.dimensions,
+            cloud.dimensions / 2,
+            cloud.pos.x,
+            cloud.pos.y,
+            cloud.dimensions,
+            cloud.dimensions / 2,
+          );
+        });
+    }
   }
 
   function drawImage(

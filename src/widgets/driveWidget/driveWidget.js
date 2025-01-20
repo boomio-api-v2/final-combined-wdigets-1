@@ -14,15 +14,27 @@ import {
   UnisendIntroLV,
   UnisendIntroEE,
   newRecordIkea,
+  piguDriveEEEn,
+  piguDriveEERu,
+  piguDriveEE,
+  piguDriveFIEn,
+  piguDriveFIRu,
+  piguDriveFI,
+  piguDriveLTEn,
+  piguDriveLTRu,
+  piguDriveLT,
+  piguDriveLVEn,
+  piguDriveLVRu,
+  piguDriveLV,
+  newRecordEn,
+  newRecordFI,
+  newRecordRU,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
-import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
-import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
-import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
@@ -37,10 +49,18 @@ class driveWidget {
     this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'points';
-    this.language = this.config.language ? this.config.language : '';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
+    const currentPageUrl = window.location.href;
+
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const languageParam = urlParams.get('language');
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'ES';
+    const campaignUrl = urlParams.get('campaign_url');
+
+    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor =
       window.innerWidth <= 768 ? 'black' : 'none';
@@ -71,12 +91,16 @@ class driveWidget {
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      this.customer === 'Ikea'
-        ? newRecordIkea
-        : this.language === 'EE'
-        ? newRecordEE
+      this.language === 'EN'
+        ? newRecordEn
         : this.language === 'LV'
         ? newRecordLV
+        : this.language === 'ET' || this.language === 'EE'
+        ? newRecordEE
+        : this.language === 'FI'
+        ? newRecordFI
+        : this.language === 'RU'
+        ? newRecordRU
         : newRecord
     }  alt="Image Description" style="width: 100%; height: 100%;">
     </div>
@@ -178,7 +202,34 @@ class driveWidget {
 
 
     <img src=${
-      this.customer === 'Barbora'
+      this.language === 'ET' &&
+      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+        ? piguDriveEE
+        : this.language === 'RU' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? piguDriveEERu
+        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+        ? piguDriveLT
+        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+        ? piguDriveLTRu
+        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? piguDriveFI
+        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+        ? piguDriveLTEn
+        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? piguDriveFIEn
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? piguDriveLV
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? piguDriveLVRu
+        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+        ? piguDriveLVEn
+        : this.language === 'EN' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? piguDriveEEEn
+        : this.customer === 'Barbora'
         ? BarboraIntro
         : this.customer === 'Unisend' && this.language === 'EE'
         ? UnisendIntroEE
