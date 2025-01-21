@@ -95,6 +95,7 @@ import {
   wh2ImageDataPigu,
   wh3ImageDataPigu,
   background1Pigu,
+  linePigu,
 } from './constants';
 
 function startGame(scoreTableContainerInstance, didYouKnowContainer) {
@@ -443,6 +444,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? lineIkea
       : customer === 'Unisend'
       ? lineUnisend
+      : customer === 'Pigu.lt'
+      ? linePigu
       : line;
 
   backgroundImg.src =

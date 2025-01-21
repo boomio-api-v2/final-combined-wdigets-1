@@ -437,3 +437,6 @@ export const newRecordRU =
 
 export const newRecordEn =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
+
+export const linePigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/Pigu/line.png';
