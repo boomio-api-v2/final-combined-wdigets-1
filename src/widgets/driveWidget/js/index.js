@@ -1166,6 +1166,24 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
         boomioService
           .signal('ROUND_STARTED', 'signal')
           .then((response) => {
+            if (this.customer === 'Pigu.lt') {
+              if (window.Boomio) {
+                window.Boomio.logEvent('game_started', JSON.stringify(response));
+              } else if (
+                window.webkit &&
+                window.webkit.messageHandlers &&
+                window.webkit.messageHandlers.Boomio
+              ) {
+                var message = {
+                  command: 'logEvent',
+                  name: 'game_started',
+                  parameters: { response },
+                };
+                window.webkit.messageHandlers.Boomio.postMessage(message);
+              } else {
+                console.log('No native APIs found.');
+              }
+            }
             document.getElementById('background_blur').style.display = 'none';
             const canvas = document.getElementById('boomio-drive-canvas');
             canvas.style.transition = 'filter 1s ease';
@@ -1419,6 +1437,24 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     boomioService
       .signal('ROUND_STARTED', 'signal')
       .then((response) => {
+        if (this.customer === 'Pigu.lt') {
+          if (window.Boomio) {
+            window.Boomio.logEvent('game_started', JSON.stringify(response));
+          } else if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.Boomio
+          ) {
+            var message = {
+              command: 'logEvent',
+              name: 'game_started',
+              parameters: { response },
+            };
+            window.webkit.messageHandlers.Boomio.postMessage(message);
+          } else {
+            console.log('No native APIs found.');
+          }
+        }
         document.getElementById('background_blur').style.display = 'none';
         const canvas = document.getElementById('boomio-drive-canvas');
         canvas.style.transition = 'filter 1s ease';
@@ -1810,6 +1846,24 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
                 score: gameVars.currentScore,
               })
               .then((response) => {
+                if (this.customer === 'Pigu.lt') {
+                  if (window.Boomio) {
+                    window.Boomio.logEvent('game_finished', JSON.stringify(response));
+                  } else if (
+                    window.webkit &&
+                    window.webkit.messageHandlers &&
+                    window.webkit.messageHandlers.Boomio
+                  ) {
+                    var message = {
+                      command: 'logEvent',
+                      name: 'game_finished',
+                      parameters: { response },
+                    };
+                    window.webkit.messageHandlers.Boomio.postMessage(message);
+                  } else {
+                    console.log('No native APIs found.');
+                  }
+                }
                 hideScore();
                 userBestPlace = response.user_best_place;
                 if (showCompetitiveRegistration === 'points') {
