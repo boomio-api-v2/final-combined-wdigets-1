@@ -189,7 +189,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   const GAME_START_DELAY = 4;
   const CURVE_AMPLITUDE = 0.0007;
   const CURVE_FREQUENCY = 10;
-  const NUM_TREES = 30;
+  const NUM_TREES = 20;
   const TREE_CHANCE_SPAWN = 0.05;
   const TREE_TIME_OFFSCREEN = 1;
   const SPRITE_HORIZON_OFFSET = 12;
