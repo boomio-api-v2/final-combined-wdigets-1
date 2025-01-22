@@ -1773,21 +1773,23 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 boomioService
                   .signal('ROUND_STARTED', 'signal')
                   .then((response) => {
-                    if (window.Boomio) {
-                      window.Boomio.logEvent('game_started', JSON.stringify(response));
-                    } else if (
-                      window.webkit &&
-                      window.webkit.messageHandlers &&
-                      window.webkit.messageHandlers.Boomio
-                    ) {
-                      var message = {
-                        command: 'logEvent',
-                        name: 'game_started',
-                        parameters: { response },
-                      };
-                      window.webkit.messageHandlers.Boomio.postMessage(message);
-                    } else {
-                      console.log('No native APIs found.');
+                    if (this.customer === 'Pigu.lt') {
+                      if (window.Boomio) {
+                        window.Boomio.logEvent('game_started', JSON.stringify(response));
+                      } else if (
+                        window.webkit &&
+                        window.webkit.messageHandlers &&
+                        window.webkit.messageHandlers.Boomio
+                      ) {
+                        var message = {
+                          command: 'logEvent',
+                          name: 'game_started',
+                          parameters: { response },
+                        };
+                        window.webkit.messageHandlers.Boomio.postMessage(message);
+                      } else {
+                        console.log('No native APIs found.');
+                      }
                     }
                     this.gameStarted = true;
                   })
