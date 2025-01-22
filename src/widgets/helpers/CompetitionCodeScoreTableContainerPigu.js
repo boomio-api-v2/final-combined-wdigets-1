@@ -404,26 +404,26 @@ export class CompetitionCodeScoreTableContainerPigu {
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">25% EXTRA </br> off with <strong id="startCodeRulesButtonClick" style="text-decoration:underline">code*</strong></strong></strong>  '
           : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? '<strong style="text-transform:uppercase"> Izvēlētām precēm papildu </br>-25% ar<strong id="startCodeRulesButtonClick" style="text-decoration:underline">kodu*</strong></strong>'
+          ? '<strong style="text-transform:uppercase"> Izvēlētām precēm </br>papildu -25% ar<strong id="startCodeRulesButtonClick" style="text-decoration:underline">kodu*</strong></strong>'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? '<strong style="text-transform:uppercase">Valitud toodetele lisaale </br>-25% <strong id="startCodeRulesButtonClick" style="text-decoration:underline"> koodiga*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">Valitud toodetele </br>lisaale -25% <strong id="startCodeRulesButtonClick" style="text-decoration:underline"> koodiga*</strong></strong> '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
           ? '<strong style="text-transform:uppercase">25%* lisäalennus </br>valikoiduista tuotteista <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong>'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
               this.campaignUrlProp === 'https://kaup24.ee')
-          ? '<strong style="text-transform:uppercase">На выбранные товары дополнительно </br>-25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные товары </br>дополнительно -25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">На выбранные товары дополнительно </br>-25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные товары </br>дополнительно -25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
-          ? '<strong style="text-transform:uppercase">На выбранные товары дополнительно </br>-25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные товары </br>дополнительно -25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt'
-          ? '<strong style="text-transform:uppercase">Pažymėtoms prekėms Papildomai </br> -25% su <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong>  '
+          ? '<strong style="text-transform:uppercase">Pažymėtoms prekėms  </br>Papildomai -25% su <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong>  '
           : ''
       }</div>
               <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">      ${
