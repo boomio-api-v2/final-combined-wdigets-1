@@ -197,7 +197,7 @@ class FlappyBird {
           this.bestScore = response.user_best_score;
           this.didYouKnowContainer.updateProps(this.customer, this.scoreTable);
 
-          if (this.customer === 'Pigu.lt') {
+          if (this.customer === 'Pigu.lt' && false) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
 
             const competitionTableContainer = document.querySelector(
