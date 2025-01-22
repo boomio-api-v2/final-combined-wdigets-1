@@ -318,7 +318,7 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    const randomChoice = Math.round(Math.random()); // Randomly 0 or 1
+    const randomChoice = Math.round(Math.random());
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
