@@ -540,31 +540,23 @@ export class CompetitionCodeScoreTableLastContainerPigu {
       }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
         this.prop === 'Pigu.lt'
-          ? this.language === 'LV'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv/lv/lapaspuse/extra-code">Trešdienas DĪLS! Tikai šodien lietotnē!</a>'
+          ? this.language === 'EN'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/dovanu-idejos">Buy now</a>'
+            : this.language === 'LV'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv/lv/lapaspuse/davanu-izvelei">Pirkt tagad </a>'
             : this.language === 'ET'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee/et/lehekulg/extra-code">Ostukolmapäev! Ainult äpis täna!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee/et/lehekulg/parimad-kingiideed">Osta kohe</a>'
             : this.language === 'FI'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi/fi/sivu/extra-code">Keskiviikon shoppailujuhlat! Tänään vain sovelluksessa!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi/fi/sivu/lahjaideat">Osta nyt</a>'
             : this.language === 'RU' &&
               (this.campaignUrlProp === 'https://kaup.ee' ||
                 this.campaignUrlProp === 'https://kaup24.ee')
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee/et/lehekulg/extra-code">Супер Среда! Только сегодня в приложении!</a>'
-            : this.language === 'EN' &&
-              (this.campaignUrlProp === 'https://kaup.ee' ||
-                this.campaignUrlProp === 'https://kaup24.ee')
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee/et/lehekulg/extra-code">Ostukolmapäev! Ainult äpis täna!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee/et/lehekulg/parimad-kingiideed">Купить сейчас</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/extra-code">Супер Среда! Только сегодня в приложении!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/dovanu-idejos">Купить сейчас</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv/lv/lapaspuse/extra-code">Супер Среда! Только сегодня в приложении!</a>'
-            : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi/fi/sivu/extra-code">Keskiviikon shoppailujuhlat! Tänään vain sovelluksessa!</a>'
-            : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv/lv/lapaspuse/extra-code">Trešdienas DĪLS! Tikai šodien lietotnē!</a>'
-            : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/extra-code">Trečiadienio pasiūlymas! Tik programėlėje!</a>'
-            : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/extra-code">Trečiadienio pasiūlymas! Tik programėlėje!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv/lv/lapaspuse/davanu-izvelei">Купить сейчас</a>'
+            : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/dovanu-idejos">Pirkti dabar</a>'
           : ''
       }
   </div>
