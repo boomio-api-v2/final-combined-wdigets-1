@@ -555,7 +555,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
                 this.campaignUrlProp === 'https://kaup24.ee')
             ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee/et/lehekulg/extra-code">Ostukolmapäev! Ainult äpis täna!</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="Супер Среда! Только сегодня в приложении!">Открой для себя лучшие предложения Pigu.lt!</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/extra-code">Супер Среда! Только сегодня в приложении!</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
             ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv/lv/lapaspuse/extra-code">Супер Среда! Только сегодня в приложении!</a>'
             : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
