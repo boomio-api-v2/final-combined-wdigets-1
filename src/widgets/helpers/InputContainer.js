@@ -32,7 +32,6 @@ export class InputContainer {
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
     this.game = game;
-
     containerDiv.innerHTML = `
 
     
@@ -129,9 +128,21 @@ export class InputContainer {
                   ? 'Gaudyk'
                   : this.prop === 'SaludSA'
                   ? 'Presiona'
+                  : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'drive'
+                  ? 'SWIPE'
+                  : this.prop === 'Pigu.lt' && this.language === 'LV' && this.game === 'drive'
+                  ? 'PAVELC'
+                  : this.prop === 'Pigu.lt' && this.language === 'ET' && this.game === 'drive'
+                  ? 'LIBISTA'
+                  : this.prop === 'Pigu.lt' && this.language === 'FI' && this.game === 'drive'
+                  ? 'PYYHKÄISE'
+                  : this.prop === 'Pigu.lt' && this.language === 'RU' && this.game === 'drive'
+                  ? 'ПРОВЕДИ'
+                  : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'drive'
+                  ? 'BRAUK '
                   : 'Spausk'
               }
-                            <div style="top: 9px;margin-top:5px;  color: white; font-size: ${
+                            <div style="top: 9px;margin-top:3px;  color: white; font-size: ${
                               this.prop === 'Akropolis' ? '14px' : '12px'
                             };  font-weight: 700;margin-left:4px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -149,6 +160,18 @@ export class InputContainer {
                 ? 'для полета'
                 : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'flappy'
                 ? 'kad skristum'
+                : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'drive'
+                ? 'to the sides to drive'
+                : this.prop === 'Pigu.lt' && this.language === 'LV' && this.game === 'drive'
+                ? 'ar pirkstu uz sāniem, lai vadītu'
+                : this.prop === 'Pigu.lt' && this.language === 'ET' && this.game === 'drive'
+                ? 'et juhtida'
+                : this.prop === 'Pigu.lt' && this.language === 'FI' && this.game === 'drive'
+                ? 'sivuille ajaaksesi'
+                : this.prop === 'Pigu.lt' && this.language === 'RU' && this.game === 'drive'
+                ? 'пальцем вбок, чтобы упправлять'
+                : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'drive'
+                ? 'į šonus, kad vairuotum'
                 : this.prop === 'Pigu.lt' && this.language === 'EN'
                 ? 'to jump up'
                 : this.prop === 'Pigu.lt' && this.language === 'LV'

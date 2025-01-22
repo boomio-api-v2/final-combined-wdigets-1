@@ -14,28 +14,54 @@ import {
   UnisendIntroLV,
   UnisendIntroEE,
   newRecordIkea,
+  piguDriveEEEn,
+  piguDriveEERu,
+  piguDriveEE,
+  piguDriveFIEn,
+  piguDriveFIRu,
+  piguDriveFI,
+  piguDriveLTEn,
+  piguDriveLTRu,
+  piguDriveLT,
+  piguDriveLVEn,
+  piguDriveLVRu,
+  piguDriveLV,
+  newRecordEn,
+  newRecordFI,
+  newRecordRU,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
-import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
-import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableContainer';
-import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
+import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
+import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { RulesContainer } from '../helpers/RulesContainer';
+import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
+import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 
 class driveWidget {
   static ctx;
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'points';
-    this.language = this.config.language ? this.config.language : '';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
+    const currentPageUrl = window.location.href;
+
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const languageParam = urlParams.get('language');
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'ES';
+    const campaignUrl = urlParams.get('campaign_url');
+
+    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor =
       window.innerWidth <= 768 ? 'black' : 'none';
@@ -66,12 +92,16 @@ class driveWidget {
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      this.customer === 'Ikea'
-        ? newRecordIkea
-        : this.language === 'EE'
-        ? newRecordEE
+      this.language === 'EN'
+        ? newRecordEn
         : this.language === 'LV'
         ? newRecordLV
+        : this.language === 'ET' || this.language === 'EE'
+        ? newRecordEE
+        : this.language === 'FI'
+        ? newRecordFI
+        : this.language === 'RU'
+        ? newRecordRU
         : newRecord
     }  alt="Image Description" style="width: 100%; height: 100%;">
     </div>
@@ -101,10 +131,30 @@ class driveWidget {
       this.customer === 'Ikea' ? 'none' : 'uppercase'
     };">
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'LIIGU' : 'Brūkšt'
+          this.language === 'FI'
+            ? 'PYYHKÄISE'
+            : this.language === 'ET'
+            ? 'LIBISTA'
+            : this.language === 'RU'
+            ? 'ПРОВЕДИ '
+            : this.language === 'LV'
+            ? 'kustēties'
+            : this.language === 'EE'
+            ? 'LIIGU'
+            : 'Brūkšt'
         }</div>
         <div>${
-          this.language === 'LV' ? 'kustēties' : this.language === 'EE' ? 'LIIGU' : 'Brūkšt'
+          this.language === 'FI'
+            ? 'PYYHKÄISE'
+            : this.language === 'ET'
+            ? 'LIBISTA'
+            : this.language === 'RU'
+            ? 'ПРОВЕДИ '
+            : this.language === 'LV'
+            ? 'kustēties'
+            : this.language === 'EE'
+            ? 'LIIGU'
+            : 'Brūkšt'
         }</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
@@ -115,6 +165,8 @@ class driveWidget {
         ? '#0058A3'
         : this.customer === 'Unisend'
         ? '#376728'
+        : this.customer === 'Pigu.lt'
+        ? '#DF503E'
         : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -135,6 +187,8 @@ class driveWidget {
         ? '#0058A3'
         : this.customer === 'Unisend'
         ? '#376728'
+        : this.customer === 'Pigu.lt'
+        ? '#DF503E'
         : '#FFE92D'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -149,7 +203,34 @@ class driveWidget {
 
 
     <img src=${
-      this.customer === 'Barbora'
+      this.language === 'ET' &&
+      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+        ? piguDriveEE
+        : this.language === 'RU' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? piguDriveEERu
+        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+        ? piguDriveLT
+        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+        ? piguDriveLTRu
+        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? piguDriveFI
+        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+        ? piguDriveLTEn
+        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? piguDriveFIEn
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? piguDriveLV
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? piguDriveLVRu
+        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+        ? piguDriveLVEn
+        : this.language === 'EN' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? piguDriveEEEn
+        : this.customer === 'Barbora'
         ? BarboraIntro
         : this.customer === 'Unisend' && this.language === 'EE'
         ? UnisendIntroEE
@@ -174,7 +255,7 @@ class driveWidget {
     <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:block;width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('drive').outerHTML}
 
       <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -186,35 +267,44 @@ class driveWidget {
 
     if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
-
-      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+      if (this.customer === 'Pigu.lt') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
+        );
+      } else {
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+      }
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
         this.customer,
         this.scoreTable,
       );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+      gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
-    // if (this.showCompetitiveRegistration === 'points') {
-    //   if (this.customer === 'Ikea') {
-    //     const gameContainer = document.querySelector('.game-container');
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
 
-    //     this.scoreTableContainerInstance = new IkeaScoreTableContainer(
-    //       this.customer,
-    //       this.scoreTable,
-    //       this.currentScore,
-    //     );
-    //     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-    //   } else {
-    //     const gameContainer = document.querySelector('.game-container');
-
-    //     this.scoreTableContainerInstance = new PointScoreTableContainer(
-    //       this.customer,
-    //       this.scoreTable,
-    //       this.currentScore,
-    //     );
-    //     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-    //   }
-    // }
-
+      this.didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(this.didYouKnowContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainerPigu = new RulesContainerPigu(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
+    }
     if (this.showCompetitiveRegistration === 'points') {
       const gameContainer = document.querySelector('.game-container');
 
@@ -246,7 +336,7 @@ class driveWidget {
     document.getElementById('close-game-container').addEventListener('click', () => {
       closeGame();
     });
-    startGame(this.scoreTableContainerInstance);
+    startGame(this.scoreTableContainerInstance, this.didYouKnowContainer);
   };
 }
 

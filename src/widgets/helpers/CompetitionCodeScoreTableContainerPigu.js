@@ -15,29 +15,29 @@ export class CompetitionCodeScoreTableContainerPigu {
       ? this.config.couponCodeNew
       : this.language === 'ET' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'ILU1224'
+      ? '25KOLMAPAEV0125'
       : this.language === 'RU' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'ILU1224'
+      ? '25KOLMAPAEV0125'
       : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'GROZIS1224'
+      ? '25TRECIADIENIS0125'
       : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'GROZIS1224'
+      ? '25TRECIADIENIS0125'
       : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? 'KAUNEUS1224'
+      ? '01KESKIVIIKKO25'
       : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-      ? 'SKAISTUMAM1224'
+      ? '25TRESDIENA0125'
       : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-      ? 'SKAISTUMAM1224'
+      ? '25TRESDIENA0125'
       : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'GROZIS1224'
+      ? '25TRECIADIENIS0125'
       : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? 'KAUNEUS1224'
+      ? '01KESKIVIIKKO25'
       : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-      ? 'SKAISTUMAM1224'
+      ? '25TRESDIENA0125'
       : this.language === 'EN' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'ILU1224'
+      ? '25KOLMAPAEV0125'
       : '';
 
     this.render();
@@ -52,29 +52,29 @@ export class CompetitionCodeScoreTableContainerPigu {
       ? this.config.couponCodeNew
       : this.language === 'ET' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'ILU1224'
+      ? '25KOLMAPAEV0125'
       : this.language === 'RU' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'ILU1224'
+      ? '25KOLMAPAEV0125'
       : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'GROZIS1224'
+      ? '25TRECIADIENIS0125'
       : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'GROZIS1224'
+      ? '25TRECIADIENIS0125'
       : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? 'KAUNEUS1224'
+      ? '01KESKIVIIKKO25'
       : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-      ? 'SKAISTUMAM1224'
+      ? '25TRESDIENA0125'
       : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-      ? 'SKAISTUMAM1224'
+      ? '25TRESDIENA0125'
       : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-      ? 'GROZIS1224'
+      ? '25TRECIADIENIS0125'
       : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? 'KAUNEUS1224'
+      ? '01KESKIVIIKKO25'
       : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-      ? 'SKAISTUMAM1224'
+      ? '25TRESDIENA0125'
       : this.language === 'EN' &&
         (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? 'ILU1224'
+      ? '25KOLMAPAEV0125'
       : '';
 
     this.updateVisuals();
@@ -399,55 +399,55 @@ export class CompetitionCodeScoreTableContainerPigu {
           : ''
       }</div>
               <div style="width:100%; top: ${'265px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-        this.isMobile ? '9px' : '10px'
+        this.isMobile ? '14px' : '18px'
       } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">11% EXTRA off</strong> selected items with <strong id="startCodeRulesButtonClick" style="text-decoration:underline">code*</strong></strong></strong>  '
+          ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">25% EXTRA </br> off with <strong id="startCodeRulesButtonClick" style="text-decoration:underline">code*</strong></strong></strong>  '
           : this.prop === 'Pigu.lt' && this.language === 'LV'
-          ? '<strong style="text-transform:uppercase"> <strong style="color:#DFFC38"></strong>Izvēlētām smaržām un kosmētikai papildu -15% ar<strong id="startCodeRulesButtonClick" style="text-decoration:underline">kodu*</strong></strong>'
+          ? '<strong style="text-transform:uppercase"> Izvēlētām precēm </br>papildu -25% ar<strong id="startCodeRulesButtonClick" style="text-decoration:underline">kodu*</strong></strong>'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
-          ? '<strong style="text-transform:uppercase"> <strong style="color:#DFFC38"> </strong> Valik parfüüme ja kosmeetikat -15% lisaale <strong id="startCodeRulesButtonClick" style="text-decoration:underline"> koodiga*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">Valitud toodetele </br>lisaale -25% <strong id="startCodeRulesButtonClick" style="text-decoration:underline"> koodiga*</strong></strong> '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">15% LISÄALE</strong> lisäale valikoiduista hajuvesistä ja kosmetiikasta  <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong>'
+          ? '<strong style="text-transform:uppercase">25%* lisäalennus </br>valikoiduista tuotteista <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong>'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
               this.campaignUrlProp === 'https://kaup24.ee')
-          ? '<strong style="text-transform:uppercase">На выбранные духи и косметику дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные товары </br>дополнительно -25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">На выбранные духи и косметику дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные товары </br>дополнительно -25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
-          ? '<strong style="text-transform:uppercase">На выбранные духи и косметику дополнительно дополнительно -15% с <strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
+          ? '<strong style="text-transform:uppercase">На выбранные товары </br>дополнительно -25% с<strong id="startCodeRulesButtonClick" style="text-decoration:underline">кодом*</strong></strong> '
           : this.prop === 'Pigu.lt'
-          ? '<strong style="text-transform:uppercase">Pažymėti kvepalai ir kosmetika <strong style="color:#DFFC38">Papildomai -15%</strong> su <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong>  '
+          ? '<strong style="text-transform:uppercase">Pažymėtoms prekėms  </br>Papildomai -25% su <strong id="startCodeRulesButtonClickFirst" style="text-decoration:underline">kodu*</strong></strong>  '
           : ''
       }</div>
-              <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">      ${
+              <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">      ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
             ? 'Only today!'
             : this.language === 'LV'
-            ? 'Tikai šodien!'
+            ? 'Tikai šodien lietotnē!'
             : this.language === 'ET'
-            ? 'Ainult täna!'
+            ? 'Ainult äpis täna!'
             : this.language === 'FI'
-            ? 'Vain tänään!'
+            ? 'Tänään vain sovelluksessa!'
             : this.language === 'RU' &&
               (this.campaignUrlProp === 'https://kaup.ee' ||
                 this.campaignUrlProp === 'https://kaup24.ee')
-            ? 'Только сегодня!'
+            ? 'Только сегодня в приложении!'
             : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-            ? 'Только сегодня!'
+            ? 'Только сегодня в приложении!'
             : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-            ? 'Только сегодня!'
-            : 'Tik šiandien!'
+            ? 'Только сегодня в приложении!'
+            : 'Tik šiandien programėlėje!'
           : ''
       } </div>
-                     <div style="width:100%; top: 415px; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
+                     <div style="width:100%; top: 415px;display:none; position: absolute; text-align: center; color: ${textColor}; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'Play again and improve your score'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
@@ -462,7 +462,7 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Žaisk dar ir pagerink rezultatą!'
           : ''
       } </div>
-                     <div style="width:100%; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word">${
+                     <div style="width:100%;display:none; top: 440px; position: absolute; text-align: center; color: ${textColor}; font-size: 11px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'because the top 10 players each week will win Pigu.lt gift vouchers.</br>If you will win, we’ll notify you via the email address in your account.'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
@@ -604,7 +604,7 @@ ${
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 100px; position: absolute; text-align: center; color: ${'white'}; font-size: ${
+      <div style="width:100%;display:none;top: 100px; position: absolute; text-align: center; color: ${'white'}; font-size: ${
       this.isMobile ? '24px' : '28px'
     }; font-family: Montserrat;line-height:32px; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
       this.language === 'ET' &&

@@ -207,22 +207,16 @@ class runnerWidget {
         <div class="coinsText"></div>
         <img src="${coin}" alt="">
       </div>
+<div class="boomio-runner-leftButtonsBlock boomio-hide">
+  <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${left}" alt="">
+  <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${right}" alt="">
+</div>
 
-      <div class="boomio-runner-leftButtonsBlock boomio-hide">
-        <img id="mobileLeftButton" ontouchstart="leftPressed = true; this.style.opacity = '0.5'"
-          ontouchend="leftPressed = false;  this.style.opacity = '1'" class="boomio-runner-mobileControlButt"
-          src="assets/gui/left.png" alt="">
-        <img id="mobileRightButton" ontouchstart="rightPressed = true; this.style.opacity = '0.5'"
-          ontouchend="rightPressed = false; this.style.opacity = '1'" class="boomio-runner-mobileControlButt"
-          src="assets/gui/right.png" alt="">
-      </div>
+<div class="boomio-runner-rightButtonsBlock boomio-hide">
+  <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${up}" alt="">
+  <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${down}" alt="">
+</div>
 
-      <div class="boomio-runner-rightButtonsBlock boomio-hide">
-        <img id="mobileUpButton" ontouchstart="jumpBegin(); this.style.opacity = '0.5'"
-          ontouchend="this.style.opacity = '1'" class="boomio-runner-mobileControlButt" src="assets/gui/up.png" alt="">
-        <img id="mobileDownButton" ontouchstart="slideBegin(); this.style.opacity = '0.5'"
-          ontouchend="slideEnd(); this.style.opacity = '1'" class="boomio-runner-mobileControlButt" src="assets/gui/down.png" alt="">
-      </div>
 
 
 
@@ -956,6 +950,64 @@ class runnerWidget {
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
       Start();
     };
+    // Select button elements
+    const mobileLeftButton = document.getElementById('mobileLeftButton');
+    const mobileRightButton = document.getElementById('mobileRightButton');
+    const mobileUpButton = document.getElementById('mobileUpButton');
+    const mobileDownButton = document.getElementById('mobileDownButton');
+
+    // Define event handlers
+    const handleTouchStart = (callback, button) => {
+      return () => {
+        callback(true);
+        button.style.opacity = '0.5';
+      };
+    };
+
+    const handleTouchEnd = (callback, button) => {
+      return () => {
+        callback(false);
+        button.style.opacity = '1';
+      };
+    };
+
+    // Define actions
+    const setLeftPressed = (isPressed) => (leftPressed = isPressed);
+    const setRightPressed = (isPressed) => (rightPressed = isPressed);
+
+    // Add event listeners
+    mobileLeftButton.addEventListener(
+      'touchstart',
+      handleTouchStart(setLeftPressed, mobileLeftButton),
+    );
+    mobileLeftButton.addEventListener('touchend', handleTouchEnd(setLeftPressed, mobileLeftButton));
+
+    mobileRightButton.addEventListener(
+      'touchstart',
+      handleTouchStart(setRightPressed, mobileRightButton),
+    );
+    mobileRightButton.addEventListener(
+      'touchend',
+      handleTouchEnd(setRightPressed, mobileRightButton),
+    );
+
+    mobileUpButton.addEventListener('touchstart', () => {
+      jumpBegin();
+      mobileUpButton.style.opacity = '0.5';
+    });
+    mobileUpButton.addEventListener('touchend', () => {
+      mobileUpButton.style.opacity = '1';
+    });
+
+    mobileDownButton.addEventListener('touchstart', () => {
+      slideBegin();
+      mobileDownButton.style.opacity = '0.5';
+    });
+    mobileDownButton.addEventListener('touchend', () => {
+      slideEnd();
+      mobileDownButton.style.opacity = '1';
+    });
+
     document
       .querySelector('.boomio-runner-playButton')
       .addEventListener('click', PlayButtonActivate);
