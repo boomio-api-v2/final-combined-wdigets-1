@@ -1166,7 +1166,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
         boomioService
           .signal('ROUND_STARTED', 'signal')
           .then((response) => {
-            if (this.customer === 'Pigu.lt') {
+            if (customer === 'Pigu.lt') {
               if (window.Boomio) {
                 window.Boomio.logEvent('game_started', JSON.stringify(response));
               } else if (
@@ -1405,7 +1405,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       textureCoord += MAX_TEX / TEX_DEN;
       drawRoad(i, textureCoord);
     }
-
+    console.log('drawTitleScreen');
     drawCityHouse();
 
     envelopes.forEach((envelope) => {
@@ -1437,7 +1437,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     boomioService
       .signal('ROUND_STARTED', 'signal')
       .then((response) => {
-        if (this.customer === 'Pigu.lt') {
+        if (customer === 'Pigu.lt') {
           if (window.Boomio) {
             window.Boomio.logEvent('game_started', JSON.stringify(response));
           } else if (
@@ -1625,6 +1625,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
 
     // Add the event listener for keydown events
     window.addEventListener('keydown', keyHandler);
+    console.log('drawCity');
 
     drawCity();
   }
@@ -1846,7 +1847,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
                 score: gameVars.currentScore,
               })
               .then((response) => {
-                if (this.customer === 'Pigu.lt') {
+                if (customer === 'Pigu.lt') {
                   if (window.Boomio) {
                     window.Boomio.logEvent('game_finished', JSON.stringify(response));
                   } else if (
@@ -2262,6 +2263,18 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
+      } else if (customer === 'Pigu.lt') {
+        ctx.drawImage(
+          backgroundImg,
+          0,
+          0,
+          432,
+          279, // Use the full image as the source
+          -3,
+          108,
+          426,
+          225, // Destination: position (-3, 228), size (426x105)
+        );
       } else {
         ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       }
