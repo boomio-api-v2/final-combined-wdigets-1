@@ -127,7 +127,7 @@
               opacity: 0;
               display: none;
               }
-        .did-you-know-container{
+        .did-you-know-container, .share-container{
           overflow: hidden;
           position: absolute;
           left :50%;

@@ -138,11 +138,12 @@ import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContai
 import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { ShareContainer } from '../helpers/ShareContainer';
 
 class CatchGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos ateitis Glass';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -380,6 +381,8 @@ class CatchGame {
         ? '#ED1846'
         : this.customer === 'Pegasas'
         ? '#A40033'
+        : this.customer === 'Akropolis'
+        ? '#F40000'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -404,6 +407,8 @@ class CatchGame {
         ? '#ED1846'
         : this.customer === 'Pegasas'
         ? '#A40033'
+        : this.customer === 'Akropolis'
+        ? '#F40000'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -520,6 +525,12 @@ class CatchGame {
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
+    if (this.customer.includes('Akropolis')) {
+      const gameContainer = document.querySelector('.game-container');
+
+      const shareContainer = new ShareContainer(this.customer);
+      gameContainer.appendChild(shareContainer.containerDiv);
+    }
 
     if (
       this.showCompetitiveRegistration === 'competition' ||
@@ -543,7 +554,7 @@ class CatchGame {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                  : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                  : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
@@ -853,16 +864,21 @@ class CatchGame {
         }, 400);
       };
       const clickEventHandlerDidYouKnow = () => {
-        const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+        let tabContainer;
+        if (this.customer === 'Akropolis') {
+          tabContainer = document.querySelector('.share-container');
+        } else {
+          tabContainer = document.querySelector('.did-you-know-container');
+        }
 
-        didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        tabContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         setTimeout(() => {
-          didYouKnowTableContainer.style.height = '10px';
-          didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
-          didYouKnowTableContainer.style.opacity = 0;
+          tabContainer.style.height = '10px';
+          tabContainer.style.top = 'calc(50% + 330px)';
+          tabContainer.style.opacity = 0;
         }, 100);
         setTimeout(() => {
-          didYouKnowTableContainer.style.display = 'none';
+          tabContainer.style.display = 'none';
         }, 1000);
         const competitionTableContainer = document.querySelector('.competition-table-container');
         document.getElementById('background_blur').style.display = 'block';
@@ -991,12 +1007,8 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      if (
-        this.customer.includes('Gamtos Ateitis') ||
-        this.customer === 'Pieno Žvaigždės' ||
-        this.customer === 'Pegasas'
-      ) {
-        const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      if (competitionDidYouKnow) {
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
     }
@@ -1266,6 +1278,8 @@ class CatchGame {
               this.customer === 'Pegasas'
             ) {
               competitionTableContainer = document.querySelector('.did-you-know-container');
+            } else if (this.customer === 'Akropolis') {
+              competitionTableContainer = document.querySelector('.share-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
             }
@@ -1321,7 +1335,7 @@ class CatchGame {
     }
 
     // Reset player and game state
-    this.player.gameOver = false;
+    this.player.gameOver = true;
     this.currentScore = 0;
     this.player.fruitsCollected = 0;
     this.player.fruitsMissed = 0;
@@ -1356,7 +1370,7 @@ class Player {
   constructor(customer, canvas, context, defaultscore) {
     this.canvas = canvas;
     this.context = context;
-    this.gameOver = false;
+    this.gameOver = true;
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
