@@ -474,7 +474,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
             this.campaignUrlProp === 'https://220.lv'
           ? '<strong style="text-transform:uppercase"></strong> '
           : this.prop === 'Pigu.lt'
-          ? '<strong style="text-transform:uppercase">LEGO® Star Wars Klonų vado Kodžio™ šalmas</strong>  '
+          ? '<strong style="text-transform:uppercase">LEGO® Star Wars Imperatoriaus sosto menės™ diorama</strong>  '
           : this.prop === 'Pigu.lt' && this.language === 'EN'
           ? '<strong style="text-transform:uppercase"></strong>  '
           : ''
