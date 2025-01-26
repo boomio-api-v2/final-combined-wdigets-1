@@ -1370,7 +1370,7 @@ class Player {
   constructor(customer, canvas, context, defaultscore) {
     this.canvas = canvas;
     this.context = context;
-    this.gameOver = false;
+    this.gameOver = true;
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
