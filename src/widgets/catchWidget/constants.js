@@ -307,3 +307,12 @@ export const item9Pegasas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item9.png';
 export const item10Pegasas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item10.png';
+
+export const introPienoAkropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/intro.png';
+
+export const backgroundPienoAkropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/background.png';
+
+export const playerPienoAkropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/player.png';

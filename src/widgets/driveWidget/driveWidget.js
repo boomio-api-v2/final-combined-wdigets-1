@@ -29,6 +29,7 @@ import {
   newRecordEn,
   newRecordFI,
   newRecordRU,
+  life,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -180,25 +181,37 @@ class driveWidget {
 
 
 
-<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
-      this.customer === 'Barbora'
-        ? '#CC0001'
-        : this.customer === 'Ikea'
-        ? '#0058A3'
-        : this.customer === 'Unisend'
-        ? '#376728'
-        : this.customer === 'Pigu.lt'
-        ? '#DF503E'
-        : '#FFE92D'
-    };border-radius:35px">
+
+
+${
+  this.customer === 'Pigu.lt'
+    ? `<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#DF503E'};border-radius:35px">
+<div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+<img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
+
+<div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife"></div>
+</div>
+</div>`
+    : `<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
+        this.customer === 'Barbora'
+          ? '#CC0001'
+          : this.customer === 'Ikea'
+          ? '#0058A3'
+          : this.customer === 'Unisend'
+          ? '#376728'
+          : this.customer === 'Pigu.lt'
+          ? '#DF503E'
+          : '#FFE92D'
+      };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
 <div style="text-align: center; color: white; font-size: 20px; font-family:${
-      this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
-    } ;font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
+        this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
+      } ;font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
 </div>
-</div>
+</div>`
+}
 
 
 
