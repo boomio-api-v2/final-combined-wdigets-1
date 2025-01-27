@@ -1408,7 +1408,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       textureCoord += MAX_TEX / TEX_DEN;
       drawRoad(i, textureCoord);
     }
-    console.log('drawTitleScreen');
     drawCityHouse();
 
     envelopes.forEach((envelope) => {
