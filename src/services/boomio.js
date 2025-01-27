@@ -87,7 +87,7 @@ class BoomioService extends UserService {
       runner: startRunnerWidget,
       football: startFootballWidget,
     };
-    createWidgetMap[widget_type]();
+    createWidgetMap[this.config.business_name === 'Pigu.lt' ? 'drive' : widget_type]();
   };
 
   setInitialConfiguration() {

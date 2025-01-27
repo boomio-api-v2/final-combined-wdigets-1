@@ -45,19 +45,69 @@ export class ShareContainer {
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
     if (!this.containerDiv) return;
 
-    // Placeholder logic for updating visuals with products
-    let tableHTML = '';
     let scoreboardText = `
-      ${`<div class="bomio-first-line" style="width:100%; top: ${'160px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${'18px'} ; font-family: Montserrat;  word-wrap: break-word">${'Už pakviestus draugus gausi +1000</br> taškų prie savo žaidimo rezultato!'}</div>
-              <div class="bomio-second-line" style="width:100%; top: ${'200px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'18px'} ; font-family: Montserrat; font-weight:${400};  word-wrap: break-word; ">${'Pasidalink žaidimo nuoroda dabar ir </br> tapk žaidimo lyderiu!'}
-      
+      <div class="bomio-first-line" style="width:100%; top: 160px; line-height:18px; position: absolute; font-weight: 700; text-align: center; color: white; font-size: 18px; font-family: Montserrat; word-wrap: break-word;">
+        Už pakviestus draugus gausi +1000<br> taškų prie savo žaidimo rezultato!
       </div>
-           
-  
-</a> </div> `}
+      <div class="bomio-second-line" style="width:100%; top: 200px; line-height:18px; position: absolute; text-align: center; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
+        Pasidalink žaidimo nuoroda dabar ir <br> tapk žaidimo lyderiu!
+      </div>
+      <div class="share-buttons" style="width: 100%; top: 250px; position: absolute; text-align: center;">
+        <button onclick="shareOnFacebook()" style="margin: 5px;">Facebook</button>
+        <button onclick="shareOnMessenger()" style="margin: 5px;">Messenger</button>
+        <button onclick="shareOnInstagram()" style="margin: 5px;">Instagram</button>
+        <button onclick="shareOnTikTok()" style="margin: 5px;">TikTok</button>
+        <button onclick="shareOnWhatsApp()" style="margin: 5px;">WhatsApp</button>
+        <button onclick="copyURL()" style="margin: 5px;">Copy URL</button>
+      </div>
     `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
+
+    window.shareOnFacebook = function () {
+      const shareURL = this.campaignUrlProp;
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}`,
+        '_blank',
+      );
+    }.bind(this);
+
+    window.shareOnMessenger = function () {
+      const shareURL = this.campaignUrlProp;
+      window.open(`fb-messenger://share?link=${encodeURIComponent(shareURL)}`, '_blank');
+    }.bind(this);
+
+    window.shareOnInstagram = function () {
+      alert(
+        'Instagram does not support direct sharing via links. Please share manually by copying the URL.',
+      );
+    };
+
+    window.shareOnTikTok = function () {
+      alert(
+        'TikTok does not support direct sharing via links. Please share manually by copying the URL.',
+      );
+    };
+
+    window.shareOnWhatsApp = function () {
+      const shareURL = this.campaignUrlProp;
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent('Check out this game! ' + shareURL)}`,
+        '_blank',
+      );
+    }.bind(this);
+
+    window.copyURL = function () {
+      const shareURL = this.campaignUrlProp;
+      navigator.clipboard
+        .writeText(shareURL)
+        .then(() => {
+          alert('URL copied to clipboard!');
+        })
+        .catch((err) => {
+          alert('Failed to copy URL. Please try again.');
+        });
+    }.bind(this);
   }
 
   render() {
