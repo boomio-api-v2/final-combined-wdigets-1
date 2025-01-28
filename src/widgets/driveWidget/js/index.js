@@ -2613,8 +2613,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   }
 
   function showScoreEffect(score, showLife) {
-    const x = canvas.width / 2 + 80;
-    const y = canvas.height - 20;
+    const canvas = document.getElementById('boomio-drive-canvas');
+    const x = window.innerWidth / 2 - 25;
+    const y = window.innerHeight / 2 + 50;
 
     const gameContainer = document.querySelector('.game-container');
 
