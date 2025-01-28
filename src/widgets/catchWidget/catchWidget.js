@@ -1900,7 +1900,7 @@ class Fruit {
           : this.customer === 'Pieno Žvaigždės'
           ? 14
           : this.customer === 'Akropolis'
-          ? 14
+          ? 10
           : 5),
     );
 
