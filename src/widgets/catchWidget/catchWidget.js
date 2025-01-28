@@ -1467,9 +1467,9 @@ class Fruit {
       }
     } else if (this.customer === 'Akropolis') {
       if (type === 'bad') {
-        this.fruitNumber = Math.floor(Math.random() * 6 + 8);
+        this.fruitNumber = Math.floor(Math.random() * 5 + 5);
       } else {
-        this.fruitNumber = Math.floor(Math.random() * 8);
+        this.fruitNumber = Math.floor(Math.random() * 5);
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
@@ -1485,7 +1485,8 @@ class Fruit {
     this.fruitHeightArray = [40, 40, 40, 40, 30];
     this.fruitImage = new Image();
     this.fruitSpeed = Math.floor(
-      Math.random() * 3 + (this.customer === 'Pieno Žvaigždės' ? 1.3 : 1),
+      Math.random() * 3 +
+        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 1.3 : 1),
     );
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
@@ -1591,20 +1592,16 @@ class Fruit {
       ];
     } else if (this.customer && this.customer === 'Akropolis') {
       this.images = [
-        item1PienoZvaigzdes,
-        item2PienoZvaigzdes,
-        item3PienoZvaigzdes,
-        item4PienoZvaigzdes,
-        item5PienoZvaigzdes,
-        item6PienoZvaigzdes,
-        item7PienoZvaigzdes,
-        item8PienoZvaigzdes,
-        item9PienoZvaigzdes,
-        item10PienoZvaigzdes,
-        item11PienoZvaigzdes,
-        item12PienoZvaigzdes,
-        item13PienoZvaigzdes,
-        item14PienoZvaigzdes,
+        item1Akropolis,
+        item2Akropolis,
+        item3Akropolis,
+        item4Akropolis,
+        item5Akropolis,
+        item6Akropolis,
+        item7Akropolis,
+        item8Akropolis,
+        item9Akropolis,
+        item10Akropolis,
       ];
     } else {
       // Default catch images if none of the above conditions are met
@@ -1724,20 +1721,16 @@ class Fruit {
       ][this.fruitNumber];
     } else if (this.customer === 'Akropolis') {
       this.fruitType = [
-        'item1PienoZvaigzdes',
-        'item2PienoZvaigzdes',
-        'item3PienoZvaigzdes',
-        'item4PienoZvaigzdes',
-        'item5PienoZvaigzdes',
-        'item6PienoZvaigzdes',
-        'item7PienoZvaigzdes',
-        'item8PienoZvaigzdes',
-        'item9PienoZvaigzdes',
-        'item10PienoZvaigzdes',
-        'item11PienoZvaigzdes',
-        'item12PienoZvaigzdes',
-        'item13PienoZvaigzdes',
-        'item14PienoZvaigzdes',
+        'item1Akropolis',
+        'item2Akropolis',
+        'item3Akropolis',
+        'item4Akropolis',
+        'item5Akropolis',
+        'item6Akropolis',
+        'item7Akropolis',
+        'item8Akropolis',
+        'item9Akropolis',
+        'item10Akropolis',
       ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
@@ -1765,9 +1758,7 @@ class Fruit {
         this.fruitNumber
       ];
     } else if (this.customer === 'Akropolis') {
-      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50, -50][
-        this.fruitNumber
-      ];
+      this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -1914,7 +1905,8 @@ class Fruit {
     );
 
     this.fruitSpeed = Math.floor(
-      (Math.random() * 2 + (this.customer === 'Pieno Žvaigždės' ? 1.3 : 1)) *
+      (Math.random() * 2 +
+        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 1.3 : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),
     );
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
