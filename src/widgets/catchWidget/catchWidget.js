@@ -126,6 +126,9 @@ import {
   item8Pegasas,
   item9Pegasas,
   item10Pegasas,
+  introAkropolis,
+  backgroundAkropolis,
+  playerAkropolis,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -176,6 +179,8 @@ class CatchGame {
         ? backgroundPienoZvaigzdes
         : this.customer === 'Pegasas'
         ? backgroundPegasas
+        : this.customer === 'Akropolis'
+        ? backgroundAkropolis
         : background
     }) center`;
 
@@ -431,6 +436,8 @@ class CatchGame {
         ? introPienoZvaigzdes
         : this.customer === 'Pegasas'
         ? introPegasas
+        : this.customer === 'Akropolis'
+        ? introAkropolis
         : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1390,6 +1397,8 @@ class Player {
       ? playerPienoZvaigzdes
       : customer === 'Pegasas'
       ? playerPegasas
+      : this.customer === 'Akropolis'
+      ? playerAkropolis
       : player;
     this.defaultscore = defaultscore;
   }

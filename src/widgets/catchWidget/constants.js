@@ -308,11 +308,11 @@ export const item9Pegasas =
 export const item10Pegasas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item10.png';
 
-export const introPienoAkropolis =
+export const introAkropolis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/intro.png';
 
-export const backgroundPienoAkropolis =
+export const backgroundAkropolis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/background.png';
 
-export const playerPienoAkropolis =
+export const playerAkropolis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/player.png';

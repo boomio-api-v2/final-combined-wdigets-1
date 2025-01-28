@@ -99,14 +99,7 @@ export class ShareContainer {
 
     window.copyURL = function () {
       const shareURL = this.campaignUrlProp;
-      navigator.clipboard
-        .writeText(shareURL)
-        .then(() => {
-          alert('URL copied to clipboard!');
-        })
-        .catch((err) => {
-          alert('Failed to copy URL. Please try again.');
-        });
+      navigator.clipboard.writeText(shareURL);
     }.bind(this);
   }
 
