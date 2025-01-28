@@ -129,6 +129,16 @@ import {
   introAkropolis,
   backgroundAkropolis,
   playerAkropolis,
+  item1Akropolis,
+  item2Akropolis,
+  item3Akropolis,
+  item4Akropolis,
+  item5Akropolis,
+  item6Akropolis,
+  item7Akropolis,
+  item8Akropolis,
+  item9Akropolis,
+  item10Akropolis,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -191,7 +201,12 @@ class CatchGame {
     this.smashCounter = 0;
     this.catchSoundCounter = 0;
     this.animationFrame = null;
-    this.defaultscore = this.customer === 'Eurovaistine' || this.customer === 'Pegasas' ? 3 : 5;
+    this.defaultscore =
+      this.customer === 'Eurovaistine' ||
+      this.customer === 'Pegasas' ||
+      this.customer === 'Akropolis'
+        ? 3
+        : 5;
     this.startCatch();
   }
 
@@ -1058,7 +1073,11 @@ class CatchGame {
 
   createFruits() {
     this.fruits = [];
-    if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
+    if (
+      this.customer.includes('Gamtos Ateitis') ||
+      this.customer === 'Pieno Žvaigždės' ||
+      this.customer === 'Akropolis'
+    ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
         fruit.chooseFruit();
@@ -1166,7 +1185,11 @@ class CatchGame {
       }
 
       this.fruits.forEach((fruit) => fruit.fall(fruit));
-      if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
+      if (
+        this.customer.includes('Gamtos Ateitis') ||
+        this.customer === 'Pieno Žvaigždės' ||
+        this.customer === 'Akropolis'
+      ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
           // Create additional fruits to reach the new number
@@ -1342,7 +1365,7 @@ class CatchGame {
     }
 
     // Reset player and game state
-    this.player.gameOver = true;
+    this.player.gameOver = false;
     this.currentScore = 0;
     this.player.fruitsCollected = 0;
     this.player.fruitsMissed = 0;
@@ -1377,7 +1400,7 @@ class Player {
   constructor(customer, canvas, context, defaultscore) {
     this.canvas = canvas;
     this.context = context;
-    this.gameOver = true;
+    this.gameOver = false;
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
@@ -1397,7 +1420,7 @@ class Player {
       ? playerPienoZvaigzdes
       : customer === 'Pegasas'
       ? playerPegasas
-      : this.customer === 'Akropolis'
+      : customer === 'Akropolis'
       ? playerAkropolis
       : player;
     this.defaultscore = defaultscore;
@@ -1437,6 +1460,12 @@ class Fruit {
         this.fruitNumber = Math.floor(Math.random() * 10 + 13);
       }
     } else if (this.customer === 'Pieno Žvaigždės') {
+      if (type === 'bad') {
+        this.fruitNumber = Math.floor(Math.random() * 6 + 8);
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 8);
+      }
+    } else if (this.customer === 'Akropolis') {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 6 + 8);
       } else {
@@ -1544,7 +1573,23 @@ class Fruit {
         item22Glass,
       ];
     } else if (this.customer && this.customer === 'Pieno Žvaigždės') {
-      // Handle Glass images
+      this.images = [
+        item1PienoZvaigzdes,
+        item2PienoZvaigzdes,
+        item3PienoZvaigzdes,
+        item4PienoZvaigzdes,
+        item5PienoZvaigzdes,
+        item6PienoZvaigzdes,
+        item7PienoZvaigzdes,
+        item8PienoZvaigzdes,
+        item9PienoZvaigzdes,
+        item10PienoZvaigzdes,
+        item11PienoZvaigzdes,
+        item12PienoZvaigzdes,
+        item13PienoZvaigzdes,
+        item14PienoZvaigzdes,
+      ];
+    } else if (this.customer && this.customer === 'Akropolis') {
       this.images = [
         item1PienoZvaigzdes,
         item2PienoZvaigzdes,
@@ -1661,7 +1706,23 @@ class Fruit {
         'item22Glass',
       ][this.fruitNumber];
     } else if (this.customer === 'Pieno Žvaigždės') {
-      // Handle Glass fruit types
+      this.fruitType = [
+        'item1PienoZvaigzdes',
+        'item2PienoZvaigzdes',
+        'item3PienoZvaigzdes',
+        'item4PienoZvaigzdes',
+        'item5PienoZvaigzdes',
+        'item6PienoZvaigzdes',
+        'item7PienoZvaigzdes',
+        'item8PienoZvaigzdes',
+        'item9PienoZvaigzdes',
+        'item10PienoZvaigzdes',
+        'item11PienoZvaigzdes',
+        'item12PienoZvaigzdes',
+        'item13PienoZvaigzdes',
+        'item14PienoZvaigzdes',
+      ][this.fruitNumber];
+    } else if (this.customer === 'Akropolis') {
       this.fruitType = [
         'item1PienoZvaigzdes',
         'item2PienoZvaigzdes',
@@ -1703,6 +1764,10 @@ class Fruit {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
+    } else if (this.customer === 'Akropolis') {
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50, -50][
+        this.fruitNumber
+      ];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -1713,7 +1778,11 @@ class Fruit {
     if (this.y < this.canvas.height - this.fruitHeight) {
       this.y += this.fruitSpeed;
     } else {
-      if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės') {
+      if (
+        this.customer.includes('Gamtos Ateitis') ||
+        this.customer === 'Pieno Žvaigždės' ||
+        this.customer === 'Akropolis'
+      ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
           document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
@@ -1838,6 +1907,8 @@ class Fruit {
         (this.customer.includes('Gamtos Ateitis')
           ? 23
           : this.customer === 'Pieno Žvaigždės'
+          ? 14
+          : this.customer === 'Akropolis'
           ? 14
           : 5),
     );
