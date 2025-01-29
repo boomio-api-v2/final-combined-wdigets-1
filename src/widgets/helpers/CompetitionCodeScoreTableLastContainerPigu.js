@@ -541,22 +541,22 @@ export class CompetitionCodeScoreTableLastContainerPigu {
       ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/dovanu-idejos">Buy now</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://link.pigu.lt/gamification-cta">Buy now</a>'
             : this.language === 'LV'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv/lv/lapaspuse/davanu-izvelei">Pirkt tagad </a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://link.220.lv/gamification-cta">Pirkt tagad </a>'
             : this.language === 'ET'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee/et/lehekulg/parimad-kingiideed">Osta kohe</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://link.kaup24.ee/gamification-cta">Osta kohe</a>'
             : this.language === 'FI'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi/fi/sivu/lahjaideat">Osta nyt</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://link.hobbyhall.fi/gamification-cta">Osta nyt</a>'
             : this.language === 'RU' &&
               (this.campaignUrlProp === 'https://kaup.ee' ||
                 this.campaignUrlProp === 'https://kaup24.ee')
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee/et/lehekulg/parimad-kingiideed">Купить сейчас</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://link.kaup24.ee/gamification-cta">Купить сейчас</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/dovanu-idejos">Купить сейчас</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://link.pigu.lt/gamification-cta">Купить сейчас</a>'
             : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv/lv/lapaspuse/davanu-izvelei">Купить сейчас</a>'
-            : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt/lt/puslapis/dovanu-idejos">Pirkti dabar</a>'
+            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://link.220.lv/gamification-cta">Купить сейчас</a>'
+            : '<a style="text-decoration:none;color:white" target="_blank" href="https://link.pigu.lt/gamification-cta">Pirkti dabar</a>'
           : ''
       }
   </div>
