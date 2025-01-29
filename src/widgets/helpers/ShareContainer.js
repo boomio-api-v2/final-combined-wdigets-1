@@ -49,17 +49,31 @@ export class ShareContainer {
       <div class="bomio-first-line" style="width:100%; top: 160px; line-height:18px; position: absolute; font-weight: 700; text-align: center; color: white; font-size: 18px; font-family: Montserrat; word-wrap: break-word;">
         Už pakviestus draugus gausi +1000<br> taškų prie savo žaidimo rezultato!
       </div>
-      <div class="bomio-second-line" style="width:100%; top: 200px; line-height:18px; position: absolute; text-align: center; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
+      <div class="bomio-second-line" style="width:100%; top: 210px; line-height:18px; position: absolute; text-align: center; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
         Pasidalink žaidimo nuoroda dabar ir <br> tapk žaidimo lyderiu!
       </div>
-      <div class="share-buttons" style="width: 100%; top: 250px; position: absolute; text-align: center;">
-        <button onclick="shareOnFacebook()" style="margin: 5px;">Facebook</button>
-        <button onclick="shareOnMessenger()" style="margin: 5px;">Messenger</button>
-        <button onclick="shareOnInstagram()" style="margin: 5px;">Instagram</button>
-        <button onclick="shareOnTikTok()" style="margin: 5px;">TikTok</button>
-        <button onclick="shareOnWhatsApp()" style="margin: 5px;">WhatsApp</button>
-        <button onclick="copyURL()" style="margin: 5px;">Copy URL</button>
+            <div class="bomio-second-line" style="width:100%; top: 470px; line-height:18px; position: absolute; text-align: start;margin-left:40px; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
+        Dalinkis
       </div>
+<div class="share-buttons" style="width: 100%; top: 500px; position: absolute; text-align: center;">
+  <button onclick="shareOnFacebook()" style="margin: 5px; display: inline-block; text-align: center; border: none; background: none;">
+    <img src="path-to-facebook-icon.png" alt="Facebook" style="width: 50px; height: 50px;" />
+    <div style="font-size: 14px; color: white; margin-top: 5px;font-family: Montserrat;">Facebook</div>
+  </button>
+  <button onclick="shareOnMessenger()" style="margin: 5px; display: inline-block; text-align: center; border: none; background: none;">
+    <img src="path-to-messenger-icon.png" alt="Messenger" style="width: 50px; height: 50px;" />
+    <div style="font-size: 14px; color: white; margin-top: 5px;font-family: Montserrat;">Messenger</div>
+  </button>
+  <button onclick="shareOnWhatsApp()" style="margin: 5px; display: inline-block; text-align: center; border: none; background: none;">
+    <img src="path-to-whatsapp-icon.png" alt="WhatsApp" style="width: 50px; height: 50px;" />
+    <div style="font-size: 14px; color:white; margin-top: 5px;font-family: Montserrat;">WhatsApp</div>
+  </button>
+  <button onclick="copyURL()" style="margin: 5px; display: inline-block; text-align: center; border: none; background: none;">
+    <img src="path-to-copy-icon.png" alt="Copy URL" style="width: 50px; height: 50px;" />
+    <div style="font-size: 14px; color:white; margin-top: 5px;font-family: Montserrat;">Copy URL</div>
+  </button>
+</div>
+
     `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
@@ -76,18 +90,6 @@ export class ShareContainer {
       const shareURL = this.campaignUrlProp;
       window.open(`fb-messenger://share?link=${encodeURIComponent(shareURL)}`, '_blank');
     }.bind(this);
-
-    window.shareOnInstagram = function () {
-      alert(
-        'Instagram does not support direct sharing via links. Please share manually by copying the URL.',
-      );
-    };
-
-    window.shareOnTikTok = function () {
-      alert(
-        'TikTok does not support direct sharing via links. Please share manually by copying the URL.',
-      );
-    };
 
     window.shareOnWhatsApp = function () {
       const shareURL = this.campaignUrlProp;

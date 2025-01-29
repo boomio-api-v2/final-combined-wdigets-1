@@ -297,7 +297,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
         ? 'Твой результат:'
         : this.prop === 'Pigu.lt' && this.language === 'LT' && 'Tavo rezultatas:'
     } ${this.currentScore ?? 0} </div>
-               <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;margin-left:20px;width:calc(100% - 40px);top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word"> 
+               <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;margin-left:20px;width:calc(100% - 40px);top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word; display:${
+                 this.prop === 'Pigu.lt' ? 'none' : 'block'
+               }"> 
     ${
       this.currentScore >= 1000
         ? this.prop === 'Pigu.lt' && this.language === 'EN'
@@ -417,7 +419,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
                 ? '<strong style="text-transform:uppercase">Surinkai virš 1000 taškų ir pretenduoji laimėti šios savaitės prizus:</strong>  '
                 : ''
             }</div>`
-          : `<div style="margin-left:20px;width:calc(100% - 40px);position:absolute;margin-top:200px;">
+          : `<div style="margin-left:20px;width:calc(100% - 40px);position:absolute;margin-top:200px;display:${
+              this.prop === 'Pigu.lt' ? 'none' : 'block'
+            }">
               <div style="width:100%; top: ${'245px'};line-height:18px; text-align: center; color: #FFD66B; font-size:${
               this.isMobile ? '10px' : '12px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -508,7 +512,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : ''
       }</div>
       </div>
-              <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 9px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">      ${
+              <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 9px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word;display:${
+        this.prop === 'Pigu.lt' ? 'none' : 'block'
+      }">      ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
             ? 'Winners are chosen at random.'
@@ -577,7 +583,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           ? 'PRIZAI KIEKVIENĄ savaitę!'
           : ''
       } </div>
-                     <div style="margin-left:20px;width:calc(100% - 40px); top: 435px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word">${
+                     <div style="margin-left:20px;width:calc(100% - 40px); top: 435px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word;display:${
+        this.prop === 'Pigu.lt' ? 'none' : 'block'
+      }">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'If you will win, we’ll notify you via the email address in your account.'
           : this.prop === 'Pigu.lt' && this.language === 'LV'
