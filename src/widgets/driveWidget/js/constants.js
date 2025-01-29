@@ -324,3 +324,119 @@ export const UnisendIntroLV =
 
 export const UnisendIntroEE =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/unisend/unisendIntro-ee.gif?raw=true';
+
+export const Pigubackground =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/background.png?raw=true';
+export const PiguBags2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bags2.png?raw=true';
+export const PigubagsEE1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bagsEE1.png?raw=true';
+export const PigubagsFI1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bagsFI1.png?raw=true';
+export const PigubagsLV1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bagsLV1.png?raw=true';
+export const PigubagsLT1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bagsLT1.png?raw=true';
+export const PiguBikeEE =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bikeEE.png?raw=true';
+export const PigubikeLV =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bikeLV.png?raw=true';
+export const PigubikeFI =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bikeFI.png?raw=true';
+export const PigubikeLT =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/bikeLT.png?raw=true';
+export const Pigutree =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/tree.png?raw=true';
+export const Pigusign =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/sign.png?raw=true';
+
+export const Pigucity =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/city.png?raw=true';
+
+export const city1ImageDataPigu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/Bigcity1.png',
+];
+
+export const city2ImageDataPigu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/Bigcity2.png',
+];
+
+export const city3ImageDataPigu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/Bigcity3.png',
+];
+
+export const wh1ImageDataPigu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/Bigcity1.png',
+];
+
+export const wh2ImageDataPigu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/Bigcity2.png',
+];
+
+export const wh3ImageDataPigu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/Bigcity3.png',
+];
+
+export const background1Pigu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/background1.png',
+];
+
+export const piguDriveEEEn = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-EE-en.gif',
+];
+
+export const piguDriveEERu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-EE-ru.gif',
+];
+
+export const piguDriveEE = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-EE.gif',
+];
+
+export const piguDriveFIEn = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-FI-en.gif',
+];
+
+export const piguDriveFIRu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-FI-ru.gif',
+];
+
+export const piguDriveFI = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-FI.gif',
+];
+
+export const piguDriveLTEn = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-LT-en.gif',
+];
+
+export const piguDriveLTRu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-LT-ru.gif',
+];
+
+export const piguDriveLT = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-LT.gif',
+];
+
+export const piguDriveLVEn = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-LV-en.gif',
+];
+
+export const piguDriveLVRu = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-LV-ru.gif',
+];
+
+export const piguDriveLV = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/intro/Pigu-Drive-LV.gif',
+];
+
+export const newRecordFI =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordFI.png?raw=true';
+
+export const newRecordRU =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newRecordRU.png?raw=true';
+
+export const newRecordEn =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
+
+export const linePigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/line.png';

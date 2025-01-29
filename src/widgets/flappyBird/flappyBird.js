@@ -287,7 +287,7 @@ class FlappyBird {
       inputContainer.style.display = 'block';
       setTimeout(() => {
         inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
-        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
+        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '140px'})`;
         inputContainer.style.opacity = 1;
       }, 100);
     }, 300);
@@ -318,7 +318,7 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    const randomChoice = Math.round(Math.random()); // Randomly 0 or 1
+    const randomChoice = Math.round(Math.random());
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
@@ -1525,7 +1525,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         inputContainer.style.height =
                           this.customer === 'Pigu.lt' ? '400px' : '332px';
                         inputContainer.style.top = `calc(50% + ${
-                          this.isMobileHeightSmall ? '110px' : '170px'
+                          this.isMobileHeightSmall ? '110px' : '140px'
                         })`;
                         inputContainer.style.opacity = 1;
                       }, 100);
@@ -1691,7 +1691,10 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
-
+      if (this.customer === 'Pigu.lt') {
+        const competitionRestart = document.getElementById('boomio-game-play-again-pigu');
+        competitionRestart.addEventListener('click', this.showRulesPigu);
+      }
       if (this.customer === 'Pigu.lt') {
         const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);

@@ -439,7 +439,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Akropolis' && this.language === 'LV'
                 ? 'Ja saglabāsi savu pozīciju 500 labāko sarakstā, tu saņemsi </br>balvu no KFC, un pēc balvas izņemšanas – automātiski </br>piedalīsies AKROPOLE dāvanu kartes izlozē 100 EUR vērtībā.  </br>Tev ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
                 : this.prop === 'Akropolis'
-                ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
+                ? 'Žaisk ir laimėk 1 iš 2025 CAIF CAFE kavos puodelių ir 1  100 Eur </br>  AKROPOLIO dovanų kortelę KASDIEN.'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių –</br> kiekvieną savaitę!'
                 : this.prop === 'Unisend' && this.language === 'EE'
@@ -625,10 +625,8 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
-                : this.prop === 'Akropolis' && this.language === 'LV'
-                ? 'Uzlabo savu rezultātu un saņem kādu no KFC balvām un pēc</br>balvas saņemšanas - automātiski piedalīsies  AKROPOLE</br>dāvanu kartes izlozē 100 eur vērtībā.'
                 : this.prop === 'Akropolis'
-                ? 'Pagerink rezultatą ir kasdien laimėk vieną CAIF CAFE kavos </br>puodelį, o atsiėmęs prizą turėk galimybę laimėti 100 EUR</br>AKROPOLIO dovanų kortelę!'
+                ? 'Pagerink rezultatą ir laimėk 1 iš 2025 CAIF CAFE </br> kavos puodelių ir 1  100 Eur  AKROPOLIO dovanų kortelę KASDIEN.'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 10 prizų – „Gamtos ateities“ </br>stalo žaidimų „MisijaEkomiestas“ arba rūšiavimo namuose</br> rinkinių – kiekvieną savaitę!'
                 : this.language === 'ES'

@@ -75,16 +75,49 @@ import {
   treeUnisend,
   goldImageDataUnisendLV2,
   goldImageDataUnisendLV1,
+  Pigubackground,
+  Pigusign,
+  PiguBags2,
+  PigubagsEE1,
+  PigubagsFI1,
+  PigubagsLV1,
+  PigubagsLT1,
+  PiguBikeEE,
+  PigubikeLV,
+  PigubikeFI,
+  PigubikeLT,
+  Pigucity,
+  Pigutree,
+  city1ImageDataPigu,
+  city2ImageDataPigu,
+  city3ImageDataPigu,
+  wh1ImageDataPigu,
+  wh2ImageDataPigu,
+  wh3ImageDataPigu,
+  background1Pigu,
+  linePigu,
 } from './constants';
 
-function startGame(scoreTableContainerInstance) {
+function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = false;
   let checkboxChange2 = false;
+  let checkboxChange3 = false;
+
   const isMobile = window.innerWidth <= 1280;
-  const customer = config.business_name ? config.business_name : 'Barbora';
-  const language = config.language ? config.language : '';
-  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'points';
+  const isMobileHeightSmall = window.innerHeight <= 600;
+
+  const customer = config.business_name ? config.business_name : 'Pigu.lt';
+  let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
+  const currentPageUrl = window.location.href;
+
+  const urlParams = new URL(currentPageUrl).searchParams;
+  const languageParam = urlParams.get('language');
+  let language = customer === 'Pigu.lt' ? languageParam : config.language ?? 'ES';
+
+  let campaignUrl = config.campaignUrl ? config.campaignUrl : '';
+  const campaignUrlProp = campaignUrl ? campaignUrl : '';
+
   let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
@@ -112,6 +145,8 @@ function startGame(scoreTableContainerInstance) {
   const GROUND_PERCENT = 0.5;
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
+  const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
+
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
   const WALL_PARTICLES = 55;
@@ -144,7 +179,7 @@ function startGame(scoreTableContainerInstance) {
   const ROAD_SPRITE_SPAWN_X = width / 10;
   let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 90;
+  const START_TIME = 90; //test
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -155,7 +190,7 @@ function startGame(scoreTableContainerInstance) {
   const GAME_START_DELAY = 4;
   const CURVE_AMPLITUDE = 0.0007;
   const CURVE_FREQUENCY = 10;
-  const NUM_TREES = 30;
+  const NUM_TREES = 10;
   const TREE_CHANCE_SPAWN = 0.05;
   const TREE_TIME_OFFSCREEN = 1;
   const SPRITE_HORIZON_OFFSET = 12;
@@ -219,6 +254,14 @@ function startGame(scoreTableContainerInstance) {
       ? carImageDataIkea
       : customer === 'Unisend'
       ? carImageDataUnisend
+      : campaignUrlProp === 'https://pigu.lt'
+      ? PigubikeLT
+      : campaignUrlProp === 'https://220.lv'
+      ? PigubikeLV
+      : campaignUrlProp === 'https://kaup.ee' || campaignUrlProp === 'https://kaup24.ee'
+      ? PiguBikeEE
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? PigubikeFI
       : carImageData;
 
   const rightMailboxImage = new Image();
@@ -229,6 +272,8 @@ function startGame(scoreTableContainerInstance) {
       ? mailboxImageDataIkea
       : customer === 'Unisend'
       ? mailboxImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? PiguBags2
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -239,6 +284,8 @@ function startGame(scoreTableContainerInstance) {
       ? mailboxImageDataIkea
       : customer === 'Unisend'
       ? mailboxImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? PiguBags2
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
@@ -256,6 +303,14 @@ function startGame(scoreTableContainerInstance) {
       ? goldImageDataUnisendES
       : customer === 'Unisend'
       ? goldImageDataUnisend
+      : campaignUrlProp === 'https://pigu.lt'
+      ? PigubagsLT1
+      : campaignUrlProp === 'https://220.lv'
+      ? PigubagsLV1
+      : campaignUrlProp === 'https://kaup.ee' || campaignUrlProp === 'https://kaup24.ee'
+      ? PigubagsEE1
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? PigubagsFI1
       : goldImageData;
 
   const wallImage = new Image();
@@ -266,6 +321,8 @@ function startGame(scoreTableContainerInstance) {
       ? brickWallImageDataIkea
       : customer === 'Unisend'
       ? brickWallImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? Pigusign
       : brickWallImageData;
 
   const envelopeImage = new Image();
@@ -276,6 +333,8 @@ function startGame(scoreTableContainerInstance) {
       ? envelopeImageDataIkea
       : customer === 'Unisend'
       ? envelopeImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? PiguBags2
       : envelopeImageData;
 
   const cloudsImage = new Image();
@@ -325,6 +384,14 @@ function startGame(scoreTableContainerInstance) {
             return img;
           })(),
         ]
+      : customer === 'Pigu.lt'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = Pigutree;
+            return img;
+          })(),
+        ]
       : [
           (() => {
             const img = new Image();
@@ -347,6 +414,8 @@ function startGame(scoreTableContainerInstance) {
       ? wh1ImageDataIkea
       : customer === 'Unisend'
       ? wh1ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? wh1ImageDataPigu
       : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
@@ -355,6 +424,8 @@ function startGame(scoreTableContainerInstance) {
       ? wh2ImageDataIkea
       : customer === 'Unisend'
       ? wh2ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? wh2ImageDataPigu
       : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
@@ -363,6 +434,8 @@ function startGame(scoreTableContainerInstance) {
       ? wh3ImageDataIkea
       : customer === 'Unisend'
       ? wh3ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? wh3ImageDataPigu
       : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
@@ -371,6 +444,8 @@ function startGame(scoreTableContainerInstance) {
       ? lineIkea
       : customer === 'Unisend'
       ? lineUnisend
+      : customer === 'Pigu.lt'
+      ? linePigu
       : line;
 
   backgroundImg.src =
@@ -380,6 +455,8 @@ function startGame(scoreTableContainerInstance) {
       ? backgroundIkea
       : customer === 'Unisend'
       ? backgroundUnisend
+      : customer === 'Pigu.lt'
+      ? Pigubackground
       : background;
   backgroundImg2.src =
     customer === 'Barbora'
@@ -388,6 +465,8 @@ function startGame(scoreTableContainerInstance) {
       ? backgroundIkea
       : customer === 'Unisend'
       ? backgroundUnisend
+      : customer === 'Pigu.lt'
+      ? Pigubackground
       : background;
 
   const city1 = new Image();
@@ -400,6 +479,8 @@ function startGame(scoreTableContainerInstance) {
       ? city1ImageDataIkea
       : customer === 'Unisend'
       ? city1ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? city1ImageDataPigu
       : city1ImageData;
   city2.src =
     customer === 'Barbora'
@@ -408,6 +489,8 @@ function startGame(scoreTableContainerInstance) {
       ? city2ImageDataIkea
       : customer === 'Unisend'
       ? city2ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? city2ImageDataPigu
       : city2ImageData;
   city3.src =
     customer === 'Barbora'
@@ -416,6 +499,8 @@ function startGame(scoreTableContainerInstance) {
       ? city3ImageDataIkea
       : customer === 'Unisend'
       ? city3ImageDataUnisend
+      : customer === 'Pigu.lt'
+      ? city3ImageDataPigu
       : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
@@ -432,6 +517,8 @@ function startGame(scoreTableContainerInstance) {
       ? '#DEB47C'
       : customer === 'Unisend'
       ? '#545151'
+      : customer === 'Pigu.lt'
+      ? 'white'
       : '#FFF100';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
@@ -440,6 +527,8 @@ function startGame(scoreTableContainerInstance) {
       ? '#B58E5B'
       : customer === 'Unisend'
       ? '#FFCA00'
+      : customer === 'Pigu.lt'
+      ? '#F24434'
       : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
@@ -450,6 +539,8 @@ function startGame(scoreTableContainerInstance) {
       ? '#959595'
       : customer === 'Unisend'
       ? '#959595'
+      : customer === 'Pigu.lt'
+      ? '#A2B0B4'
       : '#F9F1DD';
   const road2 =
     customer === 'Barbora'
@@ -458,6 +549,8 @@ function startGame(scoreTableContainerInstance) {
       ? 'white'
       : customer === 'Unisend'
       ? 'white'
+      : customer === 'Pigu.lt'
+      ? '#FFFAE6'
       : 'black';
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
@@ -825,7 +918,7 @@ function startGame(scoreTableContainerInstance) {
           document.getElementById('background_intro').style.display = 'none';
           createHandlers(t);
         }, 2000);
-      }, 4000); //intro speed
+      }, 2000); //intro speed
     }
     drawTitleScreen();
   }
@@ -999,6 +1092,10 @@ function startGame(scoreTableContainerInstance) {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }
+    if (customer === 'Pigu.lt') {
+      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+    }
   }
 
   function hideScore() {
@@ -1019,6 +1116,30 @@ function startGame(scoreTableContainerInstance) {
       numbers.style.display = 'none';
     }, 500);
   }
+
+  const clickEventHandlerDidYouKnow = () => {
+    const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+    didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      didYouKnowTableContainer.style.height = '10px';
+      didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+      didYouKnowTableContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      didYouKnowTableContainer.style.display = 'none';
+    }, 1000);
+    const competitionTableContainer = document.querySelector('.competition-table-container');
+    document.getElementById('background_blur').style.display = 'block';
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    competitionTableContainer.style.display = 'block';
+
+    setTimeout(() => {
+      competitionTableContainer.style.height = '680px';
+      competitionTableContainer.style.top = 'calc(50%)';
+      competitionTableContainer.style.opacity = 1;
+    }, 100);
+  };
 
   const clickEventHandlerResetGame = () => {
     const competitionRestart = document.getElementById('boomio-game-play-again');
@@ -1045,6 +1166,24 @@ function startGame(scoreTableContainerInstance) {
         boomioService
           .signal('ROUND_STARTED', 'signal')
           .then((response) => {
+            if (customer === 'Pigu.lt') {
+              if (window.Boomio) {
+                window.Boomio.logEvent('game_started', JSON.stringify(response));
+              } else if (
+                window.webkit &&
+                window.webkit.messageHandlers &&
+                window.webkit.messageHandlers.Boomio
+              ) {
+                var message = {
+                  command: 'logEvent',
+                  name: 'game_started',
+                  parameters: { response },
+                };
+                window.webkit.messageHandlers.Boomio.postMessage(message);
+              } else {
+                console.log('No native APIs found.');
+              }
+            }
             document.getElementById('background_blur').style.display = 'none';
             const canvas = document.getElementById('boomio-drive-canvas');
             canvas.style.transition = 'filter 1s ease';
@@ -1059,7 +1198,19 @@ function startGame(scoreTableContainerInstance) {
   };
 
   function showRulesOrRegistration() {
-    if (showCompetitiveRegistration) {
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const user_id = urlParams.get('user_id');
+
+    if (customer === 'Pigu.lt' && bestScore <= 0) {
+      const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
+      checkboxImg3.addEventListener('click', () => {
+        checkboxChange3 = !checkboxChange3;
+        const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
+        checkboxImgChange3.src = checkboxChange3 ? checkIcon : uncheckIcon;
+      });
+    }
+    if (showCompetitiveRegistration && campaignUrl === '') {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         checkboxChange = !checkboxChange;
@@ -1080,34 +1231,127 @@ function startGame(scoreTableContainerInstance) {
       playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-drive-container');
-        document.getElementById('background_blur').style.opacity = 0.37;
-        const inpuRegisterContainer = document.querySelector('.input-register-container');
-        document.getElementById('control-button').style.transition = 'opacity 2s ease';
-        document.getElementById('control-button').style.opacity = 1;
-        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        inpuRegisterContainer.style.display = 'block';
-        setTimeout(() => {
-          inpuRegisterContainer.style.height = '528px';
-          inpuRegisterContainer.style.top = 'calc(50% + 74px)';
-          inpuRegisterContainer.style.opacity = 1;
-        }, 100);
+        if (customer !== 'SaludSA') {
+          const canvas = document.getElementById('boomio-drive-canvas');
+          document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+
+          const inpuRegisterContainer = document.querySelector('.input-register-container');
+          document.getElementById('control-button').style.transition = 'opacity 2s ease';
+          document.getElementById('control-button').style.opacity = 1;
+          inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inpuRegisterContainer.style.display = 'block';
+          setTimeout(() => {
+            inpuRegisterContainer.style.height = '528px';
+            inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+            inpuRegisterContainer.style.opacity = 1;
+          }, 100);
+        }
       }, 300);
+    } else if (customer === 'Pigu.lt' && user_id !== '') {
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          bestScore = response.user_best_score;
+          didYouKnowContainer.updateProps(customer, scoreTable);
+
+          if (customer === 'Pigu.lt' && false) {
+            competitionCodeScoreTableContainerPigu.updateProps(customer, scoreTable);
+
+            const competitionTableContainer = document.querySelector(
+              '.competition-table-container-pigu',
+            );
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.display = 'block';
+            setTimeout(() => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = 'calc(50%)';
+              competitionTableContainer.style.opacity = 1;
+            }, 100);
+          } else {
+            bestScore = response.user_best_score;
+
+            showRulesPigu();
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else if (customer === 'Pigu.lt' && user_id === '') {
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          bestScore = response.user_best_score;
+
+          showRulesPigu();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     } else {
       setTimeout(() => {
-        document.getElementById('background_blur').style.opacity = 0.37;
+        const canvas = document.getElementById('boomio-drive-canvas');
+        document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         inputContainer.style.display = 'block';
         setTimeout(() => {
-          inputContainer.style.height = '332px';
-          inputContainer.style.top = 'calc(50% + 165px)';
+          inputContainer.style.height = customer === 'Pigu.lt' ? '400px' : '332px';
+          inputContainer.style.top = `calc(50% + ${isMobileHeightSmall ? '110px' : '170px'})`;
           inputContainer.style.opacity = 1;
         }, 100);
       }, 300);
     }
+  }
+
+  function showRulesPigu() {
+    config = localStorageService.getDefaultConfig();
+    bestScore = config.bestScore ? config.bestScore : 0;
+
+    if (bestScore > 0) {
+      document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
+    }
+    const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      competitionTableContainer.style.height = '10px';
+      competitionTableContainer.style.top = 'calc(50% + 330px)';
+      competitionTableContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      competitionTableContainer.style.display = 'none';
+    }, 1000);
+    setTimeout(() => {
+      const canvas = document.getElementById('boomio-drive-canvas');
+      document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
+      canvas.style.transition = 'filter 0.6s ease';
+      canvas.style.filter = 'blur(2px)';
+      const inputContainer = document.querySelector('.input-container');
+      document.getElementById('control-button').style.transition = 'opacity 2s ease';
+      document.getElementById('control-button').style.opacity = 1;
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      inputContainer.style.display = 'block';
+      setTimeout(() => {
+        inputContainer.style.height = customer === 'Pigu.lt' ? '400px' : '332px';
+        inputContainer.style.top = `calc(50% + ${isMobileHeightSmall ? '110px' : '170px'})`;
+        inputContainer.style.opacity = 1;
+      }, 100);
+    }, 300);
   }
 
   function initGame(t) {
@@ -1161,7 +1405,7 @@ function startGame(scoreTableContainerInstance) {
       textureCoord += MAX_TEX / TEX_DEN;
       drawRoad(i, textureCoord);
     }
-
+    console.log('drawTitleScreen');
     drawCityHouse();
 
     envelopes.forEach((envelope) => {
@@ -1193,6 +1437,24 @@ function startGame(scoreTableContainerInstance) {
     boomioService
       .signal('ROUND_STARTED', 'signal')
       .then((response) => {
+        if (customer === 'Pigu.lt') {
+          if (window.Boomio) {
+            window.Boomio.logEvent('game_started', JSON.stringify(response));
+          } else if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.Boomio
+          ) {
+            var message = {
+              command: 'logEvent',
+              name: 'game_started',
+              parameters: { response },
+            };
+            window.webkit.messageHandlers.Boomio.postMessage(message);
+          } else {
+            console.log('No native APIs found.');
+          }
+        }
         document.getElementById('background_blur').style.display = 'none';
         const canvas = document.getElementById('boomio-drive-canvas');
         canvas.style.transition = 'filter 1s ease';
@@ -1363,6 +1625,7 @@ function startGame(scoreTableContainerInstance) {
 
     // Add the event listener for keydown events
     window.addEventListener('keydown', keyHandler);
+    console.log('drawCity');
 
     drawCity();
   }
@@ -1419,9 +1682,13 @@ function startGame(scoreTableContainerInstance) {
       index < MAX_TEX / 2
         ? customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
+          : customer === 'Pigu.lt'
+          ? '#9ECEFF'
           : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
         ? '#489B2D'
+        : customer === 'Pigu.lt'
+        ? '#c8e1ff'
         : customer === 'Barbora'
         ? '#85B62D'
         : '#A9C734';
@@ -1580,6 +1847,24 @@ function startGame(scoreTableContainerInstance) {
                 score: gameVars.currentScore,
               })
               .then((response) => {
+                if (customer === 'Pigu.lt') {
+                  if (window.Boomio) {
+                    window.Boomio.logEvent('game_finished', JSON.stringify(response));
+                  } else if (
+                    window.webkit &&
+                    window.webkit.messageHandlers &&
+                    window.webkit.messageHandlers.Boomio
+                  ) {
+                    var message = {
+                      command: 'logEvent',
+                      name: 'game_finished',
+                      parameters: { response },
+                    };
+                    window.webkit.messageHandlers.Boomio.postMessage(message);
+                  } else {
+                    console.log('No native APIs found.');
+                  }
+                }
                 hideScore();
                 userBestPlace = response.user_best_place;
                 if (showCompetitiveRegistration === 'points') {
@@ -1616,9 +1901,12 @@ function startGame(scoreTableContainerInstance) {
                 console.error('Error:', error);
               });
 
-            const competitionTableContainer = document.querySelector(
-              '.competition-table-container',
-            );
+            let competitionTableContainer = '';
+            if (customer === 'Pigu.lt') {
+              competitionTableContainer = document.querySelector('.did-you-know-container');
+            } else {
+              competitionTableContainer = document.querySelector('.competition-table-container');
+            }
             const canvas = document.getElementById('boomio-drive-canvas');
             document.getElementById('background_blur').style.display = 'block';
             competitionTableContainer.style.transition =
@@ -1908,6 +2196,14 @@ function startGame(scoreTableContainerInstance) {
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
+    } else if (customer === 'Pigu.lt') {
+      const backgroundImage = new Image();
+
+      backgroundImage.src = background1Pigu;
+
+      backgroundImage.onload = () => {
+        ctx.drawImage(backgroundImage, 0, 0, width, height);
+      };
     } else {
       ctx.fillStyle = sky;
       ctx.fillRect(0, 0, width, height);
@@ -1963,18 +2259,22 @@ function startGame(scoreTableContainerInstance) {
 
       ctx.drawImage(backgroundImg, -15, 229, 455, 115);
     }
-    if (customer !== 'Ikea') {
-      ctx.drawImage(
-        lineImg,
-        0,
-        customer === 'Barbora' ? 340 : 330,
-        426,
-        customer === 'Barbora' ? 7 : 6,
-      );
-    }
+
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
+      } else if (customer === 'Pigu.lt') {
+        ctx.drawImage(
+          backgroundImg,
+          0,
+          0,
+          432,
+          279, // Use the full image as the source
+          -3,
+          108,
+          426,
+          225, // Destination: position (-3, 228), size (426x105)
+        );
       } else {
         ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       }
@@ -2028,6 +2328,18 @@ function startGame(scoreTableContainerInstance) {
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
+      } else if (customer === 'Pigu.lt') {
+        ctx.drawImage(
+          backgroundImg,
+          0,
+          0,
+          432,
+          279, // Use the full image as the source
+          -3,
+          108,
+          426,
+          225, // Destination: position (-3, 228), size (426x105)
+        );
       } else {
         ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       }
@@ -2275,7 +2587,7 @@ function startGame(scoreTableContainerInstance) {
 
       drawImage(
         sprite.image,
-        ZERO_POS,
+        ZERO_POS_TREE,
         spriteOffset(sprite) + roadWidthForI(sprite.i) * sign,
         sprite.i,
         sprite.dimensions,
@@ -2291,28 +2603,30 @@ function startGame(scoreTableContainerInstance) {
   }
 
   function drawClouds() {
-    clouds
-      .filter((sprite) => sprite.active)
-      .forEach((cloud) => {
-        if (cloud.pos.x < -width) {
-          cloud.pos.x = width + cloud.dimensions * 3;
-          cloud.pos.y = randomIntBetween(0, skyHeight - BIG_SPRITE_DIMENSIONS);
-        } else {
-          cloud.pos.x += cloud.vel.x;
-        }
+    if (customer !== 'Pigu.lt') {
+      clouds
+        .filter((sprite) => sprite.active)
+        .forEach((cloud) => {
+          if (cloud.pos.x < -width) {
+            cloud.pos.x = width + cloud.dimensions * 3;
+            cloud.pos.y = randomIntBetween(0, skyHeight - BIG_SPRITE_DIMENSIONS);
+          } else {
+            cloud.pos.x += cloud.vel.x;
+          }
 
-        ctx.drawImage(
-          cloud.image,
-          0,
-          (cloud.frame * cloud.dimensions) / 2,
-          cloud.dimensions,
-          cloud.dimensions / 2,
-          cloud.pos.x,
-          cloud.pos.y,
-          cloud.dimensions,
-          cloud.dimensions / 2,
-        );
-      });
+          ctx.drawImage(
+            cloud.image,
+            0,
+            (cloud.frame * cloud.dimensions) / 2,
+            cloud.dimensions,
+            cloud.dimensions / 2,
+            cloud.pos.x,
+            cloud.pos.y,
+            cloud.dimensions,
+            cloud.dimensions / 2,
+          );
+        });
+    }
   }
 
   function drawImage(

@@ -190,7 +190,7 @@ export const introVilvi =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Vilvi/intro.png?raw=true';
 
 export const mainImageVilvi =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Vilvi/game.png?raw=true';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Vilvi/backgroundtest.png?raw=true';
 
 export const backgroundVilvi =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Vilvi/background.png?raw=true';

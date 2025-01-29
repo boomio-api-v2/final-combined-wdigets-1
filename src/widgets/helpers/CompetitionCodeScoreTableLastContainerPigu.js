@@ -450,9 +450,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
                     <div style="width:100%; margin-top: ${'10px'};line-height:18px; text-align: center; color: #FFD66B; font-size:${
         this.isMobile ? '17px' : '19px'
       } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
-        this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? '<strong style="text-transform:uppercase"></strong>  '
-          : this.prop === 'Pigu.lt' && this.language === 'LV'
+        this.prop === 'Pigu.lt' && this.language === 'LV'
           ? '<strong style="text-transform:uppercase"> </strong>'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
           ? '<strong style="text-transform:uppercase"> </strong> '
@@ -466,17 +464,19 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : this.prop === 'Pigu.lt' &&
             this.language === 'EN' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">LEGO® Star Wars Clone Commander Cody™ Helmet</strong> '
+          ? '<strong style="text-transform:uppercase">LEGO® Star Wars Emperor`s Throne™ Diorama</strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://pigu.lt'
-          ? '<strong style="text-transform:uppercase">LEGO® Star Wars Шлем командира клонов Коди™</strong> '
+          ? '<strong style="text-transform:uppercase">LEGO® Star Wars™ Диорама Тронный зал императора</strong> '
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             this.campaignUrlProp === 'https://220.lv'
           ? '<strong style="text-transform:uppercase"></strong> '
           : this.prop === 'Pigu.lt'
-          ? '<strong style="text-transform:uppercase">LEGO® Star Wars Klonų vado Kodžio™ šalmas</strong>  '
+          ? '<strong style="text-transform:uppercase">LEGO® Star Wars Imperatoriaus sosto menės™ diorama</strong>  '
+          : this.prop === 'Pigu.lt' && this.language === 'EN'
+          ? '<strong style="text-transform:uppercase"></strong>  '
           : ''
       }</div>
                     <div style="width:100%; margin-top: ${'10px'};line-height:18px;  text-align: center; color: #FFD66B; font-size:${

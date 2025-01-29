@@ -62,6 +62,7 @@ class BoomioService extends UserService {
   }
 
   loadWidget = (widget_type = 'puzzle') => {
+    this.config = localStorageService.getDefaultConfig();
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
       wheel: startWheelWidget,

@@ -32,7 +32,6 @@ export class InputContainer {
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
     this.game = game;
-
     containerDiv.innerHTML = `
 
     
@@ -120,7 +119,7 @@ export class InputContainer {
                   : this.prop === 'Eurovaistine'
                   ? 'SAŅEMT'
                   : this.prop === 'Akropolis'
-                  ? 'Judėk'
+                  ? 'Gaudyk'
                   : this.prop === 'Pieno Žvaigždės'
                   ? 'Gaudyk'
                   : this.prop.includes('Gamtos Ateitis')
@@ -129,9 +128,21 @@ export class InputContainer {
                   ? 'Gaudyk'
                   : this.prop === 'SaludSA'
                   ? 'Presiona'
+                  : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'drive'
+                  ? 'SWIPE'
+                  : this.prop === 'Pigu.lt' && this.language === 'LV' && this.game === 'drive'
+                  ? 'PAVELC'
+                  : this.prop === 'Pigu.lt' && this.language === 'ET' && this.game === 'drive'
+                  ? 'LIBISTA'
+                  : this.prop === 'Pigu.lt' && this.language === 'FI' && this.game === 'drive'
+                  ? 'PYYHKÄISE'
+                  : this.prop === 'Pigu.lt' && this.language === 'RU' && this.game === 'drive'
+                  ? 'ПРОВЕДИ'
+                  : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'drive'
+                  ? 'BRAUK '
                   : 'Spausk'
               }
-                            <div style="top: 9px;margin-top:5px;  color: white; font-size: ${
+                            <div style="top: 9px;margin-top:3px;  color: white; font-size: ${
                               this.prop === 'Akropolis' ? '14px' : '12px'
                             };  font-weight: 700;margin-left:4px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -149,6 +160,18 @@ export class InputContainer {
                 ? 'для полета'
                 : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'flappy'
                 ? 'kad skristum'
+                : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'drive'
+                ? 'to the sides to drive'
+                : this.prop === 'Pigu.lt' && this.language === 'LV' && this.game === 'drive'
+                ? 'ar pirkstu uz sāniem, lai vadītu'
+                : this.prop === 'Pigu.lt' && this.language === 'ET' && this.game === 'drive'
+                ? 'et juhtida'
+                : this.prop === 'Pigu.lt' && this.language === 'FI' && this.game === 'drive'
+                ? 'sivuille ajaaksesi'
+                : this.prop === 'Pigu.lt' && this.language === 'RU' && this.game === 'drive'
+                ? 'пальцем вбок, чтобы упправлять'
+                : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'drive'
+                ? 'į šonus, kad vairuotum'
                 : this.prop === 'Pigu.lt' && this.language === 'EN'
                 ? 'to jump up'
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
@@ -194,7 +217,7 @@ export class InputContainer {
                 : this.prop === 'Fpro'
                 ? 'TO FLY'
                 : this.prop === 'Akropolis'
-                ? 'į šonus kad  kiltum.'
+                ? ',,Caif Cafe“ kavos puodelius..'
                 : this.prop === 'SaludSA'
                 ? 'para volar'
                 : this.prop === 'Vilvi'
@@ -412,7 +435,7 @@ export class InputContainer {
                 : this.prop === 'Makalius'
                 ? 'MAKALIAUS kuponus!'
                 : this.prop === 'Akropolis'
-                ? 'kasdien!'
+                ? '1 iš 2025 kavos puodelių kasdien!'
                 : this.prop === 'SaludSA'
                 ? 'premios Saludsa Vitality y participa</br> por el sorteo de un reloj Garmin.'
                 : this.prop === 'Vilvi'
