@@ -1,6 +1,20 @@
 import './styles.css';
 
-import { boomioLogo } from './constants';
+import {
+  boomioLogo,
+  SuccessmessagebannersNegativeEE,
+  SuccessmessagebannersNegativeFI,
+  SuccessmessagebannersNegativeLT,
+  SuccessmessagebannersNegativeLV,
+  SuccessmessagebannersNegativeRU,
+  SuccessmessagebannersPossitiveEE,
+  SuccessmessagebannersPossitiveEERU,
+  SuccessmessagebannersPossitiveFI,
+  SuccessmessagebannersPossitiveLT,
+  SuccessmessagebannersPossitiveLTRU,
+  SuccessmessagebannersPossitiveLV,
+  SuccessmessagebannersPossitiveLVRU,
+} from './constants';
 import { localStorageService } from '@/services';
 
 export class CompetitionCodeScoreTableLastContainerPigu {
