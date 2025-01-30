@@ -365,7 +365,7 @@ export const SuccessmessagebannersNegativeRU = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeRU.png',
 ];
 
-export const SuccessmessagebannersPossitive_EE = [
+export const SuccessmessagebannersPossitiveEE = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveEE.png',
 ];
 

@@ -324,33 +324,47 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
     background: url(${
-      this.language === 'ET' &&
-      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+      this.score > 1000
+        ? this.language === 'ET' &&
+          ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+          ? SuccessmessagebannersPossitiveEE
+          : this.language === 'RU' &&
+            ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+          ? SuccessmessagebannersPossitiveEERU
+          : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+          ? SuccessmessagebannersPossitiveLTRU
+          : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+          ? SuccessmessagebannersPossitiveFI
+          : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+          ? SuccessmessagebannersPossitiveLT
+          : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+          ? SuccessmessagebannersPossitiveFI
+          : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+          ? SuccessmessagebannersPossitiveLV
+          : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+          ? SuccessmessagebannersPossitiveLVRU
+          : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+          ? SuccessmessagebannersPossitiveLV
+          : this.language === 'EN' &&
+            ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+          ? SuccessmessagebannersPossitiveEE
+          : null
+        : this.language === 'ET' &&
+          ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
         ? SuccessmessagebannersNegativeEE
-        : this.language === 'RU' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
-        ? SuccessmessagebannersPossitiveEERU
         : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
         ? SuccessmessagebannersNegativeLT
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? SuccessmessagebannersPossitiveLTRU
+        ? SuccessmessagebannersNegativeRU
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? SuccessmessagebannersNegativeRU
+        : this.language === 'RU' &&
+          ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+        ? SuccessmessagebannersNegativeRU
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
         ? SuccessmessagebannersNegativeFI
-        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? SuccessmessagebannersPossitiveLT
-        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? SuccessmessagebannersPossitiveFI
         : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
         ? SuccessmessagebannersNegativeLV
-        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? SuccessmessagebannersPossitiveLVRU
-        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? SuccessmessagebannersPossitiveLV
-        : this.language === 'EN' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
-        ? SuccessmessagebannersPossitiveEE
         : null
     });
     background-size: contain;
