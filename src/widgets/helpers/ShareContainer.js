@@ -1,6 +1,14 @@
 import './styles.css';
 import { localStorageService } from '@/services';
-import { closeDidYouKnow } from './constants';
+import {
+  closeDidYouKnow,
+  facebook,
+  messenger,
+  instagram,
+  tiktok,
+  copy,
+  whatsapp,
+} from './constants';
 
 export class ShareContainer {
   constructor(prop) {
@@ -24,7 +32,6 @@ export class ShareContainer {
     this.render();
   }
 
-  // Update properties method
   updateProps(prop) {
     this.prop = prop;
     this.isMobileWidthSmall = window.innerWidth <= 400;
@@ -52,28 +59,31 @@ export class ShareContainer {
       <div class="bomio-second-line" style="width:100%; top: 210px; line-height:18px; position: absolute; text-align: center; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
         Pasidalink žaidimo nuoroda dabar ir <br> tapk žaidimo lyderiu!
       </div>
-            <div class="bomio-second-line" style="width:100%; top: 470px; line-height:18px; position: absolute; text-align: start;margin-left:40px; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
+      <div class="bomio-second-line" style="width:100%; top: 470px; line-height:18px; position: absolute; text-align: start;margin-left:40px; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
         Dalinkis
       </div>
-<div class="share-buttons" style="width: 100%; top: 500px; position: absolute; text-align: center;">
-  <button onclick="shareOnFacebook()" style="margin: 5px; display: inline-block; text-align: center; border: none; background: none;">
-    <img src="path-to-facebook-icon.png" alt="Facebook" style="width: 50px; height: 50px;" />
-    <div style="font-size: 14px; color: white; margin-top: 5px;font-family: Montserrat;">Facebook</div>
-  </button>
-  <button onclick="shareOnMessenger()" style="margin: 5px; display: inline-block; text-align: center; border: none; background: none;">
-    <img src="path-to-messenger-icon.png" alt="Messenger" style="width: 50px; height: 50px;" />
-    <div style="font-size: 14px; color: white; margin-top: 5px;font-family: Montserrat;">Messenger</div>
-  </button>
-  <button onclick="shareOnWhatsApp()" style="margin: 5px; display: inline-block; text-align: center; border: none; background: none;">
-    <img src="path-to-whatsapp-icon.png" alt="WhatsApp" style="width: 50px; height: 50px;" />
-    <div style="font-size: 14px; color:white; margin-top: 5px;font-family: Montserrat;">WhatsApp</div>
-  </button>
-  <button onclick="copyURL()" style="margin: 5px; display: inline-block; text-align: center; border: none; background: none;">
-    <img src="path-to-copy-icon.png" alt="Copy URL" style="width: 50px; height: 50px;" />
-    <div style="font-size: 14px; color:white; margin-top: 5px;font-family: Montserrat;">Copy URL</div>
-  </button>
-</div>
-
+      <div class="share-buttons" style="width: 100%; top: 500px; position: absolute; text-align: center;">
+        <button onclick="shareOnFacebook()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
+          <img src=${facebook} alt="Facebook" style="width: 40px; height: 40px;" />
+          <div style="font-size: 11px; color: white; margin-top: 5px;font-family: Montserrat;">Facebook</div>
+        </button>
+        <button onclick="shareOnMessenger()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
+          <img src=${messenger} alt="Messenger" style="width: 40px; height: 40px;" />
+          <div style="font-size: 11px; color: white; margin-top: 5px;font-family: Montserrat;">Messenger</div>
+        </button>
+        <button onclick="shareOnWhatsApp()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
+          <img src=${whatsapp} alt="WhatsApp" style="width: 40px; height: 40px;" />
+          <div style="font-size: 11px; color: white; margin-top: 5px;font-family: Montserrat;">WhatsApp</div>
+        </button>
+        <button onclick="shareOnInstagram()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
+          <img src=${instagram} alt="Instagram" style="width: 40px; height: 40px;" />
+          <div style="font-size: 11px; color: white; margin-top: 5px;font-family: Montserrat;">Instagram</div>
+        </button>
+        <button onclick="copyURL()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
+          <img src=${copy} alt="Copy URL" style="width: 40px; height: 40px;" />
+          <div style="font-size: 11px; color:white; margin-top: 5px;font-family: Montserrat;">Copy URL</div>
+        </button>
+      </div>
     `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
@@ -88,7 +98,14 @@ export class ShareContainer {
 
     window.shareOnMessenger = function () {
       const shareURL = this.campaignUrlProp;
-      window.open(`fb-messenger://share?link=${encodeURIComponent(shareURL)}`, '_blank');
+
+      // Using Facebook's Share Dialog for Messenger
+      window.open(
+        `https://www.facebook.com/dialog/send?app_id=YOUR_APP_ID&link=${encodeURIComponent(
+          shareURL,
+        )}&redirect_uri=${encodeURIComponent(shareURL)}`,
+        '_blank',
+      );
     }.bind(this);
 
     window.shareOnWhatsApp = function () {
@@ -97,6 +114,14 @@ export class ShareContainer {
         `https://wa.me/?text=${encodeURIComponent('Check out this game! ' + shareURL)}`,
         '_blank',
       );
+    }.bind(this);
+
+    window.shareOnInstagram = function () {
+      const shareURL = this.campaignUrlProp;
+      const instagramURL = `https://www.instagram.com/create/story/?background_color=ffffff&url=${encodeURIComponent(
+        shareURL,
+      )}`;
+      window.open(instagramURL, '_blank');
     }.bind(this);
 
     window.copyURL = function () {
@@ -110,7 +135,6 @@ export class ShareContainer {
     containerDiv.classList.add('share-container');
     containerDiv.setAttribute('id', 'share-container');
     containerDiv.style.background = 'none';
-    // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
     containerDiv.style.width =
       document.body.offsetWidth < 426
@@ -119,13 +143,12 @@ export class ShareContainer {
           : document.body.offsetWidth + 'px'
         : '426px';
     containerDiv.innerHTML = `
-    <div style="width: 100%; height: 100%; position: relative; ">
+    <div style="width: 100%; height: 100%; position: relative;">
       <div style="width:calc(100% - 20px);margin-left:10px;top: 42px; position: absolute; text-align: center;line-height:42px; color: ${'white'}; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
-    }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${'daugiau draugų, </br> daugiau taškų!'}</div>
-      
-      <div class="boomio-scoreboard-text">
-      `;
+    }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${'daugiau draugų, </br> daugiau taškų!'}</div>
+      <div class="boomio-scoreboard-text"></div>
+    </div>`;
 
     this.containerDiv = containerDiv;
 

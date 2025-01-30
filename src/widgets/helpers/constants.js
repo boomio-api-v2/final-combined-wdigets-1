@@ -392,3 +392,27 @@ export const SuccessmessagebannersPossitiveLV = [
 export const SuccessmessagebannersPossitiveLVRU = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLVRU.png',
 ];
+
+export const facebook = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/shareContainer/facebook.png',
+];
+
+export const messenger = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/shareContainer/messenger.png',
+];
+
+export const instagram = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/shareContainer/instagram.png',
+];
+
+export const tiktok = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/shareContainer/tiktok.png',
+];
+
+export const copy = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/shareContainer/copy.png',
+];
+
+export const whatsapp = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/shareContainer/whatsapp.png',
+];
