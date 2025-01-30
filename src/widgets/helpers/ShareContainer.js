@@ -92,14 +92,10 @@ export class ShareContainer {
     };
 
     if (navigator.share) {
-      navigator
-        .share(shareData)
-        .then(() => console.log('Content shared successfully!'))
-        .catch((error) => console.error('Error sharing content:', error));
+      navigator.share(shareData).catch((error) => console.error('Error sharing content:', error));
     } else {
       navigator.clipboard
         .writeText(this.campaignUrlProp)
-        .then(() => alert('Link copied to clipboard!'))
         .catch((error) => console.error('Error copying link:', error));
     }
   }
