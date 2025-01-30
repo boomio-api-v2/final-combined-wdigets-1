@@ -324,7 +324,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
     background: url(${
-      this.score > 1000
+      this.currentScore > 1000
         ? this.language === 'ET' &&
           ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
           ? SuccessmessagebannersPossitiveEE
