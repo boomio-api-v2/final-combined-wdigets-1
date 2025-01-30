@@ -1,5 +1,5 @@
 import './styles.css';
-import { localStorageService } from '@/services';
+
 import {
   closeDidYouKnow,
   facebook,
@@ -9,6 +9,7 @@ import {
   copy,
   whatsapp,
 } from './constants';
+import { localStorageService } from '@/services';
 
 export class ShareContainer {
   constructor(prop) {
@@ -53,81 +54,54 @@ export class ShareContainer {
     if (!this.containerDiv) return;
 
     let scoreboardText = `
-      <div class="bomio-first-line" style="width:100%; top: 160px; line-height:18px; position: absolute; font-weight: 700; text-align: center; color: white; font-size: 18px; font-family: Montserrat; word-wrap: break-word;">
+      <div class="bomio-first-line" style="width:100%; top: 170px; line-height:24px; position: absolute; font-weight: 700; text-align: center; color: white; font-size: 20px; font-family: Montserrat; word-wrap: break-word;">
         Už pakviestus draugus gausi +1000<br> taškų prie savo žaidimo rezultato!
       </div>
-      <div class="bomio-second-line" style="width:100%; top: 210px; line-height:18px; position: absolute; text-align: center; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
+      <div class="bomio-second-line" style="width:100%; top: 240px; line-height:24px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
         Pasidalink žaidimo nuoroda dabar ir <br> tapk žaidimo lyderiu!
       </div>
-      <div class="bomio-second-line" style="width:100%; top: 470px; line-height:18px; position: absolute; text-align: start;margin-left:40px; color: white; font-size: 18px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
-        Dalinkis
-      </div>
+
       <div class="share-buttons" style="width: 100%; top: 500px; position: absolute; text-align: center;">
-        <button onclick="shareOnFacebook()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
-          <img src=${facebook} alt="Facebook" style="width: 40px; height: 40px;" />
-          <div style="font-size: 11px; color: white; margin-top: 5px;font-family: Montserrat;">Facebook</div>
-        </button>
-        <button onclick="shareOnMessenger()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
-          <img src=${messenger} alt="Messenger" style="width: 40px; height: 40px;" />
-          <div style="font-size: 11px; color: white; margin-top: 5px;font-family: Montserrat;">Messenger</div>
-        </button>
-        <button onclick="shareOnWhatsApp()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
-          <img src=${whatsapp} alt="WhatsApp" style="width: 40px; height: 40px;" />
-          <div style="font-size: 11px; color: white; margin-top: 5px;font-family: Montserrat;">WhatsApp</div>
-        </button>
-        <button onclick="shareOnInstagram()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
-          <img src=${instagram} alt="Instagram" style="width: 40px; height: 40px;" />
-          <div style="font-size: 11px; color: white; margin-top: 5px;font-family: Montserrat;">Instagram</div>
-        </button>
-        <button onclick="copyURL()" style="margin: 0px; display: inline-block; text-align: center; border: none; background: none;">
-          <img src=${copy} alt="Copy URL" style="width: 40px; height: 40px;" />
-          <div style="font-size: 11px; color:white; margin-top: 5px;font-family: Montserrat;">Copy URL</div>
+        <button id="default-share-button" style="padding: 10px 20px; font-size: 16px; background-color: white; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    <img src=${copy} alt="Copy URL" style="border-radius:10px;width: 40px; height: 40px;" />
+          <div style="font-size: 14px; font-weight:700;color:black; margin-top: 5px;font-family: Montserrat;">DALINKIS</div>
+
         </button>
       </div>
     `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
-    window.shareOnFacebook = function () {
-      const shareURL = this.campaignUrlProp;
-      window.open(
-        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}`,
-        '_blank',
-      );
-    }.bind(this);
-
-    window.shareOnMessenger = function () {
-      const shareURL = this.campaignUrlProp;
-
-      // Using Facebook's Share Dialog for Messenger
-      window.open(
-        `https://www.facebook.com/dialog/send?app_id=YOUR_APP_ID&link=${encodeURIComponent(
-          shareURL,
-        )}&redirect_uri=${encodeURIComponent(shareURL)}`,
-        '_blank',
-      );
-    }.bind(this);
-
-    window.shareOnWhatsApp = function () {
-      const shareURL = this.campaignUrlProp;
-      window.open(
-        `https://wa.me/?text=${encodeURIComponent('Check out this game! ' + shareURL)}`,
-        '_blank',
-      );
-    }.bind(this);
-
-    window.shareOnInstagram = function () {
-      const shareURL = this.campaignUrlProp;
-      const instagramURL = `https://www.instagram.com/create/story/?background_color=ffffff&url=${encodeURIComponent(
-        shareURL,
-      )}`;
-      window.open(instagramURL, '_blank');
-    }.bind(this);
-
     window.copyURL = function () {
       const shareURL = this.campaignUrlProp;
       navigator.clipboard.writeText(shareURL);
     }.bind(this);
+
+    // Add event listener for the default share button
+    const shareButton = document.getElementById('default-share-button');
+    if (shareButton) {
+      shareButton.addEventListener('click', () => this.defaultShare());
+    }
+  }
+
+  defaultShare() {
+    const shareData = {
+      title: 'Check out this game!',
+      text: 'Play this amazing game and compete with your friends!',
+      url: this.campaignUrlProp,
+    };
+
+    if (navigator.share) {
+      navigator
+        .share(shareData)
+        .then(() => console.log('Content shared successfully!'))
+        .catch((error) => console.error('Error sharing content:', error));
+    } else {
+      navigator.clipboard
+        .writeText(this.campaignUrlProp)
+        .then(() => alert('Link copied to clipboard!'))
+        .catch((error) => console.error('Error copying link:', error));
+    }
   }
 
   render() {
@@ -153,13 +127,14 @@ export class ShareContainer {
     this.containerDiv = containerDiv;
 
     containerDiv.innerHTML += `
-</div></div>
-<div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
-<div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">
-${'TOLIAU'}
-</div>
-</div>
-</div>`;
+    </div></div>
+    <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
+    <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">
+    ${'TOLIAU'}
+    </div>
+    </div>
+    </div>`;
+
     const existingContainer = document.getElementById('share-container');
     if (existingContainer) {
       existingContainer.parentNode.replaceChild(containerDiv, existingContainer);

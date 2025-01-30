@@ -287,9 +287,9 @@ export class InputRegisterContainer {
         ? 'block'
         : 'none'
     } ;left: 34px; top:${
-      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '420px'
+      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '425px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-      this.isMobile ? '9px' : '10px'
+      this.isMobile ? '8px' : '9px'
     };color:${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };text-align:start;line-height:8px;">
