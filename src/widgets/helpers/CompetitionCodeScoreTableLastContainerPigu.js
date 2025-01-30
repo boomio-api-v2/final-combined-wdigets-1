@@ -374,7 +374,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     align-items: center;
     display: ${this.prop === 'Pigu.lt' ? 'block' : 'none'};
   "
-  id="boomio-game-play-again"
+  
 ></div>
 
 

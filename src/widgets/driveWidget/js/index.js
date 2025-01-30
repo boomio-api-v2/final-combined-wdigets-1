@@ -1087,13 +1087,14 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       removeRules(t);
     });
 
-    if (showCompetitiveRegistration) {
-      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
-      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+    const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+    competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
-      const competitionRestart = document.getElementById('boomio-game-play-again');
-      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
-    }
+    console.log('boomio-game-play-again');
+
+    const competitionRestart = document.getElementById('boomio-game-play-again');
+    competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+
     if (customer === 'Pigu.lt') {
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
@@ -1144,6 +1145,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   };
 
   const clickEventHandlerResetGame = () => {
+    console.log('aaaa');
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
     setTimeout(() => {
@@ -1879,16 +1881,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
                 }
                 hideScore();
                 userBestPlace = response.user_best_place;
-                if (showCompetitiveRegistration === 'points') {
-                  scoreTable = response;
-                  scoreTableContainerInstance.updateProps(
-                    customer,
-                    scoreTable,
-                    gameVars.currentScore,
-                  );
-                  const competitionRestart = document.getElementById('boomio-game-play-again');
-                  competitionRestart.addEventListener('click', clickEventHandlerResetGame);
-                }
+                scoreTable = response;
+                scoreTableContainerInstance.updateProps(
+                  customer,
+                  scoreTable,
+                  gameVars.currentScore,
+                );
+                const competitionRestart = document.getElementById('boomio-game-play-again');
+                competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+
                 if (showCompetitiveRegistration === 'competition') {
                   scoreTable = response;
                   scoreTableContainerInstance.updateProps(
