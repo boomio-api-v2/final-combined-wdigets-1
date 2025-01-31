@@ -1365,7 +1365,7 @@ class CatchGame {
     }
 
     // Reset player and game state
-    this.player.gameOver = true;
+    this.player.gameOver = false;
     this.currentScore = 0;
     this.player.fruitsCollected = 0;
     this.player.fruitsMissed = 0;
@@ -1400,7 +1400,7 @@ class Player {
   constructor(customer, canvas, context, defaultscore) {
     this.canvas = canvas;
     this.context = context;
-    this.gameOver = true;
+    this.gameOver = false;
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
