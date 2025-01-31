@@ -61,12 +61,15 @@ export class ShareContainer {
         Pasidalink žaidimo nuoroda dabar ir <br> tapk žaidimo lyderiu!
       </div>
 
-      <div class="share-buttons" style="width: 100%; top: 500px; position: absolute; text-align: center;">
-        <button id="default-share-button" style="padding: 10px 20px; font-size: 16px; background-color: white; color: white; border: none; border-radius: 8px; cursor: pointer;">
-                    <img src=${copy} alt="Copy URL" style="border-radius:10px;width: 40px; height: 40px;" />
-          <div style="font-size: 14px; font-weight:700;color:black; margin-top: 5px;font-family: Montserrat;">DALINKIS</div>
+      <div class="share-buttons" style="width: 100%; top: 540px; position: absolute; text-align: center;">
 
-        </button>
+               <div id="default-share-button" style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
+    <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
+    ${'DALINKIS'}
+    </div>
+    </div>
+
+
       </div>
     `;
 
@@ -124,8 +127,8 @@ export class ShareContainer {
 
     containerDiv.innerHTML += `
     </div></div>
-    <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
-    <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">
+    <div style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
+    <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
     ${'TOLIAU'}
     </div>
     </div>
