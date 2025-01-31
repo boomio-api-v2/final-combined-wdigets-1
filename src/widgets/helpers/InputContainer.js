@@ -217,7 +217,7 @@ export class InputContainer {
                 : this.prop === 'Fpro'
                 ? 'TO FLY'
                 : this.prop === 'Akropolis'
-                ? ',,Caif Cafe“ kavos puodelius..'
+                ? ',,Caif Cafe“ kavos puodelius.'
                 : this.prop === 'SaludSA'
                 ? 'para volar'
                 : this.prop === 'Vilvi'
@@ -266,7 +266,7 @@ export class InputContainer {
                 ? 'Presiona'
                 : 'Kartok'
             }
-                         <div style=" top: 46px;margin-left:4px;margin-top:5px; color: white; font-size: ${
+                         <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${
                            this.prop === 'Akropolis' ? '14px' : '12px'
                          }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
@@ -306,7 +306,7 @@ export class InputContainer {
                 ? 'FOR BETTER RESULT'
                 : this.prop === 'SaludSA'
                 ? '3 veces para mejorar'
-                : 'dėl geresnio rezultato'
+                : 'dėl geresnio rezultato.'
             }
           </div>
             </div>

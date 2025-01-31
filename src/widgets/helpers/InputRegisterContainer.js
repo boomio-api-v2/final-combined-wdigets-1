@@ -281,7 +281,7 @@ export class InputRegisterContainer {
    
    
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
-          this.language === 'LV' ? '14px' : '28px'
+          this.language === 'LV' ? '18px' : '28px'
         } ;margin-right:30px;display:${
       this.prop === 'Akropolis' || this.prop === 'Eurovaistine' || this.prop === 'Vilvi'
         ? 'block'

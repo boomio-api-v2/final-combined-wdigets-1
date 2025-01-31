@@ -580,7 +580,7 @@ class CatchGame {
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
-              document.getElementById('competition-checkbox-error').style.height = '14px';
+              document.getElementById('competition-checkbox-error').style.height = '18px';
 
               document.getElementById('competition-name-error').innerText = '';
 
@@ -1486,7 +1486,7 @@ class Fruit {
     this.fruitImage = new Image();
     this.fruitSpeed = Math.floor(
       Math.random() * 3 +
-        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 1.3 : 1),
+        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 2 : 1),
     );
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
