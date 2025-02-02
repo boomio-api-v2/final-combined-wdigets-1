@@ -96,6 +96,7 @@ import {
   wh3ImageDataPigu,
   background1Pigu,
   linePigu,
+  life,
 } from './constants';
 
 function startGame(scoreTableContainerInstance, didYouKnowContainer) {
@@ -146,7 +147,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
-
+  const DEFAULT_LIFE = 3;
+  let LOST_LIFE = 0;
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
   const WALL_PARTICLES = 55;
@@ -179,7 +181,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   const ROAD_SPRITE_SPAWN_X = width / 10;
   let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = 90; //test
+  const START_TIME = customer === 'Pigu.lt' ? 999999 : 90; //time
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -1085,13 +1087,14 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       removeRules(t);
     });
 
-    if (showCompetitiveRegistration) {
-      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
-      competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+    const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+    competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
-      const competitionRestart = document.getElementById('boomio-game-play-again');
-      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
-    }
+    console.log('boomio-game-play-again');
+
+    const competitionRestart = document.getElementById('boomio-game-play-again');
+    competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+
     if (customer === 'Pigu.lt') {
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
@@ -1142,6 +1145,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   };
 
   const clickEventHandlerResetGame = () => {
+    console.log('aaaa');
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
     setTimeout(() => {
@@ -1188,6 +1192,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
             const canvas = document.getElementById('boomio-drive-canvas');
             canvas.style.transition = 'filter 1s ease';
             canvas.style.filter = 'none';
+
             restartGame();
           })
           .catch((error) => {
@@ -1405,7 +1410,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       textureCoord += MAX_TEX / TEX_DEN;
       drawRoad(i, textureCoord);
     }
-    console.log('drawTitleScreen');
     drawCityHouse();
 
     envelopes.forEach((envelope) => {
@@ -1488,9 +1492,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   }
 
   function restartGame() {
+    LOST_LIFE = 0;
     gameCount++;
     // Stop playing the song from the previous game over
-
     gameVars.gameOver = false;
     gameVars = {
       started: true,
@@ -1543,6 +1547,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     }
 
     if (timeLeft <= 10) {
+    }
+
+    if (customer === 'Pigu.lt') {
+      if (DEFAULT_LIFE <= LOST_LIFE) gameOverLifeZero();
     }
 
     if (gameVars.funding <= 0) gameOverFundingZero();
@@ -1625,7 +1633,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
 
     // Add the event listener for keydown events
     window.addEventListener('keydown', keyHandler);
-    console.log('drawCity');
 
     drawCity();
   }
@@ -1759,6 +1766,12 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     unsetShake();
   }
 
+  function gameOverLifeZero() {
+    configureGameOver();
+    if (!gameVars.playedGameOverSound) {
+      gameVars.playedGameOverSound = true;
+    }
+  }
   function gameOverFundingZero() {
     configureGameOver();
     if (!gameVars.playedGameOverSound) {
@@ -1775,6 +1788,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
 
   function configureGameOver() {
     gameVars.gameOver = true;
+
     if (!gameVars.gameOverAt) gameVars.gameOverAt = gameTime;
     if (!restartTimeout) {
       restartTimeout = window.setTimeout(() => {
@@ -1867,16 +1881,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
                 }
                 hideScore();
                 userBestPlace = response.user_best_place;
-                if (showCompetitiveRegistration === 'points') {
-                  scoreTable = response;
-                  scoreTableContainerInstance.updateProps(
-                    customer,
-                    scoreTable,
-                    gameVars.currentScore,
-                  );
-                  const competitionRestart = document.getElementById('boomio-game-play-again');
-                  competitionRestart.addEventListener('click', clickEventHandlerResetGame);
-                }
+                scoreTable = response;
+                scoreTableContainerInstance.updateProps(
+                  customer,
+                  scoreTable,
+                  gameVars.currentScore,
+                );
+                const competitionRestart = document.getElementById('boomio-game-play-again');
+                competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+
                 if (showCompetitiveRegistration === 'competition') {
                   scoreTable = response;
                   scoreTableContainerInstance.updateProps(
@@ -1923,7 +1936,12 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
           const currectScoreDiv = document.getElementsByClassName(
             'boomio-score-input-container',
           )[0];
-          const currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+          let currectTimeDiv;
+          if (customer === 'Pigu.lt') {
+            currectTimeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
+          } else {
+            currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+          }
           currectTimeDiv.style.opacity = 0;
           currectScoreDiv.style.opacity = 0;
           setTimeout(() => {
@@ -1999,10 +2017,17 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     if (inGracePeriod()) return;
     const halfWidth = player.dimensions / 3;
     gameVars.lastHitAt = gameTime;
-    if (gameVars.currentScore > 100) {
-      gameVars.currentScore -= min(100, 999);
+    if (customer === 'Pigu.lt') {
+      LOST_LIFE++;
+
+      showScoreEffect('-1', true);
+    } else {
+      if (gameVars.currentScore > 100) {
+        gameVars.currentScore -= min(100, 999);
+      }
+
+      document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
     }
-    document.getElementById('currentScore').innerHTML = `${gameVars.currentScore}`;
     setShake();
     const inactive = wallParts.filter((part) => part.active !== true);
     const toActivate = wallParts.slice(Math.max(inactive.length - WALL_PARTICLES, 0));
@@ -2372,14 +2397,30 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     if (gameVars.gameOver) return;
     const timeColor = gameVars.timeLeft > 20 ? 'white' : SPARK_COLOR;
 
-    document.getElementById('currentTime').innerHTML = `${gameVars.timeLeft}`;
+    if (customer !== 'Pigu.lt') {
+      document.getElementById('currentTime').innerHTML = `${gameVars.timeLeft}`;
+      document.getElementById('currentTime').style.color = timeColor;
 
-    const currectScoreDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+      const currectScoreDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+      currectScoreDiv.style.transition = 'opacity 0.8s ease';
+      currectScoreDiv.style.display = 'block';
+      currectScoreDiv.style.opacity = 1;
+    } else {
+      setLife();
+    }
+
+    drawFundingMeter();
+  }
+
+  function setLife() {
+    const currectScoreDiv = document.getElementsByClassName('boomio-life-input-container')[0];
     currectScoreDiv.style.transition = 'opacity 0.8s ease';
     currectScoreDiv.style.display = 'block';
-    document.getElementById('currentTime').style.color = timeColor;
+    document.getElementById('currentLife').innerHTML = `${Math.max(
+      0,
+      DEFAULT_LIFE - LOST_LIFE,
+    )}/${DEFAULT_LIFE}`;
     currectScoreDiv.style.opacity = 1;
-    drawFundingMeter();
   }
 
   function addWall() {
@@ -2479,8 +2520,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   }
 
   function drawEnvelopes() {
-    // Reset `triggerText` to ensure we only trigger text once
     let triggerText = false;
+
+    // Reset `triggerText` to ensure we only trigger text once
     // Handle wall parts
     wallParts
       .filter((sprite) => sprite.active)
@@ -2495,14 +2537,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
         ctx.fillRect(x, y + 100, part.dimensions * 2, part.dimensions);
         currentFillColor =
           currentFillColor === BAD_FUNDING_COLOR1 ? BAD_FUNDING_COLOR : BAD_FUNDING_COLOR1;
-
-        if (!isFading && !triggerText) {
-          displayText = '-100'; // Set text
-          textColor = 'red';
-          fadeStartTime = performance.now(); // Start fade effect
-          isFading = true; // Mark as fading
-          textShouldBeVisible = true; // Flag to ensure text visibility
-          triggerText = true; // Mark that text has been triggered
+        if (customer !== 'Pigu.lt') {
+          if (!isFading && !triggerText) {
+            displayText = '-100'; // Set text
+            textColor = 'red';
+            fadeStartTime = performance.now(); // Start fade effect
+            isFading = true; // Mark as fading
+            textShouldBeVisible = true; // Flag to ensure text visibility
+            triggerText = true; // Mark that text has been triggered
+          }
         }
       });
 
@@ -2568,6 +2611,54 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
         displayText = ''; // Clear text
       }
     }
+  }
+
+  function showScoreEffect(score, showLife) {
+    const canvas = document.getElementById('boomio-drive-canvas');
+    const x = window.innerWidth / 2 - 25;
+    const y = window.innerHeight / 2 + 50;
+
+    const gameContainer = document.querySelector('.game-container');
+
+    const scoreContainer = document.createElement('div');
+    scoreContainer.classList.add('float-score');
+    scoreContainer.style.left = `${x}px`;
+    scoreContainer.style.top = `${y}px`;
+    scoreContainer.style.position = 'absolute';
+    scoreContainer.style.display = 'flex';
+
+    if (showLife) {
+      const scoreText = document.createElement('div');
+      scoreText.innerHTML = `-`;
+      scoreText.style.color = '#fff';
+      scoreText.style.fontSize = '24px';
+      scoreText.style.fontWeight = 'bold';
+      scoreText.style.marginRight = '10px';
+      scoreText.style.marginTop = '25px';
+
+      const lifeImg = document.createElement('img');
+      lifeImg.src = life;
+      lifeImg.alt = 'Image Description';
+      lifeImg.style.width = '70px';
+      lifeImg.style.height = '50px';
+      lifeImg.style.marginTop = '15px';
+      lifeImg.style.marginLeft = '-20px';
+      scoreContainer.appendChild(scoreText);
+      scoreContainer.appendChild(lifeImg);
+    } else {
+      const scoreText = document.createElement('div');
+      scoreText.innerHTML = `${score}`;
+      scoreText.style.color = '#fff';
+      scoreText.style.fontSize = '24px';
+      scoreText.style.fontWeight = 'bold';
+      scoreText.style.marginRight = '10px'; // Add space between text and image
+      scoreContainer.appendChild(scoreText);
+    }
+    gameContainer.appendChild(scoreContainer);
+
+    setTimeout(() => {
+      scoreContainer.remove();
+    }, 1000);
   }
 
   function drawTrees() {

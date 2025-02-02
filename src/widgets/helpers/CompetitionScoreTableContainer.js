@@ -157,7 +157,9 @@ export class CompetitionScoreTableContainer {
             }</div>
             <div style="width:100%; top: ${'470px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
-            } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+            } ; font-family: Montserrat; font-weight: 700; text-transform: ${
+              this.prop !== 'Akropolis' && 'uppercase'
+            }; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                 : this.prop === 'Pieno Žvaigždės'
@@ -251,7 +253,9 @@ export class CompetitionScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : 'Tu gali!'
             }</div>
-            <div style="width:100%; top: 470px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+            <div style="width:100%; top: 470px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
+              this.prop !== 'Akropolis' && 'uppercase'
+            }; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
                 : this.prop === 'Eurovaistine'

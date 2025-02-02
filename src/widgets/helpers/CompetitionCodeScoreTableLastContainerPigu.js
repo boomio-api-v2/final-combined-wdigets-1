@@ -1,6 +1,20 @@
 import './styles.css';
 
-import { boomioLogo } from './constants';
+import {
+  boomioLogo,
+  SuccessmessagebannersNegativeEE,
+  SuccessmessagebannersNegativeFI,
+  SuccessmessagebannersNegativeLT,
+  SuccessmessagebannersNegativeLV,
+  SuccessmessagebannersNegativeRU,
+  SuccessmessagebannersPossitiveEE,
+  SuccessmessagebannersPossitiveEERU,
+  SuccessmessagebannersPossitiveFI,
+  SuccessmessagebannersPossitiveLT,
+  SuccessmessagebannersPossitiveLTRU,
+  SuccessmessagebannersPossitiveLV,
+  SuccessmessagebannersPossitiveLVRU,
+} from './constants';
 import { localStorageService } from '@/services';
 
 export class CompetitionCodeScoreTableLastContainerPigu {
@@ -297,7 +311,78 @@ export class CompetitionCodeScoreTableLastContainerPigu {
         ? 'Твой результат:'
         : this.prop === 'Pigu.lt' && this.language === 'LT' && 'Tavo rezultatas:'
     } ${this.currentScore ?? 0} </div>
-               <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;margin-left:20px;width:calc(100% - 40px);top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word"> 
+
+    
+<div
+  style="
+    max-width: 334px;
+    max-height: 459px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 80px; /* Restore vertical position */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    background: url(${
+      this.currentScore > 1000
+        ? this.language === 'ET' &&
+          ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+          ? SuccessmessagebannersPossitiveEE
+          : this.language === 'RU' &&
+            ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+          ? SuccessmessagebannersPossitiveEERU
+          : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+          ? SuccessmessagebannersPossitiveLTRU
+          : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+          ? SuccessmessagebannersPossitiveFI
+          : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+          ? SuccessmessagebannersPossitiveLT
+          : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+          ? SuccessmessagebannersPossitiveFI
+          : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+          ? SuccessmessagebannersPossitiveLV
+          : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+          ? SuccessmessagebannersPossitiveLVRU
+          : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+          ? SuccessmessagebannersPossitiveLV
+          : this.language === 'EN' &&
+            ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+          ? SuccessmessagebannersPossitiveEE
+          : null
+        : this.language === 'ET' &&
+          ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+        ? SuccessmessagebannersNegativeEE
+        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+        ? SuccessmessagebannersNegativeLT
+        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+        ? SuccessmessagebannersNegativeRU
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? SuccessmessagebannersNegativeRU
+        : this.language === 'RU' &&
+          ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
+        ? SuccessmessagebannersNegativeRU
+        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? SuccessmessagebannersNegativeFI
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? SuccessmessagebannersNegativeLV
+        : null
+    });
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    display: ${this.prop === 'Pigu.lt' ? 'block' : 'none'};
+  "
+  
+></div>
+
+
+      </div> 
+               <div id='boomio-your-score' style="line-height:34px;margin-bottom:10px;margin-left:20px;width:calc(100% - 40px);top:80px;position:absolute; text-align: center; color: white; font-size: 32px; font-family: Montserrat; font-weight:900; text-transform: uppercase; word-wrap: break-word; display:${
+                 this.prop === 'Pigu.lt' ? 'none' : 'block'
+               }">
+                
     ${
       this.currentScore >= 1000
         ? this.prop === 'Pigu.lt' && this.language === 'EN'
@@ -417,7 +502,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
                 ? '<strong style="text-transform:uppercase">Surinkai virš 1000 taškų ir pretenduoji laimėti šios savaitės prizus:</strong>  '
                 : ''
             }</div>`
-          : `<div style="margin-left:20px;width:calc(100% - 40px);position:absolute;margin-top:200px;">
+          : `<div style="margin-left:20px;width:calc(100% - 40px);position:absolute;margin-top:200px;display:${
+              this.prop === 'Pigu.lt' ? 'none' : 'block'
+            }">
               <div style="width:100%; top: ${'245px'};line-height:18px; text-align: center; color: #FFD66B; font-size:${
               this.isMobile ? '10px' : '12px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -508,7 +595,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : ''
       }</div>
       </div>
-              <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 9px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word">      ${
+              <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 9px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word;display:${
+        this.prop === 'Pigu.lt' ? 'none' : 'block'
+      }">      ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
             ? 'Winners are chosen at random.'
@@ -532,7 +621,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
        </div>
       <div style="width:100%;font-size:${
         this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
-      };text-align:center;text-transform:uppercase;top:550px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
+      };text-align:center;text-transform:uppercase;top:560px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'
           };border-radius:35px;width: calc(100% - 60px);margin-left:30px;margin-right:30px;top:585px;height: 28px; background: ${
@@ -577,7 +666,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           ? 'PRIZAI KIEKVIENĄ savaitę!'
           : ''
       } </div>
-                     <div style="margin-left:20px;width:calc(100% - 40px); top: 435px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word">${
+                     <div style="margin-left:20px;width:calc(100% - 40px); top: 435px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 500;  word-wrap: break-word;display:${
+        this.prop === 'Pigu.lt' ? 'none' : 'block'
+      }">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
           ? 'If you will win, we’ll notify you via the email address in your account.'
           : this.prop === 'Pigu.lt' && this.language === 'LV'

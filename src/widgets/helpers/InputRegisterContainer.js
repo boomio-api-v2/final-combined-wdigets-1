@@ -281,15 +281,15 @@ export class InputRegisterContainer {
    
    
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
-          this.language === 'LV' ? '14px' : '28px'
+          this.language === 'LV' ? '18px' : '28px'
         } ;margin-right:30px;display:${
       this.prop === 'Akropolis' || this.prop === 'Eurovaistine' || this.prop === 'Vilvi'
         ? 'block'
         : 'none'
     } ;left: 34px; top:${
-      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '420px'
+      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '425px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-      this.isMobile ? '9px' : '10px'
+      this.isMobile ? '8px' : '9px'
     };color:${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };text-align:start;line-height:8px;">

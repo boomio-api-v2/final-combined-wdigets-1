@@ -307,3 +307,41 @@ export const item9Pegasas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item9.png';
 export const item10Pegasas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Pegasas/items/item10.png';
+
+export const introAkropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/intro.png';
+
+export const backgroundAkropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/background.png';
+
+export const playerAkropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/player.png';
+export const item1Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis1.png';
+
+export const item2Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis2.png';
+
+export const item3Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis3.png';
+
+export const item4Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis4.png';
+
+export const item5Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis5.png';
+
+export const item6Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis6.png';
+
+export const item7Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis7.png';
+
+export const item8Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis8.png';
+
+export const item9Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis9.png';
+
+export const item10Akropolis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/Akropolis10.png';
