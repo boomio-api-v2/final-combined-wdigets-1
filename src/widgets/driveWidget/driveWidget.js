@@ -265,7 +265,9 @@ ${
         : ''
     }
 
-    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:block;width:32px;height:32px;">
+    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:${
+      this.customer === 'Pigu.lt' ? 'none' : 'block'
+    };width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv('drive').outerHTML}
