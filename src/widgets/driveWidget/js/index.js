@@ -1090,8 +1090,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
     competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
 
-    console.log('boomio-game-play-again');
-
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
@@ -1145,7 +1143,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
   };
 
   const clickEventHandlerResetGame = () => {
-    console.log('aaaa');
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
     setTimeout(() => {
