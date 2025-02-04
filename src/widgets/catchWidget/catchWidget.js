@@ -468,7 +468,7 @@ class CatchGame {
         <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
-           <img src=${'https://i.pinimg.com/originals/74/eb/36/74eb369528bd46a825098dc0a42419d6.gif'} alt="Image Description" style="z-index:2;width:${
+           <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/badEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect_bad">
     ${
@@ -1920,6 +1920,8 @@ class Fruit {
 
   updateScore() {
     if (this.fruitScore > 0) {
+      let effectTimeout;
+
       this.game.currentScore += this.fruitScore;
       document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
@@ -1930,14 +1932,18 @@ class Fruit {
       effectElement.style.display = 'block';
       effectElement.style.opacity = 1;
 
-      setTimeout(() => {
+      // Clear any previous timeout to prevent the effect from stopping prematurely
+      clearTimeout(effectTimeout);
+
+      // Set a new timeout to fade out and hide the effect
+      effectTimeout = setTimeout(() => {
         effectElement.style.opacity = 0;
 
         // Delay hiding the element until after the opacity transition is complete
         setTimeout(() => {
           effectElement.style.display = 'none';
         }, 400); // Match this duration to the CSS transition duration
-      }, 400);
+      }, 400); // Match this duration to your game logic
     } else {
       const effectElementBad = document.getElementById('background_effect_bad');
       effectElementBad.style.display = 'block';
