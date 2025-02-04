@@ -166,6 +166,9 @@ class CatchGame {
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
+    this.effectTimeout;
+    this.effectInProgress = false;
+    this.effectStartTime = 0; // Track when the effect started
 
     this.gameStarted = false;
     this.currentScore = 0;
@@ -468,9 +471,7 @@ class CatchGame {
         <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
-           <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/badEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect_bad">
+           <img src=${'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTdtZTIzNm9qODJtdXExOHFtZTNieXFleGVydnVpNmRmbW1jaHV1dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/AijPLJTLd1FoLqyLUp/giphy.gif'} alt="Image Description" style="z-index:2; width:150px; height: 300px;top:300px;position:absolute;left:200px;pointer-events: none;display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect_bad">
     ${
       this.customer === 'Pegasas'
         ? `<div alt="Image Description" style="z-index:1;width: ${
@@ -1920,43 +1921,63 @@ class Fruit {
 
   updateScore() {
     if (this.fruitScore > 0) {
-      let effectTimeout;
-
+      // Update the current score
       this.game.currentScore += this.fruitScore;
       document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
-      const x = 200;
-      const y = 300;
+      // Show score effect
       this.showScoreEffect('+100');
+
       const effectElement = document.getElementById('background_effect');
       effectElement.style.display = 'block';
       effectElement.style.opacity = 1;
 
-      // Clear any previous timeout to prevent the effect from stopping prematurely
-      clearTimeout(effectTimeout);
+      // Start or extend the effect
+      if (!this.effectInProgress) {
+        // First time the effect is triggered
+        this.effectInProgress = true;
+        this.effectStartTime = Date.now(); // Track start time of the effect
 
-      // Set a new timeout to fade out and hide the effect
-      effectTimeout = setTimeout(() => {
-        effectElement.style.opacity = 0;
+        // Set the timeout to fade out the effect after 1 second
+        this.effectTimeout = setTimeout(() => {
+          effectElement.style.opacity = 0;
 
-        // Delay hiding the element until after the opacity transition is complete
-        setTimeout(() => {
-          effectElement.style.display = 'none';
-        }, 400); // Match this duration to the CSS transition duration
-      }, 400); // Match this duration to your game logic
+          // Delay hiding the element until after the opacity transition is complete
+          setTimeout(() => {
+            effectElement.style.display = 'none';
+            this.effectInProgress = false; // Reset flag once the effect is hidden
+          }, 400); // Match this duration to the CSS transition duration
+        }, 1000); // Initial timeout duration of 1 second
+      } else {
+        // Effect is already in progress, extend the duration
+        const elapsedTime = Date.now() - this.effectStartTime; // How long the effect has been active
+        const remainingTime = 1000 - elapsedTime; // Calculate how much time is left in the original effect
+
+        // Clear the previous timeout to extend the effect
+        clearTimeout(this.effectTimeout);
+
+        // Set a new timeout with the remaining time to keep the effect visible
+        this.effectTimeout = setTimeout(() => {
+          effectElement.style.opacity = 0;
+
+          // Delay hiding the element until after the opacity transition is complete
+          setTimeout(() => {
+            effectElement.style.display = 'none';
+            this.effectInProgress = false; // Reset flag once the effect is hidden
+          }, 400); // Match this duration to the CSS transition duration
+        }, remainingTime); // Extend the timeout with the remaining time
+      }
     } else {
-      const effectElementBad = document.getElementById('background_effect_bad');
-      effectElementBad.style.display = 'block';
-      effectElementBad.style.opacity = 1;
+      const container = document.querySelector('.boomio-life-input-container');
 
+      // To trigger the shake effect
+
+      container.classList.add('shake-life');
+
+      // Remove the class after the animation ends (reset the animation)
       setTimeout(() => {
-        effectElementBad.style.opacity = 0;
-
-        // Delay hiding the element until after the opacity transition is complete
-        setTimeout(() => {
-          effectElementBad.style.display = 'none';
-        }, 400); // Match this duration to the CSS transition duration
-      }, 400);
+        container.classList.remove('shake-life');
+      }, 500);
 
       this.player.fruitsMissed++;
       document.getElementById('currentLife').innerHTML = `${Math.max(

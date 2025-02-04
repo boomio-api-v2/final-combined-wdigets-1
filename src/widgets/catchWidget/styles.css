@@ -92,9 +92,8 @@ flex-direction: column;
   opacity:0;
   z-index: 3;
 position: absolute;
-top : calc(50% - 290px);
-left :calc(50% + 130px);
-transform : translate(-50%, -50%);
+top : calc(50% - 307px);
+left :calc(50% + 70px);
 display:flex;
 flex-direction: column;
 }
@@ -272,4 +271,29 @@ cursor:pointer;
   pointer-events: none;
   animation: floatScore 1s ease-in-out forwards;
   z-index: 9999;
+}
+
+
+
+@keyframes shake-life {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05) translate(-50%, -50%);
+  }
+  50% {
+    transform: scale(0.95) translate(-50%, -50%);
+  }
+  75% {
+    transform: scale(1.05) translate(-50%, -50%);
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+.boomio-life-input-container.shake-life {
+  z-index: 3;
+  animation: shake 0.5s ease-in-out;
 }
