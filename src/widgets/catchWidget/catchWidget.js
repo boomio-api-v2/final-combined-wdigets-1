@@ -155,6 +155,7 @@ import { ShareContainer } from '../helpers/ShareContainer';
 
 class CatchGame {
   constructor() {
+    this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.showCompetitiveRegistration =
@@ -208,6 +209,12 @@ class CatchGame {
         ? 3
         : 5;
     this.startCatch();
+    document.addEventListener('shareClicked', (event) => {
+      if (this.shareClicked === false) {
+        this.shareClicked = true;
+        this.currentScore = this.currentScore + 1000;
+      }
+    });
   }
 
   startCatch = () => {
@@ -384,8 +391,8 @@ class CatchGame {
        ${
          window.innerWidth <= 768
            ? `
-      <img src=${controllLeft} alt="Image Description" style="width: 40px; height: 40px;top:calc(50% + 200px);position:absolute;left:calc(50% - 150px);" id="controllLeft">
-      <img src=${controllRight} alt="Image Description" style="width: 40px; height: 40px;top:calc(50% + 200px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
+      <img src=${controllLeft} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% - 150px);" id="controllLeft">
+      <img src=${controllRight} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
            : ''
        }
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
@@ -550,8 +557,8 @@ class CatchGame {
     if (this.customer.includes('Akropolis')) {
       const gameContainer = document.querySelector('.game-container');
 
-      const shareContainer = new ShareContainer(this.customer);
-      gameContainer.appendChild(shareContainer.containerDiv);
+      this.shareContainer = new ShareContainer(this.customer);
+      gameContainer.appendChild(this.shareContainer.containerDiv);
     }
 
     if (
@@ -886,6 +893,44 @@ class CatchGame {
         }, 400);
       };
       const clickEventHandlerDidYouKnow = () => {
+        if (this.customer === 'Akropolis') {
+          this.hideScore();
+          boomioService
+            .signal('ROUND_FINISHED', 'signal', {
+              score: this.currentScore,
+            })
+            .then((response) => {
+              this.hideScore();
+              this.userBestPlace = response.user_best_place;
+              if (this.showCompetitiveRegistration === 'points') {
+                this.scoreTable = response;
+                this.scoreTableContainerInstance.updateProps(
+                  this.customer,
+                  this.scoreTable,
+                  this.currentScore,
+                );
+              }
+              if (this.showCompetitiveRegistration === 'competition') {
+                this.scoreTable = response;
+                this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+              }
+
+              if (this.showCompetitiveRegistration === 'collectable') {
+                this.collection = response?.collection ? response?.collection : this.collection;
+                this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                this.scoreTableContainerInstance.updateProps(
+                  this.customer,
+                  this.collectables,
+                  this.collection,
+                  this.just_won,
+                );
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+
         let tabContainer;
         if (this.customer === 'Akropolis') {
           tabContainer = document.querySelector('.share-container');
@@ -1256,10 +1301,12 @@ class CatchGame {
 
         setTimeout(
           () => {
+            console.log('ended');
             if (
-              this.showCompetitiveRegistration === 'competition' ||
-              this.showCompetitiveRegistration === 'points' ||
-              this.showCompetitiveRegistration === 'collectable'
+              (this.showCompetitiveRegistration === 'competition' ||
+                this.showCompetitiveRegistration === 'points' ||
+                this.showCompetitiveRegistration === 'collectable') &&
+              this.customer !== 'Akropolis'
             ) {
               this.hideScore();
               boomioService
@@ -1277,10 +1324,15 @@ class CatchGame {
                       this.currentScore,
                     );
                   }
+                  if (this.customer === 'Akropolis') {
+                    this.scoreTable = response;
+                    this.shareContainer.updateProps(this.customer, this.currentScore);
+                  }
                   if (this.showCompetitiveRegistration === 'competition') {
                     this.scoreTable = response;
                     this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
                   }
+
                   if (this.showCompetitiveRegistration === 'collectable') {
                     this.collection = response?.collection ? response?.collection : this.collection;
                     this.just_won = response?.just_won ? response?.just_won : this.just_won;

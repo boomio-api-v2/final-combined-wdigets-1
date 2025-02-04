@@ -500,7 +500,7 @@ export class InputContainer {
               : this.prop === 'Akropolis' && this.language === 'LV'
               ? 'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'
               : this.prop === 'Akropolis'
-              ? 'href=https://www.akropolis.lt/lt/akcija/zaisk-ir-laimek-kasdien/41169'
+              ? 'href=https://www.akropolis.lt/lt/akcija/2025-kavos-puodeliai-kasdien/43202'
               : this.language === 'LV' && this.prop === 'Fantazijos'
               ? 'href=https://docs.google.com/document/d/1QNzkm_j-Sn73LsykBYgFAfwg0Ij2TeM5/edit'
               : this.language === 'RU' && this.prop === 'Fantazijos'
