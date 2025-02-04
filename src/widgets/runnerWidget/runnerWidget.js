@@ -5,18 +5,12 @@ import PxLoaderImage from './scripts/PxLoaderImage.js';
 import yandexScripts from './scripts/yandexScripts.js';
 import { localStorageService, widgetHtmlService } from '@/services';
 import {
-  intro,
   tapImageBarbora,
   stopwatch,
   star,
   newRecord,
   newRecordEE,
   newRecordLV,
-  close,
-  BarboraIntro,
-  IkeaIntro,
-  UnisendIntroLV,
-  UnisendIntroEE,
   newRecordIkea,
   runnerbackground,
   home,
@@ -177,7 +171,7 @@ class runnerWidget {
 <div class="boomio-runner-body" oncontextmenu="return false;">
   <div id="turnLandscape">
     rotate your device
-    <img style='margin-top: 30px' id='rotateIcon' src="assets/gui/orientation.png" alt="">
+    <img style='margin-top: 30px' id='rotateIcon' src="assetsTesting/gui/orientation.png" alt="">
   </div>
   <div class="boomio-runner-main">
 
@@ -224,8 +218,8 @@ class runnerWidget {
     <div class="boomio-runner-pause boomio-insideScreenRatio boomio-hide">
       PAUSED
       <div class="boomio-buttonHolder ">
-        <img class='boomio-runner-replayButton1 boomio-runner-button' src="assets/gui/Redo.png" alt="" ">
-        <img class="playOnPauseButton boomio-runner-button" src="assets/gui/Play.png" alt=""
+        <img class='boomio-runner-replayButton1 boomio-runner-button' src="assetsTesting/gui/Redo.png" alt="" ">
+        <img class="playOnPauseButton boomio-runner-button" src="assetsTesting/gui/Play.png" alt=""
           onclick="PauseToggle(); ">
         <img class='boomio-runner-homeButton boomio-runner-button' src="${home}" alt=""  ">
       </div>
@@ -310,67 +304,67 @@ class runnerWidget {
         <div class='boomio-runner-stat' id="numberOfSlidesBlock"></div>
       </div>
       <div class="boomio-runner-achivesHolder">
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/pioneer.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/pioneer.png" alt="">
           <div class='boomio-achiveText'>
             <p>Pioneer</p>
             Score 100 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/bomb.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/bomb.png" alt="">
           <div class='boomio-achiveText'>
             <p>Extreme</p>
             Score 300 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/motorbike.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/motorbike.png" alt="">
           <div class='boomio-achiveText'>
             <p>Racer</p>
             Score 500 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/trees.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/trees.png" alt="">
           <div class='boomio-achiveText'>
             <p>Run forest, run</p>
             Score 750 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/gigachad.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/gigachad.png" alt="">
           <div class='boomio-achiveText'>
             <p>Gigachad</p>
             Score 1000 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/dead cat.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/dead cat.png" alt="">
           <div class='boomio-achiveText'>
             <p>Puss in boots</p>
             Die 8 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/guitar.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/guitar.png" alt="">
           <div class='boomio-achiveText'>
             <p>Smells like Nirvana</p>
             Die 27 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/earth.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/earth.png" alt="">
           <div class='boomio-achiveText'>
             <p>Main question</p>
             Die 42 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/skull.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/skull.png" alt="">
           <div class='boomio-achiveText'>
             <p>Memento mori</p>
             Die 100 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/bouncer.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/bouncer.png" alt="">
           <div class='boomio-achiveText'>
             <p>Bouncer</p>
             Jump 500 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/slide.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/slide.png" alt="">
           <div class='boomio-achiveText'>
             <p>On the ground</p>
             Slide under barriers 300 times
@@ -394,7 +388,7 @@ class runnerWidget {
             Earn 1000 coins
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assets/gui/success.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/success.png" alt="">
           <div class='boomio-achiveText'>
             <p>All for one</p>
             Unlock all achives
@@ -566,52 +560,52 @@ class runnerWidget {
     // Load sprites
     const runSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/run',
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/run',
       8,
     );
     const slideSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/slide',
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/slide',
       6,
     );
     const jumpSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/jump',
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/jump',
       6,
     );
     const deathSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/death',
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/death',
       4,
     );
     const barriersSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/barriers',
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/barriers',
       7,
     );
     const bgSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/bg',
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/bg',
       8,
     );
     const fgSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/fg',
+      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/fg',
       2,
     );
 
     const CollectSprites = [
       loader.addImage(
-        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/shield.png',
+        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/collect/shield.png',
       ),
       loader.addImage(
-        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/shieldIcon.png',
+        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/collect/shieldIcon.png',
       ),
       loader.addImage(
-        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/boosterIcon.png',
+        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/collect/boosterIcon.png',
       ),
       loader.addImage(
-        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/coin.png',
+        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/collect/coin.png',
       ),
     ];
 
