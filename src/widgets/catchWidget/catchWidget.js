@@ -1946,7 +1946,7 @@ class Fruit {
           setTimeout(() => {
             effectElement.style.display = 'none';
             this.effectInProgress = false; // Reset flag once the effect is hidden
-          }, 400); // Match this duration to the CSS transition duration
+          }, 200); // Match this duration to the CSS transition duration
         }, 1000); // Initial timeout duration of 1 second
       } else {
         // Effect is already in progress, extend the duration
@@ -1964,7 +1964,7 @@ class Fruit {
           setTimeout(() => {
             effectElement.style.display = 'none';
             this.effectInProgress = false; // Reset flag once the effect is hidden
-          }, 400); // Match this duration to the CSS transition duration
+          }, 200); // Match this duration to the CSS transition duration
         }, remainingTime); // Extend the timeout with the remaining time
       }
     } else {
