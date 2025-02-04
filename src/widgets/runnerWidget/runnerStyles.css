@@ -1,33 +1,13 @@
-@font-face {
-	font-family: 'pixelFlag'; 
-	src: url('./assets/fonts/000webfont1.ttf') 
-}
 
-@font-face {
-	font-family: 'Botsmatic3d'; 
-	src: url('./assets/fonts/Botsmatic3d.ttf') 
-}
-@font-face {
-	font-family: 'BotsmaticOutline'; 
-	src: url('./assets/fonts/BotsmaticOutline.ttf') 
-}
-@font-face {
-	font-family: Pixelify Sans; 
-	src: url('./assets/fonts/BotsmaticDemo.ttf') 
-}
 ::-webkit-scrollbar {
 	width: 0;
   }
-
-  @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap');
-
-
 
 .boomio-runner-body{
   width: 100%;
 	height: 100%;
 	background-color: black;
-	font-family: 'pixelFlag';
+	font-family: 'Georama';
 	color: #fff;
 	overflow: hidden;
 	margin: 0;
@@ -244,7 +224,7 @@
 	font-size: 35px;
 }
 .boomio-runner-mainTitle{
-	font-family: Pixelify Sans;
+	font-family: Georama;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -254,7 +234,7 @@
   line-height: 1.3;
 }
 .boomio-runner-subtitle{
-	font-family: 'pixelFlag';
+	font-family: 'Georama';
 	font-weight: bold;
 	font-size: 40px;
 	letter-spacing: 3px;
@@ -292,7 +272,7 @@
 	display: flex;
 	justify-content: space-evenly;
 	z-index: 100;
-  font-family: Pixelify Sans;
+  font-family: Georama;
 
 }
 
@@ -421,7 +401,7 @@ margin-right: 10px;}
 
 
 .boomio-runner-mainBg{
-	font-family: 'pixelFlag';
+	font-family: 'Georama';
 	display: flex;
 	flex-direction: row;
 	filter: brightness(0.9);
@@ -659,7 +639,7 @@ margin-right: 10px;}
   }
 }
 .boomio-runner-achiveBlock{
-	font-family: 'pixelFlag';
+	font-family: 'Georama';
 	align-items: center;
 	font-size: 25px;
 	display: flex;
@@ -700,7 +680,7 @@ margin-right: 10px;}
 	border: 0;
 	outline: none;
 	cursor: pointer;
-	font-family: 'pixelFlag';
+	font-family: 'Georama';
 	background: none;
 	background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/btn.png');
 	background-repeat: no-repeat;
@@ -741,10 +721,10 @@ margin-right: 10px;}
 }
 .boomio-runner-credits{
   font-size: 30px;
-	font-family: Pixelify Sans;
+	font-family: Georama;
 }
 .boomio-runner-credits a{
-	font-family: 'pixelFlag';
+	font-family: 'Georama';
 	font-weight: bold;
 	color: rgb(30, 0, 94)
 }
