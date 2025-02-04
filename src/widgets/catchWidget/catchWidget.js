@@ -465,7 +465,12 @@ class CatchGame {
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
 
-
+        <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
+           <img src=${'https://i.pinimg.com/originals/74/eb/36/74eb369528bd46a825098dc0a42419d6.gif'} alt="Image Description" style="z-index:2;width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect_bad">
     ${
       this.customer === 'Pegasas'
         ? `<div alt="Image Description" style="z-index:1;width: ${
@@ -1921,7 +1926,32 @@ class Fruit {
       const x = 200;
       const y = 300;
       this.showScoreEffect('+100');
+      const effectElement = document.getElementById('background_effect');
+      effectElement.style.display = 'block';
+      effectElement.style.opacity = 1;
+
+      setTimeout(() => {
+        effectElement.style.opacity = 0;
+
+        // Delay hiding the element until after the opacity transition is complete
+        setTimeout(() => {
+          effectElement.style.display = 'none';
+        }, 400); // Match this duration to the CSS transition duration
+      }, 400);
     } else {
+      const effectElementBad = document.getElementById('background_effect_bad');
+      effectElementBad.style.display = 'block';
+      effectElementBad.style.opacity = 1;
+
+      setTimeout(() => {
+        effectElementBad.style.opacity = 0;
+
+        // Delay hiding the element until after the opacity transition is complete
+        setTimeout(() => {
+          effectElementBad.style.display = 'none';
+        }, 400); // Match this duration to the CSS transition duration
+      }, 400);
+
       this.player.fruitsMissed++;
       document.getElementById('currentLife').innerHTML = `${Math.max(
         0,
