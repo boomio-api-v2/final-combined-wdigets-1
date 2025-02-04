@@ -1530,9 +1530,9 @@ class Fruit {
     this.fruitType = '';
     this.fruitScore = 0;
     this.fruitWidth =
-      this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : 40;
+      this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : 55;
     this.fruitHeight =
-      this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : 40;
+      this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : 55;
     this.fruitWidthArray = [40, 40, 40, 40, 30];
     this.fruitHeightArray = [40, 40, 40, 40, 30];
     this.fruitImage = new Image();
