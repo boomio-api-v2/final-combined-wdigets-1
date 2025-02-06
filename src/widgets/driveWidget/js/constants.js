@@ -347,6 +347,9 @@ export const PigubikeLT =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/bikeLT.png?raw=true';
 export const Pigutree =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/tree.png?raw=true';
+export const Pigutree2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/tree1.png?raw=true';
+
 export const Pigusign =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/sign.png?raw=true';
 
