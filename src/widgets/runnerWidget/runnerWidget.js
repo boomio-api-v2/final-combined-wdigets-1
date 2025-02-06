@@ -218,9 +218,9 @@ class runnerWidget {
     <div class="boomio-runner-pause boomio-insideScreenRatio boomio-hide">
       PAUSED
       <div class="boomio-buttonHolder ">
-        <img class='boomio-runner-replayButton1 boomio-runner-button' src="assetsTesting/gui/Redo.png" alt="" ">
-        <img class="playOnPauseButton boomio-runner-button" src="assetsTesting/gui/Play.png" alt=""
-          onclick="PauseToggle(); ">
+        <img class='boomio-runner-replayButton1 boomio-runner-button' src="${redo}" alt="" ">
+        <img class="boomio-runner-pauseButton1 boomio-runner-button" src="${play}" alt=""
+          >
         <img class='boomio-runner-homeButton boomio-runner-button' src="${home}" alt=""  ">
       </div>
     </div>
@@ -1008,6 +1008,7 @@ class runnerWidget {
     document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-pauseButton').addEventListener('click', PauseToggle);
+    document.querySelector('.boomio-runner-pauseButton1').addEventListener('click', PauseToggle);
 
     document.querySelector('.boomio-runner-replayButton').addEventListener('click', Replay);
     document.querySelector('.boomio-runner-replayButton1').addEventListener('click', Replay);
