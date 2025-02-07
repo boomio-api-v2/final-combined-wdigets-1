@@ -904,6 +904,7 @@ class CatchGame {
           boomioService
             .signal('ROUND_FINISHED', 'signal', {
               score: this.currentScore,
+              shared_somewhere: this.shareClicked,
             })
             .then((response) => {
               this.hideScore();
