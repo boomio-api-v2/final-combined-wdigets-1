@@ -1463,8 +1463,8 @@ class Player {
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
-    this.playerWidth = 110;
-    this.playerHeight = 80;
+    this.playerWidth = customer === 'Akropolis' ? 88 : 110;
+    this.playerHeight = customer === 'Akropolis' ? 64 : 80;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
@@ -1537,9 +1537,25 @@ class Fruit {
     this.fruitType = '';
     this.fruitScore = 0;
     this.fruitWidth =
-      this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : 55;
+      this.customer === 'Pegasas'
+        ? 60
+        : this.customer === 'Pieno Žvaigždės'
+        ? 50
+        : this.customer === 'Akropolis'
+        ? type === 'bad'
+          ? 45
+          : 55
+        : 55;
     this.fruitHeight =
-      this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : 55;
+      this.customer === 'Pegasas'
+        ? 60
+        : this.customer === 'Pieno Žvaigždės'
+        ? 50
+        : this.customer === 'Akropolis'
+        ? type === 'bad'
+          ? 45
+          : 55
+        : 55;
     this.fruitWidthArray = [40, 40, 40, 40, 30];
     this.fruitHeightArray = [40, 40, 40, 40, 30];
     this.fruitImage = new Image();
