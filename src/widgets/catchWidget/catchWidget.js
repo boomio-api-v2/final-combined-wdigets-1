@@ -466,7 +466,7 @@ class CatchGame {
         : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    }; height: 674px;position:absolute;pointer-events: none; display:block;object-fit: contain;" id="background_intro">
 
         <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
