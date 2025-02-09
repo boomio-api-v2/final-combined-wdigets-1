@@ -33,7 +33,7 @@ export class ShareContainer {
     this.render();
   }
 
-  updateProps(prop) {
+  updateProps(prop, score) {
     this.prop = prop;
     this.isMobileWidthSmall = window.innerWidth <= 400;
     this.isSmallMobile = window.innerWidth <= 380;
@@ -93,6 +93,11 @@ export class ShareContainer {
       text: 'Play this amazing game and compete with your friends!',
       url: this.campaignUrlProp,
     };
+
+    const event = new CustomEvent('shareClicked', {
+      detail: { url: this.campaignUrlProp },
+    });
+    document.dispatchEvent(event);
 
     if (navigator.share) {
       navigator.share(shareData).catch((error) => console.error('Error sharing content:', error));

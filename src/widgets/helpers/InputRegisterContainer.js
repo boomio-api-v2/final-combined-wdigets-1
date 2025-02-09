@@ -150,7 +150,7 @@ export class InputRegisterContainer {
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
         } ;left: 34px; top: ${
-      this.prop === 'Akropolis' ? '380px' : this.prop === 'Vilvi' ? '360px' : '395px'
+      this.prop === 'Akropolis' ? '362px' : this.prop === 'Vilvi' ? '360px' : '395px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
         this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'
@@ -269,12 +269,12 @@ export class InputRegisterContainer {
         <div style="margin-right:20px;display:${
           this.prop === 'Akropolis' ? 'block' : 'none'
         } ;left: 34px; top:${
-      this.prop === 'Akropolis' ? '400px' : '384px'
-    }; position: absolute; justify-content: start;line-height:14px; align-items: start; gap: 5px;font-size:7px;color:white;text-align:start;line-height:8px;">
+      this.prop === 'Akropolis' ? '383px' : '384px'
+    }; position: absolute; justify-content: start;align-items: start; gap: 5px;font-size:9px;color:white;text-align:start;line-height:9px;">
         ${
           this.language === 'LV'
             ? ``
-            : `Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis privatumas@akropolis.lt. <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>..`
+            : `Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis privatumas@akropolis.lt. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>..`
         } 
 
 </div>

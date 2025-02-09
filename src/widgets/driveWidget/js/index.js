@@ -88,6 +88,7 @@ import {
   PigubikeLT,
   Pigucity,
   Pigutree,
+  Pigutree2,
   city1ImageDataPigu,
   city2ImageDataPigu,
   city3ImageDataPigu,
@@ -393,6 +394,11 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
             img.src = Pigutree;
             return img;
           })(),
+          (() => {
+            const img = new Image();
+            img.src = Pigutree2;
+            return img;
+          })(),
         ]
       : [
           (() => {
@@ -542,8 +548,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       : customer === 'Unisend'
       ? '#959595'
       : customer === 'Pigu.lt'
-      ? '#A2B0B4'
+      ? '#B28583'
       : '#F9F1DD';
+  //'#A2B0B4'
   const road2 =
     customer === 'Barbora'
       ? 'white'
@@ -552,8 +559,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       : customer === 'Unisend'
       ? 'white'
       : customer === 'Pigu.lt'
-      ? '#FFFAE6'
+      ? '#D3A3A3'
       : 'black';
+  // '#FFFAE6'
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
 
@@ -1687,10 +1695,14 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
         ? customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
           : customer === 'Pigu.lt'
+          ? '#FFCACA'
+          : customer === 'Pigu.lt'
           ? '#9ECEFF'
           : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
         ? '#489B2D'
+        : customer === 'Pigu.lt'
+        ? '#FFB0AE'
         : customer === 'Pigu.lt'
         ? '#c8e1ff'
         : customer === 'Barbora'

@@ -253,144 +253,144 @@ export const close = [
 ];
 
 export const closeDidYouKnow =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/close.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/close.png';
 
 export const item1Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-1.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-1.png';
 export const item2Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-2.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-2.png';
 export const item3Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-3.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-3.png';
 export const item4Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-4.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-4.png';
 export const item5Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-5.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-5.png';
 export const item6Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-6.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-6.png';
 export const item7Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-7.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-7.png';
 export const item8Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-8.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-8.png';
 export const item9Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-9.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-9.png';
 export const item10Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-10.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-10.png';
 export const item11Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-11.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-11.png';
 export const item12Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-12.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-12.png';
 export const item13Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-13.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-13.png';
 export const item14Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-14.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-14.png';
 export const item15Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-15.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-15.png';
 export const item16Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-16.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-16.png';
 export const item17Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-17.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-17.png';
 export const item18Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-18.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-18.png';
 export const item19Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-19.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-19.png';
 export const item20Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-20.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-20.png';
 export const item21Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-21.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-21.png';
 export const item22Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-22.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-22.png';
 export const item23Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-23.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-23.png';
 export const item24Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-24.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-24.png';
 export const item25Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-25.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-25.png';
 export const item26Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-26.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-26.png';
 export const item27Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-27.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-27.png';
 export const item28Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-28.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-28.png';
 export const item29Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-29.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-29.png';
 export const item30Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-30.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-30.png';
 export const item31Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-31.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-31.png';
 export const item32Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-32.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-32.png';
 export const item33Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-33.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-33.png';
 export const item34Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-34.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-34.png';
 export const item35Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-35.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-35.png';
 export const item36Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-36.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-36.png';
 export const item37Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-37.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-37.png';
 export const item38Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-38.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-38.png';
 export const item39Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-39.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-39.png';
 export const item40Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-40.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-40.png';
 export const item41Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-41.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-41.png';
 export const item42Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-42.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-42.png';
 export const item43Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-43.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-43.png';
 export const item44Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-44.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-44.png';
 export const item45Pigu =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/pigu/DidYouKnow/Christmas%20Pigu%20product-45.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-45.png';
 
 export const SuccessmessagebannersNegativeEE = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeEE.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersNegativeEE.png',
 ];
 export const SuccessmessagebannersNegativeFI = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeFI.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersNegativeFI.png',
 ];
 
 export const SuccessmessagebannersNegativeLT = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeLT.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersNegativeLT.png',
 ];
 
 export const SuccessmessagebannersNegativeLV = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeLV.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersNegativeLV.png',
 ];
 
 export const SuccessmessagebannersNegativeRU = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeRU.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersNegativeRU.png',
 ];
 
 export const SuccessmessagebannersPossitiveEE = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveEE.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersPossitiveEE.png',
 ];
 
 export const SuccessmessagebannersPossitiveEERU = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveEERU.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersPossitiveEERU.png',
 ];
 
 export const SuccessmessagebannersPossitiveFI = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveFI.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersPossitiveFI.png',
 ];
 
 export const SuccessmessagebannersPossitiveLT = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLT.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersPossitiveLT.png',
 ];
 
 export const SuccessmessagebannersPossitiveLTRU = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLTRU.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersPossitiveLTRU.png',
 ];
 
 export const SuccessmessagebannersPossitiveLV = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLV.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersPossitiveLV.png',
 ];
 
 export const SuccessmessagebannersPossitiveLVRU = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLVRU.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/PiguValentine/banners/SuccessmessagebannersPossitiveLVRU.png',
 ];
 
 export const facebook = [

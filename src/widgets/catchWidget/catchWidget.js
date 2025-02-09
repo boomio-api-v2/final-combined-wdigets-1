@@ -155,6 +155,7 @@ import { ShareContainer } from '../helpers/ShareContainer';
 
 class CatchGame {
   constructor() {
+    this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.showCompetitiveRegistration =
@@ -165,6 +166,9 @@ class CatchGame {
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
+    this.effectTimeout;
+    this.effectInProgress = false;
+    this.effectStartTime = 0; // Track when the effect started
 
     this.gameStarted = false;
     this.currentScore = 0;
@@ -208,6 +212,12 @@ class CatchGame {
         ? 3
         : 5;
     this.startCatch();
+    document.addEventListener('shareClicked', (event) => {
+      if (this.shareClicked === false) {
+        this.shareClicked = true;
+        this.currentScore = this.currentScore + 1000;
+      }
+    });
   }
 
   startCatch = () => {
@@ -384,8 +394,8 @@ class CatchGame {
        ${
          window.innerWidth <= 768
            ? `
-      <img src=${controllLeft} alt="Image Description" style="width: 40px; height: 40px;top:calc(50% + 200px);position:absolute;left:calc(50% - 150px);" id="controllLeft">
-      <img src=${controllRight} alt="Image Description" style="width: 40px; height: 40px;top:calc(50% + 200px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
+      <img src=${controllLeft} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% - 150px);" id="controllLeft">
+      <img src=${controllRight} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
            : ''
        }
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
@@ -456,9 +466,12 @@ class CatchGame {
         : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    }; height: 674px;position:absolute;pointer-events: none; display:block;object-fit: cover;" id="background_intro">
 
-
+        <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
+      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
+           <img src=${'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTdtZTIzNm9qODJtdXExOHFtZTNieXFleGVydnVpNmRmbW1jaHV1dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/AijPLJTLd1FoLqyLUp/giphy.gif'} alt="Image Description" style="z-index:2; width:150px; height: 300px;top:300px;position:absolute;left:200px;pointer-events: none;display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect_bad">
     ${
       this.customer === 'Pegasas'
         ? `<div alt="Image Description" style="z-index:1;width: ${
@@ -550,8 +563,8 @@ class CatchGame {
     if (this.customer.includes('Akropolis')) {
       const gameContainer = document.querySelector('.game-container');
 
-      const shareContainer = new ShareContainer(this.customer);
-      gameContainer.appendChild(shareContainer.containerDiv);
+      this.shareContainer = new ShareContainer(this.customer);
+      gameContainer.appendChild(this.shareContainer.containerDiv);
     }
 
     if (
@@ -886,6 +899,45 @@ class CatchGame {
         }, 400);
       };
       const clickEventHandlerDidYouKnow = () => {
+        if (this.customer === 'Akropolis') {
+          this.hideScore();
+          boomioService
+            .signal('ROUND_FINISHED', 'signal', {
+              score: this.currentScore,
+              shared_somewhere: this.shareClicked,
+            })
+            .then((response) => {
+              this.hideScore();
+              this.userBestPlace = response.user_best_place;
+              if (this.showCompetitiveRegistration === 'points') {
+                this.scoreTable = response;
+                this.scoreTableContainerInstance.updateProps(
+                  this.customer,
+                  this.scoreTable,
+                  this.currentScore,
+                );
+              }
+              if (this.showCompetitiveRegistration === 'competition') {
+                this.scoreTable = response;
+                this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+              }
+
+              if (this.showCompetitiveRegistration === 'collectable') {
+                this.collection = response?.collection ? response?.collection : this.collection;
+                this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                this.scoreTableContainerInstance.updateProps(
+                  this.customer,
+                  this.collectables,
+                  this.collection,
+                  this.just_won,
+                );
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+
         let tabContainer;
         if (this.customer === 'Akropolis') {
           tabContainer = document.querySelector('.share-container');
@@ -1256,10 +1308,12 @@ class CatchGame {
 
         setTimeout(
           () => {
+            console.log('ended');
             if (
-              this.showCompetitiveRegistration === 'competition' ||
-              this.showCompetitiveRegistration === 'points' ||
-              this.showCompetitiveRegistration === 'collectable'
+              (this.showCompetitiveRegistration === 'competition' ||
+                this.showCompetitiveRegistration === 'points' ||
+                this.showCompetitiveRegistration === 'collectable') &&
+              this.customer !== 'Akropolis'
             ) {
               this.hideScore();
               boomioService
@@ -1277,10 +1331,15 @@ class CatchGame {
                       this.currentScore,
                     );
                   }
+                  if (this.customer === 'Akropolis') {
+                    this.scoreTable = response;
+                    this.shareContainer.updateProps(this.customer, this.currentScore);
+                  }
                   if (this.showCompetitiveRegistration === 'competition') {
                     this.scoreTable = response;
                     this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
                   }
+
                   if (this.showCompetitiveRegistration === 'collectable') {
                     this.collection = response?.collection ? response?.collection : this.collection;
                     this.just_won = response?.just_won ? response?.just_won : this.just_won;
@@ -1404,8 +1463,8 @@ class Player {
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
-    this.playerWidth = 110;
-    this.playerHeight = 80;
+    this.playerWidth = customer === 'Akropolis' ? 88 : 110;
+    this.playerHeight = customer === 'Akropolis' ? 64 : 80;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
@@ -1478,9 +1537,25 @@ class Fruit {
     this.fruitType = '';
     this.fruitScore = 0;
     this.fruitWidth =
-      this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : 40;
+      this.customer === 'Pegasas'
+        ? 60
+        : this.customer === 'Pieno Žvaigždės'
+        ? 50
+        : this.customer === 'Akropolis'
+        ? type === 'bad'
+          ? 45
+          : 55
+        : 55;
     this.fruitHeight =
-      this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : 40;
+      this.customer === 'Pegasas'
+        ? 60
+        : this.customer === 'Pieno Žvaigždės'
+        ? 50
+        : this.customer === 'Akropolis'
+        ? type === 'bad'
+          ? 45
+          : 55
+        : 55;
     this.fruitWidthArray = [40, 40, 40, 40, 30];
     this.fruitHeightArray = [40, 40, 40, 40, 30];
     this.fruitImage = new Image();
@@ -1863,13 +1938,64 @@ class Fruit {
 
   updateScore() {
     if (this.fruitScore > 0) {
+      // Update the current score
       this.game.currentScore += this.fruitScore;
       document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
-      const x = 200;
-      const y = 300;
+      // Show score effect
       this.showScoreEffect('+100');
+
+      const effectElement = document.getElementById('background_effect');
+      effectElement.style.display = 'block';
+      effectElement.style.opacity = 1;
+
+      // Start or extend the effect
+      if (!this.effectInProgress) {
+        // First time the effect is triggered
+        this.effectInProgress = true;
+        this.effectStartTime = Date.now(); // Track start time of the effect
+
+        // Set the timeout to fade out the effect after 1 second
+        this.effectTimeout = setTimeout(() => {
+          effectElement.style.opacity = 0;
+
+          // Delay hiding the element until after the opacity transition is complete
+          setTimeout(() => {
+            effectElement.style.display = 'none';
+            this.effectInProgress = false; // Reset flag once the effect is hidden
+          }, 200); // Match this duration to the CSS transition duration
+        }, 1000); // Initial timeout duration of 1 second
+      } else {
+        // Effect is already in progress, extend the duration
+        const elapsedTime = Date.now() - this.effectStartTime; // How long the effect has been active
+        const remainingTime = 1000 - elapsedTime; // Calculate how much time is left in the original effect
+
+        // Clear the previous timeout to extend the effect
+        clearTimeout(this.effectTimeout);
+
+        // Set a new timeout with the remaining time to keep the effect visible
+        this.effectTimeout = setTimeout(() => {
+          effectElement.style.opacity = 0;
+
+          // Delay hiding the element until after the opacity transition is complete
+          setTimeout(() => {
+            effectElement.style.display = 'none';
+            this.effectInProgress = false; // Reset flag once the effect is hidden
+          }, 200); // Match this duration to the CSS transition duration
+        }, remainingTime); // Extend the timeout with the remaining time
+      }
     } else {
+      const container = document.querySelector('.boomio-life-input-container');
+
+      // To trigger the shake effect
+
+      container.classList.add('shake-life');
+
+      // Remove the class after the animation ends (reset the animation)
+      setTimeout(() => {
+        container.classList.remove('shake-life');
+      }, 500);
+
       this.player.fruitsMissed++;
       document.getElementById('currentLife').innerHTML = `${Math.max(
         0,
