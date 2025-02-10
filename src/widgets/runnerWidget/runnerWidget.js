@@ -221,7 +221,7 @@ class runnerWidget {
         <img class='boomio-runner-replayButton1 boomio-runner-button' src="${redo}" alt="" ">
         <img class="boomio-runner-pauseButton1 boomio-runner-button" src="${play}" alt=""
           >
-        <img class='boomio-runner-homeButton boomio-runner-button' src="${home}" alt=""  ">
+        <img class='boomio-runner-homeButton boomio-runner-button' src="${home}" alt=""">
       </div>
     </div>
     <div class="boomio-runner-gameOver boomio-insideScreenRatio boomio-hide">
