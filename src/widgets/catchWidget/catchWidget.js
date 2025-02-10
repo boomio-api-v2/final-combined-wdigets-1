@@ -1877,14 +1877,14 @@ class Fruit {
   }
 
   checkIfCaught() {
-    if (this.y >= this.player.y) {
+    if (this.y >= this.player.y - 40 && this.y <= this.player.y - 30) {
       if (
         (this.x > this.player.x && this.x < this.player.x + this.player.playerWidth) ||
         (this.x + this.fruitWidth > this.player.x &&
           this.x + this.fruitWidth < this.player.x + this.player.playerWidth)
       ) {
+        console.log(this.y);
         this.player.fruitsCollected++;
-
         this.updateScore();
         this.changeState();
       }

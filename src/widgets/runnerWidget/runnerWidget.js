@@ -901,6 +901,9 @@ class runnerWidget {
       objects = [];
       coins = 0;
       player.x = 0.2 * canvas.width;
+      player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
+      console.log(player.x, player.y);
+
       gameOver = false;
       pause = false;
       player.rise = false;
@@ -910,7 +913,6 @@ class runnerWidget {
       player.dead = false;
       player.life = 3;
       speed = canvas.clientWidth / 200;
-      player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
       score = 0;
       leftPressed = false;
       rightPressed = false;
@@ -1507,10 +1509,10 @@ class runnerWidget {
             console.log(player.life);
             if (player.life > 0) {
               player.life = player.life - 1;
-              player.immune = true; // Enable immunity
-              setTimeout(() => {
-                player.immune = false; // Disable immunity after 1 second
-              }, 1000); // 1000 milliseconds = 1 second
+              player.shield = true;
+              activeTime = 75;
+              console.log(activeTime);
+              CollectSprites[1].image = new Image();
             } else {
               player.dead = true;
             }
@@ -1625,6 +1627,10 @@ class runnerWidget {
         }
         if (player.shieldTimer == activeTime) {
           setTimeout(() => {
+            CollectObjects[0].x = player.x;
+            CollectObjects[0].y = player.y - jumpHeight;
+
+            console.log('aaaa');
             CollectObjects[0].image = new Image();
             DrawObject(CollectObjects[0]);
             if (player.boost) {
@@ -1636,216 +1642,28 @@ class runnerWidget {
               speed = normalSpeed;
               player.boostTimer = 0;
             }
-            setTimeout(() => {
-              CollectObjects[0].image = CollectSprites[0];
-              DrawObject(CollectObjects[0]);
-              setTimeout(() => {
-                CollectObjects[0].image = new Image();
-                DrawObject(CollectObjects[0]);
-                setTimeout(() => {
-                  CollectObjects[0].image = CollectSprites[0];
-                  DrawObject(CollectObjects[0]);
-                  setTimeout(() => {
-                    CollectObjects[0].image = new Image();
-                    DrawObject(CollectObjects[0]);
-                    setTimeout(() => {
-                      CollectObjects[0].image = CollectSprites[0];
-                      DrawObject(CollectObjects[0]);
-                      setTimeout(() => {
-                        CollectObjects[0].image = new Image();
-                        DrawObject(CollectObjects[0]);
-                        setTimeout(() => {
-                          CollectObjects[0].image = CollectSprites[0];
-                          DrawObject(CollectObjects[0]);
-                          setTimeout(() => {
-                            CollectObjects[0].image = new Image();
-                            DrawObject(CollectObjects[0]);
-                            setTimeout(() => {
-                              CollectObjects[0].image = CollectSprites[0];
-                              DrawObject(CollectObjects[0]);
-                              setTimeout(() => {
-                                CollectObjects[0].image = new Image();
-                                DrawObject(CollectObjects[0]);
-                                setTimeout(() => {
-                                  CollectObjects[0].image = CollectSprites[0];
-                                  DrawObject(CollectObjects[0]);
-                                  player.shield = false;
-                                  player.shieldTimer = 0;
-                                  setTimeout(() => {
-                                    CollectObjects[0].image = new Image();
-                                    DrawObject(CollectObjects[0]);
-                                    setTimeout(() => {
-                                      CollectObjects[0].image = CollectSprites[0];
-                                      DrawObject(CollectObjects[0]);
-                                      setTimeout(() => {
-                                        CollectObjects[0].image = new Image();
-                                        DrawObject(CollectObjects[0]);
-                                        setTimeout(() => {
-                                          CollectObjects[0].image = CollectSprites[0];
-                                          DrawObject(CollectObjects[0]);
-                                          setTimeout(() => {
-                                            CollectObjects[0].image = new Image();
-                                            DrawObject(CollectObjects[0]);
-                                            setTimeout(() => {
-                                              CollectObjects[0].image = CollectSprites[0];
-                                              DrawObject(CollectObjects[0]);
-                                              setTimeout(() => {
-                                                CollectObjects[0].image = new Image();
-                                                DrawObject(CollectObjects[0]);
-                                                setTimeout(() => {
-                                                  CollectObjects[0].image = CollectSprites[0];
-                                                  DrawObject(CollectObjects[0]);
-                                                  setTimeout(() => {
-                                                    CollectObjects[0].image = new Image();
-                                                    DrawObject(CollectObjects[0]);
-                                                    setTimeout(() => {
-                                                      CollectObjects[0].image = CollectSprites[0];
-                                                      DrawObject(CollectObjects[0]);
-                                                      setTimeout(() => {
-                                                        CollectObjects[0].image = new Image();
-                                                        DrawObject(CollectObjects[0]);
-                                                        setTimeout(() => {
-                                                          CollectObjects[0].image =
-                                                            CollectSprites[0];
-                                                          DrawObject(CollectObjects[0]);
-                                                          setTimeout(() => {
-                                                            CollectObjects[0].image = new Image();
-                                                            DrawObject(CollectObjects[0]);
-                                                            setTimeout(() => {
-                                                              CollectObjects[0].image =
-                                                                CollectSprites[0];
-                                                              DrawObject(CollectObjects[0]);
-                                                              setTimeout(() => {
-                                                                CollectObjects[0].image =
-                                                                  new Image();
-                                                                DrawObject(CollectObjects[0]);
-                                                                setTimeout(() => {
-                                                                  CollectObjects[0].image =
-                                                                    CollectSprites[0];
-                                                                  DrawObject(CollectObjects[0]);
-                                                                  setTimeout(() => {
-                                                                    CollectObjects[0].image =
-                                                                      new Image();
-                                                                    DrawObject(CollectObjects[0]);
-                                                                    setTimeout(() => {
-                                                                      CollectObjects[0].image =
-                                                                        CollectSprites[0];
-                                                                      DrawObject(CollectObjects[0]);
-                                                                      setTimeout(() => {
-                                                                        CollectObjects[0].image =
-                                                                          new Image();
-                                                                        DrawObject(
-                                                                          CollectObjects[0],
-                                                                        );
-                                                                        setTimeout(() => {
-                                                                          CollectObjects[0].image =
-                                                                            CollectSprites[0];
-                                                                          DrawObject(
-                                                                            CollectObjects[0],
-                                                                          );
-                                                                          setTimeout(() => {
-                                                                            CollectObjects[0].image =
-                                                                              new Image();
-                                                                            DrawObject(
-                                                                              CollectObjects[0],
-                                                                            );
-                                                                            setTimeout(() => {
-                                                                              CollectObjects[0].image =
-                                                                                CollectSprites[0];
-                                                                              DrawObject(
-                                                                                CollectObjects[0],
-                                                                              );
-                                                                              setTimeout(() => {
-                                                                                CollectObjects[0].image =
-                                                                                  new Image();
-                                                                                DrawObject(
-                                                                                  CollectObjects[0],
-                                                                                );
-                                                                                setTimeout(() => {
-                                                                                  CollectObjects[0].image =
-                                                                                    CollectSprites[0];
-                                                                                  DrawObject(
-                                                                                    CollectObjects[0],
-                                                                                  );
-                                                                                  setTimeout(() => {
-                                                                                    CollectObjects[0].image =
-                                                                                      new Image();
-                                                                                    DrawObject(
-                                                                                      CollectObjects[0],
-                                                                                    );
-                                                                                    setTimeout(
-                                                                                      () => {
-                                                                                        CollectObjects[0].image =
-                                                                                          CollectSprites[0];
-                                                                                        DrawObject(
-                                                                                          CollectObjects[0],
-                                                                                        );
-                                                                                        setTimeout(
-                                                                                          () => {
-                                                                                            CollectObjects[0].image =
-                                                                                              new Image();
-                                                                                            DrawObject(
-                                                                                              CollectObjects[0],
-                                                                                            );
-                                                                                            setTimeout(
-                                                                                              () => {
-                                                                                                CollectObjects[0].image =
-                                                                                                  CollectSprites[0];
-                                                                                                DrawObject(
-                                                                                                  CollectObjects[0],
-                                                                                                );
-                                                                                                player.shield = false;
-                                                                                                player.shieldTimer = 0;
-                                                                                              },
-                                                                                              50,
-                                                                                            );
-                                                                                          },
-                                                                                          50,
-                                                                                        );
-                                                                                      },
-                                                                                      50,
-                                                                                    );
-                                                                                  }, 50);
-                                                                                }, 50);
-                                                                              }, 50);
-                                                                            }, 50);
-                                                                          }, 50);
-                                                                        }, 50);
-                                                                      }, 50);
-                                                                    }, 50);
-                                                                  }, 50);
-                                                                }, 50);
-                                                              }, 50);
-                                                            }, 50);
-                                                          }, 50);
-                                                        }, 50);
-                                                      }, 50);
-                                                    }, 50);
-                                                  }, 50);
-                                                }, 50);
-                                              }, 50);
-                                            }, 50);
-                                          }, 50);
-                                        }, 50);
-                                      }, 50);
-                                    }, 50);
-                                  }, 50);
-                                }, 50);
-                              }, 50);
-                            }, 50);
-                          }, 50);
-                        }, 50);
-                      }, 50);
-                    }, 50);
-                  }, 50);
-                }, 50);
-              }, 50);
-            }, 50);
+            toggleImage(0, 30, 50, () => {
+              player.shield = false;
+              player.shieldTimer = 0;
+            });
           }, 50);
         } else {
           DrawObject(CollectObjects[0]);
         }
       }
+    }
+    function toggleImage(index, maxToggles, delay, callback) {
+      if (index >= maxToggles) {
+        callback();
+        return;
+      }
+
+      CollectObjects[0].image = index % 2 === 0 ? CollectSprites[0] : new Image();
+      DrawObject(CollectObjects[0]);
+
+      setTimeout(() => {
+        toggleImage(index + 1, maxToggles, delay, callback);
+      }, delay);
     }
     function DrawObject(object) {
       var playerWidth =
