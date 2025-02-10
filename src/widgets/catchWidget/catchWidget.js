@@ -757,9 +757,11 @@ class CatchGame {
                   `;
                   document.head.appendChild(style);
                 }
+                console.log(this.checkboxChange);
                 boomioService
                   .signal('', 'user_info', {
-                    emails_consent: this.checkboxChange2,
+                    emails_consent:
+                      this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
                     user_email: emailInput?.value,
                     user_name: playerNameInput?.value,
                     game_code: this.game_code,

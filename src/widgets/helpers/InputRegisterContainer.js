@@ -287,7 +287,7 @@ export class InputRegisterContainer {
         ? 'block'
         : 'none'
     } ;left: 34px; top:${
-      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '425px'
+      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '8px' : '9px'
     };color:${
