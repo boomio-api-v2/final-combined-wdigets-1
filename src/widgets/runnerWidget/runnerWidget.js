@@ -1503,10 +1503,17 @@ class runnerWidget {
         for (var i = 0; i < objects.length; i++) {
           hit = player.Collide(objects[i]);
 
-          if (hit) {
+          if (hit && !player.immune) {
+            console.log(player.life);
             if (player.life > 0) {
               player.life = player.life - 1;
-            } else player.dead = true;
+              player.immune = true; // Enable immunity
+              setTimeout(() => {
+                player.immune = false; // Disable immunity after 1 second
+              }, 1000); // 1000 milliseconds = 1 second
+            } else {
+              player.dead = true;
+            }
           }
         }
 
