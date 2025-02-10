@@ -719,7 +719,6 @@ class runnerWidget {
                     coins += 1;
                   }
                   object.kicked = true;
-                  console.log(coins);
                 }
                 if (!object.isBooster && !object.isShield && !object.isCoin) hit = true;
               }
@@ -909,7 +908,8 @@ class runnerWidget {
       player.boostTimer = 0;
       player.boost = false;
       player.dead = false;
-      speed = canvas.clientWidth / 115;
+      player.life = 3;
+      speed = canvas.clientWidth / 200;
       player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
       score = 0;
       leftPressed = false;
@@ -1085,20 +1085,16 @@ class runnerWidget {
 
     function Move() {
       if (rightPressed && player.x + canvas.width / 10 < canvas.width) {
-        //вправо
         player.x += speed;
       } else if (leftPressed && player.x > 0) {
-        //влево
         player.x -= speed;
       }
       if (jumping) {
-        //прыжок
         jumpCount += speed / (canvas.height / 75);
         jumpHeight =
           (canvas.height / 125) * jumpLength * Math.sin((Math.PI * jumpCount) / jumpLength);
       }
       if (jumpCount > jumpLength) {
-        //приземление после прыжка
         jumpCount = 0;
         jumping = false;
         jumpHeight = 0;
@@ -1508,7 +1504,9 @@ class runnerWidget {
           hit = player.Collide(objects[i]);
 
           if (hit) {
-            player.dead = true;
+            if (player.life > 0) {
+              player.life = player.life - 1;
+            } else player.dead = true;
           }
         }
 
@@ -1843,7 +1841,6 @@ class runnerWidget {
       }
     }
     function DrawObject(object) {
-      console.log(object.image);
       var playerWidth =
         (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
       var playerHeight =
