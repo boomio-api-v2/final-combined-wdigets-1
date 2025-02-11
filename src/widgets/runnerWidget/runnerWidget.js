@@ -902,8 +902,6 @@ class runnerWidget {
       coins = 0;
       player.x = 0.2 * canvas.width;
       player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
-      console.log(player.x, player.y);
-
       gameOver = false;
       pause = false;
       player.rise = false;
@@ -1510,8 +1508,7 @@ class runnerWidget {
             if (player.life > 0) {
               player.life = player.life - 1;
               player.shield = true;
-              activeTime = 75;
-              console.log(activeTime);
+              activeTime = shieldLevel * 82;
               CollectSprites[1].image = new Image();
             } else {
               player.dead = true;
@@ -1619,36 +1616,42 @@ class runnerWidget {
       }
 
       if (player.shield) {
+        // Position the shield object relative to the player
         CollectObjects[0].x = player.x;
         CollectObjects[0].y = player.y - jumpHeight;
         player.shieldTimer += 1;
         if (player.boost) {
           score += 0.12;
         }
-        if (player.shieldTimer == activeTime) {
-          setTimeout(() => {
-            CollectObjects[0].x = player.x;
-            CollectObjects[0].y = player.y - jumpHeight;
 
-            console.log('aaaa');
-            CollectObjects[0].image = new Image();
-            DrawObject(CollectObjects[0]);
-            if (player.boost) {
-              clearInterval(playerAnimate);
-              playerAnimate = setInterval(() => {
-                animate(player, runSprites);
-              }, 75);
-              player.boost = false;
-              speed = normalSpeed;
-              player.boostTimer = 0;
-            }
-            toggleImage(0, 30, 50, () => {
-              player.shield = false;
-              player.shieldTimer = 0;
-            });
-          }, 50);
+        if (player.shieldTimer >= activeTime) {
+          // Start blinking only after the active time ends
+          if (!player.blinking) {
+            player.blinking = true; // Start the blinking phase
+
+            setTimeout(() => {
+              toggleImage(0, 30, 50, () => {
+                player.shield = false;
+                player.shieldTimer = 0;
+                player.blinking = false; // Reset blinking state
+              });
+            }, 50);
+          }
         } else {
+          // Ensure the shield image is set before drawing
+          CollectObjects[0].image = CollectSprites[0]; // Assign the shield sprite
           DrawObject(CollectObjects[0]);
+        }
+
+        if (player.boost) {
+          // Reset boost effects after the shield ends
+          clearInterval(playerAnimate);
+          playerAnimate = setInterval(() => {
+            animate(player, runSprites);
+          }, 75);
+          player.boost = false;
+          speed = normalSpeed;
+          player.boostTimer = 0;
         }
       }
     }

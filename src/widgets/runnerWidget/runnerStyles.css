@@ -308,7 +308,7 @@
 	right: 20px;
 	top: 20px;
 }
-.boomio-runner-replayButton, .boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1, .playOnPauseButton {
+.boomio-runner-replayButton, .boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1,.boomio-runner-pauseButton1, .playOnPauseButton {
 	height: 55px;
 	width: 55px;
 	margin: 20px;
@@ -985,7 +985,7 @@ margin-right: 10px;}
     width: 30px;
     height: 25px;
   }
-  .boomio-runner-replayButton,.boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1, .playOnPauseButton {
+  .boomio-runner-replayButton,.boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1,.boomio-runner-pauseButton1, .playOnPauseButton {
     height: 40px;
     width: 40px;
     margin: 10px;
