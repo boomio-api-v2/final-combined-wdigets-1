@@ -3,7 +3,7 @@ import PxLoader from './scripts/PxLoader.js';
 import howlercore from './scripts/howler.core.js';
 import PxLoaderImage from './scripts/PxLoaderImage.js';
 import yandexScripts from './scripts/yandexScripts.js';
-import { localStorageService, widgetHtmlService } from '@/services';
+import { localStorageService, widgetHtmlService, boomioService } from '@/services';
 import {
   tapImageBarbora,
   stopwatch,
@@ -1098,9 +1098,8 @@ ${
                     inpuRegisterContainer.style.display = 'none';
                   }, 1000);
                   setTimeout(() => {
-                    const canvas = document.getElementById('boomio-catch-canvas');
-                    document.getElementById('background_blur').style.opacity =
-                      this.customer === 'Pegasas' ? 0.8 : 0.37;
+                    const canvas = document.getElementById('boomio-runner-canvas');
+
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     const inputContainer = document.querySelector('.input-container');
@@ -1272,9 +1271,7 @@ ${
       mobileDownButton.style.opacity = '1';
     });
 
-    // document
-    //   .querySelector('.boomio-runner-playButton')
-    //   .addEventListener('click', PlayButtonActivate);
+    document.querySelector('.startButtonClick').addEventListener('click', PlayButtonActivate);
     document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-pauseButton').addEventListener('click', PauseToggle);

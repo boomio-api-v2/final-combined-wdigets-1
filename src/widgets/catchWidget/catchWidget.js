@@ -2058,7 +2058,7 @@ class Fruit {
 
     this.fruitSpeed = Math.floor(
       (Math.random() * 2 +
-        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 3 : 1)) *
+        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 2.5 : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),
     );
     console.log('aaa', this.fruitSpeed);
