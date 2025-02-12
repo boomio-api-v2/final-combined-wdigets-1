@@ -572,6 +572,12 @@ class CatchGame {
       this.showCompetitiveRegistration === 'points' ||
       this.showCompetitiveRegistration === 'collectable'
     ) {
+      const isValidEmail = (email) => {
+        // Regular expression for basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      };
+
       const clickEventHandlerShowRules = () => {
         const competitionConfirmFieldBody = document.getElementById(
           'boomio-competition-confirm-field',
@@ -701,6 +707,14 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').innerText = '';
               document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
+            }
+
+            if (!isValidEmail(emailInput?.value)) {
+              document.getElementById('competition-email-error').innerText =
+                'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+
+              return;
             }
             if (
               (playerNameInput?.value === '' || playerNameInput?.value === null) &&
