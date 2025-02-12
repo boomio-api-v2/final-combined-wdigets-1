@@ -1573,6 +1573,7 @@ class Fruit {
       Math.random() * 3 +
         (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 3 : 1),
     );
+
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
@@ -2043,9 +2044,11 @@ class Fruit {
 
     this.fruitSpeed = Math.floor(
       (Math.random() * 2 +
-        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 1.4 : 1)) *
+        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 3 : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),
     );
+    console.log('aaa', this.fruitSpeed);
+
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
     this.chooseFruit();
