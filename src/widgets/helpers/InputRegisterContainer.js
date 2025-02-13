@@ -150,7 +150,13 @@ export class InputRegisterContainer {
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
         } ;left: 34px; top: ${
-      this.prop === 'Akropolis' ? '362px' : this.prop === 'Vilvi' ? '360px' : '395px'
+      this.prop === 'Akropolis'
+        ? this.language === 'LV'
+          ? '375px'
+          : '362px'
+        : this.prop === 'Vilvi'
+        ? '360px'
+        : '395px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
         this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'

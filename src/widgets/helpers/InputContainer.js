@@ -150,7 +150,9 @@ export class InputContainer {
     }; word-wrap: break-word"
 >
   ${
-    this.prop === 'Akropolis'
+    this.prop === 'Akropolis' && this.language === 'LV'
+      ? 'sāņus, lai nenokristu.'
+      : this.prop === 'Akropolis'
       ? ',,Caif Cafe“ <span style="color: #F40000;">kavos puodelius</span>.'
       : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'flappy'
       ? 'to fly'
