@@ -39,6 +39,10 @@ class runnerWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
+    this.checkboxChange = false;
+    this.checkboxChange2 = false;
+    this.checkboxChange3 = false;
+    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
     this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
@@ -1418,6 +1422,12 @@ ${
       mobileDownButton.style.opacity = '1';
     });
 
+    const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
+    checkboxImg.addEventListener('click', () => {
+      this.checkboxChange = !this.checkboxChange;
+      const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+      checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+    });
     document.getElementById('startButtonClick').addEventListener('click', PlayButtonActivate);
     document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);
