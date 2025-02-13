@@ -1176,7 +1176,8 @@ ${
           competitionTableContainer.style.display = 'block';
           setTimeout(() => {
             competitionTableContainer.style.height = '680px';
-            competitionTableContainer.style.top = '10%';
+            competitionTableContainer.style.top =
+              window.innerWidth > 920 ? 'calc(50% + 74px)' : '10%';
             competitionTableContainer.style.opacity = 1;
           }, 100);
         } else {
