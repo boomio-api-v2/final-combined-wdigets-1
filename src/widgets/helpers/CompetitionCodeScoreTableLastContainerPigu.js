@@ -268,7 +268,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
     background: url(${
-      true
+      this.currentScore > 1000
         ? this.language === 'ET' &&
           ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
           ? SuccessmessagebannersPossitiveEE
@@ -328,7 +328,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
   
 >
 ${
-  this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+  this.language === 'FI' &&
+  this.campaignUrlProp === 'https://hobbyhall.fi' &&
+  this.currentScore > 1000
     ? `
         <div style="margin-top:215px;">
           <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;margin-top:20px; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
