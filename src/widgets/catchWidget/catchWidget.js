@@ -607,6 +607,7 @@ class CatchGame {
                 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').zIndex = 0;
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
               document.getElementById('competition-checkbox-error2').innerText = '';
@@ -632,6 +633,7 @@ class CatchGame {
                 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').zIndex = 0;
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
@@ -657,6 +659,7 @@ class CatchGame {
                 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').zIndex = 0;
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
@@ -672,6 +675,8 @@ class CatchGame {
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').zIndex = 1;
+              document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
 
@@ -696,6 +701,7 @@ class CatchGame {
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
               document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').zIndex = 0;
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
@@ -712,6 +718,7 @@ class CatchGame {
             if (!isValidEmail(emailInput?.value)) {
               document.getElementById('competition-email-error').innerText =
                 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+              document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
               return;
@@ -729,6 +736,7 @@ class CatchGame {
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
             } else {
               if (
@@ -819,6 +827,7 @@ class CatchGame {
                           '#FFBABA';
 
                         document.getElementById('competition-email-error').innerText = '';
+                        document.getElementById('competition-email-error').zIndex = 0;
                         document.getElementById('competition-email-error').style.backgroundColor =
                           'transparent';
                       }
