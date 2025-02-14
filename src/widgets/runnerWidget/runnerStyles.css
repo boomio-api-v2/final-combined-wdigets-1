@@ -820,14 +820,17 @@ margin-right: 10px;}
 	}
 }
 @media (max-width: 920px){
+  @media screen and (orientation: landscape) {
   .input-register-container{
     scale: 0.8;
     left:calc(50% - 40px)
       }
+
       .competition-table-container{
         left:calc(50% - 80px);
         scale: 0.56;
       }
+    }
 	.boomio-screenRatio{
 		width: 100%;
 		height: 100%;

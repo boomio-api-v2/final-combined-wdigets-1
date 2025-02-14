@@ -268,7 +268,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
     background: url(${
-      this.currentScore > 1000
+      true
         ? this.language === 'ET' &&
           ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
           ? SuccessmessagebannersPossitiveEE
@@ -326,7 +326,30 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     display: ${this.prop === 'Pigu.lt' ? 'block' : 'none'};
   "
   
-></div>
+>
+${
+  this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+    ? `
+        <div style="margin-top:215px;">
+          <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;margin-top:20px; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
+     Ilmainen toimitus koodilla PostNordin noutopisteeseen <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong>
+</div>
+</div>
+        <div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:     ${'linear-gradient(90deg, rgba(254, 227, 233, 0.60) 0%, rgba(255, 214.63, 231.75, 0.60) 22%, rgba(243, 219, 240, 0.60) 42%, rgba(234, 223, 247, 0.60) 62%, rgba(234, 223, 247, 0.60) 82%, rgba(238.45, 215.69, 255, 0.60) 100%)'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:250px;margin-top:10px;">
+<div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
+ ${this.userDiscountCode ?? 'CODE'}
+    </div>
+    <svg width="22" height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn" style="cursor:pointer">
+    <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
+    </svg>
+</div> 
+    <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;margin-top:10px; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
+     Voimassa vain keskiyöhön asti!</div>
+</div></div>`
+    : ' '
+}
+</div>
+
 
 
       </div> 
@@ -334,6 +357,79 @@ export class CompetitionCodeScoreTableLastContainerPigu {
       `;
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
+
+    const observer = new MutationObserver((mutationsList, observer) => {
+      // Check if the 'rules-table-container-pigu' and 'control-button' have been added to the DOM
+      const rulesTableContainer = document.getElementById('rules-table-container-pigu');
+      const closeBtn = document.getElementById('boomio-game-play-again');
+
+      if (rulesTableContainer && closeBtn) {
+        // Element found, add event listener to 'control-button'
+        closeBtn.addEventListener('click', () => {
+          rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          setTimeout(() => {
+            rulesTableContainer.style.height = '10px';
+            rulesTableContainer.style.top = 'calc(50% + 330px)';
+            rulesTableContainer.style.opacity = 0;
+          }, 100);
+          setTimeout(() => {
+            rulesTableContainer.style.display = 'none';
+          }, 1000);
+        });
+
+        // Stop observing once the elements are found and event listener is added
+        observer.disconnect();
+      }
+    });
+
+    // Start observing the DOM for changes in child elements
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    function showCompetitionTableContainer() {
+      const rulesTableContainer = document.querySelector('.rules-table-container-pigu');
+      rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      rulesTableContainer.style.display = 'block';
+      setTimeout(() => {
+        rulesTableContainer.style.height = '150px';
+        rulesTableContainer.style.top = 'calc(50% + 30px)';
+        rulesTableContainer.style.opacity = 1;
+      }, 100);
+    }
+    if (this.prop === 'Pigu.lt') {
+      const observer = new MutationObserver((mutationsList, observer) => {
+        // Check if the element has been added to the DOM
+        const startRulesButton = document.getElementById('startCodeRulesButtonClick');
+        if (startRulesButton) {
+          // Element found, add event listener
+          startRulesButton.addEventListener('click', showCompetitionTableContainer);
+          // Stop observing once the element is found
+          observer.disconnect();
+        }
+      });
+
+      // Start observing the DOM for changes
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    if (document.getElementById('boomio-copy-modal-btn')) {
+      document.getElementById('boomio-copy-modal-btn').onclick = () => {
+        const textToCopy = this.userDiscountCode;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        const copyButton = document.getElementById('p_code_text2');
+        copyButton.textContent = 'Copied';
+
+        setTimeout(() => {
+          copyButton.textContent = this.userDiscountCode;
+        }, 2000);
+      };
+    }
   }
 
   render() {
