@@ -1022,9 +1022,7 @@ ${
                         : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                     document.getElementById('competition-email-error').style.backgroundColor =
                       '#FFBABA';
-
                     document.getElementById('competition-name-error').innerText = '';
-
                     document.getElementById('competition-name-error').style.backgroundColor =
                       'transparent';
                   } else if (response.res_code === 'NICKNAME_EXIST') {

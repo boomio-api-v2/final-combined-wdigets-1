@@ -357,7 +357,7 @@ export class InputRegisterContainer {
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;
-      " id="competition-email-error"></div>
+      " id="competition-email-error"> </div>
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${

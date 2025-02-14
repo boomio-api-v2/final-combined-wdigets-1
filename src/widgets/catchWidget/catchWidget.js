@@ -793,7 +793,7 @@ class CatchGame {
                             : this.language === 'LV'
                             ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                             : this.language === 'RU'
-                            ? 'Этот е-мейл адрес уже существует. Используйте другой.'
+                            ? 'Этот e-мейл адрес уже существует. Используйте другой.'
                             : this.language === 'EE'
                             ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
