@@ -2374,7 +2374,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
         0,
         customer === 'Barbora' ? 340 : 330,
         426,
-        customer === 'Barbora' ? 7 : 6,
+        customer === 'Barbora' ? 7 : 8,
       );
     }
     const whOffset = xCenter - xOffset;
