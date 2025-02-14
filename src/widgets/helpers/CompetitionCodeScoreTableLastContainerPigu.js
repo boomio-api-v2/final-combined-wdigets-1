@@ -266,6 +266,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     position: absolute;
     top: 80px; /* Restore vertical position */
     left: 50%;
+    border-radius:45px;
     transform: translateX(-50%); /* Center horizontally */
     background: url(${
       this.currentScore > 1000
