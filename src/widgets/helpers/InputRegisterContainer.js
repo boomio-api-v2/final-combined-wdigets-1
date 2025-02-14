@@ -359,17 +359,6 @@ export class InputRegisterContainer {
       padding:1px 8px 1px 8px;
       " id="competition-email-error"></div>
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top:350px ; position: absolute;text-align:start;z-index:99999;display:${
-        this.prop === 'SaludSA' ? 'block' : 'none'
-      };color: ${this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'};
-      font-family: Montserrat;
-      font-size: 10px;
-      font-style: normal;
-      font-weight: 700;
-      letter-spacing: -0.42px;
-      border-radius:4px;
-      padding:1px 8px 1px 8px;
-      " id="competition-phone-error"></div>
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
         this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '207px' : '287px'

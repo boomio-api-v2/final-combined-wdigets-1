@@ -1383,9 +1383,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-email-error').innerText = '';
                 document.getElementById('competition-email-error').style.backgroundColor =
                   'transparent';
-                document.getElementById('competition-phone-error').innerText = '';
-                document.getElementById('competition-phone-error').style.backgroundColor =
-                  'transparent';
               }
 
               if (emailInput?.value === '' || emailInput?.value === null) {
@@ -1403,9 +1400,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   'transparent';
                 document.getElementById('competition-checkbox-error').innerText = '';
                 document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  'transparent';
-                document.getElementById('competition-phone-error').innerText = '';
-                document.getElementById('competition-phone-error').style.backgroundColor =
                   'transparent';
               }
               if (
@@ -1426,9 +1420,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   'transparent';
                 document.getElementById('competition-checkbox-error').innerText = '';
                 document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  'transparent';
-                document.getElementById('competition-phone-error').innerText = '';
-                document.getElementById('competition-phone-error').style.backgroundColor =
                   'transparent';
               }
             }
