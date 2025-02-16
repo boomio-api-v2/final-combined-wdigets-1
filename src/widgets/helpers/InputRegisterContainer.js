@@ -150,7 +150,13 @@ export class InputRegisterContainer {
         <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${
           this.prop === 'Fpro' ? 'auto' : 'pointer'
         } ;left: 34px; top: ${
-      this.prop === 'Akropolis' ? '362px' : this.prop === 'Vilvi' ? '360px' : '395px'
+      this.prop === 'Akropolis'
+        ? this.language === 'LV'
+          ? '375px'
+          : '362px'
+        : this.prop === 'Vilvi'
+        ? '360px'
+        : '395px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
         this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'
@@ -287,7 +293,7 @@ export class InputRegisterContainer {
         ? 'block'
         : 'none'
     } ;left: 34px; top:${
-      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '425px'
+      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '8px' : '9px'
     };color:${
@@ -351,19 +357,8 @@ export class InputRegisterContainer {
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;
-      " id="competition-email-error"></div>
+      " id="competition-email-error"> </div>
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top:350px ; position: absolute;text-align:start;z-index:99999;display:${
-        this.prop === 'SaludSA' ? 'block' : 'none'
-      };color: ${this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'};
-      font-family: Montserrat;
-      font-size: 10px;
-      font-style: normal;
-      font-weight: 700;
-      letter-spacing: -0.42px;
-      border-radius:4px;
-      padding:1px 8px 1px 8px;
-      " id="competition-phone-error"></div>
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
         this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '207px' : '287px'

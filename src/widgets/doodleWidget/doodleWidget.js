@@ -72,12 +72,12 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
 
-    this.language = this.config.language ? this.config.language : 'LT';
+    this.language = this.config.language ? this.config.language : 'LV';
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
@@ -1813,6 +1813,10 @@ class Platform {
     } else if (this.currentScore >= 100 && this.currentScore < 500) {
       this.width = 100;
     }
+    this.config = localStorageService.getDefaultConfig();
+
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.language = this.config.language ? this.config.language : 'LV';
 
     this.height = 20;
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
@@ -1836,10 +1840,12 @@ class Platform {
     this.reset();
   }
   draw() {
+    console.log(this.customer === 'Akropolis', this.language === 'LV');
     try {
       if (this.type == 1) this.cy = 0;
       else if (this.type == 2) this.cy = 61;
-      else if (this.type == 3 && this.flag === 0) this.cy = 39;
+      else if (this.type == 3 && this.flag === 0)
+        this.cy = this.customer === 'Akropolis' && this.language === 'LV' ? 26 : 39;
       else if (this.type == 3 && this.flag == 1) this.cy = 1000;
       else if (this.type == 4 && this.state === 0) this.cy = 90;
       else if (this.type == 4 && this.state == 1) this.cy = 1000;
@@ -1957,9 +1963,9 @@ class Spring {
     this.vx = 1;
     this.cx = 5; // Horizontal position in the sprite sheet
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
 
-    this.possibleValues = this.customer === 'Vilvi' ? [625, 765, 855] : [625]; // Define the possible vertical positions (cy values)
+    this.possibleValues = this.customer === 'Vilvi' ? [625, 765, 855] : [615]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
@@ -2028,7 +2034,7 @@ class Base {
 class Player {
   constructor(image) {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Vilvi';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
 
     this.image = image;
     this.vy = 11;

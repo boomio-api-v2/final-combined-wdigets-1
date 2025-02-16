@@ -443,32 +443,34 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://hobbyhall.fi' && this.language === 'FI'
         ? `<div>
     <p><strong>Pelisäännöt</strong></p>
-    <p>Päivitetty 3.2.2025</p>
+    <p>Päivitetty 17.2.2025</p>
 
     <p><strong>YLEISET MÄÄRÄYKSET</strong></p>
     <ol>
         <li>Nämä pelisäännöt (jäljempänä "pelisäännöt") määrittelevät Hobby Hall Suomi Oy (jäljempänä "kampanjan järjestäjä") järjestämän pelin järjestämismenettelyjä, pelin palkintoja ja niiden toimitusta, riitojen ratkaisua ja muita menettelyjä.</li>
-        <li>Pelijakso: 3.2. - 9.3.2025 (kuuluu mukaan).</li>
+        <li>Pelijakso: 3.2. - 9.3.2025</li>
         <li>Pelin osallistujan on oltava rekisteröitynyt Hobbyhall.fi-verkkokauppaan ja hänen on oltava hyväksynyt pelin tietojen ja palkintotietojen vastaanotto.</li>
         <li>Peliä pelataan Hobbyhall.fi-mobiilisovelluksessa. Pelin aikana pelaaja hallitsee pelin hahmoa, jonka tavoitteena on välttää esteisiin osumista ajaessaan. Tuloksen parantamiseksi pelaaja voi pelata pelin uudelleen.</li>
     </ol>
 
     <p><strong>PELIN PALKINNOT JA NIIDEN TOIMITUSMENETTELY</strong></p>
     <ol start="5">
-        <li>Joka viikko, kymmenen satunnaisesti valittua, 1000 pistettä tai yli saanutta pelaajaa voittaa 20€:n lahjakortin.</li>
-        <li>Osallistuja voi saada pelipalkinnon vain kerran 28 päivän aikana. Aikaraja lasketaan siitä, kun pelin voittajat on julkistettu ehtojen kohdassa 6.1. määritellyn mukaisesti. Jos pelaaja, joka on jo saanut pelipalkinnon viimeisten 28 päivän aikana, on kymmenen valitun voittajan joukossa, hänen pelipalkintonsa siirretään toiselle satunnaisesti valitulle pelaajalle.</li>
+        <li>Joka viikko, kymmenen satunnaisesti valittua, 1000 pistettä tai yli saanutta pelaajaa voittaa 20€:n lahjakortin. Joka viikko, sata satunnaisesti valittua, 1000 pistettä tai yli saanutta pelaajaa voittaa ilmaisen toimituksen koodin, jolla saa ilmaisen toimituksen Hobbyhall.fi-verkkokaupan tilaukselle PostNordin automaattiin.</li>
         <li>Pelipalkinnosta ja sen toimittamisesta tiedottaminen:
             <ol>
-                <li>Pelisääntöjen kohdassa 5.1 määritellystä pelipalkinnosta ilmoitetaan pelin osallistujalle hänen ilmoittamaansa sähköpostiosoitteeseen. Tiedot edellisen viikon pelin voittamisesta lähetetään maanantaisin seuraavina päivinä: 3.2.2025, 10.2.2025, 17.2.2025, 24.2.2025, 3.3.2025, 10.3.2025.</li>
+                <li>Pelisääntöjen kohdassa 5 määritellystä pelipalkinnosta, 20 € arvoisesta lahjakortista, ilmoitetaan pelin osallistujalle hänen ilmoittamaansa sähköpostiosoitteeseen. Tiedot edellisen viikon pelin voittamisesta lähetetään maanantaisin seuraavina päivinä: 3.2.2025, 10.2.2025, 17.2.2025, 24.2.2025, 3.3.2025, 10.3.2025.</li>
+                <li>Pelisääntöjen kohdassa 5 määritellystä pelipalkinnosta, ilmaisen toimituksen koodista, ilmoitetaan pelin osallistujalle välittömästi pelin päättymisen jälkeen tulosikkuna kentässä.</li>
             </ol>
         </li>
         <li>Pelissä voitettujen lahjakorttien käyttöehdot:
             <ul>
-                <li>Lahjakortti on voimassa yhden viikon sen lähettämispäivästä;</li>
-                <li>Lahjakorttia ei voi palauttaa eikä vaihtaa rahaksi;</li>
-                <li>Jos tilauksen, joka maksetaan lahjakorttia käyttämällä, summa ylittää lahjakortin arvon, puuttuvan summan voi maksaa valitsemalla jonkin muun Hobbyhall.fi-verkkokaupan tarjoamista maksutavoista;</li>
-                <li>Lahjakorttikoodia voi käyttää vain yhteen tilaukseen. Jos tilauksen, joka maksetaan lahjakorttia käyttämällä, summa on pienempi kuin lahjakortin arvo, erotusta ei palauteta;</li>
-                <li>Lahjakorttia eivät voi käyttää arvonlisäverovelvolliset (luonnolliset henkilöt ja oikeushenkilöt, lukuun ottamatta julkisia organisaatioita ja laitoksia), kun maksetaan tuotteita, joihin sovelletaan käännettyä arvonlisäverovelvollisuutta;</li>
+                <li>Lahjakorttikoodi on voimassa yhden viikon sen lähettämispäivästä.</li>
+                <li>Ilmaisen toimituksen koodi on voimassa klo 23.59 asti sinä päivänä, jona se on voitettu pelistä.</li>
+                <li>Lahjakorttia tai ilmaisen toimituksen koodia ei voi palauttaa eikä vaihtaa rahaksi.</li>
+                <li>Jos tilauksen, joka maksetaan lahjakorttia käyttämällä, summa ylittää lahjakortin arvon, puuttuvan summan voi maksaa valitsemalla jonkin muun Hobbyhall.fi-verkkokaupan tarjoamista maksutavoista.</li>
+                <li>Lahjakorttikoodia tai ilmaisen toimituksen koodia voi käyttää vain yhteen tilaukseen. Jos tilauksen, joka maksetaan lahjakorttia käyttämällä, summa on pienempi kuin lahjakortin arvo, erotusta ei palauteta.</li>
+                <li>Lahjakorttia tai ilmaisen toimituksen koodia eivät voi käyttää arvonlisäverovelvolliset (luonnolliset henkilöt ja oikeushenkilöt, lukuun ottamatta julkisia organisaatioita ja laitoksia), kun maksetaan tuotteita, joihin sovelletaan käännettyä arvonlisäverovelvollisuutta.</li>
+                <li>Ilmaisen toimituksen koodia voi käyttää vain tilauksiin, jotka voidaan toimittaa PostNordin automaatteihin. Käytettävissä olevat toimitustavat voi tarkistaa tuotteen tuotekortilta tai tilausta tehtäessä.</li>
             </ul>
         </li>
     </ol>
@@ -490,6 +492,7 @@ export class RulesContainer {
 
     <p>Peliin liittyvien henkilötietojen käsittelyyn sovelletaan tietosuojakäytännön määräyksiä, jotka löytyvät osoitteesta <a href="https://hobbyhall.fi/fi/t/privacy-policy">https://hobbyhall.fi/fi/t/privacy-policy</a>.</p>
 </div>
+
 
 `
         : (this.campaignUrlProp === 'https://kaup.ee' ||

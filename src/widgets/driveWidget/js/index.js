@@ -95,9 +95,18 @@ import {
   wh1ImageDataPigu,
   wh2ImageDataPigu,
   wh3ImageDataPigu,
+  city1ImageDataPiguFI,
+  city2ImageDataPiguFI,
+  city3ImageDataPiguFI,
+  wh1ImageDataPiguFI,
+  wh2ImageDataPiguFI,
+  wh3ImageDataPiguFI,
   background1Pigu,
   linePigu,
+  linePiguFI,
   life,
+  background1PiguFI,
+  PigubackgroundFI,
 } from './constants';
 
 function startGame(scoreTableContainerInstance, didYouKnowContainer) {
@@ -394,11 +403,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
             img.src = Pigutree;
             return img;
           })(),
-          (() => {
-            const img = new Image();
-            img.src = Pigutree2;
-            return img;
-          })(),
         ]
       : [
           (() => {
@@ -422,6 +426,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? wh1ImageDataIkea
       : customer === 'Unisend'
       ? wh1ImageDataUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? wh1ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh1ImageDataPigu
       : wh1ImageData;
@@ -432,6 +438,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? wh2ImageDataIkea
       : customer === 'Unisend'
       ? wh2ImageDataUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? wh2ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh2ImageDataPigu
       : wh2ImageData;
@@ -442,6 +450,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? wh3ImageDataIkea
       : customer === 'Unisend'
       ? wh3ImageDataUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? wh3ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh3ImageDataPigu
       : wh3ImageData;
@@ -452,6 +462,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? lineIkea
       : customer === 'Unisend'
       ? lineUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? linePiguFI
       : customer === 'Pigu.lt'
       ? linePigu
       : line;
@@ -463,6 +475,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? backgroundIkea
       : customer === 'Unisend'
       ? backgroundUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? PigubackgroundFI
       : customer === 'Pigu.lt'
       ? Pigubackground
       : background;
@@ -473,6 +487,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? backgroundIkea
       : customer === 'Unisend'
       ? backgroundUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? PigubackgroundFI
       : customer === 'Pigu.lt'
       ? Pigubackground
       : background;
@@ -487,6 +503,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? city1ImageDataIkea
       : customer === 'Unisend'
       ? city1ImageDataUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? city1ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city1ImageDataPigu
       : city1ImageData;
@@ -497,6 +515,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? city2ImageDataIkea
       : customer === 'Unisend'
       ? city2ImageDataUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? city2ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city2ImageDataPigu
       : city2ImageData;
@@ -507,6 +527,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       ? city3ImageDataIkea
       : customer === 'Unisend'
       ? city3ImageDataUnisend
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? city3ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city3ImageDataPigu
       : city3ImageData;
@@ -548,9 +570,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       : customer === 'Unisend'
       ? '#959595'
       : customer === 'Pigu.lt'
-      ? '#B28583'
+      ? '#A2B0B4'
       : '#F9F1DD';
-  //'#A2B0B4'
+
   const road2 =
     customer === 'Barbora'
       ? 'white'
@@ -559,9 +581,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
       : customer === 'Unisend'
       ? 'white'
       : customer === 'Pigu.lt'
-      ? '#D3A3A3'
+      ? '#FFFAE6'
       : 'black';
-  // '#FFFAE6'
+
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
 
@@ -1695,14 +1717,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
         ? customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
           : customer === 'Pigu.lt'
-          ? '#FFCACA'
-          : customer === 'Pigu.lt'
           ? '#9ECEFF'
           : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
         ? '#489B2D'
-        : customer === 'Pigu.lt'
-        ? '#FFB0AE'
         : customer === 'Pigu.lt'
         ? '#c8e1ff'
         : customer === 'Barbora'
@@ -2233,7 +2251,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
     } else if (customer === 'Pigu.lt') {
       const backgroundImage = new Image();
 
-      backgroundImage.src = background1Pigu;
+      backgroundImage.src =
+        campaignUrlProp === 'https://hobbyhall.fi' ? background1PiguFI : background1Pigu;
 
       backgroundImage.onload = () => {
         ctx.drawImage(backgroundImage, 0, 0, width, height);
@@ -2355,7 +2374,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
         0,
         customer === 'Barbora' ? 340 : 330,
         426,
-        customer === 'Barbora' ? 7 : 6,
+        customer === 'Barbora' ? 7 : 8,
       );
     }
     const whOffset = xCenter - xOffset;

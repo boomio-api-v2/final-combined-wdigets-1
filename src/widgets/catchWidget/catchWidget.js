@@ -398,7 +398,7 @@ class CatchGame {
       <img src=${controllRight} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
            : ''
        }
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+    <div class="boomio-score-input-container-catch" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
       this.customer.includes('Gamtos Ateitis')
         ? this.customer.includes('Glass')
           ? '#18904A'
@@ -572,6 +572,12 @@ class CatchGame {
       this.showCompetitiveRegistration === 'points' ||
       this.showCompetitiveRegistration === 'collectable'
     ) {
+      const isValidEmail = (email) => {
+        // Regular expression for basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      };
+
       const clickEventHandlerShowRules = () => {
         const competitionConfirmFieldBody = document.getElementById(
           'boomio-competition-confirm-field',
@@ -601,6 +607,7 @@ class CatchGame {
                 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').zIndex = 0;
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
               document.getElementById('competition-checkbox-error2').innerText = '';
@@ -626,6 +633,7 @@ class CatchGame {
                 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').zIndex = 0;
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
@@ -651,6 +659,7 @@ class CatchGame {
                 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').zIndex = 0;
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
@@ -666,6 +675,8 @@ class CatchGame {
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').zIndex = 1;
+              document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
 
@@ -690,6 +701,7 @@ class CatchGame {
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
               document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').zIndex = 0;
               document.getElementById('competition-email-error').style.backgroundColor =
                 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
@@ -701,6 +713,15 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').innerText = '';
               document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
+            }
+
+            if (!isValidEmail(emailInput?.value)) {
+              document.getElementById('competition-email-error').innerText =
+                'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+              document.getElementById('competition-email-error').zIndex = 1;
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+
+              return;
             }
             if (
               (playerNameInput?.value === '' || playerNameInput?.value === null) &&
@@ -715,6 +736,7 @@ class CatchGame {
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
             } else {
               if (
@@ -757,9 +779,11 @@ class CatchGame {
                   `;
                   document.head.appendChild(style);
                 }
+                console.log(this.checkboxChange);
                 boomioService
                   .signal('', 'user_info', {
-                    emails_consent: this.checkboxChange2,
+                    emails_consent:
+                      this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
                     user_email: emailInput?.value,
                     user_name: playerNameInput?.value,
                     game_code: this.game_code,
@@ -777,7 +801,7 @@ class CatchGame {
                             : this.language === 'LV'
                             ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                             : this.language === 'RU'
-                            ? 'Этот е-мейл адрес уже существует. Используйте другой.'
+                            ? 'Этот e-мейл адрес уже существует. Используйте другой.'
                             : this.language === 'EE'
                             ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
@@ -803,6 +827,7 @@ class CatchGame {
                           '#FFBABA';
 
                         document.getElementById('competition-email-error').innerText = '';
+                        document.getElementById('competition-email-error').zIndex = 0;
                         document.getElementById('competition-email-error').style.backgroundColor =
                           'transparent';
                       }
@@ -1109,14 +1134,20 @@ class CatchGame {
   }
 
   setLife() {
-    const currectScoreDiv = document.getElementsByClassName('boomio-life-input-container')[0];
-    currectScoreDiv.style.transition = 'opacity 0.8s ease';
+    const currectLifeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
+    const currectScoreDiv = document.getElementsByClassName(
+      'boomio-score-input-container-catch',
+    )[0];
     currectScoreDiv.style.display = 'block';
+    document.getElementById('currentScore').innerHTML = `0`;
+
+    currectLifeDiv.style.transition = 'opacity 0.8s ease';
+    currectLifeDiv.style.display = 'block';
     document.getElementById('currentLife').innerHTML =
       this.customer === 'Eurovaistine'
         ? `${this.defaultscore}/${this.defaultscore}`
         : `${this.defaultscore}/${this.defaultscore}`;
-    currectScoreDiv.style.opacity = 1;
+    currectLifeDiv.style.opacity = 1;
   }
 
   createPlayer() {
@@ -1385,7 +1416,7 @@ class CatchGame {
             }, 100);
 
             const currectScoreDiv = document.getElementsByClassName(
-              'boomio-score-input-container',
+              'boomio-score-input-container-catch',
             )[0];
             const currectTimeDiv = document.getElementsByClassName(
               'boomio-life-input-container',
@@ -1394,9 +1425,9 @@ class CatchGame {
 
             currectScoreDiv.style.opacity = 0;
             setTimeout(() => {
-              currectTimeDiv.style.display = 'none';
+              currectTimeDiv.style.display = 'block';
 
-              currectScoreDiv.style.display = 'none';
+              currectScoreDiv.style.display = 'block';
             }, 300);
           },
           this.newHighScoreReached ? 2500 : 100,
@@ -1406,11 +1437,13 @@ class CatchGame {
   }
 
   resetGame() {
-    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+    const currectScoreDiv = document.getElementsByClassName(
+      'boomio-score-input-container-catch',
+    )[0];
     this.hideScore();
-    currectScoreDiv.style.opacity = 0;
+    currectScoreDiv.style.opacity = 1;
     setTimeout(() => {
-      currectScoreDiv.style.display = 'none';
+      currectScoreDiv.style.display = 'block';
     }, 300);
 
     if (this.timer) {
@@ -1561,8 +1594,9 @@ class Fruit {
     this.fruitImage = new Image();
     this.fruitSpeed = Math.floor(
       Math.random() * 3 +
-        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 2 : 1),
+        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 3 : 1),
     );
+
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
 
@@ -1875,14 +1909,13 @@ class Fruit {
   }
 
   checkIfCaught() {
-    if (this.y >= this.player.y) {
+    if (this.y >= this.player.y - 40 && this.y <= this.player.y - 30) {
       if (
         (this.x > this.player.x && this.x < this.player.x + this.player.playerWidth) ||
         (this.x + this.fruitWidth > this.player.x &&
           this.x + this.fruitWidth < this.player.x + this.player.playerWidth)
       ) {
         this.player.fruitsCollected++;
-
         this.updateScore();
         this.changeState();
       }
@@ -2005,7 +2038,9 @@ class Fruit {
     }
 
     if (this.game.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      const currectScoreDiv = document.getElementsByClassName(
+        'boomio-score-input-container-catch',
+      )[0];
       currectScoreDiv.style.transition = 'opacity 0.8s ease';
       currectScoreDiv.style.display = 'block';
       currectScoreDiv.style.opacity = 1;
@@ -2032,9 +2067,11 @@ class Fruit {
 
     this.fruitSpeed = Math.floor(
       (Math.random() * 2 +
-        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 1.3 : 1)) *
+        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 2.5 : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),
     );
+    console.log('aaa', this.fruitSpeed);
+
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
     this.chooseFruit();

@@ -184,6 +184,7 @@
 	box-sizing: border-box;
   	transform: translate(-50%, -50%);
 	transition: 1s;
+  z-index: 5;
 }
 .boomio-runner-controlButton{
 	
@@ -308,7 +309,7 @@
 	right: 20px;
 	top: 20px;
 }
-.boomio-runner-replayButton, .boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1, .playOnPauseButton {
+.boomio-runner-replayButton, .boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1,.boomio-runner-pauseButton1, .playOnPauseButton {
 	height: 55px;
 	width: 55px;
 	margin: 20px;
@@ -785,8 +786,8 @@ margin-right: 10px;}
 }
 
 .boomio-hide {
-	display: none;
-  opacity: 0;
+	display: none !important;
+  opacity: 0 !important;
 }
 @media screen and (orientation: portrait) {
 	#turnLandscape{
@@ -809,6 +810,8 @@ margin-right: 10px;}
 }
   
 @media screen and (orientation: landscape) {
+
+
 	#turnLandscape{
 		display: none;
 	}
@@ -817,6 +820,17 @@ margin-right: 10px;}
 	}
 }
 @media (max-width: 920px){
+  @media screen and (orientation: landscape) {
+  .input-register-container{
+    scale: 0.8;
+    left:calc(50% - 40px)
+      }
+
+      .competition-table-container{
+        left:calc(50% - 80px);
+        scale: 0.56;
+      }
+    }
 	.boomio-screenRatio{
 		width: 100%;
 		height: 100%;
@@ -848,7 +862,7 @@ margin-right: 10px;}
   }
   .boomio-runner-coins{
     font-size: 40px;
-    top: 35px;
+    top: 45px;
 
   }
   .boomio-btn{
@@ -985,7 +999,7 @@ margin-right: 10px;}
     width: 30px;
     height: 25px;
   }
-  .boomio-runner-replayButton,.boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1, .playOnPauseButton {
+  .boomio-runner-replayButton,.boomio-runner-replayButton1, .boomio-runner-homeButton,.boomio-runner-homeButton1,.boomio-runner-pauseButton1, .playOnPauseButton {
     height: 40px;
     width: 40px;
     margin: 10px;
@@ -997,6 +1011,43 @@ margin-right: 10px;}
     position: absolute;
     bottom: 0px;}
   .boomio-hide {
-    display: none;
+    display: none !important;
   }
+}
+
+.boomio-runner-life-input-container{
+  transition :opacity 0.8s ease;
+  opacity:1;
+  z-index: 3;
+position: absolute;
+top : 15px;
+right :80px;
+display:flex;
+flex-direction: column;
+}
+
+
+
+
+@keyframes shake-life {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05) translate(-50%, -50%);
+  }
+  50% {
+    transform: scale(0.95) translate(-50%, -50%);
+  }
+  75% {
+    transform: scale(1.05) translate(-50%, -50%);
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+.boomio-runner-life-input-container.shake-life {
+  z-index: 3;
+  animation: shake 0.5s ease-in-out;
 }

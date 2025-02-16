@@ -159,7 +159,7 @@ class driveWidget {
         }</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
       this.customer === 'Barbora'
         ? '#CC0001'
         : this.customer === 'Ikea'
@@ -175,7 +175,7 @@ class driveWidget {
 
   <div style="text-align: center; color: white; font-size: 20px; font-family:${
     this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
-  }; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentScore"></div>
+  }; font-weight: 900; word-wrap: break-word;position:absolute;left:25px;top:17px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
 </div>
 
@@ -192,7 +192,7 @@ ${
 <div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife"></div>
 </div>
 </div>`
-    : `<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
+    : `<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
         this.customer === 'Barbora'
           ? '#CC0001'
           : this.customer === 'Ikea'

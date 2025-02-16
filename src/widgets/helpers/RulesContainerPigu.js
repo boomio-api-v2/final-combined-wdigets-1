@@ -45,7 +45,7 @@ export class RulesContainerPigu {
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
         ? `*Скидочный код 25TRECIADIENIS0125 в силе до 24.00, 22.01.2025 для зарегистрированных пользователей при покупке особо отмеченных товаров продавца Pigu.lt в мобильном приложении. Скидочный код не действует при покупке подарочных карт и вместе с Pigu-Евро. Для одной покупки можно использовать только один скидочный код.`
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? `*Alekoodi 01KESKIVIIKKO25 on voimassa 22.1.2025 klo 23.59 asti sovelluksessa, rekisteröityneille asiakkaille valikoiduista myyjän Hobbyhall.fi-tuotteista. Ei voi yhdistää muihin alekoodeihin, lahjakortteihin tai Hobby Hall rahaan. Kampanjan tuotteita rajoitettu määrä. Koodi, jolla saa alennuksen näkyy tuotteen tuotekortilla.`
+        ? `*Koodi on voimassa klo 23.59 asti sinä päivänä, jona se on voitettu pelistä. Koodilla saa ilmaisen toimituksen PostNordin automaattiin Hobbyhall.fi-verkkokaupasta tehtyyn tilaukseen. Käytettävissä olevat toimitustavat voi tarkistaa tuotteen tuotekortilta. Ei voi yhdistää muihin alekoodeihin tai Hobby Hall rahaan.`
         : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
         ? `*Atlaižu kods 25TRESDIENA0125 ir spēkā 22.01.2025. līdz plkst. 23:59 reģistrētiem lietotājiem, kuri iegādāsies īpaši marķētas pārdevēja 220.lv preces mobilajā lietotnē. Atlaižu kods nav derīgs, iegādājoties dāvanu kartes un kopā ar 220.lv naudu. Vienam pirkumam var izmantot tikai vienu atlaižu kodu.`
         : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
@@ -53,7 +53,7 @@ export class RulesContainerPigu {
         : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
         ? `*Nuolaidos kodas 25TRECIADIENIS0125 galioja iki 2025 01 22 iki 24 val. registruotiems vartotojams, perkantiems spec. ženklu pažymėtas pardavėjo Pigu.lt prekes mobiliojoje programėlėje. Nuolaidos kodai negalioja dovanų kuponams ir negalioja kartu su PiguEurais. Vieno pirkimo metu galima panaudoti tik vieną nuolaidos kodą.`
         : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? `*Alekoodi 01KESKIVIIKKO25 on voimassa 22.1.2025 klo 23.59 asti sovelluksessa, rekisteröityneille asiakkaille valikoiduista myyjän Hobbyhall.fi-tuotteista. Ei voi yhdistää muihin alekoodeihin, lahjakortteihin tai Hobby Hall rahaan. Kampanjan tuotteita rajoitettu määrä. Koodi, jolla saa alennuksen näkyy tuotteen tuotekortilla.`
+        ? `*Koodi on voimassa klo 23.59 asti sinä päivänä, jona se on voitettu pelistä. Koodilla saa ilmaisen toimituksen PostNordin automaattiin Hobbyhall.fi-verkkokaupasta tehtyyn tilaukseen. Käytettävissä olevat toimitustavat voi tarkistaa tuotteen tuotekortilta. Ei voi yhdistää muihin alekoodeihin tai Hobby Hall rahaan.`
         : this.language === 'EN' &&
           this.campaignUrlProp === 'https://220.lv' &&
           `*Atlaižu kods 25TRESDIENA0125 ir spēkā 22.01.2025. līdz plkst. 23:59 reģistrētiem lietotājiem, kuri iegādāsies īpaši marķētas pārdevēja 220.lv preces mobilajā lietotnē. Atlaižu kods nav derīgs, iegādājoties dāvanu kartes un kopā ar 220.lv naudu. Vienam pirkumam var izmantot tikai vienu atlaižu kodu.`;
