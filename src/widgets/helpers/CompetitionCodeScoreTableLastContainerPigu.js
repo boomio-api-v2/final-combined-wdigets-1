@@ -279,7 +279,9 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
           ? SuccessmessagebannersPossitiveLTRU
           : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-          ? SuccessmessagebannersPossitiveFI
+          ? this.userDiscountCode
+            ? SuccessmessagebannersPossitiveFI
+            : SuccessmessagebannersNegativeFI
           : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
           ? SuccessmessagebannersPossitiveLT
           : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
@@ -331,7 +333,8 @@ export class CompetitionCodeScoreTableLastContainerPigu {
 ${
   this.language === 'FI' &&
   this.campaignUrlProp === 'https://hobbyhall.fi' &&
-  this.currentScore > 1000
+  this.currentScore > 1000 &&
+  this.userDiscountCode
     ? `
         <div style="margin-top:215px;">
           <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;margin-top:20px; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
