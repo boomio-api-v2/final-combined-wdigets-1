@@ -14,6 +14,7 @@ import {
   SuccessmessagebannersPossitiveLTRU,
   SuccessmessagebannersPossitiveLV,
   SuccessmessagebannersPossitiveLVRU,
+  SuccessmessagebannersPossitiveFIcode,
 } from './constants';
 import { localStorageService } from '@/services';
 
@@ -280,12 +281,14 @@ export class CompetitionCodeScoreTableLastContainerPigu {
           ? SuccessmessagebannersPossitiveLTRU
           : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
           ? this.userDiscountCode
-            ? SuccessmessagebannersPossitiveFI
-            : SuccessmessagebannersNegativeFI
+            ? SuccessmessagebannersPossitiveFIcode
+            : SuccessmessagebannersPossitiveFI
           : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
           ? SuccessmessagebannersPossitiveLT
           : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-          ? SuccessmessagebannersPossitiveFI
+          ? this.userDiscountCode
+            ? SuccessmessagebannersPossitiveFIcode
+            : SuccessmessagebannersPossitiveFI
           : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
           ? SuccessmessagebannersPossitiveLV
           : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
