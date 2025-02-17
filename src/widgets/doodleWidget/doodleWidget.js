@@ -1542,8 +1542,6 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               return;
             }
             if (!this.checkboxChange) {
-              console.log('a', this.checkboxChange);
-
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
@@ -1849,7 +1847,6 @@ class Platform {
     this.reset();
   }
   draw() {
-    console.log(this.customer === 'Akropolis', this.language === 'LV');
     try {
       if (this.type == 1) this.cy = 0;
       else if (this.type == 2) this.cy = 61;
