@@ -352,6 +352,9 @@ export const SuccessmessagebannersNegativeEE = [
 export const SuccessmessagebannersNegativeFI = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeFI.png',
 ];
+export const SuccessmessagebannersPossitiveFIcode = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveFIcode.png',
+];
 
 export const SuccessmessagebannersNegativeLT = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeLT.png',
