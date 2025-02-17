@@ -48,6 +48,9 @@ import {
   introVilvi,
   mainImageVilvi,
   backgroundVilvi,
+  mainImagePerlasGo,
+  backgroundPerlasGo,
+  introPerlasGo,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -72,7 +75,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'PerlasGo';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -107,6 +110,8 @@ class DoodleWidget {
         ? ChristmasMainImagePiguFI
         : this.customer === 'Vilvi'
         ? mainImageVilvi
+        : this.customer === 'PerlasGo'
+        ? mainImagePerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? mainImageAkropolisLV
@@ -150,6 +155,8 @@ class DoodleWidget {
         ? ChristmasBackgroundPigu
         : this.customer === 'Vilvi'
         ? backgroundVilvi
+        : this.customer === 'PerlasGo'
+        ? backgroundPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV
@@ -1346,6 +1353,8 @@ class DoodleWidget {
         ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'Vilvi'
         ? introVilvi
+        : this.customer === 'PerlasGo'
+        ? introPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV
@@ -1533,8 +1542,6 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               return;
             }
             if (!this.checkboxChange) {
-              console.log('a', this.checkboxChange);
-
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
@@ -1840,7 +1847,6 @@ class Platform {
     this.reset();
   }
   draw() {
-    console.log(this.customer === 'Akropolis', this.language === 'LV');
     try {
       if (this.type == 1) this.cy = 0;
       else if (this.type == 2) this.cy = 61;

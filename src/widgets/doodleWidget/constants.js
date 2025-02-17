@@ -194,3 +194,12 @@ export const mainImageVilvi =
 
 export const backgroundVilvi =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Vilvi/background.png?raw=true';
+
+export const mainImagePerlasGo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PerlasGo/game.png?raw=true';
+
+export const backgroundPerlasGo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PerlasGo/background.png?raw=true';
+
+export const introPerlasGo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PerlasGo/intro.png?raw=true';

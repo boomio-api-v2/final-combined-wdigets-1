@@ -387,8 +387,8 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${this.language == 'LT' ? 'BRŪKŠT' : 'KLIK'}</div>
-        <div>${this.language == 'LT' ? 'BRŪKŠT' : 'KLIK'}</div>
+        <div>${this.language == 'LT' ? 'SPUST' : 'KLIK'}</div>
+        <div>${this.language == 'LT' ? 'SPUST' : 'KLIK'}</div>
       </div><img src=${Controlls} alt="Image Description" style="display:inline;width: 110px; height: 50px;">`}
       </div>
        ${
@@ -573,8 +573,14 @@ class CatchGame {
       this.showCompetitiveRegistration === 'collectable'
     ) {
       const isValidEmail = (email) => {
-        // Regular expression for basic email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Enhanced regex for email validation with TLD enforcement
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        // Additional check to prevent consecutive dots
+        if (email.includes('..')) {
+          return false;
+        }
+
         return emailRegex.test(email);
       };
 
@@ -779,7 +785,6 @@ class CatchGame {
                   `;
                   document.head.appendChild(style);
                 }
-                console.log(this.checkboxChange);
                 boomioService
                   .signal('', 'user_info', {
                     emails_consent:
@@ -1339,7 +1344,6 @@ class CatchGame {
 
         setTimeout(
           () => {
-            console.log('ended');
             if (
               (this.showCompetitiveRegistration === 'competition' ||
                 this.showCompetitiveRegistration === 'points' ||
@@ -2070,7 +2074,6 @@ class Fruit {
         (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 2.5 : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),
     );
-    console.log('aaa', this.fruitSpeed);
 
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
     this.y = Math.random() * -this.canvas.height - this.fruitHeight;
