@@ -48,6 +48,9 @@ import {
   introVilvi,
   mainImageVilvi,
   backgroundVilvi,
+  mainImagePerlasGo,
+  backgroundPerlasGo,
+  introPerlasGo,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -72,7 +75,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'PerlasGo';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -107,6 +110,8 @@ class DoodleWidget {
         ? ChristmasMainImagePiguFI
         : this.customer === 'Vilvi'
         ? mainImageVilvi
+        : this.customer === 'PerlasGo'
+        ? mainImagePerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? mainImageAkropolisLV
@@ -150,6 +155,8 @@ class DoodleWidget {
         ? ChristmasBackgroundPigu
         : this.customer === 'Vilvi'
         ? backgroundVilvi
+        : this.customer === 'PerlasGo'
+        ? backgroundPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV
@@ -1346,6 +1353,8 @@ class DoodleWidget {
         ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'Vilvi'
         ? introVilvi
+        : this.customer === 'PerlasGo'
+        ? introPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV
