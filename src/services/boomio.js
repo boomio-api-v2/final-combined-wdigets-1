@@ -156,7 +156,6 @@ class BoomioService extends UserService {
     }
     const { user_session, current_page_url } = this;
 
-    // Prepare the raw request body
     const rawRequestBody = {
       user_session,
       current_page_url,
@@ -165,7 +164,6 @@ class BoomioService extends UserService {
 
     const randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
 
-    // Encode the body in base64
     const encodeToBase64 = (str) => {
       const encoder = new TextEncoder();
       const uint8Array = encoder.encode(str);
@@ -182,7 +180,7 @@ class BoomioService extends UserService {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(finalRequestBody), // Use the transformed body
+        body: JSON.stringify(finalRequestBody),
       });
       resolve(rawResponse.json());
     });

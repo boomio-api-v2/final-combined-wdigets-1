@@ -268,7 +268,7 @@ export class InputRegisterContainer {
               ? 'privātuma politikai'
               : this.prop === 'Corepetitus'
               ? 'Corepetitus privatumo politika'
-              : 'privatumo politika.'
+              : 'privatumo politika'
           }.</a> `
         : ''
     }
