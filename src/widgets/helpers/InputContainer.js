@@ -140,6 +140,8 @@ export class InputContainer {
                   ? 'ПРОВЕДИ'
                   : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'drive'
                   ? 'BRAUK '
+                  : this.game === 'Perlas Go'
+                  ? 'Judėk'
                   : 'Spausk'
               }
     <div
@@ -224,7 +226,7 @@ export class InputContainer {
       ? 'TO FLY'
       : this.prop === 'SaludSA'
       ? 'para volar'
-      : this.prop === 'Vilvi'
+      : this.prop === 'Perlas Go'
       ? 'į šonus kad nenukristum.'
       : 'kad skristum.'
   }
@@ -427,6 +429,8 @@ export class InputContainer {
                 ? '1 iš 80 Pegaso knygų, kas dvi savaites!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
+                : this.prop === 'Perlas Go'
+                ? 'Perlas Go prizus!'
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
@@ -640,6 +644,8 @@ export class InputContainer {
         : this.prop === 'SaludSA'
         ? 'SIGUIENTE'
         : this.prop === 'Vilvi'
+        ? 'SUTINKU'
+        : this.prop === 'Perlas Go'
         ? 'SUTINKU'
         : 'LET’S PLAY'
     }</div></div>

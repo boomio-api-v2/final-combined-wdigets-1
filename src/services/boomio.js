@@ -19,6 +19,7 @@ import {
   startDoodleWidget,
   startDriveWidget,
   startCatchWidget,
+  startCrushWidget,
   startRunnerWidget,
   startFootballWidget,
 } from '@/widgets';
@@ -55,7 +56,8 @@ class BoomioService extends UserService {
       (language === 'LV' && campaignUrl === 'https://220.lv') ||
       (language === 'RU' && campaignUrl === 'https://220.lv') ||
       (!language && !campaignUrl) ||
-      campaignUrl === 'https://boomio-web.webflow.io/demo-pigu-flap-through'
+      campaignUrl === 'https://boomio-web.webflow.io/demo-pigu-flap-through' ||
+      campaignUrl === 'https://boomio-web.webflow.io/perlas-go'
     ) {
       this.setInitialConfiguration();
     }
@@ -84,6 +86,7 @@ class BoomioService extends UserService {
       doodle: startDoodleWidget,
       drive: startDriveWidget,
       catch: startCatchWidget,
+      crush: startCrushWidget,
       runner: startRunnerWidget,
       football: startFootballWidget,
     };
@@ -148,7 +151,7 @@ class BoomioService extends UserService {
     const isDenied = this.checkIsRequestDenied();
     if (isDenied) {
       setTimeout(() => {
-        this.send();
+        this.send(extra_data);
       }, 2000);
     }
     const { user_session, current_page_url } = this;
@@ -162,8 +165,14 @@ class BoomioService extends UserService {
 
     const randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
 
-    // Encode the body
-    const encodedBody = btoa(JSON.stringify(rawRequestBody));
+    // Encode the body in base64
+    const encodeToBase64 = (str) => {
+      const encoder = new TextEncoder();
+      const uint8Array = encoder.encode(str);
+      return btoa(String.fromCharCode(...uint8Array));
+    };
+
+    const encodedBody = encodeToBase64(JSON.stringify(rawRequestBody));
 
     const finalRequestBody = { body: randomLetter + encodedBody };
 

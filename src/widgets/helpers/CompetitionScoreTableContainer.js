@@ -188,6 +188,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 €'
                 : this.prop === 'Vilvi'
                 ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
+                : this.prop === 'Perlas Go'
+                ? 'Net XX geriausių žaidėjų xx dieną laimės Perlas Go prizus!  </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -220,15 +222,12 @@ export class CompetitionScoreTableContainer {
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
-                : this.prop === 'Makalius'
-                ? ''
-                : this.prop === 'Akropolis'
-                ? ''
-                : this.prop.includes('Gamtos Ateitis')
-                ? ''
-                : this.prop === 'Pieno Žvaigždės'
-                ? ''
-                : this.prop === 'Vilvi'
+                : this.prop === 'Makalius' ||
+                  this.prop === 'Akropolis' ||
+                  this.prop.includes('Gamtos Ateitis') ||
+                  this.prop === 'Pieno Žvaigždės' ||
+                  this.prop === 'Vilvi' ||
+                  this.prop === 'Perlas Go'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
@@ -288,6 +287,8 @@ export class CompetitionScoreTableContainer {
                 ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
                 : this.prop === 'Vilvi'
                 ? 'Pagerink rezultatą, nes net 10 geriausių žaidėjų xx dieną </br> laimės VILVI prizus! '
+                : this.prop === 'Perlas Go'
+                ? 'Pagerink rezultatą, nes net xx geriausių žaidėjų xx </br> dieną laimės Perlas Go prizus! '
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -327,7 +328,8 @@ export class CompetitionScoreTableContainer {
                   this.prop === 'Akropolis' ||
                   this.prop === 'Pieno Žvaigždės' ||
                   this.prop.includes('Gamtos Ateitis') ||
-                  this.prop === 'Vilvi'
+                  this.prop === 'Vilvi' ||
+                  this.prop === 'Perlas Go'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div>
