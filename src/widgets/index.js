@@ -18,5 +18,6 @@ export * from './flappyBird';
 export * from './doodleWidget';
 export * from './driveWidget';
 export * from './catchWidget';
+export * from './crushWidget';
 export * from './runnerWidget';
 export * from './footballWidget';

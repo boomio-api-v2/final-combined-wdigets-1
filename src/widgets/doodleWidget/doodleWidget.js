@@ -75,7 +75,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'PerlasGo';
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -110,7 +110,7 @@ class DoodleWidget {
         ? ChristmasMainImagePiguFI
         : this.customer === 'Vilvi'
         ? mainImageVilvi
-        : this.customer === 'PerlasGo'
+        : this.customer === 'Perlas GO'
         ? mainImagePerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
@@ -155,7 +155,7 @@ class DoodleWidget {
         ? ChristmasBackgroundPigu
         : this.customer === 'Vilvi'
         ? backgroundVilvi
-        : this.customer === 'PerlasGo'
+        : this.customer === 'Perlas GO'
         ? backgroundPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
@@ -223,7 +223,7 @@ class DoodleWidget {
     const reward = document.getElementById('claimReward');
     reward.addEventListener('click', this.claimReward);
 
-    if (this.showCompetitiveRegistration && this.campaignUrl === '') {
+    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
     }
@@ -243,7 +243,7 @@ class DoodleWidget {
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }
-    if (this.showCompetitiveRegistration && this.campaignUrl === '') {
+    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
@@ -1270,7 +1270,7 @@ class DoodleWidget {
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
   ${
-    this.campaignUrl === ''
+    this.customer !== 'Pigu.lt'
       ? `
 <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
@@ -1278,7 +1278,7 @@ class DoodleWidget {
       : ''
   }
     ${
-      this.showCompetitiveRegistration && this.campaignUrl === ''
+      this.showCompetitiveRegistration && this.customer !== 'Pigu.lt'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
     }
@@ -1353,7 +1353,7 @@ class DoodleWidget {
         ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'Vilvi'
         ? introVilvi
-        : this.customer === 'PerlasGo'
+        : this.customer === 'Perlas GO'
         ? introPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
@@ -1440,6 +1440,8 @@ ${
         ? '#45A2BF'
         : this.customer === 'Pigu.lt'
         ? '#F34434'
+        : this.customer === 'Perlas GO'
+        ? '#19AA82'
         : this.language === 'LV'
         ? '#F40027'
         : '#045222'
@@ -1763,7 +1765,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         // controlButton.style.opacity = 0;
       };
 
-      if (this.campaignUrl === '') {
+      if (this.customer !== 'Pigu.lt') {
         const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
         competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
       }
@@ -1781,7 +1783,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
     }
-    if (this.campaignUrl === '') {
+    if (this.customer !== 'Pigu.lt') {
       document.getElementById('close-game-container').addEventListener('click', () => {
         this.closeGame();
       });
