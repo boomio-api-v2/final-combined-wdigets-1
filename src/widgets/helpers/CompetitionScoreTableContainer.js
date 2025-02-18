@@ -131,9 +131,8 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
-        (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 35) ||
         (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
-        (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 2025) ||
+        (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 2025) ||
         (this.prop === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Perlas GO' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10)
