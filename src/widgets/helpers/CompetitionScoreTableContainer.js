@@ -44,6 +44,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
+            this.prop === 'Perlas GO' ||
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym'
             ? 'rgba(61, 73, 40, 1)'
@@ -85,6 +86,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Unisend' ||
                 this.prop === 'Vilvi' ||
                 this.prop === 'Akropolis' ||
+                this.prop === 'Perlas GO' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
@@ -101,6 +103,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Vilvi' ||
                 this.prop === 'Unisend' ||
                 this.prop === 'Akropolis' ||
+                this.prop === 'Perlas GO' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym'
@@ -131,6 +134,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 35) ||
         (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
         (this.prop === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
+        (this.prop === 'Perlas GO' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10)
           ? `<div style="width:100%; top: ${'440px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
