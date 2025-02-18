@@ -88,7 +88,7 @@ export class InputRegisterContainer {
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
-      this.prop === 'Perlas Go' ||
+      this.prop === 'Perlas GO' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -113,8 +113,8 @@ export class InputRegisterContainer {
     };font-weight: 400; word-wrap: break-word;text-align:start;">${
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
-        : this.prop === 'Perlas Go'
-        ? 'Sutinku gauti Perlas Go naujienas.'
+        : this.prop === 'Perlas GO'
+        ? 'Sutinku gauti Perlas GO naujienas.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
         : this.prop === 'Pieno Žvaigždės'
@@ -219,8 +219,8 @@ export class InputRegisterContainer {
         ? `Piekrītu <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'} style="color:white;text-decoration: underline;"> spēles noteikumiem un privātuma politikai</a>. `
         : this.prop === 'Akropolis'
         ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
-        : this.prop === 'Perlas Go'
-        ? 'Sutinku su Perlas Go'
+        : this.prop === 'Perlas GO'
+        ? 'Sutinku su Perlas GO'
         : this.prop === 'Corepetitus'
         ? 'Sutinku su'
         : this.prop === 'Vilvi'
@@ -256,7 +256,7 @@ export class InputRegisterContainer {
               ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
               : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
-              : this.prop === 'Perlas Go'
+              : this.prop === 'Perlas GO'
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${

@@ -75,7 +75,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Perlas Go';
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -110,7 +110,7 @@ class DoodleWidget {
         ? ChristmasMainImagePiguFI
         : this.customer === 'Vilvi'
         ? mainImageVilvi
-        : this.customer === 'Perlas Go'
+        : this.customer === 'Perlas GO'
         ? mainImagePerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
@@ -155,7 +155,7 @@ class DoodleWidget {
         ? ChristmasBackgroundPigu
         : this.customer === 'Vilvi'
         ? backgroundVilvi
-        : this.customer === 'Perlas Go'
+        : this.customer === 'Perlas GO'
         ? backgroundPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
@@ -1353,7 +1353,7 @@ class DoodleWidget {
         ? ChristmasPiguJumpUpIntroEstonianEN
         : this.customer === 'Vilvi'
         ? introVilvi
-        : this.customer === 'Perlas Go'
+        : this.customer === 'Perlas GO'
         ? introPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
@@ -1440,7 +1440,7 @@ ${
         ? '#45A2BF'
         : this.customer === 'Pigu.lt'
         ? '#F34434'
-        : this.customer === 'Perlas Go'
+        : this.customer === 'Perlas GO'
         ? '#19AA82'
         : this.language === 'LV'
         ? '#F40027'
