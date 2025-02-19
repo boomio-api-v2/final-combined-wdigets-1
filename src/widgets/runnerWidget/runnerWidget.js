@@ -62,7 +62,7 @@ class runnerWidget {
     newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
 
     const myCanvas = document.createElement('div');
-    myCanvas.setAttribute('id', 'boomio-drive-container');
+    myCanvas.setAttribute('id', 'boomio-runner-container');
     myCanvas.classList.add(
       'boomio--animation__wrapper',
       'boomio--animation__wrapper--initial',
