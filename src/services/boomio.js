@@ -156,9 +156,13 @@ class BoomioService extends UserService {
     }
     const { user_session, current_page_url } = this;
 
+    const current_page_url_cleaned = current_page_url.includes('akropolis.lt')
+      ? new URL(current_page_url).origin + new URL(current_page_url).pathname
+      : current_page_url;
+
     const rawRequestBody = {
       user_session,
-      current_page_url,
+      current_page_url: current_page_url_cleaned, // Use cleaned URL
       extra_data,
     };
 

@@ -4,8 +4,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "jquery": "^3.7.1",
     "matter-js": "^0.19.0",
     "pxloader": "^1.1.2",
+    "seedrandom": "^3.0.5",
     "webpack": "^5.75.0"
   },
   "devDependencies": {

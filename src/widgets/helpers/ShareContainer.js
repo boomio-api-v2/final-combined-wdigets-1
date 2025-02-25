@@ -90,7 +90,7 @@ export class ShareContainer {
   defaultShare() {
     const shareData = {
       title: 'Check out this game!',
-      text: 'Play this amazing game and compete with your friends!',
+      text: 'Išbandyk šį smagų Akropolio žaidimą ir turėk galimybę laimėti Caif Cafe kavą!',
       url: this.campaignUrlProp,
     };
 

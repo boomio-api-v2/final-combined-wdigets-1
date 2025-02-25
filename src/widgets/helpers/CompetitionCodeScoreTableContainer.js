@@ -512,6 +512,8 @@ export class CompetitionCodeScoreTableContainer {
                 ? ''
                 : this.prop === 'Pieno Žvaigždės'
                 ? ''
+                : this.prop === 'Daumantu'
+                ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
           : `<div style="width:100%; top: 390px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -699,7 +701,8 @@ export class CompetitionCodeScoreTableContainer {
                   this.prop === 'Unisend' ||
                   this.prop === 'Akropolis' ||
                   this.prop === 'Pieno Žvaigždės' ||
-                  this.prop.includes('Gamtos Ateitis')
+                  this.prop.includes('Gamtos Ateitis') ||
+                  this.prop === 'Daumantu'
                 ? ''
                 : this.prop === 'Pegasas'
                 ? ''

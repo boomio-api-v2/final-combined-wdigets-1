@@ -297,3 +297,118 @@ cursor:pointer;
   z-index: 3;
   animation: shake 0.5s ease-in-out;
 }
+
+/* Outer container with fixed dimensions */
+#boomio-catch-container {
+  width: 418px;
+  height: 668px;
+  position: relative;
+}
+
+/* Background element behind the canvas */
+#game-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 418px;
+  height: 668px;
+  background-size: cover;
+  z-index: 0;
+}
+
+/* Container for canvas and score */
+#game-container {
+  position: relative;
+  width: 418px;
+  height: 668px;
+  z-index: 1;
+}
+
+/* Canvas is placed inside the container */
+#canvas {
+  position: relative;
+}
+
+/* Score element styling */
+#score {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+
+#boomio-crush-container {
+  width: 418px;
+  height: 668px;
+  position: relative;
+}
+
+#crush-game-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 418px;
+  height: 668px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='418' height='668'><rect width='418' height='668' fill='%23f0f0f0'/><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23ffffff;stop-opacity:1'/><stop offset='100%' style='stop-color:%23cccccc;stop-opacity:1'/></linearGradient></defs><circle cx='209' cy='334' r='200' fill='url(%23grad)' /></svg>") no-repeat center center;
+  background-size: cover;
+  z-index: 0;
+}
+
+#game-container {
+  position: relative;
+  width: 418px;
+  height: 668px;
+  z-index: 1;
+}
+
+#crash-canvas {
+  position: relative;
+}
+
+#score {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+
+#start-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 418px;
+  height: 668px;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#start-screen button {
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#restart-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 3;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Hide element using a class */
+.hidden {
+  display: none;
+}
+
