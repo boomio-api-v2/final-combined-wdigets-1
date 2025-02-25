@@ -173,7 +173,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Daumantu';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
