@@ -383,3 +383,12 @@ export const item9Daumantu =
 
 export const item10Daumantu =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item10Daumantu.png';
+
+export const item11Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item10Daumantu.png';
+
+export const item12Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item10Daumantu.png';
+
+export const item13Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item10Daumantu.png';

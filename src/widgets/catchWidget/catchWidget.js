@@ -152,6 +152,9 @@ import {
   item8Daumantu,
   item9Daumantu,
   item10Daumantu,
+  item11Daumantu,
+  item12Daumantu,
+  item13Daumantu,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -1760,6 +1763,9 @@ class Fruit {
         item8Daumantu,
         item9Daumantu,
         item10Daumantu,
+        item11Daumantu,
+        item12Daumantu,
+        item13Daumantu,
       ];
     } else {
       // Default catch images if none of the above conditions are met
@@ -1901,7 +1907,9 @@ class Fruit {
         'item7Daumantu',
         'item8Daumantu',
         'item9Daumantu',
-        'item10Daumantu',
+        'item11Daumantu',
+        'item12Daumantu',
+        'item13Daumantu',
       ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
