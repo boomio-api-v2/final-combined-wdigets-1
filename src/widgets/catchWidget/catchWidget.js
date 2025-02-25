@@ -625,7 +625,7 @@ class CatchGame {
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.customer === 'Daumantu'
-                  ? 'Registruojantis, privaloma sutikti gauti "Daumantų" naujienas - tokiu būdu susisieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+                  ? 'Registruojantis, privaloma sutikti gauti "Daumantų” naujienas, kad atiduotume  laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
                   : this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
