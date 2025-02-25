@@ -180,7 +180,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Akropolis'
                 ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
                 : this.prop === 'Daumantu'
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro 50 Daumantų prizų!'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei.</br> Prizinį fondą sudaro 50 Daumantų prizų!'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių!'
                 : this.prop === 'Unisend' && this.language === 'EE'
@@ -277,7 +277,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Akropolis'
                 ? 'Pagerink rezultatą ir kasdien laimėk vieną CAIF CAFE kavos </br>puodelį, o atsiėmęs prizą turėk galimybę laimėti 100 EUR</br>AKROPOLIO dovanų kortelę!'
                 : this.prop === 'Daumantu'
-                ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės prizus! '
+                ? 'Pagerink rezultatą, nes kas savaitę </br> geriausi žaidėjai laimės prizus! '
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 10 prizų – „Gamtos ateities“ </br>stalo žaidimų „MisijaEkomiestas“ arba rūšiavimo namuose</br> rinkinių!'
                 : this.language === 'ES'

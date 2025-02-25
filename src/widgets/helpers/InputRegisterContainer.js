@@ -84,11 +84,12 @@ export class InputRegisterContainer {
       </div>
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
-       } ;left: 34px; top: ${'355px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+       } ;left: 34px; top: ${'360px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
       this.prop === 'Perlas GO' ||
+      this.prop === 'Daumantu' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -117,6 +118,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Perlas GO naujienas.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
+        : this.prop === 'Daumantu'
+        ? 'Sutinku gauti „Daumantų“ naujienlaiškius.'
         : this.prop === 'Pieno Žvaigždės'
         ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
         : this.prop === 'Pegasas'
@@ -215,6 +218,8 @@ export class InputRegisterContainer {
         ? 'Acepto recibir boletines de SaludSA.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu Euroaptiekas'
+        : this.prop === 'Daumantu'
+        ? 'Sutinku su „Daumantų“ privatumo politika.'
         : this.prop === 'Akropolis' && this.language === 'LV'
         ? `Piekrītu <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'} style="color:white;text-decoration: underline;"> spēles noteikumiem un privātuma politikai</a>. `
         : this.prop === 'Akropolis'
@@ -240,6 +245,7 @@ export class InputRegisterContainer {
       this.prop !== 'Akropolis' &&
       this.prop !== 'SaludSA' &&
       this.prop !== 'Vilvi' &&
+      this.prop !== 'Daumantu' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'LemonGym'

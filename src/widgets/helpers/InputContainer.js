@@ -643,6 +643,8 @@ export class InputContainer {
         ? 'TĀLĀK'
         : this.prop === 'Akropolis'
         ? 'SUTINKU'
+        : this.prop === 'Daumantu'
+        ? 'PIRMYN'
         : this.prop === 'Pegasas'
         ? 'PIRMYN'
         : this.prop === 'SaludSA'

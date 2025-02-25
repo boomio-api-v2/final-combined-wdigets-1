@@ -139,6 +139,19 @@ import {
   item8Akropolis,
   item9Akropolis,
   item10Akropolis,
+  introDaumantu,
+  backgroundDaumantu,
+  playerDaumantu,
+  item1Daumantu,
+  item2Daumantu,
+  item3Daumantu,
+  item4Daumantu,
+  item5Daumantu,
+  item6Daumantu,
+  item7Daumantu,
+  item8Daumantu,
+  item9Daumantu,
+  item10Daumantu,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -608,7 +621,9 @@ class CatchGame {
             const checkboxChange3 = this.checkboxChange3;
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
-                this.language === 'LV'
+                this.customer === 'Daumantu'
+                  ? 'Registruojantis, privaloma sutikti gauti "Daumantų" naujienas - tokiu būdu susisieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+                  : this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
@@ -1529,6 +1544,8 @@ class Player {
       ? playerPegasas
       : customer === 'Akropolis'
       ? playerAkropolis
+      : customer === 'Daumantu'
+      ? playerDaumantu
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1572,7 +1589,7 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 8);
       }
-    } else if (this.customer === 'Akropolis') {
+    } else if (this.customer === 'Akropolis' || this.customer === 'Daumantu') {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 5 + 5);
       } else {
@@ -1609,7 +1626,11 @@ class Fruit {
     this.fruitImage = new Image();
     this.fruitSpeed = Math.floor(
       Math.random() * 3 +
-        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 3 : 1),
+        (this.customer === 'Pieno Žvaigždės' ||
+        this.customer === 'Akropolis' ||
+        this.customer === 'Daumantu'
+          ? 3
+          : 1),
     );
 
     this.x = Math.random() * (this.canvas.width - this.fruitWidth);
@@ -1726,6 +1747,19 @@ class Fruit {
         item8Akropolis,
         item9Akropolis,
         item10Akropolis,
+      ];
+    } else if (this.customer && this.customer === 'Daumantu') {
+      this.images = [
+        item1Daumantu,
+        item2Daumantu,
+        item3Daumantu,
+        item4Daumantu,
+        item5Daumantu,
+        item6Daumantu,
+        item7Daumantu,
+        item8Daumantu,
+        item9Daumantu,
+        item10Daumantu,
       ];
     } else {
       // Default catch images if none of the above conditions are met
@@ -1856,6 +1890,19 @@ class Fruit {
         'item9Akropolis',
         'item10Akropolis',
       ][this.fruitNumber];
+    } else if (this.customer === 'Akropolis') {
+      this.fruitType = [
+        'item1Daumantu',
+        'item2Daumantu',
+        'item3Daumantu',
+        'item4Daumantu',
+        'item5Daumantu',
+        'item6Daumantu',
+        'item7Daumantu',
+        'item8Daumantu',
+        'item9Daumantu',
+        'item10Daumantu',
+      ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
       this.fruitType = [
@@ -1881,7 +1928,7 @@ class Fruit {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
-    } else if (this.customer === 'Akropolis') {
+    } else if (this.customer === 'Akropolis' || this.customer === 'Daumantu') {
       this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
@@ -1896,7 +1943,8 @@ class Fruit {
       if (
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Pieno Žvaigždės' ||
-        this.customer === 'Akropolis'
+        this.customer === 'Akropolis' ||
+        this.customer === 'Daumantu'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
@@ -2075,14 +2123,18 @@ class Fruit {
           ? 23
           : this.customer === 'Pieno Žvaigždės'
           ? 14
-          : this.customer === 'Akropolis'
+          : this.customer === 'Akropolis' || this.customer === 'Daumantu'
           ? 10
           : 5),
     );
 
     this.fruitSpeed = Math.floor(
       (Math.random() * 2 +
-        (this.customer === 'Pieno Žvaigždės' || this.customer === 'Akropolis' ? 2.5 : 1)) *
+        (this.customer === 'Pieno Žvaigždės' ||
+        this.customer === 'Akropolis' ||
+        this.customer === 'Daumantu'
+          ? 2.5
+          : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),
     );
 

@@ -345,3 +345,41 @@ export const item9Akropolis =
 
 export const item10Akropolis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Akropolis/items/item10Akropolis.png';
+
+export const introDaumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/intro.png';
+
+export const backgroundDaumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/background.png';
+
+export const playerDaumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/player.png';
+export const item1Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item1Daumantu.png';
+
+export const item2Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item2Daumantu.png';
+
+export const item3Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item3Daumantu.png';
+
+export const item4Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item4Daumantu.png';
+
+export const item5Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item5Daumantu.png';
+
+export const item6Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item6Daumantu.png';
+
+export const item7Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item7Daumantu.png';
+
+export const item8Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item8Daumantu.png';
+
+export const item9Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item9Daumantu.png';
+
+export const item10Daumantu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item10Daumantu.png';
