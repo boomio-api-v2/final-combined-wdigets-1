@@ -46,7 +46,8 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Akropolis' ||
             this.prop === 'Perlas GO' ||
             this.prop.includes('Gamtos Ateitis') ||
-            this.prop === 'LemonGym'
+            this.prop === 'LemonGym' ||
+            this.prop === 'Daumantu'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
           : this.prop === 'Barbora' ||
@@ -56,7 +57,8 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Makalius' ||
             this.prop === 'Pieno Žvaigždės' ||
             this.prop.includes('Gamtos Ateitis') ||
-            this.prop === 'LemonGym'
+            this.prop === 'LemonGym' ||
+            this.prop === 'Daumantu'
           ? 'white'
           : 'white';
       const boxShadow =
@@ -89,7 +91,8 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
-                this.prop === 'LemonGym'
+                this.prop === 'LemonGym' ||
+                this.prop === 'Daumantu'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
@@ -106,7 +109,8 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Pieno Žvaigždės' ||
                 this.prop.includes('Gamtos Ateitis') ||
-                this.prop === 'LemonGym'
+                this.prop === 'LemonGym' ||
+                this.prop === 'Daumantu'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
@@ -234,7 +238,8 @@ export class CompetitionScoreTableContainer {
                   this.prop.includes('Gamtos Ateitis') ||
                   this.prop === 'Pieno Žvaigždės' ||
                   this.prop === 'Vilvi' ||
-                  this.prop === 'Perlas GO'
+                  this.prop === 'Perlas GO' ||
+                  this.prop === 'Daumantu'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div> `
@@ -338,7 +343,8 @@ export class CompetitionScoreTableContainer {
                   this.prop === 'Pieno Žvaigždės' ||
                   this.prop.includes('Gamtos Ateitis') ||
                   this.prop === 'Vilvi' ||
-                  this.prop === 'Perlas GO'
+                  this.prop === 'Perlas GO' ||
+                  this.prop === 'Daumantu'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
             } </div>

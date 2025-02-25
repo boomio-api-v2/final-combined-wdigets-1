@@ -1592,11 +1592,17 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 8);
       }
-    } else if (this.customer === 'Akropolis' || this.customer === 'Daumantu') {
+    } else if (this.customer === 'Akropolis') {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 5 + 5);
       } else {
         this.fruitNumber = Math.floor(Math.random() * 5);
+      }
+    } else if (this.customer === 'Daumantu') {
+      if (type === 'bad') {
+        this.fruitNumber = Math.floor(Math.random() * 8 + 5);
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 8);
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
@@ -1936,8 +1942,12 @@ class Fruit {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
-    } else if (this.customer === 'Akropolis' || this.customer === 'Daumantu') {
+    } else if (this.customer === 'Akropolis') {
       this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
+    } else if (this.customer === 'Daumantu') {
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][
+        this.fruitNumber
+      ];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -2131,8 +2141,10 @@ class Fruit {
           ? 23
           : this.customer === 'Pieno Žvaigždės'
           ? 14
-          : this.customer === 'Akropolis' || this.customer === 'Daumantu'
+          : this.customer === 'Akropolis'
           ? 10
+          : this.customer === 'Daumantu'
+          ? 13
           : 5),
     );
 
