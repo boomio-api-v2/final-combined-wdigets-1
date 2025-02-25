@@ -157,7 +157,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Daumantu';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -195,6 +195,8 @@ class CatchGame {
         ? backgroundPegasas
         : this.customer === 'Akropolis'
         ? backgroundAkropolis
+        : this.customer === 'Daumantu'
+        ? backgroundDaumantu
         : background
     }) center`;
 
@@ -208,7 +210,8 @@ class CatchGame {
     this.defaultscore =
       this.customer === 'Eurovaistine' ||
       this.customer === 'Pegasas' ||
-      this.customer === 'Akropolis'
+      this.customer === 'Akropolis' ||
+      this.customer === 'Daumantu'
         ? 3
         : 5;
     this.startCatch();
@@ -413,6 +416,8 @@ class CatchGame {
         ? '#A40033'
         : this.customer === 'Akropolis'
         ? '#F40000'
+        : this.customer === 'Daumantu'
+        ? '#DD2326'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -439,6 +444,8 @@ class CatchGame {
         ? '#A40033'
         : this.customer === 'Akropolis'
         ? '#F40000'
+        : this.customer === 'Daumantu'
+        ? '#DD2326'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -463,6 +470,8 @@ class CatchGame {
         ? introPegasas
         : this.customer === 'Akropolis'
         ? introAkropolis
+        : this.customer === 'Daumantu'
+        ? introDaumantu
         : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1164,7 +1173,8 @@ class CatchGame {
     if (
       this.customer.includes('Gamtos Ateitis') ||
       this.customer === 'Pieno Žvaigždės' ||
-      this.customer === 'Akropolis'
+      this.customer === 'Akropolis' ||
+      this.customer === 'Daumantu'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
@@ -1276,7 +1286,8 @@ class CatchGame {
       if (
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Pieno Žvaigždės' ||
-        this.customer === 'Akropolis'
+        this.customer === 'Akropolis' ||
+        this.customer === 'Daumantu'
       ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
