@@ -1534,6 +1534,10 @@ class Player {
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
+    if (customer === 'Daumantu') {
+      this.y -= 20; // Move the player 20px higher if the customer is 'Daumantu'
+    }
+
     this.playerImage = new Image();
     this.playerImage.src = customer.includes('Paper')
       ? playerGamtosAteitisPaper
