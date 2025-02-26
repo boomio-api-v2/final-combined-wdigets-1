@@ -109,7 +109,11 @@ import {
   PigubackgroundFI,
 } from './constants';
 
-function startGame(scoreTableContainerInstance, didYouKnowContainer) {
+function startGame(
+  scoreTableContainerInstance,
+  didYouKnowContainer,
+  competitionCodeScoreTableContainerPigu,
+) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = false;
   let checkboxChange2 = false;
@@ -1119,7 +1123,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
 
     const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
     competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
-
+    if (customer === 'Pigu.lt') {
+      const competitionRestart = document.getElementById('boomio-game-play-again-pigu');
+      competitionRestart.addEventListener('click', showRulesPigu);
+    }
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
@@ -1292,7 +1299,11 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer) {
           bestScore = response.user_best_score;
           didYouKnowContainer.updateProps(customer, scoreTable);
 
-          if (customer === 'Pigu.lt' && false) {
+          if (
+            customer === 'Pigu.lt' &&
+            campaignUrlProp === 'https://hobbyhall.fi' &&
+            response.coupon_code
+          ) {
             competitionCodeScoreTableContainerPigu.updateProps(customer, scoreTable);
 
             const competitionTableContainer = document.querySelector(

@@ -55,7 +55,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
-
+    console.log(this.userDiscountCode);
     const piguTable =
       this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
         ? [
@@ -270,7 +270,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     border-radius:45px;
     transform: translateX(-50%); /* Center horizontally */
     background: url(${
-      this.currentScore > 1000
+      this.currentScore > 1000 || this.userDiscountCode
         ? this.language === 'ET' &&
           ['https://kaup.ee', 'https://kaup24.ee'].includes(this.campaignUrlProp)
           ? SuccessmessagebannersPossitiveEE
@@ -334,10 +334,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
   
 >
 ${
-  this.language === 'FI' &&
-  this.campaignUrlProp === 'https://hobbyhall.fi' &&
-  this.currentScore > 1000 &&
-  this.userDiscountCode
+  this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi' && this.userDiscountCode
     ? `
         <div style="margin-top:215px;">
           <div style="letter-spacing: -0.3px;line-height: 150%;width:100%;margin-top:20px; text-align: center; color: white; font-size: 10px; font-family: Montserrat; font-weight:400; word-wrap: break-word;"> 
