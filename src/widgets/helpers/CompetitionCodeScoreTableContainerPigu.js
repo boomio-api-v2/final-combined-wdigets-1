@@ -497,7 +497,7 @@ ${
     if (this.prop === 'Pigu.lt') {
       const observer = new MutationObserver((mutationsList, observer) => {
         // Check if the element has been added to the DOM
-        const startRulesButton = document.getElementById('startCodeRulesButtonClickFirst');
+        const startRulesButton = document.getElementById('startCodeRulesButtonClick');
         if (startRulesButton) {
           // Element found, add event listener
           startRulesButton.addEventListener('click', showCompetitionTableContainer);
