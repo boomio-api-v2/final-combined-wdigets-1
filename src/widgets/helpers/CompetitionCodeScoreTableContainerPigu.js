@@ -344,11 +344,11 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? `Laimėjai nuolaidos kodą Pigu.lt svetainėje.`
           : ''
       }</div>
-              <div style="width:100%; top: ${'265px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+              <div style="width:100%; top: ${'245px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
         this.isMobile ? '14px' : '18px'
       } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
         this.prop === 'Pigu.lt' && this.language === 'EN'
-          ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">25% EXTRA </br> off with <strong id="startCodeRulesButtonClick" style="text-decoration:underline">code*</strong></strong></strong>  '
+          ? '<strong style="text-transform:uppercase"><strong style="color:#DFFC38">Free delivery with to PostNord`s parcel lockers with <strong id="startCodeRulesButtonClick" style="text-decoration:underline">code*</strong></strong></strong>  '
           : this.prop === 'Pigu.lt' && this.language === 'LV'
           ? '<strong style="text-transform:uppercase"> Izvēlētām precēm </br>papildu -25% ar<strong id="startCodeRulesButtonClick" style="text-decoration:underline">kodu*</strong></strong>'
           : this.prop === 'Pigu.lt' && this.language === 'ET'
@@ -375,7 +375,7 @@ export class CompetitionCodeScoreTableContainerPigu {
               <div style="width:100%; top: 346px; position: absolute; text-align: center; color: ${textColor}; font-size: 12px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word">      ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
-            ? 'Only today!'
+            ? 'Valid until Sunday`s midnight!'
             : this.language === 'LV'
             ? 'Tikai šodien lietotnē!'
             : this.language === 'ET'
@@ -493,6 +493,7 @@ ${
         rulesTableContainer.style.opacity = 1;
       }, 100);
     }
+
     if (this.prop === 'Pigu.lt') {
       const observer = new MutationObserver((mutationsList, observer) => {
         // Check if the element has been added to the DOM
