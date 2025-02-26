@@ -351,7 +351,11 @@ ${
     document.getElementById('close-game-container').addEventListener('click', () => {
       closeGame();
     });
-    startGame(this.scoreTableContainerInstance, this.didYouKnowContainer);
+    startGame(
+      this.scoreTableContainerInstance,
+      this.didYouKnowContainer,
+      this.competitionCodeScoreTableContainerPigu,
+    );
   };
 }
 

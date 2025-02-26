@@ -11,34 +11,7 @@ export class CompetitionCodeScoreTableContainerPigu {
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
-    this.couponCodeNew = this.config.couponCodeNew
-      ? this.config.couponCodeNew
-      : this.language === 'ET' &&
-        (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? '25KOLMAPAEV0125'
-      : this.language === 'RU' &&
-        (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? '25KOLMAPAEV0125'
-      : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-      ? '25TRECIADIENIS0125'
-      : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-      ? '25TRECIADIENIS0125'
-      : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? '01KESKIVIIKKO25'
-      : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-      ? '25TRESDIENA0125'
-      : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-      ? '25TRESDIENA0125'
-      : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-      ? '25TRECIADIENIS0125'
-      : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? '01KESKIVIIKKO25'
-      : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-      ? '25TRESDIENA0125'
-      : this.language === 'EN' &&
-        (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? '25KOLMAPAEV0125'
-      : '';
+    this.couponCodeNew = this.config.couponCodeNew;
 
     this.render();
   }
@@ -48,34 +21,7 @@ export class CompetitionCodeScoreTableContainerPigu {
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
     this.config = localStorageService.getDefaultConfig();
-    this.couponCodeNew = this.config.couponCodeNew
-      ? this.config.couponCodeNew
-      : this.language === 'ET' &&
-        (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? '25KOLMAPAEV0125'
-      : this.language === 'RU' &&
-        (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? '25KOLMAPAEV0125'
-      : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-      ? '25TRECIADIENIS0125'
-      : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-      ? '25TRECIADIENIS0125'
-      : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? '01KESKIVIIKKO25'
-      : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-      ? '25TRESDIENA0125'
-      : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-      ? '25TRESDIENA0125'
-      : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-      ? '25TRECIADIENIS0125'
-      : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-      ? '01KESKIVIIKKO25'
-      : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-      ? '25TRESDIENA0125'
-      : this.language === 'EN' &&
-        (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-      ? '25KOLMAPAEV0125'
-      : '';
+    this.couponCodeNew = this.config.couponCodeNew;
 
     this.updateVisuals();
   }
@@ -408,7 +354,7 @@ export class CompetitionCodeScoreTableContainerPigu {
           : this.prop === 'Pigu.lt' && this.language === 'ET'
           ? '<strong style="text-transform:uppercase">Valitud toodetele </br>lisaale -25% <strong id="startCodeRulesButtonClick" style="text-decoration:underline"> koodiga*</strong></strong> '
           : this.prop === 'Pigu.lt' && this.language === 'FI'
-          ? '<strong style="text-transform:uppercase">25%* lisäalennus </br>valikoiduista tuotteista <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong>'
+          ? '<strong style="text-transform:uppercase">Ilmainen toimitus koodilla PostNordin noutopisteeseen <strong id="startCodeRulesButtonClick" style="text-decoration:underline">koodilla*</strong></strong>'
           : this.prop === 'Pigu.lt' &&
             this.language === 'RU' &&
             (this.campaignUrlProp === 'https://kaup.ee' ||
@@ -435,7 +381,7 @@ export class CompetitionCodeScoreTableContainerPigu {
             : this.language === 'ET'
             ? 'Ainult äpis täna!'
             : this.language === 'FI'
-            ? 'Tänään vain sovelluksessa!'
+            ? 'Voimassa vain keskiyöhön asti!'
             : this.language === 'RU' &&
               (this.campaignUrlProp === 'https://kaup.ee' ||
                 this.campaignUrlProp === 'https://kaup24.ee')
