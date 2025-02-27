@@ -381,7 +381,7 @@ export class CompetitionCodeScoreTableContainerPigu {
             : this.language === 'ET'
             ? 'Ainult äpis täna!'
             : this.language === 'FI'
-            ? 'Voimassa vain keskiyöhön asti!'
+            ? 'Voimassa sunnuntaina keskiyöhön asti!'
             : this.language === 'RU' &&
               (this.campaignUrlProp === 'https://kaup.ee' ||
                 this.campaignUrlProp === 'https://kaup24.ee')
