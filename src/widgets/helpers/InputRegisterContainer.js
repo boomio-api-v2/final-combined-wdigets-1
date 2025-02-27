@@ -297,7 +297,7 @@ export class InputRegisterContainer {
    
    
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
-          this.language === 'LV' ? '18px' : '28px'
+          this.language === 'LV' || this.prop === 'Perlas GO' ? '15px' : '28px'
         } ;margin-right:30px;display:${
       this.prop === 'Akropolis' ||
       this.prop === 'Eurovaistine' ||
@@ -308,7 +308,7 @@ export class InputRegisterContainer {
     } ;left: 34px; top:${
       this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-      this.isMobile ? '8px' : '9px'
+      this.prop === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'
     };color:${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };text-align:start;line-height:8px;">

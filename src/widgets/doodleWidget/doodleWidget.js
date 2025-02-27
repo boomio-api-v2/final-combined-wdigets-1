@@ -1564,7 +1564,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                   : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
 
               document.getElementById('competition-checkbox-error').style.backgroundColor =
-                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+                this.customer === 'Akropolis' && this.language !== 'LV'
+                  ? '#FFBABA'
+                  : this.customer === 'Perlas GO' && 'white';
 
               document.getElementById('competition-name-error').innerText = '';
 
