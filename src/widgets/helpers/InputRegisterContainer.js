@@ -260,9 +260,9 @@ export class InputRegisterContainer {
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop === 'Pegasas'
               ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
-              : this.prop.includes('Gamtos Ateitis')
-              ? 'https://gamtosateitis.lt/privatumo-politika/'
               : this.prop === 'Perlas GO'
+              ? 'https://www.perlasgo.lt/privatumo-politika/'
+              : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${
