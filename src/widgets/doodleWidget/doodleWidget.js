@@ -1971,14 +1971,19 @@ class Spring {
     this.vx = 1;
     this.cx = 5; // Horizontal position in the sprite sheet
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas Go';
 
-    this.possibleValues = this.customer === 'Vilvi' ? [625, 765, 855] : [615]; // Define the possible vertical positions (cy values)
+    this.possibleValues =
+      this.customer === 'Vilvi'
+        ? [625, 765, 855]
+        : this.customer === 'Perlas Go'
+        ? [625, 765, 855]
+        : [615]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width = this.customer === 'Vilvi' ? 78 : 65; // Width to draw on canvas
-    this.height = this.customer === 'Vilvi' ? 45 : 38; // Height to draw on canvas
+    this.width = this.customer === 'Vilvi' ? 78 : this.customer === 'Perlas Go' ? 50 : 65; // Width to draw on canvas
+    this.height = this.customer === 'Vilvi' ? 45 : this.customer === 'Perlas Go' ? 40 : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }
