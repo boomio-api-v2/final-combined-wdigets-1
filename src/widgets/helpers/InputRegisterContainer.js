@@ -299,7 +299,10 @@ export class InputRegisterContainer {
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
           this.language === 'LV' ? '18px' : '28px'
         } ;margin-right:30px;display:${
-      this.prop === 'Akropolis' || this.prop === 'Eurovaistine' || this.prop === 'Vilvi'
+      this.prop === 'Akropolis' ||
+      this.prop === 'Eurovaistine' ||
+      this.prop === 'Vilvi' ||
+      this.prop === 'Perlas GO'
         ? 'block'
         : 'none'
     } ;left: 34px; top:${

@@ -120,6 +120,8 @@ class DoodleWidget {
     this.image.onload = () => {
       this.startDoodle();
     };
+
+    this.currentScreen = 0; // Initialize the current screen counter
   }
 
   startDoodle() {
@@ -163,8 +165,6 @@ class DoodleWidget {
           : backgroundRedAkropolis
         : backgroundRed
     }) center`;
-
-    // Updated here
 
     if (!canvas) {
       console.error('Canvas element not found.');
@@ -906,27 +906,32 @@ class DoodleWidget {
 
     if (subs.y > this.height) subs.appearance = false;
   };
-
   springCalc = () => {
     var s = this.Spring;
     var p = this.platforms[0];
 
-    if (p.type == 1 || p.type == 2) {
-      s.x = p.x + p.width / 2 - s.width / 2;
-      s.y = p.y - p.height - 10;
+    // Check if the current screen is an even number
+    if (this.currentScreen % 2 === 0) {
+      if (p.type == 1 || p.type == 2) {
+        s.x = p.x + p.width / 2 - s.width / 2;
+        s.y = p.y - p.height - 10;
 
-      // Reset spring if it goes off-screen
-      if (s.y > this.height / 1.1) {
-        s.reset();
+        // Reset spring if it goes off-screen
+        if (s.y > this.height / 1.1) {
+          s.reset();
+        }
+
+        s.draw();
+      } else {
+        s.x = 0 - s.width;
+        s.y = 0 - s.height;
       }
-
-      s.draw();
     } else {
+      // Hide the spring if it's not an even screen
       s.x = 0 - s.width;
       s.y = 0 - s.height;
     }
   };
-
   playerCalc = () => {
     if (this.dir == 'left') {
       this.player.dir = 'left';
@@ -1242,11 +1247,16 @@ class DoodleWidget {
     this.playerCalc();
     this.updateScore();
     this.platformCalc();
+
     this.springCalc();
 
     this.player.draw();
-  };
 
+    // Update the current screen counter based on the player's position
+    if (this.player.y < this.height / 2) {
+      this.currentScreen = Math.floor(this.player.y / this.height);
+    }
+  };
   createContainer = () => {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
@@ -1547,6 +1557,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : this.customer === 'Perlas GO'
+                  ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
                   : this.customer === 'Vilvi'
                   ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
                   : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
@@ -1846,6 +1858,7 @@ class Platform {
 
     this.types = [];
     this.type = 1;
+
     this.reset();
   }
   draw() {
@@ -1971,19 +1984,19 @@ class Spring {
     this.vx = 1;
     this.cx = 5; // Horizontal position in the sprite sheet
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Perlas Go';
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
 
     this.possibleValues =
       this.customer === 'Vilvi'
         ? [625, 765, 855]
-        : this.customer === 'Perlas Go'
+        : this.customer === 'Perlas GO'
         ? [625, 765, 855]
         : [615]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width = this.customer === 'Vilvi' ? 78 : this.customer === 'Perlas Go' ? 54 : 65; // Width to draw on canvas
-    this.height = this.customer === 'Vilvi' ? 45 : this.customer === 'Perlas Go' ? 40 : 38; // Height to draw on canvas
+    this.width = this.customer === 'Vilvi' ? 78 : this.customer === 'Perlas GO' ? 54 : 65; // Width to draw on canvas
+    this.height = this.customer === 'Vilvi' ? 45 : this.customer === 'Perlas GO' ? 40 : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }
