@@ -1480,6 +1480,9 @@ function startGame(
       .signal('ROUND_STARTED', 'signal')
       .then((response) => {
         if (customer === 'Pigu.lt') {
+          if (typeof dataLayer !== 'undefined') {
+            dataLayer.push({ event: 'Game_Start' });
+          }
           if (window.Boomio) {
             window.Boomio.logEvent('game_started', JSON.stringify(response));
           } else if (

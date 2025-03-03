@@ -19,12 +19,15 @@ class CrushGame {
 
     this.gridSize = 8;
     this.tileSize = 50;
-    // Normal candy colors.
     this.colors = { red, blue, green, yellow, purple, orange };
     this.grid = [];
     this.selectedTile = null;
     this.images = {};
     this.score = 0;
+    this.multiplier = 1;
+    this.isAnimating = false; // Add this flag
+    this.timer = 60; // Add timer property
+    this.timerInterval = null; // Add timer interval property
     this.init();
   }
 
@@ -39,10 +42,32 @@ class CrushGame {
       this.generateValidGrid();
       this.addEventListeners();
       this.startGameLoop();
+      this.startTimer(); // Start the timer when the game starts
     });
   }
 
-  // Returns all connected cells (only up, down, left, right) of the given base color.
+  startTimer() {
+    const timerElement = document.getElementById('timer');
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval); // Clear any existing timer intervals
+    }
+    this.timer = 60; // Reset the timer to 60 seconds
+    this.timerInterval = setInterval(() => {
+      this.timer--;
+      timerElement.innerText = `Time: ${this.timer}s`;
+      if (this.timer <= 0) {
+        clearInterval(this.timerInterval);
+        this.endGame();
+      }
+    }, 1000);
+  }
+
+  endGame() {
+    this.isAnimating = true; // Prevent any further actions
+    alert(`Game Over! Your score is ${this.score}`);
+    // Optionally, you can add logic to restart the game or show a game over screen
+  }
+
   getConnectedCells(row, col, color) {
     const stack = [{ row, col }];
     const connected = new Set();
@@ -51,27 +76,27 @@ class CrushGame {
       const key = `${cell.row}-${cell.col}`;
       if (connected.has(key)) continue;
       connected.add(key);
-      // Only check the 4 cardinal directions.
+      // Check only 4 cardinal directions.
       const neighbors = [
         { row: cell.row - 1, col: cell.col }, // Up
         { row: cell.row + 1, col: cell.col }, // Down
         { row: cell.row, col: cell.col - 1 }, // Left
         { row: cell.row, col: cell.col + 1 }, // Right
       ];
-      neighbors.forEach(({ row: newRow, col: newCol }) => {
+      neighbors.forEach(({ row: nRow, col: nCol }) => {
         if (
-          newRow >= 0 &&
-          newRow < this.gridSize &&
-          newCol >= 0 &&
-          newCol < this.gridSize &&
-          this.getBaseColor(this.grid[newRow][newCol]) === color
+          nRow >= 0 &&
+          nRow < this.gridSize &&
+          nCol >= 0 &&
+          nCol < this.gridSize &&
+          this.getBaseColor(this.grid[nRow][nCol]) === color
         ) {
-          stack.push({ row: newRow, col: newCol });
+          stack.push({ row: nRow, col: nCol });
         }
       });
     }
-    return [...connected].map((pos) => {
-      const [r, c] = pos.split('-').map(Number);
+    return [...connected].map((key) => {
+      const [r, c] = key.split('-').map(Number);
       return { row: r, col: c };
     });
   }
@@ -138,6 +163,7 @@ class CrushGame {
       this.gridSize * this.tileSize
     }"></canvas>
         <div id="score">Score: 0</div>
+        <div id="timer">Time: 60s</div> <!-- Add timer display -->
         <!-- Start overlay -->
         <div id="start-screen">
           <button id="start-button">Start Game</button>
@@ -178,8 +204,16 @@ class CrushGame {
 
   getRandomColor() {
     const colorKeys = Object.keys(this.colors);
-    const randomIndex = Math.floor(Math.random() * colorKeys.length);
-    return colorKeys[randomIndex];
+    const baseColor = colorKeys[Math.floor(Math.random() * colorKeys.length)];
+
+    // Let's say 10% chance to create a "3Points" tile:
+    const threePointColors = ['blue', 'green', 'orange', 'purple', 'red'];
+    if (Math.random() < 0.1 && threePointColors.includes(baseColor)) {
+      return baseColor + '3Points';
+    }
+
+    // Otherwise return a normal color
+    return baseColor;
   }
 
   hasInitialMatches() {
@@ -193,12 +227,11 @@ class CrushGame {
     // Horizontal check
     for (let row = 0; row < this.gridSize; row++) {
       for (let col = 0; col < this.gridSize - 2; col++) {
-        let candy = this.grid[row][col];
-        if (
-          candy &&
-          this.getBaseColor(candy) === this.getBaseColor(this.grid[row][col + 1]) &&
-          this.getBaseColor(candy) === this.getBaseColor(this.grid[row][col + 2])
-        ) {
+        const c1 = this.getBaseColor(this.grid[row][col]);
+        const c2 = this.getBaseColor(this.grid[row][col + 1]);
+        const c3 = this.getBaseColor(this.grid[row][col + 2]);
+
+        if (c1 && c1 === c2 && c1 === c3) {
           matches.add(`${row}-${col}`);
           matches.add(`${row}-${col + 1}`);
           matches.add(`${row}-${col + 2}`);
@@ -210,12 +243,11 @@ class CrushGame {
     // Vertical check
     for (let col = 0; col < this.gridSize; col++) {
       for (let row = 0; row < this.gridSize - 2; row++) {
-        let candy = this.grid[row][col];
-        if (
-          candy &&
-          this.getBaseColor(candy) === this.getBaseColor(this.grid[row + 1][col]) &&
-          this.getBaseColor(candy) === this.getBaseColor(this.grid[row + 2][col])
-        ) {
+        const c1 = this.getBaseColor(this.grid[row][col]);
+        const c2 = this.getBaseColor(this.grid[row + 1][col]);
+        const c3 = this.getBaseColor(this.grid[row + 2][col]);
+
+        if (c1 && c1 === c2 && c1 === c3) {
           matches.add(`${row}-${col}`);
           matches.add(`${row + 1}-${col}`);
           matches.add(`${row + 2}-${col}`);
@@ -232,9 +264,10 @@ class CrushGame {
     console.log('🎯 Matches Found:', matchArray);
     return matchArray;
   }
+
   getBaseColor(color) {
     if (typeof color !== 'string') return color;
-    return color.replace('Special', '');
+    return color.replace('Special', '').replace('Multiplier', '').replace('3Points', ''); // <-- This ensures "red3Points" => "red"
   }
 
   applyGravity(callback) {
@@ -260,10 +293,16 @@ class CrushGame {
       // For each empty space at the top, create a new candy falling in.
       newTilesMap[col] = [];
       for (let i = 0; i < emptySpaces; i++) {
-        const newColor = this.getRandomColor();
+        // Get a random color.
+        let newColor = this.getRandomColor();
+        // With a 10% chance, convert it to its special variant.
+        if (Math.random() < 0.1) {
+          // If the color is yellow and you don't have yellowSpecial, use redSpecial as default.
+          newColor = newColor === 'yellow' ? 'redSpecial' : newColor + 'Special';
+        }
         newTilesMap[col].push(newColor);
         newFalling.push({
-          fromRow: -emptySpaces + i, // start above the grid (e.g. -3, -2, -1)
+          fromRow: -emptySpaces + i, // start above the grid (e.g. -emptySpaces, ... -1)
           toRow: i, // target row is i (0, 1, 2, etc.)
           col,
           isNew: true,
@@ -291,9 +330,33 @@ class CrushGame {
     });
   }
 
+  animateFallingExplosion(specialTile, callback) {
+    // Determine the target row (for example, the bottom of the grid).
+    const targetRow = this.gridSize - 1;
+    // Create a falling tile object for the special tile.
+    const fallingTile = [
+      {
+        fromRow: specialTile.row,
+        toRow: targetRow,
+        col: specialTile.col,
+        isNew: false,
+        color: this.grid[specialTile.row][specialTile.col],
+      },
+    ];
+    // Animate this falling tile.
+    this.animateFallingTiles(fallingTile, () => {
+      // Remove the special tile from its original location.
+      this.grid[specialTile.row][specialTile.col] = null;
+      // Place it at the target location.
+      this.grid[targetRow][specialTile.col] = fallingTile[0].color;
+      // Call the callback, passing the landing row.
+      callback(targetRow);
+    });
+  }
   animateFallingTiles(fallingTiles, callback) {
     const duration = 500; // Duration of the animation in milliseconds.
     const startTime = performance.now();
+    this.isAnimating = true; // Set flag to true at the start of animation
 
     const animate = (currentTime) => {
       const elapsedTime = currentTime - startTime;
@@ -323,6 +386,9 @@ class CrushGame {
         requestAnimationFrame(animate);
       } else {
         callback();
+        setTimeout(() => {
+          this.isAnimating = false;
+        }, 500); // Set flag to false after animation is complete
       }
     };
 
@@ -396,15 +462,75 @@ class CrushGame {
           this.tileSize,
           this.tileSize,
         );
+      }
+      return;
+    }
+    if (typeof color === 'string' && color.endsWith('3Points')) {
+      // 1) Draw the base color’s normal image, if you have it
+      const base = color.replace('3Points', ''); // e.g. "blue3Points" => "blue"
+      const img = this.images[base];
+      if (img) {
+        this.ctx.drawImage(
+          img,
+          col * this.tileSize + xOffset,
+          row * this.tileSize + yOffset,
+          this.tileSize,
+          this.tileSize,
+        );
       } else {
-        this.ctx.fillStyle = 'white';
-        this.ctx.font = '20px Arial';
-        this.ctx.fillText(
-          'S',
-          col * this.tileSize + this.tileSize / 3,
-          row * this.tileSize + this.tileSize / 1.5,
+        // fallback fill if no image
+        this.ctx.fillStyle = base;
+        this.ctx.fillRect(
+          col * this.tileSize + xOffset,
+          row * this.tileSize + yOffset,
+          this.tileSize,
+          this.tileSize,
         );
       }
+
+      // 2) Overlay “+3”
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = '18px Arial';
+      this.ctx.fillText(
+        '+3',
+        col * this.tileSize + xOffset + this.tileSize * 0.25,
+        row * this.tileSize + yOffset + this.tileSize * 0.6,
+      );
+      return; // done drawing
+    }
+    if (typeof color === 'string' && color.endsWith('Multiplier')) {
+      // Get the base color from the name, e.g. "blueMultiplier" -> "blue"
+      const base = color.replace('Multiplier', '');
+
+      // If you have an image for the base color, draw that image:
+      const img = this.images[base];
+      if (img) {
+        this.ctx.drawImage(
+          img,
+          col * this.tileSize + xOffset,
+          row * this.tileSize + yOffset,
+          this.tileSize,
+          this.tileSize,
+        );
+      } else {
+        // Otherwise fill with your base color
+        this.ctx.fillStyle = base;
+        this.ctx.fillRect(
+          col * this.tileSize + xOffset,
+          row * this.tileSize + yOffset,
+          this.tileSize,
+          this.tileSize,
+        );
+      }
+
+      // Draw "x2" text to indicate multiplier
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = '18px Arial';
+      this.ctx.fillText(
+        'x2',
+        col * this.tileSize + xOffset + this.tileSize * 0.3,
+        row * this.tileSize + yOffset + this.tileSize * 0.6,
+      );
       return;
     }
     // Normal tile drawing.
@@ -454,9 +580,12 @@ class CrushGame {
     this.selectedTile = null;
     // Redraw the grid
     this.drawGrid();
+    // Restart the timer
+    this.startTimer();
   }
 
   handleTileSelection(event) {
+    if (this.isAnimating) return; // Prevent tile selection during animations
     const { row, col } = this.getTilePosition(event);
     this.selectedTile = { row, col };
   }
@@ -469,6 +598,7 @@ class CrushGame {
   }
 
   handleTileSwap(event) {
+    if (this.isAnimating) return; // Prevent tile swap during animations
     if (!this.selectedTile) return;
     const { row, col } = this.getTilePosition(event);
     if (
@@ -478,6 +608,7 @@ class CrushGame {
       const tile1 = this.selectedTile;
       const tile2 = { row, col };
       console.log(`🔄 Swapping (${tile1.row}, ${tile1.col}) with (${tile2.row}, ${tile2.col})`);
+      this.isAnimating = true; // Set flag to true at the start of animation
       this.animateTileSwap(tile1, tile2, () => {
         console.log('🔎 Checking for matches after swap...');
         const matches = this.findMatches();
@@ -490,6 +621,10 @@ class CrushGame {
           this.animateTileSwap(tile2, tile1, () => {
             this.selectedTile = null;
             this.drawGrid();
+
+            setTimeout(() => {
+              this.isAnimating = false;
+            }, 500);
           });
         }
       });
@@ -525,6 +660,9 @@ class CrushGame {
         this.swapTiles(tile1, tile2); // Ensure tiles are swapped before checking for matches
         this.drawGrid();
         callback();
+        setTimeout(() => {
+          this.isAnimating = false;
+        }, 500); // Set flag to false after animation is complete
       }
     };
 
@@ -578,91 +716,99 @@ class CrushGame {
     return hasMatch;
   }
 
+  activateMultiplier() {
+    this.multiplier = 2;
+
+    // OPTIONAL: If you have an on-screen element to show multiplier status
+    const multEl = document.getElementById('multiplier-indicator');
+    if (multEl) {
+      multEl.innerText = 'x2 MULTIPLIER (10s)';
+    }
+
+    setTimeout(() => {
+      this.multiplier = 1;
+      if (multEl) {
+        multEl.innerText = '';
+      }
+    }, 10000);
+  }
+
   processMatches(chain = 0) {
+    // Prevent infinite loops / handle large chain reactions
     if (chain > 10) {
       console.log('Chain reaction limit reached. Stopping further processing.');
       return;
     }
+
+    // Find initial matches in the grid
     const initialMatches = this.findMatches();
     if (initialMatches.length > 0) {
-      // Use a set to build the union of all connected cells.
+      // Expand matches to include all connected cells of the same base color
       let extendedMatches = new Set();
       initialMatches.forEach(({ row, col }) => {
-        // Add the current matched cell.
         extendedMatches.add(`${row}-${col}`);
-        // Get its base color.
         const baseColor = this.getBaseColor(this.grid[row][col]);
-        // If the color is, say, yellow (or any color for that matter), extend with connected cells.
         const connected = this.getConnectedCells(row, col, baseColor);
         connected.forEach((cell) => {
           extendedMatches.add(`${cell.row}-${cell.col}`);
         });
       });
 
+      // Convert the Set into an array of {row, col} objects
       const matchArray = [...extendedMatches].map((pos) => {
-        const [row, col] = pos.split('-').map(Number);
-        return { row, col };
+        const [r, c] = pos.split('-').map(Number);
+        return { row: r, col: c };
       });
 
-      // (Your special tile logic can remain here; for example, if a special tile is present, trigger explosion.)
+      // Prepare to handle special tiles or extra point tiles
       let specialFound = null;
+      let totalBasePoints = 0;
+
+      // Loop through matched tiles to find:
+      // 1) Special tiles (e.g., "redSpecial") to explode
+      // 2) 3-Point tiles (ends with "3Points") to add 3 points
+      //    otherwise each tile is worth 1 point
       matchArray.forEach(({ row, col }) => {
-        const tile = this.grid[row][col];
-        if (typeof tile === 'string' && tile.endsWith('Special')) {
+        const tileVal = this.grid[row][col];
+
+        // If the tile is a special bomb/explosive
+        if (typeof tileVal === 'string' && tileVal.endsWith('Special')) {
           specialFound = { row, col };
         }
+
+        // Tally points:
+        if (typeof tileVal === 'string' && tileVal.endsWith('3Points')) {
+          // This tile is worth 3 points
+          totalBasePoints += 3;
+        } else {
+          // Normal tile is worth 1 point
+          totalBasePoints += 1;
+        }
       });
+
+      // If a special tile is found, explode it and exit this function
       if (specialFound) {
         console.log('Special tile triggered! Exploding matched group and adjacent area.');
-        let explosionArea = new Set();
-        // Add the 3x3 area around the special tile.
-        for (let r = specialFound.row - 1; r <= specialFound.row + 1; r++) {
-          for (let c = specialFound.col - 1; c <= specialFound.col + 1; c++) {
-            if (r >= 0 && r < this.gridSize && c >= 0 && c < this.gridSize) {
-              explosionArea.add(`${r}-${c}`);
-            }
-          }
-        }
-        // Also add all cells in the extended match.
-        matchArray.forEach(({ row, col }) => explosionArea.add(`${row}-${col}`));
-        const explosionArray = [...explosionArea].map((key) => {
-          const [row, col] = key.split('-').map(Number);
-          return { row, col };
-        });
-        this.animateExplosion(explosionArray, () => {
-          explosionArray.forEach(({ row, col }) => {
-            this.grid[row][col] = null;
-          });
-          this.applyGravity(() => {
-            this.processMatches();
-          });
-        });
-        return;
+        this.explodeTile(specialFound);
+        return; // Once we trigger explodeTile, we let that flow handle gravity, etc.
       }
 
-      // Otherwise, optionally convert one matched cell to a special tile (e.g., with a 20% chance)
-      if (Math.random() < 0.2) {
-        const randomIndex = Math.floor(Math.random() * matchArray.length);
-        const specialCell = matchArray[randomIndex];
-        let currentColor = this.grid[specialCell.row][specialCell.col];
-        let specialKey = currentColor === 'yellow' ? 'redSpecial' : currentColor + 'Special';
-        console.log(
-          `Converting cell (${specialCell.row}, ${specialCell.col}) into a special tile (${specialKey}).`,
-        );
-        this.grid[specialCell.row][specialCell.col] = specialKey;
-      }
+      // Otherwise, just add the calculated points (use multiplier if you have one)
+      // e.g. this.score += totalBasePoints * this.multiplier;
+      // If you don't have a multiplier, just do:
+      this.score += totalBasePoints;
 
-      this.score += matchArray.length;
+      // Update score display
       document.getElementById('score').innerText = `Score: ${this.score}`;
 
+      // Animate the match effect, then clear matched tiles, apply gravity, and check for new matches
       this.animateMatchEffect(matchArray, () => {
         matchArray.forEach(({ row, col }) => {
-          if (
-            !(typeof this.grid[row][col] === 'string' && this.grid[row][col].endsWith('Special'))
-          ) {
-            this.grid[row][col] = null;
-          }
+          // Clear matched tiles, unless it's some other special logic you want to skip
+          this.grid[row][col] = null;
         });
+
+        // Gravity will drop new tiles in; then we recursively call processMatches to check for combos
         this.applyGravity(() => {
           this.processMatches(chain + 1);
         });
@@ -670,22 +816,70 @@ class CrushGame {
     }
   }
 
-  explodeTile(centerTile) {
+  explodeTile(centerTile, callback) {
+    const specialKey = this.grid[centerTile.row][centerTile.col];
+    const targetRow = centerTile.row;
+    const targetCol = centerTile.col;
+
+    // Remove the special tile from the grid immediately.
+    this.grid[targetRow][targetCol] = null;
+
+    // Define the explosion area as a 3×3 block around the special tile's position.
+    let explosionArea = [];
     const radius = 1;
-    let affectedTiles = [];
-    for (let r = centerTile.row - radius; r <= centerTile.row + radius; r++) {
-      for (let c = centerTile.col - radius; c <= centerTile.col + radius; c++) {
+    for (let r = targetRow - radius; r <= targetRow + radius; r++) {
+      for (let c = targetCol - radius; c <= targetCol + radius; c++) {
         if (r >= 0 && r < this.gridSize && c >= 0 && c < this.gridSize) {
-          affectedTiles.push({ row: r, col: c });
+          explosionArea.push({ row: r, col: c });
         }
       }
     }
-    this.animateExplosion(affectedTiles, () => {
-      affectedTiles.forEach(({ row, col }) => {
+
+    // Award points for each tile in the explosion area.
+    // (You could adjust the points logic as needed.)
+    this.score += explosionArea.length * this.multiplier;
+    document.getElementById('score').innerText = `Score: ${this.score}`;
+
+    // Animate the explosion over that area.
+    this.animateExplosion(explosionArea, () => {
+      // Before clearing the area, collect any special cells in it.
+      let additionalSpecials = [];
+      explosionArea.forEach(({ row, col }) => {
+        const tileVal = this.grid[row][col];
+        if (typeof tileVal === 'string' && tileVal.endsWith('Special')) {
+          additionalSpecials.push({ row, col });
+        }
+      });
+
+      // Clear all cells in the explosion area.
+      explosionArea.forEach(({ row, col }) => {
         this.grid[row][col] = null;
       });
-      this.applyGravity(() => {
-        this.processMatches();
+
+      // Process additional special explosions sequentially.
+      const processAdditionalExplosions = (specials, done) => {
+        if (specials.length === 0) {
+          done();
+          return;
+        }
+        // Explode the first special cell.
+        const next = specials.shift();
+        this.explodeTile(next, () => {
+          // After that explosion, process the remaining specials.
+          processAdditionalExplosions(specials, done);
+        });
+      };
+
+      processAdditionalExplosions(additionalSpecials, () => {
+        // After processing all additional explosions, if a callback was provided, call it.
+        if (callback) {
+          callback();
+        } else {
+          // Otherwise, apply gravity and process further matches.
+          this.applyGravity(() => {
+            this.processMatches();
+          });
+        }
       });
     });
   }
@@ -693,6 +887,8 @@ class CrushGame {
   animateExplosion(tiles, callback) {
     const duration = 300;
     const startTime = performance.now();
+    this.isAnimating = true; // Set flag to true at the start of animation
+
     const animate = (currentTime) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
@@ -712,6 +908,10 @@ class CrushGame {
         requestAnimationFrame(animate);
       } else {
         callback();
+
+        setTimeout(() => {
+          this.isAnimating = false;
+        }, 500); // Set flag to false after animation is complete
       }
     };
     requestAnimationFrame(animate);
@@ -729,7 +929,9 @@ class CrushGame {
     const gameLoop = () => {
       this.update();
       this.drawGrid();
-      requestAnimationFrame(gameLoop);
+      if (this.timer > 0) {
+        requestAnimationFrame(gameLoop);
+      }
     };
     requestAnimationFrame(gameLoop);
   }
