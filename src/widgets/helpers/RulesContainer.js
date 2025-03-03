@@ -37,7 +37,7 @@ export class RulesContainer {
 
     <p><strong>BENDROSIOS NUOSTATOS</strong></p>
     <p>Šios žaidimo taisyklės (toliau – Žaidimo taisyklės) nustato UAB „Pigu“ (įmonės kodas 300866792, buveinė Laisvės pr. 75, LT-06144 Vilnius) (toliau – Akcijos organizatorius) organizuojamo žaidimo vykdymo tvarką, žaidimo dovanas ir jų įteikimo, ginčų sprendimo ir kitą tvarką.</p>
-    <p>Žaidimo vykdymo laikotarpis: 2025 m. vasario 3 d. – 2025 m. kovo 9 d. (imtinai)</p>
+    <p>Žaidimo vykdymo laikotarpis: 2025 m. vasario 3 d. – 2025 m. kovo 16 d. (imtinai)</p>
     <p>Žaidimo dalyvis turi būti registruotas pigu.lt narys ir būti sutikęs gauti žaidimo naujienas ir informaciją apie prizus.</p>
     <p>Žaidimas vykdomas Pigu.lt mobiliojoje programėlėje. Žaidimo metu žaidimo dalyvis kontroliuoja žaidimo herojų, kurio tikslas važiuojant neatsitrenkti į kliūtis. Siekiant pagerinti rezultatą, žaidimo dalyvis žaidimą gali kartoti.</p>
 
@@ -80,7 +80,7 @@ export class RulesContainer {
 
     <p><strong>GENERAL PROVISIONS</strong></p>
     <p>These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by UAB "Pigu" (company code 300866792, registered address Laisvės pr. 75, LT-06144 Vilnius) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution and other procedures.</p>
-    <p>Game period: 3 February 2025 - 9 March 2025 (inclusive)</p>
+    <p>Game period: 3 February 2025 - 16 March 2025 (inclusive)</p>
     <p>The game participant must be a registered pigu.lt member and have agreed to receive game news and information about prizes.</p>
     <p>The game is played on the Pigu.lt mobile app. During the game, the game participant controls the game hero, whose goal is to avoid hitting obstacles while driving. To improve the result, the game participant can repeat the game.</p>
 
@@ -125,7 +125,7 @@ export class RulesContainer {
     <p><strong>VISPĀRĪGI NOTEIKUMI</strong></p>
     <ol>
         <li>Šos spēles noteikumus (turpmāk tekstā “Spēles noteikumi”) nosaka SIA "Pigu Latvia" (uzņēmuma kods 43603025092, juridiskā adrese Krasta iela 52, Rīga, LV-1003, Latvija) (turpmāk tekstā “Akcijas organizētājs”) organizētās spēles norises kārtību, spēles balvas un to piegādi, strīdu risināšanu un citas procedūras.</li>
-        <li>Spēles periods: 2025. gada 3. februāris - 2025. gada 9. marts (ieskaitot).</li>
+        <li>Spēles periods: 2025. gada 3. februāris - 2025. gada 16. marts (ieskaitot).</li>
         <li>Spēles dalībniekam jābūt reģistrētam 220.lv lietotājam un jāpiekrīt saņemt spēles jaunumus un informāciju par balvām.</li>
         <li>Spēle norisinās 220.lv mobilajā lietotnē. Spēles laikā spēles dalībnieks kontrolē spēles varoni, kura mērķis ir izvairīties no šķēršļiem brauciena laikā. Lai uzlabotu rezultātu, spēles dalībnieks var atkārtot spēli.</li>
     </ol>
@@ -177,7 +177,7 @@ export class RulesContainer {
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
     <ol>
         <li>Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры SIA "Pigu Latvia" (код компании 43603025092, юридический адрес Улица Краста, 52, Рига, LV-1003, Латвия) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</li>
-        <li>Период проведения игры: 3 февраля 2025 года - 9 марта 2025 года (включительно).</li>
+        <li>Период проведения игры: 3 февраля 2025 года - 16 марта 2025 года (включительно).</li>
         <li>Участник игры должен быть зарегистрированным участником 220.lv и согласиться получать новости игры и информацию о призах.</li>
         <li>Игра проводится в мобильном приложении 220.lv. Во время игры участник управляет игровым персонажем, цель которого — избегать препятствия во время поездки. Чтобы улучшить результат, участник игры может повторить игру.</li>
     </ol>
@@ -231,7 +231,7 @@ export class RulesContainer {
     <p><strong>GENERAL PROVISIONS</strong></p>
     <ol>
         <li>These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by SIA "Pigu Latvia” (company code 43603025092, registered address Krasta iela 52, Rīga, LV-1003, Latvija) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution, and other procedures.</li>
-        <li>Game period: 3 February 2025 - 9 March 2025 (inclusive).</li>
+        <li>Game period: 3 February 2025 - 16 March 2025 (inclusive).</li>
         <li>The game participant must be a registered 220.lv member and have agreed to receive game news and information about prizes.</li>
         <li>The game is played on the 220.lv mobile app. During the game, the game participant controls the game hero, whose goal is to avoid hitting obstacles while driving. To improve the result, the game participant can repeat the game.</li>
     </ol>
@@ -285,7 +285,7 @@ export class RulesContainer {
     <p><strong>ÜLDISED SÄTTED</strong></p>
     <ol>
         <li>Käesolevad mängureeglid (edaspidi "mängureeglid") kehtestavad DLB Trading OÜ (ettevõtte reg.nr 11791329, aadressil Peterburi tee 2F, 11415 Tallinn, Eesti) (edaspidi "kampaania korraldaja") korraldatava mängu läbiviimise korra, mängu auhinnad ja nende kättetoimetamise, vaidluste lahendamise ja muud protseduurid.</li>
-        <li>Mängu periood: 03. veebruar 2025 - 09. märts 2025 (kaasa arvatud).</li>
+        <li>Mängu periood: 03. veebruar 2025 - 16. märts 2025 (kaasa arvatud).</li>
         <li>Mängus osaleja peab olema registreeritud pigu.lt liige ja olema nõustunud saama mängu uudiseid ja teavet auhindade kohta.</li>
         <li>Mängu mängitakse Kaup24.ee mobiilirakenduses. Mängu ajal juhib mängus osaleja mängukangelast, kelle eesmärk on sõita vältides tabamusi. Tulemuse parandamiseks võib mängus osaleja mängu korrata.</li>
     </ol>
@@ -337,7 +337,7 @@ export class RulesContainer {
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
     <ol>
         <li>Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры UAB «Pigu» (код компании 300866792, юридический адрес Laisvės pr. 75, LT-06144 Вильнюс) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</li>
-        <li>Период проведения игры: 3 февраля 2025 года - 9 марта 2025 года (включительно).</li>
+        <li>Период проведения игры: 3 февраля 2025 года - 16 марта 2025 года (включительно).</li>
         <li>Участник игры должен быть зарегистрированным участником pigu.lt и согласиться получать новости игры и информацию о призах.</li>
         <li>Игра проводится в мобильном приложении Pigu.lt. Во время игры участник управляет игровым персонажем, цель которого — избегать препятствия во время поездки. Чтобы улучшить результат, участник игры может повторить игру.</li>
     </ol>
@@ -394,7 +394,7 @@ export class RulesContainer {
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
     <ol>
         <li>Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры DLB Trading OÜ (код компании 11791329, юридический адрес Peterburi tee 2F, 11415 Таллинн, Эстония) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</li>
-        <li>Период проведения игры: 3 февраля 2025 года - 9 марта 2025 года (включительно).</li>
+        <li>Период проведения игры: 3 февраля 2025 года - 16 марта 2025 года (включительно).</li>
         <li>Участник игры должен быть зарегистрированным участником Kaup24.ee и согласиться получать новости игры и информацию о призах.</li>
         <li>Игра проводится в мобильном приложении Kaup24.ee. Во время игры участник управляет игровым персонажем, цель которого — избегать препятствия во время поездки. Чтобы улучшить результат, участник игры может повторить игру.</li>
     </ol>
@@ -443,12 +443,12 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://hobbyhall.fi' && this.language === 'FI'
         ? `<div>
     <p><strong>Pelisäännöt</strong></p>
-    <p>Päivitetty 17.2.2025</p>
+    <p>Päivitetty 17.2025</p>
 
     <p><strong>YLEISET MÄÄRÄYKSET</strong></p>
     <ol>
         <li>Nämä pelisäännöt (jäljempänä "pelisäännöt") määrittelevät Hobby Hall Suomi Oy (jäljempänä "kampanjan järjestäjä") järjestämän pelin järjestämismenettelyjä, pelin palkintoja ja niiden toimitusta, riitojen ratkaisua ja muita menettelyjä.</li>
-        <li>Pelijakso: 3.2. - 9.3.2025</li>
+        <li>Pelijakso: 3.2. - 16.3.2025</li>
         <li>Pelin osallistujan on oltava rekisteröitynyt Hobbyhall.fi-verkkokauppaan ja hänen on oltava hyväksynyt pelin tietojen ja palkintotietojen vastaanotto.</li>
         <li>Peliä pelataan Hobbyhall.fi-mobiilisovelluksessa. Pelin aikana pelaaja hallitsee pelin hahmoa, jonka tavoitteena on välttää esteisiin osumista ajaessaan. Tuloksen parantamiseksi pelaaja voi pelata pelin uudelleen.</li>
     </ol>
@@ -458,14 +458,14 @@ export class RulesContainer {
         <li>Joka viikko, kymmenen satunnaisesti valittua, 1000 pistettä tai yli saanutta pelaajaa voittaa 20€:n lahjakortin. Joka viikko, sata satunnaisesti valittua, 1000 pistettä tai yli saanutta pelaajaa voittaa ilmaisen toimituksen koodin, jolla saa ilmaisen toimituksen Hobbyhall.fi-verkkokaupan tilaukselle PostNordin automaattiin.</li>
         <li>Pelipalkinnosta ja sen toimittamisesta tiedottaminen:
             <ol>
-                <li>Pelisääntöjen kohdassa 5 määritellystä pelipalkinnosta, 20 € arvoisesta lahjakortista, ilmoitetaan pelin osallistujalle hänen ilmoittamaansa sähköpostiosoitteeseen. Tiedot edellisen viikon pelin voittamisesta lähetetään maanantaisin seuraavina päivinä: 3.2.2025, 10.2.2025, 17.2.2025, 24.2.2025, 3.3.2025, 10.3.2025.</li>
+                <li>Pelisääntöjen kohdassa 5 määritellystä pelipalkinnosta, 20 € arvoisesta lahjakortista, ilmoitetaan pelin osallistujalle hänen ilmoittamaansa sähköpostiosoitteeseen. Tiedot edellisen viikon pelin voittamisesta lähetetään maanantaisin seuraavina päivinä: 3.2.2025, 10.2.2025, 17.2.2025, 24.2.2025, 3.3.2025, 10.3.2025, 17.3.2025.</li>
                 <li>Pelisääntöjen kohdassa 5 määritellystä pelipalkinnosta, ilmaisen toimituksen koodista, ilmoitetaan pelin osallistujalle välittömästi pelin päättymisen jälkeen tulosikkuna kentässä.</li>
             </ol>
         </li>
         <li>Pelissä voitettujen lahjakorttien käyttöehdot:
             <ul>
                 <li>Lahjakorttikoodi on voimassa yhden viikon sen lähettämispäivästä.</li>
-                <li>Ilmaisen toimituksen koodi on voimassa klo 23.59 asti sinä päivänä, jona se on voitettu pelistä.</li>
+                <li>Ilmaisen toimituksen koodi on voimassa sunnuntaihin 23:59 asti samalla viikolla, jolloin se on voitettu.</li>
                 <li>Lahjakorttia tai ilmaisen toimituksen koodia ei voi palauttaa eikä vaihtaa rahaksi.</li>
                 <li>Jos tilauksen, joka maksetaan lahjakorttia käyttämällä, summa ylittää lahjakortin arvon, puuttuvan summan voi maksaa valitsemalla jonkin muun Hobbyhall.fi-verkkokaupan tarjoamista maksutavoista.</li>
                 <li>Lahjakorttikoodia tai ilmaisen toimituksen koodia voi käyttää vain yhteen tilaukseen. Jos tilauksen, joka maksetaan lahjakorttia käyttämällä, summa on pienempi kuin lahjakortin arvo, erotusta ei palauteta.</li>
@@ -505,7 +505,7 @@ export class RulesContainer {
     <p><strong>GENERAL PROVISIONS</strong></p>
     <ol>
         <li>These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by DLB Trading OÜ (company code 11791329, registered address Peterburi tee 2F, 11415 Tallinn, Eesti) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution, and other procedures.</li>
-        <li>Game period: 3 February 2025 - 9 March 2025 (inclusive).</li>
+        <li>Game period: 3 February 2025 - 16 March 2025 (inclusive).</li>
         <li>The game participant must be a registered Kaup24.ee member and have agreed to receive game news and information about prizes.</li>
         <li>The game is played on the Kaup24.ee mobile app. During the game, the game participant controls the game hero, whose goal is to avoid hitting obstacles while driving. To improve the result, the game participant can repeat the game.</li>
     </ol>
@@ -559,7 +559,7 @@ export class RulesContainer {
     <p><strong>GENERAL PROVISIONS</strong></p>
     <ol>
         <li>These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by Hobby Hall Suomi Oy (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution and other procedures.</li>
-        <li>Game period: 3 February 2025 - 9 March 2025 (inclusive).</li>
+        <li>Game period: 3 February 2025 - 16 March 2025 .</li>
         <li>The game participant must be a registered Hobbyhall.fi member and have agreed to receive game news and information about prizes.</li>
         <li>The game is played on the Hobbyhall.fi mobile app. During the game, the game participant controls the game hero, whose goal is to avoid hitting obstacles while driving. To improve the result, the game participant can repeat the game.</li>
     </ol>
@@ -570,12 +570,13 @@ export class RulesContainer {
         <li>A Participant may only receive a Game Prize once within 28 days of the announcement of the winners of the Game, the dates of which are set out in clause 6.1. If a Game Participant who has already received a Game Prize in the last 28 days is among the ten selected players, their Game Prize will be transferred to another player by random selection.</li>
         <li>The procedure for informing about the game prize and its delivery:
             <ol>
-                <li>The game participant is informed about the game prize specified in clause 5 of the Game Rules at the e-mail address provided by him. Information about winning the previous week's game is sent on Mondays, on the following dates: 3 February 2025, 10 February 2025, 17 February 2025, 24 February 2025, 3 March 2025, 10 March 2025.</li>
+                <li>The game participant is informed about the game prize specified in clause 5 of the Game Rules at the e-mail address provided by him. Information about winning the previous week's game is sent on Mondays, on the following dates: 3 February 2025, 10 February 2025, 17 February 2025, 24 February 2025, 3 March 2025, 17 March 2025.</li>
             </ol>
         </li>
         <li>Terms of use of game gift vouchers:
             <ul>
                 <li>The gift voucher is valid for 1 week from the date of its dispatch;</li>
+                <li>The free delivery code is valid until 23:59 on Sunday the same week it was won;</li>
                 <li>The gift voucher is non-refundable and cannot be exchanged for cash;</li>
                 <li>If the amount of the order for which payment is made by applying the gift voucher exceeds the value of the gift voucher, the missing amount can be paid by choosing one of the payment methods offered by Pigu.lt;</li>
                 <li>The gift voucher code can only be applied to one order. If the amount of the order for which payment is made by applying the gift voucher is less than the value of the gift voucher, the resulting difference is non-refundable;</li>

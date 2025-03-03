@@ -260,9 +260,9 @@ export class InputRegisterContainer {
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop === 'Pegasas'
               ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
-              : this.prop.includes('Gamtos Ateitis')
-              ? 'https://gamtosateitis.lt/privatumo-politika/'
               : this.prop === 'Perlas GO'
+              ? 'https://www.perlasgo.lt/privatumo-politika/'
+              : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
           }" style="color:white;text-decoration: underline; font-size: ${
@@ -297,15 +297,18 @@ export class InputRegisterContainer {
    
    
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
-          this.language === 'LV' ? '18px' : '28px'
+          this.language === 'LV' || this.prop === 'Perlas GO' ? '15px' : '28px'
         } ;margin-right:30px;display:${
-      this.prop === 'Akropolis' || this.prop === 'Eurovaistine' || this.prop === 'Vilvi'
+      this.prop === 'Akropolis' ||
+      this.prop === 'Eurovaistine' ||
+      this.prop === 'Vilvi' ||
+      this.prop === 'Perlas GO'
         ? 'block'
         : 'none'
     } ;left: 34px; top:${
       this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-      this.isMobile ? '8px' : '9px'
+      this.prop === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'
     };color:${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };text-align:start;line-height:8px;">
