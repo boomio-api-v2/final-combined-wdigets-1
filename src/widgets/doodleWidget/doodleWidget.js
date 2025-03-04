@@ -2007,7 +2007,7 @@ class Spring {
       this.customer === 'Vilvi'
         ? [625, 765, 855]
         : this.customer === 'Perlas GO'
-        ? [625, 765, 855]
+        ? [625, 762, 852]
         : [615]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
