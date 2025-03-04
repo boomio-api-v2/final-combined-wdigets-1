@@ -426,6 +426,11 @@ class DoodleWidget {
         this.gameLoop();
         this.Spring = new Spring(this.image);
       } else {
+        console.log('start');
+
+        if (typeof dataLayer !== 'undefined') {
+          dataLayer.push({ event: 'Game_Start' });
+        }
         this.showtutorial();
       }
     }
@@ -1775,10 +1780,6 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
-                if (typeof dataLayer !== 'undefined') {
-                  dataLayer.push({ event: 'Game_Start' });
-                  console.log('start');
-                }
                 document.getElementById('background_blur').style.display = 'none';
                 const canvas = document.getElementById('boomio-doodle-canvas');
                 canvas.style.transition = 'filter 1s ease';
