@@ -432,7 +432,7 @@ export class InputContainer {
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
                 : this.prop === 'Perlas GO'
-                ? 'Perlas GO prizus!'
+                ? '10€ Wolt nuolaidos kodą!'
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'

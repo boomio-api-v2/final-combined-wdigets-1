@@ -61,6 +61,7 @@ import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCo
 import { RulesContainer } from '../helpers/RulesContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { TextScoreTableContainer } from '../helpers/TextScoreTableContainer';
 
 class DoodleWidget {
   static ctx;
@@ -721,7 +722,11 @@ class DoodleWidget {
 
               this.scoreTable = response;
 
-              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+              this.scoreTableContainerInstance.updateProps(
+                this.customer,
+                this.scoreTable,
+                this.currentScore,
+              );
             })
             .catch((error) => {
               console.error('Error:', error);
@@ -1479,6 +1484,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
           this.customer,
           this.scoreTable,
+        );
+      } else if (this.customer === 'Perlas GO') {
+        this.scoreTableContainerInstance = new TextScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
         );
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
