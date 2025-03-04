@@ -58,7 +58,7 @@ export class TextScoreTableContainer {
           <div style="width:100%;text-align: center; color: white; font-size:18px;font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word">
           </div>
           <div style="width:100%;font-weight:700;margin-top:40px;text-align: center; color: #76F99C; font-size: 16px; font-family: Montserrat; word-wrap: break-word;line-height:22px;">
-            Surinkai virš 1000 taškų ir pretenduoji </br> laimėti šios savaitės prizą:
+            Surink 1000 ar daugiau taškų ir </br> pretenduok gauti šios savaitės prizą:
           </div>
           <div style="width:100%;margin-top:30px;font-weight:700;text-align: center;text-transform: uppercase; color: #76F99C; font-size: 22px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
             10€ Wolt nuolaidos kodą

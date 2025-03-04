@@ -146,7 +146,7 @@ export class InputContainer {
               }
     <div
   style="top: 9px; margin-top: 3px; color: white; font-size: ${
-    this.prop === 'Akropolis' ? '14px' : '12px'
+    this.prop === 'Perlas GO' ? '14px' : '12px'
   }; font-weight: 700; margin-left: 4px; font-family: ${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; word-wrap: break-word"
@@ -276,7 +276,7 @@ export class InputContainer {
                 : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${
-                           this.prop === 'Akropolis' ? '14px' : '12px'
+                           this.prop === 'Perlas GO' ? '14px' : '12px'
                          }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700;  word-wrap: break-word">
@@ -362,7 +362,7 @@ export class InputContainer {
                               ? '18px'
                               : '3px'
                           }; color: white; font-size: ${
-      this.prop === 'Akropolis' ? '14px' : '12px'
+      this.prop === 'Perlas GO' ? '14px' : '12px'
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
