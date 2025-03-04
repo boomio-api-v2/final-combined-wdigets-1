@@ -61,6 +61,7 @@ import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCo
 import { RulesContainer } from '../helpers/RulesContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { TextScoreTableContainer } from '../helpers/TextScoreTableContainer';
 
 class DoodleWidget {
   static ctx;
@@ -721,7 +722,11 @@ class DoodleWidget {
 
               this.scoreTable = response;
 
-              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+              this.scoreTableContainerInstance.updateProps(
+                this.customer,
+                this.scoreTable,
+                this.currentScore,
+              );
             })
             .catch((error) => {
               console.error('Error:', error);
@@ -1480,6 +1485,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           this.customer,
           this.scoreTable,
         );
+      } else if (this.customer === 'Perlas GO') {
+        this.scoreTableContainerInstance = new TextScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
+        );
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
           this.customer,
@@ -1996,7 +2007,7 @@ class Spring {
       this.customer === 'Vilvi'
         ? [625, 765, 855]
         : this.customer === 'Perlas GO'
-        ? [625, 765, 855]
+        ? [625, 762, 852]
         : [615]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame

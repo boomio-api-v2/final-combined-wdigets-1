@@ -1,0 +1,189 @@
+import './styles.css';
+import { boomioLogo } from './constants';
+
+export class TextScoreTableContainer {
+  constructor(prop, scoreTable, currentScore) {
+    this.prop = prop;
+    this.isMobile = window.innerWidth <= 1280;
+    this.scoreTable = scoreTable;
+    this.currentScore = currentScore;
+    this.containerDiv = null; // Store container reference
+    this.render();
+  }
+
+  updateProps(prop, scoreTable, currentScore) {
+    this.prop = prop;
+    this.scoreTable = scoreTable;
+    this.currentScore = currentScore;
+    this.updateVisuals();
+  }
+
+  updateVisuals() {
+    if (!this.containerDiv) return;
+
+    const userPercentageDiscount = parseInt(this?.scoreTable?.best_discount) || 0;
+    const userDiscountCode = this?.scoreTable?.coupon_code || '';
+
+    // Build table HTML
+    let tableHTML = '';
+    tableHTML += '<div>';
+    tableHTML +=
+      this.currentScore >= 1000
+        ? `
+          <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-110px;top:30px;position:absolute; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word">
+            TAVO REZULTATAS:  ${this.currentScore ?? 0}
+          </div>
+          <div style="width:100%; top: -50px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word">
+            SVEIKINAME!
+          </div>
+          <div style="width:100%;text-align: center; color: white; font-size:18px;font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word">
+          </div>
+          <div style="width:100%;font-weight:700;margin-top:40px;text-align: center; color: #76F99C; font-size: 16px; font-family: Montserrat; word-wrap: break-word;line-height:22px;">
+            Surinkai virš 1000 taškų ir pretenduoji </br> laimėti šios savaitės prizą:
+          </div>
+          <div style="width:100%;margin-top:30px;font-weight:700;text-align: center; color: #76F99C;text-transform: uppercase; font-size: 22px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
+            10€ Wolt nuolaidos kodą
+          </div>
+          <div style="width:100%;margin-top:40px;text-align: center; color: white; font-size: 14px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
+            Net 20 laimėtojų yra renkami atsitiktine tvarka.
+          </div>
+        `
+        : `
+          <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-110px;top:30px;position:absolute; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word">
+            TAVO REZULTATAS:  ${this.currentScore ?? 0}
+          </div>
+          <div style="width:100%; top: -50px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word">
+            Tu gali!
+          </div>
+          <div style="width:100%;text-align: center; color: white; font-size:18px;font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word">
+          </div>
+          <div style="width:100%;font-weight:700;margin-top:40px;text-align: center; color: #76F99C; font-size: 16px; font-family: Montserrat; word-wrap: break-word;line-height:22px;">
+            Surink 1000 ar daugiau taškų ir </br> pretenduok gauti šios savaitės prizą:
+          </div>
+          <div style="width:100%;margin-top:30px;font-weight:700;text-align: center;text-transform: uppercase; color: #76F99C; font-size: 22px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
+            10€ Wolt nuolaidos kodą
+          </div>
+          <div style="width:100%;margin-top:40px;text-align: center; color: white; font-size: 14px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
+            Net 20 laimėtojų yra renkami atsitiktine tvarka.
+          </div>
+        `;
+    tableHTML += '</div>';
+
+    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+
+    let fontWeight = '700';
+
+    let scoreboardText = `
+      <div style="width:calc(100% - 40px);
+                  margin-left:20px;
+                  top: 420px;
+                  margin-top:10px;
+                  position: absolute;
+                  text-align: center;
+                  color: white;
+                  font-size: 14px;
+                  font-family: Montserrat;
+                  font-weight: ${fontWeight};
+                  word-wrap: break-word">
+        ${
+          this.currentScore >= 1000
+            ? '<div style="text-transform: uppercase;">PRIZAI KIEKVIENĄ savaitę!</div><div style="font-weight:500">Jei laimėsi informuosime tave registracijos metu nurodytu el. paštu.</div>'
+            : '<div style="text-transform: uppercase;">PRIZAI KIEKVIENĄ savaitę!</div><div style="font-weight:500">Jei laimėsi informuosime tave registracijos metu nurodytu el. paštu.</div>'
+        }
+      </div>
+
+
+
+      <div style="left:calc(50% - 40px);
+                  width:78px;
+                  top:625px;
+                  position:absolute;
+                  margin-top:5px;
+                  height: 22px;
+                  background: url(${boomioLogo});
+                  justify-content: center;
+                  align-items: center;
+                  display: flex;
+                  background-size: contain;
+                  background-repeat:no-repeat;">
+      </div>
+    `;
+
+    // Insert scoreboard text into .boomio-scoreboard-text
+    this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
+
+    // (Re)Insert tableHTML one more time if needed:
+    // this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+    // (But it’s typically not needed to set it again.)
+  }
+
+  render() {
+    const containerDiv = document.createElement('div');
+    containerDiv.classList.add('competition-table-container');
+    containerDiv.setAttribute('id', 'competition-table-container');
+    containerDiv.style.background = 'none';
+
+    containerDiv.style.width =
+      document.body.offsetWidth < 426
+        ? document.body.offsetWidth < 321
+          ? '375px'
+          : document.body.offsetWidth + 'px'
+        : '426px';
+
+    // Build the HTML in one shot, ensuring valid markup:
+    containerDiv.innerHTML = `
+      <div style="width: 100%; height: 100%; position: relative;">
+        <div class="boomio-scoreboard-text"></div>
+        <div style="width: calc(100% - 40px);
+                    height: 280px;
+                    left: 20px;
+                    top: 124px;
+                    position: absolute;
+                    border-right:none;
+                    backdrop-filter: blur(4px);">
+          <div>
+            <div class="boomio-tbody"></div>
+          </div>
+        </div>
+              <div style="width: calc(100% - 40px);
+                  margin-left:20px;
+                  margin-right:20px;
+                  top:575px;
+                  position:absolute;
+                  height: 46px;
+                  background: white;
+                  cursor:pointer;
+                  box-shadow: -4px -4px 8px #DFE6F5 inset;
+                  border-radius: 35px;
+                  overflow: hidden;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 10px;
+                  display: flex"
+           id="boomio-game-play-again">
+           
+        <div style="text-align: center;
+                    color: rgba(61, 73, 40, 1);
+                    font-size: 24px;
+                    font-family: Georama;
+                    font-weight: 700;
+                    line-height: 24px;
+                    word-wrap: break-word;">
+          PAGERINK REZULTATĄ
+        </div>
+      </div>
+      </div>
+    `;
+
+    this.containerDiv = containerDiv;
+
+    const existingContainer = document.getElementById('collection-table-container');
+    if (existingContainer) {
+      existingContainer.parentNode.replaceChild(containerDiv, existingContainer);
+    } else {
+      document.body.appendChild(containerDiv);
+    }
+
+    this.updateVisuals();
+  }
+}
