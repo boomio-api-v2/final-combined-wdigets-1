@@ -38,14 +38,14 @@ export class TextScoreTableContainer {
           </div>
           <div style="width:100%;text-align: center; color: white; font-size:18px;font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word">
           </div>
-          <div style="width:100%;font-weight:700;margin-top:40px;text-align: center; color: #76F99C; font-size: 16px; font-family: Montserrat; word-wrap: break-word;line-height:22px;">
+          <div style="width:100%;font-weight:700;margin-top:50px;text-align: center; color: #76F99C; font-size: 16px; font-family: Montserrat; word-wrap: break-word;line-height:22px;">
             Surinkai virš 1000 taškų ir pretenduoji </br> laimėti šios savaitės prizą:
           </div>
-          <div style="width:100%;margin-top:30px;font-weight:700;text-align: center; color: #76F99C;text-transform: uppercase; font-size: 22px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
-            10€ Wolt nuolaidos kodą
+          <div style="width:100%;margin-top:40px;font-weight:700;text-align: center; color: #76F99C;text-transform: uppercase; font-size: 24px; font-family: Montserrat; word-wrap: break-word;line-height:28px;">
+            10 EUR VERTĖS „WOLT“ </br> dovanų kuponĄ.
           </div>
-          <div style="width:100%;margin-top:40px;text-align: center; color: white; font-size: 14px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
-            Net 20 laimėtojų yra renkami atsitiktine tvarka.
+          <div style="width:100%;margin-top:40px;text-align: center; color: white; font-size: 14px; font-family: Montserrat; word-wrap: break-word;line-height:18px;">
+            Kiekvieną savaitę atsitiktiniu būdu atrinksime </br> <strong>NET 20 LAIMĖTOJŲ!</strong>
           </div>
         `
         : `
@@ -53,18 +53,18 @@ export class TextScoreTableContainer {
             TAVO REZULTATAS:  ${this.currentScore ?? 0}
           </div>
           <div style="width:100%; top: -50px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word">
-            Tu gali!
+            TIKRAI GALI KILTI AUKŠČIAU!
           </div>
           <div style="width:100%;text-align: center; color: white; font-size:18px;font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word">
           </div>
-          <div style="width:100%;font-weight:700;margin-top:40px;text-align: center; color: #76F99C; font-size: 16px; font-family: Montserrat; word-wrap: break-word;line-height:22px;">
-            Surink 1000 ar daugiau taškų ir </br> pretenduok gauti šios savaitės prizą:
+          <div style="width:100%;font-weight:700;margin-top:50px;text-align: center; color: #76F99C; font-size: 16px; font-family: Montserrat; word-wrap: break-word;line-height:22px;">
+            Surink 1000 ar daugiau taškų </br> ir pretenduok laimėti:
           </div>
-          <div style="width:100%;margin-top:30px;font-weight:700;text-align: center;text-transform: uppercase; color: #76F99C; font-size: 22px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
-            10€ Wolt nuolaidos kodą
+          <div style="width:100%;margin-top:40px;font-weight:700;text-align: center;text-transform: uppercase; color: #76F99C; font-size: 24px; font-family: Montserrat; word-wrap: break-word;line-height:28px;">
+            10 EUR VERTĖS „WOLT“ </br> dovanų kuponĄ.
           </div>
-          <div style="width:100%;margin-top:40px;text-align: center; color: white; font-size: 14px; font-family: Montserrat; word-wrap: break-word;line-height:32px;">
-            Net 20 laimėtojų yra renkami atsitiktine tvarka.
+          <div style="width:100%;margin-top:40px;text-align: center; color: white; font-size: 14px; font-family: Montserrat; word-wrap: break-word;line-height:18px;">
+            Kiekvieną savaitę atsitiktiniu būdu atrinksime </br><strong>NET 20 LAIMĖTOJŲ!</strong>
           </div>
         `;
     tableHTML += '</div>';
@@ -87,8 +87,8 @@ export class TextScoreTableContainer {
                   word-wrap: break-word">
         ${
           this.currentScore >= 1000
-            ? '<div style="text-transform: uppercase;">PRIZAI KIEKVIENĄ savaitę!</div><div style="font-weight:500">Jei laimėsi informuosime tave registracijos metu nurodytu el. paštu.</div>'
-            : '<div style="text-transform: uppercase;">PRIZAI KIEKVIENĄ savaitę!</div><div style="font-weight:500">Jei laimėsi informuosime tave registracijos metu nurodytu el. paštu.</div>'
+            ? '<div style="font-weight:400;">Jei pateksi tarp laimingųjų, informuosime tave </br> registracijos metu nurodytu el. paštu.</div>'
+            : '<div style="font-weight:400;">Jei pateksi tarp laimingųjų, informuosime tave </br> registracijos metu nurodytu el. paštu.</div>'
         }
       </div>
 
@@ -122,7 +122,9 @@ export class TextScoreTableContainer {
     containerDiv.classList.add('competition-table-container');
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background = 'none';
-
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
     containerDiv.style.width =
       document.body.offsetWidth < 426
         ? document.body.offsetWidth < 321
@@ -144,7 +146,39 @@ export class TextScoreTableContainer {
           <div>
             <div class="boomio-tbody"></div>
           </div>
-        </div>
+                  </div>
+<div style="width: calc(100% - 40px);
+            margin-left:20px;
+            margin-right:20px;
+            top:510px;
+            position:absolute;
+            height: 46px;
+            background: white;
+            box-shadow: -4px -4px 8px #DFE6F5 inset;
+            border-radius: 35px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;"
+>
+   <a
+    href="${
+      campaignUrl
+        ? 'https://savitarna.perlasgo.lt/perlasgo?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
+        : 'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
+    }"
+    style="text-align: center;
+           color: rgba(61, 73, 40, 1);
+           font-size: 24px;
+           font-family: Georama;
+           font-weight: 700;
+           line-height: 24px;
+           text-decoration: none;"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Registruotis „Perlas Go“
+  </a>    </div>
               <div style="width: calc(100% - 40px);
                   margin-left:20px;
                   margin-right:20px;
@@ -170,9 +204,9 @@ export class TextScoreTableContainer {
                     line-height: 24px;
                     word-wrap: break-word;">
           PAGERINK REZULTATĄ
-        </div>
+   
       </div>
-      </div>
+      </div>     </div>
     `;
 
     this.containerDiv = containerDiv;

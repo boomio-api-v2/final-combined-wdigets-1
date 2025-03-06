@@ -40,7 +40,7 @@ export class InputContainer {
     };box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-    <div style="align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${
+    <div style="margin-top:-20px;align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="${
       this.prop === 'Ikea' ? 'margin-left:20px' : ''
@@ -78,7 +78,7 @@ export class InputContainer {
  
 
           <div style="width:100%; height: 120px; left: 20px; top: 0px; position: absolute">
-            <div style="left: 0px; top: 0px;display:flex; position: absolute; color: white; font-size: ${
+            <div style="left: 0px; top: -10px;display:flex; position: absolute; color: white; font-size: ${
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
                 ? '20px'
                 : this.prop === 'Ikea'
@@ -140,7 +140,7 @@ export class InputContainer {
                   ? 'ПРОВЕДИ'
                   : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'drive'
                   ? 'BRAUK '
-                  : this.game === 'Perlas GO'
+                  : this.prop === 'Perlas GO'
                   ? 'Judėk'
                   : 'Spausk'
               }
@@ -235,7 +235,7 @@ export class InputContainer {
 </div>
 
             </div>
-            <div style="left: 0px; top: 36px;display:flex; position: absolute; color: white; font-size: ${
+            <div style="left: 0px; top: 30px;display:flex; position: absolute; color: white; font-size: ${
               this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
                 ? '20px'
                 : this.prop === 'Ikea'
@@ -351,6 +351,8 @@ export class InputContainer {
                 ? 'WIN'
                 : this.prop === 'Ikea'
                 ? 'Laimėkite,'
+                : this.prop === 'Perlas GO'
+                ? 'Registruokis'
                 : this.prop === 'Eurovaistine'
                 ? 'LAIMĒ'
                 : this.prop === 'SaludSA'
@@ -358,7 +360,9 @@ export class InputContainer {
                 : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${
-                            this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės'
+                            this.prop === 'Perlas GO'
+                              ? '16px'
+                              : this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės'
                               ? '18px'
                               : '3px'
                           }; color: white; font-size: ${
@@ -366,8 +370,14 @@ export class InputContainer {
     }; font-family:${
       this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
     }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
-      this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės' ? 'white-space:normal;' : ''
-    }${this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės' ? 'line-height:14px;' : ''}">
+      this.prop === 'Perlas GO' || this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės'
+        ? 'white-space:normal;'
+        : ''
+    }${
+      this.prop === 'Perlas GO' || this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės'
+        ? 'line-height:14px;'
+        : ''
+    }">
             ${
               this.prop === 'Pigu.lt' &&
               this.language === 'EN' &&
@@ -432,7 +442,7 @@ export class InputContainer {
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
                 : this.prop === 'Perlas GO'
-                ? '10€ Wolt nuolaidos kodą!'
+                ? '„Perlas Go“ savitarnoje </br> arba mobiliojoje programėlėje.'
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
@@ -457,6 +467,16 @@ export class InputContainer {
             }
           </div>
             </div>
+${
+  this.prop === 'Perlas GO'
+    ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'24px'}; font-family:${'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
+            4. ${'Laimėk'} 
+                          <div style="top: 85px;margin-top:${'17px'}; color: white; font-size: ${'14px'}; font-family:${'Georama'}; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
+            ${'10€ Wolt dovanų kuponą!'}
+          </div>
+            </div>`
+    : ``
+}
           </div>
         </div>`}</div>
     ${
@@ -561,7 +581,7 @@ export class InputContainer {
            
           ${
             this.prop === 'Pigu.lt'
-              ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:25px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
+              ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:30px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
             <img id="boomio-rules-privacyCheckbox-img" src="${uncheckIcon}" style="max-width:fit-content;width: 20px; height: 20px;">
         </div>

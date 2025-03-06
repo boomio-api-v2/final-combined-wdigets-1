@@ -115,7 +115,7 @@ export class InputRegisterContainer {
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
         : this.prop === 'Perlas GO'
-        ? 'Sutinku gauti Perlas GO naujienas.'
+        ? 'Sutinku gauti Perlas Go naujienas.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
         : this.prop === 'Daumantu'
@@ -225,7 +225,7 @@ export class InputRegisterContainer {
         : this.prop === 'Akropolis'
         ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
         : this.prop === 'Perlas GO'
-        ? 'Sutinku su Perlas GO'
+        ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/akcijos-zaisk-ir-laimek-taisykles/'} style="color:white;text-decoration: underline;"> akcijos taisyklėmis</a> ir „Perlas Go“ privatumo politika.`
         : this.prop === 'Corepetitus'
         ? 'Sutinku su'
         : this.prop === 'Vilvi'
@@ -246,6 +246,7 @@ export class InputRegisterContainer {
       this.prop !== 'SaludSA' &&
       this.prop !== 'Vilvi' &&
       this.prop !== 'Daumantu' &&
+      this.prop !== 'Perlas GO' &&
       this.prop !== 'LemonGym'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'LemonGym'
@@ -260,8 +261,6 @@ export class InputRegisterContainer {
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop === 'Pegasas'
               ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
-              : this.prop === 'Perlas GO'
-              ? 'https://www.perlasgo.lt/privatumo-politika/'
               : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
@@ -270,6 +269,8 @@ export class InputRegisterContainer {
           }; ">${
             this.prop === 'Ikea'
               ? 'IKEA privatumo politika'
+              : this.prop === 'Perlas GO'
+              ? 'ir „Perlas Go“ privatumo politika'
               : this.prop === 'Eurovaistine'
               ? 'privātuma politikai'
               : this.prop === 'Corepetitus'

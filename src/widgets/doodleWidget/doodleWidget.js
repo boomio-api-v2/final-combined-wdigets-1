@@ -84,9 +84,9 @@ class DoodleWidget {
     this.language = this.config.language ? this.config.language : 'LV';
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
+    this.campaignUrl = urlParams.get('campaign_url');
 
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+    this.campaignUrlProp = this.campaignUrl ? this.campaignUrl : currentPageUrl;
 
     this.userBestPlace = 0;
     this.scoreTable = {};
@@ -1290,7 +1290,7 @@ class DoodleWidget {
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
   ${
-    this.customer !== 'Pigu.lt'
+    this.customer !== 'Pigu.lt' && !this.campaignUrl
       ? `
 <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
@@ -1813,7 +1813,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
     }
-    if (this.customer !== 'Pigu.lt') {
+    if (this.customer !== 'Pigu.lt' && !this.campaignUrl) {
       document.getElementById('close-game-container').addEventListener('click', () => {
         this.closeGame();
       });
