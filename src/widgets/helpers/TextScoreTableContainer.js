@@ -176,6 +176,7 @@ export class TextScoreTableContainer {
            text-decoration: none;"
     target="_blank"
     rel="noopener noreferrer"
+    text-transform: uppercase;
   >
     Registruotis „Perlas Go“
   </a>    </div>
