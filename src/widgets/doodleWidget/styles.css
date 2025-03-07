@@ -1,40 +1,33 @@
 @import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
-/* cyrillic-ext */
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
 @font-face {
-	font-family: 'test';
+	font-family: 'Basis Grotesque Pro';
 	font-style: normal;
 	font-weight: 400;
-	src: url(https://fonts.gstatic.com/s/oswald/v53/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUtiZTaR.woff2) format('woff2');
-  }
-  /* cyrillic */
-  @font-face {
-	font-family: 'test';
-	font-style: normal;
-	font-weight: 400;
-	src: url(https://fonts.gstatic.com/s/oswald/v53/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUJiZTaR.woff2) format('woff2');
-  }
-  /* vietnamese */
-  @font-face {
-	font-family: 'test';
-	font-style: normal;
-	font-weight: 400;
-	src: url(https://fonts.gstatic.com/s/oswald/v53/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUliZTaR.woff2) format('woff2');
-  }
-  /* latin-ext */
-  @font-face {
-	font-family: 'test';
-	font-style: normal;
-	font-weight: 400;
-	src: url(https://fonts.gstatic.com/s/oswald/v53/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUhiZTaR.woff2) format('woff2');
-  }
-  /* latin */
-  @font-face {
-	font-family: 'test';
-	font-style: normal;
-	font-weight: 400;
-	src: url(https://fonts.gstatic.com/s/oswald/v53/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUZiZQ.woff2) format('woff2');
+	src: url(https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/48a29f0f7606c74f8ddd7267d883c30eefb22df3/dist/fonts/basis-grotesque-regular-pro.woff2) format('woff2');
   }
 
+  @font-face {
+	font-family: 'Basis Grotesque Pro';
+	font-style: bold;
+	font-weight: 400;
+	src: url(https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/48a29f0f7606c74f8ddd7267d883c30eefb22df3/dist/fonts/basis-grotesque-bold-pro.woff2) format('woff2');
+  }
+
+  @font-face {
+	font-family: 'Basis Grotesque Pro';
+	font-style: italic;
+	font-weight: 400;
+	src: url(https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/48a29f0f7606c74f8ddd7267d883c30eefb22df3/dist/fonts/basis-grotesque-italic-pro.woff2) format('woff2');
+  }
+
+  @font-face {
+	font-family: 'Basis Grotesque Pro';
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/48a29f0f7606c74f8ddd7267d883c30eefb22df3/dist/fonts/basis-grotesque-regular-pro.woff2) format('woff2');
+  }
 .boomio-doodle-container {
 	height: 668px;
 	position: relative;

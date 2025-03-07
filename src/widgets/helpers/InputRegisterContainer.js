@@ -31,7 +31,7 @@ export class InputRegisterContainer {
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
       this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '34px' : '40px'
     }; font-family: ${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+      this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; text-transform: ${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
     }; line-height: 62.40px; word-wrap: break-word">${
@@ -59,7 +59,7 @@ export class InputRegisterContainer {
         privacyCheckboxChecked ? true : false
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center;font-family:${
-          this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+          this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
         };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: ${
       this.prop === 'Ikea' ? '400' : '700'
     }; line-height: 24px; word-wrap: break-word" >${
@@ -110,7 +110,7 @@ export class InputRegisterContainer {
         ? '10px'
         : '12px'
     }; font-family:${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+      this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
     };font-weight: 400; word-wrap: break-word;text-align:start;">${
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
@@ -146,7 +146,7 @@ export class InputRegisterContainer {
             }" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+      this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
     };font-weight: 400; word-wrap: break-word;text-align:start;">${
       this.prop === 'Pegasas' ? 'Sutinku gauti Pegaso naujienas SMS žinute.' : ''
     }
@@ -182,7 +182,7 @@ export class InputRegisterContainer {
         ? '10px'
         : '12px'
     }; font-family:${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+      this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
     } ;  font-weight: 400; width:${
       this.prop?.includes('Gamtos Ateitis') ? '320px' : '350px'
     };word-wrap: break-word;line-height:14px;text-align:start;">${
@@ -225,7 +225,7 @@ export class InputRegisterContainer {
         : this.prop === 'Akropolis'
         ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
         : this.prop === 'Perlas GO'
-        ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/akcijos-zaisk-ir-laimek-taisykles/'} style="color:white;text-decoration: underline;"> akcijos taisyklėmis</a> ir „Perlas Go“ <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/privatumo-politika/'} style="color:white;text-decoration: underline;">privatumo politika.</a> `
+        ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/akcijos-zaisk-ir-laimek-taisykles/'} style="color:white;text-decoration: underline;"> akcijos taisyklėmis</a> ir „Perlas Go“ <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/privatumo-politika/'} style="color:white;text-decoration: underline;">privatumo politika.</a> `
         : this.prop === 'Corepetitus'
         ? 'Sutinku su'
         : this.prop === 'Vilvi'
@@ -414,7 +414,7 @@ export class InputRegisterContainer {
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
     } ; font-size: 18px; font-family:${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+      this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
       this.language === 'LV'
         ? 'Spēlētāja e-pasts'
@@ -451,7 +451,7 @@ export class InputRegisterContainer {
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
     } ; font-size: 18px; font-family:${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Georama'
+      this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
       this.language === 'LV'
         ? 'Spēlētāja lietotājvārds'
