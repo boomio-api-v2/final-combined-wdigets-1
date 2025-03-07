@@ -66,7 +66,7 @@ export class TextScoreTableContainer {
           }; font-weight:400; text-transform: uppercase; word-wrap: break-word">
             TAVO REZULTATAS:  ${this.currentScore ?? 0}
           </div>
-          <div style="width:100%; top: -50px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: ${
+          <div style="width:100%; top: -50px; position: absolute; text-align: center; color: white; font-size: 30px;line-height:34px; font-family: ${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
           }; font-weight: 900; text-transform: uppercase; word-wrap: break-word">
             TIKRAI GALI KILTI AUKŠČIAU!
