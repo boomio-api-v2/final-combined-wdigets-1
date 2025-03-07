@@ -8,12 +8,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: 'public/',
+    publicPath: '/', // assets referenced from the root of the server
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      images: path.resolve(__dirname, 'src/images'), // Add this line
+      images: path.resolve(__dirname, 'src/images'),
     },
   },
   module: {
@@ -33,6 +33,13 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.(woff(2)?|otf|ttf|eot)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
       },
     ],
   },
