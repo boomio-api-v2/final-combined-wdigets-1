@@ -115,7 +115,7 @@ export class InputRegisterContainer {
       this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
         : this.prop === 'Perlas GO'
-        ? 'Sutinku gauti Perlas Go naujienas el. paštu.'
+        ? 'Sutinku gauti „Perlas Go“ naujienas el. paštu.'
         : this.prop === 'Eurovaistine'
         ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
         : this.prop === 'Daumantu'
