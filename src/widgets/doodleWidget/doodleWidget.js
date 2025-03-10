@@ -200,19 +200,25 @@ class DoodleWidget {
     this.gravity = 0.1;
     this.gameCount = 0;
 
-    setTimeout(() => {
-      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-      document.getElementById('background_intro').style.opacity = 0;
-      if (this.gameCount === 0) {
-        document.getElementById('background_blur').style.display = 'block';
-        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-      }
-      this.showRulesOrRegistration();
+    setTimeout(
+      () => {
+        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+        document.getElementById('background_intro').style.opacity = 0;
+        if (this.gameCount === 0) {
+          document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+        }
+        this.showRulesOrRegistration();
 
-      setTimeout(() => {
-        document.getElementById('background_intro').style.display = 'none';
-      }, 2000);
-    }, 2000); //intro speed
+        setTimeout(
+          () => {
+            document.getElementById('background_intro').style.display = 'none';
+          },
+          this.customer === 'Pigu.lt' ? 2000 : 5500,
+        );
+      },
+      this.customer === 'Pigu.lt' ? 2000 : 5500,
+    ); //intro speed
   }
 
   createHandlers = () => {
