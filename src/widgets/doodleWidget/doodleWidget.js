@@ -29,22 +29,22 @@ import {
   newRecordRU,
   newRecordLV,
   newRecordEn,
-  ChristmasBackgroundPigu,
-  ChristmasMainImagePiguLT,
-  ChristmasMainImagePiguLV,
-  ChristmasMainImagePiguFI,
-  ChristmasMainImagePiguEE,
-  ChristmasPiguJumpUpIntroEstonian,
-  ChristmasPiguJumpUpIntroEstoniaRU,
-  ChristmasPiguJumpUpIntroLithuanian,
-  ChristmasPiguJumpUpIntroLithuanianRU,
-  ChristmasPiguJumpUpIntroFinish,
-  ChristmasPiguJumpUpIntroLatvian,
-  ChristmasPiguJumpUpIntroLatvianRU,
-  ChristmasPiguJumpUpIntroLatvianEN,
-  ChristmasPiguJumpUpIntroEstonianEN,
-  ChristmasPiguJumpUpIntroLithuanianEN,
-  ChristmasPiguJumpUpIntroFinishEN,
+  BackgroundPigu,
+  MainImagePiguLT,
+  MainImagePiguLV,
+  MainImagePiguFI,
+  MainImagePiguEE,
+  PiguJumpUpIntroEstonian,
+  PiguJumpUpIntroEstoniaRU,
+  PiguJumpUpIntroLithuanian,
+  PiguJumpUpIntroLithuanianRU,
+  PiguJumpUpIntroFinish,
+  PiguJumpUpIntroLatvian,
+  PiguJumpUpIntroLatvianRU,
+  PiguJumpUpIntroLatvianEN,
+  PiguJumpUpIntroEstonianEN,
+  PiguJumpUpIntroLithuanianEN,
+  PiguJumpUpIntroFinishEN,
   introVilvi,
   mainImageVilvi,
   backgroundVilvi,
@@ -62,6 +62,7 @@ import { RulesContainer } from '../helpers/RulesContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { TextScoreTableContainer } from '../helpers/TextScoreTableContainer';
+import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 
 class DoodleWidget {
   static ctx;
@@ -76,7 +77,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -102,13 +103,13 @@ class DoodleWidget {
 
     this.image.src =
       this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasMainImagePiguLT
+        ? MainImagePiguLT
         : this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasMainImagePiguLV
+        ? MainImagePiguLV
         : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
-        ? ChristmasMainImagePiguEE
+        ? MainImagePiguEE
         : this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasMainImagePiguFI
+        ? MainImagePiguFI
         : this.customer === 'Vilvi'
         ? mainImageVilvi
         : this.customer === 'Perlas GO'
@@ -155,7 +156,7 @@ class DoodleWidget {
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.style.background = `url(${
       this.customer === 'Pigu.lt'
-        ? ChristmasBackgroundPigu
+        ? BackgroundPigu
         : this.customer === 'Vilvi'
         ? backgroundVilvi
         : this.customer === 'Perlas GO'
@@ -1352,31 +1353,31 @@ class DoodleWidget {
 <img src=${
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstonian
+        ? PiguJumpUpIntroEstonian
         : this.language === 'RU' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstoniaRU
+        ? PiguJumpUpIntroEstoniaRU
         : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanian
+        ? PiguJumpUpIntroLithuanian
         : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanianRU
+        ? PiguJumpUpIntroLithuanianRU
         : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguJumpUpIntroFinish
+        ? PiguJumpUpIntroFinish
         : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvian
+        ? PiguJumpUpIntroLatvian
         : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvianRU
+        ? PiguJumpUpIntroLatvianRU
         : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguJumpUpIntroLithuanianEN
+        ? PiguJumpUpIntroLithuanianEN
         : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguJumpUpIntroFinishEN
+        ? PiguJumpUpIntroFinishEN
         : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguJumpUpIntroLatvianEN
+        ? PiguJumpUpIntroLatvianEN
         : this.language === 'EN' &&
           (this.campaignUrlProp === 'https://kaup.ee' ||
             this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguJumpUpIntroEstonianEN
+        ? PiguJumpUpIntroEstonianEN
         : this.customer === 'Vilvi'
         ? introVilvi
         : this.customer === 'Perlas GO'
@@ -1465,7 +1466,7 @@ ${
       this.customer === 'Vilvi'
         ? '#45A2BF'
         : this.customer === 'Pigu.lt'
-        ? '#F34434'
+        ? '#FD61FE'
         : this.customer === 'Perlas GO'
         ? '#19AA82'
         : this.language === 'LV'
@@ -1492,9 +1493,10 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
     if (this.showCompetitiveRegistration) {
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
-        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
           this.customer,
           this.scoreTable,
+          this.currentScore,
         );
       } else if (this.customer === 'Perlas GO') {
         this.scoreTableContainerInstance = new TextScoreTableContainer(
@@ -1536,6 +1538,18 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
     }
     if (this.showCompetitiveRegistration) {
+      const isValidEmail = (email) => {
+        // Enhanced regex for email validation with TLD enforcement
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        // Additional check to prevent consecutive dots
+        if (email.includes('..')) {
+          return false;
+        }
+
+        return emailRegex.test(email);
+      };
+
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           setTimeout(() => {
@@ -1629,6 +1643,18 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 'transparent';
             }
+            if (this.customer === 'Perlas GO') {
+              if (!isValidEmail(emailInput?.value)) {
+                document.getElementById('competition-email-error').innerText =
+                  'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+                document.getElementById('competition-email-error').zIndex = 1;
+                document.getElementById('competition-email-error').style.backgroundColor =
+                  '#FFBABA';
+
+                return;
+              }
+            }
+
             if (
               (playerNameInput?.value === '' || playerNameInput?.value === null) &&
               (playerNameInput?.value === '' || playerNameInput?.value === null)
