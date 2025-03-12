@@ -251,6 +251,7 @@ class DoodleWidget {
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }
+
     if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
@@ -1323,26 +1324,30 @@ class DoodleWidget {
          this.language === 'EN'
            ? 'TAP'
            : this.language === 'LV'
-           ? 'KLIKŠĶINI'
+           ? 'BAKSTI'
            : this.language === 'ET'
            ? 'TÄPI'
            : this.language === 'FI'
-           ? 'NAPSAUTA'
+           ? 'Napautua'
            : this.language === 'RU'
-           ? 'НАЖИМАЙ'
+           ? 'ТЫКАЙ'
+           : this.language === 'LT' && this.customer === 'Pigu.lt'
+           ? 'BAKST'
            : 'KLIK'
        }</div>
         <div>${
           this.language === 'EN'
             ? 'TAP'
             : this.language === 'LV'
-            ? 'KLIKŠĶINI'
+            ? 'BAKSTI'
             : this.language === 'ET'
             ? 'TÄPI'
             : this.language === 'FI'
-            ? 'NAPSAUTA'
+            ? 'Napautua'
             : this.language === 'RU'
-            ? 'НАЖИМАЙ'
+            ? 'ТЫКАЙ'
+            : this.language === 'LT' && this.customer === 'Pigu.lt'
+            ? 'BAKST'
             : 'KLIK'
         }</div>
       </div><img src=${
