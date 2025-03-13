@@ -77,15 +77,15 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
 
     this.language = this.config.language ? this.config.language : 'LV';
     const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    this.campaignUrl = urlParams.get('campaign_url');
+    this.urlParams = new URL(currentPageUrl).searchParams;
+    this.campaignUrl = this.urlParams.get('campaign_url');
 
     this.campaignUrlProp = this.campaignUrl ? this.campaignUrl : currentPageUrl;
 
@@ -241,8 +241,8 @@ class DoodleWidget {
 
   showRulesOrRegistration = () => {
     const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const user_id = urlParams.get('user_id');
+    this.urlParams = new URL(currentPageUrl).searchParams;
+    const user_id = this.urlParams.get('user_id');
     if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
@@ -1683,6 +1683,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                     emails_consent: this.checkboxChange2,
                     user_email: emailInput?.value,
                     user_name: playerNameInput?.value,
+                    isMobile: this.campaignUrl ? true : false,
                   })
                   .then((response) => {
                     if (response.success === false) {
