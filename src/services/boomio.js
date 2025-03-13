@@ -96,7 +96,7 @@ class BoomioService extends UserService {
     const currentPageUrl = window.location.href;
 
     // If "pigu.lt" is anywhere in the URL, show doodle widget instead
-    if (currentPageUrl.includes('pigu.lt')) {
+    if (currentPageUrl.includes('demo-pigu-lt')) {
       createWidgetMap.doodle();
     } else {
       createWidgetMap[widget_type]();
