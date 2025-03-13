@@ -183,6 +183,7 @@ export class TextScoreTableContainer {
             overflow: hidden;
             display: flex;
             justify-content: center;
+            z-index: 999999;
             align-items: center;"
 >
    <a
@@ -190,10 +191,10 @@ export class TextScoreTableContainer {
       campaignUrl
         ? 'https://savitarna.perlasgo.lt/perlasgo?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
         : 'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
-    }"
+    }"  
     style="text-align: center;
            color: rgba(61, 73, 40, 1);
-           font-size: 24px;
+           font-size: 20px;
            font-family: Basis Grotesque Pro;
            font-weight: 700;
            line-height: 24px;
@@ -223,7 +224,7 @@ export class TextScoreTableContainer {
            
         <div style="text-align: center;
                     color: rgba(61, 73, 40, 1);
-                    font-size: 24px;
+                    font-size: 20px;
                     font-family: Basis Grotesque Pro;
                     font-weight: 700;
                     line-height: 24px;
