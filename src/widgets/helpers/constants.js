@@ -347,53 +347,53 @@ export const item45Pigu =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PiguValentine/DidYouKnow/Christmas%20Pigu%20product-45.png';
 
 export const SuccessmessagebannersNegativeEE = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeEE.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeEEDooodle.png',
 ];
 export const SuccessmessagebannersNegativeFI = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeFI.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeFIDooodle.png',
 ];
 export const SuccessmessagebannersPossitiveFIcode = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveFIcode.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveFIcodeDooodle.png',
 ];
 
 export const SuccessmessagebannersNegativeLT = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeLT.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeLTDooodle.png',
 ];
 
 export const SuccessmessagebannersNegativeLV = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeLV.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeLVDooodle.png',
 ];
 
 export const SuccessmessagebannersNegativeRU = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeRU.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersNegativeRUDooodle.png',
 ];
 
 export const SuccessmessagebannersPossitiveEE = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveEE.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveEEDooodle.png',
 ];
 
 export const SuccessmessagebannersPossitiveEERU = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveEERU.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveEERUDooodle.png',
 ];
 
 export const SuccessmessagebannersPossitiveFI = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveFI.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveFIDooodle.png',
 ];
 
 export const SuccessmessagebannersPossitiveLT = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLT.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLTDooodle.png',
 ];
 
 export const SuccessmessagebannersPossitiveLTRU = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLTRU.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLTRUDooodle.png',
 ];
 
 export const SuccessmessagebannersPossitiveLV = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLV.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLVDooodle.png',
 ];
 
 export const SuccessmessagebannersPossitiveLVRU = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLVRU.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/banners/SuccessmessagebannersPossitiveLVRUDooodle.png',
 ];
 
 export const facebook = [

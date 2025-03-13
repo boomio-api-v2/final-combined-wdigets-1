@@ -66,6 +66,7 @@ class BoomioService extends UserService {
 
   loadWidget = (widget_type = 'puzzle') => {
     this.config = localStorageService.getDefaultConfig();
+
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
       wheel: startWheelWidget,
@@ -91,7 +92,15 @@ class BoomioService extends UserService {
       runner: startRunnerWidget,
       football: startFootballWidget,
     };
-    createWidgetMap[widget_type]();
+
+    const currentPageUrl = window.location.href;
+
+    // If "pigu.lt" is anywhere in the URL, show doodle widget instead
+    if (currentPageUrl.includes('pigu.lt')) {
+      createWidgetMap.doodle();
+    } else {
+      createWidgetMap[widget_type]();
+    }
   };
 
   setInitialConfiguration() {
