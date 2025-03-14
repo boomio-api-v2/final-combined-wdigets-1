@@ -184,7 +184,7 @@ export class TextScoreTableContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999999;
+  z-index: 9999999;
   pointer-events: auto; /* Ensure the container receives taps */
 ">
   <a
