@@ -186,6 +186,12 @@ export class TextScoreTableContainer {
   align-items: center;
   z-index: 9999999;
   pointer-events: auto; /* Ensure the container receives taps */
+      target="_blank"
+      onclick="window.open('${
+        campaignUrl
+          ? 'https://savitarna.perlasgo.lt/perlasgo?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
+          : 'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
+      }', '_blank');"
 ">
   <a
 
@@ -201,12 +207,7 @@ export class TextScoreTableContainer {
       cursor: pointer;
       pointer-events: auto;
     "
-    target="_blank"
-      onclick="window.open('${
-        campaignUrl
-          ? 'https://savitarna.perlasgo.lt/perlasgo?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
-          : 'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
-      }', '_blank');"
+
     rel="noopener noreferrer"
   >
     Registruotis „Perlas Go“
