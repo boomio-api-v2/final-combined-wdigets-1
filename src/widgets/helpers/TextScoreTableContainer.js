@@ -171,40 +171,45 @@ export class TextScoreTableContainer {
             <div class="boomio-tbody"></div>
           </div>
                   </div>
-<div style="width: calc(100% - 40px);
-            margin-left:20px;
-            margin-right:20px;
-            top:510px;
-            position:absolute;
-            height: 46px;
-            background: white;
-            box-shadow: -4px -4px 8px #DFE6F5 inset;
-            border-radius: 35px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            z-index: 999999;
-            align-items: center;"
->
-   <a
+<div style="
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  margin-right: 20px;
+  top: 510px;
+  position: absolute;
+  height: 46px;
+  background: white;
+  box-shadow: -4px -4px 8px #DFE6F5 inset;
+  border-radius: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999;
+  pointer-events: auto; /* Ensure the container receives taps */
+">
+  <a
     href="${
       campaignUrl
         ? 'https://savitarna.perlasgo.lt/perlasgo?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
         : 'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
-    }"  
-    style="text-align: center;
-           color: rgba(61, 73, 40, 1);
-           font-size: 20px;
-           font-family: Basis Grotesque Pro;
-           font-weight: 700;
-           line-height: 24px;
-           text-decoration: none;      text-transform: uppercase;
-"
+    }"
+    style="
+      text-align: center;
+      color: rgba(61, 73, 40, 1);
+      font-size: 20px;
+      font-family: 'Basis Grotesque Pro', sans-serif;
+      font-weight: 700;
+      line-height: 24px;
+      text-decoration: none;
+      text-transform: uppercase;
+      pointer-events: auto; /* Make sure the link itself is also clickable */
+    "
     target="_blank"
     rel="noopener noreferrer"
   >
     Registruotis „Perlas Go“
-  </a>    </div>
+  </a>
+</div>
               <div style="width: calc(100% - 40px);
                   margin-left:20px;
                   margin-right:20px;

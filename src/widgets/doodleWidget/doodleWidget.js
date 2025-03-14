@@ -1683,7 +1683,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                     emails_consent: this.checkboxChange2,
                     user_email: emailInput?.value,
                     user_name: playerNameInput?.value,
-                    isMobile: this.campaignUrl ? true : false,
+                    via_mobile: this.campaignUrl ? true : false,
                   })
                   .then((response) => {
                     if (response.success === false) {
