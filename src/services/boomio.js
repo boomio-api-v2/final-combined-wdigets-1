@@ -17,6 +17,11 @@ import {
   startPacmanWidget,
   startFlappyBird,
   startDoodleWidget,
+  startDriveWidget,
+  startCatchWidget,
+  startCrushWidget,
+  startRunnerWidget,
+  startFootballWidget,
 } from '@/widgets';
 
 import { localStorageService, widgetHtmlService, UserService } from '@/services';
@@ -24,11 +29,44 @@ import { localStorageService, widgetHtmlService, UserService } from '@/services'
 class BoomioService extends UserService {
   constructor() {
     super();
-    this.current_page_url = window.location.href;
-    this.setInitialConfiguration();
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
+    const language = urlParams.get('language');
+
+    this.current_page_url = campaignUrl
+      ? campaignUrl === 'https://kaup.ee'
+        ? 'https://kaup24.ee'
+        : campaignUrl
+      : currentPageUrl;
+
+    if (
+      (language === 'ET' &&
+        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+      (language === 'RU' &&
+        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+      (language === 'EN' &&
+        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+      (language === 'EN' && campaignUrl === 'https://pigu.lt') ||
+      (language === 'EN' && campaignUrl === 'https://hobbyhall.fi') ||
+      (language === 'EN' && campaignUrl === 'https://220.lv') ||
+      (language === 'LT' && campaignUrl === 'https://pigu.lt') ||
+      (language === 'RU' && campaignUrl === 'https://pigu.lt') ||
+      (language === 'FI' && campaignUrl === 'https://hobbyhall.fi') ||
+      (language === 'LV' && campaignUrl === 'https://220.lv') ||
+      (language === 'RU' && campaignUrl === 'https://220.lv') ||
+      (!language && !campaignUrl) ||
+      campaignUrl === 'https://boomio-web.webflow.io/demo-pigu-flap-through' ||
+      campaignUrl === 'https://boomio-web.webflow.io/perlas-go' ||
+      campaignUrl === 'https://www.perlasgo.lt/zaidimas'
+    ) {
+      this.setInitialConfiguration();
+    }
   }
 
   loadWidget = (widget_type = 'puzzle') => {
+    this.config = localStorageService.getDefaultConfig();
+
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
       wheel: startWheelWidget,
@@ -48,7 +86,13 @@ class BoomioService extends UserService {
       pacman: startPacmanWidget,
       flappy: startFlappyBird,
       doodle: startDoodleWidget,
+      drive: startDriveWidget,
+      catch: startCatchWidget,
+      crush: startCrushWidget,
+      runner: startRunnerWidget,
+      football: startFootballWidget,
     };
+
     createWidgetMap[widget_type]();
   };
 
@@ -110,16 +154,32 @@ class BoomioService extends UserService {
     const isDenied = this.checkIsRequestDenied();
     if (isDenied) {
       setTimeout(() => {
-        this.send();
+        this.send(extra_data);
       }, 2000);
     }
     const { user_session, current_page_url } = this;
 
-    const request_data = {
+    const current_page_url_cleaned = current_page_url.includes('akropolis.lt')
+      ? new URL(current_page_url).origin + new URL(current_page_url).pathname
+      : current_page_url;
+
+    const rawRequestBody = {
       user_session,
-      current_page_url,
+      current_page_url: current_page_url_cleaned, // Use cleaned URL
       extra_data,
     };
+
+    const randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+
+    const encodeToBase64 = (str) => {
+      const encoder = new TextEncoder();
+      const uint8Array = encoder.encode(str);
+      return btoa(String.fromCharCode(...uint8Array));
+    };
+
+    const encodedBody = encodeToBase64(JSON.stringify(rawRequestBody));
+
+    const finalRequestBody = { body: randomLetter + encodedBody };
 
     return new Promise(async (resolve) => {
       const rawResponse = await fetch(newLinkBoomio, {
@@ -127,7 +187,7 @@ class BoomioService extends UserService {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(request_data),
+        body: JSON.stringify(finalRequestBody),
       });
       resolve(rawResponse.json());
     });
