@@ -182,16 +182,13 @@ export class TextScoreTableContainer {
   box-shadow: -4px -4px 8px #DFE6F5 inset;
   border-radius: 35px;
   display: flex;
+  display:${campaignUrl ? 'none' : 'flex'};
   justify-content: center;
   align-items: center;
   z-index: 9999999;
   pointer-events: auto; /* Ensure the container receives taps */
       target="_blank"
-      onclick="window.open('${
-        campaignUrl
-          ? 'https://savitarna.perlasgo.lt/perlasgo?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
-          : 'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'
-      }', '_blank');"
+      onclick="window.open('${'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'}', '_blank');"
 ">
   <a
 
