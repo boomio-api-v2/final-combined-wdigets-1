@@ -5,8 +5,6 @@ import PxLoaderImage from './scripts/PxLoaderImage.js';
 import yandexScripts from './scripts/yandexScripts.js';
 import { localStorageService, widgetHtmlService, boomioService } from '@/services';
 import {
-  tapImageBarbora,
-  stopwatch,
   star,
   newRecord,
   newRecordEE,
@@ -29,6 +27,7 @@ import {
   shield,
   pause,
   life,
+  checkIcon,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -43,7 +42,7 @@ class runnerWidget {
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : '';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -139,7 +138,7 @@ class runnerWidget {
         <div></div>
       </div>
       <div class="boomio-runner-controlBlock">
-        Controls
+        Taisyklės
         <img class='boomio-runner-controlButton' src="${up}" alt="">
         <div><img class='boomio-runner-controlButton' src="${left}" alt="">
           <img class='boomio-runner-controlButton' src="${right}" alt="">
@@ -157,7 +156,7 @@ class runnerWidget {
         <div class="coinsText"></div>
         <img src="${coin}" alt="">
       </div>
-<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'blue'};border-radius:35px">
+<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#1591EA'};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
@@ -2071,43 +2070,35 @@ ${
       }
 
       if (player.shield) {
-        // Position the shield object relative to the player
-        CollectObjects[0].x = player.x;
-        CollectObjects[0].y = player.y - jumpHeight;
-        player.shieldTimer += 1;
+        // Increment the shield timer (adjust the increment value as needed)
+        player.shieldTimer += 1; // or += deltaTime
+
+        CollectObjects[0].x = player.x - 50;
+        CollectObjects[0].y = player.y - jumpHeight - 50;
         if (player.boost) {
           score += 0.12;
         }
 
         if (player.shieldTimer >= activeTime) {
-          // Start blinking only after the active time ends
           if (!player.blinking) {
-            player.blinking = true; // Start the blinking phase
-
+            player.blinking = true; // Start blinking phase
             setTimeout(() => {
               toggleImage(0, 30, 50, () => {
                 player.shield = false;
                 player.shieldTimer = 0;
-                player.blinking = false; // Reset blinking state
+                player.blinking = false;
               });
             }, 50);
           }
         } else {
-          // Ensure the shield image is set before drawing
+          // Draw shield with opacity 0.5
+          ctx.save();
+          ctx.globalAlpha = 0.5;
           CollectObjects[0].image = CollectSprites[0]; // Assign the shield sprite
           DrawObject(CollectObjects[0]);
+          ctx.restore();
         }
-
-        if (player.boost) {
-          // Reset boost effects after the shield ends
-          clearInterval(playerAnimate);
-          playerAnimate = setInterval(() => {
-            animate(player, runSprites);
-          }, 75);
-          player.boost = false;
-          speed = normalSpeed;
-          player.boostTimer = 0;
-        }
+        // ... rest of your shield code ...
       }
     }
     function toggleImage(index, maxToggles, delay, callback) {
@@ -2116,8 +2107,17 @@ ${
         return;
       }
 
-      CollectObjects[0].image = index % 2 === 0 ? CollectSprites[0] : new Image();
+      ctx.save();
+      // For even indices, draw with 0.5 opacity; for odd, draw nothing (or clear)
+      if (index % 2 === 0) {
+        ctx.globalAlpha = 0.5;
+        CollectObjects[0].image = CollectSprites[0];
+      } else {
+        // Draw a transparent image (or skip drawing)
+        CollectObjects[0].image = new Image();
+      }
       DrawObject(CollectObjects[0]);
+      ctx.restore();
 
       setTimeout(() => {
         toggleImage(index + 1, maxToggles, delay, callback);
