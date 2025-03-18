@@ -256,7 +256,7 @@ ${
 }
  
         </div>
-        <div class="boomio-runner-mainLeftInfo">
+        <div class="boomio-runner-mainLeftInfo" style="display:none">
           <div class="mainLeftWrapper">
             <img id='boomio-runner-prizeImg' src="${prize}">
             <div class='HighScoreBlock boomio-runner-mainStatText'></div>
