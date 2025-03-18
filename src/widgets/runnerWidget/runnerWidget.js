@@ -2041,15 +2041,24 @@ ${
       ctx.imageSmoothingEnabled = false;
       DrawObject(player);
       if (player.boost) {
-        if (player.boostTimer == 0) {
+        if (player.boostTimer === 0) {
           clearInterval(playerAnimate);
           playerAnimate = setInterval(() => {
             animate(player, runSprites);
           }, 30);
-          player.boostTimer += 1;
+          // Optionally set a visual effect, e.g. shield on boost
           player.shield = true;
+          // Save current speed, then multiply for boost
           normalSpeed = speed;
           speed = speed * 5;
+        }
+        // Increment the booster timer every frame
+        player.boostTimer += 1;
+        // When booster active time expires, reset boost and speed
+        if (player.boostTimer >= activeTime) {
+          player.boost = false;
+          speed = normalSpeed;
+          player.boostTimer = 0;
         }
       }
       for (var i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
