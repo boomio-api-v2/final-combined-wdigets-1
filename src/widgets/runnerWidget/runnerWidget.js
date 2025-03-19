@@ -1272,7 +1272,7 @@ ${
       player.boost = false;
       player.dead = false;
       player.life = 3;
-      speed = canvas.clientWidth / 200;
+      speed = canvas.clientWidth / 300;
       score = 0;
       leftPressed = false;
       rightPressed = false;
@@ -2027,7 +2027,7 @@ ${
           GameOver();
         }
 
-        speed += 0.001;
+        speed += 0.002;
 
         Draw();
         Move();
