@@ -434,11 +434,12 @@ class DoodleWidget {
         this.gameLoop();
         this.Spring = new Spring(this.image);
       } else {
-        console.log('start');
+        if (typeof window.dataLayer !== 'undefined') {
+          console.log('Game_Start');
 
-        if (typeof dataLayer !== 'undefined') {
-          dataLayer.push({ event: 'Game_Start' });
+          window.dataLayer.push({ event: 'Game_Start' });
         }
+
         this.showtutorial();
       }
     }

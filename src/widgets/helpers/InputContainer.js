@@ -457,7 +457,7 @@ export class InputContainer {
                 ? 'premios Saludsa Vitality y participa</br> por el sorteo de un reloj Garmin.'
                 : this.prop === 'Vilvi'
                 ? 'kasdien!'
-                : 'Lemon Gym narystes</br> kas mėnesį!'
+                : 'Prizus!'
             }
           </div>
             </div>
@@ -667,7 +667,7 @@ ${
         ? 'SUTINKU'
         : this.prop === 'Perlas GO'
         ? 'SUTINKU'
-        : 'LET’S PLAY'
+        : 'SUTINKU'
     }</div></div>
     </div>
  

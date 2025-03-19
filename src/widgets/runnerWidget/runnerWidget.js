@@ -5,8 +5,6 @@ import PxLoaderImage from './scripts/PxLoaderImage.js';
 import yandexScripts from './scripts/yandexScripts.js';
 import { localStorageService, widgetHtmlService, boomioService } from '@/services';
 import {
-  tapImageBarbora,
-  stopwatch,
   star,
   newRecord,
   newRecordEE,
@@ -29,6 +27,7 @@ import {
   shield,
   pause,
   life,
+  checkIcon,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -43,7 +42,7 @@ class runnerWidget {
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
-    this.customer = this.config.business_name ? this.config.business_name : 'Barbora';
+    this.customer = this.config.business_name ? this.config.business_name : 'Dentsu';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -127,7 +126,9 @@ class runnerWidget {
 <div class="boomio-runner-body" oncontextmenu="return false;">
   <div id="turnLandscape">
     rotate your device
-    <img style='margin-top: 30px' id='rotateIcon' src="assetsTesting/gui/orientation.png" alt="">
+    <img style='margin-top: 30px' id='rotateIcon' src="${
+      this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+    }/gui/orientation.png" alt="">
   </div>
   <div class="boomio-runner-main">
 
@@ -139,7 +140,7 @@ class runnerWidget {
         <div></div>
       </div>
       <div class="boomio-runner-controlBlock">
-        Controls
+        Taisyklės
         <img class='boomio-runner-controlButton' src="${up}" alt="">
         <div><img class='boomio-runner-controlButton' src="${left}" alt="">
           <img class='boomio-runner-controlButton' src="${right}" alt="">
@@ -157,7 +158,7 @@ class runnerWidget {
         <div class="coinsText"></div>
         <img src="${coin}" alt="">
       </div>
-<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'blue'};border-radius:35px">
+<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#1591EA'};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
@@ -257,7 +258,7 @@ ${
 }
  
         </div>
-        <div class="boomio-runner-mainLeftInfo">
+        <div class="boomio-runner-mainLeftInfo" style="display:none">
           <div class="mainLeftWrapper">
             <img id='boomio-runner-prizeImg' src="${prize}">
             <div class='HighScoreBlock boomio-runner-mainStatText'></div>
@@ -278,67 +279,89 @@ ${
         <div class='boomio-runner-stat' id="numberOfSlidesBlock"></div>
       </div>
       <div class="boomio-runner-achivesHolder">
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/pioneer.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/pioneer.png" alt="">
           <div class='boomio-achiveText'>
             <p>Pioneer</p>
             Score 100 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/bomb.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/bomb.png" alt="">
           <div class='boomio-achiveText'>
             <p>Extreme</p>
             Score 300 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/motorbike.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/motorbike.png" alt="">
           <div class='boomio-achiveText'>
             <p>Racer</p>
             Score 500 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/trees.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/trees.png" alt="">
           <div class='boomio-achiveText'>
             <p>Run forest, run</p>
             Score 750 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/gigachad.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/gigachad.png" alt="">
           <div class='boomio-achiveText'>
             <p>Gigachad</p>
             Score 1000 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/dead cat.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/dead cat.png" alt="">
           <div class='boomio-achiveText'>
             <p>Puss in boots</p>
             Die 8 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/guitar.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/guitar.png" alt="">
           <div class='boomio-achiveText'>
             <p>Smells like Nirvana</p>
             Die 27 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/earth.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/earth.png" alt="">
           <div class='boomio-achiveText'>
             <p>Main question</p>
             Die 42 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/skull.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/skull.png" alt="">
           <div class='boomio-achiveText'>
             <p>Memento mori</p>
             Die 100 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/bouncer.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/bouncer.png" alt="">
           <div class='boomio-achiveText'>
             <p>Bouncer</p>
             Jump 500 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/slide.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/slide.png" alt="">
           <div class='boomio-achiveText'>
             <p>On the ground</p>
             Slide under barriers 300 times
@@ -362,7 +385,9 @@ ${
             Earn 1000 coins
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="assetsTesting/gui/success.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/gui/success.png" alt="">
           <div class='boomio-achiveText'>
             <p>All for one</p>
             Unlock all achives
@@ -535,52 +560,74 @@ ${
     // Load sprites
     const runSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/run',
+      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+      }/sprites/run`,
       8,
     );
     const slideSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/slide',
+      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+      }/sprites/slide`,
       6,
     );
     const jumpSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/jump',
+      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+      }/sprites/jump`,
       6,
     );
     const deathSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/death',
+      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+      }/sprites/death`,
       4,
     );
     const barriersSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/barriers',
+      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+      }/sprites/barriers`,
       7,
     );
     const bgSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/bg',
+      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+      }/bg`,
       8,
     );
     const fgSprites = loadSprites(
       loader,
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/fg',
+      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+      }/fg`,
       2,
     );
 
     const CollectSprites = [
       loader.addImage(
-        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/collect/shield.png',
+        `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/sprites/collect/shield.png`,
       ),
       loader.addImage(
-        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/collect/shieldIcon.png',
+        `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/sprites/collect/shieldIcon.png`,
       ),
       loader.addImage(
-        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/collect/boosterIcon.png',
+        `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/sprites/collect/boosterIcon.png`,
       ),
       loader.addImage(
-        'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsTesting/sprites/collect/coin.png',
+        `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
+          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        }/sprites/collect/coin.png`,
       ),
     ];
 
@@ -1225,7 +1272,7 @@ ${
       player.boost = false;
       player.dead = false;
       player.life = 3;
-      speed = canvas.clientWidth / 200;
+      speed = canvas.clientWidth / 300;
       score = 0;
       leftPressed = false;
       rightPressed = false;
@@ -1980,7 +2027,7 @@ ${
           GameOver();
         }
 
-        speed += 0.001;
+        speed += 0.002;
 
         Draw();
         Move();
@@ -2042,15 +2089,24 @@ ${
       ctx.imageSmoothingEnabled = false;
       DrawObject(player);
       if (player.boost) {
-        if (player.boostTimer == 0) {
+        if (player.boostTimer === 0) {
           clearInterval(playerAnimate);
           playerAnimate = setInterval(() => {
             animate(player, runSprites);
           }, 30);
-          player.boostTimer += 1;
+          // Optionally set a visual effect, e.g. shield on boost
           player.shield = true;
+          // Save current speed, then multiply for boost
           normalSpeed = speed;
           speed = speed * 5;
+        }
+        // Increment the booster timer every frame
+        player.boostTimer += 1;
+        // When booster active time expires, reset boost and speed
+        if (player.boostTimer >= activeTime) {
+          player.boost = false;
+          speed = normalSpeed;
+          player.boostTimer = 0;
         }
       }
       for (var i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
@@ -2071,43 +2127,35 @@ ${
       }
 
       if (player.shield) {
-        // Position the shield object relative to the player
-        CollectObjects[0].x = player.x;
-        CollectObjects[0].y = player.y - jumpHeight;
-        player.shieldTimer += 1;
+        // Increment the shield timer (adjust the increment value as needed)
+        player.shieldTimer += 1; // or += deltaTime
+
+        CollectObjects[0].x = player.x - 50;
+        CollectObjects[0].y = player.y - jumpHeight - 50;
         if (player.boost) {
           score += 0.12;
         }
 
         if (player.shieldTimer >= activeTime) {
-          // Start blinking only after the active time ends
           if (!player.blinking) {
-            player.blinking = true; // Start the blinking phase
-
+            player.blinking = true; // Start blinking phase
             setTimeout(() => {
               toggleImage(0, 30, 50, () => {
                 player.shield = false;
                 player.shieldTimer = 0;
-                player.blinking = false; // Reset blinking state
+                player.blinking = false;
               });
             }, 50);
           }
         } else {
-          // Ensure the shield image is set before drawing
+          // Draw shield with opacity 0.5
+          ctx.save();
+          ctx.globalAlpha = 0.5;
           CollectObjects[0].image = CollectSprites[0]; // Assign the shield sprite
           DrawObject(CollectObjects[0]);
+          ctx.restore();
         }
-
-        if (player.boost) {
-          // Reset boost effects after the shield ends
-          clearInterval(playerAnimate);
-          playerAnimate = setInterval(() => {
-            animate(player, runSprites);
-          }, 75);
-          player.boost = false;
-          speed = normalSpeed;
-          player.boostTimer = 0;
-        }
+        // ... rest of your shield code ...
       }
     }
     function toggleImage(index, maxToggles, delay, callback) {
@@ -2116,8 +2164,17 @@ ${
         return;
       }
 
-      CollectObjects[0].image = index % 2 === 0 ? CollectSprites[0] : new Image();
+      ctx.save();
+      // For even indices, draw with 0.5 opacity; for odd, draw nothing (or clear)
+      if (index % 2 === 0) {
+        ctx.globalAlpha = 0.5;
+        CollectObjects[0].image = CollectSprites[0];
+      } else {
+        // Draw a transparent image (or skip drawing)
+        CollectObjects[0].image = new Image();
+      }
       DrawObject(CollectObjects[0]);
+      ctx.restore();
 
       setTimeout(() => {
         toggleImage(index + 1, maxToggles, delay, callback);

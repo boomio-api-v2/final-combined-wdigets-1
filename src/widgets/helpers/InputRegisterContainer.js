@@ -263,7 +263,7 @@ export class InputRegisterContainer {
               ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
               : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
-              : 'https://penkisezonai.lt/lt-lt/privatumo-politika.html'
+              : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'
           }; ">${
