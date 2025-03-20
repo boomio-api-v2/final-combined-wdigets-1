@@ -184,6 +184,51 @@ class FlappyBird {
             inpuRegisterContainer.style.top = 'calc(50% + 74px)';
             inpuRegisterContainer.style.opacity = 1;
           }, 100);
+        } else {
+          boomioService
+            .signal('', 'user_info', {
+              emails_consent: this.checkboxChange,
+              user_email:
+                this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+              user_name:
+                this.customer === 'SaludSA' ? new Date().toISOString() : playerNameInput?.value,
+            })
+            .then((response) => {
+              this.bestScore = response.user_best_score;
+              const inpuRegisterContainer = document.querySelector('.input-register-container');
+              inpuRegisterContainer.style.transition =
+                'height 1s ease, top 1s ease, opacity 1s ease';
+              setTimeout(() => {
+                inpuRegisterContainer.style.height = '10px';
+                inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                inpuRegisterContainer.style.opacity = 0;
+              }, 100);
+              setTimeout(() => {
+                inpuRegisterContainer.style.display = 'none';
+              }, 1000);
+              setTimeout(() => {
+                const canvas = document.getElementById('flappy-canvas');
+                document.getElementById('background_blur').style.opacity = 0.37;
+                canvas.style.transition = 'filter 0.6s ease';
+                canvas.style.filter = 'blur(2px)';
+                const inputContainer = document.querySelector('.input-container');
+                document.getElementById('control-button').style.transition = 'opacity 2s ease';
+                document.getElementById('control-button').style.opacity = 1;
+                document.getElementById('control-button').style.display = 'flex';
+                inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+                inputContainer.style.display = 'block';
+                setTimeout(() => {
+                  inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+                  inputContainer.style.top = `calc(50% + ${
+                    this.isMobileHeightSmall ? '110px' : '140px'
+                  })`;
+                  inputContainer.style.opacity = 1;
+                }, 100);
+              }, 300);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
         }
       }, 300);
     } else if (this.customer === 'Pigu.lt' && user_id !== '') {
@@ -243,6 +288,7 @@ class FlappyBird {
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
+        console.log('Displaying input-container for SaludSA');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -971,16 +1017,6 @@ class FlappyBird {
     myCanvas.innerHTML = `    
     <div class="game-container game-container-flappy">
     ${
-      this.customer === 'SaludSA'
-        ? ` <div
-          id="hubspot-form-container"
-          style="position:absolute;z-index:999999999999999999999999999999"
-        ></div>`
-        : ''
-    }
-
-
-    ${
       this.showCompetitiveRegistration === 'competition' ||
       this.showCompetitiveRegistration === 'points' ||
       this.showCompetitiveRegistration === 'collectable'
@@ -1236,25 +1272,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       } height="668" class="flappy-game"></canvas>
     </div>
   `;
-    if (this.customer === 'SaludSA') {
-      const script = document.createElement('script');
-      script.setAttribute('charset', 'utf-8');
-      script.setAttribute('type', 'text/javascript');
-      script.src = '//js.hsforms.net/forms/embed/v2.js';
-
-      script.onload = () => {
-        // Set a timeout of 3 seconds before running the form creation
-        setTimeout(() => {
-          hbspt.forms.create({
-            portalId: '7925267',
-            formId: '28e79f2a-0a97-42ec-8a6d-a86db22e6bfa',
-            target: '#hubspot-form-container',
-          });
-        }, 3000); // 3000ms = 3 seconds
-      };
-
-      document.body.appendChild(script);
-    }
 
     widgetHtmlService.container.appendChild(myCanvas);
 
@@ -1621,64 +1638,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
-
-      if (this.customer === 'SaludSA') {
-        const waitForIframe = setInterval(() => {
-          const iframe = document.getElementById('hs-form-iframe-0');
-
-          if (!iframe) {
-            return; // Exit this iteration and wait for the next interval tick
-          }
-
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-          if (!iframeDoc) {
-            console.error('Unable to access iframe document, retrying...');
-            return;
-          }
-
-          const form = iframeDoc.querySelector('form');
-
-          if (!form) {
-            return;
-          }
-
-          form.style.height = '500px';
-          form.style.overflow = 'auto';
-
-          // Stop checking once styles are updated
-          clearInterval(waitForIframe);
-
-          // Observer for changes within the iframe's document
-          const observer = new MutationObserver((mutationsList) => {
-            for (const mutation of mutationsList) {
-              if (mutation.type === 'childList') {
-                const message = iframeDoc.body.innerText || iframeDoc.body.textContent;
-
-                if (
-                  message.includes('Gracias por enviar el formulario') ||
-                  message.includes('¡Listo para comenzar el juego!')
-                ) {
-                  // Find and remove the hubspot-form-container element
-                  const formContainer = document.getElementById('hubspot-form-container');
-
-                  if (formContainer) {
-                    formContainer.style.display = 'none';
-                  } else {
-                    console.error('HubSpot form container not found.');
-                  }
-
-                  clickEventHandlerShowRules();
-
-                  observer.disconnect(); // Stop observing once the message is found
-                }
-              }
-            }
-          });
-
-          observer.observe(iframeDoc.body, { childList: true, subtree: true });
-        }, 100);
-      }
 
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
