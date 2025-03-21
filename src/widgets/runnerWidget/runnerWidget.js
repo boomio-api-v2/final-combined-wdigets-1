@@ -11,6 +11,7 @@ import {
   newRecordLV,
   newRecordIkea,
   runnerbackground,
+  runnerbackgroundDentsu,
   home,
   redo,
   up,
@@ -272,7 +273,9 @@ ${
       </div>
     </div>
     <div class="tutorial  boomio-hide"></div>
-    <div class="boomio-runner-achives boomio-runner-mainBg boomio-screenRatio boomio-hide">
+<div class="boomio-runner-achives boomio-runner-mainBg boomio-screenRatio boomio-hide" style="background-image: url('${
+      this.customer === 'Dentsu' ? runnerbackgroundDentsu : runnerbackground
+    }');">
       <div class="boomio-statsHolder">
         <div class="boomio-runner-stat" id="numberOfDeathsBlock"></div>
         <div class='boomio-runner-stat ' id="numberOfJumpsBlock"></div>

@@ -91,4 +91,7 @@ export const boost =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/boosterIcon.png';
 
 export const pause =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/Pause.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/bg/bg.png';
+
+export const runnerbackgroundDentsu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsDentsu/bg/bg.png';
