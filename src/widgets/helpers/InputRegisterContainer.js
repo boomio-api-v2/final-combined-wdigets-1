@@ -25,16 +25,16 @@ export class InputRegisterContainer {
 
     containerDiv.innerHTML = `
       <div style="height: 124px; top:${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '70px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '50px'
       }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
-      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '34px' : '40px'
+      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '34px' : '38px'
     }; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; text-transform: ${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
-    }; line-height: 62.40px; word-wrap: break-word">${
+    }; line-height: 42px; word-wrap: break-word">${
       this.language === 'LV' && this.prop === 'Akropolis'
         ? 'REĢISTRĒJIES'
         : this.language === 'LV'
@@ -55,6 +55,9 @@ export class InputRegisterContainer {
         ? 'REGISTRATE </br>PARA JUGAR '
         : 'Registruokis</br> Žaisti'
     }</div>
+          <div style="height: 124px; top:${'20px'}; position: relative; text-align:${
+      this.prop === 'Ikea' ? 'start' : 'center'
+    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'10px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerindant rezultatą!'}</div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
