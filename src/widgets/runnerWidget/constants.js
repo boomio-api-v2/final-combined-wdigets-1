@@ -52,7 +52,7 @@ export const uncheckIcon =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxUncheck.png';
 
 export const runnerbackground =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/stuff/bg.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/bg/bg.png';
 
 export const home =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/Home.png';
@@ -91,7 +91,7 @@ export const boost =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/sprites/collect/boosterIcon.png';
 
 export const pause =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/bg/bg.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/Pause.png';
 
 export const runnerbackgroundDentsu =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsDentsu/bg/bg.png';
