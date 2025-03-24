@@ -146,18 +146,10 @@ class runnerWidget {
       </div>
       <div class="boomio-runner-controlBlock">
         Taisyklės
-        <img class='boomio-runner-controlButton' src="${
-          this.customer === 'Dentsu' ? upDentsu : up
-        }" alt="">
-        <div><img class='boomio-runner-controlButton' src="${
-          this.customer === 'Dentsu' ? leftDentsu : left
-        }" alt="">
-          <img class='boomio-runner-controlButton' src="${
-            this.customer === 'Dentsu' ? rightDentsu : right
-          }" alt="">
-          <img class='boomio-runner-controlButton' src="${
-            this.customer === 'Dentsu' ? downDentsu : down
-          }" alt="">
+        <img class='boomio-runner-controlButton' src="${up}" alt="">
+        <div><img class='boomio-runner-controlButton' src="${left}" alt="">
+          <img class='boomio-runner-controlButton' src="${right}" alt="">
+          <img class='boomio-runner-controlButton' src="${down}" alt="">
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="${
@@ -187,13 +179,21 @@ class runnerWidget {
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
 
 <div class="boomio-runner-leftButtonsBlock boomio-hide">
-  <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${left}" alt="">
-  <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${right}" alt="">
+  <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${
+    this.customer === 'Dentsu' ? leftDentsu : left
+  }" alt="">
+  <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${
+    this.customer === 'Dentsu' ? rightDentsu : right
+  }" alt="">
 </div>
 
 <div class="boomio-runner-rightButtonsBlock boomio-hide">
-  <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${up}" alt="">
-  <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${down}" alt="">
+  <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${
+    this.customer === 'Dentsu' ? upDentsu : up
+  }" alt="">
+  <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${
+    this.customer === 'Dentsu' ? downDentsu : down
+  }" alt="">
 </div>
 
 
