@@ -29,6 +29,10 @@ import {
   pause,
   life,
   checkIcon,
+  upDentsu,
+  downDentsu,
+  leftDentsu,
+  rightDentsu,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -142,10 +146,18 @@ class runnerWidget {
       </div>
       <div class="boomio-runner-controlBlock">
         Taisyklės
-        <img class='boomio-runner-controlButton' src="${up}" alt="">
-        <div><img class='boomio-runner-controlButton' src="${left}" alt="">
-          <img class='boomio-runner-controlButton' src="${right}" alt="">
-          <img class='boomio-runner-controlButton' src="${down}" alt="">
+        <img class='boomio-runner-controlButton' src="${
+          this.customer === 'Dentsu' ? upDentsu : up
+        }" alt="">
+        <div><img class='boomio-runner-controlButton' src="${
+          this.customer === 'Dentsu' ? leftDentsu : left
+        }" alt="">
+          <img class='boomio-runner-controlButton' src="${
+            this.customer === 'Dentsu' ? rightDentsu : right
+          }" alt="">
+          <img class='boomio-runner-controlButton' src="${
+            this.customer === 'Dentsu' ? downDentsu : down
+          }" alt="">
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="${
