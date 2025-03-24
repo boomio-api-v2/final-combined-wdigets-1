@@ -407,8 +407,8 @@ class FlappyBird {
     snowImg.src = snowFantazijos;
 
     let snowOffset = 0; // Initial offset for snow GIF animation
-    let snowSpeed = 0.4; // Adjust the this.speed of the falling snow
-    this.speed = 4;
+    let snowSpeed = this.customer === 'SaludSA' ? 0.3 : 0.4; // Adjust the this.speed of the falling snow
+    this.speed = this.customer === 'SaludSA' ? 2.5 : 4;
     this.gamePlaying = false;
     this.index = 0;
 

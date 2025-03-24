@@ -408,7 +408,6 @@ margin-right: 10px;}
 	filter: brightness(0.9);
 	background-size: cover;
 	background-position:top;
-	background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/stuff/bg.png');
   
 }
 .boomio-runner-mainLeftInfo{
@@ -822,8 +821,8 @@ margin-right: 10px;}
 @media (max-width: 920px){
   @media screen and (orientation: landscape) {
   .input-register-container{
-    scale: 0.8;
-    left:calc(50% - 40px)
+    scale: 0.7;
+    left:calc(50% - 60px)
       }
 
       .competition-table-container{

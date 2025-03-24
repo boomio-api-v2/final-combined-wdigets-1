@@ -58,7 +58,8 @@ class BoomioService extends UserService {
       (!language && !campaignUrl) ||
       campaignUrl === 'https://boomio-web.webflow.io/demo-pigu-flap-through' ||
       campaignUrl === 'https://boomio-web.webflow.io/perlas-go' ||
-      campaignUrl === 'https://www.perlasgo.lt/zaidimas'
+      campaignUrl === 'https://www.perlasgo.lt/zaidimas' ||
+      campaignUrl === 'https://www.perlasgo.lt/zaidimas_app'
     ) {
       this.setInitialConfiguration();
     }

@@ -251,8 +251,7 @@ class DoodleWidget {
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }
-
-    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
+    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt' && user_id === null) {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
@@ -290,7 +289,8 @@ class DoodleWidget {
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
-    } else if (this.customer === 'Pigu.lt' && user_id !== '') {
+    } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id !== '') {
+      console.log('a');
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
@@ -321,7 +321,7 @@ class DoodleWidget {
         .catch((error) => {
           console.error('Error:', error);
         });
-    } else if (this.customer === 'Pigu.lt' && user_id === '') {
+    } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id === '') {
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
@@ -361,20 +361,22 @@ class DoodleWidget {
     this.config = localStorageService.getDefaultConfig();
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
 
-    if (this.userBestScore > 0) {
-      document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
-    }
-    const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+    if (this.customer === 'Pigu.lt') {
+      if (this.userBestScore > 0) {
+        document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
+      }
+      const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
 
-    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-    setTimeout(() => {
-      competitionTableContainer.style.height = '10px';
-      competitionTableContainer.style.top = 'calc(50% + 330px)';
-      competitionTableContainer.style.opacity = 0;
-    }, 100);
-    setTimeout(() => {
-      competitionTableContainer.style.display = 'none';
-    }, 1000);
+      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      setTimeout(() => {
+        competitionTableContainer.style.height = '10px';
+        competitionTableContainer.style.top = 'calc(50% + 330px)';
+        competitionTableContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        competitionTableContainer.style.display = 'none';
+      }, 1000);
+    }
     setTimeout(() => {
       const canvas = document.getElementById('boomio-doodle-canvas');
       document.getElementById('background_blur').style.opacity =
@@ -1505,7 +1507,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           this.currentScore,
         );
       } else if (this.customer === 'Perlas GO') {
-        this.scoreTableContainerInstance = new TextScoreTableContainer(
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
           this.customer,
           this.scoreTable,
           this.currentScore,
