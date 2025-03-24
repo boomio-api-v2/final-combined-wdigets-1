@@ -153,7 +153,7 @@ class runnerWidget {
      }">
       </canvas>
 
-      <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" alt="">
+      <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" style="display:none" alt="">
       <div class="boomio-runner-score boomio-hide"></div>
       <div class="boomio-runner-coins boomio-hide">
         <div class="coinsText"></div>
