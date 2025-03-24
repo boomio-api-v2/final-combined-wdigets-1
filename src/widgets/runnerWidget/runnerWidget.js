@@ -484,6 +484,9 @@ ${
   startGame = () => {
     const canvas = document.getElementById('boomio-runner-canvas');
     const loader = new PxLoader();
+    this.config = localStorageService.getDefaultConfig();
+    const customer = this.config.business_name ? this.config.business_name : 'Dentsu';
+    console.log('this.config', customer);
 
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
@@ -850,7 +853,9 @@ ${
           }
 
           for (let i = 0; i < mainBgBlocks.length; i += 1) {
-            mainBgBlocks[i].style.backgroundImage = `url(${runnerbackground})`; // Ensure url syntax
+            mainBgBlocks[i].style.backgroundImage = `url(${
+              customer === 'Dentsu' ? runnerbackgroundDentsu : runnerbackground
+            })`; // Ensure url syntax
           }
 
           // for (let i = 0; i < smallBtnBlocks.length; i += 1) {
@@ -1119,6 +1124,11 @@ ${
                       'height 1s ease, top 1s ease, opacity 1s ease';
                     inputContainer.style.display = 'block';
                     setTimeout(() => {
+                      if (window.innerWidth < 920) {
+                        inputContainer.style.left = 'calc(50% - 60px)';
+                        inputContainer.style.scale = 0.7;
+                      }
+
                       inputContainer.style.height = '332px';
                       inputContainer.style.top =
                         window.innerWidth > 920 ? 'calc(50% + 170px)' : '60%';
@@ -2133,8 +2143,19 @@ ${
         // Increment the shield timer (adjust the increment value as needed)
         player.shieldTimer += 1; // or += deltaTime
 
-        CollectObjects[0].x = player.x - 50;
-        CollectObjects[0].y = player.y - jumpHeight - 50;
+        let offsetX = -50;
+        let offsetY = -50;
+
+        // Adjust offsets for mobile devices
+        if (window.innerWidth < 920) {
+          // Change these values as you need for mobile
+          offsetX = -20;
+          offsetY = -20;
+        }
+
+        // Position the shield with the offsets
+        CollectObjects[0].x = player.x + offsetX;
+        CollectObjects[0].y = player.y - jumpHeight + offsetY;
         if (player.boost) {
           score += 0.12;
         }

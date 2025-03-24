@@ -171,7 +171,7 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: ${'450px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: ${
-              this.prop !== 'Akropolis' && 'uppercase'
+              (this.prop !== 'Akropolis' || this.prop !== 'Perlas GO') && 'uppercase'
             }; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
@@ -271,7 +271,7 @@ export class CompetitionScoreTableContainer {
                 : 'Tu gali!'
             }</div>
             <div style="width:100%; top: 450px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
-              this.prop !== 'Akropolis' && 'uppercase'
+              (this.prop !== 'Akropolis' || this.prop !== 'Perlas GO') && 'uppercase'
             }; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
@@ -372,7 +372,6 @@ export class CompetitionScoreTableContainer {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
-    console.log(this.prop);
     containerDiv.style.width =
       document.body.offsetWidth < 426
         ? document.body.offsetWidth < 321
@@ -438,7 +437,7 @@ export class CompetitionScoreTableContainer {
     style="
       text-align: center;
       color: rgba(61, 73, 40, 1);
-      font-size: 20px;
+      font-size: 22px;
       font-family: 'Basis Grotesque Pro', sans-serif;
       font-weight: 800;
       line-height: 24px;
@@ -462,7 +461,7 @@ export class CompetitionScoreTableContainer {
           ? 'white'
           : 'white'
       }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: ${
+        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 22px; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro, sans-serif' : 'Georama'
     }; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
       this.prop === 'Akropolis' && this.language === 'LV'
