@@ -188,13 +188,13 @@
 }
 .boomio-runner-controlButton{
 	
-	height: 45px;
-	width: 45px;
+	height: 35px;
+	width: 35px;
 	margin: 4px;
 	image-rendering: pixelated;
 }
 .boomio-runner-mobileControlButt{
-	height:13vh;
+	height:35px;
 	width: auto;
 	image-rendering: pixelated;
 	background-color: rgba(255, 255, 255, 0.237);
@@ -1020,7 +1020,19 @@ margin-right: 10px;}
   z-index: 3;
 position: absolute;
 top : 15px;
-right :80px;
+right :50px;
+display:flex;
+flex-direction: column;
+}
+
+
+.boomio-runner-score-input-container{
+  transition :opacity 0.8s ease;
+  opacity:1;
+  z-index: 3;
+position: absolute;
+top : 15px;
+left :50px;
 display:flex;
 flex-direction: column;
 }

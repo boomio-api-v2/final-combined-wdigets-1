@@ -33,11 +33,11 @@ export class RulesContainer {
       this.campaignUrlProp === 'https://pigu.lt' && this.language === 'LT'
         ? `<div>
     <p><strong>Žaidimo taisyklės</strong></p>
-    <p>Redakcija nuo 2025-03-17</p>
+    <p>Redakcija nuo 2025-03-25</p>
 
     <p><strong>BENDROSIOS NUOSTATOS</strong></p>
     <p>Šios žaidimo taisyklės (toliau – Žaidimo taisyklės) nustato UAB „Pigu“ (įmonės kodas 300866792, buveinė Laisvės pr. 75, LT-06144 Vilnius) (toliau – Akcijos organizatorius) organizuojamo žaidimo vykdymo tvarką, žaidimo dovanas ir jų įteikimo, ginčų sprendimo ir kitą tvarką.</p>
-    <p>Žaidimo vykdymo laikotarpis: 2025 m. kovo 17 d. – 2025 m. balandžio 20 d. (imtinai)</p>
+    <p>Žaidimo vykdymo laikotarpis: 2025 m. kovo 25 d. – 2025 m. balandžio 20 d. (imtinai)</p>
     <p>Žaidimo dalyvis turi būti registruotas pigu.lt narys ir būti sutikęs gauti žaidimo naujienas ir informaciją apie prizus.</p>
     <p>Žaidimas vykdomas Pigu.lt mobiliojoje programėlėje. Žaidimo metu žaidimo dalyvis kontroliuoja žaidimo herojų, kurio tikslas šokinėjant ant laiptelių pakilti kuo aukščiau. Siekiant pagerinti rezultatą, žaidimo dalyvis žaidimą gali kartoti.</p>
 
@@ -46,7 +46,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;Žaidimo dovaną žaidimo dalyvis gali gauti tik vieną kartą per 28 dienas nuo žaidimo laimėtojų paskelbimo, kurio datos pateiktos taisyklių 6.1. punkte. Jei tarp dešimties atrinktų žaidėjų patenka žaidimo dalyvis, kuris jau gavo žaidimo dovaną per paskutines 28 dienas, jo dovana perleidžiama kitam žaidėjui atsitiktinės atrankos būdu.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;Informavimo apie žaidimo dovaną ir jų įteikimo tvarka:</p>
-    <p>6.1.&nbsp;&nbsp;Apie žaidimo dovaną, nurodytą Žaidimo taisyklių 5. punkte, žaidimo dalyvis yra informuojamas jo nurodytu elektroninio pašto adresu. Informacija apie praėjusios savaitės žaidimo laimėjimą siunčiama pirmadieniais, šiomis dienomis: 2025 m. kovo 17 d., 2025 m. kovo 24 d., 2025 m. kovo 31 d., 2025 m. balandžio 7 d., 2025 m. balandžio 14 d., 2025 m. balandžio 22 d.</p>
+    <p>6.1.&nbsp;&nbsp;Apie žaidimo dovaną, nurodytą Žaidimo taisyklių 5. punkte, žaidimo dalyvis yra informuojamas jo nurodytu elektroninio pašto adresu. Informacija apie praėjusios savaitės žaidimo laimėjimą siunčiama pirmadieniais, šiomis dienomis: 2025 m. kovo 25 d., 2025 m. kovo 24 d., 2025 m. kovo 31 d., 2025 m. balandžio 7 d., 2025 m. balandžio 14 d., 2025 m. balandžio 22 d.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Žaidimo dovanų kuponų panaudojimo sąlygos:</p>
     <ul>
@@ -77,11 +77,11 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'EN'
         ? `<div>
     <p><strong>Game Rules</strong></p>
-    <p>Revision from 2025-03-17</p>
+    <p>Revision from 2025-03-25</p>
 
     <p><strong>GENERAL PROVISIONS</strong></p>
     <p>These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by UAB "Pigu" (company code 300866792, registered address Laisvės pr. 75, LT-06144 Vilnius) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution, and other procedures.</p>
-    <p>Game period: 17 March 2025 - 20 April 2025 (inclusive).</p>
+    <p>Game period: 25 March 2025 - 20 April 2025 (inclusive).</p>
     <p>The game participant must be a registered pigu.lt member and have agreed to receive game news and information about prizes.</p>
     <p>The game is played on the Pigu.lt mobile app. During the game, the player controls the hero of the game, whose goal is to jump up the steps as high as possible. To improve the result, the game participant can repeat the game.</p>
 
@@ -90,7 +90,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;A Participant may only receive a Game Prize once within 28 days of the announcement of the winners of the Game, the dates of which are set out in clause 6.1. If a Game Participant who has already received a Game Prize in the last 28 days is among the ten selected players, their Game Prize will be transferred to another player by random selection.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;The procedure for informing about the game prize and its delivery:</p>
-    <p>6.1.&nbsp;&nbsp;The game participant is informed about the game prize specified in clause 5 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: 17 March 2025, 24 March 2025, 31 March 2025, 7 April 2025, 14 April 2025, 22 April 2025.</p>
+    <p>6.1.&nbsp;&nbsp;The game participant is informed about the game prize specified in clause 5 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: 25 March 2025, 24 March 2025, 31 March 2025, 7 April 2025, 14 April 2025, 22 April 2025.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Terms of use of game gift vouchers:</p>
     <ul>
@@ -120,11 +120,11 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://220.lv' && this.language === 'LV'
         ? `<div>
     <p><strong>Spēles noteikumi</strong></p>
-    <p>Pārskatīts 2025. gada 17. martā</p>
+    <p>Pārskatīts 2025. gada 25. martā</p>
 
     <p><strong>VISPĀRĪGI NOTEIKUMI</strong></p>
     <p>Šos spēles noteikumus (turpmāk tekstā “Spēles noteikumi”) nosaka SIA "Pigu Latvia" (uzņēmuma kods 43603025092, juridiskā adrese Krasta iela 52, Rīga, LV-1003, Latvija) (turpmāk tekstā “Akcijas organizētājs”) organizētās spēles norises kārtību, spēles balvas un to piegādi, strīdu risināšanu un citas procedūras.</p>
-    <p>Spēles periods: 2025. gada 17. marts - 2025. gada 20. aprīlis (ieskaitot).</p>
+    <p>Spēles periods: 2025. gada 25. marts - 2025. gada 20. aprīlis (ieskaitot).</p>
     <p>Spēles dalībniekam jābūt reģistrētam 220.lv lietotājam un jāpiekrīt saņemt spēles jaunumus un informāciju par balvām.</p>
     <p>Spēle norisinās 220.lv mobilajā lietotnē. Spēles laikā spēles dalībnieks kontrolē spēles varoni, kura mērķis ir uzlēkt pēc iespējas augstāk pa pakāpieniem. Lai uzlabotu rezultātu, spēles dalībnieks var atkārtot spēli.</p>
 
@@ -133,7 +133,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;Dalībnieks var saņemt Spēles balvu tikai vienu reizi 28 dienu laikā pēc Spēles uzvarētāju paziņošanas, noteiktajos datumos 6.1. punktā. Ja Spēlētājs, kurš pēdējo 28 dienu laikā jau ir saņēmis Spēles balvu, ir starp 10 nejauši izvēlētajiem spēlētājiem, viņa Spēles balva tiks nodota citam nejauši izvēlētam spēlētājam.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;Informēšana par spēles balvu un tās piegādes procedūra:</p>
-    <p>6.1.&nbsp;&nbsp;Par spēles balvu, kas norādīta Spēles noteikumu 5. punktā, spēles dalībnieks tiek informēts uz viņa norādīto e-pasta adresi. Informācija par iepriekšējās nedēļas spēles uzvarām tiek nosūtīta pirmdienās šādos datumos: 17. marts 2025, 24. marts 2025, 31. marts 2025, 7. aprīlis 2025, 14. aprīlis 2025, 22. aprīlis 2025.</p>
+    <p>6.1.&nbsp;&nbsp;Par spēles balvu, kas norādīta Spēles noteikumu 5. punktā, spēles dalībnieks tiek informēts uz viņa norādīto e-pasta adresi. Informācija par iepriekšējās nedēļas spēles uzvarām tiek nosūtīta pirmdienās šādos datumos: 25. marts 2025, 24. marts 2025, 31. marts 2025, 7. aprīlis 2025, 14. aprīlis 2025, 22. aprīlis 2025.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Spēles dāvanu kartes izmantošanas noteikumi:</p>
     <ul>
@@ -163,11 +163,11 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://220.lv' && this.language === 'RU'
         ? `<div>
     <p><strong>Правила игры</strong></p>
-    <p>Пересмотрено 17 марта 2025 г.</p>
+    <p>Пересмотрено 25 марта 2025 г.</p>
 
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
     <p>Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры SIA "Pigu Latvia" (код компании 43603025092, юридический адрес Улица Краста, 52, Рига, LV-1003, Латвия) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</p>
-    <p>Период проведения игры: 17 марта 2025 г. - 20 апреля 2025 г. (включительно).</p>
+    <p>Период проведения игры: 25 марта 2025 г. - 20 апреля 2025 г. (включительно).</p>
     <p>Участник игры должен быть зарегистрированным участником 220.lv и согласиться получать новости игры и информацию о призах.</p>
     <p>Игра проводится в мобильном приложении 220.lv. Во время игры участник управляет героем игры, цель которого — прыгать по ступеням как можно выше. Чтобы улучшить результат, участник игры может повторить игру.</p>
 
@@ -176,7 +176,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;Участник может получить приз игры только один раз в течение 28 дней после объявления победителей, даты указаны в пункте 6.1. Если участник, который уже получил приз игры за последние 28 дней, входит в число десяти выбранных игроков, его приз будет передан другому участнику путем случайного выбора.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;Порядок информирования об игровом призе и его доставке:</p>
-    <p>6.1.&nbsp;&nbsp;Участник игры информируется об игровом призе, указанном в пункте 5 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 17 марта 2025 г., 24 марта 2025 г., 31 марта 2025 г., 7 апреля 2025 г., 14 апреля 2025 г., 22 апреля 2025 г.</p>
+    <p>6.1.&nbsp;&nbsp;Участник игры информируется об игровом призе, указанном в пункте 5 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 25 марта 2025 г., 24 марта 2025 г., 31 марта 2025 г., 7 апреля 2025 г., 14 апреля 2025 г., 22 апреля 2025 г.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Условия использования подарочных ваучеров игры:</p>
     <ul>
@@ -207,11 +207,11 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://220.lv' && this.language === 'EN'
         ? `<div>
     <p><strong>Game Rules</strong></p>
-    <p>Revision from 2025-03-17</p>
+    <p>Revision from 2025-03-25</p>
 
     <p><strong>GENERAL PROVISIONS</strong></p>
     <p>These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by SIA "Pigu Latvia" (company code 43603025092, registered address Krasta iela 52, Rīga, LV-1003, Latvia) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution, and other procedures.</p>
-    <p>Game period: 17 March 2025 - 20 April 2025 (inclusive).</p>
+    <p>Game period: 25 March 2025 - 20 April 2025 (inclusive).</p>
     <p>The game participant must be a registered 220.lv member and have agreed to receive game news and information about prizes.</p>
     <p>The game is played on the 220.lv mobile app. During the game, the player controls the hero of the game, whose goal is to jump up the steps as high as possible. To improve the result, the game participant can repeat the game.</p>
 
@@ -220,7 +220,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;A participant may only receive a game prize once within 28 days of the announcement of the winners of the game, the dates of which are set out in clause 6.1. If a game participant who has already received a game prize in the last 28 days is among the ten selected players, their game prize will be transferred to another player by random selection.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;The procedure for informing about the game prize and its delivery:</p>
-    <p>6.1.&nbsp;&nbsp;The game participant is informed about the game prize specified in clause 5 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: 17 March 2025, 24 March 2025, 31 March 2025, 7 April 2025, 14 April 2025, 22 April 2025.</p>
+    <p>6.1.&nbsp;&nbsp;The game participant is informed about the game prize specified in clause 5 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: 25 March 2025, 24 March 2025, 31 March 2025, 7 April 2025, 14 April 2025, 22 April 2025.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Terms of use of game gift vouchers:</p>
     <ul>
@@ -252,11 +252,11 @@ export class RulesContainer {
           this.language === 'ET'
         ? `<div>
     <p><strong>Правила игры</strong></p>
-    <p>Пересмотрено 17 марта 2025 г.</p>
+    <p>Пересмотрено 25 марта 2025 г.</p>
 
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
     <p>Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры DLB Trading OÜ (код компании 11791329, юридический адрес Peterburi tee 2F, 11415 Таллинн, Эстония) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</p>
-    <p>Период проведения игры: 17 марта 2025 г. - 20 апреля 2025 г. (включительно).</p>
+    <p>Период проведения игры: 25 марта 2025 г. - 20 апреля 2025 г. (включительно).</p>
     <p>Участник игры должен быть зарегистрированным участником Kaup24.ee и согласиться получать новости игры и информацию о призах.</p>
     <p>Игра проводится в мобильном приложении Kaup24.ee. Во время игры участник управляет героем игры, цель которого — прыгать по ступеням как можно выше. Чтобы улучшить результат, участник игры может повторить игру.</p>
 
@@ -265,7 +265,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;Участник может получить приз игры только один раз в течение 28 дней после объявления победителей, даты указаны в пункте 6.1. Если участник, который уже получил приз игры за последние 28 дней, входит в число десяти выбранных игроков, его приз будет передан другому участнику путем случайного выбора.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;Порядок информирования об игровом призе и его доставке:</p>
-    <p>6.1.&nbsp;&nbsp;Участник игры информируется об игровом призе, указанном в пункте 5 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 17 марта 2025 г., 24 марта 2025 г., 31 марта 2025 г., 7 апреля 2025 г., 14 апреля 2025 г., 22 апреля 2025 г.</p>
+    <p>6.1.&nbsp;&nbsp;Участник игры информируется об игровом призе, указанном в пункте 5 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 25 марта 2025 г., 24 марта 2025 г., 31 марта 2025 г., 7 апреля 2025 г., 14 апреля 2025 г., 22 апреля 2025 г.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Условия использования подарочных карт игры:</p>
     <ul>
@@ -295,11 +295,11 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'RU'
         ? `<div>
     <p><strong>Правила игры</strong></p>
-    <p>Пересмотрено 17 марта 2025 г.</p>
+    <p>Пересмотрено 25 марта 2025 г.</p>
 
     <p><strong>ОБЩИЕ ПОЛОЖЕНИЯ</strong></p>
     <p>Настоящие правила игры (далее — Правила игры) устанавливают порядок организации игры UAB «Pigu» (код компании 300866792, юридический адрес Laisvės pr. 75, LT-06144 Вильнюс) (далее — Организатор акции), призы игры и их доставку, разрешение споров и другие процедуры.</p>
-    <p>Период проведения игры: 17 марта 2025 г. - 20 апреля 2025 г. (включительно).</p>
+    <p>Период проведения игры: 25 марта 2025 г. - 20 апреля 2025 г. (включительно).</p>
     <p>Участник игры должен быть зарегистрированным участником pigu.lt и согласиться получать новости игры и информацию о призах.</p>
     <p>Игра проводится в мобильном приложении Pigu.lt. Во время игры участник управляет героем игры, цель которого — прыгать по ступеням как можно выше. Чтобы улучшить результат, участник игры может повторить игру.</p>
 
@@ -308,7 +308,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;Участник может получить приз игры только один раз в течение 28 дней после объявления победителей, даты указаны в пункте 6.1. Если участник, который уже получил приз игры за последние 28 дней, входит в число десяти выбранных игроков, его приз будет передан другому участнику путем случайного выбора.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;Порядок информирования об игровом призе и его доставке:</p>
-    <p>6.1.&nbsp;&nbsp;Участник игры информируется об игровом призе, указанном в пункте 5 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 17 марта 2025 г., 24 марта 2025 г., 31 марта 2025 г., 7 апреля 2025 г., 14 апреля 2025 г., 22 апреля 2025 г.</p>
+    <p>6.1.&nbsp;&nbsp;Участник игры информируется об игровом призе, указанном в пункте 5 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 25 марта 2025 г., 24 марта 2025 г., 31 марта 2025 г., 7 апреля 2025 г., 14 апреля 2025 г., 22 апреля 2025 г.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Условия использования подарочных карт игры:</p>
     <ul>
@@ -357,7 +357,7 @@ export class RulesContainer {
         <li>Участник может получить приз игры только один раз в течение 28 дней после объявления победителей, даты указаны в пункте 6.1. Если участник, который уже получил приз игры за последние 28 дней, входит в число десяти выбранных игроков, его приз будет передан другому участнику путем случайного выбора.</li>
         <li>Порядок информирования об игровом призе и его доставке:
             <ol>
-                <li>Участник игры информируется об игровом призе, указанном в пункте 5 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 3 февраля 2025 года, 10 февраля 2025 года, 17 февраля 2025 года, 24 февраля 2025 года, 3 марта 2025 года, 10 марта 2025 года.</li>
+                <li>Участник игры информируется об игровом призе, указанном в пункте 5 Правил игры, по предоставленному им адресу электронной почты. Информация о выигрыше в игре за предыдущую неделю отправляется по понедельникам в следующие даты: 3 февраля 2025 года, 10 февраля 2025 года, 25 февраля 2025 года, 24 февраля 2025 года, 3 марта 2025 года, 10 марта 2025 года.</li>
             </ol>
         </li>
         <li>Условия использования подарочных карт игры:
@@ -395,11 +395,11 @@ export class RulesContainer {
         : this.campaignUrlProp === 'https://hobbyhall.fi' && this.language === 'FI'
         ? `<div>
     <p><strong>Pelisäännöt</strong></p>
-    <p>Tarkistettu 17.3.2025</p>
+    <p>Tarkistettu 25.3.2025</p>
 
     <p><strong>YLEISET MÄÄRÄYKSET</strong></p>
     <p>Nämä pelisäännöt (jäljempänä "pelisäännöt") määrittelevät Hobby Hall Suomi Oy (jäljempänä "kampanjan järjestäjä") järjestämän pelin järjestämismenettelyjä, pelin palkintoja ja niiden toimitusta, riitojen ratkaisua ja muita menettelyjä.</p>
-    <p>Pelijakso: 17.3.2025 - 20.4.2025.</p>
+    <p>Pelijakso: 25.3.2025 - 20.4.2025.</p>
     <p>Pelin osallistujan on oltava rekisteröitynyt Hobbyhall.fi-verkkokauppaan ja hänen on oltava hyväksynyt pelin tietojen ja palkintotietojen vastaanotto.</p>
     <p>Peliä pelataan Hobbyhall.fi-mobiilisovelluksessa. Pelin aikana pelaaja ohjaa pelin sankaria, jonka tavoitteena on hypätä portaita ylös mahdollisimman korkealle. Tuloksen parantamiseksi pelaaja voi pelata pelin uudelleen.</p>
 
@@ -408,7 +408,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;Osallistuja voi saada pelipalkinnon vain kerran 28 päivän kuluessa siitä, kun pelin voittajat on julkistettu, joiden päivämäärät on esitetty kohdassa 6.1. Jos peliin osallistuja, joka on jo saanut pelipalkinnon viimeisten 28 päivän aikana, on kymmenen valitun pelaajan joukossa, hänen pelipalkintonsa siirretään toiselle pelaajalle satunnaisotannalla.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;Pelipalkinnosta ja sen toimittamisesta tiedottaminen:</p>
-    <p>6.1.&nbsp;&nbsp;Pelisääntöjen kohdassa 5 määritellystä pelipalkinnosta, 20 € arvoisesta lahjakortista, ilmoitetaan pelin osallistujalle hänen ilmoittamaansa sähköpostiosoitteeseen. Tiedot edellisen viikon pelin voittamisesta lähetetään maanantaisin seuraavina päivinä: 17.3.2025, 24.3.2025, 31.3.2025, 7.4.2025, 14.4.2025, 22.4.2025.</p>
+    <p>6.1.&nbsp;&nbsp;Pelisääntöjen kohdassa 5 määritellystä pelipalkinnosta, 20 € arvoisesta lahjakortista, ilmoitetaan pelin osallistujalle hänen ilmoittamaansa sähköpostiosoitteeseen. Tiedot edellisen viikon pelin voittamisesta lähetetään maanantaisin seuraavina päivinä: 25.3.2025, 24.3.2025, 31.3.2025, 7.4.2025, 14.4.2025, 22.4.2025.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Pelissä voitettujen lahjakorttien käyttöehdot:</p>
     <ul>
@@ -439,11 +439,11 @@ export class RulesContainer {
           this.language === 'EN'
         ? `<div>
     <p><strong>Game Rules</strong></p>
-    <p>Revision from 2025-03-17</p>
+    <p>Revision from 2025-03-25</p>
 
     <p><strong>GENERAL PROVISIONS</strong></p>
     <p>These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by DLB Trading OÜ (company code 11791329, registered address Peterburi tee 2F, 11415 Tallinn, Estonia) (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution, and other procedures.</p>
-    <p>Game period: 17 March 2025 - 20 April 2025 (inclusive).</p>
+    <p>Game period: 25 March 2025 - 20 April 2025 (inclusive).</p>
     <p>The game participant must be a registered Kaup24.ee member and have agreed to receive game news and information about prizes.</p>
     <p>The game is played on the Kaup24.ee mobile app. During the game, the player controls the hero of the game, whose goal is to jump up the steps as high as possible. To improve the result, the game participant can repeat the game.</p>
 
@@ -452,7 +452,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;A participant may only receive a game prize once within 28 days of the announcement of the winners of the game, the dates of which are set out in clause 6.1. If a game participant who has already received a game prize in the last 28 days is among the ten selected players, their game prize will be transferred to another player by random selection.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;The procedure for informing about the game prize and its delivery:</p>
-    <p>6.1.&nbsp;&nbsp;The game participant is informed about the game prize specified in clause 5 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: 17 March 2025, 24 March 2025, 31 March 2025, 7 April 2025, 14 April 2025, 22 April 2025.</p>
+    <p>6.1.&nbsp;&nbsp;The game participant is informed about the game prize specified in clause 5 of the Game Rules at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: 25 March 2025, 24 March 2025, 31 March 2025, 7 April 2025, 14 April 2025, 22 April 2025.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Terms of use of game gift vouchers:</p>
     <ul>
@@ -483,11 +483,11 @@ export class RulesContainer {
           this.language === 'EN' &&
           `<div>
     <p><strong>Game Rules</strong></p>
-    <p>Revision from 2025-03-17</p>
+    <p>Revision from 2025-03-25</p>
 
     <p><strong>GENERAL PROVISIONS</strong></p>
     <p>These game rules (hereinafter referred to as the Game Rules) establish the procedures for organizing the game by Hobby Hall Suomi Oy (hereinafter referred to as the Promotion Organizer), the game prizes and their delivery, dispute resolution, and other procedures.</p>
-    <p>Game period: 17 March 2025 - 20 April 2025 (inclusive).</p>
+    <p>Game period: 25 March 2025 - 20 April 2025 (inclusive).</p>
     <p>The game participant must be a registered Hobbyhall.fi member and have agreed to receive game news and information about prizes.</p>
     <p>The game is played on the Hobbyhall.fi mobile app. During the game, the player controls the hero of the game, whose goal is to jump up the steps as high as possible. To improve the result, the game participant can repeat the game.</p>
 
@@ -496,7 +496,7 @@ export class RulesContainer {
     <p>5.1.&nbsp;&nbsp;A participant may only receive a game prize once within 28 days of the announcement of the winners of the game, the dates of which are set out in clause 6.1. If a game participant who has already received a game prize in the last 28 days is among the ten selected players, their game prize will be transferred to another player by random selection.</p>
 
     <p>6.&nbsp;&nbsp;&nbsp;The procedure for informing about the game prize and its delivery:</p>
-    <p>6.1.&nbsp;&nbsp;The game participant is informed about winning a €20 gift voucher at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: 17 March 2025, 24 March 2025, 31 March 2025, 7 April 2025, 14 April 2025, 22 April 2025.</p>
+    <p>6.1.&nbsp;&nbsp;The game participant is informed about winning a €20 gift voucher at the e-mail address provided by them. Information about winning the previous week's game is sent on Mondays, on the following dates: 25 March 2025, 24 March 2025, 31 March 2025, 7 April 2025, 14 April 2025, 22 April 2025.</p>
 
     <p>7.&nbsp;&nbsp;&nbsp;Terms of use of game gift vouchers:</p>
     <ul>

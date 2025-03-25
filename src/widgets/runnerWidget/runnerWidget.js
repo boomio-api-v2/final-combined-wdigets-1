@@ -15,6 +15,7 @@ import {
   home,
   redo,
   up,
+  stopwatch,
   down,
   left,
   right,
@@ -29,6 +30,11 @@ import {
   pause,
   life,
   checkIcon,
+  upDentsu,
+  downDentsu,
+  leftDentsu,
+  rightDentsu,
+  dentsuIntro,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -72,6 +78,12 @@ class runnerWidget {
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
 
+    <img src=${dentsuIntro} 
+    alt="Image Description" 
+    style="z-index:4; height: ${
+      this.isMobileHeightSmall ? '100%' : '674px'
+    };position:absolute;pointer-events: none; display:none;" 
+    id="background_intro">
 
     <img class="new_highscore_stars" src=${
       newHighscoreStarsImage.src
@@ -104,23 +116,7 @@ class runnerWidget {
   <span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
   </span>
   </div>
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:160px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
-      this.customer === 'Barbora'
-        ? '#CC0001'
-        : this.customer === 'Ikea'
-        ? '#0058A3'
-        : this.customer === 'Unisend'
-        ? '#376728'
-        : '#FFE92D'
-    };border-radius:35px">
-    <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
-
-  <div style="text-align: center; color: white; font-size: 20px; font-family:${
-    this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
-  }; font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentScore"></div>
-</div>
-</div>
+    
 
 
  
@@ -142,10 +138,18 @@ class runnerWidget {
       </div>
       <div class="boomio-runner-controlBlock">
         Taisyklės
-        <img class='boomio-runner-controlButton' src="${up}" alt="">
-        <div><img class='boomio-runner-controlButton' src="${left}" alt="">
-          <img class='boomio-runner-controlButton' src="${right}" alt="">
-          <img class='boomio-runner-controlButton' src="${down}" alt="">
+        <img class='boomio-runner-controlButton' src="${
+          this.customer === 'Dentsu' ? upDentsu : up
+        }" alt="">
+        <div><img class='boomio-runner-controlButton' src="${
+          this.customer === 'Dentsu' ? leftDentsu : left
+        }" alt="">
+          <img class='boomio-runner-controlButton' src="${
+            this.customer === 'Dentsu' ? downDentsu : right
+          }" alt="">
+          <img class='boomio-runner-controlButton' src="${
+            this.customer === 'Dentsu' ? rightDentsu : down
+          }" alt="">
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="${
@@ -153,18 +157,23 @@ class runnerWidget {
      }">
       </canvas>
 
-      <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" alt="">
-      <div class="boomio-runner-score boomio-hide"></div>
-      <div class="boomio-runner-coins boomio-hide">
-        <div class="coinsText"></div>
-        <img src="${coin}" alt="">
-      </div>
-<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#1591EA'};border-radius:35px">
+      <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" style="display:none" alt="">
+    
+<div class="boomio-runner-score-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#313131'};border-radius:35px">
+<div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+<img src=${star} alt="Image Description" style="margin-right:-10px;width: 25px; height: 25px;margin-top:15px"></img>
+
+<div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" class="currentScore" id="currentScore">0</div></div>
+</div>
+
+
+<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#313131'};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
 <div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife">3/3</div></div>
 </div>
+
     ${
       this.showCompetitiveRegistration
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
@@ -175,13 +184,21 @@ class runnerWidget {
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
 
 <div class="boomio-runner-leftButtonsBlock boomio-hide">
-  <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${left}" alt="">
-  <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${right}" alt="">
+  <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${
+    this.customer === 'Dentsu' ? leftDentsu : left
+  }" alt="">
+  <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${
+    this.customer === 'Dentsu' ? rightDentsu : right
+  }" alt="">
 </div>
 
 <div class="boomio-runner-rightButtonsBlock boomio-hide">
-  <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${up}" alt="">
-  <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${down}" alt="">
+  <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${
+    this.customer === 'Dentsu' ? upDentsu : up
+  }" alt="">
+  <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${
+    this.customer === 'Dentsu' ? downDentsu : down
+  }" alt="">
 </div>
 
 
@@ -199,7 +216,7 @@ class runnerWidget {
     </div>
     <div class="boomio-runner-gameOver boomio-insideScreenRatio boomio-hide">
       <div class='boomio-runner-HIandRecord'></div>
-      <div class="boomio-runner-score boomio-runner-gameOverScore"></div>      
+      <div class="boomio-runner-score-input-container boomio-runner-gameOverScore"></div>      
       <div class="boomio-runner-gameOverCoinsHolder">
         <div class="gameOverCoins"></div>
         <img class='boomio-runner-payForLifeImg'src="${coin}" alt="">
@@ -486,7 +503,6 @@ ${
     const loader = new PxLoader();
     this.config = localStorageService.getDefaultConfig();
     const customer = this.config.business_name ? this.config.business_name : 'Dentsu';
-    console.log('this.config', customer);
 
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
@@ -500,19 +516,21 @@ ${
     var pauseBlock = document.getElementsByClassName('boomio-runner-pause')[0];
     var pauseButton = document.getElementsByClassName('boomio-runner-pauseButton')[0];
     var lifeContainer = document.getElementsByClassName('boomio-runner-life-input-container')[0];
+
     var gameOverBlock = document.getElementsByClassName('boomio-runner-gameOver')[0];
     var mainMenuBlock = document.getElementsByClassName('boomio-runner-mainMenu')[0];
     var controlBlock = document.getElementsByClassName('boomio-runner-controlBlock')[0];
 
-    var scoreBlock = document.getElementsByClassName('boomio-runner-score')[0];
+    var scoreBlock = document.getElementsByClassName('boomio-runner-score-input-container')[0];
     var highScoreBlock = document.getElementsByClassName('HighScoreBlock')[0];
 
-    var coinsBlock = document.getElementsByClassName('boomio-runner-coins')[0];
     var mainCoinBlock = document.getElementsByClassName('mainCoinsText')[0];
-    var coinsText = document.getElementsByClassName('coinsText')[0];
+    let currentScore = document.getElementsByClassName('currentScore')[0];
     var gameOverCoinsBlock = document.getElementsByClassName('gameOverCoins')[0];
 
-    var GameOverScoreBlock = document.getElementsByClassName('boomio-runner-score')[1];
+    var GameOverScoreBlock = document.getElementsByClassName(
+      'boomio-runner-score-input-container',
+    )[1];
     var HIandRecord = document.getElementsByClassName('boomio-runner-HIandRecord')[0];
     var soundBtn = document.getElementsByClassName('boomio-runner-soundBtn')[0];
     var rightButtonsBlock = document.getElementsByClassName('boomio-runner-rightButtonsBlock')[0];
@@ -725,6 +743,10 @@ ${
               if (player.shield) {
                 if (object.isCoin) {
                   if (!object.kicked) {
+                    score += 50;
+                    currentScore.innerText =
+                      '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
+
                     coins += 1;
                   }
                   object.kicked = true;
@@ -745,6 +767,9 @@ ${
                 }
                 if (object.isCoin) {
                   if (!object.kicked) {
+                    score += 50;
+                    currentScore.innerText =
+                      '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
                     coins += 1;
                   }
                   object.kicked = true;
@@ -834,7 +859,7 @@ ${
         toggleHide(gameOverBlock);
         toggleHide(pauseButton);
         toggleHide(scoreBlock);
-        toggleHide(coinsBlock);
+
         player.shield = true;
         activeTime = 1;
         Start();
@@ -1256,11 +1281,6 @@ ${
             inputContainer.style.opacity = 1;
           }, 100);
         }
-        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-        currectScoreDiv.style.opacity = 0;
-        setTimeout(() => {
-          currectScoreDiv.style.display = 'none';
-        }, 300);
       }, 100);
     };
 
@@ -1300,7 +1320,7 @@ ${
       pause = pauseBlock.classList.contains('boomio-hide') ? true : false;
       toggleHide(pauseBlock);
       toggleHide(scoreBlock);
-      toggleHide(coinsBlock);
+
       toggleHide(pauseButton);
       toggleHide(lifeContainer);
     };
@@ -1382,6 +1402,7 @@ ${
         }
         this.index = 0;
         this.currentScore = 0;
+
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         setTimeout(() => {
           inputContainer.style.height = '10px';
@@ -1414,7 +1435,7 @@ ${
           toggleHide(mainMenuBlock);
           toggleHide(pauseButton);
           toggleHide(scoreBlock);
-          toggleHide(coinsBlock);
+
           toggleHide(lifeContainer);
 
           saveMeBlock.classList.remove('boomio-hide');
@@ -1756,10 +1777,11 @@ ${
               setTimeout(() => {
                 GameOverScoreBlock.innerText = 'Score: ' + score.toFixed(0);
                 toggleHide(scoreBlock);
-                toggleHide(coinsBlock);
+
                 toggleHide(pauseButton);
                 // toggleHide(gameOverBlock);
                 toggleHide(lifeContainer);
+
                 showCompetitiveRegistrationTable();
                 console.log('over');
                 rightButtonsBlock.classList.add('boomio-hide');
@@ -1796,7 +1818,7 @@ ${
         // toggleHide(gameOverBlock);
         toggleHide(pauseButton);
         toggleHide(scoreBlock);
-        toggleHide(coinsBlock);
+
         toggleHide(lifeContainer);
 
         saveMeBlock.classList.remove('boomio-hide');
@@ -1805,7 +1827,7 @@ ${
         toggleHide(pauseBlock);
         toggleHide(pauseButton);
         toggleHide(scoreBlock);
-        toggleHide(coinsBlock);
+
         toggleHide(lifeContainer);
       }
       ResetGlobalVariables();
@@ -1846,13 +1868,13 @@ ${
       arr[index + 1].Update(arr[index]);
     }
 
-    function showScoreAndCoins() {
+    const showScoreAndCoins = () => {
       score += 0.12;
-      scoreBlock.innerText =
-        '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
-      coinsText.innerText = '0'.repeat(3 - String(coins).length) + coins;
-    }
+      this.currentScore = score;
 
+      currentScore.innerText =
+        '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
+    };
     function Start() {
       stopGame = false;
       fpsInterval = 1000 / 60;
@@ -1901,19 +1923,13 @@ ${
         for (let i = 0; i < bg.length - 1; i += 2) {
           UpdateBg(i);
         }
-        // Calculate dynamic spacing based on currentScore
-        const baseSpacing = 200; // Default spacing
-        const minSpacing = 100; // Minimum spacing at high scores
-        let currentScore = document.getElementById('coinstext');
-
-        const currentSpacing = Math.max(minSpacing, baseSpacing - currentScore * 3);
 
         // Adjust object placement condition
-        if (objects.length == 0 || objects.at(-1).x < canvas.width - currentSpacing) {
+        if (objects.length == 0 || objects.at(-1).x < canvas.width) {
           objects.push(
             new GameObject(
               barriersSprites[0],
-              (4 * canvas.width) / 3.1,
+              (4 * canvas.width) / 2.5,
               canvas.height - wrapperBlock.offsetHeight / 2.7,
               false,
             ),

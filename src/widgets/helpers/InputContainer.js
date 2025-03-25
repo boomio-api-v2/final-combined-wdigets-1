@@ -142,6 +142,8 @@ export class InputContainer {
                   ? 'BRAUK '
                   : this.prop === 'Perlas GO'
                   ? 'Judėk'
+                  : this.game === 'Runner'
+                  ? 'Judėk'
                   : 'Spausk'
               }
     <div
@@ -228,6 +230,8 @@ export class InputContainer {
       ? 'para volar'
       : this.prop === 'Perlas GO'
       ? 'į šonus kad nenukristum.'
+      : this.prop === 'Dentsu'
+      ? 'klavišų pagalba ir rink taškus.'
       : 'kad skristum.'
   }
 </div>
@@ -454,9 +458,11 @@ export class InputContainer {
                 : this.prop === 'Daumantu'
                 ? 'Daumantų prizus!'
                 : this.prop === 'SaludSA'
-                ? 'premios Saludsa Vitality y participa</br> por el sorteo de un reloj Garmin.'
+                ? 'premios Saludsa Vitality y participa </br> en el sorteo de increíbles premios.'
                 : this.prop === 'Vilvi'
                 ? 'kasdien!'
+                : this.prop === 'Dentsu'
+                ? '1 mėn. prieigą  prie interaktyvios tikslinės auditorijos!'
                 : 'Prizus!'
             }
           </div>
