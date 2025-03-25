@@ -454,7 +454,7 @@ export class InputContainer {
                 : this.prop === 'Daumantu'
                 ? 'Daumantų prizus!'
                 : this.prop === 'SaludSA'
-                ? 'premios Saludsa Vitality y participa</br> por el sorteo de un reloj Garmin.'
+                ? 'premios Saludsa Vitality y participa </br> en el sorteo de increíbles premios.'
                 : this.prop === 'Vilvi'
                 ? 'kasdien!'
                 : 'Prizus!'

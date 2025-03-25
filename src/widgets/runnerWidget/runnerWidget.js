@@ -146,10 +146,18 @@ class runnerWidget {
       </div>
       <div class="boomio-runner-controlBlock">
         Taisyklės
-        <img class='boomio-runner-controlButton' src="${up}" alt="">
-        <div><img class='boomio-runner-controlButton' src="${left}" alt="">
-          <img class='boomio-runner-controlButton' src="${right}" alt="">
-          <img class='boomio-runner-controlButton' src="${down}" alt="">
+        <img class='boomio-runner-controlButton' src="${
+          this.customer === 'Dentsu' ? upDentsu : up
+        }" alt="">
+        <div><img class='boomio-runner-controlButton' src="${
+          this.customer === 'Dentsu' ? leftDentsu : left
+        }" alt="">
+          <img class='boomio-runner-controlButton' src="${
+            this.customer === 'Dentsu' ? rightDentsu : right
+          }" alt="">
+          <img class='boomio-runner-controlButton' src="${
+            this.customer === 'Dentsu' ? downDentsu : down
+          }" alt="">
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="${
@@ -163,12 +171,14 @@ class runnerWidget {
         <div class="coinsText"></div>
         <img src="${coin}" alt="">
       </div>
-<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#1591EA'};border-radius:35px">
+<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#313131'};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
 <div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife">3/3</div></div>
 </div>
+
+
     ${
       this.showCompetitiveRegistration
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML

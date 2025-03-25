@@ -194,7 +194,7 @@
 	image-rendering: pixelated;
 }
 .boomio-runner-mobileControlButt{
-	height:13vh;
+	height:40px;
 	width: auto;
 	image-rendering: pixelated;
 	background-color: rgba(255, 255, 255, 0.237);
