@@ -34,6 +34,7 @@ import {
   downDentsu,
   leftDentsu,
   rightDentsu,
+  dentsuIntro,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -77,11 +78,11 @@ class runnerWidget {
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
 
-    <img src=${introAkropolisLV} 
+    <img src=${dentsuIntro} 
     alt="Image Description" 
     style="z-index:4; height: ${
       this.isMobileHeightSmall ? '100%' : '674px'
-    };position:absolute;pointer-events: none; display:block;" 
+    };position:absolute;pointer-events: none; display:none;" 
     id="background_intro">
 
     <img class="new_highscore_stars" src=${
