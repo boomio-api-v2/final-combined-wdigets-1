@@ -15,6 +15,7 @@ import {
   home,
   redo,
   up,
+  stopwatch,
   down,
   left,
   right,
@@ -153,10 +154,10 @@ class runnerWidget {
           this.customer === 'Dentsu' ? leftDentsu : left
         }" alt="">
           <img class='boomio-runner-controlButton' src="${
-            this.customer === 'Dentsu' ? rightDentsu : right
+            this.customer === 'Dentsu' ? downDentsu : right
           }" alt="">
           <img class='boomio-runner-controlButton' src="${
-            this.customer === 'Dentsu' ? downDentsu : down
+            this.customer === 'Dentsu' ? rightDentsu : down
           }" alt="">
         </div>
       </div>
@@ -171,13 +172,25 @@ class runnerWidget {
         <div class="coinsText"></div>
         <img src="${coin}" alt="">
       </div>
+<div class="boomio-runner-score-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#313131'};border-radius:35px">
+<div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+<img src=${star} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
+
+<div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife">3/3</div></div>
+</div>
+
+<div class="boomio-runner-time-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#313131'};border-radius:35px">
+<div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+<img src=${stopwatch} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
+
+<div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife">3/3</div></div>
+</div>
 <div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#313131'};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
 <div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife">3/3</div></div>
 </div>
-
 
     ${
       this.showCompetitiveRegistration
@@ -522,6 +535,9 @@ ${
     var pauseBlock = document.getElementsByClassName('boomio-runner-pause')[0];
     var pauseButton = document.getElementsByClassName('boomio-runner-pauseButton')[0];
     var lifeContainer = document.getElementsByClassName('boomio-runner-life-input-container')[0];
+    var timeContainer = document.getElementsByClassName('boomio-runner-time-input-container')[0];
+    var scoreContainer = document.getElementsByClassName('boomio-runner-score-input-container')[0];
+
     var gameOverBlock = document.getElementsByClassName('boomio-runner-gameOver')[0];
     var mainMenuBlock = document.getElementsByClassName('boomio-runner-mainMenu')[0];
     var controlBlock = document.getElementsByClassName('boomio-runner-controlBlock')[0];
@@ -1325,6 +1341,8 @@ ${
       toggleHide(coinsBlock);
       toggleHide(pauseButton);
       toggleHide(lifeContainer);
+      toggleHide(timeContainer);
+      toggleHide(scoreContainer);
     };
 
     const PlayButtonActivate = () => {
@@ -1438,6 +1456,8 @@ ${
           toggleHide(scoreBlock);
           toggleHide(coinsBlock);
           toggleHide(lifeContainer);
+          toggleHide(timeContainer);
+          toggleHide(scoreContainer);
 
           saveMeBlock.classList.remove('boomio-hide');
           Start();
@@ -1782,6 +1802,9 @@ ${
                 toggleHide(pauseButton);
                 // toggleHide(gameOverBlock);
                 toggleHide(lifeContainer);
+                toggleHide(timeContainer);
+                toggleHide(scoreContainer);
+
                 showCompetitiveRegistrationTable();
                 console.log('over');
                 rightButtonsBlock.classList.add('boomio-hide');
@@ -1820,6 +1843,8 @@ ${
         toggleHide(scoreBlock);
         toggleHide(coinsBlock);
         toggleHide(lifeContainer);
+        toggleHide(timeContainer);
+        toggleHide(scoreContainer);
 
         saveMeBlock.classList.remove('boomio-hide');
       }
@@ -1829,6 +1854,8 @@ ${
         toggleHide(scoreBlock);
         toggleHide(coinsBlock);
         toggleHide(lifeContainer);
+        toggleHide(timeContainer);
+        toggleHide(scoreContainer);
       }
       ResetGlobalVariables();
       document.addEventListener('keydown', keyRightHandler, false);
