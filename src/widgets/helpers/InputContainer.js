@@ -5,7 +5,7 @@ import { uncheckIcon } from './constants';
 export class InputContainer {
   constructor(prop, game) {
     this.prop = prop;
-    this.game = game; // Store the prop in a class property
+    this.game = game;
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();
 
@@ -34,7 +34,7 @@ export class InputContainer {
     this.game = game;
     containerDiv.innerHTML = `
 
-    
+      
     <div style="width: 100%; height: ${
       this.userBestScore <= 1500 && this.prop === 'Pigu.lt' ? '220px' : '180px'
     };box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
@@ -142,7 +142,7 @@ export class InputContainer {
                   ? 'BRAUK '
                   : this.prop === 'Perlas GO'
                   ? 'Judėk'
-                  : this.game === 'Dentsu'
+                  : this.prop === 'Dentsu' && this.game === 'runner'
                   ? 'Judėk'
                   : 'Spausk'
               }

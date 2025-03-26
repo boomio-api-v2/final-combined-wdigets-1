@@ -171,12 +171,13 @@ class runnerWidget {
 
     ${
       this.showCompetitiveRegistration
-        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
+        ? new InputRegisterContainer(this.customer, 'runner').createInputRegisterContainer()
+            .outerHTML
         : ''
     }
 
     
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'runner').createInputContainerDiv('runner').outerHTML}
 
 <div class="boomio-runner-leftButtonsBlock boomio-hide">
   <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${
