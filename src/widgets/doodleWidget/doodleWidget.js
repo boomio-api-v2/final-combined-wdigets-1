@@ -1,26 +1,98 @@
-import { widgetHtmlService, QrCodeModal, AnimationService, localStorageService } from '@/services';
+import {
+  widgetHtmlService,
+  QrCodeModal,
+  AnimationService,
+  boomioService,
+  localStorageService,
+} from '@/services';
 import './styles.css';
 import {
-  scoreImage,
-  couponBackground,
-  cursor,
-  intro,
-  howToPlay,
+  close,
   backgroundRed,
   mainImage,
   useButton,
+  checkIcon,
+  uncheckIcon,
+  newRecord,
+  backgroundRedAkropolis,
+  mainImageAkropolis,
+  introAkropolis,
+  backgroundRedAkropolisLV,
+  mainImageAkropolisLV,
+  introAkropolisLV,
+  Controlls,
+  star,
+  jumpEffect,
+  ControlsDesktop,
+  newRecordEE,
+  newRecordFI,
+  newRecordRU,
+  newRecordLV,
+  newRecordEn,
+  BackgroundPigu,
+  MainImagePiguLT,
+  MainImagePiguLV,
+  MainImagePiguFI,
+  MainImagePiguEE,
+  PiguJumpUpIntroEstonian,
+  PiguJumpUpIntroEstoniaRU,
+  PiguJumpUpIntroLithuanian,
+  PiguJumpUpIntroLithuanianRU,
+  PiguJumpUpIntroFinish,
+  PiguJumpUpIntroLatvian,
+  PiguJumpUpIntroLatvianRU,
+  PiguJumpUpIntroLatvianEN,
+  PiguJumpUpIntroEstonianEN,
+  PiguJumpUpIntroLithuanianEN,
+  PiguJumpUpIntroFinishEN,
+  introVilvi,
+  mainImageVilvi,
+  backgroundVilvi,
+  mainImagePerlasGo,
+  backgroundPerlasGo,
+  introPerlasGo,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { GameOverContainer } from '../helpers/GameOverContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
+import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { RulesContainer } from '../helpers/RulesContainer';
+import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
+import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { TextScoreTableContainer } from '../helpers/TextScoreTableContainer';
+import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 
 class DoodleWidget {
   static ctx;
 
   constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    this.checkboxChange = false;
+    this.checkboxChange2 = false;
+    this.checkboxChange3 = false;
+    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
+
     this.isMobile = window.innerWidth <= 1280;
-    this.showCompetitiveRegistration = false;
+    this.isMobileHeightSmall = window.innerHeight <= 600;
+
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
+    this.showCompetitiveRegistration =
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
+
+    this.language = this.config.language ? this.config.language : 'LV';
+    const currentPageUrl = window.location.href;
+    this.urlParams = new URL(currentPageUrl).searchParams;
+    this.campaignUrl = this.urlParams.get('campaign_url');
+
+    this.campaignUrlProp = this.campaignUrl ? this.campaignUrl : currentPageUrl;
+
+    this.userBestPlace = 0;
+    this.scoreTable = {};
+    this.scoreTableContainerInstance;
+
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
     this.width = document.body.offsetWidth < 418 ? document.body.offsetWidth : 418;
@@ -28,10 +100,30 @@ class DoodleWidget {
     this.player;
     this.tutorial = true;
     this.image = new Image();
-    this.image.src = mainImage;
+
+    this.image.src =
+      this.campaignUrlProp === 'https://pigu.lt'
+        ? MainImagePiguLT
+        : this.campaignUrlProp === 'https://220.lv'
+        ? MainImagePiguLV
+        : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
+        ? MainImagePiguEE
+        : this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? MainImagePiguFI
+        : this.customer === 'Vilvi'
+        ? mainImageVilvi
+        : this.customer === 'Perlas GO'
+        ? mainImagePerlasGo
+        : this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? mainImageAkropolisLV
+          : mainImageAkropolis
+        : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
+
+    this.currentScreen = 0; // Initialize the current screen counter
   }
 
   startDoodle() {
@@ -49,8 +141,12 @@ class DoodleWidget {
       );
     })();
 
-    document.querySelector('.game-container').style.backgroundColor =
-      window.innerWidth <= 768 ? 'black' : 'none';
+    if (this.customer === 'Pigu.lt') {
+      document.querySelector('.game-container').style.backgroundColor = 'black';
+    } else {
+      document.querySelector('.game-container').style.backgroundColor =
+        window.innerWidth <= 768 ? 'black' : 'none';
+    }
 
     this.config = localStorageService.getDefaultConfig();
 
@@ -58,15 +154,19 @@ class DoodleWidget {
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.style.background = `url(${backgroundRed}) center`;
-
-    const backgroundCursor = document.getElementById('game-container');
-    backgroundCursor.style.cursor = `url(${cursor}) 10 10, auto`;
-
-    const inputContainerCursor = document.getElementById('input-container');
-    inputContainerCursor.style.cursor = `url(${cursor}) 10 10, auto`;
-
-    // Updated here
+    canvas.style.background = `url(${
+      this.customer === 'Pigu.lt'
+        ? BackgroundPigu
+        : this.customer === 'Vilvi'
+        ? backgroundVilvi
+        : this.customer === 'Perlas GO'
+        ? backgroundPerlasGo
+        : this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? backgroundRedAkropolisLV
+          : backgroundRedAkropolis
+        : backgroundRed
+    }) center`;
 
     if (!canvas) {
       console.error('Canvas element not found.');
@@ -101,65 +201,80 @@ class DoodleWidget {
     this.gravity = 0.1;
     this.gameCount = 0;
 
-    setTimeout(() => {
-      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-      document.getElementById('background_intro').style.opacity = 0;
-      if (this.gameCount === 0) {
-        document.getElementById('background_blur').style.display = 'block';
-        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-      }
-      this.showRulesOrRegistration();
+    setTimeout(
+      () => {
+        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+        document.getElementById('background_intro').style.opacity = 0;
+        if (this.gameCount === 0) {
+          document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+        }
+        this.showRulesOrRegistration();
 
-      setTimeout(() => {
-        document.getElementById('background_intro').style.display = 'none';
-      }, 2000);
-    }, 5000);
+        setTimeout(
+          () => {
+            document.getElementById('background_intro').style.display = 'none';
+          },
+          this.customer === 'Pigu.lt' ? 2000 : 5500,
+        );
+      },
+      this.customer === 'Pigu.lt' ? 2000 : 5500,
+    ); //intro speed
   }
 
   createHandlers = () => {
     const restart = document.getElementById('startButtonClick1');
     restart.addEventListener('click', this.resetGame);
-
     const start = document.getElementById('control-button');
     start.addEventListener('click', this.initGame);
 
     const reward = document.getElementById('claimReward');
     reward.addEventListener('click', this.claimReward);
 
-    if (this.showCompetitiveRegistration) {
+    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
-
-      const competitionRestart = document.getElementById('boomio-competition-play-again');
-      competitionRestart.addEventListener('click', this.resetGame);
     }
+    const competitionRestart = document.getElementById('boomio-game-play-again');
+    competitionRestart.addEventListener('click', this.resetGame);
   };
 
   showRulesOrRegistration = () => {
-    if (this.showCompetitiveRegistration) {
+    const currentPageUrl = window.location.href;
+    this.urlParams = new URL(currentPageUrl).searchParams;
+    const user_id = this.urlParams.get('user_id');
+    if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
+      const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
+      checkboxImg3.addEventListener('click', () => {
+        this.checkboxChange3 = !this.checkboxChange3;
+        const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
+        checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
+      });
+    }
+    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt' && user_id === null) {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-        checkboxImgChange.src = this.checkboxChange
-          ? 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/doodleWidget/simple-line-icons_check.png'
-          : 'none';
+        checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+      });
+
+      const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+      checkboxImg2.addEventListener('click', () => {
+        this.checkboxChange2 = !this.checkboxChange2;
+        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+        checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-
-      emailInput.addEventListener('input', () => {
-        console.log('Email input changed:', emailInput.value);
-      });
-
-      playerNameInput.addEventListener('input', () => {
-        console.log('Player name input changed:', playerNameInput.value);
-      });
+      emailInput.addEventListener('input', () => {});
+      playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        document.getElementById('background_blur').style.opacity = 0.37;
+        document.getElementById('background_blur').style.opacity =
+          this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
 
@@ -174,10 +289,58 @@ class DoodleWidget {
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
+    } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id !== '') {
+      console.log('a');
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          this.bestScore = response.user_best_score;
+          if (this.customer === 'Pigu.lt' && false) {
+            this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
+            const competitionTableContainer = document.querySelector(
+              '.competition-table-container-pigu',
+            );
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.display = 'block';
+            setTimeout(() => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = 'calc(50%)';
+              competitionTableContainer.style.opacity = 1;
+            }, 100);
+          } else {
+            this.userBestScore = response.user_best_score;
+
+            this.showRulesPigu();
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id === '') {
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          this.userBestScore = response.user_best_score;
+
+          this.showRulesPigu();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     } else {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        document.getElementById('background_blur').style.opacity = 0.37;
+        document.getElementById('background_blur').style.opacity =
+          this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
@@ -186,80 +349,141 @@ class DoodleWidget {
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         inputContainer.style.display = 'block';
         setTimeout(() => {
-          inputContainer.style.height = '332px';
-          inputContainer.style.top = 'calc(50% + 170px)';
+          inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+          inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
           inputContainer.style.opacity = 1;
         }, 100);
       }, 300);
     }
   };
 
-  clickEventHandlerShowRules = () => {
-    if (this.gameCount === 0) {
+  showRulesPigu = () => {
+    this.config = localStorageService.getDefaultConfig();
+    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
+
+    if (this.customer === 'Pigu.lt') {
+      if (this.userBestScore > 0) {
+        document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
+      }
+      const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+
+      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       setTimeout(() => {
-        const inpuRegisterContainer = document.querySelector('.input-register-container');
-        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        setTimeout(() => {
-          inpuRegisterContainer.style.height = '10px';
-          inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-          inpuRegisterContainer.style.opacity = 0;
-        }, 100);
-        setTimeout(() => {
-          inpuRegisterContainer.style.display = 'none';
-        }, 1000);
-        setTimeout(() => {
-          const canvas = document.getElementById('boomio-doodle-canvas');
-          document.getElementById('background_blur').style.opacity = 0.37;
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
-          const inputContainer = document.querySelector('.input-container');
-          document.getElementById('control-button').style.transition = 'opacity 2s ease';
-          document.getElementById('control-button').style.opacity = 1;
-          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          inputContainer.style.display = 'block';
-          setTimeout(() => {
-            inputContainer.style.height = '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
-            inputContainer.style.opacity = 1;
-          }, 100);
-        }, 300);
-      }, 300);
+        competitionTableContainer.style.height = '10px';
+        competitionTableContainer.style.top = 'calc(50% + 330px)';
+        competitionTableContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        competitionTableContainer.style.display = 'none';
+      }, 1000);
     }
+    setTimeout(() => {
+      const canvas = document.getElementById('boomio-doodle-canvas');
+      document.getElementById('background_blur').style.opacity =
+        this.language === 'LV' ? 0.4 : 0.37;
+      canvas.style.transition = 'filter 0.6s ease';
+      canvas.style.filter = 'blur(2px)';
+      const inputContainer = document.querySelector('.input-container');
+      document.getElementById('control-button').style.transition = 'opacity 2s ease';
+      document.getElementById('control-button').style.opacity = 1;
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      inputContainer.style.display = 'block';
+      setTimeout(() => {
+        inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
+        inputContainer.style.opacity = 1;
+      }, 100);
+    }, 300);
   };
 
   initGame = () => {
     this.removeRules();
-    if (!this.tutorial || !this.isMobile) {
-      this.Spring = new Spring(this.image);
-      this.player = new Player(this.image);
-      this.hideMenu();
-      this.resetGame();
-      this.gameLoop();
-    } else {
-      this.showTutorialArrows();
+    if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
+      if (!this.tutorial) {
+        setTimeout(() => {
+          if (this.showCompetitiveRegistration) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                if (this.customer === 'Pigu.lt') {
+                  if (window.Boomio) {
+                    window.Boomio.logEvent('game_started', JSON.stringify(response));
+                  } else if (
+                    window.webkit &&
+                    window.webkit.messageHandlers &&
+                    window.webkit.messageHandlers.Boomio
+                  ) {
+                    var message = {
+                      command: 'logEvent',
+                      name: 'game_started',
+                      parameters: { response },
+                    };
+                    window.webkit.messageHandlers.Boomio.postMessage(message);
+                  } else {
+                    console.log('No native APIs found.');
+                  }
+                }
+              })
+
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }, 50);
+        this.player = new Player(this.image);
+        this.hideMenu();
+        this.resetGame();
+        this.gameLoop();
+        this.Spring = new Spring(this.image);
+      } else {
+        if (typeof window.dataLayer !== 'undefined') {
+          console.log('Game_Start');
+
+          window.dataLayer.push({ event: 'Game_Start' });
+        }
+
+        this.showtutorial();
+      }
     }
   };
 
-  showTutorialArrows = () => {
+  showtutorial = () => {
     if (this.tutorial) {
-      document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
-      document.getElementById('tutorialArrows').style.opacity = 1;
-      document.getElementById('tutorialArrows').style.display = 'block';
+      document.getElementById('tutorial').style.transition = 'opacity 1s ease';
+      document.getElementById('tutorial').style.opacity = 1;
+      document.getElementById('tutorial').style.display = 'block';
       this.tutorial = false;
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        canvas.addEventListener('click', this.removeTutorialArrows);
+
+        if (this.isMobile) {
+          canvas.addEventListener('click', this.removetutorial);
+        } else {
+          document.addEventListener('keydown', this.handleArrowKeyPress);
+        }
       }, 100);
     }
   };
 
-  removeTutorialArrows = () => {
-    const canvas = document.getElementById('boomio-doodle-canvas');
-    canvas.removeEventListener('click', this.removeTutorialArrows);
+  handleArrowKeyPress = (event) => {
+    if (
+      event.key === 'ArrowUp' ||
+      event.key === 'ArrowDown' ||
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowRight'
+    ) {
+      this.removetutorial();
+    }
+  };
 
-    document.getElementById('tutorialArrows').style.transition = 'opacity 1s ease';
-    document.getElementById('tutorialArrows').style.opacity = 0;
-    document.getElementById('tutorialArrows').style.display = 'none';
+  removetutorial = () => {
+    const canvas = document.getElementById('boomio-doodle-canvas');
+    canvas.removeEventListener('click', this.removetutorial);
+    document.removeEventListener('keydown', this.handleArrowKeyPress);
+
+    document.getElementById('tutorial').style.transition = 'opacity 1s ease';
+    document.getElementById('tutorial').style.opacity = 0;
+    document.getElementById('tutorial').style.display = 'none';
     setTimeout(() => {
       this.initGame();
     }, 100);
@@ -296,24 +520,44 @@ class DoodleWidget {
   };
 
   removeRules = () => {
-    const inputContainer = document.querySelector('.input-container');
-    const controlButton = document.querySelector('.control-button');
+    if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
+      document.getElementById('boomio-rules-checkbox-error').innerText =
+        this.customer === 'Pigu.lt' && this.language === 'EN'
+          ? 'To continue, it is mandatory to agree to receive news and information about prizes.'
+          : this.customer === 'Pigu.lt' && this.language === 'LV'
+          ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
+          : this.customer === 'Pigu.lt' && this.language === 'ET'
+          ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
+          : this.customer === 'Pigu.lt' && this.language === 'FI'
+          ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
+          : this.customer === 'Pigu.lt' && this.language === 'RU'
+          ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
+          : '';
+      document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
-    inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-    controlButton.style.transition = 'opacity 0.6s ease';
-    setTimeout(() => {
-      inputContainer.style.height = '10px';
-      inputContainer.style.top = 'calc(50% + 330px)';
-      inputContainer.style.opacity = 0;
-    }, 100);
-    setTimeout(() => {
-      inputContainer.style.display = 'none';
-    }, 1000);
+      document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
+    }
 
-    if (this.gameCount === 0) {
+    if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
+      const inputContainer = document.querySelector('.input-container');
       const controlButton = document.querySelector('.control-button');
-      controlButton.style.display = 'none';
-      this.index = 0;
+
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      controlButton.style.transition = 'opacity 0.6s ease';
+      setTimeout(() => {
+        inputContainer.style.height = '10px';
+        inputContainer.style.top = 'calc(50% + 330px)';
+        inputContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        inputContainer.style.display = 'none';
+      }, 1000);
+
+      if (this.gameCount === 0) {
+        const controlButton = document.querySelector('.control-button');
+        controlButton.style.display = 'none';
+        this.index = 0;
+      }
     }
   };
 
@@ -346,6 +590,9 @@ class DoodleWidget {
         inputContainer.style.display = 'none';
       }, 1000);
     }
+    setTimeout(() => {
+      document.getElementById('background_blur').style.opacity = 0;
+    }, 200);
 
     setTimeout(() => {
       document.getElementById('background_blur').style.display = 'none';
@@ -364,13 +611,13 @@ class DoodleWidget {
     this.base = new Base(this.image);
     this.player = new Player(this.image);
 
-    this.Spring = new Spring(this.image);
     this.platform_broken_substitute = new Platform_broken_substitute(this.image);
 
     this.platforms = [];
     for (let i = 0; i < this.platformCount; i++) {
       this.platforms.push(new Platform(this.image, this.currentScore));
     }
+    this.Spring = new Spring(this.image);
   };
 
   updateScore = () => {
@@ -425,9 +672,13 @@ class DoodleWidget {
 
       const scoreDigits = document.querySelectorAll('.numbers__window__digit');
 
-      // Update the score digits content
       const scoreString = this.currentScore.toString();
 
+      const initialMargin = 200;
+      const scoreLength = this.currentScore.toString().length;
+
+      const newMarginLeft = initialMargin - 30 * scoreLength;
+      numbers.style.marginLeft = `${newMarginLeft}px`;
       // Determine the number of leading zeros to hide
       let leadingZeros = 0;
       while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
@@ -460,11 +711,56 @@ class DoodleWidget {
     setTimeout(
       () => {
         if (this.showCompetitiveRegistration) {
-          const competitionTableContainer = document.querySelector('.competition-table-container');
+          boomioService
+            .signal('ROUND_FINISHED', 'signal', {
+              score: this.currentScore,
+            })
+            .then((response) => {
+              if (this.customer === 'Pigu.lt') {
+                if (window.Boomio) {
+                  window.Boomio.logEvent('game_finished', JSON.stringify(response));
+                } else if (
+                  window.webkit &&
+                  window.webkit.messageHandlers &&
+                  window.webkit.messageHandlers.Boomio
+                ) {
+                  var message = {
+                    command: 'logEvent',
+                    name: 'game_finished',
+                    parameters: { response },
+                  };
+                  window.webkit.messageHandlers.Boomio.postMessage(message);
+                } else {
+                  console.log('No native APIs found.');
+                }
+              }
+              this.userBestPlace = response.user_best_place;
+
+              this.scoreTable = response;
+
+              this.scoreTableContainerInstance.updateProps(
+                this.customer,
+                this.scoreTable,
+                this.currentScore,
+              );
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+        if (this.showCompetitiveRegistration) {
+          let competitionTableContainer = '';
+          if (this.customer === 'Pigu.lt') {
+            competitionTableContainer = document.querySelector('.did-you-know-container');
+          } else {
+            competitionTableContainer = document.querySelector('.competition-table-container');
+          }
           const canvas = document.getElementById('boomio-doodle-canvas');
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
           document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.opacity =
+            this.language === 'LV' ? 0.4 : 0.37;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
@@ -482,8 +778,10 @@ class DoodleWidget {
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
           setTimeout(() => {
-            inputContainer.style.height = '332px';
-            inputContainer.style.top = 'calc(50% + 170px)';
+            inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+            inputContainer.style.top = `calc(50% + ${
+              this.isMobileHeightSmall ? '110px' : '170px'
+            })`;
             inputContainer.style.opacity = 1;
           }, 100);
         }
@@ -510,7 +808,7 @@ class DoodleWidget {
     else if (this.player.y + this.player.height > this.height) {
       this.showGoMenu();
 
-      this.player.isDead = 'lol';
+      this.player.isDead = 'yes';
     }
   };
 
@@ -552,41 +850,52 @@ class DoodleWidget {
     }, 1000 / 120);
   };
   collides = () => {
+    // Platform collisions
     this.platforms.forEach((p, i) => {
       if (
-        this.player.vy > 0 &&
-        p.state === 0 &&
-        this.player.x + 15 < p.x + p.width &&
-        this.player.x + this.player.width - 15 > p.x &&
+        this.player.vy > 0 && // Player is falling
+        p.state === 0 && // Platform is active
+        this.player.x + 15 < p.x + p.width - 40 &&
+        this.player.x + this.player.width - 15 > p.x + 30 &&
         this.player.y + this.player.height > p.y &&
         this.player.y + this.player.height < p.y + p.height
       ) {
         if (p.type == 3 && p.flag === 0) {
+          // Breakable platform logic
           p.flag = 1;
           this.jumpCount = 0;
           return;
         } else if (p.type == 4 && p.state === 0) {
+          // Vanishable platform
           this.player.jump();
           p.state = 1;
         } else if (p.flag == 1) return;
         else {
+          // Normal platform
           this.player.jump();
         }
       }
     });
 
-    //Springs
-    var s = this.Spring;
+    // Spring collision
+    const s = this.Spring;
+
     if (
-      this.player.vy > 0 &&
-      s.state === 0 &&
+      this.player.vy > 0 && // Player is falling
+      s.state === 0 && // Spring is active
       this.player.x + 15 < s.x + s.width &&
       this.player.x + this.player.width - 15 > s.x &&
       this.player.y + this.player.height > s.y &&
       this.player.y + this.player.height < s.y + s.height
     ) {
-      s.state = 1;
+      // Trigger high jump and deactivate the spring temporarily
+      s.state = 1; // Mark spring as used
       this.player.jumpHigh();
+
+      // Reset the spring after a delay (optional)
+      setTimeout(() => {
+        s.state = 0; // Reactivate spring for future collisions
+      }, 1000);
     }
   };
 
@@ -618,29 +927,41 @@ class DoodleWidget {
 
     if (subs.y > this.height) subs.appearance = false;
   };
-
   springCalc = () => {
     var s = this.Spring;
     var p = this.platforms[0];
-    if (p.type == 1 || p.type == 2) {
-      s.x = p.x + p.width / 2 - s.width / 2;
-      s.y = p.y - p.height - 10;
 
-      if (s.y > this.height / 1.1) s.state = 0;
-      s.draw(this.image);
+    // Check if the current screen is an even number
+    if (this.currentScreen % 2 === 0) {
+      if (p.type == 1 || p.type == 2) {
+        s.x = p.x + p.width / 2 - s.width / 2;
+        s.y = p.y - p.height - 10;
+
+        // Reset spring if it goes off-screen
+        if (s.y > this.height / 1.1) {
+          s.reset();
+        }
+
+        s.draw();
+      } else {
+        s.x = 0 - s.width;
+        s.y = 0 - s.height;
+      }
     } else {
+      // Hide the spring if it's not an even screen
       s.x = 0 - s.width;
       s.y = 0 - s.height;
     }
   };
-
   playerCalc = () => {
     if (this.dir == 'left') {
       this.player.dir = 'left';
-      if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
+      if (this.player.vy > -7 && this.player.vy < 0) this.player.dir = 'left_jump';
+      else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
     } else if (this.dir == 'right') {
       this.player.dir = 'right';
-      if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
+      if (this.player.vy > -7 && this.player.vy < 0) this.player.dir = 'right_jump';
+      else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
     //Adding keyboard controls
@@ -655,9 +976,9 @@ class DoodleWidget {
         this.player.isMovingRight = true;
       }
 
-      if (key == 32) {
-        this.resetGame();
-      }
+      // if (key == 32) {
+      //   this.resetGame();
+      // }
     };
 
     document.onkeyup = (e) => {
@@ -697,28 +1018,80 @@ class DoodleWidget {
         this.player.isMovingRight = false;
       });
     }
+    this.speed = 0.16;
 
+    if (this.currentScore >= 20000) {
+      this.speed = 0.95;
+    } else if (this.currentScore >= 15000 && this.currentScore < 20000) {
+      this.speed = 0.9;
+    } else if (this.currentScore >= 13000 && this.currentScore < 15000) {
+      this.speed = 0.85;
+    } else if (this.currentScore >= 11000 && this.currentScore < 13000) {
+      this.speed = 0.8;
+    } else if (this.currentScore >= 9000 && this.currentScore < 11000) {
+      this.speed = 0.75;
+    } else if (this.currentScore >= 8000 && this.currentScore < 9000) {
+      this.speed = 0.65;
+    } else if (this.currentScore >= 7000 && this.currentScore < 8000) {
+      this.speed = 0.6;
+    } else if (this.currentScore >= 6000 && this.currentScore < 7000) {
+      this.speed = 0.55;
+    } else if (this.currentScore >= 5000 && this.currentScore < 5000) {
+      this.speed = 0.5;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      this.speed = 0.35;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      this.speed = 0.3;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      this.speed = 0.2;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) this.speed = 0.16;
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
-      this.player.vx -= 0.06;
+      this.player.vx -= this.speed;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx < 0) this.player.vx += 0.06;
+      if (this.player.vx < 0) this.player.vx += this.speed;
     }
 
     if (this.player.isMovingRight === true) {
       this.player.x += this.player.vx;
-      this.player.vx += 0.06;
+      this.player.vx += this.speed;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx > 0) this.player.vx -= 0.06;
+      if (this.player.vx > 0) this.player.vx -= this.speed;
     }
 
     // Speed limits!
-    if (this.player.vx > 3) this.player.vx = 3;
-    else if (this.player.vx < -3) this.player.vx = -3;
 
+    if (this.currentScore >= 20000) {
+      if (this.player.vx > 10) this.player.vx = 10;
+      else if (this.player.vx < -10) this.player.vx = -10;
+    } else if (this.currentScore >= 15000 && this.currentScore < 20000) {
+      if (this.player.vx > 9.5) this.player.vx = 9.5;
+      else if (this.player.vx < -9.5) this.player.vx = -9.5;
+    } else if (this.currentScore >= 10000 && this.currentScore < 15000) {
+      if (this.player.vx > 10) this.player.vx = 10;
+      else if (this.player.vx < -10) this.player.vx = -10;
+    } else if (this.currentScore >= 7000 && this.currentScore < 10000) {
+      if (this.player.vx > 8) this.player.vx = 8;
+      else if (this.player.vx < -8) this.player.vx = -8;
+    } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
+      if (this.player.vx > 7) this.player.vx = 7;
+      else if (this.player.vx < -7) this.player.vx = -7;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      if (this.player.vx > 6) this.player.vx = 6;
+      else if (this.player.vx < -6) this.player.vx = -6;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      if (this.player.vx > 5) this.player.vx = 5;
+      else if (this.player.vx < -5) this.player.vx = -5;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      if (this.player.vx > 4) this.player.vx = 4;
+      else if (this.player.vx < -4) this.player.vx = -4;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) {
+      if (this.player.vx > 3) this.player.vx = 3;
+      else if (this.player.vx < -3) this.player.vx = -3;
+    }
     //Jump the player when it hits the base
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height)
       this.player.jump();
@@ -727,13 +1100,13 @@ class DoodleWidget {
     if (
       this.base.y > this.height &&
       this.player.y + this.player.height > this.height &&
-      this.player.isDead != 'lol'
+      this.player.isDead != 'yes'
     )
       this.player.isDead = true;
 
     //Make the player move through walls
-    if (this.player.x > this.width) this.player.x = 0 - this.player.width;
-    else if (this.player.x < 0 - this.player.width) this.player.x = this.width;
+    if (this.player.x + 40 > this.width) this.player.x = 0 - this.player.width + 40;
+    else if (this.player.x < 0 - this.player.width + 40) this.player.x = this.width - 40;
 
     //Movement of player affected by gravity
     if (this.player.y >= this.height / 2 - this.player.height / 2) {
@@ -798,10 +1171,11 @@ class DoodleWidget {
       this.player.jump();
 
     if (this.dir == 'left') {
-      this.player.dir = 'left';
+      this.player.dir = 'left_land';
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
     } else if (this.dir == 'right') {
-      this.player.dir = 'right';
+      this.player.dir = 'right_land';
+
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
@@ -862,18 +1236,18 @@ class DoodleWidget {
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
-      this.player.vx -= 0.15;
+      this.player.vx -= 0.3;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx < 0) this.player.vx += 0.1;
+      if (this.player.vx < 0) this.player.vx += 0.2;
     }
 
     if (this.player.isMovingRight === true) {
       this.player.x += this.player.vx;
-      this.player.vx += 0.15;
+      this.player.vx += 0.3;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx > 0) this.player.vx -= 0.1;
+      if (this.player.vx > 0) this.player.vx -= 0.2;
     }
 
     //Jump the player when it hits the base
@@ -892,17 +1266,21 @@ class DoodleWidget {
     this.paintCanvas();
     this.base.draw();
     this.playerCalc();
-    this.springCalc();
     this.updateScore();
     this.platformCalc();
-    this.player.draw();
-  };
 
+    this.springCalc();
+
+    this.player.draw();
+
+    // Update the current screen counter based on the player's position
+    if (this.player.y < this.height / 2) {
+      this.currentScreen = Math.floor(this.player.y / this.height);
+    }
+  };
   createContainer = () => {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
-    const newHighscoreImage = new Image();
-    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
     const playAgain = new Image();
     playAgain.src = 'https://i.ibb.co/0Bqvttk/PLAY-AGAIN.png';
 
@@ -922,42 +1300,123 @@ class DoodleWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+  ${
+    this.customer !== 'Pigu.lt' && !this.campaignUrl
+      ? `
+<div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
+<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+</div>`
+      : ''
+  }
+    ${
+      this.showCompetitiveRegistration && this.customer !== 'Pigu.lt'
+        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
+        : ''
+    }
+
+    
+
 		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }">
 		</canvas>
-    
-    ${
-      this.showCompetitiveRegistration
-        ? new InputRegisterContainer('Barbora').createInputRegisterContainer().outerHTML
+
+    <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
+    ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
+       <div>${
+         this.language === 'EN'
+           ? 'TAP'
+           : this.language === 'LV'
+           ? 'BAKSTI'
+           : this.language === 'ET'
+           ? 'TÄPI'
+           : this.language === 'FI'
+           ? 'Napautua'
+           : this.language === 'RU'
+           ? 'ТЫКАЙ'
+           : this.language === 'LT' && this.customer === 'Pigu.lt'
+           ? 'BAKST'
+           : 'KLIK'
+       }</div>
+        <div>${
+          this.language === 'EN'
+            ? 'TAP'
+            : this.language === 'LV'
+            ? 'BAKSTI'
+            : this.language === 'ET'
+            ? 'TÄPI'
+            : this.language === 'FI'
+            ? 'Napautua'
+            : this.language === 'RU'
+            ? 'ТЫКАЙ'
+            : this.language === 'LT' && this.customer === 'Pigu.lt'
+            ? 'BAKST'
+            : 'KLIK'
+        }</div>
+      </div><img src=${
+        this.isMobile ? Controlls : ControlsDesktop
+      } alt="Image Description" style="width: 110px; height: 50px;">`}
+      </div>
+
+<img src=${
+      this.language === 'ET' &&
+      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+        ? PiguJumpUpIntroEstonian
+        : this.language === 'RU' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? PiguJumpUpIntroEstoniaRU
+        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+        ? PiguJumpUpIntroLithuanian
+        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+        ? PiguJumpUpIntroLithuanianRU
+        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? PiguJumpUpIntroFinish
+        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+        ? PiguJumpUpIntroLatvian
+        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+        ? PiguJumpUpIntroLatvianRU
+        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+        ? PiguJumpUpIntroLithuanianEN
+        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+        ? PiguJumpUpIntroFinishEN
+        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+        ? PiguJumpUpIntroLatvianEN
+        : this.language === 'EN' &&
+          (this.campaignUrlProp === 'https://kaup.ee' ||
+            this.campaignUrlProp === 'https://kaup24.ee')
+        ? PiguJumpUpIntroEstonianEN
+        : this.customer === 'Vilvi'
+        ? introVilvi
+        : this.customer === 'Perlas GO'
+        ? introPerlasGo
+        : this.customer === 'Akropolis'
+        ? this.language === 'LV'
+          ? introAkropolisLV
+          : introAkropolis
         : ''
-    }
-    ${
-      this.showCompetitiveRegistration
-        ? new CompetitionScoreTableContainer('#3BAF29').createCompetitionScoreTableContainer()
-            .outerHTML
-        : ''
-    }
+    } 
+alt="Image Description" 
+style="z-index:4; height: ${
+      this.isMobileHeightSmall ? '100%' : '674px'
+    };position:absolute;pointer-events: none; display:block;" 
+id="background_intro">
 
-    <img src=${howToPlay} alt="Image Description" style="z-index:4;width:${
+
+        <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0" id="tutorialArrows">
-
-
-    <img src=${intro} alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
-
-    <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
-
-
-    <img src=${couponBackground} alt="Image Description" style="z-index:1;width:    ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-    };
-    ; height: 670px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
-      </img>
+    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
+${
+  (this.language === 'LV' && this.customer === 'Akropolis') || this.customer === 'Vilvi'
+    ? `<div alt="Image Description" style="z-index:1;width: ${
+        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
+        this.customer === 'Vilvi' ? '#359BB9' : '#FE0000'
+      }" id="background_blur"></div>`
+    : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
+        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
+}
 
     <a href="https://www.barbora.lt/" style="position:absolute;margin-top:380px;margin-left:-340px">
     <img src="${useButton}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
@@ -970,12 +1429,22 @@ class DoodleWidget {
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
-      newHighscoreImage.src
+      this.language === 'EN'
+        ? newRecordEn
+        : this.language === 'LV'
+        ? newRecordLV
+        : this.language === 'ET' || this.language === 'EE'
+        ? newRecordEE
+        : this.language === 'FI'
+        ? newRecordFI
+        : this.language === 'RU'
+        ? newRecordRU
+        : newRecord
     } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
 
 
-    ${new InputContainer('', 'doodle').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'doodle').createInputContainerDiv().outerHTML}
 
 
     <div class="numbers">
@@ -994,14 +1463,30 @@ class DoodleWidget {
 <span class="numbers__window">
 <span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
 </span>
+<span class="numbers__window">
+
+<span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
+</span>
 </div>
 
 
-          <div class="boomio-score-input-container" style="display:none;width:148px;height;left:calc(50% - 110px);top:calc(50% - 270px);">
-          <div style="width: 100%; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-        <img src=${scoreImage} alt="Image Description" style="width: 100%; height: 100%;"></img>
-        <div style="text-align: center; color: white; font-size: 20px; font-family: Poppins; font-weight: 900; word-wrap: break-word;position:absolute;left:85px;top:10px;z-index:3;line-height:30px;" id="currentScore"></div>
-</div></div>
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+      this.customer === 'Vilvi'
+        ? '#45A2BF'
+        : this.customer === 'Pigu.lt'
+        ? '#FD61FE'
+        : this.customer === 'Perlas GO'
+        ? '#19AA82'
+        : this.language === 'LV'
+        ? '#F40027'
+        : '#045222'
+    };border-radius:35px">
+    <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
+
+  <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
+</div>
+</div>
 
 
 ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
@@ -1012,6 +1497,375 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 	</div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
+
+    if (this.showCompetitiveRegistration) {
+      const gameContainer = document.querySelector('.game-container');
+      if (this.customer === 'Pigu.lt') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
+        );
+      } else if (this.customer === 'Perlas GO') {
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+          this.currentScore,
+        );
+      } else {
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+          this.customer,
+          this.scoreTable,
+        );
+      }
+      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
+        this.customer,
+        this.scoreTable,
+      );
+      gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(didYouKnowContainer.containerDiv);
+    }
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+      this.rulesContainerPigu = new RulesContainerPigu(this.customer, this.scoreTable);
+      gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
+    }
+    if (this.showCompetitiveRegistration) {
+      const isValidEmail = (email) => {
+        // Enhanced regex for email validation with TLD enforcement
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        // Additional check to prevent consecutive dots
+        if (email.includes('..')) {
+          return false;
+        }
+
+        return emailRegex.test(email);
+      };
+
+      const clickEventHandlerShowRules = () => {
+        if (this.gameCount === 0) {
+          setTimeout(() => {
+            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const cyrillicRegex = /[\u0400-\u04FF]/;
+            const containsCyrillic = (input) => cyrillicRegex.test(input.value);
+
+            if (containsCyrillic(emailInput)) {
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+            }
+
+            if (containsCyrillic(playerNameInput)) {
+              document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+            }
+
+            if (containsCyrillic(emailInput)) {
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'LV'
+                  ? 'E-pastā ir nederīgas rakstzīmes'
+                  : 'El. pašte yra neteisingų simbolių';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+              return;
+            }
+
+            if (containsCyrillic(playerNameInput)) {
+              document.getElementById('competition-name-error').innerText =
+                this.language === 'LV'
+                  ? 'Lietotāja varde yra neteisingi simbolių'
+                  : 'Vartotojo varde yra neteisingų simbolių';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+              return;
+            }
+            if (!this.checkboxChange) {
+              document.getElementById('competition-checkbox-error').innerText =
+                this.language === 'LV'
+                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : this.customer === 'Perlas GO'
+                  ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
+                  : this.customer === 'Vilvi'
+                  ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+                  : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV'
+                  ? '#FFBABA'
+                  : this.customer === 'Perlas GO' && 'white';
+
+              document.getElementById('competition-name-error').innerText = '';
+
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+            }
+            if (emailInput?.value === '' || emailInput?.value === null) {
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+              document.getElementById('competition-name-error').innerText = '';
+
+              document.getElementById('competition-name-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+            }
+            if (playerNameInput?.value === '' || playerNameInput?.value === null) {
+              document.getElementById('competition-name-error').innerText =
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+            }
+            if (this.customer === 'Perlas GO') {
+              if (!isValidEmail(emailInput?.value)) {
+                document.getElementById('competition-email-error').innerText =
+                  'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+                document.getElementById('competition-email-error').zIndex = 1;
+                document.getElementById('competition-email-error').style.backgroundColor =
+                  '#FFBABA';
+
+                return;
+              }
+            }
+
+            if (
+              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+              (playerNameInput?.value === '' || playerNameInput?.value === null)
+            ) {
+              document.getElementById('competition-name-error').innerText =
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-name-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+            } else {
+              if (this.showCompetitiveRegistration && this.checkboxChange) {
+                boomioService
+                  .signal('', 'user_info', {
+                    emails_consent: this.checkboxChange2,
+                    user_email: emailInput?.value,
+                    user_name: playerNameInput?.value,
+                    via_mobile: this.campaignUrl ? true : false,
+                  })
+                  .then((response) => {
+                    if (response.success === false) {
+                      if (response.res_code === 'EMAIL_EXIST') {
+                        document.getElementById('competition-email-error').innerText =
+                          this.language === 'LV'
+                            ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
+                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        document.getElementById('competition-email-error').style.backgroundColor =
+                          this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+                        document.getElementById('competition-name-error').innerText = '';
+
+                        document.getElementById('competition-name-error').style.backgroundColor =
+                          'transparent';
+                        document.getElementById('competition-checkbox-error').innerText = '';
+                        document.getElementById(
+                          'competition-checkbox-error',
+                        ).style.backgroundColor = 'transparent';
+                      } else if (response.res_code === 'NICKNAME_EXIST') {
+                        document.getElementById('competition-name-error').innerText =
+                          this.language === 'LV'
+                            ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                            : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                        document.getElementById('competition-name-error').style.backgroundColor =
+                          this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+
+                        document.getElementById('competition-email-error').innerText = '';
+                        document.getElementById('competition-email-error').style.backgroundColor =
+                          'transparent';
+                        document.getElementById('competition-checkbox-error').innerText = '';
+                        document.getElementById(
+                          'competition-checkbox-error',
+                        ).style.backgroundColor = 'transparent';
+                      }
+                    } else {
+                      this.bestScore = response.user_best_score ?? 0;
+                      const inpuRegisterContainer = document.querySelector(
+                        '.input-register-container',
+                      );
+                      inpuRegisterContainer.style.transition =
+                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      setTimeout(() => {
+                        inpuRegisterContainer.style.height = '10px';
+                        inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                        inpuRegisterContainer.style.opacity = 0;
+                      }, 100);
+                      setTimeout(() => {
+                        inpuRegisterContainer.style.display = 'none';
+                      }, 1000);
+                      setTimeout(() => {
+                        const canvas = document.getElementById('boomio-doodle-canvas');
+                        document.getElementById('background_blur').style.opacity =
+                          this.language === 'LV' ? 0.4 : 0.37;
+                        canvas.style.transition = 'filter 0.6s ease';
+                        canvas.style.filter = 'blur(2px)';
+                        const inputContainer = document.querySelector('.input-container');
+                        document.getElementById('control-button').style.transition =
+                          'opacity 2s ease';
+                        document.getElementById('control-button').style.opacity = 1;
+                        document.getElementById('control-button').style.display = 'flex';
+                        inputContainer.style.transition =
+                          'height 1s ease, top 1s ease, opacity 1s ease';
+                        inputContainer.style.display = 'block';
+                        setTimeout(() => {
+                          inputContainer.style.height =
+                            this.customer === 'Pigu.lt' ? '400px' : '332px';
+                          inputContainer.style.top = `calc(50% + ${
+                            this.isMobileHeightSmall ? '110px' : '170px'
+                          })`;
+                          inputContainer.style.opacity = 1;
+                        }, 100);
+                      }, 300);
+                    }
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+              }
+            }
+          }, 300);
+        }
+      };
+      const clickEventHandlerDidYouKnow = () => {
+        const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+        didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          didYouKnowTableContainer.style.height = '10px';
+          didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+          didYouKnowTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          didYouKnowTableContainer.style.display = 'none';
+        }, 1000);
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+        document.getElementById('background_blur').style.display = 'block';
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        competitionTableContainer.style.display = 'block';
+
+        setTimeout(() => {
+          competitionTableContainer.style.height = '680px';
+          competitionTableContainer.style.top = 'calc(50%)';
+          competitionTableContainer.style.opacity = 1;
+        }, 100);
+      };
+
+      const clickEventHandlerResetGame = () => {
+        const competitionRestart = document.getElementById('boomio-game-play-again');
+        competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+        setTimeout(() => {
+          competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+        }, 2000);
+
+        const controlButton = document.querySelector('.control-button1');
+        this.index = 0;
+        this.currentScore = 0;
+
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        setTimeout(() => {
+          competitionTableContainer.style.height = '10px';
+          competitionTableContainer.style.top = 'calc(50% + 330px)';
+          competitionTableContainer.style.opacity = 0;
+        }, 100);
+        setTimeout(() => {
+          competitionTableContainer.style.display = 'none';
+        }, 1000);
+
+        setTimeout(() => {
+          if (this.showCompetitiveRegistration) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                document.getElementById('background_blur').style.display = 'none';
+                const canvas = document.getElementById('boomio-doodle-canvas');
+                canvas.style.transition = 'filter 1s ease';
+                canvas.style.filter = 'none';
+                this.gamePlaying = true;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }, 400);
+        // controlButton.style.display = 'none';
+        // controlButton.style.opacity = 0;
+      };
+
+      if (this.customer !== 'Pigu.lt') {
+        const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+        competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
+      }
+
+      if (this.customer === 'Pigu.lt') {
+        const competitionRestart = document.getElementById('boomio-game-play-again-pigu');
+        competitionRestart.addEventListener('click', this.showRulesPigu);
+      }
+
+      const competitionRestart = document.getElementById('boomio-game-play-again');
+      competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+
+      if (this.customer === 'Pigu.lt') {
+        const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+      }
+    }
+    if (this.customer !== 'Pigu.lt' && !this.campaignUrl) {
+      document.getElementById('close-game-container').addEventListener('click', () => {
+        this.closeGame();
+      });
+    }
+  };
+  closeGame = () => {
+    const element = document.getElementById('boomio-doodle-container');
+    if (element && element.parentNode) {
+      this.gameClosed = true;
+      element.parentNode.removeChild(element);
+    }
   };
 }
 
@@ -1020,6 +1874,30 @@ class Platform {
     this.image = image;
     this.currentScore = score;
     this.width = 100;
+    if (this.currentScore >= 20000) {
+      this.width = 30;
+    } else if (this.currentScore >= 15000 && this.currentScore < 20000) {
+      this.width = 35;
+    } else if (this.currentScore >= 10000 && this.currentScore < 15000) {
+      this.width = 40;
+    } else if (this.currentScore >= 7000 && this.currentScore < 10000) {
+      this.width = 45;
+    } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
+      this.width = 50;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      this.width = 60;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
+      this.width = 70;
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
+      this.width = 80;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) {
+      this.width = 100;
+    }
+    this.config = localStorageService.getDefaultConfig();
+
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.language = this.config.language ? this.config.language : 'LV';
+
     this.height = 20;
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
     this.y = DoodleWidget.position;
@@ -1031,8 +1909,8 @@ class Platform {
     //Sprite clipping
     this.cx = 0;
     this.cy = 0;
-    this.cwidth = 105;
-    this.cheight = 30;
+    this.cwidth = 120;
+    this.cheight = 20;
 
     this.moved = 0;
     this.vx = 1;
@@ -1046,7 +1924,8 @@ class Platform {
     try {
       if (this.type == 1) this.cy = 0;
       else if (this.type == 2) this.cy = 61;
-      else if (this.type == 3 && this.flag === 0) this.cy = 31;
+      else if (this.type == 3 && this.flag === 0)
+        this.cy = this.customer === 'Akropolis' && this.language === 'LV' ? 26 : 39;
       else if (this.type == 3 && this.flag == 1) this.cy = 1000;
       else if (this.type == 4 && this.state === 0) this.cy = 90;
       else if (this.type == 4 && this.state == 1) this.cy = 1000;
@@ -1074,17 +1953,36 @@ class Platform {
     //4: Vanishable
 
     // Set initial platform types
-    if (this.currentScore >= 5000) this.types = [2, 3, 3, 3, 4, 4, 4, 4];
-    else if (this.currentScore >= 2000 && this.currentScore < 5000)
+    if (this.currentScore >= 7000) {
+      this.types = [2, 2, 2, 3, 3, 4, 4, 4, 4];
+      this.gravity = 0.3;
+      this.vx = 6;
+    } else if (this.currentScore >= 7000 && this.currentScore < 9000) {
+      this.types = [2, 3, 2, 3, 4, 4, 4, 4];
+      this.gravity = 0.2;
+      this.vx = 5;
+    } else if (this.currentScore >= 3500 && this.currentScore < 7000) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
-    else if (this.currentScore >= 1000 && this.currentScore < 2000)
+      this.gravity = 0.18;
+      this.vx = 4;
+    } else if (this.currentScore >= 1500 && this.currentScore < 3500) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 3];
-    else if (this.currentScore >= 500 && this.currentScore < 1000)
+      this.gravity = 0.16;
+      this.vx = 3;
+    } else if (this.currentScore >= 800 && this.currentScore < 1500) {
       this.types = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
-    else if (this.currentScore >= 100 && this.currentScore < 500) this.types = [1, 1, 1, 1, 2, 2];
-    else this.types = [1];
-
-    // Choose a random type from the available types
+      this.gravity = 0.14;
+      this.vx = 2;
+    } else if (this.currentScore >= 100 && this.currentScore < 800) {
+      this.gravity = 0.12;
+      this.types = [1, 1, 1, 1, 2, 2];
+      this.vx = 1.5;
+    } else {
+      this.gravity = 0.1;
+      this.types = [1];
+      this.vx = 1;
+    }
+    //Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
 
     //We can't have two consecutive breakable platforms otherwise it will be impossible to reach another platform sometimes!
@@ -1096,7 +1994,6 @@ class Platform {
     }
 
     this.moved = 0;
-    this.vx = 1;
   }
 }
 
@@ -1111,7 +2008,7 @@ class Platform_broken_substitute {
 
     //Sprite clipping
     this.cx = 0;
-    this.cy = 554;
+    this.cy = 692;
     this.cwidth = 105;
     this.cheight = 60;
 
@@ -1139,34 +2036,52 @@ class Platform_broken_substitute {
 
 class Spring {
   constructor(image) {
-    this.image = image;
+    this.image = image; // The single sprite image containing all positions
     this.x = 0;
     this.y = 0;
     this.moved = 0;
     this.vx = 1;
-    this.cx = 5;
-    this.cy = 452;
-    this.cwidth = 90;
-    this.cheight = 100;
+    this.cx = 5; // Horizontal position in the sprite sheet
+    this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
+
+    this.possibleValues =
+      this.customer === 'Vilvi'
+        ? [625, 765, 855]
+        : this.customer === 'Perlas GO'
+        ? [625, 762, 852]
+        : [615]; // Define the possible vertical positions (cy values)
+    this.cwidth = 110; // Width of a single sprite frame
+    this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width = 35;
-    this.height = 32;
+    this.width = this.customer === 'Vilvi' ? 78 : this.customer === 'Perlas GO' ? 54 : 65; // Width to draw on canvas
+    this.height = this.customer === 'Vilvi' ? 45 : this.customer === 'Perlas GO' ? 40 : 38; // Height to draw on canvas
+
+    this.reset(); // Initialize with a random cy
   }
 
   draw() {
     try {
+      // Draw the spring at its current position
       DoodleWidget.ctx.drawImage(
-        this.image,
-        this.cx,
-        this.cy,
-        this.cwidth,
-        this.cheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height,
+        this.image, // Source image
+        this.cx, // Horizontal crop in the sprite sheet
+        this.cy, // Vertical crop in the sprite sheet
+        this.cwidth, // Width of the cropped frame
+        this.cheight, // Height of the cropped frame
+        this.x, // X position on canvas
+        this.y, // Y position on canvas
+        this.width, // Width to render on canvas
+        this.height, // Height to render on canvas
       );
-    } catch (e) {}
+    } catch (e) {
+      console.error('Error drawing spring:', e);
+    }
+  }
+
+  reset() {
+    // Randomize the cy value from the possible values
+    this.cy = this.possibleValues[Math.floor(Math.random() * this.possibleValues.length)];
   }
 }
 
@@ -1203,11 +2118,14 @@ class Base {
 
 class Player {
   constructor(image) {
+    this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+
     this.image = image;
     this.vy = 11;
     this.vx = 0;
-    this.width = 66;
-    this.height = 48;
+    this.width = this.customer === 'Vilvi' ? 125 : 110;
+    this.height = 85;
     this.isMovingLeft = false;
     this.isMovingRight = false;
     this.isDead = false;
@@ -1224,8 +2142,10 @@ class Player {
     try {
       if (this.dir == 'right') this.cy = 124;
       else if (this.dir == 'left') this.cy = 204;
-      else if (this.dir == 'right_land') this.cy = 292;
-      else if (this.dir == 'left_land') this.cy = 374;
+      else if (this.dir == 'right_land') this.cy = 446;
+      else if (this.dir == 'left_land') this.cy = 528;
+      else if (this.dir == 'right_jump') this.cy = 282;
+      else if (this.dir == 'left_jump') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(
         this.image,
@@ -1247,6 +2167,18 @@ class Player {
 
   jumpHigh = () => {
     this.vy = -14;
+    const effectElement = document.getElementById('background_effect');
+    effectElement.style.display = 'block';
+    effectElement.style.opacity = 1;
+
+    setTimeout(() => {
+      effectElement.style.opacity = 0;
+
+      // Delay hiding the element until after the opacity transition is complete
+      setTimeout(() => {
+        effectElement.style.display = 'none';
+      }, 800); // Match this duration to the CSS transition duration
+    }, 800);
   };
 }
 
