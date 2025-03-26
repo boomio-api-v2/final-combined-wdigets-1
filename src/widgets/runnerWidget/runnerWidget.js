@@ -80,9 +80,7 @@ class runnerWidget {
 
     <img src=${dentsuIntro} 
     alt="Image Description" 
-    style="z-index:4; height: ${
-      this.isMobileHeightSmall ? '100%' : '674px'
-    };position:absolute;pointer-events: none; display:none;" 
+    style="z-index:4; width: 100vw; height: 100vh;position:absolute;pointer-events: none; display:block;" 
     id="background_intro">
 
     <img class="new_highscore_stars" src=${
@@ -130,12 +128,6 @@ class runnerWidget {
   <div class="boomio-runner-main">
 
     <div class="boomio-runner-wrapper boomio-screenRatio">
-      <div class="boomio-runner-loader">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
       <div class="boomio-runner-controlBlock">
         Taisyklės
         <img class='boomio-runner-controlButton' src="${
@@ -535,7 +527,6 @@ ${
     var soundBtn = document.getElementsByClassName('boomio-runner-soundBtn')[0];
     var rightButtonsBlock = document.getElementsByClassName('boomio-runner-rightButtonsBlock')[0];
     var leftButtonsBlock = document.getElementsByClassName('boomio-runner-leftButtonsBlock')[0];
-    var loaderBlock = document.getElementsByClassName('boomio-runner-loader')[0];
     var mainBgBlocks = document.getElementsByClassName('boomio-runner-mainBg');
     var smallBtnBlocks = document.getElementsByClassName('boomio-runner-smallBtn');
 
@@ -888,9 +879,15 @@ ${
           // }
 
           toggleHide(mainMenuBlock);
-          toggleHide(loaderBlock);
-          showRules();
+          setTimeout(() => {
+            document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+            document.getElementById('background_intro').style.opacity = 0;
+            showRules();
 
+            setTimeout(() => {
+              document.getElementById('background_intro').style.display = 'none';
+            }, 5500);
+          }, 5500); //intro speed
           const competitionConfirmField = document.getElementById(
             'boomio-competition-confirm-field',
           );
@@ -1929,7 +1926,7 @@ ${
           objects.push(
             new GameObject(
               barriersSprites[0],
-              (4 * canvas.width) / 2.5,
+              (4 * canvas.width) / 3,
               canvas.height - wrapperBlock.offsetHeight / 2.7,
               false,
             ),

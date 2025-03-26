@@ -48,7 +48,8 @@ export class CompetitionScoreTableContainer {
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym' ||
             this.prop === 'Perlas GO' ||
-            this.prop === 'Daumantu'
+            this.prop === 'Daumantu' ||
+            this.prop === 'Dentsu'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
           : this.prop === 'Barbora' ||
@@ -60,7 +61,8 @@ export class CompetitionScoreTableContainer {
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym' ||
             this.prop === 'Perlas GO' ||
-            this.prop === 'Daumantu'
+            this.prop === 'Daumantu' ||
+            this.prop === 'Dentsu'
           ? 'white'
           : 'white';
       const boxShadow =
@@ -95,7 +97,8 @@ export class CompetitionScoreTableContainer {
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym' ||
                 this.prop === 'Perlas GO' ||
-                this.prop === 'Daumantu'
+                this.prop === 'Daumantu' ||
+                this.prop === 'Dentsu'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
@@ -114,7 +117,8 @@ export class CompetitionScoreTableContainer {
                 this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym' ||
                 this.prop === 'Perlas GO' ||
-                this.prop === 'Daumantu'
+                this.prop === 'Daumantu' ||
+                this.prop === 'Dentsu'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
@@ -243,6 +247,7 @@ export class CompetitionScoreTableContainer {
                   this.prop === 'Pieno Žvaigždės' ||
                   this.prop === 'Vilvi' ||
                   this.prop === 'Perlas GO' ||
+                  this.prop === 'Dentsu' ||
                   this.prop === 'Daumantu'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'
@@ -268,6 +273,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Perlas GO'
                 ? 'TIKRAI GALI KILTI AUKŠČIAU!'
+                : this.prop === 'Dentsu'
+                ? ''
                 : 'Tu gali!'
             }</div>
             <div style="width:100%; top: 450px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
@@ -309,6 +316,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą, nes net 10 geriausių žaidėjų xx dieną </br> laimės VILVI prizus!'
                 : this.prop === 'Perlas GO'
                 ? 'Pagerink savo rezultatą – net 20 geriausių žaidėjų, </br> užsiregistravusių „Perlas Go“ programėlėje ar savinarnos</br> svetainėje, kiekvieną savaitę laimės po 10 € vertės „Wolt“ </br> dovanų kuponą! '
+                : this.prop === 'Dentsu'
+                ? 'Geriausią rezultatą pasiekęs žaidėjas laimės mėnesio trukmės </br> tiesioginį bendravimą su tikslinė auditorija per „Teams“! Jei </br> laimėsi, informuosime tave registracijos metu nurodytu el. paštu.'
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
