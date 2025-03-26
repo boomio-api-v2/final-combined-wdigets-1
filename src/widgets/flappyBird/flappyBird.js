@@ -82,6 +82,7 @@ import {
   PIGUSecondLT,
   PIGUSecondFI,
   PIGUSecondLV,
+  DentsuBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -92,7 +93,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'SaludSA';
+    this.customer = this.config.business_name ? this.config.business_name : 'Dentsu';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -394,6 +395,8 @@ class FlappyBird {
         ? MakaliusFlappyBackground
         : this.customer === 'Corepetitus'
         ? CorepetitusFlappyBackground
+        : this.customer === 'Dentsu'
+        ? DentsuBackground
         : mainPenki;
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
