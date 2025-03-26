@@ -784,11 +784,10 @@ ${
       true,
     );
 
-    if (window.innerWidth <= 920) {
-      window.addEventListener('orientationchange', checkOrientationAndPause);
-    } else {
-      window.addEventListener('resize', Resize);
-    }
+    window.addEventListener('orientationchange', checkOrientationAndPause);
+
+    window.addEventListener('resize', Resize);
+
     let isGamePausedByRotation = false;
 
     let orientationTimeout;
