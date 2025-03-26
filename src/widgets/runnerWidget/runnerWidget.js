@@ -952,7 +952,7 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!checkboxChange || checkboxChange2) {
+        if (!checkboxChange || !checkboxChange2) {
           document.getElementById('competition-checkbox-error2').innerText =
             'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.';
           document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
