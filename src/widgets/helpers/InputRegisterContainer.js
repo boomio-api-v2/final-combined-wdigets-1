@@ -165,6 +165,8 @@ export class InputRegisterContainer {
           : '362px'
         : this.prop === 'Vilvi'
         ? '360px'
+        : this.prop === 'Dentsu'
+        ? '375px'
         : '395px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${

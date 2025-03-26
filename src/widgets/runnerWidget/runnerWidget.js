@@ -882,8 +882,8 @@ ${
 
             setTimeout(() => {
               document.getElementById('background_intro').style.display = 'none';
-            }, 5500);
-          }, 5500); //intro speed
+            }, 2500);
+          }, 2500); //intro speed
           const competitionConfirmField = document.getElementById(
             'boomio-competition-confirm-field',
           );
@@ -909,7 +909,7 @@ ${
         const canvas = document.getElementById('boomio-runner-canvas');
         this.customer === 'Pegasas' ? 0.8 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
+        canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
 
         const inpuRegisterContainer = document.querySelector('.input-register-container');
         inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -935,13 +935,25 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!checkboxChange3 && this.customer === 'Pegasas' && phone?.value?.trim() !== '') {
-          document.getElementById('competition-checkbox-error3').innerText =
-            'Tai norint tęsti,  privaloma sutikti gauti naujienas SMS žinute.';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error3').style.display = 'block';
-          document.getElementById('competition-checkbox-error3').style.height = '14px';
+        if (!checkboxChange) {
+          document.getElementById('competition-checkbox-error2').innerText =
+            'Norint tęsti, privaloma sutikti su akcijos taisyklėmis ir Dentsu privatumo politika';
+          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-checkbox-error2').style.display = 'block';
+          document.getElementById('competition-checkbox-error2').style.height = '14px';
 
+          document.getElementById('competition-name-error').innerText = '';
+
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+
+          document.getElementById('competition-email-error').innerText = '';
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+          return;
+        }
+        if (checkboxChange) {
           document.getElementById('competition-name-error').innerText = '';
 
           document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
@@ -956,33 +968,9 @@ ${
           document.getElementById('competition-checkbox-error2').style.backgroundColor =
             'transparent';
         }
-
-        if (!checkboxChange2 && this.customer === 'Pegasas') {
-          document.getElementById('competition-checkbox-error2').innerText =
-            'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error2').style.display = 'block';
-          document.getElementById('competition-checkbox-error2').style.height = '14px';
-
-          document.getElementById('competition-name-error').innerText = '';
-
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            'transparent';
-
-          document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor =
-            'transparent';
-        }
         if (emailInput?.value === '' || emailInput?.value === null) {
           document.getElementById('competition-email-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : 'Norint tęsti privaloma užpildyti.';
+            'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';
 
@@ -1000,9 +988,7 @@ ${
         }
         if (playerNameInput?.value === '' || playerNameInput?.value === null) {
           document.getElementById('competition-name-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : 'Norint tęsti privaloma užpildyti.';
+            'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
           document.getElementById('competition-email-error').innerText = '';
@@ -1022,14 +1008,10 @@ ${
           (playerNameInput?.value === '' || playerNameInput?.value === null)
         ) {
           document.getElementById('competition-name-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : 'Norint tęsti privaloma užpildyti.';
+            'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-email-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : 'Norint tęsti privaloma užpildyti.';
+            'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
         } else {
           if (
@@ -1070,8 +1052,7 @@ ${
             }
             boomioService
               .signal('', 'user_info', {
-                emails_consent:
-                  this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
+                emails_consent: checkboxChange,
                 user_email: emailInput?.value,
                 user_name: playerNameInput?.value,
                 game_code: this.game_code,
@@ -1133,7 +1114,7 @@ ${
                     const canvas = document.getElementById('boomio-runner-canvas');
 
                     canvas.style.transition = 'filter 0.6s ease';
-                    canvas.style.filter = 'blur(2px)';
+                    canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
                     const inputContainer = document.querySelector('.input-container');
                     document.getElementById('control-button').style.transition = 'opacity 2s ease';
                     document.getElementById('control-button').style.opacity = 1;
@@ -1249,7 +1230,7 @@ ${
           }
           const canvas = document.getElementById('boomio-runner-canvas');
           canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+          canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
           this.language === 'LV' ? 0.4 : 0.37;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1264,7 +1245,7 @@ ${
           const inputContainer = document.querySelector('.input-container1');
           const canvas = document.getElementById('boomio-runner-canvas');
           canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+          canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
           document.getElementById('').style.display = 'block';
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
@@ -1918,11 +1899,11 @@ ${
         }
 
         // Adjust object placement condition
-        if (objects.length == 0 || objects.at(-1).x < canvas.width) {
+        if (objects.length == 0 || objects.at(-1).x < canvas.width - 200) {
           objects.push(
             new GameObject(
               barriersSprites[0],
-              (4 * canvas.width) / 3,
+              (4 * canvas.width) / 2.5,
               canvas.height - wrapperBlock.offsetHeight / 2.7,
               false,
             ),
@@ -2049,7 +2030,7 @@ ${
           GameOver();
         }
 
-        speed += 0.002;
+        speed += 0.0015;
 
         Draw();
         Move();
