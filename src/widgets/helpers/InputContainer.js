@@ -230,6 +230,8 @@ export class InputContainer {
       ? 'para volar'
       : this.prop === 'Perlas GO'
       ? 'į šonus kad nenukristum.'
+      : this.prop === 'Dentsu' && this.game === 'flappy'
+      ? 'kad skristum.'
       : this.prop === 'Dentsu'
       ? 'klavišų pagalba ir rink taškus.'
       : 'kad skristum.'
@@ -362,17 +364,25 @@ export class InputContainer {
                           <div style="top: 85px;margin-top:${
                             this.prop === 'Perlas GO'
                               ? '16px'
-                              : this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės'
+                              : this.prop === 'SaludSA' ||
+                                this.prop === 'Pieno Žvaigždės' ||
+                                this.prop === 'Dentsu'
                               ? '18px'
                               : '3px'
                           }; color: white; font-size: ${'12px'}; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
-      this.prop === 'Perlas GO' || this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės'
+      this.prop === 'Perlas GO' ||
+      this.prop === 'SaludSA' ||
+      this.prop === 'Pieno Žvaigždės' ||
+      this.prop === 'Dentsu'
         ? 'white-space:normal;'
         : ''
     }${
-      this.prop === 'Perlas GO' || this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės'
+      this.prop === 'Perlas GO' ||
+      this.prop === 'SaludSA' ||
+      this.prop === 'Pieno Žvaigždės' ||
+      this.prop === 'Dentsu'
         ? 'line-height:14px;'
         : ''
     }">

@@ -83,13 +83,14 @@ import {
   PIGUSecondFI,
   PIGUSecondLV,
   DentsuBackground,
+  DentsuIntro,
 } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'points';
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -221,7 +222,7 @@ class FlappyBird {
                 setTimeout(() => {
                   inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
                   inputContainer.style.top = `calc(50% + ${
-                    this.isMobileHeightSmall ? '110px' : '140px'
+                    this.isMobileHeightSmall ? '110px' : '180px'
                   })`;
                   inputContainer.style.opacity = 1;
                 }, 100);
@@ -334,7 +335,7 @@ class FlappyBird {
       inputContainer.style.display = 'block';
       setTimeout(() => {
         inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
-        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '140px'})`;
+        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '180px'})`;
         inputContainer.style.opacity = 1;
       }, 100);
     }, 300);
@@ -1094,6 +1095,8 @@ class FlappyBird {
         ? MakaliusFlappyIntro
         : this.customer === 'Corepetitus'
         ? CorepetitusFlappyIntro
+        : this.customer === 'Dentsu'
+        ? DentsuIntro
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418
@@ -1287,6 +1290,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           this.currentScore,
         );
       } else {
+        console.log(this.cus);
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
           this.customer,
           this.scoreTable,
@@ -1536,7 +1540,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         inputContainer.style.height =
                           this.customer === 'Pigu.lt' ? '400px' : '332px';
                         inputContainer.style.top = `calc(50% + ${
-                          this.isMobileHeightSmall ? '110px' : '140px'
+                          this.isMobileHeightSmall ? '110px' : '180px'
                         })`;
                         inputContainer.style.opacity = 1;
                       }, 100);
