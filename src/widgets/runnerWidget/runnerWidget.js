@@ -78,6 +78,9 @@ class runnerWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+    <button id="fullscreenButton" style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+      Full Screen
+    </button>
 
     <img src=${dentsuIntro} 
     alt="Image Description" 
@@ -877,15 +880,23 @@ ${
           setTimeout(() => {
             document.getElementById('background_intro').style.transition = 'opacity 1s ease';
             document.getElementById('background_intro').style.opacity = 0;
-            showRules();
-
             setTimeout(() => {
               document.getElementById('background_intro').style.display = 'none';
             }, 2500);
           }, 2500); //intro speed
+
+          const fullscreenBtn = document.getElementById('fullscreenButton');
+          fullscreenBtn.addEventListener('click', () => {
+            requestFullscreen();
+            setTimeout(() => {
+              showRules(); // or any other function you want to trigger after fullscreen
+            }, 100);
+          });
+
           const competitionConfirmField = document.getElementById(
             'boomio-competition-confirm-field',
           );
+
           competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
           const gameEndButton = document.getElementById('boomio-game-play-again');
           gameEndButton.addEventListener('click', Replay);
@@ -904,7 +915,6 @@ ${
     }
 
     const showRules = () => {
-      requestFullscreen();
       setTimeout(() => {
         const canvas = document.getElementById('boomio-runner-canvas');
         this.customer === 'Pegasas' ? 0.8 : 0.37;
