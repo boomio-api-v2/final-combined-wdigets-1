@@ -187,7 +187,6 @@
   z-index: 5;
 }
 .boomio-runner-controlButton{
-	
 	height: 35px;
 	width: 35px;
 	margin: 4px;
@@ -200,6 +199,7 @@
 	background-color: rgba(255, 255, 255, 0.237);
 	border-radius: 20%;
 	padding: 15px;
+  box-sizing:content-box;
 }
 .boomio-runner-leftButtonsBlock{
 	display: none;
