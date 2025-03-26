@@ -78,7 +78,7 @@ class runnerWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
-<div id="fullscreenButton" style="height:30px;display:none; width:200px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 5; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px;">
+<div id="fullscreenButton" style="height:36px;display:none; width:200px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 5; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px;">
   <div style="margin-top:7px; text-align: center; color: rgba(61, 73, 40, 1); font-size: 22px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word; cursor:pointer;">Pradėti</div>
 </div>
 
@@ -1020,6 +1020,27 @@ ${
           document.getElementById('competition-checkbox-error3').style.backgroundColor =
             'transparent';
         }
+        const isValidEmail = (email) => {
+          // Enhanced regex for email validation with TLD enforcement
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+          // Additional check to prevent consecutive dots
+          if (email.includes('..')) {
+            return false;
+          }
+
+          return emailRegex.test(email);
+        };
+
+        if (!isValidEmail(emailInput?.value)) {
+          document.getElementById('competition-email-error').innerText =
+            'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+          document.getElementById('competition-email-error').zIndex = 1;
+          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+
+          return;
+        }
+
         if (
           (playerNameInput?.value === '' || playerNameInput?.value === null) &&
           (playerNameInput?.value === '' || playerNameInput?.value === null)
