@@ -1228,7 +1228,7 @@ ${
         if (this.showCompetitiveRegistration) {
           boomioService
             .signal('ROUND_FINISHED', 'signal', {
-              score: math.floor(this.currentScore),
+              score: Math.floor(this.currentScore),
             })
             .then((response) => {
               if (this.customer === 'Pigu.lt') {
