@@ -1378,7 +1378,7 @@ ${
 
           this.clickEventHandler = () => {
             const tutorial = document.querySelector('.tutorial');
-
+            console.log('aaa123');
             tutorial.style.display = 'none';
             const numbers = document.querySelector('.numbers');
             const new_highscore = document.querySelector('.new_highscore');
@@ -1391,25 +1391,9 @@ ${
 
             numbers.style.display = 'none';
 
-            if (this.gameStarted === false) {
-              if (
-                this.showCompetitiveRegistration === 'competition' ||
-                this.showCompetitiveRegistration === 'points' ||
-                this.showCompetitiveRegistration === 'collectable'
-              ) {
-                boomioService
-                  .signal('ROUND_STARTED', 'signal')
-                  .then((response) => {
-                    this.gameStarted = true;
-                  })
-                  .catch((error) => {
-                    console.error('Error:', error);
-                  });
-              }
-            }
             if (this.gameCount === 0) {
               this.init();
-
+              console.log('init');
               this.gameCount++;
 
               const canvas = document.getElementById('boomio-runner-canvas');
@@ -1446,8 +1430,21 @@ ${
         controlButton.style.display = 'none';
         controlButton.style.opacity = 0;
         setTimeout(() => {
+          if (
+            this.showCompetitiveRegistration === 'competition' ||
+            this.showCompetitiveRegistration === 'points' ||
+            this.showCompetitiveRegistration === 'collectable'
+          ) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                this.gameStarted = true;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
           console.log('started');
-          this.gameStarted = true;
           const toggleHide = (block) => block.classList.toggle('boomio-hide');
 
           ResetGlobalVariables();
@@ -1841,6 +1838,16 @@ ${
     }
 
     function Replay() {
+      console.log('aaa');
+      boomioService
+        .signal('ROUND_STARTED', 'signal')
+        .then((response) => {
+          this.gameStarted = true;
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
 
