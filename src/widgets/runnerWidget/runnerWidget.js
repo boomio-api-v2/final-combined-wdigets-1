@@ -36,6 +36,7 @@ import {
   rightDentsu,
   dentsuIntro,
   dentsuOrientation,
+  uncheckIcon,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
