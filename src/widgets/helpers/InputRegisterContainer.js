@@ -87,7 +87,7 @@ export class InputRegisterContainer {
       </div>
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
-       } ;left: 34px; top: ${'360px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+       } ;left: 34px; top: ${'350px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
@@ -179,7 +179,7 @@ export class InputRegisterContainer {
               privacyCheckboxChecked ? uncheckIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
-        <div style="color: ${'white'}; font-size: ${
+        <div style="color: ${'white'}; font-heigt:6px;font-size: ${
       this.isMobile
         ? this.prop === 'Akropolis' && this.language === 'LV'
           ? '8px'
