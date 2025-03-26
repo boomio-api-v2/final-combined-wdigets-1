@@ -502,7 +502,7 @@ ${
 
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
-
+    var gameStarted = undefined;
     var creditsBlock = document.getElementsByClassName('boomio-runner-credits')[0];
     var storeBlock = document.getElementsByClassName('store')[0];
     var storeCoinsText = document.getElementsByClassName('storeCoinsText')[0];
@@ -784,33 +784,33 @@ ${
       canvas.height - wrapperBlock.offsetHeight / 2.5,
       true,
     );
-
-    window.addEventListener('orientationchange', checkOrientationAndPause);
-
     window.addEventListener('resize', Resize);
 
-    let isGamePausedByRotation = false;
+    const checkOrientationAndPause = () => {
+      if (gameStarted === undefined) {
+        return;
+      }
 
-    let orientationTimeout;
-    function checkOrientationAndPause() {
-      clearTimeout(orientationTimeout);
-      orientationTimeout = setTimeout(() => {
-        const isPortrait = window.innerHeight > window.innerWidth;
-        const isMobile = window.innerWidth <= 920;
-
-        if (!isMobile) return;
-
-        const gameStarted = player.dead; // Check if started
-
-        if (!isPortrait && !isGamePausedByRotation && gameStarted) {
-          PauseToggle(); // Pause only after game has started
-          isGamePausedByRotation = true;
-        } else if (isPortrait && isGamePausedByRotation) {
-          PauseToggle(); // Resume
-          isGamePausedByRotation = false;
+      if (!gameStarted) {
+        Start();
+        setTimeout(() => {
+          Stop();
+        }, 50);
+        return;
+      }
+      if (window.innerHeight < window.innerWidth) {
+        if (!stopGame) {
+          console.log('Game paused due to vertical orientation');
+          Stop();
         }
-      }, 200);
-    }
+      } else {
+        if (stopGame) {
+          console.log('Game resumed due to horizontal orientation');
+          Start();
+        }
+      }
+    };
+    window.addEventListener('orientationchange', checkOrientationAndPause);
 
     Resize();
     updateAchives();
@@ -1259,6 +1259,7 @@ ${
               score: Math.floor(this.currentScore),
             })
             .then((response) => {
+              gameStarted = false;
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
                   window.Boomio.logEvent('game_finished', JSON.stringify(response));
@@ -1356,7 +1357,7 @@ ${
     const PauseToggle = () => {
       // const toggleHide = (block) => block.classList.toggle('boomio-hide');
       console.log('paused');
-      stopGame ? Start() : Stop();
+      // stopGame ? Start() : Stop();
 
       // pause = pauseBlock.classList.contains('boomio-hide') ? true : false;
       // toggleHide(pauseBlock);
@@ -1378,7 +1379,7 @@ ${
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
 
-      if (!this.gameStarted) {
+      if (!gameStarted) {
         let canvas = document.getElementById('boomio-runner-canvas');
 
         const inputContainer = document.querySelector('.input-container');
@@ -1465,7 +1466,7 @@ ${
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
-                this.gameStarted = true;
+                gameStarted = true;
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -1874,7 +1875,7 @@ ${
       boomioService
         .signal('ROUND_STARTED', 'signal')
         .then((response) => {
-          this.gameStarted = true;
+          gameStarted = true;
         })
         .catch((error) => {
           console.error('Error:', error);
