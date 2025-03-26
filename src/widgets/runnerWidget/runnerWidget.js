@@ -789,22 +789,25 @@ ${
     } else {
       window.addEventListener('resize', Resize);
     }
+    let isGamePausedByRotation = false;
 
     let orientationTimeout;
-
     function checkOrientationAndPause() {
       clearTimeout(orientationTimeout);
       orientationTimeout = setTimeout(() => {
         const isPortrait = window.innerHeight > window.innerWidth;
         const isMobile = window.innerWidth <= 920;
-        const overlay = document.getElementById('turnLandscape');
 
-        if (isMobile) {
-          if (!isPortrait) {
-            PauseToggle(); // Pause game
-          } else {
-            PauseToggle(); // Resume game
-          }
+        if (!isMobile) return;
+
+        const gameStarted = player.dead; // Check if started
+
+        if (!isPortrait && !isGamePausedByRotation && gameStarted) {
+          PauseToggle(); // Pause only after game has started
+          isGamePausedByRotation = true;
+        } else if (isPortrait && isGamePausedByRotation) {
+          PauseToggle(); // Resume
+          isGamePausedByRotation = false;
         }
       }, 200);
     }
@@ -1352,7 +1355,7 @@ ${
     };
     const PauseToggle = () => {
       // const toggleHide = (block) => block.classList.toggle('boomio-hide');
-
+      console.log('paused');
       stopGame ? Start() : Stop();
 
       // pause = pauseBlock.classList.contains('boomio-hide') ? true : false;
