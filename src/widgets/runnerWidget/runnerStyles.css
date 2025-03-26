@@ -186,12 +186,14 @@
 	transition: 1s;
   z-index: 5;
 }
+
 .boomio-runner-controlButton{
 	height: 35px;
 	width: 35px;
 	margin: 4px;
 	image-rendering: pixelated;
 }
+
 .boomio-runner-mobileControlButt{
 	height:35px;
 	width: auto;

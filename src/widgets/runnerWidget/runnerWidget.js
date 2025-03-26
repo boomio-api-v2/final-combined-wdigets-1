@@ -35,6 +35,7 @@ import {
   leftDentsu,
   rightDentsu,
   dentsuIntro,
+  dentsuOrientation,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -121,9 +122,7 @@ class runnerWidget {
 <div class="boomio-runner-body" oncontextmenu="return false;">
   <div id="turnLandscape">
     rotate your device
-    <img style='margin-top: 30px' id='rotateIcon' src="${
-      this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
-    }/gui/orientation.png" alt="">
+    <img style='margin-top: 30px' id='rotateIcon' src="${dentsuOrientation}" alt="">
   </div>
   <div class="boomio-runner-main">
 
