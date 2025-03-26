@@ -359,6 +359,7 @@ export class CompetitionScoreTableContainer {
                   this.prop.includes('Gamtos Ateitis') ||
                   this.prop === 'Vilvi' ||
                   this.prop === 'Perlas GO' ||
+                  this.prop === 'Dentsu' ||
                   this.prop === 'Daumantu'
                 ? ''
                 : 'Apie laimėjimą informuosime nurodytu el. paštu.'

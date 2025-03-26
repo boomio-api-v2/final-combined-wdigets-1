@@ -93,6 +93,7 @@ export class InputRegisterContainer {
       this.prop === 'Eurovaistine' ||
       this.prop === 'Perlas GO' ||
       this.prop === 'Daumantu' ||
+      this.prop === 'Dentsu' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -133,6 +134,8 @@ export class InputRegisterContainer {
         ? 'Piekrītu saņemt AKROPOLE iepirkšanās centru jaunumus e-pastā.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
+        : this.prop === 'Dentsu'
+        ? 'Sutinku gauti Perlas Go naujienas  el. paštu.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>

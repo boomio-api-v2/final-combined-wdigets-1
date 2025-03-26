@@ -952,9 +952,9 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!checkboxChange) {
+        if (!checkboxChange || checkboxChange2) {
           document.getElementById('competition-checkbox-error2').innerText =
-            'Norint tęsti, privaloma sutikti su akcijos taisyklėmis ir Dentsu privatumo politika';
+            'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.';
           document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error2').style.display = 'block';
           document.getElementById('competition-checkbox-error2').style.height = '14px';
@@ -1228,7 +1228,7 @@ ${
         if (this.showCompetitiveRegistration) {
           boomioService
             .signal('ROUND_FINISHED', 'signal', {
-              score: this.currentScore,
+              score: math.floor(this.currentScore),
             })
             .then((response) => {
               if (this.customer === 'Pigu.lt') {
@@ -1528,6 +1528,14 @@ ${
       const checkboxImgChange = document.getElementById('privacyCheckboxImg');
       checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
     });
+
+    const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+    checkboxImg2.addEventListener('click', () => {
+      this.checkboxChange2 = !this.checkboxChange2;
+      const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+      checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+    });
+
     document.getElementById('startButtonClick').addEventListener('click', () => {
       PlayButtonActivate();
       // your existing start logic here
