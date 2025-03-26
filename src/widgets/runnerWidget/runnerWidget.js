@@ -874,10 +874,6 @@ ${
             })`; // Ensure url syntax
           }
 
-          // for (let i = 0; i < smallBtnBlocks.length; i += 1) {
-          //   smallBtnBlocks[i].style.backgroundImage = `url(${runnerbackground})`; // Ensure url syntax
-          // }
-
           toggleHide(mainMenuBlock);
           setTimeout(() => {
             document.getElementById('background_intro').style.transition = 'opacity 1s ease';
