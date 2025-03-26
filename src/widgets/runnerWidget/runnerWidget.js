@@ -495,6 +495,7 @@ ${
   startGame = () => {
     const canvas = document.getElementById('boomio-runner-canvas');
     const loader = new PxLoader();
+    var gameOverAlreadyHandled = false;
     this.config = localStorageService.getDefaultConfig();
     const customer = this.config.business_name ? this.config.business_name : 'Dentsu';
 
@@ -783,7 +784,31 @@ ${
       true,
     );
 
-    window.addEventListener('resize', Resize);
+    if (window.innerWidth <= 920) {
+      window.addEventListener('orientationchange', checkOrientationAndPause);
+    } else {
+      window.addEventListener('resize', Resize);
+    }
+
+    let orientationTimeout;
+
+    function checkOrientationAndPause() {
+      clearTimeout(orientationTimeout);
+      orientationTimeout = setTimeout(() => {
+        const isPortrait = window.innerHeight > window.innerWidth;
+        const isMobile = window.innerWidth <= 920;
+        const overlay = document.getElementById('turnLandscape');
+
+        if (isMobile) {
+          if (!isPortrait) {
+            PauseToggle(); // Pause game
+          } else {
+            PauseToggle(); // Resume game
+          }
+        }
+      }, 200);
+    }
+
     Resize();
     updateAchives();
 
@@ -1326,15 +1351,15 @@ ${
       document.removeEventListener('keyup', keyLeftHandler, false);
     };
     const PauseToggle = () => {
-      const toggleHide = (block) => block.classList.toggle('boomio-hide');
+      // const toggleHide = (block) => block.classList.toggle('boomio-hide');
 
       stopGame ? Start() : Stop();
-      pause = pauseBlock.classList.contains('boomio-hide') ? true : false;
-      toggleHide(pauseBlock);
-      toggleHide(scoreBlock);
 
-      toggleHide(pauseButton);
-      toggleHide(lifeContainer);
+      // pause = pauseBlock.classList.contains('boomio-hide') ? true : false;
+      // toggleHide(pauseBlock);
+      // toggleHide(scoreBlock);
+      // toggleHide(pauseButton);
+      // toggleHide(lifeContainer);
     };
     function requestFullscreen() {
       const container = document.getElementById('boomio-runner-container');
@@ -1378,7 +1403,6 @@ ${
 
           this.clickEventHandler = () => {
             const tutorial = document.querySelector('.tutorial');
-            console.log('aaa123');
             tutorial.style.display = 'none';
             const numbers = document.querySelector('.numbers');
             const new_highscore = document.querySelector('.new_highscore');
@@ -1788,6 +1812,9 @@ ${
     }
 
     function GameOver() {
+      if (gameOverAlreadyHandled) return; // ✅ prevent multiple runs
+      gameOverAlreadyHandled = true;
+
       player.shieldTimer = 0;
       player.boostTimer = 0;
       Stop();
@@ -1812,6 +1839,7 @@ ${
                 toggleHide(lifeContainer);
 
                 showCompetitiveRegistrationTable();
+
                 console.log('over');
                 rightButtonsBlock.classList.add('boomio-hide');
                 leftButtonsBlock.classList.add('boomio-hide');
@@ -1838,7 +1866,8 @@ ${
     }
 
     function Replay() {
-      console.log('aaa');
+      gameOverAlreadyHandled = false;
+
       boomioService
         .signal('ROUND_STARTED', 'signal')
         .then((response) => {

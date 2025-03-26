@@ -208,7 +208,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Vilvi'
                 ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
                 : this.prop === 'Perlas GO'
-                ? 'Net 20 geriausių žaidėjų, užsiregistravusių „Perlas Go“ </br> programėlėje ar savinarnos svetainėje, kiekvieną savaitę laimės</br> po 10 € vertės „Wolt“ dovanų kuponą! Jei laimėsi, informuosime </br>tave registracijos metu nurodytu el. paštu.'
+                ? 'Net 20 geriausių žaidėjų, užsiregistravusių „Perlas Go“ </br> programėlėje ar savitarnos svetainėje, kiekvieną savaitę laimės</br> po 10 € vertės „Wolt“ dovanų kuponą! Jei laimėsi, informuosime </br>tave registracijos metu nurodytu el. paštu.'
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -315,7 +315,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Vilvi'
                 ? 'Pagerink rezultatą, nes net 10 geriausių žaidėjų xx dieną </br> laimės VILVI prizus!'
                 : this.prop === 'Perlas GO'
-                ? 'Pagerink savo rezultatą – net 20 geriausių žaidėjų, </br> užsiregistravusių „Perlas Go“ programėlėje ar savinarnos</br> svetainėje, kiekvieną savaitę laimės po 10 € vertės „Wolt“ </br> dovanų kuponą! '
+                ? 'Pagerink savo rezultatą – net 20 geriausių žaidėjų, </br> užsiregistravusių „Perlas Go“ programėlėje ar savitarnos</br> svetainėje, kiekvieną savaitę laimės po 10 € vertės „Wolt“ </br> dovanų kuponą! '
                 : this.prop === 'Dentsu'
                 ? 'Geriausią rezultatą pasiekęs žaidėjas laimės mėnesio trukmės </br> tiesioginį bendravimą su tiksline auditorija per „Teams“! Jei </br> laimėsi, informuosime tave registracijos metu nurodytu el. paštu.'
                 : ''
