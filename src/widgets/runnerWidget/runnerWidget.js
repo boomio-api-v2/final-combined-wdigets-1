@@ -1297,7 +1297,16 @@ ${
       toggleHide(pauseButton);
       toggleHide(lifeContainer);
     };
-
+    function requestFullscreen() {
+      const container = document.getElementById('boomio-runner-container');
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen(); // Safari
+      } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen(); // IE11
+      }
+    }
     const PlayButtonActivate = () => {
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
@@ -1480,7 +1489,11 @@ ${
       const checkboxImgChange = document.getElementById('privacyCheckboxImg');
       checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
     });
-    document.getElementById('startButtonClick').addEventListener('click', PlayButtonActivate);
+    document.getElementById('startButtonClick').addEventListener('click', () => {
+      requestFullscreen();
+      PlayButtonActivate();
+      // your existing start logic here
+    });
     document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-pauseButton').addEventListener('click', PauseToggle);
