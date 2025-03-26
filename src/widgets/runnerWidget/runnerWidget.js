@@ -78,13 +78,13 @@ class runnerWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
-    <button id="fullscreenButton" style="position: absolute; top: 10px; right: 10px; z-index: 10;">
-      Full Screen
-    </button>
+<div id="fullscreenButton" style="height:30px;display:none; width:200px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 5; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px;">
+  <div style="margin-top:7px; text-align: center; color: rgba(61, 73, 40, 1); font-size: 22px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word; cursor:pointer;">Pradėti</div>
+</div>
 
     <img src=${dentsuIntro} 
     alt="Image Description" 
-    style="z-index:4; width: 100vw; height: 100vh;position:absolute;pointer-events: none; display:block;" 
+    style="z-index:4; width: 100vw; height: 100vh;position:absolute;pointer-events: none; display:none;" 
     id="background_intro">
 
     <img class="new_highscore_stars" src=${
@@ -123,10 +123,10 @@ class runnerWidget {
 
  
 <div class="boomio-runner-body" oncontextmenu="return false;">
-  <div id="turnLandscape">
-    rotate your device
-    <img style='margin-top: 30px' id='rotateIcon' src="${dentsuOrientation}" alt="">
-  </div>
+<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10;">
+  rotate your device
+  <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
+</div>
   <div class="boomio-runner-main">
 
     <div class="boomio-runner-wrapper boomio-screenRatio">
@@ -885,13 +885,20 @@ ${
             }, 2500);
           }, 2500); //intro speed
 
-          const fullscreenBtn = document.getElementById('fullscreenButton');
-          fullscreenBtn.addEventListener('click', () => {
-            requestFullscreen();
-            setTimeout(() => {
-              showRules(); // or any other function you want to trigger after fullscreen
-            }, 100);
-          });
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          if (isIOS) {
+            showRules();
+          } else {
+            const fullscreenBtn = document.getElementById('fullscreenButton');
+            fullscreenBtn.style.display = 'block';
+            fullscreenBtn.addEventListener('click', () => {
+              requestFullscreen();
+              setTimeout(() => {
+                showRules();
+                fullscreenBtn.style.display = 'none';
+              }, 100);
+            });
+          }
 
           const competitionConfirmField = document.getElementById(
             'boomio-competition-confirm-field',
