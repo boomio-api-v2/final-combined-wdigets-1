@@ -142,7 +142,7 @@ export class InputContainer {
                   ? 'BRAUK '
                   : this.prop === 'Perlas GO'
                   ? 'Judėk'
-                  : this.game === 'Runner'
+                  : this.game === 'Dentsu'
                   ? 'Judėk'
                   : 'Spausk'
               }
