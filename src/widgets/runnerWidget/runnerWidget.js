@@ -904,6 +904,7 @@ ${
     }
 
     const showRules = () => {
+      requestFullscreen();
       setTimeout(() => {
         const canvas = document.getElementById('boomio-runner-canvas');
         this.customer === 'Pegasas' ? 0.8 : 0.37;
@@ -1490,7 +1491,6 @@ ${
       checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
     });
     document.getElementById('startButtonClick').addEventListener('click', () => {
-      requestFullscreen();
       PlayButtonActivate();
       // your existing start logic here
     });
