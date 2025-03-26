@@ -135,7 +135,7 @@ export class InputRegisterContainer {
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
         : this.prop === 'Dentsu'
-        ? 'Sutinku gauti Perlas Go naujienas  el. paštu.'
+        ? 'Sutinku su gauti Dentsu ir Boomio naujienas.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
