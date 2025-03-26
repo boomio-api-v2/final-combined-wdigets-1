@@ -886,7 +886,7 @@ ${
           }, 2500); //intro speed
 
           const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-          if (isIOS) {
+          if (isIOS || window.innerWidth >= 920) {
             showRules();
           } else {
             const fullscreenBtn = document.getElementById('fullscreenButton');
