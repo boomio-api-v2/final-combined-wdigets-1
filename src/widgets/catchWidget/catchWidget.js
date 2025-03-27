@@ -155,6 +155,22 @@ import {
   item11Daumantu,
   item12Daumantu,
   item13Daumantu,
+  introDobilo,
+  backgroundDobilo,
+  playerDobilo,
+  item1Dobilo,
+  item2Dobilo,
+  item3Dobilo,
+  item4Dobilo,
+  item5Dobilo,
+  item6Dobilo,
+  item7Dobilo,
+  item8Dobilo,
+  item9Dobilo,
+  item10Dobilo,
+  item11Dobilo,
+  item12Dobilo,
+  item13Dobilo,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -173,7 +189,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Dobilo';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -213,6 +229,8 @@ class CatchGame {
         ? backgroundAkropolis
         : this.customer === 'Daumantu'
         ? backgroundDaumantu
+        : this.customer === 'Dobilo'
+        ? backgroundDobilo
         : background
     }) center`;
 
@@ -488,6 +506,8 @@ class CatchGame {
         ? introAkropolis
         : this.customer === 'Daumantu'
         ? introDaumantu
+        : this.customer === 'Dobilo'
+        ? introDobilo
         : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -1553,6 +1573,8 @@ class Player {
       ? playerAkropolis
       : customer === 'Daumantu'
       ? playerDaumantu
+      : customer === 'Dobilo'
+      ? playerDobilo
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1777,6 +1799,22 @@ class Fruit {
         item12Daumantu,
         item13Daumantu,
       ];
+    } else if (this.customer && this.customer === 'Dobilo') {
+      this.images = [
+        item1Dobilo,
+        item2Dobilo,
+        item3Dobilo,
+        item4Dobilo,
+        item5Dobilo,
+        item6Dobilo,
+        item7Dobilo,
+        item8Dobilo,
+        item9Dobilo,
+        item10Dobilo,
+        item11Dobilo,
+        item12Dobilo,
+        item13Dobilo,
+      ];
     } else {
       // Default catch images if none of the above conditions are met
       this.images = [
@@ -1906,7 +1944,7 @@ class Fruit {
         'item9Akropolis',
         'item10Akropolis',
       ][this.fruitNumber];
-    } else if (this.customer === 'Akropolis') {
+    } else if (this.customer === 'Daumantu') {
       this.fruitType = [
         'item1Daumantu',
         'item2Daumantu',
@@ -1917,9 +1955,26 @@ class Fruit {
         'item7Daumantu',
         'item8Daumantu',
         'item9Daumantu',
+        'item10Daumantu',
         'item11Daumantu',
         'item12Daumantu',
         'item13Daumantu',
+      ][this.fruitNumber];
+    } else if (this.customer === 'Dobilo') {
+      this.fruitType = [
+        'item1Dobilo',
+        'item2Dobilo',
+        'item3Dobilo',
+        'item4Dobilo',
+        'item5Dobilo',
+        'item6Dobilo',
+        'item7Dobilo',
+        'item8Dobilo',
+        'item9Dobilo',
+        'item10Dobilo',
+        'item11Dobilo',
+        'item12Dobilo',
+        'item13Dobilo',
       ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
