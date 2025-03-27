@@ -82,17 +82,19 @@ import {
   PIGUSecondLT,
   PIGUSecondFI,
   PIGUSecondLV,
+  DentsuBackground,
+  DentsuIntro,
 } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'points';
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'SaludSA';
+    this.customer = this.config.business_name ? this.config.business_name : 'Dentsu';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -220,7 +222,7 @@ class FlappyBird {
                 setTimeout(() => {
                   inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
                   inputContainer.style.top = `calc(50% + ${
-                    this.isMobileHeightSmall ? '110px' : '140px'
+                    this.isMobileHeightSmall ? '110px' : '180px'
                   })`;
                   inputContainer.style.opacity = 1;
                 }, 100);
@@ -333,7 +335,7 @@ class FlappyBird {
       inputContainer.style.display = 'block';
       setTimeout(() => {
         inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
-        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '140px'})`;
+        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '180px'})`;
         inputContainer.style.opacity = 1;
       }, 100);
     }, 300);
@@ -394,6 +396,8 @@ class FlappyBird {
         ? MakaliusFlappyBackground
         : this.customer === 'Corepetitus'
         ? CorepetitusFlappyBackground
+        : this.customer === 'Dentsu'
+        ? DentsuBackground
         : mainPenki;
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
@@ -1091,6 +1095,8 @@ class FlappyBird {
         ? MakaliusFlappyIntro
         : this.customer === 'Corepetitus'
         ? CorepetitusFlappyIntro
+        : this.customer === 'Dentsu'
+        ? DentsuIntro
         : introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418
@@ -1201,7 +1207,9 @@ ${`<div style="${
 
 </div>
       <div class="flappy-container">
-            <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#C6152F'};border-radius:35px">
+            <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+              this.customer === 'Dentsu' ? '#FE5022' : '#C6152F'
+            };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -1284,6 +1292,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           this.currentScore,
         );
       } else {
+        console.log(this.cus);
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
           this.customer,
           this.scoreTable,
@@ -1533,7 +1542,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         inputContainer.style.height =
                           this.customer === 'Pigu.lt' ? '400px' : '332px';
                         inputContainer.style.top = `calc(50% + ${
-                          this.isMobileHeightSmall ? '110px' : '140px'
+                          this.isMobileHeightSmall ? '110px' : '180px'
                         })`;
                         inputContainer.style.opacity = 1;
                       }, 100);

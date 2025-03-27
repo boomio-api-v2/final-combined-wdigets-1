@@ -87,12 +87,13 @@ export class InputRegisterContainer {
       </div>
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
-       } ;left: 34px; top: ${'360px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+       } ;left: 34px; top: ${'350px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
       this.prop === 'Perlas GO' ||
       this.prop === 'Daumantu' ||
+      this.prop === 'Dentsu' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -133,6 +134,8 @@ export class InputRegisterContainer {
         ? 'Piekrītu saņemt AKROPOLE iepirkšanās centru jaunumus e-pastā.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
+        : this.prop === 'Dentsu'
+        ? 'Sutinku gauti Dentsu ir Boomio naujienas.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
@@ -165,6 +168,8 @@ export class InputRegisterContainer {
           : '362px'
         : this.prop === 'Vilvi'
         ? '360px'
+        : this.prop === 'Dentsu'
+        ? '375px'
         : '395px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${
@@ -174,7 +179,7 @@ export class InputRegisterContainer {
               privacyCheckboxChecked ? uncheckIcon : ''
             }" style="width: 20px; height: 20px;">
         </div>
-        <div style="color: ${'white'}; font-size: ${
+        <div style="color: ${'white'}; font-heigt:6px;font-size: ${
       this.isMobile
         ? this.prop === 'Akropolis' && this.language === 'LV'
           ? '8px'
@@ -234,7 +239,7 @@ export class InputRegisterContainer {
         : this.prop === 'Vilvi'
         ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
         : this.prop === 'Dentsu'
-        ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.test.lt/'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
+        ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -268,6 +273,8 @@ export class InputRegisterContainer {
               ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
               : this.prop.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
+              : this.prop === 'Dentsu'
+              ? 'https://www.dentsu.com/our-policies/privacy-notices'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'

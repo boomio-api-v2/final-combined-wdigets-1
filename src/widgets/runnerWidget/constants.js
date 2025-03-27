@@ -112,3 +112,6 @@ export const stopwatch =
 
 export const dentsuIntro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsDentsu/dentsuIntro.gif';
+
+export const dentsuOrientation =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsDentsu/gui/orientation.png';

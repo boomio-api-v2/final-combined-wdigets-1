@@ -172,3 +172,9 @@ export const PIGUSecondFI =
 
 export const PIGUSecondLV =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Pigu/PIGUSecondLV.png';
+
+export const DentsuBackground =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Dentsu/DentsuBackground.png';
+
+export const DentsuIntro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Dentsu/DentsuIntro.gif';

@@ -35,6 +35,8 @@ import {
   leftDentsu,
   rightDentsu,
   dentsuIntro,
+  dentsuOrientation,
+  uncheckIcon,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -77,12 +79,13 @@ class runnerWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+<div id="fullscreenButton" style="height:36px;display:none; width:200px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 5; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px;">
+  <div style="margin-top:7px; text-align: center; color: rgba(61, 73, 40, 1); font-size: 22px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word; cursor:pointer;">Pradėti</div>
+</div>
 
     <img src=${dentsuIntro} 
     alt="Image Description" 
-    style="z-index:4; height: ${
-      this.isMobileHeightSmall ? '100%' : '674px'
-    };position:absolute;pointer-events: none; display:none;" 
+    style="z-index:4; width: 100vw; height: 100vh;position:absolute;pointer-events: none; display:none;" 
     id="background_intro">
 
     <img class="new_highscore_stars" src=${
@@ -121,21 +124,13 @@ class runnerWidget {
 
  
 <div class="boomio-runner-body" oncontextmenu="return false;">
-  <div id="turnLandscape">
-    rotate your device
-    <img style='margin-top: 30px' id='rotateIcon' src="${
-      this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
-    }/gui/orientation.png" alt="">
-  </div>
+<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10;">
+  rotate your device
+  <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
+</div>
   <div class="boomio-runner-main">
 
     <div class="boomio-runner-wrapper boomio-screenRatio">
-      <div class="boomio-runner-loader">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
       <div class="boomio-runner-controlBlock">
         Taisyklės
         <img class='boomio-runner-controlButton' src="${
@@ -176,12 +171,13 @@ class runnerWidget {
 
     ${
       this.showCompetitiveRegistration
-        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
+        ? new InputRegisterContainer(this.customer, 'runner').createInputRegisterContainer()
+            .outerHTML
         : ''
     }
 
     
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'runner').createInputContainerDiv('runner').outerHTML}
 
 <div class="boomio-runner-leftButtonsBlock boomio-hide">
   <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${
@@ -501,12 +497,13 @@ ${
   startGame = () => {
     const canvas = document.getElementById('boomio-runner-canvas');
     const loader = new PxLoader();
+    var gameOverAlreadyHandled = false;
     this.config = localStorageService.getDefaultConfig();
     const customer = this.config.business_name ? this.config.business_name : 'Dentsu';
 
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
-
+    var gameStarted = undefined;
     var creditsBlock = document.getElementsByClassName('boomio-runner-credits')[0];
     var storeBlock = document.getElementsByClassName('store')[0];
     var storeCoinsText = document.getElementsByClassName('storeCoinsText')[0];
@@ -535,7 +532,6 @@ ${
     var soundBtn = document.getElementsByClassName('boomio-runner-soundBtn')[0];
     var rightButtonsBlock = document.getElementsByClassName('boomio-runner-rightButtonsBlock')[0];
     var leftButtonsBlock = document.getElementsByClassName('boomio-runner-leftButtonsBlock')[0];
-    var loaderBlock = document.getElementsByClassName('boomio-runner-loader')[0];
     var mainBgBlocks = document.getElementsByClassName('boomio-runner-mainBg');
     var smallBtnBlocks = document.getElementsByClassName('boomio-runner-smallBtn');
 
@@ -789,8 +785,34 @@ ${
       canvas.height - wrapperBlock.offsetHeight / 2.5,
       true,
     );
-
     window.addEventListener('resize', Resize);
+
+    const checkOrientationAndPause = () => {
+      if (gameStarted === undefined) {
+        return;
+      }
+
+      if (!gameStarted) {
+        Start();
+        setTimeout(() => {
+          Stop();
+        }, 50);
+        return;
+      }
+      if (window.innerHeight < window.innerWidth) {
+        if (!stopGame) {
+          console.log('Game paused due to vertical orientation');
+          Stop();
+        }
+      } else {
+        if (stopGame) {
+          console.log('Game resumed due to horizontal orientation');
+          Start();
+        }
+      }
+    };
+    window.addEventListener('orientationchange', checkOrientationAndPause);
+
     Resize();
     updateAchives();
 
@@ -883,17 +905,34 @@ ${
             })`; // Ensure url syntax
           }
 
-          // for (let i = 0; i < smallBtnBlocks.length; i += 1) {
-          //   smallBtnBlocks[i].style.backgroundImage = `url(${runnerbackground})`; // Ensure url syntax
-          // }
-
           toggleHide(mainMenuBlock);
-          toggleHide(loaderBlock);
-          showRules();
+          setTimeout(() => {
+            document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+            document.getElementById('background_intro').style.opacity = 0;
+            setTimeout(() => {
+              document.getElementById('background_intro').style.display = 'none';
+            }, 2500);
+          }, 2500); //intro speed
+
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          if (isIOS || window.innerWidth >= 920) {
+            showRules();
+          } else {
+            const fullscreenBtn = document.getElementById('fullscreenButton');
+            fullscreenBtn.style.display = 'block';
+            fullscreenBtn.addEventListener('click', () => {
+              requestFullscreen();
+              setTimeout(() => {
+                showRules();
+                fullscreenBtn.style.display = 'none';
+              }, 100);
+            });
+          }
 
           const competitionConfirmField = document.getElementById(
             'boomio-competition-confirm-field',
           );
+
           competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
           const gameEndButton = document.getElementById('boomio-game-play-again');
           gameEndButton.addEventListener('click', Replay);
@@ -916,7 +955,7 @@ ${
         const canvas = document.getElementById('boomio-runner-canvas');
         this.customer === 'Pegasas' ? 0.8 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
+        canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
 
         const inpuRegisterContainer = document.querySelector('.input-register-container');
         inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -942,13 +981,25 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!checkboxChange3 && this.customer === 'Pegasas' && phone?.value?.trim() !== '') {
-          document.getElementById('competition-checkbox-error3').innerText =
-            'Tai norint tęsti,  privaloma sutikti gauti naujienas SMS žinute.';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error3').style.display = 'block';
-          document.getElementById('competition-checkbox-error3').style.height = '14px';
+        if (!checkboxChange || !checkboxChange2) {
+          document.getElementById('competition-checkbox-error2').innerText =
+            'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.';
+          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-checkbox-error2').style.display = 'block';
+          document.getElementById('competition-checkbox-error2').style.height = '14px';
 
+          document.getElementById('competition-name-error').innerText = '';
+
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+
+          document.getElementById('competition-email-error').innerText = '';
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+          return;
+        }
+        if (checkboxChange) {
           document.getElementById('competition-name-error').innerText = '';
 
           document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
@@ -963,33 +1014,9 @@ ${
           document.getElementById('competition-checkbox-error2').style.backgroundColor =
             'transparent';
         }
-
-        if (!checkboxChange2 && this.customer === 'Pegasas') {
-          document.getElementById('competition-checkbox-error2').innerText =
-            'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error2').style.display = 'block';
-          document.getElementById('competition-checkbox-error2').style.height = '14px';
-
-          document.getElementById('competition-name-error').innerText = '';
-
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            'transparent';
-
-          document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor =
-            'transparent';
-        }
         if (emailInput?.value === '' || emailInput?.value === null) {
           document.getElementById('competition-email-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : 'Norint tęsti privaloma užpildyti.';
+            'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';
 
@@ -1007,9 +1034,7 @@ ${
         }
         if (playerNameInput?.value === '' || playerNameInput?.value === null) {
           document.getElementById('competition-name-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : 'Norint tęsti privaloma užpildyti.';
+            'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
           document.getElementById('competition-email-error').innerText = '';
@@ -1024,19 +1049,36 @@ ${
           document.getElementById('competition-checkbox-error3').style.backgroundColor =
             'transparent';
         }
+        const isValidEmail = (email) => {
+          // Enhanced regex for email validation with TLD enforcement
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+          // Additional check to prevent consecutive dots
+          if (email.includes('..')) {
+            return false;
+          }
+
+          return emailRegex.test(email);
+        };
+
+        if (!isValidEmail(emailInput?.value)) {
+          document.getElementById('competition-email-error').innerText =
+            'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+          document.getElementById('competition-email-error').zIndex = 1;
+          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+
+          return;
+        }
+
         if (
           (playerNameInput?.value === '' || playerNameInput?.value === null) &&
           (playerNameInput?.value === '' || playerNameInput?.value === null)
         ) {
           document.getElementById('competition-name-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : 'Norint tęsti privaloma užpildyti.';
+            'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-email-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : 'Norint tęsti privaloma užpildyti.';
+            'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
         } else {
           if (
@@ -1077,8 +1119,7 @@ ${
             }
             boomioService
               .signal('', 'user_info', {
-                emails_consent:
-                  this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
+                emails_consent: checkboxChange,
                 user_email: emailInput?.value,
                 user_name: playerNameInput?.value,
                 game_code: this.game_code,
@@ -1140,7 +1181,7 @@ ${
                     const canvas = document.getElementById('boomio-runner-canvas');
 
                     canvas.style.transition = 'filter 0.6s ease';
-                    canvas.style.filter = 'blur(2px)';
+                    canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
                     const inputContainer = document.querySelector('.input-container');
                     document.getElementById('control-button').style.transition = 'opacity 2s ease';
                     document.getElementById('control-button').style.opacity = 1;
@@ -1216,9 +1257,10 @@ ${
         if (this.showCompetitiveRegistration) {
           boomioService
             .signal('ROUND_FINISHED', 'signal', {
-              score: this.currentScore,
+              score: Math.floor(this.currentScore),
             })
             .then((response) => {
+              gameStarted = false;
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
                   window.Boomio.logEvent('game_finished', JSON.stringify(response));
@@ -1256,7 +1298,7 @@ ${
           }
           const canvas = document.getElementById('boomio-runner-canvas');
           canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+          canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
           this.language === 'LV' ? 0.4 : 0.37;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1271,7 +1313,7 @@ ${
           const inputContainer = document.querySelector('.input-container1');
           const canvas = document.getElementById('boomio-runner-canvas');
           canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+          canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
           document.getElementById('').style.display = 'block';
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
@@ -1314,22 +1356,31 @@ ${
       document.removeEventListener('keyup', keyLeftHandler, false);
     };
     const PauseToggle = () => {
-      const toggleHide = (block) => block.classList.toggle('boomio-hide');
+      // const toggleHide = (block) => block.classList.toggle('boomio-hide');
+      console.log('paused');
+      // stopGame ? Start() : Stop();
 
-      stopGame ? Start() : Stop();
-      pause = pauseBlock.classList.contains('boomio-hide') ? true : false;
-      toggleHide(pauseBlock);
-      toggleHide(scoreBlock);
-
-      toggleHide(pauseButton);
-      toggleHide(lifeContainer);
+      // pause = pauseBlock.classList.contains('boomio-hide') ? true : false;
+      // toggleHide(pauseBlock);
+      // toggleHide(scoreBlock);
+      // toggleHide(pauseButton);
+      // toggleHide(lifeContainer);
     };
-
+    function requestFullscreen() {
+      const container = document.getElementById('boomio-runner-container');
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen(); // Safari
+      } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen(); // IE11
+      }
+    }
     const PlayButtonActivate = () => {
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
 
-      if (!this.gameStarted) {
+      if (!gameStarted) {
         let canvas = document.getElementById('boomio-runner-canvas');
 
         const inputContainer = document.querySelector('.input-container');
@@ -1357,7 +1408,6 @@ ${
 
           this.clickEventHandler = () => {
             const tutorial = document.querySelector('.tutorial');
-
             tutorial.style.display = 'none';
             const numbers = document.querySelector('.numbers');
             const new_highscore = document.querySelector('.new_highscore');
@@ -1370,25 +1420,9 @@ ${
 
             numbers.style.display = 'none';
 
-            if (this.gameStarted === false) {
-              if (
-                this.showCompetitiveRegistration === 'competition' ||
-                this.showCompetitiveRegistration === 'points' ||
-                this.showCompetitiveRegistration === 'collectable'
-              ) {
-                boomioService
-                  .signal('ROUND_STARTED', 'signal')
-                  .then((response) => {
-                    this.gameStarted = true;
-                  })
-                  .catch((error) => {
-                    console.error('Error:', error);
-                  });
-              }
-            }
             if (this.gameCount === 0) {
               this.init();
-
+              console.log('init');
               this.gameCount++;
 
               const canvas = document.getElementById('boomio-runner-canvas');
@@ -1425,8 +1459,21 @@ ${
         controlButton.style.display = 'none';
         controlButton.style.opacity = 0;
         setTimeout(() => {
+          if (
+            this.showCompetitiveRegistration === 'competition' ||
+            this.showCompetitiveRegistration === 'points' ||
+            this.showCompetitiveRegistration === 'collectable'
+          ) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                gameStarted = true;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
           console.log('started');
-          this.gameStarted = true;
           const toggleHide = (block) => block.classList.toggle('boomio-hide');
 
           ResetGlobalVariables();
@@ -1507,7 +1554,18 @@ ${
       const checkboxImgChange = document.getElementById('privacyCheckboxImg');
       checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
     });
-    document.getElementById('startButtonClick').addEventListener('click', PlayButtonActivate);
+
+    const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+    checkboxImg2.addEventListener('click', () => {
+      this.checkboxChange2 = !this.checkboxChange2;
+      const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+      checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+    });
+
+    document.getElementById('startButtonClick').addEventListener('click', () => {
+      PlayButtonActivate();
+      // your existing start logic here
+    });
     document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-pauseButton').addEventListener('click', PauseToggle);
@@ -1759,6 +1817,9 @@ ${
     }
 
     function GameOver() {
+      if (gameOverAlreadyHandled) return; // ✅ prevent multiple runs
+      gameOverAlreadyHandled = true;
+
       player.shieldTimer = 0;
       player.boostTimer = 0;
       Stop();
@@ -1783,6 +1844,7 @@ ${
                 toggleHide(lifeContainer);
 
                 showCompetitiveRegistrationTable();
+
                 console.log('over');
                 rightButtonsBlock.classList.add('boomio-hide');
                 leftButtonsBlock.classList.add('boomio-hide');
@@ -1809,6 +1871,17 @@ ${
     }
 
     function Replay() {
+      gameOverAlreadyHandled = false;
+
+      boomioService
+        .signal('ROUND_STARTED', 'signal')
+        .then((response) => {
+          gameStarted = true;
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
 
@@ -1925,7 +1998,7 @@ ${
         }
 
         // Adjust object placement condition
-        if (objects.length == 0 || objects.at(-1).x < canvas.width) {
+        if (objects.length == 0 || objects.at(-1).x < canvas.width - 200) {
           objects.push(
             new GameObject(
               barriersSprites[0],
@@ -2056,7 +2129,7 @@ ${
           GameOver();
         }
 
-        speed += 0.002;
+        speed += 0.0015;
 
         Draw();
         Move();
