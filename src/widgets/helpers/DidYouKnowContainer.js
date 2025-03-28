@@ -202,6 +202,7 @@ export class DidYouKnowContainer {
         item6Dobilo,
         item7Dobilo,
         item8Dobilo,
+        item9Dobilo,
       ];
     }
     this.collectablesLinks = [];
@@ -310,6 +311,19 @@ export class DidYouKnowContainer {
         item10pegasas,
         item11pegasas,
         item12pegasas,
+      ];
+    } else if (this.prop === 'Dobilo') {
+      // Handle Glass collectables
+      this.collectables = [
+        item1Dobilo,
+        item2Dobilo,
+        item3Dobilo,
+        item4Dobilo,
+        item5Dobilo,
+        item6Dobilo,
+        item7Dobilo,
+        item8Dobilo,
+        item9Dobilo,
       ];
     }
 
@@ -460,14 +474,20 @@ ${
           : this.prop === 'Pieno Žvaigždės'
           ? ''
           : this.prop === 'Dobilo'
-          ? 'VISI PRODUKTAI'
+          ? `<a 
+  onclick="event.stopPropagation();" 
+  target="_blank" 
+  href="https://pienozvaigzdes.lt/lt/20_miau" 
+  style="color:white;font-weight:900;font-size:16px;">
+  VISI PRODUKTAI
+</a>`
           : ''
       }${
         this.prop === 'Pieno Žvaigždės'
           ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
-  href="https://pienozvaigzdes.lt/lt/20_miau" 
+  href="https://www.zpienas.lt/dobilas/" 
   style="color:white">
   DAUGIAU MIAU!
 </a> `
