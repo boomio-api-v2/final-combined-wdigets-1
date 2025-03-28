@@ -148,7 +148,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Perlas GO' && this.scoreTable?.user_best_place <= 20) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10) ||
-        (this.prop === 'Dobilo' && this.scoreTable?.user_best_place <= 3) ||
+        (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50)
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
@@ -312,7 +312,7 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink savo rezultatą – net 20 geriausių žaidėjų, </br> užsiregistravusių „Perlas Go“ programėlėje ar savitarnos</br> svetainėje, kiekvieną savaitę laimės po 10 € vertės „Wolt“ </br> dovanų kuponą! '
                 : this.prop === 'Dentsu'
                 ? 'Geriausią rezultatą pasiekęs žaidėjas laimės mėnesio trukmės </br> tiesioginį bendravimą su tiksline auditorija per „Teams“! Jei </br> laimėsi, informuosime tave registracijos metu nurodytu el. paštu.'
-                : this.prop === 'Dobilo'
+                : this.prop === 'Zemaitijos Pienas'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
                 : ''
             }</div>

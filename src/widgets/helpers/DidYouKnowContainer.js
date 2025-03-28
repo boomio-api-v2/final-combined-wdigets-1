@@ -191,7 +191,7 @@ export class DidYouKnowContainer {
         item11pegasas,
         item12pegasas,
       ];
-    } else if (this.prop === 'Dobilo') {
+    } else if (this.prop === 'Zemaitijos Pienas') {
       // Handle Glass collectables
       this.collectables = [
         item1Dobilo,
@@ -312,7 +312,7 @@ export class DidYouKnowContainer {
         item11pegasas,
         item12pegasas,
       ];
-    } else if (this.prop === 'Dobilo') {
+    } else if (this.prop === 'Zemaitijos Pienas') {
       // Handle Glass collectables
       this.collectables = [
         item1Dobilo,
@@ -460,7 +460,7 @@ ${
 } skirtus konteinerius.`
           : this.prop === 'Pegasas'
           ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
-          : this.prop === 'Dobilo'
+          : this.prop === 'Zemaitijos Pienas'
           ? 'Sertifikuotas kokybės garantas'
           : 'SU MIAU GYVENT SMAGIAU'
       }</div>
@@ -473,7 +473,7 @@ ${
           ? ''
           : this.prop === 'Pieno Žvaigždės'
           ? ''
-          : this.prop === 'Dobilo'
+          : this.prop === 'Zemaitijos Pienas'
           ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
@@ -523,7 +523,7 @@ ${
       ? ''
       : this.prop === 'Pieno Žvaigždės'
       ? ''
-      : this.prop === 'Dobilo'
+      : this.prop === 'Zemaitijos Pienas'
       ? ''
       : 'https://gamtosateitis.lt/rusiavimo-abc/'
   }
@@ -639,7 +639,7 @@ ${
         ? 'Ar visus RAGAVAI?'
         : this.prop === 'Pegasas'
         ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
-        : this.prop === 'Dobilo'
+        : this.prop === 'Zemaitijos Pienas'
         ? 'Ar visus RAGAVAI?'
         : 'Ar žinojai?'
     }</div>

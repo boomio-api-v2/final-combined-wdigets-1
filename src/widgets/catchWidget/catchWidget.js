@@ -189,7 +189,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Dobilo';
+    this.customer = this.config.business_name ? this.config.business_name : 'Zemaitijos Pienas';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -229,7 +229,7 @@ class CatchGame {
         ? backgroundAkropolis
         : this.customer === 'Daumantu'
         ? backgroundDaumantu
-        : this.customer === 'Dobilo'
+        : this.customer === 'Zemaitijos Pienas'
         ? backgroundDobilo
         : background
     }) center`;
@@ -246,7 +246,7 @@ class CatchGame {
       this.customer === 'Pegasas' ||
       this.customer === 'Akropolis' ||
       this.customer === 'Daumantu' ||
-      this.customer === 'Dobilo'
+      this.customer === 'Zemaitijos Pienas'
         ? 3
         : 5;
     this.startCatch();
@@ -453,7 +453,7 @@ class CatchGame {
         ? '#F40000'
         : this.customer === 'Daumantu'
         ? '#DD2326'
-        : this.customer === 'Dobilo'
+        : this.customer === 'Zemaitijos Pienas'
         ? '#004C22'
         : '#18904A'
     };border-radius:35px">
@@ -483,7 +483,7 @@ class CatchGame {
         ? '#F40000'
         : this.customer === 'Daumantu'
         ? '#DD2326'
-        : this.customer === 'Dobilo'
+        : this.customer === 'Zemaitijos Pienas'
         ? '#004C22'
         : '#18904A'
     };border-radius:35px">
@@ -511,7 +511,7 @@ class CatchGame {
         ? introAkropolis
         : this.customer === 'Daumantu'
         ? introDaumantu
-        : this.customer === 'Dobilo'
+        : this.customer === 'Zemaitijos Pienas'
         ? introDobilo
         : intro
     } alt="Image Description" style="z-index:4;width:${
@@ -604,7 +604,7 @@ class CatchGame {
       this.customer.includes('Gamtos Ateitis') ||
       this.customer === 'Pieno Žvaigždės' ||
       this.customer === 'Pegasas' ||
-      this.customer === 'Dobilo'
+      this.customer === 'Zemaitijos Pienas'
     ) {
       const gameContainer = document.querySelector('.game-container');
 
@@ -652,6 +652,8 @@ class CatchGame {
               document.getElementById('competition-checkbox-error').innerText =
                 this.customer === 'Daumantu'
                   ? 'Registruojantis, privaloma sutikti gauti "Daumantų” naujienas, kad atiduotume  laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+                  : this.customer === 'Zemaitijos Pienas'
+                  ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
                   : this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
@@ -1219,7 +1221,7 @@ class CatchGame {
       this.customer === 'Pieno Žvaigždės' ||
       this.customer === 'Akropolis' ||
       this.customer === 'Daumantu' ||
-      this.customer === 'Dobilo'
+      this.customer === 'Zemaitijos Pienas'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
@@ -1333,7 +1335,7 @@ class CatchGame {
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Dobilo'
+        this.customer === 'Zemaitijos Pienas'
       ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
@@ -1457,7 +1459,7 @@ class CatchGame {
               this.customer.includes('Gamtos Ateitis') ||
               this.customer === 'Pieno Žvaigždės' ||
               this.customer === 'Pegasas' ||
-              this.customer === 'Dobilo'
+              this.customer === 'Zemaitijos Pienas'
             ) {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else if (this.customer === 'Akropolis') {
@@ -1582,7 +1584,7 @@ class Player {
       ? playerAkropolis
       : customer === 'Daumantu'
       ? playerDaumantu
-      : customer === 'Dobilo'
+      : customer === 'Zemaitijos Pienas'
       ? playerDobilo
       : player;
     this.defaultscore = defaultscore;
@@ -1633,7 +1635,7 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 5);
       }
-    } else if (this.customer === 'Daumantu' || this.customer === 'Dobilo') {
+    } else if (this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas') {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 8 + 5);
       } else {
@@ -1673,7 +1675,7 @@ class Fruit {
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Dobilo'
+        this.customer === 'Zemaitijos Pienas'
           ? 3
           : 1),
     );
@@ -1809,7 +1811,7 @@ class Fruit {
         item12Daumantu,
         item13Daumantu,
       ];
-    } else if (this.customer && this.customer === 'Dobilo') {
+    } else if (this.customer && this.customer === 'Zemaitijos Pienas') {
       this.images = [
         item1Dobilo,
         item2Dobilo,
@@ -1970,7 +1972,7 @@ class Fruit {
         'item12Daumantu',
         'item13Daumantu',
       ][this.fruitNumber];
-    } else if (this.customer === 'Dobilo') {
+    } else if (this.customer === 'Zemaitijos Pienas') {
       this.fruitType = [
         'item1Dobilo',
         'item2Dobilo',
@@ -2013,7 +2015,7 @@ class Fruit {
       ];
     } else if (this.customer === 'Akropolis') {
       this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
-    } else if (this.customer === 'Daumantu' || this.customer === 'Dobilo') {
+    } else if (this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
@@ -2032,7 +2034,7 @@ class Fruit {
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Dobilo'
+        this.customer === 'Zemaitijos Pienas'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
@@ -2213,7 +2215,7 @@ class Fruit {
           ? 14
           : this.customer === 'Akropolis'
           ? 10
-          : this.customer === 'Daumantu' || this.customer === 'Dobilo'
+          : this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas'
           ? 13
           : 5),
     );
@@ -2223,7 +2225,7 @@ class Fruit {
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Dobilo'
+        this.customer === 'Zemaitijos Pienas'
           ? 2.5
           : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),
