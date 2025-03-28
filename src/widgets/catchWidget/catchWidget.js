@@ -245,7 +245,8 @@ class CatchGame {
       this.customer === 'Eurovaistine' ||
       this.customer === 'Pegasas' ||
       this.customer === 'Akropolis' ||
-      this.customer === 'Daumantu'
+      this.customer === 'Daumantu' ||
+      this.customer === 'Dobilo'
         ? 3
         : 5;
     this.startCatch();
@@ -452,6 +453,8 @@ class CatchGame {
         ? '#F40000'
         : this.customer === 'Daumantu'
         ? '#DD2326'
+        : this.customer === 'Dobilo'
+        ? '#004C22'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -480,6 +483,8 @@ class CatchGame {
         ? '#F40000'
         : this.customer === 'Daumantu'
         ? '#DD2326'
+        : this.customer === 'Dobilo'
+        ? '#004C22'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -538,7 +543,7 @@ class CatchGame {
     <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:block;width:25px;height:25px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('catch').outerHTML}
 
         <canvas id="boomio-catch-canvas" width=${
           document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -598,7 +603,8 @@ class CatchGame {
     if (
       this.customer.includes('Gamtos Ateitis') ||
       this.customer === 'Pieno Žvaigždės' ||
-      this.customer === 'Pegasas'
+      this.customer === 'Pegasas' ||
+      this.customer === 'Dobilo'
     ) {
       const gameContainer = document.querySelector('.game-container');
 
@@ -1212,7 +1218,8 @@ class CatchGame {
       this.customer.includes('Gamtos Ateitis') ||
       this.customer === 'Pieno Žvaigždės' ||
       this.customer === 'Akropolis' ||
-      this.customer === 'Daumantu'
+      this.customer === 'Daumantu' ||
+      this.customer === 'Dobilo'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
@@ -1325,7 +1332,8 @@ class CatchGame {
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
-        this.customer === 'Daumantu'
+        this.customer === 'Daumantu' ||
+        this.customer === 'Dobilo'
       ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
@@ -1448,7 +1456,8 @@ class CatchGame {
             if (
               this.customer.includes('Gamtos Ateitis') ||
               this.customer === 'Pieno Žvaigždės' ||
-              this.customer === 'Pegasas'
+              this.customer === 'Pegasas' ||
+              this.customer === 'Dobilo'
             ) {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else if (this.customer === 'Akropolis') {
@@ -1624,7 +1633,7 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 5);
       }
-    } else if (this.customer === 'Daumantu') {
+    } else if (this.customer === 'Daumantu' || this.customer === 'Dobilo') {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 8 + 5);
       } else {
@@ -1663,7 +1672,8 @@ class Fruit {
       Math.random() * 3 +
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
-        this.customer === 'Daumantu'
+        this.customer === 'Daumantu' ||
+        this.customer === 'Dobilo'
           ? 3
           : 1),
     );
@@ -2003,7 +2013,7 @@ class Fruit {
       ];
     } else if (this.customer === 'Akropolis') {
       this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
-    } else if (this.customer === 'Daumantu') {
+    } else if (this.customer === 'Daumantu' || this.customer === 'Dobilo') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
@@ -2021,7 +2031,8 @@ class Fruit {
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
-        this.customer === 'Daumantu'
+        this.customer === 'Daumantu' ||
+        this.customer === 'Dobilo'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
@@ -2202,7 +2213,7 @@ class Fruit {
           ? 14
           : this.customer === 'Akropolis'
           ? 10
-          : this.customer === 'Daumantu'
+          : this.customer === 'Daumantu' || this.customer === 'Dobilo'
           ? 13
           : 5),
     );
@@ -2211,7 +2222,8 @@ class Fruit {
       (Math.random() * 2 +
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
-        this.customer === 'Daumantu'
+        this.customer === 'Daumantu' ||
+        this.customer === 'Dobilo'
           ? 2.5
           : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),

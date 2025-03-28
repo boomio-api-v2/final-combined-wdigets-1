@@ -416,3 +416,27 @@ export const copy = [
 export const whatsapp = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/shareContainer/whatsapp.png',
 ];
+
+export const item1Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item1Dobilo.png';
+
+export const item2Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item2Dobilo.png';
+
+export const item3Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item3Dobilo.png';
+
+export const item4Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item4Dobilo.png';
+
+export const item5Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item5Dobilo.png';
+
+export const item6Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item6Dobilo.png';
+
+export const item7Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item7Dobilo.png';
+
+export const item8Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item8Dobilo.png';

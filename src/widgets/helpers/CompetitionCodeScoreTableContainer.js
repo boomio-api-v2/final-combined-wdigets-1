@@ -502,19 +502,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
-                : this.prop === 'Makalius'
-                ? ''
-                : this.prop === 'Akropolis'
-                ? ''
-                : this.prop === 'Pegasas'
-                ? ''
-                : this.prop.includes('Gamtos Ateitis')
-                ? ''
-                : this.prop === 'Pieno Žvaigždės'
-                ? ''
-                : this.prop === 'Daumantu'
-                ? ''
-                : 'Apie laimėjimą informuosime nurodytu el. paštu.'
+                : ''
             } </div> `
           : `<div style="width:100%; top: 390px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Pigu.lt' && this.language === 'EN'
@@ -697,16 +685,7 @@ export class CompetitionCodeScoreTableContainer {
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
-                : this.prop === 'Makalius' ||
-                  this.prop === 'Unisend' ||
-                  this.prop === 'Akropolis' ||
-                  this.prop === 'Pieno Žvaigždės' ||
-                  this.prop.includes('Gamtos Ateitis') ||
-                  this.prop === 'Daumantu'
-                ? ''
-                : this.prop === 'Pegasas'
-                ? ''
-                : 'Apie laimėjimą informuosime nurodytu el. paštu.'
+                : ''
             } </div>
         `
       }

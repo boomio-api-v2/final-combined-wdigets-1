@@ -118,13 +118,7 @@ export class InputContainer {
                   ? 'Vairuokite,'
                   : this.prop === 'Eurovaistine'
                   ? 'SAŅEMT'
-                  : this.prop === 'Akropolis'
-                  ? 'Gaudyk'
-                  : this.prop === 'Pieno Žvaigždės'
-                  ? 'Gaudyk'
-                  : this.prop.includes('Gamtos Ateitis')
-                  ? 'Gaudyk'
-                  : this.prop === 'Pegasas'
+                  : this.game === 'catch'
                   ? 'Gaudyk'
                   : this.prop === 'SaludSA'
                   ? 'Presiona'
@@ -234,6 +228,8 @@ export class InputContainer {
       ? 'kad skristum.'
       : this.prop === 'Dentsu'
       ? 'klavišų pagalba ir rink taškus.'
+      : this.prop === 'Dobilo'
+      ? 'TIK Dobilo produktus.'
       : 'kad skristum.'
   }
 </div>
@@ -317,7 +313,7 @@ export class InputContainer {
                 ? 'FOR BETTER RESULT'
                 : this.prop === 'SaludSA'
                 ? '3 veces para mejorar'
-                : 'dėl geresnio rezultato.'
+                : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
             </div>
@@ -473,6 +469,8 @@ export class InputContainer {
                 ? 'kasdien!'
                 : this.prop === 'Dentsu'
                 ? '1 mėn. prieigą  prie interaktyvios tikslinės auditorijos!'
+                : this.prop === 'Dobilo'
+                ? 'Dobilo prizus!'
                 : 'Prizus!'
             }
           </div>
@@ -504,6 +502,7 @@ ${
       this.prop === 'Pigu.lt' ||
       this.prop === 'SaludSA' ||
       this.prop === 'Vilvi' ||
+      this.prop === 'Dobilo' ||
       this.prop === 'Ikea'
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
@@ -550,6 +549,8 @@ ${
               ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
               : this.prop.includes('Gamtos Ateitis')
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
+              : this.prop === 'Dobilo'
+              ? 'href=https://www.boomio.com/zemaitijos-pienas-zaidimo-taisykles'
               : ''
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'

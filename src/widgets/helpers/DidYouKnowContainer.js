@@ -90,6 +90,15 @@ import {
   item11pegasas,
   item12pegasas,
   closeDidYouKnow,
+  item1Dobilo,
+  item2Dobilo,
+  item3Dobilo,
+  item4Dobilo,
+  item5Dobilo,
+  item6Dobilo,
+  item7Dobilo,
+  item8Dobilo,
+  item9Dobilo,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -181,6 +190,18 @@ export class DidYouKnowContainer {
         item10pegasas,
         item11pegasas,
         item12pegasas,
+      ];
+    } else if (this.prop === 'Dobilo') {
+      // Handle Glass collectables
+      this.collectables = [
+        item1Dobilo,
+        item2Dobilo,
+        item3Dobilo,
+        item4Dobilo,
+        item5Dobilo,
+        item6Dobilo,
+        item7Dobilo,
+        item8Dobilo,
       ];
     }
     this.collectablesLinks = [];
@@ -425,6 +446,8 @@ ${
 } skirtus konteinerius.`
           : this.prop === 'Pegasas'
           ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
+          : this.prop === 'Dobilo'
+          ? 'Sertifikuotas kokybės garantas'
           : 'SU MIAU GYVENT SMAGIAU'
       }</div>
               <div class="bomio-second-line" style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
@@ -436,7 +459,9 @@ ${
           ? ''
           : this.prop === 'Pieno Žvaigždės'
           ? ''
-          : 'Daugiau apie tinkamą  rūšiavimą sužinosi puslapyje'
+          : this.prop === 'Dobilo'
+          ? 'VISI PRODUKTAI'
+          : ''
       }${
         this.prop === 'Pieno Žvaigždės'
           ? `<a 
@@ -477,6 +502,8 @@ ${
     this.prop === 'Pegasas'
       ? ''
       : this.prop === 'Pieno Žvaigždės'
+      ? ''
+      : this.prop === 'Dobilo'
       ? ''
       : 'https://gamtosateitis.lt/rusiavimo-abc/'
   }
@@ -592,6 +619,8 @@ ${
         ? 'Ar visus RAGAVAI?'
         : this.prop === 'Pegasas'
         ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
+        : this.prop === 'Dobilo'
+        ? 'Ar visus RAGAVAI?'
         : 'Ar žinojai?'
     }</div>
       
