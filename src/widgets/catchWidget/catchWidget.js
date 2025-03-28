@@ -155,6 +155,22 @@ import {
   item11Daumantu,
   item12Daumantu,
   item13Daumantu,
+  introDobilo,
+  backgroundDobilo,
+  playerDobilo,
+  item1Dobilo,
+  item2Dobilo,
+  item3Dobilo,
+  item4Dobilo,
+  item5Dobilo,
+  item6Dobilo,
+  item7Dobilo,
+  item8Dobilo,
+  item9Dobilo,
+  item10Dobilo,
+  item11Dobilo,
+  item12Dobilo,
+  item13Dobilo,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -173,7 +189,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Zemaitijos Pienas';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -213,6 +229,8 @@ class CatchGame {
         ? backgroundAkropolis
         : this.customer === 'Daumantu'
         ? backgroundDaumantu
+        : this.customer === 'Zemaitijos Pienas'
+        ? backgroundDobilo
         : background
     }) center`;
 
@@ -227,7 +245,8 @@ class CatchGame {
       this.customer === 'Eurovaistine' ||
       this.customer === 'Pegasas' ||
       this.customer === 'Akropolis' ||
-      this.customer === 'Daumantu'
+      this.customer === 'Daumantu' ||
+      this.customer === 'Zemaitijos Pienas'
         ? 3
         : 5;
     this.startCatch();
@@ -434,6 +453,8 @@ class CatchGame {
         ? '#F40000'
         : this.customer === 'Daumantu'
         ? '#DD2326'
+        : this.customer === 'Zemaitijos Pienas'
+        ? '#004C22'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -462,6 +483,8 @@ class CatchGame {
         ? '#F40000'
         : this.customer === 'Daumantu'
         ? '#DD2326'
+        : this.customer === 'Zemaitijos Pienas'
+        ? '#004C22'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -488,6 +511,8 @@ class CatchGame {
         ? introAkropolis
         : this.customer === 'Daumantu'
         ? introDaumantu
+        : this.customer === 'Zemaitijos Pienas'
+        ? introDobilo
         : intro
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -518,7 +543,7 @@ class CatchGame {
     <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:block;width:25px;height:25px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('catch').outerHTML}
 
         <canvas id="boomio-catch-canvas" width=${
           document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -578,7 +603,8 @@ class CatchGame {
     if (
       this.customer.includes('Gamtos Ateitis') ||
       this.customer === 'Pieno Žvaigždės' ||
-      this.customer === 'Pegasas'
+      this.customer === 'Pegasas' ||
+      this.customer === 'Zemaitijos Pienas'
     ) {
       const gameContainer = document.querySelector('.game-container');
 
@@ -626,6 +652,8 @@ class CatchGame {
               document.getElementById('competition-checkbox-error').innerText =
                 this.customer === 'Daumantu'
                   ? 'Registruojantis, privaloma sutikti gauti "Daumantų” naujienas, kad atiduotume  laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+                  : this.customer === 'Zemaitijos Pienas'
+                  ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
                   : this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
@@ -1192,7 +1220,8 @@ class CatchGame {
       this.customer.includes('Gamtos Ateitis') ||
       this.customer === 'Pieno Žvaigždės' ||
       this.customer === 'Akropolis' ||
-      this.customer === 'Daumantu'
+      this.customer === 'Daumantu' ||
+      this.customer === 'Zemaitijos Pienas'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
@@ -1305,7 +1334,8 @@ class CatchGame {
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
-        this.customer === 'Daumantu'
+        this.customer === 'Daumantu' ||
+        this.customer === 'Zemaitijos Pienas'
       ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
@@ -1428,7 +1458,8 @@ class CatchGame {
             if (
               this.customer.includes('Gamtos Ateitis') ||
               this.customer === 'Pieno Žvaigždės' ||
-              this.customer === 'Pegasas'
+              this.customer === 'Pegasas' ||
+              this.customer === 'Zemaitijos Pienas'
             ) {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else if (this.customer === 'Akropolis') {
@@ -1553,6 +1584,8 @@ class Player {
       ? playerAkropolis
       : customer === 'Daumantu'
       ? playerDaumantu
+      : customer === 'Zemaitijos Pienas'
+      ? playerDobilo
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1602,7 +1635,7 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 5);
       }
-    } else if (this.customer === 'Daumantu') {
+    } else if (this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas') {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 8 + 5);
       } else {
@@ -1641,7 +1674,8 @@ class Fruit {
       Math.random() * 3 +
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
-        this.customer === 'Daumantu'
+        this.customer === 'Daumantu' ||
+        this.customer === 'Zemaitijos Pienas'
           ? 3
           : 1),
     );
@@ -1777,6 +1811,22 @@ class Fruit {
         item12Daumantu,
         item13Daumantu,
       ];
+    } else if (this.customer && this.customer === 'Zemaitijos Pienas') {
+      this.images = [
+        item1Dobilo,
+        item2Dobilo,
+        item3Dobilo,
+        item4Dobilo,
+        item5Dobilo,
+        item6Dobilo,
+        item7Dobilo,
+        item8Dobilo,
+        item9Dobilo,
+        item10Dobilo,
+        item11Dobilo,
+        item12Dobilo,
+        item13Dobilo,
+      ];
     } else {
       // Default catch images if none of the above conditions are met
       this.images = [
@@ -1906,7 +1956,7 @@ class Fruit {
         'item9Akropolis',
         'item10Akropolis',
       ][this.fruitNumber];
-    } else if (this.customer === 'Akropolis') {
+    } else if (this.customer === 'Daumantu') {
       this.fruitType = [
         'item1Daumantu',
         'item2Daumantu',
@@ -1917,9 +1967,26 @@ class Fruit {
         'item7Daumantu',
         'item8Daumantu',
         'item9Daumantu',
+        'item10Daumantu',
         'item11Daumantu',
         'item12Daumantu',
         'item13Daumantu',
+      ][this.fruitNumber];
+    } else if (this.customer === 'Zemaitijos Pienas') {
+      this.fruitType = [
+        'item1Dobilo',
+        'item2Dobilo',
+        'item3Dobilo',
+        'item4Dobilo',
+        'item5Dobilo',
+        'item6Dobilo',
+        'item7Dobilo',
+        'item8Dobilo',
+        'item9Dobilo',
+        'item10Dobilo',
+        'item11Dobilo',
+        'item12Dobilo',
+        'item13Dobilo',
       ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
@@ -1948,7 +2015,7 @@ class Fruit {
       ];
     } else if (this.customer === 'Akropolis') {
       this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
-    } else if (this.customer === 'Daumantu') {
+    } else if (this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
@@ -1966,7 +2033,8 @@ class Fruit {
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
-        this.customer === 'Daumantu'
+        this.customer === 'Daumantu' ||
+        this.customer === 'Zemaitijos Pienas'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
@@ -2147,7 +2215,7 @@ class Fruit {
           ? 14
           : this.customer === 'Akropolis'
           ? 10
-          : this.customer === 'Daumantu'
+          : this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas'
           ? 13
           : 5),
     );
@@ -2156,7 +2224,8 @@ class Fruit {
       (Math.random() * 2 +
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
-        this.customer === 'Daumantu'
+        this.customer === 'Daumantu' ||
+        this.customer === 'Zemaitijos Pienas'
           ? 2.5
           : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),

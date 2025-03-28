@@ -955,7 +955,7 @@ ${
         const canvas = document.getElementById('boomio-runner-canvas');
         this.customer === 'Pegasas' ? 0.8 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
+        canvas.style.filter = 'grayscale(20%) blur(2px) brightness(85%)';
 
         const inpuRegisterContainer = document.querySelector('.input-register-container');
         inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1181,7 +1181,7 @@ ${
                     const canvas = document.getElementById('boomio-runner-canvas');
 
                     canvas.style.transition = 'filter 0.6s ease';
-                    canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
+                    canvas.style.filter = 'grayscale(20%) blur(2px) brightness(85%)';
                     const inputContainer = document.querySelector('.input-container');
                     document.getElementById('control-button').style.transition = 'opacity 2s ease';
                     document.getElementById('control-button').style.opacity = 1;
@@ -1260,6 +1260,16 @@ ${
               score: Math.floor(this.currentScore),
             })
             .then((response) => {
+              const mainMenu = document.getElementsByClassName('boomio-runner-mainMenu')[0];
+              mainMenu.style.setProperty('display', 'block', 'important');
+              // Set initial opacity to 0
+              mainMenu.style.setProperty('opacity', '0', 'important');
+              // Force reflow to ensure the opacity change takes effect
+              void mainMenu.offsetWidth;
+              // Add the transition with !important and set the opacity to 1 over 0.5s
+              mainMenu.style.setProperty('transition', 'opacity 0.5s ease-in-out', 'important');
+              mainMenu.style.setProperty('opacity', '1', 'important');
+
               gameStarted = false;
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
@@ -1298,7 +1308,7 @@ ${
           }
           const canvas = document.getElementById('boomio-runner-canvas');
           canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
+          canvas.style.filter = 'grayscale(20%) blur(2px) brightness(85%)';
           this.language === 'LV' ? 0.4 : 0.37;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1313,7 +1323,7 @@ ${
           const inputContainer = document.querySelector('.input-container1');
           const canvas = document.getElementById('boomio-runner-canvas');
           canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'grayscale(30%) blur(2px) brightness(80%)';
+          canvas.style.filter = 'grayscale(20%) blur(2px) brightness(85%)';
           document.getElementById('').style.display = 'block';
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
@@ -1888,6 +1898,26 @@ ${
       if (gameOver) {
         localStorage.setItem('myCoins', Number(localStorage.getItem('myCoins')) + Number(coins));
         mainCoinBlock.innerText = localStorage.getItem('myCoins');
+
+        // (Optionally update myCoins etc. as needed)
+        const mainMenu = document.getElementsByClassName('boomio-runner-mainMenu')[0];
+
+        // Ensure the menu is currently shown (opacity 1)
+        mainMenu.style.setProperty('display', 'block', 'important');
+        mainMenu.style.setProperty('opacity', '1', 'important');
+
+        // Force reflow
+        void mainMenu.offsetWidth;
+
+        // Set up transition to fade from 1 to 0 over 0.5s
+        mainMenu.style.setProperty('transition', 'opacity 0.5s ease-in-out', 'important');
+        mainMenu.style.setProperty('opacity', '0', 'important');
+
+        // Once the fade-out transition is complete, hide the element
+        setTimeout(() => {
+          mainMenu.style.setProperty('display', 'none', 'important');
+        }, 500);
+
         // toggleHide(gameOverBlock);
         toggleHide(pauseButton);
         toggleHide(scoreBlock);

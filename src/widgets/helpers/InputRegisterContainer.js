@@ -87,13 +87,16 @@ export class InputRegisterContainer {
       </div>
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
-       } ;left: 34px; top: ${'350px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+       } ;left: 34px; top: ${
+      this.prop === 'Zemaitijos Pienas' ? '360px' : '350px'
+    }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
       this.prop === 'Perlas GO' ||
       this.prop === 'Daumantu' ||
       this.prop === 'Dentsu' ||
+      this.prop === 'Zemaitijos Pienas' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -136,6 +139,8 @@ export class InputRegisterContainer {
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
         : this.prop === 'Dentsu'
         ? 'Sutinku gauti Dentsu ir Boomio naujienas.'
+        : this.prop === 'Zemaitijos Pienas'
+        ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
@@ -236,6 +241,8 @@ export class InputRegisterContainer {
         ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/akcijos-zaisk-ir-laimek-taisykles/'} style="color:white;text-decoration: underline;"> akcijos taisyklėmis</a> ir „Perlas Go“ <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/privatumo-politika/'} style="color:white;text-decoration: underline;">privatumo politika.</a> `
         : this.prop === 'Corepetitus'
         ? 'Sutinku su'
+        : this.prop === 'Zemaitijos Pienas'
+        ? 'Sutinku su „Žemaitijos pienas“'
         : this.prop === 'Vilvi'
         ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
         : this.prop === 'Dentsu'
@@ -275,6 +282,8 @@ export class InputRegisterContainer {
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : this.prop === 'Dentsu'
               ? 'https://www.dentsu.com/our-policies/privacy-notices'
+              : this.prop === 'Zemaitijos Pienas'
+              ? 'https://www.zpienas.lt/privatumo-politika/'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'

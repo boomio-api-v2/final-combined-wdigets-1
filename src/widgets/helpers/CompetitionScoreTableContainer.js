@@ -44,12 +44,12 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
-            this.prop === 'Perlas GO' ||
             this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym' ||
             this.prop === 'Perlas GO' ||
             this.prop === 'Daumantu' ||
-            this.prop === 'Dentsu'
+            this.prop === 'Dentsu' ||
+            this.prop === 'Zemaitijos Pienas'
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
           : this.prop === 'Barbora' ||
@@ -62,7 +62,8 @@ export class CompetitionScoreTableContainer {
             this.prop === 'LemonGym' ||
             this.prop === 'Perlas GO' ||
             this.prop === 'Daumantu' ||
-            this.prop === 'Dentsu'
+            this.prop === 'Dentsu' ||
+            this.prop === 'Zemaitijos Pienas'
           ? 'white'
           : 'white';
       const boxShadow =
@@ -98,7 +99,8 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'LemonGym' ||
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Daumantu' ||
-                this.prop === 'Dentsu'
+                this.prop === 'Dentsu' ||
+                this.prop === 'Zemaitijos Pienas'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
@@ -118,7 +120,8 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'LemonGym' ||
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Daumantu' ||
-                this.prop === 'Dentsu'
+                this.prop === 'Dentsu' ||
+                this.prop === 'Zemaitijos Pienas'
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
@@ -148,6 +151,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Perlas GO' && this.scoreTable?.user_best_place <= 20) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10) ||
+        (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50)
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
@@ -175,7 +179,11 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: ${'450px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: ${
-              this.prop !== 'Akropolis' && this.prop !== 'Perlas GO' ? 'uppercase' : 'none'
+              this.prop !== 'Akropolis' &&
+              this.prop !== 'Perlas GO' &&
+              this.prop !== 'Zemaitijos Pienas'
+                ? 'uppercase'
+                : 'none'
             }; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
@@ -209,6 +217,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
                 : this.prop === 'Perlas GO'
                 ? 'Net 20 geriausių žaidėjų, užsiregistravusių „Perlas Go“ </br> programėlėje ar savitarnos svetainėje, kiekvieną savaitę laimės</br> po 10 € vertės „Wolt“ dovanų kuponą! Jei laimėsi, informuosime </br>tave registracijos metu nurodytu el. paštu.'
+                : this.prop === 'Zemaitijos Pienas'
+                ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -241,16 +251,7 @@ export class CompetitionScoreTableContainer {
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
-                : this.prop === 'Makalius' ||
-                  this.prop === 'Akropolis' ||
-                  this.prop.includes('Gamtos Ateitis') ||
-                  this.prop === 'Pieno Žvaigždės' ||
-                  this.prop === 'Vilvi' ||
-                  this.prop === 'Perlas GO' ||
-                  this.prop === 'Dentsu' ||
-                  this.prop === 'Daumantu'
-                ? ''
-                : 'Apie laimėjimą informuosime nurodytu el. paštu.'
+                : ''
             } </div> `
           : `<div style="width:100%; top: 420px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
@@ -278,7 +279,11 @@ export class CompetitionScoreTableContainer {
                 : 'Tu gali!'
             }</div>
             <div style="width:100%; top: 450px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
-              this.prop !== 'Akropolis' && this.prop !== 'Perlas GO' ? 'uppercase' : 'none'
+              this.prop !== 'Akropolis' &&
+              this.prop !== 'Perlas GO' &&
+              this.prop !== 'Zemaitijos Pienas'
+                ? 'uppercase'
+                : 'none'
             }; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
@@ -318,6 +323,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink savo rezultatą – net 20 geriausių žaidėjų, </br> užsiregistravusių „Perlas Go“ programėlėje ar savitarnos</br> svetainėje, kiekvieną savaitę laimės po 10 € vertės „Wolt“ </br> dovanų kuponą! '
                 : this.prop === 'Dentsu'
                 ? 'Geriausią rezultatą pasiekęs žaidėjas laimės mėnesio trukmės </br> tiesioginį bendravimą su tiksline auditorija per „Teams“! Jei </br> laimėsi, informuosime tave registracijos metu nurodytu el. paštu.'
+                : this.prop === 'Zemaitijos Pienas'
+                ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -352,17 +359,7 @@ export class CompetitionScoreTableContainer {
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
-                : this.prop === 'Makalius' ||
-                  this.prop === 'Unisend' ||
-                  this.prop === 'Akropolis' ||
-                  this.prop === 'Pieno Žvaigždės' ||
-                  this.prop.includes('Gamtos Ateitis') ||
-                  this.prop === 'Vilvi' ||
-                  this.prop === 'Perlas GO' ||
-                  this.prop === 'Dentsu' ||
-                  this.prop === 'Daumantu'
-                ? ''
-                : 'Apie laimėjimą informuosime nurodytu el. paštu.'
+                : ''
             } </div>
         `
       }
