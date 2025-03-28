@@ -282,6 +282,8 @@ export class InputRegisterContainer {
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : this.prop === 'Dentsu'
               ? 'https://www.dentsu.com/our-policies/privacy-notices'
+              : this.prop === 'Zemaitijos Pienas'
+              ? 'https://www.zpienas.lt/privatumo-politika/'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'

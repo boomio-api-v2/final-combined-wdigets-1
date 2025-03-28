@@ -229,7 +229,7 @@ export class InputContainer {
       : this.prop === 'Dentsu'
       ? 'klavišų pagalba ir rink taškus.'
       : this.prop === 'Zemaitijos Pienas'
-      ? 'TIK Dobilo produktus.'
+      ? 'TIK „Dobilas“ produktus.'
       : 'kad skristum.'
   }
 </div>
@@ -470,7 +470,7 @@ export class InputContainer {
                 : this.prop === 'Dentsu'
                 ? '1 mėn. prieigą  prie interaktyvios tikslinės auditorijos!'
                 : this.prop === 'Zemaitijos Pienas'
-                ? 'Dobilo prizus!'
+                ? '„Dobilas“ prizus!'
                 : 'Prizus!'
             }
           </div>

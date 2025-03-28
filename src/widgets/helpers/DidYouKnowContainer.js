@@ -194,14 +194,14 @@ export class DidYouKnowContainer {
     } else if (this.prop === 'Zemaitijos Pienas') {
       // Handle Glass collectables
       this.collectables = [
-        item1Dobilo,
+        item8Dobilo,
         item2Dobilo,
+        item5Dobilo,
         item3Dobilo,
         item4Dobilo,
-        item5Dobilo,
-        item6Dobilo,
         item7Dobilo,
-        item8Dobilo,
+        item6Dobilo,
+        item1Dobilo,
         item9Dobilo,
       ];
     }
@@ -315,14 +315,14 @@ export class DidYouKnowContainer {
     } else if (this.prop === 'Zemaitijos Pienas') {
       // Handle Glass collectables
       this.collectables = [
-        item1Dobilo,
+        item8Dobilo,
         item2Dobilo,
+        item5Dobilo,
         item3Dobilo,
         item4Dobilo,
-        item5Dobilo,
-        item6Dobilo,
         item7Dobilo,
-        item8Dobilo,
+        item6Dobilo,
+        item1Dobilo,
         item9Dobilo,
       ];
     }
