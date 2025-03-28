@@ -477,7 +477,7 @@ ${
           ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
-  href="https://pienozvaigzdes.lt/lt/20_miau" 
+  href="https://www.zpienas.lt/dobilas/" 
   style="color:white;font-weight:900;font-size:16px;">
   VISI PRODUKTAI
 </a>`
@@ -487,7 +487,7 @@ ${
           ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
-  href="https://www.zpienas.lt/dobilas/" 
+  href="https://pienozvaigzdes.lt/lt/20_miau" 
   style="color:white">
   DAUGIAU MIAU!
 </a> `
