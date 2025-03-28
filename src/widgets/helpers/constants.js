@@ -440,3 +440,6 @@ export const item7Dobilo =
 
 export const item8Dobilo =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item8Dobilo.png';
+
+export const item9Dobilo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item14Dobilo.png';
