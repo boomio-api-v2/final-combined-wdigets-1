@@ -394,7 +394,7 @@ export const item13Daumantu =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Daumantu/items/item10Daumantu.png';
 
 export const introDobilo =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/intro.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/intro.gif';
 
 export const backgroundDobilo =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/background.png';
