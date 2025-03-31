@@ -140,7 +140,6 @@ export class CompetitionScoreTableContainer {
       this.prop === 'LemonGym'
         ? '900'
         : '700';
-    console.log(this.prop);
     let scoreboardText = `
       ${
         (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
