@@ -295,7 +295,7 @@ class DoodleWidget {
       console.log('a');
       boomioService
         .signal('', 'user_info', {
-          emails_consent: false,
+          emails_consent: this.customer === 'Perlas GO' ? true : false,
           user_email: user_id,
           user_name: user_id,
         })
