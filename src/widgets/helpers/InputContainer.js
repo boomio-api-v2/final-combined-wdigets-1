@@ -273,6 +273,8 @@ export class InputContainer {
                 ? 'ATKĀRTOT'
                 : this.prop === 'SaludSA'
                 ? 'Presiona'
+                : this.prop === 'Zemaitijos Pienas'
+                ? 'Kartok,'
                 : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${'12px'}; font-family:${
