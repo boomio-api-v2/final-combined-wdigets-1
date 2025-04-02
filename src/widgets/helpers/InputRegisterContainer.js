@@ -57,7 +57,7 @@ export class InputRegisterContainer {
     }</div>
           <div style="height: 124px; top:${'20px'}; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
-    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'10px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerindant rezultatą!'}</div>
+    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'10px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'}</div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
