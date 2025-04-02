@@ -140,7 +140,6 @@ export class CompetitionScoreTableContainer {
       this.prop === 'LemonGym'
         ? '900'
         : '700';
-    console.log(this.prop);
     let scoreboardText = `
       ${
         (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
@@ -379,6 +378,7 @@ export class CompetitionScoreTableContainer {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
+    const userId = urlParams.get('user_id');
     containerDiv.style.width =
       document.body.offsetWidth < 426
         ? document.body.offsetWidth < 321
@@ -431,7 +431,7 @@ export class CompetitionScoreTableContainer {
   box-shadow: -4px -4px 8px #DFE6F5 inset;
   border-radius: 35px;
   display: flex;
-  display:${campaignUrl && this.prop === 'Perlas GO' ? 'flex' : 'none'};
+  display:${campaignUrl && this.prop === 'Perlas GO' && !userId ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;
   z-index: 9999999;

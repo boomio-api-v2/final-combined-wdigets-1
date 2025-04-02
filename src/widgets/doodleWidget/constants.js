@@ -172,9 +172,6 @@ export const mainImagePerlasGo =
 export const backgroundPerlasGo =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PerlasGo/background.png?raw=true';
 
-export const introPerlasGo =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/PerlasGo/intro.gif?raw=true';
-
 export const left =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsDentsu/gui/A.png';
 

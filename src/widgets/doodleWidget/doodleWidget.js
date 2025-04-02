@@ -50,7 +50,6 @@ import {
   backgroundVilvi,
   mainImagePerlasGo,
   backgroundPerlasGo,
-  introPerlasGo,
   left,
   right,
 } from './constants';
@@ -217,10 +216,10 @@ class DoodleWidget {
           () => {
             document.getElementById('background_intro').style.display = 'none';
           },
-          this.customer === 'Pigu.lt' ? 2000 : 5500,
+          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' ? 0 : 5500,
         );
       },
-      this.customer === 'Pigu.lt' ? 2000 : 5500,
+      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' ? 0 : 5500,
     ); //intro speed
   }
 
@@ -295,7 +294,7 @@ class DoodleWidget {
       console.log('a');
       boomioService
         .signal('', 'user_info', {
-          emails_consent: false,
+          emails_consent: this.customer === 'Perlas GO' ? true : false,
           user_email: user_id,
           user_name: user_id,
         })
@@ -1396,8 +1395,6 @@ class DoodleWidget {
         ? PiguJumpUpIntroEstonianEN
         : this.customer === 'Vilvi'
         ? introVilvi
-        : this.customer === 'Perlas GO'
-        ? introPerlasGo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV

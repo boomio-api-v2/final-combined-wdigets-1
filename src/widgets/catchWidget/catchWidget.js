@@ -214,6 +214,7 @@ class CatchGame {
     this.loading = false;
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
+
     this.canvas.style.background = `url(${
       this.customer.includes('Paper')
         ? backgroundGamtosAteitisPaper
@@ -521,16 +522,17 @@ class CatchGame {
         <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
-           <img src=${'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTdtZTIzNm9qODJtdXExOHFtZTNieXFleGVydnVpNmRmbW1jaHV1dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/AijPLJTLd1FoLqyLUp/giphy.gif'} alt="Image Description" style="z-index:2; width:150px; height: 300px;top:300px;position:absolute;left:200px;pointer-events: none;display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect_bad">
     ${
-      this.customer === 'Pegasas'
+      this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas'
         ? `<div alt="Image Description" style="z-index:1;width: ${
             document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-          }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:#8E1735" id="background_blur"></div>`
+          }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
+            this.customer === 'Zemaitijos Pienas' ? '#004C22' : '#8E1735'
+          }" id="background_blur"></div>`
         : `    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
             document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
           }; height: 668px;position:absolute;opacity:${
-            this.customer === 'Pegasas' ? 0.8 : 0.37
+            this.customer === 'Pegasas' ? 0.8 : 0.5
           };pointer-events: none; display:block;" id="background_blur">`
     }
 

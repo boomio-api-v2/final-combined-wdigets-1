@@ -461,7 +461,7 @@ ${
           : this.prop === 'Pegasas'
           ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
           : this.prop === 'Zemaitijos Pienas'
-          ? 'Sertifikuotas kokybės garantas'
+          ? 'Ekologiški jogurtai „DOBILAS“'
           : 'SU MIAU GYVENT SMAGIAU'
       }</div>
               <div class="bomio-second-line" style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
