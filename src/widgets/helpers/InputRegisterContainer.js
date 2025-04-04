@@ -8,6 +8,7 @@ export class InputRegisterContainer {
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
   }
+
   createInputRegisterContainer() {
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-register-container');
@@ -22,6 +23,8 @@ export class InputRegisterContainer {
         : '426px';
     let privacyCheckboxChecked = true;
     let privacyCheckboxChecked2 = true;
+    const nameCredentials = 'test';
+    const emailCredentials = 'test123@';
 
     containerDiv.innerHTML = `
       <div style="height: 124px; top:${
@@ -504,6 +507,46 @@ export class InputRegisterContainer {
     }" placeholder="${this.prop === 'SaludSA' ? 'Número de teléfono' : 'Telefono numeris'}">
 
     `;
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
+      return null;
+    }
+
+    // Function to set the values in the input fields
+    function setCredentialsToInputs() {
+      // Retrieve input fields after they have been added to the DOM
+      const emailInput = document.querySelector('.boomio-competition-email-input-field');
+      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+
+      // Get the boomio_game_credentials cookie
+      const credentials = getCookie('boomio_game_credentials');
+
+      if (credentials) {
+        try {
+          console.log('Cookie found:', credentials);
+
+          const parsedCredentials = JSON.parse(credentials);
+          console.log('Parsed credentials:', parsedCredentials);
+
+          // Set the email and name to the input fields if available
+          if (parsedCredentials.email && emailInput) {
+            emailInput.value = parsedCredentials.email;
+            console.log('Set email input:', parsedCredentials.email);
+          }
+
+          if (parsedCredentials.name && playerNameInput) {
+            playerNameInput.value = parsedCredentials.name;
+            console.log('Set name input:', parsedCredentials.name);
+          }
+        } catch (e) {
+          console.error('Error parsing boomio_game_credentials cookie:', e);
+        }
+      }
+    }
+    setTimeout(setCredentialsToInputs, 50);
 
     return containerDiv;
   }
