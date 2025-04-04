@@ -122,7 +122,7 @@ function startGame(
   const isMobile = window.innerWidth <= 1280;
   const isMobileHeightSmall = window.innerHeight <= 600;
 
-  const customer = config.business_name ? config.business_name : 'Pigu.lt';
+  const customer = config.business_name ? config.business_name : 'Gamtos Ateitis';
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
   const currentPageUrl = window.location.href;
 
@@ -1243,7 +1243,7 @@ function startGame(
 
     if (customer === 'Pigu.lt' && bestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
-      checkboxImg3.addEventListener('click', () => {
+      checkboxImg3?.addEventListener('click', () => {
         checkboxChange3 = !checkboxChange3;
         const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
         checkboxImgChange3.src = checkboxChange3 ? checkIcon : uncheckIcon;

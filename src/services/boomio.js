@@ -195,6 +195,57 @@ class BoomioService extends UserService {
   }
 
   signal(signal_code, ev_type, additional_fields) {
+    // Helper function to set a secure cookie
+    if (ev_type === 'user_info') {
+      const setSecureCookie = (name, value, months = 1) => {
+        let expires = '';
+        if (months) {
+          const date = new Date();
+          // Set the cookie expiration time to the specified number of months (default 1 month)
+          date.setTime(date.getTime() + months * 30 * 24 * 60 * 60 * 1000);
+          expires = '; expires=' + date.toUTCString();
+        }
+        document.cookie = `${name}=${encodeURIComponent(
+          value,
+        )}${expires}; path=/; Secure; SameSite=Strict`;
+      };
+
+      // Helper function to get a cookie by name
+      const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
+        return null;
+      };
+
+      const pluginConfig = this.config?.boomioPluginConfig || {};
+
+      // Retrieve existing boomio_game_credentials from cookies
+      let credentials = {};
+      const existingCookie = getCookie('boomio_game_credentials');
+      if (existingCookie) {
+        try {
+          credentials = JSON.parse(existingCookie);
+        } catch (e) {
+          console.error('Error parsing boomio_game_credentials cookie:', e);
+          credentials = {};
+        }
+      }
+
+      // Add or update email and name in the credentials object
+      if (additional_fields?.user_email) {
+        pluginConfig.email = additional_fields.user_email;
+        credentials.email = additional_fields.user_email;
+      }
+
+      if (additional_fields?.user_name) {
+        pluginConfig.name = additional_fields.user_name;
+        credentials.name = additional_fields.user_name;
+      }
+
+      // Store the updated credentials as a single cookie
+      setSecureCookie('boomio_game_credentials', JSON.stringify(credentials));
+    }
     return new Promise((resolve, reject) => {
       const requestData = {
         ev_type: ev_type ?? 'signal',
