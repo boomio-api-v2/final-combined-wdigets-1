@@ -138,6 +138,8 @@ export class InputContainer {
                   ? 'Judėk'
                   : this.prop === 'Dentsu' && this.game === 'runner'
                   ? 'Judėk'
+                  : this.prop === 'Gamtos Ateitis'
+                  ? 'Brauk'
                   : 'Spausk'
               }
     <div
@@ -478,7 +480,7 @@ export class InputContainer {
           </div>
             </div>
 ${
-  this.prop === 'Perlas GO'
+  this.prop === 'Perlas GO' || this.prop === 'Gamtos Ateitis'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'24px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${'Laimėk'} 
                           <div style="top: 85px;margin-top:${'17px'}; color: white; font-size: ${'12px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">

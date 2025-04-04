@@ -526,20 +526,14 @@ export class InputRegisterContainer {
 
       if (credentials) {
         try {
-          console.log('Cookie found:', credentials);
-
           const parsedCredentials = JSON.parse(credentials);
-          console.log('Parsed credentials:', parsedCredentials);
-
           // Set the email and name to the input fields if available
           if (parsedCredentials.email && emailInput) {
             emailInput.value = parsedCredentials.email;
-            console.log('Set email input:', parsedCredentials.email);
           }
 
           if (parsedCredentials.name && playerNameInput) {
             playerNameInput.value = parsedCredentials.name;
-            console.log('Set name input:', parsedCredentials.name);
           }
         } catch (e) {
           console.error('Error parsing boomio_game_credentials cookie:', e);

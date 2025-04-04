@@ -236,13 +236,11 @@ class BoomioService extends UserService {
       if (additional_fields?.user_email) {
         pluginConfig.email = additional_fields.user_email;
         credentials.email = additional_fields.user_email;
-        console.log('Updated email in credentials:', additional_fields.user_email);
       }
 
       if (additional_fields?.user_name) {
         pluginConfig.name = additional_fields.user_name;
         credentials.name = additional_fields.user_name;
-        console.log('Updated name in credentials:', additional_fields.user_name);
       }
 
       // Store the updated credentials as a single cookie
