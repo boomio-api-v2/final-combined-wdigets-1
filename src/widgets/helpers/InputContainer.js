@@ -73,7 +73,9 @@ export class InputContainer {
     }</div>`}</div>
     <div style="width: ${
       this.isMobile ? '350px' : '390px'
-    };margin-top:10px;margin-bottom:10px;height:110px; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
+    };margin-top:10px;margin-bottom:10px;height:${
+      this.prop === 'Gamtos Ateitis' ? '140px' : '110px'
+    }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
 
  
 
@@ -277,6 +279,8 @@ export class InputContainer {
                 ? 'Presiona'
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kartok,'
+                : this.prop === 'Gamtos Ateitis'
+                ? 'Rink'
                 : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${'12px'}; font-family:${
@@ -317,6 +321,8 @@ export class InputContainer {
                 ? 'FOR BETTER RESULT'
                 : this.prop === 'SaludSA'
                 ? '3 veces para mejorar'
+                : this.prop === 'Gamtos Ateitis'
+                ? 'popieriaus pakuočių atliekas.'
                 : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
@@ -359,6 +365,8 @@ export class InputContainer {
                 ? 'LAIMĒ'
                 : this.prop === 'SaludSA'
                 ? '¡Gana!'
+                : this.prop === 'Gamtos Ateitis'
+                ? 'Kartok'
                 : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${
@@ -441,8 +449,8 @@ export class InputContainer {
                 ? 'до 30 призов от Yesyes.lv!'
                 : this.language === 'ES' || this.language === 'ET'
                 ? '100 premios!'
-                : this.prop.includes('Gamtos Ateitis')
-                ? 'stalo žaidimą ar rūšiavimo namuose rinkinį!'
+                : this.prop === 'Gamtos Ateitis'
+                ? 'dėl geresnio rezultato.'
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'kassavaitinius Forum Cinema bilietus ir pagrindinius MIAU prizus!'
                 : this.prop === 'Pegasas'
@@ -483,8 +491,10 @@ ${
   this.prop === 'Perlas GO' || this.prop === 'Gamtos Ateitis'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'24px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${'Laimėk'} 
-                          <div style="top: 85px;margin-top:${'17px'}; color: white; font-size: ${'12px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
-            ${'10€ Wolt dovanų kuponą!'}
+                          <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${'12px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
+            ${
+              this.prop === 'Gamtos Ateitis' ? 'koncertą savo mokyklai!' : '10€ Wolt dovanų kuponą!'
+            }
           </div>
             </div>`
     : ``

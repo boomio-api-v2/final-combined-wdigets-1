@@ -8,7 +8,25 @@ export class InputRegisterContainer {
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
   }
-
+  createSelect(id, options) {
+    const select = document.createElement('select');
+    select.id = id;
+    select.style.margin = '5px';
+    select.style.padding = '5px';
+    select.style.width = 'calc(100% - 20px)';
+    select.style.backgroundColor = '#fff';
+    select.style.color = '#000';
+    select.style.border = '1px solid #ccc';
+    select.style.borderRadius = '5px';
+    select.style.cursor = 'pointer';
+    options.forEach((option) => {
+      const opt = document.createElement('option');
+      opt.value = option;
+      opt.textContent = option;
+      select.appendChild(opt);
+    });
+    return select;
+  }
   createInputRegisterContainer() {
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-register-container');
@@ -23,9 +41,19 @@ export class InputRegisterContainer {
         : '426px';
     let privacyCheckboxChecked = true;
     let privacyCheckboxChecked2 = true;
-    const nameCredentials = 'test';
-    const emailCredentials = 'test123@';
-
+    this.schoolsData = {
+      Akmenė: ['Akmenės rajono Akmenės gimnazija', 'Akmenės r. Dabikinės Vladimiro Zubovo mokykla'],
+      Alytus: [
+        'Alytaus r. Butrimonių gimnazija',
+        'Alytaus r. Daugų Vlado Mirono gimnazija',
+        'Alytaus r. Krokialaukio Tomo Noraus-Naruševičiaus gimnazija',
+      ],
+      Anykščiai: [
+        'Anykščių Antano Vienuolio progimnazija',
+        'Anykščių Jono Biliūno gimnazija',
+        'Anykščių Antano Baranausko pagrindinė mokykla',
+      ],
+    };
     containerDiv.innerHTML = `
       <div style="height: 124px; top:${
         this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '50px'
@@ -91,7 +119,7 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: ${
-      this.prop === 'Zemaitijos Pienas' ? '360px' : '350px'
+      this.prop === 'Zemaitijos Pienas' ? '360px' : '360px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
@@ -211,7 +239,7 @@ export class InputRegisterContainer {
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
         : this.prop?.includes('Gamtos Ateitis')
-        ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“ '
+        ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“'
         : this.prop === 'Unisend' && this.language === 'LV'
         ? `Esmu izlasījis <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.lv/spelesnoteikumi/'} style="color:white;text-decoration: underline;"> spēles noteikumus</a>  un piekrītu tiem.`
         : this.prop === 'Unisend' && this.language === 'EE'
@@ -399,7 +427,11 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '207px' : '287px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas'
+          ? '207px'
+          : this.prop === 'Gamtos Ateitis'
+          ? '180px'
+          : '287px'
       }; position: absolute; background: ${
       this.prop === 'Barbora' ||
       this.prop === 'LemonGym' ||
@@ -411,9 +443,11 @@ export class InputRegisterContainer {
 
 
 
-      <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
-      }; position: absolute; background: ${
+      <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
+        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+      }; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
+    }; position: absolute; background: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
@@ -422,7 +456,11 @@ export class InputRegisterContainer {
         : 'white'
     }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '219px' : '299px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas'
+          ? '219px'
+          : this.prop === 'Gamtos Ateitis'
+          ? '189px'
+          : '299px'
       };height:30px; opacity: 0.60;background-color: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -458,9 +496,11 @@ export class InputRegisterContainer {
         ? 'Correo electrónico'
         : 'Elektroninio pašto adresas'
     }">
-      <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
-      };height:30px; opacity: 0.60;background-color: ${
+      <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
+        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+      };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
+    };height:30px; opacity: 0.60;background-color: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
@@ -495,7 +535,9 @@ export class InputRegisterContainer {
         ? 'Nombre de usuario'
         : 'Žaidėjo slapyvardis'
     }">
-      <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
+      <div style="display:${
+        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+      };width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? 'block' : 'none'
     }"></div>
           <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
@@ -507,6 +549,31 @@ export class InputRegisterContainer {
     }" placeholder="${this.prop === 'SaludSA' ? 'Número de teléfono' : 'Telefono numeris'}">
 
     `;
+
+    const citySelect = this.createSelect('city-select', Object.keys(this.schoolsData));
+    const schoolSelect = this.createSelect('school-select', ['Select a city first']);
+
+    citySelect.addEventListener('change', () => {
+      const selectedCity = citySelect.value;
+      schoolSelect.innerHTML = '';
+      const schools = this.schoolsData[selectedCity] || [];
+      if (schools.length === 0) {
+        const noSchoolOpt = document.createElement('option');
+        noSchoolOpt.value = '';
+        noSchoolOpt.textContent = 'No schools available';
+        schoolSelect.appendChild(noSchoolOpt);
+      } else {
+        schools.forEach((school) => {
+          const opt = document.createElement('option');
+          opt.value = school;
+          opt.textContent = school;
+          schoolSelect.appendChild(opt);
+        });
+      }
+    });
+
+    containerDiv.appendChild(citySelect);
+    containerDiv.appendChild(schoolSelect);
 
     function getCookie(name) {
       const value = `; ${document.cookie}`;
