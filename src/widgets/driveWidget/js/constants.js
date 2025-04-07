@@ -480,3 +480,88 @@ export const linePiguFI =
 
 export const life =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/life.png?raw=true';
+
+export const backgroundGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/background.png',
+];
+
+export const goldImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bags.png',
+];
+
+export const envelopeImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag.png',
+];
+
+export const goldImageData2GamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bags2.png',
+];
+
+export const envelopeImageData2GamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag2.png',
+];
+export const carImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bike.png',
+];
+
+export const mailboxImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag.png',
+];
+
+export const wh1ImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Bigcity1.png',
+];
+
+export const wh2ImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Bigcity2.png',
+];
+
+export const wh3ImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Bigcity3.png',
+];
+
+export const city1ImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Bigcity1.png',
+];
+
+export const city2ImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Bigcity2.png',
+];
+
+export const city3ImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Bigcity3.png',
+];
+
+export const brickWallImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/sign.png',
+];
+
+export const cloudsImageDataGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/cloud.png?raw=true',
+];
+
+export const lineGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/line.png?raw=true',
+];
+
+export const treeGamtosAteitis1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Tree1.png?raw=true';
+
+export const treeGamtosAteitis2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Tree2.png?raw=true';
+
+export const treeGamtosAteitis3 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Tree3.png?raw=true';
+
+export const treeGamtosAteitis4 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Tree4.png?raw=true';
+
+export const treeGamtosAteitis5 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Tree5.png?raw=true';
+
+export const treeGamtosAteitis6 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/Tree6.png?raw=true';
+
+export const backgroundFullGamtosAteitis = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/GamtosAteitis/Pigu/backgroundFull.png',
+];

@@ -107,6 +107,28 @@ import {
   life,
   background1PiguFI,
   PigubackgroundFI,
+  backgroundGamtosAteitis,
+  goldImageDataGamtosAteitis,
+  goldImageData2GamtosAteitis,
+  envelopeImageDataGamtosAteitis,
+  envelopeImageData2GamtosAteitis,
+  carImageDataGamtosAteitis,
+  mailboxImageDataGamtosAteitis,
+  wh1ImageDataGamtosAteitis,
+  wh2ImageDataGamtosAteitis,
+  wh3ImageDataGamtosAteitis,
+  city1ImageDataGamtosAteitis,
+  city2ImageDataGamtosAteitis,
+  city3ImageDataGamtosAteitis,
+  brickWallImageDataGamtosAteitis,
+  cloudsImageDataGamtosAteitis,
+  lineGamtosAteitis,
+  treeGamtosAteitis1,
+  treeGamtosAteitis2,
+  treeGamtosAteitis3,
+  treeGamtosAteitis4,
+  treeGamtosAteitis5,
+  treeGamtosAteitis6,
 } from './constants';
 
 function startGame(
@@ -278,6 +300,8 @@ function startGame(
       ? PiguBikeEE
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? PigubikeFI
+      : campaignUrlProp === 'Gamtos Ateitis'
+      ? carImageDataGamtosAteitis
       : carImageData;
 
   const rightMailboxImage = new Image();
@@ -290,6 +314,8 @@ function startGame(
       ? mailboxImageDataUnisend
       : customer === 'Pigu.lt'
       ? PiguBags2
+      : customer === 'Gamtos Ateitis'
+      ? mailboxImageDataGamtosAteitis
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -302,12 +328,24 @@ function startGame(
       ? mailboxImageDataUnisend
       : customer === 'Pigu.lt'
       ? PiguBags2
+      : customer === 'Gamtos Ateitis'
+      ? mailboxImageDataGamtosAteitis
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
   goldImageUnisendLV1.src = goldImageDataUnisendLV1;
   const goldImageUnisendLV2 = new Image();
   goldImageUnisendLV2.src = goldImageDataUnisendLV2;
+
+  const goldImageGamtosAteitis = new Image();
+  goldImageGamtosAteitis.src = goldImageDataGamtosAteitis;
+  const goldImage2GamtosAteitis = new Image();
+  goldImage2GamtosAteitis.src = goldImageData2GamtosAteitis;
+
+  const envelopeImageGamtosAteitis = new Image();
+  envelopeImageGamtosAteitis.src = envelopeImageDataGamtosAteitis;
+  const envelopeImage2GamtosAteitis = new Image();
+  envelopeImage2GamtosAteitis.src = envelopeImageData2GamtosAteitis;
 
   const goldImage = new Image();
   goldImage.src =
@@ -339,6 +377,8 @@ function startGame(
       ? brickWallImageDataUnisend
       : customer === 'Pigu.lt'
       ? Pigusign
+      : customer === 'Gamtos Ateitis'
+      ? brickWallImageDataGamtosAteitis
       : brickWallImageData;
 
   const envelopeImage = new Image();
@@ -361,6 +401,8 @@ function startGame(
       ? cloudsImageDataIkea
       : customer === 'Unisend'
       ? cloudsImageDataUnisend
+      : customer === 'Gamtos Ateitis'
+      ? cloudsImageDataGamtosAteitis
       : cloudsImageData;
 
   const treeImage =
@@ -379,6 +421,39 @@ function startGame(
           (() => {
             const img = new Image();
             img.src = BarboraTree3;
+            return img;
+          })(),
+        ]
+      : customer == 'Gamtos Ateitis'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis1;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis2;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis3;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis4;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis5;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis6;
             return img;
           })(),
         ]
@@ -434,6 +509,8 @@ function startGame(
       ? wh1ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh1ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? wh1ImageDataGamtosAteitis
       : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
@@ -446,6 +523,8 @@ function startGame(
       ? wh2ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh2ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? wh2ImageDataGamtosAteitis
       : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
@@ -458,6 +537,8 @@ function startGame(
       ? wh3ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh3ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? wh3ImageDataGamtosAteitis
       : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
@@ -468,6 +549,8 @@ function startGame(
       ? lineUnisend
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? linePiguFI
+      : customer === 'Gamtos Ateitis'
+      ? lineGamtosAteitis
       : customer === 'Pigu.lt'
       ? linePigu
       : line;
@@ -483,6 +566,8 @@ function startGame(
       ? PigubackgroundFI
       : customer === 'Pigu.lt'
       ? Pigubackground
+      : customer === 'Gamtos Ateitis'
+      ? backgroundGamtosAteitis
       : background;
   backgroundImg2.src =
     customer === 'Barbora'
@@ -495,6 +580,8 @@ function startGame(
       ? PigubackgroundFI
       : customer === 'Pigu.lt'
       ? Pigubackground
+      : customer === 'Gamtos Ateitis'
+      ? backgroundGamtosAteitis
       : background;
 
   const city1 = new Image();
@@ -511,6 +598,8 @@ function startGame(
       ? city1ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city1ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? city1ImageDataGamtosAteitis
       : city1ImageData;
   city2.src =
     customer === 'Barbora'
@@ -523,6 +612,8 @@ function startGame(
       ? city2ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city2ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? city2ImageDataGamtosAteitis
       : city2ImageData;
   city3.src =
     customer === 'Barbora'
@@ -535,6 +626,8 @@ function startGame(
       ? city3ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city3ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? city3ImageDataGamtosAteitis
       : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
@@ -575,6 +668,8 @@ function startGame(
       ? '#959595'
       : customer === 'Pigu.lt'
       ? '#A2B0B4'
+      : customer === 'Gamtos Ateitis'
+      ? '#A1AAAB'
       : '#F9F1DD';
 
   const road2 =
@@ -585,6 +680,8 @@ function startGame(
       : customer === 'Unisend'
       ? 'white'
       : customer === 'Pigu.lt'
+      ? '#FFFAE6'
+      : customer === 'Gamtos Ateitis'
       ? '#FFFAE6'
       : 'black';
 
@@ -667,8 +764,14 @@ function startGame(
   };
 
   const envelopes = range(MAILBOX_HIT_AMOUNT * 10).map((_) => {
+    randomNumber = randomNumber + 1;
     return {
-      image: envelopeImage,
+      image:
+        customer === 'Gamtos Ateitis'
+          ? randomNumber % 2 === 1
+            ? envelopeImageGamtosAteitis
+            : envelopeImage2GamtosAteitis
+          : envelopeImage,
       pos: {
         x: randomIntBetween(0, width),
         y: randomIntBetween(-height, 0),
@@ -844,6 +947,10 @@ function startGame(
           ? randomNumber % 2 === 1
             ? goldImageUnisendLV1
             : goldImageUnisendLV2
+          : customer === 'Gamtos Ateitis'
+          ? randomNumber % 2 === 1
+            ? goldImageGamtosAteitis
+            : goldImage2GamtosAteitis
           : goldImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
@@ -1731,6 +1838,8 @@ function startGame(
       index < MAX_TEX / 2
         ? customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
+          : customer === 'Gamtos Ateitis'
+          ? '#609966'
           : customer === 'Pigu.lt'
           ? '#9ECEFF'
           : '#85B62D'
@@ -1738,6 +1847,8 @@ function startGame(
         ? '#489B2D'
         : customer === 'Pigu.lt'
         ? '#c8e1ff'
+        : customer === 'Gamtos Ateitis'
+        ? '#609966'
         : customer === 'Barbora'
         ? '#85B62D'
         : '#A9C734';
