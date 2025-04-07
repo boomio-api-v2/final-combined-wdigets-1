@@ -550,31 +550,6 @@ export class InputRegisterContainer {
 
     `;
 
-    const citySelect = this.createSelect('city-select', Object.keys(this.schoolsData));
-    const schoolSelect = this.createSelect('school-select', ['Select a city first']);
-
-    citySelect.addEventListener('change', () => {
-      const selectedCity = citySelect.value;
-      schoolSelect.innerHTML = '';
-      const schools = this.schoolsData[selectedCity] || [];
-      if (schools.length === 0) {
-        const noSchoolOpt = document.createElement('option');
-        noSchoolOpt.value = '';
-        noSchoolOpt.textContent = 'No schools available';
-        schoolSelect.appendChild(noSchoolOpt);
-      } else {
-        schools.forEach((school) => {
-          const opt = document.createElement('option');
-          opt.value = school;
-          opt.textContent = school;
-          schoolSelect.appendChild(opt);
-        });
-      }
-    });
-
-    containerDiv.appendChild(citySelect);
-    containerDiv.appendChild(schoolSelect);
-
     function getCookie(name) {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
