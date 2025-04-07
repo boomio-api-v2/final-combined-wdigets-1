@@ -1012,7 +1012,10 @@ function startGame(
           document.getElementById('competition-checkbox-error').style.backgroundColor =
             'transparent';
         }
-        if (playerNameInput?.value === '' || playerNameInput?.value === null) {
+        if (
+          customer !== 'Gamtos Ateitis' &&
+          (playerNameInput?.value === '' || playerNameInput?.value === null)
+        ) {
           document.getElementById('competition-name-error').innerText =
             'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
@@ -1024,6 +1027,7 @@ function startGame(
             'transparent';
         }
         if (
+          customer !== 'Gamtos Ateitis' &&
           (playerNameInput?.value === '' || playerNameInput?.value === null) &&
           (playerNameInput?.value === '' || playerNameInput?.value === null)
         ) {
@@ -1039,7 +1043,7 @@ function startGame(
               .signal('', 'user_info', {
                 emails_consent: checkboxChange2,
                 user_email: userEmail,
-                user_name: playerNameInput?.value,
+                user_name: customer === 'Gamtos Ateitis' ? userEmail : playerNameInput?.value,
               })
               .then((response) => {
                 if (response.success === false) {
