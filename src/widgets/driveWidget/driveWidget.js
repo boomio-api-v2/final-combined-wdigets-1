@@ -255,7 +255,9 @@ ${
         ? UnisendIntroLV
         : this.customer === 'Ikea'
         ? IkeaIntro
-        : intro
+        : this.customer === 'LemonGym'
+        ? intro
+        : ''
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
