@@ -201,7 +201,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Daumantu'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei.</br> Prizinį fondą sudaro 50 Daumantų prizų!'
                 : this.prop.includes('Gamtos Ateitis')
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių!'
+                ? 'Pusė geriausią rezultatą pasiekusių mokyklų pateks į kitą </br> žaidimo etapą ir sieks laimėti koncertą savo mokyklai! Jei </br>  Tavo mokykla pateks į kitą etapą, informuosime Tave el. </br>  paštu, kurį nurodei. '
                 : this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
                 : this.language === 'EE' && this.prop === 'Fantazijos'
@@ -301,7 +301,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Daumantu'
                 ? 'Pagerink rezultatą, nes kas savaitę </br> geriausi žaidėjai laimės prizus! '
                 : this.prop.includes('Gamtos Ateitis')
-                ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 10 prizų – „Gamtos ateities“ </br>stalo žaidimų „MisijaEkomiestas“ arba rūšiavimo namuose</br> rinkinių!'
+                ? 'Pagerink rezultatą, nes pusė geriausią rezultatą pasiekusių </br> mokyklų pateks į kitą žaidimo etapą ir sieks laimėti koncertą </br> savo mokyklai! Jei Tavo mokykla pateks į kitą etapą, </br>informuosime Tave el. paštu, kurį nurodei. '
                 : this.language === 'ES'
                 ? 'En Diciembre, Los mejors 100 jugadores recibiran un premio!</br>Ganadores serán contactados al email del registro'
                 : this.prop === 'Makalius'

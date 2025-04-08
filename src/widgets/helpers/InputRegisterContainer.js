@@ -7,26 +7,9 @@ export class InputRegisterContainer {
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
+    this.teams = this.config.teams;
   }
-  createSelect(id, options) {
-    const select = document.createElement('select');
-    select.id = id;
-    select.style.margin = '5px';
-    select.style.padding = '5px';
-    select.style.width = 'calc(100% - 20px)';
-    select.style.backgroundColor = '#fff';
-    select.style.color = '#000';
-    select.style.border = '1px solid #ccc';
-    select.style.borderRadius = '5px';
-    select.style.cursor = 'pointer';
-    options.forEach((option) => {
-      const opt = document.createElement('option');
-      opt.value = option;
-      opt.textContent = option;
-      select.appendChild(opt);
-    });
-    return select;
-  }
+
   createInputRegisterContainer() {
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-register-container');
@@ -41,19 +24,8 @@ export class InputRegisterContainer {
         : '426px';
     let privacyCheckboxChecked = true;
     let privacyCheckboxChecked2 = true;
-    this.schoolsData = {
-      Akmenė: ['Akmenės rajono Akmenės gimnazija', 'Akmenės r. Dabikinės Vladimiro Zubovo mokykla'],
-      Alytus: [
-        'Alytaus r. Butrimonių gimnazija',
-        'Alytaus r. Daugų Vlado Mirono gimnazija',
-        'Alytaus r. Krokialaukio Tomo Noraus-Naruševičiaus gimnazija',
-      ],
-      Anykščiai: [
-        'Anykščių Antano Vienuolio progimnazija',
-        'Anykščių Jono Biliūno gimnazija',
-        'Anykščių Antano Baranausko pagrindinė mokykla',
-      ],
-    };
+    this.teams = this.config.teams;
+
     containerDiv.innerHTML = `
       <div style="height: 124px; top:${
         this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '50px'
@@ -88,7 +60,11 @@ export class InputRegisterContainer {
     }</div>
           <div style="height: 124px; top:${'20px'}; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
-    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'10px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'}</div>
+    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'10px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
+      this.prop === 'Gamtos Ateitis'
+        ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
+        : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
+    }</div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
@@ -396,9 +372,11 @@ export class InputRegisterContainer {
 
 
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '178px' : '258px'
-      }; position: absolute;text-align:start;z-index:99999;color: ${
+      <div style="display:${
+        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+      }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '178px' : '258px'
+    }; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
       font-family: Montserrat;
@@ -412,7 +390,11 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '258px' : '338px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas'
+          ? '258px'
+          : this.prop === 'Gamtos Ateitis'
+          ? '348px'
+          : '338px'
       } ; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
@@ -494,6 +476,8 @@ export class InputRegisterContainer {
         ? 'Email'
         : this.prop === 'SaludSA'
         ? 'Correo electrónico'
+        : this.prop === 'Gamtos Ateitis'
+        ? 'El. pašto adresas'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
@@ -535,9 +519,20 @@ export class InputRegisterContainer {
         ? 'Nombre de usuario'
         : 'Žaidėjo slapyvardis'
     }">
-      <div style="display:${
-        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
-      };width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
+          <select id="city-select" class="boomio-competition-city-select" style="display:${
+            this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+          };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:240px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
+        <option value="">Select a city</option>
+        ${Object.keys(this.teams)
+          .map((city) => `<option value="${city}">${city}</option>`)
+          .join('')}
+      </select>
+      <select id="school-select" class="boomio-competition-school-select" style="display:${
+        this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+      };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:300px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
+         <option value="">Select a city first</option>
+      </select>
+      <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? 'block' : 'none'
     }"></div>
           <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${

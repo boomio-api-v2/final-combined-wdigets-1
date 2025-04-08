@@ -108,12 +108,12 @@ import {
   background1PiguFI,
   PigubackgroundFI,
   backgroundGamtosAteitis,
-  goldImageDataGamtosAteitis,
-  goldImageData2GamtosAteitis,
-  envelopeImageDataGamtosAteitis,
-  envelopeImageData2GamtosAteitis,
-  carImageDataGamtosAteitis,
-  mailboxImageDataGamtosAteitis,
+  goldImageDataGamtosAteitisPopierius,
+  goldImageData2GamtosAteitisPopierius,
+  envelopeImageDataGamtosAteitisPopierius,
+  envelopeImageData2GamtosAteitisPopierius,
+  carImageDataGamtosAteitisPopierius,
+  mailboxImageDataGamtosAteitisPopierius,
   wh1ImageDataGamtosAteitis,
   wh2ImageDataGamtosAteitis,
   wh3ImageDataGamtosAteitis,
@@ -129,6 +129,7 @@ import {
   treeGamtosAteitis4,
   treeGamtosAteitis5,
   treeGamtosAteitis6,
+  backgroundFullGamtosAteitis,
 } from './constants';
 
 function startGame(
@@ -145,6 +146,7 @@ function startGame(
   const isMobileHeightSmall = window.innerHeight <= 600;
 
   const customer = config.business_name ? config.business_name : 'Gamtos Ateitis';
+  const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
   const currentPageUrl = window.location.href;
 
@@ -301,7 +303,7 @@ function startGame(
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? PigubikeFI
       : campaignUrlProp === 'Gamtos Ateitis'
-      ? carImageDataGamtosAteitis
+      ? carImageDataGamtosAteitisPopierius
       : carImageData;
 
   const rightMailboxImage = new Image();
@@ -315,7 +317,7 @@ function startGame(
       : customer === 'Pigu.lt'
       ? PiguBags2
       : customer === 'Gamtos Ateitis'
-      ? mailboxImageDataGamtosAteitis
+      ? mailboxImageDataGamtosAteitisPopierius
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -329,7 +331,7 @@ function startGame(
       : customer === 'Pigu.lt'
       ? PiguBags2
       : customer === 'Gamtos Ateitis'
-      ? mailboxImageDataGamtosAteitis
+      ? mailboxImageDataGamtosAteitisPopierius
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
@@ -338,14 +340,14 @@ function startGame(
   goldImageUnisendLV2.src = goldImageDataUnisendLV2;
 
   const goldImageGamtosAteitis = new Image();
-  goldImageGamtosAteitis.src = goldImageDataGamtosAteitis;
+  goldImageGamtosAteitis.src = goldImageDataGamtosAteitisPopierius;
   const goldImage2GamtosAteitis = new Image();
-  goldImage2GamtosAteitis.src = goldImageData2GamtosAteitis;
+  goldImage2GamtosAteitis.src = goldImageData2GamtosAteitisPopierius;
 
   const envelopeImageGamtosAteitis = new Image();
-  envelopeImageGamtosAteitis.src = envelopeImageDataGamtosAteitis;
+  envelopeImageGamtosAteitis.src = envelopeImageDataGamtosAteitisPopierius;
   const envelopeImage2GamtosAteitis = new Image();
-  envelopeImage2GamtosAteitis.src = envelopeImageData2GamtosAteitis;
+  envelopeImage2GamtosAteitis.src = envelopeImageData2GamtosAteitisPopierius;
 
   const goldImage = new Image();
   goldImage.src =
@@ -1361,6 +1363,43 @@ function startGame(
       });
     }
     if (showCompetitiveRegistration && campaignUrl === '') {
+      const citySelect = document.getElementById('city-select');
+      const schoolSelect = document.getElementById('school-select');
+      if (citySelect && schoolSelect) {
+        citySelect.addEventListener('change', () => {
+          const selectedCity = citySelect.value;
+          // Clear previous options
+          schoolSelect.innerHTML = '';
+
+          if (!selectedCity || selectedCity === 'Select a city') {
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select a city first';
+            schoolSelect.appendChild(defaultOption);
+            return;
+          }
+
+          const schools = teams[selectedCity] || [];
+          if (schools.length === 0) {
+            const noSchoolOpt = document.createElement('option');
+            noSchoolOpt.value = '';
+            noSchoolOpt.textContent = 'No schools available';
+            schoolSelect.appendChild(noSchoolOpt);
+          } else {
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select a school';
+            schoolSelect.appendChild(defaultOption);
+            schools.forEach((school) => {
+              const opt = document.createElement('option');
+              opt.value = school;
+              opt.textContent = school;
+              schoolSelect.appendChild(opt);
+            });
+          }
+        });
+      }
+
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         checkboxChange = !checkboxChange;
@@ -2374,11 +2413,15 @@ function startGame(
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
-    } else if (customer === 'Pigu.lt') {
+    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
       const backgroundImage = new Image();
 
       backgroundImage.src =
-        campaignUrlProp === 'https://hobbyhall.fi' ? background1PiguFI : background1Pigu;
+        customer === 'Gamtos Ateitis'
+          ? backgroundFullGamtosAteitis
+          : campaignUrlProp === 'https://hobbyhall.fi'
+          ? background1PiguFI
+          : background1Pigu;
 
       backgroundImage.onload = () => {
         ctx.drawImage(backgroundImage, 0, 0, width, height);
