@@ -1085,6 +1085,9 @@ function startGame(
       setTimeout(async () => {
         const emailInput = document.querySelector('.boomio-competition-email-input-field');
         const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+        const cityInput = document.querySelector('.boomio-competition-city-select');
+        const schoolInput = document.querySelector('.boomio-competition-school-select');
+
         const email = emailInput?.value;
         const userEmail = customer === 'Ikea' ? await hashString(email) : emailInput?.value;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
@@ -1153,6 +1156,7 @@ function startGame(
                 emails_consent: checkboxChange2,
                 user_email: userEmail,
                 user_name: customer === 'Gamtos Ateitis' ? userEmail : playerNameInput?.value,
+                ...(customer === 'Gamtos Ateitis' && { city: cityInput, school: schoolInput }),
               })
               .then((response) => {
                 if (response.success === false) {
