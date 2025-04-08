@@ -130,6 +130,16 @@ import {
   treeGamtosAteitis5,
   treeGamtosAteitis6,
   backgroundFullGamtosAteitis,
+  goldImageDataGamtosAteitisStiklas,
+  envelopeImageDataGamtosAteitisStiklas,
+  goldImageData2GamtosAteitisStiklas,
+  envelopeImageData2GamtosAteitisStiklas,
+  carImageDataGamtosAteitisStiklas,
+  goldImageDataGamtosAteitisPlastikas,
+  envelopeImageDataGamtosAteitisPlastikas,
+  goldImageData2GamtosAteitisPlastikas,
+  envelopeImageData2GamtosAteitisPlastikas,
+  carImageDataGamtosAteitisPlastikas,
 } from './constants';
 
 function startGame(
@@ -146,6 +156,14 @@ function startGame(
   const isMobileHeightSmall = window.innerHeight <= 600;
 
   const customer = config.business_name ? config.business_name : 'Gamtos Ateitis';
+
+  const randomType = () => {
+    const types = [1, 2, 3];
+    return types[Math.floor(Math.random() * types.length)];
+  };
+
+  const type = config.business_name === 'Gamtos Ateitis' ? config.business_name : randomType();
+
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
   const currentPageUrl = window.location.href;
@@ -303,7 +321,11 @@ function startGame(
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? PigubikeFI
       : customer === 'Gamtos Ateitis'
-      ? carImageDataGamtosAteitisPopierius
+      ? type === 1
+        ? carImageDataGamtosAteitisPopierius
+        : type === 2
+        ? carImageDataGamtosAteitisStiklas
+        : carImageDataGamtosAteitisPlastikas
       : carImageData;
 
   const rightMailboxImage = new Image();
@@ -340,14 +362,34 @@ function startGame(
   goldImageUnisendLV2.src = goldImageDataUnisendLV2;
 
   const goldImageGamtosAteitis = new Image();
-  goldImageGamtosAteitis.src = goldImageDataGamtosAteitisPopierius;
+  goldImageGamtosAteitis.src =
+    type === 1
+      ? goldImageDataGamtosAteitisPopierius
+      : type === 2
+      ? goldImageDataGamtosAteitisStiklas
+      : goldImageDataGamtosAteitisPlastikas;
   const goldImage2GamtosAteitis = new Image();
-  goldImage2GamtosAteitis.src = goldImageData2GamtosAteitisPopierius;
+  goldImage2GamtosAteitis.src =
+    type === 1
+      ? goldImageData2GamtosAteitisPopierius
+      : type === 2
+      ? goldImageData2GamtosAteitisStiklas
+      : goldImageData2GamtosAteitisPlastikas;
 
   const envelopeImageGamtosAteitis = new Image();
-  envelopeImageGamtosAteitis.src = envelopeImageDataGamtosAteitisPopierius;
+  envelopeImageGamtosAteitis.src =
+    type === 1
+      ? envelopeImageDataGamtosAteitisPopierius
+      : type === 2
+      ? envelopeImageDataGamtosAteitisStiklas
+      : envelopeImageDataGamtosAteitisPlastikas;
   const envelopeImage2GamtosAteitis = new Image();
-  envelopeImage2GamtosAteitis.src = envelopeImageData2GamtosAteitisPopierius;
+  envelopeImage2GamtosAteitis.src =
+    type === 1
+      ? envelopeImageData2GamtosAteitisPopierius
+      : type === 2
+      ? envelopeImageData2GamtosAteitisStiklas
+      : envelopeImageData2GamtosAteitisPlastikas;
 
   const goldImage = new Image();
   goldImage.src =
