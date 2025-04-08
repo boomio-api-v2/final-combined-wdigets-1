@@ -1156,7 +1156,10 @@ function startGame(
                 emails_consent: checkboxChange2,
                 user_email: userEmail,
                 user_name: customer === 'Gamtos Ateitis' ? userEmail : playerNameInput?.value,
-                ...(customer === 'Gamtos Ateitis' && { city: cityInput, school: schoolInput }),
+                ...(customer === 'Gamtos Ateitis' && {
+                  city: cityInput.value,
+                  school: schoolInput.value,
+                }),
               })
               .then((response) => {
                 if (response.success === false) {
