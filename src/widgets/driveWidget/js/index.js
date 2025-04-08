@@ -302,7 +302,7 @@ function startGame(
       ? PiguBikeEE
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? PigubikeFI
-      : campaignUrlProp === 'Gamtos Ateitis'
+      : customer === 'Gamtos Ateitis'
       ? carImageDataGamtosAteitisPopierius
       : carImageData;
 
