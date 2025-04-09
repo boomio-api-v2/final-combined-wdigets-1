@@ -46,7 +46,7 @@ export class InputContainer {
       this.prop === 'Ikea' ? 'margin-left:20px' : ''
     };color: #FFF;text-align: ${
       this.prop === 'Ikea' ? 'start' : 'center'
-    } ;font-size: 40px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: ${
+    } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'uppercase'
     };">${
       this.language === 'LV'
@@ -69,7 +69,7 @@ export class InputContainer {
         ? 'NOTEIKUMI'
         : this.prop === 'SaludSA'
         ? 'Reglas'
-        : 'Taisyklės'
+        : 'TAISYKLĖS'
     }</div>`}</div>
     <div style="width: ${
       this.isMobile ? '350px' : '390px'
@@ -221,7 +221,7 @@ export class InputContainer {
       : this.prop === 'Pegasas'
       ? ' Pegaso produktus.'
       : this.game === 'drive'
-      ? 'į šonus kad vairuotum'
+      ? 'į šonus kad vairuotum.'
       : this.prop === 'Fpro'
       ? 'TO FLY'
       : this.prop === 'SaludSA'
@@ -524,7 +524,7 @@ ${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
           };${
             this.prop === 'Pigu.lt' ? 'margin-left:47px;' : ''
-          } font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
+          } font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
             this.prop === 'SaludSA'
               ? 'href=https://ventas.saludsa.com/reglas-juego'
               : this.prop === 'Barbora'

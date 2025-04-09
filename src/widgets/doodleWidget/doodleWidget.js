@@ -1695,7 +1695,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                   .signal('', 'user_info', {
                     emails_consent: this.checkboxChange2,
                     user_email: emailInput?.value,
-                    user_name: playerNameInput?.value,
+                    user_name:
+                      this.customer === 'Perlas GO' ? emailInput?.value : playerNameInput?.value,
                     via_mobile: this.campaignUrl ? true : false,
                   })
                   .then((response) => {

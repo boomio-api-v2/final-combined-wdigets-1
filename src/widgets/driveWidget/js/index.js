@@ -690,6 +690,8 @@ function startGame(
       ? '#545151'
       : customer === 'Pigu.lt'
       ? 'white'
+      : customer === 'Gamtos Ateitis'
+      ? '#FFFFFF'
       : '#FFF100';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
@@ -699,6 +701,8 @@ function startGame(
       : customer === 'Unisend'
       ? '#FFCA00'
       : customer === 'Pigu.lt'
+      ? '#F24434'
+      : customer === 'Gamtos Ateitis'
       ? '#F24434'
       : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
@@ -1143,7 +1147,9 @@ function startGame(
 
         if (!checkboxChange) {
           document.getElementById('competition-checkbox-error').innerText =
-            'Norint tęsti, privaloma sutikti su naujienomis.';
+            customer === 'Gamtos Ateitis'
+              ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+              : 'Norint tęsti, privaloma sutikti su naujienomis.';
           document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error').style.display = 'block';
           document.getElementById('competition-checkbox-error').style.height = '14px';
@@ -2534,7 +2540,7 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt') {
+      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2599,7 +2605,7 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt') {
+      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
         ctx.drawImage(
           backgroundImg,
           0,

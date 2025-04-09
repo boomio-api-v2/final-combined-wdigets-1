@@ -28,6 +28,36 @@ export class CompetitionScoreTableContainer {
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
 
+    const perlasGoTable = [
+      'PIGUTIS',
+      'BLASH',
+      'BULKIN',
+      'PILKASIS ŠEŠĖLIS',
+      'GIEDRIUZAS',
+      'ABRIKOSAS',
+      'TRUMPAS',
+      'UGIS',
+      'MIS LIETUVA',
+      'ZORO',
+      'RUKIS',
+      'EMILIUX',
+      'VĖJO DRUMSTĖJAS',
+      'RORO',
+      'HARIS POTERIS',
+      'VAIVORYKŠTĖ',
+      'VALDELIS',
+      'ŠOKLIUKĖ',
+      'FANTAZUOTOJAS',
+      'VALDOVAS',
+      'PEMPĖ',
+      'NEWYORKE',
+      'VORIUKAS',
+      'MISTY',
+      'BLACKTHORN',
+      'BLAZING BILL',
+      'SKRAIDŪNAS',
+    ];
+
     let tableHTML = '';
     scoreboard.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';

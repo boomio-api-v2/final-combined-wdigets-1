@@ -28,11 +28,11 @@ export class InputRegisterContainer {
 
     containerDiv.innerHTML = `
       <div style="height: 124px; top:${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '50px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '90px'
       }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
-      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '34px' : '38px'
+      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '28px' : '30px'
     }; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; text-transform: ${
@@ -56,11 +56,11 @@ export class InputRegisterContainer {
         ? 'REGÍSTRATE</br>PARA JUGAR'
         : this.language === 'ES' || this.language === 'ET'
         ? 'REGISTRATE </br>PARA JUGAR '
-        : 'Registruokis</br> Žaisti'
+        : 'Registruokis Žaisti'
     }</div>
           <div style="height: 124px; top:${'20px'}; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
-    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'10px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
+    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'12px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
       this.prop === 'Gamtos Ateitis'
         ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
         : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
