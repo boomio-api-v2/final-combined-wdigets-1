@@ -291,7 +291,6 @@ class DoodleWidget {
         }, 100);
       }, 300);
     } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id !== '') {
-      console.log('a');
       boomioService
         .signal('', 'user_info', {
           emails_consent: this.customer === 'Perlas GO' ? true : false,
@@ -441,8 +440,6 @@ class DoodleWidget {
         this.Spring = new Spring(this.image);
       } else {
         if (typeof window.dataLayer !== 'undefined') {
-          console.log('Game_Start');
-
           window.dataLayer.push({ event: 'Game_Start' });
         }
 

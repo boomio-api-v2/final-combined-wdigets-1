@@ -107,7 +107,13 @@ export class CompetitionScoreTableContainer {
         item.place
       }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
-      ${this.prop === 'Perlas GO' ? perlasGoTable[index] : item.user_name}
+      ${
+        this.prop === 'Perlas GO'
+          ? userBestPlace === index + 1
+            ? 'Tavo rezultatas'
+            : perlasGoTable[index]
+          : item.user_name
+      }
     </td>
               <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
         item.score
@@ -115,7 +121,6 @@ export class CompetitionScoreTableContainer {
             </tr>`;
     });
 
-    // Add new line if user_best_place is above 20
     if (userBestPlace > 20) {
       tableHTML += `
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
