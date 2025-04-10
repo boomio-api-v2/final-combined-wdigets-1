@@ -32,7 +32,7 @@ export class InputRegisterContainer {
       }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
-      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '28px' : '30px'
+      this.isMobile ? '28px' : '30px'
     }; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; text-transform: ${
@@ -522,7 +522,7 @@ export class InputRegisterContainer {
           <select id="city-select" class="boomio-competition-city-select" style="display:${
             this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
           };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:240px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
-        <option value="">Select a city</option>
+        <option value="">Miestas ar rajonas</option>
         ${Object.keys(this.teams)
           .map((city) => `<option value="${city}">${city}</option>`)
           .join('')}
@@ -530,7 +530,7 @@ export class InputRegisterContainer {
       <select id="school-select" class="boomio-competition-school-select" style="display:${
         this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
       };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:300px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
-         <option value="">Select a city first</option>
+         <option value="">Pirmiau pasirink miestą ar rajoną</option>
       </select>
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? 'block' : 'none'

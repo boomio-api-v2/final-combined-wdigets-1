@@ -1426,10 +1426,10 @@ function startGame(
           // Clear previous options
           schoolSelect.innerHTML = '';
 
-          if (!selectedCity || selectedCity === 'Select a city') {
+          if (!selectedCity || selectedCity === 'Miestas ar rajonas') {
             const defaultOption = document.createElement('option');
             defaultOption.value = '';
-            defaultOption.textContent = 'Select a city first';
+            defaultOption.textContent = 'Pirmiau pasirink miestą ar rajoną';
             schoolSelect.appendChild(defaultOption);
             return;
           }
@@ -1438,12 +1438,12 @@ function startGame(
           if (schools.length === 0) {
             const noSchoolOpt = document.createElement('option');
             noSchoolOpt.value = '';
-            noSchoolOpt.textContent = 'No schools available';
+            noSchoolOpt.textContent = 'Mokyklu saraše nėra';
             schoolSelect.appendChild(noSchoolOpt);
           } else {
             const defaultOption = document.createElement('option');
             defaultOption.value = '';
-            defaultOption.textContent = 'Select a school';
+            defaultOption.textContent = 'Tavo atstovaujama mokykla';
             schoolSelect.appendChild(defaultOption);
             schools.forEach((school) => {
               const opt = document.createElement('option');

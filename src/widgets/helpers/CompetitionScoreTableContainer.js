@@ -101,11 +101,15 @@ export class CompetitionScoreTableContainer {
 
       tableHTML += `
             <tr style="background: ${background};box-shadow:${boxShadow};margin: 0;height:44px ">
-            <td style="padding-left:8px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${item.place}</td>
+            <td style="padding-left:8px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+        item.place
+      }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
-      ${item.user_name}
+      ${this.prop === 'Perlas GO' ? perlasGoTable[index] : item.user_name}
     </td>
-              <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${item.score}</td>
+              <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
+        item.score
+      }</td>
             </tr>`;
     });
 
@@ -134,7 +138,7 @@ export class CompetitionScoreTableContainer {
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        playerNameInput?.value
+        this.prop === 'Perlas GO' ? 'Tavo rezultatas' : playerNameInput?.value
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
