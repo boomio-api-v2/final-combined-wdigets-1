@@ -1643,7 +1643,10 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 'transparent';
             }
-            if (playerNameInput?.value === '' || playerNameInput?.value === null) {
+            if (
+              this.customer !== 'Perlas GO' &&
+              (playerNameInput?.value === '' || playerNameInput?.value === null)
+            ) {
               document.getElementById('competition-name-error').innerText =
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
@@ -1671,6 +1674,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             }
 
             if (
+              this.customer !== 'Perlas GO' &&
               (playerNameInput?.value === '' || playerNameInput?.value === null) &&
               (playerNameInput?.value === '' || playerNameInput?.value === null)
             ) {
