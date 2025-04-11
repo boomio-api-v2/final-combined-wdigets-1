@@ -291,7 +291,6 @@ class DoodleWidget {
         }, 100);
       }, 300);
     } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id !== '') {
-      console.log('a');
       boomioService
         .signal('', 'user_info', {
           emails_consent: this.customer === 'Perlas GO' ? true : false,
@@ -441,8 +440,6 @@ class DoodleWidget {
         this.Spring = new Spring(this.image);
       } else {
         if (typeof window.dataLayer !== 'undefined') {
-          console.log('Game_Start');
-
           window.dataLayer.push({ event: 'Game_Start' });
         }
 
@@ -1646,7 +1643,10 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 'transparent';
             }
-            if (playerNameInput?.value === '' || playerNameInput?.value === null) {
+            if (
+              this.customer !== 'Perlas GO' &&
+              (playerNameInput?.value === '' || playerNameInput?.value === null)
+            ) {
               document.getElementById('competition-name-error').innerText =
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
@@ -1674,6 +1674,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             }
 
             if (
+              this.customer !== 'Perlas GO' &&
               (playerNameInput?.value === '' || playerNameInput?.value === null) &&
               (playerNameInput?.value === '' || playerNameInput?.value === null)
             ) {
@@ -1695,7 +1696,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                   .signal('', 'user_info', {
                     emails_consent: this.checkboxChange2,
                     user_email: emailInput?.value,
-                    user_name: playerNameInput?.value,
+                    user_name:
+                      this.customer === 'Perlas GO' ? emailInput?.value : playerNameInput?.value,
                     via_mobile: this.campaignUrl ? true : false,
                   })
                   .then((response) => {

@@ -107,6 +107,39 @@ import {
   life,
   background1PiguFI,
   PigubackgroundFI,
+  backgroundGamtosAteitis,
+  goldImageDataGamtosAteitisPopierius,
+  goldImageData2GamtosAteitisPopierius,
+  envelopeImageDataGamtosAteitisPopierius,
+  envelopeImageData2GamtosAteitisPopierius,
+  carImageDataGamtosAteitisPopierius,
+  mailboxImageDataGamtosAteitisPopierius,
+  wh1ImageDataGamtosAteitis,
+  wh2ImageDataGamtosAteitis,
+  wh3ImageDataGamtosAteitis,
+  city1ImageDataGamtosAteitis,
+  city2ImageDataGamtosAteitis,
+  city3ImageDataGamtosAteitis,
+  brickWallImageDataGamtosAteitis,
+  cloudsImageDataGamtosAteitis,
+  lineGamtosAteitis,
+  treeGamtosAteitis1,
+  treeGamtosAteitis2,
+  treeGamtosAteitis3,
+  treeGamtosAteitis4,
+  treeGamtosAteitis5,
+  treeGamtosAteitis6,
+  backgroundFullGamtosAteitis,
+  goldImageDataGamtosAteitisStiklas,
+  envelopeImageDataGamtosAteitisStiklas,
+  goldImageData2GamtosAteitisStiklas,
+  envelopeImageData2GamtosAteitisStiklas,
+  carImageDataGamtosAteitisStiklas,
+  goldImageDataGamtosAteitisPlastikas,
+  envelopeImageDataGamtosAteitisPlastikas,
+  goldImageData2GamtosAteitisPlastikas,
+  envelopeImageData2GamtosAteitisPlastikas,
+  carImageDataGamtosAteitisPlastikas,
 } from './constants';
 
 function startGame(
@@ -123,6 +156,15 @@ function startGame(
   const isMobileHeightSmall = window.innerHeight <= 600;
 
   const customer = config.business_name ? config.business_name : 'Gamtos Ateitis';
+
+  const randomType = () => {
+    const types = [1, 2, 3];
+    return types[Math.floor(Math.random() * types.length)];
+  };
+
+  const type = config.business_name === 'Gamtos Ateitis' ? config.business_name : randomType();
+
+  const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
   const currentPageUrl = window.location.href;
 
@@ -278,6 +320,12 @@ function startGame(
       ? PiguBikeEE
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? PigubikeFI
+      : customer === 'Gamtos Ateitis'
+      ? type === 1
+        ? carImageDataGamtosAteitisPopierius
+        : type === 2
+        ? carImageDataGamtosAteitisStiklas
+        : carImageDataGamtosAteitisPlastikas
       : carImageData;
 
   const rightMailboxImage = new Image();
@@ -290,6 +338,8 @@ function startGame(
       ? mailboxImageDataUnisend
       : customer === 'Pigu.lt'
       ? PiguBags2
+      : customer === 'Gamtos Ateitis'
+      ? mailboxImageDataGamtosAteitisPopierius
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -302,12 +352,44 @@ function startGame(
       ? mailboxImageDataUnisend
       : customer === 'Pigu.lt'
       ? PiguBags2
+      : customer === 'Gamtos Ateitis'
+      ? mailboxImageDataGamtosAteitisPopierius
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
   goldImageUnisendLV1.src = goldImageDataUnisendLV1;
   const goldImageUnisendLV2 = new Image();
   goldImageUnisendLV2.src = goldImageDataUnisendLV2;
+
+  const goldImageGamtosAteitis = new Image();
+  goldImageGamtosAteitis.src =
+    type === 1
+      ? goldImageDataGamtosAteitisPopierius
+      : type === 2
+      ? goldImageDataGamtosAteitisStiklas
+      : goldImageDataGamtosAteitisPlastikas;
+  const goldImage2GamtosAteitis = new Image();
+  goldImage2GamtosAteitis.src =
+    type === 1
+      ? goldImageData2GamtosAteitisPopierius
+      : type === 2
+      ? goldImageData2GamtosAteitisStiklas
+      : goldImageData2GamtosAteitisPlastikas;
+
+  const envelopeImageGamtosAteitis = new Image();
+  envelopeImageGamtosAteitis.src =
+    type === 1
+      ? envelopeImageDataGamtosAteitisPopierius
+      : type === 2
+      ? envelopeImageDataGamtosAteitisStiklas
+      : envelopeImageDataGamtosAteitisPlastikas;
+  const envelopeImage2GamtosAteitis = new Image();
+  envelopeImage2GamtosAteitis.src =
+    type === 1
+      ? envelopeImageData2GamtosAteitisPopierius
+      : type === 2
+      ? envelopeImageData2GamtosAteitisStiklas
+      : envelopeImageData2GamtosAteitisPlastikas;
 
   const goldImage = new Image();
   goldImage.src =
@@ -339,6 +421,8 @@ function startGame(
       ? brickWallImageDataUnisend
       : customer === 'Pigu.lt'
       ? Pigusign
+      : customer === 'Gamtos Ateitis'
+      ? brickWallImageDataGamtosAteitis
       : brickWallImageData;
 
   const envelopeImage = new Image();
@@ -361,6 +445,8 @@ function startGame(
       ? cloudsImageDataIkea
       : customer === 'Unisend'
       ? cloudsImageDataUnisend
+      : customer === 'Gamtos Ateitis'
+      ? cloudsImageDataGamtosAteitis
       : cloudsImageData;
 
   const treeImage =
@@ -379,6 +465,39 @@ function startGame(
           (() => {
             const img = new Image();
             img.src = BarboraTree3;
+            return img;
+          })(),
+        ]
+      : customer == 'Gamtos Ateitis'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis1;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis2;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis3;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis4;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis5;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeGamtosAteitis6;
             return img;
           })(),
         ]
@@ -434,6 +553,8 @@ function startGame(
       ? wh1ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh1ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? wh1ImageDataGamtosAteitis
       : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
@@ -446,6 +567,8 @@ function startGame(
       ? wh2ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh2ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? wh2ImageDataGamtosAteitis
       : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
@@ -458,6 +581,8 @@ function startGame(
       ? wh3ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? wh3ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? wh3ImageDataGamtosAteitis
       : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
@@ -468,6 +593,8 @@ function startGame(
       ? lineUnisend
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? linePiguFI
+      : customer === 'Gamtos Ateitis'
+      ? lineGamtosAteitis
       : customer === 'Pigu.lt'
       ? linePigu
       : line;
@@ -483,6 +610,8 @@ function startGame(
       ? PigubackgroundFI
       : customer === 'Pigu.lt'
       ? Pigubackground
+      : customer === 'Gamtos Ateitis'
+      ? backgroundGamtosAteitis
       : background;
   backgroundImg2.src =
     customer === 'Barbora'
@@ -495,6 +624,8 @@ function startGame(
       ? PigubackgroundFI
       : customer === 'Pigu.lt'
       ? Pigubackground
+      : customer === 'Gamtos Ateitis'
+      ? backgroundGamtosAteitis
       : background;
 
   const city1 = new Image();
@@ -511,6 +642,8 @@ function startGame(
       ? city1ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city1ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? city1ImageDataGamtosAteitis
       : city1ImageData;
   city2.src =
     customer === 'Barbora'
@@ -523,6 +656,8 @@ function startGame(
       ? city2ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city2ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? city2ImageDataGamtosAteitis
       : city2ImageData;
   city3.src =
     customer === 'Barbora'
@@ -535,6 +670,8 @@ function startGame(
       ? city3ImageDataPiguFI
       : customer === 'Pigu.lt'
       ? city3ImageDataPigu
+      : customer === 'Gamtos Ateitis'
+      ? city3ImageDataGamtosAteitis
       : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
@@ -553,6 +690,8 @@ function startGame(
       ? '#545151'
       : customer === 'Pigu.lt'
       ? 'white'
+      : customer === 'Gamtos Ateitis'
+      ? '#FFFFFF'
       : '#FFF100';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
@@ -562,6 +701,8 @@ function startGame(
       : customer === 'Unisend'
       ? '#FFCA00'
       : customer === 'Pigu.lt'
+      ? '#F24434'
+      : customer === 'Gamtos Ateitis'
       ? '#F24434'
       : '#1D1D1B';
   let currentFillColor = BAD_FUNDING_COLOR1;
@@ -575,6 +716,8 @@ function startGame(
       ? '#959595'
       : customer === 'Pigu.lt'
       ? '#A2B0B4'
+      : customer === 'Gamtos Ateitis'
+      ? '#A1AAAB'
       : '#F9F1DD';
 
   const road2 =
@@ -585,6 +728,8 @@ function startGame(
       : customer === 'Unisend'
       ? 'white'
       : customer === 'Pigu.lt'
+      ? '#FFFAE6'
+      : customer === 'Gamtos Ateitis'
       ? '#FFFAE6'
       : 'black';
 
@@ -667,8 +812,14 @@ function startGame(
   };
 
   const envelopes = range(MAILBOX_HIT_AMOUNT * 10).map((_) => {
+    randomNumber = randomNumber + 1;
     return {
-      image: envelopeImage,
+      image:
+        customer === 'Gamtos Ateitis'
+          ? randomNumber % 2 === 1
+            ? envelopeImageGamtosAteitis
+            : envelopeImage2GamtosAteitis
+          : envelopeImage,
       pos: {
         x: randomIntBetween(0, width),
         y: randomIntBetween(-height, 0),
@@ -844,6 +995,10 @@ function startGame(
           ? randomNumber % 2 === 1
             ? goldImageUnisendLV1
             : goldImageUnisendLV2
+          : customer === 'Gamtos Ateitis'
+          ? randomNumber % 2 === 1
+            ? goldImageGamtosAteitis
+            : goldImage2GamtosAteitis
           : goldImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
@@ -976,6 +1131,9 @@ function startGame(
       setTimeout(async () => {
         const emailInput = document.querySelector('.boomio-competition-email-input-field');
         const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+        const cityInput = document.querySelector('.boomio-competition-city-select');
+        const schoolInput = document.querySelector('.boomio-competition-school-select');
+
         const email = emailInput?.value;
         const userEmail = customer === 'Ikea' ? await hashString(email) : emailInput?.value;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
@@ -989,7 +1147,9 @@ function startGame(
 
         if (!checkboxChange) {
           document.getElementById('competition-checkbox-error').innerText =
-            'Norint tęsti, privaloma sutikti su naujienomis.';
+            customer === 'Gamtos Ateitis'
+              ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+              : 'Norint tęsti, privaloma sutikti su naujienomis.';
           document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error').style.display = 'block';
           document.getElementById('competition-checkbox-error').style.height = '14px';
@@ -1012,7 +1172,10 @@ function startGame(
           document.getElementById('competition-checkbox-error').style.backgroundColor =
             'transparent';
         }
-        if (playerNameInput?.value === '' || playerNameInput?.value === null) {
+        if (
+          customer !== 'Gamtos Ateitis' &&
+          (playerNameInput?.value === '' || playerNameInput?.value === null)
+        ) {
           document.getElementById('competition-name-error').innerText =
             'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
@@ -1024,6 +1187,7 @@ function startGame(
             'transparent';
         }
         if (
+          customer !== 'Gamtos Ateitis' &&
           (playerNameInput?.value === '' || playerNameInput?.value === null) &&
           (playerNameInput?.value === '' || playerNameInput?.value === null)
         ) {
@@ -1039,7 +1203,11 @@ function startGame(
               .signal('', 'user_info', {
                 emails_consent: checkboxChange2,
                 user_email: userEmail,
-                user_name: playerNameInput?.value,
+                user_name: customer === 'Gamtos Ateitis' ? userEmail : playerNameInput?.value,
+                ...(customer === 'Gamtos Ateitis' && {
+                  city: cityInput.value,
+                  school: schoolInput.value,
+                }),
               })
               .then((response) => {
                 if (response.success === false) {
@@ -1250,6 +1418,43 @@ function startGame(
       });
     }
     if (showCompetitiveRegistration && campaignUrl === '') {
+      const citySelect = document.getElementById('city-select');
+      const schoolSelect = document.getElementById('school-select');
+      if (citySelect && schoolSelect) {
+        citySelect.addEventListener('change', () => {
+          const selectedCity = citySelect.value;
+          // Clear previous options
+          schoolSelect.innerHTML = '';
+
+          if (!selectedCity || selectedCity === 'Miestas ar rajonas') {
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Pirmiau pasirink miestą ar rajoną';
+            schoolSelect.appendChild(defaultOption);
+            return;
+          }
+
+          const schools = teams[selectedCity] || [];
+          if (schools.length === 0) {
+            const noSchoolOpt = document.createElement('option');
+            noSchoolOpt.value = '';
+            noSchoolOpt.textContent = 'Mokyklu saraše nėra';
+            schoolSelect.appendChild(noSchoolOpt);
+          } else {
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Tavo atstovaujama mokykla';
+            schoolSelect.appendChild(defaultOption);
+            schools.forEach((school) => {
+              const opt = document.createElement('option');
+              opt.value = school;
+              opt.textContent = school;
+              schoolSelect.appendChild(opt);
+            });
+          }
+        });
+      }
+
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         checkboxChange = !checkboxChange;
@@ -1727,6 +1932,8 @@ function startGame(
       index < MAX_TEX / 2
         ? customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
+          : customer === 'Gamtos Ateitis'
+          ? '#609966'
           : customer === 'Pigu.lt'
           ? '#9ECEFF'
           : '#85B62D'
@@ -1734,6 +1941,8 @@ function startGame(
         ? '#489B2D'
         : customer === 'Pigu.lt'
         ? '#c8e1ff'
+        : customer === 'Gamtos Ateitis'
+        ? '#609966'
         : customer === 'Barbora'
         ? '#85B62D'
         : '#A9C734';
@@ -2259,11 +2468,15 @@ function startGame(
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
-    } else if (customer === 'Pigu.lt') {
+    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
       const backgroundImage = new Image();
 
       backgroundImage.src =
-        campaignUrlProp === 'https://hobbyhall.fi' ? background1PiguFI : background1Pigu;
+        customer === 'Gamtos Ateitis'
+          ? backgroundFullGamtosAteitis
+          : campaignUrlProp === 'https://hobbyhall.fi'
+          ? background1PiguFI
+          : background1Pigu;
 
       backgroundImage.onload = () => {
         ctx.drawImage(backgroundImage, 0, 0, width, height);
@@ -2327,7 +2540,7 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt') {
+      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2392,7 +2605,7 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt') {
+      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
         ctx.drawImage(
           backgroundImg,
           0,

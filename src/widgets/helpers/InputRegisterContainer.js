@@ -7,6 +7,7 @@ export class InputRegisterContainer {
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'EN';
+    this.teams = this.config.teams;
   }
 
   createInputRegisterContainer() {
@@ -23,16 +24,15 @@ export class InputRegisterContainer {
         : '426px';
     let privacyCheckboxChecked = true;
     let privacyCheckboxChecked2 = true;
-    const nameCredentials = 'test';
-    const emailCredentials = 'test123@';
+    this.teams = this.config.teams;
 
     containerDiv.innerHTML = `
       <div style="height: 124px; top:${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '50px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '90px'
       }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
-      this.language === 'LV' || this.language === 'RU' || this.language === 'EE' ? '34px' : '38px'
+      this.isMobile ? '28px' : '30px'
     }; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; text-transform: ${
@@ -56,11 +56,15 @@ export class InputRegisterContainer {
         ? 'REGÍSTRATE</br>PARA JUGAR'
         : this.language === 'ES' || this.language === 'ET'
         ? 'REGISTRATE </br>PARA JUGAR '
-        : 'Registruokis</br> Žaisti'
+        : 'Registruokis Žaisti'
     }</div>
           <div style="height: 124px; top:${'20px'}; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
-    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'10px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'}</div>
+    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'12px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
+      this.prop === 'Gamtos Ateitis'
+        ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
+        : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
+    }</div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
@@ -91,7 +95,7 @@ export class InputRegisterContainer {
        <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${
          this.prop === 'Fpro' ? 'auto' : 'pointer'
        } ;left: 34px; top: ${
-      this.prop === 'Zemaitijos Pienas' ? '360px' : '350px'
+      this.prop === 'Zemaitijos Pienas' ? '360px' : '360px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
@@ -211,7 +215,7 @@ export class InputRegisterContainer {
         : this.prop === 'Barbora'
         ? 'Sutinku gauti Barboros naujienas.'
         : this.prop?.includes('Gamtos Ateitis')
-        ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“ '
+        ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“'
         : this.prop === 'Unisend' && this.language === 'LV'
         ? `Esmu izlasījis <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.lv/spelesnoteikumi/'} style="color:white;text-decoration: underline;"> spēles noteikumus</a>  un piekrītu tiem.`
         : this.prop === 'Unisend' && this.language === 'EE'
@@ -368,9 +372,11 @@ export class InputRegisterContainer {
 
 
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '178px' : '258px'
-      }; position: absolute;text-align:start;z-index:99999;color: ${
+      <div style="display:${
+        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+      }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '178px' : '258px'
+    }; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
       font-family: Montserrat;
@@ -384,7 +390,11 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '258px' : '338px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas'
+          ? '258px'
+          : this.prop === 'Gamtos Ateitis'
+          ? '348px'
+          : '338px'
       } ; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
@@ -399,7 +409,11 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '207px' : '287px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas'
+          ? '207px'
+          : this.prop === 'Gamtos Ateitis'
+          ? '180px'
+          : '287px'
       }; position: absolute; background: ${
       this.prop === 'Barbora' ||
       this.prop === 'LemonGym' ||
@@ -411,9 +425,11 @@ export class InputRegisterContainer {
 
 
 
-      <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
-      }; position: absolute; background: ${
+      <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
+        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+      }; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
+    }; position: absolute; background: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
@@ -422,7 +438,11 @@ export class InputRegisterContainer {
         : 'white'
     }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '219px' : '299px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas'
+          ? '219px'
+          : this.prop === 'Gamtos Ateitis'
+          ? '189px'
+          : '299px'
       };height:30px; opacity: 0.60;background-color: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -456,11 +476,15 @@ export class InputRegisterContainer {
         ? 'Email'
         : this.prop === 'SaludSA'
         ? 'Correo electrónico'
+        : this.prop === 'Gamtos Ateitis'
+        ? 'El. pašto adresas'
         : 'Elektroninio pašto adresas'
     }">
-      <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
-      };height:30px; opacity: 0.60;background-color: ${
+      <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
+        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+      };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
+    };height:30px; opacity: 0.60;background-color: ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
@@ -495,6 +519,19 @@ export class InputRegisterContainer {
         ? 'Nombre de usuario'
         : 'Žaidėjo slapyvardis'
     }">
+          <select id="city-select" class="boomio-competition-city-select" style="display:${
+            this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+          };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:240px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
+        <option value="">Miestas ar rajonas</option>
+        ${Object.keys(this.teams)
+          .map((city) => `<option value="${city}">${city}</option>`)
+          .join('')}
+      </select>
+      <select id="school-select" class="boomio-competition-school-select" style="display:${
+        this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+      };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:300px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
+         <option value="">Pirmiau pasirink miestą ar rajoną</option>
+      </select>
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? 'block' : 'none'
     }"></div>

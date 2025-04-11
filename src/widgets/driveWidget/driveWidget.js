@@ -50,7 +50,7 @@ class driveWidget {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis';
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'points';
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -168,6 +168,8 @@ class driveWidget {
         ? '#376728'
         : this.customer === 'Pigu.lt'
         ? '#DF503E'
+        : this.customer === 'Gamtos Ateitis'
+        ? '#3F7543'
         : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -192,7 +194,7 @@ ${
 <div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife"></div>
 </div>
 </div>`
-    : `<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:45px;padding:7px;background:${
+    : `<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
         this.customer === 'Barbora'
           ? '#CC0001'
           : this.customer === 'Ikea'
@@ -201,6 +203,8 @@ ${
           ? '#376728'
           : this.customer === 'Pigu.lt'
           ? '#DF503E'
+          : this.customer === 'Gamtos Ateitis'
+          ? '#3F7543'
           : '#FFE92D'
       };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -208,7 +212,7 @@ ${
 
 <div style="text-align: center; color: white; font-size: 20px; font-family:${
         this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
-      } ;font-weight: 900; word-wrap: break-word;position:absolute;left:70px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
+      } ;font-weight: 900; word-wrap: break-word;position:absolute;left:28px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
 </div>
 </div>`
 }
@@ -251,7 +255,9 @@ ${
         ? UnisendIntroLV
         : this.customer === 'Ikea'
         ? IkeaIntro
-        : intro
+        : this.customer === 'LemonGym'
+        ? intro
+        : ''
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">

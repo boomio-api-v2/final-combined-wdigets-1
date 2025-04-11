@@ -28,6 +28,38 @@ export class CompetitionScoreTableContainer {
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
 
+    const perlasGoTable = [
+      'PERLIUKAS',
+      'TAUPUOLIS',
+      'ENERGINGAS',
+      'GO LAIMA',
+      'SKAITLIUKAS',
+      'PILKASIS ŠEŠĖLIS',
+      'PERLO MEDŽIOTOJAS',
+      'ABRIKOSAS',
+      'PERLASGOSTA',
+      'UGIS',
+      'ŽAIDĖJA',
+      'ZORO',
+      'PERLŲ DAMA',
+      'EMILIUX',
+      'VĖJO DRUMSTĖJAS',
+      'RORO',
+      'HARIS POTERIS',
+      'VAIVORYKŠTĖ',
+      'VALDELIS',
+      'PERLAS PATS SAU',
+      'LAIMĖTOJAS',
+      'VALDOVAS',
+      'AUKSO PERLAS',
+      'NEWYORKE',
+      'LAIMĖS BROLIS',
+      'MISTY',
+      'SĖKMĖS VILNIETIS',
+      'GO VALDOVAS',
+      'KLIK KLIK GO',
+    ];
+
     let tableHTML = '';
     scoreboard.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
@@ -71,15 +103,24 @@ export class CompetitionScoreTableContainer {
 
       tableHTML += `
             <tr style="background: ${background};box-shadow:${boxShadow};margin: 0;height:44px ">
-            <td style="padding-left:8px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${item.place}</td>
+            <td style="padding-left:8px;text-align:start;width: 25px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+        item.place
+      }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
-      ${item.user_name}
+      ${
+        this.prop === 'Perlas GO'
+          ? userBestPlace === index + 1
+            ? 'Tavo rezultatas'
+            : perlasGoTable[index]
+          : item.user_name
+      }
     </td>
-              <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${item.score}</td>
+              <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
+        item.score
+      }</td>
             </tr>`;
     });
 
-    // Add new line if user_best_place is above 20
     if (userBestPlace > 20) {
       tableHTML += `
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
@@ -104,7 +145,7 @@ export class CompetitionScoreTableContainer {
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        playerNameInput?.value
+        this.prop === 'Perlas GO' ? 'Tavo rezultatas' : playerNameInput?.value
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
@@ -201,7 +242,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Daumantu'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei.</br> Prizinį fondą sudaro 50 Daumantų prizų!'
                 : this.prop.includes('Gamtos Ateitis')
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių!'
+                ? 'Pusė geriausią rezultatą pasiekusių mokyklų pateks į kitą </br> žaidimo etapą ir sieks laimėti koncertą savo mokyklai! Jei </br>  Tavo mokykla pateks į kitą etapą, informuosime Tave el. </br>  paštu, kurį nurodei. '
                 : this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
                 : this.language === 'EE' && this.prop === 'Fantazijos'
@@ -301,7 +342,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Daumantu'
                 ? 'Pagerink rezultatą, nes kas savaitę </br> geriausi žaidėjai laimės prizus! '
                 : this.prop.includes('Gamtos Ateitis')
-                ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 10 prizų – „Gamtos ateities“ </br>stalo žaidimų „MisijaEkomiestas“ arba rūšiavimo namuose</br> rinkinių!'
+                ? 'Pagerink rezultatą, nes pusė geriausią rezultatą pasiekusių </br> mokyklų pateks į kitą žaidimo etapą ir sieks laimėti koncertą </br> savo mokyklai! Jei Tavo mokykla pateks į kitą etapą, </br>informuosime Tave el. paštu, kurį nurodei. '
                 : this.language === 'ES'
                 ? 'En Diciembre, Los mejors 100 jugadores recibiran un premio!</br>Ganadores serán contactados al email del registro'
                 : this.prop === 'Makalius'
