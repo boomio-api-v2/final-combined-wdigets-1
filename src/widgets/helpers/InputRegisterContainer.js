@@ -28,7 +28,11 @@ export class InputRegisterContainer {
 
     containerDiv.innerHTML = `
       <div style="height: 124px; top:${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '0px' : '90px'
+        this.prop === 'SaludSA' || this.prop === 'Pegasas'
+          ? '0px'
+          : this.language !== 'LT'
+          ? '70px'
+          : '90px'
       }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
@@ -37,7 +41,7 @@ export class InputRegisterContainer {
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; text-transform: ${
       this.prop === 'Ikea' ? 'none' : 'uppercase'
-    }; line-height: 42px; word-wrap: break-word">${
+    }; line-height: 32px; word-wrap: break-word">${
       this.language === 'LV' && this.prop === 'Akropolis'
         ? 'REĢISTRĒJIES'
         : this.language === 'LV'
@@ -63,8 +67,21 @@ export class InputRegisterContainer {
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'12px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
       this.prop === 'Gamtos Ateitis'
         ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
+        : this.language === 'EN'
+        ? 'Already registered? Use the same email </br> and improve your result!'
+        : this.language === 'LV'
+        ? ' Jau reģistrējies? Izmanto to pašu e-pastu  </br>un uzlabo savu rezultātu!'
+        : this.language === 'RU'
+        ? ' Уже зарегистрировался? Используй тот же  </br>email и улучшай результат!'
+        : this.language === 'ES'
+        ? 'Oled juba registreerunud? Kasuta sama e-posti </br> ja paranda oma tulemust!'
+        : this.language === 'PL'
+        ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
+        : this.language === 'FI'
+        ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
         : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
-    }</div>
+    }
+    </div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
@@ -373,7 +390,7 @@ export class InputRegisterContainer {
 
 
       <div style="display:${
-        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
       }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '178px' : '258px'
     }; position: absolute;text-align:start;z-index:99999;color: ${
@@ -413,6 +430,8 @@ export class InputRegisterContainer {
           ? '207px'
           : this.prop === 'Gamtos Ateitis'
           ? '180px'
+          : this.prop === 'Perlas GO'
+          ? '240px'
           : '287px'
       }; position: absolute; background: ${
       this.prop === 'Barbora' ||
@@ -426,7 +445,7 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
-        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
       }; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
     }; position: absolute; background: ${
@@ -442,6 +461,8 @@ export class InputRegisterContainer {
           ? '219px'
           : this.prop === 'Gamtos Ateitis'
           ? '189px'
+          : this.prop === 'Perlas GO'
+          ? '249px'
           : '299px'
       };height:30px; opacity: 0.60;background-color: ${
       this.prop === 'Barbora' ||
@@ -481,7 +502,7 @@ export class InputRegisterContainer {
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
-        this.prop === 'Gamtos Ateitis' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
     };height:30px; opacity: 0.60;background-color: ${
