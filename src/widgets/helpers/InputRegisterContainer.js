@@ -36,7 +36,7 @@ export class InputRegisterContainer {
       }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
-      this.isMobile ? '28px' : '30px'
+      this.isMobile ? '26px' : '28px'
     }; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; text-transform: ${
@@ -80,7 +80,7 @@ export class InputRegisterContainer {
         : this.language === 'FI'
         ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
         : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
-    }
+    } 
     </div>
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
