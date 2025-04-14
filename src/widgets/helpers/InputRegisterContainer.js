@@ -302,7 +302,7 @@ export class InputRegisterContainer {
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop === 'Pegasas'
               ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
-              : this.prop.includes('Gamtos Ateitis')
+              : this.prop?.includes('Gamtos Ateitis')
               ? 'https://gamtosateitis.lt/privatumo-politika/'
               : this.prop === 'Dentsu'
               ? 'https://www.dentsu.com/our-policies/privacy-notices'

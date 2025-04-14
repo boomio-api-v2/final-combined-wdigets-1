@@ -30,6 +30,9 @@ import {
   newRecordFI,
   newRecordRU,
   life,
+  introGlass,
+  introPaper,
+  introPlastic,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -66,6 +69,12 @@ class driveWidget {
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor =
       window.innerWidth <= 768 ? 'black' : 'none';
+    const randomType = () => {
+      const types = [1, 2, 3];
+      return types[Math.floor(Math.random() * types.length)];
+    };
+
+    this.type = config.business_name === 'Gamtos Ateitis' ? config.business_name : randomType();
   }
 
   createContainer = () => {
@@ -257,6 +266,12 @@ ${
         ? IkeaIntro
         : this.customer === 'LemonGym'
         ? intro
+        : this.type === 1
+        ? introPaper
+        : this.type === 2
+        ? introGlass
+        : this.type === 3
+        ? introPlastic
         : ''
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -361,6 +376,7 @@ ${
       this.scoreTableContainerInstance,
       this.didYouKnowContainer,
       this.competitionCodeScoreTableContainerPigu,
+      this.type,
     );
   };
 }
