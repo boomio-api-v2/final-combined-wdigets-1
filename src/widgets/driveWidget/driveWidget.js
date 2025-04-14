@@ -69,12 +69,6 @@ class driveWidget {
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor =
       window.innerWidth <= 768 ? 'black' : 'none';
-    const randomType = () => {
-      const types = [1, 2, 3];
-      return types[Math.floor(Math.random() * types.length)];
-    };
-
-    this.type = randomType();
   }
 
   createContainer = () => {
@@ -84,7 +78,12 @@ class driveWidget {
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
     const newHighscoreImage = new Image();
     newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
+    const randomType = () => {
+      const types = [1, 2, 3];
+      return types[Math.floor(Math.random() * types.length)];
+    };
 
+    this.type = randomType();
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-drive-container');
     myCanvas.classList.add(
