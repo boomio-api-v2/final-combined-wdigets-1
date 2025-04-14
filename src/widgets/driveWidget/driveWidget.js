@@ -74,7 +74,7 @@ class driveWidget {
       return types[Math.floor(Math.random() * types.length)];
     };
 
-    this.type = config.business_name === 'Gamtos Ateitis' ? config.business_name : randomType();
+    this.type = randomType();
   }
 
   createContainer = () => {
