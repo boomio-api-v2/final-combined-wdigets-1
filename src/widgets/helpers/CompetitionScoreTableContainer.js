@@ -472,7 +472,7 @@ export class CompetitionScoreTableContainer {
   box-shadow: -4px -4px 8px #DFE6F5 inset;
   border-radius: 35px;
   display: flex;
-  display:${this.prop === 'Perlas GO' && !userId ? 'flex' : 'none'};
+  display:${this.prop === 'Perlas GO' && !campaignUrl ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;
   z-index: 9999999;
