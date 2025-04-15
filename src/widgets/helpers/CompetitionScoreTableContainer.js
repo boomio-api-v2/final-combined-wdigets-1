@@ -26,8 +26,8 @@ export class CompetitionScoreTableContainer {
     const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
     const scoreboard =
       this.prop === 'Gamtos Ateitis'
-        ? this.scoreTable.teams_scoreboard
-        : this.scoreTable.scoreboard || [];
+        ? this.scoreTable?.teams_scoreboard
+        : this.scoreTable?.scoreboard || [];
 
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
@@ -65,7 +65,7 @@ export class CompetitionScoreTableContainer {
     ];
 
     let tableHTML = '';
-    scoreboard.forEach((item, index) => {
+    scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 
       const color =
