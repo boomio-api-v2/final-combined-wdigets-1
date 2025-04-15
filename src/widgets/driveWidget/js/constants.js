@@ -602,3 +602,15 @@ export const envelopeImageData2GamtosAteitisPlastikas = [
 export const carImageDataGamtosAteitisPlastikas = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bikePlastikas.png',
 ];
+
+export const introGlass = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/introGlass.gif',
+];
+
+export const introPaper = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/introPaper.gif',
+];
+
+export const introPlastic = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/introPlastic.gif',
+];

@@ -146,6 +146,7 @@ function startGame(
   scoreTableContainerInstance,
   didYouKnowContainer,
   competitionCodeScoreTableContainerPigu,
+  type,
 ) {
   let config = localStorageService.getDefaultConfig();
   let checkboxChange = false;
@@ -156,13 +157,6 @@ function startGame(
   const isMobileHeightSmall = window.innerHeight <= 600;
 
   const customer = config.business_name ? config.business_name : 'Gamtos Ateitis';
-
-  const randomType = () => {
-    const types = [1, 2, 3];
-    return types[Math.floor(Math.random() * types.length)];
-  };
-
-  const type = config.business_name === 'Gamtos Ateitis' ? config.business_name : randomType();
 
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';

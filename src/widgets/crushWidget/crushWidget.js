@@ -10,20 +10,26 @@ import {
   orangeSpecial,
   purpleSpecial,
   redSpecial,
+  intro,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
+import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
+import { InputContainer } from '../helpers/InputContainer';
+import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import './styles.css';
 
 class CrushGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
+    this.currentScoreTable = {};
     this.gridSize = 8;
     this.tileSize = 50;
     this.colors = { red, blue, green, yellow, purple, orange };
     this.grid = [];
     this.selectedTile = null;
     this.images = {};
-    this.score = 0;
+    this.currentScore = 0;
     this.multiplier = 1;
     this.isAnimating = false; // Add this flag
     this.timer = 60; // Add timer property
@@ -41,17 +47,184 @@ class CrushGame {
       this.setupCanvas();
       this.generateValidGrid();
       this.addEventListeners();
-      this.startGameLoop();
-      this.startTimer(); // Start the timer when the game starts
+      setTimeout(() => {
+        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+        document.getElementById('background_intro').style.opacity = 0;
+        if (this.gameCount === 0) {
+          document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+        }
+        this.showRulesOrRegistration();
+
+        setTimeout(() => {
+          document.getElementById('background_intro').style.display = 'none';
+        }, 3500);
+      }, 3500); //intro speed
     });
   }
+
+  showRulesOrRegistration = () => {
+    const currentPageUrl = window.location.href;
+    this.urlParams = new URL(currentPageUrl).searchParams;
+    const user_id = this.urlParams.get('user_id');
+    if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
+      const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
+      checkboxImg3.addEventListener('click', () => {
+        this.checkboxChange3 = !this.checkboxChange3;
+        const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
+        checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
+      });
+    }
+    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt' && user_id === null) {
+      const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
+      checkboxImg.addEventListener('click', () => {
+        this.checkboxChange = !this.checkboxChange;
+        const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+        checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+      });
+
+      const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+      checkboxImg2.addEventListener('click', () => {
+        this.checkboxChange2 = !this.checkboxChange2;
+        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+        checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+      });
+
+      const emailInput = document.querySelector('.boomio-competition-email-input-field');
+      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+      emailInput.addEventListener('input', () => {});
+      playerNameInput.addEventListener('input', () => {});
+
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-crush-container');
+        document.getElementById('background_blur').style.opacity =
+          this.language === 'LV' ? 0.4 : 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
+
+        const inpuRegisterContainer = document.querySelector('.input-register-container');
+        document.getElementById('control-button').style.transition = 'opacity 2s ease';
+        document.getElementById('control-button').style.opacity = 1;
+        inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        inpuRegisterContainer.style.display = 'block';
+        setTimeout(() => {
+          inpuRegisterContainer.style.height = '528px';
+          inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+          inpuRegisterContainer.style.opacity = 1;
+        }, 100);
+      }, 300);
+    } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id !== '') {
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: this.customer === 'Perlas GO' ? true : false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          this.bestScore = response.user_best_score;
+          if (this.customer === 'Pigu.lt' && false) {
+            this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
+            const competitionTableContainer = document.querySelector(
+              '.competition-table-container-pigu',
+            );
+            competitionTableContainer.style.transition =
+              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.display = 'block';
+            setTimeout(() => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = 'calc(50%)';
+              competitionTableContainer.style.opacity = 1;
+            }, 100);
+          } else {
+            this.userBestScore = response.user_best_score;
+
+            this.showRulesPigu();
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id === '') {
+      boomioService
+        .signal('', 'user_info', {
+          emails_consent: false,
+          user_email: user_id,
+          user_name: user_id,
+        })
+        .then((response) => {
+          this.userBestScore = response.user_best_score;
+
+          this.showRulesPigu();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else {
+      setTimeout(() => {
+        const canvas = document.getElementById('boomio-crush-container');
+        document.getElementById('background_blur').style.opacity =
+          this.language === 'LV' ? 0.4 : 0.37;
+        canvas.style.transition = 'filter 0.6s ease';
+        canvas.style.filter = 'blur(2px)';
+        const inputContainer = document.querySelector('.input-container');
+        document.getElementById('control-button').style.transition = 'opacity 2s ease';
+        document.getElementById('control-button').style.opacity = 1;
+        inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        inputContainer.style.display = 'block';
+        setTimeout(() => {
+          inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+          inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
+          inputContainer.style.opacity = 1;
+        }, 100);
+      }, 300);
+    }
+  };
+
+  showRulesPigu = () => {
+    this.config = localStorageService.getDefaultConfig();
+    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
+
+    if (this.customer === 'Pigu.lt') {
+      if (this.userBestScore > 0) {
+        document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
+      }
+      const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+
+      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      setTimeout(() => {
+        competitionTableContainer.style.height = '10px';
+        competitionTableContainer.style.top = 'calc(50% + 330px)';
+        competitionTableContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        competitionTableContainer.style.display = 'none';
+      }, 1000);
+    }
+    setTimeout(() => {
+      const canvas = document.getElementById('boomio-crush-container');
+      document.getElementById('background_blur').style.opacity =
+        this.language === 'LV' ? 0.4 : 0.37;
+      canvas.style.transition = 'filter 0.6s ease';
+      canvas.style.filter = 'blur(2px)';
+      const inputContainer = document.querySelector('.input-container');
+      document.getElementById('control-button').style.transition = 'opacity 2s ease';
+      document.getElementById('control-button').style.opacity = 1;
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      inputContainer.style.display = 'block';
+      setTimeout(() => {
+        inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
+        inputContainer.style.opacity = 1;
+      }, 100);
+    }, 300);
+  };
 
   startTimer() {
     const timerElement = document.getElementById('timer');
     if (this.timerInterval) {
       clearInterval(this.timerInterval); // Clear any existing timer intervals
     }
-    this.timer = 60; // Reset the timer to 60 seconds
+    this.timer = 61; // Reset the timer to 60 seconds
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `Time: ${this.timer}s`;
@@ -64,7 +237,7 @@ class CrushGame {
 
   endGame() {
     this.isAnimating = true; // Prevent any further actions
-    alert(`Game Over! Your score is ${this.score}`);
+    alert(`Game Over! Your score is ${this.currentScore}`);
     // Optionally, you can add logic to restart the game or show a game over screen
   }
 
@@ -149,22 +322,36 @@ class CrushGame {
   }
 
   createContainer() {
-    const gameContainer = document.createElement('div');
-    gameContainer.setAttribute('id', 'boomio-crush-container');
-    gameContainer.classList.add(
+    const myCanvas = document.createElement('div');
+    myCanvas.setAttribute('id', 'boomio-crush-container');
+    myCanvas.classList.add(
       'boomio--animation__wrapper',
       'boomio--animation__wrapper--initial',
       'box',
     );
-    gameContainer.innerHTML = `
+    myCanvas.innerHTML = `
       <div class="game-container game-container-catch">
-        <div id="crush-game-background"></div>
-        <canvas id="crash-canvas" width="${this.gridSize * this.tileSize}" height="${
+        ${new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML}
+        <img src="${intro}"
+             alt="Image Description" 
+             style="z-index:4; height: ${
+               this.isMobileHeightSmall ? '100%' : '674px'
+             };position:absolute;pointer-events: none; display:block;" 
+             id="background_intro">
+             <div alt="Image Description" style="z-index:1;width: ${
+               document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+             }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#FE0000'}" id="background_blur"></div>
+
+        <!-- Game content container hidden initially -->
+        <div id="game-content" style="display: none;">
+          <div id="crush-game-background"></div>
+          <canvas id="crash-canvas" width="${this.gridSize * this.tileSize}" height="${
       this.gridSize * this.tileSize
     }"></canvas>
-        <div id="score">Score: 0</div>
-        <div id="timer">Time: 60s</div> <!-- Add timer display -->
-        <!-- Start overlay -->
+          <div id="score">Score: 0</div>
+          <div id="timer">Time: 60s</div>
+        </div>
+        <!-- Start overlay showing only the button at first -->
         <div id="start-screen">
           <button id="start-button">Start Game</button>
         </div>
@@ -172,7 +359,16 @@ class CrushGame {
         <button id="restart-button" class="hidden">Restart Game</button>
       </div>
     `;
-    widgetHtmlService.container.appendChild(gameContainer);
+    widgetHtmlService.container.appendChild(myCanvas);
+    const gameContainer = document.querySelector('.game-container');
+
+    this.currentScoreTableContainerInstance = new CompetitionScoreTableContainer(
+      this.customer,
+      this.currentScoreTable,
+      this.currentScore,
+    );
+
+    gameContainer.appendChild(this.currentScoreTableContainerInstance.containerDiv);
   }
 
   setupCanvas() {
@@ -555,10 +751,14 @@ class CrushGame {
       startButton.addEventListener('click', () => {
         // Hide the start screen overlay
         document.getElementById('start-screen').classList.add('hidden');
+        // Show the game content
+        document.getElementById('game-content').style.display = 'block';
         // Show the restart button
         document.getElementById('restart-button').classList.remove('hidden');
         // Start the game loop if not already running
         this.startGameLoop();
+        // Optionally, start the timer if not already started
+        this.startTimer();
       });
     }
 
@@ -571,17 +771,12 @@ class CrushGame {
   }
 
   restartGame() {
-    // Reset score and update display
-    this.score = 0;
+    this.currentScore = 0;
     document.getElementById('score').innerText = 'Score: 0';
-    // Re-generate a valid grid
-    this.generateValidGrid();
-    // Reset selected tile
-    this.selectedTile = null;
-    // Redraw the grid
-    this.drawGrid();
-    // Restart the timer
     this.startTimer();
+    this.generateValidGrid();
+    this.selectedTile = null;
+    this.drawGrid();
   }
 
   handleTileSelection(event) {
@@ -794,12 +989,12 @@ class CrushGame {
       }
 
       // Otherwise, just add the calculated points (use multiplier if you have one)
-      // e.g. this.score += totalBasePoints * this.multiplier;
+      // e.g. this.currentScore += totalBasePoints * this.multiplier;
       // If you don't have a multiplier, just do:
-      this.score += totalBasePoints;
+      this.currentScore += totalBasePoints;
 
       // Update score display
-      document.getElementById('score').innerText = `Score: ${this.score}`;
+      document.getElementById('score').innerText = `Score: ${this.currentScore}`;
 
       // Animate the match effect, then clear matched tiles, apply gravity, and check for new matches
       this.animateMatchEffect(matchArray, () => {
@@ -837,8 +1032,8 @@ class CrushGame {
 
     // Award points for each tile in the explosion area.
     // (You could adjust the points logic as needed.)
-    this.score += explosionArea.length * this.multiplier;
-    document.getElementById('score').innerText = `Score: ${this.score}`;
+    this.currentScore += explosionArea.length * this.multiplier;
+    document.getElementById('score').innerText = `Score: ${this.currentScore}`;
 
     // Animate the explosion over that area.
     this.animateExplosion(explosionArea, () => {

@@ -30,6 +30,9 @@ import {
   newRecordFI,
   newRecordRU,
   life,
+  introGlass,
+  introPaper,
+  introPlastic,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -75,7 +78,12 @@ class driveWidget {
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
     const newHighscoreImage = new Image();
     newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
+    const randomType = () => {
+      const types = [1, 2, 3];
+      return types[Math.floor(Math.random() * types.length)];
+    };
 
+    this.type = randomType();
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-drive-container');
     myCanvas.classList.add(
@@ -257,6 +265,12 @@ ${
         ? IkeaIntro
         : this.customer === 'LemonGym'
         ? intro
+        : this.type === 1
+        ? introPaper
+        : this.type === 2
+        ? introGlass
+        : this.type === 3
+        ? introPlastic
         : ''
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -361,6 +375,7 @@ ${
       this.scoreTableContainerInstance,
       this.didYouKnowContainer,
       this.competitionCodeScoreTableContainerPigu,
+      this.type,
     );
   };
 }

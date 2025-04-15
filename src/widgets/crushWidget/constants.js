@@ -29,3 +29,6 @@ export const purpleSpecial =
 
 export const redSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/graphics/red-special.png';
+
+export const intro =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Vilvi/intro.png?raw=true';
