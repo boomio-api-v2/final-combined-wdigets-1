@@ -227,7 +227,8 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform: ${
               this.prop !== 'Akropolis' &&
               this.prop !== 'Perlas GO' &&
-              this.prop !== 'Zemaitijos Pienas'
+              this.prop !== 'Zemaitijos Pienas' &&
+              this.prop !== 'Gamtos Ateitis'
                 ? 'uppercase'
                 : 'none'
             }; word-wrap: break-word">${
@@ -327,7 +328,8 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: 450px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
               this.prop !== 'Akropolis' &&
               this.prop !== 'Perlas GO' &&
-              this.prop !== 'Zemaitijos Pienas'
+              this.prop !== 'Zemaitijos Pienas' &&
+              this.prop !== 'Gamtos Ateitis'
                 ? 'uppercase'
                 : 'none'
             }; word-wrap: break-word">${
