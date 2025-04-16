@@ -11,6 +11,14 @@ import {
   purpleSpecial,
   redSpecial,
   intro,
+  newRecordEE,
+  newRecordFI,
+  newRecordRU,
+  newRecordLV,
+  newRecordEn,
+  newRecord,
+  checkIcon,
+  uncheckIcon,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -21,7 +29,13 @@ import './styles.css';
 class CrushGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.showCompetitiveRegistration =
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
+    this.gameCount = 0;
+    this.language = this.config.language ? this.config.language : 'LV';
+
     this.currentScoreTable = {};
     this.gridSize = 8;
     this.tileSize = 50;
@@ -34,14 +48,14 @@ class CrushGame {
     this.isAnimating = false; // Add this flag
     this.timer = 60; // Add timer property
     this.timerInterval = null; // Add timer interval property
-    this.init();
+    this.startLoading();
   }
 
-  init() {
+  startLoading() {
     this.preloadImages(() => {
       this.createContainer();
 
-      document.getElementById('crash-canvas').style.background = true
+      document.getElementById('boomio-crush-canvas').style.background = true
         ? 'gray'
         : `url(${redSpecial}) center`;
       this.setupCanvas();
@@ -58,8 +72,8 @@ class CrushGame {
 
         setTimeout(() => {
           document.getElementById('background_intro').style.display = 'none';
-        }, 3500);
-      }, 3500); //intro speed
+        }, 1);
+      }, 1); //intro speed
     });
   }
 
@@ -96,12 +110,11 @@ class CrushGame {
       playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-crush-container');
+        const canvas = document.getElementById('boomio-crush-canvas');
         document.getElementById('background_blur').style.opacity =
           this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
-
         const inpuRegisterContainer = document.querySelector('.input-register-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -161,7 +174,7 @@ class CrushGame {
         });
     } else {
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-crush-container');
+        const canvas = document.getElementById('boomio-crush-canvas');
         document.getElementById('background_blur').style.opacity =
           this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
@@ -201,7 +214,7 @@ class CrushGame {
       }, 1000);
     }
     setTimeout(() => {
-      const canvas = document.getElementById('boomio-crush-container');
+      const canvas = document.getElementById('boomio-crush-canvas');
       document.getElementById('background_blur').style.opacity =
         this.language === 'LV' ? 0.4 : 0.37;
       canvas.style.transition = 'filter 0.6s ease';
@@ -322,6 +335,9 @@ class CrushGame {
   }
 
   createContainer() {
+    const newHighscoreStarsImage = new Image();
+    newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
+
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-crush-container');
     myCanvas.classList.add(
@@ -330,8 +346,29 @@ class CrushGame {
       'box',
     );
     myCanvas.innerHTML = `
-      <div class="game-container game-container-catch">
+      <div class="game-container" id="game-container">
         ${new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML}
+          <img class="new_highscore_stars" src=${
+            newHighscoreStarsImage.src
+          } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+            </img>
+            <div class="new_highscore"><img src=${
+              this.language === 'EN'
+                ? newRecordEn
+                : this.language === 'LV'
+                ? newRecordLV
+                : this.language === 'ET' || this.language === 'EE'
+                ? newRecordEE
+                : this.language === 'FI'
+                ? newRecordFI
+                : this.language === 'RU'
+                ? newRecordRU
+                : newRecord
+            } alt="Image Description" style="width: 100%; height: 100%;">
+            </div>
+        
+        
+            ${new InputContainer(this.customer, 'crush').createInputContainerDiv().outerHTML}
         <img src="${intro}"
              alt="Image Description" 
              style="z-index:4; height: ${
@@ -345,15 +382,11 @@ class CrushGame {
         <!-- Game content container hidden initially -->
         <div id="game-content" style="display: none;">
           <div id="crush-game-background"></div>
-          <canvas id="crash-canvas" width="${this.gridSize * this.tileSize}" height="${
-      this.gridSize * this.tileSize
-    }"></canvas>
+          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" width="${
+            this.gridSize * this.tileSize
+          }" height="${this.gridSize * this.tileSize}"></canvas>
           <div id="score">Score: 0</div>
           <div id="timer">Time: 60s</div>
-        </div>
-        <!-- Start overlay showing only the button at first -->
-        <div id="start-screen">
-          <button id="start-button">Start Game</button>
         </div>
         <!-- Restart button (initially hidden) -->
         <button id="restart-button" class="hidden">Restart Game</button>
@@ -372,7 +405,7 @@ class CrushGame {
   }
 
   setupCanvas() {
-    this.canvas = document.getElementById('crash-canvas');
+    this.canvas = document.getElementById('boomio-crush-canvas');
     this.ctx = this.canvas.getContext('2d');
   }
 
@@ -742,33 +775,311 @@ class CrushGame {
     }
   }
 
+  clickEventHandlerShowRules = () => {
+    if (this.gameCount === 0) {
+      setTimeout(() => {
+        const emailInput = document.querySelector('.boomio-competition-email-input-field');
+        const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+        const cyrillicRegex = /[\u0400-\u04FF]/;
+        const containsCyrillic = (input) => cyrillicRegex.test(input.value);
+
+        if (containsCyrillic(emailInput)) {
+          document.getElementById('competition-email-error').innerText = '';
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        }
+
+        if (containsCyrillic(playerNameInput)) {
+          document.getElementById('competition-name-error').innerText = '';
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        }
+
+        if (containsCyrillic(emailInput)) {
+          document.getElementById('competition-email-error').innerText =
+            this.language === 'LV'
+              ? 'E-pastā ir nederīgas rakstzīmes'
+              : 'El. pašte yra neteisingų simbolių';
+          document.getElementById('competition-email-error').style.backgroundColor =
+            this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+          return;
+        }
+
+        if (containsCyrillic(playerNameInput)) {
+          document.getElementById('competition-name-error').innerText =
+            this.language === 'LV'
+              ? 'Lietotāja varde yra neteisingi simbolių'
+              : 'Vartotojo varde yra neteisingų simbolių';
+          document.getElementById('competition-name-error').style.backgroundColor =
+            this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+          return;
+        }
+        if (!this.checkboxChange) {
+          document.getElementById('competition-checkbox-error').innerText =
+            this.language === 'LV'
+              ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+              : this.customer === 'Perlas GO'
+              ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
+              : this.customer === 'Vilvi'
+              ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+              : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            this.customer === 'Akropolis' && this.language !== 'LV'
+              ? '#FFBABA'
+              : this.customer === 'Perlas GO' && 'white';
+
+          document.getElementById('competition-name-error').innerText = '';
+
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+
+          document.getElementById('competition-email-error').innerText = '';
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        }
+        if (emailInput?.value === '' || emailInput?.value === null) {
+          document.getElementById('competition-email-error').innerText =
+            this.language === 'LV'
+              ? 'Obligāti aizpildāmie lauki.'
+              : 'Norint tęsti privaloma užpildyti.';
+          document.getElementById('competition-email-error').style.backgroundColor =
+            this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+          document.getElementById('competition-name-error').innerText = '';
+
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+        }
+        if (
+          this.customer !== 'Perlas GO' &&
+          (playerNameInput?.value === '' || playerNameInput?.value === null)
+        ) {
+          document.getElementById('competition-name-error').innerText =
+            this.language === 'LV'
+              ? 'Obligāti aizpildāmie lauki.'
+              : 'Norint tęsti privaloma užpildyti.';
+          document.getElementById('competition-name-error').style.backgroundColor =
+            this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+
+          document.getElementById('competition-email-error').innerText = '';
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+        }
+        if (this.customer === 'Perlas GO') {
+          if (!isValidEmail(emailInput?.value)) {
+            document.getElementById('competition-email-error').innerText =
+              'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+            document.getElementById('competition-email-error').zIndex = 1;
+            document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+
+            return;
+          }
+        }
+
+        if (
+          this.customer !== 'Perlas GO' &&
+          (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+          (playerNameInput?.value === '' || playerNameInput?.value === null)
+        ) {
+          document.getElementById('competition-name-error').innerText =
+            this.language === 'LV'
+              ? 'Obligāti aizpildāmie lauki.'
+              : 'Norint tęsti privaloma užpildyti.';
+          document.getElementById('competition-name-error').style.backgroundColor =
+            this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+          document.getElementById('competition-email-error').innerText =
+            this.language === 'LV'
+              ? 'Obligāti aizpildāmie lauki.'
+              : 'Norint tęsti privaloma užpildyti.';
+          document.getElementById('competition-email-error').style.backgroundColor =
+            this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+        } else {
+          if (this.showCompetitiveRegistration && this.checkboxChange) {
+            boomioService
+              .signal('', 'user_info', {
+                emails_consent: this.checkboxChange2,
+                user_email: emailInput?.value,
+                user_name:
+                  this.customer === 'Perlas GO' ? emailInput?.value : playerNameInput?.value,
+                via_mobile: this.campaignUrl ? true : false,
+              })
+              .then((response) => {
+                if (response.success === false) {
+                  if (response.res_code === 'EMAIL_EXIST') {
+                    document.getElementById('competition-email-error').innerText =
+                      this.language === 'LV'
+                        ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
+                        : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                    document.getElementById('competition-email-error').style.backgroundColor =
+                      this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+                    document.getElementById('competition-name-error').innerText = '';
+
+                    document.getElementById('competition-name-error').style.backgroundColor =
+                      'transparent';
+                    document.getElementById('competition-checkbox-error').innerText = '';
+                    document.getElementById('competition-checkbox-error').style.backgroundColor =
+                      'transparent';
+                  } else if (response.res_code === 'NICKNAME_EXIST') {
+                    document.getElementById('competition-name-error').innerText =
+                      this.language === 'LV'
+                        ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                        : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                    document.getElementById('competition-name-error').style.backgroundColor =
+                      this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+
+                    document.getElementById('competition-email-error').innerText = '';
+                    document.getElementById('competition-email-error').style.backgroundColor =
+                      'transparent';
+                    document.getElementById('competition-checkbox-error').innerText = '';
+                    document.getElementById('competition-checkbox-error').style.backgroundColor =
+                      'transparent';
+                  }
+                } else {
+                  this.bestScore = response.user_best_score ?? 0;
+                  const inpuRegisterContainer = document.querySelector('.input-register-container');
+                  inpuRegisterContainer.style.transition =
+                    'height 1s ease, top 1s ease, opacity 1s ease';
+                  setTimeout(() => {
+                    inpuRegisterContainer.style.height = '10px';
+                    inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                    inpuRegisterContainer.style.opacity = 0;
+                  }, 100);
+                  setTimeout(() => {
+                    inpuRegisterContainer.style.display = 'none';
+                  }, 1000);
+                  setTimeout(() => {
+                    const canvas = document.getElementById('boomio-crush-canvas');
+                    document.getElementById('background_blur').style.opacity =
+                      this.language === 'LV' ? 0.4 : 0.37;
+                    canvas.style.transition = 'filter 0.6s ease';
+                    canvas.style.filter = 'blur(2px)';
+                    const inputContainer = document.querySelector('.input-container');
+                    document.getElementById('control-button').style.transition = 'opacity 2s ease';
+                    document.getElementById('control-button').style.opacity = 1;
+                    document.getElementById('control-button').style.display = 'flex';
+                    inputContainer.style.transition =
+                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    inputContainer.style.display = 'block';
+                    setTimeout(() => {
+                      inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+                      inputContainer.style.top = `calc(50% + ${
+                        this.isMobileHeightSmall ? '110px' : '170px'
+                      })`;
+                      inputContainer.style.opacity = 1;
+                    }, 100);
+                  }, 300);
+                }
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }
+      }, 300);
+    }
+  };
+
   addEventListeners() {
     this.canvas.addEventListener('mousedown', (e) => this.handleTileSelection(e));
     this.canvas.addEventListener('mouseup', (e) => this.handleTileSwap(e));
-
-    const startButton = document.getElementById('start-button');
-    if (startButton) {
-      startButton.addEventListener('click', () => {
-        // Hide the start screen overlay
-        document.getElementById('start-screen').classList.add('hidden');
-        // Show the game content
-        document.getElementById('game-content').style.display = 'block';
-        // Show the restart button
-        document.getElementById('restart-button').classList.remove('hidden');
-        // Start the game loop if not already running
-        this.startGameLoop();
-        // Optionally, start the timer if not already started
-        this.startTimer();
-      });
+    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
+      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
+      competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
     }
-
-    const restartButton = document.getElementById('restart-button');
-    if (restartButton) {
-      restartButton.addEventListener('click', () => {
-        this.restartGame();
-      });
-    }
+    const restart = document.getElementById('boomio-game-play-again');
+    restart.addEventListener('click', this.restartGame);
+    const start = document.getElementById('control-button');
+    start.addEventListener('click', this.initGame);
   }
+
+  removeRules = () => {
+    if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
+      document.getElementById('boomio-rules-checkbox-error').innerText =
+        this.customer === 'Pigu.lt' && this.language === 'EN'
+          ? 'To continue, it is mandatory to agree to receive news and information about prizes.'
+          : this.customer === 'Pigu.lt' && this.language === 'LV'
+          ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
+          : this.customer === 'Pigu.lt' && this.language === 'ET'
+          ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
+          : this.customer === 'Pigu.lt' && this.language === 'FI'
+          ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
+          : this.customer === 'Pigu.lt' && this.language === 'RU'
+          ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
+          : '';
+      document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
+
+      document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
+    }
+
+    if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
+      const inputContainer = document.querySelector('.input-container');
+      const controlButton = document.querySelector('.control-button');
+
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      controlButton.style.transition = 'opacity 0.6s ease';
+      setTimeout(() => {
+        inputContainer.style.height = '10px';
+        inputContainer.style.top = 'calc(50% + 330px)';
+        inputContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        inputContainer.style.display = 'none';
+      }, 1000);
+
+      if (this.gameCount === 0) {
+        const controlButton = document.querySelector('.control-button');
+        controlButton.style.display = 'none';
+        this.index = 0;
+      }
+    }
+  };
+
+  initGame = () => {
+    this.removeRules();
+    if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
+      if (!this.tutorial) {
+        setTimeout(() => {
+          if (this.showCompetitiveRegistration) {
+            boomioService
+              .signal('ROUND_STARTED', 'signal')
+              .then((response) => {
+                if (this.customer === 'Pigu.lt') {
+                  if (window.Boomio) {
+                    window.Boomio.logEvent('game_started', JSON.stringify(response));
+                  } else if (
+                    window.webkit &&
+                    window.webkit.messageHandlers &&
+                    window.webkit.messageHandlers.Boomio
+                  ) {
+                    var message = {
+                      command: 'logEvent',
+                      name: 'game_started',
+                      parameters: { response },
+                    };
+                    window.webkit.messageHandlers.Boomio.postMessage(message);
+                  } else {
+                    console.log('No native APIs found.');
+                  }
+                }
+              })
+
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }, 50);
+
+        this.startGameLoop();
+        this.startTimer();
+      } else {
+        if (typeof window.dataLayer !== 'undefined') {
+          window.dataLayer.push({ event: 'Game_Start' });
+        }
+
+        this.showtutorial();
+      }
+    }
+  };
 
   restartGame() {
     this.currentScore = 0;
@@ -1121,6 +1432,14 @@ class CrushGame {
   }
 
   startGameLoop() {
+    setTimeout(() => {
+      document.getElementById('background_blur').style.display = 'none';
+      const canvas = document.getElementById('boomio-crush-canvas');
+      canvas.style.transition = 'filter 1s ease';
+      canvas.style.filter = 'none';
+      this.gamePlaying = true;
+    }, 400);
+    document.getElementById('game-content').style.display = 'block';
     const gameLoop = () => {
       this.update();
       this.drawGrid();
