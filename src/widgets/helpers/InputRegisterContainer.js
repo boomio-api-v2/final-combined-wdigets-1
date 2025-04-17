@@ -79,6 +79,8 @@ export class InputRegisterContainer {
         ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
         : this.language === 'FI'
         ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
+        : this.prop === 'Perlas GO'
+        ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
         : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
     } 
     </div>

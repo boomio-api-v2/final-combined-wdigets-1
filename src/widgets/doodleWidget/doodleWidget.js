@@ -1716,7 +1716,10 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                         document.getElementById(
                           'competition-checkbox-error',
                         ).style.backgroundColor = 'transparent';
-                      } else if (response.res_code === 'NICKNAME_EXIST') {
+                      } else if (
+                        response.res_code === 'NICKNAME_EXIST' &&
+                        this.customer !== 'Perlas GO'
+                      ) {
                         document.getElementById('competition-name-error').innerText =
                           this.language === 'LV'
                             ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
