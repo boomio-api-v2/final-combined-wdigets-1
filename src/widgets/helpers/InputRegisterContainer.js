@@ -79,6 +79,8 @@ export class InputRegisterContainer {
         ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
         : this.language === 'FI'
         ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
+        : this.prop === 'Perlas GO'
+        ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
         : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
     } 
     </div>
@@ -356,7 +358,7 @@ export class InputRegisterContainer {
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.prop === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'
     };color:${
-      this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
+      this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : 'rgb(216, 0, 12)'
     };text-align:start;line-height:8px;">
 </div>
 
@@ -418,7 +420,7 @@ export class InputRegisterContainer {
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
-      font-weight: 700;
+      font-weight: 400;
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;

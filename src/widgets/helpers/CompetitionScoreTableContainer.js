@@ -24,9 +24,16 @@ export class CompetitionScoreTableContainer {
   updateVisuals() {
     if (!this.containerDiv) return;
     const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-    const scoreboard = this.scoreTable.scoreboard || [];
+    const scoreboard =
+      this.prop === 'Gamtos Ateitis'
+        ? this.scoreTable?.teams_scoreboard
+        : this.scoreTable?.scoreboard || [];
+
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const campaignUrl = urlParams.get('campaign_url');
 
     const perlasGoTable = [
       'PERLIUKAS',
@@ -61,7 +68,7 @@ export class CompetitionScoreTableContainer {
     ];
 
     let tableHTML = '';
-    scoreboard.forEach((item, index) => {
+    scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 
       const color =
@@ -112,6 +119,8 @@ export class CompetitionScoreTableContainer {
           ? userBestPlace === index + 1
             ? 'Tavo rezultatas'
             : perlasGoTable[index]
+          : this.prop === 'Gamtos Ateitis'
+          ? item.team
           : item.user_name
       }
     </td>
@@ -221,7 +230,8 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform: ${
               this.prop !== 'Akropolis' &&
               this.prop !== 'Perlas GO' &&
-              this.prop !== 'Zemaitijos Pienas'
+              this.prop !== 'Zemaitijos Pienas' &&
+              this.prop !== 'Gamtos Ateitis'
                 ? 'uppercase'
                 : 'none'
             }; word-wrap: break-word">${
@@ -256,7 +266,9 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Vilvi'
                 ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
                 : this.prop === 'Perlas GO'
-                ? 'Net 20 geriausių žaidėjų, užsiregistravusių „Perlas Go“ </br> programėlėje ar savitarnos svetainėje, kiekvieną savaitę laimės</br> po 10 € vertės „Wolt“ dovanų kuponą! Jei laimėsi, informuosime </br>tave registracijos metu nurodytu el. paštu.'
+                ? `Net 20 geriausių žaidėjų, užsiregistravusių „Perlas Go“ </br> programėlėje ar savitarnos svetainėje, kiekvieną savaitę laimės</br> po 10 € vertės „Wolt“ dovanų kuponą! Jei laimėsi, informuosime </br>tave ${
+                    this.prop === 'Perlas GO' && !campaignUrl ? 'registracijos metu nurodytu' : ''
+                  } el. paštu.`
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
                 : ''
@@ -321,7 +333,8 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: 450px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
               this.prop !== 'Akropolis' &&
               this.prop !== 'Perlas GO' &&
-              this.prop !== 'Zemaitijos Pienas'
+              this.prop !== 'Zemaitijos Pienas' &&
+              this.prop !== 'Gamtos Ateitis'
                 ? 'uppercase'
                 : 'none'
             }; word-wrap: break-word">${
@@ -362,7 +375,9 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Perlas GO'
                 ? 'Pagerink savo rezultatą – net 20 geriausių žaidėjų, </br> užsiregistravusių „Perlas Go“ programėlėje ar savitarnos</br> svetainėje, kiekvieną savaitę laimės po 10 € vertės „Wolt“ </br> dovanų kuponą! '
                 : this.prop === 'Dentsu'
-                ? 'Geriausią rezultatą pasiekęs žaidėjas laimės mėnesio trukmės </br> tiesioginį bendravimą su tiksline auditorija per „Teams“! Jei </br> laimėsi, informuosime tave registracijos metu nurodytu el. paštu.'
+                ? `Geriausią rezultatą pasiekęs žaidėjas laimės mėnesio trukmės </br> tiesioginį bendravimą su tiksline auditorija per „Teams“! Jei </br> laimėsi, informuosime tave ${
+                    this.prop === 'Perlas GO' && !campaignUrl ? 'registracijos metu nurodytu' : ''
+                  } el. paštu.`
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
                 : ''
