@@ -1616,7 +1616,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 this.customer === 'Akropolis' && this.language !== 'LV'
                   ? '#FFBABA'
-                  : this.customer === 'Perlas GO' && 'white';
+                  : this.customer === 'Perlas GO' && 'rgb(255, 186, 186)';
 
               document.getElementById('competition-name-error').innerText = '';
 
