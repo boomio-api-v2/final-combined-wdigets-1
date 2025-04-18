@@ -278,8 +278,8 @@ export class CompetitionScoreTableContainer {
             }</div>
               <div style="width:100%; top: ${
                 this.prop === 'Perlas GO' ? '455px' : '505px'
-              };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.prop === 'Perlas GO' ? '9px' : '10px'
+              };line-height:14px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+              this.prop === 'Perlas GO' ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform:${
               this.prop === 'Perlas GO' ? 'none' : 'uppercase'
             } ; word-wrap: break-word">${
@@ -296,7 +296,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Makalius' && this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : this.prop === 'Perlas GO'
-                ? 'Panaudok kodą ir gauk 5 Eur nuolaidą sąskaitoms apmokėti Perlas Go!'
+                ? 'Panaudok kodą ir gauk 5 Eur nuolaidą sąskaitoms </br> apmokėti Perlas Go!'
                 : ''
             }</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -519,9 +519,9 @@ export class CompetitionScoreTableContainer {
   width: calc(100% - 40px);
   margin-left: 20px;
   margin-right: 20px;
-  top: 530px;
+  top: 535px;
   position: absolute;
-  height: 40px;
+  height: 36px;
   background: white;
   box-shadow: -4px -4px 8px #DFE6F5 inset;
   border-radius: 35px;
@@ -554,7 +554,7 @@ export class CompetitionScoreTableContainer {
   </a>
 </div>
 
-      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:580px;position:absolute; height: 40px; background: ${
+      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:580px;position:absolute; height: 36px; background: ${
         this.prop === 'Barbora' ||
         this.prop === 'Fpro' ||
         this.prop === 'Fantazijos' ||
