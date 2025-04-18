@@ -19,6 +19,7 @@ import {
   newRecord,
   checkIcon,
   uncheckIcon,
+  star,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -46,7 +47,7 @@ class CrushGame {
     this.currentScore = 0;
     this.multiplier = 1;
     this.isAnimating = false; // Add this flag
-    this.timer = 60; // Add timer property
+    this.timer = 5; // Add timer property
     this.timerInterval = null; // Add timer interval property
     this.startLoading();
   }
@@ -235,9 +236,9 @@ class CrushGame {
   startTimer() {
     const timerElement = document.getElementById('timer');
     if (this.timerInterval) {
-      clearInterval(this.timerInterval); // Clear any existing timer intervals
+      clearInterval(this.timerInterval);
     }
-    this.timer = 61; // Reset the timer to 60 seconds
+    this.timer = 5;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `Time: ${this.timer}s`;
@@ -249,10 +250,175 @@ class CrushGame {
   }
 
   endGame() {
-    this.isAnimating = true; // Prevent any further actions
-    alert(`Game Over! Your score is ${this.currentScore}`);
-    // Optionally, you can add logic to restart the game or show a game over screen
+    this.isAnimating = true;
+    this.showGoMenu();
   }
+
+  hideScore = () => {
+    const new_highscore = document.querySelector('.new_highscore');
+    const new_highscore_stars = document.querySelector('.new_highscore_stars');
+    const numbers = document.querySelector('.numbers');
+
+    numbers.style.transition = 'opacity 0.5s ease';
+    numbers.style.opacity = 0;
+    new_highscore.style.transition = 'opacity 0.5s ease';
+    new_highscore.style.opacity = 0;
+    new_highscore_stars.style.transition = 'opacity 0.5s ease';
+    new_highscore_stars.style.opacity = 0;
+
+    setTimeout(() => {
+      new_highscore.style.display = 'none';
+      new_highscore_stars.style.display = 'none';
+      numbers.style.display = 'none';
+    }, 500);
+  };
+
+  showGoMenu = () => {
+    if (this.newHighScoreReached) {
+      const numbers = document.querySelector('.numbers');
+      const new_highscore = document.querySelector('.new_highscore');
+      const new_highscore_stars = document.querySelector('.new_highscore_stars');
+      new_highscore_stars.style.display = 'block';
+
+      new_highscore.style.display = 'block';
+      numbers.style.display = 'block';
+
+      setTimeout(() => {
+        new_highscore.style.opacity = 1;
+        new_highscore_stars.style.opacity = 1;
+
+        numbers.style.opacity = 1;
+      }, 200);
+
+      const scoreDigits = document.querySelectorAll('.numbers__window__digit');
+
+      const scoreString = this.currentScore.toString();
+
+      const initialMargin = 200;
+      const scoreLength = this.currentScore.toString().length;
+
+      const newMarginLeft = initialMargin - 30 * scoreLength;
+      numbers.style.marginLeft = `${newMarginLeft}px`;
+      // Determine the number of leading zeros to hide
+      let leadingZeros = 0;
+      while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
+        leadingZeros++;
+      }
+
+      // Hide all digits initially
+      scoreDigits.forEach((digit) => {
+        digit.style.display = 'none';
+      });
+
+      // Display each digit individually, starting from the first non-zero digit
+      for (let i = leadingZeros; i < scoreString.length; i++) {
+        scoreDigits[i - leadingZeros].textContent = scoreString[i];
+        scoreDigits[i - leadingZeros].style.display = 'block';
+        scoreDigits[i - leadingZeros].classList.add('boomio-counting-animation');
+      }
+
+      // Remove the counting class after a short delay
+      setTimeout(() => {
+        setTimeout(() => {
+          this.newHighScoreReached = false;
+        }, 2000);
+        scoreDigits.forEach((digit) => {
+          digit.classList.remove('boomio-counting-animation');
+        });
+      }, 1000);
+    }
+
+    setTimeout(
+      () => {
+        if (this.showCompetitiveRegistration) {
+          boomioService
+            .signal('ROUND_FINISHED', 'signal', {
+              score: this.currentScore,
+            })
+            .then((response) => {
+              if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
+                document.getElementById('crush-mobile-controls').style.display = 'none';
+              }
+              if (this.customer === 'Pigu.lt') {
+                if (window.Boomio) {
+                  window.Boomio.logEvent('game_finished', JSON.stringify(response));
+                } else if (
+                  window.webkit &&
+                  window.webkit.messageHandlers &&
+                  window.webkit.messageHandlers.Boomio
+                ) {
+                  var message = {
+                    command: 'logEvent',
+                    name: 'game_finished',
+                    parameters: { response },
+                  };
+                  window.webkit.messageHandlers.Boomio.postMessage(message);
+                } else {
+                  console.log('No native APIs found.');
+                }
+              }
+              this.userBestPlace = response.user_best_place;
+
+              this.scoreTable = response;
+
+              this.scoreTableContainerInstance.updateProps(
+                this.customer,
+                this.scoreTable,
+                this.currentScore,
+              );
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+        if (this.showCompetitiveRegistration) {
+          let competitionTableContainer = '';
+          if (this.customer === 'Pigu.lt') {
+            competitionTableContainer = document.querySelector('.did-you-know-container');
+          } else {
+            competitionTableContainer = document.querySelector('.competition-table-container');
+          }
+          const canvas = document.getElementById('boomio-crush-canvas');
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.opacity =
+            this.language === 'LV' ? 0.4 : 0.37;
+          competitionTableContainer.style.transition =
+            'height 1s ease, top 1s ease, opacity 1s ease';
+          competitionTableContainer.style.display = 'block';
+          setTimeout(() => {
+            competitionTableContainer.style.height = '680px';
+            competitionTableContainer.style.top = 'calc(50%)';
+            competitionTableContainer.style.opacity = 1;
+          }, 100);
+        } else {
+          const inputContainer = document.querySelector('.input-container1');
+          const canvas = document.getElementById('boomio-crush-canvas');
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+          document.getElementById('background_blur').style.display = 'block';
+          inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          inputContainer.style.display = 'block';
+          setTimeout(() => {
+            inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+            inputContainer.style.top = `calc(50% + ${
+              this.isMobileHeightSmall ? '110px' : '170px'
+            })`;
+            inputContainer.style.opacity = 1;
+          }, 100);
+        }
+        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+        this.hideScore();
+        currectScoreDiv.style.opacity = 0;
+        setTimeout(() => {
+          currectScoreDiv.style.display = 'none';
+        }, 300);
+      },
+
+      this.newHighScoreReached ? 2500 : 100,
+    );
+  };
 
   getConnectedCells(row, col, color) {
     const stack = [{ row, col }];
@@ -369,6 +535,49 @@ class CrushGame {
         
         
             ${new InputContainer(this.customer, 'crush').createInputContainerDiv().outerHTML}
+
+
+                <div class="numbers">
+  <span class="numbers__window">
+      <span class="numbers__window__digit numbers__window__digit--1" data-fake="8642519073" id="bestScore1"></span>
+  </span>
+  <span class="numbers__window">
+      <span class="numbers__window__digit numbers__window__digit--2" data-fake="5207186394" id="bestScore2"></span>
+  </span>
+  <span class="numbers__window">
+      <span class="numbers__window__digit numbers__window__digit--3" data-fake="8395216407" id="bestScore3"></span>
+  </span>
+  <span class="numbers__window">
+  <span class="numbers__window__digit numbers__window__digit--4" data-fake="8395216407" id="bestScore4"></span>
+</span>
+<span class="numbers__window">
+<span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
+</span>
+<span class="numbers__window">
+
+<span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
+</span>
+</div>
+
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+      this.customer === 'Vilvi'
+        ? '#45A2BF'
+        : this.customer === 'Pigu.lt'
+        ? '#FD61FE'
+        : this.customer === 'Perlas GO'
+        ? '#19AA82'
+        : this.language === 'LV'
+        ? '#F40027'
+        : '#045222'
+    };border-radius:35px">
+    <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
+
+  <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
+</div>
+</div>
+
+
         <img src="${intro}"
              alt="Image Description" 
              style="z-index:4; height: ${
@@ -386,7 +595,7 @@ class CrushGame {
             this.gridSize * this.tileSize
           }" height="${this.gridSize * this.tileSize}"></canvas>
           <div id="score">Score: 0</div>
-          <div id="timer">Time: 60s</div>
+          <div id="timer">Time: 5s</div>
         </div>
         <!-- Restart button (initially hidden) -->
         <button id="restart-button" class="hidden">Restart Game</button>
