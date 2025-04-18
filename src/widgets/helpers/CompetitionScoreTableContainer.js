@@ -34,7 +34,8 @@ export class CompetitionScoreTableContainer {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
-
+    const userId = urlParams.get('user_id');
+    this.couponCodeNew = 'boomio5';
     const perlasGoTable = [
       'PERLIUKAS',
       'TAUPUOLIS',
@@ -198,7 +199,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
         (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 2025) ||
         (this.prop === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
-        (this.prop === 'Perlas GO' && this.scoreTable?.user_best_place <= 20) ||
+        (this.prop === 'Perlas GO' && !userId) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10) ||
         (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50)
@@ -223,9 +224,13 @@ export class CompetitionScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Fantazijos'
                 ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
+                : this.prop === 'Perlas GO'
+                ? ''
                 : 'Valio, tau puikiai sekasi!'
             }</div>
-            <div style="width:100%; top: ${'450px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+            <div style="width:100%; top: ${
+              this.prop === 'Perlas GO' ? '390px' : '450px'
+            };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: ${
               this.prop !== 'Akropolis' &&
@@ -266,16 +271,18 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Vilvi'
                 ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
                 : this.prop === 'Perlas GO'
-                ? `Net 20 geriausių žaidėjų, užsiregistravusių „Perlas Go“ </br> programėlėje ar savitarnos svetainėje, kiekvieną savaitę laimės</br> po 10 € vertės „Wolt“ dovanų kuponą! Jei laimėsi, informuosime </br>tave ${
-                    this.prop === 'Perlas GO' && !campaignUrl ? 'registracijos metu nurodytu' : ''
-                  } el. paštu.`
+                ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.`
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
                 : ''
             }</div>
-              <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.prop ? '10px' : '10px'
-            } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+              <div style="width:100%; top: ${
+                this.prop === 'Perlas GO' ? '455px' : '505px'
+              };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
+              this.prop === 'Perlas GO' ? '9px' : '10px'
+            } ; font-family: Montserrat; font-weight: 700; text-transform:${
+              this.prop === 'Perlas GO' ? 'none' : 'uppercase'
+            } ; word-wrap: break-word">${
               this.prop === 'Unisend' && this.language === 'EE'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -288,6 +295,8 @@ export class CompetitionScoreTableContainer {
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
                 : this.prop === 'Makalius' && this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
+                : this.prop === 'Perlas GO'
+                ? 'Panaudok kodą ir gauk 5 Eur nuolaidą sąskaitoms apmokėti Perlas Go!'
                 : ''
             }</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -325,12 +334,14 @@ export class CompetitionScoreTableContainer {
                 : this.language === 'EE'
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Perlas GO'
-                ? 'TIKRAI GALI KILTI AUKŠČIAU!'
+                ? ''
                 : this.prop === 'Dentsu'
                 ? ''
                 : 'Tu gali!'
             }</div>
-            <div style="width:100%; top: 450px;line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
+            <div style="width:100%; top: ${
+              this.prop === 'Perlas GO' ? '390px' : '450px'
+            };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
               this.prop !== 'Akropolis' &&
               this.prop !== 'Perlas GO' &&
               this.prop !== 'Zemaitijos Pienas' &&
@@ -373,11 +384,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Vilvi'
                 ? 'Pagerink rezultatą, nes net 10 geriausių žaidėjų xx dieną </br> laimės VILVI prizus!'
                 : this.prop === 'Perlas GO'
-                ? 'Pagerink savo rezultatą – net 20 geriausių žaidėjų, </br> užsiregistravusių „Perlas Go“ programėlėje ar savitarnos</br> svetainėje, kiekvieną savaitę laimės po 10 € vertės „Wolt“ </br> dovanų kuponą! '
-                : this.prop === 'Dentsu'
-                ? `Geriausią rezultatą pasiekęs žaidėjas laimės mėnesio trukmės </br> tiesioginį bendravimą su tiksline auditorija per „Teams“! Jei </br> laimėsi, informuosime tave ${
-                    this.prop === 'Perlas GO' && !campaignUrl ? 'registracijos metu nurodytu' : ''
-                  } el. paštu.`
+                ? 'Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.'
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
                 : ''
@@ -418,11 +425,43 @@ export class CompetitionScoreTableContainer {
             } </div>
         `
       }
+      ${
+        this.prop === 'Perlas GO' && !userId
+          ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#FFB151'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:485px;left:calc(50% - 130px);">
+      <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
+       ${'boomio5'}
+          </div>
+          <svg width="22" height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn2" style="cursor:pointer">
+          <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
+          </svg>
+      </div> 
+      `
+          : ''
+      }
     `;
-
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+
+    if (this.prop === 'Perlas GO' && !userId) {
+      document.getElementById('boomio-copy-modal-btn2').onclick = () => {
+        const textToCopy = this.couponCodeNew;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        const copyButton = document.getElementById('p_code_text2');
+        copyButton.textContent = 'Nukopijuota!';
+
+        setTimeout(() => {
+          copyButton.textContent = this.couponCodeNew;
+        }, 2000);
+      };
+    }
   }
 
   render() {
@@ -465,7 +504,7 @@ export class CompetitionScoreTableContainer {
               
 
 
-      <div  style="width: calc(100% - 32px); height: ${'280px'}; left: 16px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
+      <div  style="width: calc(100% - 32px); height: ${'260px'}; left: 16px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
             <tbody class="boomio-tbody">
@@ -511,7 +550,7 @@ export class CompetitionScoreTableContainer {
 
     rel="noopener noreferrer"
   >
-    Registruotis „Perlas Go“
+    PANAUDOK KODA
   </a>
 </div>
 
