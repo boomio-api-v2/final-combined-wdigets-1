@@ -531,7 +531,8 @@ ${
       this.prop === 'SaludSA' ||
       this.prop === 'Vilvi' ||
       this.prop === 'Zemaitijos Pienas' ||
-      this.prop === 'Ikea'
+      this.prop === 'Ikea' ||
+      this.prop.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
           }; color: white; font-size: 10px; font-family:${
@@ -579,7 +580,7 @@ ${
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
               : this.prop === 'Zemaitijos Pienas'
               ? 'href=https://www.boomio.com/zemaitijos-pienas-zaidimo-taisykles'
-              : ''
+              : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
           };">${
@@ -615,6 +616,8 @@ ${
               ? 'Visos žaidimo taisyklės'
               : this.prop.includes('Gamtos Ateitis')
               ? 'Skaityk išsamias žaidimo taisykles.'
+              : this.language === 'EN'
+              ? 'Read full game rules'
               : 'Skaityk pilnas žaidimo taisykles.'
           } </a></div>
            
