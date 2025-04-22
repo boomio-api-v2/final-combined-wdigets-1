@@ -504,6 +504,8 @@ export class CompetitionScoreTableContainer {
         ? 'TULEMUSED'
         : this.language === 'ES'
         ? 'RESULTADOS'
+        : this.language === 'EN'
+        ? 'RESULTS'
         : 'REZULTATAI'
     }</div>
       
