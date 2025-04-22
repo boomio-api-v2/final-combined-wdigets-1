@@ -1243,6 +1243,9 @@ function startGame(
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
         } else {
           if (showCompetitiveRegistration && checkboxChange) {
+            if (customer === 'Gamtos Ateitis') {
+              didYouKnowContainer.updateProps(customer, type);
+            }
             boomioService
               .signal('', 'user_info', {
                 emails_consent: checkboxChange2,
@@ -1341,7 +1344,7 @@ function startGame(
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-    if (customer === 'Pigu.lt') {
+    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
     }
@@ -1545,7 +1548,7 @@ function startGame(
         })
         .then((response) => {
           bestScore = response.user_best_score;
-          didYouKnowContainer.updateProps(customer, scoreTable);
+          didYouKnowContainer.updateProps(customer, type);
 
           if (
             customer === 'Pigu.lt' &&
@@ -2207,7 +2210,7 @@ function startGame(
               });
 
             let competitionTableContainer = '';
-            if (customer === 'Pigu.lt') {
+            if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');

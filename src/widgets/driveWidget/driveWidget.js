@@ -334,10 +334,10 @@ ${
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
-    if (this.customer === 'Pigu.lt') {
+    if (this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      this.didYouKnowContainer = new DidYouKnowContainer(this.customer, this.type);
       gameContainer.appendChild(this.didYouKnowContainer.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {

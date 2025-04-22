@@ -525,7 +525,7 @@ export class CompetitionScoreTableContainer {
   background: white;
   box-shadow: -4px -4px 8px #DFE6F5 inset;
   border-radius: 35px;
-  display:${this.prop === 'Perlas GO' && !campaignUrl ? 'flex' : 'none'};
+  display:${this.prop === 'Perlas GO' && !userId ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;
   z-index: 9999999;
@@ -550,7 +550,7 @@ export class CompetitionScoreTableContainer {
 
     rel="noopener noreferrer"
   >
-    PANAUDOK KODA
+    PANAUDOK KODĄ
   </a>
 </div>
 

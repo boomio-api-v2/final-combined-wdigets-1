@@ -102,7 +102,104 @@ import {
 } from './constants';
 
 export class DidYouKnowContainer {
-  constructor(prop) {
+  constructor(prop, type) {
+    this.gamtosAteitis =
+      type === 1
+        ? [
+            {
+              title: '„Rūšiuodamas nesigraužk dėl prirašyto sąsiuvinio su sąvaržėlėmis!“ 📖',
+              text: 'Jų išseginėti išmetant sąsiuvinį į rūšiavimo konteinerį nereikia – popieriaus perdirbėjai jas išgaudys greičiau nei mokytoja tavo kontrolinio klaidas!',
+            },
+            {
+              title: '„Šlapias popierius – misija „Rūšiavimas“ neįmanoma!“ 💦📄',
+              text: 'Jei popierius sušlapo – jo perdirbimo kelias baigtas! Vanduo suardo popieriaus pluoštą, todėl tokias atliekas mesk į buitinių atliekų konteinerį.🎒🌧️',
+            },
+            {
+              title: '„Kietas viršelis – kietas riešutėlis!“ 📚',
+              text: 'Jei turi knygą su kietu viršeliu – atskirk jį nuo knygos lapų. Viršelis keliauja į buitinių atliekų konteinerį kaip neperdirbamas, o knygos puslapiai – į popieriaus rūšiavimo konteinerį!',
+            },
+            {
+              title: '„Tetra Pak – ne popieriaus draugas!“ 🥛📦',
+              text: 'Sulčių ir pieno pakuotės nėra grynas popierius – jos priklauso plastikui! 📢 Taigi, jei ruoštumeisi egzaminui apie rūšiavimą, prisimink: popierius + plastikas = plastiko konteineris!',
+            },
+            {
+              title: '„Picos dėžė: pusiau rūšiavimas, pusiau kontrolinis!“ 🍕📦',
+              text: 'Jei dėžė nuo picos švari – mesk ją į popieriaus rūšiavimo konteinerį. Bet jei ji varva nuo sūrio likučių ir padažo – perdirbėjams tokia tikrai nereikalinga! 🤢 Nuplėšk švarią dalį ir mesk į popieriaus rūšiavimo konteinerį, o suteptąją – į buitinių atliekų konteinerį.',
+            },
+            {
+              title: '„Kartono dėžės – treniruotė rankoms!“ 📦💪',
+              text: 'Prieš mesdamas dėžę į popieriaus konteinerį – suplėšyk ar sukarpyk ją į mažesnes dalis! Taip konteineryje tilps daugiau atliekų – kaip ir tavo kuprinėje knygų! Kuo tvarkingiau – tuo talpiau 🎒',
+            },
+            {
+              title: '„Šlapios servetėlės ≠ perdirbamas popierius!“ 🚫🧻',
+              text: 'Popieriniai rankšluosčiai ir servetėlės į popieriaus konteinerį nemetami! Jie dažnai būna užteršti ir netinka perdirbimui. Mesk juos į mišrių atliekų konteinerį arba į maisto atliekų konteinerį, jei toks jau yra tavo mieste! 🍏♻️',
+            },
+            {
+              title: '„Popierius ar ne? Vandens testas parodys!“ 💦📄',
+              text: 'Įmetęs pakuotę į vandenį įsitiksi: jei suminkštėja ir pradeda irti – tikras popierius! 📜✅ Jei plaukia ar laiko vandenį (kaip vienkartiniai kavos puodeliai) – turi plastiko priemaišų, tad mesk į plastiko/kombinuotų pakuočių konteinerį! ♻️🚫',
+            },
+          ]
+        : type === 2
+        ? [
+            {
+              title: '„Tuščia – reiškia švaru!“ 🥛🚫',
+              text: 'Prieš mesdamas plastikinę pakuotę į konteinerį, įsitikink, kad ji tuščia! Jogurto indelis, pieno pakelis pilnas maisto likučių? Tai ne rūšiavimas, o maisto fabrikas bakterijoms! 🦠🚯Išpilk skystį, iškratyk maisto likučius!',
+            },
+            {
+              title: '„Skalauti nereikia – bet švara svarbu!“ 🚿♻️',
+              text: 'Plastikinės pakuotės neturi būti steriliai išplautos, bet maisto likučių jose geriau neliktų, nes gali užteršti kitas švarias pakuotes! 🚰👍',
+            },
+            {
+              title: '„Traškučių pakelis – popierius ar plastikas? Nei tas, nei anas!“ 🍟😵',
+              text: 'Tai daugiasluoksnė pakuotė – neapgausi net biologijos mokytojos! Metam į plastiko konteinerį kartu su kitomis kombinuotomis pakuotėmis. 🔄♻️',
+            },
+            {
+              title: '„Tetrapak‘ui reikia dietos!“ 📚🥤',
+              text: 'Plastikinius buteliukus ir „Tetra Pak“ pakuotes prieš išmetant geriausia suspausti – taip jie užims mažiau vietos konteineryje! Kaip ir tavo kuprinėje – vietos yra tiek, kiek yra – kai bandai sutalpinti visas knygas vienam kontroliniui. 😅🎒',
+            },
+            {
+              title: '„Plastikiniai maišeliai – rūšiavimo priešai!“ 🛍️❌',
+              text: 'Plėvelės ir plastikiniai maišeliai neretai užkemša rūšiavimo įrangą, nors juos ir reikia mesti į plastiko atliekoms skirtus konteinerius! Geriau naudok daugkartinius maišelius ir taip saugoti gamtą. O ir perdirbėjai tau padėkos, nes techniką valyti nuo užsikimšusių maišelių reikės žymiai rečiau 🌍♻️',
+            },
+            {
+              title: '„Pakuotė iš kelių medžiagų? Atskirti verta!“🏗️⚖️',
+              text: 'Jei pavyksta atskirti ir išmesti pakuotės dalis į skirtingus konteinerius rūšiavimui – valio! Jei atskirti nepavyksta – mesk į tą konteinerį, kurio medžiagos yra daugiau! 📦♻️',
+            },
+            {
+              title: '„Plastikas plastikui nelygus!“ 🧸🚫',
+              text: 'Plastikiniai žaislai, kibirai, dubenėliai ir kiti gaminiai – ne pakuotės! Jų vieta – buitinių atliekų konteineryje arba sukaupus daugiau – stambiagabaritinėje atliekų aikštelėje! 🎭 O gal jie dar tinkami naudojimui? Atiduok, padovanok!♻️',
+            },
+          ]
+        : [
+            {
+              title: '„Stiklo tara be skysčio – konteinerio bičiuliai!“ 🍼🥂',
+              text: 'Prieš mesdamas stiklinę tarą į konteinerį, išpilk skysčius! Jei stiklainis pilnas uogienės likučių – perdirbėjai tikrai tuo nesidžiaugs. Stiklo konteineryje turėtų būti tik stiklas, be maisto likučių! 🍲🚫',
+            },
+            {
+              title: '„Lupti etiketes? Tik jei nori papildomos pamokos!“ 🏷️✂️',
+              text: 'Etikečių ir lipdukų nuo stiklinių pakuočių lupti nereikia – perdirbėjai jas pašalins patys! Taigi nešvaistyk laiko, geriau vietoj to išmok naują formulę matematikos pamokai. 📖📚',
+            },
+            {
+              title: '„Veidrodis, veidrodis... Tik ne stiklo konteineryje!“ 🪞🚫',
+              text: 'Veidrodžiai, langų stiklas, porcelianas ar krištolas stiklo konteineriui netinka! Jie pagaminti iš kitokių medžiagų, ne gryno stiklo. Juos turi priimti stambiagabaritinių atliekų aikštelės. 🚛♻️',
+            },
+            {
+              title: '„Dužo? Nieko tokio – stiklas mėgsta antrą šansą!“ 🔄💥',
+              text: 'Net jei stiklainis ar butelis sudužo, jį vis tiek gali mesti į stiklo konteinerį – stiklas perdirbamas neribotą kiekį kartų! Tik atsargiai, kad nesusižeistum. 🩹🚯',
+            },
+            {
+              title: '„Lemputės šviečia – tik ne stiklo konteineryje!“ 💡🚫',
+              text: 'Perdegusios lemputės yra elektronikos atliekos, todėl jas reikia atiduoti į specialias jų surinkimo vietas. Stiklo konteineris joms ne vieta, kad ir kaip norėtum rūšiavimo centrą papuošti Kalėdinėmis girliandomis. 🎄💥',
+            },
+            {
+              title: '„Ką daryti su stiklainio dangteliu?“ 🤹\u200d♂️🥫',
+              text: 'Metaliniai dangteliai keliauja į plastiko/metalo konteinerį, o stiklainis – į stiklo! Taip abi dalys gaus naują gyvenimą, o tu – papildomą tašką už sąmoningumą. ✅♻️',
+            },
+          ];
+    this.randomGamtosAteitis =
+      this.gamtosAteitis[Math.floor(Math.random() * this.gamtosAteitis.length)];
+    console.log(this.randomGamtosAteitis);
+
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'LV';
     this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
@@ -230,8 +327,9 @@ export class DidYouKnowContainer {
   }
 
   // Update properties method
-  updateProps(prop) {
+  updateProps(prop, type) {
     this.prop = prop;
+    this.type = type;
     this.isMobileWidthSmall = window.innerWidth <= 400;
     this.isSmallMobile = window.innerWidth <= 380;
     this.config = localStorageService.getDefaultConfig();
@@ -333,6 +431,7 @@ export class DidYouKnowContainer {
   updateVisuals() {
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'LV';
+
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
@@ -446,18 +545,19 @@ export class DidYouKnowContainer {
     }
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     let scoreboardText = `
-      ${`<div class="bomio-first-line" style="width:100%; top: ${'505px'};line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
-        this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' ? '18px' : '12px'
+      ${`<div class="bomio-first-line" style="width:${
+        this.prop === 'Gamtos Ateitis' ? 'calc(100% - 32px)' : '100%'
+      };margin-left:${this.prop === 'Gamtos Ateitis' ? '16px' : '0px'}; top: ${
+        this.prop === 'Gamtos Ateitis' ? '305px' : '505px'
+      };line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
+        this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės'
+          ? '18px'
+          : this.prop === 'Gamtos Ateitis'
+          ? '16px'
+          : '12px'
       } ; font-family: Montserrat;  word-wrap: break-word">${
         this.prop.includes('Gamtos Ateitis')
-          ? `Šių atliekų negalima mesti į
-${
-  this.prop === 'Gamtos Ateitis Paper'
-    ? 'popieriui'
-    : this.prop === 'Gamtos Ateitis Plastic'
-    ? 'plastikui'
-    : this.prop === 'Gamtos Ateitis Glass' && 'stiklui'
-} skirtus konteinerius.`
+          ? this.randomGamtosAteitis?.text
           : this.prop === 'Pegasas'
           ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
           : this.prop === 'Zemaitijos Pienas'
@@ -515,7 +615,7 @@ ${
       ? 'https://pienozvaigzdes.lt/lt/20_miau'
       : this.prop === 'Pegasas'
       ? 'https://www.pegasas.lt/'
-      : 'https://gamtosateitis.lt/rusiavimo-abc'
+      : ''
   }" 
   style="color:white">
   ${
@@ -525,7 +625,7 @@ ${
       ? ''
       : this.prop === 'Zemaitijos Pienas'
       ? ''
-      : 'https://gamtosateitis.lt/rusiavimo-abc/'
+      : ''
   }
 </a> </div> `}
     `;
@@ -618,10 +718,12 @@ ${
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:calc(100% - 20px);margin-left:10px;top: 42px; position: absolute; text-align: center;line-height:42px; color: ${
-        this.prop === 'Pigu.lt' ? 'white' : 'white'
-      }; font-size: ${
-      this.isMobileWidthSmall ? '26px' : '30px'
+      <div style="width:calc(100% - 20px);margin-left:10px;top: ${
+        this.prop === 'Gamtos Ateitis' ? '140px' : '42px'
+      }; position: absolute; text-align: center;line-height:${
+      this.prop === 'Gamtos Ateitis' ? '30px' : '42px'
+    }; color: ${this.prop === 'Pigu.lt' ? 'white' : 'white'}; font-size: ${
+      this.prop === 'Gamtos Ateitis' ? '22px' : this.isMobileWidthSmall ? '26px' : '30px'
     }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.prop === 'Pigu.lt'
         ? this.language === 'EN'
@@ -641,6 +743,8 @@ ${
         ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
         : this.prop === 'Zemaitijos Pienas'
         ? 'Ar visus RAGAVAI?'
+        : this.prop === 'Gamtos Ateitis'
+        ? this.randomGamtosAteitis?.title
         : 'Ar žinojai?'
     }</div>
       
