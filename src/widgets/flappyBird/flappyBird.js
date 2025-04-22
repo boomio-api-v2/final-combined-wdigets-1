@@ -1250,7 +1250,7 @@ ${`<div style="${
               this.customer === 'Dentsu'
                 ? '#FE5022'
                 : this.customer.includes('demo')
-                ? '0A3533'
+                ? '#0A3533'
                 : '#C6152F'
             };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
