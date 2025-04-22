@@ -17,7 +17,7 @@ export class InputContainer {
     this.campaignUrlProp = urlParams.get('campaign_url');
   }
 
-  createInputContainerDiv(game) {
+  createInputContainerDiv(game, type) {
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-container');
@@ -32,6 +32,7 @@ export class InputContainer {
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
     this.game = game;
+    console.log(type);
     containerDiv.innerHTML = `
 
       
@@ -313,16 +314,18 @@ export class InputContainer {
                 ? 'siekdamas kuo geresnio rezultato.'
                 : this.prop === 'Pegasas'
                 ? 'siekdamas kuo geresnio rezultato.'
-                : this.game === 'drive'
-                ? 'siekdamas geresnio rezultato.'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
                 ? 'FOR BETTER RESULT'
                 : this.prop === 'SaludSA'
                 ? '3 veces para mejorar'
-                : this.prop === 'Gamtos Ateitis'
+                : this.prop === 'Gamtos Ateitis' && type === 1
                 ? 'popieriaus pakuočių atliekas.'
+                : this.prop === 'Gamtos Ateitis' && type === 2
+                ? 'stiklo pakuočių atliekas.'
+                : this.prop === 'Gamtos Ateitis' && type === 3
+                ? 'plastiko pakuočių atliekas.'
                 : 'siekdamas kuo geresnio rezultato.'
             }
           </div>

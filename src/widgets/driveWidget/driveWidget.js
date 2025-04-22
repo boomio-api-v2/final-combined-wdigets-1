@@ -292,7 +292,10 @@ ${
     };width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('drive').outerHTML}
+    ${
+      new InputContainer(this.customer, 'drive').createInputContainerDiv('drive', this.type)
+        .outerHTML
+    }
 
       <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'

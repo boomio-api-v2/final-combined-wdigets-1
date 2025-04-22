@@ -20,6 +20,7 @@ import {
   checkIcon,
   uncheckIcon,
   star,
+  stopwatch,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -38,7 +39,8 @@ class CrushGame {
     this.language = this.config.language ? this.config.language : 'LV';
 
     this.currentScoreTable = {};
-    this.gridSize = 8;
+    this.gridCols = 8;
+    this.gridRows = 11;
     this.tileSize = 50;
     this.colors = { red, blue, green, yellow, purple, orange };
     this.grid = [];
@@ -47,7 +49,7 @@ class CrushGame {
     this.currentScore = 0;
     this.multiplier = 1;
     this.isAnimating = false; // Add this flag
-    this.timer = 5; // Add timer property
+    this.timer = 50; // Add timer property
     this.timerInterval = null; // Add timer interval property
     this.startLoading();
   }
@@ -234,14 +236,19 @@ class CrushGame {
   };
 
   startTimer() {
-    const timerElement = document.getElementById('timer');
+    const currectScoreDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+    currectScoreDiv.style.transition = 'opacity 0.8s ease';
+    currectScoreDiv.style.display = 'block';
+    currectScoreDiv.style.opacity = 1;
+
+    const timerElement = document.getElementById('currentTime');
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
     this.timer = 5;
     this.timerInterval = setInterval(() => {
       this.timer--;
-      timerElement.innerText = `Time: ${this.timer}s`;
+      timerElement.innerText = `${this.timer}`;
       if (this.timer <= 0) {
         clearInterval(this.timerInterval);
         this.endGame();
@@ -251,7 +258,7 @@ class CrushGame {
 
   endGame() {
     this.isAnimating = true;
-    this.showGoMenu();
+    this.showFinishMenu();
   }
 
   hideScore = () => {
@@ -273,7 +280,14 @@ class CrushGame {
     }, 500);
   };
 
-  showGoMenu = () => {
+  showFinishMenu = () => {
+    let currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+
+    currectTimeDiv.style.opacity = 0;
+    setTimeout(() => {
+      currectTimeDiv.style.display = 'none';
+    }, 300);
+
     if (this.newHighScoreReached) {
       const numbers = document.querySelector('.numbers');
       const new_highscore = document.querySelector('.new_highscore');
@@ -438,9 +452,9 @@ class CrushGame {
       neighbors.forEach(({ row: nRow, col: nCol }) => {
         if (
           nRow >= 0 &&
-          nRow < this.gridSize &&
+          nRow < this.gridRows &&
           nCol >= 0 &&
-          nCol < this.gridSize &&
+          nCol < this.gridCols &&
           this.getBaseColor(this.grid[nRow][nCol]) === color
         ) {
           stack.push({ row: nRow, col: nCol });
@@ -558,18 +572,17 @@ class CrushGame {
 <span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
 </span>
 </div>
+<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#FFE92D'};border-radius:35px">
+<div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+<img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Vilvi'
-        ? '#45A2BF'
-        : this.customer === 'Pigu.lt'
-        ? '#FD61FE'
-        : this.customer === 'Perlas GO'
-        ? '#19AA82'
-        : this.language === 'LV'
-        ? '#F40027'
-        : '#045222'
-    };border-radius:35px">
+<div style="text-align: center; color: white; font-size: 20px; font-family:${
+      this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
+    } ;font-weight: 900; word-wrap: break-word;position:absolute;left:28px;top:17px;z-index:3;line-height:30px;" id="currentTime"></div>
+</div>
+</div>
+
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#045222'};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -586,16 +599,16 @@ class CrushGame {
              id="background_intro">
              <div alt="Image Description" style="z-index:1;width: ${
                document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-             }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#FE0000'}" id="background_blur"></div>
+             }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#e3dede'}" id="background_blur"></div>
 
         <!-- Game content container hidden initially -->
         <div id="game-content" style="display: none;">
+
+        
           <div id="crush-game-background"></div>
-          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" width="${
-            this.gridSize * this.tileSize
-          }" height="${this.gridSize * this.tileSize}"></canvas>
-          <div id="score">Score: 0</div>
-          <div id="timer">Time: 5s</div>
+          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" style="margin-top:20px;" width="${
+            this.gridCols * this.tileSize
+          }" height="${this.gridRows * this.tileSize}"></canvas>
         </div>
         <!-- Restart button (initially hidden) -->
         <button id="restart-button" class="hidden">Restart Game</button>
@@ -625,9 +638,9 @@ class CrushGame {
   }
 
   generateGrid() {
-    for (let row = 0; row < this.gridSize; row++) {
+    for (let row = 0; row < this.gridRows; row++) {
       this.grid[row] = [];
-      for (let col = 0; col < this.gridSize; col++) {
+      for (let col = 0; col < this.gridCols; col++) {
         let color;
         do {
           color = this.getRandomColor();
@@ -663,8 +676,8 @@ class CrushGame {
     let matches = new Set();
 
     // Horizontal check
-    for (let row = 0; row < this.gridSize; row++) {
-      for (let col = 0; col < this.gridSize - 2; col++) {
+    for (let row = 0; row < this.gridRows; row++) {
+      for (let col = 0; col < this.gridCols - 2; col++) {
         const c1 = this.getBaseColor(this.grid[row][col]);
         const c2 = this.getBaseColor(this.grid[row][col + 1]);
         const c3 = this.getBaseColor(this.grid[row][col + 2]);
@@ -679,8 +692,8 @@ class CrushGame {
     }
 
     // Vertical check
-    for (let col = 0; col < this.gridSize; col++) {
-      for (let row = 0; row < this.gridSize - 2; row++) {
+    for (let col = 0; col < this.gridCols; col++) {
+      for (let row = 0; row < this.gridRows - 2; row++) {
         const c1 = this.getBaseColor(this.grid[row][col]);
         const c2 = this.getBaseColor(this.grid[row + 1][col]);
         const c3 = this.getBaseColor(this.grid[row + 2][col]);
@@ -714,10 +727,10 @@ class CrushGame {
     let newTilesMap = {}; // will store new colors for each column
 
     // Process each column for downward gravity.
-    for (let col = 0; col < this.gridSize; col++) {
+    for (let col = 0; col < this.gridCols; col++) {
       let emptySpaces = 0;
       // Iterate from bottom to top.
-      for (let row = this.gridSize - 1; row >= 0; row--) {
+      for (let row = this.gridRows - 1; row >= 0; row--) {
         if (!this.grid[row][col]) {
           emptySpaces++;
         } else if (emptySpaces > 0) {
@@ -755,7 +768,7 @@ class CrushGame {
       // Then animate new candies falling in.
       this.animateFallingTiles(newFalling, () => {
         // Now that the animation is complete, update the grid with new candies.
-        for (let col = 0; col < this.gridSize; col++) {
+        for (let col = 0; col < this.gridCols; col++) {
           if (newTilesMap[col]) {
             for (let i = 0; i < newTilesMap[col].length; i++) {
               this.grid[i][col] = newTilesMap[col][i];
@@ -770,7 +783,7 @@ class CrushGame {
 
   animateFallingExplosion(specialTile, callback) {
     // Determine the target row (for example, the bottom of the grid).
-    const targetRow = this.gridSize - 1;
+    const targetRow = this.gridRows - 1;
     // Create a falling tile object for the special tile.
     const fallingTile = [
       {
@@ -802,8 +815,8 @@ class CrushGame {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       // Loop over each cell in the grid.
-      for (let row = 0; row < this.gridSize; row++) {
-        for (let col = 0; col < this.gridSize; col++) {
+      for (let row = 0; row < this.gridRows; row++) {
+        for (let col = 0; col < this.gridCols; col++) {
           const fallingTile = fallingTiles.find((tile) => tile.toRow === row && tile.col === col);
           if (fallingTile) {
             const startY = fallingTile.fromRow * this.tileSize;
@@ -1290,14 +1303,47 @@ class CrushGame {
     }
   };
 
-  restartGame() {
+  restartGame = () => {
     this.currentScore = 0;
-    document.getElementById('score').innerText = 'Score: 0';
-    this.startTimer();
-    this.generateValidGrid();
-    this.selectedTile = null;
-    this.drawGrid();
-  }
+    document.getElementById('currentScore').innerText = '0';
+
+    this.index = 0;
+    this.currentScore = 0;
+
+    const competitionTableContainer = document.querySelector('.competition-table-container');
+
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      competitionTableContainer.style.height = '10px';
+      competitionTableContainer.style.top = 'calc(50% + 330px)';
+      competitionTableContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      competitionTableContainer.style.display = 'none';
+    }, 1000);
+
+    setTimeout(() => {
+      if (this.showCompetitiveRegistration) {
+        boomioService
+          .signal('ROUND_STARTED', 'signal')
+          .then((response) => {
+            document.getElementById('background_blur').style.display = 'none';
+            const canvas = document.getElementById('boomio-crush-canvas');
+            canvas.style.transition = 'filter 1s ease';
+            canvas.style.filter = 'none';
+            this.gamePlaying = true;
+            this.startGameLoop();
+            this.startTimer();
+            this.generateValidGrid();
+            this.selectedTile = null;
+            this.drawGrid();
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    }, 400);
+  };
 
   handleTileSelection(event) {
     if (this.isAnimating) return; // Prevent tile selection during animations
@@ -1354,8 +1400,8 @@ class CrushGame {
       const progress = Math.min(elapsedTime / duration, 1);
 
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      for (let row = 0; row < this.gridSize; row++) {
-        for (let col = 0; col < this.gridSize; col++) {
+      for (let row = 0; row < this.gridRows; row++) {
+        for (let col = 0; col < this.gridCols; col++) {
           let xOffset = 0;
           let yOffset = 0;
           if (row === tile1.row && col === tile1.col) {
@@ -1411,13 +1457,13 @@ class CrushGame {
     for (let i = col - 1; i >= 0 && this.grid[row][i] === color; i--) {
       horizontalMatch++;
     }
-    for (let i = col + 1; i < this.gridSize && this.grid[row][i] === color; i++) {
+    for (let i = col + 1; i < this.gridRows && this.grid[row][i] === color; i++) {
       horizontalMatch++;
     }
     for (let i = row - 1; i >= 0 && this.grid[i][col] === color; i--) {
       verticalMatch++;
     }
-    for (let i = row + 1; i < this.gridSize && this.grid[i][col] === color; i++) {
+    for (let i = row + 1; i < this.gridCols && this.grid[i][col] === color; i++) {
       verticalMatch++;
     }
     const hasMatch = horizontalMatch >= 3 || verticalMatch >= 3;
@@ -1513,8 +1559,15 @@ class CrushGame {
       // If you don't have a multiplier, just do:
       this.currentScore += totalBasePoints;
 
+      if (this.currentScore > 0) {
+        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+        currectScoreDiv.style.transition = 'opacity 0.8s ease';
+        currectScoreDiv.style.display = 'block';
+        currectScoreDiv.style.opacity = 1;
+      }
+
       // Update score display
-      document.getElementById('score').innerText = `Score: ${this.currentScore}`;
+      document.getElementById('currentScore').innerText = `${this.currentScore}`;
 
       // Animate the match effect, then clear matched tiles, apply gravity, and check for new matches
       this.animateMatchEffect(matchArray, () => {
@@ -1544,7 +1597,7 @@ class CrushGame {
     const radius = 1;
     for (let r = targetRow - radius; r <= targetRow + radius; r++) {
       for (let c = targetCol - radius; c <= targetCol + radius; c++) {
-        if (r >= 0 && r < this.gridSize && c >= 0 && c < this.gridSize) {
+        if (r >= 0 && r < this.gridRows && c >= 0 && c < this.gridCols) {
           explosionArea.push({ row: r, col: c });
         }
       }
@@ -1553,7 +1606,7 @@ class CrushGame {
     // Award points for each tile in the explosion area.
     // (You could adjust the points logic as needed.)
     this.currentScore += explosionArea.length * this.multiplier;
-    document.getElementById('score').innerText = `Score: ${this.currentScore}`;
+    document.getElementById('boomio-score-input-container').innerText = `${this.currentScore}`;
 
     // Animate the explosion over that area.
     this.animateExplosion(explosionArea, () => {
@@ -1633,8 +1686,8 @@ class CrushGame {
   }
   drawGrid() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    for (let row = 0; row < this.gridSize; row++) {
-      for (let col = 0; col < this.gridSize; col++) {
+    for (let row = 0; row < this.gridRows; row++) {
+      for (let col = 0; col < this.gridCols; col++) {
         this.drawTile(row, col, this.grid[row][col]);
       }
     }
