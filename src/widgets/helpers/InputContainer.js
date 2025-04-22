@@ -32,7 +32,6 @@ export class InputContainer {
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
     this.game = game;
-    console.log(type);
     containerDiv.innerHTML = `
 
       
