@@ -142,6 +142,8 @@ export class InputContainer {
                   ? 'Judėk'
                   : this.prop === 'Gamtos Ateitis'
                   ? 'Brauk'
+                  : this.language === 'EN'
+                  ? 'CLICK'
                   : 'Spausk'
               }
     <div
@@ -234,6 +236,8 @@ export class InputContainer {
       ? 'klavišų pagalba ir rink taškus.'
       : this.prop === 'Zemaitijos Pienas'
       ? 'TIK „Dobilas“ produktus.'
+      : this.language === 'EN'
+      ? 'TO FLY'
       : 'kad skristum.'
   }
 </div>
@@ -281,6 +285,8 @@ export class InputContainer {
                 ? 'Kartok,'
                 : this.prop === 'Gamtos Ateitis'
                 ? 'Rink'
+                : this.language === 'EN'
+                ? 'REPEAT'
                 : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${'12px'}; font-family:${
@@ -325,6 +331,8 @@ export class InputContainer {
                 ? 'stiklo pakuočių atliekas.'
                 : this.prop === 'Gamtos Ateitis' && type === 3
                 ? 'plastiko pakuočių atliekas.'
+                : this.language === 'EN'
+                ? 'to get the best possible result'
                 : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
@@ -369,6 +377,8 @@ export class InputContainer {
                 ? '¡Gana!'
                 : this.prop === 'Gamtos Ateitis'
                 ? 'Kartok'
+                : this.language === 'EN'
+                ? 'WIN'
                 : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${
@@ -485,6 +495,8 @@ export class InputContainer {
                 ? '1 mėn. prieigą  prie interaktyvios tikslinės auditorijos!'
                 : this.prop === 'Zemaitijos Pienas'
                 ? '„Dobilas“ prizus!'
+                : this.language === 'EN'
+                ? 'PRIZES!'
                 : 'Prizus!'
             }
           </div>
@@ -700,6 +712,8 @@ ${
         ? 'SUTINKU'
         : this.prop === 'Perlas GO'
         ? 'SUTINKU'
+        : this.language === 'EN'
+        ? 'CONTINUE'
         : 'SUTINKU'
     }</div></div>
     </div>

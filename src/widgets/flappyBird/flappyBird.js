@@ -84,6 +84,16 @@ import {
   PIGUSecondLV,
   DentsuBackground,
   DentsuIntro,
+  demoGame1,
+  demoGame2,
+  demoGame3,
+  demoGame4,
+  demoGame5,
+  demoGame6,
+  demoGame7,
+  demoGame8,
+  demoGame9,
+  demoGame10,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -94,12 +104,12 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Dentsu';
+    this.customer = this.config.business_name ? this.config.business_name : 'demo-1';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'ES';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'EN';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -398,7 +408,28 @@ class FlappyBird {
         ? CorepetitusFlappyBackground
         : this.customer === 'Dentsu'
         ? DentsuBackground
-        : mainPenki;
+        : this.customer === 'demo-1'
+        ? demoGame1
+        : this.customer === 'demo-2'
+        ? demoGame2
+        : this.customer === 'demo-3'
+        ? demoGame3
+        : this.customer === 'demo-4'
+        ? demoGame4
+        : this.customer === 'demo-5'
+        ? demoGame5
+        : this.customer === 'demo-6'
+        ? demoGame6
+        : this.customer === 'demo-7'
+        ? demoGame7
+        : this.customer === 'demo-8'
+        ? demoGame8
+        : this.customer === 'demo-9'
+        ? demoGame9
+        : this.customer === 'demo-10'
+        ? demoGame10
+        : this.customer === 'Penki Sezonai' && mainPenki;
+
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
     const img2 = new Image();
@@ -456,32 +487,38 @@ class FlappyBird {
         numbers.style.display = 'none';
       }, 500);
 
-      setTimeout(() => {
-        document.getElementById('flappy-canvas').style.transition = 'opacity 1s ease';
-        document.getElementById('flappy-canvas').style.opacity = 1;
+      setTimeout(
+        () => {
+          document.getElementById('flappy-canvas').style.transition = 'opacity 1s ease';
+          document.getElementById('flappy-canvas').style.opacity = 1;
 
-        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-        document.getElementById('background_intro').style.opacity = 0;
-        if (this.gameCount === 0) {
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-          this.showRulesOrRegistration();
-        }
-        if (this.gameCount === 0) {
-          setTimeout(() => {
-            document.getElementById('background_blur').style.opacity = 0.37;
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
-          }, 1000);
-        }
-        setTimeout(() => {
-          const background = document.getElementById('background_intro');
-
-          if (background) {
-            background.style.display = 'none';
+          document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+          document.getElementById('background_intro').style.opacity = 0;
+          if (this.gameCount === 0) {
+            document.getElementById('background_blur').style.display = 'block';
+            document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+            this.showRulesOrRegistration();
           }
-        }, 2000);
-      }, 2000);
+          if (this.gameCount === 0) {
+            setTimeout(() => {
+              document.getElementById('background_blur').style.opacity = 0.37;
+              canvas.style.transition = 'filter 0.6s ease';
+              canvas.style.filter = 'blur(2px)';
+            }, 1000);
+          }
+          setTimeout(
+            () => {
+              const background = document.getElementById('background_intro');
+
+              if (background) {
+                background.style.display = 'none';
+              }
+            },
+            this.customer.includes('demo') ? 0 : 2000,
+          );
+        },
+        this.customer.includes('demo') ? 0 : 2000,
+      );
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -1097,14 +1134,16 @@ class FlappyBird {
         ? CorepetitusFlappyIntro
         : this.customer === 'Dentsu'
         ? DentsuIntro
-        : introGifPenki
+        : this.customer === 'Penki Sezonai' && introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418
         ? document.body.offsetWidth < 321
           ? '375px'
           : document.body.offsetWidth + 'px'
         : '418px'
-    }; height: 668px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    }; height: 668px;position:absolute;pointer-events: none; display:${
+      this.customer.includes('demo') ? 'none' : 'block'
+    };" id="background_intro">
 </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
@@ -1395,6 +1434,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                     ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                     : this.customer === 'SaludSA'
                     ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
+                    : this.language === 'EN'
+                    ? 'You need to agree to receive updates in order to continue'
                     : 'Norint tęsti, privaloma sutikti su privatumo politika.';
                 document.getElementById('competition-checkbox-error').style.backgroundColor =
                   '#FFBABA';
@@ -1409,6 +1450,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-email-error').innerText = '';
                 document.getElementById('competition-email-error').style.backgroundColor =
                   'transparent';
+                if (this.customer.includes('demo')) {
+                  return;
+                }
               }
 
               if (emailInput?.value === '' || emailInput?.value === null) {
@@ -1417,6 +1461,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                     ? 'Obligāti aizpildāmie lauki.'
                     : this.customer === 'SaludSA'
                     ? 'Para continuar debes agregar el correo electrónico.'
+                    : this.language === 'EN'
+                    ? 'Filling in is required to continue.'
                     : 'Norint tęsti privaloma užpildyti.';
                 document.getElementById('competition-email-error').style.backgroundColor =
                   '#FFBABA';
@@ -1427,6 +1473,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-checkbox-error').innerText = '';
                 document.getElementById('competition-checkbox-error').style.backgroundColor =
                   'transparent';
+                if (this.customer.includes('demo')) {
+                  return;
+                }
               }
               if (
                 playerNameInput?.value === '' ||
@@ -1438,6 +1487,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                     ? 'Obligāti aizpildāmie lauki.'
                     : this.customer === 'SaludSA'
                     ? 'Para continuar debes agregar el nombre de usuario.'
+                    : this.language === 'EN'
+                    ? 'Filling in is required to continue.'
                     : 'Norint tęsti privaloma užpildyti.';
                 document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
@@ -1447,6 +1498,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-checkbox-error').innerText = '';
                 document.getElementById('competition-checkbox-error').style.backgroundColor =
                   'transparent';
+                if (this.customer.includes('demo')) {
+                  return;
+                }
               }
             }
 

@@ -202,7 +202,10 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Perlas GO' && !userId) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10) ||
         (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
-        (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50)
+        (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
+        (this.language === 'EN' &&
+          this.prop.includes('demo') &&
+          this.scoreTable?.user_best_place <= 3)
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -226,6 +229,8 @@ export class CompetitionScoreTableContainer {
                 ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
                 : this.prop === 'Perlas GO'
                 ? ''
+                : this.language === 'EN'
+                ? 'Hooray, youre doing great!'
                 : 'Valio, tau puikiai sekasi!'
             }</div>
             <div style="width:100%; top: ${
@@ -274,6 +279,8 @@ export class CompetitionScoreTableContainer {
                 ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.`
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
+                : this.language === 'EN'
+                ? ''
                 : ''
             }</div>
               <div style="width:100%; top: ${
@@ -337,6 +344,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.prop === 'Dentsu'
                 ? ''
+                : this.language === 'EN'
+                ? 'YOU CAN DO IT!'
                 : 'Tu gali!'
             }</div>
             <div style="width:100%; top: ${
@@ -387,6 +396,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.'
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
+                : this.language === 'EN'
+                ? ''
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -577,6 +588,8 @@ export class CompetitionScoreTableContainer {
         ? 'PARANDA TULEMUST'
         : this.language === 'ES'
         ? 'MEJORAR EL RESULTADO'
+        : this.language === 'EN'
+        ? 'IMPROVE YOUR SCORE'
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>

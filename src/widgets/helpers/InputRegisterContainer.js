@@ -60,6 +60,8 @@ export class InputRegisterContainer {
         ? 'REGÍSTRATE</br>PARA JUGAR'
         : this.language === 'ES' || this.language === 'ET'
         ? 'REGISTRATE </br>PARA JUGAR '
+        : this.language === 'EN'
+        ? 'Register to Play'
         : 'Registruokis Žaisti'
     }</div>
           <div style="height: 124px; top:${'20px'}; position: relative; text-align:${
@@ -81,6 +83,8 @@ export class InputRegisterContainer {
         ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
         : this.prop === 'Perlas GO'
         ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
+        : this.language === 'EN'
+        ? 'Already registered? Use the same nickname and email </br> to keep improving your score!'
         : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
     } 
     </div>
@@ -108,6 +112,8 @@ export class InputRegisterContainer {
         ? 'Toliau'
         : this.prop === 'Eurovaistine'
         ? 'TĀLĀK'
+        : this.language === 'EN'
+        ? 'CONTINUE'
         : 'TOLIAU'
     }</div>
       </div>
@@ -273,6 +279,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
         : this.prop === 'Dentsu'
         ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
+        : this.language === 'EN'
+        ? 'I agree to receive '
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -322,6 +330,8 @@ export class InputRegisterContainer {
               ? 'privātuma politikai'
               : this.prop === 'Corepetitus'
               ? 'Corepetitus privatumo politika'
+              : this.language === 'EN'
+              ? 'newsletters'
               : 'privatumo politika'
           }.</a> `
         : ''
@@ -401,7 +411,7 @@ export class InputRegisterContainer {
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
-      font-weight: 700;
+      font-weight: 400;
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;
@@ -501,6 +511,8 @@ export class InputRegisterContainer {
         ? 'Correo electrónico'
         : this.prop === 'Gamtos Ateitis'
         ? 'El. pašto adresas'
+        : this.language === 'EN'
+        ? 'Email address'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
@@ -540,6 +552,8 @@ export class InputRegisterContainer {
         ? 'Nickname del jugador'
         : this.prop === 'SaludSA'
         ? 'Nombre de usuario'
+        : this.language === 'EN'
+        ? 'Player nickname'
         : 'Žaidėjo slapyvardis'
     }">
           <select id="city-select" class="boomio-competition-city-select" style="display:${

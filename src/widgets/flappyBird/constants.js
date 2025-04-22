@@ -178,3 +178,24 @@ export const DentsuBackground =
 
 export const DentsuIntro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Dentsu/DentsuIntro.gif';
+
+export const demoGame1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame1.png';
+export const demoGame2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame2.png';
+export const demoGame3 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame3.png';
+export const demoGame4 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame4.png';
+export const demoGame5 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame5.png';
+export const demoGame6 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame6.png';
+export const demoGame7 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame7.png';
+export const demoGame8 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame8.png';
+export const demoGame9 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame9.png';
+export const demoGame10 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame10.png';
