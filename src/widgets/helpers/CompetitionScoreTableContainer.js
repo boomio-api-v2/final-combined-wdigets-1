@@ -35,7 +35,7 @@ export class CompetitionScoreTableContainer {
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
     const userId = urlParams.get('user_id');
-    this.couponCodeNew = 'boomio5';
+    this.couponCodeNew = this.prop.includes('demo') ? 'discountcode' : 'boomio5';
     const perlasGoTable = [
       'PERLIUKAS',
       'TAUPUOLIS',
@@ -207,9 +207,7 @@ export class CompetitionScoreTableContainer {
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10) ||
         (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
-        (this.language === 'EN' &&
-          this.prop.includes('demo') &&
-          this.scoreTable?.user_best_place <= 3)
+        (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
@@ -288,7 +286,7 @@ export class CompetitionScoreTableContainer {
                 : ''
             }</div>
               <div style="width:100%; top: ${
-                this.prop === 'Perlas GO' ? '455px' : '505px'
+                this.prop === 'Perlas GO' ? '455px' : this.prop.includes('demo') ? '465px' : '505px'
               };line-height:14px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop === 'Perlas GO' ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform:${
@@ -308,6 +306,8 @@ export class CompetitionScoreTableContainer {
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : this.prop === 'Perlas GO'
                 ? 'Panaudok kodą ir gauk 5 Eur nuolaidą sąskaitoms </br> apmokėti Perlas Go!'
+                : this.prop.includes('demo')
+                ? 'Congrats! Here’s your discount code – just for you!'
                 : ''
             }</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
@@ -441,10 +441,10 @@ export class CompetitionScoreTableContainer {
         `
       }
       ${
-        this.prop === 'Perlas GO' && !userId
+        (this.prop === 'Perlas GO' || this.prop.includes('demo')) && !userId
           ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#FFB151'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:485px;left:calc(50% - 130px);">
       <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
-       ${'boomio5'}
+       ${this.prop.includes('demo') ? 'discountcode' : 'boomio5'}
           </div>
           <svg width="22" height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn2" style="cursor:pointer">
           <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
@@ -458,7 +458,7 @@ export class CompetitionScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    if (this.prop === 'Perlas GO' && !userId) {
+    if ((this.prop === 'Perlas GO' || this.prop.includes('demo')) && !userId) {
       document.getElementById('boomio-copy-modal-btn2').onclick = () => {
         const textToCopy = this.couponCodeNew;
         const textarea = document.createElement('textarea');
@@ -470,7 +470,7 @@ export class CompetitionScoreTableContainer {
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text2');
-        copyButton.textContent = 'Nukopijuota!';
+        copyButton.textContent = this.language === 'EN' ? 'Copied!' : 'Nukopijuota!';
 
         setTimeout(() => {
           copyButton.textContent = this.couponCodeNew;

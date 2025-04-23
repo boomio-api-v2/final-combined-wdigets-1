@@ -51,7 +51,7 @@ class runnerWidget {
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
-    this.customer = this.config.business_name ? this.config.business_name : 'Dentsu';
+    this.customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';

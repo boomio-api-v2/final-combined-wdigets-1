@@ -129,6 +129,7 @@ export class InputRegisterContainer {
       this.prop === 'Daumantu' ||
       this.prop === 'Dentsu' ||
       this.prop === 'Zemaitijos Pienas' ||
+      this.prop === 'Nykstukas' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
