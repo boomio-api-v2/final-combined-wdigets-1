@@ -17,7 +17,7 @@ export class InputContainer {
     this.campaignUrlProp = urlParams.get('campaign_url');
   }
 
-  createInputContainerDiv(game) {
+  createInputContainerDiv(game, type) {
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-container');
@@ -142,6 +142,8 @@ export class InputContainer {
                   ? 'Judėk'
                   : this.prop === 'Gamtos Ateitis'
                   ? 'Brauk'
+                  : this.language === 'EN'
+                  ? 'CLICK'
                   : 'Spausk'
               }
     <div
@@ -234,6 +236,8 @@ export class InputContainer {
       ? 'klavišų pagalba ir rink taškus.'
       : this.prop === 'Zemaitijos Pienas'
       ? 'TIK „Dobilas“ produktus.'
+      : this.language === 'EN'
+      ? 'TO FLY'
       : 'kad skristum.'
   }
 </div>
@@ -281,6 +285,8 @@ export class InputContainer {
                 ? 'Kartok,'
                 : this.prop === 'Gamtos Ateitis'
                 ? 'Rink'
+                : this.language === 'EN'
+                ? 'REPEAT'
                 : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${'12px'}; font-family:${
@@ -313,16 +319,20 @@ export class InputContainer {
                 ? 'siekdamas kuo geresnio rezultato.'
                 : this.prop === 'Pegasas'
                 ? 'siekdamas kuo geresnio rezultato.'
-                : this.game === 'drive'
-                ? 'siekdamas geresnio rezultato.'
                 : this.game === 'drive' && this.prop === 'Ikea'
                 ? 'jei nesate patenkinti rezultatu.'
                 : this.prop === 'Fpro'
                 ? 'FOR BETTER RESULT'
                 : this.prop === 'SaludSA'
                 ? '3 veces para mejorar'
-                : this.prop === 'Gamtos Ateitis'
+                : this.prop === 'Gamtos Ateitis' && type === 1
                 ? 'popieriaus pakuočių atliekas.'
+                : this.prop === 'Gamtos Ateitis' && type === 2
+                ? 'stiklo pakuočių atliekas.'
+                : this.prop === 'Gamtos Ateitis' && type === 3
+                ? 'plastiko pakuočių atliekas.'
+                : this.language === 'EN'
+                ? 'to get the best possible result'
                 : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
@@ -367,6 +377,8 @@ export class InputContainer {
                 ? '¡Gana!'
                 : this.prop === 'Gamtos Ateitis'
                 ? 'Kartok'
+                : this.language === 'EN'
+                ? 'WIN'
                 : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${
@@ -483,6 +495,8 @@ export class InputContainer {
                 ? '1 mėn. prieigą  prie interaktyvios tikslinės auditorijos!'
                 : this.prop === 'Zemaitijos Pienas'
                 ? '„Dobilas“ prizus!'
+                : this.language === 'EN'
+                ? 'PRIZES!'
                 : 'Prizus!'
             }
           </div>
@@ -517,7 +531,8 @@ ${
       this.prop === 'SaludSA' ||
       this.prop === 'Vilvi' ||
       this.prop === 'Zemaitijos Pienas' ||
-      this.prop === 'Ikea'
+      this.prop === 'Ikea' ||
+      this.prop.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
           }; color: white; font-size: 10px; font-family:${
@@ -565,7 +580,7 @@ ${
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
               : this.prop === 'Zemaitijos Pienas'
               ? 'href=https://www.boomio.com/zemaitijos-pienas-zaidimo-taisykles'
-              : ''
+              : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
           };">${
@@ -601,6 +616,8 @@ ${
               ? 'Visos žaidimo taisyklės'
               : this.prop.includes('Gamtos Ateitis')
               ? 'Skaityk išsamias žaidimo taisykles.'
+              : this.language === 'EN'
+              ? 'Read full game rules'
               : 'Skaityk pilnas žaidimo taisykles.'
           } </a></div>
            
@@ -698,6 +715,8 @@ ${
         ? 'SUTINKU'
         : this.prop === 'Perlas GO'
         ? 'SUTINKU'
+        : this.language === 'EN'
+        ? 'CONTINUE'
         : 'SUTINKU'
     }</div></div>
     </div>

@@ -580,6 +580,7 @@ export const goldImageData2GamtosAteitisStiklas = [
 export const envelopeImageData2GamtosAteitisStiklas = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag2Stiklas.png',
 ];
+
 export const carImageDataGamtosAteitisStiklas = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bikeStiklas.png',
 ];
@@ -613,4 +614,40 @@ export const introPaper = [
 
 export const introPlastic = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/introPlastic.gif',
+];
+
+export const envelopeImageData3GamtosAteitisStiklas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag3Stiklas.png',
+];
+
+export const envelopeImageData4GamtosAteitisStiklas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag4Stiklas.png',
+];
+
+export const goldImageData3GamtosAteitisStiklas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bags3Stiklas.png',
+];
+
+export const envelopeImageData3GamtosAteitisPopierius = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag3Popierius.png',
+];
+
+export const envelopeImageData4GamtosAteitisPopierius = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag4Popierius.png',
+];
+
+export const goldImageData3GamtosAteitisPopierius = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bags3Popierius.png',
+];
+
+export const envelopeImageData3GamtosAteitisPlastikas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag3Plastikas.png',
+];
+
+export const envelopeImageData4GamtosAteitisPlastikas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bag4Plastikas.png',
+];
+
+export const goldImageData3GamtosAteitisPlastikas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bags3Plastikas.png',
 ];

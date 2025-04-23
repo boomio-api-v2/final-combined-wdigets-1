@@ -140,6 +140,15 @@ import {
   goldImageData2GamtosAteitisPlastikas,
   envelopeImageData2GamtosAteitisPlastikas,
   carImageDataGamtosAteitisPlastikas,
+  envelopeImageData3GamtosAteitisStiklas,
+  envelopeImageData4GamtosAteitisStiklas,
+  goldImageData3GamtosAteitisStiklas,
+  envelopeImageData3GamtosAteitisPopierius,
+  envelopeImageData4GamtosAteitisPopierius,
+  goldImageData3GamtosAteitisPopierius,
+  envelopeImageData3GamtosAteitisPlastikas,
+  envelopeImageData4GamtosAteitisPlastikas,
+  goldImageData3GamtosAteitisPlastikas,
 } from './constants';
 
 function startGame(
@@ -369,6 +378,13 @@ function startGame(
       : type === 2
       ? goldImageData2GamtosAteitisStiklas
       : goldImageData2GamtosAteitisPlastikas;
+  const goldImage3GamtosAteitis = new Image();
+  goldImage3GamtosAteitis.src =
+    type === 1
+      ? goldImageData3GamtosAteitisPopierius
+      : type === 2
+      ? goldImageData3GamtosAteitisStiklas
+      : goldImageData3GamtosAteitisPlastikas;
 
   const envelopeImageGamtosAteitis = new Image();
   envelopeImageGamtosAteitis.src =
@@ -384,6 +400,21 @@ function startGame(
       : type === 2
       ? envelopeImageData2GamtosAteitisStiklas
       : envelopeImageData2GamtosAteitisPlastikas;
+  const envelopeImage3GamtosAteitis = new Image();
+  envelopeImage3GamtosAteitis.src =
+    type === 1
+      ? envelopeImageData3GamtosAteitisPopierius
+      : type === 2
+      ? envelopeImageData3GamtosAteitisStiklas
+      : envelopeImageData3GamtosAteitisPlastikas;
+
+  const envelopeImage4GamtosAteitis = new Image();
+  envelopeImage4GamtosAteitis.src =
+    type === 1
+      ? envelopeImageData4GamtosAteitisPopierius
+      : type === 2
+      ? envelopeImageData4GamtosAteitisStiklas
+      : envelopeImageData4GamtosAteitisPlastikas;
 
   const goldImage = new Image();
   goldImage.src =
@@ -806,13 +837,17 @@ function startGame(
   };
 
   const envelopes = range(MAILBOX_HIT_AMOUNT * 10).map((_) => {
-    randomNumber = randomNumber + 1;
+    randomNumber = (randomNumber + 1) % 4;
     return {
       image:
         customer === 'Gamtos Ateitis'
-          ? randomNumber % 2 === 1
+          ? randomNumber === 0
             ? envelopeImageGamtosAteitis
-            : envelopeImage2GamtosAteitis
+            : randomNumber === 1
+            ? envelopeImage2GamtosAteitis
+            : randomNumber === 2
+            ? envelopeImage3GamtosAteitis
+            : envelopeImage4GamtosAteitis
           : envelopeImage,
       pos: {
         x: randomIntBetween(0, width),
@@ -935,9 +970,19 @@ function startGame(
     };
   });
 
-  const leftMailboxes = range(customer === 'Unisend' ? 2 : 1).map(() => {
+  function createLeftMailbox() {
+    randomNumber = (randomNumber + 1) % 4;
     return {
-      image: leftMailboxImage,
+      image:
+        customer === 'Gamtos Ateitis'
+          ? randomNumber === 0
+            ? envelopeImageGamtosAteitis
+            : randomNumber === 1
+            ? envelopeImage2GamtosAteitis
+            : randomNumber === 2
+            ? envelopeImage3GamtosAteitis
+            : envelopeImage4GamtosAteitis
+          : leftMailboxImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
         y: 0,
@@ -956,7 +1001,8 @@ function startGame(
       dimensions: BIG_SPRITE_DIMENSIONS,
       debug: false,
     };
-  });
+  }
+  const leftMailboxes = range(4).map(() => createLeftMailbox());
 
   const rightMailboxes = range(customer === 'Unisend' ? 2 : 1).map(() => {
     return {
@@ -983,6 +1029,8 @@ function startGame(
 
   const golds = range(customer === 'Unisend' ? 4 : 2).map(() => {
     randomNumber = randomNumber + 1;
+    if (customer === 'Gamtos Ateitis') randomNumber = (randomNumber + 1) % 3;
+
     return {
       image:
         customer === 'Unisend' && language === 'LV'
@@ -990,9 +1038,11 @@ function startGame(
             ? goldImageUnisendLV1
             : goldImageUnisendLV2
           : customer === 'Gamtos Ateitis'
-          ? randomNumber % 2 === 1
+          ? randomNumber === 0
             ? goldImageGamtosAteitis
-            : goldImage2GamtosAteitis
+            : randomNumber === 1
+            ? goldImage2GamtosAteitis
+            : goldImage3GamtosAteitis
           : goldImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
@@ -1193,6 +1243,9 @@ function startGame(
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
         } else {
           if (showCompetitiveRegistration && checkboxChange) {
+            if (customer === 'Gamtos Ateitis') {
+              didYouKnowContainer.updateProps(customer, type);
+            }
             boomioService
               .signal('', 'user_info', {
                 emails_consent: checkboxChange2,
@@ -1291,7 +1344,7 @@ function startGame(
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-    if (customer === 'Pigu.lt') {
+    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
     }
@@ -1495,7 +1548,7 @@ function startGame(
         })
         .then((response) => {
           bestScore = response.user_best_score;
-          didYouKnowContainer.updateProps(customer, scoreTable);
+          didYouKnowContainer.updateProps(customer, type);
 
           if (
             customer === 'Pigu.lt' &&
@@ -1763,7 +1816,9 @@ function startGame(
 
     restartTimeout = null;
     golds.forEach((s) => resetRoadSprite(s));
-    rightMailboxes.forEach((s) => resetRoadSprite(s));
+    clearArray(leftMailboxes);
+    range(4).forEach(() => leftMailboxes.push(createLeftMailbox()));
+
     leftMailboxes.forEach((s) => resetRoadSprite(s));
     clearArray(walls);
     range(INITIAL_WALLS).forEach(() => walls.push(createWall()));
@@ -2155,7 +2210,7 @@ function startGame(
               });
 
             let competitionTableContainer = '';
-            if (customer === 'Pigu.lt') {
+            if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
@@ -3009,6 +3064,7 @@ function startGame(
 
     const image = new Image();
     image.src = imageData;
+
     rightMailboxes.forEach((mb) => (mb.image = image));
     buildUpRoadSprites();
   }

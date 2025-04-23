@@ -292,7 +292,10 @@ ${
     };width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('drive').outerHTML}
+    ${
+      new InputContainer(this.customer, 'drive').createInputContainerDiv('drive', this.type)
+        .outerHTML
+    }
 
       <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${
         document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
@@ -331,10 +334,10 @@ ${
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
-    if (this.customer === 'Pigu.lt') {
+    if (this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      this.didYouKnowContainer = new DidYouKnowContainer(this.customer, this.type);
       gameContainer.appendChild(this.didYouKnowContainer.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
