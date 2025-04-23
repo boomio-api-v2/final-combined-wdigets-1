@@ -983,7 +983,9 @@ ${
 
         if (!checkboxChange || !checkboxChange2) {
           document.getElementById('competition-checkbox-error2').innerText =
-            'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.';
+            this.prop === 'Nykstukas'
+              ? 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.'
+              : 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis ir „Pieno žvaigždės“ privatumo politika';
           document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error2').style.display = 'block';
           document.getElementById('competition-checkbox-error2').style.height = '14px';

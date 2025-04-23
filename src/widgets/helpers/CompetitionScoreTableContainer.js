@@ -233,6 +233,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.language === 'EN'
                 ? 'Hooray, youre doing great!'
+                : this.prop === 'Nykstukas'
+                ? ''
                 : 'Valio, tau puikiai sekasi!'
             }</div>
             <div style="width:100%; top: ${
@@ -281,6 +283,8 @@ export class CompetitionScoreTableContainer {
                 ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.`
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
+                : this.prop === 'Nykstukas'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro NYKŠTUKAS prizai! '
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -350,6 +354,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.language === 'EN'
                 ? 'YOU CAN DO IT!'
+                : this.prop === 'Nykstukas'
+                ? ''
                 : 'Tu gali!'
             }</div>
             <div style="width:100%; top: ${
@@ -400,6 +406,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.'
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
+                : this.prop === 'Nykstukas'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro NYKŠTUKAS prizai! '
                 : this.language === 'EN'
                 ? ''
                 : ''
