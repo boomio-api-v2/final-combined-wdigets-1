@@ -89,7 +89,8 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Perlas GO' ||
             this.prop === 'Daumantu' ||
             this.prop === 'Dentsu' ||
-            this.prop === 'Zemaitijos Pienas'
+            this.prop === 'Zemaitijos Pienas' ||
+            this.prop.includes('demo')
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
           : this.prop === 'Barbora' ||
@@ -103,7 +104,8 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Perlas GO' ||
             this.prop === 'Daumantu' ||
             this.prop === 'Dentsu' ||
-            this.prop === 'Zemaitijos Pienas'
+            this.prop === 'Zemaitijos Pienas' ||
+            this.prop.includes('demo')
           ? 'white'
           : 'white';
       const boxShadow =
@@ -151,7 +153,8 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Daumantu' ||
                 this.prop === 'Dentsu' ||
-                this.prop === 'Zemaitijos Pienas'
+                this.prop === 'Zemaitijos Pienas' ||
+                this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
@@ -172,7 +175,8 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Daumantu' ||
                 this.prop === 'Dentsu' ||
-                this.prop === 'Zemaitijos Pienas'
+                this.prop === 'Zemaitijos Pienas' ||
+                this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
