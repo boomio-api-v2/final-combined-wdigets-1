@@ -296,7 +296,11 @@ ${
       </div>
       <div class="boomio-runner-achivesHolder">
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/pioneer.png" alt="">
           <div class='boomio-achiveText'>
             <p>Pioneer</p>
@@ -304,7 +308,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/bomb.png" alt="">
           <div class='boomio-achiveText'>
             <p>Extreme</p>
@@ -312,7 +320,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/motorbike.png" alt="">
           <div class='boomio-achiveText'>
             <p>Racer</p>
@@ -320,7 +332,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/trees.png" alt="">
           <div class='boomio-achiveText'>
             <p>Run forest, run</p>
@@ -328,7 +344,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/gigachad.png" alt="">
           <div class='boomio-achiveText'>
             <p>Gigachad</p>
@@ -336,7 +356,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/dead cat.png" alt="">
           <div class='boomio-achiveText'>
             <p>Puss in boots</p>
@@ -344,7 +368,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/guitar.png" alt="">
           <div class='boomio-achiveText'>
             <p>Smells like Nirvana</p>
@@ -352,7 +380,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/earth.png" alt="">
           <div class='boomio-achiveText'>
             <p>Main question</p>
@@ -360,7 +392,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/skull.png" alt="">
           <div class='boomio-achiveText'>
             <p>Memento mori</p>
@@ -368,7 +404,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/bouncer.png" alt="">
           <div class='boomio-achiveText'>
             <p>Bouncer</p>
@@ -376,7 +416,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/slide.png" alt="">
           <div class='boomio-achiveText'>
             <p>On the ground</p>
@@ -402,7 +446,11 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/gui/success.png" alt="">
           <div class='boomio-achiveText'>
             <p>All for one</p>
@@ -581,49 +629,77 @@ ${
     const runSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        this.customer === 'Dentsu'
+          ? 'assetsDentsu'
+          : this.customer === 'Nykstukas'
+          ? 'assetsNykstukas'
+          : 'assetsTesting'
       }/sprites/run`,
       8,
     );
     const slideSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        this.customer === 'Dentsu'
+          ? 'assetsDentsu'
+          : this.customer === 'Nykstukas'
+          ? 'assetsNykstukas'
+          : 'assetsTesting'
       }/sprites/slide`,
       6,
     );
     const jumpSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        this.customer === 'Dentsu'
+          ? 'assetsDentsu'
+          : this.customer === 'Nykstukas'
+          ? 'assetsNykstukas'
+          : 'assetsTesting'
       }/sprites/jump`,
       6,
     );
     const deathSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        this.customer === 'Dentsu'
+          ? 'assetsDentsu'
+          : this.customer === 'Nykstukas'
+          ? 'assetsNykstukas'
+          : 'assetsTesting'
       }/sprites/death`,
       4,
     );
     const barriersSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        this.customer === 'Dentsu'
+          ? 'assetsDentsu'
+          : this.customer === 'Nykstukas'
+          ? 'assetsNykstukas'
+          : 'assetsTesting'
       }/sprites/barriers`,
       7,
     );
     const bgSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        this.customer === 'Dentsu'
+          ? 'assetsDentsu'
+          : this.customer === 'Nykstukas'
+          ? 'assetsNykstukas'
+          : 'assetsTesting'
       }/bg`,
       8,
     );
     const fgSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+        this.customer === 'Dentsu'
+          ? 'assetsDentsu'
+          : this.customer === 'Nykstukas'
+          ? 'assetsNykstukas'
+          : 'assetsTesting'
       }/fg`,
       2,
     );
@@ -631,22 +707,38 @@ ${
     const CollectSprites = [
       loader.addImage(
         `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/sprites/collect/shield.png`,
       ),
       loader.addImage(
         `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/sprites/collect/shieldIcon.png`,
       ),
       loader.addImage(
         `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/sprites/collect/boosterIcon.png`,
       ),
       loader.addImage(
         `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : 'assetsTesting'
+          this.customer === 'Dentsu'
+            ? 'assetsDentsu'
+            : this.customer === 'Nykstukas'
+            ? 'assetsNykstukas'
+            : 'assetsTesting'
         }/sprites/collect/coin.png`,
       ),
     ];
