@@ -37,6 +37,13 @@ import {
   dentsuIntro,
   dentsuOrientation,
   uncheckIcon,
+  runnerbackgroundNykstukas,
+  upNykstukas,
+  downNykstukas,
+  leftNykstukas,
+  rightNykstukas,
+  nykstukasIntro,
+  nykstukasOrientation,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -287,7 +294,11 @@ ${
     </div>
     <div class="tutorial  boomio-hide"></div>
 <div class="boomio-runner-achives boomio-runner-mainBg boomio-screenRatio boomio-hide" style="background-image: url('${
-      this.customer === 'Dentsu' ? runnerbackgroundDentsu : runnerbackground
+      this.customer === 'Dentsu'
+        ? runnerbackgroundDentsu
+        : this.customer === 'Nykstukas'
+        ? runnerbackgroundNykstukas
+        : runnerbackground
     }');">
       <div class="boomio-statsHolder">
         <div class="boomio-runner-stat" id="numberOfDeathsBlock"></div>
@@ -993,7 +1004,11 @@ ${
 
           for (let i = 0; i < mainBgBlocks.length; i += 1) {
             mainBgBlocks[i].style.backgroundImage = `url(${
-              customer === 'Dentsu' ? runnerbackgroundDentsu : runnerbackground
+              customer === 'Dentsu'
+                ? runnerbackgroundDentsu
+                : customer === 'Nykstukas'
+                ? runnerbackgroundNykstukas
+                : runnerbackground
             })`; // Ensure url syntax
           }
 
