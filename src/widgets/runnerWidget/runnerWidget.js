@@ -1522,10 +1522,8 @@ ${
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
 
       if (window.innerWidth > window.innerHeight) {
-        // Landscape
         document.getElementById('turnLandscape').style.display = 'none !important';
       } else {
-        // Portrait
         document.getElementById('turnLandscape').style.display = 'flex !important';
       }
 
