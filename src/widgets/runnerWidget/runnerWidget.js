@@ -558,7 +558,7 @@ ${
     const loader = new PxLoader();
     var gameOverAlreadyHandled = false;
     this.config = localStorageService.getDefaultConfig();
-    const customer = this.config.business_name ? this.config.business_name : 'Dentsu';
+    const customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
 
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
