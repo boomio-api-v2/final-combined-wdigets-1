@@ -805,9 +805,7 @@ margin-right: 10px;}
 		height: 100px;
 	}
 
-	.boomio-runner-main {
-	  display: none;
-	}
+
 }
 
 @media screen and (orientation: landscape) {
