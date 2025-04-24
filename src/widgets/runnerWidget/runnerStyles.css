@@ -809,9 +809,8 @@ margin-right: 10px;}
 	  display: none;
 	}
 }
+
 @media screen and (orientation: landscape) {
-
-
 	#turnLandscape{
 		display: none;
 	}
@@ -819,6 +818,7 @@ margin-right: 10px;}
 		display: flex;
 	}
 }
+
 @media (max-width: 920px){
   @media screen and (orientation: landscape) {
   .input-register-container{

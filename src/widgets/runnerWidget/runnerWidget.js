@@ -136,7 +136,6 @@ class runnerWidget {
   <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
 </div>
   <div class="boomio-runner-main">
-
     <div class="boomio-runner-wrapper boomio-screenRatio">
       <div class="boomio-runner-controlBlock">
         Taisyklės
