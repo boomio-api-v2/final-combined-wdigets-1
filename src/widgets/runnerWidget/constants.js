@@ -116,18 +116,6 @@ export const dentsuIntro =
 export const runnerbackgroundNykstukas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsNykstukas/bg/bg.png';
 
-export const upNykstukas =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsNykstukas/gui/W.png';
-
-export const downNykstukas =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsNykstukas/gui/S.png';
-
-export const leftNykstukas =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsNykstukas/gui/A.png';
-
-export const rightNykstukas =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsNykstukas/gui/D.png';
-
 export const nykstukasIntro =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsNykstukas/nykstukasIntro.gif';
 

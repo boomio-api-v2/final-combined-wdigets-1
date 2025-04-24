@@ -792,7 +792,7 @@ margin-right: 10px;}
 }
 @media screen and (orientation: portrait) {
 	#turnLandscape{
-		display: flex;
+		
 		align-items: center;
 		justify-content: center;
 		color:rgb(255, 255, 255);
@@ -818,6 +818,17 @@ margin-right: 10px;}
 }
 
 @media (max-width: 920px){
+  @media screen and (orientation: portrait) {
+    .input-register-container{
+      scale: 0.7;
+      left:calc(50% - 60px)
+        }
+  
+        .competition-table-container{
+          left:calc(50% - 80px);
+          scale: 0.56;
+        }
+      }
   @media screen and (orientation: landscape) {
   .input-register-container{
     scale: 0.7;

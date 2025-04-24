@@ -38,10 +38,6 @@ import {
   dentsuOrientation,
   uncheckIcon,
   runnerbackgroundNykstukas,
-  upNykstukas,
-  downNykstukas,
-  leftNykstukas,
-  rightNykstukas,
   nykstukasIntro,
   nykstukasOrientation,
 } from './constants';
@@ -131,7 +127,7 @@ class runnerWidget {
 
  
 <div class="boomio-runner-body" oncontextmenu="return false;">
-<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10;">
+<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
   rotate your device
   <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
 </div>
@@ -140,16 +136,16 @@ class runnerWidget {
       <div class="boomio-runner-controlBlock">
         Taisyklės
         <img class='boomio-runner-controlButton' src="${
-          this.customer === 'Dentsu' ? upDentsu : up
+          this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? upDentsu : up
         }" alt="">
         <div><img class='boomio-runner-controlButton' src="${
-          this.customer === 'Dentsu' ? leftDentsu : left
+          this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? leftDentsu : left
         }" alt="">
           <img class='boomio-runner-controlButton' src="${
-            this.customer === 'Dentsu' ? downDentsu : right
+            this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? downDentsu : right
           }" alt="">
           <img class='boomio-runner-controlButton' src="${
-            this.customer === 'Dentsu' ? rightDentsu : down
+            this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? rightDentsu : down
           }" alt="">
         </div>
       </div>
@@ -187,19 +183,19 @@ class runnerWidget {
 
 <div class="boomio-runner-leftButtonsBlock boomio-hide">
   <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' ? leftDentsu : left
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? leftDentsu : left
   }" alt="">
   <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' ? rightDentsu : right
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? rightDentsu : right
   }" alt="">
 </div>
 
 <div class="boomio-runner-rightButtonsBlock boomio-hide">
   <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' ? upDentsu : up
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? upDentsu : up
   }" alt="">
   <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' ? downDentsu : down
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? downDentsu : down
   }" alt="">
 </div>
 
@@ -1498,6 +1494,15 @@ ${
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
 
+      if (window.innerWidth > window.innerHeight) {
+        // Landscape
+        document.getElementById('turnLandscape').style.display = 'none !important';
+      } else {
+        // Portrait
+        document.getElementById('turnLandscape').style.display = 'flex !important';
+      }
+
+      document.getElementById('turnLandscape').style.zIndex = 10;
       if (!gameStarted) {
         let canvas = document.getElementById('boomio-runner-canvas');
 
@@ -1725,6 +1730,11 @@ ${
     function Resize() {
       canvas.width = wrapperBlock.offsetWidth;
       canvas.height = wrapperBlock.offsetHeight;
+
+      // Adjust player Y-position to match new height
+      if (player && player.isPlayer) {
+        player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
+      }
     }
 
     highScoreBlock.innerText = highScore;
