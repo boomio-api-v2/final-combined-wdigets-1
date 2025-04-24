@@ -128,7 +128,7 @@ class runnerWidget {
  
 <div class="boomio-runner-body" oncontextmenu="return false;" style="background:">
 <div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
-  rotate your device
+  ${this.customer === 'Nykstukas' ? 'Pasukite savo įrenginį' : 'rotate your device'}
   <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
 </div>
   <div class="boomio-runner-main">
