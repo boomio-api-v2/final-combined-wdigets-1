@@ -910,6 +910,40 @@ ${
       }
     };
     window.addEventListener('orientationchange', checkOrientationAndPause);
+    window.addEventListener('resize', adjustScaleAndPosition);
+    window.addEventListener('orientationchange', adjustScaleAndPosition);
+    document.addEventListener('DOMContentLoaded', adjustScaleAndPosition);
+
+    function adjustScaleAndPosition() {
+      const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+      const isNarrowScreen = window.innerWidth <= 920;
+
+      const inputRegister = document.querySelector('.input-register-container');
+      const competitionTable = document.querySelector('.competition-table-container');
+
+      if (isPortrait && isNarrowScreen) {
+        if (inputRegister) {
+          inputRegister.style.scale = '0.7';
+          inputRegister.style.left = 'calc(50% - 60px)';
+        }
+
+        if (competitionTable) {
+          competitionTable.style.scale = '0.56';
+          competitionTable.style.left = 'calc(50% - 80px)';
+        }
+      } else {
+        // Optionally reset styles if orientation/width changes
+        if (inputRegister) {
+          inputRegister.style.scale = '';
+          inputRegister.style.left = '';
+        }
+
+        if (competitionTable) {
+          competitionTable.style.scale = '';
+          competitionTable.style.left = '';
+        }
+      }
+    }
 
     Resize();
     updateAchives();

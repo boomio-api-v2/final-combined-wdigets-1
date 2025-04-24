@@ -719,7 +719,7 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:calc(100% - 20px);margin-left:10px;top: ${
-        this.prop === 'Gamtos Ateitis' ? '140px' : '42px'
+        this.prop === 'Gamtos Ateitis' ? '190px' : '42px'
       }; position: absolute; text-align: center;line-height:${
       this.prop === 'Gamtos Ateitis' ? '30px' : '42px'
     }; color: ${this.prop === 'Pigu.lt' ? 'white' : 'white'}; font-size: ${
