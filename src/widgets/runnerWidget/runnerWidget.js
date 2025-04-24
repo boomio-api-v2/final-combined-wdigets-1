@@ -86,7 +86,7 @@ class runnerWidget {
   <div style="margin-top:7px; text-align: center; color: rgba(61, 73, 40, 1); font-size: 22px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word; cursor:pointer;">Pradėti</div>
 </div>
 
-    <img src=${dentsuIntro} 
+    <img src=''
     alt="Image Description" 
     style="z-index:4; width: 100vw; height: 100vh;position:absolute;pointer-events: none; display:none;" 
     id="background_intro">
@@ -126,8 +126,8 @@ class runnerWidget {
 
 
  
-<div class="boomio-runner-body" oncontextmenu="return false;">
-<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
+<div class="boomio-runner-body" oncontextmenu="return false;" style="background:">
+<div id="turnLandscape" style="display:flex;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
   rotate your device
   <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
 </div>
@@ -922,11 +922,6 @@ ${
       const competitionTable = document.querySelector('.competition-table-container');
 
       if (isPortrait && isNarrowScreen) {
-        if (inputRegister) {
-          inputRegister.style.scale = '0.7';
-          inputRegister.style.left = 'calc(50% - 60px)';
-        }
-
         if (competitionTable) {
           competitionTable.style.scale = '0.56';
           competitionTable.style.left = 'calc(50% - 80px)';
@@ -1097,8 +1092,11 @@ ${
         inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         inpuRegisterContainer.style.display = 'block';
         setTimeout(() => {
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
           inpuRegisterContainer.style.height = '528px';
-          inpuRegisterContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : '30%';
+          inpuRegisterContainer.style.top =
+            window.innerWidth > 920 ? 'calc(50% + 74px)' : isIOS ? '40%' : '35%';
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
@@ -1328,11 +1326,6 @@ ${
                       'height 1s ease, top 1s ease, opacity 1s ease';
                     inputContainer.style.display = 'block';
                     setTimeout(() => {
-                      if (window.innerWidth < 920) {
-                        inputContainer.style.left = 'calc(50% - 60px)';
-                        inputContainer.style.scale = 0.7;
-                      }
-
                       inputContainer.style.height = '332px';
                       inputContainer.style.top =
                         window.innerWidth > 920 ? 'calc(50% + 170px)' : '60%';
