@@ -792,7 +792,7 @@ margin-right: 10px;}
 }
 @media screen and (orientation: portrait) {
 	#turnLandscape{
-		
+		display:flex;
 		align-items: center;
 		justify-content: center;
 		color:rgb(255, 255, 255);

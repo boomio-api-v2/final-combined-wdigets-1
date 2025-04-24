@@ -127,7 +127,7 @@ class runnerWidget {
 
  
 <div class="boomio-runner-body" oncontextmenu="return false;" style="background:">
-<div id="turnLandscape" style="display:flex;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
+<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
   rotate your device
   <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
 </div>
@@ -1755,6 +1755,10 @@ ${
     function Resize() {
       canvas.width = wrapperBlock.offsetWidth;
       canvas.height = wrapperBlock.offsetHeight;
+
+      if (window.innerWidth > window.innerHeight) {
+        document.getElementById('turnLandscape').style.display = 'none !important';
+      }
 
       // Adjust player Y-position to match new height
       if (player && player.isPlayer) {
