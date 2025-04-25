@@ -1753,12 +1753,10 @@ ${
     updateUpgrades();
 
     function Resize() {
+      canvas.setAttribute('width', wrapperBlock.offsetWidth);
+      canvas.setAttribute('height', wrapperBlock.offsetHeight);
       canvas.width = wrapperBlock.offsetWidth;
       canvas.height = wrapperBlock.offsetHeight;
-
-      if (window.innerWidth > window.innerHeight) {
-        document.getElementById('turnLandscape').style.display = 'none !important';
-      }
 
       // Adjust player Y-position to match new height
       if (player && player.isPlayer) {
