@@ -129,6 +129,7 @@ export class InputRegisterContainer {
       this.prop === 'Daumantu' ||
       this.prop === 'Dentsu' ||
       this.prop === 'Zemaitijos Pienas' ||
+      this.prop === 'Nykstukas' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -173,6 +174,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Dentsu ir Boomio naujienas.'
         : this.prop === 'Zemaitijos Pienas'
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
+        : this.prop === 'Nykstukas'
+        ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
@@ -279,6 +282,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
         : this.prop === 'Dentsu'
         ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
+        : this.prop === 'Nykstukas'
+        ? 'Sutinku su „Pieno žvaigždės“'
         : this.language === 'EN'
         ? 'I agree to receive '
         : `Sutinku  ${

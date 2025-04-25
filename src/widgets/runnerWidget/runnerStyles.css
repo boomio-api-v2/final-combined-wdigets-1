@@ -792,7 +792,7 @@ margin-right: 10px;}
 }
 @media screen and (orientation: portrait) {
 	#turnLandscape{
-		display: flex;
+		display:flex;
 		align-items: center;
 		justify-content: center;
 		color:rgb(255, 255, 255);
@@ -805,14 +805,10 @@ margin-right: 10px;}
 		height: 100px;
 	}
 
-	.boomio-runner-main {
-	  display: none;
-	}
+
 }
-  
+
 @media screen and (orientation: landscape) {
-
-
 	#turnLandscape{
 		display: none;
 	}
@@ -820,13 +816,13 @@ margin-right: 10px;}
 		display: flex;
 	}
 }
+
 @media (max-width: 920px){
   @media screen and (orientation: landscape) {
   .input-register-container{
     scale: 0.7;
     left:calc(50% - 60px)
       }
-
       .competition-table-container{
         left:calc(50% - 80px);
         scale: 0.56;

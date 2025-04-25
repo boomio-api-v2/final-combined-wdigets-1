@@ -32,6 +32,11 @@ export class InputContainer {
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
     this.game = game;
+
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const userId = urlParams.get('user_id');
+
     containerDiv.innerHTML = `
 
       
@@ -74,7 +79,7 @@ export class InputContainer {
     <div style="width: ${
       this.isMobile ? '350px' : '390px'
     };margin-top:10px;margin-bottom:10px;height:${
-      this.prop === 'Gamtos Ateitis' ? '140px' : '110px'
+      this.prop === 'Gamtos Ateitis' || this.prop === 'Nykstukas' ? '140px' : '110px'
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
 
  
@@ -144,6 +149,8 @@ export class InputContainer {
                   ? 'Brauk'
                   : this.language === 'EN'
                   ? 'CLICK'
+                  : this.prop === 'Nykstukas'
+                  ? 'Judėk'
                   : 'Spausk'
               }
     <div
@@ -232,8 +239,8 @@ export class InputContainer {
       ? 'į šonus kad nenukristum.'
       : this.prop === 'Dentsu' && this.game === 'flappy'
       ? 'kad skristum.'
-      : this.prop === 'Dentsu'
-      ? 'klavišų pagalba ir rink taškus.'
+      : this.game === 'runner'
+      ? 'rodyklių pagalba.'
       : this.prop === 'Zemaitijos Pienas'
       ? 'TIK „Dobilas“ produktus.'
       : this.language === 'EN'
@@ -287,6 +294,8 @@ export class InputContainer {
                 ? 'Rink'
                 : this.language === 'EN'
                 ? 'REPEAT'
+                : this.prop === 'Nykstukas'
+                ? 'Rink'
                 : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${'12px'}; font-family:${
@@ -333,6 +342,8 @@ export class InputContainer {
                 ? 'plastiko pakuočių atliekas.'
                 : this.language === 'EN'
                 ? 'to get the best possible result'
+                : this.prop === 'Nykstukas'
+                ? 'monetas įveikiant ledų kliūtis.'
                 : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
@@ -369,8 +380,10 @@ export class InputContainer {
                 ? 'WIN'
                 : this.prop === 'Ikea'
                 ? 'Laimėkite,'
-                : this.prop === 'Perlas GO'
+                : this.prop === 'Perlas GO' && !userId
                 ? 'Registruokis'
+                : this.prop === 'Perlas GO'
+                ? 'Mėgaukis'
                 : this.prop === 'Eurovaistine'
                 ? 'LAIMĒ'
                 : this.prop === 'SaludSA'
@@ -379,6 +392,8 @@ export class InputContainer {
                 ? 'Kartok'
                 : this.language === 'EN'
                 ? 'WIN'
+                : this.prop === 'Nykstukas'
+                ? 'Kartok'
                 : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${
@@ -469,8 +484,10 @@ export class InputContainer {
                 ? '1 iš 80 Pegaso knygų, kas dvi savaites!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
-                : this.prop === 'Perlas GO'
+                : this.prop === 'Perlas GO' && !userId
                 ? '„Perlas Go“ savitarnoje </br> arba mobiliojoje programėlėje.'
+                : this.prop === 'Perlas GO'
+                ? 'žaidimu'
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
@@ -497,17 +514,23 @@ export class InputContainer {
                 ? '„Dobilas“ prizus!'
                 : this.language === 'EN'
                 ? 'PRIZES!'
+                : this.prop === 'Nykstukas'
+                ? 'siekiant kuo geresnio rezultato.'
                 : 'Prizus!'
             }
           </div>
             </div>
 ${
-  this.prop === 'Perlas GO' || this.prop === 'Gamtos Ateitis'
+  this.prop === 'Perlas GO' || this.prop === 'Gamtos Ateitis' || this.prop === 'Nykstukas'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'24px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${'Laimėk'} 
                           <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${'12px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
             ${
-              this.prop === 'Gamtos Ateitis' ? 'koncertą savo mokyklai!' : '10€ Wolt dovanų kuponą!'
+              this.prop === 'Gamtos Ateitis'
+                ? 'koncertą savo mokyklai!'
+                : this.prop === 'Gamtos Ateitis'
+                ? 'Nykštukas vasariškus prizus!'
+                : '10€ Wolt dovanų kuponą!'
             }
           </div>
             </div>`
@@ -532,6 +555,7 @@ ${
       this.prop === 'Vilvi' ||
       this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'Ikea' ||
+      this.prop === 'Nykstukas' ||
       this.prop.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
@@ -618,6 +642,8 @@ ${
               ? 'Skaityk išsamias žaidimo taisykles.'
               : this.language === 'EN'
               ? 'Read full game rules'
+              : this.prop === 'Nykstukas'
+              ? 'Sužinok daugiau apie prizus ir žaidimo taisykles.'
               : 'Skaityk pilnas žaidimo taisykles.'
           } </a></div>
            
