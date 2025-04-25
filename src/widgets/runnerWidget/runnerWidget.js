@@ -886,9 +886,7 @@ ${
     window.addEventListener('resize', Resize);
 
     const checkOrientationAndPause = () => {
-      if (gameStarted === undefined) {
-        return;
-      }
+      if (gameStarted === undefined) return;
 
       if (!gameStarted) {
         Start();
@@ -897,19 +895,24 @@ ${
         }, 50);
         return;
       }
-      if (window.innerHeight < window.innerWidth) {
+
+      const isPortrait = window.innerHeight > window.innerWidth;
+
+      if (isPortrait) {
         if (!stopGame) {
-          console.log('Game paused due to vertical orientation');
+          console.log('Game paused due to portrait orientation');
           Stop();
         }
       } else {
         if (stopGame) {
-          console.log('Game resumed due to horizontal orientation');
+          console.log('Game resumed due to landscape orientation');
           Start();
         }
       }
-      this.adjustScaleAndPosition();
+
+      adjustScaleAndPosition();
     };
+
     window.addEventListener('orientationchange', checkOrientationAndPause);
     window.addEventListener('resize', adjustScaleAndPosition);
     document.addEventListener('DOMContentLoaded', adjustScaleAndPosition);
@@ -1700,7 +1703,6 @@ ${
 
     document.getElementById('startButtonClick').addEventListener('click', () => {
       PlayButtonActivate();
-      // your existing start logic here
     });
     document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);
