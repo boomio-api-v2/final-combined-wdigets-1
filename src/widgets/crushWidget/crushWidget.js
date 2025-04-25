@@ -75,9 +75,6 @@ class CrushGame {
     this.preloadImages(() => {
       this.createContainer();
 
-      document.getElementById(
-        'boomio-crush-canvas',
-      ).style.background = true`url(${backgroundNevezis}) center`;
       this.setupCanvas();
       this.generateValidGrid();
       this.addEventListeners();
@@ -132,7 +129,7 @@ class CrushGame {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-crush-canvas');
         document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.37;
+          this.language === 'LV' ? 0.4 : 0.2;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inpuRegisterContainer = document.querySelector('.input-register-container');
@@ -196,7 +193,7 @@ class CrushGame {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-crush-canvas');
         document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.37;
+          this.language === 'LV' ? 0.4 : 0.2;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
@@ -235,8 +232,7 @@ class CrushGame {
     }
     setTimeout(() => {
       const canvas = document.getElementById('boomio-crush-canvas');
-      document.getElementById('background_blur').style.opacity =
-        this.language === 'LV' ? 0.4 : 0.37;
+      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
       canvas.style.transition = 'filter 0.6s ease';
       canvas.style.filter = 'blur(2px)';
       const inputContainer = document.querySelector('.input-container');
@@ -414,7 +410,7 @@ class CrushGame {
           canvas.style.filter = 'blur(2px)';
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.opacity =
-            this.language === 'LV' ? 0.4 : 0.37;
+            this.language === 'LV' ? 0.4 : 0.2;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
@@ -607,6 +603,16 @@ class CrushGame {
 </div>
 </div>
 
+<img src="${backgroundNevezis}" 
+     alt="Game Background"
+     id="background_nevezis"
+     style="z-index:0;
+            width: ${document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'};
+            height: 668px;
+            position: absolute;
+            pointer-events: none;
+            object-fit: cover;
+            display: block;">
 
         <img src="${intro}"
              alt="Image Description" 
@@ -614,6 +620,7 @@ class CrushGame {
                this.isMobileHeightSmall ? '100%' : '674px'
              };position:absolute;pointer-events: none; display:block;" 
              id="background_intro">
+
              <div alt="Image Description" style="z-index:1;width: ${
                document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
              }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#e3dede'}" id="background_blur"></div>
@@ -1188,7 +1195,7 @@ class CrushGame {
                   setTimeout(() => {
                     const canvas = document.getElementById('boomio-crush-canvas');
                     document.getElementById('background_blur').style.opacity =
-                      this.language === 'LV' ? 0.4 : 0.37;
+                      this.language === 'LV' ? 0.4 : 0.2;
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     const inputContainer = document.querySelector('.input-container');
