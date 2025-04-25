@@ -886,6 +886,20 @@ ${
     window.addEventListener('resize', Resize);
 
     const checkOrientationAndPause = () => {
+      setTimeout(() => {
+        // Force reflow by updating canvas or main container dimensions
+        const canvas = document.querySelector('.boomio-runner-canvas');
+        if (canvas) {
+          canvas.style.width = window.innerWidth + 'px';
+          canvas.style.height = window.innerHeight + 'px';
+        }
+
+        // Optionally force redraw if using a framework like PIXI or Phaser
+        if (window.game && window.game.resize) {
+          window.game.resize(); // adjust depending on your game engine
+        }
+      }, 10); // delay to allow iOS to finish transitioning
+
       if (gameStarted === undefined) {
         return;
       }
