@@ -21,6 +21,23 @@ import {
   uncheckIcon,
   star,
   stopwatch,
+  crushElement1Nevezis,
+  crushElement2Nevezis,
+  crushElement3Nevezis,
+  crushElement4Nevezis,
+  crushElement5Nevezis,
+  crushElement6Nevezis,
+  crushElement7Nevezis,
+  crushElement8Nevezis,
+  crushElement1SpecialNevezis,
+  crushElement2SpecialNevezis,
+  crushElement3SpecialNevezis,
+  crushElement4SpecialNevezis,
+  crushElement5SpecialNevezis,
+  crushElement6SpecialNevezis,
+  crushElement7SpecialNevezis,
+  crushElement8SpecialNevezis,
+  backgroundNevezis,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -58,9 +75,9 @@ class CrushGame {
     this.preloadImages(() => {
       this.createContainer();
 
-      document.getElementById('boomio-crush-canvas').style.background = true
-        ? 'gray'
-        : `url(${redSpecial}) center`;
+      document.getElementById(
+        'boomio-crush-canvas',
+      ).style.background = true`url(${backgroundNevezis}) center`;
       this.setupCanvas();
       this.generateValidGrid();
       this.addEventListeners();
