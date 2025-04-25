@@ -885,57 +885,46 @@ ${
     );
     window.addEventListener('resize', Resize);
 
-    const checkOrientationAndPause = () => {
-      if (gameStarted === undefined) {
-        return;
-      }
+    let orientationTimeout;
 
-      if (!gameStarted) {
-        Start();
-        setTimeout(() => {
-          Stop();
-        }, 50);
-        return;
-      }
-      if (window.innerHeight < window.innerWidth) {
-        if (!stopGame) {
-          console.log('Game paused due to vertical orientation');
-          Stop();
+    const checkOrientationAndPause = () => {
+      if (gameStarted === undefined) return;
+
+      clearTimeout(orientationTimeout);
+
+      orientationTimeout = setTimeout(() => {
+        const isPortrait = window.innerHeight > window.innerWidth;
+
+        if (isPortrait) {
+          if (!stopGame) {
+            console.log('Game paused because device is in portrait');
+            Stop();
+          }
+        } else {
+          if (stopGame) {
+            console.log('Game resumed because device is in landscape');
+            Start();
+          }
         }
-      } else {
-        if (stopGame) {
-          console.log('Game resumed due to horizontal orientation');
-          Start();
-        }
-      }
+
+        adjustScaleAndPosition();
+      }, 100); // wait 200ms after rotation
     };
+
     window.addEventListener('orientationchange', checkOrientationAndPause);
     window.addEventListener('resize', adjustScaleAndPosition);
-    window.addEventListener('orientationchange', adjustScaleAndPosition);
     document.addEventListener('DOMContentLoaded', adjustScaleAndPosition);
 
     function adjustScaleAndPosition() {
       const isPortrait = window.matchMedia('(orientation: portrait)').matches;
       const isNarrowScreen = window.innerWidth <= 920;
 
-      const inputRegister = document.querySelector('.input-register-container');
       const competitionTable = document.querySelector('.competition-table-container');
 
       if (isPortrait && isNarrowScreen) {
         if (competitionTable) {
           competitionTable.style.scale = '0.56';
           competitionTable.style.left = 'calc(50% - 80px)';
-        }
-      } else {
-        // Optionally reset styles if orientation/width changes
-        if (inputRegister) {
-          inputRegister.style.scale = '';
-          inputRegister.style.left = '';
-        }
-
-        if (competitionTable) {
-          competitionTable.style.scale = '';
-          competitionTable.style.left = '';
         }
       }
     }
@@ -1624,6 +1613,16 @@ ${
           console.log('started');
           const toggleHide = (block) => block.classList.toggle('boomio-hide');
 
+          const isPortrait = window.innerHeight > window.innerWidth;
+
+          if (isPortrait) {
+            console.log('Starting paused because device is in portrait');
+            Stop(); // don't start moving
+          } else {
+            console.log('Starting game because device is in landscape');
+            Start(); // start moving
+          }
+
           ResetGlobalVariables();
           document.addEventListener('keydown', keyRightHandler, false);
           document.addEventListener('keyup', keyLeftHandler, false);
@@ -1634,7 +1633,6 @@ ${
           toggleHide(lifeContainer);
 
           saveMeBlock.classList.remove('boomio-hide');
-          Start();
         }, 50);
       }
     };
@@ -1712,7 +1710,6 @@ ${
 
     document.getElementById('startButtonClick').addEventListener('click', () => {
       PlayButtonActivate();
-      // your existing start logic here
     });
     document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
     document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);

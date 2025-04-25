@@ -21,6 +21,23 @@ import {
   uncheckIcon,
   star,
   stopwatch,
+  crushElement1Nevezis,
+  crushElement2Nevezis,
+  crushElement3Nevezis,
+  crushElement4Nevezis,
+  crushElement5Nevezis,
+  crushElement6Nevezis,
+  crushElement7Nevezis,
+  crushElement8Nevezis,
+  crushElement1SpecialNevezis,
+  crushElement2SpecialNevezis,
+  crushElement3SpecialNevezis,
+  crushElement4SpecialNevezis,
+  crushElement5SpecialNevezis,
+  crushElement6SpecialNevezis,
+  crushElement7SpecialNevezis,
+  crushElement8SpecialNevezis,
+  backgroundNevezis,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -58,9 +75,6 @@ class CrushGame {
     this.preloadImages(() => {
       this.createContainer();
 
-      document.getElementById('boomio-crush-canvas').style.background = true
-        ? 'gray'
-        : `url(${redSpecial}) center`;
       this.setupCanvas();
       this.generateValidGrid();
       this.addEventListeners();
@@ -115,7 +129,7 @@ class CrushGame {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-crush-canvas');
         document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.37;
+          this.language === 'LV' ? 0.4 : 0.2;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inpuRegisterContainer = document.querySelector('.input-register-container');
@@ -179,7 +193,7 @@ class CrushGame {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-crush-canvas');
         document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.37;
+          this.language === 'LV' ? 0.4 : 0.2;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
@@ -218,8 +232,7 @@ class CrushGame {
     }
     setTimeout(() => {
       const canvas = document.getElementById('boomio-crush-canvas');
-      document.getElementById('background_blur').style.opacity =
-        this.language === 'LV' ? 0.4 : 0.37;
+      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
       canvas.style.transition = 'filter 0.6s ease';
       canvas.style.filter = 'blur(2px)';
       const inputContainer = document.querySelector('.input-container');
@@ -397,7 +410,7 @@ class CrushGame {
           canvas.style.filter = 'blur(2px)';
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.opacity =
-            this.language === 'LV' ? 0.4 : 0.37;
+            this.language === 'LV' ? 0.4 : 0.2;
           competitionTableContainer.style.transition =
             'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
@@ -590,6 +603,16 @@ class CrushGame {
 </div>
 </div>
 
+<img src="${backgroundNevezis}" 
+     alt="Game Background"
+     id="background_nevezis"
+     style="z-index:0;
+            width: ${document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'};
+            height: 668px;
+            position: absolute;
+            pointer-events: none;
+            object-fit: cover;
+            display: block;">
 
         <img src="${intro}"
              alt="Image Description" 
@@ -597,6 +620,7 @@ class CrushGame {
                this.isMobileHeightSmall ? '100%' : '674px'
              };position:absolute;pointer-events: none; display:block;" 
              id="background_intro">
+
              <div alt="Image Description" style="z-index:1;width: ${
                document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
              }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#e3dede'}" id="background_blur"></div>
@@ -918,7 +942,7 @@ class CrushGame {
     }
     if (typeof color === 'string' && color.endsWith('3Points')) {
       // 1) Draw the base color’s normal image, if you have it
-      const base = color.replace('3Points', ''); // e.g. "blue3Points" => "blue"
+      const base = color.replace('3Points', '');
       const img = this.images[base];
       if (img) {
         this.ctx.drawImage(
@@ -950,7 +974,6 @@ class CrushGame {
       return; // done drawing
     }
     if (typeof color === 'string' && color.endsWith('Multiplier')) {
-      // Get the base color from the name, e.g. "blueMultiplier" -> "blue"
       const base = color.replace('Multiplier', '');
 
       // If you have an image for the base color, draw that image:
@@ -1172,7 +1195,7 @@ class CrushGame {
                   setTimeout(() => {
                     const canvas = document.getElementById('boomio-crush-canvas');
                     document.getElementById('background_blur').style.opacity =
-                      this.language === 'LV' ? 0.4 : 0.37;
+                      this.language === 'LV' ? 0.4 : 0.2;
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     const inputContainer = document.querySelector('.input-container');
