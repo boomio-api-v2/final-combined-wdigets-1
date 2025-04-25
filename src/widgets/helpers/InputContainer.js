@@ -32,6 +32,11 @@ export class InputContainer {
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 99999999999;
     this.game = game;
+
+    const currentPageUrl = window.location.href;
+    const urlParams = new URL(currentPageUrl).searchParams;
+    const userId = urlParams.get('user_id');
+
     containerDiv.innerHTML = `
 
       
@@ -375,8 +380,10 @@ export class InputContainer {
                 ? 'WIN'
                 : this.prop === 'Ikea'
                 ? 'Laimėkite,'
-                : this.prop === 'Perlas GO'
+                : this.prop === 'Perlas GO' && !userId
                 ? 'Registruokis'
+                : this.prop === 'Perlas GO'
+                ? 'Mėgaukis'
                 : this.prop === 'Eurovaistine'
                 ? 'LAIMĒ'
                 : this.prop === 'SaludSA'
@@ -477,8 +484,10 @@ export class InputContainer {
                 ? '1 iš 80 Pegaso knygų, kas dvi savaites!'
                 : this.prop === 'LemonGym'
                 ? 'Lemon Gym narystes kas mėnesį!'
-                : this.prop === 'Perlas GO'
+                : this.prop === 'Perlas GO' && !userId
                 ? '„Perlas Go“ savitarnoje </br> arba mobiliojoje programėlėje.'
+                : this.prop === 'Perlas GO'
+                ? 'žaidimu'
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
