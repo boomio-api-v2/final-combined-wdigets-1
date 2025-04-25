@@ -127,8 +127,8 @@ class runnerWidget {
 
  
 <div class="boomio-runner-body" oncontextmenu="return false;" style="background:">
-<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
-  ${this.customer === 'Nykstukas' ? 'Pasukite savo įrenginį' : 'rotate your device'}
+<div id="turnLandscape" style="display:flex;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
+  rotate your device
   <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
 </div>
   <div class="boomio-runner-main">
@@ -885,34 +885,7 @@ ${
     );
     window.addEventListener('resize', Resize);
 
-    function setVhUnit() {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-
-    window.addEventListener('resize', setVhUnit);
-    window.addEventListener('orientationchange', () => {
-      // Add a small delay so iOS finishes rotating
-      setTimeout(setVhUnit, 300);
-    });
-
-    setVhUnit(); // initial call
-
     const checkOrientationAndPause = () => {
-      setTimeout(() => {
-        // Force reflow by updating canvas or main container dimensions
-        const canvas = document.querySelector('.boomio-runner-canvas');
-        if (canvas) {
-          canvas.style.width = window.innerWidth + 'px';
-          canvas.style.height = window.innerHeight + 'px';
-        }
-
-        // Optionally force redraw if using a framework like PIXI or Phaser
-        if (window.game && window.game.resize) {
-          window.game.resize(); // adjust depending on your game engine
-        }
-      }, 10); // delay to allow iOS to finish transitioning
-
       if (gameStarted === undefined) {
         return;
       }
@@ -1780,8 +1753,6 @@ ${
     updateUpgrades();
 
     function Resize() {
-      canvas.setAttribute('width', wrapperBlock.offsetWidth);
-      canvas.setAttribute('height', wrapperBlock.offsetHeight);
       canvas.width = wrapperBlock.offsetWidth;
       canvas.height = wrapperBlock.offsetHeight;
 
