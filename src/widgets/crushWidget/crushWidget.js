@@ -918,7 +918,7 @@ class CrushGame {
     }
     if (typeof color === 'string' && color.endsWith('3Points')) {
       // 1) Draw the base color’s normal image, if you have it
-      const base = color.replace('3Points', ''); // e.g. "blue3Points" => "blue"
+      const base = color.replace('3Points', '');
       const img = this.images[base];
       if (img) {
         this.ctx.drawImage(
@@ -950,7 +950,6 @@ class CrushGame {
       return; // done drawing
     }
     if (typeof color === 'string' && color.endsWith('Multiplier')) {
-      // Get the base color from the name, e.g. "blueMultiplier" -> "blue"
       const base = color.replace('Multiplier', '');
 
       // If you have an image for the base color, draw that image:
