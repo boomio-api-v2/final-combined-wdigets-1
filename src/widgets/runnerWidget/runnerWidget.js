@@ -885,32 +885,30 @@ ${
     );
     window.addEventListener('resize', Resize);
 
+    let orientationTimeout;
+
     const checkOrientationAndPause = () => {
       if (gameStarted === undefined) return;
 
-      if (!gameStarted) {
-        Start();
-        setTimeout(() => {
-          Stop();
-        }, 50);
-        return;
-      }
+      clearTimeout(orientationTimeout);
 
-      const isPortrait = window.innerHeight > window.innerWidth;
+      orientationTimeout = setTimeout(() => {
+        const isPortrait = window.innerHeight > window.innerWidth;
 
-      if (isPortrait) {
-        if (!stopGame) {
-          console.log('Game paused due to portrait orientation');
-          Stop();
+        if (isPortrait) {
+          if (!stopGame) {
+            console.log('Game paused because device is in portrait');
+            Stop();
+          }
+        } else {
+          if (stopGame) {
+            console.log('Game resumed because device is in landscape');
+            Start();
+          }
         }
-      } else {
-        if (stopGame) {
-          console.log('Game resumed due to landscape orientation');
-          Start();
-        }
-      }
 
-      adjustScaleAndPosition();
+        adjustScaleAndPosition();
+      }, 100); // wait 200ms after rotation
     };
 
     window.addEventListener('orientationchange', checkOrientationAndPause);
@@ -1615,6 +1613,16 @@ ${
           console.log('started');
           const toggleHide = (block) => block.classList.toggle('boomio-hide');
 
+          const isPortrait = window.innerHeight > window.innerWidth;
+
+          if (isPortrait) {
+            console.log('Starting paused because device is in portrait');
+            Stop(); // don't start moving
+          } else {
+            console.log('Starting game because device is in landscape');
+            Start(); // start moving
+          }
+
           ResetGlobalVariables();
           document.addEventListener('keydown', keyRightHandler, false);
           document.addEventListener('keyup', keyLeftHandler, false);
@@ -1625,7 +1633,6 @@ ${
           toggleHide(lifeContainer);
 
           saveMeBlock.classList.remove('boomio-hide');
-          Start();
         }, 50);
       }
     };
