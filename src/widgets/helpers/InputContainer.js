@@ -522,9 +522,13 @@ export class InputContainer {
             </div>
 ${
   this.prop === 'Perlas GO' || this.prop === 'Gamtos Ateitis' || this.prop === 'Nykstukas'
-    ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'24px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
+    ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'24px'}; font-family:${
+        this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+      }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${'Laimėk'} 
-                          <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${'12px'}; font-family:${'Basis Grotesque Pro'}; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
+                          <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${'12px'}; font-family:${
+        this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+      }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
             ${
               this.prop === 'Gamtos Ateitis'
                 ? 'koncertą savo mokyklai!'
