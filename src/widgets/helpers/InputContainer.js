@@ -398,7 +398,7 @@ export class InputContainer {
             } 
                           <div style="top: 85px;margin-top:${
                             this.prop === 'Perlas GO'
-                              ? '16px'
+                              ? '19px'
                               : this.prop === 'SaludSA' ||
                                 this.prop === 'Pieno Žvaigždės' ||
                                 this.prop === 'Dentsu'
@@ -487,7 +487,7 @@ export class InputContainer {
                 : this.prop === 'Perlas GO' && !userId
                 ? '„Perlas Go“ savitarnoje </br> arba mobiliojoje programėlėje.'
                 : this.prop === 'Perlas GO'
-                ? 'žaidimu'
+                ? 'žaidimu.'
                 : this.prop === 'Fpro'
                 ? 'UP TO 20% OFF!'
                 : this.prop === 'Barbora'
