@@ -43,9 +43,9 @@ class CrushGame {
     this.language = this.config.language ? this.config.language : 'LV';
 
     this.currentScoreTable = {};
-    this.gridCols = 8;
-    this.gridRows = 11;
-    this.tileSize = 50;
+    this.gridCols = 6;
+    this.gridRows = 9;
+    this.tileSize = 62;
     this.colors = {
       crushElement1Nevezis,
       crushElement2Nevezis,
@@ -647,6 +647,26 @@ class CrushGame {
   setupCanvas() {
     this.canvas = document.getElementById('boomio-crush-canvas');
     this.ctx = this.canvas.getContext('2d');
+
+    this.canvas.addEventListener('mousemove', (e) => {
+      const rect = this.canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const col = Math.floor(x / this.tileSize);
+      const row = Math.floor(y / this.tileSize);
+
+      if (
+        row >= 0 &&
+        row < this.gridRows &&
+        col >= 0 &&
+        col < this.gridCols &&
+        this.grid[row][col] !== null
+      ) {
+        this.canvas.style.cursor = 'pointer';
+      } else {
+        this.canvas.style.cursor = 'default';
+      }
+    });
   }
 
   generateValidGrid() {
