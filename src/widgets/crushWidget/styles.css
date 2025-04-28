@@ -3,7 +3,10 @@
 }
 
 #boomio-crash-canvas {
-  position: relative;
+  position: relative;  display: block;
+  opacity: 1;
+  filter: none;
+
 }
 
 .hidden {

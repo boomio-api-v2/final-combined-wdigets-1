@@ -1,15 +1,4 @@
 import {
-  blue,
-  green,
-  orange,
-  purple,
-  red,
-  yellow,
-  blueSpecial,
-  greenSpecial,
-  orangeSpecial,
-  purpleSpecial,
-  redSpecial,
   intro,
   newRecordEE,
   newRecordFI,
@@ -28,15 +17,13 @@ import {
   crushElement5Nevezis,
   crushElement6Nevezis,
   crushElement7Nevezis,
-  crushElement8Nevezis,
-  crushElement1SpecialNevezis,
-  crushElement2SpecialNevezis,
-  crushElement3SpecialNevezis,
-  crushElement4SpecialNevezis,
-  crushElement5SpecialNevezis,
-  crushElement6SpecialNevezis,
-  crushElement7SpecialNevezis,
-  crushElement8SpecialNevezis,
+  crushElement1NevezisSpecial,
+  crushElement2NevezisSpecial,
+  crushElement3NevezisSpecial,
+  crushElement4NevezisSpecial,
+  crushElement5NevezisSpecial,
+  crushElement6NevezisSpecial,
+  crushElement7NevezisSpecial,
   backgroundNevezis,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
@@ -48,7 +35,7 @@ import './styles.css';
 class CrushGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Nevezis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -59,7 +46,15 @@ class CrushGame {
     this.gridCols = 8;
     this.gridRows = 11;
     this.tileSize = 50;
-    this.colors = { red, blue, green, yellow, purple, orange };
+    this.colors = {
+      crushElement1Nevezis,
+      crushElement2Nevezis,
+      crushElement3Nevezis,
+      crushElement4Nevezis,
+      crushElement5Nevezis,
+      crushElement6Nevezis,
+      crushElement7Nevezis,
+    };
     this.grid = [];
     this.selectedTile = null;
     this.images = {};
@@ -127,11 +122,8 @@ class CrushGame {
       playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-crush-canvas');
         document.getElementById('background_blur').style.opacity =
           this.language === 'LV' ? 0.4 : 0.2;
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
         const inpuRegisterContainer = document.querySelector('.input-register-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -191,11 +183,8 @@ class CrushGame {
         });
     } else {
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-crush-canvas');
         document.getElementById('background_blur').style.opacity =
           this.language === 'LV' ? 0.4 : 0.2;
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -231,10 +220,7 @@ class CrushGame {
       }, 1000);
     }
     setTimeout(() => {
-      const canvas = document.getElementById('boomio-crush-canvas');
       document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
-      canvas.style.transition = 'filter 0.6s ease';
-      canvas.style.filter = 'blur(2px)';
       const inputContainer = document.querySelector('.input-container');
       document.getElementById('control-button').style.transition = 'opacity 2s ease';
       document.getElementById('control-button').style.opacity = 1;
@@ -300,7 +286,10 @@ class CrushGame {
     setTimeout(() => {
       currectTimeDiv.style.display = 'none';
     }, 300);
-
+    const canvas = document.getElementById('boomio-crush-canvas');
+    if (canvas) {
+      canvas.style.display = 'none';
+    }
     if (this.newHighScoreReached) {
       const numbers = document.querySelector('.numbers');
       const new_highscore = document.querySelector('.new_highscore');
@@ -405,9 +394,6 @@ class CrushGame {
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
           }
-          const canvas = document.getElementById('boomio-crush-canvas');
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.opacity =
             this.language === 'LV' ? 0.4 : 0.2;
@@ -421,9 +407,7 @@ class CrushGame {
           }, 100);
         } else {
           const inputContainer = document.querySelector('.input-container1');
-          const canvas = document.getElementById('boomio-crush-canvas');
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+
           document.getElementById('background_blur').style.display = 'block';
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
@@ -480,16 +464,19 @@ class CrushGame {
     });
   }
 
-  // Preload both normal and special images.
   preloadImages(callback) {
     const normalColorKeys = Object.keys(this.colors);
-    const specialKeys = [
-      'blueSpecial',
-      'greenSpecial',
-      'orangeSpecial',
-      'purpleSpecial',
-      'redSpecial',
-    ];
+    const specialSources = {
+      crushElement1NevezisSpecial,
+      crushElement2NevezisSpecial,
+      crushElement3NevezisSpecial,
+      crushElement4NevezisSpecial,
+      crushElement5NevezisSpecial,
+      crushElement6NevezisSpecial,
+      crushElement7NevezisSpecial,
+    };
+    const specialKeys = Object.keys(specialSources);
+
     let loadedImages = 0;
     const totalImages = normalColorKeys.length + specialKeys.length;
 
@@ -504,21 +491,28 @@ class CrushGame {
           callback();
         }
       };
+      img.onerror = () => {
+        console.error('❌ Failed to load normal image:', img.src);
+        loadedImages++;
+        if (loadedImages === totalImages) {
+          callback();
+        }
+      };
     });
 
     // Load special candy images.
-    const specialSources = {
-      blueSpecial,
-      greenSpecial,
-      orangeSpecial,
-      purpleSpecial,
-      redSpecial,
-    };
     specialKeys.forEach((key) => {
       const img = new Image();
       img.src = specialSources[key];
       img.onload = () => {
         this.images[key] = img;
+        loadedImages++;
+        if (loadedImages === totalImages) {
+          callback();
+        }
+      };
+      img.onerror = () => {
+        console.error('❌ Failed to load special image:', img.src);
         loadedImages++;
         if (loadedImages === totalImages) {
           callback();
@@ -585,7 +579,7 @@ class CrushGame {
 <span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
 </span>
 </div>
-<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#FFE92D'};border-radius:35px">
+<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
@@ -595,7 +589,7 @@ class CrushGame {
 </div>
 </div>
 
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#045222'};border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -641,13 +635,13 @@ class CrushGame {
     widgetHtmlService.container.appendChild(myCanvas);
     const gameContainer = document.querySelector('.game-container');
 
-    this.currentScoreTableContainerInstance = new CompetitionScoreTableContainer(
+    this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
       this.customer,
       this.currentScoreTable,
       this.currentScore,
     );
 
-    gameContainer.appendChild(this.currentScoreTableContainerInstance.containerDiv);
+    gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
   }
 
   setupCanvas() {
@@ -682,7 +676,15 @@ class CrushGame {
     const baseColor = colorKeys[Math.floor(Math.random() * colorKeys.length)];
 
     // Let's say 10% chance to create a "3Points" tile:
-    const threePointColors = ['blue', 'green', 'orange', 'purple', 'red'];
+    const threePointColors = [
+      'crushElement1Nevezis',
+      'crushElement2Nevezis',
+      'crushElement3Nevezis',
+      'crushElement4Nevezis',
+      'crushElement5Nevezis',
+      'crushElement6Nevezis',
+      'crushElement7Nevezis',
+    ];
     if (Math.random() < 0.1 && threePointColors.includes(baseColor)) {
       return baseColor + '3Points';
     }
@@ -742,7 +744,7 @@ class CrushGame {
 
   getBaseColor(color) {
     if (typeof color !== 'string') return color;
-    return color.replace('Special', '').replace('Multiplier', '').replace('3Points', ''); // <-- This ensures "red3Points" => "red"
+    return color.replace('Special', '').replace('Multiplier', '').replace('3Points', '');
   }
 
   applyGravity(callback) {
@@ -772,8 +774,7 @@ class CrushGame {
         let newColor = this.getRandomColor();
         // With a 10% chance, convert it to its special variant.
         if (Math.random() < 0.1) {
-          // If the color is yellow and you don't have yellowSpecial, use redSpecial as default.
-          newColor = newColor === 'yellow' ? 'redSpecial' : newColor + 'Special';
+          newColor = newColor === 'yellow' ? 'crushElement1NevezisSpecial' : newColor + 'Special';
         }
         newTilesMap[col].push(newColor);
         newFalling.push({
@@ -1197,7 +1198,7 @@ class CrushGame {
                     document.getElementById('background_blur').style.opacity =
                       this.language === 'LV' ? 0.4 : 0.2;
                     canvas.style.transition = 'filter 0.6s ease';
-                    canvas.style.filter = 'blur(2px)';
+                    canvas.style.filter = 'blur(0px)';
                     const inputContainer = document.querySelector('.input-container');
                     document.getElementById('control-button').style.transition = 'opacity 2s ease';
                     document.getElementById('control-button').style.opacity = 1;
@@ -1325,16 +1326,13 @@ class CrushGame {
       }
     }
   };
-
   restartGame = () => {
     this.currentScore = 0;
     document.getElementById('currentScore').innerText = '0';
-
     this.index = 0;
     this.currentScore = 0;
 
     const competitionTableContainer = document.querySelector('.competition-table-container');
-
     competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
     setTimeout(() => {
       competitionTableContainer.style.height = '10px';
@@ -1351,15 +1349,17 @@ class CrushGame {
           .signal('ROUND_STARTED', 'signal')
           .then((response) => {
             document.getElementById('background_blur').style.display = 'none';
-            const canvas = document.getElementById('boomio-crush-canvas');
-            canvas.style.transition = 'filter 1s ease';
-            canvas.style.filter = 'none';
             this.gamePlaying = true;
             this.startGameLoop();
             this.startTimer();
             this.generateValidGrid();
             this.selectedTile = null;
             this.drawGrid();
+            const canvas = document.getElementById('boomio-crush-canvas');
+            if (canvas) {
+              canvas.style.display = 'block';
+            }
+            // ❌ REMOVE this.addEventListeners(); HERE ❌
           })
           .catch((error) => {
             console.error('Error:', error);
@@ -1548,10 +1548,6 @@ class CrushGame {
       let specialFound = null;
       let totalBasePoints = 0;
 
-      // Loop through matched tiles to find:
-      // 1) Special tiles (e.g., "redSpecial") to explode
-      // 2) 3-Point tiles (ends with "3Points") to add 3 points
-      //    otherwise each tile is worth 1 point
       matchArray.forEach(({ row, col }) => {
         const tileVal = this.grid[row][col];
 
@@ -1629,7 +1625,7 @@ class CrushGame {
     // Award points for each tile in the explosion area.
     // (You could adjust the points logic as needed.)
     this.currentScore += explosionArea.length * this.multiplier;
-    document.getElementById('boomio-score-input-container').innerText = `${this.currentScore}`;
+    document.getElementById('currentScore').innerText = `${this.currentScore}`;
 
     // Animate the explosion over that area.
     this.animateExplosion(explosionArea, () => {
@@ -1719,9 +1715,6 @@ class CrushGame {
   startGameLoop() {
     setTimeout(() => {
       document.getElementById('background_blur').style.display = 'none';
-      const canvas = document.getElementById('boomio-crush-canvas');
-      canvas.style.transition = 'filter 1s ease';
-      canvas.style.filter = 'none';
       this.gamePlaying = true;
     }, 400);
     document.getElementById('game-content').style.display = 'block';

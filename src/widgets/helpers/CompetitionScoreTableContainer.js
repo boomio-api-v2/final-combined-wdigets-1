@@ -91,6 +91,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Dentsu' ||
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Nykstukas' ||
+            this.prop === 'Nevezis' ||
             this.prop.includes('demo')
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
@@ -107,6 +108,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Dentsu' ||
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Nykstukas' ||
+            this.prop === 'Nevezis' ||
             this.prop.includes('demo')
           ? 'white'
           : 'white';
@@ -157,6 +159,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Dentsu' ||
                 this.prop === 'Zemaitijos Pienas' ||
                 this.prop === 'Nykstukas' ||
+                this.prop === 'Nevezis' ||
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -180,6 +183,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Dentsu' ||
                 this.prop === 'Zemaitijos Pienas' ||
                 this.prop === 'Nykstukas' ||
+                this.prop === 'Nevezis' ||
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
