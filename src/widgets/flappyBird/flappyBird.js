@@ -94,6 +94,7 @@ import {
   demoGame8,
   demoGame9,
   demoGame10,
+  LemonGymBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -104,7 +105,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'demo-1';
+    this.customer = this.config.business_name ? this.config.business_name : 'Lemon Gym';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
