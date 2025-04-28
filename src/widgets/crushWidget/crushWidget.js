@@ -624,7 +624,7 @@ class CrushGame {
 
         
           <div id="crush-game-background"></div>
-          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" style="margin-top:20px;" width="${
+          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" style="margin-top:30px;" width="${
             this.gridCols * this.tileSize
           }" height="${this.gridRows * this.tileSize}"></canvas>
         </div>
