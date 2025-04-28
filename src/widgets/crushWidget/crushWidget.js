@@ -617,7 +617,7 @@ class CrushGame {
 
              <div alt="Image Description" style="z-index:1;width: ${
                document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
-             }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#e3dede'}" id="background_blur"></div>
+             }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'black'}" id="background_blur"></div>
 
         <!-- Game content container hidden initially -->
         <div id="game-content" style="display: none;">
