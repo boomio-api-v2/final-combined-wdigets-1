@@ -99,6 +99,10 @@ import {
   item7Dobilo,
   item8Dobilo,
   item9Dobilo,
+  item1Nykstukas,
+  item2Nykstukas,
+  item3Nykstukas,
+  item4Nykstukas,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -719,7 +723,7 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML = `
     <div style="display:${
       this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
-    }width: 100%; height: 100%; position: relative; ">
+    };width: 100%; height: 100%; position: relative; ">
       <div style="width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${
       this.prop === 'Pigu.lt' ? 'white' : 'white'
     }; font-size: ${

@@ -44,6 +44,7 @@ import {
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 
 class runnerWidget {
   static ctx;
@@ -543,6 +544,12 @@ ${
         this.scoreTable,
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+    }
+    if (this.customer === 'Nykstukas') {
+      const gameContainer = document.querySelector('.game-container');
+
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
 
     this.startGame(this.scoreTableContainerInstance);
@@ -1055,6 +1062,10 @@ ${
 
           competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
           const gameEndButton = document.getElementById('boomio-game-play-again');
+          if (customer === 'Nykstukas') {
+            const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+            competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+          }
           gameEndButton.addEventListener('click', Replay);
           bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
         };
@@ -1333,6 +1344,30 @@ ${
       }, 300);
     };
 
+    const clickEventHandlerDidYouKnow = () => {
+      const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+      didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      setTimeout(() => {
+        didYouKnowTableContainer.style.height = '10px';
+        didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+        didYouKnowTableContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        didYouKnowTableContainer.style.display = 'none';
+      }, 1000);
+      const competitionTableContainer = document.querySelector('.competition-table-container');
+      document.getElementById('background_blur').style.display = 'block';
+      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      competitionTableContainer.style.display = 'block';
+
+      setTimeout(() => {
+        competitionTableContainer.style.height = '680px';
+        competitionTableContainer.style.top = 'calc(50%)';
+        competitionTableContainer.style.opacity = 1;
+      }, 100);
+    };
+
     const keyRightHandler = (e) => {
       if (e.keyCode == 39 || e.keyCode == 68) {
         //right
@@ -1421,7 +1456,7 @@ ${
         }
         if (this.showCompetitiveRegistration) {
           let competitionTableContainer = '';
-          if (this.customer === 'Pigu.lt') {
+          if (this.customer === 'Nykstukas') {
             competitionTableContainer = document.querySelector('.did-you-know-container');
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
@@ -1476,7 +1511,7 @@ ${
       player.boostTimer = 0;
       player.boost = false;
       player.dead = false;
-      player.life = 3;
+      player.life = 1;
       speed = canvas.clientWidth / 300;
       score = 0;
       leftPressed = false;

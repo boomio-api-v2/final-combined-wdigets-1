@@ -94,6 +94,16 @@ import {
   demoGame8,
   demoGame9,
   demoGame10,
+  demoGame11,
+  demoGame12,
+  demoGame13,
+  demoGame14,
+  demoGame15,
+  demoGame16,
+  demoGame17,
+  demoGame18,
+  demoGame19,
+  demoGame20,
   LemonGymBackground,
 } from './constants';
 class FlappyBird {
@@ -429,6 +439,26 @@ class FlappyBird {
         ? demoGame9
         : this.customer === 'demo-10'
         ? demoGame10
+        : this.customer === 'demo-11'
+        ? demoGame11
+        : this.customer === 'demo-12'
+        ? demoGame12
+        : this.customer === 'demo-13'
+        ? demoGame13
+        : this.customer === 'demo-14'
+        ? demoGame14
+        : this.customer === 'demo-15'
+        ? demoGame15
+        : this.customer === 'demo-16'
+        ? demoGame16
+        : this.customer === 'demo-17'
+        ? demoGame17
+        : this.customer === 'demo-18'
+        ? demoGame18
+        : this.customer === 'demo-19'
+        ? demoGame19
+        : this.customer === 'demo-20'
+        ? demoGame20
         : this.customer === 'Penki Sezonai' && mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
