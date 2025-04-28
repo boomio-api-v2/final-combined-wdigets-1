@@ -1327,10 +1327,12 @@ class CrushGame {
     }
   };
   restartGame = () => {
+    this.isAnimating = false; // 👈 ADD THIS LINE!
+
     this.currentScore = 0;
     document.getElementById('currentScore').innerText = '0';
     this.index = 0;
-    this.currentScore = 0;
+    this.selectedTile = null;
 
     const competitionTableContainer = document.querySelector('.competition-table-container');
     competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1350,16 +1352,20 @@ class CrushGame {
           .then((response) => {
             document.getElementById('background_blur').style.display = 'none';
             this.gamePlaying = true;
-            this.startGameLoop();
-            this.startTimer();
+
+            // 🛠 FIX: generate grid BEFORE starting loop
             this.generateValidGrid();
             this.selectedTile = null;
             this.drawGrid();
+
             const canvas = document.getElementById('boomio-crush-canvas');
             if (canvas) {
               canvas.style.display = 'block';
             }
-            // ❌ REMOVE this.addEventListeners(); HERE ❌
+
+            // ✅ now start game
+            this.startGameLoop();
+            this.startTimer();
           })
           .catch((error) => {
             console.error('Error:', error);
@@ -1578,7 +1584,7 @@ class CrushGame {
       // If you don't have a multiplier, just do:
       this.currentScore += totalBasePoints;
 
-      if (this.currentScore > 0) {
+      if (this.currentScore > 0 && this.isAnimating) {
         const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
         currectScoreDiv.style.transition = 'opacity 0.8s ease';
         currectScoreDiv.style.display = 'block';
