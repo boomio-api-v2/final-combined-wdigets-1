@@ -305,6 +305,9 @@ export class DidYouKnowContainer {
         item1Dobilo,
         item9Dobilo,
       ];
+    } else if (this.prop === 'Nykstukas') {
+      // Handle Glass collectables
+      this.collectables = [item1Nykstukas, item2Nykstukas, item3Nykstukas, item4Nykstukas];
     }
     this.collectablesLinks = [];
     if (this.prop === 'Pigu.lt') {
@@ -511,16 +514,15 @@ export class DidYouKnowContainer {
       loopingImages?.forEach((item, index) => {
         const link = this.collectablesLinks[index];
 
-        if (index % 3 === 0) {
+        if (this.prop === 'Nykstukas' ? index % 2 === 0 : index % 3 === 0) {
           tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
         }
-
         tableHTML += `
           <td style="padding:5px;text-align: center; border: none; ${
             this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''
           }">
-          <div id="image-${index}" style="max-width:90px;">
-          <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:$
+          <div id="image-${index}" >
+          <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:
             ${this.prop === 'Pigu.lt' ? '100px' : '70px'};' src=${item} alt="Scoreboard Image" >
         
         ${
@@ -541,8 +543,10 @@ export class DidYouKnowContainer {
         }
           </div>
           </td>`;
-
-        if ((index + 1) % 3 === 0 || index === loopingImages.length - 1) {
+        if (
+          (this.prop === 'Nykstukas' ? index + (1 % 2) === 0 : index + (1 % 3) === 0) ||
+          index === loopingImages.length - 1
+        ) {
           tableHTML += '</tr>';
         }
       });
@@ -554,7 +558,7 @@ export class DidYouKnowContainer {
       };margin-left:${this.prop === 'Gamtos Ateitis' ? '16px' : '0px'}; top: ${
         this.prop === 'Gamtos Ateitis' ? '305px' : '505px'
       };line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
-        this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės'
+        this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Nykstukas'
           ? '18px'
           : this.prop === 'Gamtos Ateitis'
           ? '16px'
@@ -566,7 +570,9 @@ export class DidYouKnowContainer {
           ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
           : this.prop === 'Zemaitijos Pienas'
           ? 'Ekologiški jogurtai „DOBILAS“'
-          : 'SU MIAU GYVENT SMAGIAU'
+          : this.prop === 'Nykstukas'
+          ? 'IŠRAGAUK VISUS SKONIUS'
+          : ''
       }</div>
               <div class="bomio-second-line" style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
         this.prop === 'Pieno Žvaigždės' ? 500 : 400
@@ -584,6 +590,14 @@ export class DidYouKnowContainer {
   href="https://www.zpienas.lt/dobilas/" 
   style="color:white;font-weight:900;font-size:16px;">
   VISI PRODUKTAI
+</a>`
+          : this.prop === 'Nykstukas'
+          ? `<a 
+  onclick="event.stopPropagation();" 
+  target="_blank" 
+  href="" 
+  style="color:white;font-weight:900;font-size:12px;">
+  DAUGIAU NYKŠTUKO SKONIŲ!
 </a>`
           : ''
       }${
@@ -721,17 +735,19 @@ export class DidYouKnowContainer {
           : document.body.offsetWidth + 'px'
         : '426px';
     containerDiv.innerHTML = `
-    <div style="display:${
-      this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
-    };width: 100%; height: 100%; position: relative; ">
-      <div style="width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${
+    <div style="width: 100%; height: 100%; position: relative; ">
+      <div style="display:${
+        this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+      };width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${
       this.prop === 'Pigu.lt' ? 'white' : 'white'
     }; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
     }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.prop === 'Gamtos Ateitis' ? this.randomGamtosAteitis?.title : ''
     }</div>
-      <div style="width:calc(100% - 20px);margin-left:10px;top: ${'72px'}; position: absolute; text-align: center;line-height:${'42px'}; color: ${
+      <div style="width:calc(100% - 20px);margin-left:10px;top: ${
+        this.prop === 'Nykstukas' ? '150px' : '72px'
+      }; position: absolute; text-align: center;line-height:${'42px'}; color: ${
       this.prop === 'Pigu.lt' ? 'white' : 'white'
     }; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
@@ -756,6 +772,8 @@ export class DidYouKnowContainer {
         ? 'Ar visus RAGAVAI?'
         : this.prop === 'Gamtos Ateitis'
         ? 'TAI SVARBU RŪŠIUOJANT!'
+        : this.prop === 'Nykstukas'
+        ? 'AR IŠRAGAVAI ŠIŲ METŲ NAUJIENAS?'
         : 'Ar žinojai?'
     }</div>
       
@@ -765,7 +783,13 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-      this.prop === 'Pegasas' ? '100px' : this.prop === 'Pieno Žvaigždės' ? '174px' : '114px'
+      this.prop === 'Pegasas'
+        ? '100px'
+        : this.prop === 'Pieno Žvaigždės'
+        ? '174px'
+        : this.prop === 'Nykstukas'
+        ? '230px'
+        : '114px'
     }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${

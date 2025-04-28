@@ -445,10 +445,10 @@ export const item9Dobilo =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item14Dobilo.png';
 
 export const item1Nykstukas =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runnerWidget/Nykstukas/assetsNykstukas/item1Nykstukas.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runningWidget/assetsNykstukas/items/item1Nykstukas.png';
 export const item2Nykstukas =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runnerWidget/Nykstukas/assetsNykstukas/item2Nykstukas.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runningWidget/assetsNykstukas/items/item2Nykstukas.png';
 export const item3Nykstukas =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runnerWidget/Nykstukas/assetsNykstukas/item3Nykstukas.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runningWidget/assetsNykstukas/items/item3Nykstukas.png';
 export const item4Nykstukas =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runnerWidget/Nykstukas/assetsNykstukas/item4Nykstukas.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runningWidget/assetsNykstukas/items/item4Nykstukas.png';

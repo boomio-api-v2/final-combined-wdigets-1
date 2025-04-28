@@ -557,6 +557,7 @@ ${
 
   startGame = () => {
     const canvas = document.getElementById('boomio-runner-canvas');
+    adjustScaleAndPosition();
     const loader = new PxLoader();
     var gameOverAlreadyHandled = false;
     this.config = localStorageService.getDefaultConfig();
@@ -923,16 +924,19 @@ ${
     document.addEventListener('DOMContentLoaded', adjustScaleAndPosition);
 
     function adjustScaleAndPosition() {
-      const isPortrait = window.matchMedia('(orientation: portrait)').matches;
       const isNarrowScreen = window.innerWidth <= 920;
 
       const competitionTable = document.querySelector('.competition-table-container');
+      const didYouKnowTable = document.querySelector('.did-you-know-container');
+      console.log('aaaa');
+      if (isNarrowScreen) {
+        didYouKnowTable.style.scale = '0.65';
+        didYouKnowTable.style.left = 'calc(50% - 60px)';
+        didYouKnowTable.style.top = 'calc(50% - 144px)';
 
-      if (isPortrait && isNarrowScreen) {
-        if (competitionTable) {
-          competitionTable.style.scale = '0.56';
-          competitionTable.style.left = 'calc(50% - 80px)';
-        }
+        competitionTable.style.scale = '0.56';
+        competitionTable.style.left = 'calc(50% - 80px)';
+        competitionTable.style.top = 'calc(50% - 144px)';
       }
     }
 
@@ -1357,13 +1361,18 @@ ${
         didYouKnowTableContainer.style.display = 'none';
       }, 1000);
       const competitionTableContainer = document.querySelector('.competition-table-container');
-      document.getElementById('background_blur').style.display = 'block';
       competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       competitionTableContainer.style.display = 'block';
 
       setTimeout(() => {
         competitionTableContainer.style.height = '680px';
-        competitionTableContainer.style.top = 'calc(50%)';
+        const isNarrowScreen = window.innerWidth <= 920;
+
+        if (isNarrowScreen) {
+          competitionTableContainer.style.top = 'calc(50% - 144px)';
+        } else {
+          competitionTableContainer.style.top = 'calc(50%)';
+        }
         competitionTableContainer.style.opacity = 1;
       }, 100);
     };
@@ -1511,7 +1520,7 @@ ${
       player.boostTimer = 0;
       player.boost = false;
       player.dead = false;
-      player.life = 1;
+      player.life = 0;
       speed = canvas.clientWidth / 300;
       score = 0;
       leftPressed = false;
