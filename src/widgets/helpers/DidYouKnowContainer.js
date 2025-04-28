@@ -717,13 +717,20 @@ export class DidYouKnowContainer {
           : document.body.offsetWidth + 'px'
         : '426px';
     containerDiv.innerHTML = `
-    <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:calc(100% - 20px);margin-left:10px;top: ${
-        this.prop === 'Gamtos Ateitis' ? '190px' : '42px'
-      }; position: absolute; text-align: center;line-height:${
-      this.prop === 'Gamtos Ateitis' ? '30px' : '42px'
-    }; color: ${this.prop === 'Pigu.lt' ? 'white' : 'white'}; font-size: ${
-      this.prop === 'Gamtos Ateitis' ? '22px' : this.isMobileWidthSmall ? '26px' : '30px'
+    <div style="display:${
+      this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+    }width: 100%; height: 100%; position: relative; ">
+      <div style="width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${
+      this.prop === 'Pigu.lt' ? 'white' : 'white'
+    }; font-size: ${
+      this.isMobileWidthSmall ? '26px' : '30px'
+    }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+      this.prop === 'Gamtos Ateitis' ? this.randomGamtosAteitis?.title : ''
+    }</div>
+      <div style="width:calc(100% - 20px);margin-left:10px;top: ${'72px'}; position: absolute; text-align: center;line-height:${'42px'}; color: ${
+      this.prop === 'Pigu.lt' ? 'white' : 'white'
+    }; font-size: ${
+      this.isMobileWidthSmall ? '26px' : '30px'
     }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
       this.prop === 'Pigu.lt'
         ? this.language === 'EN'
@@ -744,7 +751,7 @@ export class DidYouKnowContainer {
         : this.prop === 'Zemaitijos Pienas'
         ? 'Ar visus RAGAVAI?'
         : this.prop === 'Gamtos Ateitis'
-        ? this.randomGamtosAteitis?.title
+        ? 'TAI SVARBU RŪŠIUOJANT!'
         : 'Ar žinojai?'
     }</div>
       

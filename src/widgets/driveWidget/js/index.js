@@ -1480,7 +1480,7 @@ function startGame(
             return;
           }
 
-          const schools = teams[selectedCity] || [];
+          const schools = (teams[selectedCity] || []).sort();
           if (schools.length === 0) {
             const noSchoolOpt = document.createElement('option');
             noSchoolOpt.value = '';
