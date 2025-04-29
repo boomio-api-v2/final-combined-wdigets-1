@@ -222,10 +222,10 @@ class DoodleWidget {
           () => {
             document.getElementById('background_intro').style.display = 'none';
           },
-          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' ? 0 : 5500,
+          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' ? 0 : 2500,
         );
       },
-      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' ? 0 : 5500,
+      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' ? 0 : 2500,
     ); //intro speed
   }
 
