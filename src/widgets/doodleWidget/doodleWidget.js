@@ -52,6 +52,8 @@ import {
   backgroundPerlasGo,
   left,
   right,
+  mainImagMagija,
+  backgroundMagija,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -77,7 +79,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
+    this.customer = this.config.business_name ? this.config.business_name : 'Magija';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -114,6 +116,8 @@ class DoodleWidget {
         ? mainImageVilvi
         : this.customer === 'Perlas GO'
         ? mainImagePerlasGo
+        : this.customer === 'Magija'
+        ? mainImagMagija
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? mainImageAkropolisLV
@@ -161,6 +165,8 @@ class DoodleWidget {
         ? backgroundVilvi
         : this.customer === 'Perlas GO'
         ? backgroundPerlasGo
+        : this.customer === 'Magija'
+        ? backgroundMagija
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV

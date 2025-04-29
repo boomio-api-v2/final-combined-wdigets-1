@@ -45,7 +45,7 @@ export class InputRegisterContainer {
       this.language === 'LV' && this.prop === 'Akropolis'
         ? 'REĢISTRĒJIES'
         : this.language === 'LV'
-        ? 'REĢISTRĒTIES SPĒLĒŠANAI'
+        ? 'REĢISTRĒJIES, LAI SPĒLĒTU'
         : this.language === 'RU'
         ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
         : this.language === 'EE'
@@ -130,6 +130,7 @@ export class InputRegisterContainer {
       this.prop === 'Dentsu' ||
       this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'Nykstukas' ||
+      this.prop === 'LemonGym' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -168,6 +169,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Corepetitus naujienlaiškius.'
         : this.language === 'LV' && this.prop === 'Akropolis'
         ? 'Piekrītu saņemt AKROPOLE iepirkšanās centru jaunumus e-pastā.'
+        : this.language === 'LV' && this.prop === 'LemonGym'
+        ? 'Piekrītu saņemt LEMON GYM jaunumu vēstuli.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
         : this.prop === 'Dentsu'
@@ -286,6 +289,8 @@ export class InputRegisterContainer {
         ? 'Sutinku su „Pieno žvaigždės“'
         : this.language === 'EN'
         ? 'I agree to receive '
+        : this.language === 'LV' && this.prop === 'LemonGym'
+        ? 'Piekrītu LEMON GYM'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -302,12 +307,9 @@ export class InputRegisterContainer {
       this.prop !== 'SaludSA' &&
       this.prop !== 'Vilvi' &&
       this.prop !== 'Daumantu' &&
-      this.prop !== 'Perlas GO' &&
-      this.prop !== 'LemonGym'
+      this.prop !== 'Perlas GO'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
-            this.prop === 'LemonGym'
-              ? 'https://www.barbora.lt/info/privatumo-politika'
-              : this.prop === 'Ikea'
+            this.prop === 'Ikea'
               ? 'https://www.ikea.lt/lt/privacy-policy'
               : this.prop === 'Corepetitus'
               ? 'https://www.corepetitus.lt/privatumo-politika'
@@ -337,6 +339,8 @@ export class InputRegisterContainer {
               ? 'privātuma politikai'
               : this.prop === 'Corepetitus'
               ? 'Corepetitus privatumo politika'
+              : this.prop === 'LemonGym' && this.language === 'LV'
+              ? 'privātuma politikai'
               : this.language === 'EN'
               ? 'newsletters'
               : 'privatumo politika'

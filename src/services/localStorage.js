@@ -124,7 +124,7 @@ class LocalStorageService {
     const languageParam = urlParams.get('language');
     const couponCodeNew = config?.coupon_code;
 
-    const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
+    const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LV';
     const teams = config?.teams ?? [];
 
     const userBestScore = config?.user_best_score ? config?.user_best_score : 0;

@@ -115,12 +115,12 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Lemon Gym';
+    this.customer = this.config.business_name ? this.config.business_name : 'LemonGym';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'EN';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LV';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -459,6 +459,8 @@ class FlappyBird {
         ? demoGame19
         : this.customer === 'demo-20'
         ? demoGame20
+        : this.customer === 'LemonGym'
+        ? LemonGymBackground
         : this.customer === 'Penki Sezonai' && mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
