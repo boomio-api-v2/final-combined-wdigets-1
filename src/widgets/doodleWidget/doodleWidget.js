@@ -54,6 +54,7 @@ import {
   right,
   mainImagMagija,
   backgroundMagija,
+  introMagija,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -1397,6 +1398,8 @@ class DoodleWidget {
         ? PiguJumpUpIntroEstonianEN
         : this.customer === 'Vilvi'
         ? introVilvi
+        : this.customer === 'Magija'
+        ? introMagija
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? introAkropolisLV

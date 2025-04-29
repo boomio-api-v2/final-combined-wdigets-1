@@ -183,3 +183,6 @@ export const mainImagMagija =
 
 export const backgroundMagija =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/background.png?raw=true';
+
+export const introMagija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/intro.png?raw=true';
