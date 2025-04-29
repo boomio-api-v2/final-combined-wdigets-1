@@ -214,6 +214,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Perlas GO' && !userId) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10) ||
         (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
+        (this.prop === 'Nevezis' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
@@ -293,6 +294,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
                 : this.prop === 'Nykstukas'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro NYKŠTUKAS prizai! '
+                : this.prop === 'Nevezis'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį </br>fondą sudaro oho! prizai!'
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -416,6 +419,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
                 : this.prop === 'Nykstukas'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro NYKŠTUKAS prizai! '
+                : this.prop === 'Nevezis'
+                ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> oho! prizus! '
                 : this.language === 'EN'
                 ? ''
                 : ''

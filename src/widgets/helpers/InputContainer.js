@@ -36,7 +36,6 @@ export class InputContainer {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const userId = urlParams.get('user_id');
-
     containerDiv.innerHTML = `
 
       
@@ -79,7 +78,10 @@ export class InputContainer {
     <div style="width: ${
       this.isMobile ? '350px' : '390px'
     };margin-top:10px;margin-bottom:10px;height:${
-      this.prop === 'Gamtos Ateitis' || this.prop === 'Nykstukas' || this.prop === 'LemonGym'
+      this.prop === 'Gamtos Ateitis' ||
+      this.prop === 'Nykstukas' ||
+      this.prop === 'LemonGym' ||
+      this.prop === 'Nevezis'
         ? '140px'
         : '110px'
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
@@ -153,6 +155,8 @@ export class InputContainer {
                   ? 'CLICK'
                   : this.prop === 'Nykstukas'
                   ? 'Judėk'
+                  : this.game === 'crush'
+                  ? 'Sujunk'
                   : 'Spausk'
               }
     <div
@@ -245,6 +249,8 @@ export class InputContainer {
       ? 'rodyklių pagalba.'
       : this.prop === 'Zemaitijos Pienas'
       ? 'TIK „Dobilas“ produktus.'
+      : this.prop === 'Nevezis'
+      ? '3 ar daugiau vienodų oho! pakuočių. '
       : this.language === 'EN'
       ? 'TO FLY'
       : 'kad skristum.'
@@ -298,6 +304,8 @@ export class InputContainer {
                 ? 'REPEAT'
                 : this.prop === 'Nykstukas'
                 ? 'Rink'
+                : this.prop === 'Nevezis'
+                ? 'Naudok'
                 : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${'12px'}; font-family:${
@@ -346,6 +354,8 @@ export class InputContainer {
                 ? 'to get the best possible result'
                 : this.prop === 'Nykstukas'
                 ? 'monetas įveikiant ledų kliūtis.'
+                : this.prop === 'Nevezis'
+                ? 'specialias pakuotes.'
                 : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
@@ -395,6 +405,8 @@ export class InputContainer {
                 : this.language === 'EN'
                 ? 'WIN'
                 : this.prop === 'Nykstukas'
+                ? 'Kartok'
+                : this.prop === 'Nevezis'
                 ? 'Kartok'
                 : 'Laimėk'
             } 
@@ -520,6 +532,8 @@ export class InputContainer {
                 ? 'PRIZES!'
                 : this.prop === 'Nykstukas'
                 ? 'siekiant kuo geresnio rezultato.'
+                : this.prop === 'Nevezis'
+                ? 'siekiant kuo geresnio rezultato.'
                 : 'Prizus!'
             }
           </div>
@@ -528,11 +542,12 @@ ${
   this.prop === 'Perlas GO' ||
   this.prop === 'Gamtos Ateitis' ||
   this.prop === 'Nykstukas' ||
+  this.prop === 'Nevezis' ||
   this.prop === 'LemonGym'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'24px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
-            4. ${this.langauge === 'LV' ? 'Laimē' : 'Laimėk'} 
+            4. ${this.language === 'LV' ? 'Laimē' : 'Laimėk'} 
                           <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${'12px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
@@ -543,6 +558,8 @@ ${
                 ? 'Nykštukas vasariškus prizus!'
                 : this.prop === 'LemonGym'
                 ? 'LEMON GYM balvas!'
+                : this.prop === 'Nevezis'
+                ? 'puikius oho! prizus!'
                 : '10€ Wolt dovanų kuponą!'
             }
           </div>
@@ -570,6 +587,7 @@ ${
       this.prop === 'Ikea' ||
       this.prop === 'Nykstukas' ||
       this.prop === 'LemonGym' ||
+      this.prop === 'Nevezis' ||
       this.prop.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
@@ -618,6 +636,8 @@ ${
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
               : this.prop === 'Zemaitijos Pienas'
               ? 'href=https://www.boomio.com/zemaitijos-pienas-zaidimo-taisykles'
+              : this.prop === 'Nykstukas'
+              ? 'href=https://docs.google.com/document/d/1yC2GiqFN_wGIvvgAsaG9w1GhcykdCHTEz6wV5nax2xY/edit?usp=sharing'
               : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'

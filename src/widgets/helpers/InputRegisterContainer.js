@@ -85,7 +85,7 @@ export class InputRegisterContainer {
         ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
         : this.language === 'EN'
         ? 'Already registered? Use the same nickname and email </br> to keep improving your score!'
-        : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
+        : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
     } 
     </div>
       <div id="boomio-competition-confirm-field" disabled=${
@@ -131,6 +131,7 @@ export class InputRegisterContainer {
       this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'Nykstukas' ||
       this.prop === 'LemonGym' ||
+      this.prop === 'Nevezis' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -179,6 +180,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : this.prop === 'Nykstukas'
         ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
+        : this.prop === 'Nevezis'
+        ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
@@ -291,6 +294,8 @@ export class InputRegisterContainer {
         ? 'I agree to receive '
         : this.language === 'LV' && this.prop === 'LemonGym'
         ? 'Piekrītu LEMON GYM'
+        : this.prop === 'Nevezis'
+        ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -413,7 +418,9 @@ export class InputRegisterContainer {
 
 
       <div style="display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' || this.prop === 'Nevezis'
+          ? 'none'
+          : 'block'
       }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '178px' : '258px'
     }; position: absolute;text-align:start;z-index:99999;color: ${
@@ -453,7 +460,7 @@ export class InputRegisterContainer {
           ? '207px'
           : this.prop === 'Gamtos Ateitis'
           ? '180px'
-          : this.prop === 'Perlas GO'
+          : this.prop === 'Perlas GO' || this.prop === 'Nevezis'
           ? '240px'
           : '287px'
       }; position: absolute; background: ${
@@ -468,7 +475,9 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' || this.prop === 'Nevezis'
+          ? 'none'
+          : 'block'
       }; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
     }; position: absolute; background: ${
@@ -484,7 +493,7 @@ export class InputRegisterContainer {
           ? '219px'
           : this.prop === 'Gamtos Ateitis'
           ? '189px'
-          : this.prop === 'Perlas GO'
+          : this.prop === 'Perlas GO' || this.prop === 'Nevezis'
           ? '249px'
           : '299px'
       };height:30px; opacity: 0.60;background-color: ${
@@ -527,7 +536,9 @@ export class InputRegisterContainer {
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' || this.prop === 'Nevezis'
+          ? 'none'
+          : 'block'
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
     };height:30px; opacity: 0.60;background-color: ${
