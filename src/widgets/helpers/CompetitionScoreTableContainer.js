@@ -92,6 +92,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Nykstukas' ||
             this.prop === 'Nevezis' ||
+            this.prop === 'Magija' ||
             this.prop.includes('demo')
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
@@ -109,6 +110,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Nykstukas' ||
             this.prop === 'Nevezis' ||
+            this.prop === 'Magija' ||
             this.prop.includes('demo')
           ? 'white'
           : 'white';
@@ -160,6 +162,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Zemaitijos Pienas' ||
                 this.prop === 'Nykstukas' ||
                 this.prop === 'Nevezis' ||
+                this.prop === 'Magija' ||
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -184,6 +187,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Zemaitijos Pienas' ||
                 this.prop === 'Nykstukas' ||
                 this.prop === 'Nevezis' ||
+                this.prop === 'Magija' ||
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -216,6 +220,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Nevezis' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
+        (this.prop === 'Magija' && this.scoreTable?.user_best_place <= 3) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
