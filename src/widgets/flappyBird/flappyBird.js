@@ -105,6 +105,7 @@ import {
   demoGame19,
   demoGame20,
   LemonGymBackground,
+  LemonGymintro,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -1167,6 +1168,8 @@ class FlappyBird {
         ? CorepetitusFlappyIntro
         : this.customer === 'Dentsu'
         ? DentsuIntro
+        : this.customer === 'LemonGym'
+        ? LemonGymintro
         : this.customer === 'Penki Sezonai' && introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418
