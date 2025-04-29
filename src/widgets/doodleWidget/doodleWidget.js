@@ -2033,7 +2033,7 @@ class Spring {
         : 65; // Width to draw on canvas
     this.height =
       this.customer === 'Vilvi' || this.customer === 'Magija'
-        ? 55
+        ? 40
         : this.customer === 'Perlas GO'
         ? 40
         : 38; // Height to draw on canvas
