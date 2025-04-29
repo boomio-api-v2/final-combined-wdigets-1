@@ -132,6 +132,7 @@ export class InputRegisterContainer {
       this.prop === 'Nykstukas' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Nevezis' ||
+      this.prop === 'Magija' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -182,6 +183,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
         : this.prop === 'Nevezis'
         ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
+        : this.prop === 'Magija'
+        ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
@@ -296,6 +299,8 @@ export class InputRegisterContainer {
         ? 'Piekrītu LEMON GYM'
         : this.prop === 'Nevezis'
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
+        : this.prop === 'Magija'
+        ? 'Sutinku su „Žemaitijos pienas“ '
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -332,6 +337,8 @@ export class InputRegisterContainer {
               ? 'https://www.zpienas.lt/privatumo-politika/'
               : this.prop === 'Nevezis'
               ? 'https://nevezis.lt/privatumo-politika/'
+              : this.prop === 'Magija'
+              ? 'https://www.zpienas.lt/privatumo-politika/'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'

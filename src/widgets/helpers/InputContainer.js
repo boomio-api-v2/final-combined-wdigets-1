@@ -155,6 +155,8 @@ export class InputContainer {
                   ? 'CLICK'
                   : this.prop === 'Nykstukas'
                   ? 'Judėk'
+                  : this.game === 'doodle'
+                  ? 'Judėk'
                   : this.game === 'crush'
                   ? 'Sujunk'
                   : 'Spausk'
@@ -251,6 +253,8 @@ export class InputContainer {
       ? 'TIK „Dobilas“ produktus.'
       : this.prop === 'Nevezis'
       ? '3 ar daugiau vienodų oho! pakuočių. '
+      : this.game === 'doodle'
+      ? 'į šonus kad nenukristum.'
       : this.language === 'EN'
       ? 'TO FLY'
       : 'kad skristum.'
@@ -638,6 +642,8 @@ ${
               ? 'href=https://www.boomio.com/zemaitijos-pienas-zaidimo-taisykles'
               : this.prop === 'Nykstukas'
               ? 'href=https://docs.google.com/document/d/1yC2GiqFN_wGIvvgAsaG9w1GhcykdCHTEz6wV5nax2xY/edit?usp=sharing'
+              : this.prop === 'Magija'
+              ? 'href=https://www.boomio.com/zemaitijos-pienas-magija-zaidimo-taisykles'
               : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'

@@ -759,7 +759,7 @@ class DoodleWidget {
         }
         if (this.showCompetitiveRegistration) {
           let competitionTableContainer = '';
-          if (this.customer === 'Pigu.lt') {
+          if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
             competitionTableContainer = document.querySelector('.did-you-know-container');
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
@@ -1451,7 +1451,7 @@ ${
     </div>
 
 
-    ${new InputContainer(this.customer, 'doodle').createInputContainerDiv().outerHTML}
+    ${new InputContainer(this.customer, 'doodle').createInputContainerDiv('doodle').outerHTML}
 
 
     <div class="numbers">
@@ -1484,6 +1484,8 @@ ${
         ? '#FD61FE'
         : this.customer === 'Perlas GO'
         ? '#19AA82'
+        : this.customer === 'Magija'
+        ? '#194898'
         : this.language === 'LV'
         ? '#F40027'
         : '#045222'
@@ -1546,7 +1548,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
-    if (this.customer === 'Pigu.lt') {
+    if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
@@ -1873,7 +1875,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      if (this.customer === 'Pigu.lt') {
+      if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
         const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
