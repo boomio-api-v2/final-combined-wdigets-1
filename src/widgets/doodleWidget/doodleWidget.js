@@ -2014,7 +2014,7 @@ class Spring {
     this.vx = 1;
     this.cx = 5; // Horizontal position in the sprite sheet
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
+    this.customer = this.config.business_name ? this.config.business_name : 'Magija';
 
     this.possibleValues =
       this.customer === 'Vilvi' || this.customer === 'Magija'
@@ -2027,13 +2027,13 @@ class Spring {
     this.state = 0;
     this.width =
       this.customer === 'Vilvi' || this.customer === 'Magija'
-        ? 78
+        ? 90
         : this.customer === 'Perlas GO'
         ? 54
         : 65; // Width to draw on canvas
     this.height =
       this.customer === 'Vilvi' || this.customer === 'Magija'
-        ? 45
+        ? 55
         : this.customer === 'Perlas GO'
         ? 40
         : 38; // Height to draw on canvas
