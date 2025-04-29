@@ -2009,12 +2009,13 @@ class Spring {
   constructor(image) {
     this.image = image; // The single sprite image containing all positions
     this.x = 0;
-    this.y = 0;
+    this.y = this.customer === 'Magija' ? 140 : 0;
     this.moved = 0;
-    this.vx = 1;
-    this.cx = 5; // Horizontal position in the sprite sheet
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Magija';
+    this.vx = 1;
+
+    this.cx = 5; // Horizontal position in the sprite sheet
 
     this.possibleValues =
       this.customer === 'Vilvi' || this.customer === 'Magija'
@@ -2033,7 +2034,7 @@ class Spring {
         : 65; // Width to draw on canvas
     this.height =
       this.customer === 'Vilvi' || this.customer === 'Magija'
-        ? 40
+        ? 60
         : this.customer === 'Perlas GO'
         ? 40
         : 38; // Height to draw on canvas
