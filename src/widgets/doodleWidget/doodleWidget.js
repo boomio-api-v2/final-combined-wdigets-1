@@ -943,7 +943,7 @@ class DoodleWidget {
     if (this.currentScreen % 2 === 0) {
       if (p.type == 1 || p.type == 2) {
         s.x = p.x + p.width / 2 - s.width / 2;
-        s.y = p.y - p.height - 10;
+        s.y = p.y - p.height - 20;
 
         // Reset spring if it goes off-screen
         if (s.y > this.height / 1.1) {
@@ -2009,12 +2009,12 @@ class Spring {
   constructor(image) {
     this.image = image; // The single sprite image containing all positions
     this.x = 0;
-    this.y = this.customer === 'Magija' ? 140 : 0;
+
     this.moved = 0;
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Magija';
     this.vx = 1;
-
+    this.y = 0;
     this.cx = 5; // Horizontal position in the sprite sheet
 
     this.possibleValues =
