@@ -425,7 +425,10 @@ export class InputRegisterContainer {
 
 
       <div style="display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' || this.prop === 'Nevezis'
+        this.prop === 'Gamtos Ateitis' ||
+        this.prop === 'Perlas GO' ||
+        this.prop === 'Nevezis' ||
+        this.prop === 'Magija'
           ? 'none'
           : 'block'
       }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
@@ -467,7 +470,7 @@ export class InputRegisterContainer {
           ? '207px'
           : this.prop === 'Gamtos Ateitis'
           ? '180px'
-          : this.prop === 'Perlas GO' || this.prop === 'Nevezis'
+          : this.prop === 'Perlas GO' || this.prop === 'Nevezis' || this.prop === 'Magija'
           ? '240px'
           : '287px'
       }; position: absolute; background: ${
@@ -482,7 +485,10 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' || this.prop === 'Nevezis'
+        this.prop === 'Gamtos Ateitis' ||
+        this.prop === 'Perlas GO' ||
+        this.prop === 'Nevezis' ||
+        this.prop === 'Magija'
           ? 'none'
           : 'block'
       }; top: ${
@@ -500,7 +506,7 @@ export class InputRegisterContainer {
           ? '219px'
           : this.prop === 'Gamtos Ateitis'
           ? '189px'
-          : this.prop === 'Perlas GO' || this.prop === 'Nevezis'
+          : this.prop === 'Perlas GO' || this.prop === 'Nevezis' || this.prop === 'Magija'
           ? '249px'
           : '299px'
       };height:30px; opacity: 0.60;background-color: ${
@@ -543,7 +549,10 @@ export class InputRegisterContainer {
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' || this.prop === 'Nevezis'
+        this.prop === 'Gamtos Ateitis' ||
+        this.prop === 'Perlas GO' ||
+        this.prop === 'Nevezis' ||
+        this.prop === 'Magija'
           ? 'none'
           : 'block'
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
