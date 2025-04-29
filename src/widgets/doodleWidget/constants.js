@@ -177,3 +177,9 @@ export const left =
 
 export const right =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsDentsu/gui/D.png';
+
+export const mainImagMagija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/game.png?raw=true';
+
+export const backgroundMagija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/background.png?raw=true';
