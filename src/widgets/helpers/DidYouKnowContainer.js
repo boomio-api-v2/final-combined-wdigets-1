@@ -621,7 +621,7 @@ export class DidYouKnowContainer {
           ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
-  href="" 
+  href="https://www.zpienas.lt/magija/" 
   style="color:white;font-weight:900;font-size:16px;">
   VISI PRODUKTAI
 </a>`
