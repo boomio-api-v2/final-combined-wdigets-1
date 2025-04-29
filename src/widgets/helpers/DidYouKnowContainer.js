@@ -572,6 +572,8 @@ export class DidYouKnowContainer {
           ? 'Ekologiški jogurtai „DOBILAS“'
           : this.prop === 'Nykstukas'
           ? 'IŠRAGAUK VISUS SKONIUS'
+          : this.prop === 'Magija'
+          ? 'Šokoladu aplieti „Magija“ varškės sūreliai'
           : ''
       }</div>
               <div class="bomio-second-line" style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
@@ -598,6 +600,14 @@ export class DidYouKnowContainer {
   href="" 
   style="color:white;font-weight:900;font-size:12px;">
   DAUGIAU NYKŠTUKO SKONIŲ!
+</a>`
+          : this.prop === 'Magija'
+          ? `<a 
+  onclick="event.stopPropagation();" 
+  target="_blank" 
+  href="" 
+  style="color:white;font-weight:900;font-size:16px;">
+  VISI PRODUKTAI
 </a>`
           : ''
       }${
@@ -774,6 +784,8 @@ export class DidYouKnowContainer {
         ? 'TAI SVARBU RŪŠIUOJANT!'
         : this.prop === 'Nykstukas'
         ? 'AR IŠRAGAVAI ŠIŲ METŲ NAUJIENAS?'
+        : this.prop === 'Magija'
+        ? 'Ar visus RAGAVAI?'
         : 'Ar žinojai?'
     }</div>
       
