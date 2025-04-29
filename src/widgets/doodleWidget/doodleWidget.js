@@ -2075,7 +2075,7 @@ class Spring {
     this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
 
     this.possibleValues =
-      this.customer === 'Vilvi'
+      this.customer === 'Vilvi' || this.customer === 'Magija'
         ? [625, 765, 855]
         : this.customer === 'Perlas GO'
         ? [625, 762, 852]
@@ -2083,8 +2083,18 @@ class Spring {
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width = this.customer === 'Vilvi' ? 78 : this.customer === 'Perlas GO' ? 54 : 65; // Width to draw on canvas
-    this.height = this.customer === 'Vilvi' ? 45 : this.customer === 'Perlas GO' ? 40 : 38; // Height to draw on canvas
+    this.width =
+      this.customer === 'Vilvi' || this.customer === 'Magija'
+        ? 78
+        : this.customer === 'Perlas GO'
+        ? 54
+        : 65; // Width to draw on canvas
+    this.height =
+      this.customer === 'Vilvi' || this.customer === 'Magija'
+        ? 45
+        : this.customer === 'Perlas GO'
+        ? 40
+        : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }

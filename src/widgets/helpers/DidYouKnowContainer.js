@@ -103,6 +103,12 @@ import {
   item2Nykstukas,
   item3Nykstukas,
   item4Nykstukas,
+  item1Magija,
+  item2Magija,
+  item3Magija,
+  item4Magija,
+  item5Magija,
+  item6Magija,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -308,6 +314,16 @@ export class DidYouKnowContainer {
     } else if (this.prop === 'Nykstukas') {
       // Handle Glass collectables
       this.collectables = [item1Nykstukas, item2Nykstukas, item3Nykstukas, item4Nykstukas];
+    } else if (this.prop === 'Magija') {
+      // Handle Glass collectables
+      this.collectables = [
+        item1Magija,
+        item2Magija,
+        item3Magija,
+        item4Magija,
+        item5Magija,
+        item6Magija,
+      ];
     }
     this.collectablesLinks = [];
     if (this.prop === 'Pigu.lt') {

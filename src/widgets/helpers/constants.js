@@ -461,3 +461,7 @@ export const item3Magija =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item3Magija.png';
 export const item4Magija =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item4Magija.png';
+export const item5Magija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item5Magija.png';
+export const item6Magija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item6Magija.png';
