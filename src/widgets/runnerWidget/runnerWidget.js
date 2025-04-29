@@ -1520,7 +1520,7 @@ ${
       player.boostTimer = 0;
       player.boost = false;
       player.dead = false;
-      player.life = 0;
+      player.life = 3;
       speed = canvas.clientWidth / 300;
       score = 0;
       leftPressed = false;

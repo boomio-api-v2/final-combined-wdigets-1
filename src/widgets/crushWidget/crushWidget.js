@@ -242,7 +242,7 @@ class CrushGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 5;
+    this.timer = 30;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
@@ -940,7 +940,7 @@ class CrushGame {
   drawTile(row, col, color, yOffset = 0, xOffset = 0) {
     if (typeof color === 'string' && color.endsWith('Special')) {
       // Draw red background.
-      this.ctx.fillStyle = 'red';
+      this.ctx.fillStyle = 'gray';
       this.ctx.fillRect(
         col * this.tileSize + xOffset,
         row * this.tileSize + yOffset,
