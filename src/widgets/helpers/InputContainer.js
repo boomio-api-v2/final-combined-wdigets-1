@@ -245,7 +245,7 @@ export class InputContainer {
       : this.prop === 'SaludSA'
       ? 'para volar'
       : this.prop === 'Perlas GO'
-      ? 'į šonus kad nenukristum.'
+      ? 'į šonus, kad nenukristum.'
       : this.prop === 'Dentsu' && this.game === 'flappy'
       ? 'kad skristum.'
       : this.game === 'runner'
@@ -255,7 +255,7 @@ export class InputContainer {
       : this.prop === 'Nevezis'
       ? '3 ar daugiau vienodų oho! pakuočių. '
       : this.game === 'doodle'
-      ? 'į šonus kad nenukristum.'
+      ? 'į šonus, kad nenukristum.'
       : this.language === 'EN'
       ? 'TO FLY'
       : 'kad skristum.'
@@ -416,7 +416,7 @@ export class InputContainer {
                 : this.prop === 'Nevezis'
                 ? 'Kartok'
                 : this.prop === 'Magija'
-                ? 'Mėgaukis,'
+                ? 'Mėgaukis'
                 : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${
@@ -573,7 +573,7 @@ ${
                 : this.prop === 'Nevezis'
                 ? 'puikius oho! prizus!'
                 : this.prop === 'Magija'
-                ? 'belaides „Magija“ ausines, „Magija“ </br> sūrelių dėžutę, arba „Magija“ puodelį!'
+                ? 'belaides „Magija“ ausines, „Magija“ </br> sūrelių dėžutę arba „Magija“ puodelį!'
                 : '10€ Wolt dovanų kuponą!'
             }
           </div>
