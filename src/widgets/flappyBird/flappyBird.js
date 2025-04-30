@@ -112,7 +112,7 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
@@ -121,7 +121,7 @@ class FlappyBird {
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LT';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LV';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -1284,6 +1284,8 @@ ${`<div style="${
                 ? '#FE5022'
                 : this.customer.includes('demo')
                 ? '#0A3533'
+                : this.customer === 'LemonGym'
+                ? '#FF00FF'
                 : '#C6152F'
             };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
