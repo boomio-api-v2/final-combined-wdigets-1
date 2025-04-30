@@ -383,7 +383,8 @@ export class InputRegisterContainer {
       this.prop === 'Akropolis' ||
       this.prop === 'Eurovaistine' ||
       this.prop === 'Vilvi' ||
-      this.prop === 'Perlas GO'
+      this.prop === 'Perlas GO' ||
+      this.prop === 'Magija'
         ? 'block'
         : 'none'
     } ;left: 34px; top:${

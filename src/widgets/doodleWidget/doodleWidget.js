@@ -1595,7 +1595,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               return;
             }
-
+            console.log(this.checkboxChange);
             if (!this.checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
@@ -1604,12 +1604,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                   ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
                   : this.customer === 'Vilvi'
                   ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
-                  : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+                  : 'Norint tęsti privaloma sutikti su privatumo politika.';
 
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 this.customer === 'Akropolis' && this.language !== 'LV'
                   ? '#FFBABA'
-                  : this.customer === 'Perlas GO' && 'rgb(255, 186, 186)';
+                  : 'rgb(255, 186, 186)';
 
               document.getElementById('competition-name-error').innerText = '';
 
