@@ -186,9 +186,7 @@ class FlappyBird {
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
       emailInput.addEventListener('input', () => {});
-      playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
         if (this.customer !== 'SaludSA') {
@@ -214,8 +212,7 @@ class FlappyBird {
               emails_consent: this.checkboxChange,
               user_email:
                 this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
-              user_name:
-                this.customer === 'SaludSA' ? new Date().toISOString() : playerNameInput?.value,
+              user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
             })
             .then((response) => {
               this.bestScore = response.user_best_score;
@@ -1462,7 +1459,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           const emailInput = document.querySelector('.boomio-competition-email-input-field');
-          const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
           const phone = document.querySelector('.boomio-competition-phone-input-field');
 
@@ -1517,31 +1513,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   return;
                 }
               }
-              if (
-                playerNameInput?.value === '' ||
-                playerNameInput?.value === null ||
-                (phone?.value === null && this.customer === 'SaludSA')
-              ) {
-                document.getElementById('competition-name-error').innerText =
-                  this.language === 'LV'
-                    ? 'Obligāti aizpildāmie lauki.'
-                    : this.customer === 'SaludSA'
-                    ? 'Para continuar debes agregar el nombre de usuario.'
-                    : this.language === 'EN'
-                    ? 'Filling in is required to continue.'
-                    : 'Norint tęsti privaloma užpildyti.';
-                document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-
-                document.getElementById('competition-email-error').innerText = '';
-                document.getElementById('competition-email-error').style.backgroundColor =
-                  'transparent';
-                document.getElementById('competition-checkbox-error').innerText = '';
-                document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  'transparent';
-                if (this.customer.includes('demo')) {
-                  return;
-                }
-              }
             }
 
             if (
@@ -1556,7 +1527,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   user_email:
                     this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
                   user_name:
-                    this.customer === 'SaludSA' ? new Date().toISOString() : playerNameInput?.value,
+                    this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
                 })
                 .then((response) => {
                   if (response.success === false) {
