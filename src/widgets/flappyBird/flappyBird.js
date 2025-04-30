@@ -121,7 +121,7 @@ class FlappyBird {
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LV';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LT';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
