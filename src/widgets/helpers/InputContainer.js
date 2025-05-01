@@ -95,7 +95,7 @@ export class InputContainer {
                 ? '20px'
                 : this.prop === 'Ikea'
                 ? '20px'
-                : '24px'
+                : '22px'
             }; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
@@ -163,7 +163,7 @@ export class InputContainer {
                   : 'Spausk'
               }
     <div
-  style="top: 9px; margin-top: 3px; color: white; font-size: ${'12px'}; font-weight: 700; margin-left: 4px; font-family: ${
+  style="top: 9px; margin-top: 3px; color: white; font-size: ${'14px'}; font-weight: 700; margin-left: 4px; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; word-wrap: break-word"
 >
@@ -268,7 +268,7 @@ export class InputContainer {
                 ? '20px'
                 : this.prop === 'Ikea'
                 ? '20px'
-                : '24px'
+                : '22px'
             }; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
@@ -310,12 +310,12 @@ export class InputContainer {
                 : this.prop === 'Nykstukas'
                 ? 'Rink'
                 : this.prop === 'Nevezis'
-                ? 'Naudok'
+                ? 'Brauk'
                 : this.prop === 'Magija'
                 ? 'Kartok,'
                 : 'Kartok'
             }
-                         <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${'12px'}; font-family:${
+                         <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${'14px'}; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700;  word-wrap: break-word">
             ${
@@ -362,7 +362,7 @@ export class InputContainer {
                 : this.prop === 'Nykstukas'
                 ? 'monetas įveikiant ledų kliūtis.'
                 : this.prop === 'Nevezis'
-                ? 'specialias pakuotes.'
+                ? 'ir pelnyk taškus.'
                 : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
@@ -372,7 +372,7 @@ export class InputContainer {
                 ? '20px'
                 : this.prop === 'Ikea'
                 ? '20px'
-                : '24px'
+                : '22px'
             }; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
@@ -425,9 +425,9 @@ export class InputContainer {
                               : this.prop === 'SaludSA' ||
                                 this.prop === 'Pieno Žvaigždės' ||
                                 this.prop === 'Dentsu'
-                              ? '18px'
+                              ? '16px'
                               : '3px'
-                          }; color: white; font-size: ${'12px'}; font-family:${
+                          }; color: white; font-size: ${'14px'}; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
       this.prop === 'Perlas GO' ||
@@ -556,11 +556,11 @@ ${
   this.prop === 'Nevezis' ||
   this.prop === 'Magija' ||
   this.prop === 'LemonGym'
-    ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'24px'}; font-family:${
+    ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'22px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${this.language === 'LV' ? 'Laimē' : 'Laimėk'} 
-                          <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${'12px'}; font-family:${
+                          <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${'14px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
             ${
@@ -571,7 +571,7 @@ ${
                 : this.prop === 'LemonGym'
                 ? 'LEMON GYM balvas!'
                 : this.prop === 'Nevezis'
-                ? 'puikius oho! prizus!'
+                ? 'šaunius prizus!'
                 : this.prop === 'Magija'
                 ? 'belaides „Magija“ ausines, „Magija“ </br> sūrelių dėžutę arba „Magija“ puodelį!'
                 : '10€ Wolt dovanų kuponą!'
@@ -656,7 +656,7 @@ ${
               : this.prop === 'Magija'
               ? 'href=https://www.boomio.com/zemaitijos-pienas-magija-zaidimo-taisykles'
               : `href=${window.location.href}`
-          } style="color:white;text-decoration: underline;font-size:12px;margin-top:6px;font-family:${
+          } style="color:white;text-decoration: underline;font-size:14px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
           };">${
             this.prop === 'Pigu.lt' && this.language === 'EN'
@@ -732,7 +732,7 @@ ${
     <div>
     </div>
               </div>
-              <div style="z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
+              <div style="z-index:3;justify-content: center; align-items: center; gap: 22px;display:flex; width:${
                 document.body.offsetWidth < 426
                   ? document.body.offsetWidth < 321
                     ? '375px'
@@ -741,11 +741,11 @@ ${
               };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; height:38px;background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; font-size: 24px; font-family:${
+              <div style="text-align: center; font-size: 22px; font-family:${
                 this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
               }; font-weight: ${
       this.prop === 'Ikea' ? '400' : '700'
-    }; line-height: 24px; word-wrap: break-word"> <div style="line-height:24px;text-align: center; color: ${'#3D4928'}; font-size: 24px;  line-height: 24px; word-wrap: break-word">${
+    }; line-height: 22px; word-wrap: break-word"> <div style="line-height:22px;text-align: center; color: ${'#3D4928'}; font-size: 22px;  line-height: 22px; word-wrap: break-word">${
       this.prop === 'Pigu.lt' && this.language === 'EN'
         ? 'NEXT'
         : this.prop === 'Pigu.lt' && this.language === 'LV'
