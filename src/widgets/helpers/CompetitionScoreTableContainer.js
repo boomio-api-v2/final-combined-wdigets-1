@@ -155,11 +155,13 @@ export class CompetitionScoreTableContainer {
       }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
       ${
-        userBestPlace === index + 1
-          ? 'Tavo rezultatas'
-          : this.prop === 'Perlas GO'
-          ? perlasGoTable[index]
-          : ltNicknames[index]
+        this.prop !== 'Gamtos Ateitis'
+          ? userBestPlace === index + 1
+            ? 'Tavo rezultatas'
+            : this.prop === 'Perlas GO'
+            ? perlasGoTable[index]
+            : ltNicknames[index]
+          : item.team
       }
     </td>
               <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
@@ -195,7 +197,9 @@ export class CompetitionScoreTableContainer {
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
-              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${'Tavo rezultatas'}</td>
+              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+        this.prop !== 'Gamtos Ateitis' ? 'Tavo rezultatas' : playerNameInput?.value
+      }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
                 this.prop === 'Fpro' ||
