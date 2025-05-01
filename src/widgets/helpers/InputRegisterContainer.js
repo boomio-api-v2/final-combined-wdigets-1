@@ -434,7 +434,8 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
-        this.prop === 'LemonGym'
+        this.prop === 'LemonGym' ||
+        this.language === 'EN'
           ? 'none'
           : 'block'
       }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
@@ -479,17 +480,11 @@ export class InputRegisterContainer {
           : this.prop === 'Perlas GO' ||
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
-            this.prop === 'LemonGym'
+            this.prop === 'LemonGym' ||
+            this.language === 'EN'
           ? '240px'
           : '287px'
-      }; position: absolute; background: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'LemonGym' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos'
-        ? 'white'
-        : 'white'
-    }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
+      }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
 
 
 
@@ -498,19 +493,13 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
-        this.prop === 'LemonGym'
+        this.prop === 'LemonGym' ||
+        this.language === 'EN'
           ? 'none'
           : 'block'
       }; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
-    }; position: absolute; background: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'white'
-        : 'white'
-    }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
+    }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
         this.prop === 'SaludSA' || this.prop === 'Pegasas'
           ? '219px'
@@ -519,17 +508,11 @@ export class InputRegisterContainer {
           : this.prop === 'Perlas GO' ||
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
-            this.prop === 'LemonGym'
+            this.prop === 'LemonGym' ||
+            this.language === 'EN'
           ? '249px'
           : '299px'
-      };height:30px; opacity: 0.60;background-color: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'white'
-        : 'white'
-    }; text-align: start; color:  ${
+      };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
@@ -566,19 +549,13 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
-        this.prop === 'LemonGym'
+        this.prop === 'LemonGym' ||
+        this.language === 'EN'
           ? 'none'
           : 'block'
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
-    };height:30px; opacity: 0.60;background-color: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'white'
-        : 'white'
-    }; text-align: start; color:  ${
+    };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||

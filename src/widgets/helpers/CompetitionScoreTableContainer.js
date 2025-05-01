@@ -157,7 +157,9 @@ export class CompetitionScoreTableContainer {
       ${
         this.prop !== 'Gamtos Ateitis'
           ? userBestPlace === index + 1
-            ? 'Tavo rezultatas'
+            ? this.language === 'EN'
+              ? 'Your score'
+              : 'Tavo rezultatas'
             : this.prop === 'Perlas GO'
             ? perlasGoTable[index]
             : ltNicknames[index]
@@ -198,7 +200,11 @@ export class CompetitionScoreTableContainer {
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        this.prop !== 'Gamtos Ateitis' ? 'Tavo rezultatas' : playerNameInput?.value
+        this.prop !== 'Gamtos Ateitis'
+          ? this.language === 'EN'
+            ? 'Your score'
+            : 'Tavo rezultatas'
+          : playerNameInput?.value
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
