@@ -68,6 +68,37 @@ export class CompetitionScoreTableContainer {
       'KLIK KLIK GO',
     ];
 
+    const ltNicknames = [
+      'MAGIŠKAS',
+      'ŽAIDĖJAS',
+      'GRETAA',
+      'BLASH',
+      'BULKIN',
+      'PILKASIS ŠEŠĖLIS',
+      'GIEDRIUZAS',
+      'ABRIKOSAS',
+      'SKANUTĖ',
+      'UGIS',
+      'MIS LIETUVA',
+      'ZORO',
+      'SŪRELIS',
+      'EMILIUX',
+      'VĖJO DRUMSTĖJAS',
+      'RORO',
+      'HARIS POTERIS',
+      'VAIVORYKŠTĖ',
+      'VALDELIS',
+      'ŠOKLIUKĖ',
+      'FANTAZUOTOJAS',
+      'VALDOVAS',
+      'PEMPĖ',
+      'NEWYORKE',
+      'VORIUKAS',
+      'MISTY',
+      'PIENIŠKAS',
+      'BLAZING BILL',
+    ];
+
     let tableHTML = '';
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
@@ -124,13 +155,11 @@ export class CompetitionScoreTableContainer {
       }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
       ${
-        this.prop === 'Perlas GO'
-          ? userBestPlace === index + 1
-            ? 'Tavo rezultatas'
-            : perlasGoTable[index]
-          : this.prop === 'Gamtos Ateitis'
-          ? item.team
-          : item.user_name
+        userBestPlace === index + 1
+          ? 'Tavo rezultatas'
+          : this.prop === 'Perlas GO'
+          ? perlasGoTable[index]
+          : ltNicknames[index]
       }
     </td>
               <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
@@ -166,9 +195,7 @@ export class CompetitionScoreTableContainer {
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
-              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        this.prop === 'Perlas GO' ? 'Tavo rezultatas' : playerNameInput?.value
-      }</td>
+              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${'Tavo rezultatas'}</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
                 this.prop === 'Fpro' ||
