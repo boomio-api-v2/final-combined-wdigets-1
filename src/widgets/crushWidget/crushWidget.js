@@ -43,9 +43,9 @@ class CrushGame {
     this.language = this.config.language ? this.config.language : 'LV';
 
     this.currentScoreTable = {};
-    this.gridCols = 6;
-    this.gridRows = 9;
-    this.tileSize = 62;
+    this.gridCols = 5;
+    this.gridRows = 8;
+    this.tileSize = 73;
     this.colors = {
       crushElement1Nevezis,
       crushElement2Nevezis,
@@ -63,6 +63,7 @@ class CrushGame {
     this.isAnimating = false; // Add this flag
     this.timer = 50; // Add timer property
     this.timerInterval = null; // Add timer interval property
+
     this.startLoading();
   }
 
@@ -577,7 +578,7 @@ class CrushGame {
 <span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
 </span>
 </div>
-<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
+<div class="boomio-time-input-container" style="top:calc(50% - 300px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
@@ -622,7 +623,7 @@ class CrushGame {
 
         
           <div id="crush-game-background"></div>
-          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" style="margin-top:30px;" width="${
+          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" style="margin-top:50px;" width="${
             this.gridCols * this.tileSize
           }" height="${this.gridRows * this.tileSize}"></canvas>
         </div>
@@ -716,7 +717,6 @@ class CrushGame {
   }
 
   findMatches() {
-    console.log('🔍 Checking matches in updated grid:', JSON.parse(JSON.stringify(this.grid)));
     let matches = new Set();
 
     // Horizontal check
@@ -730,7 +730,6 @@ class CrushGame {
           matches.add(`${row}-${col}`);
           matches.add(`${row}-${col + 1}`);
           matches.add(`${row}-${col + 2}`);
-          console.log(`✅ Horizontal match at (${row}, ${col})`);
         }
       }
     }
@@ -746,7 +745,6 @@ class CrushGame {
           matches.add(`${row}-${col}`);
           matches.add(`${row + 1}-${col}`);
           matches.add(`${row + 2}-${col}`);
-          console.log(`✅ Vertical match at (${row}, ${col})`);
         }
       }
     }
@@ -756,7 +754,6 @@ class CrushGame {
       return { row, col };
     });
 
-    console.log('🎯 Matches Found:', matchArray);
     return matchArray;
   }
 
@@ -940,7 +937,7 @@ class CrushGame {
   drawTile(row, col, color, yOffset = 0, xOffset = 0) {
     if (typeof color === 'string' && color.endsWith('Special')) {
       // Draw red background.
-      this.ctx.fillStyle = 'gray';
+      this.ctx.fillStyle = 'transparent';
       this.ctx.fillRect(
         col * this.tileSize + xOffset,
         row * this.tileSize + yOffset,
@@ -983,13 +980,49 @@ class CrushGame {
       }
 
       // 2) Overlay “+3”
-      this.ctx.fillStyle = 'white';
-      this.ctx.font = '18px Arial';
-      this.ctx.fillText(
-        '+3',
-        col * this.tileSize + xOffset + this.tileSize * 0.25,
-        row * this.tileSize + yOffset + this.tileSize * 0.6,
+      const offsetY = 4; // how much lower you want to move
+
+      const text = '+3';
+      const fontSize = 16;
+      this.ctx.font = `${fontSize}px Arial`;
+
+      const textMetrics = this.ctx.measureText(text);
+      const textWidth = textMetrics.width;
+      const textHeight = fontSize;
+
+      const padding = 4;
+      const radius = 6;
+
+      const x = col * this.tileSize + xOffset + this.tileSize - textWidth - padding - 6;
+      const y = row * this.tileSize + yOffset + textHeight - 4 + offsetY;
+      const boxX = x - padding;
+      const boxY = y - textHeight - 2 + offsetY;
+      const boxWidth = textWidth + padding * 2;
+      const boxHeight = textHeight;
+
+      // Draw rounded background
+      this.ctx.beginPath();
+      this.ctx.moveTo(boxX + radius, boxY);
+      this.ctx.lineTo(boxX + boxWidth - radius, boxY);
+      this.ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + radius);
+      this.ctx.lineTo(boxX + boxWidth, boxY + boxHeight - radius);
+      this.ctx.quadraticCurveTo(
+        boxX + boxWidth,
+        boxY + boxHeight,
+        boxX + boxWidth - radius,
+        boxY + boxHeight,
       );
+      this.ctx.lineTo(boxX + radius, boxY + boxHeight);
+      this.ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - radius);
+      this.ctx.lineTo(boxX, boxY + radius);
+      this.ctx.quadraticCurveTo(boxX, boxY, boxX + radius, boxY);
+      this.ctx.closePath();
+      this.ctx.fillStyle = 'red';
+      this.ctx.fill();
+
+      // Draw the white text
+      this.ctx.fillStyle = 'white';
+      this.ctx.fillText(text, x, y);
       return; // done drawing
     }
     if (typeof color === 'string' && color.endsWith('Multiplier')) {
@@ -1194,12 +1227,24 @@ class CrushGame {
   addEventListeners() {
     this.canvas.addEventListener('mousedown', (e) => this.handleTileSelection(e));
     this.canvas.addEventListener('mouseup', (e) => this.handleTileSwap(e));
+
+    this.canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // prevent scrolling
+      this.handleTileSelection(e.touches[0]);
+    });
+    this.canvas.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      this.handleTileSwap(e.changedTouches[0]);
+    });
+
     if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
     }
+
     const restart = document.getElementById('boomio-game-play-again');
     restart.addEventListener('click', this.restartGame);
+
     const start = document.getElementById('control-button');
     start.addEventListener('click', this.initGame);
   }
@@ -1355,6 +1400,7 @@ class CrushGame {
 
   handleTileSwap(event) {
     if (this.isAnimating) return; // Prevent tile swap during animations
+
     if (!this.selectedTile) return;
     const { row, col } = this.getTilePosition(event);
     if (
@@ -1363,17 +1409,13 @@ class CrushGame {
     ) {
       const tile1 = this.selectedTile;
       const tile2 = { row, col };
-      console.log(`🔄 Swapping (${tile1.row}, ${tile1.col}) with (${tile2.row}, ${tile2.col})`);
       this.isAnimating = true; // Set flag to true at the start of animation
       this.animateTileSwap(tile1, tile2, () => {
-        console.log('🔎 Checking for matches after swap...');
         const matches = this.findMatches();
         if (matches.length > 0) {
-          console.log('✅ Matches found, processing...');
           this.selectedTile = null;
           this.processMatches();
         } else {
-          console.log('❌ No matches found, swapping back.');
           this.animateTileSwap(tile2, tile1, () => {
             this.selectedTile = null;
             this.drawGrid();
@@ -1431,16 +1473,9 @@ class CrushGame {
   }
 
   hasMatchesAfterSwap(tile1, tile2) {
-    console.log(
-      `Checking matches after swapping (${tile1.row}, ${tile1.col}) and (${tile2.row}, ${tile2.col})`,
-    );
     const matches = this.findMatches();
     const hasMatches = matches.length > 0;
-    if (!hasMatches) {
-      console.log('No matches found after swap, reverting swap.');
-    } else {
-      console.log('Matches found after swap.');
-    }
+
     return hasMatches;
   }
 
@@ -1462,13 +1497,7 @@ class CrushGame {
       verticalMatch++;
     }
     const hasMatch = horizontalMatch >= 3 || verticalMatch >= 3;
-    if (hasMatch) {
-      console.log(`Match found at (${row}, ${col}) with color ${color}`);
-    } else {
-      console.log(`No match found at (${row}, ${col}) with color ${color}`);
-    }
-    console.log(`Horizontal match length: ${horizontalMatch}`);
-    console.log(`Vertical match length: ${verticalMatch}`);
+
     return hasMatch;
   }
 
@@ -1490,9 +1519,11 @@ class CrushGame {
   }
 
   processMatches(chain = 0) {
+    this.lastSuccessfulMoveTime = Date.now();
+
+    this.hintTiles = null;
     // Prevent infinite loops / handle large chain reactions
     if (chain > 10) {
-      console.log('Chain reaction limit reached. Stopping further processing.');
       return;
     }
 
@@ -1540,7 +1571,6 @@ class CrushGame {
 
       // If a special tile is found, explode it and exit this function
       if (specialFound) {
-        console.log('Special tile triggered! Exploding matched group and adjacent area.');
         this.explodeTile(specialFound);
         return; // Once we trigger explodeTile, we let that flow handle gravity, etc.
       }
@@ -1677,27 +1707,86 @@ class CrushGame {
   }
   drawGrid() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
     for (let row = 0; row < this.gridRows; row++) {
       for (let col = 0; col < this.gridCols; col++) {
         this.drawTile(row, col, this.grid[row][col]);
       }
     }
+
+    // Draw hint if available
+    if (this.hintTiles) {
+      this.ctx.strokeStyle = 'red';
+      this.ctx.lineWidth = 4;
+      this.hintTiles.forEach(({ row, col }) => {
+        this.ctx.strokeRect(
+          col * this.tileSize + 2,
+          row * this.tileSize + 2,
+          this.tileSize - 4,
+          this.tileSize - 4,
+        );
+      });
+    }
   }
 
   startGameLoop() {
+    this.lastSuccessfulMoveTime = Date.now(); // 👈 Add this line to initialize the timer
+
     setTimeout(() => {
       document.getElementById('background_blur').style.display = 'none';
       this.gamePlaying = true;
     }, 400);
     document.getElementById('game-content').style.display = 'block';
+
     const gameLoop = () => {
+      const now = Date.now();
+
+      if (!this.isAnimating && now - this.lastSuccessfulMoveTime > 5000 && !this.hintTiles) {
+        const hint = this.findFirstPossibleMove();
+        if (hint) this.highlightHint(hint);
+      }
+
       this.update();
       this.drawGrid();
+
       if (this.timer > 0) {
         requestAnimationFrame(gameLoop);
       }
     };
+
     requestAnimationFrame(gameLoop);
+  }
+
+  findFirstPossibleMove() {
+    for (let row = 0; row < this.gridRows; row++) {
+      for (let col = 0; col < this.gridCols; col++) {
+        const directions = [
+          { dr: 0, dc: 1 },
+          { dr: 1, dc: 0 },
+        ];
+        for (let dir of directions) {
+          const r2 = row + dir.dr;
+          const c2 = col + dir.dc;
+          if (r2 >= this.gridRows || c2 >= this.gridCols) continue;
+
+          // Swap
+          this.swapTiles({ row, col }, { row: r2, col: c2 });
+          const hasMatch = this.hasMatchesAfterSwap({ row, col }, { row: r2, col: c2 });
+          this.swapTiles({ row, col }, { row: r2, col: c2 }); // revert
+          if (hasMatch) return { tile1: { row, col }, tile2: { row: r2, col: c2 } };
+        }
+      }
+    }
+    return null;
+  }
+
+  highlightHint({ tile1, tile2 }) {
+    this.hintTiles = [tile1, tile2];
+
+    // Clear the hint after 1 second
+    setTimeout(() => {
+      this.hintTiles = null;
+    }, 3000);
   }
 
   update() {
