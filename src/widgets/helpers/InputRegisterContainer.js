@@ -45,7 +45,7 @@ export class InputRegisterContainer {
       this.language === 'LV' && this.prop === 'Akropolis'
         ? 'REĢISTRĒJIES'
         : this.language === 'LV'
-        ? 'REĢISTRĒTIES SPĒLĒŠANAI'
+        ? 'REĢISTRĒJIES, LAI SPĒLĒTU'
         : this.language === 'RU'
         ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
         : this.language === 'EE'
@@ -85,7 +85,7 @@ export class InputRegisterContainer {
         ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
         : this.language === 'EN'
         ? 'Already registered? Use the same nickname and email </br> to keep improving your score!'
-        : 'Jau registravaisi? Naudok tą patį slapyvardį ir el. paštą </br> toliau gerinant rezultatą!'
+        : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
     } 
     </div>
       <div id="boomio-competition-confirm-field" disabled=${
@@ -130,6 +130,9 @@ export class InputRegisterContainer {
       this.prop === 'Dentsu' ||
       this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'Nykstukas' ||
+      this.prop === 'LemonGym' ||
+      this.prop === 'Nevezis' ||
+      this.prop === 'Magija' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -168,6 +171,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Corepetitus naujienlaiškius.'
         : this.language === 'LV' && this.prop === 'Akropolis'
         ? 'Piekrītu saņemt AKROPOLE iepirkšanās centru jaunumus e-pastā.'
+        : this.language === 'LV' && this.prop === 'LemonGym'
+        ? 'Piekrītu saņemt LEMON GYM jaunumu vēstuli.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
         : this.prop === 'Dentsu'
@@ -176,6 +181,10 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : this.prop === 'Nykstukas'
         ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
+        : this.prop === 'Nevezis'
+        ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
+        : this.prop === 'Magija'
+        ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
@@ -286,6 +295,12 @@ export class InputRegisterContainer {
         ? 'Sutinku su „Pieno žvaigždės“'
         : this.language === 'EN'
         ? 'I agree to receive '
+        : this.language === 'LV' && this.prop === 'LemonGym'
+        ? 'Piekrītu LEMON GYM'
+        : this.prop === 'Nevezis'
+        ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
+        : this.prop === 'Magija'
+        ? 'Sutinku su „Žemaitijos pienas“ '
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -302,12 +317,9 @@ export class InputRegisterContainer {
       this.prop !== 'SaludSA' &&
       this.prop !== 'Vilvi' &&
       this.prop !== 'Daumantu' &&
-      this.prop !== 'Perlas GO' &&
-      this.prop !== 'LemonGym'
+      this.prop !== 'Perlas GO'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
-            this.prop === 'LemonGym'
-              ? 'https://www.barbora.lt/info/privatumo-politika'
-              : this.prop === 'Ikea'
+            this.prop === 'Ikea'
               ? 'https://www.ikea.lt/lt/privacy-policy'
               : this.prop === 'Corepetitus'
               ? 'https://www.corepetitus.lt/privatumo-politika'
@@ -323,6 +335,10 @@ export class InputRegisterContainer {
               ? 'https://www.dentsu.com/our-policies/privacy-notices'
               : this.prop === 'Zemaitijos Pienas'
               ? 'https://www.zpienas.lt/privatumo-politika/'
+              : this.prop === 'Nevezis'
+              ? 'https://nevezis.lt/privatumo-politika/'
+              : this.prop === 'Magija'
+              ? 'https://www.zpienas.lt/privatumo-politika/'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'
@@ -335,6 +351,8 @@ export class InputRegisterContainer {
               ? 'privātuma politikai'
               : this.prop === 'Corepetitus'
               ? 'Corepetitus privatumo politika'
+              : this.prop === 'LemonGym' && this.language === 'LV'
+              ? 'privātuma politikai'
               : this.language === 'EN'
               ? 'newsletters'
               : 'privatumo politika'
@@ -360,12 +378,17 @@ export class InputRegisterContainer {
    
    
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
-          this.language === 'LV' || this.prop === 'Perlas GO' ? '15px' : '28px'
+          this.prop === 'Magija'
+            ? 'auto'
+            : this.language === 'LV' || this.prop === 'Perlas GO'
+            ? '15px'
+            : '28px'
         } ;margin-right:30px;display:${
       this.prop === 'Akropolis' ||
       this.prop === 'Eurovaistine' ||
       this.prop === 'Vilvi' ||
-      this.prop === 'Perlas GO'
+      this.prop === 'Perlas GO' ||
+      this.prop === 'Magija'
         ? 'block'
         : 'none'
     } ;left: 34px; top:${
@@ -407,7 +430,14 @@ export class InputRegisterContainer {
 
 
       <div style="display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' ||
+        this.prop === 'Perlas GO' ||
+        this.prop === 'Nevezis' ||
+        this.prop === 'Magija' ||
+        this.prop === 'LemonGym' ||
+        this.language === 'EN'
+          ? 'none'
+          : 'block'
       }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '178px' : '258px'
     }; position: absolute;text-align:start;z-index:99999;color: ${
@@ -447,48 +477,42 @@ export class InputRegisterContainer {
           ? '207px'
           : this.prop === 'Gamtos Ateitis'
           ? '180px'
-          : this.prop === 'Perlas GO'
+          : this.prop === 'Perlas GO' ||
+            this.prop === 'Nevezis' ||
+            this.prop === 'Magija' ||
+            this.prop === 'LemonGym' ||
+            this.language === 'EN'
           ? '240px'
           : '287px'
-      }; position: absolute; background: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'LemonGym' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos'
-        ? 'white'
-        : 'white'
-    }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
+      }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
 
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' ||
+        this.prop === 'Perlas GO' ||
+        this.prop === 'Nevezis' ||
+        this.prop === 'Magija' ||
+        this.prop === 'LemonGym' ||
+        this.language === 'EN'
+          ? 'none'
+          : 'block'
       }; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
-    }; position: absolute; background: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'white'
-        : 'white'
-    }; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
+    }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
         this.prop === 'SaludSA' || this.prop === 'Pegasas'
           ? '219px'
           : this.prop === 'Gamtos Ateitis'
           ? '189px'
-          : this.prop === 'Perlas GO'
+          : this.prop === 'Perlas GO' ||
+            this.prop === 'Nevezis' ||
+            this.prop === 'Magija' ||
+            this.prop === 'LemonGym' ||
+            this.language === 'EN'
           ? '249px'
           : '299px'
-      };height:30px; opacity: 0.60;background-color: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'white'
-        : 'white'
-    }; text-align: start; color:  ${
+      };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
@@ -521,17 +545,17 @@ export class InputRegisterContainer {
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
-        this.prop === 'Gamtos Ateitis' || this.prop === 'Perlas GO' ? 'none' : 'block'
+        this.prop === 'Gamtos Ateitis' ||
+        this.prop === 'Perlas GO' ||
+        this.prop === 'Nevezis' ||
+        this.prop === 'Magija' ||
+        this.prop === 'LemonGym' ||
+        this.language === 'EN'
+          ? 'none'
+          : 'block'
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
-    };height:30px; opacity: 0.60;background-color: ${
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? 'white'
-        : 'white'
-    }; text-align: start; color:  ${
+    };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||

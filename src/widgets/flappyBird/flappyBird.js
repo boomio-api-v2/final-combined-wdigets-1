@@ -94,22 +94,34 @@ import {
   demoGame8,
   demoGame9,
   demoGame10,
+  demoGame11,
+  demoGame12,
+  demoGame13,
+  demoGame14,
+  demoGame15,
+  demoGame16,
+  demoGame17,
+  demoGame18,
+  demoGame19,
+  demoGame20,
+  LemonGymBackground,
+  LemonGymintro,
 } from './constants';
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+      this?.config?.game_type !== '' ? this.config.game_type : 'points';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'demo-1';
+    this.customer = this.config.business_name ? this.config.business_name : 'LemonGym';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'EN';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LT';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -174,9 +186,7 @@ class FlappyBird {
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
       emailInput.addEventListener('input', () => {});
-      playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
         if (this.customer !== 'SaludSA') {
@@ -202,8 +212,7 @@ class FlappyBird {
               emails_consent: this.checkboxChange,
               user_email:
                 this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
-              user_name:
-                this.customer === 'SaludSA' ? new Date().toISOString() : playerNameInput?.value,
+              user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
             })
             .then((response) => {
               this.bestScore = response.user_best_score;
@@ -428,6 +437,28 @@ class FlappyBird {
         ? demoGame9
         : this.customer === 'demo-10'
         ? demoGame10
+        : this.customer === 'demo-11'
+        ? demoGame11
+        : this.customer === 'demo-12'
+        ? demoGame12
+        : this.customer === 'demo-13'
+        ? demoGame13
+        : this.customer === 'demo-14'
+        ? demoGame14
+        : this.customer === 'demo-15'
+        ? demoGame15
+        : this.customer === 'demo-16'
+        ? demoGame16
+        : this.customer === 'demo-17'
+        ? demoGame17
+        : this.customer === 'demo-18'
+        ? demoGame18
+        : this.customer === 'demo-19'
+        ? demoGame19
+        : this.customer === 'demo-20'
+        ? demoGame20
+        : this.customer === 'LemonGym'
+        ? LemonGymBackground
         : this.customer === 'Penki Sezonai' && mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -1134,6 +1165,8 @@ class FlappyBird {
         ? CorepetitusFlappyIntro
         : this.customer === 'Dentsu'
         ? DentsuIntro
+        : this.customer === 'LemonGym'
+        ? LemonGymintro
         : this.customer === 'Penki Sezonai' && introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
       document.body.offsetWidth < 418
@@ -1251,6 +1284,8 @@ ${`<div style="${
                 ? '#FE5022'
                 : this.customer.includes('demo')
                 ? '#0A3533'
+                : this.customer === 'LemonGym'
+                ? '#FF00FF'
                 : '#C6152F'
             };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -1426,7 +1461,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           const emailInput = document.querySelector('.boomio-competition-email-input-field');
-          const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
           const phone = document.querySelector('.boomio-competition-phone-input-field');
 
@@ -1481,31 +1515,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   return;
                 }
               }
-              if (
-                playerNameInput?.value === '' ||
-                playerNameInput?.value === null ||
-                (phone?.value === null && this.customer === 'SaludSA')
-              ) {
-                document.getElementById('competition-name-error').innerText =
-                  this.language === 'LV'
-                    ? 'Obligāti aizpildāmie lauki.'
-                    : this.customer === 'SaludSA'
-                    ? 'Para continuar debes agregar el nombre de usuario.'
-                    : this.language === 'EN'
-                    ? 'Filling in is required to continue.'
-                    : 'Norint tęsti privaloma užpildyti.';
-                document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-
-                document.getElementById('competition-email-error').innerText = '';
-                document.getElementById('competition-email-error').style.backgroundColor =
-                  'transparent';
-                document.getElementById('competition-checkbox-error').innerText = '';
-                document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  'transparent';
-                if (this.customer.includes('demo')) {
-                  return;
-                }
-              }
             }
 
             if (
@@ -1520,7 +1529,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   user_email:
                     this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
                   user_name:
-                    this.customer === 'SaludSA' ? new Date().toISOString() : playerNameInput?.value,
+                    this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
                 })
                 .then((response) => {
                   if (response.success === false) {

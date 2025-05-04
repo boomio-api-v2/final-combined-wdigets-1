@@ -76,21 +76,21 @@ export const crushElement7Nevezis =
 export const crushElement8Nevezis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement8.png';
 
-export const crushElement1SpecialNevezis =
+export const crushElement1NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement1Special.png';
-export const crushElement2SpecialNevezis =
+export const crushElement2NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement2Special.png';
-export const crushElement3SpecialNevezis =
+export const crushElement3NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement3Special.png';
-export const crushElement4SpecialNevezis =
+export const crushElement4NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement4Special.png';
-export const crushElement5SpecialNevezis =
+export const crushElement5NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement5Special.png';
-export const crushElement6SpecialNevezis =
+export const crushElement6NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement6Special.png';
-export const crushElement7SpecialNevezis =
+export const crushElement7NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement7Special.png';
-export const crushElement8SpecialNevezis =
+export const crushElement8NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement8Special.png';
 
 export const backgroundNevezis =

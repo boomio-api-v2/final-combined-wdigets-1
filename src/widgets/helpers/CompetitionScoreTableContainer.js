@@ -68,6 +68,37 @@ export class CompetitionScoreTableContainer {
       'KLIK KLIK GO',
     ];
 
+    const ltNicknames = [
+      'MAGIŠKAS',
+      'ŽAIDĖJAS',
+      'GRETAA',
+      'BLASH',
+      'BULKIN',
+      'PILKASIS ŠEŠĖLIS',
+      'GIEDRIUZAS',
+      'ABRIKOSAS',
+      'SKANUTĖ',
+      'UGIS',
+      'MIS LIETUVA',
+      'ZORO',
+      'SŪRELIS',
+      'EMILIUX',
+      'VĖJO DRUMSTĖJAS',
+      'RORO',
+      'HARIS POTERIS',
+      'VAIVORYKŠTĖ',
+      'VALDELIS',
+      'ŠOKLIUKĖ',
+      'FANTAZUOTOJAS',
+      'VALDOVAS',
+      'PEMPĖ',
+      'NEWYORKE',
+      'VORIUKAS',
+      'MISTY',
+      'PIENIŠKAS',
+      'BLAZING BILL',
+    ];
+
     let tableHTML = '';
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
@@ -91,6 +122,8 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Dentsu' ||
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Nykstukas' ||
+            this.prop === 'Nevezis' ||
+            this.prop === 'Magija' ||
             this.prop.includes('demo')
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
@@ -107,6 +140,8 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Dentsu' ||
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Nykstukas' ||
+            this.prop === 'Nevezis' ||
+            this.prop === 'Magija' ||
             this.prop.includes('demo')
           ? 'white'
           : 'white';
@@ -120,13 +155,15 @@ export class CompetitionScoreTableContainer {
       }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
       ${
-        this.prop === 'Perlas GO'
+        this.prop !== 'Gamtos Ateitis'
           ? userBestPlace === index + 1
-            ? 'Tavo rezultatas'
-            : perlasGoTable[index]
-          : this.prop === 'Gamtos Ateitis'
-          ? item.team
-          : item.user_name
+            ? this.language === 'EN'
+              ? 'Your score'
+              : 'Tavo rezultatas'
+            : this.prop === 'Perlas GO'
+            ? perlasGoTable[index]
+            : ltNicknames[index]
+          : item.team
       }
     </td>
               <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
@@ -157,11 +194,17 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Dentsu' ||
                 this.prop === 'Zemaitijos Pienas' ||
                 this.prop === 'Nykstukas' ||
+                this.prop === 'Nevezis' ||
+                this.prop === 'Magija' ||
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        this.prop === 'Perlas GO' ? 'Tavo rezultatas' : playerNameInput?.value
+        this.prop !== 'Gamtos Ateitis'
+          ? this.language === 'EN'
+            ? 'Your score'
+            : 'Tavo rezultatas'
+          : playerNameInput?.value
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
@@ -180,6 +223,8 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Dentsu' ||
                 this.prop === 'Zemaitijos Pienas' ||
                 this.prop === 'Nykstukas' ||
+                this.prop === 'Nevezis' ||
+                this.prop === 'Magija' ||
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
@@ -210,7 +255,9 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Perlas GO' && !userId) ||
         (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10) ||
         (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
+        (this.prop === 'Nevezis' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
+        (this.prop === 'Magija' && this.scoreTable?.user_best_place <= 3) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '18px' : fontSize
@@ -245,14 +292,7 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Perlas GO' ? '390px' : '450px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
-            } ; font-family: Montserrat; font-weight: 700; text-transform: ${
-              this.prop !== 'Akropolis' &&
-              this.prop !== 'Perlas GO' &&
-              this.prop !== 'Zemaitijos Pienas' &&
-              this.prop !== 'Gamtos Ateitis'
-                ? 'uppercase'
-                : 'none'
-            }; word-wrap: break-word">${
+            } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                 : this.prop === 'Pieno Žvaigždės'
@@ -289,6 +329,10 @@ export class CompetitionScoreTableContainer {
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
                 : this.prop === 'Nykstukas'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro NYKŠTUKAS prizai! '
+                : this.prop === 'Nevezis'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį </br>fondą sudaro oho! prizai!'
+                : this.prop === 'Magija'
+                ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Magija“  prizus! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. '
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -364,14 +408,7 @@ export class CompetitionScoreTableContainer {
             }</div>
             <div style="width:100%; top: ${
               this.prop === 'Perlas GO' ? '390px' : '450px'
-            };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: ${
-              this.prop !== 'Akropolis' &&
-              this.prop !== 'Perlas GO' &&
-              this.prop !== 'Zemaitijos Pienas' &&
-              this.prop !== 'Gamtos Ateitis'
-                ? 'uppercase'
-                : 'none'
-            }; word-wrap: break-word">${
+            };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
                 : this.prop === 'Eurovaistine'
@@ -412,6 +449,10 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
                 : this.prop === 'Nykstukas'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro NYKŠTUKAS prizai! '
+                : this.prop === 'Nevezis'
+                ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> oho! prizus! '
+                : this.prop === 'Magija'
+                ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Dobilas“  prizus!'
                 : this.language === 'EN'
                 ? ''
                 : ''

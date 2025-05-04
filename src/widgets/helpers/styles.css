@@ -41,7 +41,7 @@
 }
 
 .image-container {
-  max-width: 90px !important; 
+  max-width: 90px; 
   max-height: 90px !important; 
   object-fit: cover; 
 }

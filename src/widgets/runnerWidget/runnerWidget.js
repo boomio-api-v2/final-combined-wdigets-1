@@ -44,6 +44,7 @@ import {
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 
 class runnerWidget {
   static ctx;
@@ -544,12 +545,19 @@ ${
       );
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
+    if (this.customer === 'Nykstukas') {
+      const gameContainer = document.querySelector('.game-container');
+
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(didYouKnowContainer.containerDiv);
+    }
 
     this.startGame(this.scoreTableContainerInstance);
   };
 
   startGame = () => {
     const canvas = document.getElementById('boomio-runner-canvas');
+    adjustScaleAndPosition();
     const loader = new PxLoader();
     var gameOverAlreadyHandled = false;
     this.config = localStorageService.getDefaultConfig();
@@ -916,16 +924,19 @@ ${
     document.addEventListener('DOMContentLoaded', adjustScaleAndPosition);
 
     function adjustScaleAndPosition() {
-      const isPortrait = window.matchMedia('(orientation: portrait)').matches;
       const isNarrowScreen = window.innerWidth <= 920;
 
       const competitionTable = document.querySelector('.competition-table-container');
+      const didYouKnowTable = document.querySelector('.did-you-know-container');
+      console.log('aaaa');
+      if (isNarrowScreen) {
+        didYouKnowTable.style.scale = '0.65';
+        didYouKnowTable.style.left = 'calc(50% - 60px)';
+        didYouKnowTable.style.top = 'calc(50% - 144px)';
 
-      if (isPortrait && isNarrowScreen) {
-        if (competitionTable) {
-          competitionTable.style.scale = '0.56';
-          competitionTable.style.left = 'calc(50% - 80px)';
-        }
+        competitionTable.style.scale = '0.56';
+        competitionTable.style.left = 'calc(50% - 80px)';
+        competitionTable.style.top = 'calc(50% - 144px)';
       }
     }
 
@@ -1055,6 +1066,10 @@ ${
 
           competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
           const gameEndButton = document.getElementById('boomio-game-play-again');
+          if (customer === 'Nykstukas') {
+            const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+            competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+          }
           gameEndButton.addEventListener('click', Replay);
           bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
         };
@@ -1333,6 +1348,35 @@ ${
       }, 300);
     };
 
+    const clickEventHandlerDidYouKnow = () => {
+      const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+      didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      setTimeout(() => {
+        didYouKnowTableContainer.style.height = '10px';
+        didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+        didYouKnowTableContainer.style.opacity = 0;
+      }, 100);
+      setTimeout(() => {
+        didYouKnowTableContainer.style.display = 'none';
+      }, 1000);
+      const competitionTableContainer = document.querySelector('.competition-table-container');
+      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      competitionTableContainer.style.display = 'block';
+
+      setTimeout(() => {
+        competitionTableContainer.style.height = '680px';
+        const isNarrowScreen = window.innerWidth <= 920;
+
+        if (isNarrowScreen) {
+          competitionTableContainer.style.top = 'calc(50% - 144px)';
+        } else {
+          competitionTableContainer.style.top = 'calc(50%)';
+        }
+        competitionTableContainer.style.opacity = 1;
+      }, 100);
+    };
+
     const keyRightHandler = (e) => {
       if (e.keyCode == 39 || e.keyCode == 68) {
         //right
@@ -1421,7 +1465,7 @@ ${
         }
         if (this.showCompetitiveRegistration) {
           let competitionTableContainer = '';
-          if (this.customer === 'Pigu.lt') {
+          if (this.customer === 'Nykstukas') {
             competitionTableContainer = document.querySelector('.did-you-know-container');
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');

@@ -443,3 +443,25 @@ export const item8Dobilo =
 
 export const item9Dobilo =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item14Dobilo.png';
+
+export const item1Nykstukas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runningWidget/assetsNykstukas/items/item1Nykstukas.png';
+export const item2Nykstukas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runningWidget/assetsNykstukas/items/item2Nykstukas.png';
+export const item3Nykstukas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runningWidget/assetsNykstukas/items/item3Nykstukas.png';
+export const item4Nykstukas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/runningWidget/assetsNykstukas/items/item4Nykstukas.png';
+
+export const item1Magija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item1Magija.png';
+export const item2Magija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item2Magija.png';
+export const item3Magija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item3Magija.png';
+export const item4Magija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item4Magija.png';
+export const item5Magija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item5Magija.png';
+export const item6Magija =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item6Magija.png';
