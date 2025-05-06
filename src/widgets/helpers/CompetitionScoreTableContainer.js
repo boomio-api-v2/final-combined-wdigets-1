@@ -348,10 +348,13 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Nevezis' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
         (this.prop === 'Magija' && this.scoreTable?.user_best_place <= 3) ||
+        (this.prop === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.prop === 'Barbora' ? '18px' : fontSize
-            }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
+              this.prop === 'Barbora' ? '16px' : fontSize
+            }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: ${
+              this.prop === 'Nykstukas' ? 'none' : 'uppercase'
+            }; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'DOVANA tau!'
                 : this.prop === 'Unisend' && this.language === 'LV'
@@ -375,11 +378,17 @@ export class CompetitionScoreTableContainer {
                 : this.language === 'EN'
                 ? 'Hooray, youre doing great!'
                 : this.prop === 'Nykstukas'
-                ? ''
+                ? 'SVEIKINAME! Pretenduoji laimėti šios savaitės prizą'
                 : 'Valio, tau puikiai sekasi!'
             }</div>
+
+      ${
+        this.prop === 'Nykstukas'
+          ? `<div style="padding-left:4px;padding-right:4px;position:absolute;top:455px;width:100%;background-color:#45A9D7;color:white;">bilietą į Comic Con renginį.</div>`
+          : ''
+      }
             <div style="width:100%; top: ${
-              this.prop === 'Perlas GO' ? '390px' : '450px'
+              this.prop === 'Nykstukas' ? '490px' : this.prop === 'Perlas GO' ? '390px' : '450px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
