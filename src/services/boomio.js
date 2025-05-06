@@ -105,7 +105,10 @@ class BoomioService extends UserService {
     }
     if (!isTimeout) {
       try {
-        window.onload = async () => {
+        window.addEventListener('load', async () => {
+          if (window.__boomioWidgetLoaded) return;
+          window.__boomioWidgetLoaded = true;
+
           const content = await this.sendBoomioData();
           if (content?.widget_type && content.instruction !== 'stop') {
             widgetHtmlService.createWidgetContainer(content.widget_type);
@@ -130,7 +133,7 @@ class BoomioService extends UserService {
           // if (!isTimeout && !this.config.static_text) {
           //   this.signal('', 'static_info');
           // }
-        };
+        });
       } catch (err) {
         console.log(err);
       }
