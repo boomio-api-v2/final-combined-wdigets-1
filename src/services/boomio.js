@@ -107,7 +107,6 @@ class BoomioService extends UserService {
       try {
         document.addEventListener('DOMContentLoaded', async () => {
           if (window.__boomioWidgetLoaded) return;
-          window.__boomioWidgetLoaded = true;
 
           const content = await this.sendBoomioData();
           if (content?.widget_type && content.instruction !== 'stop') {
@@ -186,6 +185,7 @@ class BoomioService extends UserService {
     const finalRequestBody = { body: randomLetter + encodedBody };
 
     return new Promise(async (resolve) => {
+      window.__boomioWidgetLoaded = true;
       const rawResponse = await fetch(newLinkBoomio, {
         method: 'POST',
         headers: {
