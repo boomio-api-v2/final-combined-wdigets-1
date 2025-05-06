@@ -109,6 +109,15 @@ import {
   item4Magija,
   item5Magija,
   item6Magija,
+  item1Nevezis,
+  item2Nevezis,
+  item3Nevezis,
+  item4Nevezis,
+  item5Nevezis,
+  item6Nevezis,
+  item7Nevezis,
+  item8Nevezis,
+  item9Nevezis,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -208,7 +217,6 @@ export class DidYouKnowContainer {
           ];
     this.randomGamtosAteitis =
       this.gamtosAteitis[Math.floor(Math.random() * this.gamtosAteitis.length)];
-    console.log(this.randomGamtosAteitis);
 
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'LV';
@@ -324,7 +332,21 @@ export class DidYouKnowContainer {
         item5Magija,
         item6Magija,
       ];
+    } else if (this.prop === 'Nevezis') {
+      // Handle Glass collectables
+      this.collectables = [
+        item1Nevezis,
+        item2Nevezis,
+        item3Nevezis,
+        item4Nevezis,
+        item5Nevezis,
+        item6Nevezis,
+        item7Nevezis,
+        item8Nevezis,
+        item9Nevezis,
+      ];
     }
+
     this.collectablesLinks = [];
     if (this.prop === 'Pigu.lt') {
       this.collectablesLinks = this.dynamicData;
@@ -576,9 +598,7 @@ export class DidYouKnowContainer {
       };line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
         this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Nykstukas'
           ? '18px'
-          : this.prop === 'Gamtos Ateitis'
-          ? '16px'
-          : '12px'
+          : '16px'
       } ; font-family: Montserrat;  word-wrap: break-word">${
         this.prop.includes('Gamtos Ateitis')
           ? this.randomGamtosAteitis?.text
@@ -587,7 +607,9 @@ export class DidYouKnowContainer {
           : this.prop === 'Zemaitijos Pienas'
           ? 'Ekologiški jogurtai „DOBILAS“'
           : this.prop === 'Nykstukas'
-          ? 'IŠRAGAUK VISUS SKONIUS'
+          ? 'Ekologiški jogurtai „DOBILAS“'
+          : this.prop === 'Nevezis'
+          ? 'ATRASK MŪSŲ PRODUKTUS'
           : this.prop === 'Magija'
           ? 'Šokoladu aplieti „Magija“ varškės sūreliai'
           : ''
@@ -616,6 +638,14 @@ export class DidYouKnowContainer {
   href="" 
   style="color:white;font-weight:900;font-size:12px;">
   DAUGIAU NYKŠTUKO SKONIŲ!
+</a>`
+          : this.prop === 'Nevezis'
+          ? `<a 
+  onclick="event.stopPropagation();" 
+  target="_blank" 
+  href="https://nevezis.lt/production_category/sausi-pusryciai/" 
+  style="color:white;font-weight:900;font-size:12px;">
+   Peržiūrėk produktų katalogą.
 </a>`
           : this.prop === 'Magija'
           ? `<a 
@@ -802,6 +832,8 @@ export class DidYouKnowContainer {
         ? 'AR IŠRAGAVAI ŠIŲ METŲ NAUJIENAS?'
         : this.prop === 'Magija'
         ? 'Ar visus RAGAVAI?'
+        : this.prop === 'Nevezis'
+        ? 'ATRASK SAVO SKONĮ'
         : 'Ar žinojai?'
     }</div>
       
@@ -869,14 +901,7 @@ export class DidYouKnowContainer {
       }
   </div>
       </div>
-      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
-      }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
+      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">
         ${
           this.prop !== 'Pigu.lt'
