@@ -536,15 +536,14 @@ ${
     `;
     widgetHtmlService.container.appendChild(myCanvas);
 
-    if (this.showCompetitiveRegistration === 'competition') {
-      const gameContainer = document.querySelector('.game-container');
+    const gameContainer = document.querySelector('.game-container');
 
-      this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-      );
-      gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
-    }
+    this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
+      this.customer,
+      this.scoreTable,
+    );
+    gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+
     if (this.customer === 'Nykstukas') {
       const gameContainer = document.querySelector('.game-container');
 
@@ -928,7 +927,6 @@ ${
 
       const competitionTable = document.querySelector('.competition-table-container');
       const didYouKnowTable = document.querySelector('.did-you-know-container');
-      console.log('aaaa');
       if (isNarrowScreen) {
         didYouKnowTable.style.scale = '0.65';
         didYouKnowTable.style.left = 'calc(50% - 60px)';
