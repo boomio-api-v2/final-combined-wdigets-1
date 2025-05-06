@@ -1,4 +1,5 @@
 import {
+  intro,
   newRecordEE,
   newRecordFI,
   newRecordRU,
@@ -83,7 +84,7 @@ class CrushGame {
           document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
         }
         this.showRulesOrRegistration();
-      }, 1); //intro speed
+      }, 50); //intro speed
     });
   }
 
