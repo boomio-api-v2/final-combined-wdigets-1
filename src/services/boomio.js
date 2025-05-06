@@ -114,6 +114,8 @@ class BoomioService extends UserService {
           } else {
             widgetHtmlService.createWidgetContainer();
           }
+          window.__boomioWidgetLoaded = true;
+
           localStorageService.setConfigFromApi(content);
           if (content?.widget_type && content.instruction !== 'stop') {
             this.loadWidget(content.widget_type);
@@ -181,7 +183,6 @@ class BoomioService extends UserService {
     const finalRequestBody = { body: randomLetter + encodedBody };
 
     return new Promise(async (resolve) => {
-      window.__boomioWidgetLoaded = true;
       const rawResponse = await fetch(newLinkBoomio, {
         method: 'POST',
         headers: {
