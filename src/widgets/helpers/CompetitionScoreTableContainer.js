@@ -203,7 +203,6 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Pieno Žvaigždės' ||
             this.prop === 'Eurovaistine' ||
             this.prop === 'Akropolis' ||
-            this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym' ||
             this.prop === 'Perlas GO' ||
             this.prop === 'Daumantu' ||
@@ -212,6 +211,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Nykstukas' ||
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
+            this.prop === 'Gamtos Ateitis' ||
             this.prop.includes('demo')
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
@@ -221,7 +221,6 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Fantazijos' ||
             this.prop === 'Makalius' ||
             this.prop === 'Pieno Žvaigždės' ||
-            this.prop.includes('Gamtos Ateitis') ||
             this.prop === 'LemonGym' ||
             this.prop === 'Perlas GO' ||
             this.prop === 'Daumantu' ||
@@ -230,6 +229,7 @@ export class CompetitionScoreTableContainer {
             this.prop === 'Nykstukas' ||
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
+            this.prop === 'Gamtos Ateitis' ||
             this.prop.includes('demo')
           ? 'white'
           : 'white';
@@ -281,7 +281,6 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Akropolis' ||
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Pieno Žvaigždės' ||
-                this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym' ||
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Daumantu' ||
@@ -290,15 +289,12 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Nykstukas' ||
                 this.prop === 'Nevezis' ||
                 this.prop === 'Magija' ||
+                this.prop === 'Gamtos Ateitis' ||
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        this.prop !== 'Gamtos Ateitis'
-          ? this.language === 'EN'
-            ? 'Your score'
-            : 'Tavo rezultatas'
-          : playerNameInput?.value
+        this.language === 'EN' ? 'Your score' : 'Tavo rezultatas'
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
@@ -310,7 +306,6 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Akropolis' ||
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Pieno Žvaigždės' ||
-                this.prop.includes('Gamtos Ateitis') ||
                 this.prop === 'LemonGym' ||
                 this.prop === 'Perlas GO' ||
                 this.prop === 'Daumantu' ||
@@ -319,6 +314,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Nykstukas' ||
                 this.prop === 'Nevezis' ||
                 this.prop === 'Magija' ||
+                this.prop === 'Gamtos Ateitis' ||
                 this.prop.includes('demo')
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
