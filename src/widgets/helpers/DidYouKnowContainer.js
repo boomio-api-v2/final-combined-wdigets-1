@@ -217,7 +217,6 @@ export class DidYouKnowContainer {
           ];
     this.randomGamtosAteitis =
       this.gamtosAteitis[Math.floor(Math.random() * this.gamtosAteitis.length)];
-    console.log(this.randomGamtosAteitis);
 
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'LV';

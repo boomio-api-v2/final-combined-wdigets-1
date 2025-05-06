@@ -64,8 +64,9 @@ class CrushGame {
     this.currentScore = 0;
     this.multiplier = 1;
     this.isAnimating = false; // Add this flag
-    this.timer = 50; // Add timer property
+    this.timer = 120; // Add timer property
     this.timerInterval = null; // Add timer interval property
+    this.tutorial = true;
 
     this.startLoading();
   }
@@ -246,7 +247,7 @@ class CrushGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 2;
+    this.timer = 120;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
@@ -581,6 +582,61 @@ class CrushGame {
 <span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
 </span>
 </div>
+
+
+<div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
+${`<div style="${
+  this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
+};display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+    <div>${
+      this.language === 'LV'
+        ? 'KLIKŠĶINI'
+        : this.language === 'EN'
+        ? 'TAP'
+        : this.language === 'RU'
+        ? 'КЛИК'
+        : this.language === 'EE'
+        ? 'TAP'
+        : this.language === 'ET'
+        ? 'TÄPI'
+        : this.language === 'ES'
+        ? 'TAP'
+        : this.customer === 'Fpro'
+        ? 'TAP'
+        : this.language === 'FI'
+        ? 'NAPSAUTA'
+        : this.customer === 'SaludSA'
+        ? 'TAP'
+        : 'BAKST'
+    }</div>
+    <div>${
+      this.language === 'LV'
+        ? 'KLIKŠĶINI'
+        : this.language === 'EN'
+        ? 'TAP'
+        : this.language === 'RU'
+        ? 'КЛИК'
+        : this.language === 'ET'
+        ? 'TÄPI'
+        : this.language === 'EE'
+        ? 'TAP'
+        : this.language === 'ES'
+        ? 'TAP'
+        : this.customer === 'Fpro'
+        ? 'TAP'
+        : this.language === 'FI'
+        ? 'NAPSAUTA'
+        : this.customer === 'SaludSA'
+        ? 'TAP'
+        : 'BAKST'
+    }</div>
+  </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
+</div>
+
+
+
+
+
 <div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
@@ -630,8 +686,7 @@ class CrushGame {
             this.gridCols * this.tileSize
           }" height="${this.gridRows * this.tileSize}"></canvas>
         </div>
-        <!-- Restart button (initially hidden) -->
-        <button id="restart-button" class="hidden">Restart Game</button>
+ 
       </div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
@@ -1376,6 +1431,33 @@ class CrushGame {
       }
     }
   };
+
+  showtutorial = () => {
+    if (this.tutorial) {
+      document.getElementById('tutorial').style.transition = 'opacity 1s ease';
+      document.getElementById('tutorial').style.opacity = 1;
+      document.getElementById('tutorial').style.display = 'block';
+      this.tutorial = false;
+      setTimeout(() => {
+        const canvas = document.getElementById('game-container');
+
+        canvas.addEventListener('click', this.removetutorial);
+      }, 100);
+    }
+  };
+
+  removetutorial = () => {
+    const canvas = document.getElementById('game-container');
+    canvas.removeEventListener('click', this.removetutorial);
+
+    document.getElementById('tutorial').style.transition = 'opacity 1s ease';
+    document.getElementById('tutorial').style.opacity = 0;
+    document.getElementById('tutorial').style.display = 'none';
+    setTimeout(() => {
+      this.initGame();
+    }, 100);
+  };
+
   restartGame = () => {
     this.isAnimating = false; // 👈 ADD THIS LINE!
 

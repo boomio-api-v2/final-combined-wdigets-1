@@ -48,7 +48,7 @@ export class PointScoreTableContainer {
     <div style="line-height: 150%;margin-bottom:30px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 12px; font-family: Georama; font-weight:400; word-wrap: break-word;"> 
     ${
       this.prop === 'LemonGym'
-        ? '* Tu vari izmantot laimēto abonementu TIKAI tad, ja šobrīd tev nav </br> cita aktīva LEMON GYM abonementa.'
+        ? '* Tu vari izmantot laimēto abonementu TIKAI tad, ja šobrīd tev nav cita aktīva LEMON GYM abonementa.'
         : 'discount for FPRO special edition Ball Mastery Mat!'
     } </div>
 </div>
