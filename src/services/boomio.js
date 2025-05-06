@@ -128,10 +128,6 @@ class BoomioService extends UserService {
             this.loadWidget('start_widget');
           }
           this.config = localStorageService.getDefaultConfig();
-          const isTimeout = new Date(this.config.boomioStopTill).getTime() > new Date().getTime();
-          // if (!isTimeout && !this.config.static_text) {
-          //   this.signal('', 'static_info');
-          // }
         });
       } catch (err) {
         console.log(err);
