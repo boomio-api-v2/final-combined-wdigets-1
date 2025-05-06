@@ -554,7 +554,8 @@ export class DidYouKnowContainer {
         const link = this.collectablesLinks[index];
 
         if (this.prop === 'Nykstukas' ? index % 2 === 0 : index % 3 === 0) {
-          tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
+          tableHTML +=
+            '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
         }
         tableHTML += `
           <td style="padding:5px;text-align: center; border: none; ${
