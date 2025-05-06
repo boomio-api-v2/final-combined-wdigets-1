@@ -505,7 +505,8 @@ export class DidYouKnowContainer {
     if (this.prop === 'Pigu.lt') {
       loopingImages?.forEach((product, index) => {
         if (index % 3 === 0) {
-          tableHTML += '<tr style="border-spacing:2px;border-collapse:separate">';
+          tableHTML +=
+            '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
         }
 
         tableHTML += `
@@ -857,7 +858,7 @@ export class DidYouKnowContainer {
           };border-spacing:3px;width:${
       this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
     };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
-            <tbody class="boomio-tbody" >
+            <tbody class="boomio-tbody" style="background-color:transparent">
             <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${
               this.isMobileWidthSmall ? '20px' : '40px'
             };top:35px;display:none' id='closeDidYouKnow'>
