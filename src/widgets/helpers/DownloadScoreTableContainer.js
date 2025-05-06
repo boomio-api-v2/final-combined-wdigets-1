@@ -96,7 +96,7 @@ export class DownloadScoreTableContainer {
 
     tableHTML += '</div>';
 
-    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let fontSize =
       this.prop === 'Barbora' ||
@@ -171,7 +171,7 @@ export class DownloadScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
-    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     if (document.getElementById('boomio-copy-modal-btn')) {
       document.getElementById('boomio-copy-modal-btn').onclick = () => {
@@ -218,7 +218,7 @@ export class DownloadScoreTableContainer {
               </div>
               <div  style="width: calc(100% - 40px); height: ${'280px'}; left: 20px; top: 124px; position: absolute;border-right:none; backdrop-filter: blur(4px)">
               <div >
-            <div class="boomio-tbody-boomio">
+            <div class="boomio-tbody">
     `;
 
     this.containerDiv = containerDiv;

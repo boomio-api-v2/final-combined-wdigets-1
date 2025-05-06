@@ -55,7 +55,7 @@ export class IkeaScoreTableContainer {
                 this.currentScore > 2000 ? 'block' : 'none'
               };left: 20px; top: 124px; position: absolute;border-right:none;  backdrop-filter: blur(4px);filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));">
               <div >
-            <div class="boomio-tbody-boomio">
+            <div class="boomio-tbody">
     `;
 
     containerDiv.innerHTML += `
@@ -115,7 +115,7 @@ ar daugiau.</div>
     `;
 
     containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
-    containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
+    containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     const currentDate = new Date().toLocaleDateString('lt-LT', {
       month: 'long',

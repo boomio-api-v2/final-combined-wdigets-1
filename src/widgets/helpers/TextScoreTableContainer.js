@@ -93,7 +93,7 @@ export class TextScoreTableContainer {
         `;
     tableHTML += '</div>';
 
-    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let fontWeight = '700';
 
@@ -137,7 +137,7 @@ export class TextScoreTableContainer {
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
     // (Re)Insert tableHTML one more time if needed:
-    // this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
+    // this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     // (But it’s typically not needed to set it again.)
   }
 
@@ -168,7 +168,7 @@ export class TextScoreTableContainer {
                     border-right:none;
                     backdrop-filter: blur(4px);">
           <div>
-            <div class="boomio-tbody-boomio"></div>
+            <div class="boomio-tbody"></div>
           </div>
                   </div>
 <div style="

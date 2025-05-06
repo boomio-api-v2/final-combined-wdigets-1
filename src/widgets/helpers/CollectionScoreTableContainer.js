@@ -45,7 +45,7 @@ export class CollectionScoreTableContainer {
       }
     });
 
-    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
     let fontSize =
       this.prop === 'Barbora' ||
@@ -143,7 +143,7 @@ export class CollectionScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
-    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     this.addfunc();
   }
 
@@ -212,7 +212,7 @@ export class CollectionScoreTableContainer {
       <div  style="margin-left:14px;height: ${'302px'}; top: 114px; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin:10px;border-spacing:3px;border-collapse:separate">
-            <tbody class="boomio-tbody-boomio">
+            <tbody class="boomio-tbody">
     `;
 
     containerDiv.innerHTML += `
