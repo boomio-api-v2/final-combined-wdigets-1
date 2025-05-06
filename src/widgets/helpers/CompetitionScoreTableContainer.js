@@ -99,6 +99,94 @@ export class CompetitionScoreTableContainer {
       'BLAZING BILL',
     ];
 
+    const enNicknames = [
+      'James',
+      'Bubbles',
+      'Blaze',
+      'Tofu',
+      'Vex',
+      'Peaches',
+      'Emma',
+      'Snug Bug',
+      'Michael',
+      'Mochi',
+      'Nova',
+      'Kiwi Pop',
+      'Jinx',
+      'Niblet',
+      'Olivia',
+      'Cookie',
+      'William',
+      'Waffles',
+      'Echo',
+      'Zoomie',
+      'Rogue',
+      'Apex',
+      'Sophia',
+      'Ava',
+      'Benjamin',
+      'Vanta',
+      'Luna',
+      'Glitch',
+      'Chill',
+      'Ghost',
+      'Frost',
+      'Titan',
+      'Mia',
+      'Storm',
+      'Daniel',
+      'Saber',
+      'David',
+      'Mute',
+      'Isabella',
+      'Vibe',
+      'Charlotte',
+      'Zane',
+      'Matthew',
+      'Drift',
+      'Amelia',
+      'Pixel',
+      'Jacob',
+      'Fang',
+      'Nox',
+      'Emily',
+      'Grace',
+      'Ethan',
+    ];
+
+    const lvNicknames = [
+      'Jānis',
+      'Anna',
+      'Artūrs',
+      'Kristīne',
+      'Elīna',
+      'Rihards',
+      'Edgars',
+      'Laura',
+      'Kārlis',
+      'Alise',
+      'Kristaps',
+      'Līga',
+      'Roberts',
+      'Dāvis',
+      'Marta',
+      'Ieva',
+      'Linda',
+      'Anete',
+      'Andris',
+      'Sanita',
+      'Toms',
+      'Dārta',
+      'Mārtiņš',
+      'Madara',
+      'Reinis',
+      'Emīls',
+      'Agnese',
+      'Ralfs',
+      'Inese',
+      'Sandis',
+    ];
+
     let tableHTML = '';
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
@@ -159,9 +247,15 @@ export class CompetitionScoreTableContainer {
           ? userBestPlace === index + 1
             ? this.language === 'EN'
               ? 'Your score'
+              : this.language === 'LV'
+              ? 'Tavs rezultāts'
               : 'Tavo rezultatas'
             : this.prop === 'Perlas GO'
             ? perlasGoTable[index]
+            : this.language === 'LV'
+            ? lvNicknames[index]
+            : this.language === 'EN'
+            ? enNicknames[index]
             : ltNicknames[index]
           : item.team
       }

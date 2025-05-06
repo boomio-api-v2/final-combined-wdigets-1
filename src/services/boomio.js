@@ -20,7 +20,6 @@ import {
   startCatchWidget,
   startCrushWidget,
   startRunnerWidget,
-  startFootballWidget,
 } from '@/widgets';
 
 import { localStorageService, widgetHtmlService, UserService } from '@/services';
@@ -89,7 +88,6 @@ class BoomioService extends UserService {
       catch: startCatchWidget,
       crush: startCrushWidget,
       runner: startRunnerWidget,
-      football: startFootballWidget,
     };
 
     createWidgetMap[widget_type]();
