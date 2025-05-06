@@ -339,6 +339,8 @@ export class InputRegisterContainer {
               ? 'https://nevezis.lt/privatumo-politika/'
               : this.prop === 'Magija'
               ? 'https://www.zpienas.lt/privatumo-politika/'
+              : this.prop === 'Lemon Gym'
+              ? 'https://www.lemongym.lv/en/privacy-policy/'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'

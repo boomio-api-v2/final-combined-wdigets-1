@@ -969,6 +969,7 @@ class CrushGame {
           this.tileSize,
         );
       } else {
+        console.log('base color not found:', base);
         // fallback fill if no image
         this.ctx.fillStyle = base;
         this.ctx.fillRect(
@@ -1386,9 +1387,11 @@ class CrushGame {
   };
 
   handleTileSelection(event) {
-    if (this.isAnimating) return; // Prevent tile selection during animations
+    if (this.isAnimating) return;
     const { row, col } = this.getTilePosition(event);
     this.selectedTile = { row, col };
+    this.startX = event.clientX;
+    this.startY = event.clientY;
   }
 
   getTilePosition(event) {
@@ -1399,35 +1402,46 @@ class CrushGame {
   }
 
   handleTileSwap(event) {
-    if (this.isAnimating) return; // Prevent tile swap during animations
+    if (this.isAnimating || !this.selectedTile) return;
 
-    if (!this.selectedTile) return;
-    const { row, col } = this.getTilePosition(event);
-    if (
-      (Math.abs(row - this.selectedTile.row) === 1 && col === this.selectedTile.col) ||
-      (Math.abs(col - this.selectedTile.col) === 1 && row === this.selectedTile.row)
-    ) {
-      const tile1 = this.selectedTile;
-      const tile2 = { row, col };
-      this.isAnimating = true; // Set flag to true at the start of animation
-      this.animateTileSwap(tile1, tile2, () => {
-        const matches = this.findMatches();
-        if (matches.length > 0) {
-          this.selectedTile = null;
-          this.processMatches();
-        } else {
-          this.animateTileSwap(tile2, tile1, () => {
-            this.selectedTile = null;
-            this.drawGrid();
+    const dx = event.clientX - this.startX;
+    const dy = event.clientY - this.startY;
 
-            setTimeout(() => {
-              this.isAnimating = false;
-            }, 500);
-          });
-        }
-      });
+    let direction = null;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      direction = dx > 0 ? 'right' : 'left';
+    } else {
+      direction = dy > 0 ? 'down' : 'up';
     }
+
+    const { row, col } = this.selectedTile;
+    let target = { row, col };
+
+    if (direction === 'up' && row > 0) target.row -= 1;
+    else if (direction === 'down' && row < this.gridRows - 1) target.row += 1;
+    else if (direction === 'left' && col > 0) target.col -= 1;
+    else if (direction === 'right' && col < this.gridCols - 1) target.col += 1;
+    else return; // Invalid move
+
+    this.isAnimating = true;
+    this.animateTileSwap(this.selectedTile, target, () => {
+      const matches = this.findMatches();
+      if (matches.length > 0) {
+        this.selectedTile = null;
+        this.processMatches();
+      } else {
+        this.animateTileSwap(target, this.selectedTile, () => {
+          this.selectedTile = null;
+          this.drawGrid();
+          setTimeout(() => {
+            this.isAnimating = false;
+          }, 500);
+        });
+      }
+    });
   }
+
   animateTileSwap(tile1, tile2, callback) {
     const duration = 200; // duration of the animation in milliseconds
     const startTime = performance.now();
