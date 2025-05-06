@@ -578,7 +578,7 @@ class CrushGame {
 <span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
 </span>
 </div>
-<div class="boomio-time-input-container" style="top:calc(50% - 300px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
+<div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
