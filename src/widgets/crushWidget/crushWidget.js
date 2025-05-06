@@ -25,6 +25,7 @@ import {
   crushElement6NevezisSpecial,
   crushElement7NevezisSpecial,
   backgroundNevezis,
+  tutorial,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';

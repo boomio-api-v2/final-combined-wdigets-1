@@ -465,3 +465,22 @@ export const item5Magija =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item5Magija.png';
 export const item6Magija =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/Magija/items/item6Magija.png';
+
+export const item1Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item1.png';
+export const item2Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item2.png';
+export const item3Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item3.png';
+export const item4Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item4.png';
+export const item5Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item5.png';
+export const item6Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item6.png';
+export const item7Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item7.png';
+export const item8Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item8.png';
+export const item9Nevezis =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/items/item9.png';

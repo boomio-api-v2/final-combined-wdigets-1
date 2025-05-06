@@ -109,6 +109,15 @@ import {
   item4Magija,
   item5Magija,
   item6Magija,
+  item1Nevezis,
+  item2Nevezis,
+  item3Nevezis,
+  item4Nevezis,
+  item5Nevezis,
+  item6Nevezis,
+  item7Nevezis,
+  item8Nevezis,
+  item9Nevezis,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -324,7 +333,21 @@ export class DidYouKnowContainer {
         item5Magija,
         item6Magija,
       ];
+    } else if (this.prop === 'Nevezis') {
+      // Handle Glass collectables
+      this.collectables = [
+        item1Nevezis,
+        item2Nevezis,
+        item3Nevezis,
+        item4Nevezis,
+        item5Nevezis,
+        item6Nevezis,
+        item7Nevezis,
+        item8Nevezis,
+        item9Nevezis,
+      ];
     }
+
     this.collectablesLinks = [];
     if (this.prop === 'Pigu.lt') {
       this.collectablesLinks = this.dynamicData;

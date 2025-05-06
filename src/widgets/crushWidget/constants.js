@@ -95,3 +95,6 @@ export const crushElement8NevezisSpecial =
 
 export const backgroundNevezis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/background.png';
+
+export const tutorial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/tutorial.png';
