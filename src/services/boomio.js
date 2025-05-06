@@ -27,6 +27,7 @@ import { localStorageService, widgetHtmlService, UserService } from '@/services'
 class BoomioService extends UserService {
   constructor() {
     super();
+    this._configInitialized = false;
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
@@ -94,6 +95,9 @@ class BoomioService extends UserService {
   };
 
   setInitialConfiguration() {
+    if (this._configInitialized) return; // ✅ PREVENT DUPLICATE CALLS
+    this._configInitialized = true; // ✅ SET FLAG ON FIRST CALL
+
     this.config = localStorageService.getDefaultConfig();
     const isTimeout = new Date(this.config.boomioStopTill).getTime() > new Date().getTime();
     if (!isTimeout) {
@@ -264,4 +268,5 @@ class BoomioService extends UserService {
   }
 }
 
-export default new BoomioService();
+const boomioInstance = new BoomioService(); // ✅ ENSURE SINGLE INSTANCE
+export default boomioInstance;
