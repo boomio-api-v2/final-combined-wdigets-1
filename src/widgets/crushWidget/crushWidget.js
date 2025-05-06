@@ -79,6 +79,7 @@ class CrushGame {
       this.generateValidGrid();
       this.addEventListeners();
       setTimeout(() => {
+        console.log('start');
         if (this.gameCount === 0) {
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
