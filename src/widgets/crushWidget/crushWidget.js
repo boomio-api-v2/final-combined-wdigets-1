@@ -30,6 +30,8 @@ import { widgetHtmlService, localStorageService, boomioService } from '@/service
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+
 import './styles.css';
 
 class CrushGame {
@@ -243,7 +245,7 @@ class CrushGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 30;
+    this.timer = 2;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
@@ -388,7 +390,7 @@ class CrushGame {
         }
         if (this.showCompetitiveRegistration) {
           let competitionTableContainer = '';
-          if (this.customer === 'Pigu.lt') {
+          if (this.customer === 'Nevezis') {
             competitionTableContainer = document.querySelector('.did-you-know-container');
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
@@ -639,8 +641,14 @@ class CrushGame {
       this.currentScoreTable,
       this.currentScore,
     );
-
     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
+
+    if (this.customer === 'Nevezis') {
+      const gameContainer = document.querySelector('.game-container');
+
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(didYouKnowContainer.containerDiv);
+    }
   }
 
   setupCanvas() {
@@ -1225,6 +1233,30 @@ class CrushGame {
     }
   };
 
+  clickEventHandlerDidYouKnow = () => {
+    const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+
+    didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      didYouKnowTableContainer.style.height = '10px';
+      didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
+      didYouKnowTableContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      didYouKnowTableContainer.style.display = 'none';
+    }, 1000);
+    const competitionTableContainer = document.querySelector('.competition-table-container');
+    document.getElementById('background_blur').style.display = 'block';
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    competitionTableContainer.style.display = 'block';
+
+    setTimeout(() => {
+      competitionTableContainer.style.height = '680px';
+      competitionTableContainer.style.top = 'calc(50%)';
+      competitionTableContainer.style.opacity = 1;
+    }, 100);
+  };
+
   addEventListeners() {
     this.canvas.addEventListener('mousedown', (e) => this.handleTileSelection(e));
     this.canvas.addEventListener('mouseup', (e) => this.handleTileSwap(e));
@@ -1248,6 +1280,11 @@ class CrushGame {
 
     const start = document.getElementById('control-button');
     start.addEventListener('click', this.initGame);
+
+    if (this.customer === 'Nevezis') {
+      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
+    }
   }
 
   removeRules = () => {

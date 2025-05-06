@@ -117,7 +117,7 @@ export class InputContainer {
                   : this.language === 'LV' && this.game === 'doodle'
                   ? 'PĀRVIETOJIES'
                   : this.language === 'LV'
-                  ? 'Spied,'
+                  ? 'SPIED,'
                   : this.language === 'RU'
                   ? 'ПРАВИЛА'
                   : this.language === 'EE'
@@ -388,7 +388,7 @@ export class InputContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
                 ? 'ВЫИГРЫВАЙ'
                 : this.language === 'LV'
-                ? 'Izbaudi'
+                ? 'IZBAUDI'
                 : this.language === 'RU'
                 ? 'ВЫИГРАЙТЕ'
                 : this.language === 'EE'
@@ -559,7 +559,7 @@ ${
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'22px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
-            4. ${this.language === 'LV' ? 'Laimē' : 'Laimėk'} 
+            4. ${this.language === 'LV' ? 'LAIMĒ' : 'Laimėk'} 
                           <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${'14px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
@@ -655,6 +655,8 @@ ${
               ? 'href=https://docs.google.com/document/d/1yC2GiqFN_wGIvvgAsaG9w1GhcykdCHTEz6wV5nax2xY/edit?usp=sharing'
               : this.prop === 'Magija'
               ? 'href=https://www.boomio.com/zemaitijos-pienas-magija-zaidimo-taisykles'
+              : this.prop === 'Nevezis'
+              ? 'href=https://ohosausryciai.lt/zaidimo-taisykles.html'
               : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:14px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'

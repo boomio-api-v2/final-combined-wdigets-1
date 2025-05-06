@@ -34,7 +34,7 @@ export class PointScoreTableContainer {
 
     <div style="margin-top:20px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background:${
       this.prop === 'LemonGym'
-        ? 'linear-gradient(to bottom right, #ffec00 12%, #d8ca15 56%, #696310 100%)'
+        ? 'linear-gradient(to bottom right, #ffec00 12%, #a49510 56%, #403f0a 100%)'
         : 'linear-gradient(to bottom,rgba(62, 161, 123, 1),rgba(28, 90, 48, 1))'
     };box-sizing:content-box !important;">
     <div style="width:100%;margin-top:20px; text-align: center; color: white; font-size: 20px; font-family: Georama; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
