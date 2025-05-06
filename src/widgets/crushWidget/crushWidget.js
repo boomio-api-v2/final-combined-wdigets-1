@@ -1,5 +1,4 @@
 import {
-  intro,
   newRecordEE,
   newRecordFI,
   newRecordRU,
@@ -79,17 +78,11 @@ class CrushGame {
       this.generateValidGrid();
       this.addEventListeners();
       setTimeout(() => {
-        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-        document.getElementById('background_intro').style.opacity = 0;
         if (this.gameCount === 0) {
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
         }
         this.showRulesOrRegistration();
-
-        setTimeout(() => {
-          document.getElementById('background_intro').style.display = 'none';
-        }, 1);
       }, 1); //intro speed
     });
   }
@@ -626,12 +619,7 @@ ${`<div style="${
             object-fit: cover;
             display: block;">
 
-        <img src="${intro}"
-             alt="Image Description" 
-             style="z-index:4; height: ${
-               this.isMobileHeightSmall ? '100%' : '674px'
-             };position:absolute;pointer-events: none; display:block;" 
-             id="background_intro">
+
 
              <div alt="Image Description" style="z-index:1;width: ${
                document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
