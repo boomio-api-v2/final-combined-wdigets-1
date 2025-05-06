@@ -106,7 +106,7 @@ class BoomioService extends UserService {
     if (!isTimeout) {
       try {
         window.onload = async () => {
-          const content = await this.send();
+          const content = await this.sendBoomioData();
           if (content?.widget_type && content.instruction !== 'stop') {
             widgetHtmlService.createWidgetContainer(content.widget_type);
           } else {
@@ -151,11 +151,11 @@ class BoomioService extends UserService {
     return isTimeout;
   }
 
-  send(extra_data) {
+  sendBoomioData(extra_data) {
     const isDenied = this.checkIsRequestDenied();
     if (isDenied) {
       setTimeout(() => {
-        this.send(extra_data);
+        this.sendBoomioData(extra_data);
       }, 2000);
     }
     const { user_session, current_page_url } = this;
@@ -256,7 +256,7 @@ class BoomioService extends UserService {
         requestData.m = this.config?.m;
       }
 
-      this.send(requestData)
+      this.sendBoomioData(requestData)
         .then((response) => {
           localStorageService.setConfigFromApi(response, ev_type);
           resolve(response);
