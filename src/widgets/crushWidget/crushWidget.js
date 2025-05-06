@@ -588,48 +588,8 @@ class CrushGame {
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-    <div>${
-      this.language === 'LV'
-        ? 'KLIKŠĶINI'
-        : this.language === 'EN'
-        ? 'TAP'
-        : this.language === 'RU'
-        ? 'КЛИК'
-        : this.language === 'EE'
-        ? 'TAP'
-        : this.language === 'ET'
-        ? 'TÄPI'
-        : this.language === 'ES'
-        ? 'TAP'
-        : this.customer === 'Fpro'
-        ? 'TAP'
-        : this.language === 'FI'
-        ? 'NAPSAUTA'
-        : this.customer === 'SaludSA'
-        ? 'TAP'
-        : 'BAKST'
-    }</div>
-    <div>${
-      this.language === 'LV'
-        ? 'KLIKŠĶINI'
-        : this.language === 'EN'
-        ? 'TAP'
-        : this.language === 'RU'
-        ? 'КЛИК'
-        : this.language === 'ET'
-        ? 'TÄPI'
-        : this.language === 'EE'
-        ? 'TAP'
-        : this.language === 'ES'
-        ? 'TAP'
-        : this.customer === 'Fpro'
-        ? 'TAP'
-        : this.language === 'FI'
-        ? 'NAPSAUTA'
-        : this.customer === 'SaludSA'
-        ? 'TAP'
-        : 'BAKST'
-    }</div>
+    <div>${'BRŪKŠT'}</div>
+    <div>${'BRŪKŠT'}</div>
   </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
 </div>
 
