@@ -648,7 +648,7 @@ ${
               : this.language === 'RU' && this.prop === 'Fantazijos'
               ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
               : this.prop.includes('Gamtos Ateitis')
-              ? 'href=https://gamtosateitis.lt/wp-content/uploads/2024/10/Zaidimo-taisykles.pdf'
+              ? 'href=https://gamtosateitis.lt/wp-content/uploads/2025/05/Taisykles_word.pdf'
               : this.prop === 'Zemaitijos Pienas'
               ? 'href=https://www.boomio.com/zemaitijos-pienas-zaidimo-taisykles'
               : this.prop === 'Nykstukas'
