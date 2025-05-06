@@ -384,7 +384,7 @@ export class CompetitionScoreTableContainer {
 
       ${
         this.prop === 'Nykstukas'
-          ? `<div style="padding-left:4px;padding-right:4px;position:absolute;top:455px;width:100%;background-color:#45A9D7;color:white;">bilietą į Comic Con renginį.</div>`
+          ? `<div style="font-family: Montserrat;padding-left:4px;padding-right:4px;position:absolute;top:455px;width:100%;background-color:#45A9D7;color:white;font-size: ${fontSize};font-weight: ${fontWeight}; ">bilietą į Comic Con renginį.</div>`
           : ''
       }
             <div style="width:100%; top: ${
