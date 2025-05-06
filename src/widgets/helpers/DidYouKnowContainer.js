@@ -589,7 +589,7 @@ export class DidYouKnowContainer {
         }
       });
     }
-    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
     let scoreboardText = `
       ${`<div class="bomio-first-line" style="width:${
         this.prop === 'Gamtos Ateitis' ? 'calc(100% - 32px)' : '100%'
@@ -708,7 +708,7 @@ export class DidYouKnowContainer {
       this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
     }
 
-    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
     if (this.prop === 'Pegasas' || this.prop === 'Pigu.lt') {
       document.getElementById('closeDidYouKnow').addEventListener('click', () => {
         // Find all enlarged images by checking for the 'enlarge-image' class
@@ -857,7 +857,7 @@ export class DidYouKnowContainer {
           };border-spacing:3px;width:${
       this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
     };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
-            <tbody class="boomio-tbody">
+            <tbody class="boomio-tbody-boomio" >
             <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${
               this.isMobileWidthSmall ? '20px' : '40px'
             };top:35px;display:none' id='closeDidYouKnow'>

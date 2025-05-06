@@ -56,7 +56,7 @@ export class PointScoreTableContainer {
 
     tableHTML += '</div>';
 
-    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
 
     let fontSize =
       this.prop === 'Barbora' ||
@@ -155,7 +155,7 @@ export class PointScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
-    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
+    this.containerDiv.querySelector('.boomio-tbody-boomio').innerHTML = tableHTML;
   }
 
   render() {
@@ -188,7 +188,7 @@ export class PointScoreTableContainer {
               </div>
               <div  style="width: calc(100% - 64px); height: ${'302px'}; left: 32px; top: 124px; position: absolute;border-right:none; backdrop-filter: blur(4px)">
               <div >
-            <div class="boomio-tbody">
+            <div class="boomio-tbody-boomio">
     `;
 
     containerDiv.innerHTML += `
