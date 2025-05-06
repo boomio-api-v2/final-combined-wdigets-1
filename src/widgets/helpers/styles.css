@@ -46,6 +46,10 @@
   object-fit: cover; 
 }
 
+.boomio-tbody{
+  background-color:transparent;
+  border:none;
+}
 
 .enlarge-image {
   box-sizing: content-box;

@@ -857,7 +857,7 @@ export class DidYouKnowContainer {
           };border-spacing:3px;width:${
       this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
     };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
-            <tbody class="boomio-tbody">
+            <tbody class="boomio-tbody" >
             <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${
               this.isMobileWidthSmall ? '20px' : '40px'
             };top:35px;display:none' id='closeDidYouKnow'>
