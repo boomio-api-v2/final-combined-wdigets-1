@@ -105,7 +105,7 @@ class BoomioService extends UserService {
     }
     if (!isTimeout) {
       try {
-        window.addEventListener('load', async () => {
+        document.addEventListener('DOMContentLoaded', async () => {
           if (window.__boomioWidgetLoaded) return;
           window.__boomioWidgetLoaded = true;
 
