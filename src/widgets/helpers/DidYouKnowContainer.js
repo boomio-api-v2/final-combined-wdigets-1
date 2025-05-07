@@ -611,7 +611,7 @@ export class DidYouKnowContainer {
           : this.prop === 'Nykstukas'
           ? 'IŠRAGAUK VISUS SKONIUS'
           : this.prop === 'Nevezis'
-          ? 'ATRASK MŪSŲ PRODUKTUS'
+          ? ''
           : this.prop === 'Magija'
           ? 'Šokoladu aplieti „Magija“ varškės sūreliai'
           : ''
@@ -648,7 +648,7 @@ export class DidYouKnowContainer {
   target="_blank" 
   href="https://nevezis.lt/production_category/sausi-pusryciai/" 
   style="color:white;font-weight:900;font-size:12px;">
-   Peržiūrėk produktų katalogą.
+   Susipažink su mūsų produktais!
 </a>`
           : this.prop === 'Magija'
           ? `<a 
