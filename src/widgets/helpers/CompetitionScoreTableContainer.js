@@ -349,6 +349,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
         (this.prop === 'Magija' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
+        true ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '16px' : fontSize
@@ -390,7 +391,7 @@ export class CompetitionScoreTableContainer {
             <div style="width:100%; top: ${
               this.prop === 'Nykstukas' ? '490px' : this.prop === 'Perlas GO' ? '390px' : '450px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.prop ? '10px' : '10px'
+              this.prop === 'Nykstukas' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
@@ -427,7 +428,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
                 : this.prop === 'Nykstukas'
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro NYKŠTUKAS prizai! '
+                ? ' Geriausi žaidėjai gali laimėti bilietus į Post Malone koncertą! Laimėtojus informuosime el. paštu. Prizus dovanoja Nykštukas!'
                 : this.prop === 'Nevezis'
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį </br>fondą sudaro oho! prizai!'
                 : this.prop === 'Magija'
@@ -547,7 +548,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
                 : this.prop === 'Nykstukas'
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro NYKŠTUKAS prizai! '
+                ? 'Geriausi žaidėjai gali laimėti bilietus į Post Malone koncertą! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą įsteigė Nykštukas! '
                 : this.prop === 'Nevezis'
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> oho! prizus! '
                 : this.prop === 'Magija'
