@@ -349,7 +349,6 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
         (this.prop === 'Magija' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
-        true ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '16px' : fontSize
