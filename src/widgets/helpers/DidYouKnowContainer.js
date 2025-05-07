@@ -637,7 +637,8 @@ export class DidYouKnowContainer {
           ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
-  href="" 
+  href="https://pienozvaigzdes.lt/lt/lt/29-ledai
+  " 
   style="color:white;font-weight:900;font-size:12px;">
   DAUGIAU NYKŠTUKO SKONIŲ!
 </a>`
