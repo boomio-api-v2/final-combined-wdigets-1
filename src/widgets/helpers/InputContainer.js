@@ -574,6 +574,8 @@ ${
                 ? 'šaunius prizus!'
                 : this.prop === 'Magija'
                 ? 'belaides „Magija“ ausines, „Magija“ </br> sūrelių dėžutę arba „Magija“ puodelį!'
+                : this.prop === 'Nykstukas'
+                ? 'vertingus prizus kas savaitę!'
                 : '10€ Wolt dovanų kuponą!'
             }
           </div>

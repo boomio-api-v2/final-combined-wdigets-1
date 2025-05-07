@@ -1117,11 +1117,11 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!checkboxChange || !checkboxChange2) {
+        if (!checkboxChange) {
           document.getElementById('competition-checkbox-error2').innerText =
             this.prop === 'Nykstukas'
               ? 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.'
-              : 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis ir „Pieno žvaigždės“ privatumo politika';
+              : 'Norėdami tęsti, turite sutikti su "Pieno Žvaigždės" privatumo politika.';
           document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error2').style.display = 'block';
           document.getElementById('competition-checkbox-error2').style.height = '14px';
