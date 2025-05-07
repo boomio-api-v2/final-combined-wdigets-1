@@ -1846,7 +1846,7 @@ ${`<div style="${
     const gameLoop = () => {
       const now = Date.now();
 
-      if (!this.isAnimating && now - this.lastSuccessfulMoveTime > 1000 && !this.hintTiles) {
+      if (!this.isAnimating && now - this.lastSuccessfulMoveTime > 10000 && !this.hintTiles) {
         const hint = this.findFirstPossibleMove();
         if (hint) this.highlightHint(hint);
       }
