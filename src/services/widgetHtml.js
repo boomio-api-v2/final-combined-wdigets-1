@@ -30,6 +30,7 @@ class WidgetHtmlService {
     widgetScreenWrapper.appendChild(widgetContent);
     document.body.appendChild(widgetScreenWrapper);
     const boomioStartWidget = localStorage.getItem('start_widget');
+
     if (
       (type === 'start_widget' || !type) &&
       boomioStartWidget !== 'false' &&
