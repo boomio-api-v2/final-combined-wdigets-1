@@ -439,6 +439,7 @@ export class InputRegisterContainer {
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
+        this.prop === 'Nykstukas' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -485,6 +486,7 @@ export class InputRegisterContainer {
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
             this.prop === 'LemonGym' ||
+            this.prop === 'Nykstukas' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -498,6 +500,7 @@ export class InputRegisterContainer {
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
+        this.prop === 'Nykstukas' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -513,6 +516,7 @@ export class InputRegisterContainer {
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
             this.prop === 'LemonGym' ||
+            this.prop === 'Nykstukas' ||
             this.language === 'EN'
           ? '249px'
           : '299px'
@@ -554,6 +558,7 @@ export class InputRegisterContainer {
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
+        this.prop === 'Nykstukas' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
