@@ -65,7 +65,7 @@ class CrushGame {
     this.currentScore = 0;
     this.multiplier = 1;
     this.isAnimating = false; // Add this flag
-    this.timer = 14; // Add timer property
+    this.timer = 120; // Add timer property
     this.timerInterval = null; // Add timer interval property
     this.tutorial = true;
 
@@ -243,7 +243,7 @@ class CrushGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 14;
+    this.timer = 120;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
@@ -588,7 +588,7 @@ class CrushGame {
 <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
-};display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+};display:flex;color: #FFF;text-shadow: 4px 4px 120px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>${'BRŪKŠT'}</div>
     <div>${'BRŪKŠT'}</div>
   </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
@@ -599,7 +599,7 @@ ${`<div style="${
 
 
 <div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
-<div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+<div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
 <div style="text-align: center; color: white; font-size: 20px; font-family:${
@@ -609,7 +609,7 @@ ${`<div style="${
 </div>
 
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
-    <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+    <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
   <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
