@@ -26,6 +26,7 @@ import {
   crushElement7NevezisSpecial,
   backgroundNevezis,
   tutorial,
+  close,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -532,6 +533,11 @@ class CrushGame {
     );
     myCanvas.innerHTML = `
       <div class="game-container" id="game-container">
+        ${`
+      <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
+      <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+      </div>`}
+           
         ${new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML}
           <img class="new_highscore_stars" src=${
             newHighscoreStarsImage.src
@@ -1291,8 +1297,17 @@ ${`<div style="${
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
     }
+    if (this.customer !== 'Pigu.lt' && !this.campaignUrl) {
+      document.getElementById('close-game-container').addEventListener('click', this.closeGame);
+    }
   }
-
+  closeGame = () => {
+    const element = document.getElementById('boomio-crush-container');
+    if (element && element.parentNode) {
+      this.gameClosed = true;
+      element.parentNode.removeChild(element);
+    }
+  };
   removeRules = () => {
     if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       document.getElementById('boomio-rules-checkbox-error').innerText =
