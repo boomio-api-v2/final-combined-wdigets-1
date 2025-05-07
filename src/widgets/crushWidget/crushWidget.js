@@ -26,6 +26,7 @@ import {
   crushElement7NevezisSpecial,
   backgroundNevezis,
   tutorial,
+  close,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -532,6 +533,11 @@ class CrushGame {
     );
     myCanvas.innerHTML = `
       <div class="game-container" id="game-container">
+        ${`
+      <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
+      <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+      </div>`}
+           
         ${new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML}
           <img class="new_highscore_stars" src=${
             newHighscoreStarsImage.src
@@ -582,7 +588,7 @@ class CrushGame {
 <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
-};display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
+};display:flex;color: #FFF;text-shadow: 4px 4px 120px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>${'BRŪKŠT'}</div>
     <div>${'BRŪKŠT'}</div>
   </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
@@ -593,7 +599,7 @@ ${`<div style="${
 
 
 <div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
-<div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+<div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
 <div style="text-align: center; color: white; font-size: 20px; font-family:${
@@ -603,7 +609,7 @@ ${`<div style="${
 </div>
 
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
-    <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
+    <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
   <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
@@ -1291,8 +1297,17 @@ ${`<div style="${
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
     }
+    if (this.customer !== 'Pigu.lt' && !this.campaignUrl) {
+      document.getElementById('close-game-container').addEventListener('click', this.closeGame);
+    }
   }
-
+  closeGame = () => {
+    const element = document.getElementById('boomio-crush-container');
+    if (element && element.parentNode) {
+      this.gameClosed = true;
+      element.parentNode.removeChild(element);
+    }
+  };
   removeRules = () => {
     if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       document.getElementById('boomio-rules-checkbox-error').innerText =
