@@ -1096,12 +1096,40 @@ ${
       });
     }
     const closeGame = () => {
+      if (this.gameClosed) return;
+      this.gameClosed = true;
+
+      // Remove the main game container
       const element = document.getElementById('boomio-runner-container');
       if (element && element.parentNode) {
-        this.gameClosed = true;
         element.parentNode.removeChild(element);
       }
+
+      // Stop animation loop
+      stopGame = true;
+
+      // Clear player animation
+      clearInterval(playerAnimate);
+
+      // Clear orientation timer
+      clearTimeout(orientationTimeout);
+
+      // Remove all event listeners
+      window.removeEventListener('resize', Resize);
+      window.removeEventListener('orientationchange', checkOrientationAndPause);
+      document.removeEventListener('keydown', keyRightHandler);
+      document.removeEventListener('keyup', keyLeftHandler);
+
+      // Optionally clear intervals/timeouts if you've stored them
+      // Cancel any delayed timeouts, e.g., tutorial
+      if (this.clickEventHandler) {
+        const canvas = document.getElementById('boomio-runner-canvas');
+        if (canvas) canvas.removeEventListener('click', this.clickEventHandler);
+      }
+
+      console.log('Game closed successfully');
     };
+
     const showRules = () => {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-runner-canvas');
