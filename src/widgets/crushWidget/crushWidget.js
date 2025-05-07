@@ -80,7 +80,6 @@ class CrushGame {
       this.generateValidGrid();
       this.addEventListeners();
       setTimeout(() => {
-        console.log('start');
         if (this.gameCount === 0) {
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
@@ -691,7 +690,7 @@ ${`<div style="${
   generateValidGrid() {
     do {
       this.generateGrid();
-    } while (this.hasInitialMatches());
+    } while (this.hasInitialMatches() || !this.findFirstPossibleMove());
   }
 
   generateGrid() {
@@ -714,7 +713,7 @@ ${`<div style="${
     const colorKeys = Object.keys(this.colors);
     const baseColor = colorKeys[Math.floor(Math.random() * colorKeys.length)];
 
-    // Let's say 10% chance to create a "3Points" tile:
+    // Only add 3Points if baseColor is allowed and not already special
     const threePointColors = [
       'crushElement1Nevezis',
       'crushElement2Nevezis',
@@ -724,11 +723,11 @@ ${`<div style="${
       'crushElement6Nevezis',
       'crushElement7Nevezis',
     ];
+
     if (Math.random() < 0.1 && threePointColors.includes(baseColor)) {
       return baseColor + '3Points';
     }
 
-    // Otherwise return a normal color
     return baseColor;
   }
 
@@ -808,7 +807,7 @@ ${`<div style="${
         // Get a random color.
         let newColor = this.getRandomColor();
         // With a 10% chance, convert it to its special variant.
-        if (Math.random() < 0.1) {
+        if (!newColor.includes('3Points') && Math.random() < 0.1) {
           newColor = newColor === 'yellow' ? 'crushElement1NevezisSpecial' : newColor + 'Special';
         }
         newTilesMap[col].push(newColor);
@@ -1701,6 +1700,13 @@ ${`<div style="${
           this.processMatches(chain + 1);
         });
       });
+    }
+    if (!this.findFirstPossibleMove()) {
+      console.warn('No more moves left! Regenerating board...');
+      setTimeout(() => {
+        this.generateValidGrid();
+        this.drawGrid();
+      }, 500); // give time for final animation if any
     }
   }
 

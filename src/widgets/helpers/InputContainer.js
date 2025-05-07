@@ -654,7 +654,7 @@ ${
               : this.prop === 'Zemaitijos Pienas'
               ? 'href=https://www.boomio.com/zemaitijos-pienas-zaidimo-taisykles'
               : this.prop === 'Nykstukas'
-              ? 'href=https://docs.google.com/document/d/1yC2GiqFN_wGIvvgAsaG9w1GhcykdCHTEz6wV5nax2xY/edit?usp=sharing'
+              ? 'href=https://www.nykstukozaidimas.lt/taisykles/'
               : this.prop === 'Magija'
               ? 'href=https://www.boomio.com/zemaitijos-pienas-magija-zaidimo-taisykles'
               : this.prop === 'Nevezis'
