@@ -285,7 +285,7 @@ export class CompetitionScoreTableContainer {
           ? this.language === 'EN'
             ? 'Your score'
             : 'Tavo rezultatas'
-          : scoreboard[index].team
+          : scoreboard[userBestPlace].team
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
