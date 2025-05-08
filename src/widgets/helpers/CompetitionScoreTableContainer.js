@@ -242,7 +242,7 @@ export class CompetitionScoreTableContainer {
             : this.language === 'EN'
             ? enNicknames[index]
             : ltNicknames[index]
-          : team[index]
+          : scoreboard[index].team
       }
     </td>
               <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
