@@ -253,7 +253,7 @@ export class CompetitionScoreTableContainer {
             </tr>`;
     });
 
-    if (userBestPlace > 20) {
+    if (userBestPlace > (this.prop === 'Gamtos Ateitis' ? 100 : 20)) {
       tableHTML += `
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
             <td style="padding-left:8px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
