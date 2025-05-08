@@ -29,7 +29,11 @@ export class CompetitionScoreTableContainer {
         ? this.scoreTable?.teams_scoreboard
         : this.scoreTable?.scoreboard || [];
     console.log(this.scoreTable);
-    const userBestPlace = parseInt(this.scoreTable.user_best_place);
+    const userBestPlace = parseInt(
+      this.prop === 'Gamtos Ateitis'
+        ? this.scoreTable.team_best_place
+        : this.scoreTable.user_best_place,
+    );
     const userBestScore = parseInt(this.scoreTable.user_best_score);
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -240,7 +244,7 @@ export class CompetitionScoreTableContainer {
             : this.language === 'EN'
             ? enNicknames[index]
             : ltNicknames[index]
-          : item.team
+          : scoreboard[index].team
       }
     </td>
               <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
@@ -330,7 +334,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 2025) ||
         (this.prop === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Perlas GO' && !userId) ||
-        (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.user_best_place < 10) ||
+        (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.team_best_place < 10) ||
         (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Nevezis' && this.scoreTable?.user_best_place <= 10) ||
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
