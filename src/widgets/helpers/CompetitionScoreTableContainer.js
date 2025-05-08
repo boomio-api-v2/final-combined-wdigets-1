@@ -215,23 +215,6 @@ export class CompetitionScoreTableContainer {
             this.prop.includes('demo')
             ? 'rgba(61, 73, 40, 1)'
             : 'white'
-          : this.prop === 'Barbora' ||
-            this.prop === 'Fpro' ||
-            this.prop === 'Vilvi' ||
-            this.prop === 'Fantazijos' ||
-            this.prop === 'Makalius' ||
-            this.prop === 'Pieno Žvaigždės' ||
-            this.prop === 'LemonGym' ||
-            this.prop === 'Perlas GO' ||
-            this.prop === 'Daumantu' ||
-            this.prop === 'Dentsu' ||
-            this.prop === 'Zemaitijos Pienas' ||
-            this.prop === 'Nykstukas' ||
-            this.prop === 'Nevezis' ||
-            this.prop === 'Magija' ||
-            this.prop === 'Gamtos Ateitis' ||
-            this.prop.includes('demo')
-          ? 'white'
           : 'white';
       const boxShadow =
         index + 1 === userBestPlace ? '2px 4px 3.4px 0px rgba(0, 0, 0, 0.10) inset' : 'none';
@@ -294,7 +277,11 @@ export class CompetitionScoreTableContainer {
                   ? 'rgba(61, 73, 40, 1)'
                   : 'white'
               }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        this.language === 'EN' ? 'Your score' : 'Tavo rezultatas'
+        this.prop !== 'Gamtos Ateitis'
+          ? this.language === 'EN'
+            ? 'Your score'
+            : 'Tavo rezultatas'
+          : item.team
       }</td>
               <td style="width: 48px; color: ${
                 this.prop === 'Barbora' ||
