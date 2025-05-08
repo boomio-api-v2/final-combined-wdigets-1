@@ -30,7 +30,9 @@ export class CompetitionScoreTableContainer {
         : this.scoreTable?.scoreboard || [];
     console.log(this.scoreTable);
     const userBestPlace = parseInt(
-      this.prop === 'Gamtos Ateitis' ? this.team_best_place : this.scoreTable.user_best_place,
+      this.prop === 'Gamtos Ateitis'
+        ? this.scoreTable.team_best_place
+        : this.scoreTable.user_best_place,
     );
     const userBestScore = parseInt(this.scoreTable.user_best_score);
     const currentPageUrl = window.location.href;
