@@ -40,6 +40,7 @@ import {
   runnerbackgroundNykstukas,
   nykstukasIntro,
   nykstukasOrientation,
+  close,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -83,6 +84,10 @@ class runnerWidget {
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
+      ${`
+    <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;top:calc(0% + 30px);left:calc(100% - 30px);">
+    <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+    </div>`}
 <div id="fullscreenButton" style="height:36px;display:none; width:200px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 5; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px;">
   <div style="margin-top:7px; text-align: center; color: rgba(61, 73, 40, 1); font-size: 22px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word; cursor:pointer;">Pradėti</div>
 </div>
@@ -927,7 +932,7 @@ ${
 
       const competitionTable = document.querySelector('.competition-table-container');
       const didYouKnowTable = document.querySelector('.did-you-know-container');
-      if (isNarrowScreen) {
+      if (isNarrowScreen && didYouKnowTable && competitionTable) {
         didYouKnowTable.style.scale = '0.65';
         didYouKnowTable.style.left = 'calc(50% - 60px)';
         didYouKnowTable.style.top = 'calc(50% - 144px)';
@@ -1036,11 +1041,14 @@ ${
 
           toggleHide(mainMenuBlock);
           setTimeout(() => {
-            document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-            document.getElementById('background_intro').style.opacity = 0;
-            setTimeout(() => {
-              document.getElementById('background_intro').style.display = 'none';
-            }, 2500);
+            const backgroundIntro = document.getElementById('background_intro');
+            if (backgroundIntro) {
+              backgroundIntro.style.transition = 'opacity 1s ease';
+              backgroundIntro.style.opacity = 0;
+              setTimeout(() => {
+                backgroundIntro.style.display = 'none';
+              }, 2500);
+            }
           }, 2500); //intro speed
 
           const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -1068,6 +1076,11 @@ ${
             const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
             competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
           }
+
+          document.getElementById('close-game-container').addEventListener('click', () => {
+            closeGame();
+          });
+
           gameEndButton.addEventListener('click', Replay);
           bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
         };
@@ -1082,6 +1095,40 @@ ${
         }
       });
     }
+    const closeGame = () => {
+      if (this.gameClosed) return;
+      this.gameClosed = true;
+
+      // Remove the main game container
+      const element = document.getElementById('boomio-runner-container');
+      if (element && element.parentNode) {
+        element.parentNode.removeChild(element);
+      }
+
+      // Stop animation loop
+      stopGame = true;
+
+      // Clear player animation
+      clearInterval(playerAnimate);
+
+      // Clear orientation timer
+      clearTimeout(orientationTimeout);
+
+      // Remove all event listeners
+      window.removeEventListener('resize', Resize);
+      window.removeEventListener('orientationchange', checkOrientationAndPause);
+      document.removeEventListener('keydown', keyRightHandler);
+      document.removeEventListener('keyup', keyLeftHandler);
+
+      // Optionally clear intervals/timeouts if you've stored them
+      // Cancel any delayed timeouts, e.g., tutorial
+      if (this.clickEventHandler) {
+        const canvas = document.getElementById('boomio-runner-canvas');
+        if (canvas) canvas.removeEventListener('click', this.clickEventHandler);
+      }
+
+      console.log('Game closed successfully');
+    };
 
     const showRules = () => {
       setTimeout(() => {
