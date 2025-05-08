@@ -45,7 +45,7 @@ export class PointScoreTableContainer {
     ${
       this.currentScore <= 3000 ? '1 DIENAS LEMON GYM ABONEMENTU' : '3 DIENu LEMON GYM ABONEMENTU'
     }</div>
-    <div style="line-height: 150%;margin-bottom:30px;width:100%;margin-top:20px; text-align: center; color: white; font-size: 12px; font-family: Georama; font-weight:400; word-wrap: break-word;"> 
+    <div style="line-height: 150%;width:100%;margin-top:20px; text-align: center; color: white; font-size: 12px; font-family: Georama; font-weight:400; word-wrap: break-word;"> 
     ${
       this.prop === 'LemonGym'
         ? '* Tu vari izmantot laimēto abonementu TIKAI tad, ja šobrīd tev nav cita aktīva LEMON GYM abonementa.'
