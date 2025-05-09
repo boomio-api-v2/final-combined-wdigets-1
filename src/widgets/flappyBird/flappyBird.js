@@ -104,6 +104,7 @@ import {
   demoGame18,
   demoGame19,
   demoGame20,
+  demoGame21,
   LemonGymBackground,
   LemonGymintro,
 } from './constants';
@@ -457,6 +458,8 @@ class FlappyBird {
         ? demoGame19
         : this.customer === 'demo-20'
         ? demoGame20
+        : this.customer === 'demo-21'
+        ? demoGame21
         : this.customer === 'LemonGym'
         ? LemonGymBackground
         : this.customer === 'Penki Sezonai' && mainPenki;

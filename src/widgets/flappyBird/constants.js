@@ -225,3 +225,5 @@ export const demoGame19 =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame19.png';
 export const demoGame20 =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame20.png';
+export const demoGame21 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/demoGames/demoGame21.png';
