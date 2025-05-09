@@ -55,6 +55,8 @@ import {
   mainImagMagija,
   backgroundMagija,
   introMagija,
+  mainImagDemo,
+  backgroundDemo,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -80,7 +82,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Magija';
+    this.customer = this.config.business_name ? this.config.business_name : 'demo-22';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -119,6 +121,8 @@ class DoodleWidget {
         ? mainImagePerlasGo
         : this.customer === 'Magija'
         ? mainImagMagija
+        : this.customer === 'demo-22'
+        ? mainImagDemo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? mainImageAkropolisLV
@@ -168,6 +172,8 @@ class DoodleWidget {
         ? backgroundPerlasGo
         : this.customer === 'Magija'
         ? backgroundMagija
+        : this.customer === 'demo-22'
+        ? backgroundDemo
         : this.customer === 'Akropolis'
         ? this.language === 'LV'
           ? backgroundRedAkropolisLV
@@ -222,10 +228,18 @@ class DoodleWidget {
           () => {
             document.getElementById('background_intro').style.display = 'none';
           },
-          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' ? 0 : 2500,
+          this.customer === 'Pigu.lt'
+            ? 2000
+            : this.customer === 'Perlas GO' || this.customer.includes('demo')
+            ? 0
+            : 2500,
         );
       },
-      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' ? 0 : 2500,
+      this.customer === 'Pigu.lt'
+        ? 2000
+        : this.customer === 'Perlas GO' || this.customer.includes('demo')
+        ? 0
+        : 2500,
     ); //intro speed
   }
 
