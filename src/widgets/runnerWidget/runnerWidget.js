@@ -56,7 +56,7 @@ class runnerWidget {
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
-    this.customer = this.config.business_name ? this.config.business_name : 'demo-21';
+    this.customer = this.config.business_name ? this.config.business_name : 'demo-20';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -144,26 +144,26 @@ class runnerWidget {
       <div class="boomio-runner-controlBlock">
         ${this.language === 'EN' ? 'Rules' : 'Taisyklės'}
         <img class='boomio-runner-controlButton' src="${
-          this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-21'
+          this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
             ? upDentsu
             : up
         }" alt="">
         <div><img class='boomio-runner-controlButton' src="${
-          this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-21'
+          this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
             ? leftDentsu
             : left
         }" alt="">
           <img class='boomio-runner-controlButton' src="${
             this.customer === 'Dentsu' ||
             this.customer === 'Nykstukas' ||
-            this.customer === 'demo-21'
+            this.customer === 'demo-20'
               ? downDentsu
               : right
           }" alt="">
           <img class='boomio-runner-controlButton' src="${
             this.customer === 'Dentsu' ||
             this.customer === 'Nykstukas' ||
-            this.customer === 'demo-21'
+            this.customer === 'demo-20'
               ? rightDentsu
               : down
           }" alt="">
@@ -203,12 +203,12 @@ class runnerWidget {
 
 <div class="boomio-runner-leftButtonsBlock boomio-hide">
   <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-21'
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
       ? leftDentsu
       : left
   }" alt="">
   <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-21'
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
       ? rightDentsu
       : right
   }" alt="">
@@ -216,12 +216,12 @@ class runnerWidget {
 
 <div class="boomio-runner-rightButtonsBlock boomio-hide">
   <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-21'
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
       ? upDentsu
       : up
   }" alt="">
   <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-21'
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
       ? downDentsu
       : down
   }" alt="">
@@ -321,7 +321,7 @@ ${
         ? runnerbackgroundDentsu
         : this.customer === 'Nykstukas'
         ? runnerbackgroundNykstukas
-        : this.customer === 'demo-21'
+        : this.customer === 'demo-20'
         ? runnerbackgroundDemo
         : runnerbackground
     }');">
@@ -336,7 +336,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/pioneer.png" alt="">
@@ -350,7 +350,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/bomb.png" alt="">
@@ -364,7 +364,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/motorbike.png" alt="">
@@ -378,7 +378,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/trees.png" alt="">
@@ -392,7 +392,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/gigachad.png" alt="">
@@ -406,7 +406,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/dead cat.png" alt="">
@@ -420,7 +420,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/guitar.png" alt="">
@@ -434,7 +434,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/earth.png" alt="">
@@ -448,7 +448,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/skull.png" alt="">
@@ -462,7 +462,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/bouncer.png" alt="">
@@ -476,7 +476,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/slide.png" alt="">
@@ -508,7 +508,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/success.png" alt="">
@@ -613,7 +613,7 @@ ${
     const loader = new PxLoader();
     var gameOverAlreadyHandled = false;
     this.config = localStorageService.getDefaultConfig();
-    const customer = this.config.business_name ? this.config.business_name : 'demo-21';
+    const customer = this.config.business_name ? this.config.business_name : 'demo-20';
 
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
@@ -699,7 +699,7 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
-          : this.customer === 'demo-21'
+          : this.customer === 'demo-20'
           ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/run`,
@@ -712,7 +712,7 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
-          : this.customer === 'demo-21'
+          : this.customer === 'demo-20'
           ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/slide`,
@@ -725,7 +725,7 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
-          : this.customer === 'demo-21'
+          : this.customer === 'demo-20'
           ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/jump`,
@@ -738,7 +738,7 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
-          : this.customer === 'demo-21'
+          : this.customer === 'demo-20'
           ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/death`,
@@ -751,7 +751,7 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
-          : this.customer === 'demo-21'
+          : this.customer === 'demo-20'
           ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/barriers`,
@@ -764,7 +764,7 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
-          : this.customer === 'demo-21'
+          : this.customer === 'demo-20'
           ? 'assetsDemo'
           : 'assetsTesting'
       }/bg`,
@@ -777,7 +777,7 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
-          : this.customer === 'demo-21'
+          : this.customer === 'demo-20'
           ? 'assetsDemo'
           : 'assetsTesting'
       }/fg`,
@@ -791,7 +791,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/sprites/collect/shield.png`,
@@ -802,7 +802,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/sprites/collect/shieldIcon.png`,
@@ -813,7 +813,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/sprites/collect/boosterIcon.png`,
@@ -824,7 +824,7 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
-            : this.customer === 'demo-21'
+            : this.customer === 'demo-20'
             ? 'assetsDemo'
             : 'assetsTesting'
         }/sprites/collect/coin.png`,
@@ -1105,7 +1105,7 @@ ${
                 ? runnerbackgroundDentsu
                 : customer === 'Nykstukas'
                 ? runnerbackgroundNykstukas
-                : customer === 'demo-21'
+                : customer === 'demo-20'
                 ? runnerbackgroundDemo
                 : runnerbackground
             })`; // Ensure url syntax
