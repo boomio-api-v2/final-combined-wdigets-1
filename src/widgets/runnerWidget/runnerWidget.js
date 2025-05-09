@@ -314,6 +314,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/pioneer.png" alt="">
           <div class='boomio-achiveText'>
@@ -326,6 +328,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/bomb.png" alt="">
           <div class='boomio-achiveText'>
@@ -338,6 +342,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/motorbike.png" alt="">
           <div class='boomio-achiveText'>
@@ -350,6 +356,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/trees.png" alt="">
           <div class='boomio-achiveText'>
@@ -362,6 +370,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/gigachad.png" alt="">
           <div class='boomio-achiveText'>
@@ -374,6 +384,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/dead cat.png" alt="">
           <div class='boomio-achiveText'>
@@ -386,6 +398,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/guitar.png" alt="">
           <div class='boomio-achiveText'>
@@ -398,6 +412,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/earth.png" alt="">
           <div class='boomio-achiveText'>
@@ -410,6 +426,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/skull.png" alt="">
           <div class='boomio-achiveText'>
@@ -422,6 +440,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/bouncer.png" alt="">
           <div class='boomio-achiveText'>
@@ -434,6 +454,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/slide.png" alt="">
           <div class='boomio-achiveText'>
@@ -464,6 +486,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/gui/success.png" alt="">
           <div class='boomio-achiveText'>
@@ -653,6 +677,8 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
+          : this.customer === 'demo-20'
+          ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/run`,
       8,
@@ -664,6 +690,8 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
+          : this.customer === 'demo-20'
+          ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/slide`,
       6,
@@ -675,6 +703,8 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
+          : this.customer === 'demo-20'
+          ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/jump`,
       6,
@@ -686,6 +716,8 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
+          : this.customer === 'demo-20'
+          ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/death`,
       4,
@@ -697,6 +729,8 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
+          : this.customer === 'demo-20'
+          ? 'assetsDemo'
           : 'assetsTesting'
       }/sprites/barriers`,
       7,
@@ -708,6 +742,8 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
+          : this.customer === 'demo-20'
+          ? 'assetsDemo'
           : 'assetsTesting'
       }/bg`,
       8,
@@ -719,6 +755,8 @@ ${
           ? 'assetsDentsu'
           : this.customer === 'Nykstukas'
           ? 'assetsNykstukas'
+          : this.customer === 'demo-20'
+          ? 'assetsDemo'
           : 'assetsTesting'
       }/fg`,
       2,
@@ -731,6 +769,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/sprites/collect/shield.png`,
       ),
@@ -740,6 +780,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/sprites/collect/shieldIcon.png`,
       ),
@@ -749,6 +791,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/sprites/collect/boosterIcon.png`,
       ),
@@ -758,6 +802,8 @@ ${
             ? 'assetsDentsu'
             : this.customer === 'Nykstukas'
             ? 'assetsNykstukas'
+            : this.customer === 'demo-20'
+            ? 'assetsDemo'
             : 'assetsTesting'
         }/sprites/collect/coin.png`,
       ),
