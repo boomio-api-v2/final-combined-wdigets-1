@@ -38,8 +38,8 @@ import {
   dentsuOrientation,
   uncheckIcon,
   runnerbackgroundNykstukas,
+  runnerbackgroundDemo,
   nykstukasIntro,
-  nykstukasOrientation,
   close,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -299,6 +299,8 @@ ${
         ? runnerbackgroundDentsu
         : this.customer === 'Nykstukas'
         ? runnerbackgroundNykstukas
+        : this.customer === 'demo-20'
+        ? runnerbackgroundDemo
         : runnerbackground
     }');">
       <div class="boomio-statsHolder">

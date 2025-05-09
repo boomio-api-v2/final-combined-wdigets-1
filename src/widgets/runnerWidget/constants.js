@@ -121,3 +121,6 @@ export const nykstukasIntro =
 
 export const dentsuOrientation =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsNykstukas/gui/orientation.png';
+
+export const runnerbackgroundDemo =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assetsDemo/bg/bg.png';
