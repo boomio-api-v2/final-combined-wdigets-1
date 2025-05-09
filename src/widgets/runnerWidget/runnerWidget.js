@@ -56,7 +56,7 @@ class runnerWidget {
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
-    this.customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
+    this.customer = this.config.business_name ? this.config.business_name : 'demo-20';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -89,7 +89,9 @@ class runnerWidget {
     <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
     </div>`}
 <div id="fullscreenButton" style="height:36px;display:none; width:200px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 5; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px;">
-  <div style="margin-top:7px; text-align: center; color: rgba(61, 73, 40, 1); font-size: 22px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word; cursor:pointer;">Pradėti</div>
+  <div style="margin-top:7px; text-align: center; color: rgba(61, 73, 40, 1); font-size: 22px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word; cursor:pointer;">${
+    this.language ? 'Start' : 'Pradėti'
+  }</div>
 </div>
 
     <img src=''
@@ -140,18 +142,30 @@ class runnerWidget {
   <div class="boomio-runner-main">
     <div class="boomio-runner-wrapper boomio-screenRatio">
       <div class="boomio-runner-controlBlock">
-        Taisyklės
+        ${this.language === 'EN' ? 'Rules' : 'Taisyklės'}
         <img class='boomio-runner-controlButton' src="${
-          this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? upDentsu : up
+          this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
+            ? upDentsu
+            : up
         }" alt="">
         <div><img class='boomio-runner-controlButton' src="${
-          this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? leftDentsu : left
+          this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
+            ? leftDentsu
+            : left
         }" alt="">
           <img class='boomio-runner-controlButton' src="${
-            this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? downDentsu : right
+            this.customer === 'Dentsu' ||
+            this.customer === 'Nykstukas' ||
+            this.customer === 'demo-20'
+              ? downDentsu
+              : right
           }" alt="">
           <img class='boomio-runner-controlButton' src="${
-            this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? rightDentsu : down
+            this.customer === 'Dentsu' ||
+            this.customer === 'Nykstukas' ||
+            this.customer === 'demo-20'
+              ? rightDentsu
+              : down
           }" alt="">
         </div>
       </div>
@@ -189,19 +203,27 @@ class runnerWidget {
 
 <div class="boomio-runner-leftButtonsBlock boomio-hide">
   <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? leftDentsu : left
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
+      ? leftDentsu
+      : left
   }" alt="">
   <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? rightDentsu : right
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
+      ? rightDentsu
+      : right
   }" alt="">
 </div>
 
 <div class="boomio-runner-rightButtonsBlock boomio-hide">
   <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? upDentsu : up
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
+      ? upDentsu
+      : up
   }" alt="">
   <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${
-    this.customer === 'Dentsu' || this.customer === 'Nykstukas' ? downDentsu : down
+    this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20'
+      ? downDentsu
+      : down
   }" alt="">
 </div>
 
@@ -591,7 +613,7 @@ ${
     const loader = new PxLoader();
     var gameOverAlreadyHandled = false;
     this.config = localStorageService.getDefaultConfig();
-    const customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
+    const customer = this.config.business_name ? this.config.business_name : 'demo-20';
 
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
@@ -1083,6 +1105,8 @@ ${
                 ? runnerbackgroundDentsu
                 : customer === 'Nykstukas'
                 ? runnerbackgroundNykstukas
+                : customer === 'demo-20'
+                ? runnerbackgroundDemo
                 : runnerbackground
             })`; // Ensure url syntax
           }
@@ -1120,6 +1144,7 @@ ${
 
           competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
           const gameEndButton = document.getElementById('boomio-game-play-again');
+          console.log(customer);
           if (customer === 'Nykstukas') {
             const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
             competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
