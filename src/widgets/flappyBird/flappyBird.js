@@ -1471,8 +1471,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
-              console.log('checkboxChange', checkboxChange);
-
               if (!checkboxChange || !checkboxChange2) {
                 document.getElementById('competition-checkbox-error').innerText =
                   this.language === 'LV'

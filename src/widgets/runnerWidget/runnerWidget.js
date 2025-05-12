@@ -1144,7 +1144,6 @@ ${
 
           competitionConfirmField.addEventListener('click', clickEventHandlerShowRules);
           const gameEndButton = document.getElementById('boomio-game-play-again');
-          console.log(customer);
           if (customer === 'Nykstukas') {
             const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
             competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
