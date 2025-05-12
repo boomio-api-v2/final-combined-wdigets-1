@@ -384,7 +384,7 @@ export class InputRegisterContainer {
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
           this.prop === 'Magija'
             ? 'auto'
-            : this.language === 'LV' || this.prop === 'Perlas GO'
+            : this.language === 'LV' || this.prop === 'Perlas GO' || this.prop === 'Nevezis'
             ? '15px'
             : '28px'
         } ;margin-right:30px;display:${
@@ -392,7 +392,8 @@ export class InputRegisterContainer {
       this.prop === 'Eurovaistine' ||
       this.prop === 'Vilvi' ||
       this.prop === 'Perlas GO' ||
-      this.prop === 'Magija'
+      this.prop === 'Magija' ||
+      this.prop === 'Nevezis'
         ? 'block'
         : 'none'
     } ;left: 34px; top:${

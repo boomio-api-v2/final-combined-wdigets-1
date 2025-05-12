@@ -1098,7 +1098,17 @@ ${`<div style="${
         const emailInput = document.querySelector('.boomio-competition-email-input-field');
         const cyrillicRegex = /[\u0400-\u04FF]/;
         const containsCyrillic = (input) => cyrillicRegex.test(input.value);
+        const isValidEmail = (email) => {
+          // Enhanced regex for email validation with TLD enforcement
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+          // Additional check to prevent consecutive dots
+          if (email.includes('..')) {
+            return false;
+          }
+
+          return emailRegex.test(email);
+        };
         if (containsCyrillic(emailInput)) {
           document.getElementById('competition-email-error').innerText = '';
           document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
@@ -1122,12 +1132,10 @@ ${`<div style="${
               ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
               : this.customer === 'Vilvi'
               ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
-              : 'Registruojantis, privaloma sutikti gauti PPC AKROPOLIS naujienas - tokiu būdu susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
+              : 'Norint tęsti, privaloma sutikti su įmonės privatumo politika. ';
 
           document.getElementById('competition-checkbox-error').style.backgroundColor =
-            this.customer === 'Akropolis' && this.language !== 'LV'
-              ? '#FFBABA'
-              : this.customer === 'Perlas GO' && 'white';
+            this.customer === 'Akropolis' && this.language !== 'LV' ? '#FFBABA' : 'white';
 
           document.getElementById('competition-name-error').innerText = '';
 
@@ -1151,15 +1159,17 @@ ${`<div style="${
             'transparent';
         }
 
-        if (this.customer === 'Perlas GO') {
-          if (!isValidEmail(emailInput?.value)) {
-            document.getElementById('competition-email-error').innerText =
-              'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
-            document.getElementById('competition-email-error').zIndex = 1;
-            document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+        if (!isValidEmail(emailInput?.value)) {
+          document.getElementById('competition-email-error').innerText =
+            'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+          document.getElementById('competition-email-error').zIndex = 1;
+          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
-            return;
-          }
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+
+          return;
         }
 
         if (this.showCompetitiveRegistration && this.checkboxChange) {
