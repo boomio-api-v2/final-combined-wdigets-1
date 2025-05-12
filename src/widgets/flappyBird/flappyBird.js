@@ -1465,11 +1465,15 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         if (this.gameCount === 0) {
           const emailInput = document.querySelector('.boomio-competition-email-input-field');
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
+          const checkboxChange2 = this.checkboxChange2;
+
           const phone = document.querySelector('.boomio-competition-phone-input-field');
 
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
-              if (!checkboxChange) {
+              console.log('checkboxChange', checkboxChange);
+
+              if (!checkboxChange || !checkboxChange2) {
                 document.getElementById('competition-checkbox-error').innerText =
                   this.language === 'LV'
                     ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
@@ -1491,9 +1495,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-email-error').innerText = '';
                 document.getElementById('competition-email-error').style.backgroundColor =
                   'transparent';
-                if (this.customer.includes('demo')) {
-                  return;
-                }
+                return;
               }
 
               if (emailInput?.value === '' || emailInput?.value === null) {
