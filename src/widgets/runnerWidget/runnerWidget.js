@@ -1489,6 +1489,43 @@ ${
           shareContainer.style.opacity = 1;
         }, 100);
       } else {
+        if (this.customer === 'Nykstukas') {
+          boomioService
+            .signal('ROUND_FINISHED', 'signal', {
+              score: this.currentScore,
+              shared_somewhere: this.shareClicked,
+            })
+            .then((response) => {
+              this.userBestPlace = response.user_best_place;
+              if (this.showCompetitiveRegistration === 'points') {
+                this.scoreTable = response;
+                this.scoreTableContainerInstance.updateProps(
+                  this.customer,
+                  this.scoreTable,
+                  this.currentScore,
+                );
+              }
+              if (this.showCompetitiveRegistration === 'competition') {
+                this.scoreTable = response;
+                this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+              }
+
+              if (this.showCompetitiveRegistration === 'collectable') {
+                this.collection = response?.collection ? response?.collection : this.collection;
+                this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                this.scoreTableContainerInstance.updateProps(
+                  this.customer,
+                  this.collectables,
+                  this.collection,
+                  this.just_won,
+                );
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+
         const competitionTableContainer = document.querySelector('.competition-table-container');
         competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         competitionTableContainer.style.display = 'block';
@@ -1548,7 +1585,7 @@ ${
 
     const showCompetitiveRegistrationTable = () => {
       setTimeout(() => {
-        if (this.showCompetitiveRegistration) {
+        if (this.showCompetitiveRegistration && this.customer !== 'Nykstukas') {
           boomioService
             .signal('ROUND_FINISHED', 'signal', {
               score: Math.floor(this.currentScore),
@@ -2173,8 +2210,6 @@ ${
                 toggleHide(lifeContainer);
 
                 showCompetitiveRegistrationTable();
-
-                console.log('over');
                 rightButtonsBlock.classList.add('boomio-hide');
                 leftButtonsBlock.classList.add('boomio-hide');
                 gameOverCoinsBlock.innerText =
