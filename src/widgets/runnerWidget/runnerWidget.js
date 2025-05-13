@@ -1016,7 +1016,7 @@ ${
       const competitionTable = document.querySelector('.competition-table-container');
       const didYouKnowTable = document.querySelector('.did-you-know-container');
       const shareContainer = document.querySelector('.share-container');
-      if (shareContainer) {
+      if (isNarrowScreen && shareContainer) {
         shareContainer.style.left = 'calc(50% - 60px)';
         shareContainer.style.top = 'calc(50% - 144px)';
         shareContainer.style.scale = '0.65';
