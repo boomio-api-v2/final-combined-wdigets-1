@@ -46,17 +46,20 @@ import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { ShareContainer } from '../helpers/ShareContainer';
 
 class runnerWidget {
   static ctx;
 
   constructor() {
+    this.shareClicked = false;
+
     this.config = localStorageService.getDefaultConfig();
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
-    this.customer = this.config.business_name ? this.config.business_name : 'demo-20';
+    this.customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -602,9 +605,19 @@ ${
 
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
+
+      this.shareContainer = new ShareContainer(this.customer);
+      gameContainer.appendChild(this.shareContainer.containerDiv);
     }
 
     this.startGame(this.scoreTableContainerInstance);
+    document.addEventListener('shareClicked', (event) => {
+      if (this.shareClicked === false) {
+        console.log('shareClicked');
+        this.shareClicked = true;
+        this.currentScore = this.currentScore + 1000;
+      }
+    });
   };
 
   startGame = () => {
@@ -613,7 +626,7 @@ ${
     const loader = new PxLoader();
     var gameOverAlreadyHandled = false;
     this.config = localStorageService.getDefaultConfig();
-    const customer = this.config.business_name ? this.config.business_name : 'demo-20';
+    const customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
 
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
@@ -1002,6 +1015,12 @@ ${
 
       const competitionTable = document.querySelector('.competition-table-container');
       const didYouKnowTable = document.querySelector('.did-you-know-container');
+      const shareContainer = document.querySelector('.share-container');
+      if (shareContainer) {
+        shareContainer.style.left = 'calc(50% - 60px)';
+        shareContainer.style.top = 'calc(50% - 144px)';
+        shareContainer.style.scale = '0.65';
+      }
       if (isNarrowScreen && didYouKnowTable && competitionTable) {
         didYouKnowTable.style.scale = '0.65';
         didYouKnowTable.style.left = 'calc(50% - 60px)';
@@ -1146,7 +1165,11 @@ ${
           const gameEndButton = document.getElementById('boomio-game-play-again');
           if (customer === 'Nykstukas') {
             const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
-            competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+            competitionDidYouKnow.addEventListener('click', () =>
+              clickEventHandlerDidYouKnow(false),
+            );
+            const competitionShare = document.getElementById('boomio-close-share');
+            competitionShare.addEventListener('click', () => clickEventHandlerDidYouKnow(true));
           }
 
           document.getElementById('close-game-container').addEventListener('click', () => {
@@ -1435,9 +1458,12 @@ ${
       }, 300);
     };
 
-    const clickEventHandlerDidYouKnow = () => {
-      const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+    const clickEventHandlerDidYouKnow = (closeShare) => {
+      const shareContainer = document.querySelector('.share-container');
 
+      const didYouKnowTableContainer = closeShare
+        ? document.querySelector('.share-container')
+        : document.querySelector('.did-you-know-container');
       didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       setTimeout(() => {
         didYouKnowTableContainer.style.height = '10px';
@@ -1447,21 +1473,38 @@ ${
       setTimeout(() => {
         didYouKnowTableContainer.style.display = 'none';
       }, 1000);
-      const competitionTableContainer = document.querySelector('.competition-table-container');
-      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      competitionTableContainer.style.display = 'block';
+      if (shareContainer && !closeShare) {
+        shareContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        shareContainer.style.display = 'block';
 
-      setTimeout(() => {
-        competitionTableContainer.style.height = '680px';
-        const isNarrowScreen = window.innerWidth <= 920;
+        setTimeout(() => {
+          shareContainer.style.height = '680px';
+          const isNarrowScreen = window.innerWidth <= 920;
 
-        if (isNarrowScreen) {
-          competitionTableContainer.style.top = 'calc(50% - 144px)';
-        } else {
-          competitionTableContainer.style.top = 'calc(50%)';
-        }
-        competitionTableContainer.style.opacity = 1;
-      }, 100);
+          if (isNarrowScreen) {
+            shareContainer.style.top = 'calc(50% - 144px)';
+          } else {
+            shareContainer.style.top = 'calc(50%)';
+          }
+          shareContainer.style.opacity = 1;
+        }, 100);
+      } else {
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        competitionTableContainer.style.display = 'block';
+
+        setTimeout(() => {
+          competitionTableContainer.style.height = '680px';
+          const isNarrowScreen = window.innerWidth <= 920;
+
+          if (isNarrowScreen) {
+            competitionTableContainer.style.top = 'calc(50% - 144px)';
+          } else {
+            competitionTableContainer.style.top = 'calc(50%)';
+          }
+          competitionTableContainer.style.opacity = 1;
+        }, 100);
+      }
     };
 
     const keyRightHandler = (e) => {
@@ -1509,6 +1552,7 @@ ${
           boomioService
             .signal('ROUND_FINISHED', 'signal', {
               score: Math.floor(this.currentScore),
+              shared_somewhere: this.shareClicked,
             })
             .then((response) => {
               const mainMenu = document.getElementsByClassName('boomio-runner-mainMenu')[0];
@@ -1607,7 +1651,7 @@ ${
       player.boostTimer = 0;
       player.boost = false;
       player.dead = false;
-      player.life = 3;
+      player.life = 1;
       speed = canvas.clientWidth / 300;
       score = 0;
       leftPressed = false;
