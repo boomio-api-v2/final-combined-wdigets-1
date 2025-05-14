@@ -624,7 +624,7 @@ ${
               : this.prop === 'Unisend' && this.language === 'EE'
               ? 'href=https://unisend.ee'
               : this.prop === 'LemonGym'
-              ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-GYM-speles-noteikumi.pdf'
+              ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-GYM-LV-speles-noteikumi.pdf'
               : this.prop === 'Ikea'
               ? 'href=https://www.ikea.lt/en/zaidimo-ar-gerai-vairuojate-taisykles'
               : this.prop === 'Makalius'
