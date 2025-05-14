@@ -1471,7 +1471,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
-              if (!checkboxChange || !checkboxChange2) {
+              if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo'))) {
                 document.getElementById('competition-checkbox-error').innerText =
                   this.language === 'LV'
                     ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
