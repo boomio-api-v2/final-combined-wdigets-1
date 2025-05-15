@@ -362,6 +362,8 @@ function startGame(
       ? PiguBags2
       : customer === 'Gamtos Ateitis'
       ? mailboxImageDataGamtosAteitisPopierius
+      : customer === 'Orlen'
+      ? goldImageDataOrlen
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -376,6 +378,8 @@ function startGame(
       ? PiguBags2
       : customer === 'Gamtos Ateitis'
       ? mailboxImageDataGamtosAteitisPopierius
+      : customer === 'Orlen'
+      ? goldImageDataOrlen
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
@@ -485,6 +489,8 @@ function startGame(
       ? envelopeImageDataUnisend
       : customer === 'Pigu.lt'
       ? PiguBags2
+      : customer === 'Orlen'
+      ? goldImageDataOrlen
       : envelopeImageData;
 
   const cloudsImage = new Image();
@@ -780,9 +786,7 @@ function startGame(
       ? 'white'
       : customer === 'Gamtos Ateitis'
       ? '#FFFFFF'
-      : customer === 'Orlen'
-      ? '#9BD42F'
-      : '#FFF100';
+      : '#FFFFFF';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
       ? '#FFCA00'
@@ -794,9 +798,7 @@ function startGame(
       ? '#F24434'
       : customer === 'Gamtos Ateitis'
       ? '#F24434'
-      : customer === 'Orlen'
-      ? '#9BD42F'
-      : '#1D1D1B';
+      : '#F24434';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
   const road1 =
@@ -810,6 +812,8 @@ function startGame(
       ? '#A2B0B4'
       : customer === 'Gamtos Ateitis'
       ? '#A1AAAB'
+      : customer === 'Orlen'
+      ? '#263238'
       : '#F9F1DD';
 
   const road2 =
@@ -823,6 +827,8 @@ function startGame(
       ? '#FFFAE6'
       : customer === 'Gamtos Ateitis'
       ? '#FFFAE6'
+      : customer === 'Orlen'
+      ? 'white'
       : 'black';
 
   const maxWhiteLineWidthPercent = 0.01;
@@ -2008,6 +2014,8 @@ function startGame(
           ? '#609966'
           : customer === 'Pigu.lt'
           ? '#9ECEFF'
+          : customer === 'Orlen'
+          ? '#7AC723'
           : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
         ? '#489B2D'
@@ -2017,6 +2025,8 @@ function startGame(
         ? '#609966'
         : customer === 'Barbora'
         ? '#85B62D'
+        : customer === 'Orlen'
+        ? '#7AC723'
         : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
