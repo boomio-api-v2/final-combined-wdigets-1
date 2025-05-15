@@ -166,6 +166,7 @@ import {
   carOrlen,
   signOrlen,
   goldImageDataOrlen,
+  envelopeImageDataOrlen,
 } from './constants';
 
 function startGame(
@@ -490,7 +491,7 @@ function startGame(
       : customer === 'Pigu.lt'
       ? PiguBags2
       : customer === 'Orlen'
-      ? goldImageDataOrlen
+      ? envelopeImageDataOrlen
       : envelopeImageData;
 
   const cloudsImage = new Image();

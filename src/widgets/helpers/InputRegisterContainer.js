@@ -186,6 +186,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
         : this.prop === 'Magija'
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
+        : this.prop === 'Orlen'
+        ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
@@ -301,7 +303,9 @@ export class InputRegisterContainer {
         : this.prop === 'Nevezis'
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : this.prop === 'Magija'
-        ? 'Sutinku su „Žemaitijos pienas“ '
+        ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
+        : this.prop === 'Orlen'
+        ? 'Sutinku su „ORLEN“'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '

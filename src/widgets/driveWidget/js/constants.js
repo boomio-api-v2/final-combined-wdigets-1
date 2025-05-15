@@ -719,3 +719,6 @@ export const signOrlen = [
 export const goldImageDataOrlen = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/bags2.png',
 ];
+export const envelopeImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/bag.png',
+];
