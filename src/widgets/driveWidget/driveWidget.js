@@ -179,6 +179,8 @@ class driveWidget {
         ? '#DF503E'
         : this.customer === 'Gamtos Ateitis'
         ? '#3F7543'
+        : this.customer === 'Orlen'
+        ? '#EF1C1D'
         : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -216,6 +218,8 @@ ${
           ? '#DF503E'
           : this.customer === 'Gamtos Ateitis'
           ? '#3F7543'
+          : this.customer === 'Orlen'
+          ? '#EF1C1D'
           : '#FFE92D'
       };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">

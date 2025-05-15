@@ -462,6 +462,8 @@ function startGame(
       ? Pigusign
       : customer === 'Gamtos Ateitis'
       ? brickWallImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? brickWallImageDataOrlen
       : brickWallImageData;
 
   const envelopeImage = new Image();
@@ -486,6 +488,8 @@ function startGame(
       ? cloudsImageDataUnisend
       : customer === 'Gamtos Ateitis'
       ? cloudsImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? cloudsImageDataOrlen
       : cloudsImageData;
 
   const treeImage =
@@ -660,6 +664,8 @@ function startGame(
       ? lineGamtosAteitis
       : customer === 'Pigu.lt'
       ? linePigu
+      : customer === 'Orlen'
+      ? lineOrlen
       : line;
 
   backgroundImg.src =

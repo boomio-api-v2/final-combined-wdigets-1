@@ -708,3 +708,6 @@ export const backgroundFullOrlen = [
 export const introOrlen = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/intro.gif',
 ];
+export const carOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/car.png',
+];
