@@ -130,6 +130,7 @@ export class InputRegisterContainer {
       this.prop === 'Dentsu' ||
       this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'Nykstukas' ||
+      this.prop === 'Orlen' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
@@ -441,6 +442,7 @@ export class InputRegisterContainer {
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
+        this.prop === 'Orlen' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -488,6 +490,7 @@ export class InputRegisterContainer {
             this.prop === 'Magija' ||
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
+            this.prop === 'Orlen' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -502,6 +505,7 @@ export class InputRegisterContainer {
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
+        this.prop === 'Orlen' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -518,6 +522,7 @@ export class InputRegisterContainer {
             this.prop === 'Magija' ||
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
+            this.prop === 'Orlen' ||
             this.language === 'EN'
           ? '249px'
           : '299px'
@@ -560,6 +565,7 @@ export class InputRegisterContainer {
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
+        this.prop === 'Orlen' ||
         this.language === 'EN'
           ? 'none'
           : 'block'

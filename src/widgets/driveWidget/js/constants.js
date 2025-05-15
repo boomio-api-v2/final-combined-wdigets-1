@@ -711,3 +711,11 @@ export const introOrlen = [
 export const carOrlen = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/car.png',
 ];
+
+export const signOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/sign.png',
+];
+
+export const goldImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/bags2.png',
+];
