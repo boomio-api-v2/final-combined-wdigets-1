@@ -364,8 +364,6 @@ export class CompetitionScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Fantazijos'
                 ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
-                : this.prop === 'Perlas GO'
-                ? ''
                 : this.language === 'EN'
                 ? 'Hooray, youre doing great!'
                 : this.prop === 'Nykstukas'
@@ -379,7 +377,7 @@ export class CompetitionScoreTableContainer {
           : ''
       }
             <div style="width:100%; top: ${
-              this.prop === 'Nykstukas' ? '490px' : this.prop === 'Perlas GO' ? '390px' : '450px'
+              this.prop === 'Nykstukas' ? '490px' : '450px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop === 'Nykstukas' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
@@ -414,7 +412,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Vilvi'
                 ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
                 : this.prop === 'Perlas GO'
-                ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.`
+                ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Jei laimėsi, informuosime tave registracijos metu nurodytu el. paštu.`
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
                 : this.prop === 'Nykstukas'
@@ -448,8 +446,6 @@ export class CompetitionScoreTableContainer {
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
                 : this.prop === 'Makalius' && this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
-                : this.prop === 'Perlas GO'
-                ? 'Panaudok kodą ir gauk 5 Eur nuolaidą sąskaitoms </br> apmokėti Perlas Go!'
                 : this.prop.includes('demo')
                 ? 'Congrats! Here’s your discount code – just for you!'
                 : ''
@@ -588,7 +584,7 @@ export class CompetitionScoreTableContainer {
         `
       }
       ${
-        (this.prop === 'Perlas GO' || this.prop.includes('demo')) && !userId
+        false
           ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#FFB151'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:485px;left:calc(50% - 130px);">
       <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
        ${this.prop.includes('demo') ? 'discountcode' : 'boom5'}
@@ -605,7 +601,7 @@ export class CompetitionScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    if ((this.prop === 'Perlas GO' || this.prop.includes('demo')) && !userId) {
+    if (false) {
       document.getElementById('boomio-copy-modal-btn2').onclick = () => {
         const textToCopy = this.couponCodeNew;
         const textarea = document.createElement('textarea');
