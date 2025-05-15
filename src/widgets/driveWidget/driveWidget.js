@@ -33,6 +33,7 @@ import {
   introGlass,
   introPaper,
   introPlastic,
+  introOrlen,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -51,7 +52,7 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
 
@@ -267,6 +268,8 @@ ${
         ? IkeaIntro
         : this.customer === 'LemonGym'
         ? intro
+        : this.customer === 'Orlen'
+        ? introOrlen
         : this.type === 1
         ? introPaper
         : this.type === 2

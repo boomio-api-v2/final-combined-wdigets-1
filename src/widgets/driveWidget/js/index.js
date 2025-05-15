@@ -149,6 +149,20 @@ import {
   envelopeImageData3GamtosAteitisPlastikas,
   envelopeImageData4GamtosAteitisPlastikas,
   goldImageData3GamtosAteitisPlastikas,
+  backgroundOrlen,
+  wh1ImageDataOrlen,
+  wh2ImageDataOrlen,
+  wh3ImageDataOrlen,
+  city1ImageDataOrlen,
+  city2ImageDataOrlen,
+  city3ImageDataOrlen,
+  brickWallImageDataOrlen,
+  cloudsImageDataOrlen,
+  lineOrlen,
+  treeOrlen1,
+  treeOrlen2,
+  treeOrlen3,
+  backgroundFullOrlen,
 } from './constants';
 
 function startGame(
@@ -165,7 +179,7 @@ function startGame(
   const isMobile = window.innerWidth <= 1280;
   const isMobileHeightSmall = window.innerHeight <= 600;
 
-  const customer = config.business_name ? config.business_name : 'Gamtos Ateitis';
+  const customer = config.business_name ? config.business_name : 'Orlen';
 
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
@@ -526,6 +540,24 @@ function startGame(
             return img;
           })(),
         ]
+      : customer === 'Orlen'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = treeOrlen1;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeOrlen2;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeOrlen3;
+            return img;
+          })(),
+        ]
       : customer === 'Ikea'
       ? [
           (() => {
@@ -580,6 +612,8 @@ function startGame(
       ? wh1ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? wh1ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? wh1ImageDataOrlen
       : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
@@ -594,6 +628,8 @@ function startGame(
       ? wh2ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? wh2ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? wh2ImageDataOrlen
       : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
@@ -608,6 +644,8 @@ function startGame(
       ? wh3ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? wh3ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? wh3ImageDataOrlen
       : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
@@ -637,6 +675,8 @@ function startGame(
       ? Pigubackground
       : customer === 'Gamtos Ateitis'
       ? backgroundGamtosAteitis
+      : customer === 'Orlen'
+      ? backgroundOrlen
       : background;
   backgroundImg2.src =
     customer === 'Barbora'
@@ -651,6 +691,8 @@ function startGame(
       ? Pigubackground
       : customer === 'Gamtos Ateitis'
       ? backgroundGamtosAteitis
+      : customer === 'Orlen'
+      ? backgroundOrlen
       : background;
 
   const city1 = new Image();
@@ -669,6 +711,8 @@ function startGame(
       ? city1ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? city1ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? city1ImageDataOrlen
       : city1ImageData;
   city2.src =
     customer === 'Barbora'
@@ -683,6 +727,8 @@ function startGame(
       ? city2ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? city2ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? city2ImageDataOrlen
       : city2ImageData;
   city3.src =
     customer === 'Barbora'
@@ -697,6 +743,8 @@ function startGame(
       ? city3ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? city3ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? city3ImageDataOrlen
       : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
@@ -2518,7 +2566,7 @@ function startGame(
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
-    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
       const backgroundImage = new Image();
 
       backgroundImage.src =
@@ -2526,6 +2574,8 @@ function startGame(
           ? backgroundFullGamtosAteitis
           : campaignUrlProp === 'https://hobbyhall.fi'
           ? background1PiguFI
+          : customer === 'Orlen'
+          ? backgroundFullOrlen
           : background1Pigu;
 
       backgroundImage.onload = () => {
