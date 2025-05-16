@@ -34,8 +34,6 @@ export class InputContainer {
     this.game = game;
     this.type = type;
 
-    console.log(type);
-    console.log(this.prop);
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const userId = urlParams.get('user_id');
@@ -323,7 +321,7 @@ export class InputContainer {
                 ? 'Kartok,'
                 : this.prop === 'Orlen'
                 ? 'Rink'
-                : 'Kartok'
+                : 'Kartok!'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${
                            this.isMobile ? '12px' : '14px'
