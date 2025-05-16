@@ -380,7 +380,7 @@ function startGame(
       : customer === 'Gamtos Ateitis'
       ? mailboxImageDataGamtosAteitisPopierius
       : customer === 'Orlen'
-      ? goldImageDataOrlen
+      ? envelopeImageDataOrlen
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
