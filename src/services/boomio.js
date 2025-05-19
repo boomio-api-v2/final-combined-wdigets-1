@@ -83,19 +83,30 @@ class BoomioService extends UserService {
   validateLocation(currentLat, currentLon) {
     const locations = this.config.locations;
     const delta = this.config.locations_delta;
-    console.log('Current location:', currentLat, currentLon);
+    console.log('🌍 Current location:', currentLat, currentLon);
+    console.log('📏 Configured delta (meters):', delta);
 
-    const isValid = Object.values(locations).some((loc) => {
+    let passed = false;
+
+    Object.entries(locations).forEach(([name, loc]) => {
       const distance = this.getDistanceFromLatLonInMeters(currentLat, currentLon, loc.lat, loc.lon);
-      return distance <= delta;
+      console.log(`📍 Checking location "${name}" at (${loc.lat}, ${loc.lon})`);
+      console.log(`   ↪️ Distance: ${Math.round(distance)} meters`);
+
+      if (distance <= delta) {
+        console.log(`✅ Within range of "${name}"`);
+        passed = true;
+      } else {
+        console.log(`❌ Too far from "${name}"`);
+      }
     });
 
-    if (!isValid) {
-      console.warn('User location is not within any valid location.');
+    if (!passed) {
+      console.warn('❌ User location is not within any valid location.');
       return false;
     }
 
-    console.log('Location is valid.');
+    console.log('✅ At least one location matched. Access granted.');
     return true;
   }
 
@@ -114,6 +125,7 @@ class BoomioService extends UserService {
         };
       }
     }
+    console.log(this.config);
 
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
