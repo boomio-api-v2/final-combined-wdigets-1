@@ -375,6 +375,8 @@ export class InputContainer {
                 ? 'ir pelnyk taškus.'
                 : this.prop === 'Orlen'
                 ? 'ledus ir gauk taškus. '
+                : this.prop === 'Perlas GO'
+                ? 'siekdamas kuo geresnio rezultato.'
                 : 'Taškus!'
             }
           </div>
