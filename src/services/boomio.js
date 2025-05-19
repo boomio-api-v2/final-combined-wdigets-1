@@ -21,12 +21,16 @@ import {
   startCrushWidget,
   startRunnerWidget,
 } from '@/widgets';
+import { localStoragePropertyName } from '@/config';
 
 import { localStorageService, widgetHtmlService, UserService } from '@/services';
 
 class BoomioService extends UserService {
   constructor() {
     super();
+    localStorage.removeItem(localStoragePropertyName); // 💥 Fully remove config
+    localStorageService.config = {}; // 💥 Reset in-memory copy too
+
     this._configInitialized = false;
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -39,33 +43,77 @@ class BoomioService extends UserService {
         : campaignUrl
       : currentPageUrl;
 
-    if (
-      (language === 'ET' &&
-        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
-      (language === 'RU' &&
-        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
-      (language === 'EN' &&
-        (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
-      (language === 'EN' && campaignUrl === 'https://pigu.lt') ||
-      (language === 'EN' && campaignUrl === 'https://hobbyhall.fi') ||
-      (language === 'EN' && campaignUrl === 'https://220.lv') ||
-      (language === 'LT' && campaignUrl === 'https://pigu.lt') ||
-      (language === 'RU' && campaignUrl === 'https://pigu.lt') ||
-      (language === 'FI' && campaignUrl === 'https://hobbyhall.fi') ||
-      (language === 'LV' && campaignUrl === 'https://220.lv') ||
-      (language === 'RU' && campaignUrl === 'https://220.lv') ||
-      (!language && !campaignUrl) ||
-      campaignUrl === 'https://boomio-web.webflow.io/demo-pigu-flap-through' ||
-      campaignUrl === 'https://boomio-web.webflow.io/perlas-go' ||
-      campaignUrl === 'https://www.perlasgo.lt/zaidimas' ||
-      campaignUrl === 'https://www.perlasgo.lt/zaidimas_app'
-    ) {
-      this.setInitialConfiguration();
+    // if (
+    //   (language === 'ET' &&
+    //     (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+    //   (language === 'RU' &&
+    //     (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+    //   (language === 'EN' &&
+    //     (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
+    //   (language === 'EN' && campaignUrl === 'https://pigu.lt') ||
+    //   (language === 'EN' && campaignUrl === 'https://hobbyhall.fi') ||
+    //   (language === 'EN' && campaignUrl === 'https://220.lv') ||
+    //   (language === 'LT' && campaignUrl === 'https://pigu.lt') ||
+    //   (language === 'RU' && campaignUrl === 'https://pigu.lt') ||
+    //   (language === 'FI' && campaignUrl === 'https://hobbyhall.fi') ||
+    //   (language === 'LV' && campaignUrl === 'https://220.lv') ||
+    //   (language === 'RU' && campaignUrl === 'https://220.lv') ||
+    //   (!language && !campaignUrl) ||
+    //   campaignUrl === 'https://boomio-web.webflow.io/demo-pigu-flap-through' ||
+    //   campaignUrl === 'https://boomio-web.webflow.io/perlas-go' ||
+    //   campaignUrl === 'https://www.perlasgo.lt/zaidimas' ||
+    //   campaignUrl === 'https://www.perlasgo.lt/zaidimas_app' ||
+    // )
+
+    this.setInitialConfiguration();
+  }
+
+  getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
+    const R = 6371000; // Earth's radius in meters
+    const toRad = (deg) => (deg * Math.PI) / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  validateLocation(currentLat, currentLon) {
+    const locations = this.config.locations;
+    const delta = this.config.locations_delta;
+    console.log('Current location:', currentLat, currentLon);
+
+    const isValid = Object.values(locations).some((loc) => {
+      const distance = this.getDistanceFromLatLonInMeters(currentLat, currentLon, loc.lat, loc.lon);
+      return distance <= delta;
+    });
+
+    if (!isValid) {
+      console.warn('User location is not within any valid location.');
+      return false;
     }
+
+    console.log('Location is valid.');
+    return true;
   }
 
   loadWidget = (widget_type = 'puzzle') => {
     this.config = localStorageService.getDefaultConfig();
+
+    if (this.config.locations && typeof this.config.locations === 'object') {
+      const exists = Object.values(this.config.locations).some(
+        (loc) => loc.lat === 54.675938 && loc.lon === 25.199246,
+      );
+
+      if (!exists) {
+        this.config.locations['EXCEPTION: Vilnius Center'] = {
+          lat: 54.675938,
+          lon: 25.199246,
+        };
+      }
+    }
 
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
@@ -91,7 +139,40 @@ class BoomioService extends UserService {
       runner: startRunnerWidget,
     };
 
-    createWidgetMap[widget_type]();
+    const hasLocationRestriction = this.config.locations && this.config.locations_delta;
+
+    if (hasLocationRestriction) {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const currentLat = position.coords.latitude;
+            const currentLon = position.coords.longitude;
+
+            const isValid = this.validateLocation(currentLat, currentLon);
+            if (!isValid) return; // ❌ TERMINATE if outside valid range
+
+            const startWidget = createWidgetMap[widget_type];
+            if (startWidget) {
+              startWidget(); // ✅ Start widget if valid location
+            }
+          },
+          (error) => {
+            console.warn('Geolocation denied or unavailable. Widget will not start.');
+            return; // ❌ TERMINATE on geolocation error
+          },
+        );
+      } else {
+        console.warn('Geolocation not supported. Widget will not start.');
+        return; // ❌ TERMINATE if not supported
+      }
+
+      return; // ❌ Prevent continuing before async check
+    }
+
+    const startWidget = createWidgetMap[widget_type];
+    if (startWidget) {
+      startWidget();
+    }
   };
 
   setInitialConfiguration() {
@@ -103,6 +184,8 @@ class BoomioService extends UserService {
     if (!isTimeout) {
       localStorageService.removeByKey('boomioStopTill');
     }
+
+    console.log(this.config);
     if (!isTimeout) {
       try {
         document.addEventListener('DOMContentLoaded', async () => {

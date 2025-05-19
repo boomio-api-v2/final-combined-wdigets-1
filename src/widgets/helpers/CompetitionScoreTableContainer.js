@@ -28,7 +28,6 @@ export class CompetitionScoreTableContainer {
       this.prop === 'Gamtos Ateitis'
         ? this.scoreTable?.teams_scoreboard
         : this.scoreTable?.scoreboard || [];
-    console.log(this.scoreTable);
     const userBestPlace = parseInt(
       this.prop === 'Gamtos Ateitis'
         ? this.scoreTable.team_best_place

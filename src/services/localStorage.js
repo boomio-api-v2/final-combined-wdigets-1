@@ -126,7 +126,8 @@ class LocalStorageService {
 
     const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
     const teams = config?.teams ?? [];
-
+    const locations = config?.locations ?? [];
+    const locations_delta = config?.locations_delta ?? 0;
     const userBestScore = config?.user_best_score ? config?.user_best_score : 0;
     const dynamicData = config?.dynamicData ? config?.dynamicData : null;
 
@@ -183,6 +184,8 @@ class LocalStorageService {
       userBestScore,
       dynamicData,
       teams,
+      locations,
+      locations_delta,
     };
   }
 }
