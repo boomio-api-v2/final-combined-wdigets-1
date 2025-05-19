@@ -195,31 +195,7 @@ export class CompetitionScoreTableContainer {
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 
-      const color =
-        index + 1 === userBestPlace
-          ? this.prop === 'Barbora' ||
-            this.prop === 'Fpro' ||
-            this.prop === 'Fantazijos' ||
-            this.prop === 'Makalius' ||
-            this.prop === 'Ikea' ||
-            this.prop === 'Vilvi' ||
-            this.prop === 'Unisend' ||
-            this.prop === 'Pieno Žvaigždės' ||
-            this.prop === 'Eurovaistine' ||
-            this.prop === 'Akropolis' ||
-            this.prop === 'LemonGym' ||
-            this.prop === 'Perlas GO' ||
-            this.prop === 'Daumantu' ||
-            this.prop === 'Dentsu' ||
-            this.prop === 'Zemaitijos Pienas' ||
-            this.prop === 'Nykstukas' ||
-            this.prop === 'Nevezis' ||
-            this.prop === 'Magija' ||
-            this.prop === 'Gamtos Ateitis' ||
-            this.prop.includes('demo')
-            ? 'rgba(61, 73, 40, 1)'
-            : 'white'
-          : 'white';
+      const color = index + 1 === userBestPlace ? 'rgba(61, 73, 40, 1)' : 'white';
       const boxShadow =
         index + 1 === userBestPlace ? '2px 4px 3.4px 0px rgba(0, 0, 0, 0.10) inset' : 'none';
 
@@ -258,58 +234,14 @@ export class CompetitionScoreTableContainer {
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
             <td style="padding-left:8px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
-              <td style="padding-left:6px;text-align:start;width: 100px; color: ${
-                this.prop === 'Barbora' ||
-                this.prop === 'Fpro' ||
-                this.prop === 'Fantazijos' ||
-                this.prop === 'Makalius' ||
-                this.prop === 'Unisend' ||
-                this.prop === 'Vilvi' ||
-                this.prop === 'Akropolis' ||
-                this.prop === 'Perlas GO' ||
-                this.prop === 'Pieno Žvaigždės' ||
-                this.prop === 'LemonGym' ||
-                this.prop === 'Perlas GO' ||
-                this.prop === 'Daumantu' ||
-                this.prop === 'Dentsu' ||
-                this.prop === 'Zemaitijos Pienas' ||
-                this.prop === 'Nykstukas' ||
-                this.prop === 'Nevezis' ||
-                this.prop === 'Magija' ||
-                this.prop === 'Gamtos Ateitis' ||
-                this.prop.includes('demo')
-                  ? 'rgba(61, 73, 40, 1)'
-                  : 'white'
-              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+              <td style="padding-left:6px;text-align:start;width: 100px; color: ${'rgba(61, 73, 40, 1)'}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
         this.prop !== 'Gamtos Ateitis'
           ? this.language === 'EN'
             ? 'Your score'
             : 'Tavo rezultatas'
           : scoreboard[userBestPlace].team
       }</td>
-              <td style="width: 48px; color: ${
-                this.prop === 'Barbora' ||
-                this.prop === 'Fpro' ||
-                this.prop === 'Fantazijos' ||
-                this.prop === 'Makalius' ||
-                this.prop === 'Vilvi' ||
-                this.prop === 'Unisend' ||
-                this.prop === 'Akropolis' ||
-                this.prop === 'Perlas GO' ||
-                this.prop === 'Pieno Žvaigždės' ||
-                this.prop === 'LemonGym' ||
-                this.prop === 'Perlas GO' ||
-                this.prop === 'Daumantu' ||
-                this.prop === 'Dentsu' ||
-                this.prop === 'Zemaitijos Pienas' ||
-                this.prop === 'Nykstukas' ||
-                this.prop === 'Nevezis' ||
-                this.prop === 'Magija' ||
-                this.prop === 'Gamtos Ateitis' ||
-                this.prop.includes('demo')
-                  ? 'rgba(61, 73, 40, 1)'
-                  : 'white'
-              }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
+              <td style="width: 48px; color: ${'rgba(61, 73, 40, 1)'}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
             </tr>`;
     }
 
