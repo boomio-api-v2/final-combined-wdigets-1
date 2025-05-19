@@ -197,7 +197,6 @@ class BoomioService extends UserService {
       localStorageService.removeByKey('boomioStopTill');
     }
 
-    console.log(this.config);
     if (!isTimeout) {
       try {
         document.addEventListener('DOMContentLoaded', async () => {

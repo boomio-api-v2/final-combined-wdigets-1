@@ -183,7 +183,7 @@ function startGame(
   const isMobile = window.innerWidth <= 1280;
   const isMobileHeightSmall = window.innerHeight <= 600;
 
-  const customer = config.business_name ? config.business_name : 'Gamtos Ateitis';
+  const customer = config.business_name ? config.business_name : 'Orlen';
 
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
