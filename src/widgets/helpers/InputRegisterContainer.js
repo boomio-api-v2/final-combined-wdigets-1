@@ -83,6 +83,8 @@ export class InputRegisterContainer {
         ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
         : this.prop === 'Perlas GO'
         ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
+        : this.prop === 'Orlen'
+        ? 'Jau registravaisi? Naudok tą patį telefono numerį </br> toliau gerinant rezultatą!'
         : this.language === 'EN'
         ? 'Already registered? Use the same nickname and email </br> to keep improving your score!'
         : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
