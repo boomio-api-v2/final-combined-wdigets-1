@@ -68,6 +68,7 @@ import { RulesContainer } from '../helpers/RulesContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
+import { ShareContainer } from '../helpers/ShareContainer';
 
 class DoodleWidget {
   static ctx;
@@ -82,7 +83,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'demo-22';
+    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -774,6 +775,8 @@ class DoodleWidget {
           let competitionTableContainer = '';
           if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
             competitionTableContainer = document.querySelector('.did-you-know-container');
+          } else if (this.customer === 'Perlas GO') {
+            competitionTableContainer = document.querySelector('.share-container');
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
           }
@@ -1569,6 +1572,14 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
+
+    if (this.customer === 'Perlas GO') {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.shareContainer = new ShareContainer(this.customer);
+      gameContainer.appendChild(this.shareContainer.containerDiv);
+    }
+
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
       this.rulesContainerPigu = new RulesContainerPigu(this.customer, this.scoreTable);
@@ -1751,7 +1762,13 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         }
       };
       const clickEventHandlerDidYouKnow = () => {
-        const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+        let didYouKnowTableContainer = '';
+
+        if (this.customer === 'Perlas GO') {
+          didYouKnowTableContainer = document.querySelector('.share-container');
+        } else {
+          didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+        }
 
         didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         setTimeout(() => {
@@ -1836,6 +1853,10 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
       if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
         const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+      }
+      if (this.customer === 'Perlas GO') {
+        const competitionDidYouKnow = document.getElementById('boomio-close-share');
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
     }

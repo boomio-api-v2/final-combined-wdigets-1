@@ -310,7 +310,6 @@ class FlappyBird {
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
-        console.log('Displaying input-container for SaludSA');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1373,7 +1372,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           this.currentScore,
         );
       } else {
-        console.log(this.cus);
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
           this.customer,
           this.scoreTable,

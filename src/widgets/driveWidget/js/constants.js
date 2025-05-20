@@ -651,3 +651,74 @@ export const envelopeImageData4GamtosAteitisPlastikas = [
 export const goldImageData3GamtosAteitisPlastikas = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/GamtosAteitis/bags3Plastikas.png',
 ];
+
+export const backgroundOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/background.png',
+];
+
+export const wh1ImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Bigcity1.png',
+];
+
+export const wh2ImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Bigcity2.png',
+];
+
+export const wh3ImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Bigcity3.png',
+];
+
+export const city1ImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Bigcity1.png',
+];
+
+export const city2ImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Bigcity2.png',
+];
+
+export const city3ImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Bigcity3.png',
+];
+
+export const brickWallImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/sign.png',
+];
+
+export const cloudsImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/cloud.png?raw=true',
+];
+
+export const lineOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/line.png?raw=true',
+];
+
+export const treeOrlen1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Tree1.png?raw=true';
+
+export const treeOrlen2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Tree2.png?raw=true';
+
+export const treeOrlen3 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/Tree3.png?raw=true';
+
+export const backgroundFullOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/backgroundFull.png',
+];
+
+export const introOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/intro.gif',
+];
+export const carOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/car.png',
+];
+
+export const signOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/sign.png',
+];
+
+export const goldImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/bags2.png',
+];
+export const envelopeImageDataOrlen = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/bag.png',
+];

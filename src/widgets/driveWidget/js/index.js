@@ -149,6 +149,24 @@ import {
   envelopeImageData3GamtosAteitisPlastikas,
   envelopeImageData4GamtosAteitisPlastikas,
   goldImageData3GamtosAteitisPlastikas,
+  backgroundOrlen,
+  wh1ImageDataOrlen,
+  wh2ImageDataOrlen,
+  wh3ImageDataOrlen,
+  city1ImageDataOrlen,
+  city2ImageDataOrlen,
+  city3ImageDataOrlen,
+  brickWallImageDataOrlen,
+  cloudsImageDataOrlen,
+  lineOrlen,
+  treeOrlen1,
+  treeOrlen2,
+  treeOrlen3,
+  backgroundFullOrlen,
+  carOrlen,
+  signOrlen,
+  goldImageDataOrlen,
+  envelopeImageDataOrlen,
 } from './constants';
 
 function startGame(
@@ -165,7 +183,7 @@ function startGame(
   const isMobile = window.innerWidth <= 1280;
   const isMobileHeightSmall = window.innerHeight <= 600;
 
-  const customer = config.business_name ? config.business_name : 'Gamtos Ateitis';
+  const customer = config.business_name ? config.business_name : 'Orlen';
 
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
@@ -323,6 +341,8 @@ function startGame(
       ? PiguBikeEE
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? PigubikeFI
+      : customer === 'Orlen'
+      ? carOrlen
       : customer === 'Gamtos Ateitis'
       ? type === 1
         ? carImageDataGamtosAteitisPopierius
@@ -343,6 +363,8 @@ function startGame(
       ? PiguBags2
       : customer === 'Gamtos Ateitis'
       ? mailboxImageDataGamtosAteitisPopierius
+      : customer === 'Orlen'
+      ? goldImageDataOrlen
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -357,6 +379,8 @@ function startGame(
       ? PiguBags2
       : customer === 'Gamtos Ateitis'
       ? mailboxImageDataGamtosAteitisPopierius
+      : customer === 'Orlen'
+      ? envelopeImageDataOrlen
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
@@ -426,6 +450,8 @@ function startGame(
       ? goldImageDataUnisendES
       : customer === 'Unisend'
       ? goldImageDataUnisend
+      : customer === 'Orlen'
+      ? goldImageDataOrlen
       : campaignUrlProp === 'https://pigu.lt'
       ? PigubagsLT1
       : campaignUrlProp === 'https://220.lv'
@@ -446,8 +472,12 @@ function startGame(
       ? brickWallImageDataUnisend
       : customer === 'Pigu.lt'
       ? Pigusign
+      : customer === 'Orlen'
+      ? signOrlen
       : customer === 'Gamtos Ateitis'
       ? brickWallImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? brickWallImageDataOrlen
       : brickWallImageData;
 
   const envelopeImage = new Image();
@@ -460,6 +490,8 @@ function startGame(
       ? envelopeImageDataUnisend
       : customer === 'Pigu.lt'
       ? PiguBags2
+      : customer === 'Orlen'
+      ? envelopeImageDataOrlen
       : envelopeImageData;
 
   const cloudsImage = new Image();
@@ -472,6 +504,8 @@ function startGame(
       ? cloudsImageDataUnisend
       : customer === 'Gamtos Ateitis'
       ? cloudsImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? cloudsImageDataOrlen
       : cloudsImageData;
 
   const treeImage =
@@ -523,6 +557,24 @@ function startGame(
           (() => {
             const img = new Image();
             img.src = treeGamtosAteitis6;
+            return img;
+          })(),
+        ]
+      : customer === 'Orlen'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = treeOrlen1;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeOrlen2;
+            return img;
+          })(),
+          (() => {
+            const img = new Image();
+            img.src = treeOrlen3;
             return img;
           })(),
         ]
@@ -580,6 +632,8 @@ function startGame(
       ? wh1ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? wh1ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? wh1ImageDataOrlen
       : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
@@ -594,6 +648,8 @@ function startGame(
       ? wh2ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? wh2ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? wh2ImageDataOrlen
       : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
@@ -608,6 +664,8 @@ function startGame(
       ? wh3ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? wh3ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? wh3ImageDataOrlen
       : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
@@ -622,6 +680,8 @@ function startGame(
       ? lineGamtosAteitis
       : customer === 'Pigu.lt'
       ? linePigu
+      : customer === 'Orlen'
+      ? lineOrlen
       : line;
 
   backgroundImg.src =
@@ -637,6 +697,8 @@ function startGame(
       ? Pigubackground
       : customer === 'Gamtos Ateitis'
       ? backgroundGamtosAteitis
+      : customer === 'Orlen'
+      ? backgroundOrlen
       : background;
   backgroundImg2.src =
     customer === 'Barbora'
@@ -651,6 +713,8 @@ function startGame(
       ? Pigubackground
       : customer === 'Gamtos Ateitis'
       ? backgroundGamtosAteitis
+      : customer === 'Orlen'
+      ? backgroundOrlen
       : background;
 
   const city1 = new Image();
@@ -669,6 +733,8 @@ function startGame(
       ? city1ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? city1ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? city1ImageDataOrlen
       : city1ImageData;
   city2.src =
     customer === 'Barbora'
@@ -683,6 +749,8 @@ function startGame(
       ? city2ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? city2ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? city2ImageDataOrlen
       : city2ImageData;
   city3.src =
     customer === 'Barbora'
@@ -697,6 +765,8 @@ function startGame(
       ? city3ImageDataPigu
       : customer === 'Gamtos Ateitis'
       ? city3ImageDataGamtosAteitis
+      : customer === 'Orlen'
+      ? city3ImageDataOrlen
       : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
@@ -717,7 +787,7 @@ function startGame(
       ? 'white'
       : customer === 'Gamtos Ateitis'
       ? '#FFFFFF'
-      : '#FFF100';
+      : '#FFFFFF';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
       ? '#FFCA00'
@@ -729,7 +799,7 @@ function startGame(
       ? '#F24434'
       : customer === 'Gamtos Ateitis'
       ? '#F24434'
-      : '#1D1D1B';
+      : '#F24434';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
   const road1 =
@@ -743,6 +813,8 @@ function startGame(
       ? '#A2B0B4'
       : customer === 'Gamtos Ateitis'
       ? '#A1AAAB'
+      : customer === 'Orlen'
+      ? '#263238'
       : '#F9F1DD';
 
   const road2 =
@@ -756,6 +828,8 @@ function startGame(
       ? '#FFFAE6'
       : customer === 'Gamtos Ateitis'
       ? '#FFFAE6'
+      : customer === 'Orlen'
+      ? 'white'
       : 'black';
 
   const maxWhiteLineWidthPercent = 0.01;
@@ -1174,7 +1248,6 @@ function startGame(
     if (gameCount === 0) {
       setTimeout(async () => {
         const emailInput = document.querySelector('.boomio-competition-email-input-field');
-        const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
         const cityInput = document.querySelector('.boomio-competition-city-select');
         const schoolInput = document.querySelector('.boomio-competition-school-select');
 
@@ -1216,114 +1289,72 @@ function startGame(
           document.getElementById('competition-checkbox-error').style.backgroundColor =
             'transparent';
         }
-        if (
-          customer !== 'Gamtos Ateitis' &&
-          (playerNameInput?.value === '' || playerNameInput?.value === null)
-        ) {
-          document.getElementById('competition-name-error').innerText =
-            'Norint tęsti privaloma užpildyti.';
-          document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            'transparent';
-        }
-        if (
-          customer !== 'Gamtos Ateitis' &&
-          (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-          (playerNameInput?.value === '' || playerNameInput?.value === null)
-        ) {
-          document.getElementById('competition-name-error').innerText =
-            'Norint tęsti privaloma užpildyti.';
-          document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-email-error').innerText =
-            'Norint tęsti privaloma užpildyti.';
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-        } else {
-          if (showCompetitiveRegistration && checkboxChange) {
-            if (customer === 'Gamtos Ateitis') {
-              didYouKnowContainer.updateProps(customer, type);
-            }
-            boomioService
-              .signal('', 'user_info', {
-                emails_consent: checkboxChange2,
-                user_email: userEmail,
-                user_name: customer === 'Gamtos Ateitis' ? userEmail : playerNameInput?.value,
-                ...(customer === 'Gamtos Ateitis' && {
-                  team: schoolInput.value,
-                }),
-              })
-              .then((response) => {
-                if (response.success === false) {
-                  if (response.res_code === 'EMAIL_EXIST') {
-                    document.getElementById('competition-email-error').innerText =
-                      language === 'LV'
-                        ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                        : language === 'RU'
-                        ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                        : language === 'EE'
-                        ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                        : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                    document.getElementById('competition-email-error').style.backgroundColor =
-                      '#FFBABA';
-
-                    document.getElementById('competition-name-error').innerText = '';
-
-                    document.getElementById('competition-name-error').style.backgroundColor =
-                      'transparent';
-                  } else if (response.res_code === 'NICKNAME_EXIST') {
-                    document.getElementById('competition-name-error').innerText =
-                      language === 'LV'
-                        ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                        : language === 'RU'
-                        ? 'Этот псевдоним уже существует. Используйте другой.'
-                        : language === 'EE'
-                        ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                        : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                    document.getElementById('competition-name-error').style.backgroundColor =
-                      '#FFBABA';
-
-                    document.getElementById('competition-email-error').innerText = '';
-                    document.getElementById('competition-email-error').style.backgroundColor =
-                      'transparent';
-                  }
-                } else {
-                  bestScore = response.user_best_score ?? 0;
-                  const inpuRegisterContainer = document.querySelector('.input-register-container');
-                  inpuRegisterContainer.style.transition =
-                    'height 1s ease, top 1s ease, opacity 1s ease';
-                  setTimeout(() => {
-                    inpuRegisterContainer.style.height = '10px';
-                    inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-                    inpuRegisterContainer.style.opacity = 0;
-                  }, 100);
-                  setTimeout(() => {
-                    inpuRegisterContainer.style.display = 'none';
-                  }, 1000);
-                  setTimeout(() => {
-                    document.getElementById('background_blur').style.opacity = 0.37;
-                    document.getElementById('background_blur').style.zIndex = 3;
-                    const inputContainer = document.querySelector('.input-container');
-                    document.getElementById('control-button').style.transition = 'opacity 2s ease';
-                    document.getElementById('control-button').style.opacity = 1;
-                    document.getElementById('control-button').style.display = 'flex';
-                    inputContainer.style.transition =
-                      'height 1s ease, top 1s ease, opacity 1s ease';
-                    inputContainer.style.display = 'block';
-                    setTimeout(() => {
-                      inputContainer.style.height = '332px';
-                      inputContainer.style.top = 'calc(50% + 170px)';
-                      inputContainer.style.opacity = 1;
-                    }, 100);
-                  }, 300);
-                }
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
+        if (showCompetitiveRegistration && checkboxChange) {
+          if (customer === 'Gamtos Ateitis') {
+            didYouKnowContainer.updateProps(customer, type);
           }
+          boomioService
+            .signal('', 'user_info', {
+              emails_consent: checkboxChange2,
+              user_email: userEmail,
+              user_name: userEmail,
+              ...(customer === 'Gamtos Ateitis' && {
+                team: schoolInput.value,
+              }),
+            })
+            .then((response) => {
+              if (response.success === false) {
+                if (response.res_code === 'EMAIL_EXIST') {
+                  document.getElementById('competition-email-error').innerText =
+                    language === 'LV'
+                      ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                      : language === 'RU'
+                      ? 'Этот е-мейл адрес уже существует. Используйте другой.'
+                      : language === 'EE'
+                      ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                      : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                  document.getElementById('competition-email-error').style.backgroundColor =
+                    '#FFBABA';
+
+                  document.getElementById('competition-name-error').innerText = '';
+
+                  document.getElementById('competition-name-error').style.backgroundColor =
+                    'transparent';
+                }
+              } else {
+                bestScore = response.user_best_score ?? 0;
+                const inpuRegisterContainer = document.querySelector('.input-register-container');
+                inpuRegisterContainer.style.transition =
+                  'height 1s ease, top 1s ease, opacity 1s ease';
+                setTimeout(() => {
+                  inpuRegisterContainer.style.height = '10px';
+                  inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                  inpuRegisterContainer.style.opacity = 0;
+                }, 100);
+                setTimeout(() => {
+                  inpuRegisterContainer.style.display = 'none';
+                }, 1000);
+                setTimeout(() => {
+                  document.getElementById('background_blur').style.opacity = 0.37;
+                  document.getElementById('background_blur').style.zIndex = 3;
+                  const inputContainer = document.querySelector('.input-container');
+                  document.getElementById('control-button').style.transition = 'opacity 2s ease';
+                  document.getElementById('control-button').style.opacity = 1;
+                  document.getElementById('control-button').style.display = 'flex';
+                  inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+                  inputContainer.style.display = 'block';
+                  setTimeout(() => {
+                    inputContainer.style.height = '332px';
+                    inputContainer.style.top = 'calc(50% + 170px)';
+                    inputContainer.style.opacity = 1;
+                  }, 100);
+                }, 300);
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
         }
       }, 300);
     }
@@ -1518,9 +1549,7 @@ function startGame(
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
       emailInput.addEventListener('input', () => {});
-      playerNameInput.addEventListener('input', () => {});
 
       setTimeout(() => {
         if (customer !== 'SaludSA') {
@@ -1986,6 +2015,8 @@ function startGame(
           ? '#609966'
           : customer === 'Pigu.lt'
           ? '#9ECEFF'
+          : customer === 'Orlen'
+          ? '#7AC723'
           : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
         ? '#489B2D'
@@ -1995,6 +2026,8 @@ function startGame(
         ? '#609966'
         : customer === 'Barbora'
         ? '#85B62D'
+        : customer === 'Orlen'
+        ? '#7AC723'
         : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
@@ -2518,7 +2551,7 @@ function startGame(
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
-    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
       const backgroundImage = new Image();
 
       backgroundImage.src =
@@ -2526,6 +2559,8 @@ function startGame(
           ? backgroundFullGamtosAteitis
           : campaignUrlProp === 'https://hobbyhall.fi'
           ? background1PiguFI
+          : customer === 'Orlen'
+          ? backgroundFullOrlen
           : background1Pigu;
 
       backgroundImage.onload = () => {
@@ -2590,7 +2625,7 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2655,7 +2690,7 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2996,30 +3031,28 @@ function startGame(
   }
 
   function drawClouds() {
-    if (customer !== 'Pigu.lt' && customer !== 'Gamtos Ateitis') {
-      clouds
-        .filter((sprite) => sprite.active)
-        .forEach((cloud) => {
-          if (cloud.pos.x < -width) {
-            cloud.pos.x = width + cloud.dimensions * 3;
-            cloud.pos.y = randomIntBetween(0, skyHeight - BIG_SPRITE_DIMENSIONS);
-          } else {
-            cloud.pos.x += cloud.vel.x;
-          }
+    clouds
+      .filter((sprite) => sprite.active)
+      .forEach((cloud) => {
+        if (cloud.pos.x < -width) {
+          cloud.pos.x = width + cloud.dimensions * 3;
+          cloud.pos.y = randomIntBetween(0, skyHeight - BIG_SPRITE_DIMENSIONS);
+        } else {
+          cloud.pos.x += cloud.vel.x;
+        }
 
-          ctx.drawImage(
-            cloud.image,
-            0,
-            (cloud.frame * cloud.dimensions) / 2,
-            cloud.dimensions,
-            cloud.dimensions / 2,
-            cloud.pos.x,
-            cloud.pos.y,
-            cloud.dimensions,
-            cloud.dimensions / 2,
-          );
-        });
-    }
+        ctx.drawImage(
+          cloud.image,
+          0,
+          (cloud.frame * cloud.dimensions) / 2,
+          cloud.dimensions,
+          cloud.dimensions / 2,
+          cloud.pos.x,
+          cloud.pos.y,
+          cloud.dimensions,
+          cloud.dimensions / 2,
+        );
+      });
   }
 
   function drawImage(

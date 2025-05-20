@@ -33,6 +33,7 @@ import {
   introGlass,
   introPaper,
   introPlastic,
+  introOrlen,
 } from './js/constants';
 import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -51,7 +52,7 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
 
@@ -178,6 +179,8 @@ class driveWidget {
         ? '#DF503E'
         : this.customer === 'Gamtos Ateitis'
         ? '#3F7543'
+        : this.customer === 'Orlen'
+        ? '#EF1C1D'
         : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -215,6 +218,8 @@ ${
           ? '#DF503E'
           : this.customer === 'Gamtos Ateitis'
           ? '#3F7543'
+          : this.customer === 'Orlen'
+          ? '#EF1C1D'
           : '#FFE92D'
       };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -267,6 +272,8 @@ ${
         ? IkeaIntro
         : this.customer === 'LemonGym'
         ? intro
+        : this.customer === 'Orlen'
+        ? introOrlen
         : this.type === 1
         ? introPaper
         : this.type === 2

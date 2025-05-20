@@ -28,7 +28,6 @@ export class CompetitionScoreTableContainer {
       this.prop === 'Gamtos Ateitis'
         ? this.scoreTable?.teams_scoreboard
         : this.scoreTable?.scoreboard || [];
-    console.log(this.scoreTable);
     const userBestPlace = parseInt(
       this.prop === 'Gamtos Ateitis'
         ? this.scoreTable.team_best_place
@@ -195,31 +194,7 @@ export class CompetitionScoreTableContainer {
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 
-      const color =
-        index + 1 === userBestPlace
-          ? this.prop === 'Barbora' ||
-            this.prop === 'Fpro' ||
-            this.prop === 'Fantazijos' ||
-            this.prop === 'Makalius' ||
-            this.prop === 'Ikea' ||
-            this.prop === 'Vilvi' ||
-            this.prop === 'Unisend' ||
-            this.prop === 'Pieno Žvaigždės' ||
-            this.prop === 'Eurovaistine' ||
-            this.prop === 'Akropolis' ||
-            this.prop === 'LemonGym' ||
-            this.prop === 'Perlas GO' ||
-            this.prop === 'Daumantu' ||
-            this.prop === 'Dentsu' ||
-            this.prop === 'Zemaitijos Pienas' ||
-            this.prop === 'Nykstukas' ||
-            this.prop === 'Nevezis' ||
-            this.prop === 'Magija' ||
-            this.prop === 'Gamtos Ateitis' ||
-            this.prop.includes('demo')
-            ? 'rgba(61, 73, 40, 1)'
-            : 'white'
-          : 'white';
+      const color = index + 1 === userBestPlace ? 'rgba(61, 73, 40, 1)' : 'white';
       const boxShadow =
         index + 1 === userBestPlace ? '2px 4px 3.4px 0px rgba(0, 0, 0, 0.10) inset' : 'none';
 
@@ -258,58 +233,14 @@ export class CompetitionScoreTableContainer {
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
             <td style="padding-left:8px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
-              <td style="padding-left:6px;text-align:start;width: 100px; color: ${
-                this.prop === 'Barbora' ||
-                this.prop === 'Fpro' ||
-                this.prop === 'Fantazijos' ||
-                this.prop === 'Makalius' ||
-                this.prop === 'Unisend' ||
-                this.prop === 'Vilvi' ||
-                this.prop === 'Akropolis' ||
-                this.prop === 'Perlas GO' ||
-                this.prop === 'Pieno Žvaigždės' ||
-                this.prop === 'LemonGym' ||
-                this.prop === 'Perlas GO' ||
-                this.prop === 'Daumantu' ||
-                this.prop === 'Dentsu' ||
-                this.prop === 'Zemaitijos Pienas' ||
-                this.prop === 'Nykstukas' ||
-                this.prop === 'Nevezis' ||
-                this.prop === 'Magija' ||
-                this.prop === 'Gamtos Ateitis' ||
-                this.prop.includes('demo')
-                  ? 'rgba(61, 73, 40, 1)'
-                  : 'white'
-              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+              <td style="padding-left:6px;text-align:start;width: 100px; color: ${'rgba(61, 73, 40, 1)'}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
         this.prop !== 'Gamtos Ateitis'
           ? this.language === 'EN'
             ? 'Your score'
             : 'Tavo rezultatas'
           : scoreboard[userBestPlace].team
       }</td>
-              <td style="width: 48px; color: ${
-                this.prop === 'Barbora' ||
-                this.prop === 'Fpro' ||
-                this.prop === 'Fantazijos' ||
-                this.prop === 'Makalius' ||
-                this.prop === 'Vilvi' ||
-                this.prop === 'Unisend' ||
-                this.prop === 'Akropolis' ||
-                this.prop === 'Perlas GO' ||
-                this.prop === 'Pieno Žvaigždės' ||
-                this.prop === 'LemonGym' ||
-                this.prop === 'Perlas GO' ||
-                this.prop === 'Daumantu' ||
-                this.prop === 'Dentsu' ||
-                this.prop === 'Zemaitijos Pienas' ||
-                this.prop === 'Nykstukas' ||
-                this.prop === 'Nevezis' ||
-                this.prop === 'Magija' ||
-                this.prop === 'Gamtos Ateitis' ||
-                this.prop.includes('demo')
-                  ? 'rgba(61, 73, 40, 1)'
-                  : 'white'
-              }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
+              <td style="width: 48px; color: ${'rgba(61, 73, 40, 1)'}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
             </tr>`;
     }
 
@@ -364,8 +295,6 @@ export class CompetitionScoreTableContainer {
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Fantazijos'
                 ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
-                : this.prop === 'Perlas GO'
-                ? ''
                 : this.language === 'EN'
                 ? 'Hooray, youre doing great!'
                 : this.prop === 'Nykstukas'
@@ -379,7 +308,7 @@ export class CompetitionScoreTableContainer {
           : ''
       }
             <div style="width:100%; top: ${
-              this.prop === 'Nykstukas' ? '490px' : this.prop === 'Perlas GO' ? '390px' : '450px'
+              this.prop === 'Nykstukas' ? '490px' : '450px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop === 'Nykstukas' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
@@ -414,7 +343,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Vilvi'
                 ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
                 : this.prop === 'Perlas GO'
-                ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.`
+                ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Jei laimėsi, informuosime tave registracijos metu nurodytu el. paštu.`
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
                 : this.prop === 'Nykstukas'
@@ -423,6 +352,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį </br>fondą sudaro oho! prizai!'
                 : this.prop === 'Magija'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Magija“  prizus! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. '
+                : this.prop === 'Orlen'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro net 1 000 ledų kas savaitę!'
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -446,8 +377,6 @@ export class CompetitionScoreTableContainer {
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
                 : this.prop === 'Makalius' && this.language === 'LT'
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
-                : this.prop === 'Perlas GO'
-                ? 'Panaudok kodą ir gauk 5 Eur nuolaidą sąskaitoms </br> apmokėti Perlas Go!'
                 : this.prop.includes('demo')
                 ? 'Congrats! Here’s your discount code – just for you!'
                 : ''
@@ -543,6 +472,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> oho! prizus! '
                 : this.prop === 'Magija'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Dobilas“  prizus!'
+                : this.prop === 'Orlen'
+                ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę!! '
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -584,7 +515,7 @@ export class CompetitionScoreTableContainer {
         `
       }
       ${
-        (this.prop === 'Perlas GO' || this.prop.includes('demo')) && !userId
+        false
           ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#FFB151'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:485px;left:calc(50% - 130px);">
       <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
        ${this.prop.includes('demo') ? 'discountcode' : 'boom5'}
@@ -601,7 +532,7 @@ export class CompetitionScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    if ((this.prop === 'Perlas GO' || this.prop.includes('demo')) && !userId) {
+    if (false) {
       document.getElementById('boomio-copy-modal-btn2').onclick = () => {
         const textToCopy = this.couponCodeNew;
         const textarea = document.createElement('textarea');

@@ -130,6 +130,7 @@ export class InputRegisterContainer {
       this.prop === 'Dentsu' ||
       this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'Nykstukas' ||
+      this.prop === 'Orlen' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
@@ -185,6 +186,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
         : this.prop === 'Magija'
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
+        : this.prop === 'Orlen'
+        ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
         : 'Nõustun saama Unisend.ee uudiskirju.'
     }
     </div>
@@ -300,7 +303,9 @@ export class InputRegisterContainer {
         : this.prop === 'Nevezis'
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : this.prop === 'Magija'
-        ? 'Sutinku su „Žemaitijos pienas“ '
+        ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
+        : this.prop === 'Orlen'
+        ? 'Sutinku su „ORLEN“'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -343,6 +348,8 @@ export class InputRegisterContainer {
               ? 'https://www.lemongym.lv/en/privacy-policy/'
               : this.prop === 'Nykstukas'
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
+              : this.prop === 'Orlen'
+              ? 'https://www.orlenlietuva.lt/LT/Company/Puslapiai/Asmens-duomen%c5%b3-apsaugos-politika.aspx'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'
@@ -441,6 +448,7 @@ export class InputRegisterContainer {
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
+        this.prop === 'Orlen' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -488,6 +496,7 @@ export class InputRegisterContainer {
             this.prop === 'Magija' ||
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
+            this.prop === 'Orlen' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -502,6 +511,7 @@ export class InputRegisterContainer {
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
+        this.prop === 'Orlen' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -518,6 +528,7 @@ export class InputRegisterContainer {
             this.prop === 'Magija' ||
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
+            this.prop === 'Orlen' ||
             this.language === 'EN'
           ? '249px'
           : '299px'
@@ -560,6 +571,7 @@ export class InputRegisterContainer {
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
+        this.prop === 'Orlen' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
