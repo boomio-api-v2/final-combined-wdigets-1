@@ -1670,10 +1670,10 @@ ${`<div style="${
         // Tally points:
         if (typeof tileVal === 'string' && tileVal.endsWith('3Points')) {
           // This tile is worth 3 points
-          totalBasePoints += 12;
+          totalBasePoints += 9;
         } else {
           // Normal tile is worth 1 point
-          totalBasePoints += 4;
+          totalBasePoints += 3;
         }
       });
 
