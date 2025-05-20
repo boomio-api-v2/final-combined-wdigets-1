@@ -562,6 +562,8 @@ export class InputRegisterContainer {
         ? 'El. pašto adresas'
         : this.language === 'EN'
         ? 'Email address'
+        : this.prop === 'Orlen'
+        ? 'Telefono numeris'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
