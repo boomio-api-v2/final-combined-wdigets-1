@@ -2625,7 +2625,7 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2690,7 +2690,7 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
         ctx.drawImage(
           backgroundImg,
           0,

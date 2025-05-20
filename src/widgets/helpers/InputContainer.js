@@ -167,7 +167,7 @@ export class InputContainer {
                   : 'Spausk'
               }
     <div
-  style="top: 9px; margin-top: 3px; color: white; font-size: ${
+  style="top: 9px; margin-top: 2px; color: white; font-size: ${
     this.isMobile ? '12px' : '14px'
   }; font-weight: 700; margin-left: 4px; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
@@ -323,7 +323,7 @@ export class InputContainer {
                 ? 'Rink'
                 : 'Kartok!'
             }
-                         <div style=" top: 46px;margin-left:4px;margin-top:3px; color: white; font-size: ${
+                         <div style=" top: 46px;margin-left:4px;margin-top:2px; color: white; font-size: ${
                            this.isMobile ? '12px' : '14px'
                          }; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
@@ -442,7 +442,7 @@ export class InputContainer {
                                 this.prop === 'Pieno Žvaigždės' ||
                                 this.prop === 'Dentsu'
                               ? '16px'
-                              : '3px'
+                              : '2px'
                           }; color: white; font-size: ${
       this.isMobile ? '12px' : '14px'
     }; font-family:${
@@ -581,7 +581,7 @@ ${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${this.language === 'LV' ? 'LAIMĒ' : 'Laimėk'} 
-                          <div style="top: 85px;margin-top:${'18px'}; color: white; font-size: ${
+                          <div style="top: 85px;margin-top:${'17px'}; color: white; font-size: ${
         this.isMobile ? '12px' : '14px'
       }; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
