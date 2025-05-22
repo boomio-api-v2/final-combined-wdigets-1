@@ -28,8 +28,8 @@ import { localStorageService, widgetHtmlService, UserService } from '@/services'
 class BoomioService extends UserService {
   constructor() {
     super();
-    localStorage.removeItem(localStoragePropertyName); // 💥 Fully remove config
-    localStorageService.config = {}; // 💥 Reset in-memory copy too
+    localStorage.removeItem(localStoragePropertyName);
+    localStorageService.config = {};
 
     this._configInitialized = false;
     const currentPageUrl = window.location.href;
@@ -69,7 +69,7 @@ class BoomioService extends UserService {
   }
 
   getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
-    const R = 6371000; // Earth's radius in meters
+    const R = 6371000;
     const toRad = (deg) => (deg * Math.PI) / 180;
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
@@ -226,8 +226,8 @@ class BoomioService extends UserService {
   };
 
   setInitialConfiguration() {
-    if (this._configInitialized) return; // ✅ PREVENT DUPLICATE CALLS
-    this._configInitialized = true; // ✅ SET FLAG ON FIRST CALL
+    if (this._configInitialized) return;
+    this._configInitialized = true;
 
     this.config = localStorageService.getDefaultConfig();
     const isTimeout = new Date(this.config.boomioStopTill).getTime() > new Date().getTime();
@@ -298,7 +298,7 @@ class BoomioService extends UserService {
 
     const rawRequestBody = {
       user_session,
-      current_page_url: current_page_url_cleaned, // Use cleaned URL
+      current_page_url: current_page_url_cleaned,
       extra_data,
     };
 
@@ -327,13 +327,11 @@ class BoomioService extends UserService {
   }
 
   signal(signal_code, ev_type, additional_fields) {
-    // Helper function to set a secure cookie
     if (ev_type === 'user_info') {
       const setSecureCookie = (name, value, months = 1) => {
         let expires = '';
         if (months) {
           const date = new Date();
-          // Set the cookie expiration time to the specified number of months (default 1 month)
           date.setTime(date.getTime() + months * 30 * 24 * 60 * 60 * 1000);
           expires = '; expires=' + date.toUTCString();
         }
@@ -342,7 +340,6 @@ class BoomioService extends UserService {
         )}${expires}; path=/; Secure; SameSite=Strict`;
       };
 
-      // Helper function to get a cookie by name
       const getCookie = (name) => {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -352,7 +349,6 @@ class BoomioService extends UserService {
 
       const pluginConfig = this.config?.boomioPluginConfig || {};
 
-      // Retrieve existing boomio_game_credentials from cookies
       let credentials = {};
       const existingCookie = getCookie('boomio_game_credentials');
       if (existingCookie) {
@@ -364,7 +360,6 @@ class BoomioService extends UserService {
         }
       }
 
-      // Add or update email and name in the credentials object
       if (additional_fields?.user_email) {
         pluginConfig.email = additional_fields.user_email;
         credentials.email = additional_fields.user_email;
@@ -375,7 +370,6 @@ class BoomioService extends UserService {
         credentials.name = additional_fields.user_name;
       }
 
-      // Store the updated credentials as a single cookie
       setSecureCookie('boomio_game_credentials', JSON.stringify(credentials));
     }
     return new Promise((resolve, reject) => {
@@ -400,5 +394,5 @@ class BoomioService extends UserService {
   }
 }
 
-const boomioInstance = new BoomioService(); // ✅ ENSURE SINGLE INSTANCE
+const boomioInstance = new BoomioService();
 export default boomioInstance;
