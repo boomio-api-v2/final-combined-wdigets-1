@@ -83,8 +83,6 @@ class BoomioService extends UserService {
   validateLocation(currentLat, currentLon) {
     const locations = this.config.restrictions.location_restrictions.locations;
     const delta = this.config.restrictions.location_restrictions.locations_delta;
-    console.log('🌍 Current location:', currentLat, currentLon);
-    console.log('📏 Configured delta (meters):', delta);
 
     let passed = false;
 
