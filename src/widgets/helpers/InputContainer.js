@@ -84,7 +84,8 @@ export class InputContainer {
       this.prop === 'LemonGym' ||
       this.prop === 'Magija' ||
       this.prop === 'Orlen' ||
-      this.prop === 'Nevezis'
+      this.prop === 'Nevezis' ||
+      this.prop === 'LemonFeel'
         ? '150px'
         : '110px'
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
@@ -118,6 +119,8 @@ export class InputContainer {
                   ? 'LIIKUMISEKS —'
                   : this.language === 'LV' && this.game === 'doodle'
                   ? 'PĀRVIETOJIES'
+                  : this.prop === 'LemonFeel'
+                  ? 'KLIKŠĶINI,'
                   : this.language === 'LV'
                   ? 'SPIED,'
                   : this.language === 'RU'
@@ -511,6 +514,8 @@ export class InputContainer {
                 ? 'kuni 100 Unisend.ee auhinda!'
                 : this.language === 'LV' && this.prop === 'Pigu.lt'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
+                : this.language === 'LV' && this.prop === 'LemonFeel'
+                ? 'spēli.'
                 : this.language === 'LV' && this.prop === 'LemonGym'
                 ? 'spēli.'
                 : this.language === 'RU'
@@ -576,11 +581,14 @@ ${
   this.prop === 'Nevezis' ||
   this.prop === 'Magija' ||
   this.prop === 'Orlen' ||
+  this.prop === 'LemonFeel' ||
   this.prop === 'LemonGym'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'20px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
-            4. ${this.language === 'LV' ? 'LAIMĒ' : 'Laimėk'} 
+            4. ${
+              this.prop === 'LemonFeel' ? '28.AUGUSTĀ' : this.language === 'LV' ? 'LAIMĒ' : 'Laimėk'
+            } 
                           <div style="top: 85px;margin-top:${'17px'}; color: white; font-size: ${
         this.isMobile ? '12px' : '14px'
       }; font-family:${
@@ -601,6 +609,8 @@ ${
                 ? 'vertingus prizus kas savaitę!'
                 : this.prop === 'Orlen'
                 ? '1 000 ledų kas savaitę!'
+                : this.prop === 'LemonFeel'
+                ? 'apbalvosim labāko spēlētāju'
                 : '10€ Wolt dovanų kuponą!'
             }
           </div>
@@ -631,6 +641,7 @@ ${
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
       this.prop === 'Orlen' ||
+      this.prop === 'LemonFeel' ||
       this.prop.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
             this.prop === 'Pigu.lt' ? 'start' : 'center'
@@ -719,6 +730,8 @@ ${
               ? 'Revisa las reglas completas del juego.'
               : this.prop === 'Ikea'
               ? 'Visos žaidimo taisyklės'
+              : this.prop === 'LemonFeel'
+              ? 'Lasīt pilnos spēles noteikumus'
               : this.prop.includes('Gamtos Ateitis')
               ? 'Skaityk išsamias žaidimo taisykles.'
               : this.language === 'EN'

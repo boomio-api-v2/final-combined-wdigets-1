@@ -83,6 +83,8 @@ export class InputRegisterContainer {
         ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
         : this.prop === 'Perlas GO'
         ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
+        : this.prop === 'Orlen'
+        ? 'Jau registravaisi? Naudok tą patį telefono numerį </br> toliau gerinant rezultatą!'
         : this.language === 'EN'
         ? 'Already registered? Use the same nickname and email </br> to keep improving your score!'
         : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
@@ -132,6 +134,7 @@ export class InputRegisterContainer {
       this.prop === 'Nykstukas' ||
       this.prop === 'Orlen' ||
       this.prop === 'LemonGym' ||
+      this.prop === 'LemonFeel' ||
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
@@ -172,7 +175,7 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti Corepetitus naujienlaiškius.'
         : this.language === 'LV' && this.prop === 'Akropolis'
         ? 'Piekrītu saņemt AKROPOLE iepirkšanās centru jaunumus e-pastā.'
-        : this.language === 'LV' && this.prop === 'LemonGym'
+        : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
         ? 'Piekrītu saņemt LEMON GYM jaunumu vēstuli.'
         : this.language === 'LV'
         ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
@@ -298,7 +301,7 @@ export class InputRegisterContainer {
         ? 'Sutinku su „Pieno žvaigždės“'
         : this.language === 'EN'
         ? 'I agree to receive '
-        : this.language === 'LV' && this.prop === 'LemonGym'
+        : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
         ? 'Piekrītu LEMON GYM'
         : this.prop === 'Nevezis'
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
@@ -344,7 +347,7 @@ export class InputRegisterContainer {
               ? 'https://nevezis.lt/privatumo-politika/'
               : this.prop === 'Magija'
               ? 'https://www.zpienas.lt/privatumo-politika/'
-              : this.prop === 'LemonGym'
+              : this.prop === 'LemonGym' || this.prop === 'LemonFeel'
               ? 'https://www.lemongym.lv/en/privacy-policy/'
               : this.prop === 'Nykstukas'
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
@@ -362,7 +365,7 @@ export class InputRegisterContainer {
               ? 'privātuma politikai'
               : this.prop === 'Corepetitus'
               ? 'Corepetitus privatumo politika'
-              : this.prop === 'LemonGym' && this.language === 'LV'
+              : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
               ? 'privātuma politikai'
               : this.language === 'EN'
               ? 'newsletters'
@@ -449,6 +452,7 @@ export class InputRegisterContainer {
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
+        this.prop === 'LemonFeel' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -497,6 +501,7 @@ export class InputRegisterContainer {
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
             this.prop === 'Orlen' ||
+            this.prop === 'LemonFeel' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -512,6 +517,7 @@ export class InputRegisterContainer {
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
+        this.prop === 'LemonFeel' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -529,6 +535,7 @@ export class InputRegisterContainer {
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
             this.prop === 'Orlen' ||
+            this.prop === 'LemonFeel' ||
             this.language === 'EN'
           ? '249px'
           : '299px'
@@ -536,7 +543,8 @@ export class InputRegisterContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
+      this.prop === 'LemonGym' ||
+      this.prop === 'LemonFeel'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
     } ; font-size: 18px; font-family:${
@@ -562,6 +570,8 @@ export class InputRegisterContainer {
         ? 'El. pašto adresas'
         : this.language === 'EN'
         ? 'Email address'
+        : this.prop === 'Orlen'
+        ? 'Telefono numeris'
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
@@ -572,6 +582,7 @@ export class InputRegisterContainer {
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
+        this.prop === 'LemonFeel' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -581,6 +592,7 @@ export class InputRegisterContainer {
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
+      this.prop === 'LemonFeel' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'

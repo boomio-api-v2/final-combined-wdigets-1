@@ -113,11 +113,11 @@ class FlappyBird {
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'points';
+      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'LemonGym';
+    this.customer = this.config.business_name ? this.config.business_name : 'LemonFeel';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -459,7 +459,7 @@ class FlappyBird {
         ? demoGame20
         : this.customer === 'demo-21'
         ? demoGame21
-        : this.customer === 'LemonGym'
+        : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
         ? LemonGymBackground
         : this.customer === 'Penki Sezonai' && mainPenki;
 
@@ -1167,7 +1167,7 @@ class FlappyBird {
         ? CorepetitusFlappyIntro
         : this.customer === 'Dentsu'
         ? DentsuIntro
-        : this.customer === 'LemonGym'
+        : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
         ? LemonGymintro
         : this.customer === 'Penki Sezonai' && introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
@@ -1286,7 +1286,7 @@ ${`<div style="${
                 ? '#FE5022'
                 : this.customer.includes('demo')
                 ? '#0A3533'
-                : this.customer === 'LemonGym'
+                : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
                 ? '#FF00FF'
                 : '#C6152F'
             };border-radius:35px">

@@ -63,7 +63,7 @@ class CrushGame {
     this.selectedTile = null;
     this.images = {};
     this.currentScore = 0;
-    this.multiplier = 1;
+    this.multiplier = 2;
     this.isAnimating = false; // Add this flag
     this.timer = 120; // Add timer property
     this.timerInterval = null; // Add timer interval property
@@ -1670,10 +1670,10 @@ ${`<div style="${
         // Tally points:
         if (typeof tileVal === 'string' && tileVal.endsWith('3Points')) {
           // This tile is worth 3 points
-          totalBasePoints += 3;
+          totalBasePoints += 9;
         } else {
           // Normal tile is worth 1 point
-          totalBasePoints += 1;
+          totalBasePoints += 3;
         }
       });
 

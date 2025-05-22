@@ -197,9 +197,13 @@ class driveWidget {
 
 
 ${
-  this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis'
+  this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis' || this.customer === 'Orlen'
     ? `<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-        this.customer === 'Gamtos Ateitis' ? '#3F7543' : '#DF503E'
+        this.customer === 'Gamtos Ateitis'
+          ? '#3F7543'
+          : this.customer === 'Orlen'
+          ? '#EF1C1D'
+          : '#DF503E'
       };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>

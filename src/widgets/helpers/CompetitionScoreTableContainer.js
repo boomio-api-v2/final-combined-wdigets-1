@@ -258,7 +258,6 @@ export class CompetitionScoreTableContainer {
         : '700';
     let scoreboardText = `
       ${
-        (this.prop === 'LemonGym' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
         (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
         (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
@@ -307,7 +306,7 @@ export class CompetitionScoreTableContainer {
           ? `<div style="font-family: Montserrat;padding-left:4px;padding-right:4px;position:absolute;top:455px;width:100%;background-color:#45A9D7;color:white;font-size: ${fontSize};font-weight: ${fontWeight}; ">bilietą į Comic Con renginį.</div>`
           : ''
       }
-            <div style="width:100%; top: ${
+            <div style="width:calc(100% - 20px);margin-left:10px; top: ${
               this.prop === 'Nykstukas' ? '490px' : '450px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop === 'Nykstukas' ? '14px' : '10px'
@@ -336,8 +335,8 @@ export class CompetitionScoreTableContainer {
                 ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
                 : this.prop === 'Fantazijos'
                 ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
-                : this.prop === 'LemonGym'
-                ? 'Mėnesio gale 11 geriausių žaidėjų laimės</br> Lemon Gym PREMIUM PLUS  narystes!'
+                : this.prop === 'LemonFeel'
+                ? 'Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā! '
                 : this.prop === 'Makalius'
                 ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 €'
                 : this.prop === 'Vilvi'
@@ -408,7 +407,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Unisend' && this.language === 'LV'
                 ? 'TEV VEICAS LIELISKI!'
                 : this.language === 'LV'
-                ? 'Atzīmējiet karstāko vasaru'
+                ? 'SUPER!'
                 : this.language === 'RU'
                 ? 'Отпразднуйте самый жаркий месяц лета'
                 : this.prop === 'Unisend' && this.language === 'EE'
@@ -434,8 +433,8 @@ export class CompetitionScoreTableContainer {
                 ? '50 spēlētāji, kuri iegūs vislielāko punktu skaitu, saņems </br>E-EUROAPTIEKA dāvanu, kuponus: 100€, 50€, 25€, 15€,'
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">IR </br>pagrindiniai <u style="text-transform:uppercase">MIAU PRIZAI  </u></u> - Su Miau gyvent linksmiau!'
-                : this.prop === 'LemonGym'
-                ? 'Pagerink rezultatą nes mėnesio gale 11 geriausių žaidėjų laimės</br>Lemon Gym PREMIUM PLUS  narystes!'
+                : this.prop === 'LemonFeel'
+                ? 'Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā! '
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Akropolis' && this.language === 'LV'
@@ -645,14 +644,7 @@ export class CompetitionScoreTableContainer {
   </a>
 </div>
 
-      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:580px;position:absolute; height: 36px; background: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
-      }; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
+      <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:580px;position:absolute; height: 36px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 22px; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro, sans-serif' : 'Georama'
     }; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${

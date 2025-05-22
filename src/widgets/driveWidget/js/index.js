@@ -224,7 +224,7 @@ function startGame(
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
-  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' ? 1 : 3;
+  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' ? 1 : 3;
   let LOST_LIFE = 0;
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -258,7 +258,8 @@ function startGame(
   const ROAD_SPRITE_SPAWN_X = width / 10;
   let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' ? 999999 : 90; //time
+  const START_TIME =
+    customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' ? 999999 : 90; //time
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -1289,6 +1290,18 @@ function startGame(
           document.getElementById('competition-checkbox-error').style.backgroundColor =
             'transparent';
         }
+        if (customer === 'Orlen' && emailInput?.value.length < 7) {
+          document.getElementById('competition-email-error').innerText =
+            'Neteisingas telefono numeris.';
+          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-name-error').innerText = '';
+
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+          return;
+        }
 
         if (showCompetitiveRegistration && checkboxChange) {
           if (customer === 'Gamtos Ateitis') {
@@ -1549,7 +1562,34 @@ function startGame(
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      emailInput.addEventListener('input', () => {});
+
+      if (customer === 'Orlen' && emailInput) {
+        emailInput.value = '+370';
+
+        emailInput.addEventListener('input', () => {
+          if (!emailInput.value.startsWith('+370')) {
+            emailInput.value = '+370' + emailInput.value.replace(/\D/g, '').slice(0, 8);
+          } else {
+            emailInput.value = '+370' + emailInput.value.slice(4).replace(/\D/g, '').slice(0, 8);
+          }
+        });
+
+        emailInput.addEventListener('keydown', (e) => {
+          // Prevent deleting or navigating into the +370 part
+          if (
+            emailInput.selectionStart <= 4 &&
+            (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowLeft')
+          ) {
+            e.preventDefault();
+          }
+        });
+
+        emailInput.addEventListener('paste', (e) => {
+          e.preventDefault(); // Block pasting
+        });
+      } else {
+        emailInput.addEventListener('input', () => {});
+      }
 
       setTimeout(() => {
         if (customer !== 'SaludSA') {
@@ -1871,7 +1911,7 @@ function startGame(
     if (timeLeft <= 10) {
     }
 
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
       if (DEFAULT_LIFE <= LOST_LIFE) gameOverLifeZero();
     }
 
@@ -2267,7 +2307,7 @@ function startGame(
             'boomio-score-input-container',
           )[0];
           let currectTimeDiv;
-          if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+          if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
             currectTimeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
           } else {
             currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
@@ -2347,7 +2387,7 @@ function startGame(
     if (inGracePeriod()) return;
     const halfWidth = player.dimensions / 3;
     gameVars.lastHitAt = gameTime;
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
       LOST_LIFE++;
 
       showScoreEffect('-1', true);
@@ -2734,7 +2774,7 @@ function startGame(
     if (gameVars.gameOver) return;
     const timeColor = gameVars.timeLeft > 20 ? 'white' : SPARK_COLOR;
 
-    if (customer !== 'Pigu.lt' && customer !== 'Gamtos Ateitis') {
+    if (customer !== 'Pigu.lt' && customer !== 'Gamtos Ateitis' && customer !== 'Orlen') {
       document.getElementById('currentTime').innerHTML = `${gameVars.timeLeft}`;
       document.getElementById('currentTime').style.color = timeColor;
 
