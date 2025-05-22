@@ -81,8 +81,8 @@ class BoomioService extends UserService {
   }
 
   validateLocation(currentLat, currentLon) {
-    const locations = this.config.locations;
-    const delta = this.config.locations_delta;
+    const locations = this.config.restrictions.location_restrictions.locations;
+    const delta = this.config.restrictions.location_restrictions.locations_delta;
     console.log('🌍 Current location:', currentLat, currentLon);
     console.log('📏 Configured delta (meters):', delta);
 
@@ -110,22 +110,50 @@ class BoomioService extends UserService {
     return true;
   }
 
+  validateDate() {
+    const allowedDates = this.config.restrictions.date_restrictions?.dates || [];
+    const today = new Date().toISOString().split('T')[0];
+    const isValid = allowedDates.includes(today);
+
+    if (!isValid) {
+      console.warn(`❌ Date ${today} is not in allowed dates.`);
+    } else {
+      console.log(`✅ Date ${today} is valid.`);
+    }
+
+    return isValid;
+  }
+
+  validateTime() {
+    const timeRestriction = this.config.restrictions.time_restrictions?.time;
+    if (!timeRestriction) return true;
+
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    const [fromH, fromM] = timeRestriction.from.split(':').map(Number);
+    const [toH, toM] = timeRestriction.to.split(':').map(Number);
+
+    const fromMinutes = fromH * 60 + fromM;
+    const toMinutes = toH * 60 + toM;
+
+    const isValid = currentMinutes >= fromMinutes && currentMinutes <= toMinutes;
+
+    if (!isValid) {
+      console.warn(
+        `❌ Time now (${now.toTimeString().slice(0, 5)}) is outside allowed range (${
+          timeRestriction.from
+        }–${timeRestriction.to}).`,
+      );
+    } else {
+      console.log(`✅ Time ${now.toTimeString().slice(0, 5)} is within the allowed range.`);
+    }
+
+    return isValid;
+  }
+
   loadWidget = (widget_type = 'puzzle') => {
     this.config = localStorageService.getDefaultConfig();
-
-    if (this.config.locations && typeof this.config.locations === 'object') {
-      const exists = Object.values(this.config.locations).some(
-        (loc) => loc.lat === 54.675938 && loc.lon === 25.199246,
-      );
-
-      if (!exists) {
-        this.config.locations['EXCEPTION: Vilnius Center'] = {
-          lat: 54.675938,
-          lon: 25.199246,
-        };
-      }
-    }
-    console.log(this.config);
 
     const createWidgetMap = {
       puzzle: startPuzzleWidget,
@@ -151,40 +179,50 @@ class BoomioService extends UserService {
       runner: startRunnerWidget,
     };
 
-    const hasLocationRestriction = this.config.locations && this.config.locations_delta;
+    const hasLocationRestriction =
+      this.config.restrictions.location_restrictions?.locations &&
+      this.config.restrictions.location_restrictions?.locations_delta;
 
-    if (hasLocationRestriction) {
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const currentLat = position.coords.latitude;
-            const currentLon = position.coords.longitude;
+    const hasDateRestriction = this.config.restrictions.date_restrictions?.dates?.length > 0;
+    const hasTimeRestriction = this.config.restrictions.time_restrictions?.time;
 
-            const isValid = this.validateLocation(currentLat, currentLon);
-            if (!isValid) return; // ❌ TERMINATE if outside valid range
+    const alertReasons = [];
 
-            const startWidget = createWidgetMap[widget_type];
-            if (startWidget) {
-              startWidget(); // ✅ Start widget if valid location
-            }
-          },
-          (error) => {
-            console.warn('Geolocation denied or unavailable. Widget will not start.');
-            return; // ❌ TERMINATE on geolocation error
-          },
-        );
+    const handleAccessValidation = (currentLat, currentLon) => {
+      const isLocationValid = hasLocationRestriction
+        ? this.validateLocation(currentLat, currentLon)
+        : true;
+
+      const isDateValid = hasDateRestriction ? this.validateDate() : true;
+      const isTimeValid = hasTimeRestriction ? this.validateTime() : true;
+
+      if (!isLocationValid) alertReasons.push('Your location is not within the allowed area.');
+      if (!isDateValid) alertReasons.push('Today is not an allowed date.');
+      if (!isTimeValid) alertReasons.push('The current time is outside the allowed window.');
+
+      if (isLocationValid && isDateValid && isTimeValid) {
+        const startWidget = createWidgetMap[widget_type];
+        if (startWidget) startWidget();
       } else {
-        console.warn('Geolocation not supported. Widget will not start.');
-        return; // ❌ TERMINATE if not supported
+        alert('Access denied:\n' + alertReasons.join('\n'));
       }
+    };
 
-      return; // ❌ Prevent continuing before async check
+    if (hasLocationRestriction && 'geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          handleAccessValidation(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+          alert('Geolocation access denied or unavailable. Cannot verify location.');
+          return;
+        },
+      );
+
+      return;
     }
 
-    const startWidget = createWidgetMap[widget_type];
-    if (startWidget) {
-      startWidget();
-    }
+    handleAccessValidation(null, null);
   };
 
   setInitialConfiguration() {
