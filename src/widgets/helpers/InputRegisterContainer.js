@@ -124,6 +124,7 @@ export class InputRegisterContainer {
        } ;left: 34px; top: ${
       this.prop === 'Zemaitijos Pienas' ? '360px' : '360px'
     }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
+      this.prop === 'Makalius' ||
       this.prop === 'Pegasas' ||
       this.prop === 'Pieno Žvaigždės' ||
       this.prop === 'Eurovaistine' ||
@@ -191,7 +192,9 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : this.prop === 'Orlen'
         ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
-        : 'Nõustun saama Unisend.ee uudiskirju.'
+        : this.prop === 'Unisend' && this.language === 'LV'
+        ? 'Nõustun saama Unisend.ee uudiskirju'
+        : 'Sutinku su privatumo politika.'
     }
     </div>
       </div>
