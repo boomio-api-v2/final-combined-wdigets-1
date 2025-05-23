@@ -696,6 +696,8 @@ ${
               ? 'href=https://www.boomio.com/zemaitijos-pienas-magija-zaidimo-taisykles'
               : this.prop === 'Nevezis'
               ? 'href=https://ohosausryciai.lt/zaidimo-taisykles.html'
+              : this.prop === 'LemonFeel'
+              ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-FEEL-speles-noteikumi.pdf'
               : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:14px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
