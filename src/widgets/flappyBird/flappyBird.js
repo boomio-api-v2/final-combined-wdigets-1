@@ -550,10 +550,10 @@ class FlappyBird {
                 background.style.display = 'none';
               }
             },
-            this.customer.includes('demo') ? 0 : 2000,
+            this.customer.includes('demo') || this.customer === 'LemonFeel' ? 0 : 2000,
           );
         },
-        this.customer.includes('demo') ? 0 : 2000,
+        this.customer.includes('demo') || this.customer === 'LemonFeel' ? 0 : 2000,
       );
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
