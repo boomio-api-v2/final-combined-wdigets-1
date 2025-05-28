@@ -107,6 +107,7 @@ import {
   demoGame21,
   LemonGymBackground,
   LemonGymintro,
+  LemonFeelBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -459,8 +460,10 @@ class FlappyBird {
         ? demoGame20
         : this.customer === 'demo-21'
         ? demoGame21
-        : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
+        : this.customer === 'LemonGym'
         ? LemonGymBackground
+        : this.customer === 'LemonFeel'
+        ? LemonFeelBackground
         : this.customer === 'Penki Sezonai' && mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -1167,7 +1170,7 @@ class FlappyBird {
         ? CorepetitusFlappyIntro
         : this.customer === 'Dentsu'
         ? DentsuIntro
-        : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
+        : this.customer === 'LemonGym'
         ? LemonGymintro
         : this.customer === 'Penki Sezonai' && introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
@@ -1177,7 +1180,7 @@ class FlappyBird {
           : document.body.offsetWidth + 'px'
         : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:${
-      this.customer.includes('demo') ? 'none' : 'block'
+      this.customer.includes('demo') || this.customer === 'LemonFeel' ? 'none' : 'block'
     };" id="background_intro">
 </img>
 

@@ -44,6 +44,8 @@ export class InputRegisterContainer {
     }; line-height: 32px; word-wrap: break-word">${
       this.language === 'LV' && this.prop === 'Akropolis'
         ? 'REĢISTRĒJIES'
+        : this.prop === 'LemonFeel'
+        ? 'REĢISTRĒJIES, LAI KRĀTU PUNKTUS'
         : this.language === 'LV'
         ? 'REĢISTRĒJIES, LAI SPĒLĒTU'
         : this.language === 'RU'
@@ -71,6 +73,8 @@ export class InputRegisterContainer {
         ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
         : this.language === 'EN'
         ? 'Already registered? Use the same email </br> and improve your result!'
+        : this.prop === 'LemonFeel'
+        ? 'Ievadi e-pastu, ko izmantoji, reģistrējoties LEMON FEEL </br> abonementam vai savam LEMON GYM profilam'
         : this.language === 'LV'
         ? ' Jau reģistrējies? Izmanto to pašu e-pastu  </br>un uzlabo savu rezultātu!'
         : this.language === 'RU'
