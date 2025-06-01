@@ -424,7 +424,7 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : 'Tu gali!'
             }</div>
-            <div style="width:100%; top: ${
+            <div style="width:calc(100% - 20px);margin-left:10px; top: ${
               this.prop === 'Perlas GO' ? '390px' : '450px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
