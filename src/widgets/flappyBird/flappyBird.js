@@ -108,6 +108,8 @@ import {
   LemonGymBackground,
   LemonGymintro,
   LemonFeelBackground,
+  TicheBackground,
+  nykstukasBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -464,6 +466,10 @@ class FlappyBird {
         ? LemonGymBackground
         : this.customer === 'LemonFeel'
         ? LemonFeelBackground
+        : this.customer === 'tiche'
+        ? TicheBackground
+        : this.customer === 'Nykstukas'
+        ? nykstukasBackground
         : this.customer === 'Penki Sezonai' && mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
