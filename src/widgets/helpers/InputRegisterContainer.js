@@ -142,6 +142,7 @@ export class InputRegisterContainer {
       this.prop === 'LemonFeel' ||
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
+      this.prop === 'Tiche' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -460,6 +461,7 @@ export class InputRegisterContainer {
         this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
+        this.prop === 'Tiche' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -509,6 +511,7 @@ export class InputRegisterContainer {
             this.prop === 'Nykstukas' ||
             this.prop === 'Orlen' ||
             this.prop === 'LemonFeel' ||
+            this.prop === 'Tiche' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -525,6 +528,7 @@ export class InputRegisterContainer {
         this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
+        this.prop === 'Tiche' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -543,6 +547,7 @@ export class InputRegisterContainer {
             this.prop === 'Nykstukas' ||
             this.prop === 'Orlen' ||
             this.prop === 'LemonFeel' ||
+            this.prop === 'Tiche' ||
             this.language === 'EN'
           ? '249px'
           : '299px'
@@ -551,6 +556,7 @@ export class InputRegisterContainer {
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym' ||
+      this.prop === 'Tiche' ||
       this.prop === 'LemonFeel'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
@@ -590,6 +596,7 @@ export class InputRegisterContainer {
         this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
+        this.prop === 'Tiche' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -600,6 +607,7 @@ export class InputRegisterContainer {
       this.prop === 'Fpro' ||
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonFeel' ||
+      this.prop === 'Tiche' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'

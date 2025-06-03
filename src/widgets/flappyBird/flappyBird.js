@@ -120,7 +120,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
+    this.customer = this.config.business_name ? this.config.business_name : 'Tiche';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -466,7 +466,7 @@ class FlappyBird {
         ? LemonGymBackground
         : this.customer === 'LemonFeel'
         ? LemonFeelBackground
-        : this.customer === 'tiche'
+        : this.customer === 'Tiche'
         ? TicheBackground
         : this.customer === 'Nykstukas'
         ? nykstukasBackground
@@ -558,6 +558,7 @@ class FlappyBird {
             },
             this.customer.includes('demo') ||
               this.customer === 'Nykstukas' ||
+              this.customer === 'Tiche' ||
               this.customer === 'LemonFeel'
               ? 0
               : 2000,
@@ -565,6 +566,7 @@ class FlappyBird {
         },
         this.customer.includes('demo') ||
           this.customer === 'Nykstukas' ||
+          this.customer === 'Tiche' ||
           this.customer === 'LemonFeel'
           ? 0
           : 2000,
@@ -1305,6 +1307,8 @@ ${`<div style="${
                 ? '#0A3533'
                 : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
                 ? '#FF00FF'
+                : this.customer === 'Tiche'
+                ? '#065DA4'
                 : '#C6152F'
             };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
