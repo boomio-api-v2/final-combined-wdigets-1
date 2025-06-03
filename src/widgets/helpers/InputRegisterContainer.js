@@ -360,7 +360,7 @@ export class InputRegisterContainer {
               : this.prop === 'Nykstukas'
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop === 'Orlen'
-              ? 'https://www.orlenlietuva.lt/LT/Company/Puslapiai/Asmens-duomen%c5%b3-apsaugos-politika.aspx'
+              ? 'https://www.orlen.lt/LT/Apie%20mus/Privatumo%20politika/Puslapiai/default.aspx'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'

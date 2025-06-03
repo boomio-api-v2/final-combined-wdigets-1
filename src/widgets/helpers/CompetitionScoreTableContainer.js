@@ -303,7 +303,7 @@ export class CompetitionScoreTableContainer {
 
       ${
         this.prop === 'Nykstukas'
-          ? `<div style="font-family: Montserrat;padding-left:4px;padding-right:4px;position:absolute;top:455px;width:100%;background-color:#45A9D7;color:white;font-size: ${fontSize};font-weight: ${fontWeight}; ">bilietą į Comic Con renginį.</div>`
+          ? `<div style="font-family: Montserrat;padding-left:4px;padding-right:4px;position:absolute;top:455px;width:100%;background-color:#45A9D7;color:white;font-size: ${fontSize};font-weight: ${fontWeight}; ">WOLT kuponus.</div>`
           : ''
       }
             <div style="width:calc(100% - 20px);margin-left:10px; top: ${
@@ -352,7 +352,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Magija'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Magija“  prizus! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. '
                 : this.prop === 'Orlen'
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro net 1 000 ledų kas savaitę!'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinis fondas - skrydis oro balionu!'
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -472,7 +472,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Magija'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Dobilas“  prizus!'
                 : this.prop === 'Orlen'
-                ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę!! '
+                ? 'Pagerink rezultatą, nes prizinį fondą sudaro - skrydis oro balionu!'
                 : this.language === 'EN'
                 ? ''
                 : ''
