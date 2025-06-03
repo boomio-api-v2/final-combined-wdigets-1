@@ -120,7 +120,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'LemonFeel';
+    this.customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -556,10 +556,18 @@ class FlappyBird {
                 background.style.display = 'none';
               }
             },
-            this.customer.includes('demo') || this.customer === 'LemonFeel' ? 0 : 2000,
+            this.customer.includes('demo') ||
+              this.customer === 'Nykstukas' ||
+              this.customer === 'LemonFeel'
+              ? 0
+              : 2000,
           );
         },
-        this.customer.includes('demo') || this.customer === 'LemonFeel' ? 0 : 2000,
+        this.customer.includes('demo') ||
+          this.customer === 'Nykstukas' ||
+          this.customer === 'LemonFeel'
+          ? 0
+          : 2000,
       );
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
