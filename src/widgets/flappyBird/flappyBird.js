@@ -122,7 +122,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'LemonFeel';
+    this.customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -1687,12 +1687,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           setTimeout(() => {
             shareContainer.style.height = '680px';
             const isNarrowScreen = window.innerWidth <= 920;
-
-            if (isNarrowScreen) {
-              shareContainer.style.top = 'calc(50% - 144px)';
-            } else {
-              shareContainer.style.top = 'calc(50%)';
-            }
+            shareContainer.style.top = 'calc(50%)';
             shareContainer.style.opacity = 1;
           }, 100);
         } else {
@@ -1742,11 +1737,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
             competitionTableContainer.style.height = '680px';
             const isNarrowScreen = window.innerWidth <= 920;
 
-            if (isNarrowScreen) {
-              competitionTableContainer.style.top = 'calc(50% - 144px)';
-            } else {
-              competitionTableContainer.style.top = 'calc(50%)';
-            }
+            competitionTableContainer.style.top = 'calc(50%)';
+
             competitionTableContainer.style.opacity = 1;
           }, 100);
         }
