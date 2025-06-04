@@ -303,7 +303,7 @@ export class CompetitionScoreTableContainer {
 
       ${
         this.prop === 'Nykstukas'
-          ? `<div style="font-family: Montserrat;padding-left:4px;padding-right:4px;position:absolute;top:455px;width:100%;background-color:#45A9D7;color:white;font-size: ${fontSize};font-weight: ${fontWeight}; ">10 Eur Wolt kuponus.</div>`
+          ? `<div style="font-family: Montserrat;padding-left:4px;padding-right:4px;position:absolute;top:455px;width:calc(100% - 10px);margin-left:5px;background-color:#45A9D7;color:white;font-size: ${fontSize};font-weight: ${fontWeight}; ">10 Eur Wolt kuponus.</div>`
           : ''
       }
             <div style="width:calc(100% - 20px);margin-left:10px; top: ${
