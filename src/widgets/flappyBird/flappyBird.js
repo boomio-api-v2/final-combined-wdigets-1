@@ -19,6 +19,7 @@ import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCo
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
+import { ShareContainer } from '../helpers/ShareContainer';
 
 import {
   close,
@@ -113,6 +114,7 @@ import {
 } from './constants';
 class FlappyBird {
   constructor() {
+    this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
     this.showCompetitiveRegistration =
@@ -794,6 +796,7 @@ class FlappyBird {
                     boomioService
                       .signal('ROUND_FINISHED', 'signal', {
                         score: this.currentScore,
+                        shared_somewhere: this.shareClicked,
                       })
                       .then((response) => {
                         if (this.customer === 'Pigu.lt') {
@@ -867,7 +870,7 @@ class FlappyBird {
                   if (this.showCompetitiveRegistration === 'competition') {
                     const canvas = document.getElementById('flappy-canvas');
                     let competitionTableContainer = '';
-                    if (this.customer === 'Pigu.lt') {
+                    if (this.customer === 'Nykstukas') {
                       competitionTableContainer = document.querySelector('.did-you-know-container');
                     } else {
                       competitionTableContainer = document.querySelector(
@@ -1408,7 +1411,13 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       );
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
-
+    document.addEventListener('shareClicked', (event) => {
+      if (this.shareClicked === false) {
+        console.log('shareClicked');
+        this.shareClicked = true;
+        this.currentScore = this.currentScore + 1000;
+      }
+    });
     if (this.showCompetitiveRegistration === 'points') {
       if (this.customer === 'SaludSA') {
         const gameContainer = document.querySelector('.game-container-flappy');
@@ -1463,11 +1472,14 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
-    if (this.customer === 'Pigu.lt') {
+    if (this.customer === 'Nykstukas') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.didYouKnowContainer = new DidYouKnowContainer(this.customer);
-      gameContainer.appendChild(this.didYouKnowContainer.containerDiv);
+      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      gameContainer.appendChild(didYouKnowContainer.containerDiv);
+
+      this.shareContainer = new ShareContainer(this.customer);
+      gameContainer.appendChild(this.shareContainer.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
@@ -1646,9 +1658,12 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         }
       };
 
-      const clickEventHandlerDidYouKnow = () => {
-        const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+      const clickEventHandlerDidYouKnow = (closeShare) => {
+        const shareContainer = document.querySelector('.share-container');
 
+        const didYouKnowTableContainer = closeShare
+          ? document.querySelector('.share-container')
+          : document.querySelector('.did-you-know-container');
         didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         setTimeout(() => {
           didYouKnowTableContainer.style.height = '10px';
@@ -1658,16 +1673,76 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         setTimeout(() => {
           didYouKnowTableContainer.style.display = 'none';
         }, 1000);
-        const competitionTableContainer = document.querySelector('.competition-table-container');
-        document.getElementById('background_blur').style.display = 'block';
-        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-        competitionTableContainer.style.display = 'block';
+        if (shareContainer && !closeShare) {
+          shareContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+          shareContainer.style.display = 'block';
 
-        setTimeout(() => {
-          competitionTableContainer.style.height = '680px';
-          competitionTableContainer.style.top = 'calc(50%)';
-          competitionTableContainer.style.opacity = 1;
-        }, 100);
+          setTimeout(() => {
+            shareContainer.style.height = '680px';
+            const isNarrowScreen = window.innerWidth <= 920;
+
+            if (isNarrowScreen) {
+              shareContainer.style.top = 'calc(50% - 144px)';
+            } else {
+              shareContainer.style.top = 'calc(50%)';
+            }
+            shareContainer.style.opacity = 1;
+          }, 100);
+        } else {
+          if (this.customer === 'Nykstukas') {
+            boomioService
+              .signal('ROUND_FINISHED', 'signal', {
+                score: this.currentScore,
+                shared_somewhere: this.shareClicked,
+              })
+              .then((response) => {
+                this.userBestPlace = response.user_best_place;
+                if (this.showCompetitiveRegistration === 'points') {
+                  this.scoreTable = response;
+                  this.scoreTableContainerInstance.updateProps(
+                    this.customer,
+                    this.scoreTable,
+                    this.currentScore,
+                  );
+                }
+                if (this.showCompetitiveRegistration === 'competition') {
+                  this.scoreTable = response;
+                  this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+                }
+
+                if (this.showCompetitiveRegistration === 'collectable') {
+                  this.collection = response?.collection ? response?.collection : this.collection;
+                  this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                  this.scoreTableContainerInstance.updateProps(
+                    this.customer,
+                    this.collectables,
+                    this.collection,
+                    this.just_won,
+                  );
+                }
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+
+          const competitionTableContainer = document.querySelector('.competition-table-container');
+          competitionTableContainer.style.transition =
+            'height 1s ease, top 1s ease, opacity 1s ease';
+          competitionTableContainer.style.display = 'block';
+
+          setTimeout(() => {
+            competitionTableContainer.style.height = '680px';
+            const isNarrowScreen = window.innerWidth <= 920;
+
+            if (isNarrowScreen) {
+              competitionTableContainer.style.top = 'calc(50% - 144px)';
+            } else {
+              competitionTableContainer.style.top = 'calc(50%)';
+            }
+            competitionTableContainer.style.opacity = 1;
+          }, 100);
+        }
       };
 
       const clickEventHandlerResetGame = () => {
@@ -1743,9 +1818,11 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         const competitionRestart = document.getElementById('boomio-game-play-again-pigu');
         competitionRestart.addEventListener('click', this.showRulesPigu);
       }
-      if (this.customer === 'Pigu.lt') {
+      if (this.customer === 'Nykstukas') {
         const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
-        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+        competitionDidYouKnow.addEventListener('click', () => clickEventHandlerDidYouKnow(false));
+        const competitionShare = document.getElementById('boomio-close-share');
+        competitionShare.addEventListener('click', () => clickEventHandlerDidYouKnow(true));
       }
     }
 

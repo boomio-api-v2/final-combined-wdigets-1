@@ -46,24 +46,11 @@
 }
 
 #flappy-canvas {
-  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
   transition:filter 1s ease;
   opacity: 0;
 }
 
-.startButton{
-  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
-}
 
-.input-container{
-  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
-
-}
-
-.game-container-flappy{
-  /* cursor: url(https://i.ibb.co/y4ZQJS3/Cursor-2-1.png) 10 10, auto; */
-
-}
 .intro-screen{
   z-index: 99999;
 }
