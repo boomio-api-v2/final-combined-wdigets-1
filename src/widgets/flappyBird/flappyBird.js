@@ -793,78 +793,85 @@ class FlappyBird {
                       }, 400);
                     };
                     hideScore();
-                    boomioService
-                      .signal('ROUND_FINISHED', 'signal', {
-                        score: this.currentScore,
-                        shared_somewhere: this.shareClicked,
-                      })
-                      .then((response) => {
-                        if (this.customer === 'Pigu.lt') {
-                          if (window.Boomio) {
-                            window.Boomio.logEvent('game_finished', JSON.stringify(response));
-                          } else if (
-                            window.webkit &&
-                            window.webkit.messageHandlers &&
-                            window.webkit.messageHandlers.Boomio
-                          ) {
-                            var message = {
-                              command: 'logEvent',
-                              name: 'game_finished',
-                              parameters: { response },
-                            };
-                            window.webkit.messageHandlers.Boomio.postMessage(message);
-                          } else {
-                            console.log('No native APIs found.');
+                    if (this.customer !== 'Nykstukas') {
+                      boomioService
+                        .signal('ROUND_FINISHED', 'signal', {
+                          score: this.currentScore,
+                          shared_somewhere: this.shareClicked,
+                        })
+                        .then((response) => {
+                          if (this.customer === 'Pigu.lt') {
+                            if (window.Boomio) {
+                              window.Boomio.logEvent('game_finished', JSON.stringify(response));
+                            } else if (
+                              window.webkit &&
+                              window.webkit.messageHandlers &&
+                              window.webkit.messageHandlers.Boomio
+                            ) {
+                              var message = {
+                                command: 'logEvent',
+                                name: 'game_finished',
+                                parameters: { response },
+                              };
+                              window.webkit.messageHandlers.Boomio.postMessage(message);
+                            } else {
+                              console.log('No native APIs found.');
+                            }
                           }
-                        }
-                        hideScore();
-                        this.userBestPlace = response.user_best_place;
-                        if (this.showCompetitiveRegistration === 'points') {
-                          this.scoreTable = response;
-                          this.scoreTableContainerInstance.updateProps(
-                            this.customer,
-                            this.scoreTable,
-                            this.currentScore,
-                          );
-                          const competitionRestart =
-                            document.getElementById('boomio-game-play-again');
-                          competitionRestart.addEventListener('click', clickEventHandlerResetGame);
-                        }
-
-                        if (this.showCompetitiveRegistration === 'competition') {
-                          this.scoreTable = response;
-                          this.scoreTableContainerInstance.updateProps(
-                            this.customer,
-                            this.scoreTable,
-                            this.currentScore,
-                          );
-                        }
-                        if (this.showCompetitiveRegistration === 'collectable') {
-                          if (this.customer !== 'Corepetitus') {
-                            this.collection = response?.collection
-                              ? response?.collection
-                              : this.collection;
-                            this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                          hideScore();
+                          this.userBestPlace = response.user_best_place;
+                          if (this.showCompetitiveRegistration === 'points') {
+                            this.scoreTable = response;
                             this.scoreTableContainerInstance.updateProps(
                               this.customer,
-                              this.collectables,
-                              this.collection,
-                              this.just_won,
+                              this.scoreTable,
+                              this.currentScore,
+                            );
+                            const competitionRestart =
+                              document.getElementById('boomio-game-play-again');
+                            competitionRestart.addEventListener(
+                              'click',
+                              clickEventHandlerResetGame,
                             );
                           }
-                        }
-                        if (this.customer === 'Corepetitus') {
-                          this.scoreTable = response;
-                          this.scoreTableContainerInstance.updateProps(
-                            this.customer,
-                            this.scoreTable,
-                            this.currentScore,
-                          );
-                        }
-                      })
-                      .catch((error) => {
-                        console.error('Error:', error);
-                      });
+
+                          if (this.showCompetitiveRegistration === 'competition') {
+                            this.scoreTable = response;
+                            this.scoreTableContainerInstance.updateProps(
+                              this.customer,
+                              this.scoreTable,
+                              this.currentScore,
+                            );
+                          }
+                          if (this.showCompetitiveRegistration === 'collectable') {
+                            if (this.customer !== 'Corepetitus') {
+                              this.collection = response?.collection
+                                ? response?.collection
+                                : this.collection;
+                              this.just_won = response?.just_won
+                                ? response?.just_won
+                                : this.just_won;
+                              this.scoreTableContainerInstance.updateProps(
+                                this.customer,
+                                this.collectables,
+                                this.collection,
+                                this.just_won,
+                              );
+                            }
+                          }
+                          if (this.customer === 'Corepetitus') {
+                            this.scoreTable = response;
+                            this.scoreTableContainerInstance.updateProps(
+                              this.customer,
+                              this.scoreTable,
+                              this.currentScore,
+                            );
+                          }
+                        })
+                        .catch((error) => {
+                          console.error('Error:', error);
+                        });
+                    }
                   }
 
                   if (this.showCompetitiveRegistration === 'competition') {
