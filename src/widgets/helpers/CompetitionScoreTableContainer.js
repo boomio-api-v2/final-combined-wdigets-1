@@ -270,6 +270,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
         (this.prop === 'Magija' && this.scoreTable?.user_best_place <= 3) ||
         (this.prop === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
+        (this.prop === 'Orlen' && this.scoreTable.user_best_place > 1000) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '16px' : fontSize
@@ -352,7 +353,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Magija'
                 ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Magija“  prizus! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. '
                 : this.prop === 'Orlen'
-                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Dydisis prizas - skrydis oro balionu!'
+                ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro net 1 000 ledų kas savaitę! Dydisis prizas - skrydis oro balionu!'
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -472,7 +473,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Magija'
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Dobilas“  prizus!'
                 : this.prop === 'Orlen'
-                ? 'Pagerink rezultatą, nes dydisis prizas - skrydis oro balionu!'
+                ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę! O dydisis prizas - skrydis oro balionu!'
                 : this.language === 'EN'
                 ? ''
                 : ''
