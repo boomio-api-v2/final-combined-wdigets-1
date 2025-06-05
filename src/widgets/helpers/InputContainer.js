@@ -265,6 +265,8 @@ export class InputContainer {
       ? '3 ar daugiau vienodų oho! pakuočių. '
       : this.game === 'doodle'
       ? 'į šonus, kad nenukristum.'
+      : this.prop === 'Nykstukas'
+      ? 'baksnodamas ekraną Nykštuką išlaikysi ore.'
       : this.language === 'EN'
       ? 'TO FLY'
       : 'kad skristum.'
