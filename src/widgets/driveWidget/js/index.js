@@ -1193,7 +1193,13 @@ function startGame(
     graceMultiplier = inGracePeriod() ? 1 / SLOW_MULTIPLIER : 1;
 
     turningSpeed = TURNING_SPEED * graceMultiplier;
-    spriteIncrease = SIDE_SPRITE_INCREASE * graceMultiplier;
+
+    function getSpeedMultiplier(score) {
+      return Math.min(1 + score / 5000, 4);
+    }
+
+    spriteIncrease =
+      SIDE_SPRITE_INCREASE * graceMultiplier * getSpeedMultiplier(gameVars.currentScore);
 
     if (gameVars.started) {
       initGame(t);

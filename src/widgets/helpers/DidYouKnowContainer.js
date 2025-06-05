@@ -639,7 +639,7 @@ export class DidYouKnowContainer {
   target="_blank" 
   href="https://pienozvaigzdes.lt/lt/lt/29-ledai
   " 
-  style="color:white;font-weight:900;font-size:12px;">
+  style="color:white;font-weight:900;font-size:12px;text-decoration: underline;">
   DAUGIAU NYKŠTUKO SKONIŲ!
 </a>`
           : this.prop === 'Nevezis'
