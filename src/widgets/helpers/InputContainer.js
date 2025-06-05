@@ -266,7 +266,7 @@ export class InputContainer {
       : this.game === 'doodle'
       ? 'į šonus, kad nenukristum.'
       : this.prop === 'Nykstukas'
-      ? 'baksnodamas Nykštuką išlaikysi ore.'
+      ? 'baksnodamas ekraną Nykštuką išlaikysi ore.'
       : this.language === 'EN'
       ? 'TO FLY'
       : 'kad skristum.'
