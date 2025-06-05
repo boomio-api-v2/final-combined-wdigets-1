@@ -320,7 +320,7 @@ export class InputRegisterContainer {
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
-              : 'privatumo politika'
+              : ''
           } `
     }
     ${
