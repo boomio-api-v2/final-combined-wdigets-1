@@ -167,7 +167,7 @@ export class InputContainer {
                   ? 'Sujunk'
                   : this.game === 'drive'
                   ? 'Brauk'
-                  : 'Spausk'
+                  : 'Spausk,'
               }
     <div
   style="top: 9px; margin-top: 2px; color: white; font-size: ${
@@ -380,7 +380,7 @@ export class InputContainer {
                 ? 'ledus ir gauk taškus. '
                 : this.prop === 'Perlas GO'
                 ? 'siekdamas kuo geresnio rezultato.'
-                : 'Taškus!'
+                : 'rink taškus!'
             }
           </div>
             </div>

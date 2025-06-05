@@ -199,7 +199,7 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
         : this.prop === 'Unisend' && this.language === 'LV'
         ? 'Nõustun saama Unisend.ee uudiskirju'
-        : 'Sutinku su privatumo politika.'
+        : 'Sutinku gauti naujienlaiškius.'
     }
     </div>
       </div>
@@ -320,7 +320,7 @@ export class InputRegisterContainer {
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
-              : 'gauti naujienas'
+              : 'privatumo politika'
           } `
     }
     ${
