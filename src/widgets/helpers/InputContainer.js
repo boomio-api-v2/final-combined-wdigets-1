@@ -324,7 +324,7 @@ export class InputContainer {
                 ? 'Kartok,'
                 : this.prop === 'Orlen'
                 ? 'Rink'
-                : 'Kartok!'
+                : 'Kartok'
             }
                          <div style=" top: 46px;margin-left:4px;margin-top:2px; color: white; font-size: ${
                            this.isMobile ? '12px' : '14px'
@@ -380,7 +380,7 @@ export class InputContainer {
                 ? 'ledus ir gauk taškus. '
                 : this.prop === 'Perlas GO'
                 ? 'siekdamas kuo geresnio rezultato.'
-                : 'rink taškus!'
+                : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
             </div>
