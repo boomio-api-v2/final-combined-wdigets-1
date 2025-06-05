@@ -609,7 +609,7 @@ export class DidYouKnowContainer {
           : this.prop === 'Zemaitijos Pienas'
           ? 'Ekologiški jogurtai „DOBILAS“'
           : this.prop === 'Nykstukas'
-          ? 'IŠRAGAUK VISUS SKONIUS'
+          ? ''
           : this.prop === 'Nevezis'
           ? ''
           : this.prop === 'Magija'
