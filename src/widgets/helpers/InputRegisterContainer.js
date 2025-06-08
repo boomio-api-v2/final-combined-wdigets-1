@@ -136,12 +136,12 @@ export class InputRegisterContainer {
       this.prop === 'Daumantu' ||
       this.prop === 'Dentsu' ||
       this.prop === 'Zemaitijos Pienas' ||
-      this.prop === 'Nykstukas' ||
       this.prop === 'Orlen' ||
       this.prop === 'LemonGym' ||
       this.prop === 'LemonFeel' ||
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
+      this.prop === 'Nykstukas' ||
       this.prop === 'Tiche' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
@@ -485,6 +485,8 @@ export class InputRegisterContainer {
           ? '258px'
           : this.prop === 'Gamtos Ateitis'
           ? '348px'
+          : this.prop === 'Nykstukas'
+          ? '430px'
           : '338px'
       } ; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
@@ -525,7 +527,6 @@ export class InputRegisterContainer {
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
-        this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
         this.prop === 'Tiche' ||
@@ -533,7 +534,11 @@ export class InputRegisterContainer {
           ? 'none'
           : 'block'
       }; top: ${
-      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '124px' : '204px'
+      this.prop === 'SaludSA' || this.prop === 'Pegasas'
+        ? '124px'
+        : this.prop === 'Nykstukas'
+        ? '304px'
+        : '204px'
     }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
         this.prop === 'SaludSA' || this.prop === 'Pegasas'
@@ -593,7 +598,6 @@ export class InputRegisterContainer {
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
         this.prop === 'LemonGym' ||
-        this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
         this.prop === 'Tiche' ||
@@ -601,7 +605,11 @@ export class InputRegisterContainer {
           ? 'none'
           : 'block'
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-      this.prop === 'SaludSA' || this.prop === 'Pegasas' ? '135px' : '215px'
+      this.prop === 'SaludSA' || this.prop === 'Pegasas'
+        ? '135px'
+        : this.prop === 'Nykstukas'
+        ? '315px'
+        : '215px'
     };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
       this.prop === 'Barbora' ||
       this.prop === 'Fpro' ||
@@ -632,6 +640,8 @@ export class InputRegisterContainer {
         ? 'Nombre de usuario'
         : this.language === 'EN'
         ? 'Player nickname'
+        : this.prop === 'Nykstukas'
+        ? 'Komandos pavadinimas'
         : 'Žaidėjo slapyvardis'
     }">
           <select id="city-select" class="boomio-competition-city-select" style="display:${
