@@ -1558,8 +1558,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
               }
 
               if (
-                (this.customer === 'Nykstukas' && nameInput?.value === '') ||
-                nameInput?.value === null
+                this.customer === 'Nykstukas' &&
+                (nameInput?.value === '' || nameInput?.value === null)
               ) {
                 document.getElementById('competition-email-error').innerText =
                   'Norint tęsti privaloma užpildyti visus laukus.';
