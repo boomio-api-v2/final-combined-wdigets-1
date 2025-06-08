@@ -1502,6 +1502,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           const emailInput = document.querySelector('.boomio-competition-email-input-field');
+          const nameInput = document.querySelector('.boomio-competition-name-input-field');
+
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
           const checkboxChange2 = this.checkboxChange2;
 
@@ -1552,9 +1554,25 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-checkbox-error').innerText = '';
                 document.getElementById('competition-checkbox-error').style.backgroundColor =
                   'transparent';
-                if (this.customer.includes('demo')) {
-                  return;
-                }
+                return;
+              }
+
+              if (
+                this.customer === 'Nykstukas' &&
+                (nameInput?.value === '' || nameInput?.value === null)
+              ) {
+                document.getElementById('competition-email-error').innerText =
+                  'Norint tęsti privaloma užpildyti visus laukus.';
+                document.getElementById('competition-email-error').style.backgroundColor =
+                  '#FFBABA';
+                document.getElementById('competition-name-error').innerText = '';
+
+                document.getElementById('competition-name-error').style.backgroundColor =
+                  'transparent';
+                document.getElementById('competition-checkbox-error').innerText = '';
+                document.getElementById('competition-checkbox-error').style.backgroundColor =
+                  'transparent';
+                return;
               }
             }
 
@@ -1571,6 +1589,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                     this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
                   user_name:
                     this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+                  ...(this.customer === 'Nykstukas' && {
+                    team: nameInput?.value,
+                  }),
                 })
                 .then((response) => {
                   if (response.success === false) {
