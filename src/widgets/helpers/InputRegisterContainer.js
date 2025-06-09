@@ -694,9 +694,9 @@ export class InputRegisterContainer {
             emailInput.value = parsedCredentials.email;
           }
 
-          if (parsedCredentials.name && playerNameInput) {
-            playerNameInput.value = parsedCredentials.name;
-          }
+          // if (parsedCredentials.name && playerNameInput) {
+          //   playerNameInput.value = parsedCredentials.name;
+          // }
         } catch (e) {
           console.error('Error parsing boomio_game_credentials cookie:', e);
         }
