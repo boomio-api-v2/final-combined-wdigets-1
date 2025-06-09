@@ -678,7 +678,7 @@ export class InputRegisterContainer {
     }
 
     // Function to set the values in the input fields
-    function setCredentialsToInputs() {
+    function setCredentialsToInputs(prop) {
       // Retrieve input fields after they have been added to the DOM
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
@@ -693,8 +693,7 @@ export class InputRegisterContainer {
           if (parsedCredentials.email && emailInput) {
             emailInput.value = parsedCredentials.email;
           }
-
-          if (this.prop !== 'Nykstukas') {
+          if (prop !== 'Nykstukas') {
             if (parsedCredentials.name && playerNameInput) {
               playerNameInput.value = parsedCredentials.name;
             }
@@ -704,7 +703,7 @@ export class InputRegisterContainer {
         }
       }
     }
-    setTimeout(setCredentialsToInputs, 50);
+    setTimeout(setCredentialsToInputs(this.prop), 50);
 
     return containerDiv;
   }
