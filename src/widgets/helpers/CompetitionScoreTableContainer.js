@@ -324,6 +324,8 @@ export class CompetitionScoreTableContainer {
               ? 'Your score'
               : this.language === 'LV'
               ? 'Tavs rezultāts'
+              : this.prop === 'Nykstukas'
+              ? 'Tavo komandos rezultatas'
               : 'Tavo rezultatas'
             : this.prop === 'Perlas GO'
             ? perlasGoTable[index]
