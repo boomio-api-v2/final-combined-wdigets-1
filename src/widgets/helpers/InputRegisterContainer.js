@@ -678,32 +678,28 @@ export class InputRegisterContainer {
     }
 
     // Function to set the values in the input fields
-    function setCredentialsToInputs(prop) {
-      // Retrieve input fields after they have been added to the DOM
+    const setCredentialsToInputs = () => {
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
-      // Get the boomio_game_credentials cookie
       const credentials = getCookie('boomio_game_credentials');
 
       if (credentials) {
         try {
           const parsedCredentials = JSON.parse(credentials);
-          // Set the email and name to the input fields if available
           if (parsedCredentials.email && emailInput) {
             emailInput.value = parsedCredentials.email;
           }
-          if (prop !== 'Nykstukas') {
-            if (parsedCredentials.name && playerNameInput) {
-              playerNameInput.value = parsedCredentials.name;
-            }
+          if (this.prop !== 'Nykstukas' && parsedCredentials.name && playerNameInput) {
+            playerNameInput.value = parsedCredentials.name;
           }
         } catch (e) {
           console.error('Error parsing boomio_game_credentials cookie:', e);
         }
       }
-    }
-    setTimeout(setCredentialsToInputs(this.prop), 50);
+    };
+
+    setTimeout(setCredentialsToInputs, 50);
 
     return containerDiv;
   }
