@@ -349,8 +349,10 @@ export class CompetitionScoreTableContainer {
             <td style="padding-left:8px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
               <td style="padding-left:6px;text-align:start;width: 100px; color: ${'rgba(61, 73, 40, 1)'}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        this.prop !== 'Gamtos Ateitis' && this.prop !== 'Nykstukas'
-          ? this.language === 'EN'
+        this.prop !== 'Gamtos Ateitis'
+          ? this.prop === 'Nykstukas'
+            ? 'Tavo komandos rezultatas'
+            : this.language === 'EN'
             ? 'Your score'
             : 'Tavo rezultatas'
           : scoreboard[userBestPlace].team
