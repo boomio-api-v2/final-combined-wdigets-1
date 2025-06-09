@@ -694,7 +694,7 @@ export class InputRegisterContainer {
             emailInput.value = parsedCredentials.email;
           }
 
-          if (this.customer !== 'Nykstukas') {
+          if (this.prop !== 'Nykstukas') {
             if (parsedCredentials.name && playerNameInput) {
               playerNameInput.value = parsedCredentials.name;
             }
