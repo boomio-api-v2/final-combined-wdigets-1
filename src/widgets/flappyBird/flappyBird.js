@@ -1641,7 +1641,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                     } else if (response.res_code === 'TEAM_FULL' && this.customer === 'Nykstukas') {
                       document.getElementById('competition-email-error').innerText =
                         'Ši komanda yra pilna. Naudokite kitą.';
-                      document.getElementById('competition-name-error').style.backgroundColor =
+                      document.getElementById('competition-email-error').style.backgroundColor =
                         '#FFBABA';
 
                       document.getElementById('competition-email-error').innerText = '';
