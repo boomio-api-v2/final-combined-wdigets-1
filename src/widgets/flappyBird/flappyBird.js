@@ -122,7 +122,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
+    this.customer = this.config.business_name ? this.config.business_name : 'Tiche';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -1634,6 +1634,21 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                           : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =
                         '#FFBABA';
+
+                      document.getElementById('competition-email-error').innerText = '';
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        'transparent';
+                    } else if (response.res_code === 'TEAM_FULL' && this.customer === 'Nykstukas') {
+                      document.getElementById('competition-checkbox-error').innerText =
+                        'Ši komanda yra pilna. Naudokite kitą.';
+                      document.getElementById('competition-checkbox-error').style.backgroundColor =
+                        '#FFBABA';
+                      document.getElementById('competition-checkbox-error').style.display = 'block';
+
+                      document.getElementById('competition-name-error').innerText = '';
+
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        'transparent';
 
                       document.getElementById('competition-email-error').innerText = '';
                       document.getElementById('competition-email-error').style.backgroundColor =
