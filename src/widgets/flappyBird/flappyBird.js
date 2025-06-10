@@ -1643,6 +1643,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         'Ši komanda yra pilna. Naudokite kitą.';
                       document.getElementById('competition-checkbox-error').style.backgroundColor =
                         '#FFBABA';
+                      document.getElementById('competition-checkbox-error').style.display = 'block';
+
                       document.getElementById('competition-name-error').innerText = '';
 
                       document.getElementById('competition-name-error').style.backgroundColor =
