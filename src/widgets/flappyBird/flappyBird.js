@@ -1639,10 +1639,14 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                       document.getElementById('competition-email-error').style.backgroundColor =
                         'transparent';
                     } else if (response.res_code === 'TEAM_FULL' && this.customer === 'Nykstukas') {
-                      document.getElementById('competition-email-error').innerText =
+                      document.getElementById('competition-checkbox-error').innerText =
                         'Ši komanda yra pilna. Naudokite kitą.';
-                      document.getElementById('competition-email-error').style.backgroundColor =
+                      document.getElementById('competition-checkbox-error').style.backgroundColor =
                         '#FFBABA';
+                      document.getElementById('competition-name-error').innerText = '';
+
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        'transparent';
 
                       document.getElementById('competition-email-error').innerText = '';
                       document.getElementById('competition-email-error').style.backgroundColor =
