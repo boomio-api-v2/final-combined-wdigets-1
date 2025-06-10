@@ -59,7 +59,7 @@ export class ShareContainer {
       <div class="bomio-first-line" style="width:100%; top: 250px; line-height:24px; position: absolute; font-weight: 700; text-align: center; color: white; font-size: 20px; font-family: Montserrat; word-wrap: break-word;">
          ${
            this.prop === 'Perlas GO'
-             ? 'Panaudok kodą ir gauk 5 Eur nuolaidą sąskaitoms apmokėti Perlas Go!'
+             ? 'Tik naujiems vartotojams – panaudok kodą ir gauk 5 € sąskaitoms apmokėti Perlas Go! '
              : 'Už pakviestus draugus gausi +1000<br> taškų prie savo žaidimo rezultato!'
          }
       </div>
