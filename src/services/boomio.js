@@ -290,11 +290,15 @@ class BoomioService extends UserService {
     }
     const { user_session, current_page_url } = this;
 
+    const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
     let current_page_url_cleaned = current_page_url;
-    try {
-      const u = new URL(current_page_url);
-      current_page_url_cleaned = `${u.origin}${u.pathname}`.replace(/\/$/, '/').trim();
-    } catch {}
+
+    if (!isLocalhost) {
+      try {
+        const u = new URL(current_page_url);
+        current_page_url_cleaned = `${u.origin}${u.pathname}`.replace(/\/$/, '/').trim();
+      } catch {}
+    }
 
     const rawRequestBody = {
       user_session,
