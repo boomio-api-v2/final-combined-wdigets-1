@@ -463,7 +463,7 @@ export class CompetitionScoreTableContainer {
                 ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
                     this.userParticipationDays >= 3
                       ? `${this.userParticipationDays} DIENAS SUPER!`
-                      : `${this.userParticipationDays} 'DIENAS`
+                      : `${this.userParticipationDays} DIENAS`
                   } `
                 : this.prop === 'Makalius'
                 ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 €'
@@ -565,7 +565,7 @@ export class CompetitionScoreTableContainer {
                 ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
                     this.userParticipationDays >= 3
                       ? `${this.userParticipationDays} DIENAS SUPER!`
-                      : `${this.userParticipationDays} 'DIENAS`
+                      : `${this.userParticipationDays} DIENAS`
                   } `
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
