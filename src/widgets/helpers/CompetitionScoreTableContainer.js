@@ -463,6 +463,8 @@ export class CompetitionScoreTableContainer {
                 ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
                     this.userParticipationDays >= 3
                       ? `${this.userParticipationDays} DIENAS SUPER!`
+                      : this.userParticipationDays === 1
+                      ? `${this.userParticipationDays} DIENA`
                       : `${this.userParticipationDays} DIENAS`
                   } `
                 : this.prop === 'Makalius'
@@ -565,6 +567,8 @@ export class CompetitionScoreTableContainer {
                 ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
                     this.userParticipationDays >= 3
                       ? `${this.userParticipationDays} DIENAS SUPER!`
+                      : this.userParticipationDays === 1
+                      ? `${this.userParticipationDays} DIENA`
                       : `${this.userParticipationDays} DIENAS`
                   } `
                 : this.prop === 'Penki Sezonai'
