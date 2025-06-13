@@ -34,6 +34,8 @@ export class CompetitionScoreTableContainer {
         : this.scoreTable.user_best_place,
     );
     const userBestScore = parseInt(this.scoreTable.user_best_score);
+    this.userParticipationDays = this.scoreTable?.participation_days ?? 0; // nullish-coalescing
+
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
@@ -458,7 +460,13 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Fantazijos'
                 ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
                 : this.prop === 'LemonFeel'
-                ? 'Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā! '
+                ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
+                    this.userParticipationDays >= 3
+                      ? `${this.userParticipationDays} DIENAS SUPER!`
+                      : this.userParticipationDays === 1
+                      ? `${this.userParticipationDays} DIENA`
+                      : `${this.userParticipationDays} DIENAS`
+                  } `
                 : this.prop === 'Makalius'
                 ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 €'
                 : this.prop === 'Vilvi'
@@ -556,7 +564,13 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">IR </br>pagrindiniai <u style="text-transform:uppercase">MIAU PRIZAI  </u></u> - Su Miau gyvent linksmiau!'
                 : this.prop === 'LemonFeel'
-                ? 'Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā! '
+                ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
+                    this.userParticipationDays >= 3
+                      ? `${this.userParticipationDays} DIENAS SUPER!`
+                      : this.userParticipationDays === 1
+                      ? `${this.userParticipationDays} DIENA`
+                      : `${this.userParticipationDays} DIENAS`
+                  } `
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Akropolis' && this.language === 'LV'
