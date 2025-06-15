@@ -20,6 +20,9 @@ export const WhackHammer =
 export const WhackMole00 =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole-faster140pct.gif?raw=true';
 
+export const WhackMole =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/whackWidget/frame_22_delay-0.03s.gif?raw=true';
+
 export const WhackMole01Reversed =
   'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down-to-ground-mole-faster140pct.gif?raw=true';
 
@@ -37,13 +40,6 @@ export const puzzleIconsList = [
 ];
 
 export const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';
-
-export const expolosionOneImage =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/stepWidget/explosion-one.png?raw=true';
-export const expolosionTwoImage =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/stepWidget/explosion-two.png?raw=true';
-export const expolosionThreeImage =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/stepWidget/explosion-three.png?raw=true';
 
 export const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest1.png?raw=true';
 export const openedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest3.png?raw=true';
