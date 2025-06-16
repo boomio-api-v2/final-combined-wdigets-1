@@ -440,3 +440,39 @@ export const item12Dobilo =
 
 export const item13Dobilo =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Dobilo/items/item10Dobilo.png';
+
+export const backgroundToni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/background.png';
+
+export const playerToni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/player.png';
+
+export const item1Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item1Toni.png';
+
+export const item2Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item2Toni.png';
+
+export const item3Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item3Toni.png';
+
+export const item4Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item4Toni.png';
+
+export const item5Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item5Toni.png';
+
+export const item6Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item6Toni.png';
+
+export const item7Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item7Toni.png';
+
+export const item8Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item8Toni.png';
+
+export const item9Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item9Toni.png';
+
+export const item10Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/item10Toni.png';

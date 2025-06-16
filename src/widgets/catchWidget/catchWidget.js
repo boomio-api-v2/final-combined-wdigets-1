@@ -171,6 +171,18 @@ import {
   item11Dobilo,
   item12Dobilo,
   item13Dobilo,
+  backgroundToni,
+  playerToni,
+  item1Toni,
+  item2Toni,
+  item3Toni,
+  item4Toni,
+  item5Toni,
+  item6Toni,
+  item7Toni,
+  item8Toni,
+  item9Toni,
+  item10Toni,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -189,7 +201,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Zemaitijos Pienas';
+    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -232,6 +244,8 @@ class CatchGame {
         ? backgroundDaumantu
         : this.customer === 'Zemaitijos Pienas'
         ? backgroundDobilo
+        : this.customer === 'Toni'
+        ? backgroundToni
         : background
     }) center`;
 
@@ -247,6 +261,7 @@ class CatchGame {
       this.customer === 'Pegasas' ||
       this.customer === 'Akropolis' ||
       this.customer === 'Daumantu' ||
+      this.customer === 'Toni' ||
       this.customer === 'Zemaitijos Pienas'
         ? 3
         : 5;
@@ -512,9 +527,7 @@ class CatchGame {
         ? introAkropolis
         : this.customer === 'Daumantu'
         ? introDaumantu
-        : this.customer === 'Zemaitijos Pienas'
-        ? introDobilo
-        : intro
+        : this.customer === 'Zemaitijos Pienas' && introDobilo
     } alt="Image Description" style="z-index:4;width:${
       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;object-fit: cover;" id="background_intro">
@@ -1223,7 +1236,8 @@ class CatchGame {
       this.customer === 'Pieno Žvaigždės' ||
       this.customer === 'Akropolis' ||
       this.customer === 'Daumantu' ||
-      this.customer === 'Zemaitijos Pienas'
+      this.customer === 'Zemaitijos Pienas' ||
+      this.customer === 'Toni'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
@@ -1337,7 +1351,8 @@ class CatchGame {
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Zemaitijos Pienas'
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Toni'
       ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
@@ -1588,6 +1603,8 @@ class Player {
       ? playerDaumantu
       : customer === 'Zemaitijos Pienas'
       ? playerDobilo
+      : customer === 'Toni'
+      ? playerToni
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1643,6 +1660,12 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 8);
       }
+    } else if (this.customer === 'Toni') {
+      if (type === 'bad') {
+        this.fruitNumber = Math.floor(Math.random() * 5 + 5);
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 5);
+      }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
     }
@@ -1677,7 +1700,8 @@ class Fruit {
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Zemaitijos Pienas'
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Toni'
           ? 3
           : 1),
     );
@@ -1828,6 +1852,19 @@ class Fruit {
         item11Dobilo,
         item12Dobilo,
         item13Dobilo,
+      ];
+    } else if (this.customer && this.customer === 'Toni') {
+      this.images = [
+        item1Toni,
+        item2Toni,
+        item3Toni,
+        item4Toni,
+        item5Toni,
+        item6Toni,
+        item7Toni,
+        item8Toni,
+        item9Toni,
+        item10Toni,
       ];
     } else {
       // Default catch images if none of the above conditions are met
@@ -1990,6 +2027,19 @@ class Fruit {
         'item12Dobilo',
         'item13Dobilo',
       ][this.fruitNumber];
+    } else if (this.customer === 'Toni') {
+      this.fruitType = [
+        'item1Toni',
+        'item2Toni',
+        'item3Toni',
+        'item4Toni',
+        'item5Toni',
+        'item6Toni',
+        'item7Toni',
+        'item8Toni',
+        'item9Toni',
+        'item10Toni',
+      ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
       this.fruitType = [
@@ -2021,6 +2071,8 @@ class Fruit {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
+    } else if (this.customer === 'Toni') {
+      this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -2036,7 +2088,8 @@ class Fruit {
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Zemaitijos Pienas'
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Toni'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
@@ -2219,6 +2272,8 @@ class Fruit {
           ? 10
           : this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas'
           ? 13
+          : this.customer === 'Toni'
+          ? 10
           : 5),
     );
 
@@ -2227,7 +2282,8 @@ class Fruit {
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Zemaitijos Pienas'
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Toni'
           ? 2.5
           : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),

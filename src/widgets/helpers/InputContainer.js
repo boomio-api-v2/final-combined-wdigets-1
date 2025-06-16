@@ -700,6 +700,8 @@ ${
               ? 'href=https://ohosausryciai.lt/zaidimo-taisykles.html'
               : this.prop === 'LemonFeel'
               ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-FEEL-speles-noteikumi.pdf'
+              : this.prop === 'Orlen'
+              ? 'href=https://www.orlen.lt/LT/zaidimas/Puslapiai/taisykl%c4%97s.aspx'
               : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:14px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
