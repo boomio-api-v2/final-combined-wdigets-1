@@ -550,6 +550,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.language === 'EN'
                 ? 'YOU CAN DO IT!'
+                : this.language === 'ES'
+                ? '¡TÚ PUEDES!'
                 : this.prop === 'Nykstukas'
                 ? ''
                 : 'Tu gali!'
@@ -581,8 +583,6 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą, nes kas savaitę </br> geriausi žaidėjai laimės prizus! '
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Pagerink rezultatą, nes pusė geriausią rezultatą pasiekusių </br> mokyklų pateks į kitą žaidimo etapą ir sieks laimėti koncertą </br> savo mokyklai! Jei Tavo mokykla pateks į kitą etapą, </br>informuosime Tave el. paštu, kurį nurodei. '
-                : this.language === 'ES'
-                ? 'En Diciembre, Los mejors 100 jugadores recibiran un premio!</br>Ganadores serán contactados al email del registro'
                 : this.prop === 'Makalius'
                 ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
                 : this.prop === 'Unisend' && this.language === 'LV'
@@ -609,6 +609,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Dobilas“  prizus!'
                 : this.prop === 'Orlen'
                 ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę! O dydisis prizas - skrydis oro balionu!'
+                : this.prop === 'Toni'
+                ? '¡Buen intento! Cuanto más juegas, más oportunidades tienes de ganar ¿Puedes superar tu propio récord? ¡Inténtalo de nuevo y suma más chances de ganar! ¡Sigue jugando! Cada partida es una nueva oportunidad para llevarte un premio Cada partida cuenta. ¡Acumula oportunidades y gana!'
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -798,6 +800,8 @@ export class CompetitionScoreTableContainer {
         ? 'MEJORAR EL RESULTADO'
         : this.language === 'EN'
         ? 'IMPROVE YOUR SCORE'
+        : this.language === 'ES'
+        ? 'MEJORA TU PUNTAJE'
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>

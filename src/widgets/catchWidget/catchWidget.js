@@ -682,6 +682,8 @@ class CatchGame {
                   ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
                   : this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : this.language === 'ES'
+                  ? 'Para continuar, debe aceptar recibir los boletines informativos de la empresa.'
                   : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
@@ -804,7 +806,9 @@ class CatchGame {
 
             if (!isValidEmail(emailInput?.value)) {
               document.getElementById('competition-email-error').innerText =
-                'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+                this.language === 'ES'
+                  ? 'Formato de correo electrónico incorrecto.'
+                  : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
