@@ -892,7 +892,7 @@ class CatchGame {
                             ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                             : this.language === 'RU'
                             ? 'Этот e-мейл адрес уже существует. Используйте другой.'
-                            : this.language === 'EE'
+                            : this.language === 'ET'
                             ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-email-error').style.backgroundColor =
@@ -910,7 +910,7 @@ class CatchGame {
                             ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                             : this.language === 'RU'
                             ? 'Этот псевдоним уже существует. Используйте другой.'
-                            : this.language === 'EE'
+                            : this.language === 'ET'
                             ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                             : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-name-error').style.backgroundColor =

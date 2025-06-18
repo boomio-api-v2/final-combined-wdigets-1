@@ -106,7 +106,7 @@ class driveWidget {
         ? newRecordEn
         : this.language === 'LV'
         ? newRecordLV
-        : this.language === 'ET' || this.language === 'EE'
+        : this.language === 'ET' || this.language === 'ET'
         ? newRecordEE
         : this.language === 'FI'
         ? newRecordFI
@@ -149,7 +149,7 @@ class driveWidget {
             ? 'ПРОВЕДИ '
             : this.language === 'LV'
             ? 'kustēties'
-            : this.language === 'EE'
+            : this.language === 'ET'
             ? 'LIIGU'
             : 'Brūkšt'
         }</div>
@@ -162,7 +162,7 @@ class driveWidget {
             ? 'ПРОВЕДИ '
             : this.language === 'LV'
             ? 'kustēties'
-            : this.language === 'EE'
+            : this.language === 'ET'
             ? 'LIIGU'
             : 'Brūkšt'
         }</div>
@@ -268,7 +268,7 @@ ${
         ? piguDriveEEEn
         : this.customer === 'Barbora'
         ? BarboraIntro
-        : this.customer === 'Unisend' && this.language === 'EE'
+        : this.customer === 'Unisend' && this.language === 'ET'
         ? UnisendIntroEE
         : this.customer === 'Unisend' && this.language === 'LV'
         ? UnisendIntroLV

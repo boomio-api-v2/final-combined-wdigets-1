@@ -488,7 +488,7 @@ ${
         ? 'UZLABOT REZULTĀTU'
         : this.language === 'RU'
         ? 'УЛУЧШИТЬ РЕЗУЛЬТАТ'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'PARANDA TULEMUST'
         : this.language === 'ES'
         ? 'MEJORAR EL RESULTADO'

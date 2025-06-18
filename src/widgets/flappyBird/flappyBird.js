@@ -122,12 +122,12 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'LemonFeel';
+    this.customer = this.config.business_name ? this.config.business_name : 'Tiche';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LT';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LV';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -1185,7 +1185,7 @@ class FlappyBird {
           ? introGifFantazijosLV
           : this.language === 'RU'
           ? introGifFantazijosRU
-          : this.language === 'EE'
+          : this.language === 'ET'
           ? introGifFantazijosEE
           : introGifFantazijos
         : this.customer === 'Fpro'
@@ -1227,7 +1227,7 @@ class FlappyBird {
         ? newRecordEn
         : this.language === 'LV'
         ? newRecordLV
-        : this.language === 'ET' || this.language === 'EE'
+        : this.language === 'ET' || this.language === 'ET'
         ? newRecordEE
         : this.language === 'FI'
         ? newRecordFI
@@ -1271,7 +1271,7 @@ ${`<div style="${
         ? 'TAP'
         : this.language === 'RU'
         ? 'КЛИК'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'TAP'
         : this.language === 'ET'
         ? 'TÄPI'
@@ -1294,7 +1294,7 @@ ${`<div style="${
         ? 'КЛИК'
         : this.language === 'ET'
         ? 'TÄPI'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'TAP'
         : this.language === 'ES'
         ? 'TAP'
@@ -1511,7 +1511,12 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
-              if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo'))) {
+              if (
+                !checkboxChange ||
+                (!checkboxChange2 &&
+                  !this.customer.includes('demo') &&
+                  !this.customer.includes('Tiche'))
+              ) {
                 document.getElementById('competition-checkbox-error').innerText =
                   this.language === 'LV'
                     ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
@@ -1607,7 +1612,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                           ? 'Este email ya está en uso. Use otro email.'
                           : this.language === 'RU'
                           ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                          : this.language === 'EE'
+                          : this.language === 'ET'
                           ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                           : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor =
@@ -1629,7 +1634,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                           ? 'Para continuar debes agregar el nombre de usuario.'
                           : this.language === 'RU'
                           ? 'Этот псевдоним уже существует. Используйте другой.'
-                          : this.language === 'EE'
+                          : this.language === 'ET'
                           ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                           : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =

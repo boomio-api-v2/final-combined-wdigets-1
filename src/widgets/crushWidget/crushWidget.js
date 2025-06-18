@@ -547,7 +547,7 @@ class CrushGame {
                 ? newRecordEn
                 : this.language === 'LV'
                 ? newRecordLV
-                : this.language === 'ET' || this.language === 'EE'
+                : this.language === 'ET' || this.language === 'ET'
                 ? newRecordEE
                 : this.language === 'FI'
                 ? newRecordFI
