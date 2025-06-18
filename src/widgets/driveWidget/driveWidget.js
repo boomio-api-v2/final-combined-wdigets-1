@@ -286,10 +286,14 @@ ${
         ? introPlastic
         : ''
     } alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth + 'px'
+        : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
     <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth + 'px'
+        : '418px'
     }; height: 668px;position:absolute;opacity:0.37;pointer-events: none; display:block;" id="background_blur">
 
     ${
@@ -309,7 +313,9 @@ ${
     }
 
       <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${
-        document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+        document.documentElement.clientWidth < 418
+          ? document.documentElement.clientWidth + 'px'
+          : '418px'
       }">
       </canvas>
     </div>

@@ -23,10 +23,10 @@ export class InputContainer {
     containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '426px';
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
@@ -784,10 +784,10 @@ ${
     </div>
               </div>
               <div style="z-index:3;justify-content: center; align-items: center; gap: 20px;display:flex; width:${
-                document.body.offsetWidth < 426
-                  ? document.body.offsetWidth < 321
+                document.documentElement.clientWidth < 426
+                  ? document.documentElement.clientWidth < 321
                     ? '375px'
-                    : document.body.offsetWidth + 'px'
+                    : document.documentElement.clientWidth + 'px'
                   : '426px'
               };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; height:38px;background: white

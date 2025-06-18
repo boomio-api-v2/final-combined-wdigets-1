@@ -540,21 +540,29 @@ class CatchGame {
         ? introDaumantu
         : this.customer === 'Zemaitijos Pienas' && introDobilo
     } alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth + 'px'
+        : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;object-fit: cover;" id="background_intro">
 
         <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth + 'px'
+        : '418px'
     }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
     ${
       this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas'
         ? `<div alt="Image Description" style="z-index:1;width: ${
-            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+            document.documentElement.clientWidth < 418
+              ? document.documentElement.clientWidth + 'px'
+              : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
             this.customer === 'Zemaitijos Pienas' ? '#004C22' : '#8E1735'
           }" id="background_blur"></div>`
         : `    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
-            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+            document.documentElement.clientWidth < 418
+              ? document.documentElement.clientWidth + 'px'
+              : '418px'
           }; height: 668px;position:absolute;opacity:${
             this.customer === 'Pegasas' ? 0.8 : 0.5
           };pointer-events: none; display:block;" id="background_blur">`
@@ -572,7 +580,9 @@ class CatchGame {
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv('catch').outerHTML}
 
         <canvas id="boomio-catch-canvas" width=${
-          document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          document.documentElement.clientWidth < 418
+            ? document.documentElement.clientWidth + 'px'
+            : '418px'
         }; height="668px"></canvas>
       </div>
     `;

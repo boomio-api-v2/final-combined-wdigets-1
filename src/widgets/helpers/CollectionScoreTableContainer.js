@@ -188,10 +188,10 @@ export class CollectionScoreTableContainer {
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '380px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">

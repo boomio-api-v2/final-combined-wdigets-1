@@ -17,10 +17,10 @@ export class InputRegisterContainer {
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '426px';
     let privacyCheckboxChecked = true;
     let privacyCheckboxChecked2 = true;

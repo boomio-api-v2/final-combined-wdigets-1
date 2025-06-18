@@ -701,10 +701,10 @@ export class CompetitionScoreTableContainer {
     const campaignUrl = urlParams.get('campaign_url');
     const userId = urlParams.get('user_id');
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">

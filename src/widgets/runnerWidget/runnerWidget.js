@@ -173,7 +173,9 @@ class runnerWidget {
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="${
-       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+       document.documentElement.clientWidth < 418
+         ? document.documentElement.clientWidth + 'px'
+         : '418px'
      }">
       </canvas>
 

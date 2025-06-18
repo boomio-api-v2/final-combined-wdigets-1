@@ -639,10 +639,10 @@ class FlappyBird {
         if (this.gamePlaying) {
           if (canvas.width > 450 || canvas.height < 600) {
             canvas.width =
-              document.body.offsetWidth < 418
-                ? document.body.offsetWidth < 321
+              document.documentElement.clientWidth < 418
+                ? document.documentElement.clientWidth < 321
                   ? '375px'
-                  : document.body.offsetWidth
+                  : document.documentElement.clientWidth
                 : '418';
             canvas.height = '668';
           }
@@ -1132,19 +1132,19 @@ class FlappyBird {
     } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
     </img>
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-      document.body.offsetWidth < 418
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '418px'
     };
        height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
     </img>
           <img  style="z-index:1;width: ${
-            document.body.offsetWidth < 418
-              ? document.body.offsetWidth < 321
+            document.documentElement.clientWidth < 418
+              ? document.documentElement.clientWidth < 321
                 ? '375px'
-                : document.body.offsetWidth + 'px'
+                : document.documentElement.clientWidth + 'px'
               : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
@@ -1200,10 +1200,10 @@ class FlappyBird {
         ? LemonGymintro
         : this.customer === 'Penki Sezonai' && introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
-      document.body.offsetWidth < 418
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:${
       this.customer.includes('demo') || this.customer === 'LemonFeel' ? 'none' : 'block'
@@ -1340,10 +1340,10 @@ ${`<div style="${
 
 ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
-          document.body.offsetWidth < 418
-            ? document.body.offsetWidth < 321
+          document.documentElement.clientWidth < 418
+            ? document.documentElement.clientWidth < 321
               ? '375px'
-              : document.body.offsetWidth + 'px'
+              : document.documentElement.clientWidth + 'px'
             : '418px'
         };display:none;" class="control-button" id="control-button">
         <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
@@ -1353,10 +1353,10 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 </div>
 </div>
 <div class="input-container1" style="width:${
-      document.body.offsetWidth < 418
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '418px'
     }">
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
@@ -1383,10 +1383,10 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       
       </div>
       <canvas id="flappy-canvas" width=${
-        document.body.offsetWidth < 418
-          ? document.body.offsetWidth < 321
+        document.documentElement.clientWidth < 418
+          ? document.documentElement.clientWidth < 321
             ? '375px'
-            : document.body.offsetWidth + 'px'
+            : document.documentElement.clientWidth + 'px'
           : '418px'
       } height="668" class="flappy-game"></canvas>
     </div>
