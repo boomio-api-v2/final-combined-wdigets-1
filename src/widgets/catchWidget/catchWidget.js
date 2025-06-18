@@ -826,7 +826,8 @@ class CatchGame {
             }
             if (
               (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-              (playerNameInput?.value === '' || playerNameInput?.value === null)
+              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+              this.customer !== 'Toni'
             ) {
               document.getElementById('competition-name-error').innerText =
                 this.language === 'LV'
