@@ -792,7 +792,10 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
             }
-            if (playerNameInput?.value === '' || playerNameInput?.value === null) {
+            if (
+              playerNameInput?.value === '' ||
+              (playerNameInput?.value === null && this.customer !== 'Toni')
+            ) {
               document.getElementById('competition-name-error').innerText =
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
@@ -900,6 +903,8 @@ class CatchGame {
                         document.getElementById('competition-email-error').innerText =
                           this.customer === 'Fpro'
                             ? 'This email address already exists. Please use another one.'
+                            : this.language === 'ES'
+                            ? 'Este email ya está en uso. Use otro email.'
                             : this.language === 'LV'
                             ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                             : this.language === 'RU'
@@ -918,6 +923,8 @@ class CatchGame {
                         document.getElementById('competition-name-error').innerText =
                           this.customer === 'Fpro'
                             ? 'This nickname already exists. Please use another one.'
+                            : this.language === 'ES'
+                            ? 'Este nickname ya está en uso. Use otro nickname.'
                             : this.language === 'LV'
                             ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                             : this.language === 'RU'
