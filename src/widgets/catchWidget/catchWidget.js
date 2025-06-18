@@ -886,7 +886,8 @@ class CatchGame {
                     emails_consent:
                       this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
                     user_email: emailInput?.value,
-                    user_name: playerNameInput?.value,
+                    user_name:
+                      this.customer === 'Toni' ? emailInput?.value : playerNameInput?.value,
                     game_code: this.game_code,
                     ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
                   })
