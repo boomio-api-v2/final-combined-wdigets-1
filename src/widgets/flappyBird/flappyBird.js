@@ -1541,26 +1541,26 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 return;
               }
 
-              if (emailInput?.value === '' || emailInput?.value === null) {
-                document.getElementById('competition-email-error').innerText =
-                  this.language === 'LV'
-                    ? 'Obligāti aizpildāmie lauki.'
-                    : this.customer === 'SaludSA'
-                    ? 'Para continuar debes agregar el correo electrónico.'
-                    : this.language === 'EN'
-                    ? 'Filling in is required to continue.'
-                    : 'Norint tęsti privaloma užpildyti.';
-                document.getElementById('competition-email-error').style.backgroundColor =
-                  '#FFBABA';
-                document.getElementById('competition-name-error').innerText = '';
+              // if (emailInput?.value === '' || emailInput?.value === null) {
+              //   document.getElementById('competition-email-error').innerText =
+              //     this.language === 'LV'
+              //       ? 'Obligāti aizpildāmie lauki.'
+              //       : this.customer === 'SaludSA'
+              //       ? 'Para continuar debes agregar el correo electrónico.'
+              //       : this.language === 'EN'
+              //       ? 'Filling in is required to continue.'
+              //       : 'Norint tęsti privaloma užpildyti.';
+              //   document.getElementById('competition-email-error').style.backgroundColor =
+              //     '#FFBABA';
+              //   document.getElementById('competition-name-error').innerText = '';
 
-                document.getElementById('competition-name-error').style.backgroundColor =
-                  'transparent';
-                document.getElementById('competition-checkbox-error').innerText = '';
-                document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  'transparent';
-                return;
-              }
+              //   document.getElementById('competition-name-error').style.backgroundColor =
+              //     'transparent';
+              //   document.getElementById('competition-checkbox-error').innerText = '';
+              //   document.getElementById('competition-checkbox-error').style.backgroundColor =
+              //     'transparent';
+              //   return;
+              // }
 
               if (
                 this.customer === 'Nykstukas' &&
