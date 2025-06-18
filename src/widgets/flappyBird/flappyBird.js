@@ -1520,6 +1520,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-checkbox-error').innerText =
                   this.language === 'LV'
                     ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                    : this.language === 'ET'
+                    ? 'Jätkamiseks peate nõustuma privaatsuspoliitikaga.'
                     : this.customer === 'SaludSA'
                     ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
                     : this.language === 'EN'
@@ -1545,6 +1547,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-email-error').innerText =
                   this.language === 'LV'
                     ? 'Obligāti aizpildāmie lauki.'
+                    : this.language === 'ET'
+                    ? 'Jätkamiseks vajalik.'
                     : this.customer === 'SaludSA'
                     ? 'Para continuar debes agregar el correo electrónico.'
                     : this.language === 'EN'
