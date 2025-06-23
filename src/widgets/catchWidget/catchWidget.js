@@ -171,6 +171,18 @@ import {
   item11Dobilo,
   item12Dobilo,
   item13Dobilo,
+  backgroundToni,
+  playerToni,
+  item1Toni,
+  item2Toni,
+  item3Toni,
+  item4Toni,
+  item5Toni,
+  item6Toni,
+  item7Toni,
+  item8Toni,
+  item9Toni,
+  item10Toni,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -189,7 +201,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Zemaitijos Pienas';
+    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -232,6 +244,8 @@ class CatchGame {
         ? backgroundDaumantu
         : this.customer === 'Zemaitijos Pienas'
         ? backgroundDobilo
+        : this.customer === 'Toni'
+        ? backgroundToni
         : background
     }) center`;
 
@@ -247,6 +261,7 @@ class CatchGame {
       this.customer === 'Pegasas' ||
       this.customer === 'Akropolis' ||
       this.customer === 'Daumantu' ||
+      this.customer === 'Toni' ||
       this.customer === 'Zemaitijos Pienas'
         ? 3
         : 5;
@@ -277,108 +292,115 @@ class CatchGame {
       numbers.style.display = 'none';
     }, 500);
 
-    setTimeout(() => {
-      document.getElementById('boomio-catch-canvas').style.transition = 'opacity 1s ease';
-      document.getElementById('boomio-catch-canvas').style.opacity = 1;
+    setTimeout(
+      () => {
+        document.getElementById('boomio-catch-canvas').style.transition = 'opacity 1s ease';
+        document.getElementById('boomio-catch-canvas').style.opacity = 1;
 
-      if (this.gameCount === 0) {
-        if (
-          this.showCompetitiveRegistration === 'competition' ||
-          this.showCompetitiveRegistration === 'points' ||
-          this.showCompetitiveRegistration === 'collectable'
-        ) {
-          const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
-          checkboxImg.addEventListener('click', () => {
-            this.checkboxChange = !this.checkboxChange;
-            const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-            checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
-          });
-          const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
-          checkboxImg2.addEventListener('click', () => {
-            this.checkboxChange2 = !this.checkboxChange2;
-            const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
-            checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
-          });
-          const checkboxImg3 = document.querySelector('.boomio-privacyCheckbox3');
-          checkboxImg3.addEventListener('click', () => {
-            this.checkboxChange3 = !this.checkboxChange3;
-            const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
-            checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
-          });
-          const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
-
-          if (phoneInputField) {
-            phoneInputField.addEventListener('input', (event) => {
-              event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+        if (this.gameCount === 0) {
+          if (
+            this.showCompetitiveRegistration === 'competition' ||
+            this.showCompetitiveRegistration === 'points' ||
+            this.showCompetitiveRegistration === 'collectable'
+          ) {
+            const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
+            checkboxImg.addEventListener('click', () => {
+              this.checkboxChange = !this.checkboxChange;
+              const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+              checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
             });
+            const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+            checkboxImg2.addEventListener('click', () => {
+              this.checkboxChange2 = !this.checkboxChange2;
+              const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+              checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+            });
+            const checkboxImg3 = document.querySelector('.boomio-privacyCheckbox3');
+            checkboxImg3.addEventListener('click', () => {
+              this.checkboxChange3 = !this.checkboxChange3;
+              const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
+              checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
+            });
+            const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
+
+            if (phoneInputField) {
+              phoneInputField.addEventListener('input', (event) => {
+                event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+              });
+            } else {
+              console.error('');
+            }
+
+            setTimeout(() => {
+              const canvas = document.getElementById('boomio-catch-canvas');
+              document.getElementById('background_blur').style.opacity =
+                this.customer === 'Pegasas' ? 0.8 : 0.37;
+              canvas.style.transition = 'filter 0.6s ease';
+              canvas.style.filter = 'blur(2px)';
+
+              const inpuRegisterContainer = document.querySelector('.input-register-container');
+              inpuRegisterContainer.style.transition =
+                'height 1s ease, top 1s ease, opacity 1s ease';
+              inpuRegisterContainer.style.display = 'block';
+              setTimeout(() => {
+                inpuRegisterContainer.style.height = '528px';
+                inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+                inpuRegisterContainer.style.opacity = 1;
+              }, 100);
+            }, 300);
           } else {
-            console.error('');
+            setTimeout(() => {
+              const canvas = document.getElementById('boomio-catch-canvas');
+              document.getElementById('background_blur').style.opacity =
+                this.customer === 'Pegasas' ? 0.8 : 0.37;
+              canvas.style.transition = 'filter 0.6s ease';
+              canvas.style.filter = 'blur(2px)';
+              const inputContainer = document.querySelector('.input-container');
+              document.getElementById('control-button').style.transition = 'opacity 2s ease';
+              document.getElementById('control-button').style.opacity = 1;
+              document.getElementById('control-button').style.display = 'flex';
+
+              inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+              inputContainer.style.display = 'block';
+              setTimeout(() => {
+                inputContainer.style.height = '332px';
+                inputContainer.style.top = 'calc(50% + 170px)';
+                inputContainer.style.opacity = 1;
+              }, 100);
+            }, 300);
           }
+        }
 
+        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+        document.getElementById('background_intro').style.opacity = 0;
+        if (this.gameCount === 0) {
+          document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+        }
+        if (this.gameCount === 0) {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
+
             document.getElementById('background_blur').style.opacity =
               this.customer === 'Pegasas' ? 0.8 : 0.37;
+
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
-
-            const inpuRegisterContainer = document.querySelector('.input-register-container');
-            inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            inpuRegisterContainer.style.display = 'block';
-            setTimeout(() => {
-              inpuRegisterContainer.style.height = '528px';
-              inpuRegisterContainer.style.top = 'calc(50% + 74px)';
-              inpuRegisterContainer.style.opacity = 1;
-            }, 100);
-          }, 300);
-        } else {
-          setTimeout(() => {
-            const canvas = document.getElementById('boomio-catch-canvas');
-            document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.8 : 0.37;
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
-            const inputContainer = document.querySelector('.input-container');
-            document.getElementById('control-button').style.transition = 'opacity 2s ease';
-            document.getElementById('control-button').style.opacity = 1;
-            document.getElementById('control-button').style.display = 'flex';
-
-            inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            inputContainer.style.display = 'block';
-            setTimeout(() => {
-              inputContainer.style.height = '332px';
-              inputContainer.style.top = 'calc(50% + 170px)';
-              inputContainer.style.opacity = 1;
-            }, 100);
-          }, 300);
+          }, 1000);
         }
-      }
+        setTimeout(
+          () => {
+            const background = document.getElementById('background_intro');
 
-      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-      document.getElementById('background_intro').style.opacity = 0;
-      if (this.gameCount === 0) {
-        document.getElementById('background_blur').style.display = 'block';
-        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-      }
-      if (this.gameCount === 0) {
-        setTimeout(() => {
-          const canvas = document.getElementById('boomio-catch-canvas');
-
-          document.getElementById('background_blur').style.opacity =
-            this.customer === 'Pegasas' ? 0.8 : 0.37;
-
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
-        }, 1000);
-      }
-      setTimeout(() => {
-        const background = document.getElementById('background_intro');
-
-        if (background) {
-          background.style.display = 'none';
-        }
-      }, 2000);
-    }, 4000);
+            if (background) {
+              background.style.display = 'none';
+            }
+          },
+          this.customer === 'Toni' ? 0 : 2000,
+        );
+      },
+      this.customer === 'Toni' ? 0 : 4000,
+    );
     //gifas
   };
 
@@ -456,6 +478,8 @@ class CatchGame {
         ? '#DD2326'
         : this.customer === 'Zemaitijos Pienas'
         ? '#004C22'
+        : this.customer === 'Toni'
+        ? '#262B8C'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -486,6 +510,8 @@ class CatchGame {
         ? '#DD2326'
         : this.customer === 'Zemaitijos Pienas'
         ? '#004C22'
+        : this.customer === 'Toni'
+        ? '#262B8C'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -512,25 +538,31 @@ class CatchGame {
         ? introAkropolis
         : this.customer === 'Daumantu'
         ? introDaumantu
-        : this.customer === 'Zemaitijos Pienas'
-        ? introDobilo
-        : intro
+        : this.customer === 'Zemaitijos Pienas' && introDobilo
     } alt="Image Description" style="z-index:4;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth + 'px'
+        : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;object-fit: cover;" id="background_intro">
 
         <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
-      document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth + 'px'
+        : '418px'
     }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
     ${
       this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas'
         ? `<div alt="Image Description" style="z-index:1;width: ${
-            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+            document.documentElement.clientWidth < 418
+              ? document.documentElement.clientWidth + 'px'
+              : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
             this.customer === 'Zemaitijos Pienas' ? '#004C22' : '#8E1735'
           }" id="background_blur"></div>`
         : `    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
-            document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+            document.documentElement.clientWidth < 418
+              ? document.documentElement.clientWidth + 'px'
+              : '418px'
           }; height: 668px;position:absolute;opacity:${
             this.customer === 'Pegasas' ? 0.8 : 0.5
           };pointer-events: none; display:block;" id="background_blur">`
@@ -548,7 +580,9 @@ class CatchGame {
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv('catch').outerHTML}
 
         <canvas id="boomio-catch-canvas" width=${
-          document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+          document.documentElement.clientWidth < 418
+            ? document.documentElement.clientWidth + 'px'
+            : '418px'
         }; height="668px"></canvas>
       </div>
     `;
@@ -658,6 +692,8 @@ class CatchGame {
                   ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
                   : this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : this.language === 'ES'
+                  ? 'Para continuar, debe aceptar recibir los boletines informativos de la empresa.'
                   : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
@@ -756,7 +792,10 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
             }
-            if (playerNameInput?.value === '' || playerNameInput?.value === null) {
+            if (
+              playerNameInput?.value === '' ||
+              (playerNameInput?.value === null && this.customer !== 'Toni')
+            ) {
               document.getElementById('competition-name-error').innerText =
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
@@ -780,7 +819,9 @@ class CatchGame {
 
             if (!isValidEmail(emailInput?.value)) {
               document.getElementById('competition-email-error').innerText =
-                'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+                this.language === 'ES'
+                  ? 'Formato de correo electrónico incorrecto.'
+                  : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
@@ -788,7 +829,8 @@ class CatchGame {
             }
             if (
               (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-              (playerNameInput?.value === '' || playerNameInput?.value === null)
+              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+              this.customer !== 'Toni'
             ) {
               document.getElementById('competition-name-error').innerText =
                 this.language === 'LV'
@@ -847,7 +889,8 @@ class CatchGame {
                     emails_consent:
                       this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
                     user_email: emailInput?.value,
-                    user_name: playerNameInput?.value,
+                    user_name:
+                      this.customer === 'Toni' ? emailInput?.value : playerNameInput?.value,
                     game_code: this.game_code,
                     ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
                   })
@@ -860,11 +903,13 @@ class CatchGame {
                         document.getElementById('competition-email-error').innerText =
                           this.customer === 'Fpro'
                             ? 'This email address already exists. Please use another one.'
+                            : this.language === 'ES'
+                            ? 'Este email ya está en uso. Use otro email.'
                             : this.language === 'LV'
                             ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                             : this.language === 'RU'
                             ? 'Этот e-мейл адрес уже существует. Используйте другой.'
-                            : this.language === 'EE'
+                            : this.language === 'ET'
                             ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-email-error').style.backgroundColor =
@@ -878,11 +923,13 @@ class CatchGame {
                         document.getElementById('competition-name-error').innerText =
                           this.customer === 'Fpro'
                             ? 'This nickname already exists. Please use another one.'
+                            : this.language === 'ES'
+                            ? 'Este nickname ya está en uso. Use otro nickname.'
                             : this.language === 'LV'
                             ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                             : this.language === 'RU'
                             ? 'Этот псевдоним уже существует. Используйте другой.'
-                            : this.language === 'EE'
+                            : this.language === 'ET'
                             ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                             : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                         document.getElementById('competition-name-error').style.backgroundColor =
@@ -1223,7 +1270,8 @@ class CatchGame {
       this.customer === 'Pieno Žvaigždės' ||
       this.customer === 'Akropolis' ||
       this.customer === 'Daumantu' ||
-      this.customer === 'Zemaitijos Pienas'
+      this.customer === 'Zemaitijos Pienas' ||
+      this.customer === 'Toni'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
@@ -1337,7 +1385,8 @@ class CatchGame {
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Zemaitijos Pienas'
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Toni'
       ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
@@ -1588,6 +1637,8 @@ class Player {
       ? playerDaumantu
       : customer === 'Zemaitijos Pienas'
       ? playerDobilo
+      : customer === 'Toni'
+      ? playerToni
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1643,6 +1694,12 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 8);
       }
+    } else if (this.customer === 'Toni') {
+      if (type === 'bad') {
+        this.fruitNumber = Math.floor(Math.random() * 5 + 5);
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 5);
+      }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
     }
@@ -1677,7 +1734,8 @@ class Fruit {
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Zemaitijos Pienas'
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Toni'
           ? 3
           : 1),
     );
@@ -1828,6 +1886,19 @@ class Fruit {
         item11Dobilo,
         item12Dobilo,
         item13Dobilo,
+      ];
+    } else if (this.customer && this.customer === 'Toni') {
+      this.images = [
+        item1Toni,
+        item2Toni,
+        item3Toni,
+        item4Toni,
+        item5Toni,
+        item6Toni,
+        item7Toni,
+        item8Toni,
+        item9Toni,
+        item10Toni,
       ];
     } else {
       // Default catch images if none of the above conditions are met
@@ -1990,6 +2061,19 @@ class Fruit {
         'item12Dobilo',
         'item13Dobilo',
       ][this.fruitNumber];
+    } else if (this.customer === 'Toni') {
+      this.fruitType = [
+        'item1Toni',
+        'item2Toni',
+        'item3Toni',
+        'item4Toni',
+        'item5Toni',
+        'item6Toni',
+        'item7Toni',
+        'item8Toni',
+        'item9Toni',
+        'item10Toni',
+      ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
       this.fruitType = [
@@ -2021,6 +2105,8 @@ class Fruit {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
+    } else if (this.customer === 'Toni') {
+      this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -2036,7 +2122,8 @@ class Fruit {
         this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Zemaitijos Pienas'
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Toni'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
           this.game.currentScore += -50;
@@ -2219,6 +2306,8 @@ class Fruit {
           ? 10
           : this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas'
           ? 13
+          : this.customer === 'Toni'
+          ? 10
           : 5),
     );
 
@@ -2227,7 +2316,8 @@ class Fruit {
         (this.customer === 'Pieno Žvaigždės' ||
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
-        this.customer === 'Zemaitijos Pienas'
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Toni'
           ? 2.5
           : 1)) *
         (1 + Math.floor(this.game.currentScore / 500) * 0.1),

@@ -109,7 +109,7 @@ class runnerWidget {
     <div class="new_highscore"><img src=${
       this.customer === 'Ikea'
         ? newRecordIkea
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? newRecordEE
         : this.language === 'LV'
         ? newRecordLV
@@ -173,7 +173,9 @@ class runnerWidget {
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="${
-       document.body.offsetWidth < 418 ? document.body.offsetWidth + 'px' : '418px'
+       document.documentElement.clientWidth < 418
+         ? document.documentElement.clientWidth + 'px'
+         : '418px'
      }">
       </canvas>
 
@@ -1390,7 +1392,7 @@ ${
                       ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                       : this.language === 'RU'
                       ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                      : this.language === 'EE'
+                      : this.language === 'ET'
                       ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
@@ -1406,7 +1408,7 @@ ${
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                       : this.language === 'RU'
                       ? 'Этот псевдоним уже существует. Используйте другой.'
-                      : this.language === 'EE'
+                      : this.language === 'ET'
                       ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-name-error').style.backgroundColor =

@@ -574,10 +574,10 @@ export class RulesContainer {
     containerDiv.style.paddingBottom = '20px';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '315px'
-          : document.body.offsetWidth - 60 + 'px'
+          : document.documentElement.clientWidth - 60 + 'px'
         : '366px';
     this.containerDiv = containerDiv;
 

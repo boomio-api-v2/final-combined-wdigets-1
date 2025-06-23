@@ -310,9 +310,9 @@ export class CompetitionCodeScoreTableContainerPigu {
           ? 'Atzīmējiet karstāko vasaru'
           : this.language === 'RU'
           ? 'Отпразднуйте самый жаркий месяц лета'
-          : this.prop === 'Unisend' && this.language === 'EE'
+          : this.prop === 'Unisend' && this.language === 'ET'
           ? 'SUL LÄHEB HÄSTI!'
-          : this.language === 'EE'
+          : this.language === 'ET'
           ? 'Tähistage suve kuumimat kuud ja võitke'
           : 'Sveikiname!'
       }</div>
@@ -544,10 +544,10 @@ ${
     this.campaignUrlProp = urlParams.get('campaign_url');
 
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
@@ -619,7 +619,7 @@ ${
         ? 'UZLABOT REZULTĀTU'
         : this.language === 'RU'
         ? 'УЛУЧШИТЬ РЕЗУЛЬТАТ'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'PARANDA TULEMUST'
         : this.language === 'ES'
         ? 'MEJORAR EL RESULTADO'

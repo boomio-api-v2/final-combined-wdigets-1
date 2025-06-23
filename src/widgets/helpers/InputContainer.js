@@ -23,10 +23,10 @@ export class InputContainer {
     containerDiv.classList.add('input-container');
     containerDiv.setAttribute('id', 'input-container');
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '426px';
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
@@ -58,7 +58,7 @@ export class InputContainer {
         ? 'NOTEIKUMI'
         : this.language === 'RU'
         ? 'ПРАВИЛА'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'REEGLID'
         : this.language === 'ES'
         ? 'REGLAS'
@@ -94,7 +94,7 @@ export class InputContainer {
 
           <div style="width:100%; height: 120px; left: 20px; top: 0px; position: absolute">
             <div style="left: 0px; top: -10px;display:flex; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+              this.language === 'LV' || this.language === 'RU' || this.language === 'ET'
                 ? '20px'
                 : this.prop === 'Ikea'
                 ? '20px'
@@ -115,7 +115,7 @@ export class InputContainer {
                   ? 'НАЖИМАЙ,'
                   : this.language === 'LV' && this.game === 'drive'
                   ? 'NOĶER,'
-                  : this.language === 'EE' && this.game === 'drive'
+                  : this.language === 'ET' && this.game === 'drive'
                   ? 'LIIKUMISEKS —'
                   : this.language === 'LV' && this.game === 'doodle'
                   ? 'PĀRVIETOJIES'
@@ -125,16 +125,18 @@ export class InputContainer {
                   ? 'SPIED,'
                   : this.language === 'RU'
                   ? 'ПРАВИЛА'
-                  : this.language === 'EE'
+                  : this.language === 'ET'
                   ? 'KLÕPSA'
-                  : this.language === 'ES' || this.language === 'ET'
-                  ? 'Click '
                   : this.prop === 'Fpro'
                   ? 'CLICK'
                   : this.prop === 'Ikea'
                   ? 'Vairuokite,'
                   : this.prop === 'Eurovaistine'
                   ? 'SAŅEMT'
+                  : this.game === 'catch' && this.language === 'EN'
+                  ? 'CATCH'
+                  : this.game === 'catch' && this.language === 'ES'
+                  ? 'ATRAPAR'
                   : this.game === 'catch'
                   ? 'Gaudyk'
                   : this.prop === 'SaludSA'
@@ -223,7 +225,7 @@ export class InputContainer {
       ? 'pārvietojoties uz sāniem.'
       : this.language === 'LV' && this.game === 'drive'
       ? 'uz sāniem braukt.'
-      : this.language === 'EE' && this.game === 'drive'
+      : this.language === 'ET' && this.game === 'drive'
       ? 'libista sõrmega küljelt küljele.'
       : this.language === 'LV'
       ? 'lai lidotu.'
@@ -231,10 +233,8 @@ export class InputContainer {
       ? 'libista sõrmega küljelt küljele.'
       : this.language === 'RU'
       ? 'чтобы лететь'
-      : this.language === 'EE'
+      : this.language === 'ET'
       ? 'lendamiseks'
-      : this.language === 'ES' || this.language === 'ET'
-      ? 'para volar'
       : this.game === 'drive' && this.prop === 'Ikea'
       ? 'braukdami kairiau ar dešiniau.'
       : this.prop === 'Gamtos Ateitis Paper'
@@ -267,6 +267,10 @@ export class InputContainer {
       ? 'į šonus, kad nenukristum.'
       : this.prop === 'Nykstukas'
       ? 'baksnodamas ekraną Nykštuką išlaikysi ore.'
+      : this.language === 'EN' && this.game === 'catch'
+      ? 'to get points.'
+      : this.language === 'ES' && this.game === 'catch'
+      ? 'para obtener puntos.'
       : this.language === 'EN'
       ? 'TO FLY'
       : 'kad skristum.'
@@ -275,7 +279,7 @@ export class InputContainer {
 
             </div>
             <div style="left: 0px; top: 30px;display:flex; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+              this.language === 'LV' || this.language === 'RU' || this.language === 'ET'
                 ? '20px'
                 : this.prop === 'Ikea'
                 ? '20px'
@@ -300,10 +304,8 @@ export class InputContainer {
                 ? 'ATKĀRTO,'
                 : this.language === 'RU'
                 ? 'ПОВТОРИТЬ'
-                : this.language === 'EE'
-                ? 'KORDA —'
-                : this.language === 'ES' || this.language === 'ET'
-                ? 'Repetir'
+                : this.language === 'ET'
+                ? 'KORDA'
                 : this.prop === 'Fpro'
                 ? 'REPEAT'
                 : this.prop === 'Ikea'
@@ -318,6 +320,8 @@ export class InputContainer {
                 ? 'Rink'
                 : this.language === 'EN'
                 ? 'REPEAT'
+                : this.language === 'ES'
+                ? 'REPETIR'
                 : this.prop === 'Nykstukas'
                 ? 'Įveik'
                 : this.prop === 'Nevezis'
@@ -352,9 +356,7 @@ export class InputContainer {
                 ? 'lai sasniegtu labāku rezultātu.'
                 : this.language === 'RU'
                 ? 'для лучшего результата'
-                : this.language === 'ES' || this.language === 'ET'
-                ? 'para un mejor resultado'
-                : this.language === 'EE'
+                : this.language === 'ET'
                 ? 'parema tulemuse saavutamiseks.'
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'siekdamas kuo geresnio rezultato.'
@@ -374,6 +376,8 @@ export class InputContainer {
                 ? 'plastiko pakuočių atliekas ir gauk taškų.'
                 : this.language === 'EN'
                 ? 'to get the best possible result'
+                : this.language === 'ES'
+                ? 'para obtener el mejor resultado posible'
                 : this.prop === 'Nykstukas'
                 ? 'ledų kliūtis.'
                 : this.prop === 'Nevezis'
@@ -387,7 +391,7 @@ export class InputContainer {
           </div>
             </div>
             <div style="left: 1px; top: 70px;display:flex; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'EE'
+              this.language === 'LV' || this.language === 'RU' || this.language === 'ET'
                 ? '20px'
                 : this.prop === 'Ikea'
                 ? '20px'
@@ -410,10 +414,8 @@ export class InputContainer {
                 ? 'IZBAUDI'
                 : this.language === 'RU'
                 ? 'ВЫИГРАЙТЕ'
-                : this.language === 'EE'
-                ? 'VÕIDA —'
-                : this.language === 'ES' || this.language === 'ET'
-                ? 'Gana'
+                : this.language === 'ET'
+                ? 'VÕIDA'
                 : this.prop === 'Fpro'
                 ? 'WIN'
                 : this.prop === 'Ikea'
@@ -430,6 +432,8 @@ export class InputContainer {
                 ? 'Kartok'
                 : this.language === 'EN'
                 ? 'WIN'
+                : this.language === 'ES'
+                ? 'GANAR'
                 : this.prop === 'Nykstukas'
                 ? 'Kartok'
                 : this.prop === 'Nevezis'
@@ -512,7 +516,7 @@ export class InputContainer {
                 ? 'katru dienu!'
                 : this.language === 'LV' && this.game === 'drive'
                 ? 'līdz pat 100 Unisend balvām!'
-                : this.language === 'EE' && this.game === 'drive'
+                : this.language === 'ET' && this.game === 'drive'
                 ? 'kuni 100 Unisend.ee auhinda!'
                 : this.language === 'LV' && this.prop === 'Pigu.lt'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
@@ -520,12 +524,8 @@ export class InputContainer {
                 ? 'spēli.'
                 : this.language === 'LV' && this.prop === 'LemonGym'
                 ? 'spēli.'
-                : this.language === 'RU'
-                ? 'до 30 призов от Yesyes.lv!'
-                : this.language === 'EE'
-                ? 'до 30 призов от Yesyes.lv!'
-                : this.language === 'ES' || this.language === 'ET'
-                ? '100 premios!'
+                : this.language === 'ET'
+                ? 'auhinnad.'
                 : this.prop === 'Gamtos Ateitis'
                 ? 'Pagerinus rezultatą prisidės taškų skirtumas.'
                 : this.prop === 'Pieno Žvaigždės'
@@ -564,6 +564,10 @@ export class InputContainer {
                 ? '„Dobilas“ prizus!'
                 : this.language === 'EN'
                 ? 'PRIZES!'
+                : this.language === 'ES'
+                ? '¡PREMIOS!'
+                : this.language === 'LV'
+                ? 'BALVA!'
                 : this.prop === 'Nykstukas'
                 ? 'siekiant kuo geresnio rezultato.'
                 : this.prop === 'Nevezis'
@@ -660,7 +664,7 @@ ${
               ? 'href=https://www.e-euroaptieka.lv/ker-un-laime-speles-noteikumi'
               : this.prop === 'Unisend' && this.language === 'LV'
               ? 'href=https://unisend.lv'
-              : this.prop === 'Unisend' && this.language === 'EE'
+              : this.prop === 'Unisend' && this.language === 'ET'
               ? 'href=https://unisend.ee'
               : this.prop === 'LemonGym'
               ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-GYM-LV-speles-noteikumi.pdf'
@@ -668,7 +672,7 @@ ${
               ? 'href=https://www.ikea.lt/en/zaidimo-ar-gerai-vairuojate-taisykles'
               : this.prop === 'Makalius'
               ? 'href=https://www.makalius.lt/gimtadienio-zaidimo-taisykles/'
-              : this.language === 'EE'
+              : this.language === 'ET'
               ? 'href=https://docs.google.com/document/d/1OeMh9o3FeQMj00XRvsxlvwbUpaYuBgRsVLUZMCPWfdo/edit'
               : this.prop === 'Fantazijos'
               ? 'href=https://www.fantazijos.lt/zaidimo-taisykles'
@@ -700,6 +704,8 @@ ${
               ? 'href=https://ohosausryciai.lt/zaidimo-taisykles.html'
               : this.prop === 'LemonFeel'
               ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-FEEL-speles-noteikumi.pdf'
+              : this.prop === 'Orlen'
+              ? 'href=https://www.orlen.lt/LT/zaidimas/Puslapiai/taisykl%c4%97s.aspx'
               : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:14px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
@@ -724,10 +730,8 @@ ${
               ? 'Lasīt pilnos spēles noteikumus.'
               : this.language === 'RU'
               ? 'Читайте полные правила игры.'
-              : this.language === 'EE'
+              : this.language === 'ET'
               ? 'Loe kõik mängureeglid läbi.'
-              : this.language === 'ES' || this.language === 'ET'
-              ? 'Leer las reglas del juego.'
               : this.prop === 'Fpro'
               ? 'Read full games rules. '
               : this.prop === 'SaludSA'
@@ -780,10 +784,10 @@ ${
     </div>
               </div>
               <div style="z-index:3;justify-content: center; align-items: center; gap: 20px;display:flex; width:${
-                document.body.offsetWidth < 426
-                  ? document.body.offsetWidth < 321
+                document.documentElement.clientWidth < 426
+                  ? document.documentElement.clientWidth < 321
                     ? '375px'
-                    : document.body.offsetWidth + 'px'
+                    : document.documentElement.clientWidth + 'px'
                   : '426px'
               };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height: 100%; height:38px;background: white
@@ -811,7 +815,7 @@ ${
         ? 'TĀLĀK'
         : this.language === 'RU'
         ? 'ДАЛЕЕ'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'EDASI'
         : this.language === 'ES' || this.language === 'ET'
         ? 'SIGUIENTE'

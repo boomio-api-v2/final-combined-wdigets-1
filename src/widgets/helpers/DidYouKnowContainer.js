@@ -524,14 +524,16 @@ export class DidYouKnowContainer {
                        }" 
                           target="_blank" style="color: white; text-decoration: underline;text-align:left;">
                          <p style="margin-left:10px;margin-right:10px;line-height:10px;color:black;margin-left:20px;font-weight:700;text-align:start;margin-left:${
-                           document.body.offsetWidth < 418 ? '100px' : '110px'
-                         };margin-right:${document.body.offsetWidth < 418 ? '100px' : '110px'};">
+                           document.documentElement.clientWidth < 418 ? '100px' : '110px'
+                         };margin-right:${
+                      document.documentElement.clientWidth < 418 ? '100px' : '110px'
+                    };">
                            ${product.title}
                          </p>
                              <p style="margin: 5px; line-height: 10px; color: black; font-size: 12px;text-align:start; margin-left: ${
-                               document.body.offsetWidth < 418 ? '100px' : '110px'
+                               document.documentElement.clientWidth < 418 ? '100px' : '110px'
                              }; margin-right: ${
-                      document.body.offsetWidth < 418 ? '100px' : '110px'
+                      document.documentElement.clientWidth < 418 ? '100px' : '110px'
                     };">
   ${product.price}<span style="font-size: 6px; position: relative; top: -4px;left: 1px;">${
                       product.cents
@@ -788,10 +790,10 @@ export class DidYouKnowContainer {
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">

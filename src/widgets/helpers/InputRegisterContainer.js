@@ -17,10 +17,10 @@ export class InputRegisterContainer {
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '426px';
     let privacyCheckboxChecked = true;
     let privacyCheckboxChecked2 = true;
@@ -50,7 +50,7 @@ export class InputRegisterContainer {
         ? 'REĢISTRĒJIES, LAI SPĒLĒTU'
         : this.language === 'RU'
         ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'REGISTREERI MÄNGIMISEKS'
         : this.prop === 'Fpro'
         ? 'REGISTER TO PLAY'
@@ -60,10 +60,10 @@ export class InputRegisterContainer {
         ? 'REĢISTRĒJIES'
         : this.prop === 'SaludSA'
         ? 'REGÍSTRATE</br>PARA JUGAR'
-        : this.language === 'ES' || this.language === 'ET'
-        ? 'REGISTRATE </br>PARA JUGAR '
         : this.language === 'EN'
         ? 'Register to Play'
+        : this.language === 'ES'
+        ? 'Registrarse para jugar'
         : 'Registruokis Žaisti'
     }</div>
           <div style="height: 124px; top:${'20px'}; position: relative; text-align:${
@@ -73,6 +73,8 @@ export class InputRegisterContainer {
         ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
         : this.language === 'EN'
         ? 'Already registered? Use the same email </br> and improve your result!'
+        : this.language === 'ES'
+        ? '¿Ya estás registrado? Usa el mismo correo electrónico y mejora tu resultado.'
         : this.prop === 'LemonFeel'
         ? 'Ievadi e-pastu, ko izmantoji, reģistrējoties LEMON FEEL </br> abonementam vai savam LEMON GYM profilam'
         : this.language === 'LV'
@@ -81,6 +83,8 @@ export class InputRegisterContainer {
         ? ' Уже зарегистрировался? Используй тот же  </br>email и улучшай результат!'
         : this.language === 'ES'
         ? 'Oled juba registreerunud? Kasuta sama e-posti </br> ja paranda oma tulemust!'
+        : this.language === 'ET'
+        ? 'Jau reģistrējies? Izmanto to pašu e-pasta adresi, </BR> lai turpinātu uzlabot savu rezultātu!'
         : this.language === 'PL'
         ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
         : this.language === 'FI'
@@ -106,7 +110,7 @@ export class InputRegisterContainer {
         ? 'TĀLĀK'
         : this.language === 'RU'
         ? 'ДАЛЕЕ'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'EDASI'
         : this.language === 'ES' || this.language === 'ET'
         ? 'SIGUIENTE'
@@ -120,6 +124,8 @@ export class InputRegisterContainer {
         ? 'TĀLĀK'
         : this.language === 'EN'
         ? 'CONTINUE'
+        : this.language === 'ES'
+        ? 'CONTINUAR'
         : 'TOLIAU'
     }</div>
       </div>
@@ -142,7 +148,6 @@ export class InputRegisterContainer {
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
       this.prop === 'Nykstukas' ||
-      this.prop === 'Tiche' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -269,18 +274,16 @@ export class InputRegisterContainer {
         ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“'
         : this.prop === 'Unisend' && this.language === 'LV'
         ? `Esmu izlasījis <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.lv/spelesnoteikumi/'} style="color:white;text-decoration: underline;"> spēles noteikumus</a>  un piekrītu tiem.`
-        : this.prop === 'Unisend' && this.language === 'EE'
+        : this.prop === 'Unisend' && this.language === 'ET'
         ? `Olen <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.ee/unisendi-mangureeglid/'} style="color:white;text-decoration: underline;"> mängureeglitega</a> tutvunud ja nõustun nendega.`
         : this.prop === 'Fantazijos' && this.language === 'LV'
         ? 'Turpinot spēlēt, es piekrītu saņemt yesyes.lv jaunumus.'
         : this.prop === 'Fantazijos' && this.language === 'RU'
         ? 'Продолжая играть, я соглашаюсь получать информационную рассылку yesyes.lv.'
-        : this.prop === 'Fantazijos' && this.language === 'EE'
+        : this.prop === 'Fantazijos' && this.language === 'ET'
         ? 'Mängu jätkates nõustun yesyes.ee uudiskirja saamisega.'
         : this.prop === 'Fantazijos' && this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
-        : this.language === 'ES' || this.language === 'ET'
-        ? 'Acepto recibir noticias y actualizaciones.'
         : this.prop === 'Makalius'
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
         : this.prop === 'Ikea'
@@ -309,8 +312,14 @@ export class InputRegisterContainer {
         ? 'Sutinku su „Pieno žvaigždės“'
         : this.language === 'EN'
         ? 'I agree to receive '
+        : this.language === 'ES'
+        ? 'Acepto recibir'
         : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
         ? 'Piekrītu LEMON GYM'
+        : this.language === 'LV'
+        ? 'Es piekrītu'
+        : this.language === 'ET'
+        ? 'Ma olen nõus'
         : this.prop === 'Nevezis'
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : this.prop === 'Magija'
@@ -377,6 +386,12 @@ export class InputRegisterContainer {
               ? 'privātuma politikai'
               : this.language === 'EN'
               ? 'newsletters'
+              : this.language === 'LV'
+              ? 'privātuma politikai'
+              : this.language === 'ES'
+              ? 'boletines'
+              : this.language === 'ET'
+              ? 'privaatsuspoliitika'
               : 'privatumo politika'
           }.</a> `
         : ''
@@ -462,6 +477,7 @@ export class InputRegisterContainer {
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
         this.prop === 'Tiche' ||
+        this.prop === 'Toni' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -514,6 +530,7 @@ export class InputRegisterContainer {
             this.prop === 'Orlen' ||
             this.prop === 'LemonFeel' ||
             this.prop === 'Tiche' ||
+            this.prop === 'Toni' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -530,6 +547,7 @@ export class InputRegisterContainer {
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
         this.prop === 'Tiche' ||
+        this.prop === 'Toni' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -553,6 +571,7 @@ export class InputRegisterContainer {
             this.prop === 'Orlen' ||
             this.prop === 'LemonFeel' ||
             this.prop === 'Tiche' ||
+            this.prop === 'Toni' ||
             this.language === 'EN'
           ? '249px'
           : '299px'
@@ -562,6 +581,7 @@ export class InputRegisterContainer {
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Tiche' ||
+      this.prop === 'Toni' ||
       this.prop === 'LemonFeel'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
@@ -572,7 +592,7 @@ export class InputRegisterContainer {
         ? 'Spēlētāja e-pasts'
         : this.language === 'RU'
         ? 'Емейл игрока'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'Mängija e-post'
         : this.prop === 'Fpro'
         ? 'Email address'
@@ -580,14 +600,14 @@ export class InputRegisterContainer {
         ? 'El. pašto adresas'
         : this.prop === 'Eurovaistine'
         ? 'Spēlētāja e-pasts'
-        : this.language === 'ES' || this.language === 'ET'
-        ? 'Email'
         : this.prop === 'SaludSA'
         ? 'Correo electrónico'
         : this.prop === 'Gamtos Ateitis'
         ? 'El. pašto adresas'
         : this.language === 'EN'
         ? 'Email address'
+        : this.language === 'ES'
+        ? 'Dirección de correo electrónico'
         : this.prop === 'Orlen'
         ? 'Telefono numeris'
         : 'Elektroninio pašto adresas'
@@ -601,6 +621,7 @@ export class InputRegisterContainer {
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
         this.prop === 'Tiche' ||
+        this.prop === 'Toni' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -616,6 +637,7 @@ export class InputRegisterContainer {
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonFeel' ||
       this.prop === 'Tiche' ||
+      this.prop === 'Toni' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
@@ -626,7 +648,7 @@ export class InputRegisterContainer {
         ? 'Spēlētāja lietotājvārds'
         : this.language === 'RU'
         ? 'Псевдоним игрока'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'Mängija hüüdnimi'
         : this.prop === 'Fpro'
         ? 'Players full name'
@@ -634,8 +656,6 @@ export class InputRegisterContainer {
         ? 'Žaidėjo vardas'
         : this.prop === 'Eurovaistine'
         ? 'Spēlētāja lietotājvārds'
-        : this.language === 'ES' || this.language === 'ET'
-        ? 'Nickname del jugador'
         : this.prop === 'SaludSA'
         ? 'Nombre de usuario'
         : this.language === 'EN'

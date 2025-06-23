@@ -122,12 +122,12 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'LemonFeel';
+    this.customer = this.config.business_name ? this.config.business_name : 'Tiche';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LT';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LV';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -639,10 +639,10 @@ class FlappyBird {
         if (this.gamePlaying) {
           if (canvas.width > 450 || canvas.height < 600) {
             canvas.width =
-              document.body.offsetWidth < 418
-                ? document.body.offsetWidth < 321
+              document.documentElement.clientWidth < 418
+                ? document.documentElement.clientWidth < 321
                   ? '375px'
-                  : document.body.offsetWidth
+                  : document.documentElement.clientWidth
                 : '418';
             canvas.height = '668';
           }
@@ -1132,19 +1132,19 @@ class FlappyBird {
     } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
     </img>
     <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-      document.body.offsetWidth < 418
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '418px'
     };
        height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
     </img>
           <img  style="z-index:1;width: ${
-            document.body.offsetWidth < 418
-              ? document.body.offsetWidth < 321
+            document.documentElement.clientWidth < 418
+              ? document.documentElement.clientWidth < 321
                 ? '375px'
-                : document.body.offsetWidth + 'px'
+                : document.documentElement.clientWidth + 'px'
               : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
     </img>
@@ -1185,7 +1185,7 @@ class FlappyBird {
           ? introGifFantazijosLV
           : this.language === 'RU'
           ? introGifFantazijosRU
-          : this.language === 'EE'
+          : this.language === 'ET'
           ? introGifFantazijosEE
           : introGifFantazijos
         : this.customer === 'Fpro'
@@ -1200,10 +1200,10 @@ class FlappyBird {
         ? LemonGymintro
         : this.customer === 'Penki Sezonai' && introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
-      document.body.offsetWidth < 418
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:${
       this.customer.includes('demo') || this.customer === 'LemonFeel' ? 'none' : 'block'
@@ -1227,7 +1227,7 @@ class FlappyBird {
         ? newRecordEn
         : this.language === 'LV'
         ? newRecordLV
-        : this.language === 'ET' || this.language === 'EE'
+        : this.language === 'ET' || this.language === 'ET'
         ? newRecordEE
         : this.language === 'FI'
         ? newRecordFI
@@ -1271,7 +1271,7 @@ ${`<div style="${
         ? 'TAP'
         : this.language === 'RU'
         ? 'КЛИК'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'TAP'
         : this.language === 'ET'
         ? 'TÄPI'
@@ -1294,7 +1294,7 @@ ${`<div style="${
         ? 'КЛИК'
         : this.language === 'ET'
         ? 'TÄPI'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'TAP'
         : this.language === 'ES'
         ? 'TAP'
@@ -1340,10 +1340,10 @@ ${`<div style="${
 
 ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
-          document.body.offsetWidth < 418
-            ? document.body.offsetWidth < 321
+          document.documentElement.clientWidth < 418
+            ? document.documentElement.clientWidth < 321
               ? '375px'
-              : document.body.offsetWidth + 'px'
+              : document.documentElement.clientWidth + 'px'
             : '418px'
         };display:none;" class="control-button" id="control-button">
         <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
@@ -1353,10 +1353,10 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 </div>
 </div>
 <div class="input-container1" style="width:${
-      document.body.offsetWidth < 418
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 418
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '418px'
     }">
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
@@ -1383,10 +1383,10 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       
       </div>
       <canvas id="flappy-canvas" width=${
-        document.body.offsetWidth < 418
-          ? document.body.offsetWidth < 321
+        document.documentElement.clientWidth < 418
+          ? document.documentElement.clientWidth < 321
             ? '375px'
-            : document.body.offsetWidth + 'px'
+            : document.documentElement.clientWidth + 'px'
           : '418px'
       } height="668" class="flappy-game"></canvas>
     </div>
@@ -1511,10 +1511,17 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
-              if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo'))) {
+              if (
+                !checkboxChange ||
+                (!checkboxChange2 &&
+                  !this.customer.includes('demo') &&
+                  !this.customer.includes('Tiche'))
+              ) {
                 document.getElementById('competition-checkbox-error').innerText =
                   this.language === 'LV'
                     ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                    : this.language === 'ET'
+                    ? 'Jätkamiseks peate nõustuma privaatsuspoliitikaga.'
                     : this.customer === 'SaludSA'
                     ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
                     : this.language === 'EN'
@@ -1540,6 +1547,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-email-error').innerText =
                   this.language === 'LV'
                     ? 'Obligāti aizpildāmie lauki.'
+                    : this.language === 'ET'
+                    ? 'Jätkamiseks vajalik.'
                     : this.customer === 'SaludSA'
                     ? 'Para continuar debes agregar el correo electrónico.'
                     : this.language === 'EN'
@@ -1607,7 +1616,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                           ? 'Este email ya está en uso. Use otro email.'
                           : this.language === 'RU'
                           ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                          : this.language === 'EE'
+                          : this.language === 'ET'
                           ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                           : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor =
@@ -1629,7 +1638,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                           ? 'Para continuar debes agregar el nombre de usuario.'
                           : this.language === 'RU'
                           ? 'Этот псевдоним уже существует. Используйте другой.'
-                          : this.language === 'EE'
+                          : this.language === 'ET'
                           ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                           : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =

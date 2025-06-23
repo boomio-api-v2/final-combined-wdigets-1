@@ -447,7 +447,7 @@ function startGame(
       ? goldImageDataBarbora
       : customer === 'Ikea'
       ? goldImageDataIkea
-      : customer === 'Unisend' && language === 'EE'
+      : customer === 'Unisend' && language === 'ET'
       ? goldImageDataUnisendES
       : customer === 'Unisend'
       ? goldImageDataUnisend
@@ -1330,7 +1330,7 @@ function startGame(
                       ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                       : language === 'RU'
                       ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                      : language === 'EE'
+                      : language === 'ET'
                       ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =

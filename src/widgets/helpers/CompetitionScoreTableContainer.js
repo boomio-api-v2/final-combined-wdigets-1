@@ -412,9 +412,9 @@ export class CompetitionScoreTableContainer {
                 ? 'Atzīmējiet karstāko vasaru'
                 : this.language === 'RU'
                 ? 'Отпразднуйте самый жаркий месяц лета'
-                : this.prop === 'Unisend' && this.language === 'EE'
+                : this.prop === 'Unisend' && this.language === 'ET'
                 ? 'SUL LÄHEB HÄSTI!'
-                : this.language === 'EE'
+                : this.language === 'ET'
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Fantazijos'
                 ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
@@ -453,9 +453,9 @@ export class CompetitionScoreTableContainer {
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei.</br> Prizinį fondą sudaro 50 Daumantų prizų!'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Pusė geriausią rezultatą pasiekusių mokyklų pateks į kitą </br> žaidimo etapą ir sieks laimėti koncertą savo mokyklai! Jei </br>  Tavo mokykla pateks į kitą etapą, informuosime Tave el. </br>  paštu, kurį nurodei. '
-                : this.prop === 'Unisend' && this.language === 'EE'
+                : this.prop === 'Unisend' && this.language === 'ET'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
-                : this.language === 'EE' && this.prop === 'Fantazijos'
+                : this.language === 'ET' && this.prop === 'Fantazijos'
                 ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
                 : this.prop === 'Fantazijos'
                 ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
@@ -494,13 +494,13 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform:${
               this.prop === 'Perlas GO' ? 'none' : 'uppercase'
             } ; word-wrap: break-word">${
-              this.prop === 'Unisend' && this.language === 'EE'
+              this.prop === 'Unisend' && this.language === 'ET'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
-                : this.language === 'EE' && this.prop === 'Fantazijos'
+                : this.language === 'ET' && this.prop === 'Fantazijos'
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
@@ -519,7 +519,7 @@ export class CompetitionScoreTableContainer {
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU'
                 ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
-                : this.language === 'EE'
+                : this.language === 'ET'
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
@@ -540,9 +540,9 @@ export class CompetitionScoreTableContainer {
                 ? 'SUPER!'
                 : this.language === 'RU'
                 ? 'Отпразднуйте самый жаркий месяц лета'
-                : this.prop === 'Unisend' && this.language === 'EE'
+                : this.prop === 'Unisend' && this.language === 'ET'
                 ? 'SUL LÄHEB HÄSTI!'
-                : this.language === 'EE'
+                : this.language === 'ET'
                 ? 'Tähistage suve kuumimat kuud ja võitke'
                 : this.prop === 'Perlas GO'
                 ? ''
@@ -550,6 +550,8 @@ export class CompetitionScoreTableContainer {
                 ? ''
                 : this.language === 'EN'
                 ? 'YOU CAN DO IT!'
+                : this.language === 'ES'
+                ? '¡TÚ PUEDES!'
                 : this.prop === 'Nykstukas'
                 ? ''
                 : 'Tu gali!'
@@ -581,8 +583,6 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą, nes kas savaitę </br> geriausi žaidėjai laimės prizus! '
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Pagerink rezultatą, nes pusė geriausią rezultatą pasiekusių </br> mokyklų pateks į kitą žaidimo etapą ir sieks laimėti koncertą </br> savo mokyklai! Jei Tavo mokykla pateks į kitą etapą, </br>informuosime Tave el. paštu, kurį nurodei. '
-                : this.language === 'ES'
-                ? 'En Diciembre, Los mejors 100 jugadores recibiran un premio!</br>Ganadores serán contactados al email del registro'
                 : this.prop === 'Makalius'
                 ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
                 : this.prop === 'Unisend' && this.language === 'LV'
@@ -591,9 +591,9 @@ export class CompetitionScoreTableContainer {
                 ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
-                : this.prop === 'Unisend' && this.language === 'EE'
+                : this.prop === 'Unisend' && this.language === 'ET'
                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
-                : this.language === 'EE' && this.prop === 'Fantazijos'
+                : this.language === 'ET' && this.prop === 'Fantazijos'
                 ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
                 : this.prop === 'Vilvi'
                 ? 'Pagerink rezultatą, nes net 10 geriausių žaidėjų xx dieną </br> laimės VILVI prizus!'
@@ -609,6 +609,8 @@ export class CompetitionScoreTableContainer {
                 ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Dobilas“  prizus!'
                 : this.prop === 'Orlen'
                 ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę! O dydisis prizas - skrydis oro balionu!'
+                : this.prop === 'Toni'
+                ? '¡Buen intento! Cuanto más juegas, más oportunidades tienes de ganar ¿Puedes superar tu propio récord? ¡Inténtalo de nuevo y suma más chances de ganar! ¡Sigue jugando! Cada partida es una nueva oportunidad para llevarte un premio Cada partida cuenta. ¡Acumula oportunidades y gana!'
                 : this.language === 'EN'
                 ? ''
                 : ''
@@ -616,7 +618,7 @@ export class CompetitionScoreTableContainer {
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop ? '10px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
-              this.prop === 'Unisend' && this.language === 'EE'
+              this.prop === 'Unisend' && this.language === 'ET'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
                 : this.prop === 'Eurovaistine'
                 ? '10€, 5€ vērtība.'
@@ -624,7 +626,7 @@ export class CompetitionScoreTableContainer {
                 ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">vasara </a></div>'
-                : this.language === 'EE' && this.prop === 'Fantazijos'
+                : this.language === 'ET' && this.prop === 'Fantazijos'
                 ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
                 : this.prop === 'Fantazijos'
                 ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
@@ -641,7 +643,7 @@ export class CompetitionScoreTableContainer {
                 ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
                 : this.language === 'RU' && this.prop === 'Fantazijos'
                 ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
-                : this.language === 'EE' && this.prop === 'Fantazijos'
+                : this.language === 'ET' && this.prop === 'Fantazijos'
                 ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
@@ -699,10 +701,10 @@ export class CompetitionScoreTableContainer {
     const campaignUrl = urlParams.get('campaign_url');
     const userId = urlParams.get('user_id');
     containerDiv.style.width =
-      document.body.offsetWidth < 426
-        ? document.body.offsetWidth < 321
+      document.documentElement.clientWidth < 426
+        ? document.documentElement.clientWidth < 321
           ? '375px'
-          : document.body.offsetWidth + 'px'
+          : document.documentElement.clientWidth + 'px'
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
@@ -711,7 +713,7 @@ export class CompetitionScoreTableContainer {
         ? 'REZULTĀTI'
         : this.language === 'RU'
         ? 'РЕЗУЛЬТАТЫ'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'TULEMUSED'
         : this.language === 'ET'
         ? 'TULEMUSED'
@@ -792,12 +794,14 @@ export class CompetitionScoreTableContainer {
         ? 'UZLABOT REZULTĀTU'
         : this.language === 'RU'
         ? 'УЛУЧШИТЬ РЕЗУЛЬТАТ'
-        : this.language === 'EE'
+        : this.language === 'ET'
         ? 'PARANDA TULEMUST'
         : this.language === 'ES'
         ? 'MEJORAR EL RESULTADO'
         : this.language === 'EN'
         ? 'IMPROVE YOUR SCORE'
+        : this.language === 'ES'
+        ? 'MEJORA TU PUNTAJE'
         : 'PAGERINK REZULTATĄ'
     }</div>
       </div>
