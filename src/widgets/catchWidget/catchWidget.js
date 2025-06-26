@@ -885,7 +885,7 @@ class CatchGame {
                     emails_consent:
                       this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
                     user_email: emailInput?.value,
-                    ...(customer === 'Gamtos Ateitis' && {
+                    ...(this.customer === 'Gamtos Ateitis' && {
                       team: schoolInput.value,
                     }),
                     user_name:
