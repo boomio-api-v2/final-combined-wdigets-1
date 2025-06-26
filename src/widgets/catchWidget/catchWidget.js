@@ -201,7 +201,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Glass';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -292,115 +292,108 @@ class CatchGame {
       numbers.style.display = 'none';
     }, 500);
 
-    setTimeout(
-      () => {
-        document.getElementById('boomio-catch-canvas').style.transition = 'opacity 1s ease';
-        document.getElementById('boomio-catch-canvas').style.opacity = 1;
+    setTimeout(() => {
+      document.getElementById('boomio-catch-canvas').style.transition = 'opacity 1s ease';
+      document.getElementById('boomio-catch-canvas').style.opacity = 1;
 
-        if (this.gameCount === 0) {
-          if (
-            this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'points' ||
-            this.showCompetitiveRegistration === 'collectable'
-          ) {
-            const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
-            checkboxImg.addEventListener('click', () => {
-              this.checkboxChange = !this.checkboxChange;
-              const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-              checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+      if (this.gameCount === 0) {
+        if (
+          this.showCompetitiveRegistration === 'competition' ||
+          this.showCompetitiveRegistration === 'points' ||
+          this.showCompetitiveRegistration === 'collectable'
+        ) {
+          const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
+          checkboxImg.addEventListener('click', () => {
+            this.checkboxChange = !this.checkboxChange;
+            const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+            checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+          });
+          const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+          checkboxImg2.addEventListener('click', () => {
+            this.checkboxChange2 = !this.checkboxChange2;
+            const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+            checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+          });
+          const checkboxImg3 = document.querySelector('.boomio-privacyCheckbox3');
+          checkboxImg3.addEventListener('click', () => {
+            this.checkboxChange3 = !this.checkboxChange3;
+            const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
+            checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
+          });
+          const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
+
+          if (phoneInputField) {
+            phoneInputField.addEventListener('input', (event) => {
+              event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
             });
-            const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
-            checkboxImg2.addEventListener('click', () => {
-              this.checkboxChange2 = !this.checkboxChange2;
-              const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
-              checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
-            });
-            const checkboxImg3 = document.querySelector('.boomio-privacyCheckbox3');
-            checkboxImg3.addEventListener('click', () => {
-              this.checkboxChange3 = !this.checkboxChange3;
-              const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
-              checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
-            });
-            const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
-
-            if (phoneInputField) {
-              phoneInputField.addEventListener('input', (event) => {
-                event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
-              });
-            } else {
-              console.error('');
-            }
-
-            setTimeout(() => {
-              const canvas = document.getElementById('boomio-catch-canvas');
-              document.getElementById('background_blur').style.opacity =
-                this.customer === 'Pegasas' ? 0.8 : 0.37;
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
-
-              const inpuRegisterContainer = document.querySelector('.input-register-container');
-              inpuRegisterContainer.style.transition =
-                'height 1s ease, top 1s ease, opacity 1s ease';
-              inpuRegisterContainer.style.display = 'block';
-              setTimeout(() => {
-                inpuRegisterContainer.style.height = '528px';
-                inpuRegisterContainer.style.top = 'calc(50% + 74px)';
-                inpuRegisterContainer.style.opacity = 1;
-              }, 100);
-            }, 300);
           } else {
-            setTimeout(() => {
-              const canvas = document.getElementById('boomio-catch-canvas');
-              document.getElementById('background_blur').style.opacity =
-                this.customer === 'Pegasas' ? 0.8 : 0.37;
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
-              const inputContainer = document.querySelector('.input-container');
-              document.getElementById('control-button').style.transition = 'opacity 2s ease';
-              document.getElementById('control-button').style.opacity = 1;
-              document.getElementById('control-button').style.display = 'flex';
-
-              inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-              inputContainer.style.display = 'block';
-              setTimeout(() => {
-                inputContainer.style.height = '332px';
-                inputContainer.style.top = 'calc(50% + 170px)';
-                inputContainer.style.opacity = 1;
-              }, 100);
-            }, 300);
+            console.error('');
           }
-        }
 
-        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-        document.getElementById('background_intro').style.opacity = 0;
-        if (this.gameCount === 0) {
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-        }
-        if (this.gameCount === 0) {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
-
             document.getElementById('background_blur').style.opacity =
               this.customer === 'Pegasas' ? 0.8 : 0.37;
-
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
-          }, 1000);
-        }
-        setTimeout(
-          () => {
-            const background = document.getElementById('background_intro');
 
-            if (background) {
-              background.style.display = 'none';
-            }
-          },
-          this.customer === 'Toni' ? 0 : 2000,
-        );
-      },
-      this.customer === 'Toni' ? 0 : 4000,
-    );
+            const inpuRegisterContainer = document.querySelector('.input-register-container');
+            inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+            inpuRegisterContainer.style.display = 'block';
+            setTimeout(() => {
+              inpuRegisterContainer.style.height = '528px';
+              inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+              inpuRegisterContainer.style.opacity = 1;
+            }, 100);
+          }, 300);
+        } else {
+          setTimeout(() => {
+            const canvas = document.getElementById('boomio-catch-canvas');
+            document.getElementById('background_blur').style.opacity =
+              this.customer === 'Pegasas' ? 0.8 : 0.37;
+            canvas.style.transition = 'filter 0.6s ease';
+            canvas.style.filter = 'blur(2px)';
+            const inputContainer = document.querySelector('.input-container');
+            document.getElementById('control-button').style.transition = 'opacity 2s ease';
+            document.getElementById('control-button').style.opacity = 1;
+            document.getElementById('control-button').style.display = 'flex';
+
+            inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+            inputContainer.style.display = 'block';
+            setTimeout(() => {
+              inputContainer.style.height = '332px';
+              inputContainer.style.top = 'calc(50% + 170px)';
+              inputContainer.style.opacity = 1;
+            }, 100);
+          }, 300);
+        }
+      }
+
+      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+      document.getElementById('background_intro').style.opacity = 0;
+      if (this.gameCount === 0) {
+        document.getElementById('background_blur').style.display = 'block';
+        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+      }
+      if (this.gameCount === 0) {
+        setTimeout(() => {
+          const canvas = document.getElementById('boomio-catch-canvas');
+
+          document.getElementById('background_blur').style.opacity =
+            this.customer === 'Pegasas' ? 0.8 : 0.37;
+
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+        }, 1000);
+      }
+      setTimeout(() => {
+        const background = document.getElementById('background_intro');
+
+        if (background) {
+          background.style.display = 'none';
+        }
+      }, 0);
+    }, 0);
     //gifas
   };
 
