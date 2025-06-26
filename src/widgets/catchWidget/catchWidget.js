@@ -673,6 +673,7 @@ class CatchGame {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             const phone = document.querySelector('.boomio-competition-phone-input-field');
+            const schoolInput = document.querySelector('.boomio-competition-school-select');
 
             const checkboxChange = this.checkboxChange;
             const checkboxChange2 = this.checkboxChange2;
@@ -687,7 +688,9 @@ class CatchGame {
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : this.language === 'ES'
                   ? 'Para continuar, debe aceptar recibir los boletines informativos de la empresa.'
-                  : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
+                  : this.customer.includes('Gamtos Ateitis')
+                  ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+                  : '';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
@@ -882,6 +885,9 @@ class CatchGame {
                     emails_consent:
                       this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
                     user_email: emailInput?.value,
+                    ...(customer === 'Gamtos Ateitis' && {
+                      team: schoolInput.value,
+                    }),
                     user_name:
                       this.customer === 'Toni' ? emailInput?.value : playerNameInput?.value,
                     game_code: this.game_code,
