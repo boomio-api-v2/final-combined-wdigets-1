@@ -79,7 +79,7 @@ export class InputContainer {
     <div style="width: ${
       this.isMobile ? '370px' : '390px'
     };margin-top:10px;margin-bottom:10px;height:${
-      this.prop === 'Gamtos Ateitis' ||
+      this.prop.includes('Gamtos Ateitis') ||
       this.prop === 'Nykstukas' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Magija' ||
@@ -157,7 +157,7 @@ export class InputContainer {
                   ? 'Judėk'
                   : this.prop === 'Dentsu' && this.game === 'runner'
                   ? 'Judėk'
-                  : this.prop === 'Gamtos Ateitis'
+                  : this.prop.includes('Gamtos Ateitis')
                   ? 'Brauk'
                   : this.language === 'EN'
                   ? 'CLICK'
@@ -316,7 +316,7 @@ export class InputContainer {
                 ? 'Presiona'
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Kartok,'
-                : this.prop === 'Gamtos Ateitis'
+                : this.prop.includes('Gamtos Ateitis')
                 ? 'Rink'
                 : this.language === 'EN'
                 ? 'REPEAT'
@@ -368,11 +368,11 @@ export class InputContainer {
                 ? 'FOR BETTER RESULT'
                 : this.prop === 'SaludSA'
                 ? '3 veces para mejorar'
-                : this.prop === 'Gamtos Ateitis' && this.type === 1
+                : this.prop.includes('Gamtos Ateitis') && this.type === 1
                 ? 'popieriaus pakuočių atliekas ir gauk taškų.'
-                : this.prop === 'Gamtos Ateitis' && this.type === 2
+                : this.prop.includes('Gamtos Ateitis') && this.type === 2
                 ? 'stiklo pakuočių atliekas ir gauk taškų.'
-                : this.prop === 'Gamtos Ateitis' && this.type === 3
+                : this.prop.includes('Gamtos Ateitis') && this.type === 3
                 ? 'plastiko pakuočių atliekas ir gauk taškų.'
                 : this.language === 'EN'
                 ? 'to get the best possible result'
@@ -428,7 +428,7 @@ export class InputContainer {
                 ? 'LAIMĒ'
                 : this.prop === 'SaludSA'
                 ? '¡Gana!'
-                : this.prop === 'Gamtos Ateitis'
+                : this.prop.includes('Gamtos Ateitis')
                 ? 'Kartok'
                 : this.language === 'EN'
                 ? 'WIN'
@@ -526,7 +526,7 @@ export class InputContainer {
                 ? 'spēli.'
                 : this.language === 'ET'
                 ? 'auhinnad.'
-                : this.prop === 'Gamtos Ateitis'
+                : this.prop.includes('Gamtos Ateitis')
                 ? 'Pagerinus rezultatą prisidės taškų skirtumas.'
                 : this.prop === 'Pieno Žvaigždės'
                 ? 'kassavaitinius Forum Cinema bilietus ir pagrindinius MIAU prizus!'
@@ -582,7 +582,7 @@ export class InputContainer {
             </div>
 ${
   this.prop === 'Perlas GO' ||
-  this.prop === 'Gamtos Ateitis' ||
+  this.prop.includes('Gamtos Ateitis') ||
   this.prop === 'Nykstukas' ||
   this.prop === 'Nevezis' ||
   this.prop === 'Magija' ||
@@ -601,9 +601,9 @@ ${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
             ${
-              this.prop === 'Gamtos Ateitis'
+              this.prop.includes('Gamtos Ateitis')
                 ? 'koncertą savo mokyklai!'
-                : this.prop === 'Gamtos Ateitis'
+                : this.prop.includes('Gamtos Ateitis')
                 ? 'Nykštukas vasariškus prizus!'
                 : this.prop === 'LemonGym'
                 ? 'LEMON GYM balvas!'

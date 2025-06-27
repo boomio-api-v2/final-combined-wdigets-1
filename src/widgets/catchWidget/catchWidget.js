@@ -319,7 +319,7 @@ class CatchGame {
                 schoolSelect.appendChild(defaultOption);
                 return;
               }
-
+              console.log('Selected city:', selectedCity);
               const schools = (this.teams[selectedCity] || []).sort((a, b) =>
                 a.toLowerCase().localeCompare(b.toLowerCase()),
               );
