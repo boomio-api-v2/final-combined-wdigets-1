@@ -202,6 +202,8 @@ class CatchGame {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Glass';
+    this.teams = this.config.teams;
+
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -318,7 +320,7 @@ class CatchGame {
                 return;
               }
 
-              const schools = (teams[selectedCity] || []).sort((a, b) =>
+              const schools = (this.teams[selectedCity] || []).sort((a, b) =>
                 a.toLowerCase().localeCompare(b.toLowerCase()),
               );
               if (schools.length === 0) {
