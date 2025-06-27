@@ -233,55 +233,53 @@ export class DidYouKnowContainer {
     this.user_id = urlParams.get('user_id');
 
     this.prop = prop;
-    if (this.prop && this.prop.includes('Plastic')) {
-      this.collectables = [
-        item16,
-        item4,
-        item14,
-        item1,
-        item23,
-        item20,
-        item10,
-        item8,
-        item6,
-        item12,
-        item19,
-        item7,
-      ];
-    } else if (this.prop && this.prop.includes('Paper')) {
-      // Handle Paper collectables
-      this.collectables = [
-        item16Paper,
-        item4Paper,
-        item14Paper,
-        item1Paper,
-        item23Paper,
-        item20Paper,
-        item10Paper,
-        item8Paper,
-        item6Paper,
-        item12Paper,
-        item19Paper,
-        item7Paper,
-      ];
-    } else if (this.prop && this.prop.includes('Glass')) {
-      // Handle Glass collectables
-      this.collectables = [
-        item16Glass,
-        item4Glass,
-        item14Glass,
-        item1Glass,
-        item23Glass,
-        item20Glass,
-        item10Glass,
-        item8Glass,
-        item6Glass,
-        item12Glass,
-        item19Glass,
-        item7Glass,
-      ];
-    } else if (this.prop === 'Pieno Žvaigždės') {
-      // Handle Glass collectables
+    // if (this.prop && this.prop.includes('Plastic')) {
+    //   this.collectables = [
+    //     item16,
+    //     item4,
+    //     item14,
+    //     item1,
+    //     item23,
+    //     item20,
+    //     item10,
+    //     item8,
+    //     item6,
+    //     item12,
+    //     item19,
+    //     item7,
+    //   ];
+    // } else if (this.prop && this.prop.includes('Paper')) {
+    //   this.collectables = [
+    //     item16Paper,
+    //     item4Paper,
+    //     item14Paper,
+    //     item1Paper,
+    //     item23Paper,
+    //     item20Paper,
+    //     item10Paper,
+    //     item8Paper,
+    //     item6Paper,
+    //     item12Paper,
+    //     item19Paper,
+    //     item7Paper,
+    //   ];
+    // } else if (this.prop && this.prop.includes('Glass')) {
+    //   this.collectables = [
+    //     item16Glass,
+    //     item4Glass,
+    //     item14Glass,
+    //     item1Glass,
+    //     item23Glass,
+    //     item20Glass,
+    //     item10Glass,
+    //     item8Glass,
+    //     item6Glass,
+    //     item12Glass,
+    //     item19Glass,
+    //     item7Glass,
+    //   ];
+    // }
+    if (this.prop === 'Pieno Žvaigždės') {
       this.collectables = [
         item15PienoZvaigzdes,
         item1PienoZvaigzdes,
