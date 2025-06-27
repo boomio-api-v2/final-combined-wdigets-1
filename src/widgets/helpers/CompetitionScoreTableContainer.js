@@ -320,7 +320,7 @@ export class CompetitionScoreTableContainer {
       }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
       ${
-        this.prop !== 'Gamtos Ateitis'
+        !this.prop.includes('Gamtos Ateitis')
           ? userBestPlace === index + 1
             ? this.language === 'EN'
               ? 'Your score'
@@ -355,7 +355,7 @@ export class CompetitionScoreTableContainer {
             <td style="padding-left:8px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
               <td style="padding-left:6px;text-align:start;width: 100px; color: ${'rgba(61, 73, 40, 1)'}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-        this.prop !== 'Gamtos Ateitis'
+        !this.prop.includes('Gamtos Ateitis')
           ? this.prop === 'Nykstukas'
             ? 'Tavo komandos rezultatas'
             : this.language === 'EN'
