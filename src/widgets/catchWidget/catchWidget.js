@@ -201,7 +201,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Glass';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -302,6 +302,45 @@ class CatchGame {
           this.showCompetitiveRegistration === 'points' ||
           this.showCompetitiveRegistration === 'collectable'
         ) {
+          const citySelect = document.getElementById('city-select');
+          const schoolSelect = document.getElementById('school-select');
+          if (citySelect && schoolSelect) {
+            citySelect.addEventListener('change', () => {
+              const selectedCity = citySelect.value;
+              // Clear previous options
+              schoolSelect.innerHTML = '';
+
+              if (!selectedCity || selectedCity === 'Miestas ar rajonas') {
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Pirmiau pasirink miestą ar rajoną';
+                schoolSelect.appendChild(defaultOption);
+                return;
+              }
+
+              const schools = (teams[selectedCity] || []).sort((a, b) =>
+                a.toLowerCase().localeCompare(b.toLowerCase()),
+              );
+              if (schools.length === 0) {
+                const noSchoolOpt = document.createElement('option');
+                noSchoolOpt.value = '';
+                noSchoolOpt.textContent = 'Mokyklu saraše nėra';
+                schoolSelect.appendChild(noSchoolOpt);
+              } else {
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Tavo atstovaujama mokykla';
+                schoolSelect.appendChild(defaultOption);
+                schools.forEach((school) => {
+                  const opt = document.createElement('option');
+                  opt.value = school;
+                  opt.textContent = school;
+                  schoolSelect.appendChild(opt);
+                });
+              }
+            });
+          }
+
           const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
           checkboxImg.addEventListener('click', () => {
             this.checkboxChange = !this.checkboxChange;
