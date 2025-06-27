@@ -884,10 +884,13 @@ class CatchGame {
                   emails_consent:
                     this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
                   user_email: emailInput?.value,
-                  ...(this.customer === 'Gamtos Ateitis' && {
+                  ...(this.prop.includes('Gamtos Ateitis') && {
                     team: schoolInput.value,
                   }),
-                  user_name: this.customer === 'Toni' ? emailInput?.value : playerNameInput?.value,
+                  user_name:
+                    this.customer === 'Toni' || this.prop.includes('Gamtos Ateitis')
+                      ? emailInput?.value
+                      : playerNameInput?.value,
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
                 })
