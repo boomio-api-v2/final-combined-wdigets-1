@@ -201,7 +201,9 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Glass';
+    this.teams = this.config.teams;
+
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
@@ -292,115 +294,147 @@ class CatchGame {
       numbers.style.display = 'none';
     }, 500);
 
-    setTimeout(
-      () => {
-        document.getElementById('boomio-catch-canvas').style.transition = 'opacity 1s ease';
-        document.getElementById('boomio-catch-canvas').style.opacity = 1;
+    setTimeout(() => {
+      document.getElementById('boomio-catch-canvas').style.transition = 'opacity 1s ease';
+      document.getElementById('boomio-catch-canvas').style.opacity = 1;
 
-        if (this.gameCount === 0) {
-          if (
-            this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'points' ||
-            this.showCompetitiveRegistration === 'collectable'
-          ) {
-            const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
-            checkboxImg.addEventListener('click', () => {
-              this.checkboxChange = !this.checkboxChange;
-              const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-              checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+      if (this.gameCount === 0) {
+        if (
+          this.showCompetitiveRegistration === 'competition' ||
+          this.showCompetitiveRegistration === 'points' ||
+          this.showCompetitiveRegistration === 'collectable'
+        ) {
+          const citySelect = document.getElementById('city-select');
+          const schoolSelect = document.getElementById('school-select');
+          if (citySelect && schoolSelect) {
+            citySelect.addEventListener('change', () => {
+              const selectedCity = citySelect.value;
+              // Clear previous options
+              schoolSelect.innerHTML = '';
+
+              if (!selectedCity || selectedCity === 'Miestas ar rajonas') {
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Pirmiau pasirink miestą ar rajoną';
+                schoolSelect.appendChild(defaultOption);
+                return;
+              }
+              console.log('Selected city:', selectedCity);
+              const schools = (this.teams[selectedCity] || []).sort((a, b) =>
+                a.toLowerCase().localeCompare(b.toLowerCase()),
+              );
+              if (schools.length === 0) {
+                const noSchoolOpt = document.createElement('option');
+                noSchoolOpt.value = '';
+                noSchoolOpt.textContent = 'Mokyklu saraše nėra';
+                schoolSelect.appendChild(noSchoolOpt);
+              } else {
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Tavo atstovaujama mokykla';
+                schoolSelect.appendChild(defaultOption);
+                schools.forEach((school) => {
+                  const opt = document.createElement('option');
+                  opt.value = school;
+                  opt.textContent = school;
+                  schoolSelect.appendChild(opt);
+                });
+              }
             });
-            const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
-            checkboxImg2.addEventListener('click', () => {
-              this.checkboxChange2 = !this.checkboxChange2;
-              const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
-              checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
-            });
-            const checkboxImg3 = document.querySelector('.boomio-privacyCheckbox3');
-            checkboxImg3.addEventListener('click', () => {
-              this.checkboxChange3 = !this.checkboxChange3;
-              const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
-              checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
-            });
-            const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
-
-            if (phoneInputField) {
-              phoneInputField.addEventListener('input', (event) => {
-                event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
-              });
-            } else {
-              console.error('');
-            }
-
-            setTimeout(() => {
-              const canvas = document.getElementById('boomio-catch-canvas');
-              document.getElementById('background_blur').style.opacity =
-                this.customer === 'Pegasas' ? 0.8 : 0.37;
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
-
-              const inpuRegisterContainer = document.querySelector('.input-register-container');
-              inpuRegisterContainer.style.transition =
-                'height 1s ease, top 1s ease, opacity 1s ease';
-              inpuRegisterContainer.style.display = 'block';
-              setTimeout(() => {
-                inpuRegisterContainer.style.height = '528px';
-                inpuRegisterContainer.style.top = 'calc(50% + 74px)';
-                inpuRegisterContainer.style.opacity = 1;
-              }, 100);
-            }, 300);
-          } else {
-            setTimeout(() => {
-              const canvas = document.getElementById('boomio-catch-canvas');
-              document.getElementById('background_blur').style.opacity =
-                this.customer === 'Pegasas' ? 0.8 : 0.37;
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
-              const inputContainer = document.querySelector('.input-container');
-              document.getElementById('control-button').style.transition = 'opacity 2s ease';
-              document.getElementById('control-button').style.opacity = 1;
-              document.getElementById('control-button').style.display = 'flex';
-
-              inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-              inputContainer.style.display = 'block';
-              setTimeout(() => {
-                inputContainer.style.height = '332px';
-                inputContainer.style.top = 'calc(50% + 170px)';
-                inputContainer.style.opacity = 1;
-              }, 100);
-            }, 300);
           }
-        }
 
-        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-        document.getElementById('background_intro').style.opacity = 0;
-        if (this.gameCount === 0) {
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-        }
-        if (this.gameCount === 0) {
+          const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
+          checkboxImg.addEventListener('click', () => {
+            this.checkboxChange = !this.checkboxChange;
+            const checkboxImgChange = document.getElementById('privacyCheckboxImg');
+            checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+          });
+          const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
+          checkboxImg2.addEventListener('click', () => {
+            this.checkboxChange2 = !this.checkboxChange2;
+            const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
+            checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+          });
+          const checkboxImg3 = document.querySelector('.boomio-privacyCheckbox3');
+          checkboxImg3.addEventListener('click', () => {
+            this.checkboxChange3 = !this.checkboxChange3;
+            const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
+            checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
+          });
+          const phoneInputField = document.getElementById('boomio-competition-phone-input-field');
+
+          if (phoneInputField) {
+            phoneInputField.addEventListener('input', (event) => {
+              event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+            });
+          } else {
+            console.error('');
+          }
+
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
-
             document.getElementById('background_blur').style.opacity =
               this.customer === 'Pegasas' ? 0.8 : 0.37;
-
             canvas.style.transition = 'filter 0.6s ease';
             canvas.style.filter = 'blur(2px)';
-          }, 1000);
-        }
-        setTimeout(
-          () => {
-            const background = document.getElementById('background_intro');
 
-            if (background) {
-              background.style.display = 'none';
-            }
-          },
-          this.customer === 'Toni' ? 0 : 2000,
-        );
-      },
-      this.customer === 'Toni' ? 0 : 4000,
-    );
+            const inpuRegisterContainer = document.querySelector('.input-register-container');
+            inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+            inpuRegisterContainer.style.display = 'block';
+            setTimeout(() => {
+              inpuRegisterContainer.style.height = '528px';
+              inpuRegisterContainer.style.top = 'calc(50% + 74px)';
+              inpuRegisterContainer.style.opacity = 1;
+            }, 100);
+          }, 300);
+        } else {
+          setTimeout(() => {
+            const canvas = document.getElementById('boomio-catch-canvas');
+            document.getElementById('background_blur').style.opacity =
+              this.customer === 'Pegasas' ? 0.8 : 0.37;
+            canvas.style.transition = 'filter 0.6s ease';
+            canvas.style.filter = 'blur(2px)';
+            const inputContainer = document.querySelector('.input-container');
+            document.getElementById('control-button').style.transition = 'opacity 2s ease';
+            document.getElementById('control-button').style.opacity = 1;
+            document.getElementById('control-button').style.display = 'flex';
+
+            inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+            inputContainer.style.display = 'block';
+            setTimeout(() => {
+              inputContainer.style.height = '332px';
+              inputContainer.style.top = 'calc(50% + 170px)';
+              inputContainer.style.opacity = 1;
+            }, 100);
+          }, 300);
+        }
+      }
+
+      document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+      document.getElementById('background_intro').style.opacity = 0;
+      if (this.gameCount === 0) {
+        document.getElementById('background_blur').style.display = 'block';
+        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+      }
+      if (this.gameCount === 0) {
+        setTimeout(() => {
+          const canvas = document.getElementById('boomio-catch-canvas');
+
+          document.getElementById('background_blur').style.opacity =
+            this.customer === 'Pegasas' ? 0.8 : 0.37;
+
+          canvas.style.transition = 'filter 0.6s ease';
+          canvas.style.filter = 'blur(2px)';
+        }, 1000);
+      }
+      setTimeout(() => {
+        const background = document.getElementById('background_intro');
+
+        if (background) {
+          background.style.display = 'none';
+        }
+      }, 0);
+    }, 0);
     //gifas
   };
 
@@ -680,6 +714,7 @@ class CatchGame {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
             const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
             const phone = document.querySelector('.boomio-competition-phone-input-field');
+            const schoolInput = document.querySelector('.boomio-competition-school-select');
 
             const checkboxChange = this.checkboxChange;
             const checkboxChange2 = this.checkboxChange2;
@@ -694,7 +729,9 @@ class CatchGame {
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : this.language === 'ES'
                   ? 'Para continuar, debe aceptar recibir los boletines informativos de la empresa.'
-                  : 'Registruojantis būtina sutikti gauti PPC AKROPOLIS naujienas – taip susisieksime su Jumis, įteiksime prizą ir siųsime naujienas po Žaidimo.';
+                  : this.customer.includes('Gamtos Ateitis')
+                  ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+                  : '';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
@@ -792,31 +829,6 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
             }
-            if (
-              playerNameInput?.value === '' ||
-              (playerNameInput?.value === null && this.customer !== 'Toni')
-            ) {
-              document.getElementById('competition-name-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-
-              document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').zIndex = 0;
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error2').innerText = '';
-              document.getElementById('competition-checkbox-error2').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error3').innerText = '';
-              document.getElementById('competition-checkbox-error3').style.backgroundColor =
-                'transparent';
-            }
-
             if (!isValidEmail(emailInput?.value)) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'ES'
@@ -828,52 +840,35 @@ class CatchGame {
               return;
             }
             if (
-              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-              this.customer !== 'Toni'
+              (this.showCompetitiveRegistration === 'competition' ||
+                this.showCompetitiveRegistration === 'points' ||
+                this.showCompetitiveRegistration === 'collectable') &&
+              checkboxChange &&
+              this.loading === false &&
+              (this.customer !== 'Pegasas' || checkboxChange2) &&
+              (this.customer !== 'Pegasas' || phone?.value?.trim() === '' || checkboxChange3)
             ) {
-              document.getElementById('competition-name-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-              document.getElementById('competition-email-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-email-error').zIndex = 1;
-              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-            } else {
-              if (
-                (this.showCompetitiveRegistration === 'competition' ||
-                  this.showCompetitiveRegistration === 'points' ||
-                  this.showCompetitiveRegistration === 'collectable') &&
-                checkboxChange &&
-                this.loading === false &&
-                (this.customer !== 'Pegasas' || checkboxChange2) &&
-                (this.customer !== 'Pegasas' || phone?.value?.trim() === '' || checkboxChange3)
-              ) {
-                const phoneValue = phone?.value?.trim();
-                this.loading = true;
+              const phoneValue = phone?.value?.trim();
+              this.loading = true;
 
-                const boomioCatchSpinner = document.createElement('div');
-                boomioCatchSpinner.classList.add('boomioCatchSpinner'); // Apply class
+              const boomioCatchSpinner = document.createElement('div');
+              boomioCatchSpinner.classList.add('boomioCatchSpinner'); // Apply class
 
-                // Apply inline styles for the button layout
-                boomioCatchSpinner.style.border = '4px solid #f3f3f3';
-                boomioCatchSpinner.style.borderTop = '4px solid #3D4928';
-                boomioCatchSpinner.style.borderRadius = '50%';
-                boomioCatchSpinner.style.width = '20px';
-                boomioCatchSpinner.style.height = '20px';
+              // Apply inline styles for the button layout
+              boomioCatchSpinner.style.border = '4px solid #f3f3f3';
+              boomioCatchSpinner.style.borderTop = '4px solid #3D4928';
+              boomioCatchSpinner.style.borderRadius = '50%';
+              boomioCatchSpinner.style.width = '20px';
+              boomioCatchSpinner.style.height = '20px';
 
-                // Append the boomioCatchSpinner to the button
-                competitionConfirmFieldBody.appendChild(boomioCatchSpinner);
+              // Append the boomioCatchSpinner to the button
+              competitionConfirmFieldBody.appendChild(boomioCatchSpinner);
 
-                // Append styles if not present
-                if (!document.getElementById('boomioCatchSpinner-styles')) {
-                  const style = document.createElement('style');
-                  style.id = 'boomioCatchSpinner-styles';
-                  style.textContent = `
+              // Append styles if not present
+              if (!document.getElementById('boomioCatchSpinner-styles')) {
+                const style = document.createElement('style');
+                style.id = 'boomioCatchSpinner-styles';
+                style.textContent = `
                     @keyframes spin {
                       0% { transform: rotate(0deg); }
                       100% { transform: rotate(360deg); }
@@ -882,107 +877,111 @@ class CatchGame {
                       animation: spin 1s linear infinite;
                     }
                   `;
-                  document.head.appendChild(style);
-                }
-                boomioService
-                  .signal('', 'user_info', {
-                    emails_consent:
-                      this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
-                    user_email: emailInput?.value,
-                    user_name:
-                      this.customer === 'Toni' ? emailInput?.value : playerNameInput?.value,
-                    game_code: this.game_code,
-                    ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
-                  })
-                  .then((response) => {
-                    boomioCatchSpinner.remove();
-                    if (response.success === false) {
-                      this.loading = false;
-
-                      if (response.res_code === 'EMAIL_EXIST') {
-                        document.getElementById('competition-email-error').innerText =
-                          this.customer === 'Fpro'
-                            ? 'This email address already exists. Please use another one.'
-                            : this.language === 'ES'
-                            ? 'Este email ya está en uso. Use otro email.'
-                            : this.language === 'LV'
-                            ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                            : this.language === 'RU'
-                            ? 'Этот e-мейл адрес уже существует. Используйте другой.'
-                            : this.language === 'ET'
-                            ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                        document.getElementById('competition-email-error').style.backgroundColor =
-                          '#FFBABA';
-
-                        document.getElementById('competition-name-error').innerText = '';
-
-                        document.getElementById('competition-name-error').style.backgroundColor =
-                          'transparent';
-                      } else if (response.res_code === 'NICKNAME_EXIST') {
-                        document.getElementById('competition-name-error').innerText =
-                          this.customer === 'Fpro'
-                            ? 'This nickname already exists. Please use another one.'
-                            : this.language === 'ES'
-                            ? 'Este nickname ya está en uso. Use otro nickname.'
-                            : this.language === 'LV'
-                            ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                            : this.language === 'RU'
-                            ? 'Этот псевдоним уже существует. Используйте другой.'
-                            : this.language === 'ET'
-                            ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                            : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                        document.getElementById('competition-name-error').style.backgroundColor =
-                          '#FFBABA';
-
-                        document.getElementById('competition-email-error').innerText = '';
-                        document.getElementById('competition-email-error').zIndex = 0;
-                        document.getElementById('competition-email-error').style.backgroundColor =
-                          'transparent';
-                      }
-                    } else {
-                      this.bestScore = response.user_best_score;
-                      const inpuRegisterContainer = document.querySelector(
-                        '.input-register-container',
-                      );
-                      inpuRegisterContainer.style.transition =
-                        'height 1s ease, top 1s ease, opacity 1s ease';
-                      setTimeout(() => {
-                        inpuRegisterContainer.style.height = '10px';
-                        inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-                        inpuRegisterContainer.style.opacity = 0;
-                      }, 100);
-                      setTimeout(() => {
-                        inpuRegisterContainer.style.display = 'none';
-                      }, 1000);
-                      setTimeout(() => {
-                        const canvas = document.getElementById('boomio-catch-canvas');
-                        document.getElementById('background_blur').style.opacity =
-                          this.customer === 'Pegasas' ? 0.8 : 0.37;
-                        canvas.style.transition = 'filter 0.6s ease';
-                        canvas.style.filter = 'blur(2px)';
-                        const inputContainer = document.querySelector('.input-container');
-                        document.getElementById('control-button').style.transition =
-                          'opacity 2s ease';
-                        document.getElementById('control-button').style.opacity = 1;
-                        document.getElementById('control-button').style.display = 'flex';
-                        inputContainer.style.transition =
-                          'height 1s ease, top 1s ease, opacity 1s ease';
-                        inputContainer.style.display = 'block';
-                        setTimeout(() => {
-                          inputContainer.style.height = '332px';
-                          inputContainer.style.top = 'calc(50% + 170px)';
-                          inputContainer.style.opacity = 1;
-                        }, 100);
-                      }, 300);
-                    }
-                  })
-                  .catch((error) => {
-                    this.loading = false;
-                    boomioCatchSpinner.remove();
-                    console.error('Error:', error);
-                  });
+                document.head.appendChild(style);
               }
+              boomioService
+                .signal('', 'user_info', {
+                  emails_consent:
+                    this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
+                  user_email: emailInput?.value,
+                  ...(this.customer.includes('Gamtos Ateitis') && {
+                    team: schoolInput.value,
+                  }),
+                  user_name:
+                    this.customer === 'Toni' || this.customer.includes('Gamtos Ateitis')
+                      ? emailInput?.value
+                      : playerNameInput?.value,
+                  game_code: this.game_code,
+                  ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
+                })
+                .then((response) => {
+                  boomioCatchSpinner.remove();
+                  if (response.success === false) {
+                    this.loading = false;
+
+                    if (response.res_code === 'EMAIL_EXIST') {
+                      document.getElementById('competition-email-error').innerText =
+                        this.customer === 'Fpro'
+                          ? 'This email address already exists. Please use another one.'
+                          : this.language === 'ES'
+                          ? 'Este email ya está en uso. Use otro email.'
+                          : this.language === 'LV'
+                          ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                          : this.language === 'RU'
+                          ? 'Этот e-мейл адрес уже существует. Используйте другой.'
+                          : this.language === 'ET'
+                          ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        '#FFBABA';
+
+                      document.getElementById('competition-name-error').innerText = '';
+
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        'transparent';
+                    } else if (response.res_code === 'NICKNAME_EXIST') {
+                      document.getElementById('competition-name-error').innerText =
+                        this.customer === 'Fpro'
+                          ? 'This nickname already exists. Please use another one.'
+                          : this.language === 'ES'
+                          ? 'Este nickname ya está en uso. Use otro nickname.'
+                          : this.language === 'LV'
+                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                          : this.language === 'RU'
+                          ? 'Этот псевдоним уже существует. Используйте другой.'
+                          : this.language === 'ET'
+                          ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-name-error').style.backgroundColor =
+                        '#FFBABA';
+
+                      document.getElementById('competition-email-error').innerText = '';
+                      document.getElementById('competition-email-error').zIndex = 0;
+                      document.getElementById('competition-email-error').style.backgroundColor =
+                        'transparent';
+                    }
+                  } else {
+                    this.bestScore = response.user_best_score;
+                    const inpuRegisterContainer = document.querySelector(
+                      '.input-register-container',
+                    );
+                    inpuRegisterContainer.style.transition =
+                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.height = '10px';
+                      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                      inpuRegisterContainer.style.opacity = 0;
+                    }, 100);
+                    setTimeout(() => {
+                      inpuRegisterContainer.style.display = 'none';
+                    }, 1000);
+                    setTimeout(() => {
+                      const canvas = document.getElementById('boomio-catch-canvas');
+                      document.getElementById('background_blur').style.opacity =
+                        this.customer === 'Pegasas' ? 0.8 : 0.37;
+                      canvas.style.transition = 'filter 0.6s ease';
+                      canvas.style.filter = 'blur(2px)';
+                      const inputContainer = document.querySelector('.input-container');
+                      document.getElementById('control-button').style.transition =
+                        'opacity 2s ease';
+                      document.getElementById('control-button').style.opacity = 1;
+                      document.getElementById('control-button').style.display = 'flex';
+                      inputContainer.style.transition =
+                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      inputContainer.style.display = 'block';
+                      setTimeout(() => {
+                        inputContainer.style.height = '332px';
+                        inputContainer.style.top = 'calc(50% + 170px)';
+                        inputContainer.style.opacity = 1;
+                      }, 100);
+                    }, 300);
+                  }
+                })
+                .catch((error) => {
+                  this.loading = false;
+                  boomioCatchSpinner.remove();
+                  console.error('Error:', error);
+                });
             }
           }, 300);
         }

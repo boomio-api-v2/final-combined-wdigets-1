@@ -233,55 +233,53 @@ export class DidYouKnowContainer {
     this.user_id = urlParams.get('user_id');
 
     this.prop = prop;
-    if (this.prop && this.prop.includes('Plastic')) {
-      this.collectables = [
-        item16,
-        item4,
-        item14,
-        item1,
-        item23,
-        item20,
-        item10,
-        item8,
-        item6,
-        item12,
-        item19,
-        item7,
-      ];
-    } else if (this.prop && this.prop.includes('Paper')) {
-      // Handle Paper collectables
-      this.collectables = [
-        item16Paper,
-        item4Paper,
-        item14Paper,
-        item1Paper,
-        item23Paper,
-        item20Paper,
-        item10Paper,
-        item8Paper,
-        item6Paper,
-        item12Paper,
-        item19Paper,
-        item7Paper,
-      ];
-    } else if (this.prop && this.prop.includes('Glass')) {
-      // Handle Glass collectables
-      this.collectables = [
-        item16Glass,
-        item4Glass,
-        item14Glass,
-        item1Glass,
-        item23Glass,
-        item20Glass,
-        item10Glass,
-        item8Glass,
-        item6Glass,
-        item12Glass,
-        item19Glass,
-        item7Glass,
-      ];
-    } else if (this.prop === 'Pieno Žvaigždės') {
-      // Handle Glass collectables
+    // if (this.prop && this.prop.includes('Plastic')) {
+    //   this.collectables = [
+    //     item16,
+    //     item4,
+    //     item14,
+    //     item1,
+    //     item23,
+    //     item20,
+    //     item10,
+    //     item8,
+    //     item6,
+    //     item12,
+    //     item19,
+    //     item7,
+    //   ];
+    // } else if (this.prop && this.prop.includes('Paper')) {
+    //   this.collectables = [
+    //     item16Paper,
+    //     item4Paper,
+    //     item14Paper,
+    //     item1Paper,
+    //     item23Paper,
+    //     item20Paper,
+    //     item10Paper,
+    //     item8Paper,
+    //     item6Paper,
+    //     item12Paper,
+    //     item19Paper,
+    //     item7Paper,
+    //   ];
+    // } else if (this.prop && this.prop.includes('Glass')) {
+    //   this.collectables = [
+    //     item16Glass,
+    //     item4Glass,
+    //     item14Glass,
+    //     item1Glass,
+    //     item23Glass,
+    //     item20Glass,
+    //     item10Glass,
+    //     item8Glass,
+    //     item6Glass,
+    //     item12Glass,
+    //     item19Glass,
+    //     item7Glass,
+    //   ];
+    // }
+    if (this.prop === 'Pieno Žvaigždės') {
       this.collectables = [
         item15PienoZvaigzdes,
         item1PienoZvaigzdes,
@@ -381,55 +379,54 @@ export class DidYouKnowContainer {
     this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
     if (this.prop === 'Pigu.lt') {
       this.collectablesLinks = this.dynamicData;
-    } else if (this.prop && this.prop.includes('Plastic')) {
-      // Handle Gamtos Ateitis collectables
-      this.collectables = [
-        item16,
-        item4,
-        item14,
-        item1,
-        item23,
-        item20,
-        item10,
-        item8,
-        item6,
-        item12,
-        item19,
-        item7,
-      ];
-    } else if (this.prop && this.prop.includes('Paper')) {
-      // Handle Paper collectables
-      this.collectables = [
-        item16Paper,
-        item4Paper,
-        item14Paper,
-        item1Paper,
-        item23Paper,
-        item20Paper,
-        item10Paper,
-        item8Paper,
-        item6Paper,
-        item12Paper,
-        item19Paper,
-        item7Paper,
-      ];
-    } else if (this.prop && this.prop.includes('Glass')) {
-      // Handle Glass collectables
-      this.collectables = [
-        item16Glass,
-        item4Glass,
-        item14Glass,
-        item1Glass,
-        item23Glass,
-        item20Glass,
-        item10Glass,
-        item8Glass,
-        item6Glass,
-        item12Glass,
-        item19Glass,
-        item7Glass,
-      ];
-    } else if (this.prop === 'Pieno Žvaigždės') {
+    }
+    // else if (this.prop && this.prop.includes('Plastic')) {
+    //   this.collectables = [
+    //     item16,
+    //     item4,
+    //     item14,
+    //     item1,
+    //     item23,
+    //     item20,
+    //     item10,
+    //     item8,
+    //     item6,
+    //     item12,
+    //     item19,
+    //     item7,
+    //   ];
+    // } else if (this.prop && this.prop.includes('Paper')) {
+    //   this.collectables = [
+    //     item16Paper,
+    //     item4Paper,
+    //     item14Paper,
+    //     item1Paper,
+    //     item23Paper,
+    //     item20Paper,
+    //     item10Paper,
+    //     item8Paper,
+    //     item6Paper,
+    //     item12Paper,
+    //     item19Paper,
+    //     item7Paper,
+    //   ];
+    // } else if (this.prop && this.prop.includes('Glass')) {
+    //   this.collectables = [
+    //     item16Glass,
+    //     item4Glass,
+    //     item14Glass,
+    //     item1Glass,
+    //     item23Glass,
+    //     item20Glass,
+    //     item10Glass,
+    //     item8Glass,
+    //     item6Glass,
+    //     item12Glass,
+    //     item19Glass,
+    //     item7Glass,
+    //   ];
+    // }
+    else if (this.prop === 'Pieno Žvaigždės') {
       // Handle Glass collectables
       this.collectables = [
         item15PienoZvaigzdes,
@@ -595,14 +592,12 @@ export class DidYouKnowContainer {
     }
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     let scoreboardText = `
-      ${`<div class="bomio-first-line" style="width:${
-        this.prop === 'Gamtos Ateitis' ? 'calc(100% - 32px)' : '100%'
-      };margin-left:${this.prop === 'Gamtos Ateitis' ? '16px' : '0px'}; top: ${
-        this.prop === 'Gamtos Ateitis' ? '305px' : '505px'
-      };line-height:18px; position: absolute;font-weight: 700; text-align: center; color: white; font-size:${
+      ${`<div class="bomio-first-line" style="width:${'calc(100% - 32px)'};margin-left:${'16px'}; top: ${
+        this.prop.includes('Gamtos Ateitis') ? '305px' : '505px'
+      };line-height:18px; position: absolute;font-weight: 600; text-align: center; color: white; font-size:${
         this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Nykstukas'
           ? '18px'
-          : '16px'
+          : '14px'
       } ; font-family: Montserrat;  word-wrap: break-word">${
         this.prop.includes('Gamtos Ateitis')
           ? this.randomGamtosAteitis?.text
@@ -798,13 +793,13 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="display:${
-        this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+        this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
       };width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${
       this.prop === 'Pigu.lt' ? 'white' : 'white'
     }; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
     }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Gamtos Ateitis' ? this.randomGamtosAteitis?.title : ''
+      this.prop.includes('Gamtos Ateitis') ? this.randomGamtosAteitis?.title : ''
     }</div>
       <div style="width:calc(100% - 20px);margin-left:10px;top: ${
         this.prop === 'Nykstukas' ? '150px' : '72px'
@@ -831,7 +826,7 @@ export class DidYouKnowContainer {
         ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
         : this.prop === 'Zemaitijos Pienas'
         ? 'Ar visus RAGAVAI?'
-        : this.prop === 'Gamtos Ateitis'
+        : this.prop.includes('Gamtos Ateitis')
         ? 'TAI SVARBU RŪŠIUOJANT!'
         : this.prop === 'Nykstukas'
         ? 'AR IŠRAGAVAI ŠIŲ METŲ NAUJIENAS?'

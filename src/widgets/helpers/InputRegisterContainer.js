@@ -69,7 +69,7 @@ export class InputRegisterContainer {
           <div style="height: 124px; top:${'20px'}; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'12px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
-      this.prop === 'Gamtos Ateitis'
+      this.prop.includes('Gamtos Ateitis')
         ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
         : this.language === 'EN'
         ? 'Already registered? Use the same email </br> and improve your result!'
@@ -468,7 +468,7 @@ export class InputRegisterContainer {
 
 
       <div style="display:${
-        this.prop === 'Gamtos Ateitis' ||
+        this.prop.includes('Gamtos Ateitis') ||
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
@@ -499,7 +499,7 @@ export class InputRegisterContainer {
       <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
         this.prop === 'SaludSA' || this.prop === 'Pegasas'
           ? '258px'
-          : this.prop === 'Gamtos Ateitis'
+          : this.prop.includes('Gamtos Ateitis')
           ? '348px'
           : this.prop === 'Nykstukas'
           ? '430px'
@@ -520,7 +520,7 @@ export class InputRegisterContainer {
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
         this.prop === 'SaludSA' || this.prop === 'Pegasas'
           ? '207px'
-          : this.prop === 'Gamtos Ateitis'
+          : this.prop.includes('Gamtos Ateitis')
           ? '180px'
           : this.prop === 'Perlas GO' ||
             this.prop === 'Nevezis' ||
@@ -539,7 +539,7 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
-        this.prop === 'Gamtos Ateitis' ||
+        this.prop.includes('Gamtos Ateitis') ||
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
@@ -561,7 +561,7 @@ export class InputRegisterContainer {
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
         this.prop === 'SaludSA' || this.prop === 'Pegasas'
           ? '219px'
-          : this.prop === 'Gamtos Ateitis'
+          : this.prop.includes('Gamtos Ateitis')
           ? '189px'
           : this.prop === 'Perlas GO' ||
             this.prop === 'Nevezis' ||
@@ -602,7 +602,7 @@ export class InputRegisterContainer {
         ? 'Spēlētāja e-pasts'
         : this.prop === 'SaludSA'
         ? 'Correo electrónico'
-        : this.prop === 'Gamtos Ateitis'
+        : this.prop.includes('Gamtos Ateitis')
         ? 'El. pašto adresas'
         : this.language === 'EN'
         ? 'Email address'
@@ -613,7 +613,7 @@ export class InputRegisterContainer {
         : 'Elektroninio pašto adresas'
     }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
-        this.prop === 'Gamtos Ateitis' ||
+        this.prop.includes('Gamtos Ateitis') ||
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
@@ -665,7 +665,7 @@ export class InputRegisterContainer {
         : 'Žaidėjo slapyvardis'
     }">
           <select id="city-select" class="boomio-competition-city-select" style="display:${
-            this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+            this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
           };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:240px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
         <option value="">Miestas ar rajonas</option>
         ${Object.keys(this.teams)
@@ -673,7 +673,7 @@ export class InputRegisterContainer {
           .join('')}
       </select>
       <select id="school-select" class="boomio-competition-school-select" style="display:${
-        this.prop === 'Gamtos Ateitis' ? 'block' : 'none'
+        this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
       };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:300px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
          <option value="">Pirmiau pasirink miestą ar rajoną</option>
       </select>
