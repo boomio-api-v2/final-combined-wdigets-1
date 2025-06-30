@@ -76,8 +76,6 @@ export const crushElement6Nevezis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement6.png';
 export const crushElement7Nevezis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement7.png';
-export const crushElement8Nevezis =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement8.png';
 
 export const crushElement1NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement1Special.png';
@@ -93,8 +91,6 @@ export const crushElement6NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement6Special.png';
 export const crushElement7NevezisSpecial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement7Special.png';
-export const crushElement8NevezisSpecial =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement8Special.png';
 
 export const backgroundNevezis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/background.png';
