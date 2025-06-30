@@ -305,6 +305,59 @@ export class CompetitionScoreTableContainer {
       'Sandis',
     ];
 
+    const eeNicknames = [
+      'VÕLUR',
+      'MÄNGUMEES',
+      'KATIKE',
+      'TORMILIND',
+      'PÄKAPIKK',
+      'KARVANE KARU',
+      'NUNNUKAS',
+      'ÕUNAPUU',
+      'VÄLE JÄNES',
+      'HUNT KRIIMSILM',
+      'LUMEKUNINGANNA',
+      'RÕÕMUKILD',
+      'SALASEPPA',
+      'UNISTAJA',
+      'TULEPOISS',
+      'SIILIKE',
+      'VIKERKAAR',
+      'ULLIKE',
+      'MÕMMIK',
+      'TUULELAPS',
+      'RAKETIPOISS',
+      'KIISUMIISU',
+      'KUKUKE',
+      'KÄGU',
+      'KASSIKE',
+      'TRIKIMEES',
+      'PIIMAVUNT',
+      'TONTLIK TIMO',
+      'LENDUR LAURI',
+      'KOHVIHUNT',
+      'MAGUS MARI',
+      'KULDNE KÄSI',
+      'LUSTIPALL',
+      'SALAJANE SASS',
+      'ÖÖLIBLIKAS',
+      'NAERUPALL',
+      'METSAHUNT',
+      'VÄIKE VAPPER',
+      'KONNATIBU',
+      'ŠOKOLAADIPOISS',
+      'SEIKLEJA',
+      'SÄDELEV SASSU',
+      'HAMBURGER',
+      'KRÕPS',
+      'SÜGAV MÕTE',
+      'KALAMEES',
+      'ÄIKESEPILV',
+      'TEADLASEKE',
+      'TANTSULÕVI',
+      'TARKUR',
+    ];
+
     let tableHTML = '';
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
@@ -337,6 +390,8 @@ export class CompetitionScoreTableContainer {
             ? hiddenNicknames[index]
             : this.language === 'LV'
             ? lvNicknames[index]
+            : this.language === 'ET'
+            ? eeNicknames[index]
             : this.language === 'EN'
             ? enNicknames[index]
             : ltNicknames[index]

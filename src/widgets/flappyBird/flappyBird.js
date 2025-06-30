@@ -936,7 +936,7 @@ class FlappyBird {
 
         if (this.gamePlaying) {
           if (this.isJumping) {
-            ctx.drawImage(img, 506, 0, 80, 80, cTenth, flyHeight, 77, 80);
+            ctx.drawImage(img, 512, 0, 80, 80, cTenth, flyHeight, 77, 80);
           } else {
             ctx.drawImage(img, 424, 0, 80, 80, cTenth, flyHeight, 77, 80);
           }
