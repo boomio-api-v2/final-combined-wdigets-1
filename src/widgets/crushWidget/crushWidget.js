@@ -25,6 +25,21 @@ import {
   crushElement6NevezisSpecial,
   crushElement7NevezisSpecial,
   backgroundNevezis,
+  crushElement1Toni,
+  crushElement2Toni,
+  crushElement3Toni,
+  crushElement4Toni,
+  crushElement5Toni,
+  crushElement6Toni,
+  crushElement7Toni,
+  crushElement1ToniSpecial,
+  crushElement2ToniSpecial,
+  crushElement3ToniSpecial,
+  crushElement4ToniSpecial,
+  crushElement5ToniSpecial,
+  crushElement6ToniSpecial,
+  crushElement7ToniSpecial,
+  backgroundToni,
   tutorial,
   close,
 } from './constants';
@@ -50,15 +65,26 @@ class CrushGame {
     this.gridCols = 5;
     this.gridRows = 8;
     this.tileSize = 73;
-    this.colors = {
-      crushElement1Nevezis,
-      crushElement2Nevezis,
-      crushElement3Nevezis,
-      crushElement4Nevezis,
-      crushElement5Nevezis,
-      crushElement6Nevezis,
-      crushElement7Nevezis,
-    };
+    this.colors =
+      this.customer === 'Toni'
+        ? {
+            crushElement1Toni,
+            crushElement2Toni,
+            crushElement3Toni,
+            crushElement4Toni,
+            crushElement5Toni,
+            crushElement6Toni,
+            crushElement7Toni,
+          }
+        : {
+            crushElement1Nevezis,
+            crushElement2Nevezis,
+            crushElement3Nevezis,
+            crushElement4Nevezis,
+            crushElement5Nevezis,
+            crushElement6Nevezis,
+            crushElement7Nevezis,
+          };
     this.grid = [];
     this.selectedTile = null;
     this.images = {};
@@ -464,15 +490,26 @@ class CrushGame {
 
   preloadImages(callback) {
     const normalColorKeys = Object.keys(this.colors);
-    const specialSources = {
-      crushElement1NevezisSpecial,
-      crushElement2NevezisSpecial,
-      crushElement3NevezisSpecial,
-      crushElement4NevezisSpecial,
-      crushElement5NevezisSpecial,
-      crushElement6NevezisSpecial,
-      crushElement7NevezisSpecial,
-    };
+    const specialSources =
+      this.customer === 'Toni'
+        ? {
+            crushElement1ToniSpecial,
+            crushElement2ToniSpecial,
+            crushElement3ToniSpecial,
+            crushElement4ToniSpecial,
+            crushElement5ToniSpecial,
+            crushElement6ToniSpecial,
+            crushElement7ToniSpecial,
+          }
+        : {
+            crushElement1NevezisSpecial,
+            crushElement2NevezisSpecial,
+            crushElement3NevezisSpecial,
+            crushElement4NevezisSpecial,
+            crushElement5NevezisSpecial,
+            crushElement6NevezisSpecial,
+            crushElement7NevezisSpecial,
+          };
     const specialKeys = Object.keys(specialSources);
 
     let loadedImages = 0;
@@ -615,7 +652,7 @@ ${`<div style="${
 </div>
 </div>
 
-<img src="${backgroundNevezis}" 
+<img src="${this.customer === 'Toni' ? backgroundToni : backgroundNevezis}" 
      alt="Game Background"
      id="background_nevezis"
      style="z-index:0;
@@ -720,15 +757,26 @@ ${`<div style="${
     const baseColor = colorKeys[Math.floor(Math.random() * colorKeys.length)];
 
     // Only add 3Points if baseColor is allowed and not already special
-    const threePointColors = [
-      'crushElement1Nevezis',
-      'crushElement2Nevezis',
-      'crushElement3Nevezis',
-      'crushElement4Nevezis',
-      'crushElement5Nevezis',
-      'crushElement6Nevezis',
-      'crushElement7Nevezis',
-    ];
+    const threePointColors =
+      this.customer === 'Toni'
+        ? [
+            'crushElement1Toni',
+            'crushElement2Toni',
+            'crushElement3Toni',
+            'crushElement4Toni',
+            'crushElement5Toni',
+            'crushElement6Toni',
+            'crushElement7Toni',
+          ]
+        : [
+            'crushElement1Nevezis',
+            'crushElement2Nevezis',
+            'crushElement3Nevezis',
+            'crushElement4Nevezis',
+            'crushElement5Nevezis',
+            'crushElement6Nevezis',
+            'crushElement7Nevezis',
+          ];
 
     if (Math.random() < 0.1 && threePointColors.includes(baseColor)) {
       return baseColor + '3Points';
@@ -814,7 +862,12 @@ ${`<div style="${
         let newColor = this.getRandomColor();
         // With a 10% chance, convert it to its special variant.
         if (!newColor.includes('3Points') && Math.random() < 0.1) {
-          newColor = newColor === 'yellow' ? 'crushElement1NevezisSpecial' : newColor + 'Special';
+          newColor =
+            newColor === 'yellow'
+              ? this.customer === 'Toni'
+                ? 'crushElement1ToniSpecial'
+                : 'crushElement1NevezisSpecial'
+              : newColor + 'Special';
         }
         newTilesMap[col].push(newColor);
         newFalling.push({

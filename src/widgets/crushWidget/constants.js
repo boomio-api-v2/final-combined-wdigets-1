@@ -99,5 +99,42 @@ export const crushElement8NevezisSpecial =
 export const backgroundNevezis =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/background.png';
 
+export const crushElement1Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement1.png';
+export const crushElement2Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement2.png';
+export const crushElement3Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement3.png';
+export const crushElement4Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement4.png';
+export const crushElement5Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement5.png';
+export const crushElement6Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement6.png';
+export const crushElement7Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement7.png';
+export const crushElement8Toni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement8.png';
+
+export const crushElement1ToniSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement1Special.png';
+export const crushElement2ToniSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement2Special.png';
+export const crushElement3ToniSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement3Special.png';
+export const crushElement4ToniSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement4Special.png';
+export const crushElement5ToniSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement5Special.png';
+export const crushElement6ToniSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement6Special.png';
+export const crushElement7ToniSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement7Special.png';
+export const crushElement8ToniSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/crushElement8Special.png';
+
+export const backgroundToni =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/background.png';
+
 export const tutorial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/tutorial.png';
