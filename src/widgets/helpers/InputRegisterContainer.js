@@ -84,7 +84,7 @@ export class InputRegisterContainer {
         : this.language === 'ES'
         ? 'Oled juba registreerunud? Kasuta sama e-posti </br> ja paranda oma tulemust!'
         : this.language === 'ET'
-        ? 'Jau reģistrējies? Izmanto to pašu e-pasta adresi, </BR> lai turpinātu uzlabot savu rezultātu!'
+        ? 'Juba registreerunud? Kasuta sama e-posti aadressi </br> ja paranda oma tulemust!'
         : this.language === 'PL'
         ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
         : this.language === 'FI'

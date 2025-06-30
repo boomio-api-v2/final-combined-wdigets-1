@@ -326,6 +326,8 @@ export class CompetitionScoreTableContainer {
               ? 'Your score'
               : this.language === 'LV'
               ? 'Tavs rezultāts'
+              : this.language === 'ET'
+              ? 'Sinu tulemus'
               : this.prop === 'Nykstukas'
               ? 'Tavo komandos rezultatas'
               : 'Tavo rezultatas'
@@ -362,6 +364,8 @@ export class CompetitionScoreTableContainer {
             ? 'Your score'
             : this.language === 'LV'
             ? 'Tavs rezultāts'
+            : this.language === 'ET'
+            ? 'Sinu tulemus'
             : 'Tavo rezultatas'
           : scoreboard[userBestPlace].team
       }</td>
