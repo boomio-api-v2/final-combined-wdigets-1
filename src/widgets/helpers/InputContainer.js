@@ -165,8 +165,10 @@ export class InputContainer {
                   ? 'Judėk'
                   : this.game === 'doodle'
                   ? 'Judėk'
+                  : this.language === 'ES' && this.game === 'crush'
+                  ? 'CLICK'
                   : this.game === 'crush'
-                  ? 'Sujunk'
+                  ? 'Conectar'
                   : this.game === 'drive'
                   ? 'Brauk'
                   : 'Spausk,'
@@ -273,6 +275,8 @@ export class InputContainer {
       ? 'para obtener puntos.'
       : this.language === 'EN'
       ? 'TO FLY'
+      : this.language === 'ES' && this.game === 'crush'
+      ? 'Tres o más helados ‘Toni’'
       : 'kad skristum.'
   }
 </div>
