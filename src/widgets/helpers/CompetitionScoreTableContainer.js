@@ -272,6 +272,59 @@ export class CompetitionScoreTableContainer {
       'Ethan',
     ];
 
+    const esNicknames = [
+      'Mateo',
+      'Luna',
+      'Coco',
+      'Leo',
+      'Nube',
+      'Sombra',
+      'Sofi',
+      'Pelusa',
+      'Carlos',
+      'Chispa',
+      'Nova',
+      'Kiwi',
+      'Zorro',
+      'Tito',
+      'Olivia',
+      'Galleta',
+      'Andrés',
+      'Waffles',
+      'Eco',
+      'Trueno',
+      'Fénix',
+      'Aitana',
+      'Vega',
+      'Benjamín',
+      'Luz',
+      'Estrella',
+      'Glitch',
+      'Frío',
+      'Fantasma',
+      'Lobo',
+      'Valentina',
+      'Tormenta',
+      'Diego',
+      'Sable',
+      'David',
+      'Silencio',
+      'Isabela',
+      'Ritmo',
+      'Clara',
+      'Axel',
+      'Martín',
+      'Deriva',
+      'Amelia',
+      'Píxel',
+      'Hugo',
+      'Colmillo',
+      'Nox',
+      'Lucía',
+      'Paz',
+      'Thiago',
+    ];
+
     const lvNicknames = [
       'Jānis',
       'Anna',
@@ -381,6 +434,8 @@ export class CompetitionScoreTableContainer {
               ? 'Tavs rezultāts'
               : this.language === 'ET'
               ? 'Sinu tulemus'
+              : this.language === 'ES'
+              ? 'Tu resultado'
               : this.prop === 'Nykstukas'
               ? 'Tavo komandos rezultatas'
               : 'Tavo rezultatas'
@@ -394,6 +449,8 @@ export class CompetitionScoreTableContainer {
             ? eeNicknames[index]
             : this.language === 'EN'
             ? enNicknames[index]
+            : this.language === 'ES'
+            ? esNicknames[index]
             : ltNicknames[index]
           : scoreboard[index].team
       }
@@ -421,6 +478,8 @@ export class CompetitionScoreTableContainer {
             ? 'Tavs rezultāts'
             : this.language === 'ET'
             ? 'Sinu tulemus'
+            : this.language === 'ES'
+            ? 'Tu resultado'
             : 'Tavo rezultatas'
           : scoreboard[userBestPlace].team
       }</td>
