@@ -1610,8 +1610,8 @@ class Player {
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
-    this.playerWidth = customer === 'Akropolis' ? 88 : 110;
-    this.playerHeight = customer === 'Akropolis' ? 64 : 80;
+    this.playerWidth = this.customer === 'Toni' ? 110 : customer === 'Akropolis' ? 88 : 110;
+    this.playerHeight = this.customer === 'Toni' ? 80 : customer === 'Akropolis' ? 64 : 80;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
