@@ -482,8 +482,8 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${this.language == 'LT' ? 'SPUST' : 'KLIK'}</div>
-        <div>${this.language == 'LT' ? 'SPUST' : 'KLIK'}</div>
+        <div>${this.language == 'ES' ? 'CLIC' : this.language == 'LT' ? 'SPUST' : 'KLIK'}</div>
+        <div>${this.language == 'ES' ? 'CLIC' : this.language == 'LT' ? 'SPUST' : 'KLIK'}</div>
       </div><img src=${Controlls} alt="Image Description" style="display:inline;width: 110px; height: 50px;">`}
       </div>
        ${
