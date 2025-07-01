@@ -753,6 +753,7 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').innerText = '';
               document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
+              return;
             }
 
             if (!checkboxChange3 && this.customer === 'Pegasas' && phone?.value?.trim() !== '') {
@@ -829,6 +830,30 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
             }
+
+            if (
+              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+              this.customer === 'Toni'
+            ) {
+              document.getElementById('competition-name-error').innerText =
+                'El campo de nombre debe completarse.';
+              document.getElementById('competition-name-error').zIndex = 1;
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-checkbox-error3').innerText = '';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor =
+                'transparent';
+              return;
+            }
             if (!isValidEmail(emailInput?.value)) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'ES'
@@ -887,10 +912,9 @@ class CatchGame {
                   ...(this.customer.includes('Gamtos Ateitis') && {
                     team: schoolInput.value,
                   }),
-                  user_name:
-                    this.customer === 'Toni' || this.customer.includes('Gamtos Ateitis')
-                      ? emailInput?.value
-                      : playerNameInput?.value,
+                  user_name: this.customer.includes('Gamtos Ateitis')
+                    ? emailInput?.value
+                    : playerNameInput?.value,
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
                 })

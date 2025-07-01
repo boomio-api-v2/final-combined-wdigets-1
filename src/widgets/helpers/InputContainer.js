@@ -125,6 +125,8 @@ export class InputContainer {
                   ? 'SPIED,'
                   : this.language === 'RU'
                   ? 'ПРАВИЛА'
+                  : this.prop === 'Toni'
+                  ? 'Desliza'
                   : this.language === 'ET'
                   ? 'KLÕPSA'
                   : this.prop === 'Fpro'
@@ -235,6 +237,10 @@ export class InputContainer {
       ? 'libista sõrmega küljelt küljele.'
       : this.language === 'RU'
       ? 'чтобы лететь'
+      : this.game === 'catch' && this.prop === 'Toni'
+      ? 'la BiciTopsy.'
+      : this.game === 'crush' && this.prop === 'Toni'
+      ? 'y junta.'
       : this.language === 'ET'
       ? 'lendamiseks'
       : this.game === 'drive' && this.prop === 'Ikea'
@@ -308,6 +314,10 @@ export class InputContainer {
                 ? 'ATKĀRTO,'
                 : this.language === 'RU'
                 ? 'ПОВТОРИТЬ'
+                : this.prop === 'Toni' && this.game === 'catch'
+                ? 'Atrapa'
+                : this.prop === 'Toni' && this.game === 'crush'
+                ? 'Combina '
                 : this.language === 'ET'
                 ? 'KORDA'
                 : this.prop === 'Fpro'
@@ -360,6 +370,10 @@ export class InputContainer {
                 ? 'lai sasniegtu labāku rezultātu.'
                 : this.language === 'RU'
                 ? 'для лучшего результата'
+                : this.prop === 'Toni' && this.game === 'catch'
+                ? 'los helados Topsy para ganar puntos.'
+                : this.prop === 'Toni' && this.game === 'crush'
+                ? '3 o más, helados Topsy iguales.'
                 : this.language === 'ET'
                 ? 'parema tulemuse saavutamiseks.'
                 : this.prop === 'Pieno Žvaigždės'
@@ -418,6 +432,10 @@ export class InputContainer {
                 ? 'IZBAUDI'
                 : this.language === 'RU'
                 ? 'ВЫИГРАЙТЕ'
+                : this.prop === 'Toni' && this.game === 'catch'
+                ? 'Evita'
+                : this.prop === 'Toni' && this.game === 'crush'
+                ? 'Recoge'
                 : this.language === 'ET'
                 ? 'VÕIDA'
                 : this.prop === 'Fpro'
@@ -528,6 +546,10 @@ export class InputContainer {
                 ? 'spēli.'
                 : this.language === 'LV' && this.prop === 'LemonGym'
                 ? 'spēli.'
+                : this.prop === 'Toni' && this.game === 'catch'
+                ? 'los palitos vacío para no perder vidas.'
+                : this.prop === 'Toni' && this.game === 'crush'
+                ? 'helado especial para más puntos.'
                 : this.language === 'ET'
                 ? 'auhinnad.'
                 : this.prop.includes('Gamtos Ateitis')
@@ -592,12 +614,19 @@ ${
   this.prop === 'Magija' ||
   this.prop === 'Orlen' ||
   this.prop === 'LemonFeel' ||
+  this.prop === 'Toni' ||
   this.prop === 'LemonGym'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'20px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${
-              this.prop === 'LemonFeel' ? '28.AUGUSTĀ' : this.language === 'LV' ? 'LAIMĒ' : 'Laimėk'
+              this.prop === 'Toni'
+                ? 'Vuelve'
+                : this.prop === 'LemonFeel'
+                ? '28.AUGUSTĀ'
+                : this.language === 'LV'
+                ? 'LAIMĒ'
+                : 'Laimėk'
             } 
                           <div style="top: 85px;margin-top:${'17px'}; color: white; font-size: ${
         this.isMobile ? '12px' : '14px'
@@ -607,6 +636,8 @@ ${
             ${
               this.prop.includes('Gamtos Ateitis')
                 ? 'koncertą savo mokyklai!'
+                : this.prop === 'Toni'
+                ? 'a jugar para incrementar tus oportunidades de ganar y participa por increíbles premios.'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Nykštukas vasariškus prizus!'
                 : this.prop === 'LemonGym'
