@@ -1191,6 +1191,8 @@ ${`<div style="${
           document.getElementById('competition-checkbox-error').innerText =
             this.language === 'LV'
               ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+              : this.language === 'ES'
+              ? 'Para continuar, debe aceptar recibir los boletines informativos de la empresa.'
               : this.customer === 'Perlas GO'
               ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
               : this.customer === 'Vilvi'
@@ -1224,7 +1226,9 @@ ${`<div style="${
 
         if (!isValidEmail(emailInput?.value)) {
           document.getElementById('competition-email-error').innerText =
-            'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+            this.language === 'ES'
+              ? 'Formato de correo electrónico no válido'
+              : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
           document.getElementById('competition-email-error').zIndex = 1;
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
