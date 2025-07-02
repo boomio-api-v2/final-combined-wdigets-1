@@ -1212,6 +1212,33 @@ ${`<div style="${
           document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
           return;
         }
+
+        if (!this.checkboxChange2 && this.customer === 'Toni') {
+          document.getElementById('competition-checkbox-error2').innerText =
+            this.customer === 'Toni'
+              ? 'Debes aceptar recibir comunicaciones de marketing para continuar.'
+              : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-checkbox-error2').style.display = 'block';
+          document.getElementById('competition-checkbox-error2').style.height = '14px';
+
+          document.getElementById('competition-name-error').innerText = '';
+
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+
+          document.getElementById('competition-email-error').innerText = '';
+          document.getElementById('competition-email-error').zIndex = 0;
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+
+          document.getElementById('competition-checkbox-error3').innerText = '';
+          document.getElementById('competition-checkbox-error3').style.backgroundColor =
+            'transparent';
+          return;
+        }
+
         if (emailInput?.value === '' || emailInput?.value === null) {
           document.getElementById('competition-email-error').innerText =
             this.language === 'LV'

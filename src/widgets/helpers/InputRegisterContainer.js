@@ -148,6 +148,7 @@ export class InputRegisterContainer {
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
       this.prop === 'Nykstukas' ||
+      this.prop === 'Toni' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
         : 'none'
@@ -198,6 +199,8 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
         : this.prop === 'Nevezis'
         ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
+        : this.prop === 'Toni'
+        ? 'Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
         : this.prop === 'Magija'
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : this.prop === 'Orlen'
@@ -312,6 +315,8 @@ export class InputRegisterContainer {
         ? 'Sutinku su „Pieno žvaigždės“'
         : this.language === 'EN'
         ? 'I agree to receive '
+        : this.language === 'Toni'
+        ? 'Acepto los Términos y Condiciones de la actividad'
         : this.language === 'ES'
         ? 'Acepto recibir'
         : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')

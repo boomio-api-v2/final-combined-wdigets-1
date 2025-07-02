@@ -782,9 +782,11 @@ class CatchGame {
                 'transparent';
             }
 
-            if (!checkboxChange2 && this.customer === 'Pegasas') {
+            if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni')) {
               document.getElementById('competition-checkbox-error2').innerText =
-                'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+                this.customer === 'Toni'
+                  ? 'Debes aceptar recibir comunicaciones de marketing para continuar.'
+                  : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error2').style.display = 'block';
@@ -806,11 +808,14 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').innerText = '';
               document.getElementById('competition-checkbox-error3').style.backgroundColor =
                 'transparent';
+              return;
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
+                  : this.language === 'ES'
+                  ? 'Requerido para continuar.'
                   : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').zIndex = 1;
