@@ -985,6 +985,8 @@ class CatchGame {
                       document.getElementById('competition-email-error').innerText =
                         this.customer === 'Fpro'
                           ? 'This email address already exists. Please use another one.'
+                          : this.prop === 'Toni'
+                          ? 'Este número de teléfono ya está en uso. Utilice otro.'
                           : this.language === 'ES'
                           ? 'Este email ya está en uso. Use otro email.'
                           : this.language === 'LV'

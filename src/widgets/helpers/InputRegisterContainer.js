@@ -319,8 +319,8 @@ export class InputRegisterContainer {
         ? 'I agree to receive '
         : this.language === 'Toni'
         ? 'Acepto los Términos y Condiciones de la actividad'
-        : this.language === 'ES'
-        ? 'Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y  promociones. Acepto los Términos y Condiciones de la actividad.'
+        : this.prop === 'Toni'
+        ? 'Acepto los términos y condicines de la actividad. Acpeto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
         : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
         ? 'Piekrītu LEMON GYM'
         : this.language === 'LV'
