@@ -547,7 +547,7 @@ export class InputContainer {
                 : this.language === 'LV' && this.prop === 'LemonGym'
                 ? 'spēli.'
                 : this.prop === 'Toni' && this.game === 'catch'
-                ? 'los palitos vacío para no perder vidas.'
+                ? 'los palitos vacíos para no perder vidas.'
                 : this.prop === 'Toni' && this.game === 'crush'
                 ? 'helado especial para más puntos.'
                 : this.language === 'ET'

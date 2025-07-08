@@ -645,7 +645,7 @@ export class CompetitionScoreTableContainer {
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : ''
             } </div> `
-          : `<div style="width:100%; top: 420px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
+          : `<div style="width:calc(100% - 20px);margin-left:10px; top: 420px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.language === 'ES'
@@ -677,7 +677,7 @@ export class CompetitionScoreTableContainer {
                 : 'Tu gali!'
             }</div>
             <div style="width:calc(100% - 20px);margin-left:10px; top: ${
-              this.prop === 'Perlas GO' ? '390px' : '450px'
+              this.prop === 'Perlas GO' ? '390px' : '455px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
