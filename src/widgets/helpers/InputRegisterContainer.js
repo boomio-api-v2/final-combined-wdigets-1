@@ -36,7 +36,7 @@ export class InputRegisterContainer {
     }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
     } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${
-      this.isMobile ? '26px' : '28px'
+      this.isMobile ? '24px' : '26px'
     }; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; text-transform: ${
@@ -349,6 +349,7 @@ export class InputRegisterContainer {
       this.prop !== 'SaludSA' &&
       this.prop !== 'Vilvi' &&
       this.prop !== 'Daumantu' &&
+      this.prop !== 'Toni' &&
       this.prop !== 'Perlas GO'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Ikea'
@@ -667,7 +668,7 @@ export class InputRegisterContainer {
         : this.language === 'ET'
         ? 'Mängija hüüdnimi'
         : this.language === 'ES'
-        ? 'Nombre y Apellido'
+        ? 'Nombre y apellido'
         : this.prop === 'Fpro'
         ? 'Players full name'
         : this.prop === 'Ikea'
