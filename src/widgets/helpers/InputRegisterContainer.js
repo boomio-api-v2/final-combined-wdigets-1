@@ -383,25 +383,25 @@ export class InputRegisterContainer {
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'
           }; ">${
             this.prop === 'Ikea'
-              ? 'IKEA privatumo politika'
+              ? 'IKEA privatumo politika.'
               : this.prop === 'Perlas GO'
-              ? 'ir „Perlas Go“ privatumo politika'
+              ? 'ir „Perlas Go“ privatumo politika.'
               : this.prop === 'Eurovaistine'
-              ? 'privātuma politikai'
+              ? 'privātuma politikai.'
               : this.prop === 'Corepetitus'
-              ? 'Corepetitus privatumo politika'
+              ? 'Corepetitus privatumo politika.'
               : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
-              ? 'privātuma politikai'
+              ? 'privātuma politikai.'
               : this.language === 'EN'
-              ? 'newsletters'
+              ? 'newsletters.'
               : this.language === 'LV'
-              ? 'privātuma politikai'
+              ? 'privātuma politikai.'
               : this.language === 'ES'
               ? ''
               : this.language === 'ET'
-              ? 'privaatsuspoliitika'
-              : 'privatumo politika'
-          }.</a> `
+              ? 'privaatsuspoliitika.'
+              : 'privatumo politika.'
+          }</a> `
         : ''
     }
     </div>
