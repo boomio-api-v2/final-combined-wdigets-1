@@ -457,7 +457,13 @@ export class InputRegisterContainer {
         } ;margin-right:30px;display:${
       this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'
     } ;left: 34px; top:${
-      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '420px'
+      this.prop?.includes('Gamtos Ateitis')
+        ? '435px'
+        : this.language === 'LV'
+        ? '440px'
+        : this.prop === 'Toni'
+        ? '436px'
+        : '420px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '9px' : '10px'
     };color:${

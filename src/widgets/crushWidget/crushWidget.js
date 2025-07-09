@@ -64,7 +64,7 @@ class CrushGame {
     this.currentScoreTable = {};
     this.gridCols = 5;
     this.gridRows = 8;
-    this.tileSize = 73;
+    this.tileSize = 68;
     this.colors =
       this.customer === 'Toni'
         ? {
@@ -1266,7 +1266,7 @@ ${`<div style="${
         }
 
         if ((phoneInput?.value === '' || phoneInput?.value === null) && this.customer === 'Toni') {
-          document.getElementById('competition-email-error').innerText =
+          document.getElementById('competition-phone-error').innerText =
             this.language === 'LV'
               ? 'Obligāti aizpildāmie lauki.'
               : this.language === 'ES'
