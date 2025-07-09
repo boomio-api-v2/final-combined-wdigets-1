@@ -645,7 +645,7 @@ export class CompetitionScoreTableContainer {
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : ''
             } </div> `
-          : `<div style="width:calc(100% - 20px);margin-left:10px; top: 420px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
+          : `<div style="width:calc(100% - 20px);margin-left:10px; top: 410px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.language === 'ES'
@@ -730,7 +730,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Orlen'
                 ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę! O dydisis prizas - skrydis oro balionu!'
                 : this.prop === 'Toni'
-                ? 'POR INCREÍBLES PREMIOS!Inténtalo de nuevo y suma más oportunidades de ganar'
+                ? 'Inténtalo de nuevo y suma más oportunidades de ganar.'
                 : this.language === 'EN'
                 ? ''
                 : ''
