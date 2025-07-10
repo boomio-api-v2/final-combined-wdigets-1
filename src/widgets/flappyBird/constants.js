@@ -236,5 +236,5 @@ export const TicheBackground =
 export const nykstukasBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/nykstukas/background.png';
 
-export const orleanBackground =
+export const orlenBackground =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Orlen/background.png';

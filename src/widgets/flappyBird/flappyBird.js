@@ -123,12 +123,12 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Tiche';
+    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LV';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LT';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -564,6 +564,7 @@ class FlappyBird {
             this.customer.includes('demo') ||
               this.customer === 'Nykstukas' ||
               this.customer === 'Tiche' ||
+              this.customer === 'Orlen' ||
               this.customer === 'LemonFeel'
               ? 0
               : 2000,
@@ -572,10 +573,12 @@ class FlappyBird {
         this.customer.includes('demo') ||
           this.customer === 'Nykstukas' ||
           this.customer === 'Tiche' ||
+          this.customer === 'Orlen' ||
           this.customer === 'LemonFeel'
           ? 0
           : 2000,
       );
+
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
