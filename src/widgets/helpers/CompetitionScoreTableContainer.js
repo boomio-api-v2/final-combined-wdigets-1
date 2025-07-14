@@ -272,6 +272,59 @@ export class CompetitionScoreTableContainer {
       'Ethan',
     ];
 
+    const esNicknames = [
+      'Mateo',
+      'Luna',
+      'Coco',
+      'Leo',
+      'Nube',
+      'Sombra',
+      'Sofi',
+      'Pelusa',
+      'Carlos',
+      'Chispa',
+      'Nova',
+      'Kiwi',
+      'Zorro',
+      'Tito',
+      'Olivia',
+      'Galleta',
+      'Andrés',
+      'Waffles',
+      'Eco',
+      'Trueno',
+      'Fénix',
+      'Aitana',
+      'Vega',
+      'Benjamín',
+      'Luz',
+      'Estrella',
+      'Glitch',
+      'Frío',
+      'Fantasma',
+      'Lobo',
+      'Valentina',
+      'Tormenta',
+      'Diego',
+      'Sable',
+      'David',
+      'Silencio',
+      'Isabela',
+      'Ritmo',
+      'Clara',
+      'Axel',
+      'Martín',
+      'Deriva',
+      'Amelia',
+      'Píxel',
+      'Hugo',
+      'Colmillo',
+      'Nox',
+      'Lucía',
+      'Paz',
+      'Thiago',
+    ];
+
     const lvNicknames = [
       'Jānis',
       'Anna',
@@ -305,6 +358,59 @@ export class CompetitionScoreTableContainer {
       'Sandis',
     ];
 
+    const eeNicknames = [
+      'VÕLUR',
+      'MÄNGUMEES',
+      'KATIKE',
+      'TORMILIND',
+      'PÄKAPIKK',
+      'KARVANE KARU',
+      'NUNNUKAS',
+      'ÕUNAPUU',
+      'VÄLE JÄNES',
+      'HUNT KRIIMSILM',
+      'LUMEKUNINGANNA',
+      'RÕÕMUKILD',
+      'SALASEPPA',
+      'UNISTAJA',
+      'TULEPOISS',
+      'SIILIKE',
+      'VIKERKAAR',
+      'ULLIKE',
+      'MÕMMIK',
+      'TUULELAPS',
+      'RAKETIPOISS',
+      'KIISUMIISU',
+      'KUKUKE',
+      'KÄGU',
+      'KASSIKE',
+      'TRIKIMEES',
+      'PIIMAVUNT',
+      'TONTLIK TIMO',
+      'LENDUR LAURI',
+      'KOHVIHUNT',
+      'MAGUS MARI',
+      'KULDNE KÄSI',
+      'LUSTIPALL',
+      'SALAJANE SASS',
+      'ÖÖLIBLIKAS',
+      'NAERUPALL',
+      'METSAHUNT',
+      'VÄIKE VAPPER',
+      'KONNATIBU',
+      'ŠOKOLAADIPOISS',
+      'SEIKLEJA',
+      'SÄDELEV SASSU',
+      'HAMBURGER',
+      'KRÕPS',
+      'SÜGAV MÕTE',
+      'KALAMEES',
+      'ÄIKESEPILV',
+      'TEADLASEKE',
+      'TANTSULÕVI',
+      'TARKUR',
+    ];
+
     let tableHTML = '';
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
@@ -326,6 +432,10 @@ export class CompetitionScoreTableContainer {
               ? 'Your score'
               : this.language === 'LV'
               ? 'Tavs rezultāts'
+              : this.language === 'ET'
+              ? 'Sinu tulemus'
+              : this.language === 'ES'
+              ? 'Tu resultado'
               : this.prop === 'Nykstukas'
               ? 'Tavo komandos rezultatas'
               : 'Tavo rezultatas'
@@ -335,8 +445,12 @@ export class CompetitionScoreTableContainer {
             ? hiddenNicknames[index]
             : this.language === 'LV'
             ? lvNicknames[index]
+            : this.language === 'ET'
+            ? eeNicknames[index]
             : this.language === 'EN'
             ? enNicknames[index]
+            : this.language === 'ES'
+            ? esNicknames[index]
             : ltNicknames[index]
           : scoreboard[index].team
       }
@@ -362,6 +476,10 @@ export class CompetitionScoreTableContainer {
             ? 'Your score'
             : this.language === 'LV'
             ? 'Tavs rezultāts'
+            : this.language === 'ET'
+            ? 'Sinu tulemus'
+            : this.language === 'ES'
+            ? 'Tu resultado'
             : 'Tavo rezultatas'
           : scoreboard[userBestPlace].team
       }</td>
@@ -527,11 +645,11 @@ export class CompetitionScoreTableContainer {
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : ''
             } </div> `
-          : `<div style="width:100%; top: 420px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
+          : `<div style="width:calc(100% - 20px);margin-left:10px; top: 410px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.language === 'ES'
-                ? 'LO ESTÁS HACIENDO MUY BIEN'
+                ? '¡FELICIDADES YA ESTÁS PARTICIPANDO POR INCREÍBLES PREMIOS!'
                 : this.prop === 'Eurovaistine'
                 ? 'TEV VEICAS LIELISKI!'
                 : this.prop === 'Akropolis' && this.language === 'LV'
@@ -559,7 +677,7 @@ export class CompetitionScoreTableContainer {
                 : 'Tu gali!'
             }</div>
             <div style="width:calc(100% - 20px);margin-left:10px; top: ${
-              this.prop === 'Perlas GO' ? '390px' : '450px'
+              this.prop === 'Perlas GO' ? '390px' : '455px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
@@ -612,7 +730,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Orlen'
                 ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę! O dydisis prizas - skrydis oro balionu!'
                 : this.prop === 'Toni'
-                ? '¡Buen intento! Cuanto más juegas, más oportunidades tienes de ganar ¿Puedes superar tu propio récord? ¡Inténtalo de nuevo y suma más chances de ganar! ¡Sigue jugando! Cada partida es una nueva oportunidad para llevarte un premio Cada partida cuenta. ¡Acumula oportunidades y gana!'
+                ? 'Inténtalo de nuevo y suma más oportunidades de ganar.'
                 : this.language === 'EN'
                 ? ''
                 : ''

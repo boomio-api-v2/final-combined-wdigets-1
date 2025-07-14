@@ -25,6 +25,21 @@ import {
   crushElement6NevezisSpecial,
   crushElement7NevezisSpecial,
   backgroundNevezis,
+  crushElement1Toni,
+  crushElement2Toni,
+  crushElement3Toni,
+  crushElement4Toni,
+  crushElement5Toni,
+  crushElement6Toni,
+  crushElement7Toni,
+  crushElement1ToniSpecial,
+  crushElement2ToniSpecial,
+  crushElement3ToniSpecial,
+  crushElement4ToniSpecial,
+  crushElement5ToniSpecial,
+  crushElement6ToniSpecial,
+  crushElement7ToniSpecial,
+  backgroundToni,
   tutorial,
   close,
 } from './constants';
@@ -49,16 +64,27 @@ class CrushGame {
     this.currentScoreTable = {};
     this.gridCols = 5;
     this.gridRows = 8;
-    this.tileSize = 73;
-    this.colors = {
-      crushElement1Nevezis,
-      crushElement2Nevezis,
-      crushElement3Nevezis,
-      crushElement4Nevezis,
-      crushElement5Nevezis,
-      crushElement6Nevezis,
-      crushElement7Nevezis,
-    };
+    this.tileSize = 68;
+    this.colors =
+      this.customer === 'Toni'
+        ? {
+            crushElement1Toni,
+            crushElement2Toni,
+            crushElement3Toni,
+            crushElement4Toni,
+            crushElement5Toni,
+            crushElement6Toni,
+            crushElement7Toni,
+          }
+        : {
+            crushElement1Nevezis,
+            crushElement2Nevezis,
+            crushElement3Nevezis,
+            crushElement4Nevezis,
+            crushElement5Nevezis,
+            crushElement6Nevezis,
+            crushElement7Nevezis,
+          };
     this.grid = [];
     this.selectedTile = null;
     this.images = {};
@@ -464,15 +490,26 @@ class CrushGame {
 
   preloadImages(callback) {
     const normalColorKeys = Object.keys(this.colors);
-    const specialSources = {
-      crushElement1NevezisSpecial,
-      crushElement2NevezisSpecial,
-      crushElement3NevezisSpecial,
-      crushElement4NevezisSpecial,
-      crushElement5NevezisSpecial,
-      crushElement6NevezisSpecial,
-      crushElement7NevezisSpecial,
-    };
+    const specialSources =
+      this.customer === 'Toni'
+        ? {
+            crushElement1ToniSpecial,
+            crushElement2ToniSpecial,
+            crushElement3ToniSpecial,
+            crushElement4ToniSpecial,
+            crushElement5ToniSpecial,
+            crushElement6ToniSpecial,
+            crushElement7ToniSpecial,
+          }
+        : {
+            crushElement1NevezisSpecial,
+            crushElement2NevezisSpecial,
+            crushElement3NevezisSpecial,
+            crushElement4NevezisSpecial,
+            crushElement5NevezisSpecial,
+            crushElement6NevezisSpecial,
+            crushElement7NevezisSpecial,
+          };
     const specialKeys = Object.keys(specialSources);
 
     let loadedImages = 0;
@@ -588,8 +625,8 @@ class CrushGame {
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 120px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-    <div>${'BRŪKŠT'}</div>
-    <div>${'BRŪKŠT'}</div>
+    <div>${this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'}</div>
+    <div>${this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'}</div>
   </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
 </div>
 
@@ -597,7 +634,9 @@ ${`<div style="${
 
 
 
-<div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
+<div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+      this.customer === 'Toni' ? '#262B8C' : '#E1251B'
+    };border-radius:35px">
 <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
@@ -607,7 +646,9 @@ ${`<div style="${
 </div>
 </div>
 
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#E1251B'};border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
+      this.customer === 'Toni' ? '#262B8C' : '#E1251B'
+    };border-radius:35px">
     <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -615,7 +656,7 @@ ${`<div style="${
 </div>
 </div>
 
-<img src="${backgroundNevezis}" 
+<img src="${this.customer === 'Toni' ? backgroundToni : backgroundNevezis}" 
      alt="Game Background"
      id="background_nevezis"
      style="z-index:0;
@@ -720,15 +761,26 @@ ${`<div style="${
     const baseColor = colorKeys[Math.floor(Math.random() * colorKeys.length)];
 
     // Only add 3Points if baseColor is allowed and not already special
-    const threePointColors = [
-      'crushElement1Nevezis',
-      'crushElement2Nevezis',
-      'crushElement3Nevezis',
-      'crushElement4Nevezis',
-      'crushElement5Nevezis',
-      'crushElement6Nevezis',
-      'crushElement7Nevezis',
-    ];
+    const threePointColors =
+      this.customer === 'Toni'
+        ? [
+            'crushElement1Toni',
+            'crushElement2Toni',
+            'crushElement3Toni',
+            'crushElement4Toni',
+            'crushElement5Toni',
+            'crushElement6Toni',
+            'crushElement7Toni',
+          ]
+        : [
+            'crushElement1Nevezis',
+            'crushElement2Nevezis',
+            'crushElement3Nevezis',
+            'crushElement4Nevezis',
+            'crushElement5Nevezis',
+            'crushElement6Nevezis',
+            'crushElement7Nevezis',
+          ];
 
     if (Math.random() < 0.1 && threePointColors.includes(baseColor)) {
       return baseColor + '3Points';
@@ -814,7 +866,12 @@ ${`<div style="${
         let newColor = this.getRandomColor();
         // With a 10% chance, convert it to its special variant.
         if (!newColor.includes('3Points') && Math.random() < 0.1) {
-          newColor = newColor === 'yellow' ? 'crushElement1NevezisSpecial' : newColor + 'Special';
+          newColor =
+            newColor === 'yellow'
+              ? this.customer === 'Toni'
+                ? 'crushElement1ToniSpecial'
+                : 'crushElement1NevezisSpecial'
+              : newColor + 'Special';
         }
         newTilesMap[col].push(newColor);
         newFalling.push({
@@ -1102,6 +1159,11 @@ ${`<div style="${
     if (this.gameCount === 0) {
       setTimeout(() => {
         const emailInput = document.querySelector('.boomio-competition-email-input-field');
+        const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+        const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
+        const phone = document.querySelector('.boomio-competition-phone-input-field');
+        const phoneValue = phone?.value?.trim();
+
         const cyrillicRegex = /[\u0400-\u04FF]/;
         const containsCyrillic = (input) => cyrillicRegex.test(input.value);
         const isValidEmail = (email) => {
@@ -1134,40 +1196,130 @@ ${`<div style="${
           document.getElementById('competition-checkbox-error').innerText =
             this.language === 'LV'
               ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+              : this.language === 'ES'
+              ? 'Para continuar, debe aceptar recibir los boletines informativos de la empresa.'
               : this.customer === 'Perlas GO'
               ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
               : this.customer === 'Vilvi'
               ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
               : 'Norint tęsti, privaloma sutikti su įmonės privatumo politika. ';
-
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            this.customer === 'Akropolis' && this.language !== 'LV' ? '#FFBABA' : 'white';
+          document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-checkbox-error').style.display = 'block';
+          document.getElementById('competition-checkbox-error').style.height = '18px';
 
           document.getElementById('competition-name-error').innerText = '';
 
           document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-phone-error').innerText = '';
 
+          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-email-error').innerText = '';
           document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+          return;
         }
+
+        if (!this.checkboxChange2 && this.customer === 'Toni') {
+          document.getElementById('competition-checkbox-error2').innerText =
+            this.customer === 'Toni'
+              ? 'Debes aceptar recibir comunicaciones de marketing para continuar.'
+              : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-checkbox-error2').style.display = 'block';
+          document.getElementById('competition-checkbox-error2').style.height = '14px';
+
+          document.getElementById('competition-name-error').innerText = '';
+
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-phone-error').innerText = '';
+
+          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-email-error').innerText = '';
+          document.getElementById('competition-email-error').zIndex = 0;
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+
+          document.getElementById('competition-checkbox-error3').innerText = '';
+          document.getElementById('competition-checkbox-error3').style.backgroundColor =
+            'transparent';
+          return;
+        }
+
         if (emailInput?.value === '' || emailInput?.value === null) {
-          document.getElementById('competition-email-error').innerText =
+          document.getElementById('competition-phone-error').innerText =
             this.language === 'LV'
               ? 'Obligāti aizpildāmie lauki.'
+              : this.language === 'ES'
+              ? 'Requerido para continuar.'
               : 'Norint tęsti privaloma užpildyti.';
-          document.getElementById('competition-email-error').style.backgroundColor =
-            this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-name-error').innerText = '';
+          document.getElementById('competition-phone-error').innerText = '';
+
+          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+          return;
+        }
+
+        if ((phoneInput?.value === '' || phoneInput?.value === null) && this.customer === 'Toni') {
+          document.getElementById('competition-phone-error').innerText =
+            this.language === 'LV'
+              ? 'Obligāti aizpildāmie lauki.'
+              : this.language === 'ES'
+              ? 'Requerido para continuar.'
+              : 'Norint tęsti privaloma užpildyti.';
+          document.getElementById('competition-phone-error').zIndex = 1;
+          document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';
 
           document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-checkbox-error').innerText = '';
           document.getElementById('competition-checkbox-error').style.backgroundColor =
             'transparent';
+          document.getElementById('competition-checkbox-error2').innerText = '';
+          document.getElementById('competition-checkbox-error2').style.backgroundColor =
+            'transparent';
+
+          document.getElementById('competition-checkbox-error3').innerText = '';
+          document.getElementById('competition-checkbox-error3').style.backgroundColor =
+            'transparent';
+          return;
         }
 
-        if (!isValidEmail(emailInput?.value)) {
+        if (
+          (playerNameInput?.value === '' || playerNameInput?.value === null) &&
+          this.customer === 'Toni'
+        ) {
+          document.getElementById('competition-name-error').innerText =
+            'El campo de nombre debe completarse.';
+          document.getElementById('competition-name-error').zIndex = 1;
+          document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-phone-error').innerText = '';
+
+          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-checkbox-error').innerText = '';
+          document.getElementById('competition-checkbox-error').style.backgroundColor =
+            'transparent';
+          document.getElementById('competition-checkbox-error2').innerText = '';
+          document.getElementById('competition-checkbox-error2').style.backgroundColor =
+            'transparent';
+
+          document.getElementById('competition-checkbox-error3').innerText = '';
+          document.getElementById('competition-checkbox-error3').style.backgroundColor =
+            'transparent';
+          return;
+        }
+
+        if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni') {
           document.getElementById('competition-email-error').innerText =
-            'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+            this.language === 'ES'
+              ? 'Formato de correo electrónico no válido'
+              : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
           document.getElementById('competition-email-error').zIndex = 1;
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
@@ -1183,7 +1335,12 @@ ${`<div style="${
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange2,
               user_email: emailInput?.value,
-              user_name: emailInput?.value,
+              user_name:
+                this.customer === 'Toni'
+                  ? playerNameInput?.value + phoneInput?.value
+                  : emailInput?.value,
+              ...(phoneValue ? { phone: phoneInput?.value } : {}),
+
               via_mobile: this.campaignUrl ? true : false,
             })
             .then((response) => {
@@ -1196,7 +1353,10 @@ ${`<div style="${
                   document.getElementById('competition-email-error').style.backgroundColor =
                     this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
                   document.getElementById('competition-name-error').innerText = '';
+                  document.getElementById('competition-phone-error').innerText = '';
 
+                  document.getElementById('competition-phone-error').style.backgroundColor =
+                    'transparent';
                   document.getElementById('competition-name-error').style.backgroundColor =
                     'transparent';
                   document.getElementById('competition-checkbox-error').innerText = '';
@@ -1207,6 +1367,10 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                  document.getElementById('competition-phone-error').innerText = '';
+
+                  document.getElementById('competition-phone-error').style.backgroundColor =
+                    'transparent';
                   document.getElementById('competition-name-error').style.backgroundColor =
                     this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
 

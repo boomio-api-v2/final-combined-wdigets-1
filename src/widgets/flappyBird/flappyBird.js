@@ -111,6 +111,7 @@ import {
   LemonFeelBackground,
   TicheBackground,
   nykstukasBackground,
+  orlenBackground,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -122,12 +123,12 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Tiche';
+    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LV';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LT';
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -472,6 +473,8 @@ class FlappyBird {
         ? TicheBackground
         : this.customer === 'Nykstukas'
         ? nykstukasBackground
+        : this.customer === 'Orlen'
+        ? orlenBackground
         : this.customer === 'Penki Sezonai' && mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
@@ -561,6 +564,7 @@ class FlappyBird {
             this.customer.includes('demo') ||
               this.customer === 'Nykstukas' ||
               this.customer === 'Tiche' ||
+              this.customer === 'Orlen' ||
               this.customer === 'LemonFeel'
               ? 0
               : 2000,
@@ -569,10 +573,12 @@ class FlappyBird {
         this.customer.includes('demo') ||
           this.customer === 'Nykstukas' ||
           this.customer === 'Tiche' ||
+          this.customer === 'Orlen' ||
           this.customer === 'LemonFeel'
           ? 0
           : 2000,
       );
+
       //gifas
       // flyHeight = canvas.height / 2 - size[1] / 2;
       pipes = [[canvas.width, pipeLoc()]];
@@ -936,7 +942,7 @@ class FlappyBird {
 
         if (this.gamePlaying) {
           if (this.isJumping) {
-            ctx.drawImage(img, 506, 0, 80, 80, cTenth, flyHeight, 77, 80);
+            ctx.drawImage(img, 507, 0, 80, 80, cTenth, flyHeight, 77, 80);
           } else {
             ctx.drawImage(img, 424, 0, 80, 80, cTenth, flyHeight, 77, 80);
           }
@@ -1103,9 +1109,6 @@ class FlappyBird {
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
 
-    const endingBackground = new Image();
-    endingBackground.src = 'https://i.ibb.co/5rS0VM9/COUPON-5.png';
-
     const snowImgEnd = new Image();
     snowImgEnd.src = 'https://i.giphy.com/media/ggK4TpfK2cfuZcokhj/giphy.webp';
 
@@ -1127,27 +1130,14 @@ class FlappyBird {
         : ''
     } 
 
-    <img src=${
-      endingBackground.src
-    } alt="Image Description" style="z-index:1;width: 418px; height: 668px;position:absolute;opacity:0; pointer-events: none; display:none;" id="ending_background">
-    </img>
-    <img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
+
+
+<div alt="Image Description" style="z-index:1;width: ${
       document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
+        ? document.documentElement.clientWidth + 'px'
         : '418px'
-    };
-       height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur">
-    </img>
-          <img  style="z-index:1;width: ${
-            document.documentElement.clientWidth < 418
-              ? document.documentElement.clientWidth < 321
-                ? '375px'
-                : document.documentElement.clientWidth + 'px'
-              : '418px'
-          }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="snow_background_qr">
-    </img>
+    }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#808080'}" id="background_blur"></div>
+   
 <img src=${
       this.language === 'ET' &&
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
