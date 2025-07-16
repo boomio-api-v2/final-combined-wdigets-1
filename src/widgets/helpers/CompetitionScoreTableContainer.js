@@ -840,7 +840,7 @@ export class CompetitionScoreTableContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: ${
-        this.prop === 'Toni' ? '80px' : '52px'
+        this.prop === 'Toni' ? '95px' : '52px'
       }; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
       this.language === 'LV'
         ? 'REZULTĀTI'
