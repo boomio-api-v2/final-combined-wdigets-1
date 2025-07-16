@@ -63,7 +63,7 @@ export class InputRegisterContainer {
         : this.language === 'EN'
         ? 'Register to Play'
         : this.language === 'ES'
-        ? 'Registrarse para jugar'
+        ? '¡Regístrate para jugar!'
         : 'Registruokis Žaisti'
     }</div>
           <div style="height: 124px; top:${
@@ -105,7 +105,9 @@ export class InputRegisterContainer {
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center;font-family:${
           this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-        };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: ${
+        };   color: ${
+      this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
+    } ; font-size: 24px;  font-weight: ${
       this.prop === 'Ikea' ? '400' : '700'
     }; line-height: 24px; word-wrap: break-word" >${
       this.language === 'LV'
@@ -320,7 +322,7 @@ export class InputRegisterContainer {
         : this.language === 'Toni'
         ? 'Acepto los Términos y Condiciones de la actividad'
         : this.prop === 'Toni'
-        ? 'Acepto los términos y condicines de la actividad. Acpeto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
+        ? 'Acepto los términos y condicines de la actividad. Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
         : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
         ? 'Piekrītu LEMON GYM'
         : this.language === 'LV'

@@ -831,7 +831,9 @@ ${
                 this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
               }; font-weight: ${
       this.prop === 'Ikea' ? '400' : '700'
-    }; line-height: 20px; word-wrap: break-word"> <div style="line-height:20px;text-align: center; color: ${'#3D4928'}; font-size: 20px;  line-height: 20px; word-wrap: break-word">${
+    }; line-height: 20px; word-wrap: break-word"> <div style="line-height:20px;text-align: center; color: ${
+      this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
+    }; font-size: 20px;  line-height: 20px; word-wrap: break-word">${
       this.prop === 'Pigu.lt' && this.language === 'EN'
         ? 'NEXT'
         : this.prop === 'Pigu.lt' && this.language === 'LV'
