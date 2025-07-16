@@ -364,16 +364,14 @@ class BoomioService extends UserService {
         }
       }
 
-      if (this.config.business_name !== 'Toni') {
-        if (additional_fields?.user_email) {
-          pluginConfig.email = additional_fields.user_email;
-          credentials.email = additional_fields.user_email;
-        }
+      if (additional_fields?.user_email) {
+        pluginConfig.email = additional_fields.user_email;
+        credentials.email = additional_fields.user_email;
+      }
 
-        if (additional_fields?.user_name) {
-          pluginConfig.name = additional_fields.user_name;
-          credentials.name = additional_fields.user_name;
-        }
+      if (additional_fields?.user_name) {
+        pluginConfig.name = additional_fields.user_name;
+        credentials.name = additional_fields.user_name;
       }
 
       setSecureCookie('boomio_game_credentials', JSON.stringify(credentials));

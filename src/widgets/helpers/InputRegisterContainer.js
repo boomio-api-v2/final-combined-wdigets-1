@@ -732,22 +732,24 @@ export class InputRegisterContainer {
 
     // Function to set the values in the input fields
     const setCredentialsToInputs = () => {
-      const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+      if (this.prop !== 'Toni') {
+        const emailInput = document.querySelector('.boomio-competition-email-input-field');
+        const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
-      const credentials = getCookie('boomio_game_credentials');
+        const credentials = getCookie('boomio_game_credentials');
 
-      if (credentials) {
-        try {
-          const parsedCredentials = JSON.parse(credentials);
-          if (parsedCredentials.email && emailInput) {
-            emailInput.value = parsedCredentials.email;
+        if (credentials) {
+          try {
+            const parsedCredentials = JSON.parse(credentials);
+            if (parsedCredentials.email && emailInput) {
+              emailInput.value = parsedCredentials.email;
+            }
+            if (this.prop !== 'Nykstukas' && parsedCredentials.name && playerNameInput) {
+              playerNameInput.value = parsedCredentials.name;
+            }
+          } catch (e) {
+            console.error('Error parsing boomio_game_credentials cookie:', e);
           }
-          if (this.prop !== 'Nykstukas' && parsedCredentials.name && playerNameInput) {
-            playerNameInput.value = parsedCredentials.name;
-          }
-        } catch (e) {
-          console.error('Error parsing boomio_game_credentials cookie:', e);
         }
       }
     };
