@@ -364,7 +364,7 @@ class BoomioService extends UserService {
         }
       }
 
-      if (this.customer !== 'Toni') {
+      if (this.config.business_name !== 'Toni') {
         if (additional_fields?.user_email) {
           pluginConfig.email = additional_fields.user_email;
           credentials.email = additional_fields.user_email;
