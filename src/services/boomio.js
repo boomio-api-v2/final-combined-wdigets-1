@@ -19,6 +19,7 @@ import {
   startDriveWidget,
   startCatchWidget,
   startCrushWidget,
+  startPopWidget,
   startRunnerWidget,
 } from '@/widgets';
 import { localStoragePropertyName } from '@/config';
@@ -174,6 +175,7 @@ class BoomioService extends UserService {
       drive: startDriveWidget,
       catch: startCatchWidget,
       crush: startCrushWidget,
+      pop: startPopWidget,
       runner: startRunnerWidget,
     };
 

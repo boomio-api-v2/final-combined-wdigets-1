@@ -1789,9 +1789,9 @@ class Fruit {
       }
     } else if (this.customer === 'Toni') {
       if (type === 'bad') {
-        this.fruitNumber = Math.floor(Math.random() * 5 + 5);
+        this.fruitNumber = Math.floor(Math.random() * 6 + 4);
       } else {
-        this.fruitNumber = Math.floor(Math.random() * 5);
+        this.fruitNumber = Math.floor(Math.random() * 6);
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
@@ -2199,7 +2199,7 @@ class Fruit {
         this.fruitNumber
       ];
     } else if (this.customer === 'Toni') {
-      this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
+      this.fruitScore = [100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
