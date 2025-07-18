@@ -1789,7 +1789,7 @@ class Fruit {
       }
     } else if (this.customer === 'Toni') {
       if (type === 'bad') {
-        this.fruitNumber = Math.floor(Math.random() * 6 + 4);
+        this.fruitNumber = Math.floor(Math.random() * 6 + 2);
       } else {
         this.fruitNumber = Math.floor(Math.random() * 6);
       }
