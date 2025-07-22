@@ -1349,6 +1349,8 @@ ${`<div style="${
                   document.getElementById('competition-email-error').innerText =
                     this.language === 'LV'
                       ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
+                      : this.language === 'ES'
+                      ? 'Este número de teléfono ya existe. Utilice otro.'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
                     this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
