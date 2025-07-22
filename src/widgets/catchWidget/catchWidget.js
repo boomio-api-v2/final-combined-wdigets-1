@@ -2305,8 +2305,11 @@ class Fruit {
       }
       document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
-      // Show score effect
-      this.showScoreEffect('+100');
+      if (this.fruitType === 'item2Toni') {
+        this.showScoreEffect('+200');
+      } else {
+        this.showScoreEffect('+100');
+      }
 
       const effectElement = document.getElementById('background_effect');
       effectElement.style.display = 'block';
