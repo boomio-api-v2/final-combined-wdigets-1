@@ -378,8 +378,6 @@ class CatchGame {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
               this.customer === 'Pegasas' ? 0.8 : 0.37;
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
 
             const inpuRegisterContainer = document.querySelector('.input-register-container');
             inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -395,8 +393,6 @@ class CatchGame {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
               this.customer === 'Pegasas' ? 0.8 : 0.37;
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
             const inputContainer = document.querySelector('.input-container');
             document.getElementById('control-button').style.transition = 'opacity 2s ease';
             document.getElementById('control-button').style.opacity = 1;
@@ -425,9 +421,6 @@ class CatchGame {
 
           document.getElementById('background_blur').style.opacity =
             this.customer === 'Pegasas' ? 0.8 : 0.37;
-
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
         }, 1000);
       }
       setTimeout(() => {
@@ -1053,8 +1046,6 @@ class CatchGame {
                       const canvas = document.getElementById('boomio-catch-canvas');
                       document.getElementById('background_blur').style.opacity =
                         this.customer === 'Pegasas' ? 0.8 : 0.37;
-                      canvas.style.transition = 'filter 0.6s ease';
-                      canvas.style.filter = 'blur(2px)';
                       const inputContainer = document.querySelector('.input-container');
                       document.getElementById('control-button').style.transition =
                         'opacity 2s ease';
@@ -1596,8 +1587,6 @@ class CatchGame {
             // Displaying the competition table container
             const canvas = document.getElementById('boomio-catch-canvas');
 
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
             let competitionTableContainer = '';
             if (
               this.customer.includes('Gamtos Ateitis') ||
@@ -2307,7 +2296,13 @@ class Fruit {
   updateScore() {
     if (this.fruitScore > 0) {
       // Update the current score
-      this.game.currentScore += this.fruitScore;
+      console.log(`Fruit caught: ${this.fruitType}, Score: ${this.fruitScore}`);
+
+      if (this.fruitType === 'item2Toni') {
+        this.game.currentScore += this.fruitScore * 2;
+      } else {
+        this.game.currentScore += this.fruitScore;
+      }
       document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
       // Show score effect
