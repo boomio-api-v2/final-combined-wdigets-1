@@ -1368,6 +1368,8 @@ ${`<div style="${
                   document.getElementById('competition-name-error').innerText =
                     this.language === 'LV'
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                      : this.language === 'ES'
+                      ? 'Este nombre ya está en uso. Intente con otro nombre.'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-phone-error').innerText = '';
 

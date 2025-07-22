@@ -1004,7 +1004,7 @@ class CatchGame {
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
                           : this.language === 'ES'
-                          ? 'Este nickname ya está en uso. Use otro nickname.'
+                          ? 'Este nombre ya está en uso. Intente con otro nombre.'
                           : this.language === 'LV'
                           ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                           : this.language === 'RU'
