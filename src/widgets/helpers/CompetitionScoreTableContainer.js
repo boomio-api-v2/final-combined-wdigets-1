@@ -31,9 +31,9 @@ export class CompetitionScoreTableContainer {
     const userBestPlace = parseInt(
       this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas'
         ? this.scoreTable.team_best_place
-        : this.scoreTable.user_best_place,
+        : this.scoreTable?.user_best_place,
     );
-    const userBestScore = parseInt(this.scoreTable.user_best_score);
+    const userBestScore = parseInt(this.scoreTable?.user_best_score);
     this.userParticipationDays = this.scoreTable?.participation_days ?? 0; // nullish-coalescing
 
     const currentPageUrl = window.location.href;

@@ -10,35 +10,7 @@ import {
   uncheckIcon,
   star,
   stopwatch,
-  crushElement1Nevezis,
-  crushElement2Nevezis,
-  crushElement3Nevezis,
-  crushElement4Nevezis,
-  crushElement5Nevezis,
-  crushElement6Nevezis,
-  crushElement7Nevezis,
-  crushElement1NevezisSpecial,
-  crushElement2NevezisSpecial,
-  crushElement3NevezisSpecial,
-  crushElement4NevezisSpecial,
-  crushElement5NevezisSpecial,
-  crushElement6NevezisSpecial,
-  crushElement7NevezisSpecial,
   backgroundNevezis,
-  crushElement1Toni,
-  crushElement2Toni,
-  crushElement3Toni,
-  crushElement4Toni,
-  crushElement5Toni,
-  crushElement6Toni,
-  crushElement7Toni,
-  crushElement1ToniSpecial,
-  crushElement2ToniSpecial,
-  crushElement3ToniSpecial,
-  crushElement4ToniSpecial,
-  crushElement5ToniSpecial,
-  crushElement6ToniSpecial,
-  crushElement7ToniSpecial,
   backgroundToni,
   tutorial,
   close,
@@ -73,8 +45,6 @@ class PopGame {
   startLoading() {
     this.createContainer();
 
-    this.setupCanvas();
-    this.generateValidGrid();
     this.addEventListeners();
     setTimeout(() => {
       if (this.gameCount === 0) {
@@ -199,7 +169,7 @@ class PopGame {
     setTimeout(() => {
       currectTimeDiv.style.display = 'none';
     }, 300);
-    const canvas = document.getElementById('boomio-crush-canvas');
+    const canvas = document.getElementById('boomio-pop-canvas');
     if (canvas) {
       canvas.style.display = 'none';
     }
@@ -238,7 +208,7 @@ class PopGame {
             })
             .then((response) => {
               if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                document.getElementById('crush-mobile-controls').style.display = 'none';
+                document.getElementById('pop-mobile-controls').style.display = 'none';
               }
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
@@ -321,7 +291,7 @@ class PopGame {
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
 
     const myCanvas = document.createElement('div');
-    myCanvas.setAttribute('id', 'boomio-crush-container');
+    myCanvas.setAttribute('id', 'boomio-pop-container');
     myCanvas.classList.add(
       'boomio--animation__wrapper',
       'boomio--animation__wrapper--initial',
@@ -355,7 +325,7 @@ class PopGame {
             </div>
         
         
-            ${new InputContainer(this.customer, 'crush').createInputContainerDiv('crush').outerHTML}
+            ${new InputContainer(this.customer, 'pop').createInputContainerDiv('pop').outerHTML}
 
 
                 <div class="numbers">
@@ -443,10 +413,14 @@ ${`<div style="${
         <div id="game-content" style="display: none;">
 
         
-          <div id="crush-game-background"></div>
-          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" style="margin-top:50px;" width="${
-            this.gridCols * this.tileSize
-          }" height="${this.gridRows * this.tileSize}"></canvas>
+          <div id="pop-game-background"></div>
+          <canvas id="boomio-pop-canvas" class="boomio-pop-canvas" 
+        width="${
+          document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth : 418
+        }"
+        height="668"
+
+></canvas>
         </div>
  
       </div>
@@ -709,7 +683,7 @@ ${`<div style="${
                   inpuRegisterContainer.style.display = 'none';
                 }, 1000);
                 setTimeout(() => {
-                  const canvas = document.getElementById('boomio-crush-canvas');
+                  const canvas = document.getElementById('boomio-pop-canvas');
                   document.getElementById('background_blur').style.opacity =
                     this.language === 'LV' ? 0.4 : 0.2;
                   canvas.style.transition = 'filter 0.6s ease';
@@ -763,18 +737,6 @@ ${`<div style="${
   };
 
   addEventListeners() {
-    this.canvas.addEventListener('mousedown', (e) => this.handleTileSelection(e));
-    this.canvas.addEventListener('mouseup', (e) => this.handleTileSwap(e));
-
-    this.canvas.addEventListener('touchstart', (e) => {
-      e.preventDefault(); // prevent scrolling
-      this.handleTileSelection(e.touches[0]);
-    });
-    this.canvas.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      this.handleTileSwap(e.changedTouches[0]);
-    });
-
     if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
@@ -795,7 +757,7 @@ ${`<div style="${
     }
   }
   closeGame = () => {
-    const element = document.getElementById('boomio-crush-container');
+    const element = document.getElementById('boomio-pop-container');
     if (element && element.parentNode) {
       this.gameClosed = true;
       element.parentNode.removeChild(element);
@@ -939,7 +901,7 @@ ${`<div style="${
             this.gamePlaying = true;
             this.selectedTile = null;
 
-            const canvas = document.getElementById('boomio-crush-canvas');
+            const canvas = document.getElementById('boomio-pop-canvas');
             if (canvas) {
               canvas.style.display = 'block';
             }
@@ -959,16 +921,106 @@ ${`<div style="${
     }, 400);
     document.getElementById('game-content').style.display = 'block';
 
-    const gameLoop = () => {
-      if (this.timer > 0) {
-        requestAnimationFrame(gameLoop);
+    this.balloonSpeed = 1;
+    this.spawnInterval = 1500;
+    this.lastSpawnTime = 0;
+    this.balloons = [];
+    const canvas = document.getElementById('boomio-pop-canvas');
+
+    const ctx = canvas.getContext('2d');
+
+    const loop = () => {
+      if (this.timer <= 0) return;
+      requestAnimationFrame(loop);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const now = Date.now();
+      if (now - this.lastSpawnTime > this.spawnInterval) {
+        this.spawnBalloon();
+        this.lastSpawnTime = now;
       }
+
+      this.balloons.forEach((balloon, i) => {
+        balloon.y -= this.balloonSpeed;
+        if (balloon.y + balloon.size < 0) this.balloons.splice(i, 1);
+        else this.drawBalloon(ctx, balloon);
+      });
+
+      this.balloonSpeed += 0.0001;
+      this.spawnInterval = Math.max(500, this.spawnInterval - 0.02);
     };
 
-    requestAnimationFrame(gameLoop);
+    canvas.addEventListener('click', (e) => this.checkBalloonClick(e));
+    canvas.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      this.checkBalloonClick({ clientX: touch.clientX, clientY: touch.clientY });
+    });
+
+    requestAnimationFrame(loop);
+  }
+
+  drawBalloon(ctx, balloon) {
+    const scale = balloon.scale;
+
+    // Balloon
+    ctx.beginPath();
+    ctx.fillStyle = balloon.good ? 'green' : 'red';
+    ctx.arc(balloon.x, balloon.y, balloon.size * scale, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.closePath();
+
+    // Score Text
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold ' + 18 * scale + 'px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(balloon.good ? '+10' : '-5', balloon.x, balloon.y + 5 * scale);
+
+    // Line from balloon to item
+    const lineLength = 30 * scale;
+    const itemY = balloon.y + balloon.size * scale + lineLength;
+    ctx.beginPath();
+    ctx.moveTo(balloon.x, balloon.y + balloon.size * scale);
+    ctx.lineTo(balloon.x, itemY);
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.closePath();
+
+    // Attached Item (e.g., '🎹')
+    ctx.font = 20 * scale + 'px sans-serif';
+    ctx.fillText(balloon.item || '', balloon.x, itemY + 20);
+  }
+
+  spawnBalloon() {
+    const canvas = document.getElementById('boomio-pop-canvas');
+    const x = Math.random() * (canvas.width - 40) + 20;
+    const y = canvas.height + 30;
+    const good = Math.random() < 0.6;
+    const items = ['🎹', '💻', '📦', '🧸', '🎁'];
+    const item = items[Math.floor(Math.random() * items.length)];
+    const scale = Math.random() * 1 + 1; // Random scale between 1 and 2
+    this.balloons.push({ x, y, size: 25, good, item, scale });
+  }
+
+  checkBalloonClick(e) {
+    const canvas = document.getElementById('boomio-pop-canvas');
+    const rect = canvas.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+
+    for (let i = 0; i < this.balloons.length; i++) {
+      const b = this.balloons[i];
+      const dist = Math.hypot(b.x - clickX, b.y - clickY);
+      if (dist < b.size) {
+        if (b.good) this.currentScore += 10;
+        else this.currentScore = Math.max(0, this.currentScore - 5);
+        this.balloons.splice(i, 1);
+        document.getElementById('currentScore').innerText = this.currentScore;
+        break;
+      }
+    }
   }
 }
-
 export default () => {
   new PopGame();
 };
