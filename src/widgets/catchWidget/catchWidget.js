@@ -726,7 +726,7 @@ class CatchGame {
                   : this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : this.language === 'ES'
-                  ? 'Para continuar, debe aceptar recibir los boletines informativos de la empresa.'
+                  ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer.includes('Gamtos Ateitis')
                   ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
                   : '';
@@ -791,12 +791,12 @@ class CatchGame {
             if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni')) {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
-                  ? 'Debes aceptar recibir comunicaciones de marketing para continuar.'
+                  ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error2').style.display = 'block';
-              document.getElementById('competition-checkbox-error2').style.height = '14px';
+              document.getElementById('competition-checkbox-error2').style.height = '18px';
 
               document.getElementById('competition-name-error').innerText = '';
 

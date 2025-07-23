@@ -204,7 +204,7 @@ export class InputRegisterContainer {
         : this.prop === 'Nevezis'
         ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
         : this.prop === 'Toni'
-        ? 'Confirmo que soy mayor de 18 años.'
+        ? 'Confirmo que soy mayor de 13 años.'
         : this.prop === 'Magija'
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : this.prop === 'Orlen'
@@ -467,7 +467,7 @@ export class InputRegisterContainer {
         ? '436px'
         : '420px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-      this.isMobile ? '9px' : '10px'
+      this.isMobile ? '8px' : '9px'
     };color:${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };text-align:start;line-height:8px;">

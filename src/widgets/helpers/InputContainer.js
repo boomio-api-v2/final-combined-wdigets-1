@@ -435,7 +435,7 @@ export class InputContainer {
                 : this.prop === 'Toni' && this.game === 'catch'
                 ? 'Evita'
                 : this.prop === 'Toni' && this.game === 'crush'
-                ? 'Recoge'
+                ? 'Acumula Más Puntos'
                 : this.language === 'ET'
                 ? 'VÕIDA'
                 : this.prop === 'Fpro'
@@ -485,7 +485,9 @@ export class InputContainer {
       this.prop === 'Dentsu'
         ? 'white-space:normal;'
         : ''
-    }${
+    }
+    ${this.prop === 'Toni' && 'margin-top:13px;line-height:14px;white-space:normal;'}
+    ${
       this.prop === 'Perlas GO' ||
       this.prop === 'SaludSA' ||
       this.prop === 'Pieno Žvaigždės' ||
@@ -549,7 +551,7 @@ export class InputContainer {
                 : this.prop === 'Toni' && this.game === 'catch'
                 ? 'los palitos vacíos para no perder vidas.'
                 : this.prop === 'Toni' && this.game === 'crush'
-                ? 'helado especial para más puntos.'
+                ? 'combinando helados con splash de leche.'
                 : this.language === 'ET'
                 ? 'auhinnad.'
                 : this.prop.includes('Gamtos Ateitis')
