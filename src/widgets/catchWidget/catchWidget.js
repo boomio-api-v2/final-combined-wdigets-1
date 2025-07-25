@@ -485,8 +485,30 @@ class CatchGame {
        ${
          window.innerWidth <= 768
            ? `
-      <img src=${controllLeft} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% - 150px);" id="controllLeft">
-      <img src=${controllRight} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
+           
+<div id="controllLeft"
+     style="background-image: url(${controllLeft});
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 50px;
+            height: 50px;
+            top: calc(50% + 150px);
+            position: absolute;
+            left: calc(50% - 150px);">
+</div>
+
+<div id="controllRight"
+     style="background-image: url(${controllRight});
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 50px;
+            height: 50px;
+            top: calc(50% + 150px);
+            position: absolute;
+            left: calc(50% + 120px);">
+</div> `
            : ''
        }
     <div class="boomio-score-input-container-catch" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${

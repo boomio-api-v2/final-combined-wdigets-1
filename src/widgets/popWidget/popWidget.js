@@ -1008,10 +1008,16 @@ ${`<div style="${
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
 
+    if (this.currentScore > 0) {
+      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      currectScoreDiv.style.transition = 'opacity 0.8s ease';
+      currectScoreDiv.style.display = 'block';
+      currectScoreDiv.style.opacity = 1;
+    }
     for (let i = 0; i < this.balloons.length; i++) {
       const b = this.balloons[i];
       const dist = Math.hypot(b.x - clickX, b.y - clickY);
-      if (dist < b.size) {
+      if (dist < b.size * b.scale) {
         if (b.good) this.currentScore += 10;
         else this.currentScore = Math.max(0, this.currentScore - 5);
         this.balloons.splice(i, 1);
