@@ -193,8 +193,34 @@ class FlappyBird {
       });
 
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      emailInput.addEventListener('input', () => {});
 
+      if (this.customer === 'Orlen' && emailInput) {
+        emailInput.value = '+370';
+
+        emailInput.addEventListener('input', () => {
+          if (!emailInput.value.startsWith('+370')) {
+            emailInput.value = '+370' + emailInput.value.replace(/\D/g, '').slice(0, 8);
+          } else {
+            emailInput.value = '+370' + emailInput.value.slice(4).replace(/\D/g, '').slice(0, 8);
+          }
+        });
+
+        emailInput.addEventListener('keydown', (e) => {
+          // Prevent deleting or navigating into the +370 part
+          if (
+            emailInput.selectionStart <= 4 &&
+            (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowLeft')
+          ) {
+            e.preventDefault();
+          }
+        });
+
+        emailInput.addEventListener('paste', (e) => {
+          e.preventDefault(); // Block pasting
+        });
+      } else {
+        emailInput.addEventListener('input', () => {});
+      }
       setTimeout(() => {
         if (this.customer !== 'SaludSA') {
           const canvas = document.getElementById('flappy-canvas');
