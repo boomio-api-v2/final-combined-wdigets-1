@@ -151,6 +151,7 @@ export class InputRegisterContainer {
       this.prop === 'LemonFeel' ||
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
+      this.prop === 'Pigu.lt' ||
       this.prop === 'Nykstukas' ||
       this.prop === 'Toni' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
@@ -436,6 +437,7 @@ export class InputRegisterContainer {
       this.prop === 'Vilvi' ||
       this.prop === 'Perlas GO' ||
       this.prop === 'Magija' ||
+      this.prop === 'Pigu.lt' ||
       this.prop === 'Nevezis'
         ? 'block'
         : 'none'
@@ -494,6 +496,7 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
+        this.prop === 'Pigu.lt' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
@@ -556,6 +559,7 @@ export class InputRegisterContainer {
           : this.prop === 'Perlas GO' ||
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
+            this.prop === 'Pigu.lt' ||
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
             this.prop === 'Orlen' ||
@@ -573,6 +577,7 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
+        this.prop === 'Pigu.lt' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
@@ -595,6 +600,7 @@ export class InputRegisterContainer {
           : this.prop === 'Perlas GO' ||
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
+            this.prop === 'Pigu.lt' ||
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
             this.prop === 'Orlen' ||
@@ -644,6 +650,7 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
+        this.prop === 'Pigu.lt' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||

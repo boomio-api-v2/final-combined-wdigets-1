@@ -40,9 +40,7 @@ export class InputContainer {
     containerDiv.innerHTML = `
 
       
-    <div style="width: 100%; height: ${
-      this.userBestScore <= 1500 && this.prop === 'Pigu.lt' ? '220px' : '180px'
-    };box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
+    <div style="width: 100%; height: ${'180px'};box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 10px; padding-right: 10px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="margin-top:-20px;align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${
@@ -103,7 +101,9 @@ export class InputContainer {
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
-                this.prop === 'Pigu.lt' && this.language === 'EN'
+                this.prop === 'Pigu.lt' && this.language === 'LT'
+                  ? 'SPAUSK'
+                  : this.prop === 'Pigu.lt' && this.language === 'EN'
                   ? 'CLICK'
                   : this.prop === 'Pigu.lt' && this.language === 'LV'
                   ? 'KLIKŠĶINI,'
@@ -686,13 +686,9 @@ ${
       this.prop === 'Orlen' ||
       this.prop === 'LemonFeel' ||
       this.prop.includes('demo')
-        ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${
-            this.prop === 'Pigu.lt' ? 'start' : 'center'
-          }; color: white; font-size: 10px; font-family:${
+        ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${'center'}; color: white; font-size: 10px; font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-          };${
-            this.prop === 'Pigu.lt' ? 'margin-left:47px;' : ''
-          } font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
+          }; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
             this.prop === 'SaludSA'
               ? 'href=https://ventas.saludsa.com/reglas-juego'
               : this.prop === 'Barbora'
@@ -787,7 +783,7 @@ ${
           } </a></div>
            
           ${
-            this.prop === 'Pigu.lt'
+            this.prop === 'Pigu.lt' && false
               ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:30px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
             <img id="boomio-rules-privacyCheckbox-img" src="${uncheckIcon}" style="max-width:fit-content;width: 20px; height: 20px;">
@@ -889,59 +885,6 @@ ${
     </div>
  
     `;
-
-    const observer = new MutationObserver((mutationsList, observer) => {
-      // Check if the 'rules-table-container' and 'control-button' have been added to the DOM
-      const rulesTableContainer = document.getElementById('rules-table-container');
-      const closeBtn = document.getElementById('control-button');
-
-      if (rulesTableContainer && closeBtn) {
-        // Element found, add event listener to 'control-button'
-        closeBtn.addEventListener('click', () => {
-          rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          setTimeout(() => {
-            rulesTableContainer.style.height = '10px';
-            rulesTableContainer.style.top = 'calc(50% + 330px)';
-            rulesTableContainer.style.opacity = 0;
-          }, 100);
-          setTimeout(() => {
-            rulesTableContainer.style.display = 'none';
-          }, 1000);
-        });
-
-        // Stop observing once the elements are found and event listener is added
-        observer.disconnect();
-      }
-    });
-
-    // Start observing the DOM for changes in child elements
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    function showCompetitionTableContainer() {
-      const rulesTableContainer = document.querySelector('.rules-table-container');
-      rulesTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      rulesTableContainer.style.display = 'block';
-      setTimeout(() => {
-        rulesTableContainer.style.height = '500px';
-        rulesTableContainer.style.top = 'calc(50% - 15px)';
-        rulesTableContainer.style.opacity = 1;
-      }, 100);
-    }
-    if (this.prop === 'Pigu.lt') {
-      const observer = new MutationObserver((mutationsList, observer) => {
-        // Check if the element has been added to the DOM
-        const startRulesButton = document.getElementById('startRulesButtonClick');
-        if (startRulesButton) {
-          // Element found, add event listener
-          startRulesButton.addEventListener('click', showCompetitionTableContainer);
-          // Stop observing once the element is found
-          observer.disconnect();
-        }
-      });
-
-      // Start observing the DOM for changes
-      observer.observe(document.body, { childList: true, subtree: true });
-    }
 
     return containerDiv;
   }

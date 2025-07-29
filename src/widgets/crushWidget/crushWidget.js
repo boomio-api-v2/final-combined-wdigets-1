@@ -149,7 +149,7 @@ class CrushGame {
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }
-    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt' && user_id === null) {
+    if (this.showCompetitiveRegistration) {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
@@ -181,7 +181,7 @@ class CrushGame {
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
-    } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id !== '') {
+    } else if (this.customer === 'Perlas GO' && user_id !== '') {
       boomioService
         .signal('', 'user_info', {
           emails_consent: this.customer === 'Perlas GO' ? true : false,
@@ -212,7 +212,7 @@ class CrushGame {
         .catch((error) => {
           console.error('Error:', error);
         });
-    } else if ((this.customer === 'Perlas GO' || this.customer === 'Pigu.lt') && user_id === '') {
+    } else if (this.customer === 'Perlas GO' && user_id === '') {
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
@@ -237,7 +237,7 @@ class CrushGame {
         inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         inputContainer.style.display = 'block';
         setTimeout(() => {
-          inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+          inputContainer.style.height = '332px';
           inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
           inputContainer.style.opacity = 1;
         }, 100);
@@ -249,22 +249,22 @@ class CrushGame {
     this.config = localStorageService.getDefaultConfig();
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
 
-    if (this.customer === 'Pigu.lt') {
-      if (this.userBestScore > 0) {
-        document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
-      }
-      const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+    // if (this.customer === 'Pigu.lt') {
+    //   if (this.userBestScore > 0) {
+    //     document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
+    //   }
+    //   const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
 
-      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      setTimeout(() => {
-        competitionTableContainer.style.height = '10px';
-        competitionTableContainer.style.top = 'calc(50% + 330px)';
-        competitionTableContainer.style.opacity = 0;
-      }, 100);
-      setTimeout(() => {
-        competitionTableContainer.style.display = 'none';
-      }, 1000);
-    }
+    //   competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    //   setTimeout(() => {
+    //     competitionTableContainer.style.height = '10px';
+    //     competitionTableContainer.style.top = 'calc(50% + 330px)';
+    //     competitionTableContainer.style.opacity = 0;
+    //   }, 100);
+    //   setTimeout(() => {
+    //     competitionTableContainer.style.display = 'none';
+    //   }, 1000);
+    // }
     setTimeout(() => {
       document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
       const inputContainer = document.querySelector('.input-container');
@@ -273,7 +273,7 @@ class CrushGame {
       inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       inputContainer.style.display = 'block';
       setTimeout(() => {
-        inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+        inputContainer.style.height = '332px';
         inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
         inputContainer.style.opacity = 1;
       }, 100);
@@ -458,7 +458,7 @@ class CrushGame {
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
           setTimeout(() => {
-            inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+            inputContainer.style.height = '332px';
             inputContainer.style.top = `calc(50% + ${
               this.isMobileHeightSmall ? '110px' : '170px'
             })`;
@@ -1295,7 +1295,7 @@ ${`<div style="${
         }
 
         if (emailInput?.value === '' || emailInput?.value === null) {
-          document.getElementById('competition-phone-error').innerText =
+          document.getElementById('competition-email-error').innerText =
             this.language === 'LV'
               ? 'Obligāti aizpildāmie lauki.'
               : this.language === 'ES'
@@ -1314,6 +1314,7 @@ ${`<div style="${
         }
 
         if ((phoneInput?.value === '' || phoneInput?.value === null) && this.customer === 'Toni') {
+          console.log('aa');
           document.getElementById('competition-phone-error').innerText =
             this.language === 'LV'
               ? 'Obligāti aizpildāmie lauki.'
@@ -1459,7 +1460,7 @@ ${`<div style="${
                   inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                   inputContainer.style.display = 'block';
                   setTimeout(() => {
-                    inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+                    inputContainer.style.height = '332px';
                     inputContainer.style.top = `calc(50% + ${
                       this.isMobileHeightSmall ? '110px' : '170px'
                     })`;
@@ -1513,7 +1514,7 @@ ${`<div style="${
       this.handleTileSwap(e.changedTouches[0]);
     });
 
-    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
+    if (this.showCompetitiveRegistration) {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
       competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
     }
@@ -1528,7 +1529,7 @@ ${`<div style="${
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
     }
-    if (this.customer !== 'Pigu.lt' && !this.campaignUrl) {
+    if (!this.campaignUrl) {
       document.getElementById('close-game-container').addEventListener('click', this.closeGame);
     }
   }
@@ -1540,91 +1541,69 @@ ${`<div style="${
     }
   };
   removeRules = () => {
-    if (!this.checkboxChange3 && this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
-      document.getElementById('boomio-rules-checkbox-error').innerText =
-        this.customer === 'Pigu.lt' && this.language === 'EN'
-          ? 'To continue, it is mandatory to agree to receive news and information about prizes.'
-          : this.customer === 'Pigu.lt' && this.language === 'LV'
-          ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
-          : this.customer === 'Pigu.lt' && this.language === 'ET'
-          ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
-          : this.customer === 'Pigu.lt' && this.language === 'FI'
-          ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
-          : this.customer === 'Pigu.lt' && this.language === 'RU'
-          ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
-          : '';
-      document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
+    const inputContainer = document.querySelector('.input-container');
+    const controlButton = document.querySelector('.control-button');
 
-      document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
-    }
+    inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    controlButton.style.transition = 'opacity 0.6s ease';
+    setTimeout(() => {
+      inputContainer.style.height = '10px';
+      inputContainer.style.top = 'calc(50% + 330px)';
+      inputContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(() => {
+      inputContainer.style.display = 'none';
+    }, 1000);
 
-    if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
-      const inputContainer = document.querySelector('.input-container');
+    if (this.gameCount === 0) {
       const controlButton = document.querySelector('.control-button');
-
-      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      controlButton.style.transition = 'opacity 0.6s ease';
-      setTimeout(() => {
-        inputContainer.style.height = '10px';
-        inputContainer.style.top = 'calc(50% + 330px)';
-        inputContainer.style.opacity = 0;
-      }, 100);
-      setTimeout(() => {
-        inputContainer.style.display = 'none';
-      }, 1000);
-
-      if (this.gameCount === 0) {
-        const controlButton = document.querySelector('.control-button');
-        controlButton.style.display = 'none';
-        this.index = 0;
-      }
+      controlButton.style.display = 'none';
+      this.index = 0;
     }
   };
 
   initGame = () => {
     this.removeRules();
-    if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
-      if (!this.tutorial) {
-        setTimeout(() => {
-          if (this.showCompetitiveRegistration) {
-            boomioService
-              .signal('ROUND_STARTED', 'signal')
-              .then((response) => {
-                if (this.customer === 'Pigu.lt') {
-                  if (window.Boomio) {
-                    window.Boomio.logEvent('game_started', JSON.stringify(response));
-                  } else if (
-                    window.webkit &&
-                    window.webkit.messageHandlers &&
-                    window.webkit.messageHandlers.Boomio
-                  ) {
-                    var message = {
-                      command: 'logEvent',
-                      name: 'game_started',
-                      parameters: { response },
-                    };
-                    window.webkit.messageHandlers.Boomio.postMessage(message);
-                  } else {
-                    console.log('No native APIs found.');
-                  }
+    if (!this.tutorial) {
+      setTimeout(() => {
+        if (this.showCompetitiveRegistration) {
+          boomioService
+            .signal('ROUND_STARTED', 'signal')
+            .then((response) => {
+              if (this.customer === 'Pigu.lt') {
+                if (window.Boomio) {
+                  window.Boomio.logEvent('game_started', JSON.stringify(response));
+                } else if (
+                  window.webkit &&
+                  window.webkit.messageHandlers &&
+                  window.webkit.messageHandlers.Boomio
+                ) {
+                  var message = {
+                    command: 'logEvent',
+                    name: 'game_started',
+                    parameters: { response },
+                  };
+                  window.webkit.messageHandlers.Boomio.postMessage(message);
+                } else {
+                  console.log('No native APIs found.');
                 }
-              })
+              }
+            })
 
-              .catch((error) => {
-                console.error('Error:', error);
-              });
-          }
-        }, 50);
-
-        this.startGameLoop();
-        this.startTimer();
-      } else {
-        if (typeof window.dataLayer !== 'undefined') {
-          window.dataLayer.push({ event: 'Game_Start' });
+            .catch((error) => {
+              console.error('Error:', error);
+            });
         }
+      }, 50);
 
-        this.showtutorial();
+      this.startGameLoop();
+      this.startTimer();
+    } else {
+      if (typeof window.dataLayer !== 'undefined') {
+        window.dataLayer.push({ event: 'Game_Start' });
       }
+
+      this.showtutorial();
     }
   };
 
