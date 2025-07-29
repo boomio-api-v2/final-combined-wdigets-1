@@ -40,6 +40,19 @@ import {
   crushElement6ToniSpecial,
   crushElement7ToniSpecial,
   backgroundToni,
+  crushElement1Pigu,
+  crushElement2Pigu,
+  crushElement3Pigu,
+  crushElement4Pigu,
+  crushElement5Pigu,
+  crushElement6Pigu,
+  crushElement1PiguSpecial,
+  crushElement2PiguSpecial,
+  crushElement3PiguSpecial,
+  crushElement4PiguSpecial,
+  crushElement5PiguSpecial,
+  crushElement6PiguSpecial,
+  backgroundPigu,
   tutorial,
   close,
 } from './constants';
@@ -54,19 +67,28 @@ import './styles.css';
 class CrushGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
     this.gameCount = 0;
-    this.language = this.config.language ? this.config.language : 'LV';
+    this.language = this.config.language ? this.config.language : 'LT';
 
     this.currentScoreTable = {};
     this.gridCols = 5;
     this.gridRows = 8;
     this.tileSize = 68;
     this.colors =
-      this.customer === 'Toni'
+      this.customer === 'Pigu.lt'
+        ? {
+            crushElement1Pigu,
+            crushElement2Pigu,
+            crushElement3Pigu,
+            crushElement4Pigu,
+            crushElement5Pigu,
+            crushElement6Pigu,
+          }
+        : this.customer === 'Toni'
         ? {
             crushElement1Toni,
             crushElement2Toni,
@@ -491,7 +513,16 @@ class CrushGame {
   preloadImages(callback) {
     const normalColorKeys = Object.keys(this.colors);
     const specialSources =
-      this.customer === 'Toni'
+      this.customer === 'Pigu.lt'
+        ? {
+            crushElement1PiguSpecial,
+            crushElement2PiguSpecial,
+            crushElement3PiguSpecial,
+            crushElement4PiguSpecial,
+            crushElement5PiguSpecial,
+            crushElement6PiguSpecial,
+          }
+        : this.customer === 'Toni'
         ? {
             crushElement1ToniSpecial,
             crushElement2ToniSpecial,
@@ -656,7 +687,13 @@ ${`<div style="${
 </div>
 </div>
 
-<img src="${this.customer === 'Toni' ? backgroundToni : backgroundNevezis}" 
+<img src="${
+      this.customer === 'Pigu.lt'
+        ? backgroundPigu
+        : this.customer === 'Toni'
+        ? backgroundToni
+        : backgroundNevezis
+    }" 
      alt="Game Background"
      id="background_nevezis"
      style="z-index:0;
@@ -762,7 +799,16 @@ ${`<div style="${
 
     // Only add 3Points if baseColor is allowed and not already special
     const threePointColors =
-      this.customer === 'Toni'
+      this.customer === 'Pigu.lt'
+        ? [
+            'crushElement1Pigu',
+            'crushElement2Pigu',
+            'crushElement3Pigu',
+            'crushElement4Pigu',
+            'crushElement5Pigu',
+            'crushElement6Pigu',
+          ]
+        : this.customer === 'Toni'
         ? [
             'crushElement1Toni',
             'crushElement2Toni',
@@ -870,6 +916,8 @@ ${`<div style="${
             newColor === 'yellow'
               ? this.customer === 'Toni'
                 ? 'crushElement1ToniSpecial'
+                : this.customer === 'Pigu.lt'
+                ? 'crushElement1PiguSpecial'
                 : 'crushElement1NevezisSpecial'
               : newColor + 'Special';
         }

@@ -128,5 +128,34 @@ export const crushElement7ToniSpecial =
 export const backgroundToni =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Toni/background.png';
 
+export const crushElement1Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement1.png';
+export const crushElement2Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement2.png';
+export const crushElement3Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement3.png';
+export const crushElement4Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement4.png';
+export const crushElement5Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement5.png';
+export const crushElement6Pigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement6.png';
+
+export const crushElement1PiguSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement1Special.png';
+export const crushElement2PiguSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement2Special.png';
+export const crushElement3PiguSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement3Special.png';
+export const crushElement4PiguSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement4Special.png';
+export const crushElement5PiguSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement5Special.png';
+export const crushElement6PiguSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/crushElement6Special.png';
+
+export const backgroundPigu =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Pigu/background.png';
+
 export const tutorial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/tutorial.png';
