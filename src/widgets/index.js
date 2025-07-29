@@ -18,5 +18,6 @@ export * from './doodleWidget';
 export * from './driveWidget';
 export * from './catchWidget';
 export * from './crushWidget';
+export * from './popWidget';
 export * from './runnerWidget';
 export * from './footballWidget';

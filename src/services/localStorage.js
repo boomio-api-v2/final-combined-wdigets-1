@@ -121,7 +121,7 @@ class LocalStorageService {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
-    const languageParam = urlParams.get('language');
+    const languageParam = urlParams.get('language') || 'LT';
     const couponCodeNew = config?.coupon_code;
 
     const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';

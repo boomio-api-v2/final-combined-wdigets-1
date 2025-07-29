@@ -378,8 +378,6 @@ class CatchGame {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
               this.customer === 'Pegasas' ? 0.8 : 0.37;
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
 
             const inpuRegisterContainer = document.querySelector('.input-register-container');
             inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -395,8 +393,6 @@ class CatchGame {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
               this.customer === 'Pegasas' ? 0.8 : 0.37;
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
             const inputContainer = document.querySelector('.input-container');
             document.getElementById('control-button').style.transition = 'opacity 2s ease';
             document.getElementById('control-button').style.opacity = 1;
@@ -425,9 +421,6 @@ class CatchGame {
 
           document.getElementById('background_blur').style.opacity =
             this.customer === 'Pegasas' ? 0.8 : 0.37;
-
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
         }, 1000);
       }
       setTimeout(() => {
@@ -492,8 +485,30 @@ class CatchGame {
        ${
          window.innerWidth <= 768
            ? `
-      <img src=${controllLeft} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% - 150px);" id="controllLeft">
-      <img src=${controllRight} alt="Image Description" style="width: 50px; height: 50px;top:calc(50% + 150px);position:absolute;left:calc(50% + 120px);" id="controllRight">`
+           
+<div id="controllLeft"
+     style="background-image: url(${controllLeft});
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 50px;
+            height: 50px;
+            top: calc(50% + 150px);
+            position: absolute;
+            left: calc(50% - 150px);">
+</div>
+
+<div id="controllRight"
+     style="background-image: url(${controllRight});
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 50px;
+            height: 50px;
+            top: calc(50% + 150px);
+            position: absolute;
+            left: calc(50% + 120px);">
+</div> `
            : ''
        }
     <div class="boomio-score-input-container-catch" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
@@ -733,7 +748,7 @@ class CatchGame {
                   : this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : this.language === 'ES'
-                  ? 'Para continuar, debe aceptar recibir los boletines informativos de la empresa.'
+                  ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer.includes('Gamtos Ateitis')
                   ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
                   : '';
@@ -798,12 +813,12 @@ class CatchGame {
             if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni')) {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
-                  ? 'Debes aceptar recibir comunicaciones de marketing para continuar.'
+                  ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error2').style.display = 'block';
-              document.getElementById('competition-checkbox-error2').style.height = '14px';
+              document.getElementById('competition-checkbox-error2').style.height = '18px';
 
               document.getElementById('competition-name-error').innerText = '';
 
@@ -1011,7 +1026,7 @@ class CatchGame {
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
                           : this.language === 'ES'
-                          ? 'Este nickname ya está en uso. Use otro nickname.'
+                          ? 'Este nombre ya está en uso. Intente con otro nombre.'
                           : this.language === 'LV'
                           ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                           : this.language === 'RU'
@@ -1053,8 +1068,6 @@ class CatchGame {
                       const canvas = document.getElementById('boomio-catch-canvas');
                       document.getElementById('background_blur').style.opacity =
                         this.customer === 'Pegasas' ? 0.8 : 0.37;
-                      canvas.style.transition = 'filter 0.6s ease';
-                      canvas.style.filter = 'blur(2px)';
                       const inputContainer = document.querySelector('.input-container');
                       document.getElementById('control-button').style.transition =
                         'opacity 2s ease';
@@ -1596,8 +1609,6 @@ class CatchGame {
             // Displaying the competition table container
             const canvas = document.getElementById('boomio-catch-canvas');
 
-            canvas.style.transition = 'filter 0.6s ease';
-            canvas.style.filter = 'blur(2px)';
             let competitionTableContainer = '';
             if (
               this.customer.includes('Gamtos Ateitis') ||
@@ -1789,9 +1800,9 @@ class Fruit {
       }
     } else if (this.customer === 'Toni') {
       if (type === 'bad') {
-        this.fruitNumber = Math.floor(Math.random() * 5 + 5);
+        this.fruitNumber = Math.floor(Math.random() * 6 + 2);
       } else {
-        this.fruitNumber = Math.floor(Math.random() * 5);
+        this.fruitNumber = Math.floor(Math.random() * 6);
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
@@ -2199,7 +2210,7 @@ class Fruit {
         this.fruitNumber
       ];
     } else if (this.customer === 'Toni') {
-      this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
+      this.fruitScore = [100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -2307,11 +2318,20 @@ class Fruit {
   updateScore() {
     if (this.fruitScore > 0) {
       // Update the current score
-      this.game.currentScore += this.fruitScore;
+      console.log(`Fruit caught: ${this.fruitType}, Score: ${this.fruitScore}`);
+
+      if (this.fruitType === 'item2Toni') {
+        this.game.currentScore += this.fruitScore * 2;
+      } else {
+        this.game.currentScore += this.fruitScore;
+      }
       document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
-      // Show score effect
-      this.showScoreEffect('+100');
+      if (this.fruitType === 'item2Toni') {
+        this.showScoreEffect('+200');
+      } else {
+        this.showScoreEffect('+100');
+      }
 
       const effectElement = document.getElementById('background_effect');
       effectElement.style.display = 'block';

@@ -63,7 +63,7 @@ export class InputRegisterContainer {
         : this.language === 'EN'
         ? 'Register to Play'
         : this.language === 'ES'
-        ? 'Registrarse para jugar'
+        ? '¡Regístrate para jugar!'
         : 'Registruokis Žaisti'
     }</div>
           <div style="height: 124px; top:${
@@ -105,7 +105,9 @@ export class InputRegisterContainer {
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center;font-family:${
           this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-        };   color: ${'#3D4928'} ; font-size: 24px;  font-weight: ${
+        };   color: ${
+      this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
+    } ; font-size: 24px;  font-weight: ${
       this.prop === 'Ikea' ? '400' : '700'
     }; line-height: 24px; word-wrap: break-word" >${
       this.language === 'LV'
@@ -149,6 +151,7 @@ export class InputRegisterContainer {
       this.prop === 'LemonFeel' ||
       this.prop === 'Nevezis' ||
       this.prop === 'Magija' ||
+      this.prop === 'Pigu.lt' ||
       this.prop === 'Nykstukas' ||
       this.prop === 'Toni' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
@@ -202,7 +205,7 @@ export class InputRegisterContainer {
         : this.prop === 'Nevezis'
         ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
         : this.prop === 'Toni'
-        ? 'Confirmo que soy mayor de 18 años.'
+        ? 'Confirmo que soy mayor de 13 años.'
         : this.prop === 'Magija'
         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
         : this.prop === 'Orlen'
@@ -320,7 +323,7 @@ export class InputRegisterContainer {
         : this.language === 'Toni'
         ? 'Acepto los Términos y Condiciones de la actividad'
         : this.prop === 'Toni'
-        ? 'Acepto los términos y condicines de la actividad. Acpeto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
+        ? 'Acepto los términos y condicines de la actividad. Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
         : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
         ? 'Piekrītu LEMON GYM'
         : this.language === 'LV'
@@ -434,6 +437,7 @@ export class InputRegisterContainer {
       this.prop === 'Vilvi' ||
       this.prop === 'Perlas GO' ||
       this.prop === 'Magija' ||
+      this.prop === 'Pigu.lt' ||
       this.prop === 'Nevezis'
         ? 'block'
         : 'none'
@@ -465,7 +469,7 @@ export class InputRegisterContainer {
         ? '436px'
         : '420px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-      this.isMobile ? '9px' : '10px'
+      this.isMobile ? '8px' : '9px'
     };color:${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };text-align:start;line-height:8px;">
@@ -492,6 +496,7 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
+        this.prop === 'Pigu.lt' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Nykstukas' ||
         this.prop === 'Orlen' ||
@@ -554,6 +559,7 @@ export class InputRegisterContainer {
           : this.prop === 'Perlas GO' ||
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
+            this.prop === 'Pigu.lt' ||
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
             this.prop === 'Orlen' ||
@@ -571,6 +577,7 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
+        this.prop === 'Pigu.lt' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
@@ -593,6 +600,7 @@ export class InputRegisterContainer {
           : this.prop === 'Perlas GO' ||
             this.prop === 'Nevezis' ||
             this.prop === 'Magija' ||
+            this.prop === 'Pigu.lt' ||
             this.prop === 'LemonGym' ||
             this.prop === 'Nykstukas' ||
             this.prop === 'Orlen' ||
@@ -642,6 +650,7 @@ export class InputRegisterContainer {
         this.prop === 'Perlas GO' ||
         this.prop === 'Nevezis' ||
         this.prop === 'Magija' ||
+        this.prop === 'Pigu.lt' ||
         this.prop === 'LemonGym' ||
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
@@ -730,22 +739,24 @@ export class InputRegisterContainer {
 
     // Function to set the values in the input fields
     const setCredentialsToInputs = () => {
-      const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+      if (this.prop !== 'Toni') {
+        const emailInput = document.querySelector('.boomio-competition-email-input-field');
+        const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
-      const credentials = getCookie('boomio_game_credentials');
+        const credentials = getCookie('boomio_game_credentials');
 
-      if (credentials) {
-        try {
-          const parsedCredentials = JSON.parse(credentials);
-          if (parsedCredentials.email && emailInput) {
-            emailInput.value = parsedCredentials.email;
+        if (credentials) {
+          try {
+            const parsedCredentials = JSON.parse(credentials);
+            if (parsedCredentials.email && emailInput) {
+              emailInput.value = parsedCredentials.email;
+            }
+            if (this.prop !== 'Nykstukas' && parsedCredentials.name && playerNameInput) {
+              playerNameInput.value = parsedCredentials.name;
+            }
+          } catch (e) {
+            console.error('Error parsing boomio_game_credentials cookie:', e);
           }
-          if (this.prop !== 'Nykstukas' && parsedCredentials.name && playerNameInput) {
-            playerNameInput.value = parsedCredentials.name;
-          }
-        } catch (e) {
-          console.error('Error parsing boomio_game_credentials cookie:', e);
         }
       }
     };

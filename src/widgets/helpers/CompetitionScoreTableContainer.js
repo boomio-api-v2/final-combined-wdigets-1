@@ -31,9 +31,9 @@ export class CompetitionScoreTableContainer {
     const userBestPlace = parseInt(
       this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas'
         ? this.scoreTable.team_best_place
-        : this.scoreTable.user_best_place,
+        : this.scoreTable?.user_best_place,
     );
-    const userBestScore = parseInt(this.scoreTable.user_best_score);
+    const userBestScore = parseInt(this.scoreTable?.user_best_score);
     this.userParticipationDays = this.scoreTable?.participation_days ?? 0; // nullish-coalescing
 
     const currentPageUrl = window.location.href;
@@ -415,7 +415,12 @@ export class CompetitionScoreTableContainer {
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 
-      const color = index + 1 === userBestPlace ? 'rgba(61, 73, 40, 1)' : 'white';
+      const color =
+        index + 1 === userBestPlace
+          ? this.prop === 'Toni'
+            ? '#10069F'
+            : 'rgba(61, 73, 40, 1)'
+          : 'white';
       const boxShadow =
         index + 1 === userBestPlace ? '2px 4px 3.4px 0px rgba(0, 0, 0, 0.10) inset' : 'none';
 
@@ -466,9 +471,13 @@ export class CompetitionScoreTableContainer {
     ) {
       tableHTML += `
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
-            <td style="padding-left:8px;text-align:start;width: 25px; color: rgba(61, 73, 40, 1); border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
+            <td style="padding-left:8px;text-align:start;width: 25px; color: ${
+              this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
+            }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
-              <td style="padding-left:6px;text-align:start;width: 100px; color: ${'rgba(61, 73, 40, 1)'}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+              <td style="padding-left:6px;text-align:start;width: 100px; color: ${
+                this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
+              }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
         !this.prop.includes('Gamtos Ateitis')
           ? this.prop === 'Nykstukas'
             ? 'Tavo komandos rezultatas'
@@ -483,7 +492,9 @@ export class CompetitionScoreTableContainer {
             : 'Tavo rezultatas'
           : scoreboard[userBestPlace].team
       }</td>
-              <td style="width: 48px; color: ${'rgba(61, 73, 40, 1)'}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
+              <td style="width: 48px; color: ${
+                this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
+              }; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
             </tr>`;
     }
 
@@ -828,7 +839,9 @@ export class CompetitionScoreTableContainer {
         : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
-      <div style="width:100%;top: 52px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
+      <div style="width:100%;top: ${
+        this.prop === 'Toni' ? '95px' : '52px'
+      }; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
       this.language === 'LV'
         ? 'REZULTĀTI'
         : this.language === 'RU'
@@ -852,7 +865,9 @@ export class CompetitionScoreTableContainer {
               
 
 
-      <div  style="width: calc(100% - 32px); height: ${'260px'}; left: 16px; top: 124px; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
+      <div  style="width: calc(100% - 32px); height: ${'260px'}; left: 16px; top: ${
+      this.prop === 'Toni' ? '134px' : '124px'
+    }; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
             <tbody class="boomio-tbody" style="background-color:transparent">
@@ -885,7 +900,7 @@ export class CompetitionScoreTableContainer {
 
     style="
       text-align: center;
-      color: rgba(61, 73, 40, 1);
+      color: ${this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'};
       font-size: 22px;
       font-family: 'Basis Grotesque Pro', sans-serif;
       font-weight: 800;
@@ -903,7 +918,9 @@ export class CompetitionScoreTableContainer {
 </div>
 
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:580px;position:absolute; height: 36px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 22px; font-family: ${
+        <div style="text-align: center; color: ${
+          this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
+        } ; font-size: 22px; font-family: ${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro, sans-serif' : 'Georama'
     }; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
       this.prop === 'Akropolis' && this.language === 'LV'
@@ -917,7 +934,7 @@ export class CompetitionScoreTableContainer {
         : this.language === 'ET'
         ? 'PARANDA TULEMUST'
         : this.language === 'ES'
-        ? 'MEJORAR EL RESULTADO'
+        ? '¡MEJORA TUS RESULTADOS!'
         : this.language === 'EN'
         ? 'IMPROVE YOUR SCORE'
         : this.language === 'ES'
