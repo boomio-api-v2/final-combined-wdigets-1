@@ -14,6 +14,8 @@ import {
   backgroundToni,
   tutorial,
   close,
+  redBallon,
+  greenBallon,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -26,7 +28,7 @@ import './styles.css';
 class PopGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Nevezis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -35,7 +37,7 @@ class PopGame {
 
     this.currentScore = 0;
     this.isAnimating = false; // Add this flag
-    this.timer = 120; // Add timer property
+    this.timer = 60; // Add timer property
     this.timerInterval = null; // Add timer interval property
     this.tutorial = true;
 
@@ -127,7 +129,7 @@ class PopGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 120;
+    this.timer = 60;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
@@ -936,7 +938,10 @@ ${`<div style="${
 
       const now = Date.now();
       if (now - this.lastSpawnTime > this.spawnInterval) {
-        this.spawnBalloon();
+        const spawnCount = 1 + Math.floor(Math.random() * 3); // Spawn 2–3 balloons at once
+        for (let i = 0; i < spawnCount; i++) {
+          this.spawnBalloon();
+        }
         this.lastSpawnTime = now;
       }
 
@@ -973,7 +978,7 @@ ${`<div style="${
     ctx.fillStyle = 'white';
     ctx.font = 'bold ' + 18 * scale + 'px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(balloon.good ? '+10' : '-5', balloon.x, balloon.y + 5 * scale);
+    ctx.fillText((balloon.score > 0 ? '+' : '') + balloon.score, balloon.x, balloon.y + 5 * scale);
 
     // Line from balloon to item
     const lineLength = 30 * scale;
@@ -999,7 +1004,11 @@ ${`<div style="${
     const items = ['🎹', '💻', '📦', '🧸', '🎁'];
     const item = items[Math.floor(Math.random() * items.length)];
     const scale = Math.random() * 1 + 1; // Random scale between 1 and 2
-    this.balloons.push({ x, y, size: 25, good, item, scale });
+    const score = good
+      ? Math.floor(Math.random() * 10) + 1 // +1 to +10
+      : -1 * (Math.floor(Math.random() * 10) + 1); // -1 to -10
+
+    this.balloons.push({ x, y, size: 25, good, item, scale, score });
   }
 
   checkBalloonClick(e) {
@@ -1008,20 +1017,24 @@ ${`<div style="${
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
 
-    if (this.currentScore > 0) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-      currectScoreDiv.style.transition = 'opacity 0.8s ease';
-      currectScoreDiv.style.display = 'block';
-      currectScoreDiv.style.opacity = 1;
-    }
     for (let i = 0; i < this.balloons.length; i++) {
       const b = this.balloons[i];
       const dist = Math.hypot(b.x - clickX, b.y - clickY);
       if (dist < b.size * b.scale) {
-        if (b.good) this.currentScore += 10;
-        else this.currentScore = Math.max(0, this.currentScore - 5);
+        this.currentScore += b.score;
+        if (this.currentScore < 0) this.currentScore = 0;
         this.balloons.splice(i, 1);
         document.getElementById('currentScore').innerText = this.currentScore;
+
+        // Show score UI only if first green balloon is clicked
+        if (b.good && !this.scoreDisplayStarted) {
+          const scoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+          scoreDiv.style.transition = 'opacity 0.8s ease';
+          scoreDiv.style.display = 'block';
+          scoreDiv.style.opacity = 1;
+          this.scoreDisplayStarted = true;
+        }
+
         break;
       }
     }

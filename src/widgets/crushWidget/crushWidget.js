@@ -247,7 +247,7 @@ class CrushGame {
 
   showRulesPigu = () => {
     this.config = localStorageService.getDefaultConfig();
-    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
+    this.userBestScore = this?.config?.userBestScore ? this?.config?.userBestScore : 0;
 
     // if (this.customer === 'Pigu.lt') {
     //   if (this.userBestScore > 0) {
