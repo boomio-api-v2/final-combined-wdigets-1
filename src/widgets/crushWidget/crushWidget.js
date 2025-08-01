@@ -1399,10 +1399,10 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo..'
+                      ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
-                    this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+                    '#FFBABA';
                   document.getElementById('competition-name-error').innerText = '';
                   document.getElementById('competition-phone-error').innerText = '';
 
@@ -1418,15 +1418,13 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo..'
+                      ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-phone-error').innerText = '';
-
+                  document.getElementById('competition-name-error').style.backgroundColor =
+                    '#FFBABA';
                   document.getElementById('competition-phone-error').style.backgroundColor =
                     'transparent';
-                  document.getElementById('competition-name-error').style.backgroundColor =
-                    this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
-
                   document.getElementById('competition-email-error').innerText = '';
                   document.getElementById('competition-email-error').style.backgroundColor =
                     'transparent';
