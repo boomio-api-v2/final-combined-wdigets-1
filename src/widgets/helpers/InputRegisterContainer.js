@@ -505,7 +505,9 @@ export class InputRegisterContainer {
         this.language === 'EN'
           ? 'none'
           : 'block'
-      }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
+      }width: calc(100% - 70px); height: ${
+      this.prop === 'Toni' ? '37px' : '21px'
+    }; left: 35px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '178px' : '258px'
     }; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
@@ -520,15 +522,17 @@ export class InputRegisterContainer {
       " id="competition-name-error"></div>
 
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni'
-          ? '258px'
-          : this.prop.includes('Gamtos Ateitis')
-          ? '348px'
-          : this.prop === 'Nykstukas'
-          ? '430px'
-          : '338px'
-      } ; position: absolute;text-align:start;z-index:99999;color: ${
+      <div style="width: calc(100% - 70px); height: ${
+        this.prop === 'Toni' ? '37px' : '21px'
+      }; left: 35px; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni'
+        ? '258px'
+        : this.prop.includes('Gamtos Ateitis')
+        ? '348px'
+        : this.prop === 'Nykstukas'
+        ? '430px'
+        : '338px'
+    } ; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
       font-family: Montserrat;
@@ -541,7 +545,9 @@ export class InputRegisterContainer {
       " id="competition-email-error"> </div>
 
 
-            <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${'335px'} ; position: absolute;text-align:start;z-index:99999;color: ${'#D8000C'};
+            <div style="width: calc(100% - 70px); height: ${
+              this.prop === 'Toni' ? '37px' : '21px'
+            }; left: 35px; top: ${'335px'} ; position: absolute;text-align:start;z-index:99999;color: ${'#D8000C'};
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;

@@ -1399,7 +1399,7 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este número se registró con otro nombre. Use el número utilizado durante el registro inicial o uno nuevo.'
+                      ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo..'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
                     this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
@@ -1418,7 +1418,7 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este nombre se registró con otro número. Use el nombre utilizado durante el registro inicial o uno nuevo.'
+                      ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo..'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-phone-error').innerText = '';
 
