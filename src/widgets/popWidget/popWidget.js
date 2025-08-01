@@ -14,8 +14,10 @@ import {
   backgroundToni,
   tutorial,
   close,
-  redBallon,
-  greenBallon,
+  redBalloon,
+  greenBalloon,
+  popElement,
+  popElement2,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -40,6 +42,16 @@ class PopGame {
     this.timer = 60; // Add timer property
     this.timerInterval = null; // Add timer interval property
     this.tutorial = true;
+    this.redBalloonImage = new Image();
+    this.redBalloonImage.src = redBalloon;
+
+    this.greenBalloonImage = new Image();
+    this.greenBalloonImage.src = greenBalloon;
+    this.popElementImage = new Image();
+    this.popElementImage.src = popElement;
+
+    this.popElementImage2 = new Image();
+    this.popElementImage2.src = popElement2;
 
     this.startLoading();
   }
@@ -882,7 +894,14 @@ ${`<div style="${
 
   restartGame = () => {
     this.currentScore = 0;
+    this.timer = 60;
+    this.balloons = [];
+    this.balloonSpeed = 1;
+    this.scoreDisplayStarted = false;
+
     document.getElementById('currentScore').innerText = '0';
+    document.getElementById('currentTime').innerText = '60';
+
     const competitionTableContainer = document.querySelector('.competition-table-container');
     competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
     setTimeout(() => {
@@ -894,26 +913,50 @@ ${`<div style="${
       competitionTableContainer.style.display = 'none';
     }, 1000);
 
-    setTimeout(() => {
-      if (this.showCompetitiveRegistration) {
-        boomioService
-          .signal('ROUND_STARTED', 'signal')
-          .then((response) => {
-            document.getElementById('background_blur').style.display = 'none';
-            this.gamePlaying = true;
-            this.selectedTile = null;
+    document.getElementById('background_blur').style.display = 'none';
 
-            const canvas = document.getElementById('boomio-pop-canvas');
-            if (canvas) {
-              canvas.style.display = 'block';
+    const canvas = document.getElementById('boomio-pop-canvas');
+    if (canvas) {
+      canvas.style.display = 'block';
+    }
+
+    document.getElementById('game-content').style.display = 'block';
+
+    // 🟢 Send ROUND_STARTED signal
+    if (this.showCompetitiveRegistration) {
+      boomioService
+        .signal('ROUND_STARTED', 'signal')
+        .then((response) => {
+          if (this.customer === 'Pigu.lt') {
+            if (window.Boomio) {
+              window.Boomio.logEvent('game_started', JSON.stringify(response));
+            } else if (
+              window.webkit &&
+              window.webkit.messageHandlers &&
+              window.webkit.messageHandlers.Boomio
+            ) {
+              const message = {
+                command: 'logEvent',
+                name: 'game_started',
+                parameters: { response },
+              };
+              window.webkit.messageHandlers.Boomio.postMessage(message);
+            } else {
+              console.log('No native APIs found.');
             }
-            this.startTimer();
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      }
-    }, 400);
+          }
+
+          // Start game
+          this.startGameLoop();
+          this.startTimer();
+        })
+        .catch((error) => {
+          console.error('Error starting round:', error);
+        });
+    } else {
+      this.startGameLoop();
+      this.startTimer();
+    }
   };
 
   startGameLoop() {
@@ -924,12 +967,12 @@ ${`<div style="${
     document.getElementById('game-content').style.display = 'block';
 
     this.balloonSpeed = 1;
-    this.spawnInterval = 1500;
-    this.lastSpawnTime = 0;
     this.balloons = [];
-    const canvas = document.getElementById('boomio-pop-canvas');
 
+    const canvas = document.getElementById('boomio-pop-canvas');
     const ctx = canvas.getContext('2d');
+
+    this.nextSpawnTime = Date.now() + this.getRandomSpawnDelay(); // 🟢 This is the fix
 
     const loop = () => {
       if (this.timer <= 0) return;
@@ -937,22 +980,22 @@ ${`<div style="${
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const now = Date.now();
-      if (now - this.lastSpawnTime > this.spawnInterval) {
-        const spawnCount = 1 + Math.floor(Math.random() * 3); // Spawn 2–3 balloons at once
-        for (let i = 0; i < spawnCount; i++) {
-          this.spawnBalloon();
-        }
-        this.lastSpawnTime = now;
+
+      if (now >= this.nextSpawnTime) {
+        this.spawnBalloon();
+        this.nextSpawnTime = now + this.getRandomSpawnDelay();
       }
 
-      this.balloons.forEach((balloon, i) => {
+      this.balloons = this.balloons.filter((balloon) => {
         balloon.y -= this.balloonSpeed;
-        if (balloon.y + balloon.size < 0) this.balloons.splice(i, 1);
-        else this.drawBalloon(ctx, balloon);
+        return balloon.y + balloon.size >= 0;
+      });
+
+      this.balloons.forEach((balloon) => {
+        this.drawBalloon(ctx, balloon);
       });
 
       this.balloonSpeed += 0.0001;
-      this.spawnInterval = Math.max(500, this.spawnInterval - 0.02);
     };
 
     canvas.addEventListener('click', (e) => this.checkBalloonClick(e));
@@ -964,49 +1007,53 @@ ${`<div style="${
     requestAnimationFrame(loop);
   }
 
+  getRandomSpawnDelay() {
+    return Math.random() * 800 + 300; // delay between 300–1100 ms
+  }
+
   drawBalloon(ctx, balloon) {
     const scale = balloon.scale;
+    const img = balloon.good ? this.greenBalloonImage : this.redBalloonImage;
 
-    // Balloon
-    ctx.beginPath();
-    ctx.fillStyle = balloon.good ? 'green' : 'red';
-    ctx.arc(balloon.x, balloon.y, balloon.size * scale, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.closePath();
+    const size = 80 * scale;
+    const x = balloon.x - size / 2;
+    const y = balloon.y - size / 2;
 
-    // Score Text
+    ctx.drawImage(img, x, y, size, size);
+
+    // Draw the score
     ctx.fillStyle = 'white';
-    ctx.font = 'bold ' + 18 * scale + 'px sans-serif';
+    ctx.font = `${18 * scale}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.fillText((balloon.score > 0 ? '+' : '') + balloon.score, balloon.x, balloon.y + 5 * scale);
 
-    // Line from balloon to item
-    const lineLength = 30 * scale;
-    const itemY = balloon.y + balloon.size * scale + lineLength;
-    ctx.beginPath();
-    ctx.moveTo(balloon.x, balloon.y + balloon.size * scale);
-    ctx.lineTo(balloon.x, itemY);
-    ctx.strokeStyle = '#333';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-    ctx.closePath();
-
-    // Attached Item (e.g., '🎹')
-    ctx.font = 20 * scale + 'px sans-serif';
-    ctx.fillText(balloon.item || '', balloon.x, itemY + 20);
+    const iconImage = balloon.good ? this.popElementImage : this.popElementImage2;
+    const iconSize = 30 * scale;
+    const iconX = balloon.x - iconSize / 2;
+    const iconY = y + size + 5 * scale;
+    ctx.drawImage(iconImage, iconX, iconY, iconSize, iconSize);
   }
 
-  spawnBalloon() {
+  spawnBalloon(spawnedPositions = []) {
     const canvas = document.getElementById('boomio-pop-canvas');
-    const x = Math.random() * (canvas.width - 40) + 20;
+    const minSpacing = 100; // Minimum distance between balloons
+
+    let x;
+    let attempts = 0;
+    do {
+      x = Math.random() * (canvas.width - 40) + 20;
+      attempts++;
+    } while (spawnedPositions.some((pos) => Math.abs(pos - x) < minSpacing) && attempts < 20);
+
+    spawnedPositions.push(x);
+
     const y = canvas.height + 30;
     const good = Math.random() < 0.6;
-    const items = ['🎹', '💻', '📦', '🧸', '🎁'];
-    const item = items[Math.floor(Math.random() * items.length)];
-    const scale = Math.random() * 1 + 1; // Random scale between 1 and 2
+    const item = ''; // emoji not used now
+    const scale = Math.random() * 2 + 1;
     const score = good
-      ? Math.floor(Math.random() * 10) + 1 // +1 to +10
-      : -1 * (Math.floor(Math.random() * 10) + 1); // -1 to -10
+      ? Math.floor(Math.random() * 10) + 1
+      : -1 * (Math.floor(Math.random() * 10) + 1);
 
     this.balloons.push({ x, y, size: 25, good, item, scale, score });
   }
@@ -1017,7 +1064,7 @@ ${`<div style="${
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
 
-    for (let i = 0; i < this.balloons.length; i++) {
+    for (let i = this.balloons.length - 1; i >= 0; i--) {
       const b = this.balloons[i];
       const dist = Math.hypot(b.x - clickX, b.y - clickY);
       if (dist < b.size * b.scale) {

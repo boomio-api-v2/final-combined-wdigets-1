@@ -67,7 +67,7 @@ import './styles.css';
 class CrushGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
+    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -1399,7 +1399,7 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este número de teléfono ya existe. Utilice otro.'
+                      ? 'Este número se registró con otro nombre. Use el número utilizado durante el registro inicial o uno nuevo.'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
                     this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
@@ -1418,7 +1418,7 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este nombre ya está en uso. Intente con otro nombre.'
+                      ? 'Este nombre se registró con otro número. Use el nombre utilizado durante el registro inicial o uno nuevo.'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-phone-error').innerText = '';
 

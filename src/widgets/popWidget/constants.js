@@ -34,8 +34,13 @@ export const backgroundNevezis =
 export const tutorial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/tutorial.png';
 
-export const redBallon =
+export const redBalloon =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/popWidget/test/redBallon.png';
 
-export const greenBallon =
+export const greenBalloon =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/popWidget/test/greenBallon.png';
+
+export const popElement =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement1.png';
+export const popElement2 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement2.png';
