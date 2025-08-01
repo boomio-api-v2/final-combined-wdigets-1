@@ -508,7 +508,7 @@ export class InputRegisterContainer {
       }width: calc(100% - 70px); height: ${
       this.prop === 'Toni' ? '37px' : '21px'
     }; left: 35px; top: ${
-      this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '178px' : '258px'
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '171px' : '255px'
     }; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
@@ -526,7 +526,7 @@ export class InputRegisterContainer {
         this.prop === 'Toni' ? '37px' : '21px'
       }; left: 35px; top: ${
       this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni'
-        ? '258px'
+        ? '255px'
         : this.prop.includes('Gamtos Ateitis')
         ? '348px'
         : this.prop === 'Nykstukas'
