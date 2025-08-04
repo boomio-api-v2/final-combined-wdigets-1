@@ -167,6 +167,22 @@ import {
   signOrlen,
   goldImageDataOrlen,
   envelopeImageDataOrlen,
+  backgroundNovaturas,
+  wh1ImageDataNovaturas,
+  wh2ImageDataNovaturas,
+  wh3ImageDataNovaturas,
+  city1ImageDataNovaturas,
+  city2ImageDataNovaturas,
+  city3ImageDataNovaturas,
+  brickWallImageDataNovaturas,
+  cloudsImageDataNovaturas,
+  lineNovaturas,
+  treeNovaturas1,
+  backgroundFullNovaturas,
+  carNovaturas,
+  signNovaturas,
+  goldImageDataNovaturas,
+  envelopeImageDataNovaturas,
 } from './constants';
 
 function startGame(
@@ -183,7 +199,7 @@ function startGame(
   const isMobile = window.innerWidth <= 1280;
   const isMobileHeightSmall = window.innerHeight <= 600;
 
-  const customer = config.business_name ? config.business_name : 'Orlen';
+  const customer = config.business_name ? config.business_name : 'Novaturas';
 
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
@@ -344,6 +360,8 @@ function startGame(
       ? PigubikeFI
       : customer === 'Orlen'
       ? carOrlen
+      : customer === 'Novaturas'
+      ? carNovaturas
       : customer === 'Gamtos Ateitis'
       ? type === 1
         ? carImageDataGamtosAteitisPopierius
@@ -366,6 +384,8 @@ function startGame(
       ? mailboxImageDataGamtosAteitisPopierius
       : customer === 'Orlen'
       ? goldImageDataOrlen
+      : customer === 'Novaturas'
+      ? goldImageDataNovaturas
       : mailboxImageData;
 
   const leftMailboxImage = new Image();
@@ -382,6 +402,8 @@ function startGame(
       ? mailboxImageDataGamtosAteitisPopierius
       : customer === 'Orlen'
       ? envelopeImageDataOrlen
+      : customer === 'Novaturas'
+      ? envelopeImageDataNovaturas
       : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
@@ -475,10 +497,14 @@ function startGame(
       ? Pigusign
       : customer === 'Orlen'
       ? signOrlen
+      : customer === 'Novaturas'
+      ? signNovaturas
       : customer === 'Gamtos Ateitis'
       ? brickWallImageDataGamtosAteitis
       : customer === 'Orlen'
       ? brickWallImageDataOrlen
+      : customer === 'Novaturas'
+      ? brickWallImageDataNovaturas
       : brickWallImageData;
 
   const envelopeImage = new Image();
@@ -507,6 +533,8 @@ function startGame(
       ? cloudsImageDataGamtosAteitis
       : customer === 'Orlen'
       ? cloudsImageDataOrlen
+      : customer === 'Novaturas'
+      ? cloudsImageDataNovaturas
       : cloudsImageData;
 
   const treeImage =
@@ -605,6 +633,14 @@ function startGame(
             return img;
           })(),
         ]
+      : customer === 'Novaturas'
+      ? [
+          (() => {
+            const img = new Image();
+            img.src = treeNovaturas1;
+            return img;
+          })(),
+        ]
       : [
           (() => {
             const img = new Image();
@@ -635,6 +671,8 @@ function startGame(
       ? wh1ImageDataGamtosAteitis
       : customer === 'Orlen'
       ? wh1ImageDataOrlen
+      : customer === 'Novaturas'
+      ? wh1ImageDataNovaturas
       : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
@@ -651,6 +689,8 @@ function startGame(
       ? wh2ImageDataGamtosAteitis
       : customer === 'Orlen'
       ? wh2ImageDataOrlen
+      : customer === 'Novaturas'
+      ? wh2ImageDataNovaturas
       : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
@@ -667,6 +707,8 @@ function startGame(
       ? wh3ImageDataGamtosAteitis
       : customer === 'Orlen'
       ? wh3ImageDataOrlen
+      : customer === 'Novaturas'
+      ? wh3ImageDataNovaturas
       : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
@@ -683,6 +725,8 @@ function startGame(
       ? linePigu
       : customer === 'Orlen'
       ? lineOrlen
+      : customer === 'Novaturas'
+      ? lineNovaturas
       : line;
 
   backgroundImg.src =
@@ -700,6 +744,8 @@ function startGame(
       ? backgroundGamtosAteitis
       : customer === 'Orlen'
       ? backgroundOrlen
+      : customer === 'Novaturas'
+      ? backgroundNovaturas
       : background;
   backgroundImg2.src =
     customer === 'Barbora'
@@ -716,6 +762,8 @@ function startGame(
       ? backgroundGamtosAteitis
       : customer === 'Orlen'
       ? backgroundOrlen
+      : customer === 'Novaturas'
+      ? backgroundNovaturas
       : background;
 
   const city1 = new Image();
@@ -736,6 +784,8 @@ function startGame(
       ? city1ImageDataGamtosAteitis
       : customer === 'Orlen'
       ? city1ImageDataOrlen
+      : customer === 'Novaturas'
+      ? city1ImageDataNovaturas
       : city1ImageData;
   city2.src =
     customer === 'Barbora'
@@ -752,6 +802,8 @@ function startGame(
       ? city2ImageDataGamtosAteitis
       : customer === 'Orlen'
       ? city2ImageDataOrlen
+      : customer === 'Novaturas'
+      ? city2ImageDataNovaturas
       : city2ImageData;
   city3.src =
     customer === 'Barbora'
@@ -768,6 +820,8 @@ function startGame(
       ? city3ImageDataGamtosAteitis
       : customer === 'Orlen'
       ? city3ImageDataOrlen
+      : customer === 'Novaturas'
+      ? city3ImageDataNovaturas
       : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
