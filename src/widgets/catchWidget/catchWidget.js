@@ -925,6 +925,7 @@ class CatchGame {
                 'transparent';
               return;
             }
+
             if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni') {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'ES'
@@ -936,10 +937,34 @@ class CatchGame {
               return;
             }
 
-            if (
-              (emailInput?.value?.length < 10 || phoneInput?.value?.length < 10) &&
-              this.customer === 'Toni'
-            ) {
+            if (emailInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-email-error').innerText =
+                'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-email-error').zIndex = 1;
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').innerText = '';
+              document.getElementById('competition-phone-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-phone-error').style.height = '37px';
+
+              return;
+            }
+            if (phoneInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-phone-error').innerText =
+                'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-phone-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').zIndex = 1;
+              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-email-error').style.height = '37px';
+
               return;
             }
 
