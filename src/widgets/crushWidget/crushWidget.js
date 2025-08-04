@@ -1378,6 +1378,12 @@ ${`<div style="${
 
           return;
         }
+        if (
+          (emailInput?.value?.length < 10 || phoneInput?.value?.length < 10) &&
+          this.customer === 'Toni'
+        ) {
+          return;
+        }
 
         if (this.showCompetitiveRegistration && this.checkboxChange) {
           boomioService

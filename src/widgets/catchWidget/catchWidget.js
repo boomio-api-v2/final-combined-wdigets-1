@@ -935,6 +935,14 @@ class CatchGame {
 
               return;
             }
+
+            if (
+              (emailInput?.value?.length < 10 || phoneInput?.value?.length < 10) &&
+              this.customer === 'Toni'
+            ) {
+              return;
+            }
+
             if (
               (this.showCompetitiveRegistration === 'competition' ||
                 this.showCompetitiveRegistration === 'points' ||

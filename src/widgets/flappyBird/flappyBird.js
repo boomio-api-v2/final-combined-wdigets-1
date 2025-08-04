@@ -1558,8 +1558,11 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   'transparent';
                 return;
               }
-
-              if (emailInput?.value === '' || emailInput?.value === null) {
+              if (
+                emailInput?.value === '' ||
+                emailInput?.value === null ||
+                (emailInput?.value?.length < 12 && this.customer === 'Orlen')
+              ) {
                 document.getElementById('competition-email-error').innerText =
                   this.language === 'LV'
                     ? 'Obligāti aizpildāmie lauki.'
