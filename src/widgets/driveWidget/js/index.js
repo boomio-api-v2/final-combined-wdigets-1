@@ -240,7 +240,8 @@ function startGame(
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
-  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' ? 1 : 3;
+  const DEFAULT_LIFE =
+    customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' ? 1 : 3;
   let LOST_LIFE = 0;
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -275,7 +276,12 @@ function startGame(
   let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
   const START_TIME =
-    customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' ? 999999 : 90; //time
+    customer === 'Pigu.lt' ||
+    customer === 'Gamtos Ateitis' ||
+    customer === 'Orlen' ||
+    customer === 'Novaturas'
+      ? 999999
+      : 90; //time
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -521,6 +527,8 @@ function startGame(
       ? PiguBags2
       : customer === 'Orlen'
       ? envelopeImageDataOrlen
+      : customer === 'Novaturas'
+      ? envelopeImageDataNovaturas
       : envelopeImageData;
 
   const cloudsImage = new Image();
@@ -844,6 +852,8 @@ function startGame(
       ? 'white'
       : customer === 'Gamtos Ateitis'
       ? '#FFFFFF'
+      : customer === 'Novaturas'
+      ? '#814C63'
       : '#FFFFFF';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
@@ -856,6 +866,8 @@ function startGame(
       ? '#F24434'
       : customer === 'Gamtos Ateitis'
       ? '#F24434'
+      : customer === 'Novaturas'
+      ? '#FFB572'
       : '#F24434';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
@@ -872,6 +884,8 @@ function startGame(
       ? '#A1AAAB'
       : customer === 'Orlen'
       ? '#263238'
+      : customer === 'Novaturas'
+      ? '#32A1DA'
       : '#F9F1DD';
 
   const road2 =
@@ -887,6 +901,8 @@ function startGame(
       ? '#FFFAE6'
       : customer === 'Orlen'
       ? 'white'
+      : customer === 'Novaturas'
+      ? '#32A1DA'
       : 'black';
 
   const maxWhiteLineWidthPercent = 0.01;
@@ -1279,18 +1295,24 @@ function startGame(
     boundUpdateTitleScreen(t);
 
     if (!gameVars.rulesShow) {
-      setTimeout(() => {
-        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-        document.getElementById('background_intro').style.opacity = 0;
+      setTimeout(
+        () => {
+          document.getElementById('background_intro').style.transition = 'opacity 1s ease';
+          document.getElementById('background_intro').style.opacity = 0;
 
-        document.getElementById('background_blur').style.display = 'block';
-        document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
-        showRulesOrRegistration();
-        setTimeout(() => {
-          document.getElementById('background_intro').style.display = 'none';
-          createHandlers(t);
-        }, 2000);
-      }, 2000); //intro speed
+          document.getElementById('background_blur').style.display = 'block';
+          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+          showRulesOrRegistration();
+          setTimeout(
+            () => {
+              document.getElementById('background_intro').style.display = 'none';
+              createHandlers(t);
+            },
+            customer === 'Novaturas' ? 1000 : 2000,
+          );
+        },
+        customer === 'Novaturas' ? 1000 : 2000,
+      ); //intro speed
     }
     drawTitleScreen();
   }
@@ -1973,7 +1995,12 @@ function startGame(
     if (timeLeft <= 10) {
     }
 
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
+    if (
+      customer === 'Pigu.lt' ||
+      customer === 'Gamtos Ateitis' ||
+      customer === 'Orlen' ||
+      customer === 'Novaturas'
+    ) {
       if (DEFAULT_LIFE <= LOST_LIFE) gameOverLifeZero();
     }
 
@@ -2119,6 +2146,8 @@ function startGame(
           ? '#9ECEFF'
           : customer === 'Orlen'
           ? '#7AC723'
+          : customer === 'Novaturas'
+          ? '#2299DA'
           : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
         ? '#489B2D'
@@ -2130,6 +2159,8 @@ function startGame(
         ? '#85B62D'
         : customer === 'Orlen'
         ? '#7AC723'
+        : customer === 'Novaturas'
+        ? '#2299DA'
         : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
@@ -2369,7 +2400,12 @@ function startGame(
             'boomio-score-input-container',
           )[0];
           let currectTimeDiv;
-          if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
+          if (
+            customer === 'Pigu.lt' ||
+            customer === 'Gamtos Ateitis' ||
+            customer === 'Orlen' ||
+            customer === 'Novaturas'
+          ) {
             currectTimeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
           } else {
             currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
@@ -2449,7 +2485,12 @@ function startGame(
     if (inGracePeriod()) return;
     const halfWidth = player.dimensions / 3;
     gameVars.lastHitAt = gameTime;
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
+    if (
+      customer === 'Pigu.lt' ||
+      customer === 'Gamtos Ateitis' ||
+      customer === 'Orlen' ||
+      customer === 'Novaturas'
+    ) {
       LOST_LIFE++;
 
       showScoreEffect('-1', true);
@@ -2653,7 +2694,12 @@ function startGame(
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
-    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
+    } else if (
+      customer === 'Pigu.lt' ||
+      customer === 'Gamtos Ateitis' ||
+      customer === 'Orlen' ||
+      customer === 'Novaturas'
+    ) {
       const backgroundImage = new Image();
 
       backgroundImage.src =
@@ -2663,6 +2709,8 @@ function startGame(
           ? background1PiguFI
           : customer === 'Orlen'
           ? backgroundFullOrlen
+          : customer === 'Novaturas'
+          ? backgroundFullNovaturas
           : background1Pigu;
 
       backgroundImage.onload = () => {
@@ -2727,7 +2775,12 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
+      } else if (
+        customer === 'Pigu.lt' ||
+        customer === 'Gamtos Ateitis' ||
+        customer === 'Orlen' ||
+        customer === 'Novaturas'
+      ) {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2792,7 +2845,12 @@ function startGame(
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen') {
+      } else if (
+        customer === 'Pigu.lt' ||
+        customer === 'Gamtos Ateitis' ||
+        customer === 'Orlen' ||
+        customer === 'Novaturas'
+      ) {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2836,7 +2894,12 @@ function startGame(
     if (gameVars.gameOver) return;
     const timeColor = gameVars.timeLeft > 20 ? 'white' : SPARK_COLOR;
 
-    if (customer !== 'Pigu.lt' && customer !== 'Gamtos Ateitis' && customer !== 'Orlen') {
+    if (
+      customer !== 'Pigu.lt' &&
+      customer !== 'Gamtos Ateitis' &&
+      customer !== 'Orlen' &&
+      customer !== 'Novaturas'
+    ) {
       document.getElementById('currentTime').innerHTML = `${gameVars.timeLeft}`;
       document.getElementById('currentTime').style.color = timeColor;
 

@@ -381,6 +381,12 @@ export class InputRegisterContainer {
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop === 'Orlen'
               ? 'https://www.orlen.lt/LT/Apie%20mus/Privatumo%20politika/Puslapiai/default.aspx'
+              : this.prop === 'Novaturas' && this.language === 'LT'
+              ? 'https://www.novaturas.lt/privatumo-politika'
+              : this.prop === 'Novaturas' && this.language === 'LV'
+              ? 'https://www.novatours.lv/privatuma-politika'
+              : this.prop === 'Novaturas' && this.language === 'EE'
+              ? 'https://www.novatours.ee/privaatsusteave'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'
