@@ -483,6 +483,8 @@ function startGame(
       ? PigubagsEE1
       : campaignUrlProp === 'https://hobbyhall.fi'
       ? PigubagsFI1
+      : customer === 'Novaturas'
+      ? goldImageDataNovaturas
       : goldImageData;
 
   const wallImage = new Image();
