@@ -1351,6 +1351,8 @@ function startGame(
           document.getElementById('competition-checkbox-error').innerText =
             customer === 'Gamtos Ateitis'
               ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+              : customer === 'Novaturas'
+              ? 'Norint tęsti privaloma sutikti su įmonės privatumo politika.'
               : 'Norint tęsti, privaloma sutikti su naujienomis.';
           document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error').style.display = 'block';
