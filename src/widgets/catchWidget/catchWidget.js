@@ -183,6 +183,18 @@ import {
   item8Toni,
   item9Toni,
   item10Toni,
+  backgroundOrlen,
+  playerOrlen,
+  item1Orlen,
+  item2Orlen,
+  item3Orlen,
+  item4Orlen,
+  item5Orlen,
+  item6Orlen,
+  item7Orlen,
+  item8Orlen,
+  item9Orlen,
+  item10Orlen,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -201,7 +213,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
     this.teams = this.config.teams;
 
     this.showCompetitiveRegistration =
@@ -248,6 +260,8 @@ class CatchGame {
         ? backgroundDobilo
         : this.customer === 'Toni'
         ? backgroundToni
+        : this.customer === 'Orlen'
+        ? backgroundOrlen
         : background
     }) center`;
 
@@ -1776,6 +1790,8 @@ class Player {
       ? playerDobilo
       : customer === 'Toni'
       ? playerToni
+      : customer === 'Orlen'
+      ? playerOrlen
       : player;
     this.defaultscore = defaultscore;
   }
