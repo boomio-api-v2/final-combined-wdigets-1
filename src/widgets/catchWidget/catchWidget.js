@@ -379,6 +379,36 @@ class CatchGame {
             this.customer === 'Toni'
               ? document.getElementById('boomio-competition-email-input-field')
               : document.getElementById('boomio-competition-phone-input-field');
+          const emailInput = document.querySelector('.boomio-competition-email-input-field');
+
+          if (this.customer === 'Orlen' && emailInput) {
+            emailInput.value = '+370';
+
+            emailInput.addEventListener('input', () => {
+              if (!emailInput.value.startsWith('+370')) {
+                emailInput.value = '+370' + emailInput.value.replace(/\D/g, '').slice(0, 8);
+              } else {
+                emailInput.value =
+                  '+370' + emailInput.value.slice(4).replace(/\D/g, '').slice(0, 8);
+              }
+            });
+
+            emailInput.addEventListener('keydown', (e) => {
+              // Prevent deleting or navigating into the +370 part
+              if (
+                emailInput.selectionStart <= 4 &&
+                (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowLeft')
+              ) {
+                e.preventDefault();
+              }
+            });
+
+            emailInput.addEventListener('paste', (e) => {
+              e.preventDefault(); // Block pasting
+            });
+          } else {
+            emailInput.addEventListener('input', () => {});
+          }
 
           if (phoneInputField) {
             phoneInputField.addEventListener('input', (event) => {
@@ -855,7 +885,11 @@ class CatchGame {
                 'transparent';
               return;
             }
-            if (emailInput?.value === '' || emailInput?.value === null) {
+            if (
+              emailInput?.value === '' ||
+              emailInput?.value === null ||
+              (emailInput?.value?.length < 12 && this.customer === 'Orlen')
+            ) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
@@ -940,7 +974,11 @@ class CatchGame {
               return;
             }
 
-            if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni') {
+            if (
+              !isValidEmail(emailInput?.value) &&
+              this.customer !== 'Toni' &&
+              this.customer !== 'Orlen'
+            ) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'ES'
                   ? 'Formato de correo electrónico incorrecto.'
