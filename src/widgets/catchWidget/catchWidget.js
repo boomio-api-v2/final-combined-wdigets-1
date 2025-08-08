@@ -422,7 +422,7 @@ class CatchGame {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.8 : 0.37;
+              this.customer === 'Pegasas' ? 0.8 : 0.57;
 
             const inpuRegisterContainer = document.querySelector('.input-register-container');
             inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -437,7 +437,7 @@ class CatchGame {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.8 : 0.37;
+              this.customer === 'Pegasas' ? 0.8 : 0.57;
             const inputContainer = document.querySelector('.input-container');
             document.getElementById('control-button').style.transition = 'opacity 2s ease';
             document.getElementById('control-button').style.opacity = 1;
@@ -465,7 +465,7 @@ class CatchGame {
           const canvas = document.getElementById('boomio-catch-canvas');
 
           document.getElementById('background_blur').style.opacity =
-            this.customer === 'Pegasas' ? 0.8 : 0.37;
+            this.customer === 'Pegasas' ? 0.8 : 0.57;
         }, 1000);
       }
       setTimeout(() => {
@@ -538,7 +538,7 @@ class CatchGame {
             background-position: center;
             width: 50px;
             height: 50px;
-            top: calc(50% + 150px);
+            top: calc(50% + 180px);
             position: absolute;
             left: calc(50% - 150px);">
 </div>
@@ -550,7 +550,7 @@ class CatchGame {
             background-position: center;
             width: 50px;
             height: 50px;
-            top: calc(50% + 150px);
+            top: calc(50% + 180px);
             position: absolute;
             left: calc(50% + 120px);">
 </div> `
@@ -1159,7 +1159,7 @@ class CatchGame {
                     setTimeout(() => {
                       const canvas = document.getElementById('boomio-catch-canvas');
                       document.getElementById('background_blur').style.opacity =
-                        this.customer === 'Pegasas' ? 0.8 : 0.37;
+                        this.customer === 'Pegasas' ? 0.8 : 0.57;
                       const inputContainer = document.querySelector('.input-container');
                       document.getElementById('control-button').style.transition =
                         'opacity 2s ease';
