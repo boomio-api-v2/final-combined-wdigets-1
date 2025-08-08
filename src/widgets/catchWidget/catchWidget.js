@@ -890,10 +890,12 @@ class CatchGame {
                 'transparent';
               return;
             }
+            console.log(emailInput.value);
             if (
               emailInput?.value === '' ||
               emailInput?.value === null ||
-              (emailInput?.value?.length < 12 && this.customer === 'Orlen')
+              (this.customer === 'Orlen' && emailInput?.value?.length < 12) ||
+              (this.customer === 'Orlen' && !/^\+370\d{1,8}$/.test(emailInput.value))
             ) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV'
