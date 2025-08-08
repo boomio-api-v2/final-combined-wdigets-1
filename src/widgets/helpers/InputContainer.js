@@ -84,6 +84,7 @@ export class InputContainer {
       this.prop === 'Orlen' ||
       this.prop === 'Novaturas' ||
       this.prop === 'Nevezis' ||
+      this.prop === 'Pigu.lt' ||
       this.prop === 'LemonFeel'
         ? '150px'
         : '110px'
@@ -103,17 +104,17 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
               1. ${
                 this.prop === 'Pigu.lt' && this.language === 'LT'
-                  ? 'SPAUSK'
+                  ? 'Sudėk'
                   : this.prop === 'Pigu.lt' && this.language === 'EN'
-                  ? 'CLICK'
+                  ? 'Match'
                   : this.prop === 'Pigu.lt' && this.language === 'LV'
-                  ? 'KLIKŠĶINI,'
+                  ? 'Saliec '
                   : this.prop === 'Pigu.lt' && this.language === 'ET'
-                  ? 'KLIKI,'
+                  ? 'Kogu '
                   : this.prop === 'Pigu.lt' && this.language === 'FI'
-                  ? 'KLIKKAA'
+                  ? 'Yhdistä '
                   : this.prop === 'Pigu.lt' && this.language === 'RU'
-                  ? 'НАЖИМАЙ,'
+                  ? 'Собери '
                   : this.language === 'LV' && this.game === 'drive'
                   ? 'NOĶER,'
                   : this.language === 'ET' && this.game === 'drive'
@@ -190,30 +191,18 @@ export class InputContainer {
       ? ',,Caif Cafe“ <span style="color: #F40000;">kavos puodelius</span>.'
       : this.prop === 'Daumantu'
       ? ' TIK Daumantų produktus.'
-      : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'flappy'
-      ? 'to fly'
-      : this.prop === 'Pigu.lt' && this.language === 'LV' && this.game === 'flappy'
-      ? 'lai lidotu'
-      : this.prop === 'Pigu.lt' && this.language === 'ET' && this.game === 'flappy'
-      ? 'et lennata'
-      : this.prop === 'Pigu.lt' && this.language === 'FI' && this.game === 'flappy'
-      ? 'hypätäksesi'
-      : this.prop === 'Pigu.lt' && this.language === 'RU' && this.game === 'flappy'
-      ? 'для полета'
-      : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'flappy'
-      ? 'kad skristum'
-      : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'drive'
-      ? 'to the sides to drive'
-      : this.prop === 'Pigu.lt' && this.language === 'LV' && this.game === 'drive'
-      ? 'ar pirkstu uz sāniem, lai vadītu'
-      : this.prop === 'Pigu.lt' && this.language === 'ET' && this.game === 'drive'
-      ? 'et juhtida'
-      : this.prop === 'Pigu.lt' && this.language === 'FI' && this.game === 'drive'
-      ? 'sivuille ajaaksesi'
-      : this.prop === 'Pigu.lt' && this.language === 'RU' && this.game === 'drive'
-      ? 'пальцем вбок, чтобы упправлять'
-      : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'drive'
-      ? 'į šonus, kad vairuotum'
+      : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'catch'
+      ? '3 or more items together.'
+      : this.prop === 'Pigu.lt' && this.language === 'LV' && this.game === 'catch'
+      ? 'kopā 3 vai vairāk priekšmetus.'
+      : this.prop === 'Pigu.lt' && this.language === 'ET' && this.game === 'catch'
+      ? '3 või rohkem sarnast asja.'
+      : this.prop === 'Pigu.lt' && this.language === 'FI' && this.game === 'catch'
+      ? 'vähintään 3 samanlaista esinettä.'
+      : this.prop === 'Pigu.lt' && this.language === 'RU' && this.game === 'catch'
+      ? '3 или более предметов.'
+      : this.prop === 'Pigu.lt' && this.language === 'LT' && this.game === 'catch'
+      ? 'kartu 3 ar daugiau prekes.'
       : this.language === 'LT' && this.game === 'crush'
       ? 'kad rinktum taškus.'
       : this.prop === 'Pigu.lt' && this.language === 'EN'
@@ -304,15 +293,17 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             2.  ${
               this.prop === 'Pigu.lt' && this.language === 'EN'
-                ? 'REPEAT'
+                ? 'Repeat '
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'ATKĀRTO,'
+                ? 'Atkārto,'
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'KORDA,'
+                ? 'Korda,'
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'TOISTA,'
+                ? 'Toista ,'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'ПОВТОРЯЙ '
+                ? 'Повтори  '
+                : this.prop === 'Pigu.lt' && this.language === 'LT'
+                ? 'Kartok  '
                 : this.language === 'LV' && this.game === 'doodle'
                 ? 'SPĒLĒ VĒLREIZ,'
                 : this.language === 'LV'
@@ -362,15 +353,17 @@ export class InputContainer {
     }; font-weight: 700;  word-wrap: break-word">
             ${
               this.prop === 'Pigu.lt' && this.language === 'EN'
-                ? 'for better result'
+                ? 'for better result.'
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'lai uzlabotu rezultātu'
+                ? 'lai sasniegtu labāku rezultātu.'
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'et saada paremad tulemused'
+                ? 'et tulemus oleks veel parem.'
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'jotta saat paremman tuloksen'
+                ? 'paremman tuloksen saavuttamiseksi.'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'для улучшения результата'
+                ? 'для достижения наилучших результатов.'
+                : this.prop === 'Pigu.lt' && this.language === 'LT'
+                ? 'dėl geresnio rezultato.'
                 : this.prop === 'Eurovaistine'
                 ? 'un uzlabo savu rezultātu.'
                 : this.game === 'doodle' && this.language === 'LV'
@@ -432,15 +425,17 @@ export class InputContainer {
     }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             3. ${
               this.prop === 'Pigu.lt' && this.language === 'EN'
-                ? 'WIN'
+                ? 'Enjoy '
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'LAIMĒ'
+                ? 'Izbaudi '
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'VÕIDA'
+                ? 'Naudi '
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'VOITA'
+                ? 'Nauti '
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'ВЫИГРЫВАЙ'
+                ? 'Приятной '
+                : this.prop === 'Pigu.lt' && this.language === 'LT'
+                ? 'Mėgaukis '
                 : this.language === 'LV'
                 ? 'IZBAUDI'
                 : this.language === 'RU'
@@ -511,44 +506,18 @@ export class InputContainer {
         : ''
     }">
             ${
-              this.prop === 'Pigu.lt' &&
-              this.language === 'EN' &&
-              (this.campaignUrlProp === 'https://kaup.ee' ||
-                this.campaignUrlProp === 'https://kaup24.ee')
-                ? 'Kaup24 prizes!'
-                : this.prop === 'Pigu.lt' &&
-                  this.language === 'EN' &&
-                  this.campaignUrlProp === 'https://pigu.lt'
-                ? 'Pigu.lt prizes!'
-                : this.prop === 'Pigu.lt' &&
-                  this.language === 'EN' &&
-                  this.campaignUrlProp === 'https://220.lv'
-                ? '220.lv prizes!'
-                : this.prop === 'Pigu.lt' &&
-                  this.language === 'EN' &&
-                  this.campaignUrlProp === 'https://hobbyhall.fi'
-                ? 'Hobbyhall.fi prizes!'
+              this.prop === 'Pigu.lt' && this.language === 'EN'
+                ? 'the game. '
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'balvas no 220.lv!'
+                ? 'spēli. '
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'auhindu!'
+                ? 'mängu. '
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'palkintoja'
-                : this.prop === 'Pigu.lt' &&
-                  this.language === 'RU' &&
-                  (this.campaignUrlProp === 'https://kaup.ee' ||
-                    this.campaignUrlProp === 'https://kaup24.ee')
-                ? 'призы!'
-                : this.prop === 'Pigu.lt' &&
-                  this.language === 'RU' &&
-                  this.campaignUrlProp === 'https://pigu.lt'
-                ? 'призы от Pigu.lt!'
-                : this.prop === 'Pigu.lt' &&
-                  this.language === 'RU' &&
-                  this.campaignUrlProp === 'https://220.lv'
-                ? 'призы от 220.lv!'
-                : this.prop === 'Pigu.lt'
-                ? 'Pigu.lt prizus!'
+                ? 'pelistä. '
+                : this.prop === 'Pigu.lt' && this.language === 'RU'
+                ? 'игры.'
+                : this.prop === 'Pigu.lt' && this.language === 'LT'
+                ? 'žaidimu. '
                 : this.prop === 'Eurovaistine'
                 ? 'kādu no 50 balvām!'
                 : this.language === 'LV' && this.game === 'doodle'
@@ -634,13 +603,26 @@ ${
   this.prop === 'Orlen' ||
   this.prop === 'Novaturas' ||
   this.prop === 'LemonFeel' ||
+  this.prop === 'Pigu.lt' ||
   this.prop === 'Toni' ||
   this.prop === 'LemonGym'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'20px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${
-              this.prop === 'Toni'
+              this.prop === 'Pigu.lt' && this.language === 'EN'
+                ? 'Win '
+                : this.prop === 'Pigu.lt' && this.language === 'LV'
+                ? 'Laimē  '
+                : this.prop === 'Pigu.lt' && this.language === 'ET'
+                ? 'Võida  '
+                : this.prop === 'Pigu.lt' && this.language === 'FI'
+                ? 'Voita  '
+                : this.prop === 'Pigu.lt' && this.language === 'RU'
+                ? 'Выигрывай '
+                : this.prop === 'Pigu.lt' && this.language === 'LT'
+                ? 'Laimėk  '
+                : this.prop === 'Toni'
                 ? 'Vuelve'
                 : this.prop === 'LemonFeel'
                 ? '28.AUGUSTĀ'
@@ -654,7 +636,19 @@ ${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
             ${
-              this.prop.includes('Gamtos Ateitis')
+              this.prop === 'Pigu.lt' && this.language === 'EN'
+                ? 'prizes! '
+                : this.prop === 'Pigu.lt' && this.language === 'LV'
+                ? 'balvas!'
+                : this.prop === 'Pigu.lt' && this.language === 'ET'
+                ? 'auhindu!'
+                : this.prop === 'Pigu.lt' && this.language === 'FI'
+                ? 'palkintoja!'
+                : this.prop === 'Pigu.lt' && this.language === 'RU'
+                ? 'призы!'
+                : this.prop === 'Pigu.lt' && this.language === 'LT'
+                ? 'prizus!'
+                : this.prop.includes('Gamtos Ateitis')
                 ? 'koncertą savo mokyklai!'
                 : this.prop === 'Toni'
                 ? 'a jugar para incrementar tus oportunidades de ganar y participa por increíbles premios.'
@@ -710,7 +704,23 @@ ${
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${'center'}; color: white; font-size: 10px; font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
           }; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
-            this.prop === 'SaludSA'
+            this.config.currentPageUrl.toLowerCase().includes('pigu')
+              ? this.language === 'RU'
+                ? `href=https://pigu.lt/ru/t/zaidimo-taisykles-jump`
+                : `href=https://pigu.lt/lt/t/zaidimo-taisykles-jump`
+              : this.config.currentPageUrl.toLowerCase().includes('220')
+              ? this.language === 'RU'
+                ? `href=https://220.lv/ru/t/game-rules-jump`
+                : `href=https://220.lv/lv/t/game-rules-jump `
+              : this.config.currentPageUrl.toLowerCase().includes('kaup24')
+              ? this.language === 'RU'
+                ? `href=https://kaup24.ee/ru/t/game-rules-jump `
+                : `href=https://kaup24.ee/et/t/game-rules-jump `
+              : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
+              ? this.language === 'EN'
+                ? `href=https://hobbyhall.fi/fi/t/game-rules-jump `
+                : `href=https://hobbyhall.fi/fi/t/game-rules-jump `
+              : this.prop === 'SaludSA'
               ? 'href=https://ventas.saludsa.com/reglas-juego'
               : this.prop === 'Barbora'
               ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
@@ -765,17 +775,17 @@ ${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
           };">${
             this.prop === 'Pigu.lt' && this.language === 'EN'
-              ? 'Read full game rules.'
+              ? 'Read the detailed game rules.'
               : this.prop === 'Pigu.lt' && this.language === 'LV'
-              ? 'Izlasi pilnos spēles noteikumus.'
+              ? 'Izlasi detalizētos spēles noteikumus.'
               : this.prop === 'Pigu.lt' && this.language === 'ET'
-              ? 'Loe mängureegleid'
+              ? 'Loe mängu täpseid reegleid.'
               : this.prop === 'Pigu.lt' && this.language === 'FI'
-              ? 'Lue kaikki säännöt'
+              ? 'Lue tarkat säännöt.'
               : this.prop === 'Pigu.lt' && this.language === 'RU'
-              ? 'Прочитай полные правила игры.'
+              ? 'Ознакомься с подробными правилами игры.'
               : this.prop === 'Pigu.lt'
-              ? 'Skaityk pilnas žaidimo taisykles. '
+              ? 'Skaityk išsamias žaidimo taisykles'
               : this.prop === 'Eurovaistine'
               ? 'Pilni spēles noteikumi šeit.'
               : this.language === 'LV' && this.prop === 'Akropolis'

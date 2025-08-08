@@ -131,6 +131,7 @@ class LocalStorageService {
     const dynamicData = config?.dynamicData ? config?.dynamicData : null;
 
     return {
+      currentPageUrl,
       language,
       widget_subtype,
       success,

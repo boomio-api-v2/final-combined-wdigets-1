@@ -38,11 +38,7 @@ class BoomioService extends UserService {
     const campaignUrl = urlParams.get('campaign_url');
     const language = urlParams.get('language');
 
-    this.current_page_url = campaignUrl
-      ? campaignUrl === 'https://kaup.ee'
-        ? 'https://kaup24.ee'
-        : campaignUrl
-      : currentPageUrl;
+    this.current_page_url = currentPageUrl;
 
     // if (
     //   (language === 'ET' &&

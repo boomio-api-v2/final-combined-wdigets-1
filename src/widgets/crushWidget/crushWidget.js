@@ -290,7 +290,7 @@ class CrushGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 120;
+    this.timer = 1;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
@@ -1392,7 +1392,19 @@ ${`<div style="${
           document.getElementById('competition-email-error').innerText =
             this.language === 'ES'
               ? 'Formato de correo electrónico no válido'
-              : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+              : this.language === 'EN'
+              ? 'Invalid email format'
+              : this.language === 'RU'
+              ? 'Неверный формат электронной почты'
+              : this.language === 'LV'
+              ? 'Nederīgs e-pasta formāts'
+              : this.language === 'ET'
+              ? 'Vigane e-posti vorming'
+              : this.language === 'FI'
+              ? 'Virheellinen sähköpostiosoite'
+              : this.language === 'PL'
+              ? 'Nieprawidłowy format adresu e-mail'
+              : 'Neteisingas el. pašto formatas.';
           document.getElementById('competition-email-error').zIndex = 1;
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 

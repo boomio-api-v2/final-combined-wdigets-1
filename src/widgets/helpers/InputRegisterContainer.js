@@ -216,6 +216,20 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
         : this.prop === 'Unisend' && this.language === 'LV'
         ? 'Nõustun saama Unisend.ee uudiskirju'
+        : this.prop === 'Unisend' && this.language === 'LV'
+        ? 'Nõustun saama Unisend.ee uudiskirju'
+        : this.prop === 'Pigu.lt' && this.language === 'RU'
+        ? 'Я прочитал(а) и согласен(на) с правилами и инструкциями игры.'
+        : this.prop === 'Pigu.lt' && this.language === 'FI'
+        ? 'Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.'
+        : this.prop === 'Pigu.lt' && this.language === 'LV'
+        ? 'Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.'
+        : this.prop === 'Pigu.lt' && this.language === 'LT'
+        ? 'Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.'
+        : this.prop === 'Pigu.lt' && this.language === 'EN'
+        ? 'I have read and agree with game rules and instructions. '
+        : this.prop === 'Pigu.lt' && this.language === 'ET'
+        ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
         : 'Sutinku gauti naujienlaiškius.'
     }
     </div>
@@ -340,6 +354,22 @@ export class InputRegisterContainer {
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : this.prop === 'Orlen'
         ? 'Sutinku su „ORLEN“'
+        : this.config.currentPageUrl.toLowerCase().includes('pigu')
+        ? this.language === 'RU'
+          ? `Я согласен(на) с политикой конфиденциальности <a href="https://pigu.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">Pigu.lt</a>.`
+          : `Sutinku su <a href="https://pigu.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">Pigu.lt</a> privatumo politika.`
+        : this.config.currentPageUrl.toLowerCase().includes('220')
+        ? this.language === 'RU'
+          ? `Я согласен(на) с политикой конфиденциальности <a href="https://220.lv/privatuma-politika" target="_blank" rel="noopener noreferrer">220.lv</a>.`
+          : `Es piekrītu <a href="https://220.lv/privatuma-politika" target="_blank" rel="noopener noreferrer">220.lv</a> privātuma politikai.`
+        : this.config.currentPageUrl.toLowerCase().includes('kaup24')
+        ? this.language === 'RU'
+          ? `Я согласен(на) с политикой конфиденциальности <a href="https://kaup24.ee/privatuma-poliitika" target="_blank" rel="noopener noreferrer">Kaup24.ee</a>.`
+          : `Nõustun <a href="https://kaup24.ee/privatuma-poliitika" target="_blank" rel="noopener noreferrer">Kaup24.ee</a> privaatsuspoliitikaga.`
+        : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
+        ? this.language === 'EN'
+          ? `I agree with <a href="https://hobbyhall.fi/fi/tietosuojakäytäntö" target="_blank" rel="noopener noreferrer">Hobbyhall.fi</a> privacy policy.`
+          : `Hyväksyn yrityksen <a href="https://hobbyhall.fi/fi/tietosuojakäytäntö" target="_blank" rel="noopener noreferrer">tietosuojakäytännön</a>.`
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -357,6 +387,7 @@ export class InputRegisterContainer {
       this.prop !== 'Vilvi' &&
       this.prop !== 'Daumantu' &&
       this.prop !== 'Toni' &&
+      this.prop !== 'Pigu.lt' &&
       this.prop !== 'Perlas GO'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Ikea'
