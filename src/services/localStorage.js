@@ -124,13 +124,14 @@ class LocalStorageService {
     const languageParam = urlParams.get('language') || 'LT';
     const couponCodeNew = config?.coupon_code;
 
-    const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'ES';
+    const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
     const teams = config?.teams ?? [];
     const restrictions = config?.restrictions ?? {};
     const userBestScore = config?.user_best_score ? config?.user_best_score : 0;
     const dynamicData = config?.dynamicData ? config?.dynamicData : null;
 
     return {
+      currentPageUrl,
       language,
       widget_subtype,
       success,

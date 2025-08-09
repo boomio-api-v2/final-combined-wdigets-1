@@ -52,7 +52,7 @@ class driveWidget {
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
+    this.customer = this.config.business_name ? this.config.business_name : 'Novaturas';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
 
@@ -181,6 +181,8 @@ class driveWidget {
         ? '#3F7543'
         : this.customer === 'Orlen'
         ? '#EF1C1D'
+        : this.customer === 'Novaturas'
+        ? '#32A1DA'
         : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -197,12 +199,17 @@ class driveWidget {
 
 
 ${
-  this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis' || this.customer === 'Orlen'
+  this.customer === 'Pigu.lt' ||
+  this.customer === 'Gamtos Ateitis' ||
+  this.customer === 'Orlen' ||
+  this.customer === 'Novaturas'
     ? `<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
         this.customer === 'Gamtos Ateitis'
           ? '#3F7543'
           : this.customer === 'Orlen'
           ? '#EF1C1D'
+          : this.customer === 'Novaturas'
+          ? '#32A1DA'
           : '#DF503E'
       };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -224,6 +231,8 @@ ${
           ? '#3F7543'
           : this.customer === 'Orlen'
           ? '#EF1C1D'
+          : this.customer === 'Novaturas'
+          ? '#32A1DA'
           : '#FFE92D'
       };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -289,7 +298,9 @@ ${
       document.documentElement.clientWidth < 418
         ? document.documentElement.clientWidth + 'px'
         : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">
+    }; height: 674px;position:absolute;pointer-events: none; display:${
+      this.customer === 'Novaturas' ? 'none' : 'block'
+    };" id="background_intro">
     <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
       document.documentElement.clientWidth < 418
         ? document.documentElement.clientWidth + 'px'

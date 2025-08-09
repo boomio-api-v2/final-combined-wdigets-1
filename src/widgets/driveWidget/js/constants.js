@@ -722,3 +722,68 @@ export const goldImageDataOrlen = [
 export const envelopeImageDataOrlen = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Orlen/bag.png',
 ];
+
+export const backgroundNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/background.png',
+];
+
+export const wh1ImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/Bigcity1.png',
+];
+
+export const wh2ImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/Bigcity2.png',
+];
+
+export const wh3ImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/Bigcity3.png',
+];
+
+export const city1ImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/Bigcity1.png',
+];
+
+export const city2ImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/Bigcity2.png',
+];
+
+export const city3ImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/Bigcity3.png',
+];
+
+export const brickWallImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/sign.png',
+];
+
+export const cloudsImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/cloud.png?raw=true',
+];
+
+export const lineNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/line.png?raw=true',
+];
+
+export const treeNovaturas1 =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/Tree1.png?raw=true';
+
+export const backgroundFullNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/backgroundFull.png',
+];
+
+export const introNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/intro.gif',
+];
+export const carNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/car.png',
+];
+
+export const signNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/sign.png',
+];
+
+export const goldImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/bags2.png',
+];
+export const envelopeImageDataNovaturas = [
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Novaturas/bag.png',
+];

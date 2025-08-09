@@ -67,7 +67,7 @@ import './styles.css';
 class CrushGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -656,8 +656,32 @@ class CrushGame {
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 120px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-    <div>${this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'}</div>
-    <div>${this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'}</div>
+    <div>${
+      this.language == 'LV'
+        ? 'PAVELC'
+        : this.language == 'ET'
+        ? 'LEHITSE'
+        : this.language == 'FI'
+        ? 'Pyyhkäise'
+        : this.language == 'RU'
+        ? 'ПОТЯНИ'
+        : this.language == 'ES'
+        ? 'DESLIZA'
+        : 'BRŪKŠT'
+    }</div>
+    <div>${
+      this.language == 'LV'
+        ? 'PAVELC'
+        : this.language == 'ET'
+        ? 'LEHITSE'
+        : this.language == 'FI'
+        ? 'Pyyhkäise'
+        : this.language == 'RU'
+        ? 'ПОТЯНИ'
+        : this.language == 'ES'
+        ? 'DESLIZA'
+        : 'BRŪKŠT'
+    }</div>
   </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
 </div>
 
@@ -1368,13 +1392,53 @@ ${`<div style="${
           document.getElementById('competition-email-error').innerText =
             this.language === 'ES'
               ? 'Formato de correo electrónico no válido'
-              : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+              : this.language === 'EN'
+              ? 'Invalid email format'
+              : this.language === 'RU'
+              ? 'Неверный формат электронной почты'
+              : this.language === 'LV'
+              ? 'Nederīgs e-pasta formāts'
+              : this.language === 'ET'
+              ? 'Vigane e-posti vorming'
+              : this.language === 'FI'
+              ? 'Virheellinen sähköpostiosoite'
+              : this.language === 'PL'
+              ? 'Nieprawidłowy format adresu e-mail'
+              : 'Neteisingas el. pašto formatas.';
           document.getElementById('competition-email-error').zIndex = 1;
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
           document.getElementById('competition-checkbox-error').innerText = '';
           document.getElementById('competition-checkbox-error').style.backgroundColor =
             'transparent';
+
+          return;
+        }
+        if (emailInput?.value?.length < 10 && this.customer === 'Toni') {
+          document.getElementById('competition-email-error').innerText =
+            'Debes ingresar 10 dígitos.';
+          document.getElementById('competition-email-error').zIndex = 1;
+          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+          document.getElementById('competition-email-error').style.height = '20px';
+
+          document.getElementById('competition-phone-error').innerText = '';
+          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+
+          document.getElementById('competition-phone-error').style.height = '37px';
+
+          return;
+        }
+        if (phoneInput?.value?.length < 10 && this.customer === 'Toni') {
+          document.getElementById('competition-phone-error').innerText =
+            'Debes ingresar 10 dígitos.';
+          document.getElementById('competition-phone-error').style.height = '20px';
+
+          document.getElementById('competition-phone-error').zIndex = 1;
+          document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+
+          document.getElementById('competition-email-error').innerText = '';
+          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+          document.getElementById('competition-email-error').style.height = '37px';
 
           return;
         }
@@ -1399,10 +1463,10 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este número se registró con otro nombre. Use el número utilizado durante el registro inicial o uno nuevo.'
+                      ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor =
-                    this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+                    '#FFBABA';
                   document.getElementById('competition-name-error').innerText = '';
                   document.getElementById('competition-phone-error').innerText = '';
 
@@ -1418,15 +1482,13 @@ ${`<div style="${
                     this.language === 'LV'
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este nombre se registró con otro número. Use el nombre utilizado durante el registro inicial o uno nuevo.'
+                      ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-phone-error').innerText = '';
-
+                  document.getElementById('competition-name-error').style.backgroundColor =
+                    '#FFBABA';
                   document.getElementById('competition-phone-error').style.backgroundColor =
                     'transparent';
-                  document.getElementById('competition-name-error').style.backgroundColor =
-                    this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
-
                   document.getElementById('competition-email-error').innerText = '';
                   document.getElementById('competition-email-error').style.backgroundColor =
                     'transparent';

@@ -183,6 +183,18 @@ import {
   item8Toni,
   item9Toni,
   item10Toni,
+  backgroundOrlen,
+  playerOrlen,
+  item1Orlen,
+  item2Orlen,
+  item3Orlen,
+  item4Orlen,
+  item5Orlen,
+  item6Orlen,
+  item7Orlen,
+  item8Orlen,
+  item9Orlen,
+  item10Orlen,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -201,7 +213,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
     this.teams = this.config.teams;
 
     this.showCompetitiveRegistration =
@@ -248,6 +260,8 @@ class CatchGame {
         ? backgroundDobilo
         : this.customer === 'Toni'
         ? backgroundToni
+        : this.customer === 'Orlen'
+        ? backgroundOrlen
         : background
     }) center`;
 
@@ -264,6 +278,7 @@ class CatchGame {
       this.customer === 'Akropolis' ||
       this.customer === 'Daumantu' ||
       this.customer === 'Toni' ||
+      this.customer === 'Orlen' ||
       this.customer === 'Zemaitijos Pienas'
         ? 3
         : 5;
@@ -365,6 +380,36 @@ class CatchGame {
             this.customer === 'Toni'
               ? document.getElementById('boomio-competition-email-input-field')
               : document.getElementById('boomio-competition-phone-input-field');
+          const emailInput = document.querySelector('.boomio-competition-email-input-field');
+
+          if (this.customer === 'Orlen' && emailInput) {
+            emailInput.value = '+370';
+
+            emailInput.addEventListener('input', () => {
+              if (!emailInput.value.startsWith('+370')) {
+                emailInput.value = '+370' + emailInput.value.replace(/\D/g, '').slice(0, 8);
+              } else {
+                emailInput.value =
+                  '+370' + emailInput.value.slice(4).replace(/\D/g, '').slice(0, 8);
+              }
+            });
+
+            emailInput.addEventListener('keydown', (e) => {
+              // Prevent deleting or navigating into the +370 part
+              if (
+                emailInput.selectionStart <= 4 &&
+                (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowLeft')
+              ) {
+                e.preventDefault();
+              }
+            });
+
+            emailInput.addEventListener('paste', (e) => {
+              e.preventDefault(); // Block pasting
+            });
+          } else {
+            emailInput.addEventListener('input', () => {});
+          }
 
           if (phoneInputField) {
             phoneInputField.addEventListener('input', (event) => {
@@ -377,7 +422,7 @@ class CatchGame {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.8 : 0.37;
+              this.customer === 'Pegasas' ? 0.8 : 0.57;
 
             const inpuRegisterContainer = document.querySelector('.input-register-container');
             inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -392,7 +437,7 @@ class CatchGame {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.8 : 0.37;
+              this.customer === 'Pegasas' ? 0.8 : 0.57;
             const inputContainer = document.querySelector('.input-container');
             document.getElementById('control-button').style.transition = 'opacity 2s ease';
             document.getElementById('control-button').style.opacity = 1;
@@ -420,7 +465,7 @@ class CatchGame {
           const canvas = document.getElementById('boomio-catch-canvas');
 
           document.getElementById('background_blur').style.opacity =
-            this.customer === 'Pegasas' ? 0.8 : 0.37;
+            this.customer === 'Pegasas' ? 0.8 : 0.57;
         }, 1000);
       }
       setTimeout(() => {
@@ -493,7 +538,7 @@ class CatchGame {
             background-position: center;
             width: 50px;
             height: 50px;
-            top: calc(50% + 150px);
+            top: calc(50% + 180px);
             position: absolute;
             left: calc(50% - 150px);">
 </div>
@@ -505,7 +550,7 @@ class CatchGame {
             background-position: center;
             width: 50px;
             height: 50px;
-            top: calc(50% + 150px);
+            top: calc(50% + 180px);
             position: absolute;
             left: calc(50% + 120px);">
 </div> `
@@ -532,6 +577,8 @@ class CatchGame {
         ? '#004C22'
         : this.customer === 'Toni'
         ? '#262B8C'
+        : this.customer === 'Orlen'
+        ? '#DD2326'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -564,6 +611,8 @@ class CatchGame {
         ? '#004C22'
         : this.customer === 'Toni'
         ? '#262B8C'
+        : this.customer === 'Orlen'
+        ? '#DD2326'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -841,7 +890,13 @@ class CatchGame {
                 'transparent';
               return;
             }
-            if (emailInput?.value === '' || emailInput?.value === null) {
+            console.log(emailInput.value);
+            if (
+              emailInput?.value === '' ||
+              emailInput?.value === null ||
+              (this.customer === 'Orlen' && emailInput?.value?.length < 12) ||
+              (this.customer === 'Orlen' && !/^\+370\d{1,8}$/.test(emailInput.value))
+            ) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
@@ -925,7 +980,12 @@ class CatchGame {
                 'transparent';
               return;
             }
-            if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni') {
+
+            if (
+              !isValidEmail(emailInput?.value) &&
+              this.customer !== 'Toni' &&
+              this.customer !== 'Orlen'
+            ) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'ES'
                   ? 'Formato de correo electrónico incorrecto.'
@@ -935,6 +995,38 @@ class CatchGame {
 
               return;
             }
+
+            if (emailInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-email-error').innerText =
+                'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-email-error').zIndex = 1;
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').innerText = '';
+              document.getElementById('competition-phone-error').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-phone-error').style.height = '37px';
+
+              return;
+            }
+            if (phoneInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-phone-error').innerText =
+                'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-phone-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').zIndex = 1;
+              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-email-error').style.height = '37px';
+
+              return;
+            }
+
             if (
               (this.showCompetitiveRegistration === 'competition' ||
                 this.showCompetitiveRegistration === 'points' ||
@@ -1001,7 +1093,7 @@ class CatchGame {
                         this.customer === 'Fpro'
                           ? 'This email address already exists. Please use another one.'
                           : this.customer === 'Toni'
-                          ? 'Este número se registró con otro nombre. Use el número utilizado durante el registro inicial o uno nuevo.'
+                          ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
                           : this.language === 'ES'
                           ? 'Este email ya está en uso. Use otro email.'
                           : this.language === 'LV'
@@ -1026,7 +1118,7 @@ class CatchGame {
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
                           : this.language === 'ES'
-                          ? 'Este nombre se registró con otro número. Use el nombre utilizado durante el registro inicial o uno nuevo.'
+                          ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
                           : this.language === 'LV'
                           ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                           : this.language === 'RU'
@@ -1067,7 +1159,7 @@ class CatchGame {
                     setTimeout(() => {
                       const canvas = document.getElementById('boomio-catch-canvas');
                       document.getElementById('background_blur').style.opacity =
-                        this.customer === 'Pegasas' ? 0.8 : 0.37;
+                        this.customer === 'Pegasas' ? 0.8 : 0.57;
                       const inputContainer = document.querySelector('.input-container');
                       document.getElementById('control-button').style.transition =
                         'opacity 2s ease';
@@ -1715,8 +1807,18 @@ class Player {
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
-    this.playerWidth = this.customer === 'Toni' ? 110 : customer === 'Akropolis' ? 88 : 110;
-    this.playerHeight = this.customer === 'Toni' ? 80 : customer === 'Akropolis' ? 64 : 80;
+    this.playerWidth =
+      this.customer === 'Orlen' || this.customer === 'Toni'
+        ? 110
+        : customer === 'Akropolis'
+        ? 88
+        : 110;
+    this.playerHeight =
+      this.customer === 'Orlen' || this.customer === 'Toni'
+        ? 80
+        : customer === 'Akropolis'
+        ? 64
+        : 80;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
@@ -1743,6 +1845,8 @@ class Player {
       ? playerDobilo
       : customer === 'Toni'
       ? playerToni
+      : customer === 'Orlen'
+      ? playerOrlen
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1798,7 +1902,7 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 8);
       }
-    } else if (this.customer === 'Toni') {
+    } else if (this.customer === 'Orlen' || this.customer === 'Toni') {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 6 + 2);
       } else {
@@ -1839,6 +1943,7 @@ class Fruit {
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Orlen' ||
         this.customer === 'Toni'
           ? 3
           : 1),
@@ -2003,6 +2108,19 @@ class Fruit {
         item8Toni,
         item9Toni,
         item10Toni,
+      ];
+    } else if (this.customer && this.customer === 'Orlen') {
+      this.images = [
+        item1Orlen,
+        item2Orlen,
+        item3Orlen,
+        item4Orlen,
+        item5Orlen,
+        item6Orlen,
+        item7Orlen,
+        item8Orlen,
+        item9Orlen,
+        item10Orlen,
       ];
     } else {
       // Default catch images if none of the above conditions are met
@@ -2178,6 +2296,19 @@ class Fruit {
         'item9Toni',
         'item10Toni',
       ][this.fruitNumber];
+    } else if (this.customer === 'Orlen') {
+      this.fruitType = [
+        'item1Orlen',
+        'item2Orlen',
+        'item3Orlen',
+        'item4Orlen',
+        'item5Orlen',
+        'item6Orlen',
+        'item7Orlen',
+        'item8Orlen',
+        'item9Orlen',
+        'item10Orlen',
+      ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
       this.fruitType = [
@@ -2209,7 +2340,7 @@ class Fruit {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][
         this.fruitNumber
       ];
-    } else if (this.customer === 'Toni') {
+    } else if (this.customer === 'Orlen' || this.customer === 'Toni') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
@@ -2227,6 +2358,7 @@ class Fruit {
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Orlen' ||
         this.customer === 'Toni'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
@@ -2419,7 +2551,7 @@ class Fruit {
           ? 10
           : this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas'
           ? 13
-          : this.customer === 'Toni'
+          : this.customer === 'Orlen' || this.customer === 'Toni'
           ? 10
           : 5),
     );
@@ -2430,6 +2562,7 @@ class Fruit {
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Orlen' ||
         this.customer === 'Toni'
           ? 2.5
           : 1)) *

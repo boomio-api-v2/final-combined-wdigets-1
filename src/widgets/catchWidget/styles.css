@@ -94,7 +94,7 @@ flex-direction: column;
   z-index: 99999999999999999999999;
 position: absolute;
 top : calc(50% - 310px);
-left :calc(50% + 185px);
+left :calc(50% + 175px);
 transform : translate(-50%, -50%);
 display:flex;
 flex-direction: column;

@@ -47,7 +47,7 @@ export class InputRegisterContainer {
         : this.prop === 'LemonFeel'
         ? 'REĢISTRĒJIES, LAI KRĀTU PUNKTUS'
         : this.language === 'LV'
-        ? 'REĢISTRĒJIES, LAI SPĒLĒTU'
+        ? 'REĢISTRĒTIES SPĒLĒT'
         : this.language === 'RU'
         ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
         : this.language === 'ET'
@@ -64,6 +64,8 @@ export class InputRegisterContainer {
         ? 'Register to Play'
         : this.language === 'ES'
         ? '¡Regístrate para jugar!'
+        : this.language === 'FI'
+        ? 'REKISTERÖIDY PELAAMAAN'
         : 'Registruokis Žaisti'
     }</div>
           <div style="height: 124px; top:${
@@ -128,6 +130,8 @@ export class InputRegisterContainer {
         ? 'TĀLĀK'
         : this.language === 'EN'
         ? 'CONTINUE'
+        : this.language === 'FI'
+        ? 'SEURAAVA'
         : this.language === 'ES'
         ? 'CONTINUAR'
         : 'TOLIAU'
@@ -212,6 +216,20 @@ export class InputRegisterContainer {
         ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
         : this.prop === 'Unisend' && this.language === 'LV'
         ? 'Nõustun saama Unisend.ee uudiskirju'
+        : this.prop === 'Unisend' && this.language === 'LV'
+        ? 'Nõustun saama Unisend.ee uudiskirju'
+        : this.prop === 'Pigu.lt' && this.language === 'RU'
+        ? 'Я прочитал(а) и согласен(на) с правилами и инструкциями игры.'
+        : this.prop === 'Pigu.lt' && this.language === 'FI'
+        ? 'Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.'
+        : this.prop === 'Pigu.lt' && this.language === 'LV'
+        ? 'Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.'
+        : this.prop === 'Pigu.lt' && this.language === 'LT'
+        ? 'Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.'
+        : this.prop === 'Pigu.lt' && this.language === 'EN'
+        ? 'I have read and agree with game rules and instructions. '
+        : this.prop === 'Pigu.lt' && this.language === 'ET'
+        ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
         : 'Sutinku gauti naujienlaiškius.'
     }
     </div>
@@ -336,6 +354,22 @@ export class InputRegisterContainer {
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : this.prop === 'Orlen'
         ? 'Sutinku su „ORLEN“'
+        : this.config.currentPageUrl.toLowerCase().includes('pigu')
+        ? this.language === 'RU'
+          ? `Я согласен(на) с политикой конфиденциальности <a href="https://pigu.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">Pigu.lt</a>.`
+          : `Sutinku su <a href="https://pigu.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">Pigu.lt</a> privatumo politika.`
+        : this.config.currentPageUrl.toLowerCase().includes('220')
+        ? this.language === 'RU'
+          ? `Я согласен(на) с политикой конфиденциальности <a href="https://220.lv/privatuma-politika" target="_blank" rel="noopener noreferrer">220.lv</a>.`
+          : `Es piekrītu <a href="https://220.lv/privatuma-politika" target="_blank" rel="noopener noreferrer">220.lv</a> privātuma politikai.`
+        : this.config.currentPageUrl.toLowerCase().includes('kaup24')
+        ? this.language === 'RU'
+          ? `Я согласен(на) с политикой конфиденциальности <a href="https://kaup24.ee/privatuma-poliitika" target="_blank" rel="noopener noreferrer">Kaup24.ee</a>.`
+          : `Nõustun <a href="https://kaup24.ee/privatuma-poliitika" target="_blank" rel="noopener noreferrer">Kaup24.ee</a> privaatsuspoliitikaga.`
+        : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
+        ? this.language === 'EN'
+          ? `I agree with <a href="https://hobbyhall.fi/fi/tietosuojakäytäntö" target="_blank" rel="noopener noreferrer">Hobbyhall.fi</a> privacy policy.`
+          : `Hyväksyn yrityksen <a href="https://hobbyhall.fi/fi/tietosuojakäytäntö" target="_blank" rel="noopener noreferrer">tietosuojakäytännön</a>.`
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
@@ -353,6 +387,7 @@ export class InputRegisterContainer {
       this.prop !== 'Vilvi' &&
       this.prop !== 'Daumantu' &&
       this.prop !== 'Toni' &&
+      this.prop !== 'Pigu.lt' &&
       this.prop !== 'Perlas GO'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Ikea'
@@ -381,6 +416,12 @@ export class InputRegisterContainer {
               ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
               : this.prop === 'Orlen'
               ? 'https://www.orlen.lt/LT/Apie%20mus/Privatumo%20politika/Puslapiai/default.aspx'
+              : this.prop === 'Novaturas' && this.language === 'LT'
+              ? 'https://www.novaturas.lt/privatumo-politika'
+              : this.prop === 'Novaturas' && this.language === 'LV'
+              ? 'https://www.novatours.lv/privatuma-politika'
+              : this.prop === 'Novaturas' && this.language === 'EE'
+              ? 'https://www.novatours.ee/privaatsusteave'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
             this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'
@@ -502,11 +543,14 @@ export class InputRegisterContainer {
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
         this.prop === 'Tiche' ||
+        this.prop === 'Novaturas' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
-      }width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-      this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '178px' : '258px'
+      }width: calc(100% - 70px); height: ${
+      this.prop === 'Toni' ? '37px' : '21px'
+    }; left: 35px; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '171px' : '255px'
     }; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
@@ -520,15 +564,17 @@ export class InputRegisterContainer {
       " id="competition-name-error"></div>
 
 
-      <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni'
-          ? '258px'
-          : this.prop.includes('Gamtos Ateitis')
-          ? '348px'
-          : this.prop === 'Nykstukas'
-          ? '430px'
-          : '338px'
-      } ; position: absolute;text-align:start;z-index:99999;color: ${
+      <div style="width: calc(100% - 70px); height: ${
+        this.prop === 'Toni' ? '37px' : '21px'
+      }; left: 35px; top: ${
+      this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni'
+        ? '255px'
+        : this.prop.includes('Gamtos Ateitis')
+        ? '348px'
+        : this.prop === 'Nykstukas'
+        ? '430px'
+        : '338px'
+    } ; position: absolute;text-align:start;z-index:99999;color: ${
       this.prop === 'Akropolis' && this.language === 'LV' ? '#FFD833' : '#D8000C'
     };
       font-family: Montserrat;
@@ -541,7 +587,9 @@ export class InputRegisterContainer {
       " id="competition-email-error"> </div>
 
 
-            <div style="width: calc(100% - 70px); height: 21px; left: 35px; top: ${'335px'} ; position: absolute;text-align:start;z-index:99999;color: ${'#D8000C'};
+            <div style="width: calc(100% - 70px); height: ${
+              this.prop === 'Toni' ? '37px' : '21px'
+            }; left: 35px; top: ${'335px'} ; position: absolute;text-align:start;z-index:99999;color: ${'#D8000C'};
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
@@ -565,6 +613,7 @@ export class InputRegisterContainer {
             this.prop === 'Orlen' ||
             this.prop === 'LemonFeel' ||
             this.prop === 'Tiche' ||
+            this.prop === 'Novaturas' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -582,6 +631,7 @@ export class InputRegisterContainer {
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
         this.prop === 'Tiche' ||
+        this.prop === 'Novaturas' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -609,6 +659,7 @@ export class InputRegisterContainer {
             this.prop === 'Orlen' ||
             this.prop === 'LemonFeel' ||
             this.prop === 'Tiche' ||
+            this.prop === 'Novaturas' ||
             this.language === 'EN'
           ? '249px'
           : '299px'
@@ -618,19 +669,14 @@ export class InputRegisterContainer {
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonGym' ||
       this.prop === 'Tiche' ||
+      this.prop === 'Novaturas' ||
       this.prop === 'LemonFeel'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
     } ; font-size: 18px; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
     }; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-      this.language === 'LV'
-        ? 'Spēlētāja e-pasts'
-        : this.language === 'RU'
-        ? 'Емейл игрока'
-        : this.language === 'ET'
-        ? 'Mängija e-post'
-        : this.prop === 'Fpro'
+      this.prop === 'Fpro'
         ? 'Email address'
         : this.prop === 'Ikea'
         ? 'El. pašto adresas'
@@ -640,6 +686,14 @@ export class InputRegisterContainer {
         ? 'Correo electrónico'
         : this.prop.includes('Gamtos Ateitis')
         ? 'El. pašto adresas'
+        : this.language === 'LV'
+        ? 'Spēlētāja e-pasts'
+        : this.language === 'RU'
+        ? 'Емейл игрока'
+        : this.language === 'ET'
+        ? 'Mängija e-post'
+        : this.language === 'FI'
+        ? 'Sähköpostiosoite'
         : this.language === 'EN'
         ? 'Email address'
         : this.language === 'ES'
@@ -658,6 +712,7 @@ export class InputRegisterContainer {
         this.prop === 'Orlen' ||
         this.prop === 'LemonFeel' ||
         this.prop === 'Tiche' ||
+        this.prop === 'Novaturas' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -673,6 +728,7 @@ export class InputRegisterContainer {
       this.prop === 'Fantazijos' ||
       this.prop === 'LemonFeel' ||
       this.prop === 'Tiche' ||
+      this.prop === 'Novaturas' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
