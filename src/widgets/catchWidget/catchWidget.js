@@ -1076,7 +1076,7 @@ class CatchGame {
                     team: schoolInput.value,
                   }),
                   user_name:
-                    this.customer.includes('Gamtos Ateitis') || this.customer.includes('Orlen')
+                    this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen'
                       ? emailInput?.value
                       : this.customer === 'Toni'
                       ? playerNameInput?.value + phoneInput?.value
