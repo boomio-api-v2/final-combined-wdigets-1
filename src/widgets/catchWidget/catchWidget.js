@@ -1075,11 +1075,12 @@ class CatchGame {
                   ...(this.customer.includes('Gamtos Ateitis') && {
                     team: schoolInput.value,
                   }),
-                  user_name: this.customer.includes('Gamtos Ateitis')
-                    ? emailInput?.value
-                    : this.customer === 'Toni'
-                    ? playerNameInput?.value + phoneInput?.value
-                    : playerNameInput?.value,
+                  user_name:
+                    this.customer.includes('Gamtos Ateitis') || this.customer.includes('Orlen')
+                      ? emailInput?.value
+                      : this.customer === 'Toni'
+                      ? playerNameInput?.value + phoneInput?.value
+                      : playerNameInput?.value,
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneInput?.value } : {}),
                 })
