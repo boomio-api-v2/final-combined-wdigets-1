@@ -442,7 +442,7 @@ export class InputRegisterContainer {
               ? 'https://www.novaturas.lt/privatumo-politika'
               : this.prop === 'Novaturas' && this.language === 'LV'
               ? 'https://www.novatours.lv/privatuma-politika'
-              : this.prop === 'Novaturas' && this.language === 'EE'
+              : this.prop === 'Novaturas' && this.language === 'ET'
               ? 'https://www.novatours.ee/privaatsusteave'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
