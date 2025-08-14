@@ -357,18 +357,10 @@ export class InputRegisterContainer {
         ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
         : this.prop === 'Nykstukas'
         ? 'Sutinku su „Pieno žvaigždės“'
-        : this.language === 'EN'
-        ? 'I agree to receive '
-        : this.language === 'Toni'
-        ? 'Acepto los Términos y Condiciones de la actividad'
         : this.prop === 'Toni'
         ? 'Acepto los términos y condicines de la actividad. Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
         : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
         ? 'Piekrītu LEMON GYM'
-        : this.language === 'LV'
-        ? 'Es piekrītu'
-        : this.language === 'ET'
-        ? 'Ma olen nõus'
         : this.prop === 'Nevezis'
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : this.prop === 'Magija'
@@ -391,6 +383,12 @@ export class InputRegisterContainer {
         ? this.language === 'EN'
           ? `I agree with <a href="https://hobbyhall.fi/fi/tietosuojakäytäntö" target="_blank" rel="noopener noreferrer">Hobbyhall.fi</a> privacy policy.`
           : `Hyväksyn yrityksen <a href="https://hobbyhall.fi/fi/tietosuojakäytäntö" target="_blank" rel="noopener noreferrer">tietosuojakäytännön</a>.`
+        : this.language === 'EN'
+        ? 'I agree to receive '
+        : this.language === 'LV'
+        ? 'Es piekrītu'
+        : this.language === 'ET'
+        ? 'Ma olen nõus'
         : `Sutinku  ${
             this.prop === 'LemonGym'
               ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
