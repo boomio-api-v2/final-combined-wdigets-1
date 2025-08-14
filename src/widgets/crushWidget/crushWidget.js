@@ -1450,7 +1450,7 @@ ${`<div style="${
               user_email: emailInput?.value,
               user_name:
                 this.customer === 'Toni'
-                  ? playerNameInput?.value + phoneInput?.value
+                  ? playerNameInput?.value.trimEnd() + phoneInput?.value
                   : emailInput?.value,
               ...(phoneValue ? { phone: phoneInput?.value } : {}),
 

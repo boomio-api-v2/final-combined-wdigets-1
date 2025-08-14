@@ -151,6 +151,8 @@ class driveWidget {
             ? 'kustēties'
             : this.language === 'ET'
             ? 'LIIGU'
+            : this.language === 'EN'
+            ? 'swipe'
             : 'Brūkšt'
         }</div>
         <div>${
@@ -164,6 +166,8 @@ class driveWidget {
             ? 'kustēties'
             : this.language === 'ET'
             ? 'LIIGU'
+            : this.language === 'EN'
+            ? 'swipe'
             : 'Brūkšt'
         }</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}

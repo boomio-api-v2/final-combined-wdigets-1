@@ -157,6 +157,7 @@ export class InputRegisterContainer {
       this.prop === 'Magija' ||
       this.prop === 'Pigu.lt' ||
       this.prop === 'Nykstukas' ||
+      this.prop === 'Novaturas' ||
       this.prop === 'Toni' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
@@ -180,7 +181,17 @@ export class InputRegisterContainer {
     }; font-family:${
       this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
     };font-weight: 400; word-wrap: break-word;text-align:start;">${
-      this.prop === 'Ikea'
+      this.prop === 'Novaturas' && this.language === 'LT'
+        ? 'Norint tęsti privaloma sutikti gauti įmonės naujienlaiškius.'
+        : this.prop === 'Novaturas' && this.language === 'LV'
+        ? 'Lai turpinātu, ir jāpiekrīt saņemt uzņēmuma jaunumu izsūtnes.'
+        : this.prop === 'Novaturas' && this.language === 'ET'
+        ? 'Jätkamiseks peab nõustuma ettevõtte uudiskirjade saamisega.'
+        : this.prop === 'Novaturas' && this.language === 'EN'
+        ? 'To continue, you must agree to receive the companys newsletters.'
+        : this.prop === 'Novaturas' && this.language === 'RU'
+        ? 'Чтобы продолжить, необходимо согласиться на получение новостной рассылки компании.'
+        : this.prop === 'Ikea'
         ? 'Sutinku gauti IKEA naujienas.'
         : this.prop === 'Perlas GO'
         ? 'Sutinku gauti „Perlas Go“ naujienas el. paštu.'
@@ -288,7 +299,17 @@ export class InputRegisterContainer {
     } ;  font-weight: 400; width:${
       this.prop?.includes('Gamtos Ateitis') ? '320px' : '350px'
     };word-wrap: break-word;line-height:14px;text-align:start;">${
-      this.prop === 'Fpro'
+      this.prop === 'Novaturas' && this.language === 'LT'
+        ? 'Norint tęsti privaloma sutikti su įmonės  <a href="https://www.novaturas.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">privatumo politika</a>.'
+        : this.prop === 'Novaturas' && this.language === 'LV'
+        ? 'Lai turpinātu, ir jāpiekrīt uzņēmuma <a href="https://www.novatours.lv/privatuma-politika" target="_blank" rel="noopener noreferrer">privātuma politikai</a>.'
+        : this.prop === 'Novaturas' && this.language === 'ET'
+        ? 'Jätkamiseks peab nõustuma ettevõtte <a href="https://www.novatours.ee/privaatsusteave" target="_blank" rel="noopener noreferrer">privaatsuspoliitikaga</a>.'
+        : this.prop === 'Novaturas' && this.language === 'EN'
+        ? 'To continue, you must agree to the companys   <a href="https://www.novaturas.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">privacy policy</a>.'
+        : this.prop === 'Novaturas' && this.language === 'RU'
+        ? 'Чтобы продолжить, необходимо согласиться с политикой <a href="https://www.novaturas.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">конфиденциальности компании</a>.'
+        : this.prop === 'Fpro'
         ? 'By continuing, I agree to receive FPRO newsletters.'
         : this.prop === 'Pieno Žvaigždės'
         ? 'Sutinku su „Pieno žvaigždės“'
@@ -388,6 +409,7 @@ export class InputRegisterContainer {
       this.prop !== 'Daumantu' &&
       this.prop !== 'Toni' &&
       this.prop !== 'Pigu.lt' &&
+      this.prop !== 'Novaturas' &&
       this.prop !== 'Perlas GO'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Ikea'
@@ -420,7 +442,7 @@ export class InputRegisterContainer {
               ? 'https://www.novaturas.lt/privatumo-politika'
               : this.prop === 'Novaturas' && this.language === 'LV'
               ? 'https://www.novatours.lv/privatuma-politika'
-              : this.prop === 'Novaturas' && this.language === 'EE'
+              : this.prop === 'Novaturas' && this.language === 'ET'
               ? 'https://www.novatours.ee/privaatsusteave'
               : ''
           }" style="color:white;text-decoration: underline; font-size: ${
