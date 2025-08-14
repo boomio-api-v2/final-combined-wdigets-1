@@ -844,7 +844,7 @@ export class CompetitionScoreTableContainer {
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
-              <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+              <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
