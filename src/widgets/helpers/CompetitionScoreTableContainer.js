@@ -861,17 +861,17 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Toni'
                 ? 'Inténtalo de nuevo y suma más oportunidades de ganar.'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'Накопи 1000 очков или более и выиграй:</br>Скидочный код на выбранные популярные товары.'
+                ? 'Накопи 100 очков или более и выиграй:</br>Скидочный код на выбранные популярные товары.'
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? '1000 pistettä enemmän ja voit voittaa</br>Alekoodi valikoiduille suosituille tuotteille'
+                ? '100 pistettä enemmän ja voit voittaa</br>Alekoodi valikoiduille suosituille tuotteille'
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'Sakrāj 1000 punktus vai vairāk un laimē:</br>Atlaižu kodu izvēlētām precēm.'
+                ? 'Sakrāj 100 punktus vai vairāk un laimē:</br>Atlaižu kodu izvēlētām precēm.'
                 : this.prop === 'Pigu.lt' && this.language === 'LT'
-                ? 'Surink 1000 ar daugiau taškų ir laimėk:</br>Nuolaidos kodą atrinktoms populiarioms prekėms.'
+                ? 'Surink 100 ar daugiau taškų ir laimėk:</br>Nuolaidos kodą atrinktoms populiarioms prekėms.'
                 : this.prop === 'Pigu.lt' && this.language === 'EN'
                 ? 'A discount code for selected popular products.</br>If you have already won, we will send the information to the email address you ve provided during registration.'
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'Kogu 1000 punkti või rohkem ja võida:</br>Sooduskood valikule populaarsetele toodetele!'
+                ? 'Kogu 100 punkti või rohkem ja võida:</br>Sooduskood valikule populaarsetele toodetele!'
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -893,7 +893,9 @@ export class CompetitionScoreTableContainer {
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
-              <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
+              <div style="width:100%; top: ${
+                this.prop === 'Pigu.lt' ? '536px' : '546px'
+              }; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
