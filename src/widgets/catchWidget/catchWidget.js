@@ -1079,7 +1079,7 @@ class CatchGame {
                     this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen'
                       ? emailInput?.value
                       : this.customer === 'Toni'
-                      ? (playerNameInput?.value + phoneInput?.value).replace(/\s+/g, '')
+                      ? playerNameInput?.value.trimEnd() + phoneInput?.value
                       : playerNameInput?.value,
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneInput?.value } : {}),
