@@ -758,7 +758,15 @@ ${
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${'center'}; color: white; font-size: 10px; font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
           }; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
-            this.config.currentPageUrl.toLowerCase().includes('pigu')
+            this.prop === 'Novaturas' && this.language === 'LT'
+              ? 'href=https://www.novaturas.lt/zaidimo-taisykles'
+              : this.prop === 'Novaturas' && this.language === 'LV'
+              ? 'href=https://www.novatours.lv/speles-noteikumi'
+              : this.prop === 'Novaturas' && this.language === 'ET'
+              ? 'href=https://www.novatours.ee/mangu-reeglid'
+              : this.prop === 'Novaturas' && this.language === 'RU'
+              ? 'href=https://www.novatours.lv/ru/pravila-igri'
+              : this.config.currentPageUrl.toLowerCase().includes('pigu')
               ? this.language === 'RU'
                 ? `href=https://pigu.lt/ru/t/zaidimo-taisykles-jump`
                 : `href=https://pigu.lt/lt/t/zaidimo-taisykles-jump`
