@@ -530,6 +530,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
         (this.prop === 'Orlen' && this.scoreTable.user_best_place > 1000) ||
         (this.prop === 'Novaturas' && this.scoreTable.user_best_place > 30) ||
+        (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score > 100) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' ? '16px' : fontSize
@@ -594,17 +595,65 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Nykstukas' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'Ты выиграл приз этой недели: </br> -10% на выбранные популярные товары при первой покупке в приложении.'
+                ? `Ты выиграл приз этой недели: </br> -${
+                    this.scoreTable?.user_best_score >= 751
+                      ? 25
+                      : this.scoreTable?.user_best_score >= 401
+                      ? 20
+                      : this.scoreTable?.user_best_score >= 100
+                      ? 15
+                      : 0
+                  } на выбранные популярные товары при первой покупке в приложении.`
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'Olet voittanut tämän viikon palkinnon </br> 10% alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa'
+                ? `Olet voittanut tämän viikon palkinnon </br> -${
+                    this.scoreTable?.user_best_score >= 751
+                      ? 25
+                      : this.scoreTable?.user_best_score >= 401
+                      ? 20
+                      : this.scoreTable?.user_best_score >= 100
+                      ? 15
+                      : 0
+                  } alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa`
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'Tu esi ieguvis šīs nedēļas balvu: </br> Papildu -10% izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*'
+                ? `Tu esi ieguvis šīs nedēļas balvu: </br> Papildu -${
+                    this.scoreTable?.user_best_score >= 751
+                      ? 25
+                      : this.scoreTable?.user_best_score >= 401
+                      ? 20
+                      : this.scoreTable?.user_best_score >= 100
+                      ? 15
+                      : 0
+                  } izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*`
                 : this.prop === 'Pigu.lt' && this.language === 'LT'
-                ? 'Tu laimėjai šios savaitės prizą: </br> Perkant pirmąkart programėlėje -10% nuolaidos kodą atrinktoms populiarioms prekėms.'
+                ? `Tu laimėjai šios savaitės prizą: </br> Perkant pirmąkart programėlėje -${
+                    this.scoreTable?.user_best_score >= 751
+                      ? 25
+                      : this.scoreTable?.user_best_score >= 401
+                      ? 20
+                      : this.scoreTable?.user_best_score >= 100
+                      ? 15
+                      : 0
+                  }nuolaidos kodą atrinktoms populiarioms prekėms.`
                 : this.prop === 'Pigu.lt' && this.language === 'EN'
-                ? 'You ve won this weeks prize:</br> First purchase in app -10% discount code off selected popular items.'
+                ? `You ve won this weeks prize:</br> First purchase in app -${
+                    this.scoreTable?.user_best_score >= 751
+                      ? 25
+                      : this.scoreTable?.user_best_score >= 401
+                      ? 20
+                      : this.scoreTable?.user_best_score >= 100
+                      ? 15
+                      : 0
+                  } discount code off selected popular items.`
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'Oled selle nädala auhinna võitja! </br> Esimesel ostul äpis -10% lisaale valitud populaarsetelt toodetelt '
+                ? `Oled selle nädala auhinna võitja! </br> Esimesel ostul äpis -${
+                    this.scoreTable?.user_best_score >= 751
+                      ? 25
+                      : this.scoreTable?.user_best_score >= 401
+                      ? 20
+                      : this.scoreTable?.user_best_score >= 100
+                      ? 15
+                      : 0
+                  } lisaale valitud populaarsetelt toodetelt `
                 : this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                 : this.prop === 'Pieno Žvaigždės'
@@ -812,17 +861,17 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Toni'
                 ? 'Inténtalo de nuevo y suma más oportunidades de ganar.'
                 : this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'Накопи 1000 очков или более и выиграй:</br>Скидочный код на выбранные популярные товары.'
+                ? 'Накопи 100 очков или более и выиграй:</br>Скидочный код на выбранные популярные товары.'
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? '1000 pistettä enemmän ja voit voittaa</br>Alekoodi valikoiduille suosituille tuotteille'
+                ? '100 pistettä enemmän ja voit voittaa</br>Alekoodi valikoiduille suosituille tuotteille'
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'Sakrāj 1000 punktus vai vairāk un laimē:</br>Atlaižu kodu izvēlētām precēm.'
+                ? 'Sakrāj 100 punktus vai vairāk un laimē:</br>Atlaižu kodu izvēlētām precēm.'
                 : this.prop === 'Pigu.lt' && this.language === 'LT'
-                ? 'Surink 1000 ar daugiau taškų ir laimėk:</br>Nuolaidos kodą atrinktoms populiarioms prekėms.'
+                ? 'Surink 100 ar daugiau taškų ir laimėk:</br>Nuolaidos kodą atrinktoms populiarioms prekėms.'
                 : this.prop === 'Pigu.lt' && this.language === 'EN'
                 ? 'A discount code for selected popular products.</br>If you have already won, we will send the information to the email address you ve provided during registration.'
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'Kogu 1000 punkti või rohkem ja võida:</br>Sooduskood valikule populaarsetele toodetele!'
+                ? 'Kogu 100 punkti või rohkem ja võida:</br>Sooduskood valikule populaarsetele toodetele!'
                 : ''
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
@@ -844,7 +893,9 @@ export class CompetitionScoreTableContainer {
                 ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                 : ''
             }</div>
-              <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
+              <div style="width:100%; top: ${
+                this.prop === 'Pigu.lt' ? '536px' : '546px'
+              }; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
