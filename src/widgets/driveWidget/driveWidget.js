@@ -99,7 +99,7 @@ class driveWidget {
 
     <img class="new_highscore_stars" src=${
       newHighscoreStarsImage.src
-    } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+    } alt="Image Description" style="width:auto;overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
       this.language === 'EN'
