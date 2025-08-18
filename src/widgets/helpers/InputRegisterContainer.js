@@ -209,8 +209,6 @@ export class InputRegisterContainer {
         ? 'Piekrītu saņemt AKROPOLE iepirkšanās centru jaunumus e-pastā.'
         : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
         ? 'Piekrītu saņemt LEMON GYM jaunumu vēstuli.'
-        : this.language === 'LV'
-        ? 'Es piekrītu saņemt Unisend.lv jaunumus.'
         : this.prop === 'Dentsu'
         ? 'Sutinku gauti Dentsu ir Boomio naujienas.'
         : this.prop === 'Zemaitijos Pienas'

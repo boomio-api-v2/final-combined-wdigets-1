@@ -603,7 +603,7 @@ export class CompetitionScoreTableContainer {
                       : this.scoreTable?.user_best_score >= 100
                       ? 15
                       : 0
-                  } на выбранные популярные товары при первой покупке в приложении.`
+                  }% на выбранные популярные товары при первой покупке в приложении.`
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
                 ? `Olet voittanut tämän viikon palkinnon </br> -${
                     this.scoreTable?.user_best_score >= 751
@@ -613,7 +613,7 @@ export class CompetitionScoreTableContainer {
                       : this.scoreTable?.user_best_score >= 100
                       ? 15
                       : 0
-                  } alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa`
+                  }% alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa`
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
                 ? `Tu esi ieguvis šīs nedēļas balvu: </br> Papildu -${
                     this.scoreTable?.user_best_score >= 751
@@ -623,7 +623,7 @@ export class CompetitionScoreTableContainer {
                       : this.scoreTable?.user_best_score >= 100
                       ? 15
                       : 0
-                  } izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*`
+                  }% izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*`
                 : this.prop === 'Pigu.lt' && this.language === 'LT'
                 ? `Tu laimėjai šios savaitės prizą: </br> Perkant pirmąkart programėlėje -${
                     this.scoreTable?.user_best_score >= 751
@@ -633,7 +633,7 @@ export class CompetitionScoreTableContainer {
                       : this.scoreTable?.user_best_score >= 100
                       ? 15
                       : 0
-                  }nuolaidos kodą atrinktoms populiarioms prekėms.`
+                  }% nuolaidos kodą atrinktoms populiarioms prekėms.`
                 : this.prop === 'Pigu.lt' && this.language === 'EN'
                 ? `You ve won this weeks prize:</br> First purchase in app -${
                     this.scoreTable?.user_best_score >= 751
@@ -643,7 +643,7 @@ export class CompetitionScoreTableContainer {
                       : this.scoreTable?.user_best_score >= 100
                       ? 15
                       : 0
-                  } discount code off selected popular items.`
+                  }% discount code off selected popular items.`
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
                 ? `Oled selle nädala auhinna võitja! </br> Esimesel ostul äpis -${
                     this.scoreTable?.user_best_score >= 751
@@ -653,7 +653,7 @@ export class CompetitionScoreTableContainer {
                       : this.scoreTable?.user_best_score >= 100
                       ? 15
                       : 0
-                  } lisaale valitud populaarsetelt toodetelt `
+                  }% lisaale valitud populaarsetelt toodetelt `
                 : this.prop === 'Barbora'
                 ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                 : this.prop === 'Pieno Žvaigždės'
@@ -723,19 +723,7 @@ export class CompetitionScoreTableContainer {
             } ; font-family: Montserrat; font-weight: 700; text-transform:${
               this.prop === 'Perlas GO' ? 'none' : 'uppercase'
             } ; word-wrap: break-word">${
-              this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? 'Ты получаешь дополнительный приз: </br>  -25% на выбранные популярные товары при первой покупке в приложении.'
-                : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? 'Sait yllätyksen: </br> 25% alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa koodilla*'
-                : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? 'Tu ieguvi papildu pārsteigumu: </br> Papildu -25% izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*'
-                : this.prop === 'Pigu.lt' && this.language === 'LT'
-                ? 'Tu gavai papildomą prizą: </br> Perkant pirmąkart programėlėje -25% nuolaidos kodą atrinktoms populiarioms prekėms.'
-                : this.prop === 'Pigu.lt' && this.language === 'EN'
-                ? 'You got an extra surprise:</br> First purchase in app -25% discount code off selected popular items.'
-                : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? 'Sinu lisaboonus on: </br> Esimesel ostul äpis -25% lisaale valitud populaarsetelt toodetelt '
-                : this.prop === 'Unisend' && this.language === 'ET'
+              this.prop === 'Unisend' && this.language === 'ET'
                 ? 'Võitjatega võetakse ühendust e-posti teel.'
                 : this.language === 'LV' && this.prop === 'Fantazijos'
                 ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
@@ -756,12 +744,6 @@ export class CompetitionScoreTableContainer {
                 ? '(Galioja pristatymams iki 04 14 d.)'
                 : this.prop === 'Eurovaistine'
                 ? 'Uzvarētāji tiks informēti e-pastā.'
-                : this.language === 'LV' && this.prop !== 'Akropolis'
-                ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
-                : this.language === 'RU'
-                ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
-                : this.language === 'ET'
-                ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
                 : this.prop === 'Fantazijos'
                 ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                 : ''
