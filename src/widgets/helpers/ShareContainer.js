@@ -60,16 +60,21 @@ export class ShareContainer {
          ${
            this.prop === 'Perlas GO'
              ? 'Tik naujiems vartotojams – panaudok kodą ir gauk 5 € sąskaitoms apmokėti Perlas Go! '
-             : 'Už pakviestus draugus gausi +1000<br> taškų prie savo žaidimo rezultato!'
+             : this.language === 'EN'
+             ? 'For inviting friends you will receive +1000 points to your game score!<br>Share the game link now and get an additional surprise!'
+             : this.language === 'LT'
+             ? 'Už pakviestus draugus gausi +1000 taškų prie savo žaidimo rezultato!<br>Pasidalink žaidimo nuoroda dabar ir gauk papildomą staigmeną!'
+             : this.language === 'LV'
+             ? 'Par draugu uzaicināšanu saņemsi +1000 punktus savam spēles rezultātam!<br>Dalies ar spēles saiti tūlīt un saņem papildu pārsteigumu!'
+             : this.language === 'ET'
+             ? 'Kui kutsud sõbrad mängima, saad +1000 punkti oma kontole!<br>Jaga kohe mängulinki ja saad lisaboonuse! '
+             : this.language === 'FI'
+             ? 'Ystävien kutsumisesta saat +1000 pistettä pelitulokseesi!<br>Jaa pelin linkki nyt ja saat yllätyksen!'
+             : this.language === 'RU' &&
+               'За приглашение друзей Ты получешь +1000 очков к своему игровому счёту!<br>Поделись ссылкой на игру прямо сейчас и получи дополнительный сюрприз!'
          }
       </div>
-      <div class="bomio-second-line" style="width:100%; top: 320px; line-height:24px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 400; word-wrap: break-word;">
-        ${
-          this.prop === 'Perlas GO'
-            ? ''
-            : 'Pasidalink žaidimo nuoroda dabar ir <br> tapk žaidimo lyderiu!'
-        }
-      </div>
+
       ${
         this.prop === 'Perlas GO'
           ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#FFB151'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:340px;left:calc(50% - 130px);">
@@ -87,7 +92,21 @@ export class ShareContainer {
 
                <div id="default-share-button" style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-share">
     <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
-    ${this.prop === 'Perlas GO' ? 'PANAUDOK KODĄ' : 'DALINTIS'}
+    ${
+      this.prop === 'Perlas GO'
+        ? 'PANAUDOK KODĄ'
+        : this.language === 'EN'
+        ? 'SHARE'
+        : this.language === 'LT'
+        ? 'DALINTIS '
+        : this.language === 'LV'
+        ? 'DALĪTIES'
+        : this.language === 'ET'
+        ? 'JAGA'
+        : this.language === 'FI'
+        ? 'JAA'
+        : this.language === 'RU' && 'ПОДЕЛИТЬСЯ'
+    }
     </div>
     </div>
 
@@ -122,19 +141,9 @@ export class ShareContainer {
       navigator.clipboard.writeText(shareURL);
     }.bind(this);
 
-    // Add event listener for the default share button
     const shareButton = document.getElementById('default-share-button');
     if (shareButton) {
-      if (this.prop === 'Perlas GO') {
-        shareButton.addEventListener('click', () => {
-          window.open(
-            'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign',
-            '_blank',
-          );
-        });
-      } else {
-        shareButton.addEventListener('click', () => this.defaultShare());
-      }
+      shareButton.addEventListener('click', () => this.defaultShare());
     }
   }
 
@@ -178,7 +187,19 @@ export class ShareContainer {
       };; position: absolute; text-align: center;line-height:42px; color: ${'white'}; font-size: ${
       this.isMobileWidthSmall ? '26px' : '30px'
     }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Perlas GO' ? 'Tavo NUOLAIDOS KODAS' : 'daugiau draugų, </br> daugiau taškų!'
+      this.prop === 'Perlas GO'
+        ? 'Tavo NUOLAIDOS KODAS'
+        : this.language === 'EN'
+        ? 'MORE FRIENDS, MORE POINTS'
+        : this.language === 'LT'
+        ? 'DAUGIAU DRAUGŲ, DAUGIAU TAŠKŲ'
+        : this.language === 'LV'
+        ? 'VAIRĀK DRAUGU, VAIRĀK PUNKTU'
+        : this.language === 'ET'
+        ? 'ROHKEM SÕPRU, ROHKEM PUNKTE'
+        : this.language === 'FI'
+        ? 'Enemmän ystäviä, enemmän pisteitä'
+        : this.language === 'RU' && 'БОЛЬШЕ ДРУЗЕЙ, БОЛЬШЕ ОЧКОВ'
     }</div>
       <div class="boomio-scoreboard-text"></div>
     </div>`;
@@ -189,7 +210,19 @@ export class ShareContainer {
     </div></div>
     <div style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-share">
     <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
-    ${'TOLIAU'}
+    ${
+      this.language === 'EN'
+        ? 'NEXT'
+        : this.language === 'LT'
+        ? 'TOLIAU'
+        : this.language === 'LV'
+        ? 'NĀKAMAIS'
+        : this.language === 'ET'
+        ? 'EDASI'
+        : this.language === 'FI'
+        ? 'SEURAAVA'
+        : this.language === 'RU' && 'ДАЛЕЕ'
+    }
     </div>
     </div>
     </div>`;
