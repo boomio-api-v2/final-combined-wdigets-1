@@ -61,13 +61,16 @@ import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { ShareContainer } from '../helpers/ShareContainer';
 
 import './styles.css';
 
 class CrushGame {
   constructor() {
+    this.shareClicked = false;
+
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
+    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -392,54 +395,61 @@ class CrushGame {
 
     setTimeout(
       () => {
-        if (this.showCompetitiveRegistration) {
-          boomioService
-            .signal('ROUND_FINISHED', 'signal', {
-              score: this.currentScore,
-            })
-            .then((response) => {
-              if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                document.getElementById('crush-mobile-controls').style.display = 'none';
-              }
-              if (this.customer === 'Pigu.lt') {
-                if (window.Boomio) {
-                  window.Boomio.logEvent('game_finished', JSON.stringify(response));
-                } else if (
-                  window.webkit &&
-                  window.webkit.messageHandlers &&
-                  window.webkit.messageHandlers.Boomio
-                ) {
-                  var message = {
-                    command: 'logEvent',
-                    name: 'game_finished',
-                    parameters: { response },
-                  };
-                  window.webkit.messageHandlers.Boomio.postMessage(message);
-                } else {
-                  console.log('No native APIs found.');
+        if (this.customer !== 'Pigu.lt') {
+          if (this.showCompetitiveRegistration) {
+            boomioService
+              .signal('ROUND_FINISHED', 'signal', {
+                score: this.currentScore,
+                shared_somewhere: this.shareClicked,
+              })
+              .then((response) => {
+                if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
+                  document.getElementById('crush-mobile-controls').style.display = 'none';
                 }
-              }
-              this.userBestPlace = response.user_best_place;
+                if (this.customer === 'Pigu.lt') {
+                  if (window.Boomio) {
+                    window.Boomio.logEvent('game_finished', JSON.stringify(response));
+                  } else if (
+                    window.webkit &&
+                    window.webkit.messageHandlers &&
+                    window.webkit.messageHandlers.Boomio
+                  ) {
+                    var message = {
+                      command: 'logEvent',
+                      name: 'game_finished',
+                      parameters: { response },
+                    };
+                    window.webkit.messageHandlers.Boomio.postMessage(message);
+                  } else {
+                    console.log('No native APIs found.');
+                  }
+                }
+                this.userBestPlace = response.user_best_place;
 
-              this.scoreTable = response;
+                this.scoreTable = response;
 
-              this.scoreTableContainerInstance.updateProps(
-                this.customer,
-                this.scoreTable,
-                this.currentScore,
-              );
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
+                this.scoreTableContainerInstance.updateProps(
+                  this.customer,
+                  this.scoreTable,
+                  this.currentScore,
+                );
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
         }
         if (this.showCompetitiveRegistration) {
           let competitionTableContainer = '';
-          if (this.customer === 'Nevezis') {
+
+          if (this.customer === 'Pigu.lt') {
+            competitionTableContainer = document.querySelector('.share-container');
+          } else if (this.customer === 'Nevezis') {
             competitionTableContainer = document.querySelector('.did-you-know-container');
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
           }
+
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.opacity =
             this.language === 'LV' ? 0.4 : 0.2;
@@ -767,6 +777,20 @@ ${`<div style="${
 
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
+    }
+
+    document.addEventListener('shareClicked', (event) => {
+      if (this.shareClicked === false) {
+        console.log('shareClicked');
+        this.shareClicked = true;
+        this.currentScore = this.currentScore + 100;
+      }
+    });
+    if (this.customer === 'Pigu.lt') {
+      const gameContainer = document.querySelector('.game-container');
+
+      this.shareContainer = new ShareContainer(this.customer);
+      gameContainer.appendChild(this.shareContainer.containerDiv);
     }
   }
 
@@ -1539,8 +1563,15 @@ ${`<div style="${
     }
   };
 
-  clickEventHandlerDidYouKnow = () => {
-    const didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+  clickEventHandlerDidYouKnow = (closeShare) => {
+    let didYouKnowTableContainer = '';
+    const shareContainer = document.querySelector('.share-container');
+
+    if (this.customer === 'Pigu.lt') {
+      didYouKnowTableContainer = document.querySelector('.share-container');
+    } else {
+      didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+    }
 
     didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
     setTimeout(() => {
@@ -1551,16 +1582,68 @@ ${`<div style="${
     setTimeout(() => {
       didYouKnowTableContainer.style.display = 'none';
     }, 1000);
-    const competitionTableContainer = document.querySelector('.competition-table-container');
-    document.getElementById('background_blur').style.display = 'block';
-    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-    competitionTableContainer.style.display = 'block';
 
-    setTimeout(() => {
-      competitionTableContainer.style.height = '680px';
-      competitionTableContainer.style.top = 'calc(50%)';
-      competitionTableContainer.style.opacity = 1;
-    }, 100);
+    if (shareContainer && !closeShare) {
+      shareContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      shareContainer.style.display = 'block';
+
+      setTimeout(() => {
+        shareContainer.style.height = '680px';
+        const isNarrowScreen = window.innerWidth <= 920;
+        shareContainer.style.top = 'calc(50%)';
+        shareContainer.style.opacity = 1;
+      }, 100);
+    } else {
+      if (this.customer === 'Pigu.lt') {
+        boomioService
+          .signal('ROUND_FINISHED', 'signal', {
+            score: this.currentScore,
+            shared_somewhere: this.shareClicked,
+          })
+          .then((response) => {
+            this.userBestPlace = response.user_best_place;
+            if (this.showCompetitiveRegistration === 'points') {
+              this.scoreTable = response;
+              this.scoreTableContainerInstance.updateProps(
+                this.customer,
+                this.scoreTable,
+                this.currentScore,
+              );
+            }
+            if (this.showCompetitiveRegistration === 'competition') {
+              this.scoreTable = response;
+              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+            }
+
+            if (this.showCompetitiveRegistration === 'collectable') {
+              this.collection = response?.collection ? response?.collection : this.collection;
+              this.just_won = response?.just_won ? response?.just_won : this.just_won;
+              this.scoreTableContainerInstance.updateProps(
+                this.customer,
+                this.collectables,
+                this.collection,
+                this.just_won,
+              );
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+
+      const competitionTableContainer = document.querySelector('.competition-table-container');
+      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      competitionTableContainer.style.display = 'block';
+
+      setTimeout(() => {
+        competitionTableContainer.style.height = '680px';
+        const isNarrowScreen = window.innerWidth <= 920;
+
+        competitionTableContainer.style.top = 'calc(50%)';
+
+        competitionTableContainer.style.opacity = 1;
+      }, 100);
+    }
   };
 
   addEventListeners() {
@@ -1591,6 +1674,11 @@ ${`<div style="${
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
     }
+    if (this.customer === 'Pigu.lt') {
+      const competitionDidYouKnow = document.getElementById('boomio-close-share');
+      competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
+    }
+
     if (!this.campaignUrl) {
       document.getElementById('close-game-container').addEventListener('click', this.closeGame);
     }
