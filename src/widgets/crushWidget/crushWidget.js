@@ -783,7 +783,7 @@ ${`<div style="${
       if (this.shareClicked === false) {
         console.log('shareClicked');
         this.shareClicked = true;
-        this.currentScore = this.currentScore + 1000;
+        this.currentScore = this.currentScore + 100;
       }
     });
     if (this.customer === 'Pigu.lt') {
