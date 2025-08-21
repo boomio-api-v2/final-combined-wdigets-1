@@ -276,8 +276,6 @@ export class InputContainer {
       ? 'kad skristum.'
       : this.game === 'runner'
       ? 'rodyklių pagalba.'
-      : this.prop === 'Zemaitijos Pienas'
-      ? 'TIK „Dobilas“ produktus.'
       : this.prop === 'Nevezis'
       ? '3 ar daugiau vienodų oho! pakuočių. '
       : this.game === 'doodle'
@@ -607,8 +605,6 @@ export class InputContainer {
                 ? 'kasdien!'
                 : this.prop === 'Dentsu'
                 ? '1 mėn. prieigą  prie interaktyvios tikslinės auditorijos!'
-                : this.prop === 'Zemaitijos Pienas'
-                ? 'prizus!'
                 : this.prop === 'Nykstukas'
                 ? 'siekiant kuo geresnio rezultato.'
                 : this.prop === 'Nevezis'
@@ -629,8 +625,6 @@ export class InputContainer {
                 ? 'and improve your score.'
                 : this.language === 'RU'
                 ? 'и улучшайте свой результат '
-                : this.prop === 'Zemaitijos Pienas'
-                ? 'žaidimu.'
                 : 'Prizus!'
             }
           </div>
