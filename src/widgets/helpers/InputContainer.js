@@ -183,7 +183,7 @@ export class InputContainer {
                   : this.language === 'ES' && this.game === 'crush'
                   ? 'CONECTAR'
                   : this.game === 'crush'
-                  ? 'Spausk'
+                  ? 'Sudėk'
                   : this.game === 'drive'
                   ? 'Brauk'
                   : this.game === 'crush'
