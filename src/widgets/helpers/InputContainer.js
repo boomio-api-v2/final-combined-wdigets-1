@@ -292,6 +292,8 @@ export class InputContainer {
       ? 'TO FLY'
       : this.language === 'ES' && this.game === 'crush'
       ? 'Tres o más helados ‘Toni’'
+      : this.prop === 'Zemaitijos Pienas'
+      ? 'kartu 3 ar daugiau vienodų prekių.'
       : this.game === 'crush'
       ? 'kartu 3 ar daugiau prekes.'
       : 'kad skristum.'
