@@ -693,7 +693,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Perlas GO'
                 ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Jei laimėsi, informuosime tave registracijos metu nurodytu el. paštu.`
                 : this.prop === 'Zemaitijos Pienas'
-                ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės </br> „Dobilas“  prizus! Jei laimėjai, informuosime Tave el. paštu, </br> kurį nurodei. '
+                ? 'Pagerink rezultatą, nes geriausi 3 žaidėjai laimės sportinio rankšluosčio</br> ir gertuvės rinkinį, arba dėžutę PROTEIN M varškės sūrelių'
                 : this.prop === 'Nykstukas'
                 ? 'Geriausi žaidėjai gali laimėti bilietus į Post Malone koncertą! Laimėtojus informuosime el. paštu. Prizus dovanoja Nykštukas!'
                 : this.prop === 'Nevezis'
@@ -821,7 +821,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Perlas GO'
                 ? 'Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.'
                 : this.prop === 'Zemaitijos Pienas'
-                ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę </br> žaidėjai laimės „Dobilas“  prizus!  '
+                ? 'Pagerink rezultatą, nes geriausi 3 žaidėjai laimės sportinio rankšluosčio</br> ir gertuvės rinkinį, arba dėžutę PROTEIN M varškės sūrelių'
                 : this.prop === 'Nykstukas'
                 ? 'Geriausi žaidėjai gali laimėti bilietus į Post Malone koncertą! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą įsteigė Nykštukas! '
                 : this.prop === 'Nevezis'

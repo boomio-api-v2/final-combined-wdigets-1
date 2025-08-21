@@ -55,6 +55,21 @@ import {
   backgroundPigu,
   tutorial,
   close,
+  crushElement1ZemaitijosPienas,
+  crushElement2ZemaitijosPienas,
+  crushElement3ZemaitijosPienas,
+  crushElement4ZemaitijosPienas,
+  crushElement5ZemaitijosPienas,
+  crushElement6ZemaitijosPienas,
+  crushElement7ZemaitijosPienas,
+  crushElement1ZemaitijosPienasSpecial,
+  crushElement2ZemaitijosPienasSpecial,
+  crushElement3ZemaitijosPienasSpecial,
+  crushElement4ZemaitijosPienasSpecial,
+  crushElement5ZemaitijosPienasSpecial,
+  crushElement6ZemaitijosPienasSpecial,
+  crushElement7ZemaitijosPienasSpecial,
+  backgroundZemaitijosPienas,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -70,7 +85,7 @@ class CrushGame {
     this.shareClicked = false;
 
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Zemaitijos Pienas';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -90,6 +105,16 @@ class CrushGame {
             crushElement4Pigu,
             crushElement5Pigu,
             crushElement6Pigu,
+          }
+        : this.customer === 'Zemaitijos Pienas'
+        ? {
+            crushElement1ZemaitijosPienas,
+            crushElement2ZemaitijosPienas,
+            crushElement3ZemaitijosPienas,
+            crushElement4ZemaitijosPienas,
+            crushElement5ZemaitijosPienas,
+            crushElement6ZemaitijosPienas,
+            crushElement7ZemaitijosPienas,
           }
         : this.customer === 'Toni'
         ? {
@@ -542,6 +567,16 @@ class CrushGame {
             crushElement6ToniSpecial,
             crushElement7ToniSpecial,
           }
+        : this.customer === 'Zemaitijos Pienas'
+        ? {
+            crushElement1ZemaitijosPienasSpecial,
+            crushElement2ZemaitijosPienasSpecial,
+            crushElement3ZemaitijosPienasSpecial,
+            crushElement4ZemaitijosPienasSpecial,
+            crushElement5ZemaitijosPienasSpecial,
+            crushElement6ZemaitijosPienasSpecial,
+            crushElement7ZemaitijosPienasSpecial,
+          }
         : {
             crushElement1NevezisSpecial,
             crushElement2NevezisSpecial,
@@ -724,6 +759,8 @@ ${`<div style="${
 <img src="${
       this.customer === 'Pigu.lt'
         ? backgroundPigu
+        : this.customer === 'Zemaitijos Pienas'
+        ? backgroundZemaitijosPienas
         : this.customer === 'Toni'
         ? backgroundToni
         : backgroundNevezis
@@ -856,6 +893,16 @@ ${`<div style="${
             'crushElement5Pigu',
             'crushElement6Pigu',
           ]
+        : this.customer === 'Zemaitijos Pienas'
+        ? [
+            'crushElement1ZemaitijosPienas',
+            'crushElement2ZemaitijosPienas',
+            'crushElement3ZemaitijosPienas',
+            'crushElement4ZemaitijosPienas',
+            'crushElement5ZemaitijosPienas',
+            'crushElement6ZemaitijosPienas',
+            'crushElement7ZemaitijosPienas',
+          ]
         : this.customer === 'Toni'
         ? [
             'crushElement1Toni',
@@ -964,6 +1011,8 @@ ${`<div style="${
             newColor === 'yellow'
               ? this.customer === 'Toni'
                 ? 'crushElement1ToniSpecial'
+                : this.customer === 'Zemaitijos Pienas'
+                ? 'crushElement1ZemaitijosPienasSpecial'
                 : this.customer === 'Pigu.lt'
                 ? 'crushElement1PiguSpecial'
                 : 'crushElement1NevezisSpecial'
@@ -1362,7 +1411,6 @@ ${`<div style="${
         }
 
         if ((phoneInput?.value === '' || phoneInput?.value === null) && this.customer === 'Toni') {
-          console.log('aa');
           document.getElementById('competition-phone-error').innerText =
             this.language === 'LV'
               ? 'Obligāti aizpildāmie lauki.'
