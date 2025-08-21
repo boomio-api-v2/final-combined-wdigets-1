@@ -159,3 +159,35 @@ export const backgroundPigu =
 
 export const tutorial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/tutorial.png';
+export const crushElement1ZemaitijosPienas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement1.png';
+export const crushElement2ZemaitijosPienas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement2.png';
+export const crushElement3ZemaitijosPienas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement3.png';
+export const crushElement4ZemaitijosPienas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement4.png';
+export const crushElement5ZemaitijosPienas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement5.png';
+export const crushElement6ZemaitijosPienas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement6.png';
+export const crushElement7ZemaitijosPienas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement7.png';
+
+export const crushElement1ZemaitijosPienasSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement1Special.png';
+export const crushElement2ZemaitijosPienasSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement2Special.png';
+export const crushElement3ZemaitijosPienasSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement3Special.png';
+export const crushElement4ZemaitijosPienasSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement4Special.png';
+export const crushElement5ZemaitijosPienasSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement5Special.png';
+export const crushElement6ZemaitijosPienasSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement6Special.png';
+export const crushElement7ZemaitijosPienasSpecial =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/crushElement7Special.png';
+
+export const backgroundZemaitijosPienas =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/background.png';
