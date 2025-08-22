@@ -627,7 +627,7 @@ export class InputContainer {
                 ? 'and improve your score.'
                 : this.language === 'RU'
                 ? 'и улучшайте свой результат '
-                : 'Prizus!'
+                : 'prizus!'
             }
           </div>
             </div>
@@ -724,7 +724,7 @@ ${
                 ? 'призы от Novatours!'
                 : this.prop === 'LemonFeel'
                 ? 'apbalvosim labāko spēlētāju'
-                : 'Prizus!'
+                : 'prizus!'
             }
           </div>
             </div>`
