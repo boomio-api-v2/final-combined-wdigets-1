@@ -47,7 +47,7 @@ export class InputRegisterContainer {
         : this.prop === 'LemonFeel'
         ? 'REĢISTRĒJIES, LAI KRĀTU PUNKTUS'
         : this.language === 'LV'
-        ? 'REĢISTRĒTIES SPĒLĒT'
+        ? 'REĢISTRĒJIES SPĒLEI'
         : this.language === 'RU'
         ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
         : this.language === 'ET'
