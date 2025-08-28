@@ -501,6 +501,8 @@ export class InputContainer {
                 ? 'Mėgaukis'
                 : this.prop === 'Orlen'
                 ? 'Kartok'
+                : this.prop === 'Novaturas' && this.language === 'LT'
+                ? 'Kartok'
                 : this.language === 'LV'
                 ? 'Atkārto '
                 : this.language === 'ET'
