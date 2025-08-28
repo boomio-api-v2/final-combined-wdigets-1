@@ -1351,15 +1351,15 @@ function startGame(
           document.getElementById('competition-checkbox-error').innerText =
             customer === 'Gamtos Ateitis'
               ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-              : customer === 'Novaturas' && this.language === 'LT'
+              : customer === 'Novaturas' && language === 'LT'
               ? 'Norint tęsti privaloma sutikti su įmonės privatumo politika.'
-              : customer === 'Novaturas' && this.language === 'LV'
+              : customer === 'Novaturas' && language === 'LV'
               ? 'Lai turpinātu, ir jāpiekrīt uzņēmuma privātuma politikai.'
-              : customer === 'Novaturas' && this.language === 'RU'
+              : customer === 'Novaturas' && language === 'RU'
               ? 'Чтобы продолжить, необходимо согласиться с политикой конфиденциальности компании.'
-              : customer === 'Novaturas' && this.language === 'EN'
+              : customer === 'Novaturas' && language === 'EN'
               ? 'To continue, you must agree to the companys privacy policy.'
-              : customer === 'Novaturas' && this.language === 'ET'
+              : customer === 'Novaturas' && language === 'ET'
               ? 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.'
               : 'Norint tęsti, privaloma sutikti su naujienomis.';
           document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
@@ -1375,7 +1375,17 @@ function startGame(
         }
         if (emailInput?.value === '' || emailInput?.value === null) {
           document.getElementById('competition-email-error').innerText =
-            'Norint tęsti privaloma užpildyti.';
+            language === 'LV'
+              ? 'Lai turpinātu, obligāti jāaizpilda.'
+              : language === 'LT'
+              ? 'Norint tęsti, privaloma užpildyti.'
+              : language === 'ET'
+              ? 'Jätkamiseks on kohustuslik täita.'
+              : language === 'EN'
+              ? 'Required to continue.'
+              : language === 'RU'
+              ? 'Чтобы продолжить, необходимо заполнить.'
+              : 'Required to continue.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';
 

@@ -396,7 +396,7 @@ export class InputContainer {
                 : this.game === 'doodle' && this.language === 'LV'
                 ? 'lai uzlabotu savu rezultātu.'
                 : this.language === 'LV' && this.game === 'drive'
-                ? 'kuponus un iegūsti punktus.'
+                ? 'kuponus un iegūsti punktus'
                 : this.language === 'LV'
                 ? 'lai sasniegtu labāku rezultātu.'
                 : this.language === 'RU'

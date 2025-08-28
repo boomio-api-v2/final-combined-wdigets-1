@@ -51,7 +51,7 @@ export class InputRegisterContainer {
         : this.language === 'RU'
         ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
         : this.language === 'ET'
-        ? 'REGISTREERI MÄNGIMISEKS'
+        ? 'REGISTREERI MÄNGU'
         : this.prop === 'Fpro'
         ? 'REGISTER TO PLAY'
         : this.prop === 'Ikea'
