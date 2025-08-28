@@ -558,7 +558,7 @@ export class InputContainer {
                 : this.language === 'LV' && this.game === 'doodle'
                 ? 'katru dienu!'
                 : this.language === 'LV' && this.game === 'drive'
-                ? 'līdz pat 100 Unisend balvām!'
+                ? 'un uzlabo savu rezultātu'
                 : this.language === 'ET' && this.game === 'drive'
                 ? 'kuni 100 Unisend.ee auhinda!'
                 : this.language === 'LV' && this.prop === 'Pigu.lt'
