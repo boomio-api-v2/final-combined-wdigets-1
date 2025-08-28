@@ -85,6 +85,7 @@ export class InputContainer {
       this.prop === 'Novaturas' ||
       this.prop === 'Nevezis' ||
       this.prop === 'Pigu.lt' ||
+      this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'LemonFeel'
         ? '150px'
         : '110px'
@@ -120,7 +121,7 @@ export class InputContainer {
                   : this.language === 'LV' && this.game === 'drive'
                   ? 'Stūrē '
                   : this.language === 'ET' && this.game === 'drive'
-                  ? 'Roolimiseks '
+                  ? 'Navigeerimiseks '
                   : this.language === 'FI' && this.game === 'drive'
                   ? 'PYYHKÄISE'
                   : this.language === 'RU' && this.game === 'drive'
@@ -154,7 +155,7 @@ export class InputContainer {
                   : this.game === 'drive' && this.language === 'LV'
                   ? 'pa labi un pa kreisi'
                   : this.game === 'drive' && this.language === 'ET'
-                  ? 'liigu paremale ja vasakule. '
+                  ? 'liigu paremale ja vasakule.'
                   : this.game === 'drive' && this.language === 'EN'
                   ? 'sideways to steer.'
                   : this.game === 'drive' && this.language === 'RU'
@@ -182,9 +183,11 @@ export class InputContainer {
                   : this.language === 'ES' && this.game === 'crush'
                   ? 'CONECTAR'
                   : this.game === 'crush'
-                  ? 'CLICK'
+                  ? 'Sudėk'
                   : this.game === 'drive'
                   ? 'Brauk'
+                  : this.game === 'crush'
+                  ? 'Sudėk'
                   : 'Spausk,'
               }
     <div
@@ -225,8 +228,6 @@ export class InputContainer {
       ? 'чтобы прыгнуть'
       : this.prop === 'Pigu.lt' && this.language === 'LT'
       ? 'kad pašoktum'
-      : this.language === 'LT' && this.game === 'crush'
-      ? 'kad rinktum taškus.'
       : this.prop === 'Eurovaistine'
       ? 'pārvietojoties uz sāniem.'
       : this.game === 'drive' && this.language === 'LT'
@@ -275,8 +276,6 @@ export class InputContainer {
       ? 'kad skristum.'
       : this.game === 'runner'
       ? 'rodyklių pagalba.'
-      : this.prop === 'Zemaitijos Pienas'
-      ? 'TIK „Dobilas“ produktus.'
       : this.prop === 'Nevezis'
       ? '3 ar daugiau vienodų oho! pakuočių. '
       : this.game === 'doodle'
@@ -293,6 +292,10 @@ export class InputContainer {
       ? 'TO FLY'
       : this.language === 'ES' && this.game === 'crush'
       ? 'Tres o más helados ‘Toni’'
+      : this.prop === 'Zemaitijos Pienas'
+      ? 'kartu 3 ar daugiau vienodų prekių.'
+      : this.game === 'crush'
+      ? 'kartu 3 ar daugiau prekes.'
       : 'kad skristum.'
   }
 </div>
@@ -350,8 +353,6 @@ export class InputContainer {
                 ? 'ATKĀRTOT'
                 : this.prop === 'SaludSA'
                 ? 'Presiona'
-                : this.prop === 'Zemaitijos Pienas'
-                ? 'Kartok,'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Rink'
                 : this.language === 'EN'
@@ -394,6 +395,8 @@ export class InputContainer {
                 ? 'un uzlabo savu rezultātu.'
                 : this.game === 'doodle' && this.language === 'LV'
                 ? 'lai uzlabotu savu rezultātu.'
+                : this.language === 'LV' && this.game === 'drive'
+                ? 'kuponus un iegūsti punktus.'
                 : this.language === 'LV'
                 ? 'lai sasniegtu labāku rezultātu.'
                 : this.language === 'RU'
@@ -498,8 +501,6 @@ export class InputContainer {
                 ? 'Mėgaukis'
                 : this.prop === 'Orlen'
                 ? 'Kartok'
-                : this.language === 'LT'
-                ? 'Kartok '
                 : this.language === 'LV'
                 ? 'Atkārto '
                 : this.language === 'ET'
@@ -508,6 +509,8 @@ export class InputContainer {
                 ? 'Repeat '
                 : this.language === 'RU'
                 ? 'Повторяйте '
+                : this.prop === 'Zemaitijos Pienas'
+                ? 'Mėgaukis'
                 : 'Laimėk'
             } 
                           <div style="position:initial;top: 85px;margin-top:${
@@ -557,9 +560,9 @@ export class InputContainer {
                 : this.language === 'LV' && this.game === 'doodle'
                 ? 'katru dienu!'
                 : this.language === 'LV' && this.game === 'drive'
-                ? 'līdz pat 100 Unisend balvām!'
+                ? 'un uzlabo savu rezultātu'
                 : this.language === 'ET' && this.game === 'drive'
-                ? 'kuni 100 Unisend.ee auhinda!'
+                ? 'Novatoursi auhindu!'
                 : this.language === 'LV' && this.prop === 'Pigu.lt'
                 ? 'līdz pat 30 Yesyes.lv balvām!'
                 : this.language === 'LV' && this.prop === 'LemonFeel'
@@ -606,13 +609,13 @@ export class InputContainer {
                 ? 'kasdien!'
                 : this.prop === 'Dentsu'
                 ? '1 mėn. prieigą  prie interaktyvios tikslinės auditorijos!'
-                : this.prop === 'Zemaitijos Pienas'
-                ? '„Dobilas“ prizus!'
                 : this.prop === 'Nykstukas'
                 ? 'siekiant kuo geresnio rezultato.'
                 : this.prop === 'Nevezis'
                 ? 'siekiant kuo geresnio rezultato.'
                 : this.prop === 'Magija'
+                ? 'žaidimu.'
+                : this.prop === 'Zemaitijos Pienas'
                 ? 'žaidimu.'
                 : this.prop === 'Orlen'
                 ? ' ir  pagerink rezultatą.'
@@ -626,7 +629,7 @@ export class InputContainer {
                 ? 'and improve your score.'
                 : this.language === 'RU'
                 ? 'и улучшайте свой результат '
-                : 'Prizus!'
+                : 'prizus!'
             }
           </div>
             </div>
@@ -641,6 +644,7 @@ ${
   this.prop === 'LemonFeel' ||
   this.prop === 'Pigu.lt' ||
   this.prop === 'Toni' ||
+  this.prop === 'Zemaitijos Pienas' ||
   this.prop === 'LemonGym'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'20px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
@@ -713,16 +717,16 @@ ${
                 : this.prop === 'Novaturas' && this.language === 'LT'
                 ? 'Novaturas prizus!'
                 : this.prop === 'Novaturas' && this.language === 'LV'
-                ? 'Novatours balvas!'
+                ? 'Novatours atlaižu kuponus!'
                 : this.prop === 'Novaturas' && this.language === 'ET'
                 ? 'Novatoursi auhindu!'
                 : this.prop === 'Novaturas' && this.language === 'EN'
-                ? 'Novaturas prizes!'
+                ? ' „Novaturas“ prizus!'
                 : this.prop === 'Novaturas' && this.language === 'RU'
                 ? 'призы от Novatours!'
                 : this.prop === 'LemonFeel'
                 ? 'apbalvosim labāko spēlētāju'
-                : '10€ Wolt dovanų kuponą!'
+                : 'prizus!'
             }
           </div>
             </div>`
@@ -821,7 +825,7 @@ ${
               : this.prop.includes('Gamtos Ateitis')
               ? 'href=https://gamtosateitis.lt/wp-content/uploads/2025/05/Taisykles_word.pdf'
               : this.prop === 'Zemaitijos Pienas'
-              ? 'href=https://www.boomio.com/zemaitijos-pienas-zaidimo-taisykles'
+              ? 'href=https://www.boomio.com/zemaitijos-pienas-protein-m-zaidimo-taisykles'
               : this.prop === 'Nykstukas'
               ? 'href=https://www.nykstukozaidimas.lt/taisykles/'
               : this.prop === 'Magija'

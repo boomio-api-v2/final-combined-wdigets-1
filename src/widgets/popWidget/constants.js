@@ -28,8 +28,8 @@ export const star =
 export const stopwatch =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/stopwatch.png?raw=true';
 
-export const backgroundNevezis =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/background.png';
+export const background =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/popWidget/test/background.png';
 
 export const tutorial =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/tutorial.png';
@@ -41,6 +41,6 @@ export const greenBalloon =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/popWidget/test/greenBallon.png';
 
 export const popElement =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement1.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/popWidget/test/good.png';
 export const popElement2 =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/Nevezis/crushElement2.png';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/popWidget/test/bad.png';

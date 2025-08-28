@@ -10,7 +10,7 @@ import {
   uncheckIcon,
   star,
   stopwatch,
-  backgroundNevezis,
+  background,
   backgroundToni,
   tutorial,
   close,
@@ -400,7 +400,7 @@ ${`<div style="${
 </div>
 </div>
 
-<img src="${this.customer === 'Toni' ? backgroundToni : backgroundNevezis}" 
+<img src="${this.customer === 'Toni' ? backgroundToni : background}" 
      alt="Game Background"
      id="background_nevezis"
      style="z-index:0;
