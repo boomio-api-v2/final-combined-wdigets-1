@@ -302,7 +302,7 @@ export class InputRegisterContainer {
         : this.prop === 'Novaturas' && this.language === 'LV'
         ? 'Lai turpinātu, ir jāpiekrīt uzņēmuma <a href="https://www.novatours.lv/privatuma-politika" target="_blank" rel="noopener noreferrer">privātuma politikai</a>.'
         : this.prop === 'Novaturas' && this.language === 'ET'
-        ? 'Jätkamiseks kinnita, et oled tutvunud <a href="https://www.novatours.ee/privaatsusteave" target="_blank" rel="noopener noreferrer">mängureeglitega</a>.'
+        ? 'Jätkamiseks nõustu ettevõtte <a href="https://www.novatours.ee/privaatsusteave" target="_blank" rel="noopener noreferrer">privaatsuspoliitikaga</a>.'
         : this.prop === 'Novaturas' && this.language === 'EN'
         ? 'To continue, you must agree to the companys   <a href="https://www.novaturas.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">privacy policy</a>.'
         : this.prop === 'Novaturas' && this.language === 'RU'
