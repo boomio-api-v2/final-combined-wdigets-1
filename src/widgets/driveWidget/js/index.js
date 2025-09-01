@@ -1380,7 +1380,7 @@ function startGame(
               : language === 'LT'
               ? 'Norint tęsti, privaloma užpildyti.'
               : language === 'ET'
-              ? 'Jätkamiseks on kohustuslik täita.'
+              ? 'Jätkamiseks kinnita kõik väljad.'
               : language === 'EN'
               ? 'Required to continue.'
               : language === 'RU'
