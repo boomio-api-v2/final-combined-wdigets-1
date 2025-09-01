@@ -213,7 +213,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.teams = this.config.teams;
 
     this.showCompetitiveRegistration =
@@ -1414,7 +1414,9 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      const competitionDidYouKnow = document.getElementById(
+        this.customer === 'Akropolis' ? 'boomio-close-share' : 'boomio-close-did-you-know',
+      );
       if (competitionDidYouKnow) {
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }

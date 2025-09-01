@@ -56,7 +56,7 @@ export class ShareContainer {
     if (!this.containerDiv) return;
 
     let scoreboardText = `
-      <div class="bomio-first-line" style="width:100%; top: 250px; line-height:24px; position: absolute; font-weight: 700; text-align: center; color: white; font-size: 20px; font-family: Montserrat; word-wrap: break-word;">
+      <div class="bomio-first-line" style="width:calc(100% - 20px);margin-left:10px; top: 250px; line-height:24px; position: absolute; font-weight: 700; text-align: center; color: white; font-size: 20px; font-family: Montserrat; word-wrap: break-word;">
          ${
            this.prop === 'Perlas GO'
              ? 'Tik naujiems vartotojams – panaudok kodą ir gauk 5 € sąskaitoms apmokėti Perlas Go! '
