@@ -158,6 +158,7 @@ export class InputRegisterContainer {
       this.prop === 'Pigu.lt' ||
       this.prop === 'Nykstukas' ||
       this.prop === 'Novaturas' ||
+      this.prop === 'Apranga' ||
       this.prop === 'Toni' ||
       (this.prop === 'Akropolis' && this.language === 'LV')
         ? 'inline-flex'
@@ -563,6 +564,7 @@ export class InputRegisterContainer {
         this.prop === 'Tiche' ||
         this.prop === 'Zemaitijos Pienas' ||
         this.prop === 'Novaturas' ||
+        this.prop === 'Apranga' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -634,6 +636,8 @@ export class InputRegisterContainer {
             this.prop === 'Tiche' ||
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Novaturas' ||
+            this.prop === 'Apranga' ||
+            this.prop === 'Apranga' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -653,6 +657,7 @@ export class InputRegisterContainer {
         this.prop === 'Tiche' ||
         this.prop === 'Zemaitijos Pienas' ||
         this.prop === 'Novaturas' ||
+        this.prop === 'Apranga' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -682,6 +687,7 @@ export class InputRegisterContainer {
             this.prop === 'Tiche' ||
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Novaturas' ||
+            this.prop === 'Apranga' ||
             this.language === 'EN'
           ? '249px'
           : '299px'
@@ -693,6 +699,7 @@ export class InputRegisterContainer {
       this.prop === 'Tiche' ||
       this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'Novaturas' ||
+      this.prop === 'Apranga' ||
       this.prop === 'LemonFeel'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'
@@ -737,6 +744,7 @@ export class InputRegisterContainer {
         this.prop === 'Tiche' ||
         this.prop === 'Zemaitijos Pienas' ||
         this.prop === 'Novaturas' ||
+        this.prop === 'Apranga' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -754,6 +762,7 @@ export class InputRegisterContainer {
       this.prop === 'Tiche' ||
       this.prop === 'Zemaitijos Pienas' ||
       this.prop === 'Novaturas' ||
+      this.prop === 'Apranga' ||
       this.prop === 'LemonGym'
         ? 'rgba(61, 73, 40, 1)'
         : '#473F4E'

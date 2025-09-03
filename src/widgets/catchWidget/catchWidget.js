@@ -195,6 +195,22 @@ import {
   item8Orlen,
   item9Orlen,
   item10Orlen,
+  backgroundApranga,
+  playerApranga,
+  item1Apranga,
+  item2Apranga,
+  item3Apranga,
+  item4Apranga,
+  item5Apranga,
+  item6Apranga,
+  item7Apranga,
+  item8Apranga,
+  item9Apranga,
+  item10Apranga,
+  item11Apranga,
+  item12Apranga,
+  item13Apranga,
+  item14Apranga,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -213,7 +229,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name ? this.config.business_name : 'Apranga';
     this.teams = this.config.teams;
 
     this.showCompetitiveRegistration =
@@ -262,6 +278,8 @@ class CatchGame {
         ? backgroundToni
         : this.customer === 'Orlen'
         ? backgroundOrlen
+        : this.customer === 'Apranga'
+        ? backgroundApranga
         : background
     }) center`;
 
@@ -279,6 +297,7 @@ class CatchGame {
       this.customer === 'Daumantu' ||
       this.customer === 'Toni' ||
       this.customer === 'Orlen' ||
+      this.customer === 'Apranga' ||
       this.customer === 'Zemaitijos Pienas'
         ? 3
         : 5;
@@ -579,6 +598,8 @@ class CatchGame {
         ? '#262B8C'
         : this.customer === 'Orlen'
         ? '#DD2326'
+        : this.customer === 'Apranga'
+        ? '#2D2D2D'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -613,6 +634,8 @@ class CatchGame {
         ? '#262B8C'
         : this.customer === 'Orlen'
         ? '#DD2326'
+        : this.customer === 'Apranga'
+        ? '#2D2D2D'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -1850,6 +1873,8 @@ class Player {
       ? playerToni
       : customer === 'Orlen'
       ? playerOrlen
+      : customer === 'Apranga'
+      ? playerApranga
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1911,6 +1936,12 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 6);
       }
+    } else if (this.customer === 'Apranga') {
+      if (type === 'bad') {
+        this.fruitNumber = Math.floor(Math.random() * 12 + 2);
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 12);
+      }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
     }
@@ -1947,6 +1978,7 @@ class Fruit {
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
+        this.customer === 'Apranga' ||
         this.customer === 'Toni'
           ? 3
           : 1),
@@ -2124,6 +2156,23 @@ class Fruit {
         item8Orlen,
         item9Orlen,
         item10Orlen,
+      ];
+    } else if (this.customer && this.customer === 'Apranga') {
+      this.images = [
+        item1Apranga,
+        item2Apranga,
+        item3Apranga,
+        item4Apranga,
+        item5Apranga,
+        item6Apranga,
+        item7Apranga,
+        item8Apranga,
+        item9Apranga,
+        item10Apranga,
+        item11Apranga,
+        item12Apranga,
+        item13Apranga,
+        item14Apranga,
       ];
     } else {
       // Default catch images if none of the above conditions are met
@@ -2312,6 +2361,23 @@ class Fruit {
         'item9Orlen',
         'item10Orlen',
       ][this.fruitNumber];
+    } else if (this.customer === 'Apranga') {
+      this.fruitType = [
+        'item1Apranga',
+        'item2Apranga',
+        'item3Apranga',
+        'item4Apranga',
+        'item5Apranga',
+        'item6Apranga',
+        'item7Apranga',
+        'item8Apranga',
+        'item9Apranga',
+        'item10Apranga',
+        'item11Apranga',
+        'item12Apranga',
+        'item13Apranga',
+        'item14Apranga',
+      ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
       this.fruitType = [
@@ -2345,6 +2411,10 @@ class Fruit {
       ];
     } else if (this.customer === 'Orlen' || this.customer === 'Toni') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
+    } else if (this.customer === 'Apranga') {
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][
+        this.fruitNumber
+      ];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -2362,6 +2432,7 @@ class Fruit {
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
+        this.customer === 'Apranga' ||
         this.customer === 'Toni'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
@@ -2556,6 +2627,8 @@ class Fruit {
           ? 13
           : this.customer === 'Orlen' || this.customer === 'Toni'
           ? 10
+          : this.customer === 'Apranga'
+          ? 14
           : 5),
     );
 
