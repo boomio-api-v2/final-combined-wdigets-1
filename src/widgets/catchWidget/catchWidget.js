@@ -823,7 +823,7 @@ class CatchGame {
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer.includes('Gamtos Ateitis')
                   ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-                  : '';
+                  : 'Norint tęsti, privaloma sutikti su privatumo politika.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
@@ -1836,7 +1836,7 @@ class Player {
     this.playerWidth =
       this.customer === 'Orlen' || this.customer === 'Toni'
         ? 110
-        : customer === 'Akropolis'
+        : customer === 'Akropolis' || this.customer === 'Apranga'
         ? 88
         : 110;
     this.playerHeight =
@@ -1844,6 +1844,8 @@ class Player {
         ? 80
         : customer === 'Akropolis'
         ? 64
+        : customer === 'Apranga'
+        ? 92
         : 80;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
