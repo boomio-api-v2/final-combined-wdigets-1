@@ -882,7 +882,12 @@ class CatchGame {
                 'transparent';
             }
 
-            if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni')) {
+            if (
+              !checkboxChange2 &&
+              (this.customer === 'Pegasas' ||
+                this.customer === 'Toni' ||
+                this.customer === 'Apranga')
+            ) {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
@@ -2641,6 +2646,7 @@ class Fruit {
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
+        this.customer === 'Apranga' ||
         this.customer === 'Toni'
           ? 2.5
           : 1)) *

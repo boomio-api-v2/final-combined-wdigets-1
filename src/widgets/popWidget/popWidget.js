@@ -38,9 +38,9 @@ class PopGame {
     this.language = this.config.language ? this.config.language : 'LV';
 
     this.currentScore = 0;
-    this.isAnimating = false; // Add this flag
-    this.timer = 60; // Add timer property
-    this.timerInterval = null; // Add timer interval property
+    this.isAnimating = false;
+    this.timer = 60;
+    this.timerInterval = null;
     this.tutorial = true;
     this.redBalloonImage = new Image();
     this.redBalloonImage.src = redBalloon;
