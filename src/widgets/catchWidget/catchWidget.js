@@ -229,7 +229,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Apranga';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.teams = this.config.teams;
 
     this.showCompetitiveRegistration =
@@ -807,10 +807,12 @@ class CatchGame {
 
             const phone = document.querySelector('.boomio-competition-phone-input-field');
             const schoolInput = document.querySelector('.boomio-competition-school-select');
+            const citySelect = document.getElementById('city-select');
 
             const checkboxChange = this.checkboxChange;
             const checkboxChange2 = this.checkboxChange2;
             const checkboxChange3 = this.checkboxChange3;
+
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.customer === 'Daumantu'
@@ -918,7 +920,6 @@ class CatchGame {
                 'transparent';
               return;
             }
-            console.log(emailInput.value);
             if (
               emailInput?.value === '' ||
               emailInput?.value === null ||
@@ -988,6 +989,36 @@ class CatchGame {
             ) {
               document.getElementById('competition-name-error').innerText =
                 'El campo de nombre debe completarse.';
+              document.getElementById('competition-name-error').zIndex = 1;
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-phone-error').innerText = '';
+
+              document.getElementById('competition-phone-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-checkbox-error3').innerText = '';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor =
+                'transparent';
+              return;
+            }
+            console.log(citySelect?.value);
+
+            if (
+              (citySelect?.value === '' ||
+                citySelect?.value === null ||
+                citySelect?.value === 'Miestas ar rajonas') &&
+              this.customer === 'Akropolis'
+            ) {
+              document.getElementById('competition-name-error').innerText =
+                'Laukas yra privalomas.';
               document.getElementById('competition-name-error').zIndex = 1;
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-phone-error').innerText = '';
@@ -1095,6 +1126,7 @@ class CatchGame {
                   `;
                 document.head.appendChild(style);
               }
+
               boomioService
                 .signal('', 'user_info', {
                   emails_consent:
@@ -1104,7 +1136,9 @@ class CatchGame {
                     team: schoolInput.value,
                   }),
                   user_name:
-                    this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen'
+                    this.customer === 'Akropolis'
+                      ? citySelect?.value
+                      : this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen'
                       ? emailInput?.value
                       : this.customer === 'Toni'
                       ? playerNameInput?.value.trimEnd() + phoneInput?.value

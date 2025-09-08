@@ -24,7 +24,17 @@ export class InputRegisterContainer {
         : '426px';
     let privacyCheckboxChecked = true;
     let privacyCheckboxChecked2 = true;
-    this.teams = this.config.teams;
+    this.teams =
+      this.prop === 'Akropolis'
+        ? [
+            'Akropolis Vilnius',
+            'Akropolis Klaipėda',
+            'Akropolis Šiauliai',
+            'Akropolis Kaunas (akcija šiame mieste negalioja)',
+          ]
+        : this.config.teams;
+
+    const options = Array.isArray(this.teams) ? this.teams : Object.keys(this.teams);
 
     containerDiv.innerHTML = `
       <div style="height: ${this.prop === 'Toni' ? '0px' : '124px'}; top:${
@@ -637,7 +647,6 @@ export class InputRegisterContainer {
             this.prop === 'Zemaitijos Pienas' ||
             this.prop === 'Novaturas' ||
             this.prop === 'Apranga' ||
-            this.prop === 'Apranga' ||
             this.language === 'EN'
           ? '240px'
           : '287px'
@@ -658,6 +667,7 @@ export class InputRegisterContainer {
         this.prop === 'Zemaitijos Pienas' ||
         this.prop === 'Novaturas' ||
         this.prop === 'Apranga' ||
+        this.prop === 'Akropolis' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -745,6 +755,7 @@ export class InputRegisterContainer {
         this.prop === 'Zemaitijos Pienas' ||
         this.prop === 'Novaturas' ||
         this.prop === 'Apranga' ||
+        this.prop === 'Akropolis' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
@@ -790,15 +801,20 @@ export class InputRegisterContainer {
         : this.prop === 'Nykstukas'
         ? 'Komandos pavadinimas'
         : 'Žaidėjo slapyvardis'
-    }">
-          <select id="city-select" class="boomio-competition-city-select" style="display:${
-            this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
-          };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:240px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
-        <option value="">Miestas ar rajonas</option>
-        ${Object.keys(this.teams)
-          .map((city) => `<option value="${city}">${city}</option>`)
-          .join('')}
-      </select>
+    }"> 
+             <select id="city-select" class="boomio-competition-city-select"
+    style="display:${
+      this.prop === 'Akropolis' || this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
+    };
+           width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;
+           left:28px;height:45px;position:absolute;top:205px;margin:0px;
+           box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
+    <option value="">Miestas ar rajonas</option>
+    ${options.map((city) => `<option value="${city}">${city}</option>`).join('')}
+  </select>
+
+    
+ 
       <select id="school-select" class="boomio-competition-school-select" style="display:${
         this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
       };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:300px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
