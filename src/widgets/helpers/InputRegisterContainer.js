@@ -802,6 +802,7 @@ export class InputRegisterContainer {
         ? 'Komandos pavadinimas'
         : 'Žaidėjo slapyvardis'
     }"> 
+    
              <select id="city-select" class="boomio-competition-city-select"
     style="display:${
       this.prop === 'Akropolis' || this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
