@@ -25,14 +25,7 @@ export class InputRegisterContainer {
     let privacyCheckboxChecked = true;
     let privacyCheckboxChecked2 = true;
     this.teams =
-      this.prop === 'Akropolis'
-        ? [
-            'Akropolis Vilnius',
-            'Akropolis Klaipėda',
-            'Akropolis Šiauliai',
-            'Akropolis Kaunas (akcija šiame mieste negalioja)',
-          ]
-        : this.config.teams;
+      this.prop === 'Akropolis' ? ['Vilnius', 'Klaipėda', 'Šiauliai', 'Kaunas'] : this.config.teams;
 
     const options = Array.isArray(this.teams) ? this.teams : Object.keys(this.teams);
 
@@ -808,8 +801,12 @@ export class InputRegisterContainer {
     };
            width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;
            left:28px;height:45px;position:absolute;top:205px;margin:0px;
-           box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;">
-    <option value="">Miestas ar rajonas</option>
+           box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;font-size:18px;font-weight:500;">
+    <option value="">${
+      this.prop === 'Akropolis'
+        ? 'Kurio miesto AKROPOLIO naujienos tau aktualiausios?'
+        : 'Miestas ar rajonas'
+    } </option>
     ${options.map((city) => `<option value="${city}">${city}</option>`).join('')}
   </select>
 

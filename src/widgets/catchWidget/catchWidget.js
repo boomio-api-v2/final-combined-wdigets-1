@@ -346,7 +346,10 @@ class CatchGame {
               // Clear previous options
               schoolSelect.innerHTML = '';
 
-              if (!selectedCity || selectedCity === 'Miestas ar rajonas') {
+              if (
+                !selectedCity ||
+                selectedCity === 'Kurio miesto AKROPOLIO naujienos tau aktualiausios?'
+              ) {
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
                 defaultOption.textContent = 'Pirmiau pasirink miestą ar rajoną';
@@ -1014,7 +1017,7 @@ class CatchGame {
             if (
               (citySelect?.value === '' ||
                 citySelect?.value === null ||
-                citySelect?.value === 'Miestas ar rajonas') &&
+                citySelect?.value === 'Kurio miesto AKROPOLIO naujienos tau aktualiausios?') &&
               this.customer === 'Akropolis'
             ) {
               document.getElementById('competition-name-error').innerText =

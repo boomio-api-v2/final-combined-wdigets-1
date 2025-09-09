@@ -439,7 +439,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Akropolis' && this.language === 'LV'
                 ? 'Ja saglabāsi savu pozīciju 500 labāko sarakstā, tu saņemsi </br>balvu no KFC, un pēc balvas izņemšanas – automātiski </br>piedalīsies AKROPOLE dāvanu kartes izlozē 100 EUR vērtībā.  </br>Tev ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
                 : this.prop === 'Akropolis'
-                ? 'Žaisk ir laimėk 1 iš 2025 CAIF CAFE kavos puodelių ir 1  100 Eur </br>  AKROPOLIO dovanų kortelę KASDIEN.'
+                ? 'Žaisk ir laimėk 1 iš 2020 CAIF CAFE kavos puodelių ir 1  100 Eur </br>  AKROPOLIO dovanų kortelę KASDIEN.'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių –</br> kiekvieną savaitę!'
                 : this.prop === 'Unisend' && this.language === 'ET'
@@ -616,7 +616,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Penki Sezonai'
                 ? 'Pagerink rezultatą nes balandžio 1d.'
                 : this.prop === 'Akropolis'
-                ? 'Pagerink rezultatą ir laimėk 1 iš 2025 CAIF CAFE </br> kavos puodelių ir 1  100 Eur  AKROPOLIO dovanų kortelę KASDIEN.'
+                ? 'Pagerink rezultatą ir laimėk 1 iš 2020 CAIF CAFE </br> kavos puodelių ir 1  100 Eur  AKROPOLIO dovanų kortelę KASDIEN.'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 10 prizų – „Gamtos ateities“ </br>stalo žaidimų „MisijaEkomiestas“ arba rūšiavimo namuose</br> rinkinių – kiekvieną savaitę!'
                 : this.language === 'ES'
