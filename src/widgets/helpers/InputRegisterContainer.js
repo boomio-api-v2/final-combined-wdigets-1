@@ -801,7 +801,7 @@ export class InputRegisterContainer {
     };
            width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;
            left:28px;height:45px;position:absolute;top:205px;margin:0px;
-           box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:#473F4E;font-family:Georama;font-size:18px;font-weight:500;">
+           box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:rgba(71, 63, 78, 0.6);font-family:Georama;font-size:14px;font-weight:500;">
     <option value="">${
       this.prop === 'Akropolis'
         ? 'Kurio miesto AKROPOLIO naujienos tau aktualiausios?'
