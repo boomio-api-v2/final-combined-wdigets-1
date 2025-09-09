@@ -195,6 +195,22 @@ import {
   item8Orlen,
   item9Orlen,
   item10Orlen,
+  backgroundApranga,
+  playerApranga,
+  item1Apranga,
+  item2Apranga,
+  item3Apranga,
+  item4Apranga,
+  item5Apranga,
+  item6Apranga,
+  item7Apranga,
+  item8Apranga,
+  item9Apranga,
+  item10Apranga,
+  item11Apranga,
+  item12Apranga,
+  item13Apranga,
+  item14Apranga,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -213,7 +229,7 @@ class CatchGame {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
+    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
     this.teams = this.config.teams;
 
     this.showCompetitiveRegistration =
@@ -262,6 +278,8 @@ class CatchGame {
         ? backgroundToni
         : this.customer === 'Orlen'
         ? backgroundOrlen
+        : this.customer === 'Apranga'
+        ? backgroundApranga
         : background
     }) center`;
 
@@ -279,6 +297,7 @@ class CatchGame {
       this.customer === 'Daumantu' ||
       this.customer === 'Toni' ||
       this.customer === 'Orlen' ||
+      this.customer === 'Apranga' ||
       this.customer === 'Zemaitijos Pienas'
         ? 3
         : 5;
@@ -579,6 +598,8 @@ class CatchGame {
         ? '#262B8C'
         : this.customer === 'Orlen'
         ? '#DD2326'
+        : this.customer === 'Apranga'
+        ? '#5F2929'
         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -613,6 +634,8 @@ class CatchGame {
         ? '#262B8C'
         : this.customer === 'Orlen'
         ? '#DD2326'
+        : this.customer === 'Apranga'
+        ? '#5F2929'
         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -784,10 +807,12 @@ class CatchGame {
 
             const phone = document.querySelector('.boomio-competition-phone-input-field');
             const schoolInput = document.querySelector('.boomio-competition-school-select');
+            const citySelect = document.getElementById('city-select');
 
             const checkboxChange = this.checkboxChange;
             const checkboxChange2 = this.checkboxChange2;
             const checkboxChange3 = this.checkboxChange3;
+
             if (!checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.customer === 'Daumantu'
@@ -800,7 +825,7 @@ class CatchGame {
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer.includes('Gamtos Ateitis')
                   ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-                  : '';
+                  : 'Norint tęsti, privaloma sutikti su privatumo politika.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
@@ -859,7 +884,12 @@ class CatchGame {
                 'transparent';
             }
 
-            if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni')) {
+            if (
+              !checkboxChange2 &&
+              (this.customer === 'Pegasas' ||
+                this.customer === 'Toni' ||
+                this.customer === 'Apranga')
+            ) {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
@@ -890,7 +920,6 @@ class CatchGame {
                 'transparent';
               return;
             }
-            console.log(emailInput.value);
             if (
               emailInput?.value === '' ||
               emailInput?.value === null ||
@@ -960,6 +989,36 @@ class CatchGame {
             ) {
               document.getElementById('competition-name-error').innerText =
                 'El campo de nombre debe completarse.';
+              document.getElementById('competition-name-error').zIndex = 1;
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-phone-error').innerText = '';
+
+              document.getElementById('competition-phone-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor =
+                'transparent';
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor =
+                'transparent';
+
+              document.getElementById('competition-checkbox-error3').innerText = '';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor =
+                'transparent';
+              return;
+            }
+            console.log(citySelect?.value);
+
+            if (
+              (citySelect?.value === '' ||
+                citySelect?.value === null ||
+                citySelect?.value === 'Miestas ar rajonas') &&
+              this.customer === 'Akropolis'
+            ) {
+              document.getElementById('competition-name-error').innerText =
+                'Laukas yra privalomas.';
               document.getElementById('competition-name-error').zIndex = 1;
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-phone-error').innerText = '';
@@ -1067,6 +1126,7 @@ class CatchGame {
                   `;
                 document.head.appendChild(style);
               }
+
               boomioService
                 .signal('', 'user_info', {
                   emails_consent:
@@ -1076,7 +1136,9 @@ class CatchGame {
                     team: schoolInput.value,
                   }),
                   user_name:
-                    this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen'
+                    this.customer === 'Akropolis'
+                      ? citySelect?.value
+                      : this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen'
                       ? emailInput?.value
                       : this.customer === 'Toni'
                       ? playerNameInput?.value.trimEnd() + phoneInput?.value
@@ -1414,7 +1476,9 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+      const competitionDidYouKnow = document.getElementById(
+        this.customer === 'Akropolis' ? 'boomio-close-share' : 'boomio-close-did-you-know',
+      );
       if (competitionDidYouKnow) {
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
@@ -1811,7 +1875,7 @@ class Player {
     this.playerWidth =
       this.customer === 'Orlen' || this.customer === 'Toni'
         ? 110
-        : customer === 'Akropolis'
+        : customer === 'Akropolis' || this.customer === 'Apranga'
         ? 88
         : 110;
     this.playerHeight =
@@ -1819,6 +1883,8 @@ class Player {
         ? 80
         : customer === 'Akropolis'
         ? 64
+        : customer === 'Apranga'
+        ? 92
         : 80;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
@@ -1848,6 +1914,8 @@ class Player {
       ? playerToni
       : customer === 'Orlen'
       ? playerOrlen
+      : customer === 'Apranga'
+      ? playerApranga
       : player;
     this.defaultscore = defaultscore;
   }
@@ -1909,6 +1977,12 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 6);
       }
+    } else if (this.customer === 'Apranga') {
+      if (type === 'bad') {
+        this.fruitNumber = Math.floor(Math.random() * 12 + 2);
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 12);
+      }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
     }
@@ -1945,6 +2019,7 @@ class Fruit {
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
+        this.customer === 'Apranga' ||
         this.customer === 'Toni'
           ? 3
           : 1),
@@ -2122,6 +2197,23 @@ class Fruit {
         item8Orlen,
         item9Orlen,
         item10Orlen,
+      ];
+    } else if (this.customer && this.customer === 'Apranga') {
+      this.images = [
+        item1Apranga,
+        item2Apranga,
+        item3Apranga,
+        item4Apranga,
+        item5Apranga,
+        item6Apranga,
+        item7Apranga,
+        item8Apranga,
+        item9Apranga,
+        item10Apranga,
+        item11Apranga,
+        item12Apranga,
+        item13Apranga,
+        item14Apranga,
       ];
     } else {
       // Default catch images if none of the above conditions are met
@@ -2310,6 +2402,23 @@ class Fruit {
         'item9Orlen',
         'item10Orlen',
       ][this.fruitNumber];
+    } else if (this.customer === 'Apranga') {
+      this.fruitType = [
+        'item1Apranga',
+        'item2Apranga',
+        'item3Apranga',
+        'item4Apranga',
+        'item5Apranga',
+        'item6Apranga',
+        'item7Apranga',
+        'item8Apranga',
+        'item9Apranga',
+        'item10Apranga',
+        'item11Apranga',
+        'item12Apranga',
+        'item13Apranga',
+        'item14Apranga',
+      ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
       this.fruitType = [
@@ -2343,6 +2452,10 @@ class Fruit {
       ];
     } else if (this.customer === 'Orlen' || this.customer === 'Toni') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
+    } else if (this.customer === 'Apranga') {
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][
+        this.fruitNumber
+      ];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -2360,6 +2473,7 @@ class Fruit {
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
+        this.customer === 'Apranga' ||
         this.customer === 'Toni'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
@@ -2554,6 +2668,8 @@ class Fruit {
           ? 13
           : this.customer === 'Orlen' || this.customer === 'Toni'
           ? 10
+          : this.customer === 'Apranga'
+          ? 14
           : 5),
     );
 
@@ -2564,6 +2680,7 @@ class Fruit {
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
+        this.customer === 'Apranga' ||
         this.customer === 'Toni'
           ? 2.5
           : 1)) *
