@@ -1136,13 +1136,16 @@ class CatchGame {
                     team: schoolInput.value,
                   }),
                   user_name:
+                    this.customer.includes('Gamtos Ateitis') ||
+                    this.customer === 'Orlen' ||
                     this.customer === 'Akropolis'
-                      ? citySelect?.value
-                      : this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen'
                       ? emailInput?.value
                       : this.customer === 'Toni'
                       ? playerNameInput?.value.trimEnd() + phoneInput?.value
                       : playerNameInput?.value,
+                  ...(this.customer === 'Akropolis' && {
+                    team: citySelect?.value,
+                  }),
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneInput?.value } : {}),
                 })
