@@ -1012,35 +1012,6 @@ class CatchGame {
             console.log(citySelect?.value);
 
             if (
-              (citySelect?.value === '' ||
-                citySelect?.value === null ||
-                citySelect?.value === 'Miestas ar rajonas') &&
-              this.customer === 'Akropolis'
-            ) {
-              document.getElementById('competition-name-error').innerText =
-                'Laukas yra privalomas.';
-              document.getElementById('competition-name-error').zIndex = 1;
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-              document.getElementById('competition-phone-error').innerText = '';
-
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-checkbox-error2').innerText = '';
-              document.getElementById('competition-checkbox-error2').style.backgroundColor =
-                'transparent';
-
-              document.getElementById('competition-checkbox-error3').innerText = '';
-              document.getElementById('competition-checkbox-error3').style.backgroundColor =
-                'transparent';
-              return;
-            }
-
-            if (
               !isValidEmail(emailInput?.value) &&
               this.customer !== 'Toni' &&
               this.customer !== 'Orlen'
@@ -1136,9 +1107,9 @@ class CatchGame {
                     team: schoolInput.value,
                   }),
                   user_name:
+                    this.customer.includes('Gamtos Ateitis') ||
+                    this.customer === 'Orlen' ||
                     this.customer === 'Akropolis'
-                      ? citySelect?.value
-                      : this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen'
                       ? emailInput?.value
                       : this.customer === 'Toni'
                       ? playerNameInput?.value.trimEnd() + phoneInput?.value

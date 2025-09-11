@@ -439,7 +439,7 @@ export class CompetitionCodeScoreTableContainer {
                 : this.prop === 'Akropolis' && this.language === 'LV'
                 ? 'Ja saglabāsi savu pozīciju 500 labāko sarakstā, tu saņemsi </br>balvu no KFC, un pēc balvas izņemšanas – automātiski </br>piedalīsies AKROPOLE dāvanu kartes izlozē 100 EUR vērtībā.  </br>Tev ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
                 : this.prop === 'Akropolis'
-                ? 'Žaisk ir laimėk 1 iš 2025 CAIF CAFE kavos puodelių ir 1  100 Eur </br>  AKROPOLIO dovanų kortelę KASDIEN.'
+                ? 'Žaisk ir laimėk 1 iš 2000 CAIF CAFE kavos puodelių ir 1  100 Eur </br>  AKROPOLIO dovanų kortelę KASDIEN.'
                 : this.prop.includes('Gamtos Ateitis')
                 ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro net 10 prizų – „Gamtos ateities“ stalo žaidimų</br> „Misija Ekomiestas“ arba rūšiavimo namuose rinkinių –</br> kiekvieną savaitę!'
                 : this.prop === 'Unisend' && this.language === 'ET'
