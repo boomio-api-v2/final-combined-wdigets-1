@@ -600,7 +600,7 @@ export class InputContainer {
                 : this.prop === 'Makalius'
                 ? 'MAKALIAUS kuponus!'
                 : this.prop === 'Akropolis'
-                ? '1 iš 2025 kavos puodelių kasdien!'
+                ? '1 iš 2020 kavos puodelių kasdien!'
                 : this.prop === 'Daumantu'
                 ? 'Daumantų prizus!'
                 : this.prop === 'SaludSA'
