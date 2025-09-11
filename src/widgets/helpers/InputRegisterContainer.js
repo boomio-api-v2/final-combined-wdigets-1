@@ -369,6 +369,8 @@ export class InputRegisterContainer {
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : this.prop === 'Orlen'
         ? 'Sutinku su „ORLEN“'
+        : this.prop === 'Apranga'
+        ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025?_gl=1*1u7c0c4*_up*MQ..*_ga*OTYxOTc1MjQwLjE3NTUwNzkxNjE.*_ga_J5PB18DDR4*czE3NTUwNzkxNjEkbzEkZzAkdDE3NTUwNzkxNjEkajYwJGwwJGg2MDcxMjkzMzM" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
         : this.config.currentPageUrl.toLowerCase().includes('pigu')
         ? this.language === 'RU'
           ? `Я согласен(на) с политикой конфиденциальности <a href="https://pigu.lt/privatumo-politika" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a>.`
