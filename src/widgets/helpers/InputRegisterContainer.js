@@ -797,9 +797,7 @@ export class InputRegisterContainer {
     }"> 
     
              <select id="city-select" class="boomio-competition-city-select"
-    style="display:${
-      this.prop === 'Akropolis' || this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
-    };
+    style="display:${this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'};
            width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;
            left:28px;height:45px;position:absolute;top:205px;margin:0px;
            box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:rgba(71, 63, 78, 0.7);font-family:Georama;font-size:14px">
