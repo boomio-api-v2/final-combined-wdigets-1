@@ -1,4 +1,3 @@
-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 Here is branch typescript, but I haven't tested it. So if all here is okay, it can be merged in main
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -31,8 +30,10 @@ Example:
     <script src="https://rawcdn.githack.com/boomio-api-v2/final-combined-wdigets-1/faa3751938a8edcf41d95c83a58bcd0b55563278/dist/bundle.js"></script>
 </head>
 
+## Development (local preview)
 
-Task list:
-1.) Fixed eslint issues.
-2.) Put Qrcode script in project eviroment
+```bash
+npm start
+```
 
+Opens at: http://127.0.0.1:3000/?demo=1&widget_type=catch

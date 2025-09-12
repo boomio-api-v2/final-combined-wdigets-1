@@ -2,21 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script>
-        const newLinkBoomio = "https://api.mars.boomio.com/easter-service/get-qr-code";
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Development</title>
+
+    <script>      
+      (function () {
+        if (!location.search.includes('widget_type=')) {
+          location.replace(location.pathname + '?demo=1&widget_type=catch');
+        }
+      })();
     </script>
-    <style>
-    </style>
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/kbnvch/boomio/main/expl1.png" media="(max-width: 600px)">
 
-    <script src="dist/bundle.js"></script>
-
-
+    <script>const newLinkBoomio="https://api.sun.boomio.eu/webshop-proxy-service/api/handle";</script>
+    <script defer src="dist/bundle.js"></script>
 </head>
-<body>
+<body>       
 </body>
 </html>
