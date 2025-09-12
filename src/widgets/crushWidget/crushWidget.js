@@ -820,7 +820,7 @@ ${`<div style="${
       if (this.shareClicked === false) {
         console.log('shareClicked');
         this.shareClicked = true;
-        this.currentScore = this.currentScore + 1000;
+        this.currentScore = this.currentScore + 100;
       }
     });
     if (this.customer === 'Pigu.lt') {
@@ -828,7 +828,6 @@ ${`<div style="${
 
       this.shareContainer = new ShareContainer(this.customer);
       gameContainer.appendChild(this.shareContainer.containerDiv);
-      this.currentScore = 500;
     }
   }
 
@@ -1646,7 +1645,7 @@ ${`<div style="${
       if (this.customer === 'Pigu.lt') {
         boomioService
           .signal('ROUND_FINISHED', 'signal', {
-            score: 1000,
+            score: this.currentScore000,
             shared_somewhere: this.shareClicked,
           })
           .then((response) => {
