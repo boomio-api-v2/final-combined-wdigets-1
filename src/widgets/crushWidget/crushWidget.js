@@ -318,7 +318,7 @@ class CrushGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 2;
+    this.timer = 120;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
@@ -1645,7 +1645,7 @@ ${`<div style="${
       if (this.customer === 'Pigu.lt') {
         boomioService
           .signal('ROUND_FINISHED', 'signal', {
-            score: this.currentScore000,
+            score: this.currentScore,
             shared_somewhere: this.shareClicked,
           })
           .then((response) => {
