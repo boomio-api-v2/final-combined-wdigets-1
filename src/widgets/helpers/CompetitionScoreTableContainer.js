@@ -541,7 +541,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score > 100) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.prop === 'Barbora' ? '16px' : fontSize
+              this.prop === 'Barbora' || this.prop === 'Pigu.lt' ? '16px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: ${
               this.prop === 'Nykstukas' ? 'none' : 'uppercase'
             }; word-wrap: break-word">${
@@ -552,7 +552,7 @@ export class CompetitionScoreTableContainer {
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
                 ? 'APSVEICAM!'
                 : this.prop === 'Pigu.lt' && this.language === 'LT'
-                ? 'SVEIKINAME'
+                ? 'SVEIKINAME!'
                 : this.prop === 'Pigu.lt' && this.language === 'EN'
                 ? 'CONGRATULATIONS!'
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
