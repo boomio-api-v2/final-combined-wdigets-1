@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "prestart": "npm run build",
     "start": "npx http-server . -p 3000",
     "build": "webpack",
     "test": "jest"

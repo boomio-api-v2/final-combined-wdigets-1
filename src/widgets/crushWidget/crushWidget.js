@@ -85,7 +85,7 @@ class CrushGame {
     this.shareClicked = false;
 
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Zemaitijos Pienas';
+    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';

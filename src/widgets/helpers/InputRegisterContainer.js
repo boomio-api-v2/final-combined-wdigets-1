@@ -75,7 +75,7 @@ export class InputRegisterContainer {
             this.prop === 'Toni' ? '60px' : '20px'
           }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
-    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'12px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
+    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'14px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
       this.prop.includes('Gamtos Ateitis')
         ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
         : this.language === 'EN'
