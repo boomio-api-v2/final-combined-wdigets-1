@@ -60,6 +60,8 @@ export class ShareContainer {
          ${
            this.prop === 'Perlas GO'
              ? 'Tik naujiems vartotojams – panaudok kodą ir gauk 5 € sąskaitoms apmokėti Perlas Go! '
+             : this.prop === 'Akropolis'
+             ? 'Už pakviestus draugus gausi +1000 taškų prie savo žaidimo rezultato!<br>Pasidalink žaidimo nuoroda dabar ir gauk papildomą staigmeną!'
              : this.language === 'EN'
              ? 'For inviting friends you will receive +100 points to your game score!<br>Share the game link now and get an additional surprise!'
              : this.language === 'LT'
