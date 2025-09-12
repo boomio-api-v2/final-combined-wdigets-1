@@ -318,7 +318,7 @@ class CrushGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 120;
+    this.timer = 2;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
@@ -820,7 +820,7 @@ ${`<div style="${
       if (this.shareClicked === false) {
         console.log('shareClicked');
         this.shareClicked = true;
-        this.currentScore = this.currentScore + 100;
+        this.currentScore = this.currentScore + 1000;
       }
     });
     if (this.customer === 'Pigu.lt') {
@@ -828,6 +828,7 @@ ${`<div style="${
 
       this.shareContainer = new ShareContainer(this.customer);
       gameContainer.appendChild(this.shareContainer.containerDiv);
+      this.currentScore = 500;
     }
   }
 
@@ -1645,7 +1646,7 @@ ${`<div style="${
       if (this.customer === 'Pigu.lt') {
         boomioService
           .signal('ROUND_FINISHED', 'signal', {
-            score: this.currentScore,
+            score: 1000,
             shared_somewhere: this.shareClicked,
           })
           .then((response) => {
