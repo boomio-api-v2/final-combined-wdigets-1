@@ -13,12 +13,12 @@ const translations = {
     FI: 'Kopioitu!',
   },
   useCode: {
-    EN: 'Use the discount',
+    EN: 'USE THE DISCOUNT',
     LT: 'PANAUDOK KODĄ',
     RU: 'ИСПОЛЬЗОВАТЬ КОД',
-    LV: 'Izmantot atlaižu kodu',
-    EE: 'Kasuta sooduskoodi',
-    FI: 'Käytä koodia',
+    LV: 'IZMANTOT ATLAIŽU KODU',
+    EE: 'KASUTA SOODUSKOODI',
+    FI: 'KÄYTÄ KOODIA',
   },
 };
 
