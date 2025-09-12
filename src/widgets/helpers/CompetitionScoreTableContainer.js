@@ -3,6 +3,25 @@ import './styles.css';
 import { boomioLogo } from './constants';
 import { localStorageService } from '@/services';
 
+const translations = {
+  copied: {
+    EN: 'Copied!',
+    LT: 'Nukopijuota!',
+    RU: 'Скопировано!',
+    LV: 'Nokopēts!',
+    EE: 'Kopeeritud!',
+    FI: 'Kopioitu!',
+  },
+  useCode: {
+    EN: 'Use the discount',
+    LT: 'PANAUDOK KODĄ',
+    RU: 'ИСПОЛЬЗОВАТЬ КОД',
+    LV: 'Izmantot atlaižu kodu',
+    EE: 'Kasuta sooduskoodi',
+    FI: 'Käytä koodia',
+  },
+};
+
 export class CompetitionScoreTableContainer {
   constructor(prop, scoreTable) {
     this.prop = prop;
@@ -14,9 +33,43 @@ export class CompetitionScoreTableContainer {
     this.render();
   }
 
+  getBonus(score) {
+    if (score >= 600) return 25;
+    if (score >= 500) return 20;
+    if (score >= 400) return 15;
+    if (score >= 100) return 10;
+    return 0;
+  }
+
+  getDiscountCode(score) {
+    if (score >= 600) return 'game25';
+    if (score >= 500) return 'game20';
+    if (score >= 400) return 'game15';
+    if (score >= 100) return 'game10';
+    return '';
+  }
+
+  getPrizeUrl(score, language) {
+    if (this.prop !== 'Pigu.lt') return '';
+    let gamePage = null;
+    if (score >= 100 && score < 400) gamePage = 'game10';
+    else if (score >= 400 && score < 500) gamePage = 'game15';
+    else if (score >= 500 && score < 600) gamePage = 'game20';
+    else if (score >= 600) gamePage = 'game25';
+    if (!gamePage) return '';
+    const urls = {
+      LT: `https://pigu.lt/lt/puslapis/${gamePage}`,
+      LV: `https://220.lv/lv/lapaspuse/${gamePage}`,
+      ET: `https://kaup24.ee/et/lehekulg/${gamePage}`,
+      FI: `https://hobbyhall.fi/fi/sivu/${gamePage}`,
+    };
+    return urls[language] || '';
+  }
+
   updateProps(prop, scoreTable) {
     this.prop = prop;
     this.scoreTable = scoreTable;
+    this.scoreTable.user_best_score = 400;
     this.language = this.config.language ? this.config.language : 'EN';
     this.updateVisuals();
   }
@@ -411,14 +464,6 @@ export class CompetitionScoreTableContainer {
       'TARKUR',
     ];
 
-    function getBonus(score) {
-      if (score >= 600) return 25;
-      if (score >= 500) return 20;
-      if (score >= 400) return 15;
-      if (score >= 100) return 10;
-      return 0;
-    }
-
     let tableHTML = '';
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
@@ -540,7 +585,9 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Novaturas' && this.scoreTable.user_best_place > 30) ||
         (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score > 100) ||
         (this.language === 'EN' && this.prop.includes('demo'))
-          ? `<div style="width:100%; top: ${'420px'}; position: absolute; text-align: center; color: ${textColor}; font-size: ${
+          ? `<div style="width:100%; top: ${
+              this.prop == 'Pigu.lt' ? '410px' : '420px'
+            }; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' || this.prop === 'Pigu.lt' ? '16px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: ${
               this.prop === 'Nykstukas' ? 'none' : 'uppercase'
@@ -598,32 +645,32 @@ export class CompetitionScoreTableContainer {
           : ''
       }
             <div style="width:calc(100% - 20px);margin-left:10px; top: ${
-              this.prop === 'Nykstukas' ? '490px' : '450px'
+              this.prop === 'Nykstukas' ? '490px' : this.prop === 'Pigu.lt' ? '440px' : '420px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.prop === 'Nykstukas' ? '14px' : '10px'
+              this.prop === 'Nykstukas' || this.prop === 'Pigu.lt' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? `Ты выиграл приз этой недели: </br> -${getBonus(
+                ? `Ты выиграл приз этой недели: </br> -${this.getBonus(
                     this.scoreTable?.user_best_score,
                   )}% на выбранные популярные товары при первой покупке в приложении.`
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                ? `Olet voittanut tämän viikon palkinnon </br> -${getBonus(
+                ? `Olet voittanut tämän viikon palkinnon </br> -${this.getBonus(
                     this.scoreTable?.user_best_score,
                   )}% alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa`
                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                ? `Tu esi ieguvis šīs nedēļas balvu: </br> Papildu -${getBonus(
+                ? `Tu esi ieguvis šīs nedēļas balvu: </br> Papildu -${this.getBonus(
                     this.scoreTable?.user_best_score,
                   )}% izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*`
                 : this.prop === 'Pigu.lt' && this.language === 'LT'
-                ? `Tu laimėjai šios savaitės prizą: </br> Perkant pirmąkart programėlėje -${getBonus(
+                ? `Tu laimėjai šios savaitės prizą: </br> Perkant pirmąkart programėlėje -${this.getBonus(
                     this.scoreTable?.user_best_score,
                   )}% nuolaidos kodą atrinktoms populiarioms prekėms.`
                 : this.prop === 'Pigu.lt' && this.language === 'EN'
-                ? `You ve won this weeks prize:</br> First purchase in app -${getBonus(
+                ? `You ve won this weeks prize:</br> First purchase in app -${this.getBonus(
                     this.scoreTable?.user_best_score,
                   )}% discount code off selected popular items.`
                 : this.prop === 'Pigu.lt' && this.language === 'ET'
-                ? `Oled selle nädala auhinna võitja! </br> Esimesel ostul äpis -${getBonus(
+                ? `Oled selle nädala auhinna võitja! </br> Esimesel ostul äpis -${this.getBonus(
                     this.scoreTable?.user_best_score,
                   )}% lisaale valitud populaarsetelt toodetelt `
                 : this.prop === 'Barbora'
@@ -879,10 +926,10 @@ export class CompetitionScoreTableContainer {
         `
       }
       ${
-        false
-          ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#FFB151'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:485px;left:calc(50% - 130px);">
+        this.prop === 'Pigu.lt'
+          ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#000000ff'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:495px;left:calc(50% - 130px);">
       <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
-       ${this.prop.includes('demo') ? 'discountcode' : 'boomio'}
+       ${this.getDiscountCode(this.scoreTable?.user_best_score)}
           </div>
           <svg width="22" height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="boomio-copy-modal-btn2" style="cursor:pointer">
           <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
@@ -896,9 +943,9 @@ export class CompetitionScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    if (false) {
+    if (this.prop === 'Pigu.lt') {
       document.getElementById('boomio-copy-modal-btn2').onclick = () => {
-        const textToCopy = this.couponCodeNew;
+        const textToCopy = this.getDiscountCode(this.scoreTable?.user_best_score);
         const textarea = document.createElement('textarea');
         textarea.value = textToCopy;
         document.body.appendChild(textarea);
@@ -908,10 +955,10 @@ export class CompetitionScoreTableContainer {
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text2');
-        copyButton.textContent = this.language === 'EN' ? 'Copied!' : 'Nukopijuota!';
+        copyButton.textContent = translations.copied[this.language] || translations.copied.EN;
 
         setTimeout(() => {
-          copyButton.textContent = this.couponCodeNew;
+          copyButton.textContent = textToCopy;
         }, 2000);
       };
     }
@@ -986,13 +1033,16 @@ export class CompetitionScoreTableContainer {
   background: white;
   box-shadow: -4px -4px 8px #DFE6F5 inset;
   border-radius: 35px;
-  display:${this.prop === 'Perlas GO' && !userId ? 'flex' : 'none'};
+  display:${(this.prop === 'Perlas GO' && !userId) || this.prop === 'Pigu.lt' ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;
   z-index: 9999999;
   pointer-events: auto; /* Ensure the container receives taps */
       target="_blank"
-      onclick="window.open('${'https://savitarna.perlasgo.lt/login?utm_source=boomio&utm_medium=game&utm_campaign=boomio_gamification_campaign'}', '_blank');"
+      onclick="window.open('${this.getPrizeUrl(
+        this.scoreTable?.user_best_score,
+        this.language,
+      )}', '_blank');"
 ">
   <a
 
@@ -1000,18 +1050,16 @@ export class CompetitionScoreTableContainer {
       text-align: center;
       color: ${this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'};
       font-size: 22px;
-      font-family: 'Basis Grotesque Pro', sans-serif;
-      font-weight: 800;
+      font-family: 'Georama';
+      font-weight: 700;
       line-height: 24px;
-      text-decoration: none;
-      text-transform: uppercase;
-      cursor: pointer;
-      pointer-events: auto;
+      word-wrap: break-word;
+      cursor:pointer;
     "
 
     rel="noopener noreferrer"
-  >
-    PANAUDOK KODĄ
+  >    
+    ${translations.useCode[this.language] || translations.useCode.EN}
   </a>
 </div>
 
