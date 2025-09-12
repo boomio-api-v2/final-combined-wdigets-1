@@ -199,7 +199,7 @@ export class InputContainer {
     this.prop === 'Akropolis' && this.language === 'LV'
       ? 'sāņus, lai nenokristu.'
       : this.prop === 'Akropolis'
-      ? ',,Caif Cafe“ <span style="color: #F40000;">kavos puodelius</span>.'
+      ? ',,Caif Cafe“ kavos puodelius.'
       : this.prop === 'Daumantu'
       ? ' TIK Daumantų produktus.'
       : this.prop === 'Pigu.lt' && this.language === 'EN' && this.game === 'crush'
