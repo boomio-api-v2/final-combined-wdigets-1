@@ -51,6 +51,9 @@ export class CompetitionScoreTableContainer {
 
   getPrizeUrl(score, language) {
     if (this.prop !== 'Pigu.lt') return '';
+
+    console.log('score, language', score, language);
+
     let gamePage = null;
     if (score >= 100 && score < 400) gamePage = 'GAME10';
     else if (score >= 400 && score < 500) gamePage = 'GAME15';
@@ -1044,7 +1047,6 @@ export class CompetitionScoreTableContainer {
       )}', '_blank');"
 ">
   <a
-
     style="
       text-align: center;
       color: ${this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'};
@@ -1055,7 +1057,6 @@ export class CompetitionScoreTableContainer {
       word-wrap: break-word;
       cursor:pointer;
     "
-
     rel="noopener noreferrer"
   >    
     ${translations.useCode[this.language] || translations.useCode.EN}
