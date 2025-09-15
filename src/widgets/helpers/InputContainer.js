@@ -817,7 +817,7 @@ ${
               : this.prop === 'Akropolis' && this.language === 'LV'
               ? 'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'
               : this.prop === 'Akropolis'
-              ? 'href=https://www.akropolis.lt/view-file/14233_%C5%BDaidi%20ir%20kava%20kasdien%20laimi_Kavos_%C5%BEaidimas_2025.pdf'
+              ? 'href=https://www.akropolis.lt/view-file/14247_%C5%BDaidi%20ir%20kava%20kasdien%20laimi_Kavos_%C5%BEaidimas_2025.pdf'
               : this.language === 'LV' && this.prop === 'Fantazijos'
               ? 'href=https://docs.google.com/document/d/1QNzkm_j-Sn73LsykBYgFAfwg0Ij2TeM5/edit'
               : this.language === 'RU' && this.prop === 'Fantazijos'
