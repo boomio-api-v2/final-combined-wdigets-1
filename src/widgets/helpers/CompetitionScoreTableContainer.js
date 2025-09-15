@@ -69,12 +69,7 @@ export class CompetitionScoreTableContainer {
   }
 
   updatePrizeLink(score, language) {
-    console.log('Updating prize link:', { score, language });
-
     const prizeAnchor = this.containerDiv?.querySelector('#boomio-prize-link');
-
-    console.log('Prize anchor element:', prizeAnchor);
-
     if (!prizeAnchor) return;
     const url = this.getPrizeUrl(score, language);
     if (url) {
@@ -97,8 +92,6 @@ export class CompetitionScoreTableContainer {
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
     this.updateVisuals();
-
-    this.updatePrizeLink(this.scoreTable?.user_best_score, this.language);
   }
 
   updateVisuals() {
@@ -970,9 +963,8 @@ export class CompetitionScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    this.updatePrizeLink(this.scoreTable?.user_best_score, this.language);
-
     if (this.prop === 'Pigu.lt') {
+      this.updatePrizeLink(this.scoreTable?.user_best_score, this.language);
       document.getElementById('boomio-copy-modal-btn2').onclick = () => {
         const textToCopy = this.getDiscountCode(this.scoreTable?.user_best_score);
         const textarea = document.createElement('textarea');
@@ -1080,6 +1072,7 @@ export class CompetitionScoreTableContainer {
       line-height: 24px;
       word-wrap: break-word;
       cursor:pointer;
+      text-decoration:none;
     "    
   >    
     ${translations.useCode[this.language] || translations.useCode.EN}
