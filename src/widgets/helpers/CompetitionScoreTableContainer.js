@@ -1,5 +1,4 @@
 import './styles.css';
-
 import { boomioLogo } from './constants';
 import { localStorageService } from '@/services';
 
@@ -9,7 +8,7 @@ const translations = {
     LT: 'Nukopijuota!',
     RU: 'Скопировано!',
     LV: 'Nokopēts!',
-    EE: 'Kopeeritud!',
+    ET: 'Kopeeritud!',
     FI: 'Kopioitu!',
   },
   useCode: {
@@ -17,7 +16,7 @@ const translations = {
     LT: 'PANAUDOK KODĄ',
     RU: 'ИСПОЛЬЗОВАТЬ КОД',
     LV: 'IZMANTOT ATLAIŽU KODU',
-    EE: 'KASUTA SOODUSKOODI',
+    ET: 'KASUTA SOODUSKOODI',
     FI: 'KÄYTÄ KOODIA',
   },
 };
@@ -51,22 +50,46 @@ export class CompetitionScoreTableContainer {
 
   getPrizeUrl(score, language) {
     if (this.prop !== 'Pigu.lt') return '';
-
-    console.log('score, language', score, language);
-
-    let gamePage = null;
-    if (score >= 100 && score < 400) gamePage = 'GAME10';
-    else if (score >= 400 && score < 500) gamePage = 'GAME15';
-    else if (score >= 500 && score < 600) gamePage = 'GAME20';
-    else if (score >= 600) gamePage = 'GAME25';
-    if (!gamePage) return '';
+    let page = null;
+    if (score >= 100 && score < 400) page = 'GAME10';
+    else if (score >= 400 && score < 500) page = 'GAME15';
+    else if (score >= 500 && score < 600) page = 'GAME20';
+    else if (score >= 600) page = 'GAME25';
+    if (!page) return '';
     const urls = {
-      LT: `https://pigu.lt/lt/puslapis/${gamePage}`,
-      LV: `https://220.lv/lv/lapaspuse/${gamePage}`,
-      ET: `https://kaup24.ee/et/lehekulg/${gamePage}`,
-      FI: `https://hobbyhall.fi/fi/sivu/${gamePage}`,
+      LT: `https://pigu.lt/lt/puslapis/${page}`,
+      LV: `https://220.lv/lv/lapaspuse/${page}`,
+      ET: `https://kaup24.ee/et/lehekulg/${page}`, // keep ET
+      EE: `https://kaup24.ee/et/lehekulg/${page}`, // optional alias
+      FI: `https://hobbyhall.fi/fi/sivu/${page}`,
+      EN: `https://pigu.lt/lt/puslapis/${page}`,
+      RU: `https://pigu.lt/lt/puslapis/${page}`,
     };
-    return urls[language] || '';
+    return urls[language] || urls.LT;
+  }
+
+  updatePrizeLink(score, language) {
+    console.log('Updating prize link:', { score, language });
+
+    const prizeAnchor = this.containerDiv?.querySelector('#boomio-prize-link');
+
+    console.log('Prize anchor element:', prizeAnchor);
+
+    if (!prizeAnchor) return;
+    const url = this.getPrizeUrl(score, language);
+    if (url) {
+      prizeAnchor.setAttribute('href', url);
+      prizeAnchor.setAttribute('target', '_blank');
+      prizeAnchor.setAttribute('rel', 'noopener noreferrer');
+      prizeAnchor.style.pointerEvents = 'auto';
+      prizeAnchor.style.opacity = '1';
+    } else {
+      prizeAnchor.removeAttribute('href');
+      prizeAnchor.removeAttribute('target');
+      prizeAnchor.removeAttribute('rel');
+      prizeAnchor.style.pointerEvents = 'none';
+      prizeAnchor.style.opacity = '0.6';
+    }
   }
 
   updateProps(prop, scoreTable) {
@@ -74,6 +97,8 @@ export class CompetitionScoreTableContainer {
     this.scoreTable = scoreTable;
     this.language = this.config.language ? this.config.language : 'EN';
     this.updateVisuals();
+
+    this.updatePrizeLink(this.scoreTable?.user_best_score, this.language);
   }
 
   updateVisuals() {
@@ -945,6 +970,8 @@ export class CompetitionScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
+    this.updatePrizeLink(this.scoreTable?.user_best_score, this.language);
+
     if (this.prop === 'Pigu.lt') {
       document.getElementById('boomio-copy-modal-btn2').onclick = () => {
         const textToCopy = this.getDiscountCode(this.scoreTable?.user_best_score);
@@ -1040,13 +1067,10 @@ export class CompetitionScoreTableContainer {
   align-items: center;
   z-index: 9999999;
   pointer-events: auto; /* Ensure the container receives taps */
-      target="_blank"
-      onclick="window.open('${this.getPrizeUrl(
-        this.scoreTable?.user_best_score,
-        this.language,
-      )}', '_blank');"
 ">
-  <a
+  <a id="boomio-prize-link"
+    href="#"
+    rel="noopener noreferrer"
     style="
       text-align: center;
       color: ${this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'};
@@ -1056,8 +1080,7 @@ export class CompetitionScoreTableContainer {
       line-height: 24px;
       word-wrap: break-word;
       cursor:pointer;
-    "
-    rel="noopener noreferrer"
+    "    
   >    
     ${translations.useCode[this.language] || translations.useCode.EN}
   </a>
