@@ -5,10 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Development</title>
 
-    <script>      
+    <script>
       (function () {
-        if (!location.search.includes('widget_type=')) {
-          location.replace(location.pathname + '?demo=1&widget_type=catch');
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        let changed = false;
+
+        if (!params.has('demo')) {
+          params.set('demo', '1');          
+          changed = true;
+        }
+        if (!params.has('widget_type')) {          
+          params.set('widget_type', 'catch');
+          changed = true;
+        }
+        if (!params.has('campaign_url')) {
+          params.set('campaign_url', 'https://boomio-web.webflow.io/pigu-lt-lt');
+          changed = true;
+        }
+
+        if (changed) {
+          url.search = params.toString();
+          window.location.replace(url.toString());
         }
       })();
     </script>
