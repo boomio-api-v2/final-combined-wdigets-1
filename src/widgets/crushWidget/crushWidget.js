@@ -145,7 +145,7 @@ class CrushGame {
     this.currentScore = 0;
     this.multiplier = 2;
     this.isAnimating = false; // Add this flag
-    this.timer = 40; // Add timer property
+    this.timer = 120; // Add timer property
     this.timerInterval = null; // Add timer interval property
     this.tutorial = true;
 
@@ -329,7 +329,7 @@ class CrushGame {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
-    this.timer = 40;
+    this.timer = 120;
     this.timerInterval = setInterval(() => {
       this.timer--;
       timerElement.innerText = `${this.timer}`;
