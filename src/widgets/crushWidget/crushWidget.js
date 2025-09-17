@@ -82,6 +82,10 @@ import './styles.css';
 
 class CrushGame {
   constructor() {
+    const currentPageUrl = window.location.href;
+    this.urlParams = new URL(currentPageUrl).searchParams;
+    this.user_id = this.urlParams.get('user_id');
+
     this.shareClicked = false;
 
     this.config = localStorageService.getDefaultConfig();
@@ -148,6 +152,13 @@ class CrushGame {
     this.startLoading();
   }
 
+  isUserIdSet() {
+    const v = this.user_id;
+    if (v == null) return false; // null or undefined
+    const s = String(v).trim().toLowerCase();
+    return s.length > 0 && s !== 'null' && s !== 'undefined';
+  }
+
   startLoading() {
     this.preloadImages(() => {
       this.createContainer();
@@ -166,9 +177,6 @@ class CrushGame {
   }
 
   showRulesOrRegistration = () => {
-    const currentPageUrl = window.location.href;
-    this.urlParams = new URL(currentPageUrl).searchParams;
-    const user_id = this.urlParams.get('user_id');
     if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
@@ -177,7 +185,7 @@ class CrushGame {
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }
-    if (this.showCompetitiveRegistration) {
+    if (this.showCompetitiveRegistration && !this.isUserIdSet()) {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
@@ -209,12 +217,15 @@ class CrushGame {
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
-    } else if (this.customer === 'Perlas GO' && user_id !== '') {
+    } else if (this.isUserIdSet()) {
+      const canvas = document.getElementById('boomio-crush-canvas');
+      canvas.style.transition = 'filter 0.6s ease';
+      canvas.style.filter = 'blur(0px)';
       boomioService
         .signal('', 'user_info', {
-          emails_consent: this.customer === 'Perlas GO' ? true : false,
-          user_email: user_id,
-          user_name: user_id,
+          emails_consent: true,
+          user_email: this.user_id,
+          user_name: this.user_id,
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
@@ -240,12 +251,12 @@ class CrushGame {
         .catch((error) => {
           console.error('Error:', error);
         });
-    } else if (this.customer === 'Perlas GO' && user_id === '') {
+    } else if (this.customer === 'Perlas GO' && !this.isUserIdSet()) {
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
-          user_email: user_id,
-          user_name: user_id,
+          user_email: this.user_id,
+          user_name: this.user_id,
         })
         .then((response) => {
           this.userBestScore = response.user_best_score;
