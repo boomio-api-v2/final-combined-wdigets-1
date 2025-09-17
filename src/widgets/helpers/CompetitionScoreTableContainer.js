@@ -60,7 +60,6 @@ export class CompetitionScoreTableContainer {
       LT: `https://pigu.lt/lt/puslapis/${page}`,
       LV: `https://220.lv/lv/lapaspuse/${page}`,
       ET: `https://kaup24.ee/et/lehekulg/${page}`, // keep ET
-      EE: `https://kaup24.ee/et/lehekulg/${page}`, // optional alias
       FI: `https://hobbyhall.fi/fi/sivu/${page}`,
       EN: `https://pigu.lt/lt/puslapis/${page}`,
       RU: `https://pigu.lt/lt/puslapis/${page}`,
@@ -71,7 +70,7 @@ export class CompetitionScoreTableContainer {
   updatePrizeLink(score, language) {
     const prizeAnchor = this.containerDiv?.querySelector('#boomio-prize-link');
     const prizeContainer = this.containerDiv?.querySelector('#boomio-prize-link-container');
-    if (!prizeAnchor) return;
+    if (!prizeAnchor || !prizeContainer) return;
     const url = this.getPrizeUrl(score, language);
     if (url) {
       prizeAnchor.setAttribute('href', url);
@@ -606,10 +605,10 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
         (this.prop === 'Orlen' && this.scoreTable.user_best_place > 1000) ||
         (this.prop === 'Novaturas' && this.scoreTable.user_best_place > 30) ||
-        (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score > 100) ||
+        (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score >= 100) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div style="width:100%; top: ${
-              this.prop == 'Pigu.lt' ? '410px' : '420px'
+              this.prop === 'Pigu.lt' ? '410px' : this.prop === 'Akropolis' ? '400px' : '420px'
             }; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' || this.prop === 'Pigu.lt' ? '16px' : fontSize
             }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: ${
@@ -1017,8 +1016,6 @@ export class CompetitionScoreTableContainer {
         ? 'РЕЗУЛЬТАТЫ'
         : this.language === 'ET'
         ? 'TULEMUSED'
-        : this.language === 'ET'
-        ? 'TULEMUSED'
         : this.language === 'ES'
         ? 'RESULTADOS'
         : this.language === 'FI'
@@ -1112,7 +1109,7 @@ export class CompetitionScoreTableContainer {
     }</div>
       </div>
 
-      <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain;background-repeat:no-repeat;" id="boomio-game-play-again">
+      <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain;background-repeat:no-repeat;" id="boomio-logo">
       </div>
     </div>`;
     this.containerDiv = containerDiv;
