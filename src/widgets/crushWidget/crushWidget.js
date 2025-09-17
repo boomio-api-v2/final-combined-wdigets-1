@@ -95,7 +95,6 @@ class CrushGame {
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
     this.gameCount = 0;
     this.language = this.config.language ? this.config.language : 'LT';
-    console.log('Crush widget language:', this.language);
 
     this.currentScoreTable = {};
     this.gridCols = 5;
