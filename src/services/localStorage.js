@@ -123,8 +123,10 @@ class LocalStorageService {
     const campaignUrl = urlParams.get('campaign_url');
     const languageParam = urlParams.get('language') || 'LT';
     const couponCodeNew = config?.coupon_code;
-
+    console.log('business_name:', config?.business_name);
+    console.log('languageParam from localStorageService:', languageParam);
     const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
+    console.log('language from localStorageService:', language);
     const teams = config?.teams ?? [];
     const restrictions = config?.restrictions ?? {};
     const userBestScore = config?.user_best_score ? config?.user_best_score : 0;
