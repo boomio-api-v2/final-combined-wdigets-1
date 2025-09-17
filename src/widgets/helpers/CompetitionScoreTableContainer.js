@@ -70,6 +70,7 @@ export class CompetitionScoreTableContainer {
 
   updatePrizeLink(score, language) {
     const prizeAnchor = this.containerDiv?.querySelector('#boomio-prize-link');
+    const prizeContainer = this.containerDiv?.querySelector('#boomio-prize-link-container');
     if (!prizeAnchor) return;
     const url = this.getPrizeUrl(score, language);
     if (url) {
@@ -78,12 +79,14 @@ export class CompetitionScoreTableContainer {
       prizeAnchor.setAttribute('rel', 'noopener noreferrer');
       prizeAnchor.style.pointerEvents = 'auto';
       prizeAnchor.style.opacity = '1';
+      prizeContainer.style.display = 'flex';
     } else {
       prizeAnchor.removeAttribute('href');
       prizeAnchor.removeAttribute('target');
       prizeAnchor.removeAttribute('rel');
       prizeAnchor.style.pointerEvents = 'none';
       prizeAnchor.style.opacity = '0.6';
+      prizeContainer.style.display = 'none';
     }
   }
 
@@ -945,9 +948,13 @@ export class CompetitionScoreTableContainer {
             } </div>
         `
       }
+      ${`<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#000000ff'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; 
+      display: 
       ${
-        this.prop === 'Pigu.lt'
-          ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#000000ff'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:495px;left:calc(50% - 130px);">
+        this.prop === 'Pigu.lt' && this.getBonus(this.scoreTable?.user_best_score) > 0
+          ? 'inline-flex'
+          : 'none'
+      };width:260px;position:absolute;top:495px;left:calc(50% - 130px);">
       <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
        ${this.getDiscountCode(this.scoreTable?.user_best_score)}
           </div>
@@ -955,9 +962,7 @@ export class CompetitionScoreTableContainer {
           <path d="M18.5625 3.42188H7.5625C7.42575 3.42188 7.2946 3.4762 7.1979 3.5729C7.1012 3.6696 7.04688 3.80075 7.04688 3.9375V7.54688H3.4375C3.30075 7.54688 3.1696 7.6012 3.0729 7.6979C2.9762 7.7946 2.92188 7.92575 2.92188 8.0625V19.0625C2.92188 19.1993 2.9762 19.3304 3.0729 19.4271C3.1696 19.5238 3.30075 19.5781 3.4375 19.5781H14.4375C14.5743 19.5781 14.7054 19.5238 14.8021 19.4271C14.8988 19.3304 14.9531 19.1993 14.9531 19.0625V15.4531H18.5625C18.6993 15.4531 18.8304 15.3988 18.9271 15.3021C19.0238 15.2054 19.0781 15.0743 19.0781 14.9375V3.9375C19.0781 3.80075 19.0238 3.6696 18.9271 3.5729C18.8304 3.4762 18.6993 3.42188 18.5625 3.42188ZM13.9219 18.5469H3.95312V8.57812H13.9219V18.5469ZM18.0469 14.4219H14.9531V8.0625C14.9531 7.92575 14.8988 7.7946 14.8021 7.6979C14.7054 7.6012 14.5743 7.54688 14.4375 7.54688H8.07812V4.45312H18.0469V14.4219Z" fill="white"/>
           </svg>
       </div> 
-      `
-          : ''
-      }
+      `}
     `;
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
@@ -1044,7 +1049,7 @@ export class CompetitionScoreTableContainer {
           </table>
         </div>
       </div>
-      <div style="
+      <div id="boomio-prize-link-container" style="
   width: calc(100% - 40px);
   margin-left: 20px;
   margin-right: 20px;
