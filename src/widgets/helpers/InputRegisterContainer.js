@@ -428,7 +428,8 @@ export class InputRegisterContainer {
       this.prop !== 'Toni' &&
       this.prop !== 'Pigu.lt' &&
       this.prop !== 'Novaturas' &&
-      this.prop !== 'Perlas GO'
+      this.prop !== 'Perlas GO' &&
+      this.prop !== 'Apranga'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Ikea'
               ? 'https://www.ikea.lt/lt/privacy-policy'
