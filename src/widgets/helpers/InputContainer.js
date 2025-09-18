@@ -84,7 +84,8 @@ export class InputContainer {
       this.prop === 'Nevezis' ||
       this.prop === 'Pigu.lt' ||
       this.prop === 'Zemaitijos Pienas' ||
-      this.prop === 'LemonFeel'
+      this.prop === 'LemonFeel' ||
+      this.prop === 'Apranga'
         ? '150px'
         : '110px'
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
@@ -114,6 +115,8 @@ export class InputContainer {
                   ? 'Yhdistä '
                   : this.prop === 'Pigu.lt' && this.language === 'RU'
                   ? 'Собери '
+                  : this.prop === 'Apranga'
+                  ? 'Gaudykite '
                   : this.language === 'EN' && this.game === 'drive'
                   ? 'Move '
                   : this.language === 'LV' && this.game === 'drive'
@@ -228,6 +231,8 @@ export class InputContainer {
       ? 'kad pašoktum'
       : this.prop === 'Eurovaistine'
       ? 'pārvietojoties uz sāniem.'
+      : this.prop === 'Apranga'
+      ? 'SOULZ prekes ir rinkite taškus.'
       : this.game === 'drive' && this.language === 'LT'
       ? 'į šonus, kad vairuotum.'
       : this.game === 'drive' && this.language === 'LV'
@@ -369,6 +374,8 @@ export class InputContainer {
                 ? 'Rink'
                 : this.prop === 'Novaturas' && this.language === 'LT'
                 ? 'Rink'
+                : this.prop === 'Apranga'
+                ? 'Venkite'
                 : 'Kartok'
             }
                          <div style="position:initial;top: 46px;margin-left:4px;margin-top:2px; color: white; font-size: ${
@@ -447,6 +454,8 @@ export class InputContainer {
                 ? 'korteles ir gauk taškus.'
                 : this.prop === 'Perlas GO'
                 ? 'siekdamas kuo geresnio rezultato.'
+                : this.prop === 'Apranga'
+                ? 'pakabų, kad nepralaimėtumėte.'
                 : 'siekdamas kuo geresnio rezultato.'
             }
           </div>
@@ -511,6 +520,8 @@ export class InputContainer {
                 ? 'Повторяйте '
                 : this.prop === 'Zemaitijos Pienas'
                 ? 'Mėgaukis'
+                : this.prop === 'Apranga'
+                ? 'Kartokite,'
                 : 'Laimėk'
             } 
                           <div style="position:initial;top: 85px;margin-top:${
@@ -619,6 +630,8 @@ export class InputContainer {
                 ? 'žaidimu.'
                 : this.prop === 'Orlen'
                 ? ' ir  pagerink rezultatą.'
+                : this.prop === 'Apranga'
+                ? ' siekdami geresnio rezultato.'
                 : this.language === 'LT'
                 ? 'ir pagerink rezultatą.'
                 : this.language === 'LV'
@@ -645,7 +658,8 @@ ${
   this.prop === 'Pigu.lt' ||
   this.prop === 'Toni' ||
   this.prop === 'Zemaitijos Pienas' ||
-  this.prop === 'LemonGym'
+  this.prop === 'LemonGym' ||
+  this.prop === 'Apranga'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'20px'}; font-family:${
         this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
@@ -676,6 +690,8 @@ ${
                 ? 'Vuelve'
                 : this.prop === 'LemonFeel'
                 ? '28.AUGUSTĀ'
+                : this.prop === 'Apranga'
+                ? 'Laimėkite'
                 : this.language === 'LV'
                 ? 'LAIMĒ'
                 : 'Laimėk'
@@ -726,6 +742,8 @@ ${
                 ? 'призы от Novatours!'
                 : this.prop === 'LemonFeel'
                 ? 'apbalvosim labāko spēlētāju'
+                : this.prop === 'Apranga'
+                ? 'prizus!'
                 : 'prizus!'
             }
           </div>
@@ -758,6 +776,7 @@ ${
       this.prop === 'Orlen' ||
       this.prop === 'LemonFeel' ||
       this.prop === 'Novaturas' ||
+      this.prop === 'Apranga' ||
       this.prop.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${'center'}; color: white; font-size: 10px; font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
@@ -836,6 +855,8 @@ ${
               ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-FEEL-speles-noteikumi.pdf'
               : this.prop === 'Orlen'
               ? 'href=https://www.orlen.lt/LT/zaidimas/Puslapiai/taisykl%c4%97s.aspx'
+              : this.prop === 'Apranga'
+              ? 'href="https://soulz.lt/lt/page/zaidimotaisykles"'
               : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:14px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
