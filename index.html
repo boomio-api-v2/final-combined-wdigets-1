@@ -23,6 +23,10 @@
           params.set('campaign_url', 'https://boomio-web.webflow.io/pigu-lt-lt');
           changed = true;
         }
+        // if (!params.has('language')) {
+        //   params.set('language', 'LV');
+        //   changed = true;
+        // }        
 
         if (changed) {
           url.search = params.toString();

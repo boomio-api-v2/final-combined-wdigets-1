@@ -98,17 +98,17 @@ export class CompetitionScoreTableContainer {
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
     const scoreboard =
       this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas'
         ? this.scoreTable?.teams_scoreboard
         : this.scoreTable?.scoreboard || [];
-    const userBestPlace = parseInt(
-      this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas'
-        ? this.scoreTable.team_best_place
-        : this.scoreTable?.user_best_place,
-    );
-    const userBestScore = parseInt(this.scoreTable?.user_best_score);
+    const userBestPlace =
+      Number(
+        this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas'
+          ? this.scoreTable.team_best_place
+          : this.scoreTable?.user_best_place,
+      ) || 0;
+    const userBestScore = Number(this.scoreTable?.user_best_score) || 0;
     this.userParticipationDays = this.scoreTable?.participation_days ?? 0; // nullish-coalescing
 
     const currentPageUrl = window.location.href;
@@ -819,8 +819,6 @@ export class CompetitionScoreTableContainer {
                 ? 'PYSTYT PAREMPAAN!'
                 : this.language === 'EN'
                 ? 'YOU CAN DO BETTER!'
-                : this.language === 'ES'
-                ? '¡TÚ PUEDES!'
                 : this.prop === 'Nykstukas'
                 ? ''
                 : 'TU GALI GERIAU!'
