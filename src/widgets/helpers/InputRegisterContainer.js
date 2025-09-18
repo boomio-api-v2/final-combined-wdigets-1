@@ -1,6 +1,27 @@
 import './styles.css';
 import { uncheckIcon } from './constants';
 import { localStorageService } from '@/services';
+
+const privacyPolicytranslations = {
+  pigu: {
+    EN: `I agree with <a href="https://pigu.lt/ru/t/politika-konfidentsialnosti-zao-pigu" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt/220.lv/Kaup24.ee/Hobbyhall.fi</a> privacy policy. I have read and agree with game rules and instructions.`,
+    LT: `Sutinku su <a href="https://pigu.lt/lt/t/privatumo-politika" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a> privatumo politika. Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.`,
+    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://pigu.lt/ru/t/politika-konfidentsialnosti-zao-pigu" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a>. Я прочитал(а) и согласен(на) с правилами и инструкциями игры.`,
+  },
+  220: {
+    LV: `Es piekrītu <a href="https://220.lv/lv/t/privatuma-politika" target="_blank" rel="noopener noreferrer" style="color:white">220.lv</a> privātuma politikai. Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.`,
+    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://220.lv/ru/t/politika-konfidencialnosti" target="_blank" rel="noopener noreferrer" style="color:white">220.lv</a>. Я прочитал(а) и согласен(на) с правилами и инструкциями игры.`,
+  },
+  kaup24: {
+    ET: `Nõustun <a href="https://kaup24.ee/et/t/privaatsuspoliitika" target="_blank" rel="noopener noreferrer" style="color:white">Kaup24.ee</a> privaatsuspoliitikaga. Olen tutvunud ja nõustun mängureeglite ning juhistega.`,
+    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://kaup24.ee/ru/t/konfidencialnos" target="_blank" rel="noopener noreferrer" style="color:white">Kaup24.ee</a>. Я прочитал(а) и согласен(на) с правилами и инструкциями игры.`,
+  },
+  hobbyhall: {
+    EN: `I agree with <a href="https://hobbyhall.fi/fi/t/privacy-policy" target="_blank" rel="noopener noreferrer" style="color:white">Hobbyhall.fi</a> privacy policy.`,
+    FI: `Hyväksyn yrityksen <a href="https://hobbyhall.fi/fi/t/privacy-policy" target="_blank" rel="noopener noreferrer" style="color:white">tietosuojakäytännön</a>. Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.`,
+  },
+};
+
 export class InputRegisterContainer {
   constructor(prop) {
     this.prop = prop; // Store the this.prop in a class this.property
@@ -75,7 +96,7 @@ export class InputRegisterContainer {
             this.prop === 'Toni' ? '60px' : '20px'
           }; position: relative; text-align:${
       this.prop === 'Ikea' ? 'start' : 'center'
-    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'12px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
+    } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'14px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
       this.prop.includes('Gamtos Ateitis')
         ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
         : this.language === 'EN'
@@ -372,21 +393,16 @@ export class InputRegisterContainer {
         : this.prop === 'Apranga'
         ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025?_gl=1*1u7c0c4*_up*MQ..*_ga*OTYxOTc1MjQwLjE3NTUwNzkxNjE.*_ga_J5PB18DDR4*czE3NTUwNzkxNjEkbzEkZzAkdDE3NTUwNzkxNjEkajYwJGwwJGg2MDcxMjkzMzM" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
         : this.config.currentPageUrl.toLowerCase().includes('pigu')
-        ? this.language === 'RU'
-          ? `Я согласен(на) с политикой конфиденциальности <a href="https://pigu.lt/privatumo-politika" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a>.`
-          : `Sutinku su <a href="https://pigu.lt/privatumo-politika" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a> privatumo politika.`
+        ? privacyPolicytranslations['pigu'][this.language] ||
+          privacyPolicytranslations['pigu']['LT']
         : this.config.currentPageUrl.toLowerCase().includes('220')
-        ? this.language === 'RU'
-          ? `Я согласен(на) с политикой конфиденциальности <a href="https://220.lv/privatuma-politika" target="_blank" rel="noopener noreferrer" style="color:white">220.lv</a>.`
-          : `Es piekrītu <a href="https://220.lv/privatuma-politika" target="_blank" rel="noopener noreferrer" style="color:white">220.lv</a> privātuma politikai.`
+        ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
         : this.config.currentPageUrl.toLowerCase().includes('kaup24')
-        ? this.language === 'RU'
-          ? `Я согласен(на) с политикой конфиденциальности <a href="https://kaup24.ee/privatuma-poliitika" target="_blank" rel="noopener noreferrer" style="color:white">Kaup24.ee</a>.`
-          : `Nõustun <a href="https://kaup24.ee/privatuma-poliitika" target="_blank" rel="noopener noreferrer" style="color:white">Kaup24.ee</a> privaatsuspoliitikaga.`
+        ? privacyPolicytranslations['kaup24'][this.language] ||
+          privacyPolicytranslations['kaup24']['ET']
         : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
-        ? this.language === 'EN'
-          ? `I agree with <a href="https://hobbyhall.fi/fi/tietosuojakäytäntö" target="_blank" rel="noopener noreferrer" style="color:white">Hobbyhall.fi</a> privacy policy.`
-          : `Hyväksyn yrityksen <a href="https://hobbyhall.fi/fi/tietosuojakäytäntö" target="_blank" rel="noopener noreferrer" style="color:white">tietosuojakäytännön</a>.`
+        ? privacyPolicytranslations['hobbyhall'][this.language] ||
+          privacyPolicytranslations['hobbyhall']['FI']
         : this.language === 'EN'
         ? 'I agree to receive '
         : this.language === 'LV'
@@ -801,9 +817,15 @@ export class InputRegisterContainer {
              <select id="city-select" class="boomio-competition-city-select"
     style="display:${this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'};
            width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;
-           left:28px;height:45px;position:absolute;top:205px;margin:0px;
+           left:28px;height:45px;position:absolute;top:${
+             this.prop.includes('Gamtos Ateitis') ? '240px' : '205px'
+           };margin:0px;;margin:0px;
            box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:rgba(71, 63, 78, 0.7);font-family:Georama;font-size:14px">
-    <option value="">Kurio miesto AKROPOLIO naujienos tau aktualiausios?</option>
+        <option value="">${
+          this.prop.includes('Gamtos Ateitis')
+            ? 'Miestas ar rajonas'
+            : 'Kurio miesto AKROPOLIO naujienos tau aktualiausios?'
+        }</option>
     ${options.map((city) => `<option value="${city}">${city}</option>`).join('')}
   </select>
 

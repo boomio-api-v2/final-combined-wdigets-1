@@ -2,21 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Development</title>
+
     <script>
-        const newLinkBoomio = "https://api.mars.boomio.com/easter-service/get-qr-code";
+      (function () {
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        let changed = false;
+
+        if (!params.has('demo')) {
+          params.set('demo', '1');          
+          changed = true;
+        }
+        if (!params.has('widget_type')) {          
+          params.set('widget_type', 'catch');
+          changed = true;
+        }
+        if (!params.has('campaign_url')) {
+          params.set('campaign_url', 'https://boomio-web.webflow.io/pigu-lt-lt');
+          changed = true;
+        }
+
+        if (changed) {
+          url.search = params.toString();
+          window.location.replace(url.toString());
+        }
+      })();
     </script>
-    <style>
-    </style>
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/kbnvch/boomio/main/expl1.png" media="(max-width: 600px)">
 
-    <script src="dist/bundle.js"></script>
-
-
+    <script>const newLinkBoomio="https://api.sun.boomio.eu/webshop-proxy-service/api/handle";</script>
+    <script defer src="dist/bundle.js"></script>
 </head>
-<body>
+<body>       
 </body>
 </html>

@@ -126,7 +126,6 @@ import {
   item8Pegasas,
   item9Pegasas,
   item10Pegasas,
-  introAkropolis,
   backgroundAkropolis,
   playerAkropolis,
   item1Akropolis,
@@ -658,8 +657,6 @@ class CatchGame {
         ? introPienoZvaigzdes
         : this.customer === 'Pegasas'
         ? introPegasas
-        : this.customer === 'Akropolis'
-        ? introAkropolis
         : this.customer === 'Daumantu'
         ? introDaumantu
         : this.customer === 'Zemaitijos Pienas' && introDobilo

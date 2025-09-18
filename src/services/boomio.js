@@ -36,9 +36,9 @@ class BoomioService extends UserService {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
-    const language = urlParams.get('language');
+    //const language = urlParams.get('language');
 
-    this.current_page_url = currentPageUrl;
+    this.current_page_url = campaignUrl || currentPageUrl;
 
     // if (
     //   (language === 'ET' &&
