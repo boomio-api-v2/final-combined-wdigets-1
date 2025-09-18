@@ -10,6 +10,7 @@ const translations = {
     LV: 'Nokopēts!',
     ET: 'Kopeeritud!',
     FI: 'Kopioitu!',
+    ES: '¡Copiado!',
   },
   useCode: {
     EN: 'USE THE DISCOUNT',
@@ -18,6 +19,7 @@ const translations = {
     LV: 'IZMANTOT ATLAIŽU KODU',
     ET: 'KASUTA SOODUSKOODI',
     FI: 'KÄYTÄ KOODIA',
+    ES: 'USA EL DESCUENTO',
   },
 };
 

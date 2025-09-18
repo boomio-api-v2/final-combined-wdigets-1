@@ -1,5 +1,4 @@
 import './styles.css';
-
 import { boomioLogo } from './constants';
 import { localStorageService } from '@/services';
 
