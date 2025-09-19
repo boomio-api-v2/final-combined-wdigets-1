@@ -8,6 +8,13 @@ on:
     branches: ['*']
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,20 +30,27 @@ jobs:
 
       - run: npm ci --no-audit --no-fund
 
-      - run: npm run lint --if-present
+      - name: Lint
+        run: npm run lint --if-present
 
-      - run: npm test --if-present
-        env: { CI: true }
+      - name: Prettier check
+        run: npm run format:check --if-present
+
+      - name: Test
+        run: npm test --if-present
+        env:
+          CI: true
 
       - name: Build
-        run: |
-          npm install
-          npm run build:prod
+        run: npm run build:prod
+        env:
+          CI: true
 
       - name: Upload dist
         uses: actions/upload-artifact@v4
         with:
           name: bundle.js
-          path: dist/
+          path: dist/bundle.js
           if-no-files-found: error
           retention-days: 14
+          compression-level: 6
