@@ -6,7 +6,10 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
     "analyze": "webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "jquery": "^3.7.1",
