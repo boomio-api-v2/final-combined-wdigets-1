@@ -1,10 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover"
+    />
     <title>Development</title>
-
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+      }
+      .loader {
+        margin: 150px auto;
+        height: 50px;
+        aspect-ratio: 2;
+        border: 10px solid #fff; /* border matches background */
+        box-sizing: border-box;
+        background: radial-gradient(farthest-side, #000 98%, #0000) left/20px 20px,
+          radial-gradient(farthest-side, #000 98%, #0000) left/20px 20px,
+          radial-gradient(farthest-side, #000 98%, #0000) center/20px 20px,
+          radial-gradient(farthest-side, #000 98%, #0000) right/20px 20px, #fff; /* base background white */
+        background-repeat: no-repeat;
+        filter: blur(4px) contrast(10);
+        animation: l14 1s infinite;
+      }
+      @keyframes l14 {
+        100% {
+          background-position: right, left, center, right;
+        }
+      }
+    </style>
     <script>
       (function () {
         const url = new URL(window.location.href);
@@ -12,21 +41,21 @@
         let changed = false;
 
         if (!params.has('demo')) {
-          params.set('demo', '1');          
+          params.set('demo', '1');
           changed = true;
         }
-        // if (!params.has('widget_type')) {          
-        //   params.set('widget_type', 'catch');
-        //   changed = true;
-        // }
-        // if (!params.has('campaign_url')) {
-        //   params.set('campaign_url', 'https://boomio-web.webflow.io/pigu-lt-lt');
-        //   changed = true;
-        // }
-        // if (!params.has('language')) {
-        //   params.set('language', 'LV');
-        //   changed = true;
-        // }        
+        if (!params.has('widget_type')) {
+          params.set('widget_type', 'catch');
+          changed = true;
+        }
+        if (!params.has('campaign_url')) {
+          params.set('campaign_url', 'https://boomio-web.webflow.io/pigu-lt-lt');
+          changed = true;
+        }
+        if (!params.has('language')) {
+          params.set('language', 'LV');
+          changed = true;
+        }
 
         if (changed) {
           url.search = params.toString();
@@ -35,9 +64,13 @@
       })();
     </script>
 
-    <script>const newLinkBoomio="https://api.sun.boomio.eu/webshop-proxy-service/api/handle";</script>
+    <script>
+      const newLinkBoomio = 'https://api.sun.boomio.eu/webshop-proxy-service/api/handle';
+    </script>
     <script defer src="dist/bundle.js"></script>
-</head>
-<body>       
-</body>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="loader"></div>
+  </body>
 </html>
