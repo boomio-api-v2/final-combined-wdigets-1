@@ -390,6 +390,8 @@ export class InputRegisterContainer {
         ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
         : this.prop === 'Orlen'
         ? 'Sutinku su „ORLEN“'
+        : this.prop === 'Apranga'
+        ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025?_gl=1*1u7c0c4*_up*MQ..*_ga*OTYxOTc1MjQwLjE3NTUwNzkxNjE.*_ga_J5PB18DDR4*czE3NTUwNzkxNjEkbzEkZzAkdDE3NTUwNzkxNjEkajYwJGwwJGg2MDcxMjkzMzM" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
         : this.config.currentPageUrl.toLowerCase().includes('pigu')
         ? privacyPolicytranslations['pigu'][this.language] ||
           privacyPolicytranslations['pigu']['LT']
@@ -426,7 +428,8 @@ export class InputRegisterContainer {
       this.prop !== 'Toni' &&
       this.prop !== 'Pigu.lt' &&
       this.prop !== 'Novaturas' &&
-      this.prop !== 'Perlas GO'
+      this.prop !== 'Perlas GO' &&
+      this.prop !== 'Apranga'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.prop === 'Ikea'
               ? 'https://www.ikea.lt/lt/privacy-policy'
