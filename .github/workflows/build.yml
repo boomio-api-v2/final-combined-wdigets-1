@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  push:
+    branches: ['main']
+    tags: ['v*']
+  pull_request:
+    branches: ['*']
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      - run: npm run lint --if-present
+
+      - run: npm test --if-present
+        env: { CI: true }
+
+      - name: Build
+        run: |
+          npm install
+          npm run build:prod
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle.js
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
