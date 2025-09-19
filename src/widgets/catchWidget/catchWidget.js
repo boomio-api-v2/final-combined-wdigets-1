@@ -1106,7 +1106,8 @@ class CatchGame {
                   user_name:
                     this.customer.includes('Gamtos Ateitis') ||
                     this.customer === 'Orlen' ||
-                    this.customer === 'Akropolis'
+                    this.customer === 'Akropolis' ||
+                    this.customer === 'Apranga'
                       ? emailInput?.value
                       : this.customer === 'Toni'
                       ? playerNameInput?.value.trimEnd() + phoneInput?.value
@@ -1834,6 +1835,7 @@ class CatchGame {
 
 class Player {
   constructor(customer, canvas, context, defaultscore) {
+    this.customer = customer;
     this.canvas = canvas;
     this.context = context;
     this.gameOver = false;
@@ -1843,21 +1845,21 @@ class Player {
     this.playerWidth =
       this.customer === 'Orlen' || this.customer === 'Toni'
         ? 110
-        : customer === 'Akropolis' || this.customer === 'Apranga'
+        : this.customer === 'Akropolis' || this.customer === 'Apranga'
         ? 88
         : 110;
     this.playerHeight =
       this.customer === 'Orlen' || this.customer === 'Toni'
         ? 80
-        : customer === 'Akropolis'
+        : this.customer === 'Akropolis'
         ? 64
-        : customer === 'Apranga'
+        : this.customer === 'Apranga'
         ? 92
         : 80;
     this.playerSpeed = 4;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
-    if (customer === 'Daumantu') {
+    if (this.customer === 'Daumantu') {
       this.y -= 20; // Move the player 20px higher if the customer is 'Daumantu'
     }
 
@@ -2484,8 +2486,8 @@ class Fruit {
   }
 
   showScoreEffect(score, showLife) {
-    const x = this.canvas.width / 2 - this.playerWidth / 2;
-    const y = this.canvas.height - this.playerHeight - 200;
+    const x = this.canvas.width / 2 - this.player.playerWidth / 2;
+    const y = this.canvas.height - this.player.playerHeight - 200;
 
     const gameContainer = document.querySelector('.game-container');
 
