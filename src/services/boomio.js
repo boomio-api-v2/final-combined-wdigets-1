@@ -23,8 +23,9 @@ import {
   startRunnerWidget,
 } from '@/widgets';
 import { localStoragePropertyName } from '@/config';
-
-import { localStorageService, widgetHtmlService, UserService } from '@/services';
+import localStorageService from './localStorage';
+import widgetHtmlService from './widgetHtml';
+import UserService from './user';
 
 class BoomioService extends UserService {
   constructor() {
