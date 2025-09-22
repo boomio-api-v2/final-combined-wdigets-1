@@ -661,6 +661,8 @@ export class CompetitionScoreTableContainer {
                 ? 'CONGRATULATIONS, YOU RE DOING GREAT!'
                 : this.prop === 'Novaturas' && this.language === 'RU'
                 ? 'ПОЗДРАВЛЯЕМ, У ВАС ОТЛИЧНО ПОЛУЧАЕТСЯ!'
+                : this.prop === 'Apranga'
+                ? 'NUOSTABU, JUMS PUIKIAI SEKASI!'
                 : 'Valio, tau puikiai sekasi!'
             }</div>
 
@@ -819,6 +821,8 @@ export class CompetitionScoreTableContainer {
                 ? 'YOU CAN DO BETTER!'
                 : this.prop === 'Nykstukas'
                 ? ''
+                : this.prop === 'Apranga'
+                ? 'JŪS GALITE!'
                 : 'TU GALI GERIAU!'
             }</div>
             <div id="boomio-text-lose" style="width:calc(100% - 20px);margin-left:10px; top: ${

@@ -84,6 +84,8 @@ export class InputRegisterContainer {
         ? 'REĢISTRĒJIES'
         : this.prop === 'SaludSA'
         ? 'REGÍSTRATE</br>PARA JUGAR'
+        : this.prop === 'Apranga'
+        ? 'REGISTRUOKITĖS ŽAISTI'
         : this.language === 'EN'
         ? 'Register to Play'
         : this.language === 'ES'
@@ -121,8 +123,6 @@ export class InputRegisterContainer {
         ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
         : this.prop === 'Orlen'
         ? 'Jau registravaisi? Naudok tą patį telefono numerį </br> toliau gerinant rezultatą!'
-        : this.language === 'EN'
-        ? 'Already registered? Use the same nickname and email </br> to keep improving your score!'
         : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
     } 
     </div>
@@ -264,6 +264,8 @@ export class InputRegisterContainer {
         ? 'I have read and agree with game rules and instructions. '
         : this.prop === 'Pigu.lt' && this.language === 'ET'
         ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
+        : this.prop === 'Apranga'
+        ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
         : 'Sutinku gauti naujienlaiškius.'
     }
     </div>
@@ -352,7 +354,7 @@ export class InputRegisterContainer {
         ? 'Продолжая играть, я соглашаюсь получать информационную рассылку yesyes.lv.'
         : this.prop === 'Fantazijos' && this.language === 'ET'
         ? 'Mängu jätkates nõustun yesyes.ee uudiskirja saamisega.'
-        : this.prop === 'Fantazijos' && this.prop === 'Fantazijos'
+        : this.prop === 'Fantazijos'
         ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
         : this.prop === 'Makalius'
         ? 'Sutinku gauti Makaliaus naujienlaiškius.'
@@ -549,7 +551,7 @@ export class InputRegisterContainer {
         ? '440px'
         : this.prop === 'Toni'
         ? '436px'
-        : '420px'
+        : '430px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '8px' : '9px'
     };color:${
@@ -562,7 +564,7 @@ export class InputRegisterContainer {
         } ;margin-right:30px;display:${
       this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'
     } ;left: 34px; top:${
-      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '420px'
+      this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
     }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
       this.isMobile ? '9px' : '10px'
     };color:${
