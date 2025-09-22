@@ -89,7 +89,7 @@ class CrushGame {
     this.shareClicked = false;
 
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Pigu.lt';
+    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -129,6 +129,26 @@ class CrushGame {
             crushElement5Toni,
             crushElement6Toni,
             crushElement7Toni,
+          }
+        : this.customer === 'Toni'
+        ? {
+            crushElement1Toni,
+            crushElement2Toni,
+            crushElement3Toni,
+            crushElement4Toni,
+            crushElement5Toni,
+            crushElement6Toni,
+            crushElement7Toni,
+          }
+        : this.customer === 'Gamtos ateitis'
+        ? {
+            crushElement1GamtosAteitis,
+            crushElement2GamtosAteitis,
+            crushElement3GamtosAteitis,
+            crushElement4GamtosAteitis,
+            crushElement5GamtosAteitis,
+            crushElement6GamtosAteitis,
+            crushElement7GamtosAteitis,
           }
         : {
             crushElement1Nevezis,
@@ -579,6 +599,16 @@ class CrushGame {
             crushElement7ToniSpecial,
           }
         : this.customer === 'Zemaitijos Pienas'
+        ? {
+            crushElement1ZemaitijosPienasSpecial,
+            crushElement2ZemaitijosPienasSpecial,
+            crushElement3ZemaitijosPienasSpecial,
+            crushElement4ZemaitijosPienasSpecial,
+            crushElement5ZemaitijosPienasSpecial,
+            crushElement6ZemaitijosPienasSpecial,
+            crushElement7ZemaitijosPienasSpecial,
+          }
+        : this.customer === 'Gamtos ateitis'
         ? {
             crushElement1ZemaitijosPienasSpecial,
             crushElement2ZemaitijosPienasSpecial,
