@@ -30,7 +30,7 @@ export class InputContainer {
         : '426px';
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
-    containerDiv.style.zIndex = 99999999999;
+    containerDiv.style.zIndex = 9999;
     this.game = game;
     this.type = type;
 
@@ -49,9 +49,7 @@ export class InputContainer {
       this.prop === 'Ikea' ? 'margin-left:20px' : ''
     };color: #FFF;text-align: ${
       this.prop === 'Ikea' ? 'start' : 'center'
-    } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: ${
-      this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'uppercase'
-    };">${
+    } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${
       this.language === 'LV'
         ? 'NOTEIKUMI'
         : this.language === 'RU'
@@ -129,8 +127,6 @@ export class InputContainer {
                   ? 'Двигайтесь '
                   : this.language === 'LT' && this.game === 'drive'
                   ? 'Judėk  '
-                  : this.language === 'LV' && this.game === 'drive'
-                  ? 'NOĶER,'
                   : this.language === 'ET' && this.game === 'drive'
                   ? 'LIIKUMISEKS —'
                   : this.language === 'LV' && this.game === 'doodle'
@@ -776,11 +772,10 @@ ${
       this.prop === 'Orlen' ||
       this.prop === 'LemonFeel' ||
       this.prop === 'Novaturas' ||
-      this.prop === 'Apranga' ||
       this.prop.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${'center'}; color: white; font-size: 10px; font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-          }; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" ${
+          }; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" rel="noopener noreferrer" ${
             this.prop === 'Novaturas' && this.language === 'LT'
               ? 'href=https://www.novaturas.lt/zaidimo-taisykles'
               : this.prop === 'Novaturas' && this.language === 'LV'
@@ -855,8 +850,6 @@ ${
               ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-FEEL-speles-noteikumi.pdf'
               : this.prop === 'Orlen'
               ? 'href=https://www.orlen.lt/LT/zaidimas/Puslapiai/taisykl%c4%97s.aspx'
-              : this.prop === 'Apranga'
-              ? 'href="https://soulz.lt/lt/page/zaidimotaisykles"'
               : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:14px;margin-top:6px;font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'

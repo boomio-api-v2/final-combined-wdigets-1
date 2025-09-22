@@ -699,12 +699,10 @@ class CatchGame {
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv('catch').outerHTML}
-
-        <canvas id="boomio-catch-canvas" width=${
-          document.documentElement.clientWidth < 418
-            ? document.documentElement.clientWidth + 'px'
-            : '418px'
-        }; height="668px"></canvas>
+        <canvas id="boomio-catch-canvas"
+                width="${Math.min(document.documentElement.clientWidth, 418)}"
+                height="668">
+        </canvas>
       </div>
     `;
     widgetHtmlService.container.appendChild(gameContainer);
@@ -822,6 +820,8 @@ class CatchGame {
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer.includes('Gamtos Ateitis')
                   ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+                  : this.customer === 'Apranga'
+                  ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
                   : 'Norint tęsti, privaloma sutikti su privatumo politika.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
@@ -890,6 +890,8 @@ class CatchGame {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                  : this.customer === 'Apranga'
+                  ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
                   : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 '#FFBABA';
@@ -1856,7 +1858,7 @@ class Player {
         : this.customer === 'Apranga'
         ? 92
         : 80;
-    this.playerSpeed = 4;
+    this.playerSpeed = 5;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
     if (this.customer === 'Daumantu') {
