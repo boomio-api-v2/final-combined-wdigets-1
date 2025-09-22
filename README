@@ -1,6 +1,6 @@
 ## Installation & Build
 
-```bash
+```shell
 # Install dependencies
 npm i
 
@@ -11,7 +11,7 @@ After building, the output will be available in dist/bundle.js.
 
 ## Development (local preview)
 
-```bash
+```console
 npm start
 ```
 
