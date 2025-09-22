@@ -199,7 +199,7 @@ Game.Draw = function (context, snake) {
       //tail
       context.fillStyle = color;
       context.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-      } else {
+    } else {
       if (x === snake.stage.food.x && y === snake.stage.food.y && snake.stage.food.image) {
         context.drawImage(snake.stage.food.image, x * cellSize, y * cellSize, cellSize, cellSize);
       } else {

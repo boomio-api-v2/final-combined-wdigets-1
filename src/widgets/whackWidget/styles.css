@@ -1,8 +1,8 @@
 .game-container-whack {
   position: fixed;
-  display:flex;
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 }
 
 .boomio-mole {
@@ -91,7 +91,14 @@
   line-height: 15px;
   letter-spacing: 0em;
   text-align: center;
-  background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
+  background: linear-gradient(
+    41.01deg,
+    #ff6e6d 0%,
+    #ff3183 5.48%,
+    #598bf3 88.77%,
+    #657bea 95.23%,
+    #34b0dc 101.49%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -101,9 +108,7 @@
   pointer-events: none;
 }
 
-
 @media (max-width: 600px) {
-
   .boomio-mole-image {
     /* width: calc(380px*1/2);
     height: calc(260px*1/2); */
@@ -125,20 +130,16 @@
     transform: rotate(16deg);
     opacity: 1 !important;
     transition: right 0.4s, transform 0.4s, opacity 0.3s ease;
-
   }
 
   .round-close-icon-whack {
-    left:-50px !important;
-     }
+    left: -50px !important;
+  }
 
   .round-close-icon-whack :first-child {
-    
     width: 15px !important;
-    
   }
 }
-
 
 @keyframes moleAppear {
   0% {
@@ -186,7 +187,6 @@
   }
 }
 
-
 .boomio-mole.boomio-whack-appear {
   animation: moleAppear 1.3s ease-in-out;
   /* animation: moleAppear 0.6s ease-in-out; */
@@ -202,15 +202,12 @@
   /* animation: mole-hit 0.5s ease-in-out; */
 }
 
-.boomio-mole.boomio-mole-hit-once {}
-
-
-
-
+.boomio-mole.boomio-mole-hit-once {
+}
 
 @keyframes cloud-animation {
   from {
-    transform: scale(0)
+    transform: scale(0);
   }
 
   to {
@@ -221,7 +218,6 @@
 .cloud {
   margin-top: -20px;
   margin-left: -70px;
-
 
   position: absolute;
   z-index: 100000;
@@ -243,5 +239,5 @@
 
 .round-close-icon-whack :first-child {
   width: 20px;
-  padding:6px;
- }
+  padding: 6px;
+}

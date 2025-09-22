@@ -5,24 +5,23 @@
     z-index: 9999999999;
 } */
 .boomio-wheelOfFortune {
-    display: inline-flex;
-    position: fixed;
-    overflow: initial;
-    z-index: 99999;
+  display: inline-flex;
+  position: fixed;
+  overflow: initial;
+  z-index: 99999;
 }
 
 .boomio-picture {
-    position: fixed;
-    width: 350px;
-    height: 350px;
-    z-index: 99999;
-    overflow: hidden;
+  position: fixed;
+  width: 350px;
+  height: 350px;
+  z-index: 99999;
+  overflow: hidden;
 }
 
 .boomio-wheel {
-    display: block;
+  display: block;
 }
-
 
 /* #spin {
     font: 0.9rem/0 sans-serif;
@@ -40,96 +39,101 @@
     z-index: 1;
 } */
 .boomio-spin {
-    /* font: 0.8rem/0 sans-serif; */
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    background: black;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    z-index: 1;
-    text-shadow: -1px 0px 0px #FE4100;
-    font-size: 12px !important;
+  /* font: 0.8rem/0 sans-serif; */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 1;
+  text-shadow: -1px 0px 0px #fe4100;
+  font-size: 12px !important;
 }
 
 .boomio-spin-border-wrap {
-    position: absolute;
-    top: 153px;
-    left: 153px;
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(0deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
-    border-radius: 50%;
-    z-index: 1;
+  position: absolute;
+  top: 153px;
+  left: 153px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(
+    0deg,
+    #ffc24f 8.58%,
+    #ff3183 32.32%,
+    #8559f3 60.82%,
+    #657bea 66.73%,
+    #34b0dc 77.01%,
+    #15d1d3 84.73%,
+    #09ddd0 88.95%
+  );
+  border-radius: 50%;
+  z-index: 1;
 }
 
 .boomio-topmark-box {
-    position: absolute;
-    left: 48%;
-    top: 1px;
-    width: 16px;
-    height: 40px;
-    background: linear-gradient(180deg, #FF9161 0%, #F4AB22 48.44%, #FEDC32 100%);
-    z-index: 1;
-
+  position: absolute;
+  left: 48%;
+  top: 1px;
+  width: 16px;
+  height: 40px;
+  background: linear-gradient(180deg, #ff9161 0%, #f4ab22 48.44%, #fedc32 100%);
+  z-index: 1;
 }
 
 .boomio-topmark-arrow {
-    position: absolute;
-    left: 48%;
-    top: 41px;
-    width: 16px;
-    height: 20px;
-    background: linear-gradient(180deg, #FEDC32 0%, #FEDC32 48.44%, #FEDC32 100%);
-    z-index: 1;
-    clip-path: polygon(100% 0%, 50% 30%, 0% 0%);
-
+  position: absolute;
+  left: 48%;
+  top: 41px;
+  width: 16px;
+  height: 20px;
+  background: linear-gradient(180deg, #fedc32 0%, #fedc32 48.44%, #fedc32 100%);
+  z-index: 1;
+  clip-path: polygon(100% 0%, 50% 30%, 0% 0%);
 }
 
 .round-close-icon {
-    /* width: 40px;
+  /* width: 40px;
     height: 40px;
     padding: 6px; */
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
-@media screen and (min-width:560px) {
-    .boomio-picture {
-        width: 450px;
-        height: 450px;
-    }
+@media screen and (min-width: 560px) {
+  .boomio-picture {
+    width: 450px;
+    height: 450px;
+  }
 
-    .boomio-spin-border-wrap {
-        top: 198px;
-        left: 198px;
-        width: 58px;
-        height: 58px;
-    }
+  .boomio-spin-border-wrap {
+    top: 198px;
+    left: 198px;
+    width: 58px;
+    height: 58px;
+  }
 
-    .boomio-spin {
-        /* font: 0.9rem/0 sans-serif; */
-        width: 50px;
-        height: 50px;
-        top: 4px;
-        left: 4px;
-        font-size: 15px !important;
-    }
+  .boomio-spin {
+    /* font: 0.9rem/0 sans-serif; */
+    width: 50px;
+    height: 50px;
+    top: 4px;
+    left: 4px;
+    font-size: 15px !important;
+  }
 
-    .boomio-topmark-box {
-        width: 22px;
-        height: 47px;
-    }
+  .boomio-topmark-box {
+    width: 22px;
+    height: 47px;
+  }
 
-    .boomio-topmark-arrow {
-        top: 47px;
-        width: 22px;
-        height: 30px;
-    }
-
-
+  .boomio-topmark-arrow {
+    top: 47px;
+    width: 22px;
+    height: 30px;
+  }
 }

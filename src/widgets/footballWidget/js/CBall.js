@@ -1,198 +1,211 @@
 function CBall(iXPos, iYPos, oSprite, oPhysics, oParentContainer) {
+  var _oBall;
+  var _oParentContainer;
+  var _oPhysics;
+  var _oShadow;
+  var _oContainer;
+  var _fStartShadowPos = null;
+  var _fScale = FOV * BALL_RADIUS;
+  var _fScaleShadow = _fScale;
+  var _iBufferTime = 0;
+  var _iFrame = 0;
+  var _oTween = null;
 
-    var _oBall;
-    var _oParentContainer;
-    var _oPhysics;
-    var _oShadow;
-    var _oContainer;
-    var _fStartShadowPos = null;
-    var _fScale = (FOV) * BALL_RADIUS;
-    var _fScaleShadow = _fScale;
-    var _iBufferTime = 0;
-    var _iFrame = 0;
-    var _oTween = null;
+  this._init = function (iXPos, iYPos, oSprite) {
+    _oContainer = new createjs.Container();
+    _oParentContainer.addChild(_oContainer);
 
-    this._init = function (iXPos, iYPos, oSprite) {
-        _oContainer = new createjs.Container();
-        _oParentContainer.addChild(_oContainer);
-
-        var oData = {
-            images: [oSprite],
-            // width, height & registration point of each sprite
-            frames: {width: oSprite.width / 7, height: oSprite.height, regX: (oSprite.width / 2) / 7, regY: oSprite.height / 2}
-        };
-        var oSpriteSheet = new createjs.SpriteSheet(oData);
-        _oBall = createSprite(oSpriteSheet, 0, (oSprite.width / 2) / 7, oSprite.height / 2, oSprite.width / 7, oSprite.height / 2);
-        _oBall.stop();
-        this.scale(_fScale);
-
-        var oSpriteShadow = s_oSpriteLibrary.getSprite("ball_shadow");
-        _oShadow = createBitmap(oSpriteShadow);
-        _oShadow.x = iXPos;
-        _oShadow.y = iYPos;
-        _oShadow.regX = oSpriteShadow.width * 0.5;
-        _oShadow.regY = oSpriteShadow.height * 0.5;
-
-        this.scaleShadow(_fScaleShadow);
-
-        _oContainer.addChild(_oShadow, _oBall);
+    var oData = {
+      images: [oSprite],
+      // width, height & registration point of each sprite
+      frames: {
+        width: oSprite.width / 7,
+        height: oSprite.height,
+        regX: oSprite.width / 2 / 7,
+        regY: oSprite.height / 2,
+      },
     };
+    var oSpriteSheet = new createjs.SpriteSheet(oData);
+    _oBall = createSprite(
+      oSpriteSheet,
+      0,
+      oSprite.width / 2 / 7,
+      oSprite.height / 2,
+      oSprite.width / 7,
+      oSprite.height / 2,
+    );
+    _oBall.stop();
+    this.scale(_fScale);
 
-    this.rolls = function () {
-        var iForceX = _oPhysics.velocity.x * 0.15;
+    var oSpriteShadow = s_oSpriteLibrary.getSprite('ball_shadow');
+    _oShadow = createBitmap(oSpriteShadow);
+    _oShadow.x = iXPos;
+    _oShadow.y = iYPos;
+    _oShadow.regX = oSpriteShadow.width * 0.5;
+    _oShadow.regY = oSpriteShadow.height * 0.5;
 
-        var fAngle = Math.sin(-iForceX);
+    this.scaleShadow(_fScaleShadow);
 
-        _oBall.rotation = fAngle * (180/Math.PI)//Math.degrees(fAngle);
+    _oContainer.addChild(_oShadow, _oBall);
+  };
 
-        var iForceY = Math.abs(_oPhysics.angularVelocity.x);
+  this.rolls = function () {
+    var iForceX = _oPhysics.velocity.x * 0.15;
 
-        var oFuncRot = this._goToPrevFrame;
+    var fAngle = Math.sin(-iForceX);
 
-        if (_oPhysics.angularVelocity.x < 0) {
-            oFuncRot = this._goToNextFrame;
-        }
+    _oBall.rotation = fAngle * (180 / Math.PI); //Math.degrees(fAngle);
 
-        if (iForceY > 7) {
-            oFuncRot();
-        } else if (iForceY > 3) {
-            _iBufferTime++;
-            if (_iBufferTime > 2 / ROLL_BALL_RATE) {
-                oFuncRot();
-                _iBufferTime = 0;
-            }
-        } else if (iForceY > 1) {
-            _iBufferTime++;
-            if (_iBufferTime > 3 / ROLL_BALL_RATE) {
-                oFuncRot();
-                _iBufferTime = 0;
-            }
-        } else if (iForceY > MIN_BALL_VEL_ROTATION) {
-            _iBufferTime++;
-            if (_iBufferTime > 4 / ROLL_BALL_RATE) {
-                oFuncRot();
-                _iBufferTime = 0;
-            }
-        }
-    };
+    var iForceY = Math.abs(_oPhysics.angularVelocity.x);
 
-    this._goToPrevFrame = function () {
-        if (_iFrame === 0) {
-            _iFrame = 6;
-            _oBall.gotoAndStop(_iFrame);
-        } else {
-            _iFrame--;
-            _oBall.gotoAndStop(_iFrame);
-        }
-    };
+    var oFuncRot = this._goToPrevFrame;
 
-    this._goToNextFrame = function () {
-        if (_iFrame === 7) {
-            _iFrame = 1;
-            _oBall.gotoAndStop(_iFrame);
-        } else {
-            _iFrame++;
-            _oBall.gotoAndStop(_iFrame);
-        }
-    };
+    if (_oPhysics.angularVelocity.x < 0) {
+      oFuncRot = this._goToNextFrame;
+    }
 
-    this.unload = function () {
-        _oBall.removeAllEventListeners();
-        _oParentContainer.removeChild(_oBall);
-    };
+    if (iForceY > 7) {
+      oFuncRot();
+    } else if (iForceY > 3) {
+      _iBufferTime++;
+      if (_iBufferTime > 2 / ROLL_BALL_RATE) {
+        oFuncRot();
+        _iBufferTime = 0;
+      }
+    } else if (iForceY > 1) {
+      _iBufferTime++;
+      if (_iBufferTime > 3 / ROLL_BALL_RATE) {
+        oFuncRot();
+        _iBufferTime = 0;
+      }
+    } else if (iForceY > MIN_BALL_VEL_ROTATION) {
+      _iBufferTime++;
+      if (_iBufferTime > 4 / ROLL_BALL_RATE) {
+        oFuncRot();
+        _iBufferTime = 0;
+      }
+    }
+  };
 
-    this.setVisible = function (bVisible) {
-        _oContainer.visible = bVisible;
-    };
+  this._goToPrevFrame = function () {
+    if (_iFrame === 0) {
+      _iFrame = 6;
+      _oBall.gotoAndStop(_iFrame);
+    } else {
+      _iFrame--;
+      _oBall.gotoAndStop(_iFrame);
+    }
+  };
 
-    this.getStartScale = function () {
-        return _fScaleShadow;
-    };
+  this._goToNextFrame = function () {
+    if (_iFrame === 7) {
+      _iFrame = 1;
+      _oBall.gotoAndStop(_iFrame);
+    } else {
+      _iFrame++;
+      _oBall.gotoAndStop(_iFrame);
+    }
+  };
 
-    this.startPosShadowY = function (fYPos) {
-        _fStartShadowPos = fYPos;
-    };
+  this.unload = function () {
+    _oBall.removeAllEventListeners();
+    _oParentContainer.removeChild(_oBall);
+  };
 
-    this.getStartShadowYPos = function () {
-        return _fStartShadowPos;
-    };
+  this.setVisible = function (bVisible) {
+    _oContainer.visible = bVisible;
+  };
 
-    this.fadeAnimation = function (fVal, iTime, iWait) {
-        this.tweenFade(fVal, iTime, iWait);
+  this.getStartScale = function () {
+    return _fScaleShadow;
+  };
 
-    };
+  this.startPosShadowY = function (fYPos) {
+    _fStartShadowPos = fYPos;
+  };
 
-    this.tweenFade = function (fVal, iTime, iWait) {
-        _oTween = createjs.Tween.get(_oContainer, {override: true}).wait(iWait).to({alpha: fVal}, iTime).call(function () {
-            _oTween = null;
-        });
-    };
+  this.getStartShadowYPos = function () {
+    return _fStartShadowPos;
+  };
 
-    this.setPositionShadow = function (iX, iY) {
-        _oShadow.x = iX;
-        _oShadow.y = iY;
-    };
+  this.fadeAnimation = function (fVal, iTime, iWait) {
+    this.tweenFade(fVal, iTime, iWait);
+  };
 
-    this.setPosition = function (iXPos, iYPos) {
-        _oBall.x = iXPos;
-        _oBall.y = iYPos;
-    };
+  this.tweenFade = function (fVal, iTime, iWait) {
+    _oTween = createjs.Tween.get(_oContainer, { override: true })
+      .wait(iWait)
+      .to({ alpha: fVal }, iTime)
+      .call(function () {
+        _oTween = null;
+      });
+  };
 
-    this.getPhysics = function () {
-        return _oPhysics;
-    };
+  this.setPositionShadow = function (iX, iY) {
+    _oShadow.x = iX;
+    _oShadow.y = iY;
+  };
 
-    this.setAngle = function (iAngle) {
-        _oBall.rotation = iAngle;
-    };
+  this.setPosition = function (iXPos, iYPos) {
+    _oBall.x = iXPos;
+    _oBall.y = iYPos;
+  };
 
-    this.getX = function () {
-        return _oBall.x;
-    };
+  this.getPhysics = function () {
+    return _oPhysics;
+  };
 
-    this.getY = function () {
-        return _oBall.y;
-    };
+  this.setAngle = function (iAngle) {
+    _oBall.rotation = iAngle;
+  };
 
-    this.getStartScale = function () {
-        return _fScale;
-    };
+  this.getX = function () {
+    return _oBall.x;
+  };
 
-    this.scale = function (fValue) {
-        _oBall.scaleX = fValue;
-        _oBall.scaleY = fValue;
-    };
+  this.getY = function () {
+    return _oBall.y;
+  };
 
-    this.scaleShadow = function (fScale) {
-        if (fScale > 0.08) {
-            _oShadow.scaleX = fScale;
-            _oShadow.scaleY = fScale;
-        } else {
-            _oShadow.scaleX = 0.08;
-            _oShadow.scaleY = 0.08;
-        }
-    };
+  this.getStartScale = function () {
+    return _fScale;
+  };
 
-    this.setAlphaByHeight = function (fHeight) {
-        _oShadow.alpha = fHeight;
-    };
+  this.scale = function (fValue) {
+    _oBall.scaleX = fValue;
+    _oBall.scaleY = fValue;
+  };
 
-    this.getScale = function () {
-        return _oBall.scaleX;
-    };
+  this.scaleShadow = function (fScale) {
+    if (fScale > 0.08) {
+      _oShadow.scaleX = fScale;
+      _oShadow.scaleY = fScale;
+    } else {
+      _oShadow.scaleX = 0.08;
+      _oShadow.scaleY = 0.08;
+    }
+  };
 
-    this.getObject = function () {
-        return _oContainer;
-    };
+  this.setAlphaByHeight = function (fHeight) {
+    _oShadow.alpha = fHeight;
+  };
 
-    this.getDepthPos = function () {
-        return _oPhysics.position.y;
-    };
+  this.getScale = function () {
+    return _oBall.scaleX;
+  };
 
-    _oPhysics = oPhysics;
-    _oParentContainer = oParentContainer;
+  this.getObject = function () {
+    return _oContainer;
+  };
 
-    this._init(iXPos, iYPos, oSprite);
+  this.getDepthPos = function () {
+    return _oPhysics.position.y;
+  };
 
-    return this;
+  _oPhysics = oPhysics;
+  _oParentContainer = oParentContainer;
+
+  this._init(iXPos, iYPos, oSprite);
+
+  return this;
 }

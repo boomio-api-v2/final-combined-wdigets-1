@@ -65,15 +65,27 @@ class Maze {
 
   arrowsToMaze = (e) => {
     const key = e.key;
-    if (key === 'ArrowLeft' || key === 'a') { e.preventDefault(); this.moveLeft(); }
-    if (key === 'ArrowRight' || key === 'd') { e.preventDefault(); this.moveRight(); }
-    if (key === 'ArrowUp' || key === 'w') { e.preventDefault(); this.moveUp(); }
-    if (key === 'ArrowDown' || key === 's') { e.preventDefault(); this.moveDown(); }
-  }
+    if (key === 'ArrowLeft' || key === 'a') {
+      e.preventDefault();
+      this.moveLeft();
+    }
+    if (key === 'ArrowRight' || key === 'd') {
+      e.preventDefault();
+      this.moveRight();
+    }
+    if (key === 'ArrowUp' || key === 'w') {
+      e.preventDefault();
+      this.moveUp();
+    }
+    if (key === 'ArrowDown' || key === 's') {
+      e.preventDefault();
+      this.moveDown();
+    }
+  };
 
   enableMovement() {
-    const mazeEl = document.getElementById('maze')
-    document.addEventListener('keydown', this.arrowsToMaze)
+    const mazeEl = document.getElementById('maze');
+    document.addEventListener('keydown', this.arrowsToMaze);
     let xDown = null;
     let yDown = null;
     mazeEl.addEventListener('touchstart', (e) => {
@@ -292,7 +304,7 @@ class Maze {
     if (!table) {
       table = document.createElement('table');
       table.id = 'maze';
-      table.className = 'maze-field'
+      table.className = 'maze-field';
       table.style.position = 'absolute';
       table.style.top = `20px`;
       table.style.left = `20px`;
@@ -314,7 +326,7 @@ class Maze {
     closeBtn.addEventListener(
       'click',
       (e) => {
-        document.removeEventListener('keydown', this.arrowsToMaze)
+        document.removeEventListener('keydown', this.arrowsToMaze);
         e.stopPropagation();
         e.preventDefault();
         element.remove();

@@ -8,7 +8,7 @@
   "env": {
     "browser": true
   },
-////TO DO need to fix this rules
+  ////TO DO need to fix this rules
   "rules": {
     "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off", // If you're using TypeScript, uncomment this line
@@ -23,7 +23,7 @@
     "no-new": "off",
     "import/no-cycle": "off",
     "class-methods-use-this": "off",
-    "no-constructor-return":  "off",
+    "no-constructor-return": "off",
     "no-plusplus": "off",
     "no-bitwise": "off",
     "no-mixed-operators": "off",
