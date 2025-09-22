@@ -32,6 +32,10 @@ export default class AnimationService {
     this.clearPrev();
 
     const animFunc = this.getAnimateFunction(animation);
+    // Fallback parent if service container not yet created (e.g. in unit tests)
+    if (!parent) {
+      parent = document.body;
+    }
     elem.classList.add('boomio--animation__wrapper');
     elem.classList.add('boomio--animation__wrapper--initial');
     parent.appendChild(elem);

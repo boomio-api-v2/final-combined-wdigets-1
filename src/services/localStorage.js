@@ -55,7 +55,7 @@ class LocalStorageService {
     const config = JSON.parse(localStorageService);
     const success = config?.success ?? false;
     const animation = config?.animation ?? 1;
-    const qrcode = `${config?.qrcode}` ?? '';
+    const qrcode = config?.qrcode ?? '';
     const app_url = config?.app_url ?? '';
     const custom_text = config?.custom_text ?? '';
     const x_position = config?.x_position ?? null;
