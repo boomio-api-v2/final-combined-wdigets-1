@@ -776,6 +776,23 @@ function startGame(
       ? backgroundNovaturas
       : background;
 
+  const backgroundImage = new Image();
+  backgroundImage.src =
+    customer === 'Gamtos Ateitis'
+      ? backgroundFullGamtosAteitis
+      : campaignUrlProp === 'https://hobbyhall.fi'
+      ? background1PiguFI
+      : customer === 'Orlen'
+      ? backgroundFullOrlen
+      : customer === 'Novaturas'
+      ? backgroundFullNovaturas
+      : background1Pigu;
+
+  let backgroundImageLoaded = false;
+  backgroundImage.onload = () => {
+    backgroundImageLoaded = true;
+  };
+
   const city1 = new Image();
   const city2 = new Image();
   const city3 = new Image();
@@ -2720,22 +2737,9 @@ function startGame(
       customer === 'Orlen' ||
       customer === 'Novaturas'
     ) {
-      const backgroundImage = new Image();
-
-      backgroundImage.src =
-        customer === 'Gamtos Ateitis'
-          ? backgroundFullGamtosAteitis
-          : campaignUrlProp === 'https://hobbyhall.fi'
-          ? background1PiguFI
-          : customer === 'Orlen'
-          ? backgroundFullOrlen
-          : customer === 'Novaturas'
-          ? backgroundFullNovaturas
-          : background1Pigu;
-
-      backgroundImage.onload = () => {
+      if (backgroundImageLoaded) {
         ctx.drawImage(backgroundImage, 0, 0, width, height);
-      };
+      }
     } else {
       ctx.fillStyle = sky;
       ctx.fillRect(0, 0, width, height);

@@ -670,11 +670,7 @@ export class CompetitionScoreTableContainer {
           : ''
       }
             <div id="boomio-text-win" style="width:calc(100% - 20px);margin-left:10px; top: ${
-              this.prop === 'Nykstukas'
-                ? '490px'
-                : this.prop === 'Pigu.lt' || this.prop === 'Apranga'
-                ? '440px'
-                : '420px'
+              this.prop === 'Nykstukas' ? '490px' : '440px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
               this.prop === 'Nykstukas' || this.prop === 'Pigu.lt' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
