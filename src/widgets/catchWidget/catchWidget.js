@@ -1,20 +1,12 @@
 import {
   close,
-  catch1,
-  catch2,
-  catch3,
-  catch4,
-  catch5,
   player,
   background,
   newRecord,
-  intro,
-  tapImageBarbora,
   star,
   life,
   checkIcon,
   uncheckIcon,
-  backgroundMobile,
   controllLeft,
   controllRight,
   Controlls,
@@ -1951,7 +1943,7 @@ class Fruit {
       }
     } else if (this.customer === 'Apranga') {
       if (type === 'bad') {
-        this.fruitNumber = Math.floor(Math.random() * 12 + 2);
+        this.fruitNumber = 14;
       } else {
         this.fruitNumber = Math.floor(Math.random() * 12);
       }
