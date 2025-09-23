@@ -1,5 +1,4 @@
 import {
-  intro,
   newRecordEE,
   newRecordFI,
   newRecordRU,
@@ -73,6 +72,20 @@ import {
   backgroundGamtosAteitisPlastic,
   backgroundGamtosAteitisPaper,
   backgroundGamtosAteitisGlass,
+  crushElement1GamtosAteitisGlass,
+  crushElement2GamtosAteitisGlass,
+  crushElement3GamtosAteitisGlass,
+  crushElement4GamtosAteitisGlass,
+  crushElement5GamtosAteitisGlass,
+  crushElement6GamtosAteitisGlass,
+  crushElement7GamtosAteitisGlass,
+  crushElement1GamtosAteitisGlassSpecial,
+  crushElement2GamtosAteitisGlassSpecial,
+  crushElement3GamtosAteitisGlassSpecial,
+  crushElement4GamtosAteitisGlassSpecial,
+  crushElement5GamtosAteitisGlassSpecial,
+  crushElement6GamtosAteitisGlassSpecial,
+  crushElement7GamtosAteitisGlassSpecial,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -92,7 +105,9 @@ class CrushGame {
     this.shareClicked = false;
 
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis';
+    console.log('Crush config:', this.config);
+    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Glass';
+    console.log('Customer:', this.customer);
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
@@ -145,13 +160,13 @@ class CrushGame {
           }
         : this.customer === 'Gamtos ateitis'
         ? {
-            crushElement1GamtosAteitis,
-            crushElement2GamtosAteitis,
-            crushElement3GamtosAteitis,
-            crushElement4GamtosAteitis,
-            crushElement5GamtosAteitis,
-            crushElement6GamtosAteitis,
-            crushElement7GamtosAteitis,
+            crushElement1GamtosAteitisGlass,
+            crushElement2GamtosAteitisGlass,
+            crushElement3GamtosAteitisGlass,
+            crushElement4GamtosAteitisGlass,
+            crushElement5GamtosAteitisGlass,
+            crushElement6GamtosAteitisGlass,
+            crushElement7GamtosAteitisGlass,
           }
         : {
             crushElement1Nevezis,
@@ -613,13 +628,13 @@ class CrushGame {
           }
         : this.customer === 'Gamtos ateitis'
         ? {
-            crushElement1ZemaitijosPienasSpecial,
-            crushElement2ZemaitijosPienasSpecial,
-            crushElement3ZemaitijosPienasSpecial,
-            crushElement4ZemaitijosPienasSpecial,
-            crushElement5ZemaitijosPienasSpecial,
-            crushElement6ZemaitijosPienasSpecial,
-            crushElement7ZemaitijosPienasSpecial,
+            crushElement1GamtosAteitisGlassSpecial,
+            crushElement2GamtosAteitisGlassSpecial,
+            crushElement3GamtosAteitisGlassSpecial,
+            crushElement4GamtosAteitisGlassSpecial,
+            crushElement5GamtosAteitisGlassSpecial,
+            crushElement6GamtosAteitisGlassSpecial,
+            crushElement7GamtosAteitisGlassSpecial,
           }
         : {
             crushElement1NevezisSpecial,
@@ -833,7 +848,7 @@ background:${
         : this.customer.includes('Paper')
         ? backgroundGamtosAteitisPaper
         : this.customer.includes('Plastic')
-        ? backgroundGamtosAteitis
+        ? backgroundGamtosAteitisPlastic
         : this.customer.includes('Glass')
         ? backgroundGamtosAteitisGlass
         : backgroundNevezis
@@ -976,6 +991,16 @@ background:${
             'crushElement6ZemaitijosPienas',
             'crushElement7ZemaitijosPienas',
           ]
+        : this.customer === 'Gamtos ateitis'
+        ? [
+            'crushElement1GamtosAteitisGlass',
+            'crushElement2GamtosAteitisGlass',
+            'crushElement3GamtosAteitisGlass',
+            'crushElement4GamtosAteitisGlass',
+            'crushElement5GamtosAteitisGlass',
+            'crushElement6GamtosAteitisGlass',
+            'crushElement7GamtosAteitisGlass',
+          ]
         : this.customer === 'Toni'
         ? [
             'crushElement1Toni',
@@ -1088,6 +1113,12 @@ background:${
                 ? 'crushElement1ZemaitijosPienasSpecial'
                 : this.customer === 'Pigu.lt'
                 ? 'crushElement1PiguSpecial'
+                : this.customer.includes('Paper')
+                ? 'crushElement1GamtosAteitisGlassSpecial'
+                : this.customer.includes('Plastic')
+                ? 'crushElement1GamtosAteitisGlassSpecial'
+                : this.customer.includes('Glass')
+                ? 'crushElement1GamtosAteitisGlassSpecial'
                 : 'crushElement1NevezisSpecial'
               : newColor + 'Special';
         }

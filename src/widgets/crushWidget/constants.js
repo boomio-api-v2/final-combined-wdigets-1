@@ -198,3 +198,19 @@ const gamtosAteitisPrefix =
 export const backgroundGamtosAteitisGlass = `${gamtosAteitisPrefix}/backgroundGamtosAteitisGlass.png`;
 export const backgroundGamtosAteitisPaper = `${gamtosAteitisPrefix}/backgroundGamtosAteitispaper.png`;
 export const backgroundGamtosAteitisPlastic = `${gamtosAteitisPrefix}/backgroundGamtosAteitisPlastic.png`;
+
+export const crushElement1GamtosAteitisGlass = `${gamtosAteitisPrefix}/item01.png`;
+export const crushElement2GamtosAteitisGlass = `${gamtosAteitisPrefix}/item02.png`;
+export const crushElement3GamtosAteitisGlass = `${gamtosAteitisPrefix}/item03.png`;
+export const crushElement4GamtosAteitisGlass = `${gamtosAteitisPrefix}/item04.png`;
+export const crushElement5GamtosAteitisGlass = `${gamtosAteitisPrefix}/item05.png`;
+export const crushElement6GamtosAteitisGlass = `${gamtosAteitisPrefix}/item06.png`;
+export const crushElement7GamtosAteitisGlass = `${gamtosAteitisPrefix}/item07.png`;
+
+export const crushElement1GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item01Special.png`;
+export const crushElement2GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item02Special.png`;
+export const crushElement3GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item03Special.png`;
+export const crushElement4GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item04Special.png`;
+export const crushElement5GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item05Special.png`;
+export const crushElement6GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item06Special.png`;
+export const crushElement7GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item07Special.png`;
