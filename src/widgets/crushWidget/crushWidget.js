@@ -686,10 +686,10 @@ class CrushGame {
     );
     myCanvas.innerHTML = `
       <div class="game-container" id="game-container">
-        ${`
-      <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
-      <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
-      </div>`}
+ 
+      <div id="close-game-container" class="close-game-container" style="display:block;width:32px;height:32px;z-index:10000; pointer-events:auto; cursor:pointer;">
+        <img src=${close} alt="Close" style="width:100%;height:100%;pointer-events:none;"></img>
+      </div>
            
         ${new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML}
           <img class="new_highscore_stars" src=${
@@ -1768,8 +1768,17 @@ ${`<div style="${
       competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
     }
 
-    if (!this.campaignUrl) {
-      document.getElementById('close-game-container').addEventListener('click', this.closeGame);
+    const closeEl = document.getElementById('close-game-container');
+    if (closeEl) {
+      const onClose = (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // don't let #game-container's tutorial handler eat it
+        this.closeGame();
+      };
+      // Use multiple input types (Android WebView friendly)
+      ['click', 'touchend', 'pointerup'].forEach((evt) =>
+        closeEl.addEventListener(evt, onClose, { passive: false }),
+      );
     }
   }
   closeGame = () => {

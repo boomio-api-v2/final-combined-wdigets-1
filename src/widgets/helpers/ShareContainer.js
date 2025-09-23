@@ -92,8 +92,8 @@ export class ShareContainer {
       }
       <div class="share-buttons" style="width: 100%; top: 540px; position: absolute; text-align: center;">
 
-               <div id="default-share-button" style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-share">
-    <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
+               <div id="default-share-button" style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;position:absolute; height: 38px; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex;">
+    <div style="text-align: center; color: rgba(61, 73, 40, 1); font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
     ${
       this.prop === 'Perlas GO'
         ? 'PANAUDOK KODĄ'
@@ -111,8 +111,6 @@ export class ShareContainer {
     }
     </div>
     </div>
-
-
       </div>
     `;
 
@@ -145,28 +143,70 @@ export class ShareContainer {
 
     const shareButton = document.getElementById('default-share-button');
     if (shareButton) {
-      shareButton.addEventListener('click', () => this.defaultShare());
+      shareButton.onclick = () => this.defaultShare();
     }
   }
 
-  defaultShare() {
+  async defaultShare() {
     const shareData = {
       title: 'Išbandyk šį žaidimą!',
       text: 'Pasinerk į smagų žaidimą ir laimėk puikių prizų!',
       url: this.campaignUrlProp,
     };
 
-    const event = new CustomEvent('shareClicked', {
-      detail: { url: this.campaignUrlProp },
-    });
-    document.dispatchEvent(event);
+    document.dispatchEvent(
+      new CustomEvent('shareClicked', {
+        detail: { url: this.campaignUrlProp },
+      }),
+    );
 
-    if (navigator.share) {
-      navigator.share(shareData).catch((error) => console.error('Error sharing content:', error));
-    } else {
-      navigator.clipboard
-        .writeText(this.campaignUrlProp)
-        .catch((error) => console.error('Error copying link:', error));
+    const copiedMsg =
+      this.language === 'EN'
+        ? 'Link copied!'
+        : this.language === 'LT'
+        ? 'Nuoroda nukopijuota!'
+        : this.language === 'LV'
+        ? 'Saite nokopēta!'
+        : this.language === 'ET'
+        ? 'Link kopeeritud!'
+        : this.language === 'FI'
+        ? 'Linkki kopioitu!'
+        : this.language === 'RU'
+        ? 'Ссылка скопирована!'
+        : 'Link copied!';
+
+    try {
+      // 1) Native share if available (Chrome/standalone PWA, not WebView)
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+      // 2) Modern clipboard (many in-app browsers block this)
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(this.campaignUrlProp);
+        alert(copiedMsg);
+        return;
+      }
+      // 3) Legacy clipboard via textarea
+      const ta = document.createElement('textarea');
+      ta.value = this.campaignUrlProp;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      alert(copiedMsg);
+    } catch (err) {
+      console.error('Share/copy failed:', err);
+      // 4) Absolute fallback: open a chooser-friendly intent-style page
+      // or show per-network share links (see section C below).
+      alert(
+        this.language === 'EN'
+          ? 'Could not open share sheet. Copy the link manually.'
+          : 'Nepavyko atidaryti dalinimosi lango. Nukopijuok nuorodą rankiniu būdu.',
+      );
     }
   }
 
@@ -210,7 +250,7 @@ export class ShareContainer {
 
     containerDiv.innerHTML += `
     </div></div>
-    <div style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-share">
+    <div id="boomio-close-share" style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex;">
     <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
     ${
       this.language === 'EN'
