@@ -689,8 +689,10 @@ class CrushGame {
     );
     myCanvas.innerHTML = `
       <div class="game-container" id="game-container">
- 
-      <div id="close-game-container" class="close-game-container" style="display:block;width:32px;height:32px;z-index:10000; pointer-events:auto; cursor:pointer;">
+
+      <div id="close-game-container" class="close-game-container" style="display:${
+        this.customer === 'Pigu.lt' ? 'none' : 'block'
+      };width:32px;height:32px;z-index:10000; pointer-events:auto; cursor:pointer;">
         <img src=${close} alt="Close" style="width:100%;height:100%;pointer-events:none;"></img>
       </div>
            
