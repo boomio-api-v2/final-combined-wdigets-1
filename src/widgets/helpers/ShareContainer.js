@@ -92,7 +92,7 @@ export class ShareContainer {
       }
       <div class="share-buttons" style="width: 100%; top: 540px; position: absolute; text-align: center;">
 
-               <div id="default-share-button" style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-share">
+               <div id="default-share-button" style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex;">
     <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
     ${
       this.prop === 'Perlas GO'
@@ -145,7 +145,7 @@ export class ShareContainer {
 
     const shareButton = document.getElementById('default-share-button');
     if (shareButton) {
-      shareButton.addEventListener('click', () => this.defaultShare());
+      shareButton.onclick = () => this.defaultShare();
     }
   }
 
@@ -156,10 +156,26 @@ export class ShareContainer {
       url: this.campaignUrlProp,
     };
 
-    const event = new CustomEvent('shareClicked', {
-      detail: { url: this.campaignUrlProp },
-    });
-    document.dispatchEvent(event);
+    document.dispatchEvent(
+      new CustomEvent('shareClicked', {
+        detail: { url: this.campaignUrlProp },
+      }),
+    );
+
+    const copiedMsg =
+      this.language === 'EN'
+        ? 'Link copied!'
+        : this.language === 'LT'
+        ? 'Nuoroda nukopijuota!'
+        : this.language === 'LV'
+        ? 'Saite nokopēta!'
+        : this.language === 'ET'
+        ? 'Link kopeeritud!'
+        : this.language === 'FI'
+        ? 'Linkki kopioitu!'
+        : this.language === 'RU'
+        ? 'Ссылка скопирована!'
+        : 'Link copied!';
 
     if (navigator.share) {
       navigator.share(shareData).catch((error) => console.error('Error sharing content:', error));
