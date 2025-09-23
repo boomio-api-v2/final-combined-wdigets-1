@@ -149,7 +149,7 @@ export class ShareContainer {
     }
   }
 
-  defaultShare() {
+  async defaultShare() {
     const shareData = {
       title: 'Išbandyk šį žaidimą!',
       text: 'Pasinerk į smagų žaidimą ir laimėk puikių prizų!',
@@ -177,12 +177,38 @@ export class ShareContainer {
         ? 'Ссылка скопирована!'
         : 'Link copied!';
 
-    if (navigator.share) {
-      navigator.share(shareData).catch((error) => console.error('Error sharing content:', error));
-    } else {
-      navigator.clipboard
-        .writeText(this.campaignUrlProp)
-        .catch((error) => console.error('Error copying link:', error));
+    try {
+      // 1) Native share if available (Chrome/standalone PWA, not WebView)
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+      // 2) Modern clipboard (many in-app browsers block this)
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(this.campaignUrlProp);
+        alert(copiedMsg);
+        return;
+      }
+      // 3) Legacy clipboard via textarea
+      const ta = document.createElement('textarea');
+      ta.value = this.campaignUrlProp;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      alert(copiedMsg);
+    } catch (err) {
+      console.error('Share/copy failed:', err);
+      // 4) Absolute fallback: open a chooser-friendly intent-style page
+      // or show per-network share links (see section C below).
+      alert(
+        this.language === 'EN'
+          ? 'Could not open share sheet. Copy the link manually.'
+          : 'Nepavyko atidaryti dalinimosi lango. Nukopijuok nuorodą rankiniu būdu.',
+      );
     }
   }
 
