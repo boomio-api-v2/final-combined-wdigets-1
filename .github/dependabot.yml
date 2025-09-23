@@ -1,0 +1,43 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+# --- JavaScript/TypeScript (npm / yarn / pnpm) ---
+  - package-ecosystem: "npm"
+    directory: "/"                        # adjust for monorepos: e.g. /apps/web
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Vilnius"
+    target-branch: "main"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+    versioning-strategy: "auto"
+    labels: ["deps", "npm"]
+    reviewers: ["your-org/maintainers"]   # or ["user1","user2"]
+    assignees: ["user1"]
+    groups:                               # reduce PR noise
+      minor-and-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+      types-ecosystem:
+        patterns: ["@types/*"]
+        update-types: ["minor", "patch"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]  # opt-in majors
+
+# --- GitHub Actions workflow updates ---
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:10"
+      timezone: "Europe/Vilnius"
+    labels: ["deps", "gh-actions"]
+
