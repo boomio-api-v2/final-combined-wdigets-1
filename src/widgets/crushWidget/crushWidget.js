@@ -70,6 +70,9 @@ import {
   crushElement6ZemaitijosPienasSpecial,
   crushElement7ZemaitijosPienasSpecial,
   backgroundZemaitijosPienas,
+  backgroundGamtosAteitisPlastic,
+  backgroundGamtosAteitisPaper,
+  backgroundGamtosAteitisGlass,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -775,8 +778,19 @@ ${`<div style="${
 
 
 
-<div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Toni' ? '#262B8C' : '#E1251B'
+<div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;
+background:${
+      this.customer === 'Toni'
+        ? '#262B8C'
+        : this.customer.includes('Gamtos Ateitis')
+        ? this.customer.includes('Glass')
+          ? '#18904A'
+          : this.customer.includes('Plastic')
+          ? '#FBCA00'
+          : this.customer.includes('Paper')
+          ? '#488DB0'
+          : '#18904A'
+        : '#E1251B'
     };border-radius:35px">
 <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
@@ -788,7 +802,17 @@ ${`<div style="${
 </div>
 
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Toni' ? '#262B8C' : '#E1251B'
+      this.customer === 'Toni'
+        ? '#262B8C'
+        : this.customer.includes('Gamtos Ateitis')
+        ? this.customer.includes('Glass')
+          ? '#18904A'
+          : this.customer.includes('Plastic')
+          ? '#FBCA00'
+          : this.customer.includes('Paper')
+          ? '#488DB0'
+          : '#18904A'
+        : '#E1251B'
     };border-radius:35px">
     <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -804,6 +828,12 @@ ${`<div style="${
         ? backgroundZemaitijosPienas
         : this.customer === 'Toni'
         ? backgroundToni
+        : this.customer.includes('Paper')
+        ? backgroundGamtosAteitisPaper
+        : this.customer.includes('Plastic')
+        ? backgroundGamtosAteitis
+        : this.customer.includes('Glass')
+        ? backgroundGamtosAteitisGlass
         : backgroundNevezis
     }" 
      alt="Game Background"
