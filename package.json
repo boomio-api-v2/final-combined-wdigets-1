@@ -34,7 +34,7 @@
     "file-loader": "^6.2.0",
     "gulp": "^5.0.0",
     "gulp-shell": "^0.6.3",
-    "gulp-watch": "^4.0.1",
+    "gulp-watch": "^4.3.11",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.4.2",
     "jest-environment-jsdom": "^29.4.2",
