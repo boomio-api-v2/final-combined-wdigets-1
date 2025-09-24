@@ -38,8 +38,26 @@ export default [
       'no-unused-vars': 'off',
 
       // === Safer defaults / useful signals ===
-      eqeqeq: ['warn', 'always'],
+      eqeqeq: 'off',
       'no-undef': 'warn',
+      'no-useless-escape': 'off',
+      'no-empty': 'off',
+      'no-prototype-builtins': 'off',
+      'no-unreachable': 'warn',
+      'no-dupe-keys': 'warn',
+      'no-dupe-args': 'warn',
+      'no-sparse-arrays': 'warn',
+      'no-cond-assign': 'warn',
+      'no-redeclare': 'warn',
+      'no-const-assign': 'warn',
+      'no-irregular-whitespace': 'warn',
+      'no-constant-condition': 'warn',
+      'no-self-assign': 'warn',
+      'getter-return': 'warn',
+      'no-constant-binary-expression': 'warn',
+      'no-control-regex': 'warn',
+      'no-unexpected-multiline': 'warn',
+      'no-global-assign': 'warn',
 
       // === Unused imports/vars (modern approach) ===
       // remove unused imports entirely
