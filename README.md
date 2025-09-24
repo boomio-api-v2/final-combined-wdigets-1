@@ -43,6 +43,17 @@ Example:
 </head>
 ```
 
+or
+
+```html
+<head>
+     <script>
+        window.newLinkBoomio = "https://api.sun.boomio.eu/webshop-proxy-service/api/handle";
+    </script>
+    <script defer src="dist/bundle.js"></script>
+</head>
+```
+
 ## Assets (images)
 
 Assets (images) are loaded into different branches under this repository. Be carefull and dont' delete the branches before making sure they are not used.

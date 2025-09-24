@@ -133,9 +133,7 @@ class CrushGame {
     this.shareClicked = false;
 
     this.config = localStorageService.getDefaultConfig();
-    console.log('Crush config:', this.config);
-    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Paper';
-    console.log('Customer:', this.customer);
+    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis';
     this.showCompetitiveRegistration =
       this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
