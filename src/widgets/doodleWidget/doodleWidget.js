@@ -112,24 +112,25 @@ class DoodleWidget {
       this.campaignUrlProp === 'https://pigu.lt'
         ? MainImagePiguLT
         : this.campaignUrlProp === 'https://220.lv'
-        ? MainImagePiguLV
-        : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
-        ? MainImagePiguEE
-        : this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? MainImagePiguFI
-        : this.customer === 'Vilvi'
-        ? mainImageVilvi
-        : this.customer === 'Perlas GO'
-        ? mainImagePerlasGo
-        : this.customer === 'Magija'
-        ? mainImagMagija
-        : this.customer === 'demo-22'
-        ? mainImagDemo
-        : this.customer === 'Akropolis'
-        ? this.language === 'LV'
-          ? mainImageAkropolisLV
-          : mainImageAkropolis
-        : mainImage;
+          ? MainImagePiguLV
+          : this.campaignUrlProp === 'https://kaup.ee' ||
+              this.campaignUrlProp === 'https://kaup24.ee'
+            ? MainImagePiguEE
+            : this.campaignUrlProp === 'https://hobbyhall.fi'
+              ? MainImagePiguFI
+              : this.customer === 'Vilvi'
+                ? mainImageVilvi
+                : this.customer === 'Perlas GO'
+                  ? mainImagePerlasGo
+                  : this.customer === 'Magija'
+                    ? mainImagMagija
+                    : this.customer === 'demo-22'
+                      ? mainImagDemo
+                      : this.customer === 'Akropolis'
+                        ? this.language === 'LV'
+                          ? mainImageAkropolisLV
+                          : mainImageAkropolis
+                        : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -169,18 +170,18 @@ class DoodleWidget {
       this.customer === 'Pigu.lt'
         ? BackgroundPigu
         : this.customer === 'Vilvi'
-        ? backgroundVilvi
-        : this.customer === 'Perlas GO'
-        ? backgroundPerlasGo
-        : this.customer === 'Magija'
-        ? backgroundMagija
-        : this.customer === 'demo-22'
-        ? backgroundDemo
-        : this.customer === 'Akropolis'
-        ? this.language === 'LV'
-          ? backgroundRedAkropolisLV
-          : backgroundRedAkropolis
-        : backgroundRed
+          ? backgroundVilvi
+          : this.customer === 'Perlas GO'
+            ? backgroundPerlasGo
+            : this.customer === 'Magija'
+              ? backgroundMagija
+              : this.customer === 'demo-22'
+                ? backgroundDemo
+                : this.customer === 'Akropolis'
+                  ? this.language === 'LV'
+                    ? backgroundRedAkropolisLV
+                    : backgroundRedAkropolis
+                  : backgroundRed
     }) center`;
 
     if (!canvas) {
@@ -233,15 +234,15 @@ class DoodleWidget {
           this.customer === 'Pigu.lt'
             ? 2000
             : this.customer === 'Perlas GO' || this.customer.includes('demo')
-            ? 0
-            : 2500,
+              ? 0
+              : 2500,
         );
       },
       this.customer === 'Pigu.lt'
         ? 2000
         : this.customer === 'Perlas GO' || this.customer.includes('demo')
-        ? 0
-        : 2500,
+          ? 0
+          : 2500,
     ); //intro speed
   }
 
@@ -546,14 +547,14 @@ class DoodleWidget {
         this.customer === 'Pigu.lt' && this.language === 'EN'
           ? 'To continue, it is mandatory to agree to receive news and information about prizes.'
           : this.customer === 'Pigu.lt' && this.language === 'LV'
-          ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
-          : this.customer === 'Pigu.lt' && this.language === 'ET'
-          ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
-          : this.customer === 'Pigu.lt' && this.language === 'FI'
-          ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
-          : this.customer === 'Pigu.lt' && this.language === 'RU'
-          ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
-          : '';
+            ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
+            : this.customer === 'Pigu.lt' && this.language === 'ET'
+              ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
+              : this.customer === 'Pigu.lt' && this.language === 'FI'
+                ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
+                : this.customer === 'Pigu.lt' && this.language === 'RU'
+                  ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
+                  : '';
       document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
       document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
@@ -648,27 +649,27 @@ class DoodleWidget {
       this.config.discountType !== 'percentage'
         ? this.bestScore / 100 + '€'
         : this.bestScore > 5000
-        ? '30%'
-        : this.bestScore > 3000
-        ? '20%'
-        : this.bestScore > 1000
-        ? '10%'
-        : this.bestScore > 1
-        ? '5%'
-        : this.bestScore;
+          ? '30%'
+          : this.bestScore > 3000
+            ? '20%'
+            : this.bestScore > 1000
+              ? '10%'
+              : this.bestScore > 1
+                ? '5%'
+                : this.bestScore;
 
     this.discount =
       this.config.discountType !== 'percentage'
         ? this.bestScore / 100 + '€'
         : this.bestScore > 5000
-        ? '30%'
-        : this.bestScore > 3000
-        ? '20%'
-        : this.bestScore > 1000
-        ? '10%'
-        : this.bestScore > 1
-        ? '5%'
-        : this.bestScore;
+          ? '30%'
+          : this.bestScore > 3000
+            ? '20%'
+            : this.bestScore > 1000
+              ? '10%'
+              : this.bestScore > 1
+                ? '5%'
+                : this.bestScore;
   };
   hideMenu = () => {
     // var menu = document.getElementById('boomio-doodle-mainMenu');
@@ -1355,31 +1356,31 @@ class DoodleWidget {
          this.language === 'EN'
            ? 'TAP'
            : this.language === 'LV'
-           ? 'BAKSTI'
-           : this.language === 'ET'
-           ? 'TÄPI'
-           : this.language === 'FI'
-           ? 'Napautua'
-           : this.language === 'RU'
-           ? 'ТЫКАЙ'
-           : this.language === 'LT' && this.customer === 'Pigu.lt'
-           ? 'BAKST'
-           : 'KLIK'
+             ? 'BAKSTI'
+             : this.language === 'ET'
+               ? 'TÄPI'
+               : this.language === 'FI'
+                 ? 'Napautua'
+                 : this.language === 'RU'
+                   ? 'ТЫКАЙ'
+                   : this.language === 'LT' && this.customer === 'Pigu.lt'
+                     ? 'BAKST'
+                     : 'KLIK'
        }</div>
         <div>${
           this.language === 'EN'
             ? 'TAP'
             : this.language === 'LV'
-            ? 'BAKSTI'
-            : this.language === 'ET'
-            ? 'TÄPI'
-            : this.language === 'FI'
-            ? 'Napautua'
-            : this.language === 'RU'
-            ? 'ТЫКАЙ'
-            : this.language === 'LT' && this.customer === 'Pigu.lt'
-            ? 'BAKST'
-            : 'KLIK'
+              ? 'BAKSTI'
+              : this.language === 'ET'
+                ? 'TÄPI'
+                : this.language === 'FI'
+                  ? 'Napautua'
+                  : this.language === 'RU'
+                    ? 'ТЫКАЙ'
+                    : this.language === 'LT' && this.customer === 'Pigu.lt'
+                      ? 'BAKST'
+                      : 'KLIK'
         }</div>
       </div><img src=${
         this.isMobile ? Controlls : ControlsDesktop
@@ -1391,38 +1392,38 @@ class DoodleWidget {
       (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
         ? PiguJumpUpIntroEstonian
         : this.language === 'RU' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstoniaRU
-        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanian
-        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanianRU
-        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? PiguJumpUpIntroFinish
-        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvian
-        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvianRU
-        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? PiguJumpUpIntroLithuanianEN
-        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? PiguJumpUpIntroFinishEN
-        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? PiguJumpUpIntroLatvianEN
-        : this.language === 'EN' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstonianEN
-        : this.customer === 'Vilvi'
-        ? introVilvi
-        : this.customer === 'Magija'
-        ? introMagija
-        : this.customer === 'Akropolis'
-        ? this.language === 'LV'
-          ? introAkropolisLV
-          : introAkropolis
-        : ''
+            (this.campaignUrlProp === 'https://kaup.ee' ||
+              this.campaignUrlProp === 'https://kaup24.ee')
+          ? PiguJumpUpIntroEstoniaRU
+          : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+            ? PiguJumpUpIntroLithuanian
+            : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+              ? PiguJumpUpIntroLithuanianRU
+              : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+                ? PiguJumpUpIntroFinish
+                : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+                  ? PiguJumpUpIntroLatvian
+                  : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+                    ? PiguJumpUpIntroLatvianRU
+                    : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+                      ? PiguJumpUpIntroLithuanianEN
+                      : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+                        ? PiguJumpUpIntroFinishEN
+                        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+                          ? PiguJumpUpIntroLatvianEN
+                          : this.language === 'EN' &&
+                              (this.campaignUrlProp === 'https://kaup.ee' ||
+                                this.campaignUrlProp === 'https://kaup24.ee')
+                            ? PiguJumpUpIntroEstonianEN
+                            : this.customer === 'Vilvi'
+                              ? introVilvi
+                              : this.customer === 'Magija'
+                                ? introMagija
+                                : this.customer === 'Akropolis'
+                                  ? this.language === 'LV'
+                                    ? introAkropolisLV
+                                    : introAkropolis
+                                  : ''
     } 
 alt="Image Description" 
 style="z-index:4; height: ${
@@ -1432,10 +1433,10 @@ id="background_intro">
 
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth + 'px'
-        : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
+          document.documentElement.clientWidth < 418
+            ? document.documentElement.clientWidth + 'px'
+            : '418px'
+        }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 ${
   (this.language === 'LV' && this.customer === 'Akropolis') || this.customer === 'Vilvi'
     ? `<div alt="Image Description" style="z-index:1;width: ${
@@ -1466,14 +1467,14 @@ ${
       this.language === 'EN'
         ? newRecordEn
         : this.language === 'LV'
-        ? newRecordLV
-        : this.language === 'ET' || this.language === 'ET'
-        ? newRecordEE
-        : this.language === 'FI'
-        ? newRecordFI
-        : this.language === 'RU'
-        ? newRecordRU
-        : newRecord
+          ? newRecordLV
+          : this.language === 'ET' || this.language === 'ET'
+            ? newRecordEE
+            : this.language === 'FI'
+              ? newRecordFI
+              : this.language === 'RU'
+                ? newRecordRU
+                : newRecord
     } alt="Image Description" style="width: 100%; height: 100%;">
     </div>
 
@@ -1508,14 +1509,14 @@ ${
       this.customer === 'Vilvi'
         ? '#45A2BF'
         : this.customer === 'Pigu.lt'
-        ? '#FD61FE'
-        : this.customer === 'Perlas GO'
-        ? '#19AA82'
-        : this.customer === 'Magija'
-        ? '#194898'
-        : this.language === 'LV'
-        ? '#F40027'
-        : '#045222'
+          ? '#FD61FE'
+          : this.customer === 'Perlas GO'
+            ? '#19AA82'
+            : this.customer === 'Magija'
+              ? '#194898'
+              : this.language === 'LV'
+                ? '#F40027'
+                : '#045222'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -1635,10 +1636,10 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                   : this.customer === 'Perlas GO'
-                  ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
-                  : this.customer === 'Vilvi'
-                  ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
-                  : 'Norint tęsti privaloma sutikti su privatumo politika.';
+                    ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
+                    : this.customer === 'Vilvi'
+                      ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+                      : 'Norint tęsti privaloma sutikti su privatumo politika.';
 
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 this.customer === 'Akropolis' && this.language !== 'LV'
@@ -1968,7 +1969,7 @@ class Platform {
     //4: Vanishable
 
     // Set initial platform types
-    if (this.currentScore >= 7000) {
+    if (this.currentScore >= 9000) {
       this.types = [2, 2, 2, 3, 3, 4, 4, 4, 4];
       this.gravity = 0.3;
       this.vx = 6;
@@ -2065,8 +2066,8 @@ class Spring {
       this.customer === 'Vilvi' || this.customer === 'Magija'
         ? [625, 765, 855]
         : this.customer === 'Perlas GO'
-        ? [625, 762, 852]
-        : [615]; // Define the possible vertical positions (cy values)
+          ? [625, 762, 852]
+          : [615]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
@@ -2074,14 +2075,14 @@ class Spring {
       this.customer === 'Vilvi' || this.customer === 'Magija'
         ? 90
         : this.customer === 'Perlas GO'
-        ? 54
-        : 65; // Width to draw on canvas
+          ? 54
+          : 65; // Width to draw on canvas
     this.height =
       this.customer === 'Vilvi' || this.customer === 'Magija'
         ? 60
         : this.customer === 'Perlas GO'
-        ? 40
-        : 38; // Height to draw on canvas
+          ? 40
+          : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }

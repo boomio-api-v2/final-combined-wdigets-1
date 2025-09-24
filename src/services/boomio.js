@@ -269,9 +269,10 @@ class BoomioService extends UserService {
   }
 
   checkIsRequestDenied() {
-    const { boomioStopTill } = localStorageService?.config;
+    const boomioStopTill = localStorageService?.config?.boomioStopTill;
     if (!boomioStopTill) return false;
-    const isTimeout = new Date(boomioStopTill).getTime() > new Date().getTime();
+
+    const isTimeout = new Date(boomioStopTill).getTime() > Date.now();
     if (!isTimeout) {
       localStorageService.removeByKey('boomioStopTill');
     }

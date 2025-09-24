@@ -1,76 +1,6 @@
 import './styles.css';
 import { localStorageService } from '@/services';
 import {
-  boomioLogo,
-  item1,
-  item2,
-  item3,
-  item4,
-  item5,
-  item6,
-  item7,
-  item8,
-  item9,
-  item10,
-  item11,
-  item12,
-  item13,
-  item14,
-  item15,
-  item16,
-  item17,
-  item18,
-  item19,
-  item20,
-  item21,
-  item22,
-  item23,
-  item1Paper,
-  item2Paper,
-  item3Paper,
-  item4Paper,
-  item5Paper,
-  item6Paper,
-  item7Paper,
-  item8Paper,
-  item9Paper,
-  item10Paper,
-  item11Paper,
-  item12Paper,
-  item13Paper,
-  item14Paper,
-  item15Paper,
-  item16Paper,
-  item17Paper,
-  item18Paper,
-  item19Paper,
-  item20Paper,
-  item21Paper,
-  item22Paper,
-  item23Paper,
-  item1Glass,
-  item2Glass,
-  item3Glass,
-  item4Glass,
-  item5Glass,
-  item6Glass,
-  item7Glass,
-  item8Glass,
-  item9Glass,
-  item10Glass,
-  item11Glass,
-  item12Glass,
-  item13Glass,
-  item14Glass,
-  item15Glass,
-  item16Glass,
-  item17Glass,
-  item18Glass,
-  item19Glass,
-  item20Glass,
-  item21Glass,
-  item22Glass,
-  item23Glass,
   item1PienoZvaigzdes,
   item2PienoZvaigzdes,
   item5PienoZvaigzdes,
@@ -159,62 +89,62 @@ export class DidYouKnowContainer {
             },
           ]
         : type === 2
-        ? [
-            {
-              title: '„Tuščia – reiškia švaru!“ 🥛🚫',
-              text: 'Prieš mesdamas plastikinę pakuotę į konteinerį, įsitikink, kad ji tuščia! Jogurto indelis, pieno pakelis pilnas maisto likučių? Tai ne rūšiavimas, o maisto fabrikas bakterijoms! 🦠🚯Išpilk skystį, iškratyk maisto likučius!',
-            },
-            {
-              title: '„Skalauti nereikia – bet švara svarbu!“ 🚿♻️',
-              text: 'Plastikinės pakuotės neturi būti steriliai išplautos, bet maisto likučių jose geriau neliktų, nes gali užteršti kitas švarias pakuotes! 🚰👍',
-            },
-            {
-              title: '„Traškučių pakelis – popierius ar plastikas? Nei tas, nei anas!“ 🍟😵',
-              text: 'Tai daugiasluoksnė pakuotė – neapgausi net biologijos mokytojos! Metam į plastiko konteinerį kartu su kitomis kombinuotomis pakuotėmis. 🔄♻️',
-            },
-            {
-              title: '„Tetrapak‘ui reikia dietos!“ 📚🥤',
-              text: 'Plastikinius buteliukus ir „Tetra Pak“ pakuotes prieš išmetant geriausia suspausti – taip jie užims mažiau vietos konteineryje! Kaip ir tavo kuprinėje – vietos yra tiek, kiek yra – kai bandai sutalpinti visas knygas vienam kontroliniui. 😅🎒',
-            },
-            {
-              title: '„Plastikiniai maišeliai – rūšiavimo priešai!“ 🛍️❌',
-              text: 'Plėvelės ir plastikiniai maišeliai neretai užkemša rūšiavimo įrangą, nors juos ir reikia mesti į plastiko atliekoms skirtus konteinerius! Geriau naudok daugkartinius maišelius ir taip saugoti gamtą. O ir perdirbėjai tau padėkos, nes techniką valyti nuo užsikimšusių maišelių reikės žymiai rečiau 🌍♻️',
-            },
-            {
-              title: '„Pakuotė iš kelių medžiagų? Atskirti verta!“🏗️⚖️',
-              text: 'Jei pavyksta atskirti ir išmesti pakuotės dalis į skirtingus konteinerius rūšiavimui – valio! Jei atskirti nepavyksta – mesk į tą konteinerį, kurio medžiagos yra daugiau! 📦♻️',
-            },
-            {
-              title: '„Plastikas plastikui nelygus!“ 🧸🚫',
-              text: 'Plastikiniai žaislai, kibirai, dubenėliai ir kiti gaminiai – ne pakuotės! Jų vieta – buitinių atliekų konteineryje arba sukaupus daugiau – stambiagabaritinėje atliekų aikštelėje! 🎭 O gal jie dar tinkami naudojimui? Atiduok, padovanok!♻️',
-            },
-          ]
-        : [
-            {
-              title: '„Stiklo tara be skysčio – konteinerio bičiuliai!“ 🍼🥂',
-              text: 'Prieš mesdamas stiklinę tarą į konteinerį, išpilk skysčius! Jei stiklainis pilnas uogienės likučių – perdirbėjai tikrai tuo nesidžiaugs. Stiklo konteineryje turėtų būti tik stiklas, be maisto likučių! 🍲🚫',
-            },
-            {
-              title: '„Lupti etiketes? Tik jei nori papildomos pamokos!“ 🏷️✂️',
-              text: 'Etikečių ir lipdukų nuo stiklinių pakuočių lupti nereikia – perdirbėjai jas pašalins patys! Taigi nešvaistyk laiko, geriau vietoj to išmok naują formulę matematikos pamokai. 📖📚',
-            },
-            {
-              title: '„Veidrodis, veidrodis... Tik ne stiklo konteineryje!“ 🪞🚫',
-              text: 'Veidrodžiai, langų stiklas, porcelianas ar krištolas stiklo konteineriui netinka! Jie pagaminti iš kitokių medžiagų, ne gryno stiklo. Juos turi priimti stambiagabaritinių atliekų aikštelės. 🚛♻️',
-            },
-            {
-              title: '„Dužo? Nieko tokio – stiklas mėgsta antrą šansą!“ 🔄💥',
-              text: 'Net jei stiklainis ar butelis sudužo, jį vis tiek gali mesti į stiklo konteinerį – stiklas perdirbamas neribotą kiekį kartų! Tik atsargiai, kad nesusižeistum. 🩹🚯',
-            },
-            {
-              title: '„Lemputės šviečia – tik ne stiklo konteineryje!“ 💡🚫',
-              text: 'Perdegusios lemputės yra elektronikos atliekos, todėl jas reikia atiduoti į specialias jų surinkimo vietas. Stiklo konteineris joms ne vieta, kad ir kaip norėtum rūšiavimo centrą papuošti Kalėdinėmis girliandomis. 🎄💥',
-            },
-            {
-              title: '„Ką daryti su stiklainio dangteliu?“ 🤹\u200d♂️🥫',
-              text: 'Metaliniai dangteliai keliauja į plastiko/metalo konteinerį, o stiklainis – į stiklo! Taip abi dalys gaus naują gyvenimą, o tu – papildomą tašką už sąmoningumą. ✅♻️',
-            },
-          ];
+          ? [
+              {
+                title: '„Tuščia – reiškia švaru!“ 🥛🚫',
+                text: 'Prieš mesdamas plastikinę pakuotę į konteinerį, įsitikink, kad ji tuščia! Jogurto indelis, pieno pakelis pilnas maisto likučių? Tai ne rūšiavimas, o maisto fabrikas bakterijoms! 🦠🚯Išpilk skystį, iškratyk maisto likučius!',
+              },
+              {
+                title: '„Skalauti nereikia – bet švara svarbu!“ 🚿♻️',
+                text: 'Plastikinės pakuotės neturi būti steriliai išplautos, bet maisto likučių jose geriau neliktų, nes gali užteršti kitas švarias pakuotes! 🚰👍',
+              },
+              {
+                title: '„Traškučių pakelis – popierius ar plastikas? Nei tas, nei anas!“ 🍟😵',
+                text: 'Tai daugiasluoksnė pakuotė – neapgausi net biologijos mokytojos! Metam į plastiko konteinerį kartu su kitomis kombinuotomis pakuotėmis. 🔄♻️',
+              },
+              {
+                title: '„Tetrapak‘ui reikia dietos!“ 📚🥤',
+                text: 'Plastikinius buteliukus ir „Tetra Pak“ pakuotes prieš išmetant geriausia suspausti – taip jie užims mažiau vietos konteineryje! Kaip ir tavo kuprinėje – vietos yra tiek, kiek yra – kai bandai sutalpinti visas knygas vienam kontroliniui. 😅🎒',
+              },
+              {
+                title: '„Plastikiniai maišeliai – rūšiavimo priešai!“ 🛍️❌',
+                text: 'Plėvelės ir plastikiniai maišeliai neretai užkemša rūšiavimo įrangą, nors juos ir reikia mesti į plastiko atliekoms skirtus konteinerius! Geriau naudok daugkartinius maišelius ir taip saugoti gamtą. O ir perdirbėjai tau padėkos, nes techniką valyti nuo užsikimšusių maišelių reikės žymiai rečiau 🌍♻️',
+              },
+              {
+                title: '„Pakuotė iš kelių medžiagų? Atskirti verta!“🏗️⚖️',
+                text: 'Jei pavyksta atskirti ir išmesti pakuotės dalis į skirtingus konteinerius rūšiavimui – valio! Jei atskirti nepavyksta – mesk į tą konteinerį, kurio medžiagos yra daugiau! 📦♻️',
+              },
+              {
+                title: '„Plastikas plastikui nelygus!“ 🧸🚫',
+                text: 'Plastikiniai žaislai, kibirai, dubenėliai ir kiti gaminiai – ne pakuotės! Jų vieta – buitinių atliekų konteineryje arba sukaupus daugiau – stambiagabaritinėje atliekų aikštelėje! 🎭 O gal jie dar tinkami naudojimui? Atiduok, padovanok!♻️',
+              },
+            ]
+          : [
+              {
+                title: '„Stiklo tara be skysčio – konteinerio bičiuliai!“ 🍼🥂',
+                text: 'Prieš mesdamas stiklinę tarą į konteinerį, išpilk skysčius! Jei stiklainis pilnas uogienės likučių – perdirbėjai tikrai tuo nesidžiaugs. Stiklo konteineryje turėtų būti tik stiklas, be maisto likučių! 🍲🚫',
+              },
+              {
+                title: '„Lupti etiketes? Tik jei nori papildomos pamokos!“ 🏷️✂️',
+                text: 'Etikečių ir lipdukų nuo stiklinių pakuočių lupti nereikia – perdirbėjai jas pašalins patys! Taigi nešvaistyk laiko, geriau vietoj to išmok naują formulę matematikos pamokai. 📖📚',
+              },
+              {
+                title: '„Veidrodis, veidrodis... Tik ne stiklo konteineryje!“ 🪞🚫',
+                text: 'Veidrodžiai, langų stiklas, porcelianas ar krištolas stiklo konteineriui netinka! Jie pagaminti iš kitokių medžiagų, ne gryno stiklo. Juos turi priimti stambiagabaritinių atliekų aikštelės. 🚛♻️',
+              },
+              {
+                title: '„Dužo? Nieko tokio – stiklas mėgsta antrą šansą!“ 🔄💥',
+                text: 'Net jei stiklainis ar butelis sudužo, jį vis tiek gali mesti į stiklo konteinerį – stiklas perdirbamas neribotą kiekį kartų! Tik atsargiai, kad nesusižeistum. 🩹🚯',
+              },
+              {
+                title: '„Lemputės šviečia – tik ne stiklo konteineryje!“ 💡🚫',
+                text: 'Perdegusios lemputės yra elektronikos atliekos, todėl jas reikia atiduoti į specialias jų surinkimo vietas. Stiklo konteineris joms ne vieta, kad ir kaip norėtum rūšiavimo centrą papuošti Kalėdinėmis girliandomis. 🎄💥',
+              },
+              {
+                title: '„Ką daryti su stiklainio dangteliu?“ 🤹\u200d♂️🥫',
+                text: 'Metaliniai dangteliai keliauja į plastiko/metalo konteinerį, o stiklainis – į stiklo! Taip abi dalys gaus naują gyvenimą, o tu – papildomą tašką už sąmoningumą. ✅♻️',
+              },
+            ];
     this.randomGamtosAteitis =
       this.gamtosAteitis[Math.floor(Math.random() * this.gamtosAteitis.length)];
 
@@ -523,18 +453,18 @@ export class DidYouKnowContainer {
                          <p style="margin-left:10px;margin-right:10px;line-height:10px;color:black;margin-left:20px;font-weight:700;text-align:start;margin-left:${
                            document.documentElement.clientWidth < 418 ? '100px' : '110px'
                          };margin-right:${
-                      document.documentElement.clientWidth < 418 ? '100px' : '110px'
-                    };">
+                           document.documentElement.clientWidth < 418 ? '100px' : '110px'
+                         };">
                            ${product.title}
                          </p>
                              <p style="margin: 5px; line-height: 10px; color: black; font-size: 12px;text-align:start; margin-left: ${
                                document.documentElement.clientWidth < 418 ? '100px' : '110px'
                              }; margin-right: ${
-                      document.documentElement.clientWidth < 418 ? '100px' : '110px'
-                    };">
+                               document.documentElement.clientWidth < 418 ? '100px' : '110px'
+                             };">
   ${product.price}<span style="font-size: 6px; position: relative; top: -4px;left: 1px;">${
-                      product.cents
-                    }</span> €
+    product.cents
+  }</span> €
 </p>
 
                        </a>
@@ -602,36 +532,36 @@ export class DidYouKnowContainer {
         this.prop.includes('Gamtos Ateitis')
           ? this.randomGamtosAteitis?.text
           : this.prop === 'Pegasas'
-          ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
-          : this.prop === 'Zemaitijos Pienas'
-          ? 'Ekologiški jogurtai „DOBILAS“'
-          : this.prop === 'Nykstukas'
-          ? ''
-          : this.prop === 'Nevezis'
-          ? ''
-          : this.prop === 'Magija'
-          ? 'Šokoladu aplieti „Magija“ varškės sūreliai'
-          : ''
+            ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
+            : this.prop === 'Zemaitijos Pienas'
+              ? 'Ekologiški jogurtai „DOBILAS“'
+              : this.prop === 'Nykstukas'
+                ? ''
+                : this.prop === 'Nevezis'
+                  ? ''
+                  : this.prop === 'Magija'
+                    ? 'Šokoladu aplieti „Magija“ varškės sūreliai'
+                    : ''
       }</div>
               <div class="bomio-second-line" style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
-        this.prop === 'Pieno Žvaigždės' ? 500 : 400
-      };  word-wrap: break-word;text-decoration:${
-        this.prop === 'Pieno Žvaigždės' ? 'underline' : ''
-      } ">${
-        this.prop === 'Pegasas'
-          ? ''
-          : this.prop === 'Pieno Žvaigždės'
-          ? ''
-          : this.prop === 'Zemaitijos Pienas'
-          ? `<a 
+                this.prop === 'Pieno Žvaigždės' ? 500 : 400
+              };  word-wrap: break-word;text-decoration:${
+                this.prop === 'Pieno Žvaigždės' ? 'underline' : ''
+              } ">${
+                this.prop === 'Pegasas'
+                  ? ''
+                  : this.prop === 'Pieno Žvaigždės'
+                    ? ''
+                    : this.prop === 'Zemaitijos Pienas'
+                      ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
   href="https://www.zpienas.lt/dobilas/" 
   style="color:white;font-weight:900;font-size:16px;">
   VISI PRODUKTAI
 </a>`
-          : this.prop === 'Nykstukas'
-          ? `<a 
+                      : this.prop === 'Nykstukas'
+                        ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
   href="https://pienozvaigzdes.lt/lt/lt/29-ledai
@@ -639,34 +569,34 @@ export class DidYouKnowContainer {
   style="color:white;font-weight:900;font-size:12px;text-decoration: underline;">
   DAUGIAU NYKŠTUKO SKONIŲ!
 </a>`
-          : this.prop === 'Nevezis'
-          ? `<a 
+                        : this.prop === 'Nevezis'
+                          ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
   href="https://nevezis.lt/production_category/sausi-pusryciai/" 
   style="color:white;font-weight:900;font-size:12px;">
    Susipažink su mūsų produktais!
 </a>`
-          : this.prop === 'Magija'
-          ? `<a 
+                          : this.prop === 'Magija'
+                            ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
   href="https://www.zpienas.lt/magija/" 
   style="color:white;font-weight:900;font-size:16px;">
   VISI PRODUKTAI
 </a>`
-          : ''
-      }${
-        this.prop === 'Pieno Žvaigždės'
-          ? `<a 
+                            : ''
+              }${
+                this.prop === 'Pieno Žvaigždės'
+                  ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
   href="https://pienozvaigzdes.lt/lt/20_miau" 
   style="color:white">
   DAUGIAU MIAU!
 </a> `
-          : ''
-      }
+                  : ''
+              }
           ${
             this.prop === 'Pegasas' || this.prop === 'Pigu.lt'
               ? `<a 
@@ -688,18 +618,18 @@ export class DidYouKnowContainer {
     this.prop === 'Pieno Žvaigždės'
       ? 'https://pienozvaigzdes.lt/lt/20_miau'
       : this.prop === 'Pegasas'
-      ? 'https://www.pegasas.lt/'
-      : ''
+        ? 'https://www.pegasas.lt/'
+        : ''
   }" 
   style="color:white">
   ${
     this.prop === 'Pegasas'
       ? ''
       : this.prop === 'Pieno Žvaigždės'
-      ? ''
-      : this.prop === 'Zemaitijos Pienas'
-      ? ''
-      : ''
+        ? ''
+        : this.prop === 'Zemaitijos Pienas'
+          ? ''
+          : ''
   }
 </a> </div> `}
     `;
@@ -795,47 +725,47 @@ export class DidYouKnowContainer {
       <div style="display:${
         this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
       };width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${
-      this.prop === 'Pigu.lt' ? 'white' : 'white'
-    }; font-size: ${
-      this.isMobileWidthSmall ? '26px' : '30px'
-    }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop.includes('Gamtos Ateitis') ? this.randomGamtosAteitis?.title : ''
-    }</div>
+        this.prop === 'Pigu.lt' ? 'white' : 'white'
+      }; font-size: ${
+        this.isMobileWidthSmall ? '26px' : '30px'
+      }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+        this.prop.includes('Gamtos Ateitis') ? this.randomGamtosAteitis?.title : ''
+      }</div>
       <div style="width:calc(100% - 20px);margin-left:10px;top: ${
         this.prop === 'Nykstukas' ? '150px' : '72px'
       }; position: absolute; text-align: center;line-height:${'42px'}; color: ${
-      this.prop === 'Pigu.lt' ? 'white' : 'white'
-    }; font-size: ${
-      this.isMobileWidthSmall ? '26px' : '30px'
-    }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Pigu.lt'
-        ? this.language === 'EN'
-          ? 'HAVE YOU SEEN THE TOP DEALS?'
-          : this.language === 'LT'
-          ? 'AR JAU MATEI TOP PASIŪLYMUS?'
-          : this.language === 'LV'
-          ? 'VAI ESI REDZĒJIS TOP PIEDĀVĀJUMUS?'
-          : this.language === 'ET'
-          ? 'KAS OLED TOP PAKKUMISI NÄINUD?'
-          : this.language === 'FI'
-          ? 'OLETKO NÄHNYT HUIPPUDIILEJÄ?'
-          : this.language === 'RU' && 'А ТЫ УЖЕ ВИДЕЛ ТОП ПРЕДЛОЖЕНИЯ?'
-        : this.prop === 'Pieno Žvaigždės'
-        ? 'Ar visus RAGAVAI?'
-        : this.prop === 'Pegasas'
-        ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
-        : this.prop === 'Zemaitijos Pienas'
-        ? 'Ar visus RAGAVAI?'
-        : this.prop.includes('Gamtos Ateitis')
-        ? 'TAI SVARBU RŪŠIUOJANT!'
-        : this.prop === 'Nykstukas'
-        ? 'AR IŠRAGAVAI ŠIŲ METŲ NAUJIENAS?'
-        : this.prop === 'Magija'
-        ? 'Ar visus RAGAVAI?'
-        : this.prop === 'Nevezis'
-        ? 'ATRASK SAVO SKONĮ'
-        : 'Ar žinojai?'
-    }</div>
+        this.prop === 'Pigu.lt' ? 'white' : 'white'
+      }; font-size: ${
+        this.isMobileWidthSmall ? '26px' : '30px'
+      }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+        this.prop === 'Pigu.lt'
+          ? this.language === 'EN'
+            ? 'HAVE YOU SEEN THE TOP DEALS?'
+            : this.language === 'LT'
+              ? 'AR JAU MATEI TOP PASIŪLYMUS?'
+              : this.language === 'LV'
+                ? 'VAI ESI REDZĒJIS TOP PIEDĀVĀJUMUS?'
+                : this.language === 'ET'
+                  ? 'KAS OLED TOP PAKKUMISI NÄINUD?'
+                  : this.language === 'FI'
+                    ? 'OLETKO NÄHNYT HUIPPUDIILEJÄ?'
+                    : this.language === 'RU' && 'А ТЫ УЖЕ ВИДЕЛ ТОП ПРЕДЛОЖЕНИЯ?'
+          : this.prop === 'Pieno Žvaigždės'
+            ? 'Ar visus RAGAVAI?'
+            : this.prop === 'Pegasas'
+              ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
+              : this.prop === 'Zemaitijos Pienas'
+                ? 'Ar visus RAGAVAI?'
+                : this.prop.includes('Gamtos Ateitis')
+                  ? 'TAI SVARBU RŪŠIUOJANT!'
+                  : this.prop === 'Nykstukas'
+                    ? 'AR IŠRAGAVAI ŠIŲ METŲ NAUJIENAS?'
+                    : this.prop === 'Magija'
+                      ? 'Ar visus RAGAVAI?'
+                      : this.prop === 'Nevezis'
+                        ? 'ATRASK SAVO SKONĮ'
+                        : 'Ar žinojai?'
+      }</div>
       
       <div class="boomio-scoreboard-text">
       `;
@@ -843,20 +773,20 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-      this.prop === 'Pegasas'
-        ? '100px'
-        : this.prop === 'Pieno Žvaigždės'
-        ? '174px'
-        : this.prop === 'Nykstukas'
-        ? '230px'
-        : '114px'
-    }; position: absolute; border-right:none;">
+        this.prop === 'Pegasas'
+          ? '100px'
+          : this.prop === 'Pieno Žvaigždės'
+            ? '174px'
+            : this.prop === 'Nykstukas'
+              ? '230px'
+              : '114px'
+      }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${
             this.prop === 'Pigu.lt' ? (this.isMobileWidthSmall ? '30px' : '40px') : '30px'
           };border-spacing:3px;width:${
-      this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
-    };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
+            this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
+          };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
             <tbody class="boomio-tbody" style="background-color:transparent">
             <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${
               this.isMobileWidthSmall ? '20px' : '40px'
@@ -876,27 +806,27 @@ export class DidYouKnowContainer {
           <div style="display:${
             this.prop === 'Pigu.lt' ? 'block' : 'none'
           };border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
-      this.prop === 'Pigu.lt' ? '#F34434' : 'none'
-    }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
+            this.prop === 'Pigu.lt' ? '#F34434' : 'none'
+          }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
             ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
             : this.language === 'LV'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv">Atklāj labākos 220.lv piedāvājumus!</a>'
-            : this.language === 'ET'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
-            : this.language === 'FI'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
-            : this.language === 'RU' &&
-              (this.campaignUrlProp === 'https://kaup.ee' ||
-                this.campaignUrlProp === 'https://kaup24.ee')
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
-            : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
-            : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
-            : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
+              ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv">Atklāj labākos 220.lv piedāvājumus!</a>'
+              : this.language === 'ET'
+                ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
+                : this.language === 'FI'
+                  ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
+                  : this.language === 'RU' &&
+                      (this.campaignUrlProp === 'https://kaup.ee' ||
+                        this.campaignUrlProp === 'https://kaup24.ee')
+                    ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
+                    : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+                      ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
+                      : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+                        ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
+                        : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
           : ''
       }
   </div>
@@ -907,16 +837,16 @@ export class DidYouKnowContainer {
           this.prop !== 'Pigu.lt'
             ? 'TOLIAU'
             : this.language === 'EN'
-            ? 'NEXT'
-            : this.language === 'LT'
-            ? 'PIRMYN'
-            : this.language === 'LV'
-            ? 'KLIKŠĶINI'
-            : this.language === 'ET'
-            ? 'JÄRGMINE'
-            : this.language === 'FI'
-            ? 'SEURAAVA'
-            : this.language === 'RU' && 'ДАЛЕЕ'
+              ? 'NEXT'
+              : this.language === 'LT'
+                ? 'PIRMYN'
+                : this.language === 'LV'
+                  ? 'KLIKŠĶINI'
+                  : this.language === 'ET'
+                    ? 'JÄRGMINE'
+                    : this.language === 'FI'
+                      ? 'SEURAAVA'
+                      : this.language === 'RU' && 'ДАЛЕЕ'
         }
         </div>
       </div>
