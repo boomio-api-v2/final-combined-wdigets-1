@@ -252,26 +252,26 @@ class CatchGame {
       this.customer.includes('Paper')
         ? backgroundGamtosAteitisPaper
         : this.customer.includes('Plastic')
-        ? backgroundGamtosAteitis
-        : this.customer.includes('Glass')
-        ? backgroundGamtosAteitisGlass
-        : this.customer === 'Pieno Žvaigždės'
-        ? backgroundPienoZvaigzdes
-        : this.customer === 'Pegasas'
-        ? backgroundPegasas
-        : this.customer === 'Akropolis'
-        ? backgroundAkropolis
-        : this.customer === 'Daumantu'
-        ? backgroundDaumantu
-        : this.customer === 'Zemaitijos Pienas'
-        ? backgroundDobilo
-        : this.customer === 'Toni'
-        ? backgroundToni
-        : this.customer === 'Orlen'
-        ? backgroundOrlen
-        : this.customer === 'Apranga'
-        ? backgroundApranga
-        : background
+          ? backgroundGamtosAteitis
+          : this.customer.includes('Glass')
+            ? backgroundGamtosAteitisGlass
+            : this.customer === 'Pieno Žvaigždės'
+              ? backgroundPienoZvaigzdes
+              : this.customer === 'Pegasas'
+                ? backgroundPegasas
+                : this.customer === 'Akropolis'
+                  ? backgroundAkropolis
+                  : this.customer === 'Daumantu'
+                    ? backgroundDaumantu
+                    : this.customer === 'Zemaitijos Pienas'
+                      ? backgroundDobilo
+                      : this.customer === 'Toni'
+                        ? backgroundToni
+                        : this.customer === 'Orlen'
+                          ? backgroundOrlen
+                          : this.customer === 'Apranga'
+                            ? backgroundApranga
+                            : background
     }) center`;
 
     this.timer = null;
@@ -571,27 +571,27 @@ class CatchGame {
         ? this.customer.includes('Glass')
           ? '#18904A'
           : this.customer.includes('Plastic')
-          ? '#FBCA00'
-          : this.customer.includes('Paper')
-          ? '#488DB0'
-          : '#18904A'
+            ? '#FBCA00'
+            : this.customer.includes('Paper')
+              ? '#488DB0'
+              : '#18904A'
         : this.customer === 'Pieno Žvaigždės'
-        ? '#ED1846'
-        : this.customer === 'Pegasas'
-        ? '#A40033'
-        : this.customer === 'Akropolis'
-        ? '#F40000'
-        : this.customer === 'Daumantu'
-        ? '#DD2326'
-        : this.customer === 'Zemaitijos Pienas'
-        ? '#004C22'
-        : this.customer === 'Toni'
-        ? '#262B8C'
-        : this.customer === 'Orlen'
-        ? '#DD2326'
-        : this.customer === 'Apranga'
-        ? '#5F2929'
-        : '#18904A'
+          ? '#ED1846'
+          : this.customer === 'Pegasas'
+            ? '#A40033'
+            : this.customer === 'Akropolis'
+              ? '#F40000'
+              : this.customer === 'Daumantu'
+                ? '#DD2326'
+                : this.customer === 'Zemaitijos Pienas'
+                  ? '#004C22'
+                  : this.customer === 'Toni'
+                    ? '#262B8C'
+                    : this.customer === 'Orlen'
+                      ? '#DD2326'
+                      : this.customer === 'Apranga'
+                        ? '#5F2929'
+                        : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -607,27 +607,27 @@ class CatchGame {
         ? this.customer.includes('Glass')
           ? '#18904A'
           : this.customer.includes('Plastic')
-          ? '#FBCA00'
-          : this.customer.includes('Paper')
-          ? '#488DB0'
-          : '#18904A'
+            ? '#FBCA00'
+            : this.customer.includes('Paper')
+              ? '#488DB0'
+              : '#18904A'
         : this.customer === 'Pieno Žvaigždės'
-        ? '#ED1846'
-        : this.customer === 'Pegasas'
-        ? '#A40033'
-        : this.customer === 'Akropolis'
-        ? '#F40000'
-        : this.customer === 'Daumantu'
-        ? '#DD2326'
-        : this.customer === 'Zemaitijos Pienas'
-        ? '#004C22'
-        : this.customer === 'Toni'
-        ? '#262B8C'
-        : this.customer === 'Orlen'
-        ? '#DD2326'
-        : this.customer === 'Apranga'
-        ? '#5F2929'
-        : '#18904A'
+          ? '#ED1846'
+          : this.customer === 'Pegasas'
+            ? '#A40033'
+            : this.customer === 'Akropolis'
+              ? '#F40000'
+              : this.customer === 'Daumantu'
+                ? '#DD2326'
+                : this.customer === 'Zemaitijos Pienas'
+                  ? '#004C22'
+                  : this.customer === 'Toni'
+                    ? '#262B8C'
+                    : this.customer === 'Orlen'
+                      ? '#DD2326'
+                      : this.customer === 'Apranga'
+                        ? '#5F2929'
+                        : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
@@ -642,16 +642,16 @@ class CatchGame {
       this.customer.includes('Paper')
         ? introGamtosAteitisPaper
         : this.customer.includes('Plastic')
-        ? introGamtosAteitis
-        : this.customer.includes('Glass')
-        ? introGamtosAteitisGlass
-        : this.customer === 'Pieno Žvaigždės'
-        ? introPienoZvaigzdes
-        : this.customer === 'Pegasas'
-        ? introPegasas
-        : this.customer === 'Daumantu'
-        ? introDaumantu
-        : this.customer === 'Zemaitijos Pienas' && introDobilo
+          ? introGamtosAteitis
+          : this.customer.includes('Glass')
+            ? introGamtosAteitisGlass
+            : this.customer === 'Pieno Žvaigždės'
+              ? introPienoZvaigzdes
+              : this.customer === 'Pegasas'
+                ? introPegasas
+                : this.customer === 'Daumantu'
+                  ? introDaumantu
+                  : this.customer === 'Zemaitijos Pienas' && introDobilo
     } alt="Image Description" style="z-index:4;width:${
       document.documentElement.clientWidth < 418
         ? document.documentElement.clientWidth + 'px'
@@ -659,26 +659,32 @@ class CatchGame {
     }; height: 674px;position:absolute;pointer-events: none; display:block;object-fit: cover;" id="background_intro">
 
         <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth + 'px'
-        : '418px'
-    }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
+          document.documentElement.clientWidth < 418
+            ? document.documentElement.clientWidth + 'px'
+            : '418px'
+        }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
     ${
-      this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas'
-        ? `<div alt="Image Description" style="z-index:1;width: ${
+      this.customer === 'Pegasas' ||
+      this.customer === 'Zemaitijos Pienas' ||
+      this.customer === 'Apranga'
+        ? `<div id="background_blur" alt="Blur color" style="z-index:1;width: ${
             document.documentElement.clientWidth < 418
               ? document.documentElement.clientWidth + 'px'
               : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
-            this.customer === 'Zemaitijos Pienas' ? '#004C22' : '#8E1735'
-          }" id="background_blur"></div>`
-        : `    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
+            this.customer === 'Zemaitijos Pienas'
+              ? '#004C22'
+              : this.customer === 'Apranga'
+                ? '#5F2929'
+                : '#8E1735'
+          }" ></div>`
+        : `    <img id="background_blur" src=${blurImage.src} alt="Blur image" style="z-index:3;width: ${
             document.documentElement.clientWidth < 418
               ? document.documentElement.clientWidth + 'px'
               : '418px'
           }; height: 668px;position:absolute;opacity:${
             this.customer === 'Pegasas' ? 0.8 : 0.5
-          };pointer-events: none; display:block;" id="background_blur">`
+          };pointer-events: none; display:block;">`
     }
 
     ${
@@ -805,16 +811,16 @@ class CatchGame {
                 this.customer === 'Daumantu'
                   ? 'Registruojantis, privaloma sutikti gauti "Daumantų” naujienas, kad atiduotume  laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
                   : this.customer === 'Zemaitijos Pienas'
-                  ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
-                  : this.language === 'LV'
-                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                  : this.language === 'ES'
-                  ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                  : this.customer.includes('Gamtos Ateitis')
-                  ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-                  : this.customer === 'Apranga'
-                  ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
-                  : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                    ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
+                    : this.language === 'LV'
+                      ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                      : this.language === 'ES'
+                        ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                        : this.customer.includes('Gamtos Ateitis')
+                          ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+                          : this.customer === 'Apranga'
+                            ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
+                            : 'Norint tęsti, privaloma sutikti su privatumo politika.';
               document.getElementById('competition-checkbox-error').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
@@ -883,8 +889,8 @@ class CatchGame {
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer === 'Apranga'
-                  ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
-                  : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+                    ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
+                    : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
               document.getElementById('competition-checkbox-error2').style.backgroundColor =
                 '#FFBABA';
               document.getElementById('competition-checkbox-error2').style.display = 'block';
@@ -921,8 +927,8 @@ class CatchGame {
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : this.language === 'ES'
-                  ? 'Requerido para continuar.'
-                  : 'Norint tęsti privaloma užpildyti.';
+                    ? 'Requerido para continuar.'
+                    : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
@@ -953,8 +959,8 @@ class CatchGame {
                 this.language === 'LV'
                   ? 'Obligāti aizpildāmie lauki.'
                   : this.language === 'ES'
-                  ? 'Requerido para continuar.'
-                  : 'Norint tęsti privaloma užpildyti.';
+                    ? 'Requerido para continuar.'
+                    : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-phone-error').zIndex = 1;
               document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
@@ -1104,8 +1110,8 @@ class CatchGame {
                     this.customer === 'Apranga'
                       ? emailInput?.value
                       : this.customer === 'Toni'
-                      ? playerNameInput?.value.trimEnd() + phoneInput?.value
-                      : playerNameInput?.value,
+                        ? playerNameInput?.value.trimEnd() + phoneInput?.value
+                        : playerNameInput?.value,
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneInput?.value } : {}),
                 })
@@ -1119,16 +1125,16 @@ class CatchGame {
                         this.customer === 'Fpro'
                           ? 'This email address already exists. Please use another one.'
                           : this.customer === 'Toni'
-                          ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
-                          : this.language === 'ES'
-                          ? 'Este email ya está en uso. Use otro email.'
-                          : this.language === 'LV'
-                          ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                          : this.language === 'RU'
-                          ? 'Этот e-мейл адрес уже существует. Используйте другой.'
-                          : this.language === 'ET'
-                          ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                            ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
+                            : this.language === 'ES'
+                              ? 'Este email ya está en uso. Use otro email.'
+                              : this.language === 'LV'
+                                ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                                : this.language === 'RU'
+                                  ? 'Этот e-мейл адрес уже существует. Используйте другой.'
+                                  : this.language === 'ET'
+                                    ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                                    : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor =
                         '#FFBABA';
 
@@ -1144,14 +1150,14 @@ class CatchGame {
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
                           : this.language === 'ES'
-                          ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
-                          : this.language === 'LV'
-                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                          : this.language === 'RU'
-                          ? 'Этот псевдоним уже существует. Используйте другой.'
-                          : this.language === 'ET'
-                          ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                            ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
+                            : this.language === 'LV'
+                              ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                              : this.language === 'RU'
+                                ? 'Этот псевдоним уже существует. Используйте другой.'
+                                : this.language === 'ET'
+                                  ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                                  : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor =
                         '#FFBABA';
                       document.getElementById('competition-phone-error').innerText = '';
@@ -1599,8 +1605,8 @@ class CatchGame {
       const count = this.customer.includes('Gamtos Ateitis')
         ? 5
         : this.customer === 'Pieno Žvaigždės'
-        ? 5
-        : 3;
+          ? 5
+          : 3;
       if (this.player.fruitsMissed >= count) {
         this.player.gameOver = true;
       }
@@ -1840,16 +1846,16 @@ class Player {
       this.customer === 'Orlen' || this.customer === 'Toni'
         ? 110
         : this.customer === 'Akropolis' || this.customer === 'Apranga'
-        ? 88
-        : 110;
+          ? 88
+          : 110;
     this.playerHeight =
       this.customer === 'Orlen' || this.customer === 'Toni'
         ? 80
         : this.customer === 'Akropolis'
-        ? 64
-        : this.customer === 'Apranga'
-        ? 92
-        : 80;
+          ? 64
+          : this.customer === 'Apranga'
+            ? 92
+            : 80;
     this.playerSpeed = 5;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
@@ -1861,26 +1867,26 @@ class Player {
     this.playerImage.src = customer.includes('Paper')
       ? playerGamtosAteitisPaper
       : customer.includes('Plastic')
-      ? playerGamtosAteitis
-      : customer.includes('Glass')
-      ? playerGamtosAteitisGlass
-      : customer === 'Pieno Žvaigždės'
-      ? playerPienoZvaigzdes
-      : customer === 'Pegasas'
-      ? playerPegasas
-      : customer === 'Akropolis'
-      ? playerAkropolis
-      : customer === 'Daumantu'
-      ? playerDaumantu
-      : customer === 'Zemaitijos Pienas'
-      ? playerDobilo
-      : customer === 'Toni'
-      ? playerToni
-      : customer === 'Orlen'
-      ? playerOrlen
-      : customer === 'Apranga'
-      ? playerApranga
-      : player;
+        ? playerGamtosAteitis
+        : customer.includes('Glass')
+          ? playerGamtosAteitisGlass
+          : customer === 'Pieno Žvaigždės'
+            ? playerPienoZvaigzdes
+            : customer === 'Pegasas'
+              ? playerPegasas
+              : customer === 'Akropolis'
+                ? playerAkropolis
+                : customer === 'Daumantu'
+                  ? playerDaumantu
+                  : customer === 'Zemaitijos Pienas'
+                    ? playerDobilo
+                    : customer === 'Toni'
+                      ? playerToni
+                      : customer === 'Orlen'
+                        ? playerOrlen
+                        : customer === 'Apranga'
+                          ? playerApranga
+                          : player;
     this.defaultscore = defaultscore;
   }
 
@@ -1957,22 +1963,22 @@ class Fruit {
       this.customer === 'Pegasas'
         ? 60
         : this.customer === 'Pieno Žvaigždės'
-        ? 50
-        : this.customer === 'Akropolis'
-        ? type === 'bad'
-          ? 45
-          : 55
-        : 55;
+          ? 50
+          : this.customer === 'Akropolis'
+            ? type === 'bad'
+              ? 45
+              : 55
+            : 55;
     this.fruitHeight =
       this.customer === 'Pegasas'
         ? 60
         : this.customer === 'Pieno Žvaigždės'
-        ? 50
-        : this.customer === 'Akropolis'
-        ? type === 'bad'
-          ? 45
-          : 55
-        : 55;
+          ? 50
+          : this.customer === 'Akropolis'
+            ? type === 'bad'
+              ? 45
+              : 55
+            : 55;
     this.fruitWidthArray = [40, 40, 40, 40, 30];
     this.fruitHeightArray = [40, 40, 40, 40, 30];
     this.fruitImage = new Image();
@@ -2625,16 +2631,16 @@ class Fruit {
         (this.customer.includes('Gamtos Ateitis')
           ? 23
           : this.customer === 'Pieno Žvaigždės'
-          ? 14
-          : this.customer === 'Akropolis'
-          ? 10
-          : this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas'
-          ? 13
-          : this.customer === 'Orlen' || this.customer === 'Toni'
-          ? 10
-          : this.customer === 'Apranga'
-          ? 14
-          : 5),
+            ? 14
+            : this.customer === 'Akropolis'
+              ? 10
+              : this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas'
+                ? 13
+                : this.customer === 'Orlen' || this.customer === 'Toni'
+                  ? 10
+                  : this.customer === 'Apranga'
+                    ? 14
+                    : 5),
     );
 
     this.fruitSpeed = Math.floor(
