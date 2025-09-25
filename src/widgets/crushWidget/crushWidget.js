@@ -1516,8 +1516,11 @@ background:${
           boomioService
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange2,
-              user_email: this.user_id || Elements.emailInput?.value?.trim(),
-              user_name: this.customer === 'Toni' ? playerNameInput?.value.trimEnd() + phoneInput?.value : this.user_id || Elements.nameInput?.value?.trim() || Elements.emailInput?.value?.trim(),
+              user_email: this.user_id || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
+              user_name:
+                this.customer === 'Toni'
+                  ? playerNameInput?.value.trimEnd() + phoneInput?.value
+                  : this.user_id || (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
               ...(phoneValue ? { phone: phoneInput?.value } : {}),
               via_mobile: this.campaignUrl ? true : false,
               ...(Elements.isVisible(Elements.schoolSelect) ? { team: Elements?.schoolSelect?.value } : {}),
