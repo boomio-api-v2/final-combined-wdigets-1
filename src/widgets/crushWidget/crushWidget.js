@@ -1520,7 +1520,7 @@ background:${
               user_name: this.customer === 'Toni' ? playerNameInput?.value.trimEnd() + phoneInput?.value : this.user_id || Elements.nameInput?.value?.trim() || Elements.emailInput?.value?.trim(),
               ...(phoneValue ? { phone: phoneInput?.value } : {}),
               via_mobile: this.campaignUrl ? true : false,
-              ...(Elements.schoolSelect && Elements.schoolSelect.value ? { team: Elements.schoolSelect.value } : {}),
+              ...(Elements.isVisible(Elements.schoolSelect) ? { team: Elements?.schoolSelect?.value } : {}),
             })
             .then((response) => {
               if (response.success === false) {
