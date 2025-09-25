@@ -473,7 +473,7 @@ export class InputContainer {
                                         : this.prop === 'SaludSA'
                                           ? '¡Gana!'
                                           : this.prop.includes('Gamtos Ateitis')
-                                            ? 'Kartok'
+                                            ? 'Kartok,'
                                             : this.prop === 'Nykstukas'
                                               ? 'Kartok'
                                               : this.prop === 'Nevezis'
@@ -541,7 +541,7 @@ export class InputContainer {
                                             : this.language === 'ET'
                                               ? 'auhinnad.'
                                               : this.prop.includes('Gamtos Ateitis')
-                                                ? 'Pagerinus rezultatą prisidės taškų skirtumas.'
+                                                ? 'pagerinus rezultatą prisidės taškų skirtumas.'
                                                 : this.prop === 'Pieno Žvaigždės'
                                                   ? 'kassavaitinius Forum Cinema bilietus ir pagrindinius MIAU prizus!'
                                                   : this.prop === 'Pegasas'
