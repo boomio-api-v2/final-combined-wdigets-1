@@ -664,21 +664,27 @@ class CatchGame {
             : '418px'
         }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
     ${
-      this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas'
-        ? `<div alt="Image Description" style="z-index:1;width: ${
+      this.customer === 'Pegasas' ||
+      this.customer === 'Zemaitijos Pienas' ||
+      this.customer === 'Apranga'
+        ? `<div id="background_blur" alt="Blur color" style="z-index:1;width: ${
             document.documentElement.clientWidth < 418
               ? document.documentElement.clientWidth + 'px'
               : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
-            this.customer === 'Zemaitijos Pienas' ? '#004C22' : '#8E1735'
-          }" id="background_blur"></div>`
-        : `    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
+            this.customer === 'Zemaitijos Pienas'
+              ? '#004C22'
+              : this.customer === 'Apranga'
+                ? '#5F2929'
+                : '#8E1735'
+          }" ></div>`
+        : `    <img id="background_blur" src=${blurImage.src} alt="Blur image" style="z-index:3;width: ${
             document.documentElement.clientWidth < 418
               ? document.documentElement.clientWidth + 'px'
               : '418px'
           }; height: 668px;position:absolute;opacity:${
             this.customer === 'Pegasas' ? 0.8 : 0.5
-          };pointer-events: none; display:block;" id="background_blur">`
+          };pointer-events: none; display:block;">`
     }
 
     ${
