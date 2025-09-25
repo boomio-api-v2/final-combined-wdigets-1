@@ -121,6 +121,8 @@ import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { ShareContainer } from '../helpers/ShareContainer';
+import { Elements } from '../helpers/ElementsHelper';
+import { CitySchoolSelect } from '../helpers/CitySchoolSelect';
 
 import './styles.css';
 
@@ -134,8 +136,7 @@ class CrushGame {
 
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Random';
-    this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
     this.gameCount = 0;
     this.language = this.config.language ? this.config.language : 'LT';
@@ -278,8 +279,7 @@ class CrushGame {
       emailInput.addEventListener('input', () => {});
 
       setTimeout(() => {
-        document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.2;
+        document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
         const inpuRegisterContainer = document.querySelector('.input-register-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -305,11 +305,8 @@ class CrushGame {
           this.bestScore = response.user_best_score;
           if (this.customer === 'Pigu.lt' && false) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
-            const competitionTableContainer = document.querySelector(
-              '.competition-table-container-pigu',
-            );
-            competitionTableContainer.style.transition =
-              'height 1s ease, top 1s ease, opacity 1s ease';
+            const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+            competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
             competitionTableContainer.style.display = 'block';
             setTimeout(() => {
               competitionTableContainer.style.height = '680px';
@@ -342,8 +339,7 @@ class CrushGame {
         });
     } else {
       setTimeout(() => {
-        document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.2;
+        document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -519,11 +515,7 @@ class CrushGame {
                 if (this.customer === 'Pigu.lt') {
                   if (window.Boomio) {
                     window.Boomio.logEvent('game_finished', JSON.stringify(response));
-                  } else if (
-                    window.webkit &&
-                    window.webkit.messageHandlers &&
-                    window.webkit.messageHandlers.Boomio
-                  ) {
+                  } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
                     var message = {
                       command: 'logEvent',
                       name: 'game_finished',
@@ -538,11 +530,7 @@ class CrushGame {
 
                 this.scoreTable = response;
 
-                this.scoreTableContainerInstance.updateProps(
-                  this.customer,
-                  this.scoreTable,
-                  this.currentScore,
-                );
+                this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -561,10 +549,8 @@ class CrushGame {
           }
 
           document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.opacity =
-            this.language === 'LV' ? 0.4 : 0.2;
-          competitionTableContainer.style.transition =
-            'height 1s ease, top 1s ease, opacity 1s ease';
+          document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
+          competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
           setTimeout(() => {
             competitionTableContainer.style.height = '680px';
@@ -579,9 +565,7 @@ class CrushGame {
           inputContainer.style.display = 'block';
           setTimeout(() => {
             inputContainer.style.height = '332px';
-            inputContainer.style.top = `calc(50% + ${
-              this.isMobileHeightSmall ? '110px' : '170px'
-            })`;
+            inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
             inputContainer.style.opacity = 1;
           }, 100);
         }
@@ -613,13 +597,7 @@ class CrushGame {
         { row: cell.row, col: cell.col + 1 }, // Right
       ];
       neighbors.forEach(({ row: nRow, col: nCol }) => {
-        if (
-          nRow >= 0 &&
-          nRow < this.gridRows &&
-          nCol >= 0 &&
-          nCol < this.gridCols &&
-          this.getBaseColor(this.grid[nRow][nCol]) === color
-        ) {
+        if (nRow >= 0 && nRow < this.gridRows && nCol >= 0 && nCol < this.gridCols && this.getBaseColor(this.grid[nRow][nCol]) === color) {
           stack.push({ row: nRow, col: nCol });
         }
       });
@@ -753,11 +731,7 @@ class CrushGame {
 
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-crush-container');
-    myCanvas.classList.add(
-      'boomio--animation__wrapper',
-      'boomio--animation__wrapper--initial',
-      'box',
-    );
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
     myCanvas.innerHTML = `
       <div class="game-container" id="game-container">
 
@@ -819,30 +793,10 @@ ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 120px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>${
-      this.language == 'LV'
-        ? 'PAVELC'
-        : this.language == 'ET'
-        ? 'LEHITSE'
-        : this.language == 'FI'
-        ? 'Pyyhkäise'
-        : this.language == 'RU'
-        ? 'ПОТЯНИ'
-        : this.language == 'ES'
-        ? 'DESLIZA'
-        : 'BRŪKŠT'
+      this.language == 'LV' ? 'PAVELC' : this.language == 'ET' ? 'LEHITSE' : this.language == 'FI' ? 'Pyyhkäise' : this.language == 'RU' ? 'ПОТЯНИ' : this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'
     }</div>
     <div>${
-      this.language == 'LV'
-        ? 'PAVELC'
-        : this.language == 'ET'
-        ? 'LEHITSE'
-        : this.language == 'FI'
-        ? 'Pyyhkäise'
-        : this.language == 'RU'
-        ? 'ПОТЯНИ'
-        : this.language == 'ES'
-        ? 'DESLIZA'
-        : 'BRŪKŠT'
+      this.language == 'LV' ? 'PAVELC' : this.language == 'ET' ? 'LEHITSE' : this.language == 'FI' ? 'Pyyhkäise' : this.language == 'RU' ? 'ПОТЯНИ' : this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'
     }</div>
   </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
 </div>
@@ -853,15 +807,7 @@ ${`<div style="${
 
 <div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;
 background:${
-      this.customer === 'Toni'
-        ? '#262B8C'
-        : this.customer?.includes('Glass')
-        ? '#18904A'
-        : this.customer?.includes('Plastic')
-        ? '#FBCA00'
-        : this.customer?.includes('Paper')
-        ? '#488DB0'
-        : '#E1251B'
+      this.customer === 'Toni' ? '#262B8C' : this.customer?.includes('Glass') ? '#18904A' : this.customer?.includes('Plastic') ? '#FBCA00' : this.customer?.includes('Paper') ? '#488DB0' : '#E1251B'
     };border-radius:35px">
 <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
@@ -873,15 +819,7 @@ background:${
 </div>
 
     <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Toni'
-        ? '#262B8C'
-        : this.customer?.includes('Glass')
-        ? '#18904A'
-        : this.customer?.includes('Plastic')
-        ? '#FBCA00'
-        : this.customer?.includes('Paper')
-        ? '#488DB0'
-        : '#E1251B'
+      this.customer === 'Toni' ? '#262B8C' : this.customer?.includes('Glass') ? '#18904A' : this.customer?.includes('Plastic') ? '#FBCA00' : this.customer?.includes('Paper') ? '#488DB0' : '#E1251B'
     };border-radius:35px">
     <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -908,11 +846,7 @@ background:${
      alt="Game Background"
      id="background_nevezis"
      style="z-index:0;
-            width: ${
-              document.documentElement.clientWidth < 418
-                ? document.documentElement.clientWidth + 'px'
-                : '418px'
-            };
+            width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'};
             height: 668px;
             position: absolute;
             pointer-events: none;
@@ -922,9 +856,7 @@ background:${
 
 
              <div alt="Image Description" style="z-index:1;width: ${
-               document.documentElement.clientWidth < 418
-                 ? document.documentElement.clientWidth + 'px'
-                 : '418px'
+               document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
              }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'black'}" id="background_blur"></div>
 
         <!-- Game content container hidden initially -->
@@ -932,21 +864,18 @@ background:${
 
         
           <div id="crush-game-background"></div>
-          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" style="margin-top:50px;" width="${
-            this.gridCols * this.tileSize
-          }" height="${this.gridRows * this.tileSize}"></canvas>
+          <canvas id="boomio-crush-canvas" class="boomio-crush-canvas" style="margin-top:50px;" width="${this.gridCols * this.tileSize}" height="${this.gridRows * this.tileSize}"></canvas>
         </div>
  
       </div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
+
+    CitySchoolSelect(this.config || {});
+
     const gameContainer = document.querySelector('.game-container');
 
-    this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-      this.customer,
-      this.currentScoreTable,
-      this.currentScore,
-    );
+    this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.currentScoreTable, this.currentScore);
     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
 
     if (this.customer === 'Nevezis') {
@@ -982,13 +911,7 @@ background:${
       const col = Math.floor(x / this.tileSize);
       const row = Math.floor(y / this.tileSize);
 
-      if (
-        row >= 0 &&
-        row < this.gridRows &&
-        col >= 0 &&
-        col < this.gridCols &&
-        this.grid[row][col] !== null
-      ) {
+      if (row >= 0 && row < this.gridRows && col >= 0 && col < this.gridCols && this.grid[row][col] !== null) {
         this.canvas.style.cursor = 'pointer';
       } else {
         this.canvas.style.cursor = 'default';
@@ -1009,10 +932,7 @@ background:${
         let color;
         do {
           color = this.getRandomColor();
-        } while (
-          (col > 1 && this.grid[row][col - 1] === color && this.grid[row][col - 2] === color) ||
-          (row > 1 && this.grid[row - 1][col] === color && this.grid[row - 2][col] === color)
-        );
+        } while ((col > 1 && this.grid[row][col - 1] === color && this.grid[row][col - 2] === color) || (row > 1 && this.grid[row - 1][col] === color && this.grid[row - 2][col] === color));
         this.grid[row][col] = color;
       }
     }
@@ -1025,14 +945,7 @@ background:${
     // Only add 3Points if baseColor is allowed and not already special
     const threePointColors =
       this.customer === 'Pigu.lt'
-        ? [
-            'crushElement1Pigu',
-            'crushElement2Pigu',
-            'crushElement3Pigu',
-            'crushElement4Pigu',
-            'crushElement5Pigu',
-            'crushElement6Pigu',
-          ]
+        ? ['crushElement1Pigu', 'crushElement2Pigu', 'crushElement3Pigu', 'crushElement4Pigu', 'crushElement5Pigu', 'crushElement6Pigu']
         : this.customer === 'Zemaitijos Pienas'
         ? [
             'crushElement1ZemaitijosPienas',
@@ -1074,24 +987,8 @@ background:${
             'crushElement7GamtosAteitisPlastic',
           ]
         : this.customer === 'Toni'
-        ? [
-            'crushElement1Toni',
-            'crushElement2Toni',
-            'crushElement3Toni',
-            'crushElement4Toni',
-            'crushElement5Toni',
-            'crushElement6Toni',
-            'crushElement7Toni',
-          ]
-        : [
-            'crushElement1Nevezis',
-            'crushElement2Nevezis',
-            'crushElement3Nevezis',
-            'crushElement4Nevezis',
-            'crushElement5Nevezis',
-            'crushElement6Nevezis',
-            'crushElement7Nevezis',
-          ];
+        ? ['crushElement1Toni', 'crushElement2Toni', 'crushElement3Toni', 'crushElement4Toni', 'crushElement5Toni', 'crushElement6Toni', 'crushElement7Toni']
+        : ['crushElement1Nevezis', 'crushElement2Nevezis', 'crushElement3Nevezis', 'crushElement4Nevezis', 'crushElement5Nevezis', 'crushElement6Nevezis', 'crushElement7Nevezis'];
 
     if (Math.random() < 0.1 && threePointColors.includes(baseColor)) {
       return baseColor + '3Points';
@@ -1341,21 +1238,10 @@ background:${
     if (typeof color === 'string' && color.endsWith('Special')) {
       // Draw red background.
       this.ctx.fillStyle = 'transparent';
-      this.ctx.fillRect(
-        col * this.tileSize + xOffset,
-        row * this.tileSize + yOffset,
-        this.tileSize,
-        this.tileSize,
-      );
+      this.ctx.fillRect(col * this.tileSize + xOffset, row * this.tileSize + yOffset, this.tileSize, this.tileSize);
       const specialImg = this.images[color];
       if (specialImg) {
-        this.ctx.drawImage(
-          specialImg,
-          col * this.tileSize + xOffset,
-          row * this.tileSize + yOffset,
-          this.tileSize,
-          this.tileSize,
-        );
+        this.ctx.drawImage(specialImg, col * this.tileSize + xOffset, row * this.tileSize + yOffset, this.tileSize, this.tileSize);
       }
       return;
     }
@@ -1364,23 +1250,12 @@ background:${
       const base = color.replace('3Points', '');
       const img = this.images[base];
       if (img) {
-        this.ctx.drawImage(
-          img,
-          col * this.tileSize + xOffset,
-          row * this.tileSize + yOffset,
-          this.tileSize,
-          this.tileSize,
-        );
+        this.ctx.drawImage(img, col * this.tileSize + xOffset, row * this.tileSize + yOffset, this.tileSize, this.tileSize);
       } else {
         console.log('base color not found:', base);
         // fallback fill if no image
         this.ctx.fillStyle = base;
-        this.ctx.fillRect(
-          col * this.tileSize + xOffset,
-          row * this.tileSize + yOffset,
-          this.tileSize,
-          this.tileSize,
-        );
+        this.ctx.fillRect(col * this.tileSize + xOffset, row * this.tileSize + yOffset, this.tileSize, this.tileSize);
       }
 
       // 2) Overlay “+3”
@@ -1410,12 +1285,7 @@ background:${
       this.ctx.lineTo(boxX + boxWidth - radius, boxY);
       this.ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + radius);
       this.ctx.lineTo(boxX + boxWidth, boxY + boxHeight - radius);
-      this.ctx.quadraticCurveTo(
-        boxX + boxWidth,
-        boxY + boxHeight,
-        boxX + boxWidth - radius,
-        boxY + boxHeight,
-      );
+      this.ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - radius, boxY + boxHeight);
       this.ctx.lineTo(boxX + radius, boxY + boxHeight);
       this.ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - radius);
       this.ctx.lineTo(boxX, boxY + radius);
@@ -1435,44 +1305,23 @@ background:${
       // If you have an image for the base color, draw that image:
       const img = this.images[base];
       if (img) {
-        this.ctx.drawImage(
-          img,
-          col * this.tileSize + xOffset,
-          row * this.tileSize + yOffset,
-          this.tileSize,
-          this.tileSize,
-        );
+        this.ctx.drawImage(img, col * this.tileSize + xOffset, row * this.tileSize + yOffset, this.tileSize, this.tileSize);
       } else {
         // Otherwise fill with your base color
         this.ctx.fillStyle = base;
-        this.ctx.fillRect(
-          col * this.tileSize + xOffset,
-          row * this.tileSize + yOffset,
-          this.tileSize,
-          this.tileSize,
-        );
+        this.ctx.fillRect(col * this.tileSize + xOffset, row * this.tileSize + yOffset, this.tileSize, this.tileSize);
       }
 
       // Draw "x2" text to indicate multiplier
       this.ctx.fillStyle = 'white';
       this.ctx.font = '18px Arial';
-      this.ctx.fillText(
-        'x2',
-        col * this.tileSize + xOffset + this.tileSize * 0.3,
-        row * this.tileSize + yOffset + this.tileSize * 0.6,
-      );
+      this.ctx.fillText('x2', col * this.tileSize + xOffset + this.tileSize * 0.3, row * this.tileSize + yOffset + this.tileSize * 0.6);
       return;
     }
     // Normal tile drawing.
     const img = this.images[color];
     if (img) {
-      this.ctx.drawImage(
-        img,
-        col * this.tileSize + xOffset,
-        row * this.tileSize + yOffset,
-        this.tileSize,
-        this.tileSize,
-      );
+      this.ctx.drawImage(img, col * this.tileSize + xOffset, row * this.tileSize + yOffset, this.tileSize, this.tileSize);
     }
   }
 
@@ -1504,12 +1353,8 @@ background:${
         }
 
         if (containsCyrillic(emailInput)) {
-          document.getElementById('competition-email-error').innerText =
-            this.language === 'LV'
-              ? 'E-pastā ir nederīgas rakstzīmes'
-              : 'El. pašte yra neteisingų simbolių';
-          document.getElementById('competition-email-error').style.backgroundColor =
-            this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+          document.getElementById('competition-email-error').innerText = this.language === 'LV' ? 'E-pastā ir nederīgas rakstzīmes' : 'El. pašte yra neteisingų simbolių';
+          document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
           return;
         }
 
@@ -1523,6 +1368,8 @@ background:${
               ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
               : this.customer === 'Vilvi'
               ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+              : this.customer.includes('Gamtos Ateitis')
+              ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
               : 'Norint tęsti, privaloma sutikti su įmonės privatumo politika. ';
           document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error').style.display = 'block';
@@ -1541,9 +1388,7 @@ background:${
 
         if (!this.checkboxChange2 && this.customer === 'Toni') {
           document.getElementById('competition-checkbox-error2').innerText =
-            this.customer === 'Toni'
-              ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-              : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+            this.customer === 'Toni' ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.' : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
           document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error2').style.display = 'block';
           document.getElementById('competition-checkbox-error2').style.height = '18px';
@@ -1558,22 +1403,16 @@ background:${
           document.getElementById('competition-email-error').zIndex = 0;
           document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
 
           document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
           return;
         }
 
         if (emailInput?.value === '' || emailInput?.value === null) {
           document.getElementById('competition-email-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : this.language === 'ES'
-              ? 'Requerido para continuar.'
-              : 'Norint tęsti privaloma užpildyti.';
+            this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';
           document.getElementById('competition-phone-error').innerText = '';
@@ -1581,42 +1420,30 @@ background:${
           document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
           return;
         }
 
         if ((phoneInput?.value === '' || phoneInput?.value === null) && this.customer === 'Toni') {
           document.getElementById('competition-phone-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : this.language === 'ES'
-              ? 'Requerido para continuar.'
-              : 'Norint tęsti privaloma užpildyti.';
+            this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-phone-error').zIndex = 1;
           document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';
 
           document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-checkbox-error2').innerText = '';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
           document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
           return;
         }
 
-        if (
-          (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-          this.customer === 'Toni'
-        ) {
-          document.getElementById('competition-name-error').innerText =
-            'El campo de nombre debe completarse.';
+        if ((playerNameInput?.value === '' || playerNameInput?.value === null) && this.customer === 'Toni') {
+          document.getElementById('competition-name-error').innerText = 'El campo de nombre debe completarse.';
           document.getElementById('competition-name-error').zIndex = 1;
           document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-phone-error').innerText = '';
@@ -1624,15 +1451,12 @@ background:${
           document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
           document.getElementById('competition-checkbox-error2').innerText = '';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
           document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
           return;
         }
 
@@ -1657,14 +1481,12 @@ background:${
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
           document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor =
-            'transparent';
+          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
 
           return;
         }
         if (emailInput?.value?.length < 10 && this.customer === 'Toni') {
-          document.getElementById('competition-email-error').innerText =
-            'Debes ingresar 10 dígitos.';
+          document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
           document.getElementById('competition-email-error').zIndex = 1;
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-email-error').style.height = '20px';
@@ -1677,8 +1499,7 @@ background:${
           return;
         }
         if (phoneInput?.value?.length < 10 && this.customer === 'Toni') {
-          document.getElementById('competition-phone-error').innerText =
-            'Debes ingresar 10 dígitos.';
+          document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
           document.getElementById('competition-phone-error').style.height = '20px';
 
           document.getElementById('competition-phone-error').zIndex = 1;
@@ -1695,14 +1516,11 @@ background:${
           boomioService
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange2,
-              user_email: emailInput?.value,
-              user_name:
-                this.customer === 'Toni'
-                  ? playerNameInput?.value.trimEnd() + phoneInput?.value
-                  : emailInput?.value,
+              user_email: this.user_id || Elements.emailInput?.value?.trim(),
+              user_name: this.customer === 'Toni' ? playerNameInput?.value.trimEnd() + phoneInput?.value : this.user_id || Elements.nameInput?.value?.trim() || Elements.emailInput?.value?.trim(),
               ...(phoneValue ? { phone: phoneInput?.value } : {}),
-
               via_mobile: this.campaignUrl ? true : false,
+              ...(Elements.schoolSelect && Elements.schoolSelect.value ? { team: Elements.schoolSelect.value } : {}),
             })
             .then((response) => {
               if (response.success === false) {
@@ -1713,18 +1531,14 @@ background:${
                       : this.language === 'ES'
                       ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
                       : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  document.getElementById('competition-email-error').style.backgroundColor =
-                    '#FFBABA';
+                  document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
                   document.getElementById('competition-name-error').innerText = '';
                   document.getElementById('competition-phone-error').innerText = '';
 
-                  document.getElementById('competition-phone-error').style.backgroundColor =
-                    'transparent';
-                  document.getElementById('competition-name-error').style.backgroundColor =
-                    'transparent';
+                  document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+                  document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
                   document.getElementById('competition-checkbox-error').innerText = '';
-                  document.getElementById('competition-checkbox-error').style.backgroundColor =
-                    'transparent';
+                  document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
                 } else if (response.res_code === 'NICKNAME_EXIST') {
                   document.getElementById('competition-name-error').innerText =
                     this.language === 'LV'
@@ -1733,22 +1547,17 @@ background:${
                       ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
                       : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-phone-error').innerText = '';
-                  document.getElementById('competition-name-error').style.backgroundColor =
-                    '#FFBABA';
-                  document.getElementById('competition-phone-error').style.backgroundColor =
-                    'transparent';
+                  document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+                  document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
                   document.getElementById('competition-email-error').innerText = '';
-                  document.getElementById('competition-email-error').style.backgroundColor =
-                    'transparent';
+                  document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
                   document.getElementById('competition-checkbox-error').innerText = '';
-                  document.getElementById('competition-checkbox-error').style.backgroundColor =
-                    'transparent';
+                  document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
                 }
               } else {
                 this.bestScore = response.user_best_score ?? 0;
                 const inpuRegisterContainer = document.querySelector('.input-register-container');
-                inpuRegisterContainer.style.transition =
-                  'height 1s ease, top 1s ease, opacity 1s ease';
+                inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                 setTimeout(() => {
                   inpuRegisterContainer.style.height = '10px';
                   inpuRegisterContainer.style.top = 'calc(50% + 330px)';
@@ -1759,8 +1568,7 @@ background:${
                 }, 1000);
                 setTimeout(() => {
                   const canvas = document.getElementById('boomio-crush-canvas');
-                  document.getElementById('background_blur').style.opacity =
-                    this.language === 'LV' ? 0.4 : 0.2;
+                  document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
                   canvas.style.transition = 'filter 0.6s ease';
                   canvas.style.filter = 'blur(0px)';
                   const inputContainer = document.querySelector('.input-container');
@@ -1771,9 +1579,7 @@ background:${
                   inputContainer.style.display = 'block';
                   setTimeout(() => {
                     inputContainer.style.height = '332px';
-                    inputContainer.style.top = `calc(50% + ${
-                      this.isMobileHeightSmall ? '110px' : '170px'
-                    })`;
+                    inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
                     inputContainer.style.opacity = 1;
                   }, 100);
                 }, 300);
@@ -1828,11 +1634,7 @@ background:${
             this.userBestPlace = response.user_best_place;
             if (this.showCompetitiveRegistration === 'points') {
               this.scoreTable = response;
-              this.scoreTableContainerInstance.updateProps(
-                this.customer,
-                this.scoreTable,
-                this.currentScore,
-              );
+              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
             }
             if (this.showCompetitiveRegistration === 'competition') {
               this.scoreTable = response;
@@ -1842,12 +1644,7 @@ background:${
             if (this.showCompetitiveRegistration === 'collectable') {
               this.collection = response?.collection ? response?.collection : this.collection;
               this.just_won = response?.just_won ? response?.just_won : this.just_won;
-              this.scoreTableContainerInstance.updateProps(
-                this.customer,
-                this.collectables,
-                this.collection,
-                this.just_won,
-              );
+              this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
             }
           })
           .catch((error) => {
@@ -1911,9 +1708,7 @@ background:${
         this.closeGame();
       };
       // Use multiple input types (Android WebView friendly)
-      ['click', 'touchend', 'pointerup'].forEach((evt) =>
-        closeEl.addEventListener(evt, onClose, { passive: false }),
-      );
+      ['click', 'touchend', 'pointerup'].forEach((evt) => closeEl.addEventListener(evt, onClose, { passive: false }));
     }
   }
   closeGame = () => {
@@ -1956,11 +1751,7 @@ background:${
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
                   window.Boomio.logEvent('game_started', JSON.stringify(response));
-                } else if (
-                  window.webkit &&
-                  window.webkit.messageHandlers &&
-                  window.webkit.messageHandlers.Boomio
-                ) {
+                } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
                   var message = {
                     command: 'logEvent',
                     name: 'game_started',
@@ -2418,12 +2209,7 @@ background:${
       this.ctx.strokeStyle = 'red';
       this.ctx.lineWidth = 4;
       this.hintTiles.forEach(({ row, col }) => {
-        this.ctx.strokeRect(
-          col * this.tileSize + 2,
-          row * this.tileSize + 2,
-          this.tileSize - 4,
-          this.tileSize - 4,
-        );
+        this.ctx.strokeRect(col * this.tileSize + 2, row * this.tileSize + 2, this.tileSize - 4, this.tileSize - 4);
       });
     }
   }
