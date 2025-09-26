@@ -145,8 +145,7 @@ export class DidYouKnowContainer {
                 text: 'Metaliniai dangteliai keliauja į plastiko/metalo konteinerį, o stiklainis – į stiklo! Taip abi dalys gaus naują gyvenimą, o tu – papildomą tašką už sąmoningumą. ✅♻️',
               },
             ];
-    this.randomGamtosAteitis =
-      this.gamtosAteitis[Math.floor(Math.random() * this.gamtosAteitis.length)];
+    this.randomGamtosAteitis = this.gamtosAteitis[Math.floor(Math.random() * this.gamtosAteitis.length)];
 
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language ? this.config.language : 'LV';
@@ -210,69 +209,22 @@ export class DidYouKnowContainer {
     //   ];
     // }
     if (this.prop === 'Pieno Žvaigždės') {
-      this.collectables = [
-        item15PienoZvaigzdes,
-        item1PienoZvaigzdes,
-        item8PienoZvaigzdes,
-        item2PienoZvaigzdes,
-        item7PienoZvaigzdes,
-        item5PienoZvaigzdes,
-      ];
+      this.collectables = [item15PienoZvaigzdes, item1PienoZvaigzdes, item8PienoZvaigzdes, item2PienoZvaigzdes, item7PienoZvaigzdes, item5PienoZvaigzdes];
     } else if (this.prop === 'Pegasas') {
       // Handle Glass collectables
-      this.collectables = [
-        item1pegasas,
-        item2pegasas,
-        item3pegasas,
-        item4pegasas,
-        item5pegasas,
-        item6pegasas,
-        item7pegasas,
-        item8pegasas,
-        item9pegasas,
-        item10pegasas,
-        item11pegasas,
-        item12pegasas,
-      ];
+      this.collectables = [item1pegasas, item2pegasas, item3pegasas, item4pegasas, item5pegasas, item6pegasas, item7pegasas, item8pegasas, item9pegasas, item10pegasas, item11pegasas, item12pegasas];
     } else if (this.prop === 'Zemaitijos Pienas') {
       // Handle Glass collectables
-      this.collectables = [
-        item8Dobilo,
-        item2Dobilo,
-        item5Dobilo,
-        item3Dobilo,
-        item4Dobilo,
-        item7Dobilo,
-        item6Dobilo,
-        item1Dobilo,
-        item9Dobilo,
-      ];
+      this.collectables = [item8Dobilo, item2Dobilo, item5Dobilo, item3Dobilo, item4Dobilo, item7Dobilo, item6Dobilo, item1Dobilo, item9Dobilo];
     } else if (this.prop === 'Nykstukas') {
       // Handle Glass collectables
       this.collectables = [item1Nykstukas, item2Nykstukas, item3Nykstukas, item4Nykstukas];
     } else if (this.prop === 'Magija') {
       // Handle Glass collectables
-      this.collectables = [
-        item1Magija,
-        item2Magija,
-        item3Magija,
-        item4Magija,
-        item5Magija,
-        item6Magija,
-      ];
+      this.collectables = [item1Magija, item2Magija, item3Magija, item4Magija, item5Magija, item6Magija];
     } else if (this.prop === 'Nevezis') {
       // Handle Glass collectables
-      this.collectables = [
-        item1Nevezis,
-        item2Nevezis,
-        item3Nevezis,
-        item4Nevezis,
-        item5Nevezis,
-        item6Nevezis,
-        item7Nevezis,
-        item8Nevezis,
-        item9Nevezis,
-      ];
+      this.collectables = [item1Nevezis, item2Nevezis, item3Nevezis, item4Nevezis, item5Nevezis, item6Nevezis, item7Nevezis, item8Nevezis, item9Nevezis];
     }
 
     this.collectablesLinks = [];
@@ -358,43 +310,13 @@ export class DidYouKnowContainer {
     // }
     else if (this.prop === 'Pieno Žvaigždės') {
       // Handle Glass collectables
-      this.collectables = [
-        item15PienoZvaigzdes,
-        item1PienoZvaigzdes,
-        item8PienoZvaigzdes,
-        item2PienoZvaigzdes,
-        item7PienoZvaigzdes,
-        item5PienoZvaigzdes,
-      ];
+      this.collectables = [item15PienoZvaigzdes, item1PienoZvaigzdes, item8PienoZvaigzdes, item2PienoZvaigzdes, item7PienoZvaigzdes, item5PienoZvaigzdes];
     } else if (this.prop === 'Pegasas') {
       // Handle Glass collectables
-      this.collectables = [
-        item1pegasas,
-        item2pegasas,
-        item3pegasas,
-        item4pegasas,
-        item5pegasas,
-        item6pegasas,
-        item7pegasas,
-        item8pegasas,
-        item9pegasas,
-        item10pegasas,
-        item11pegasas,
-        item12pegasas,
-      ];
+      this.collectables = [item1pegasas, item2pegasas, item3pegasas, item4pegasas, item5pegasas, item6pegasas, item7pegasas, item8pegasas, item9pegasas, item10pegasas, item11pegasas, item12pegasas];
     } else if (this.prop === 'Zemaitijos Pienas') {
       // Handle Glass collectables
-      this.collectables = [
-        item8Dobilo,
-        item2Dobilo,
-        item5Dobilo,
-        item3Dobilo,
-        item4Dobilo,
-        item7Dobilo,
-        item6Dobilo,
-        item1Dobilo,
-        item9Dobilo,
-      ];
+      this.collectables = [item8Dobilo, item2Dobilo, item5Dobilo, item3Dobilo, item4Dobilo, item7Dobilo, item6Dobilo, item1Dobilo, item9Dobilo];
     }
 
     this.updateVisuals();
@@ -432,8 +354,7 @@ export class DidYouKnowContainer {
     if (this.prop === 'Pigu.lt') {
       loopingImages?.forEach((product, index) => {
         if (index % 3 === 0) {
-          tableHTML +=
-            '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
+          tableHTML += '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
         }
 
         tableHTML += `
@@ -445,26 +366,17 @@ export class DidYouKnowContainer {
               ${
                 product.link
                   ? `<div class='image-container-text'>
-                       <a href="${
-                         product.link +
-                         '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Products'
-                       }" 
+                       <a href="${product.link + '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Products'}" 
                           target="_blank" style="color: white; text-decoration: underline;text-align:left;">
                          <p style="margin-left:10px;margin-right:10px;line-height:10px;color:black;margin-left:20px;font-weight:700;text-align:start;margin-left:${
                            document.documentElement.clientWidth < 418 ? '100px' : '110px'
-                         };margin-right:${
-                           document.documentElement.clientWidth < 418 ? '100px' : '110px'
-                         };">
+                         };margin-right:${document.documentElement.clientWidth < 418 ? '100px' : '110px'};">
                            ${product.title}
                          </p>
                              <p style="margin: 5px; line-height: 10px; color: black; font-size: 12px;text-align:start; margin-left: ${
                                document.documentElement.clientWidth < 418 ? '100px' : '110px'
-                             }; margin-right: ${
-                               document.documentElement.clientWidth < 418 ? '100px' : '110px'
-                             };">
-  ${product.price}<span style="font-size: 6px; position: relative; top: -4px;left: 1px;">${
-    product.cents
-  }</span> €
+                             }; margin-right: ${document.documentElement.clientWidth < 418 ? '100px' : '110px'};">
+  ${product.price}<span style="font-size: 6px; position: relative; top: -4px;left: 1px;">${product.cents}</span> €
 </p>
 
                        </a>
@@ -483,39 +395,26 @@ export class DidYouKnowContainer {
         const link = this.collectablesLinks[index];
 
         if (this.prop === 'Nykstukas' ? index % 2 === 0 : index % 3 === 0) {
-          tableHTML +=
-            '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
+          tableHTML += '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
         }
         tableHTML += `
-          <td style="padding:5px;text-align: center; border: none; ${
-            this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''
-          }">
+          <td style="padding:5px;text-align: center; border: none; ${this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''}">
           <div id="image-${index}" >
           <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:
             ${this.prop === 'Pigu.lt' ? '100px' : '70px'};' src=${item} alt="Scoreboard Image" >
         
         ${
-          (this.prop === 'Pegasas' && this.collectablesLinks[index]) ||
-          (this.prop === 'Pigu.lt' && link)
+          (this.prop === 'Pegasas' && this.collectablesLinks[index]) || (this.prop === 'Pigu.lt' && link)
             ? `<div class='image-container-text'><a href="${
-                this.prop === 'Pegasas'
-                  ? this.collectablesLinks[index]
-                  : this.prop === 'Pigu.lt' &&
-                    link.url +
-                      '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Black_Friday'
+                this.prop === 'Pegasas' ? this.collectablesLinks[index] : this.prop === 'Pigu.lt' && link.url + '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Black_Friday'
               }" target="_blank" style="color: white; text-decoration: underline;"><p style="margin-left:10px;margin-right:10px;max-width:280px;line-height:10px;">${
-                this.prop === 'Pegasas'
-                  ? this.collectablesLinks[index]
-                  : this.prop === 'Pigu.lt' && link.title
+                this.prop === 'Pegasas' ? this.collectablesLinks[index] : this.prop === 'Pigu.lt' && link.title
               }<p/></a></div>`
             : ''
         }
           </div>
           </td>`;
-        if (
-          (this.prop === 'Nykstukas' ? index + (1 % 2) === 0 : index + (1 % 3) === 0) ||
-          index === loopingImages.length - 1
-        ) {
+        if ((this.prop === 'Nykstukas' ? index + (1 % 2) === 0 : index + (1 % 3) === 0) || index === loopingImages.length - 1) {
           tableHTML += '</tr>';
         }
       });
@@ -525,9 +424,7 @@ export class DidYouKnowContainer {
       ${`<div class="bomio-first-line" style="width:${'calc(100% - 32px)'};margin-left:${'16px'}; top: ${
         this.prop.includes('Gamtos Ateitis') ? '305px' : '505px'
       };line-height:18px; position: absolute;font-weight: 600; text-align: center; color: white; font-size:${
-        this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Nykstukas'
-          ? '18px'
-          : '14px'
+        this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Nykstukas' ? '18px' : '14px'
       } ; font-family: Montserrat;  word-wrap: break-word">${
         this.prop.includes('Gamtos Ateitis')
           ? this.randomGamtosAteitis?.text
@@ -545,9 +442,7 @@ export class DidYouKnowContainer {
       }</div>
               <div class="bomio-second-line" style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
                 this.prop === 'Pieno Žvaigždės' ? 500 : 400
-              };  word-wrap: break-word;text-decoration:${
-                this.prop === 'Pieno Žvaigždės' ? 'underline' : ''
-              } ">${
+              };  word-wrap: break-word;text-decoration:${this.prop === 'Pieno Žvaigždės' ? 'underline' : ''} ">${
                 this.prop === 'Pegasas'
                   ? ''
                   : this.prop === 'Pieno Žvaigždės'
@@ -614,23 +509,9 @@ export class DidYouKnowContainer {
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a 
   onclick="event.stopPropagation();" 
   target="_blank" 
-  href="${
-    this.prop === 'Pieno Žvaigždės'
-      ? 'https://pienozvaigzdes.lt/lt/20_miau'
-      : this.prop === 'Pegasas'
-        ? 'https://www.pegasas.lt/'
-        : ''
-  }" 
+  href="${this.prop === 'Pieno Žvaigždės' ? 'https://pienozvaigzdes.lt/lt/20_miau' : this.prop === 'Pegasas' ? 'https://www.pegasas.lt/' : ''}" 
   style="color:white">
-  ${
-    this.prop === 'Pegasas'
-      ? ''
-      : this.prop === 'Pieno Žvaigždės'
-        ? ''
-        : this.prop === 'Zemaitijos Pienas'
-          ? ''
-          : ''
-  }
+  ${this.prop === 'Pegasas' ? '' : this.prop === 'Pieno Žvaigždės' ? '' : this.prop === 'Zemaitijos Pienas' ? '' : ''}
 </a> </div> `}
     `;
 
@@ -694,8 +575,7 @@ export class DidYouKnowContainer {
         imgElement.classList.toggle('enlarge-image');
         if (this.prop === 'Pigu.lt') {
           // Toggle the display of the close button
-          document.querySelector('.closeDidYouKnow').style.display =
-            document.querySelector('.closeDidYouKnow').style.display === 'none' ? 'block' : 'none';
+          document.querySelector('.closeDidYouKnow').style.display = document.querySelector('.closeDidYouKnow').style.display === 'none' ? 'block' : 'none';
         }
       }
     } else {
@@ -714,26 +594,17 @@ export class DidYouKnowContainer {
     containerDiv.style.background = 'none';
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
-    containerDiv.style.width =
-      document.documentElement.clientWidth < 426
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
-        : '426px';
+    containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="display:${
         this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
-      };width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${
-        this.prop === 'Pigu.lt' ? 'white' : 'white'
-      }; font-size: ${
+      };width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${this.prop === 'Pigu.lt' ? 'white' : 'white'}; font-size: ${
         this.isMobileWidthSmall ? '26px' : '30px'
       }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
         this.prop.includes('Gamtos Ateitis') ? this.randomGamtosAteitis?.title : ''
       }</div>
-      <div style="width:calc(100% - 20px);margin-left:10px;top: ${
-        this.prop === 'Nykstukas' ? '150px' : '72px'
-      }; position: absolute; text-align: center;line-height:${'42px'}; color: ${
+      <div style="width:calc(100% - 20px);margin-left:10px;top: ${this.prop === 'Nykstukas' ? '150px' : '72px'}; position: absolute; text-align: center;line-height:${'42px'}; color: ${
         this.prop === 'Pigu.lt' ? 'white' : 'white'
       }; font-size: ${
         this.isMobileWidthSmall ? '26px' : '30px'
@@ -773,24 +644,14 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-        this.prop === 'Pegasas'
-          ? '100px'
-          : this.prop === 'Pieno Žvaigždės'
-            ? '174px'
-            : this.prop === 'Nykstukas'
-              ? '230px'
-              : '114px'
+        this.prop === 'Pegasas' ? '100px' : this.prop === 'Pieno Žvaigždės' ? '174px' : this.prop === 'Nykstukas' ? '230px' : '114px'
       }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
-          <table style="margin-top:${
-            this.prop === 'Pigu.lt' ? (this.isMobileWidthSmall ? '30px' : '40px') : '30px'
-          };border-spacing:3px;width:${
+          <table style="margin-top:${this.prop === 'Pigu.lt' ? (this.isMobileWidthSmall ? '30px' : '40px') : '30px'};border-spacing:3px;width:${
             this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
           };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
             <tbody class="boomio-tbody" style="background-color:transparent">
-            <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${
-              this.isMobileWidthSmall ? '20px' : '40px'
-            };top:35px;display:none' id='closeDidYouKnow'>
+            <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${this.isMobileWidthSmall ? '20px' : '40px'};top:35px;display:none' id='closeDidYouKnow'>
                             <img src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
 
     `;
@@ -803,9 +664,7 @@ export class DidYouKnowContainer {
           <div style="width:100%;font-size:${
             this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
           };text-align:center;text-transform:uppercase;top:555px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
-          <div style="display:${
-            this.prop === 'Pigu.lt' ? 'block' : 'none'
-          };border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
+          <div style="display:${this.prop === 'Pigu.lt' ? 'block' : 'none'};border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
             this.prop === 'Pigu.lt' ? '#F34434' : 'none'
           }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
@@ -818,9 +677,7 @@ export class DidYouKnowContainer {
                 ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
                 : this.language === 'FI'
                   ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
-                  : this.language === 'RU' &&
-                      (this.campaignUrlProp === 'https://kaup.ee' ||
-                        this.campaignUrlProp === 'https://kaup24.ee')
+                  : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
                     ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
                     : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
                       ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'

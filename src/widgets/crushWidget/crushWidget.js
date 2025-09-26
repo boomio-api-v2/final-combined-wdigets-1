@@ -156,64 +156,64 @@ class CrushGame {
             crushElement6Pigu,
           }
         : this.customer === 'Zemaitijos Pienas'
-        ? {
-            crushElement1ZemaitijosPienas,
-            crushElement2ZemaitijosPienas,
-            crushElement3ZemaitijosPienas,
-            crushElement4ZemaitijosPienas,
-            crushElement5ZemaitijosPienas,
-            crushElement6ZemaitijosPienas,
-            crushElement7ZemaitijosPienas,
-          }
-        : this.customer === 'Toni'
-        ? {
-            crushElement1Toni,
-            crushElement2Toni,
-            crushElement3Toni,
-            crushElement4Toni,
-            crushElement5Toni,
-            crushElement6Toni,
-            crushElement7Toni,
-          }
-        : this.customer?.includes('Glass')
-        ? {
-            crushElement1GamtosAteitisGlass,
-            crushElement2GamtosAteitisGlass,
-            crushElement3GamtosAteitisGlass,
-            crushElement4GamtosAteitisGlass,
-            crushElement5GamtosAteitisGlass,
-            crushElement6GamtosAteitisGlass,
-            crushElement7GamtosAteitisGlass,
-          }
-        : this.customer?.includes('Paper')
-        ? {
-            crushElement1GamtosAteitisPaper,
-            crushElement2GamtosAteitisPaper,
-            crushElement3GamtosAteitisPaper,
-            crushElement4GamtosAteitisPaper,
-            crushElement5GamtosAteitisPaper,
-            crushElement6GamtosAteitisPaper,
-            crushElement7GamtosAteitisPaper,
-          }
-        : this.customer?.includes('Plastic')
-        ? {
-            crushElement1GamtosAteitisPlastic,
-            crushElement2GamtosAteitisPlastic,
-            crushElement3GamtosAteitisPlastic,
-            crushElement4GamtosAteitisPlastic,
-            crushElement5GamtosAteitisPlastic,
-            crushElement6GamtosAteitisPlastic,
-            crushElement7GamtosAteitisPlastic,
-          }
-        : {
-            crushElement1Nevezis,
-            crushElement2Nevezis,
-            crushElement3Nevezis,
-            crushElement4Nevezis,
-            crushElement5Nevezis,
-            crushElement6Nevezis,
-            crushElement7Nevezis,
-          };
+          ? {
+              crushElement1ZemaitijosPienas,
+              crushElement2ZemaitijosPienas,
+              crushElement3ZemaitijosPienas,
+              crushElement4ZemaitijosPienas,
+              crushElement5ZemaitijosPienas,
+              crushElement6ZemaitijosPienas,
+              crushElement7ZemaitijosPienas,
+            }
+          : this.customer === 'Toni'
+            ? {
+                crushElement1Toni,
+                crushElement2Toni,
+                crushElement3Toni,
+                crushElement4Toni,
+                crushElement5Toni,
+                crushElement6Toni,
+                crushElement7Toni,
+              }
+            : this.customer?.includes('Glass')
+              ? {
+                  crushElement1GamtosAteitisGlass,
+                  crushElement2GamtosAteitisGlass,
+                  crushElement3GamtosAteitisGlass,
+                  crushElement4GamtosAteitisGlass,
+                  crushElement5GamtosAteitisGlass,
+                  crushElement6GamtosAteitisGlass,
+                  crushElement7GamtosAteitisGlass,
+                }
+              : this.customer?.includes('Paper')
+                ? {
+                    crushElement1GamtosAteitisPaper,
+                    crushElement2GamtosAteitisPaper,
+                    crushElement3GamtosAteitisPaper,
+                    crushElement4GamtosAteitisPaper,
+                    crushElement5GamtosAteitisPaper,
+                    crushElement6GamtosAteitisPaper,
+                    crushElement7GamtosAteitisPaper,
+                  }
+                : this.customer?.includes('Plastic')
+                  ? {
+                      crushElement1GamtosAteitisPlastic,
+                      crushElement2GamtosAteitisPlastic,
+                      crushElement3GamtosAteitisPlastic,
+                      crushElement4GamtosAteitisPlastic,
+                      crushElement5GamtosAteitisPlastic,
+                      crushElement6GamtosAteitisPlastic,
+                      crushElement7GamtosAteitisPlastic,
+                    }
+                  : {
+                      crushElement1Nevezis,
+                      crushElement2Nevezis,
+                      crushElement3Nevezis,
+                      crushElement4Nevezis,
+                      crushElement5Nevezis,
+                      crushElement6Nevezis,
+                      crushElement7Nevezis,
+                    };
     this.grid = [];
     this.selectedTile = null;
     this.images = {};
@@ -621,64 +621,64 @@ class CrushGame {
             crushElement6PiguSpecial,
           }
         : this.customer === 'Toni'
-        ? {
-            crushElement1ToniSpecial,
-            crushElement2ToniSpecial,
-            crushElement3ToniSpecial,
-            crushElement4ToniSpecial,
-            crushElement5ToniSpecial,
-            crushElement6ToniSpecial,
-            crushElement7ToniSpecial,
-          }
-        : this.customer === 'Zemaitijos Pienas'
-        ? {
-            crushElement1ZemaitijosPienasSpecial,
-            crushElement2ZemaitijosPienasSpecial,
-            crushElement3ZemaitijosPienasSpecial,
-            crushElement4ZemaitijosPienasSpecial,
-            crushElement5ZemaitijosPienasSpecial,
-            crushElement6ZemaitijosPienasSpecial,
-            crushElement7ZemaitijosPienasSpecial,
-          }
-        : this.customer?.includes('Glass')
-        ? {
-            crushElement1GamtosAteitisGlassSpecial,
-            crushElement2GamtosAteitisGlassSpecial,
-            crushElement3GamtosAteitisGlassSpecial,
-            crushElement4GamtosAteitisGlassSpecial,
-            crushElement5GamtosAteitisGlassSpecial,
-            crushElement6GamtosAteitisGlassSpecial,
-            crushElement7GamtosAteitisGlassSpecial,
-          }
-        : this.customer?.includes('Paper')
-        ? {
-            crushElement1GamtosAteitisPaperSpecial,
-            crushElement2GamtosAteitisPaperSpecial,
-            crushElement3GamtosAteitisPaperSpecial,
-            crushElement4GamtosAteitisPaperSpecial,
-            crushElement5GamtosAteitisPaperSpecial,
-            crushElement6GamtosAteitisPaperSpecial,
-            crushElement7GamtosAteitisPaperSpecial,
-          }
-        : this.customer?.includes('Plastic')
-        ? {
-            crushElement1GamtosAteitisPlasticSpecial,
-            crushElement2GamtosAteitisPlasticSpecial,
-            crushElement3GamtosAteitisPlasticSpecial,
-            crushElement4GamtosAteitisPlasticSpecial,
-            crushElement5GamtosAteitisPlasticSpecial,
-            crushElement6GamtosAteitisPlasticSpecial,
-            crushElement7GamtosAteitisPlasticSpecial,
-          }
-        : {
-            crushElement1NevezisSpecial,
-            crushElement2NevezisSpecial,
-            crushElement3NevezisSpecial,
-            crushElement4NevezisSpecial,
-            crushElement5NevezisSpecial,
-            crushElement6NevezisSpecial,
-            crushElement7NevezisSpecial,
-          };
+          ? {
+              crushElement1ToniSpecial,
+              crushElement2ToniSpecial,
+              crushElement3ToniSpecial,
+              crushElement4ToniSpecial,
+              crushElement5ToniSpecial,
+              crushElement6ToniSpecial,
+              crushElement7ToniSpecial,
+            }
+          : this.customer === 'Zemaitijos Pienas'
+            ? {
+                crushElement1ZemaitijosPienasSpecial,
+                crushElement2ZemaitijosPienasSpecial,
+                crushElement3ZemaitijosPienasSpecial,
+                crushElement4ZemaitijosPienasSpecial,
+                crushElement5ZemaitijosPienasSpecial,
+                crushElement6ZemaitijosPienasSpecial,
+                crushElement7ZemaitijosPienasSpecial,
+              }
+            : this.customer?.includes('Glass')
+              ? {
+                  crushElement1GamtosAteitisGlassSpecial,
+                  crushElement2GamtosAteitisGlassSpecial,
+                  crushElement3GamtosAteitisGlassSpecial,
+                  crushElement4GamtosAteitisGlassSpecial,
+                  crushElement5GamtosAteitisGlassSpecial,
+                  crushElement6GamtosAteitisGlassSpecial,
+                  crushElement7GamtosAteitisGlassSpecial,
+                }
+              : this.customer?.includes('Paper')
+                ? {
+                    crushElement1GamtosAteitisPaperSpecial,
+                    crushElement2GamtosAteitisPaperSpecial,
+                    crushElement3GamtosAteitisPaperSpecial,
+                    crushElement4GamtosAteitisPaperSpecial,
+                    crushElement5GamtosAteitisPaperSpecial,
+                    crushElement6GamtosAteitisPaperSpecial,
+                    crushElement7GamtosAteitisPaperSpecial,
+                  }
+                : this.customer?.includes('Plastic')
+                  ? {
+                      crushElement1GamtosAteitisPlasticSpecial,
+                      crushElement2GamtosAteitisPlasticSpecial,
+                      crushElement3GamtosAteitisPlasticSpecial,
+                      crushElement4GamtosAteitisPlasticSpecial,
+                      crushElement5GamtosAteitisPlasticSpecial,
+                      crushElement6GamtosAteitisPlasticSpecial,
+                      crushElement7GamtosAteitisPlasticSpecial,
+                    }
+                  : {
+                      crushElement1NevezisSpecial,
+                      crushElement2NevezisSpecial,
+                      crushElement3NevezisSpecial,
+                      crushElement4NevezisSpecial,
+                      crushElement5NevezisSpecial,
+                      crushElement6NevezisSpecial,
+                      crushElement7NevezisSpecial,
+                    };
     const specialKeys = Object.keys(specialSources);
 
     let loadedImages = 0;
@@ -750,14 +750,14 @@ class CrushGame {
               this.language === 'EN'
                 ? newRecordEn
                 : this.language === 'LV'
-                ? newRecordLV
-                : this.language === 'ET' || this.language === 'ET'
-                ? newRecordEE
-                : this.language === 'FI'
-                ? newRecordFI
-                : this.language === 'RU'
-                ? newRecordRU
-                : newRecord
+                  ? newRecordLV
+                  : this.language === 'ET' || this.language === 'ET'
+                    ? newRecordEE
+                    : this.language === 'FI'
+                      ? newRecordFI
+                      : this.language === 'RU'
+                        ? newRecordRU
+                        : newRecord
             } alt="Image Description" style="width: 100%; height: 100%;">
             </div>
         
@@ -832,16 +832,16 @@ background:${
       this.customer === 'Pigu.lt'
         ? backgroundPigu
         : this.customer === 'Zemaitijos Pienas'
-        ? backgroundZemaitijosPienas
-        : this.customer === 'Toni'
-        ? backgroundToni
-        : this.customer?.includes('Paper')
-        ? backgroundGamtosAteitisPaper
-        : this.customer?.includes('Plastic')
-        ? backgroundGamtosAteitisPlastic
-        : this.customer?.includes('Glass')
-        ? backgroundGamtosAteitisGlass
-        : backgroundNevezis
+          ? backgroundZemaitijosPienas
+          : this.customer === 'Toni'
+            ? backgroundToni
+            : this.customer?.includes('Paper')
+              ? backgroundGamtosAteitisPaper
+              : this.customer?.includes('Plastic')
+                ? backgroundGamtosAteitisPlastic
+                : this.customer?.includes('Glass')
+                  ? backgroundGamtosAteitisGlass
+                  : backgroundNevezis
     }" 
      alt="Game Background"
      id="background_nevezis"
@@ -878,7 +878,7 @@ background:${
     this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.currentScoreTable, this.currentScore);
     gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
 
-    if (this.customer === 'Nevezis') {
+    if (this.customer === 'Nevezis' || this.customer.includes('Gamtos Ateitis')) {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
@@ -947,48 +947,48 @@ background:${
       this.customer === 'Pigu.lt'
         ? ['crushElement1Pigu', 'crushElement2Pigu', 'crushElement3Pigu', 'crushElement4Pigu', 'crushElement5Pigu', 'crushElement6Pigu']
         : this.customer === 'Zemaitijos Pienas'
-        ? [
-            'crushElement1ZemaitijosPienas',
-            'crushElement2ZemaitijosPienas',
-            'crushElement3ZemaitijosPienas',
-            'crushElement4ZemaitijosPienas',
-            'crushElement5ZemaitijosPienas',
-            'crushElement6ZemaitijosPienas',
-            'crushElement7ZemaitijosPienas',
-          ]
-        : this.customer?.includes('Glass')
-        ? [
-            'crushElement1GamtosAteitisGlass',
-            'crushElement2GamtosAteitisGlass',
-            'crushElement3GamtosAteitisGlass',
-            'crushElement4GamtosAteitisGlass',
-            'crushElement5GamtosAteitisGlass',
-            'crushElement6GamtosAteitisGlass',
-            'crushElement7GamtosAteitisGlass',
-          ]
-        : this.customer?.includes('Paper')
-        ? [
-            'crushElement1GamtosAteitisPaper',
-            'crushElement2GamtosAteitisPaper',
-            'crushElement3GamtosAteitisPaper',
-            'crushElement4GamtosAteitisPaper',
-            'crushElement5GamtosAteitisPaper',
-            'crushElement6GamtosAteitisPaper',
-            'crushElement7GamtosAteitisPaper',
-          ]
-        : this.customer?.includes('Plastic')
-        ? [
-            'crushElement1GamtosAteitisPlastic',
-            'crushElement2GamtosAteitisPlastic',
-            'crushElement3GamtosAteitisPlastic',
-            'crushElement4GamtosAteitisPlastic',
-            'crushElement5GamtosAteitisPlastic',
-            'crushElement6GamtosAteitisPlastic',
-            'crushElement7GamtosAteitisPlastic',
-          ]
-        : this.customer === 'Toni'
-        ? ['crushElement1Toni', 'crushElement2Toni', 'crushElement3Toni', 'crushElement4Toni', 'crushElement5Toni', 'crushElement6Toni', 'crushElement7Toni']
-        : ['crushElement1Nevezis', 'crushElement2Nevezis', 'crushElement3Nevezis', 'crushElement4Nevezis', 'crushElement5Nevezis', 'crushElement6Nevezis', 'crushElement7Nevezis'];
+          ? [
+              'crushElement1ZemaitijosPienas',
+              'crushElement2ZemaitijosPienas',
+              'crushElement3ZemaitijosPienas',
+              'crushElement4ZemaitijosPienas',
+              'crushElement5ZemaitijosPienas',
+              'crushElement6ZemaitijosPienas',
+              'crushElement7ZemaitijosPienas',
+            ]
+          : this.customer?.includes('Glass')
+            ? [
+                'crushElement1GamtosAteitisGlass',
+                'crushElement2GamtosAteitisGlass',
+                'crushElement3GamtosAteitisGlass',
+                'crushElement4GamtosAteitisGlass',
+                'crushElement5GamtosAteitisGlass',
+                'crushElement6GamtosAteitisGlass',
+                'crushElement7GamtosAteitisGlass',
+              ]
+            : this.customer?.includes('Paper')
+              ? [
+                  'crushElement1GamtosAteitisPaper',
+                  'crushElement2GamtosAteitisPaper',
+                  'crushElement3GamtosAteitisPaper',
+                  'crushElement4GamtosAteitisPaper',
+                  'crushElement5GamtosAteitisPaper',
+                  'crushElement6GamtosAteitisPaper',
+                  'crushElement7GamtosAteitisPaper',
+                ]
+              : this.customer?.includes('Plastic')
+                ? [
+                    'crushElement1GamtosAteitisPlastic',
+                    'crushElement2GamtosAteitisPlastic',
+                    'crushElement3GamtosAteitisPlastic',
+                    'crushElement4GamtosAteitisPlastic',
+                    'crushElement5GamtosAteitisPlastic',
+                    'crushElement6GamtosAteitisPlastic',
+                    'crushElement7GamtosAteitisPlastic',
+                  ]
+                : this.customer === 'Toni'
+                  ? ['crushElement1Toni', 'crushElement2Toni', 'crushElement3Toni', 'crushElement4Toni', 'crushElement5Toni', 'crushElement6Toni', 'crushElement7Toni']
+                  : ['crushElement1Nevezis', 'crushElement2Nevezis', 'crushElement3Nevezis', 'crushElement4Nevezis', 'crushElement5Nevezis', 'crushElement6Nevezis', 'crushElement7Nevezis'];
 
     if (Math.random() < 0.1 && threePointColors.includes(baseColor)) {
       return baseColor + '3Points';
@@ -1079,16 +1079,16 @@ background:${
               ? this.customer === 'Toni'
                 ? 'crushElement1ToniSpecial'
                 : this.customer === 'Zemaitijos Pienas'
-                ? 'crushElement1ZemaitijosPienasSpecial'
-                : this.customer === 'Pigu.lt'
-                ? 'crushElement1PiguSpecial'
-                : this.customer?.includes('Paper')
-                ? 'crushElement1GamtosAteitisPaperSpecial'
-                : this.customer?.includes('Plastic')
-                ? 'crushElement1GamtosAteitisPlasticSpecial'
-                : this.customer?.includes('Glass')
-                ? 'crushElement1GamtosAteitisGlassSpecial'
-                : 'crushElement1NevezisSpecial'
+                  ? 'crushElement1ZemaitijosPienasSpecial'
+                  : this.customer === 'Pigu.lt'
+                    ? 'crushElement1PiguSpecial'
+                    : this.customer?.includes('Paper')
+                      ? 'crushElement1GamtosAteitisPaperSpecial'
+                      : this.customer?.includes('Plastic')
+                        ? 'crushElement1GamtosAteitisPlasticSpecial'
+                        : this.customer?.includes('Glass')
+                          ? 'crushElement1GamtosAteitisGlassSpecial'
+                          : 'crushElement1NevezisSpecial'
               : newColor + 'Special';
         }
         newTilesMap[col].push(newColor);
@@ -1363,14 +1363,14 @@ background:${
             this.language === 'LV'
               ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
               : this.language === 'ES'
-              ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-              : this.customer === 'Perlas GO'
-              ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
-              : this.customer === 'Vilvi'
-              ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
-              : this.customer.includes('Gamtos Ateitis')
-              ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-              : 'Norint tęsti, privaloma sutikti su įmonės privatumo politika. ';
+                ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                : this.customer === 'Perlas GO'
+                  ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
+                  : this.customer === 'Vilvi'
+                    ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+                    : this.customer.includes('Gamtos Ateitis')
+                      ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+                      : 'Norint tęsti, privaloma sutikti su įmonės privatumo politika. ';
           document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error').style.display = 'block';
           document.getElementById('competition-checkbox-error').style.height = '18px';
@@ -1465,18 +1465,18 @@ background:${
             this.language === 'ES'
               ? 'Formato de correo electrónico no válido'
               : this.language === 'EN'
-              ? 'Invalid email format'
-              : this.language === 'RU'
-              ? 'Неверный формат электронной почты'
-              : this.language === 'LV'
-              ? 'Nederīgs e-pasta formāts'
-              : this.language === 'ET'
-              ? 'Vigane e-posti vorming'
-              : this.language === 'FI'
-              ? 'Virheellinen sähköpostiosoite'
-              : this.language === 'PL'
-              ? 'Nieprawidłowy format adresu e-mail'
-              : 'Neteisingas el. pašto formatas.';
+                ? 'Invalid email format'
+                : this.language === 'RU'
+                  ? 'Неверный формат электронной почты'
+                  : this.language === 'LV'
+                    ? 'Nederīgs e-pasta formāts'
+                    : this.language === 'ET'
+                      ? 'Vigane e-posti vorming'
+                      : this.language === 'FI'
+                        ? 'Virheellinen sähköpostiosoite'
+                        : this.language === 'PL'
+                          ? 'Nieprawidłowy format adresu e-mail'
+                          : 'Neteisingas el. pašto formatas.';
           document.getElementById('competition-email-error').zIndex = 1;
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
@@ -1532,8 +1532,8 @@ background:${
                     this.language === 'LV'
                       ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
-                      : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
+                        : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
                   document.getElementById('competition-name-error').innerText = '';
                   document.getElementById('competition-phone-error').innerText = '';
@@ -1547,8 +1547,8 @@ background:${
                     this.language === 'LV'
                       ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                       : this.language === 'ES'
-                      ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
-                      : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                        ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
+                        : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-phone-error').innerText = '';
                   document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
                   document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
