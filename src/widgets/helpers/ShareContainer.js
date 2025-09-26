@@ -61,19 +61,19 @@ export class ShareContainer {
            this.prop === 'Perlas GO'
              ? 'Tik naujiems vartotojams – panaudok kodą ir gauk 5 € sąskaitoms apmokėti Perlas Go! '
              : this.prop === 'Akropolis'
-             ? 'Už pakviestus draugus gausi +1000 taškų prie savo žaidimo rezultato!<br>Pasidalink žaidimo nuoroda dabar ir gauk papildomą staigmeną!'
-             : this.language === 'EN'
-             ? 'For inviting friends you will receive +100 points to your game score!<br>Share the game link now and get an additional surprise!'
-             : this.language === 'LT'
-             ? 'Už pakviestus draugus gausi +100 taškų prie savo žaidimo rezultato!<br>Pasidalink žaidimo nuoroda dabar ir gauk papildomą staigmeną!'
-             : this.language === 'LV'
-             ? 'Par draugu uzaicināšanu saņemsi +100 punktus savam spēles rezultātam!<br>Dalies ar spēles saiti tūlīt un saņem papildu pārsteigumu!'
-             : this.language === 'ET'
-             ? 'Kui kutsud sõbrad mängima, saad +100 punkti oma kontole!<br>Jaga kohe mängulinki ja saad lisaboonuse! '
-             : this.language === 'FI'
-             ? 'Ystävien kutsumisesta saat +100 pistettä pelitulokseesi!<br>Jaa pelin linkki nyt ja saat yllätyksen!'
-             : this.language === 'RU' &&
-               'За приглашение друзей Ты получешь +100 очков к своему игровому счёту!<br>Поделись ссылкой на игру прямо сейчас и получи дополнительный сюрприз!'
+               ? 'Už pakviestus draugus gausi +1000 taškų prie savo žaidimo rezultato!<br>Pasidalink žaidimo nuoroda dabar ir gauk papildomą staigmeną!'
+               : this.language === 'EN'
+                 ? 'For inviting friends you will receive +100 points to your game score!<br>Share the game link now and get an additional surprise!'
+                 : this.language === 'LT'
+                   ? 'Už pakviestus draugus gausi +100 taškų prie savo žaidimo rezultato!<br>Pasidalink žaidimo nuoroda dabar ir gauk papildomą staigmeną!'
+                   : this.language === 'LV'
+                     ? 'Par draugu uzaicināšanu saņemsi +100 punktus savam spēles rezultātam!<br>Dalies ar spēles saiti tūlīt un saņem papildu pārsteigumu!'
+                     : this.language === 'ET'
+                       ? 'Kui kutsud sõbrad mängima, saad +100 punkti oma kontole!<br>Jaga kohe mängulinki ja saad lisaboonuse! '
+                       : this.language === 'FI'
+                         ? 'Ystävien kutsumisesta saat +100 pistettä pelitulokseesi!<br>Jaa pelin linkki nyt ja saat yllätyksen!'
+                         : this.language === 'RU' &&
+                           'За приглашение друзей Ты получешь +100 очков к своему игровому счёту!<br>Поделись ссылкой на игру прямо сейчас и получи дополнительный сюрприз!'
          }
       </div>
 
@@ -98,16 +98,16 @@ export class ShareContainer {
       this.prop === 'Perlas GO'
         ? 'PANAUDOK KODĄ'
         : this.language === 'EN'
-        ? 'SHARE'
-        : this.language === 'LT'
-        ? 'DALINTIS '
-        : this.language === 'LV'
-        ? 'DALĪTIES'
-        : this.language === 'ET'
-        ? 'JAGA'
-        : this.language === 'FI'
-        ? 'JAA'
-        : this.language === 'RU' && 'ПОДЕЛИТЬСЯ'
+          ? 'SHARE'
+          : this.language === 'LT'
+            ? 'DALINTIS '
+            : this.language === 'LV'
+              ? 'DALĪTIES'
+              : this.language === 'ET'
+                ? 'JAGA'
+                : this.language === 'FI'
+                  ? 'JAA'
+                  : this.language === 'RU' && 'ПОДЕЛИТЬСЯ'
     }
     </div>
     </div>
@@ -164,16 +164,16 @@ export class ShareContainer {
       this.language === 'EN'
         ? 'Link copied!'
         : this.language === 'LT'
-        ? 'Nuoroda nukopijuota!'
-        : this.language === 'LV'
-        ? 'Saite nokopēta!'
-        : this.language === 'ET'
-        ? 'Link kopeeritud!'
-        : this.language === 'FI'
-        ? 'Linkki kopioitu!'
-        : this.language === 'RU'
-        ? 'Ссылка скопирована!'
-        : 'Link copied!';
+          ? 'Nuoroda nukopijuota!'
+          : this.language === 'LV'
+            ? 'Saite nokopēta!'
+            : this.language === 'ET'
+              ? 'Link kopeeritud!'
+              : this.language === 'FI'
+                ? 'Linkki kopioitu!'
+                : this.language === 'RU'
+                  ? 'Ссылка скопирована!'
+                  : 'Link copied!';
 
     try {
       // 1) Native share if available (Chrome/standalone PWA, not WebView)
@@ -227,22 +227,22 @@ export class ShareContainer {
       <div style="width:calc(100% - 20px);margin-left:10px;top: ${
         this.prop === 'Nykstukas' ? '150px' : '72px'
       };; position: absolute; text-align: center;line-height:42px; color: ${'white'}; font-size: ${
-      this.isMobileWidthSmall ? '26px' : '30px'
-    }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Perlas GO'
-        ? 'Tavo NUOLAIDOS KODAS'
-        : this.language === 'EN'
-        ? 'MORE FRIENDS, MORE POINTS'
-        : this.language === 'LT'
-        ? 'DAUGIAU DRAUGŲ, DAUGIAU TAŠKŲ'
-        : this.language === 'LV'
-        ? 'VAIRĀK DRAUGU, VAIRĀK PUNKTU'
-        : this.language === 'ET'
-        ? 'ROHKEM SÕPRU, ROHKEM PUNKTE'
-        : this.language === 'FI'
-        ? 'Enemmän ystäviä, enemmän pisteitä'
-        : this.language === 'RU' && 'БОЛЬШЕ ДРУЗЕЙ, БОЛЬШЕ ОЧКОВ'
-    }</div>
+        this.isMobileWidthSmall ? '26px' : '30px'
+      }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+        this.prop === 'Perlas GO'
+          ? 'Tavo NUOLAIDOS KODAS'
+          : this.language === 'EN'
+            ? 'MORE FRIENDS, MORE POINTS'
+            : this.language === 'LT'
+              ? 'DAUGIAU DRAUGŲ, DAUGIAU TAŠKŲ'
+              : this.language === 'LV'
+                ? 'VAIRĀK DRAUGU, VAIRĀK PUNKTU'
+                : this.language === 'ET'
+                  ? 'ROHKEM SÕPRU, ROHKEM PUNKTE'
+                  : this.language === 'FI'
+                    ? 'Enemmän ystäviä, enemmän pisteitä'
+                    : this.language === 'RU' && 'БОЛЬШЕ ДРУЗЕЙ, БОЛЬШЕ ОЧКОВ'
+      }</div>
       <div class="boomio-scoreboard-text"></div>
     </div>`;
 
@@ -256,14 +256,14 @@ export class ShareContainer {
       this.language === 'EN'
         ? 'NEXT'
         : this.language === 'LT'
-        ? 'TOLIAU'
-        : this.language === 'LV'
-        ? 'NĀKAMAIS'
-        : this.language === 'ET'
-        ? 'EDASI'
-        : this.language === 'FI'
-        ? 'SEURAAVA'
-        : this.language === 'RU' && 'ДАЛЕЕ'
+          ? 'TOLIAU'
+          : this.language === 'LV'
+            ? 'NĀKAMAIS'
+            : this.language === 'ET'
+              ? 'EDASI'
+              : this.language === 'FI'
+                ? 'SEURAAVA'
+                : this.language === 'RU' && 'ДАЛЕЕ'
     }
     </div>
     </div>

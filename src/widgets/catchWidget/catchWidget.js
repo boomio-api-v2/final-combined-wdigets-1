@@ -1503,7 +1503,8 @@ class CatchGame {
       this.customer === 'Akropolis' ||
       this.customer === 'Daumantu' ||
       this.customer === 'Zemaitijos Pienas' ||
-      this.customer === 'Toni'
+      this.customer === 'Toni' ||
+      this.customer === 'Apranga'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
@@ -1618,7 +1619,8 @@ class CatchGame {
         this.customer === 'Akropolis' ||
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
-        this.customer === 'Toni'
+        this.customer === 'Toni' ||
+        this.customer === 'Apranga'
       ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
@@ -1630,9 +1632,9 @@ class CatchGame {
           }
         }
 
-        if (this.fruits.length < newNumberOfFruits + 2) {
+        if (this.fruits.length < newNumberOfFruits + 3) {
           // Create additional fruits to reach the new number
-          for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
+          for (let i = this.fruits.length; i < newNumberOfFruits + 3; i++) {
             const fruit = new Fruit(
               this.customer,
               this.canvas,
@@ -1949,7 +1951,7 @@ class Fruit {
       }
     } else if (this.customer === 'Apranga') {
       if (type === 'bad') {
-        this.fruitNumber = 14;
+        this.fruitNumber = 12 + Math.floor(Math.random() * 2); // 12..13
       } else {
         this.fruitNumber = Math.floor(Math.random() * 12);
       }
