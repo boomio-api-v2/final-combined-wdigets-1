@@ -100,16 +100,8 @@ export class CompetitionScoreTableContainer {
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const scoreboard =
-      this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas'
-        ? this.scoreTable?.teams_scoreboard
-        : this.scoreTable?.scoreboard || [];
-    const userBestPlace =
-      Number(
-        this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas'
-          ? this.scoreTable.team_best_place
-          : this.scoreTable?.user_best_place,
-      ) || 0;
+    const scoreboard = this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? this.scoreTable?.teams_scoreboard : this.scoreTable?.scoreboard || [];
+    const userBestPlace = Number(this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? this.scoreTable.team_best_place : this.scoreTable?.user_best_place) || 0;
     const userBestScore = Number(this.scoreTable?.user_best_score) || 0;
     this.userParticipationDays = this.scoreTable?.participation_days ?? 0; // nullish-coalescing
 
@@ -492,14 +484,8 @@ export class CompetitionScoreTableContainer {
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 
-      const color =
-        index + 1 === userBestPlace
-          ? this.prop === 'Toni'
-            ? '#10069F'
-            : 'rgba(61, 73, 40, 1)'
-          : 'white';
-      const boxShadow =
-        index + 1 === userBestPlace ? '2px 4px 3.4px 0px rgba(0, 0, 0, 0.10) inset' : 'none';
+      const color = index + 1 === userBestPlace ? (this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)') : 'white';
+      const boxShadow = index + 1 === userBestPlace ? '2px 4px 3.4px 0px rgba(0, 0, 0, 0.10) inset' : 'none';
 
       tableHTML += `
             <tr style="background: ${background};box-shadow:${boxShadow};margin: 0;height:44px ">
@@ -547,9 +533,7 @@ export class CompetitionScoreTableContainer {
             </tr>`;
     });
 
-    if (
-      userBestPlace > (this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? 100 : 20)
-    ) {
+    if (userBestPlace > (this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? 100 : 20)) {
       tableHTML += `
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
             <td style="padding-left:8px;text-align:start;width: 25px; color: ${
@@ -614,9 +598,7 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Pigu.lt' ? '410px' : this.prop === 'Akropolis' ? '400px' : '420px'
             }; position: absolute; text-align: center; color: ${textColor}; font-size: ${
               this.prop === 'Barbora' || this.prop === 'Pigu.lt' ? '16px' : fontSize
-            }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: ${
-              this.prop === 'Nykstukas' ? 'none' : 'uppercase'
-            }; word-wrap: break-word">${
+            }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: ${this.prop === 'Nykstukas' ? 'none' : 'uppercase'}; word-wrap: break-word">${
               this.prop === 'Pigu.lt' && this.language === 'RU'
                 ? 'ПОЗДРАВЛЯЕМ!'
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
@@ -651,20 +633,15 @@ export class CompetitionScoreTableContainer {
                                               ? 'CONGRATULATIONS!'
                                               : this.prop === 'Nykstukas'
                                                 ? 'SVEIKINAME! Pretenduoji laimėti šios savaitės prizą'
-                                                : this.prop === 'Novaturas' &&
-                                                    this.language === 'LT'
+                                                : this.prop === 'Novaturas' && this.language === 'LT'
                                                   ? 'VALIO, TAU PUIKIAI SEKASI!'
-                                                  : this.prop === 'Novaturas' &&
-                                                      this.language === 'LV'
+                                                  : this.prop === 'Novaturas' && this.language === 'LV'
                                                     ? 'APSVEICAM, TEV LIELISKI IZDODAS!'
-                                                    : this.prop === 'Novaturas' &&
-                                                        this.language === 'ET'
+                                                    : this.prop === 'Novaturas' && this.language === 'ET'
                                                       ? 'PALJU ÕNNE, SUL LÄHEB HÄSTI!'
-                                                      : this.prop === 'Novaturas' &&
-                                                          this.language === 'EN'
+                                                      : this.prop === 'Novaturas' && this.language === 'EN'
                                                         ? 'CONGRATULATIONS, YOU RE DOING GREAT!'
-                                                        : this.prop === 'Novaturas' &&
-                                                            this.language === 'RU'
+                                                        : this.prop === 'Novaturas' && this.language === 'RU'
                                                           ? 'ПОЗДРАВЛЯЕМ, У ВАС ОТЛИЧНО ПОЛУЧАЕТСЯ!'
                                                           : this.prop === 'Apranga'
                                                             ? 'NUOSTABU, JUMS PUIKIAI SEKASI!'
@@ -682,29 +659,17 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Nykstukas' || this.prop === 'Pigu.lt' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? `Ты выиграл приз этой недели: </br> -${this.getBonus(
-                    this.scoreTable?.user_best_score,
-                  )}% на выбранные популярные товары при первой покупке в приложении.`
+                ? `Ты выиграл приз этой недели: </br> -${this.getBonus(this.scoreTable?.user_best_score)}% на выбранные популярные товары при первой покупке в приложении.`
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                  ? `Olet voittanut tämän viikon palkinnon </br> -${this.getBonus(
-                      this.scoreTable?.user_best_score,
-                    )}% alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa`
+                  ? `Olet voittanut tämän viikon palkinnon </br> -${this.getBonus(this.scoreTable?.user_best_score)}% alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa`
                   : this.prop === 'Pigu.lt' && this.language === 'LV'
-                    ? `Tu esi ieguvis šīs nedēļas balvu: </br> Papildu -${this.getBonus(
-                        this.scoreTable?.user_best_score,
-                      )}% izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*`
+                    ? `Tu esi ieguvis šīs nedēļas balvu: </br> Papildu -${this.getBonus(this.scoreTable?.user_best_score)}% izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*`
                     : this.prop === 'Pigu.lt' && this.language === 'LT'
-                      ? `Tu laimėjai šios savaitės prizą: </br> Perkant pirmąkart programėlėje -${this.getBonus(
-                          this.scoreTable?.user_best_score,
-                        )}% nuolaidos kodą atrinktoms populiarioms prekėms.`
+                      ? `Tu laimėjai šios savaitės prizą: </br> Perkant pirmąkart programėlėje -${this.getBonus(this.scoreTable?.user_best_score)}% nuolaidos kodą atrinktoms populiarioms prekėms.`
                       : this.prop === 'Pigu.lt' && this.language === 'EN'
-                        ? `You ve won this weeks prize:</br> First purchase in app -${this.getBonus(
-                            this.scoreTable?.user_best_score,
-                          )}% discount code off selected popular items.`
+                        ? `You ve won this weeks prize:</br> First purchase in app -${this.getBonus(this.scoreTable?.user_best_score)}% discount code off selected popular items.`
                         : this.prop === 'Pigu.lt' && this.language === 'ET'
-                          ? `Oled selle nädala auhinna võitja! </br> Esimesel ostul äpis -${this.getBonus(
-                              this.scoreTable?.user_best_score,
-                            )}% lisaale valitud populaarsetelt toodetelt `
+                          ? `Oled selle nädala auhinna võitja! </br> Esimesel ostul äpis -${this.getBonus(this.scoreTable?.user_best_score)}% lisaale valitud populaarsetelt toodetelt `
                           : this.prop === 'Barbora'
                             ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                             : this.prop === 'Pieno Žvaigždės'
@@ -722,7 +687,7 @@ export class CompetitionScoreTableContainer {
                                         : this.prop === 'Daumantu'
                                           ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei.</br> Prizinį fondą sudaro 50 Daumantų prizų!'
                                           : this.prop.includes('Gamtos Ateitis')
-                                            ? 'Pusė geriausią rezultatą pasiekusių mokyklų pateks į kitą </br> žaidimo etapą ir sieks laimėti koncertą savo mokyklai! Jei </br>  Tavo mokykla pateks į kitą etapą, informuosime Tave el. </br>  paštu, kurį nurodei. '
+                                            ? 'Geriausius rezultatus pasiekusios mokyklos pateks į kitą etapą ir varžysis dėl koncerto savo mokykloje! Kas savaitę iškrenta dvi mažiausiai taškų surinkusios mokyklos. Jei tavo mokykla pateks į kitą etapą, pranešime el. paštu, kurį nurodei.'
                                             : this.prop === 'Unisend' && this.language === 'ET'
                                               ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
                                               : this.language === 'ET' && this.prop === 'Fantazijos'
@@ -753,30 +718,19 @@ export class CompetitionScoreTableContainer {
                                                                   ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Magija“  prizus! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. '
                                                                   : this.prop === 'Orlen'
                                                                     ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro net 1 000 ledų kas savaitę! Dydisis prizas - skrydis oro balionu!'
-                                                                    : this.prop === 'Novaturas' &&
-                                                                        this.language === 'LT'
+                                                                    : this.prop === 'Novaturas' && this.language === 'LT'
                                                                       ? 'Pagerink savo rezultatą – rugsėjo pabaigoje net 30 geriausių žaidėjų laimės po 100 € vertės „Novaturas“ kuponą! Jei būsi tarp laimėtojų, apie tai pranešime Tavo nurodytu el. paštu.'
-                                                                      : this.prop === 'Novaturas' &&
-                                                                          this.language === 'LV'
+                                                                      : this.prop === 'Novaturas' && this.language === 'LV'
                                                                         ? 'Tev ir iespēja uzlabot savu rezultātu, jo 30 labākie rezultātu saņēmēji laimēs 100 EUR Novatours atlaižu kuponu. Ja laimēsi balvu, mēs Tevi informēsim pa e-pastu, kuru norādīji.'
-                                                                        : this.prop ===
-                                                                              'Novaturas' &&
-                                                                            this.language === 'ET'
+                                                                        : this.prop === 'Novaturas' && this.language === 'ET'
                                                                           ? 'Sul on võimalus oma tulemust parandada! 30 parimat mängijat võidavad 100 eurose Novatoursi sooduskupongi. Kui oled nende seas, teavitame Sind e-maili teel.'
-                                                                          : this.prop ===
-                                                                                'Novaturas' &&
-                                                                              this.language === 'EN'
+                                                                          : this.prop === 'Novaturas' && this.language === 'EN'
                                                                             ? ' Improve your score, because at the end of the month, 30 players with the best results will win a 100 EUR Novaturas voucher. If you have won a prize, we will inform you via the email address you provided.'
-                                                                            : this.prop ===
-                                                                                  'Novaturas' &&
-                                                                                this.language ===
-                                                                                  'RU'
+                                                                            : this.prop === 'Novaturas' && this.language === 'RU'
                                                                               ? 'Улучши свой результат, ведь в конце месяца 30 лучших игроков получат подарочную карту Novatours на 100€. Если выиграешь приз, мы сообщим об этом на указанный тобой адрес электронной почты.'
-                                                                              : this.prop ===
-                                                                                  'Apranga'
+                                                                              : this.prop === 'Apranga'
                                                                                 ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
-                                                                                : this.language ===
-                                                                                    'EN'
+                                                                                : this.language === 'EN'
                                                                                   ? ''
                                                                                   : ''
             }</div>
@@ -784,9 +738,7 @@ export class CompetitionScoreTableContainer {
                 this.prop === 'Perlas GO' ? '455px' : this.prop.includes('demo') ? '465px' : '505px'
               };line-height:14px; position: absolute; text-align: center; color: ${textColor}; font-size:${
                 this.prop === 'Perlas GO' ? '10px' : '10px'
-              } ; font-family: Montserrat; font-weight: 700; text-transform:${
-                this.prop === 'Perlas GO' ? 'none' : 'uppercase'
-              } ; word-wrap: break-word">${
+              } ; font-family: Montserrat; font-weight: 700; text-transform:${this.prop === 'Perlas GO' ? 'none' : 'uppercase'} ; word-wrap: break-word">${
                 this.prop === 'Unisend' && this.language === 'ET'
                   ? 'Võitjatega võetakse ühendust e-posti teel.'
                   : this.language === 'LV' && this.prop === 'Fantazijos'
@@ -867,7 +819,7 @@ export class CompetitionScoreTableContainer {
                             : this.prop === 'Daumantu'
                               ? 'Pagerink rezultatą, nes kas savaitę </br> geriausi žaidėjai laimės prizus! '
                               : this.prop.includes('Gamtos Ateitis')
-                                ? 'Pagerink rezultatą, nes pusė geriausią rezultatą pasiekusių </br> mokyklų pateks į kitą žaidimo etapą ir sieks laimėti koncertą </br> savo mokyklai! Jei Tavo mokykla pateks į kitą etapą, </br>informuosime Tave el. paštu, kurį nurodei. '
+                                ? 'Geriausius rezultatus pasiekusios mokyklos pateks į kitą etapą ir varžysis dėl koncerto savo mokykloje! Kas savaitę iškrenta dvi mažiausiai taškų surinkusios mokyklos. Jei tavo mokykla pateks į kitą etapą, pranešime el. paštu, kurį nurodei.'
                                 : this.prop === 'Makalius'
                                   ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
                                   : this.prop === 'Unisend' && this.language === 'LV'
@@ -894,51 +846,31 @@ export class CompetitionScoreTableContainer {
                                                         ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Dobilas“  prizus!'
                                                         : this.prop === 'Orlen'
                                                           ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę! O dydisis prizas - skrydis oro balionu!'
-                                                          : this.prop === 'Novaturas' &&
-                                                              this.language === 'LT'
+                                                          : this.prop === 'Novaturas' && this.language === 'LT'
                                                             ? 'Pagerink savo rezultatą – rugsėjo pabaigoje net 30 geriausių žaidėjų laimės po 100 € vertės „Novaturas“ kuponą! Jei būsi tarp laimėtojų, apie tai pranešime Tavo nurodytu el. paštu.'
-                                                            : this.prop === 'Novaturas' &&
-                                                                this.language === 'LV'
+                                                            : this.prop === 'Novaturas' && this.language === 'LV'
                                                               ? 'Tev ir iespēja uzlabot savu rezultātu, jo 30 labākie rezultātu saņēmēji laimēs 100 EUR Novatours atlaižu kuponu. Ja laimēsi balvu, mēs Tevi informēsim pa e-pastu, kuru norādīji.'
-                                                              : this.prop === 'Novaturas' &&
-                                                                  this.language === 'ET'
+                                                              : this.prop === 'Novaturas' && this.language === 'ET'
                                                                 ? 'Sul on võimalus oma tulemust parandada! 30 parimat mängijat võidavad 100 eurose Novatoursi sooduskupongi. Kui oled nende seas, teavitame Sind e-maili teel.'
-                                                                : this.prop === 'Novaturas' &&
-                                                                    this.language === 'EN'
+                                                                : this.prop === 'Novaturas' && this.language === 'EN'
                                                                   ? ' Improve your score, because at the end of the month, 30 players with the best results will win a 100 EUR Novaturas voucher. If you have won a prize, we will inform you via the email address you provided.'
-                                                                  : this.prop === 'Novaturas' &&
-                                                                      this.language === 'RU'
+                                                                  : this.prop === 'Novaturas' && this.language === 'RU'
                                                                     ? 'Улучши свой результат, ведь в конце месяца 30 лучших игроков получат подарочную карту Novatours на 100€. Если выиграешь приз, мы сообщим об этом на указанный тобой адрес электронной почты.'
                                                                     : this.prop === 'Toni'
                                                                       ? 'Inténtalo de nuevo y suma más oportunidades de ganar.'
-                                                                      : this.prop === 'Pigu.lt' &&
-                                                                          this.language === 'RU'
+                                                                      : this.prop === 'Pigu.lt' && this.language === 'RU'
                                                                         ? 'Накопи 100 очков или более и выиграй:</br>Скидочный код на выбранные популярные товары.'
-                                                                        : this.prop === 'Pigu.lt' &&
-                                                                            this.language === 'FI'
+                                                                        : this.prop === 'Pigu.lt' && this.language === 'FI'
                                                                           ? '100 pistettä enemmän ja voit voittaa</br>Alekoodi valikoiduille suosituille tuotteille'
-                                                                          : this.prop ===
-                                                                                'Pigu.lt' &&
-                                                                              this.language === 'LV'
+                                                                          : this.prop === 'Pigu.lt' && this.language === 'LV'
                                                                             ? 'Sakrāj 100 punktus vai vairāk un laimē:</br>Atlaižu kodu izvēlētām precēm.'
-                                                                            : this.prop ===
-                                                                                  'Pigu.lt' &&
-                                                                                this.language ===
-                                                                                  'LT'
+                                                                            : this.prop === 'Pigu.lt' && this.language === 'LT'
                                                                               ? 'Surink 100 ar daugiau taškų ir laimėk:</br>Nuolaidos kodą atrinktoms populiarioms prekėms.'
-                                                                              : this.prop ===
-                                                                                    'Pigu.lt' &&
-                                                                                  this.language ===
-                                                                                    'EN'
+                                                                              : this.prop === 'Pigu.lt' && this.language === 'EN'
                                                                                 ? 'A discount code for selected popular products.</br>If you have already won, we will send the information to the email address you ve provided during registration.'
-                                                                                : this.prop ===
-                                                                                      'Pigu.lt' &&
-                                                                                    this
-                                                                                      .language ===
-                                                                                      'ET'
+                                                                                : this.prop === 'Pigu.lt' && this.language === 'ET'
                                                                                   ? 'Kogu 100 punkti või rohkem ja võida:</br>Sooduskood valikule populaarsetele toodetele!'
-                                                                                  : this.prop ===
-                                                                                      'Apranga'
+                                                                                  : this.prop === 'Apranga'
                                                                                     ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
                                                                                     : ''
             }</div>
@@ -994,11 +926,7 @@ export class CompetitionScoreTableContainer {
       }
       ${`<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#000000ff'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; 
       display: 
-      ${
-        this.prop === 'Pigu.lt' && this.getBonus(this.scoreTable?.user_best_score) > 0
-          ? 'inline-flex'
-          : 'none'
-      };width:260px;position:absolute;top:495px;left:calc(50% - 130px);">
+      ${this.prop === 'Pigu.lt' && this.getBonus(this.scoreTable?.user_best_score) > 0 ? 'inline-flex' : 'none'};width:260px;position:absolute;top:495px;left:calc(50% - 130px);">
       <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
        ${this.getDiscountCode(this.scoreTable?.user_best_score)}
           </div>
@@ -1044,12 +972,7 @@ export class CompetitionScoreTableContainer {
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
     const userId = urlParams.get('user_id');
-    containerDiv.style.width =
-      document.documentElement.clientWidth < 426
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
-        : '426px';
+    containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: ${
@@ -1127,9 +1050,7 @@ export class CompetitionScoreTableContainer {
 </div>
 
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:580px;position:absolute; height: 36px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${
-          this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
-        } ; font-size: 22px; font-family: ${
+        <div style="text-align: center; color: ${this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'} ; font-size: 22px; font-family: ${
           this.prop === 'Perlas GO' ? 'Basis Grotesque Pro, sans-serif' : 'Georama'
         }; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
           this.prop === 'Akropolis' && this.language === 'LV'
