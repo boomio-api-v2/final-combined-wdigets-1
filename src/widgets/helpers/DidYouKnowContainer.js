@@ -361,7 +361,7 @@ export class DidYouKnowContainer {
           <td style="padding:5px;text-align: center; border: none; cursor:pointer;background-color:white;">
             <div id="image-${index}" >
               <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;' 
-                src=${product.image} alt="Product Image">
+                src="${product.image}" alt="Product Image">
               
               ${
                 product.link
@@ -414,7 +414,7 @@ export class DidYouKnowContainer {
         }
           </div>
           </td>`;
-        if ((this.prop === 'Nykstukas' ? index + (1 % 2) === 0 : index + (1 % 3) === 0) || index === loopingImages.length - 1) {
+        if ((this.prop === 'Nykstukas' ? (index + 1) % 2 === 0 : (index + 1) % 3 === 0) || index === loopingImages.length - 1) {
           tableHTML += '</tr>';
         }
       });
@@ -422,11 +422,11 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     let scoreboardText = `
       ${`<div class="bomio-first-line" style="width:${'calc(100% - 32px)'};margin-left:${'16px'}; top: ${
-        this.prop.includes('Gamtos Ateitis') ? '305px' : '505px'
+        this.prop?.includes('Gamtos Ateitis') ? '305px' : '505px'
       };line-height:18px; position: absolute;font-weight: 600; text-align: center; color: white; font-size:${
         this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Nykstukas' ? '18px' : '14px'
       } ; font-family: Montserrat;  word-wrap: break-word">${
-        this.prop.includes('Gamtos Ateitis')
+        this.prop?.includes('Gamtos Ateitis')
           ? this.randomGamtosAteitis?.text
           : this.prop === 'Pegasas'
             ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
@@ -519,7 +519,6 @@ export class DidYouKnowContainer {
       this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
     }
 
-    this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     if (this.prop === 'Pegasas' || this.prop === 'Pigu.lt') {
       document.getElementById('closeDidYouKnow').addEventListener('click', () => {
         // Find all enlarged images by checking for the 'enlarge-image' class
@@ -546,14 +545,11 @@ export class DidYouKnowContainer {
   }
 
   addfunc() {
-    const loopElement = this.prop === 'Pigu.lt' ? this.products : this.collectables?.length;
-
-    for (let index = 0; index < loopElement.length; index++) {
+    const count = this.prop === 'Pigu.lt' ? this.products?.length || 0 : this.collectables?.length || 0;
+    for (let index = 0; index < count; index++) {
       const image = document.getElementById(`image-${index}`);
       if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
-        image.addEventListener('click', () => {
-          this.handleImageClick(image);
-        });
+        image.addEventListener('click', () => this.handleImageClick(image));
       }
     }
   }
@@ -598,17 +594,17 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="display:${
-        this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
+        this.prop?.includes('Gamtos Ateitis') ? 'block' : 'none'
       };width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${this.prop === 'Pigu.lt' ? 'white' : 'white'}; font-size: ${
         this.isMobileWidthSmall ? '26px' : '30px'
       }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-        this.prop.includes('Gamtos Ateitis') ? this.randomGamtosAteitis?.title : ''
+        this.prop?.includes('Gamtos Ateitis') ? this.randomGamtosAteitis?.title : ''
       }</div>
       <div style="width:calc(100% - 20px);margin-left:10px;top: ${this.prop === 'Nykstukas' ? '150px' : '72px'}; position: absolute; text-align: center;line-height:${'42px'}; color: ${
         this.prop === 'Pigu.lt' ? 'white' : 'white'
       }; font-size: ${
         this.isMobileWidthSmall ? '26px' : '30px'
-      }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+      }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name2">${
         this.prop === 'Pigu.lt'
           ? this.language === 'EN'
             ? 'HAVE YOU SEEN THE TOP DEALS?'
@@ -627,7 +623,7 @@ export class DidYouKnowContainer {
               ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
               : this.prop === 'Zemaitijos Pienas'
                 ? 'Ar visus RAGAVAI?'
-                : this.prop.includes('Gamtos Ateitis')
+                : this.prop?.includes('Gamtos Ateitis')
                   ? 'TAI SVARBU RŪŠIUOJANT!'
                   : this.prop === 'Nykstukas'
                     ? 'AR IŠRAGAVAI ŠIŲ METŲ NAUJIENAS?'
@@ -651,14 +647,13 @@ export class DidYouKnowContainer {
             this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
           };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
             <tbody class="boomio-tbody" style="background-color:transparent">
-            <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${this.isMobileWidthSmall ? '20px' : '40px'};top:35px;display:none' id='closeDidYouKnow'>
-                            <img src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
-
     `;
 
     containerDiv.innerHTML += `
             </tbody>
           </table>
+          <div class='closeDidYouKnow' style='position:absolute;z-index:9999999;right:${this.isMobileWidthSmall ? '20px' : '40px'};top:35px;display:none' id='closeDidYouKnow'>
+          <img src=${closeDidYouKnow} alt="Scoreboard Image" ></img> </div>
         </div>
 
           <div style="width:100%;font-size:${

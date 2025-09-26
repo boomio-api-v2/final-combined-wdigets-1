@@ -542,7 +542,7 @@ class CrushGame {
 
           if (this.customer === 'Pigu.lt') {
             competitionTableContainer = document.querySelector('.share-container');
-          } else if (this.customer === 'Nevezis') {
+          } else if (this.customer === 'Nevezis' || this.customer?.includes('Gamtos Ateitis')) {
             competitionTableContainer = document.querySelector('.did-you-know-container');
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
@@ -1694,7 +1694,7 @@ background:${
     const start = document.getElementById('control-button');
     start.addEventListener('click', this.initGame);
 
-    if (this.customer === 'Nevezis') {
+    if (this.customer === 'Nevezis' || this.customer.includes('Gamtos Ateitis')) {
       const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
       competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
     }
