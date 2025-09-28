@@ -3,7 +3,6 @@ name: Build
 on:
   push:
     branches: ['main']
-    tags: ['v*']
   pull_request:
     branches: ['*']
   workflow_dispatch: {}
@@ -55,3 +54,14 @@ jobs:
           if-no-files-found: error
           retention-days: 14
           compression-level: 6
+
+      - name: Upload bundle.js to Cloudflare KV
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID}}
+          command: >
+            kv:key put
+            --namespace-id ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID }}
+            --path dist/bundle.js
+            bundle.js
