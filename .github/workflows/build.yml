@@ -73,7 +73,7 @@ jobs:
           curl -X POST "https://widgets.boomio.workers.dev/test/${{ secrets.CACHE_SECRET_RESET_TEST }}"
 
       - name: Upload bundle.js to Cloudflare KV (PROD)
-        #if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -85,6 +85,6 @@ jobs:
             bundle.js
 
       - name: Purge Worker cache (PROD)
-        #if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         run: |
           curl -X POST "https://widgets.boomio.workers.dev/${{ secrets.CACHE_SECRET_RESET }}"
