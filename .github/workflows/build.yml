@@ -55,7 +55,20 @@ jobs:
           retention-days: 14
           compression-level: 6
 
-      - name: Upload bundle.js to Cloudflare KV
+      - name: Upload bundle.js to Cloudflare KV (TEST)
+        #if: github.event_name == 'pull_request'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID}}
+          command: >
+            kv:key put
+            --namespace-id ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID_TEST }}
+            --path dist/bundle.js
+            bundle.js
+
+      - name: Upload bundle.js to Cloudflare KV (PROD)
+        #if: github.ref == 'refs/heads/main'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
