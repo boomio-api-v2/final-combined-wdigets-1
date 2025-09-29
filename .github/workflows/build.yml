@@ -67,10 +67,10 @@ jobs:
             --path dist/bundle.js
             bundle.js
 
-      - name: Purge Worker cache (TEST)
-        if: github.event_name == 'pull_request'
-        run: |
-          curl -X POST "https://widgets.boomio.workers.dev/test/${{ secrets.CACHE_SECRET_RESET_TEST }}"
+      # - name: Purge Worker cache (TEST)
+      #   if: github.event_name == 'pull_request'
+      #   run: |
+      #     curl -X POST "https://widgets.boomio.workers.dev/test/${{ secrets.CACHE_SECRET_RESET_TEST }}"
 
       - name: Upload bundle.js to Cloudflare KV (PROD)
         if: github.ref == 'refs/heads/main'
@@ -84,7 +84,7 @@ jobs:
             --path dist/bundle.js
             bundle.js
 
-      - name: Purge Worker cache (PROD)
-        if: github.ref == 'refs/heads/main'
-        run: |
-          curl -X POST "https://widgets.boomio.workers.dev/${{ secrets.CACHE_SECRET_RESET }}"
+      # - name: Purge Worker cache (PROD)
+      #   if: github.ref == 'refs/heads/main'
+      #   run: |
+      #     curl -X POST "https://widgets.boomio.workers.dev/${{ secrets.CACHE_SECRET_RESET }}"
