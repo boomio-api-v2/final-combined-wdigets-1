@@ -1,10 +1,10 @@
-import { AnimationService } from '@/services';
+import AnimationService from '../../services/animation';
 
 describe('animation', () => {
   test('getAnimateFunction', () => {
     const result = new AnimationService();
-    const exaple = result.getAnimateFunction(2);
+    const example = result.getAnimateFunction(2);
 
-    expect(typeof exaple).toBe('function');
+    expect(typeof example).toBe('function');
   });
 });

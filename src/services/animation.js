@@ -1,4 +1,5 @@
-import { localStorageService, widgetHtmlService } from '@/services';
+import localStorageService from './localStorage';
+import widgetHtmlService from './widgetHtml';
 import { getRandomArbitrary, addStylesToHtml, assignStyleOnElement } from '@/utlis';
 
 const defaultProps = {
@@ -12,17 +13,7 @@ const defaultProps = {
 const getPosition = (size) => parseInt(getRandomArbitrary(10, size - 250).toFixed(), 10);
 
 export default class AnimationService {
-  constructor(
-    {
-      posx,
-      posy,
-      size = 100,
-      parent = widgetHtmlService.container,
-      elem = document.createElement('div'),
-      styles = {},
-    } = defaultProps,
-    noAnimation,
-  ) {
+  constructor({ posx, posy, size = 100, parent = widgetHtmlService.container, elem = document.createElement('div'), styles = {} } = defaultProps, noAnimation) {
     this.noAnimation = noAnimation === undefined ? false : noAnimation;
     let animation;
     noAnimation ? (animation = 14) : ({ animation } = localStorageService.config);

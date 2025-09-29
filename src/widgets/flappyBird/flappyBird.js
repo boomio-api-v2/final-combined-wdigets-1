@@ -1,4 +1,4 @@
-import { widgetHtmlService, AnimationService, QrCodeModal, localStorageService, boomioService } from '@/services';
+import { widgetHtmlService, AnimationService, localStorageService, boomioService } from '@/services';
 import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -8,7 +8,6 @@ import { CollectionScoreTableContainer } from '../helpers/CollectionScoreTableCo
 import { PointCopyTableContainer } from '../helpers/PointCopyTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
-import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
@@ -18,7 +17,6 @@ import { ShareContainer } from '../helpers/ShareContainer';
 import {
   close,
   introGif,
-  scoreImage,
   tapImageBarbora,
   checkIcon,
   uncheckIcon,
@@ -26,9 +24,7 @@ import {
   mainPenki,
   star,
   introGifPenki,
-  scoreImageGreen,
   mainFantazijos,
-  scoreImageFantazijos,
   introGifFantazijos,
   newRecord,
   newRecordRU,
@@ -36,10 +32,8 @@ import {
   newRecordFI,
   newRecordLV,
   snowFantazijos,
-  FproFlappyScore,
   FproFlappyIntro,
   FproFlappyBackground,
-  MakaliusFlappyScore,
   MakaliusFlappyIntro,
   MakaliusFlappyBackground,
   introGifFantazijosLV,
@@ -47,17 +41,10 @@ import {
   introGifFantazijosRU,
   CorepetitusFlappyIntro,
   CorepetitusFlappyBackground,
-  CorepetituslappyScore,
   newRecordEn,
   SaludSAIntro,
   SaludSABackground,
   SaludSARecord,
-  PiguBackground,
-  PiguIntro,
-  PIGUBackgroundfi,
-  PIGUBackgroundlv,
-  PIGUBackgroundlt,
-  PIGUBackgroundee,
   ChristmasPiguFlapThroughXmasEEEnNew,
   ChristmasPiguFlapThroughXmasEENew,
   ChristmasPiguFlapThroughXmasEERuNew,
@@ -481,7 +468,9 @@ class FlappyBird {
                                                                               ? nykstukasBackground
                                                                               : this.customer === 'Orlen'
                                                                                 ? orlenBackground
-                                                                                : this.customer === 'Penki Sezonai' && mainPenki;
+                                                                                : this.customer === 'Toni'
+                                                                                  ? toniBackground
+                                                                                  : this.customer === 'Penki Sezonai' && mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
@@ -1308,6 +1297,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         if (this.gameCount === 0) {
           const emailInput = document.querySelector('.boomio-competition-email-input-field');
           const nameInput = document.querySelector('.boomio-competition-name-input-field');
+          const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
 
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
           const checkboxChange2 = this.checkboxChange2;
