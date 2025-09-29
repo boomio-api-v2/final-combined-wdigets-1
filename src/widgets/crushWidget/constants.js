@@ -193,7 +193,7 @@ export const backgroundZemaitijosPienas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/background.png';
 
 const gamtosAteitisPrefix =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/gamtos-ateitis-crush/images/crushWidget/gamtosateitis';
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/crushWidget/gamtosateitis';
 
 export const backgroundGamtosAteitisGlass = `${gamtosAteitisPrefix}/backgroundGamtosAteitisGlass.png`;
 export const backgroundGamtosAteitisPaper = `${gamtosAteitisPrefix}/backgroundGamtosAteitisPaper.png`;
