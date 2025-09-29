@@ -9,9 +9,8 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/' # adjust for monorepos: e.g. /apps/web
     schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '06:00'
+      interval: 'daily'
+      time: '04:00'
       timezone: 'Europe/Vilnius'
     target-branch: 'main'
     open-pull-requests-limit: 5
