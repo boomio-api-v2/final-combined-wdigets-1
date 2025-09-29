@@ -158,6 +158,5 @@ export const nykstukasBackground = 'https://raw.githubusercontent.com/boomio-api
 
 export const orlenBackground = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Orlen/background.png';
 
-export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/flappyWidget/Toni/items/bg.png';
-
-export const playerToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/player.png';
+export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/flappyWidget/Toni/bg.png';
+export const introToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/flappyWidget/Toni/intro.png';

@@ -94,8 +94,8 @@ import {
   TicheBackground,
   nykstukasBackground,
   orlenBackground,
-  toniBackground,
-  playerToni,
+  backgroundToni,
+  introToni,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -106,7 +106,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
+    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -479,7 +479,7 @@ class FlappyBird {
                                                                               : this.customer === 'Orlen'
                                                                                 ? orlenBackground
                                                                                 : this.customer === 'Toni'
-                                                                                  ? toniBackground
+                                                                                  ? backgroundToni
                                                                                   : this.customer === 'Penki Sezonai' && mainPenki;
 
     const img2 = new Image();
@@ -1004,7 +1004,7 @@ class FlappyBird {
 
 
 
-<div alt="Image Description" style="z-index:1;width: ${
+<div alt="Image Description 1" style="z-index:1;width: ${
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#808080'}" id="background_blur"></div>
    
@@ -1053,19 +1053,21 @@ class FlappyBird {
                                           ? DentsuIntro
                                           : this.customer === 'LemonGym'
                                             ? LemonGymintro
-                                            : this.customer === 'Penki Sezonai' && introGifPenki
-    } alt="Image Description" style="z-index:4;width: ${
+                                            : this.customer === 'Toni'
+                                              ? introToni
+                                              : this.customer === 'Penki Sezonai' && introGifPenki
+    } alt="Image Description 2" style="z-index:4;width: ${
       document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:${this.customer.includes('demo') || this.customer === 'LemonFeel' ? 'none' : 'block'};" id="background_intro">
 </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-    <img src="${useCuponImage.src}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+    <img src="${useCuponImage.src}" alt="Image Description 3" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
     <img class="new_highscore_stars" src=${
       newHighscoreStarsImage.src
-    } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+    } alt="Image Description 4" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
       this.customer === 'SaludSA'
@@ -1083,7 +1085,7 @@ class FlappyBird {
                   : newRecord
     } 
 
-alt="Image Description" style="width: 100%; height: 100%;">
+alt="Image Description 5" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers">
   <span class="numbers__window">
@@ -1153,7 +1155,7 @@ ${`<div style="${
                         ? 'TAP'
                         : 'BAKST'
     }</div>
-  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:50px;width: 71px; height: 54px;">`}
+  </div><img src=${tapImageBarbora} alt="Image Description 6" style="margin-left:50px;width: 71px; height: 54px;">`}
 
 </div>
       <div class="flappy-container">
@@ -1171,7 +1173,7 @@ ${`<div style="${
                         : '#C6152F'
             };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
+    <img src=${star} alt="Image Description 7" style="width: 20px; height: 20px;margin-top:18px"></img>
 
   <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
@@ -1180,7 +1182,7 @@ ${`<div style="${
     this.campaignUrl === ''
       ? `
 <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
-<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+<img src=${close} alt="Image Description 8" style="width: 100%; height: 100%;"></img>
 </div>`
       : ''
   }
@@ -1194,7 +1196,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
           okImage.src
-        } alt="Image Description"></div>
+        } alt="Image Description 9"></div>
 </div>
 </div>
 <div class="input-container1" style="width:${
@@ -1203,7 +1205,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
   <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
     gameOver.src
-  } alt="Image Description"></div>
+  } alt="Image Description 10"></div>
   <div class="boomio-colored_box" style="width:calc(100% - 40px);"></div>
   <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
   <div style="left: 240px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
@@ -1214,7 +1216,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
   <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 27px; top: 255px; position: absolute; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
       <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
         playAgain.src
-      } alt="Image Description"></div>
+      } alt="Image Description 11"></div>
   </div>
 
 
