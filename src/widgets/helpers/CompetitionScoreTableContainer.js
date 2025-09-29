@@ -43,20 +43,20 @@ export class CompetitionScoreTableContainer {
   }
 
   getDiscountCode(score) {
-    if (score >= 600) return '925GAME25';
-    if (score >= 500) return '925GAME20';
-    if (score >= 400) return '925GAME15';
-    if (score >= 100) return '925GAME10';
+    if (score >= 600) return '25GAME925';
+    if (score >= 500) return '20GAME925';
+    if (score >= 400) return '15GAME925';
+    if (score >= 100) return '10GAME925';
     return '';
   }
 
   getPrizeUrl(score, language) {
     if (this.prop !== 'Pigu.lt') return '';
     let page = null;
-    if (score >= 100 && score < 400) page = 'GAME10';
-    else if (score >= 400 && score < 500) page = 'GAME15';
-    else if (score >= 500 && score < 600) page = 'GAME20';
-    else if (score >= 600) page = 'GAME25';
+    if (score >= 100 && score < 400) page = '10game';
+    else if (score >= 400 && score < 500) page = '15game';
+    else if (score >= 500 && score < 600) page = '20game';
+    else if (score >= 600) page = '25game';
     if (!page) return '';
     const urls = {
       LT: `https://pigu.lt/lt/puslapis/${page}`,
