@@ -223,8 +223,7 @@ class CatchGame {
     this.customer = this.config.business_name ? this.config.business_name : 'Apranga';
     this.teams = this.config.teams;
 
-    this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language ? this.config.language : '';
     this.gameCount = 0;
     this.didYouKnow = true;
@@ -242,8 +241,7 @@ class CatchGame {
     this.scoreTable = {};
     this.scoreTableContainerInstance;
     this.createContainer();
-    document.querySelector('.game-container').style.backgroundColor =
-      window.innerWidth <= 768 ? 'black' : 'none';
+    document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
     this.loading = false;
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
@@ -324,11 +322,7 @@ class CatchGame {
       document.getElementById('boomio-catch-canvas').style.opacity = 1;
 
       if (this.gameCount === 0) {
-        if (
-          this.showCompetitiveRegistration === 'competition' ||
-          this.showCompetitiveRegistration === 'points' ||
-          this.showCompetitiveRegistration === 'collectable'
-        ) {
+        if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
           const citySelect = document.getElementById('city-select');
           const schoolSelect = document.getElementById('school-select');
           if (citySelect && schoolSelect) {
@@ -345,9 +339,7 @@ class CatchGame {
                 return;
               }
               console.log('Selected city:', selectedCity);
-              const schools = (this.teams[selectedCity] || []).sort((a, b) =>
-                a.toLowerCase().localeCompare(b.toLowerCase()),
-              );
+              const schools = (this.teams[selectedCity] || []).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
               if (schools.length === 0) {
                 const noSchoolOpt = document.createElement('option');
                 noSchoolOpt.value = '';
@@ -386,10 +378,7 @@ class CatchGame {
             const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
             checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
           });
-          const phoneInputField =
-            this.customer === 'Toni'
-              ? document.getElementById('boomio-competition-email-input-field')
-              : document.getElementById('boomio-competition-phone-input-field');
+          const phoneInputField = this.customer === 'Toni' ? document.getElementById('boomio-competition-email-input-field') : document.getElementById('boomio-competition-phone-input-field');
           const emailInput = document.querySelector('.boomio-competition-email-input-field');
 
           if (this.customer === 'Orlen' && emailInput) {
@@ -399,17 +388,13 @@ class CatchGame {
               if (!emailInput.value.startsWith('+370')) {
                 emailInput.value = '+370' + emailInput.value.replace(/\D/g, '').slice(0, 8);
               } else {
-                emailInput.value =
-                  '+370' + emailInput.value.slice(4).replace(/\D/g, '').slice(0, 8);
+                emailInput.value = '+370' + emailInput.value.slice(4).replace(/\D/g, '').slice(0, 8);
               }
             });
 
             emailInput.addEventListener('keydown', (e) => {
               // Prevent deleting or navigating into the +370 part
-              if (
-                emailInput.selectionStart <= 4 &&
-                (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowLeft')
-              ) {
+              if (emailInput.selectionStart <= 4 && (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowLeft')) {
                 e.preventDefault();
               }
             });
@@ -431,8 +416,7 @@ class CatchGame {
 
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
-            document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.8 : 0.57;
+            document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
 
             const inpuRegisterContainer = document.querySelector('.input-register-container');
             inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -446,8 +430,7 @@ class CatchGame {
         } else {
           setTimeout(() => {
             const canvas = document.getElementById('boomio-catch-canvas');
-            document.getElementById('background_blur').style.opacity =
-              this.customer === 'Pegasas' ? 0.8 : 0.57;
+            document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
             const inputContainer = document.querySelector('.input-container');
             document.getElementById('control-button').style.transition = 'opacity 2s ease';
             document.getElementById('control-button').style.opacity = 1;
@@ -474,8 +457,7 @@ class CatchGame {
         setTimeout(() => {
           const canvas = document.getElementById('boomio-catch-canvas');
 
-          document.getElementById('background_blur').style.opacity =
-            this.customer === 'Pegasas' ? 0.8 : 0.57;
+          document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
         }, 1000);
       }
       setTimeout(() => {
@@ -499,11 +481,7 @@ class CatchGame {
     // Create and configure the game container
     const gameContainer = document.createElement('div');
     gameContainer.setAttribute('id', 'boomio-catch-container');
-    gameContainer.classList.add(
-      'boomio--animation__wrapper',
-      'boomio--animation__wrapper--initial',
-      'box',
-    );
+    gameContainer.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
     gameContainer.innerHTML = `
       <div class="game-container game-container-catch">
           <img class="new_highscore_stars" src=${
@@ -653,45 +631,25 @@ class CatchGame {
                   ? introDaumantu
                   : this.customer === 'Zemaitijos Pienas' && introDobilo
     } alt="Image Description" style="z-index:4;width:${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth + 'px'
-        : '418px'
+      document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;object-fit: cover;" id="background_intro">
 
         <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
-          document.documentElement.clientWidth < 418
-            ? document.documentElement.clientWidth + 'px'
-            : '418px'
+          document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
         }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
     ${
-      this.customer === 'Pegasas' ||
-      this.customer === 'Zemaitijos Pienas' ||
-      this.customer === 'Apranga'
+      this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas' || this.customer === 'Apranga'
         ? `<div id="background_blur" alt="Blur color" style="z-index:1;width: ${
-            document.documentElement.clientWidth < 418
-              ? document.documentElement.clientWidth + 'px'
-              : '418px'
+            document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
-            this.customer === 'Zemaitijos Pienas'
-              ? '#004C22'
-              : this.customer === 'Apranga'
-                ? '#5F2929'
-                : '#8E1735'
+            this.customer === 'Zemaitijos Pienas' ? '#004C22' : this.customer === 'Apranga' ? '#5F2929' : '#8E1735'
           }" ></div>`
         : `    <img id="background_blur" src=${blurImage.src} alt="Blur image" style="z-index:3;width: ${
-            document.documentElement.clientWidth < 418
-              ? document.documentElement.clientWidth + 'px'
-              : '418px'
-          }; height: 668px;position:absolute;opacity:${
-            this.customer === 'Pegasas' ? 0.8 : 0.5
-          };pointer-events: none; display:block;">`
+            document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
+          }; height: 668px;position:absolute;opacity:${this.customer === 'Pegasas' ? 0.8 : 0.5};pointer-events: none; display:block;">`
     }
 
-    ${
-      this.showCompetitiveRegistration
-        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
-        : ''
-    }
+    ${this.showCompetitiveRegistration ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML : ''}
 
     <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:block;width:25px;height:25px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
@@ -708,15 +666,9 @@ class CatchGame {
       const gameContainer = document.querySelector('.game-container');
 
       if (this.customer === 'Pegasas') {
-        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-        );
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(this.customer, this.scoreTable);
       } else {
-        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-        );
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }
 
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
@@ -725,20 +677,12 @@ class CatchGame {
       if (this.customer === 'Ikea') {
         const gameContainer = document.querySelector('.game-container');
 
-        this.scoreTableContainerInstance = new IkeaScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
+        this.scoreTableContainerInstance = new IkeaScoreTableContainer(this.customer, this.scoreTable, this.currentScore);
         gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
       } else {
         const gameContainer = document.querySelector('.game-container');
 
-        this.scoreTableContainerInstance = new PointScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
+        this.scoreTableContainerInstance = new PointScoreTableContainer(this.customer, this.scoreTable, this.currentScore);
         gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
       }
     }
@@ -746,19 +690,10 @@ class CatchGame {
     if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.scoreTableContainerInstance = new DownloadScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-        this.currentScore,
-      );
+      this.scoreTableContainerInstance = new DownloadScoreTableContainer(this.customer, this.scoreTable, this.currentScore);
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
-    if (
-      this.customer.includes('Gamtos Ateitis') ||
-      this.customer === 'Pieno Žvaigždės' ||
-      this.customer === 'Pegasas' ||
-      this.customer === 'Zemaitijos Pienas'
-    ) {
+    if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' || this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas') {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
@@ -771,11 +706,7 @@ class CatchGame {
       gameContainer.appendChild(this.shareContainer.containerDiv);
     }
 
-    if (
-      this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'points' ||
-      this.showCompetitiveRegistration === 'collectable'
-    ) {
+    if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
       const isValidEmail = (email) => {
         // Enhanced regex for email validation with TLD enforcement
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -789,16 +720,13 @@ class CatchGame {
       };
 
       const clickEventHandlerShowRules = () => {
-        const competitionConfirmFieldBody = document.getElementById(
-          'boomio-competition-confirm-field',
-        );
+        const competitionConfirmFieldBody = document.getElementById('boomio-competition-confirm-field');
         if (this.gameCount === 0) {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
-            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const nameInput = document.querySelector('.boomio-competition-name-input-field');
             const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
 
-            const phone = document.querySelector('.boomio-competition-phone-input-field');
             const schoolInput = document.querySelector('.boomio-competition-school-select');
             const citySelect = document.getElementById('city-select');
 
@@ -821,100 +749,76 @@ class CatchGame {
                           : this.customer === 'Apranga'
                             ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
                             : 'Norint tęsti, privaloma sutikti su privatumo politika.';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                '#FFBABA';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
               document.getElementById('competition-checkbox-error').style.height = '18px';
 
               document.getElementById('competition-name-error').innerText = '';
 
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-phone-error').innerText = '';
 
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
               document.getElementById('competition-email-error').zIndex = 0;
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error2').innerText = '';
-              document.getElementById('competition-checkbox-error2').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-checkbox-error3').innerText = '';
-              document.getElementById('competition-checkbox-error3').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
               return;
             }
 
-            if (!checkboxChange3 && this.customer === 'Pegasas' && phone?.value?.trim() !== '') {
-              document.getElementById('competition-checkbox-error3').innerText =
-                'Tai norint tęsti,  privaloma sutikti gauti naujienas SMS žinute.';
-              document.getElementById('competition-checkbox-error3').style.backgroundColor =
-                '#FFBABA';
+            if (!checkboxChange3 && this.customer === 'Pegasas' && phoneInput?.value?.trim() !== '') {
+              document.getElementById('competition-checkbox-error3').innerText = 'Tai norint tęsti,  privaloma sutikti gauti naujienas SMS žinute.';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error3').style.display = 'block';
               document.getElementById('competition-checkbox-error3').style.height = '14px';
 
               document.getElementById('competition-name-error').innerText = '';
 
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-phone-error').innerText = '';
 
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-email-error').innerText = '';
               document.getElementById('competition-email-error').zIndex = 0;
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-checkbox-error2').innerText = '';
-              document.getElementById('competition-checkbox-error2').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
             }
 
-            if (
-              !checkboxChange2 &&
-              (this.customer === 'Pegasas' ||
-                this.customer === 'Toni' ||
-                this.customer === 'Apranga')
-            ) {
+            if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni' || this.customer === 'Apranga')) {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer === 'Apranga'
                     ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
                     : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
-              document.getElementById('competition-checkbox-error2').style.backgroundColor =
-                '#FFBABA';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error2').style.display = 'block';
               document.getElementById('competition-checkbox-error2').style.height = '18px';
 
               document.getElementById('competition-name-error').innerText = '';
 
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-phone-error').innerText = '';
 
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-email-error').innerText = '';
               document.getElementById('competition-email-error').zIndex = 0;
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-checkbox-error3').innerText = '';
-              document.getElementById('competition-checkbox-error3').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
               return;
             }
             if (
@@ -924,99 +828,63 @@ class CatchGame {
               (this.customer === 'Orlen' && !/^\+370\d{1,8}$/.test(emailInput.value))
             ) {
               document.getElementById('competition-email-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : this.language === 'ES'
-                    ? 'Requerido para continuar.'
-                    : 'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
               document.getElementById('competition-phone-error').innerText = '';
 
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error2').innerText = '';
-              document.getElementById('competition-checkbox-error2').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-checkbox-error3').innerText = '';
-              document.getElementById('competition-checkbox-error3').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
               return;
             }
 
-            if (
-              (phoneInput?.value === '' || phoneInput?.value === null) &&
-              this.customer === 'Toni'
-            ) {
+            if ((phoneInput?.value === '' || phoneInput?.value === null) && this.customer === 'Toni') {
               document.getElementById('competition-phone-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : this.language === 'ES'
-                    ? 'Requerido para continuar.'
-                    : 'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-phone-error').zIndex = 1;
               document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
 
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error2').innerText = '';
-              document.getElementById('competition-checkbox-error2').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-checkbox-error3').innerText = '';
-              document.getElementById('competition-checkbox-error3').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
               return;
             }
 
-            if (
-              (playerNameInput?.value === '' || playerNameInput?.value === null) &&
-              this.customer === 'Toni'
-            ) {
-              document.getElementById('competition-name-error').innerText =
-                'El campo de nombre debe completarse.';
+            if ((nameInput?.value === '' || nameInput?.value === null) && this.customer === 'Toni') {
+              document.getElementById('competition-name-error').innerText = 'El campo de nombre debe completarse.';
               document.getElementById('competition-name-error').zIndex = 1;
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-phone-error').innerText = '';
 
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error2').innerText = '';
-              document.getElementById('competition-checkbox-error2').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-checkbox-error3').innerText = '';
-              document.getElementById('competition-checkbox-error3').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
               return;
             }
             console.log(citySelect?.value);
 
-            if (
-              !isValidEmail(emailInput?.value) &&
-              this.customer !== 'Toni' &&
-              this.customer !== 'Orlen'
-            ) {
-              document.getElementById('competition-email-error').innerText =
-                this.language === 'ES'
-                  ? 'Formato de correo electrónico incorrecto.'
-                  : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+            if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni' && this.customer !== 'Orlen') {
+              document.getElementById('competition-email-error').innerText = this.language === 'ES' ? 'Formato de correo electrónico incorrecto.' : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
@@ -1024,46 +892,40 @@ class CatchGame {
             }
 
             if (emailInput?.value?.length < 10 && this.customer === 'Toni') {
-              document.getElementById('competition-email-error').innerText =
-                'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-email-error').style.height = '20px';
 
               document.getElementById('competition-phone-error').innerText = '';
-              document.getElementById('competition-phone-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-phone-error').style.height = '37px';
 
               return;
             }
             if (phoneInput?.value?.length < 10 && this.customer === 'Toni') {
-              document.getElementById('competition-phone-error').innerText =
-                'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
               document.getElementById('competition-phone-error').style.height = '20px';
 
               document.getElementById('competition-phone-error').zIndex = 1;
               document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
 
               document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-email-error').style.height = '37px';
 
               return;
             }
 
             if (
-              (this.showCompetitiveRegistration === 'competition' ||
-                this.showCompetitiveRegistration === 'points' ||
-                this.showCompetitiveRegistration === 'collectable') &&
+              (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') &&
               checkboxChange &&
               this.loading === false &&
               (this.customer !== 'Pegasas' || checkboxChange2) &&
-              (this.customer !== 'Pegasas' || phone?.value?.trim() === '' || checkboxChange3)
+              (this.customer !== 'Pegasas' || phoneInput?.value?.trim() === '' || checkboxChange3)
             ) {
-              const phoneValue = phone?.value?.trim();
+              const phoneValue = phoneInput?.value?.trim();
               this.loading = true;
 
               const boomioCatchSpinner = document.createElement('div');
@@ -1097,21 +959,17 @@ class CatchGame {
 
               boomioService
                 .signal('', 'user_info', {
-                  emails_consent:
-                    this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
+                  emails_consent: this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
                   user_email: emailInput?.value,
                   ...(this.customer.includes('Gamtos Ateitis') && {
                     team: schoolInput.value,
                   }),
                   user_name:
-                    this.customer.includes('Gamtos Ateitis') ||
-                    this.customer === 'Orlen' ||
-                    this.customer === 'Akropolis' ||
-                    this.customer === 'Apranga'
+                    this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen' || this.customer === 'Akropolis' || this.customer === 'Apranga'
                       ? emailInput?.value
                       : this.customer === 'Toni'
-                        ? playerNameInput?.value.trimEnd() + phoneInput?.value
-                        : playerNameInput?.value,
+                        ? nameInput?.value.trimEnd() + phoneInput?.value
+                        : nameInput?.value,
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneInput?.value } : {}),
                 })
@@ -1135,16 +993,13 @@ class CatchGame {
                                   : this.language === 'ET'
                                     ? 'See e-posti aadress on juba olemas. Kasutage teist.'
                                     : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        '#FFBABA';
+                      document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
                       document.getElementById('competition-name-error').innerText = '';
                       document.getElementById('competition-phone-error').innerText = '';
 
-                      document.getElementById('competition-phone-error').style.backgroundColor =
-                        'transparent';
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+                      document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
                     } else if (response.res_code === 'NICKNAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
                         this.customer === 'Fpro'
@@ -1158,28 +1013,21 @@ class CatchGame {
                                 : this.language === 'ET'
                                   ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                                   : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        '#FFBABA';
+                      document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
                       document.getElementById('competition-phone-error').innerText = '';
 
-                      document.getElementById('competition-phone-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
                       document.getElementById('competition-email-error').innerText = '';
                       document.getElementById('competition-email-error').zIndex = 0;
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
                       document.getElementById('competition-phone-error').innerText = '';
 
-                      document.getElementById('competition-phone-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
                     }
                   } else {
                     this.bestScore = response.user_best_score;
-                    const inpuRegisterContainer = document.querySelector(
-                      '.input-register-container',
-                    );
-                    inpuRegisterContainer.style.transition =
-                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    const inpuRegisterContainer = document.querySelector('.input-register-container');
+                    inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                     setTimeout(() => {
                       inpuRegisterContainer.style.height = '10px';
                       inpuRegisterContainer.style.top = 'calc(50% + 330px)';
@@ -1190,15 +1038,12 @@ class CatchGame {
                     }, 1000);
                     setTimeout(() => {
                       const canvas = document.getElementById('boomio-catch-canvas');
-                      document.getElementById('background_blur').style.opacity =
-                        this.customer === 'Pegasas' ? 0.8 : 0.57;
+                      document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
                       const inputContainer = document.querySelector('.input-container');
-                      document.getElementById('control-button').style.transition =
-                        'opacity 2s ease';
+                      document.getElementById('control-button').style.transition = 'opacity 2s ease';
                       document.getElementById('control-button').style.opacity = 1;
                       document.getElementById('control-button').style.display = 'flex';
-                      inputContainer.style.transition =
-                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                       inputContainer.style.display = 'block';
                       setTimeout(() => {
                         inputContainer.style.height = '332px';
@@ -1243,11 +1088,7 @@ class CatchGame {
           competitionTableContainer.style.display = 'none';
         }, 1000);
         setTimeout(() => {
-          if (
-            this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'points' ||
-            this.showCompetitiveRegistration === 'collectable'
-          ) {
+          if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
@@ -1275,11 +1116,7 @@ class CatchGame {
               this.userBestPlace = response.user_best_place;
               if (this.showCompetitiveRegistration === 'points') {
                 this.scoreTable = response;
-                this.scoreTableContainerInstance.updateProps(
-                  this.customer,
-                  this.scoreTable,
-                  this.currentScore,
-                );
+                this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
               }
               if (this.showCompetitiveRegistration === 'competition') {
                 this.scoreTable = response;
@@ -1289,12 +1126,7 @@ class CatchGame {
               if (this.showCompetitiveRegistration === 'collectable') {
                 this.collection = response?.collection ? response?.collection : this.collection;
                 this.just_won = response?.just_won ? response?.just_won : this.just_won;
-                this.scoreTableContainerInstance.updateProps(
-                  this.customer,
-                  this.collectables,
-                  this.collection,
-                  this.just_won,
-                );
+                this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
               }
             })
             .catch((error) => {
@@ -1373,11 +1205,7 @@ class CatchGame {
               numbers.style.display = 'none';
 
               if (this.gameStarted === false) {
-                if (
-                  this.showCompetitiveRegistration === 'competition' ||
-                  this.showCompetitiveRegistration === 'points' ||
-                  this.showCompetitiveRegistration === 'collectable'
-                ) {
+                if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
                   boomioService
                     .signal('ROUND_STARTED', 'signal')
                     .then((response) => {
@@ -1445,9 +1273,7 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      const competitionDidYouKnow = document.getElementById(
-        this.customer === 'Akropolis' ? 'boomio-close-share' : 'boomio-close-did-you-know',
-      );
+      const competitionDidYouKnow = document.getElementById(this.customer === 'Akropolis' ? 'boomio-close-share' : 'boomio-close-did-you-know');
       if (competitionDidYouKnow) {
         competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
       }
@@ -1476,18 +1302,13 @@ class CatchGame {
 
   setLife() {
     const currectLifeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
-    const currectScoreDiv = document.getElementsByClassName(
-      'boomio-score-input-container-catch',
-    )[0];
+    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
     currectScoreDiv.style.display = 'block';
     document.getElementById('currentScore').innerHTML = `0`;
 
     currectLifeDiv.style.transition = 'opacity 0.8s ease';
     currectLifeDiv.style.display = 'block';
-    document.getElementById('currentLife').innerHTML =
-      this.customer === 'Eurovaistine'
-        ? `${this.defaultscore}/${this.defaultscore}`
-        : `${this.defaultscore}/${this.defaultscore}`;
+    document.getElementById('currentLife').innerHTML = this.customer === 'Eurovaistine' ? `${this.defaultscore}/${this.defaultscore}` : `${this.defaultscore}/${this.defaultscore}`;
     currectLifeDiv.style.opacity = 1;
   }
 
@@ -1603,11 +1424,7 @@ class CatchGame {
   }
   updateGame() {
     if (!this.player.gameOver) {
-      const count = this.customer.includes('Gamtos Ateitis')
-        ? 5
-        : this.customer === 'Pieno Žvaigždės'
-          ? 5
-          : 3;
+      const count = this.customer.includes('Gamtos Ateitis') ? 5 : this.customer === 'Pieno Žvaigždės' ? 5 : 3;
       if (this.player.fruitsMissed >= count) {
         this.player.gameOver = true;
       }
@@ -1635,14 +1452,7 @@ class CatchGame {
         if (this.fruits.length < newNumberOfFruits + 3) {
           // Create additional fruits to reach the new number
           for (let i = this.fruits.length; i < newNumberOfFruits + 3; i++) {
-            const fruit = new Fruit(
-              this.customer,
-              this.canvas,
-              this.context,
-              this.player,
-              this,
-              'bad',
-            );
+            const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this, 'bad');
             fruit.chooseFruit();
             this.fruits.push(fruit);
           }
@@ -1689,9 +1499,7 @@ class CatchGame {
         setTimeout(
           () => {
             if (
-              (this.showCompetitiveRegistration === 'competition' ||
-                this.showCompetitiveRegistration === 'points' ||
-                this.showCompetitiveRegistration === 'collectable') &&
+              (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') &&
               this.customer !== 'Akropolis'
             ) {
               this.hideScore();
@@ -1704,11 +1512,7 @@ class CatchGame {
                   this.userBestPlace = response.user_best_place;
                   if (this.showCompetitiveRegistration === 'points') {
                     this.scoreTable = response;
-                    this.scoreTableContainerInstance.updateProps(
-                      this.customer,
-                      this.scoreTable,
-                      this.currentScore,
-                    );
+                    this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
                   }
                   if (this.customer === 'Akropolis') {
                     this.scoreTable = response;
@@ -1722,12 +1526,7 @@ class CatchGame {
                   if (this.showCompetitiveRegistration === 'collectable') {
                     this.collection = response?.collection ? response?.collection : this.collection;
                     this.just_won = response?.just_won ? response?.just_won : this.just_won;
-                    this.scoreTableContainerInstance.updateProps(
-                      this.customer,
-                      this.collectables,
-                      this.collection,
-                      this.just_won,
-                    );
+                    this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
                   }
                 })
                 .catch((error) => {
@@ -1738,12 +1537,7 @@ class CatchGame {
             const canvas = document.getElementById('boomio-catch-canvas');
 
             let competitionTableContainer = '';
-            if (
-              this.customer.includes('Gamtos Ateitis') ||
-              this.customer === 'Pieno Žvaigždės' ||
-              this.customer === 'Pegasas' ||
-              this.customer === 'Zemaitijos Pienas'
-            ) {
+            if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' || this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else if (this.customer === 'Akropolis') {
               competitionTableContainer = document.querySelector('.share-container');
@@ -1752,8 +1546,7 @@ class CatchGame {
             }
 
             document.getElementById('background_blur').style.display = 'block';
-            competitionTableContainer.style.transition =
-              'height 1s ease, top 1s ease, opacity 1s ease';
+            competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
             competitionTableContainer.style.display = 'block';
 
             setTimeout(() => {
@@ -1762,12 +1555,8 @@ class CatchGame {
               competitionTableContainer.style.opacity = 1;
             }, 100);
 
-            const currectScoreDiv = document.getElementsByClassName(
-              'boomio-score-input-container-catch',
-            )[0];
-            const currectTimeDiv = document.getElementsByClassName(
-              'boomio-life-input-container',
-            )[0];
+            const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
+            const currectTimeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
             currectTimeDiv.style.opacity = 0;
 
             currectScoreDiv.style.opacity = 0;
@@ -1784,9 +1573,7 @@ class CatchGame {
   }
 
   resetGame() {
-    const currectScoreDiv = document.getElementsByClassName(
-      'boomio-score-input-container-catch',
-    )[0];
+    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
     this.hideScore();
     currectScoreDiv.style.opacity = 1;
     setTimeout(() => {
@@ -1844,20 +1631,8 @@ class Player {
     this.score = 0;
     this.fruitsCollected = 0;
     this.fruitsMissed = 0;
-    this.playerWidth =
-      this.customer === 'Orlen' || this.customer === 'Toni'
-        ? 110
-        : this.customer === 'Akropolis' || this.customer === 'Apranga'
-          ? 88
-          : 110;
-    this.playerHeight =
-      this.customer === 'Orlen' || this.customer === 'Toni'
-        ? 80
-        : this.customer === 'Akropolis'
-          ? 64
-          : this.customer === 'Apranga'
-            ? 92
-            : 80;
+    this.playerWidth = this.customer === 'Orlen' || this.customer === 'Toni' ? 110 : this.customer === 'Akropolis' || this.customer === 'Apranga' ? 88 : 110;
+    this.playerHeight = this.customer === 'Orlen' || this.customer === 'Toni' ? 80 : this.customer === 'Akropolis' ? 64 : this.customer === 'Apranga' ? 92 : 80;
     this.playerSpeed = 5;
     this.x = this.canvas.width / 2 - this.playerWidth / 2;
     this.y = this.canvas.height - this.playerHeight - 18;
@@ -1961,26 +1736,8 @@ class Fruit {
 
     this.fruitType = '';
     this.fruitScore = 0;
-    this.fruitWidth =
-      this.customer === 'Pegasas'
-        ? 60
-        : this.customer === 'Pieno Žvaigždės'
-          ? 50
-          : this.customer === 'Akropolis'
-            ? type === 'bad'
-              ? 45
-              : 55
-            : 55;
-    this.fruitHeight =
-      this.customer === 'Pegasas'
-        ? 60
-        : this.customer === 'Pieno Žvaigždės'
-          ? 50
-          : this.customer === 'Akropolis'
-            ? type === 'bad'
-              ? 45
-              : 55
-            : 55;
+    this.fruitWidth = this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : this.customer === 'Akropolis' ? (type === 'bad' ? 45 : 55) : 55;
+    this.fruitHeight = this.customer === 'Pegasas' ? 60 : this.customer === 'Pieno Žvaigždės' ? 50 : this.customer === 'Akropolis' ? (type === 'bad' ? 45 : 55) : 55;
     this.fruitWidthArray = [40, 40, 40, 40, 30];
     this.fruitHeightArray = [40, 40, 40, 40, 30];
     this.fruitImage = new Image();
@@ -2003,31 +1760,7 @@ class Fruit {
     // Fruit images
     if (this.customer && this.customer.includes('Plastic')) {
       // Handle Gamtos Ateitis images
-      this.images = [
-        item1,
-        item4,
-        item5,
-        item6,
-        item7,
-        item8,
-        item10,
-        item12,
-        item14,
-        item16,
-        item19,
-        item20,
-        item23,
-        item2,
-        item3,
-        item9,
-        item11,
-        item13,
-        item15,
-        item17,
-        item18,
-        item21,
-        item22,
-      ];
+      this.images = [item1, item4, item5, item6, item7, item8, item10, item12, item14, item16, item19, item20, item23, item2, item3, item9, item11, item13, item15, item17, item18, item21, item22];
     } else if (this.customer && this.customer.includes('Paper')) {
       // Handle Paper images
       this.images = [
@@ -2100,18 +1833,7 @@ class Fruit {
         item14PienoZvaigzdes,
       ];
     } else if (this.customer && this.customer === 'Akropolis') {
-      this.images = [
-        item1Akropolis,
-        item2Akropolis,
-        item3Akropolis,
-        item4Akropolis,
-        item5Akropolis,
-        item6Akropolis,
-        item7Akropolis,
-        item8Akropolis,
-        item9Akropolis,
-        item10Akropolis,
-      ];
+      this.images = [item1Akropolis, item2Akropolis, item3Akropolis, item4Akropolis, item5Akropolis, item6Akropolis, item7Akropolis, item8Akropolis, item9Akropolis, item10Akropolis];
     } else if (this.customer && this.customer === 'Daumantu') {
       this.images = [
         item1Daumantu,
@@ -2129,47 +1851,11 @@ class Fruit {
         item13Daumantu,
       ];
     } else if (this.customer && this.customer === 'Zemaitijos Pienas') {
-      this.images = [
-        item1Dobilo,
-        item2Dobilo,
-        item3Dobilo,
-        item4Dobilo,
-        item5Dobilo,
-        item6Dobilo,
-        item7Dobilo,
-        item8Dobilo,
-        item9Dobilo,
-        item10Dobilo,
-        item11Dobilo,
-        item12Dobilo,
-        item13Dobilo,
-      ];
+      this.images = [item1Dobilo, item2Dobilo, item3Dobilo, item4Dobilo, item5Dobilo, item6Dobilo, item7Dobilo, item8Dobilo, item9Dobilo, item10Dobilo, item11Dobilo, item12Dobilo, item13Dobilo];
     } else if (this.customer && this.customer === 'Toni') {
-      this.images = [
-        item1Toni,
-        item2Toni,
-        item3Toni,
-        item4Toni,
-        item5Toni,
-        item6Toni,
-        item7Toni,
-        item8Toni,
-        item9Toni,
-        item10Toni,
-      ];
+      this.images = [item1Toni, item2Toni, item3Toni, item4Toni, item5Toni, item6Toni, item7Toni, item8Toni, item9Toni, item10Toni];
     } else if (this.customer && this.customer === 'Orlen') {
-      this.images = [
-        item1Orlen,
-        item2Orlen,
-        item3Orlen,
-        item4Orlen,
-        item5Orlen,
-        item6Orlen,
-        item7Orlen,
-        item8Orlen,
-        item9Orlen,
-        item10Orlen,
-      ];
+      this.images = [item1Orlen, item2Orlen, item3Orlen, item4Orlen, item5Orlen, item6Orlen, item7Orlen, item8Orlen, item9Orlen, item10Orlen];
     } else if (this.customer && this.customer === 'Apranga') {
       this.images = [
         item1Apranga,
@@ -2189,18 +1875,7 @@ class Fruit {
       ];
     } else {
       // Default catch images if none of the above conditions are met
-      this.images = [
-        item1Pegasas,
-        item2Pegasas,
-        item3Pegasas,
-        item4Pegasas,
-        item5Pegasas,
-        item6Pegasas,
-        item7Pegasas,
-        item8Pegasas,
-        item9Pegasas,
-        item10Pegasas,
-      ];
+      this.images = [item1Pegasas, item2Pegasas, item3Pegasas, item4Pegasas, item5Pegasas, item6Pegasas, item7Pegasas, item8Pegasas, item9Pegasas, item10Pegasas];
     }
   }
 
@@ -2349,31 +2024,9 @@ class Fruit {
         'item13Dobilo',
       ][this.fruitNumber];
     } else if (this.customer === 'Toni') {
-      this.fruitType = [
-        'item1Toni',
-        'item2Toni',
-        'item3Toni',
-        'item4Toni',
-        'item5Toni',
-        'item6Toni',
-        'item7Toni',
-        'item8Toni',
-        'item9Toni',
-        'item10Toni',
-      ][this.fruitNumber];
+      this.fruitType = ['item1Toni', 'item2Toni', 'item3Toni', 'item4Toni', 'item5Toni', 'item6Toni', 'item7Toni', 'item8Toni', 'item9Toni', 'item10Toni'][this.fruitNumber];
     } else if (this.customer === 'Orlen') {
-      this.fruitType = [
-        'item1Orlen',
-        'item2Orlen',
-        'item3Orlen',
-        'item4Orlen',
-        'item5Orlen',
-        'item6Orlen',
-        'item7Orlen',
-        'item8Orlen',
-        'item9Orlen',
-        'item10Orlen',
-      ][this.fruitNumber];
+      this.fruitType = ['item1Orlen', 'item2Orlen', 'item3Orlen', 'item4Orlen', 'item5Orlen', 'item6Orlen', 'item7Orlen', 'item8Orlen', 'item9Orlen', 'item10Orlen'][this.fruitNumber];
     } else if (this.customer === 'Apranga') {
       this.fruitType = [
         'item1Apranga',
@@ -2393,41 +2046,23 @@ class Fruit {
       ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
-      this.fruitType = [
-        'item1Pegasas',
-        'item2Pegasas',
-        'item3Pegasas',
-        'item4Pegasas',
-        'item5Pegasas',
-        'item6Pegasas',
-        'item7Pegasas',
-        'item8Pegasas',
-        'item9Pegasas',
-        'item10Pegasas',
-      ][this.fruitNumber];
+      this.fruitType = ['item1Pegasas', 'item2Pegasas', 'item3Pegasas', 'item4Pegasas', 'item5Pegasas', 'item6Pegasas', 'item7Pegasas', 'item8Pegasas', 'item9Pegasas', 'item10Pegasas'][
+        this.fruitNumber
+      ];
     }
 
     if (this.customer.includes('Gamtos Ateitis')) {
-      this.fruitScore = [
-        -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100,
-        100, 100, 100, 100, 100,
-      ][this.fruitNumber];
+      this.fruitScore = [-50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     } else if (this.customer === 'Pieno Žvaigždės') {
-      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50, -50][
-        this.fruitNumber
-      ];
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50, -50][this.fruitNumber];
     } else if (this.customer === 'Akropolis') {
       this.fruitScore = [100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
     } else if (this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas') {
-      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][
-        this.fruitNumber
-      ];
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
     } else if (this.customer === 'Orlen' || this.customer === 'Toni') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
     } else if (this.customer === 'Apranga') {
-      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][
-        this.fruitNumber
-      ];
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -2456,10 +2091,7 @@ class Fruit {
       } else {
         if (fruit.fruitScore > 0) {
           this.player.fruitsMissed++;
-          document.getElementById('currentLife').innerHTML = `${Math.max(
-            0,
-            this.player.defaultscore - this.player.fruitsMissed,
-          )}/${this.player.defaultscore}`;
+          document.getElementById('currentLife').innerHTML = `${Math.max(0, this.player.defaultscore - this.player.fruitsMissed)}/${this.player.defaultscore}`;
           if (this.customer === 'Pegasas') {
             this.showScoreEffect('-1', true);
           }
@@ -2477,8 +2109,7 @@ class Fruit {
     if (this.y >= this.player.y - 40 && this.y <= this.player.y - 30) {
       if (
         (this.x > this.player.x && this.x < this.player.x + this.player.playerWidth) ||
-        (this.x + this.fruitWidth > this.player.x &&
-          this.x + this.fruitWidth < this.player.x + this.player.playerWidth)
+        (this.x + this.fruitWidth > this.player.x && this.x + this.fruitWidth < this.player.x + this.player.playerWidth)
       ) {
         this.player.fruitsCollected++;
         this.updateScore();
@@ -2604,17 +2235,12 @@ class Fruit {
       }, 500);
 
       this.player.fruitsMissed++;
-      document.getElementById('currentLife').innerHTML = `${Math.max(
-        0,
-        this.player.defaultscore - this.player.fruitsMissed,
-      )}/${this.player.defaultscore}`;
+      document.getElementById('currentLife').innerHTML = `${Math.max(0, this.player.defaultscore - this.player.fruitsMissed)}/${this.player.defaultscore}`;
       this.showScoreEffect('-1', true);
     }
 
     if (this.game.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName(
-        'boomio-score-input-container-catch',
-      )[0];
+      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
       currectScoreDiv.style.transition = 'opacity 0.8s ease';
       currectScoreDiv.style.display = 'block';
       currectScoreDiv.style.opacity = 1;

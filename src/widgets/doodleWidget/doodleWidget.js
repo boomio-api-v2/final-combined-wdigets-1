@@ -56,7 +56,6 @@ import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { GameOverContainer } from '../helpers/GameOverContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
-import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
@@ -78,7 +77,7 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
+    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
 

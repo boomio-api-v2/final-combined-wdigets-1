@@ -13,6 +13,7 @@ import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { ShareContainer } from '../helpers/ShareContainer';
+import { Elements } from '../helpers/ElementsHelper';
 
 import {
   close,
@@ -105,7 +106,7 @@ class FlappyBird {
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name ? this.config.business_name : 'Orlen';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -173,7 +174,7 @@ class FlappyBird {
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
         checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
       });
-
+      const phoneInputField = this.customer === 'Toni' ? document.getElementById('boomio-competition-email-input-field') : document.getElementById('boomio-competition-phone-input-field');
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
 
       if (this.customer === 'Orlen' && emailInput) {
@@ -200,6 +201,15 @@ class FlappyBird {
       } else {
         emailInput.addEventListener('input', () => {});
       }
+
+      if (phoneInputField) {
+        phoneInputField.addEventListener('input', (event) => {
+          event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+        });
+      } else {
+        console.error('');
+      }
+
       setTimeout(() => {
         if (this.customer !== 'SaludSA') {
           const canvas = document.getElementById('flappy-canvas');
@@ -471,8 +481,6 @@ class FlappyBird {
                                                                                 : this.customer === 'Toni'
                                                                                   ? toniBackground
                                                                                   : this.customer === 'Penki Sezonai' && mainPenki;
-
-    // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
     const img2 = new Image();
     img2.src = 'https://i.ibb.co/SrtXMFx/Boomio-demo-penguin.png';
@@ -1158,7 +1166,9 @@ ${`<div style="${
                     ? '#FF00FF'
                     : this.customer === 'Tiche'
                       ? '#065DA4'
-                      : '#C6152F'
+                      : this.customer === 'Toni'
+                        ? '#000F9F'
+                        : '#C6152F'
             };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -1302,8 +1312,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
           const checkboxChange2 = this.checkboxChange2;
 
-          const phone = document.querySelector('.boomio-competition-phone-input-field');
-
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
               if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo') && !this.customer.includes('Tiche'))) {
@@ -1316,7 +1324,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
                         : this.language === 'EN'
                           ? 'You need to agree to receive updates in order to continue'
-                          : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                          : this.language === 'ES'
+                            ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                            : 'Norint tęsti, privaloma sutikti su privatumo politika.';
                 document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
                 document.getElementById('competition-checkbox-error').style.display = 'block';
                 document.getElementById('competition-checkbox-error').style.height = '14px';
@@ -1339,7 +1349,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         ? 'Para continuar debes agregar el correo electrónico.'
                         : this.language === 'EN'
                           ? 'Filling in is required to continue.'
-                          : 'Norint tęsti privaloma užpildyti.';
+                          : this.language === 'ES'
+                            ? 'Requerido para continuar.'
+                            : 'Norint tęsti privaloma užpildyti.';
                 document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
                 document.getElementById('competition-name-error').innerText = '';
 
@@ -1361,6 +1373,33 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
               }
             }
 
+            if (Elements.isVisible(emailInput) && emailInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-email-error').zIndex = 1;
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').innerText = '';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+
+              document.getElementById('competition-phone-error').style.height = '37px';
+
+              return;
+            }
+            if (Elements.isVisible(phoneInput) && phoneInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-phone-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').zIndex = 1;
+              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+              document.getElementById('competition-email-error').style.height = '37px';
+
+              return;
+            }
+
             if (
               this.customer === 'SaludSA' ||
               this.showCompetitiveRegistration === 'competition' ||
@@ -1370,11 +1409,18 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange,
-                  user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
-                  user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+                  user_email: this.customer === 'SaludSA' ? new Date().toISOString() : Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim(),
+                  user_name:
+                    this.customer === 'SaludSA'
+                      ? new Date().toISOString()
+                      : this.customer === 'Toni'
+                        ? nameInput?.value.trimEnd() + phoneInput?.value
+                        : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
                   ...(this.customer === 'Nykstukas' && {
                     team: nameInput?.value,
                   }),
+                  game_code: this.game_code,
+                  ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
                 })
                 .then((response) => {
                   if (response.success === false) {
@@ -1621,7 +1667,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
                   : this.customer === 'Pigu.lt' && this.language === 'RU'
                     ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
-                    : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
+                    : this.language === 'ES'
+                      ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                      : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
         document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
         document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
