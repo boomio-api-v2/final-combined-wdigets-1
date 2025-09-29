@@ -1,15 +1,8 @@
 import './styles.css';
 
-import {
-  closeDidYouKnow,
-  facebook,
-  messenger,
-  instagram,
-  tiktok,
-  copy,
-  whatsapp,
-} from './constants';
+import { closeDidYouKnow, facebook, messenger, instagram, tiktok, copy, whatsapp } from './constants';
 import { localStorageService } from '@/services';
+import { t } from '../../services/translations';
 
 export class ShareContainer {
   constructor(prop) {
@@ -26,7 +19,7 @@ export class ShareContainer {
     const campaignUrl = urlParams.get('campaign_url');
     this.isMobileWidthSmall = window.innerWidth <= 400;
 
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+    this.campaignUrlOrCurrentPage = campaignUrl ? campaignUrl : currentPageUrl;
     this.user_id = urlParams.get('user_id');
 
     this.prop = prop;
@@ -52,7 +45,7 @@ export class ShareContainer {
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
 
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+    this.campaignUrlOrCurrentPage = campaignUrl ? campaignUrl : currentPageUrl;
     if (!this.containerDiv) return;
 
     let scoreboardText = `
@@ -72,8 +65,7 @@ export class ShareContainer {
                        ? 'Kui kutsud sõbrad mängima, saad +100 punkti oma kontole!<br>Jaga kohe mängulinki ja saad lisaboonuse! '
                        : this.language === 'FI'
                          ? 'Ystävien kutsumisesta saat +100 pistettä pelitulokseesi!<br>Jaa pelin linkki nyt ja saat yllätyksen!'
-                         : this.language === 'RU' &&
-                           'За приглашение друзей Ты получешь +100 очков к своему игровому счёту!<br>Поделись ссылкой на игру прямо сейчас и получи дополнительный сюрприз!'
+                         : this.language === 'RU' && 'За приглашение друзей Ты получешь +100 очков к своему игровому счёту!<br>Поделись ссылкой на игру прямо сейчас и получи дополнительный сюрприз!'
          }
       </div>
 
@@ -128,7 +120,7 @@ export class ShareContainer {
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text3');
-        copyButton.textContent = this.language === 'EN' ? 'Copied!' : 'Nukopijuota!';
+        copyButton.textContent = t('copiedMsg', this.language);
 
         setTimeout(() => {
           copyButton.textContent = this.couponCodeNew;
@@ -137,8 +129,7 @@ export class ShareContainer {
     }
 
     window.copyURL = function () {
-      const shareURL = this.campaignUrlProp;
-      navigator.clipboard.writeText(shareURL);
+      navigator.clipboard.writeText(this.campaignUrlProp);
     }.bind(this);
 
     const shareButton = document.getElementById('default-share-button');
@@ -151,45 +142,47 @@ export class ShareContainer {
     const shareData = {
       title: 'Išbandyk šį žaidimą!',
       text: 'Pasinerk į smagų žaidimą ir laimėk puikių prizų!',
-      url: this.campaignUrlProp,
+      url: this.campaignUrlOrCurrentPage,
     };
 
     document.dispatchEvent(
       new CustomEvent('shareClicked', {
-        detail: { url: this.campaignUrlProp },
+        detail: { url: this.campaignUrlOrCurrentPage },
       }),
     );
 
-    const copiedMsg =
-      this.language === 'EN'
-        ? 'Link copied!'
-        : this.language === 'LT'
-          ? 'Nuoroda nukopijuota!'
-          : this.language === 'LV'
-            ? 'Saite nokopēta!'
-            : this.language === 'ET'
-              ? 'Link kopeeritud!'
-              : this.language === 'FI'
-                ? 'Linkki kopioitu!'
-                : this.language === 'RU'
-                  ? 'Ссылка скопирована!'
-                  : 'Link copied!';
+    const ua = navigator.userAgent || '';
+    const isAndroid = /Android/i.test(ua);
+    const isWebView =
+      // standard Android WebView token "; wv"
+      (isAndroid && /; wv\)/i.test(ua)) ||
+      // many in-app browsers strip "Safari" but keep Chrome token
+      (isAndroid && /Chrome\/\d+/i.test(ua) && !/Safari/i.test(ua)) ||
+      // generic Version/x Chrome y Mobile Safari z often used by WebView shells
+      (isAndroid && /Version\/\d+\.\d+.*Chrome\/\d+/i.test(ua));
 
     try {
       // 1) Native share if available (Chrome/standalone PWA, not WebView)
-      if (navigator.share) {
+      if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
         await navigator.share(shareData);
         return;
       }
-      // 2) Modern clipboard (many in-app browsers block this)
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(this.campaignUrlProp);
-        alert(copiedMsg);
+
+      // 2) If Android WebView (or anything without native share), open our custom sheet
+      if (isAndroid || isWebView) {
+        this.openCustomShareSheet(shareData);
         return;
       }
-      // 3) Legacy clipboard via textarea
+
+      // 3) Modern clipboard (many in-app browsers block this)
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(this.campaignUrlOrCurrentPage);
+        alert(t('copiedMsg', this.language));
+        return;
+      }
+      // 4) Legacy clipboard via textarea
       const ta = document.createElement('textarea');
-      ta.value = this.campaignUrlProp;
+      ta.value = this.campaignUrlOrCurrentPage;
       ta.setAttribute('readonly', '');
       ta.style.position = 'fixed';
       ta.style.top = '-9999px';
@@ -197,16 +190,12 @@ export class ShareContainer {
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      alert(copiedMsg);
+      alert(t('copiedMsg', this.language));
     } catch (err) {
       console.error('Share/copy failed:', err);
       // 4) Absolute fallback: open a chooser-friendly intent-style page
       // or show per-network share links (see section C below).
-      alert(
-        this.language === 'EN'
-          ? 'Could not open share sheet. Copy the link manually.'
-          : 'Nepavyko atidaryti dalinimosi lango. Nukopijuok nuorodą rankiniu būdu.',
-      );
+      alert(this.language === 'EN' ? 'Could not open share sheet. Copy the link manually.' : 'Nepavyko atidaryti dalinimosi lango. Nukopijuok nuorodą rankiniu būdu.');
     }
   }
 
@@ -216,12 +205,7 @@ export class ShareContainer {
     containerDiv.setAttribute('id', 'share-container');
     containerDiv.style.background = 'none';
 
-    containerDiv.style.width =
-      document.documentElement.clientWidth < 426
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
-        : '426px';
+    containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative;">
       <div style="width:calc(100% - 20px);margin-left:10px;top: ${
@@ -277,5 +261,204 @@ export class ShareContainer {
     }
 
     this.updateVisuals();
+  }
+
+  openCustomShareSheet(shareData) {
+    const existing = document.getElementById('boomio-share-sheet');
+    if (existing) existing.remove();
+
+    const targets = this.getShareTargets(shareData);
+
+    const root = document.createElement('div');
+    root.id = 'boomio-share-sheet';
+    root.setAttribute('role', 'dialog');
+    root.setAttribute('aria-modal', 'true');
+    root.style.cssText = 'position:fixed;inset:0;z-index:92147483646;display:flex;align-items:flex-end;justify-content:center;' + 'background:rgba(0,0,0,.4);backdrop-filter:saturate(1.2) blur(1px);';
+
+    const sheet = document.createElement('div');
+    sheet.style.cssText =
+      'width:100%;max-width:560px;background:#fff;border-top-left-radius:16px;border-top-right-radius:16px;' +
+      'padding:12px 8px 10px;box-shadow:0 -6px 20px rgba(0,0,0,.15);' +
+      'transform:translateY(100%);transition:transform .18s ease-out;font:500 14px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;';
+
+    // header
+    const grab = document.createElement('div');
+    grab.style.cssText = 'width:44px;height:4px;background:#e2e2e2;border-radius:3px;margin:6px auto 10px;';
+    sheet.appendChild(grab);
+
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;justify-items:center;padding:0 10px 6px;';
+    sheet.appendChild(grid);
+
+    // items
+    targets.forEach((z) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('aria-label', z.label);
+      btn.style.cssText = 'appearance:none;border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;min-width:64px;';
+      btn.innerHTML =
+        `<span style="width:56px;height:56px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);">${z.icon}</span>` +
+        `<span style="font-size:12px;color:#222;line-height:14px;text-align:center">${z.label}</span>`;
+      btn.onclick = async () => {
+        try {
+          if (z.type === 'copy') {
+            // copy
+            if (navigator.clipboard?.writeText) {
+              await navigator.clipboard.writeText(shareData.url);
+            } else {
+              const ta = document.createElement('textarea');
+              ta.value = shareData.url;
+              ta.setAttribute('readonly', '');
+              ta.style.position = 'fixed';
+              ta.style.top = '-9999px';
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand('copy');
+              ta.remove();
+            }
+            alert(t('copiedMsg', this.language));
+          } else {
+            this.attemptOpen(z.href, z.webFallback);
+          }
+        } catch (e) {
+          console.warn('share action failed', e);
+          if (z.webFallback) this.attemptOpen(z.webFallback);
+        }
+        this.closeShareSheet(root);
+      };
+      grid.appendChild(btn);
+    });
+
+    const footer = document.createElement('div');
+    footer.style.cssText = 'padding:6px 10px 12px;';
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.textContent = t('close', this.language);
+    closeBtn.style.cssText = 'width:100%;height:42px;border-radius:12px;border:0;background:#f2f2f2;color:#111;font-weight:600;cursor:pointer;';
+    closeBtn.onclick = () => this.closeShareSheet(root);
+    footer.appendChild(closeBtn);
+    sheet.appendChild(footer);
+
+    root.appendChild(sheet);
+    root.addEventListener('click', (e) => {
+      if (e.target === root) this.closeShareSheet(root);
+    });
+    document.addEventListener('keydown', function esc(e) {
+      if (e.key === 'Escape') {
+        document.removeEventListener('keydown', esc);
+        root && root.parentNode && root.parentNode.removeChild(root);
+      }
+    });
+
+    document.body.appendChild(root);
+    requestAnimationFrame(() => (sheet.style.transform = 'translateY(0)'));
+  }
+
+  getShareTargets({ title, text, url }) {
+    const msg = text ? `${text} ${url}` : url;
+    const encMsg = encodeURIComponent(msg);
+    const encUrl = encodeURIComponent(url);
+    const encTitle = encodeURIComponent(title || '');
+
+    // icons kept simple (emoji) to avoid asset hassle; replace with your SVGs if desired
+    const ico = (glyph) => `<span style="font-size:24px;line-height:1">${glyph}</span>`;
+
+    return [
+      {
+        label: 'WhatsApp',
+        icon: ico('🟢'),
+        href: `whatsapp://send?text=${encMsg}`,
+        webFallback: `https://wa.me/?text=${encMsg}`,
+      },
+      {
+        label: 'Messenger',
+        icon: ico('🔵'),
+        href: `fb-messenger://share?link=${encUrl}`,
+        webFallback: `https://www.facebook.com/dialog/send?link=${encUrl}`,
+      },
+      {
+        label: 'Facebook',
+        icon: ico('📘'),
+        href: `fb://facewebmodal/f?href=${encodeURIComponent(`https://www.facebook.com/sharer/sharer.php?u=${encUrl}`)}`,
+        webFallback: `https://www.facebook.com/sharer/sharer.php?u=${encUrl}`,
+      },
+      {
+        label: 'Telegram',
+        icon: ico('💬'),
+        href: `tg://msg_url?url=${encUrl}&text=${encTitle}`,
+        webFallback: `https://t.me/share/url?url=${encUrl}&text=${encTitle}`,
+      },
+      {
+        label: 'Instagram',
+        icon: ico('🟣'),
+        // IG does not support URL-only share via scheme; fall back to clipboard then open app
+        href: `intent://instagram.com/#Intent;package=com.instagram.android;scheme=https;end`,
+        webFallback: `https://www.instagram.com/`,
+      },
+      {
+        label: 'TikTok',
+        icon: ico('🎵'),
+        href: `snssdk1233://`,
+        webFallback: `https://www.tiktok.com/`,
+      },
+      {
+        label: 'SMS',
+        icon: ico('✉️'),
+        href: `sms:?body=${encMsg}`,
+      },
+      {
+        label: 'Email',
+        icon: ico('📧'),
+        href: `mailto:?subject=${encTitle}&body=${encMsg}`,
+      },
+      {
+        label: t('copy', this.language),
+        icon: ico('📋'),
+        type: 'copy',
+      },
+    ];
+  }
+
+  attemptOpen(primary, fallback) {
+    // In Android WebView, opening custom schemes via <a> sometimes gets blocked;
+    // this hidden iframe trick often works better for app schemes.
+    const openViaIframe = (url) => {
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = url;
+      document.body.appendChild(iframe);
+      setTimeout(() => iframe.remove(), 1800);
+    };
+
+    try {
+      if (/^(whatsapp|tg|fb-messenger|fb|sms|mailto|snssdk|intent):/i.test(primary)) {
+        openViaIframe(primary);
+      } else {
+        window.location.href = primary;
+      }
+    } catch (e) {
+      console.warn('primary open failed', e);
+      if (fallback) window.location.href = fallback;
+    }
+
+    // As a safety, also open fallback if nothing happened after ~1s (app not installed)
+    if (fallback) {
+      const t = setTimeout(() => {
+        try {
+          window.location.href = fallback;
+        } catch {}
+        clearTimeout(t);
+      }, 1000);
+    }
+  }
+
+  closeShareSheet(root) {
+    const sheet = root.querySelector('div[style*="transform"]');
+    if (sheet) {
+      sheet.style.transform = 'translateY(100%)';
+      setTimeout(() => root.remove(), 180);
+    } else {
+      root.remove();
+    }
   }
 }
