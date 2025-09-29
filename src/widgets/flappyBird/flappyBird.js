@@ -1,10 +1,4 @@
-import {
-  widgetHtmlService,
-  AnimationService,
-  QrCodeModal,
-  localStorageService,
-  boomioService,
-} from '@/services';
+import { widgetHtmlService, AnimationService, QrCodeModal, localStorageService, boomioService } from '@/services';
 import './styles.css';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -112,23 +106,24 @@ import {
   TicheBackground,
   nykstukasBackground,
   orlenBackground,
+  toniBackground,
+  playerToni,
 } from './constants';
 class FlappyBird {
   constructor() {
     this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
     this.gameClosed = false;
-    this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'LemonGym';
+    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'LT';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : (this.config.language ?? 'LT');
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -207,10 +202,7 @@ class FlappyBird {
 
         emailInput.addEventListener('keydown', (e) => {
           // Prevent deleting or navigating into the +370 part
-          if (
-            emailInput.selectionStart <= 4 &&
-            (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowLeft')
-          ) {
+          if (emailInput.selectionStart <= 4 && (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowLeft')) {
             e.preventDefault();
           }
         });
@@ -224,8 +216,7 @@ class FlappyBird {
       setTimeout(() => {
         if (this.customer !== 'SaludSA') {
           const canvas = document.getElementById('flappy-canvas');
-          document.getElementById('background_blur').style.opacity =
-            this.language === 'LV' ? 0.4 : 0.37;
+          document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
 
@@ -243,15 +234,13 @@ class FlappyBird {
           boomioService
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange,
-              user_email:
-                this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+              user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
               user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
             })
             .then((response) => {
               this.bestScore = response.user_best_score;
               const inpuRegisterContainer = document.querySelector('.input-register-container');
-              inpuRegisterContainer.style.transition =
-                'height 1s ease, top 1s ease, opacity 1s ease';
+              inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
               setTimeout(() => {
                 inpuRegisterContainer.style.height = '10px';
                 inpuRegisterContainer.style.top = 'calc(50% + 330px)';
@@ -273,9 +262,7 @@ class FlappyBird {
                 inputContainer.style.display = 'block';
                 setTimeout(() => {
                   inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
-                  inputContainer.style.top = `calc(50% + ${
-                    this.isMobileHeightSmall ? '110px' : '180px'
-                  })`;
+                  inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '180px'})`;
                   inputContainer.style.opacity = 1;
                 }, 100);
               }, 300);
@@ -299,11 +286,8 @@ class FlappyBird {
           if (this.customer === 'Pigu.lt' && false) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
 
-            const competitionTableContainer = document.querySelector(
-              '.competition-table-container-pigu',
-            );
-            competitionTableContainer.style.transition =
-              'height 1s ease, top 1s ease, opacity 1s ease';
+            const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+            competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
             competitionTableContainer.style.display = 'block';
             setTimeout(() => {
               competitionTableContainer.style.height = '680px';
@@ -337,8 +321,7 @@ class FlappyBird {
     } else {
       setTimeout(() => {
         const canvas = document.getElementById('flappy-canvas');
-        document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.37;
+        document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
@@ -375,8 +358,7 @@ class FlappyBird {
     }, 1000);
     setTimeout(() => {
       const canvas = document.getElementById('flappy-canvas');
-      document.getElementById('background_blur').style.opacity =
-        this.language === 'LV' ? 0.4 : 0.37;
+      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
       canvas.style.transition = 'filter 0.6s ease';
       canvas.style.filter = 'blur(2px)';
       const inputContainer = document.querySelector('.input-container');
@@ -400,13 +382,11 @@ class FlappyBird {
 
     this.flappy = document.getElementById('boomio-flappy-container');
 
-    document.querySelector('.game-container').style.backgroundColor =
-      window.innerWidth <= 768 ? 'black' : 'none';
+    document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
 
     const screenWidth = window.innerWidth;
 
-    const initialPosx =
-      screenWidth / 2 - (window.matchMedia('(min-width: 450px)').matches ? 25 : -25);
+    const initialPosx = screenWidth / 2 - (window.matchMedia('(min-width: 450px)').matches ? 25 : -25);
 
     this.animation = new AnimationService({
       elem: this.flappy,
@@ -422,86 +402,86 @@ class FlappyBird {
       this.customer === 'SaludSA'
         ? SaludSABackground
         : this.campaignUrlProp === 'https://pigu.lt'
-        ? randomChoice === 0
-          ? PIGUFirstLT
-          : PIGUSecondLT
-        : this.campaignUrlProp === 'https://220.lv'
-        ? randomChoice === 0
-          ? PIGUFirstLV
-          : PIGUSecondLV
-        : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
-        ? randomChoice === 0
-          ? PIGUFirstEE
-          : PIGUSecondEE
-        : this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? randomChoice === 0
-          ? PIGUFirstFI
-          : PIGUSecondFI
-        : this.customer === 'Barbora'
-        ? mainBarbora
-        : this.customer === 'Fantazijos'
-        ? mainFantazijos
-        : this.customer === 'Fpro'
-        ? FproFlappyBackground
-        : this.customer === 'Makalius'
-        ? MakaliusFlappyBackground
-        : this.customer === 'Corepetitus'
-        ? CorepetitusFlappyBackground
-        : this.customer === 'Dentsu'
-        ? DentsuBackground
-        : this.customer === 'demo-1'
-        ? demoGame1
-        : this.customer === 'demo-2'
-        ? demoGame2
-        : this.customer === 'demo-3'
-        ? demoGame3
-        : this.customer === 'demo-4'
-        ? demoGame4
-        : this.customer === 'demo-5'
-        ? demoGame5
-        : this.customer === 'demo-6'
-        ? demoGame6
-        : this.customer === 'demo-7'
-        ? demoGame7
-        : this.customer === 'demo-8'
-        ? demoGame8
-        : this.customer === 'demo-9'
-        ? demoGame9
-        : this.customer === 'demo-10'
-        ? demoGame10
-        : this.customer === 'demo-11'
-        ? demoGame11
-        : this.customer === 'demo-12'
-        ? demoGame12
-        : this.customer === 'demo-13'
-        ? demoGame13
-        : this.customer === 'demo-14'
-        ? demoGame14
-        : this.customer === 'demo-15'
-        ? demoGame15
-        : this.customer === 'demo-16'
-        ? demoGame16
-        : this.customer === 'demo-17'
-        ? demoGame17
-        : this.customer === 'demo-18'
-        ? demoGame18
-        : this.customer === 'demo-19'
-        ? demoGame19
-        : this.customer === 'demo-20'
-        ? demoGame20
-        : this.customer === 'demo-21'
-        ? demoGame21
-        : this.customer === 'LemonGym'
-        ? LemonGymBackground
-        : this.customer === 'LemonFeel'
-        ? LemonFeelBackground
-        : this.customer === 'Tiche'
-        ? TicheBackground
-        : this.customer === 'Nykstukas'
-        ? nykstukasBackground
-        : this.customer === 'Orlen'
-        ? orlenBackground
-        : this.customer === 'Penki Sezonai' && mainPenki;
+          ? randomChoice === 0
+            ? PIGUFirstLT
+            : PIGUSecondLT
+          : this.campaignUrlProp === 'https://220.lv'
+            ? randomChoice === 0
+              ? PIGUFirstLV
+              : PIGUSecondLV
+            : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
+              ? randomChoice === 0
+                ? PIGUFirstEE
+                : PIGUSecondEE
+              : this.campaignUrlProp === 'https://hobbyhall.fi'
+                ? randomChoice === 0
+                  ? PIGUFirstFI
+                  : PIGUSecondFI
+                : this.customer === 'Barbora'
+                  ? mainBarbora
+                  : this.customer === 'Fantazijos'
+                    ? mainFantazijos
+                    : this.customer === 'Fpro'
+                      ? FproFlappyBackground
+                      : this.customer === 'Makalius'
+                        ? MakaliusFlappyBackground
+                        : this.customer === 'Corepetitus'
+                          ? CorepetitusFlappyBackground
+                          : this.customer === 'Dentsu'
+                            ? DentsuBackground
+                            : this.customer === 'demo-1'
+                              ? demoGame1
+                              : this.customer === 'demo-2'
+                                ? demoGame2
+                                : this.customer === 'demo-3'
+                                  ? demoGame3
+                                  : this.customer === 'demo-4'
+                                    ? demoGame4
+                                    : this.customer === 'demo-5'
+                                      ? demoGame5
+                                      : this.customer === 'demo-6'
+                                        ? demoGame6
+                                        : this.customer === 'demo-7'
+                                          ? demoGame7
+                                          : this.customer === 'demo-8'
+                                            ? demoGame8
+                                            : this.customer === 'demo-9'
+                                              ? demoGame9
+                                              : this.customer === 'demo-10'
+                                                ? demoGame10
+                                                : this.customer === 'demo-11'
+                                                  ? demoGame11
+                                                  : this.customer === 'demo-12'
+                                                    ? demoGame12
+                                                    : this.customer === 'demo-13'
+                                                      ? demoGame13
+                                                      : this.customer === 'demo-14'
+                                                        ? demoGame14
+                                                        : this.customer === 'demo-15'
+                                                          ? demoGame15
+                                                          : this.customer === 'demo-16'
+                                                            ? demoGame16
+                                                            : this.customer === 'demo-17'
+                                                              ? demoGame17
+                                                              : this.customer === 'demo-18'
+                                                                ? demoGame18
+                                                                : this.customer === 'demo-19'
+                                                                  ? demoGame19
+                                                                  : this.customer === 'demo-20'
+                                                                    ? demoGame20
+                                                                    : this.customer === 'demo-21'
+                                                                      ? demoGame21
+                                                                      : this.customer === 'LemonGym'
+                                                                        ? LemonGymBackground
+                                                                        : this.customer === 'LemonFeel'
+                                                                          ? LemonFeelBackground
+                                                                          : this.customer === 'Tiche'
+                                                                            ? TicheBackground
+                                                                            : this.customer === 'Nykstukas'
+                                                                              ? nykstukasBackground
+                                                                              : this.customer === 'Orlen'
+                                                                                ? orlenBackground
+                                                                                : this.customer === 'Penki Sezonai' && mainPenki;
 
     // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
@@ -532,8 +512,7 @@ class FlappyBird {
 
     const pipeWidth = 78;
     let pipeGap = 250;
-    const pipeLoc = () =>
-      Math.random() * (canvas.height - (pipeGap + pipeWidth) - pipeWidth) + pipeWidth;
+    const pipeLoc = () => Math.random() * (canvas.height - (pipeGap + pipeWidth) - pipeWidth) + pipeWidth;
 
     const setup = () => {
       snowSpeed = 0.4;
@@ -587,22 +566,10 @@ class FlappyBird {
                 background.style.display = 'none';
               }
             },
-            this.customer.includes('demo') ||
-              this.customer === 'Nykstukas' ||
-              this.customer === 'Tiche' ||
-              this.customer === 'Orlen' ||
-              this.customer === 'LemonFeel'
-              ? 0
-              : 2000,
+            this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' ? 0 : 2000,
           );
         },
-        this.customer.includes('demo') ||
-          this.customer === 'Nykstukas' ||
-          this.customer === 'Tiche' ||
-          this.customer === 'Orlen' ||
-          this.customer === 'LemonFeel'
-          ? 0
-          : 2000,
+        this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' ? 0 : 2000,
       );
 
       //gifas
@@ -645,37 +612,12 @@ class FlappyBird {
       if (!this.gameClosed) {
         updateElapsedTime();
         this.index++;
-        ctx.drawImage(
-          img,
-          0,
-          0,
-          418,
-          canvas.height,
-          -((this.index * (this.speed / 2)) % 418) + 418,
-          0,
-          420,
-          canvas.height,
-        );
-        ctx.drawImage(
-          img,
-          0,
-          0,
-          418,
-          canvas.height,
-          -(this.index * (this.speed / 2)) % 418,
-          0,
-          420,
-          canvas.height,
-        );
+        ctx.drawImage(img, 0, 0, 418, canvas.height, -((this.index * (this.speed / 2)) % 418) + 418, 0, 420, canvas.height);
+        ctx.drawImage(img, 0, 0, 418, canvas.height, -(this.index * (this.speed / 2)) % 418, 0, 420, canvas.height);
 
         if (this.gamePlaying) {
           if (canvas.width > 450 || canvas.height < 600) {
-            canvas.width =
-              document.documentElement.clientWidth < 418
-                ? document.documentElement.clientWidth < 321
-                  ? '375px'
-                  : document.documentElement.clientWidth
-                : '418';
+            canvas.width = document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth) : '418';
             canvas.height = '668';
           }
           pipes.map((pipe) => {
@@ -683,38 +625,16 @@ class FlappyBird {
             pipe[0] -= this.speed;
 
             // top pipe
-            ctx.drawImage(
-              img,
-              419,
-              604 - pipe[1],
-              pipeWidth,
-              pipe[1],
-              pipe[0],
-              0,
-              pipeWidth,
-              pipe[1],
-            );
+            ctx.drawImage(img, 419, 604 - pipe[1], pipeWidth, pipe[1], pipe[0], 0, pipeWidth, pipe[1]);
             // bottom pipe
-            ctx.drawImage(
-              img,
-              426 + pipeWidth,
-              108,
-              pipeWidth,
-              canvas.height - pipe[1] + pipeGap,
-              pipe[0],
-              pipe[1] + pipeGap,
-              pipeWidth,
-              canvas.height - pipe[1] + pipeGap,
-            );
+            ctx.drawImage(img, 426 + pipeWidth, 108, pipeWidth, canvas.height - pipe[1] + pipeGap, pipe[0], pipe[1] + pipeGap, pipeWidth, canvas.height - pipe[1] + pipeGap);
             // give 1 point & create new pipe
             if (pipe[0] <= -pipeWidth) {
               this.currentScore = this.currentScore + 100;
               document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
 
               if (this.currentScore > 1) {
-                const currectScoreDiv = document.getElementsByClassName(
-                  'boomio-score-input-container',
-                )[0];
+                const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
                 currectScoreDiv.style.transition = 'opacity 0.8s ease';
                 currectScoreDiv.style.display = 'block';
                 currectScoreDiv.style.opacity = 1;
@@ -726,10 +646,7 @@ class FlappyBird {
               this.bestScore = Math.max(this.bestScore, this.currentScore);
 
               // remove & create new pipe
-              pipes = [
-                ...pipes.slice(1),
-                [pipes[pipes.length - 1][0] + pipeGap + pipeWidth, pipeLoc()],
-              ];
+              pipes = [...pipes.slice(1), [pipes[pipes.length - 1][0] + pipeGap + pipeWidth, pipeLoc()]];
               const targetPipeGap = Math.max(pipeGap - elapsedTime * 400, 130);
               pipeGap += (targetPipeGap - pipeGap) * 0.1; // Adjust the interpolation factor as needed
               snowSpeed = Math.min(snowSpeed + elapsedTime * 10, 3);
@@ -739,43 +656,28 @@ class FlappyBird {
               this.jump = Math.max(this.jump * Math.pow(decayFactor, elapsedTime), -7);
             }
 
-            if (
-              [
-                pipe[0] <= cTenth - 10 + size[0],
-                pipe[0] + pipeWidth >= cTenth,
-                pipe[1] > flyHeight + 25 || pipe[1] + pipeGap < flyHeight - 25 + size[1],
-              ].every((elem) => elem)
-            ) {
+            if ([pipe[0] <= cTenth - 10 + size[0], pipe[0] + pipeWidth >= cTenth, pipe[1] > flyHeight + 25 || pipe[1] + pipeGap < flyHeight - 25 + size[1]].every((elem) => elem)) {
               this.gamePlaying = false;
 
               if (this.gameCount === 0) {
                 const canvas = document.getElementById('flappy-canvas');
                 canvas.removeEventListener('click', this.clickEventHandler);
 
-                document
-                  .getElementById('startButtonClick1')
-                  .addEventListener('click', this.clickEventHandlerButton);
+                document.getElementById('startButtonClick1').addEventListener('click', this.clickEventHandlerButton);
 
                 this.gameCount++;
               }
 
               setTimeout(
                 () => {
-                  if (
-                    this.showCompetitiveRegistration === 'competition' ||
-                    this.showCompetitiveRegistration === 'points' ||
-                    this.showCompetitiveRegistration === 'collectable'
-                  ) {
+                  if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
                     const clickEventHandlerResetGame = () => {
                       this.index = 0;
                       this.currentScore = 0;
 
-                      const competitionTableContainer = document.querySelector(
-                        '.competition-table-container',
-                      );
+                      const competitionTableContainer = document.querySelector('.competition-table-container');
 
-                      competitionTableContainer.style.transition =
-                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                       setTimeout(() => {
                         competitionTableContainer.style.height = '10px';
                         competitionTableContainer.style.top = 'calc(50% + 330px)';
@@ -786,22 +688,14 @@ class FlappyBird {
                       }, 1000);
 
                       setTimeout(() => {
-                        if (
-                          this.showCompetitiveRegistration === 'competition' ||
-                          this.showCompetitiveRegistration === 'points' ||
-                          this.showCompetitiveRegistration === 'collectable'
-                        ) {
+                        if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
                           boomioService
                             .signal('ROUND_STARTED', 'signal')
                             .then((response) => {
                               if (this.customer === 'Pigu.lt') {
                                 if (window.Boomio) {
                                   window.Boomio.logEvent('game_started', JSON.stringify(response));
-                                } else if (
-                                  window.webkit &&
-                                  window.webkit.messageHandlers &&
-                                  window.webkit.messageHandlers.Boomio
-                                ) {
+                                } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
                                   var message = {
                                     command: 'logEvent',
                                     name: 'game_started',
@@ -835,11 +729,7 @@ class FlappyBird {
                           if (this.customer === 'Pigu.lt') {
                             if (window.Boomio) {
                               window.Boomio.logEvent('game_finished', JSON.stringify(response));
-                            } else if (
-                              window.webkit &&
-                              window.webkit.messageHandlers &&
-                              window.webkit.messageHandlers.Boomio
-                            ) {
+                            } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
                               var message = {
                                 command: 'logEvent',
                                 name: 'game_finished',
@@ -854,50 +744,25 @@ class FlappyBird {
                           this.userBestPlace = response.user_best_place;
                           if (this.showCompetitiveRegistration === 'points') {
                             this.scoreTable = response;
-                            this.scoreTableContainerInstance.updateProps(
-                              this.customer,
-                              this.scoreTable,
-                              this.currentScore,
-                            );
-                            const competitionRestart =
-                              document.getElementById('boomio-game-play-again');
-                            competitionRestart.addEventListener(
-                              'click',
-                              clickEventHandlerResetGame,
-                            );
+                            this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
+                            const competitionRestart = document.getElementById('boomio-game-play-again');
+                            competitionRestart.addEventListener('click', clickEventHandlerResetGame);
                           }
 
                           if (this.showCompetitiveRegistration === 'competition') {
                             this.scoreTable = response;
-                            this.scoreTableContainerInstance.updateProps(
-                              this.customer,
-                              this.scoreTable,
-                              this.currentScore,
-                            );
+                            this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
                           }
                           if (this.showCompetitiveRegistration === 'collectable') {
                             if (this.customer !== 'Corepetitus') {
-                              this.collection = response?.collection
-                                ? response?.collection
-                                : this.collection;
-                              this.just_won = response?.just_won
-                                ? response?.just_won
-                                : this.just_won;
-                              this.scoreTableContainerInstance.updateProps(
-                                this.customer,
-                                this.collectables,
-                                this.collection,
-                                this.just_won,
-                              );
+                              this.collection = response?.collection ? response?.collection : this.collection;
+                              this.just_won = response?.just_won ? response?.just_won : this.just_won;
+                              this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
                             }
                           }
                           if (this.customer === 'Corepetitus') {
                             this.scoreTable = response;
-                            this.scoreTableContainerInstance.updateProps(
-                              this.customer,
-                              this.scoreTable,
-                              this.currentScore,
-                            );
+                            this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
                           }
                         })
                         .catch((error) => {
@@ -912,47 +777,37 @@ class FlappyBird {
                     if (this.customer === 'Nykstukas') {
                       competitionTableContainer = document.querySelector('.did-you-know-container');
                     } else {
-                      competitionTableContainer = document.querySelector(
-                        '.competition-table-container',
-                      );
+                      competitionTableContainer = document.querySelector('.competition-table-container');
                     }
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     document.getElementById('background_blur').style.display = 'block';
-                    competitionTableContainer.style.transition =
-                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                     competitionTableContainer.style.display = 'block';
                     setTimeout(() => {
                       competitionTableContainer.style.height = '680px';
                       competitionTableContainer.style.top = 'calc(50%)';
                       competitionTableContainer.style.opacity = 1;
                     }, 100);
-                    const currectScoreDiv = document.getElementsByClassName(
-                      'boomio-score-input-container',
-                    )[0];
+                    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
                     currectScoreDiv.style.opacity = 0;
                     setTimeout(() => {
                       currectScoreDiv.style.display = 'none';
                     }, 300);
                   } else {
                     const canvas = document.getElementById('flappy-canvas');
-                    const competitionTableContainer = document.querySelector(
-                      '.competition-table-container',
-                    );
+                    const competitionTableContainer = document.querySelector('.competition-table-container');
                     canvas.style.transition = 'filter 0.6s ease';
                     canvas.style.filter = 'blur(2px)';
                     document.getElementById('background_blur').style.display = 'block';
-                    competitionTableContainer.style.transition =
-                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                     competitionTableContainer.style.display = 'block';
                     setTimeout(() => {
                       competitionTableContainer.style.height = '680px';
                       competitionTableContainer.style.top = 'calc(50%)';
                       competitionTableContainer.style.opacity = 1;
                     }, 100);
-                    const currectScoreDiv = document.getElementsByClassName(
-                      'boomio-score-input-container',
-                    )[0];
+                    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
                     currectScoreDiv.style.opacity = 0;
                     setTimeout(() => {
                       currectScoreDiv.style.display = 'none';
@@ -988,27 +843,27 @@ class FlappyBird {
             this.config.discountType !== 'percentage'
               ? this.bestScore / 100 + '€'
               : this.bestScore > 5000
-              ? '30%'
-              : this.bestScore > 3000
-              ? '20%'
-              : this.bestScore > 1000
-              ? '10%'
-              : this.bestScore > 1
-              ? '5%'
-              : this.bestScore;
+                ? '30%'
+                : this.bestScore > 3000
+                  ? '20%'
+                  : this.bestScore > 1000
+                    ? '10%'
+                    : this.bestScore > 1
+                      ? '5%'
+                      : this.bestScore;
 
           this.discount =
             this.config.discountType !== 'percentage'
               ? this.bestScore / 100 + '€'
               : this.bestScore > 5000
-              ? '30%'
-              : this.bestScore > 3000
-              ? '20%'
-              : this.bestScore > 1000
-              ? '10%'
-              : this.bestScore > 1
-              ? '5%'
-              : this.bestScore;
+                ? '30%'
+                : this.bestScore > 3000
+                  ? '20%'
+                  : this.bestScore > 1000
+                    ? '10%'
+                    : this.bestScore > 1
+                      ? '5%'
+                      : this.bestScore;
 
           if (this.newHighScoreReached) {
             const numbers = document.querySelector('.numbers');
@@ -1140,18 +995,12 @@ class FlappyBird {
 
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-flappy-container');
-    myCanvas.classList.add(
-      'boomio--animation__wrapper',
-      'boomio--animation__wrapper--initial',
-      'box',
-    );
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
 
     myCanvas.innerHTML = `    
     <div class="game-container game-container-flappy">
     ${
-      this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'points' ||
-      this.showCompetitiveRegistration === 'collectable'
+      this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable'
         ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
         : ''
     } 
@@ -1159,77 +1008,62 @@ class FlappyBird {
 
 
 <div alt="Image Description" style="z-index:1;width: ${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth + 'px'
-        : '418px'
+      document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#808080'}" id="background_blur"></div>
    
 <img src=${
-      this.language === 'ET' &&
-      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+      this.language === 'ET' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
         ? ChristmasPiguFlapThroughXmasEENew
-        : this.language === 'RU' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguFlapThroughXmasEERuNew
-        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguFlapThroughXmasLTNew
-        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguFlapThroughXmasLTRuNew
-        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguFlapThroughXmasFINew
-        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? ChristmasPiguFlapThroughXmasLTEnNew
-        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? ChristmasPiguFlapThroughXmasFIEnNew
-        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguFlapThroughXmasLVNew
-        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguFlapThroughXmasLVRuNew
-        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? ChristmasPiguFlapThroughXmasLVEnNew
-        : this.language === 'EN' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
-        ? ChristmasPiguFlapThroughXmasEEEnNew
-        : this.customer === 'SaludSA'
-        ? SaludSAIntro
-        : this.customer === 'Barbora'
-        ? introGif
-        : this.customer === 'Fantazijos'
-        ? this.language === 'LV'
-          ? introGifFantazijosLV
-          : this.language === 'RU'
-          ? introGifFantazijosRU
-          : this.language === 'ET'
-          ? introGifFantazijosEE
-          : introGifFantazijos
-        : this.customer === 'Fpro'
-        ? FproFlappyIntro
-        : this.customer === 'Makalius'
-        ? MakaliusFlappyIntro
-        : this.customer === 'Corepetitus'
-        ? CorepetitusFlappyIntro
-        : this.customer === 'Dentsu'
-        ? DentsuIntro
-        : this.customer === 'LemonGym'
-        ? LemonGymintro
-        : this.customer === 'Penki Sezonai' && introGifPenki
+        : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+          ? ChristmasPiguFlapThroughXmasEERuNew
+          : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+            ? ChristmasPiguFlapThroughXmasLTNew
+            : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+              ? ChristmasPiguFlapThroughXmasLTRuNew
+              : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+                ? ChristmasPiguFlapThroughXmasFINew
+                : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+                  ? ChristmasPiguFlapThroughXmasLTEnNew
+                  : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+                    ? ChristmasPiguFlapThroughXmasFIEnNew
+                    : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+                      ? ChristmasPiguFlapThroughXmasLVNew
+                      : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+                        ? ChristmasPiguFlapThroughXmasLVRuNew
+                        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+                          ? ChristmasPiguFlapThroughXmasLVEnNew
+                          : this.language === 'EN' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+                            ? ChristmasPiguFlapThroughXmasEEEnNew
+                            : this.customer === 'SaludSA'
+                              ? SaludSAIntro
+                              : this.customer === 'Barbora'
+                                ? introGif
+                                : this.customer === 'Fantazijos'
+                                  ? this.language === 'LV'
+                                    ? introGifFantazijosLV
+                                    : this.language === 'RU'
+                                      ? introGifFantazijosRU
+                                      : this.language === 'ET'
+                                        ? introGifFantazijosEE
+                                        : introGifFantazijos
+                                  : this.customer === 'Fpro'
+                                    ? FproFlappyIntro
+                                    : this.customer === 'Makalius'
+                                      ? MakaliusFlappyIntro
+                                      : this.customer === 'Corepetitus'
+                                        ? CorepetitusFlappyIntro
+                                        : this.customer === 'Dentsu'
+                                          ? DentsuIntro
+                                          : this.customer === 'LemonGym'
+                                            ? LemonGymintro
+                                            : this.customer === 'Penki Sezonai' && introGifPenki
     } alt="Image Description" style="z-index:4;width: ${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
-        : '418px'
-    }; height: 668px;position:absolute;pointer-events: none; display:${
-      this.customer.includes('demo') || this.customer === 'LemonFeel' ? 'none' : 'block'
-    };" id="background_intro">
+      document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
+    }; height: 668px;position:absolute;pointer-events: none; display:${this.customer.includes('demo') || this.customer === 'LemonFeel' ? 'none' : 'block'};" id="background_intro">
 </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-    <img src="${
-      useCuponImage.src
-    }" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+    <img src="${useCuponImage.src}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
     <img class="new_highscore_stars" src=${
@@ -1240,16 +1074,16 @@ class FlappyBird {
       this.customer === 'SaludSA'
         ? SaludSARecord
         : this.language === 'EN'
-        ? newRecordEn
-        : this.language === 'LV'
-        ? newRecordLV
-        : this.language === 'ET' || this.language === 'ET'
-        ? newRecordEE
-        : this.language === 'FI'
-        ? newRecordFI
-        : this.language === 'RU'
-        ? newRecordRU
-        : newRecord
+          ? newRecordEn
+          : this.language === 'LV'
+            ? newRecordLV
+            : this.language === 'ET' || this.language === 'ET'
+              ? newRecordEE
+              : this.language === 'FI'
+                ? newRecordFI
+                : this.language === 'RU'
+                  ? newRecordRU
+                  : newRecord
     } 
 
 alt="Image Description" style="width: 100%; height: 100%;">
@@ -1284,43 +1118,43 @@ ${`<div style="${
       this.language === 'LV'
         ? 'KLIKŠĶINI'
         : this.language === 'EN'
-        ? 'TAP'
-        : this.language === 'RU'
-        ? 'КЛИК'
-        : this.language === 'ET'
-        ? 'TAP'
-        : this.language === 'ET'
-        ? 'TÄPI'
-        : this.language === 'ES'
-        ? 'TAP'
-        : this.customer === 'Fpro'
-        ? 'TAP'
-        : this.language === 'FI'
-        ? 'NAPSAUTA'
-        : this.customer === 'SaludSA'
-        ? 'TAP'
-        : 'BAKST'
+          ? 'TAP'
+          : this.language === 'RU'
+            ? 'КЛИК'
+            : this.language === 'ET'
+              ? 'TAP'
+              : this.language === 'ET'
+                ? 'TÄPI'
+                : this.language === 'ES'
+                  ? 'TAP'
+                  : this.customer === 'Fpro'
+                    ? 'TAP'
+                    : this.language === 'FI'
+                      ? 'NAPSAUTA'
+                      : this.customer === 'SaludSA'
+                        ? 'TAP'
+                        : 'BAKST'
     }</div>
     <div>${
       this.language === 'LV'
         ? 'KLIKŠĶINI'
         : this.language === 'EN'
-        ? 'TAP'
-        : this.language === 'RU'
-        ? 'КЛИК'
-        : this.language === 'ET'
-        ? 'TÄPI'
-        : this.language === 'ET'
-        ? 'TAP'
-        : this.language === 'ES'
-        ? 'TAP'
-        : this.customer === 'Fpro'
-        ? 'TAP'
-        : this.language === 'FI'
-        ? 'NAPSAUTA'
-        : this.customer === 'SaludSA'
-        ? 'TAP'
-        : 'BAKST'
+          ? 'TAP'
+          : this.language === 'RU'
+            ? 'КЛИК'
+            : this.language === 'ET'
+              ? 'TÄPI'
+              : this.language === 'ET'
+                ? 'TAP'
+                : this.language === 'ES'
+                  ? 'TAP'
+                  : this.customer === 'Fpro'
+                    ? 'TAP'
+                    : this.language === 'FI'
+                      ? 'NAPSAUTA'
+                      : this.customer === 'SaludSA'
+                        ? 'TAP'
+                        : 'BAKST'
     }</div>
   </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:50px;width: 71px; height: 54px;">`}
 
@@ -1330,12 +1164,12 @@ ${`<div style="${
               this.customer === 'Dentsu'
                 ? '#FE5022'
                 : this.customer.includes('demo')
-                ? '#0A3533'
-                : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
-                ? '#FF00FF'
-                : this.customer === 'Tiche'
-                ? '#065DA4'
-                : '#C6152F'
+                  ? '#0A3533'
+                  : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
+                    ? '#FF00FF'
+                    : this.customer === 'Tiche'
+                      ? '#065DA4'
+                      : '#C6152F'
             };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -1356,11 +1190,7 @@ ${`<div style="${
 
 ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
-          document.documentElement.clientWidth < 418
-            ? document.documentElement.clientWidth < 321
-              ? '375px'
-              : document.documentElement.clientWidth + 'px'
-            : '418px'
+          document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
         };display:none;" class="control-button" id="control-button">
         <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
@@ -1369,11 +1199,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 </div>
 </div>
 <div class="input-container1" style="width:${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
-        : '418px'
+      document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
     }">
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
   <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
@@ -1399,11 +1225,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       
       </div>
       <canvas id="flappy-canvas" width=${
-        document.documentElement.clientWidth < 418
-          ? document.documentElement.clientWidth < 321
-            ? '375px'
-            : document.documentElement.clientWidth + 'px'
-          : '418px'
+        document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
       } height="668" class="flappy-game"></canvas>
     </div>
   `;
@@ -1413,25 +1235,15 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
-        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(this.customer, this.scoreTable, this.currentScore);
       } else {
-        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-        );
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
-      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
-        this.customer,
-        this.scoreTable,
-      );
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(this.customer, this.scoreTable);
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
     document.addEventListener('shareClicked', (event) => {
@@ -1445,49 +1257,30 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       if (this.customer === 'SaludSA') {
         const gameContainer = document.querySelector('.game-container-flappy');
 
-        this.scoreTableContainerInstance = new DownloadScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-        );
+        this.scoreTableContainerInstance = new DownloadScoreTableContainer(this.customer, this.scoreTable);
         gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
       } else {
         if (this.customer === 'Corepetitus') {
           const gameContainer = document.querySelector('.game-container');
 
-          this.scoreTableContainerInstance = new PointCopyTableContainer(
-            this.customer,
-            this.scoreTable,
-            this.currentScore,
-          );
+          this.scoreTableContainerInstance = new PointCopyTableContainer(this.customer, this.scoreTable, this.currentScore);
           gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
         } else {
           const gameContainer = document.querySelector('.game-container-flappy');
 
-          this.scoreTableContainerInstance = new PointScoreTableContainer(
-            this.customer,
-            this.scoreTable,
-            this.currentScore,
-          );
+          this.scoreTableContainerInstance = new PointScoreTableContainer(this.customer, this.scoreTable, this.currentScore);
           gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
         }
       }
     }
     if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container-flappy');
-      this.scoreTableContainerInstance = new CollectionScoreTableContainer(
-        this.customer,
-        this.collectables,
-        this.collection,
-        this.just_won,
-      );
+      this.scoreTableContainerInstance = new CollectionScoreTableContainer(this.customer, this.collectables, this.collection, this.just_won);
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
-      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
-        this.customer,
-        this.scoreTable,
-      );
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(this.customer, this.scoreTable);
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
@@ -1510,11 +1303,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
     }
 
-    if (
-      this.showCompetitiveRegistration === 'competition' ||
-      this.showCompetitiveRegistration === 'points' ||
-      this.showCompetitiveRegistration === 'collectable'
-    ) {
+    if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           const emailInput = document.querySelector('.boomio-competition-email-input-field');
@@ -1527,79 +1316,57 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
-              if (
-                !checkboxChange ||
-                (!checkboxChange2 &&
-                  !this.customer.includes('demo') &&
-                  !this.customer.includes('Tiche'))
-              ) {
+              if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo') && !this.customer.includes('Tiche'))) {
                 document.getElementById('competition-checkbox-error').innerText =
                   this.language === 'LV'
                     ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
                     : this.language === 'ET'
-                    ? 'Jätkamiseks peate nõustuma privaatsuspoliitikaga.'
-                    : this.customer === 'SaludSA'
-                    ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
-                    : this.language === 'EN'
-                    ? 'You need to agree to receive updates in order to continue'
-                    : 'Norint tęsti, privaloma sutikti su privatumo politika.';
-                document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  '#FFBABA';
+                      ? 'Jätkamiseks peate nõustuma privaatsuspoliitikaga.'
+                      : this.customer === 'SaludSA'
+                        ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
+                        : this.language === 'EN'
+                          ? 'You need to agree to receive updates in order to continue'
+                          : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
                 document.getElementById('competition-checkbox-error').style.display = 'block';
                 document.getElementById('competition-checkbox-error').style.height = '14px';
 
                 document.getElementById('competition-name-error').innerText = '';
 
-                document.getElementById('competition-name-error').style.backgroundColor =
-                  'transparent';
+                document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
                 document.getElementById('competition-email-error').innerText = '';
-                document.getElementById('competition-email-error').style.backgroundColor =
-                  'transparent';
+                document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
                 return;
               }
-              if (
-                emailInput?.value === '' ||
-                emailInput?.value === null ||
-                (emailInput?.value?.length < 12 && this.customer === 'Orlen')
-              ) {
+              if (emailInput?.value === '' || emailInput?.value === null || (emailInput?.value?.length < 12 && this.customer === 'Orlen')) {
                 document.getElementById('competition-email-error').innerText =
                   this.language === 'LV'
                     ? 'Obligāti aizpildāmie lauki.'
                     : this.language === 'ET'
-                    ? 'Jätkamiseks vajalik.'
-                    : this.customer === 'SaludSA'
-                    ? 'Para continuar debes agregar el correo electrónico.'
-                    : this.language === 'EN'
-                    ? 'Filling in is required to continue.'
-                    : 'Norint tęsti privaloma užpildyti.';
-                document.getElementById('competition-email-error').style.backgroundColor =
-                  '#FFBABA';
+                      ? 'Jätkamiseks vajalik.'
+                      : this.customer === 'SaludSA'
+                        ? 'Para continuar debes agregar el correo electrónico.'
+                        : this.language === 'EN'
+                          ? 'Filling in is required to continue.'
+                          : 'Norint tęsti privaloma užpildyti.';
+                document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
                 document.getElementById('competition-name-error').innerText = '';
 
-                document.getElementById('competition-name-error').style.backgroundColor =
-                  'transparent';
+                document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
                 document.getElementById('competition-checkbox-error').innerText = '';
-                document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  'transparent';
+                document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
                 return;
               }
 
-              if (
-                this.customer === 'Nykstukas' &&
-                (nameInput?.value === '' || nameInput?.value === null)
-              ) {
-                document.getElementById('competition-email-error').innerText =
-                  'Norint tęsti privaloma užpildyti visus laukus.';
-                document.getElementById('competition-email-error').style.backgroundColor =
-                  '#FFBABA';
+              if (this.customer === 'Nykstukas' && (nameInput?.value === '' || nameInput?.value === null)) {
+                document.getElementById('competition-email-error').innerText = 'Norint tęsti privaloma užpildyti visus laukus.';
+                document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
                 document.getElementById('competition-name-error').innerText = '';
 
-                document.getElementById('competition-name-error').style.backgroundColor =
-                  'transparent';
+                document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
                 document.getElementById('competition-checkbox-error').innerText = '';
-                document.getElementById('competition-checkbox-error').style.backgroundColor =
-                  'transparent';
+                document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
                 return;
               }
             }
@@ -1613,10 +1380,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange,
-                  user_email:
-                    this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
-                  user_name:
-                    this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+                  user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+                  user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
                   ...(this.customer === 'Nykstukas' && {
                     team: nameInput?.value,
                   }),
@@ -1628,67 +1393,56 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         this.customer === 'Fpro'
                           ? 'This email address already exists. Please use another one.'
                           : this.language === 'LV'
-                          ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                          : this.customer === 'SaludSA'
-                          ? 'Para continuar debes agregar el correo electrónico.'
-                          : this.language === 'ES'
-                          ? 'Este email ya está en uso. Use otro email.'
-                          : this.language === 'RU'
-                          ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                          : this.language === 'ET'
-                          ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        '#FFBABA';
+                            ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                            : this.customer === 'SaludSA'
+                              ? 'Para continuar debes agregar el correo electrónico.'
+                              : this.language === 'ES'
+                                ? 'Este email ya está en uso. Use otro email.'
+                                : this.language === 'RU'
+                                  ? 'Этот е-мейл адрес уже существует. Используйте другой.'
+                                  : this.language === 'ET'
+                                    ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                                    : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
                       document.getElementById('competition-name-error').innerText = '';
 
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
                     } else if (response.res_code === 'NICKNAME_EXIST') {
                       document.getElementById('competition-name-error').innerText =
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
                           : this.language === 'ES'
-                          ? 'Este nickname ya está en uso. Use otro nickname.'
-                          : this.language === 'LV'
-                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                          : this.customer === 'SaludSA'
-                          ? 'Para continuar debes agregar el nombre de usuario.'
-                          : this.language === 'RU'
-                          ? 'Этот псевдоним уже существует. Используйте другой.'
-                          : this.language === 'ET'
-                          ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        '#FFBABA';
+                            ? 'Este nickname ya está en uso. Use otro nickname.'
+                            : this.language === 'LV'
+                              ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                              : this.customer === 'SaludSA'
+                                ? 'Para continuar debes agregar el nombre de usuario.'
+                                : this.language === 'RU'
+                                  ? 'Этот псевдоним уже существует. Используйте другой.'
+                                  : this.language === 'ET'
+                                    ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                                    : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
                       document.getElementById('competition-email-error').innerText = '';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
                     } else if (response.res_code === 'TEAM_FULL' && this.customer === 'Nykstukas') {
-                      document.getElementById('competition-checkbox-error').innerText =
-                        'Ši komanda yra pilna. Naudokite kitą.';
-                      document.getElementById('competition-checkbox-error').style.backgroundColor =
-                        '#FFBABA';
+                      document.getElementById('competition-checkbox-error').innerText = 'Ši komanda yra pilna. Naudokite kitą.';
+                      document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
                       document.getElementById('competition-checkbox-error').style.display = 'block';
 
                       document.getElementById('competition-name-error').innerText = '';
 
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
                       document.getElementById('competition-email-error').innerText = '';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
                     }
                   } else {
                     this.bestScore = response.user_best_score;
-                    const inpuRegisterContainer = document.querySelector(
-                      '.input-register-container',
-                    );
-                    inpuRegisterContainer.style.transition =
-                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    const inpuRegisterContainer = document.querySelector('.input-register-container');
+                    inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                     setTimeout(() => {
                       inpuRegisterContainer.style.height = '10px';
                       inpuRegisterContainer.style.top = 'calc(50% + 330px)';
@@ -1703,19 +1457,14 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                       canvas.style.transition = 'filter 0.6s ease';
                       canvas.style.filter = 'blur(2px)';
                       const inputContainer = document.querySelector('.input-container');
-                      document.getElementById('control-button').style.transition =
-                        'opacity 2s ease';
+                      document.getElementById('control-button').style.transition = 'opacity 2s ease';
                       document.getElementById('control-button').style.opacity = 1;
                       document.getElementById('control-button').style.display = 'flex';
-                      inputContainer.style.transition =
-                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                       inputContainer.style.display = 'block';
                       setTimeout(() => {
-                        inputContainer.style.height =
-                          this.customer === 'Pigu.lt' ? '400px' : '332px';
-                        inputContainer.style.top = `calc(50% + ${
-                          this.isMobileHeightSmall ? '110px' : '180px'
-                        })`;
+                        inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+                        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '180px'})`;
                         inputContainer.style.opacity = 1;
                       }, 100);
                     }, 300);
@@ -1732,9 +1481,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       const clickEventHandlerDidYouKnow = (closeShare) => {
         const shareContainer = document.querySelector('.share-container');
 
-        const didYouKnowTableContainer = closeShare
-          ? document.querySelector('.share-container')
-          : document.querySelector('.did-you-know-container');
+        const didYouKnowTableContainer = closeShare ? document.querySelector('.share-container') : document.querySelector('.did-you-know-container');
         didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         setTimeout(() => {
           didYouKnowTableContainer.style.height = '10px';
@@ -1765,11 +1512,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 this.userBestPlace = response.user_best_place;
                 if (this.showCompetitiveRegistration === 'points') {
                   this.scoreTable = response;
-                  this.scoreTableContainerInstance.updateProps(
-                    this.customer,
-                    this.scoreTable,
-                    this.currentScore,
-                  );
+                  this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
                 }
                 if (this.showCompetitiveRegistration === 'competition') {
                   this.scoreTable = response;
@@ -1779,12 +1522,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 if (this.showCompetitiveRegistration === 'collectable') {
                   this.collection = response?.collection ? response?.collection : this.collection;
                   this.just_won = response?.just_won ? response?.just_won : this.just_won;
-                  this.scoreTableContainerInstance.updateProps(
-                    this.customer,
-                    this.collectables,
-                    this.collection,
-                    this.just_won,
-                  );
+                  this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
                 }
               })
               .catch((error) => {
@@ -1793,8 +1531,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           }
 
           const competitionTableContainer = document.querySelector('.competition-table-container');
-          competitionTableContainer.style.transition =
-            'height 1s ease, top 1s ease, opacity 1s ease';
+          competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
 
           setTimeout(() => {
@@ -1833,22 +1570,14 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         }, 1000);
 
         setTimeout(() => {
-          if (
-            this.showCompetitiveRegistration === 'competition' ||
-            this.showCompetitiveRegistration === 'points' ||
-            this.showCompetitiveRegistration === 'collectable'
-          ) {
+          if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
                 if (this.customer === 'Pigu.lt') {
                   if (window.Boomio) {
                     window.Boomio.logEvent('game_started', JSON.stringify(response));
-                  } else if (
-                    window.webkit &&
-                    window.webkit.messageHandlers &&
-                    window.webkit.messageHandlers.Boomio
-                  ) {
+                  } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
                     var message = {
                       command: 'logEvent',
                       name: 'game_started',
@@ -1895,14 +1624,14 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           this.customer === 'Pigu.lt' && this.language === 'EN'
             ? 'To continue, it is mandatory to agree to receive news and information about prizes.'
             : this.customer === 'Pigu.lt' && this.language === 'LV'
-            ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
-            : this.customer === 'Pigu.lt' && this.language === 'ET'
-            ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
-            : this.customer === 'Pigu.lt' && this.language === 'FI'
-            ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
-            : this.customer === 'Pigu.lt' && this.language === 'RU'
-            ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
-            : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
+              ? 'Lai turpinātu, ir obligāti jāpiekrīt saņemt jaunumus un informāciju par balvām.'
+              : this.customer === 'Pigu.lt' && this.language === 'ET'
+                ? 'Jätkamiseks on vajalik nõustuda mängu uudiste ja auhindade teavituste saamisega.'
+                : this.customer === 'Pigu.lt' && this.language === 'FI'
+                  ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
+                  : this.customer === 'Pigu.lt' && this.language === 'RU'
+                    ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
+                    : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
         document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
         document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
@@ -1953,22 +1682,14 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
             numbers.style.display = 'none';
 
             if (this.gameStarted === false) {
-              if (
-                this.showCompetitiveRegistration === 'competition' ||
-                this.showCompetitiveRegistration === 'points' ||
-                this.showCompetitiveRegistration === 'collectable'
-              ) {
+              if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
                 boomioService
                   .signal('ROUND_STARTED', 'signal')
                   .then((response) => {
                     if (this.customer === 'Pigu.lt') {
                       if (window.Boomio) {
                         window.Boomio.logEvent('game_started', JSON.stringify(response));
-                      } else if (
-                        window.webkit &&
-                        window.webkit.messageHandlers &&
-                        window.webkit.messageHandlers.Boomio
-                      ) {
+                      } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
                         var message = {
                           command: 'logEvent',
                           name: 'game_started',

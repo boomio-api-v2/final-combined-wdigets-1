@@ -1,10 +1,4 @@
-import {
-  widgetHtmlService,
-  QrCodeModal,
-  AnimationService,
-  boomioService,
-  localStorageService,
-} from '@/services';
+import { widgetHtmlService, QrCodeModal, AnimationService, boomioService, localStorageService } from '@/services';
 import './styles.css';
 import {
   close,
@@ -70,6 +64,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { ShareContainer } from '../helpers/ShareContainer';
 
+//JumpUp Game Classes
 class DoodleWidget {
   static ctx;
 
@@ -84,8 +79,7 @@ class DoodleWidget {
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
     this.customer = this.config.business_name ? this.config.business_name : 'Perlas GO';
-    this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
 
     this.language = this.config.language ? this.config.language : 'LV';
@@ -101,8 +95,7 @@ class DoodleWidget {
 
     this.createContainer();
     this.platformCount = 10; // Define platformCount here
-    this.width =
-      document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth : 418;
+    this.width = document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth : 418;
     this.height = 668;
     this.player;
     this.tutorial = true;
@@ -113,8 +106,7 @@ class DoodleWidget {
         ? MainImagePiguLT
         : this.campaignUrlProp === 'https://220.lv'
           ? MainImagePiguLV
-          : this.campaignUrlProp === 'https://kaup.ee' ||
-              this.campaignUrlProp === 'https://kaup24.ee'
+          : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
             ? MainImagePiguEE
             : this.campaignUrlProp === 'https://hobbyhall.fi'
               ? MainImagePiguFI
@@ -156,8 +148,7 @@ class DoodleWidget {
     if (this.customer === 'Pigu.lt') {
       document.querySelector('.game-container').style.backgroundColor = 'black';
     } else {
-      document.querySelector('.game-container').style.backgroundColor =
-        window.innerWidth <= 768 ? 'black' : 'none';
+      document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
     }
 
     this.config = localStorageService.getDefaultConfig();
@@ -231,18 +222,10 @@ class DoodleWidget {
           () => {
             document.getElementById('background_intro').style.display = 'none';
           },
-          this.customer === 'Pigu.lt'
-            ? 2000
-            : this.customer === 'Perlas GO' || this.customer.includes('demo')
-              ? 0
-              : 2500,
+          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') ? 0 : 2500,
         );
       },
-      this.customer === 'Pigu.lt'
-        ? 2000
-        : this.customer === 'Perlas GO' || this.customer.includes('demo')
-          ? 0
-          : 2500,
+      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') ? 0 : 2500,
     ); //intro speed
   }
 
@@ -295,8 +278,7 @@ class DoodleWidget {
 
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.37;
+        document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
 
@@ -322,11 +304,8 @@ class DoodleWidget {
           this.bestScore = response.user_best_score;
           if (this.customer === 'Pigu.lt' && false) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
-            const competitionTableContainer = document.querySelector(
-              '.competition-table-container-pigu',
-            );
-            competitionTableContainer.style.transition =
-              'height 1s ease, top 1s ease, opacity 1s ease';
+            const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
+            competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
             competitionTableContainer.style.display = 'block';
             setTimeout(() => {
               competitionTableContainer.style.height = '680px';
@@ -360,8 +339,7 @@ class DoodleWidget {
     } else {
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
-        document.getElementById('background_blur').style.opacity =
-          this.language === 'LV' ? 0.4 : 0.37;
+        document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
         canvas.style.transition = 'filter 0.6s ease';
         canvas.style.filter = 'blur(2px)';
         const inputContainer = document.querySelector('.input-container');
@@ -400,8 +378,7 @@ class DoodleWidget {
     }
     setTimeout(() => {
       const canvas = document.getElementById('boomio-doodle-canvas');
-      document.getElementById('background_blur').style.opacity =
-        this.language === 'LV' ? 0.4 : 0.37;
+      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
       canvas.style.transition = 'filter 0.6s ease';
       canvas.style.filter = 'blur(2px)';
       const inputContainer = document.querySelector('.input-container');
@@ -432,11 +409,7 @@ class DoodleWidget {
                 if (this.customer === 'Pigu.lt') {
                   if (window.Boomio) {
                     window.Boomio.logEvent('game_started', JSON.stringify(response));
-                  } else if (
-                    window.webkit &&
-                    window.webkit.messageHandlers &&
-                    window.webkit.messageHandlers.Boomio
-                  ) {
+                  } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
                     var message = {
                       command: 'logEvent',
                       name: 'game_started',
@@ -488,12 +461,7 @@ class DoodleWidget {
   };
 
   handleArrowKeyPress = (event) => {
-    if (
-      event.key === 'ArrowUp' ||
-      event.key === 'ArrowDown' ||
-      event.key === 'ArrowLeft' ||
-      event.key === 'ArrowRight'
-    ) {
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       this.removetutorial();
     }
   };
@@ -744,11 +712,7 @@ class DoodleWidget {
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
                   window.Boomio.logEvent('game_finished', JSON.stringify(response));
-                } else if (
-                  window.webkit &&
-                  window.webkit.messageHandlers &&
-                  window.webkit.messageHandlers.Boomio
-                ) {
+                } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
                   var message = {
                     command: 'logEvent',
                     name: 'game_finished',
@@ -763,11 +727,7 @@ class DoodleWidget {
 
               this.scoreTable = response;
 
-              this.scoreTableContainerInstance.updateProps(
-                this.customer,
-                this.scoreTable,
-                this.currentScore,
-              );
+              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
             })
             .catch((error) => {
               console.error('Error:', error);
@@ -786,10 +746,8 @@ class DoodleWidget {
           canvas.style.transition = 'filter 0.6s ease';
           canvas.style.filter = 'blur(2px)';
           document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.opacity =
-            this.language === 'LV' ? 0.4 : 0.37;
-          competitionTableContainer.style.transition =
-            'height 1s ease, top 1s ease, opacity 1s ease';
+          document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
+          competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
           setTimeout(() => {
             competitionTableContainer.style.height = '680px';
@@ -806,9 +764,7 @@ class DoodleWidget {
           inputContainer.style.display = 'block';
           setTimeout(() => {
             inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
-            inputContainer.style.top = `calc(50% + ${
-              this.isMobileHeightSmall ? '110px' : '170px'
-            })`;
+            inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
             inputContainer.style.opacity = 1;
           }, 100);
         }
@@ -1120,16 +1076,10 @@ class DoodleWidget {
       else if (this.player.vx < -3) this.player.vx = -3;
     }
     //Jump the player when it hits the base
-    if (this.player.y + this.player.height > this.base.y && this.base.y < this.height)
-      this.player.jump();
+    if (this.player.y + this.player.height > this.base.y && this.base.y < this.height) this.player.jump();
 
     //Gameover if it hits the bottom
-    if (
-      this.base.y > this.height &&
-      this.player.y + this.player.height > this.height &&
-      this.player.isDead != 'yes'
-    )
-      this.player.isDead = true;
+    if (this.base.y > this.height && this.player.y + this.player.height > this.height && this.player.isDead != 'yes') this.player.isDead = true;
 
     //Make the player move through walls
     if (this.player.x + 40 > this.width) this.player.x = 0 - this.player.width + 40;
@@ -1188,13 +1138,7 @@ class DoodleWidget {
     this.player.y += this.player.vy;
     this.player.vy += this.gravity;
 
-    if (
-      this.player.vy > 0 &&
-      this.player.x + 15 < 260 &&
-      this.player.x + this.player.width - 15 > 155 &&
-      this.player.y + this.player.height > 475 &&
-      this.player.y + this.player.height < 500
-    )
+    if (this.player.vy > 0 && this.player.x + 15 < 260 && this.player.x + this.player.width - 15 > 155 && this.player.y + this.player.height > 475 && this.player.y + this.player.height < 500)
       this.player.jump();
 
     if (this.dir == 'left') {
@@ -1278,8 +1222,7 @@ class DoodleWidget {
     }
 
     //Jump the player when it hits the base
-    if (this.player.y + this.player.height > this.base.y && this.base.y < this.height)
-      this.player.jump();
+    if (this.player.y + this.player.height > this.base.y && this.base.y < this.height) this.player.jump();
 
     //Make the player move through walls
     if (this.player.x > this.width) this.player.x = 0 - this.player.width;
@@ -1319,11 +1262,7 @@ class DoodleWidget {
 
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-doodle-container');
-    myCanvas.classList.add(
-      'boomio--animation__wrapper',
-      'boomio--animation__wrapper--initial',
-      'box',
-    );
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
@@ -1335,19 +1274,11 @@ class DoodleWidget {
 </div>`
       : ''
   }
-    ${
-      this.showCompetitiveRegistration && this.customer !== 'Pigu.lt'
-        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
-        : ''
-    }
+    ${this.showCompetitiveRegistration && this.customer !== 'Pigu.lt' ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML : ''}
 
     
 
-		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth + 'px'
-        : '418px'
-    }">
+		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}">
 		</canvas>
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
@@ -1382,18 +1313,13 @@ class DoodleWidget {
                       ? 'BAKST'
                       : 'KLIK'
         }</div>
-      </div><img src=${
-        this.isMobile ? Controlls : ControlsDesktop
-      } alt="Image Description" style="width: 110px; height: 50px;">`}
+      </div><img src=${this.isMobile ? Controlls : ControlsDesktop} alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
 
 <img src=${
-      this.language === 'ET' &&
-      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+      this.language === 'ET' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
         ? PiguJumpUpIntroEstonian
-        : this.language === 'RU' &&
-            (this.campaignUrlProp === 'https://kaup.ee' ||
-              this.campaignUrlProp === 'https://kaup24.ee')
+        : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
           ? PiguJumpUpIntroEstoniaRU
           : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
             ? PiguJumpUpIntroLithuanian
@@ -1411,9 +1337,7 @@ class DoodleWidget {
                         ? PiguJumpUpIntroFinishEN
                         : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
                           ? PiguJumpUpIntroLatvianEN
-                          : this.language === 'EN' &&
-                              (this.campaignUrlProp === 'https://kaup.ee' ||
-                                this.campaignUrlProp === 'https://kaup24.ee')
+                          : this.language === 'EN' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
                             ? PiguJumpUpIntroEstonianEN
                             : this.customer === 'Vilvi'
                               ? introVilvi
@@ -1426,30 +1350,20 @@ class DoodleWidget {
                                   : ''
     } 
 alt="Image Description" 
-style="z-index:4; height: ${
-      this.isMobileHeightSmall ? '100%' : '674px'
-    };position:absolute;pointer-events: none; display:block;" 
+style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:block;" 
 id="background_intro">
 
 
         <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
-          document.documentElement.clientWidth < 418
-            ? document.documentElement.clientWidth + 'px'
-            : '418px'
+          document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
         }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 ${
   (this.language === 'LV' && this.customer === 'Akropolis') || this.customer === 'Vilvi'
     ? `<div alt="Image Description" style="z-index:1;width: ${
-        document.documentElement.clientWidth < 418
-          ? document.documentElement.clientWidth + 'px'
-          : '418px'
-      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
-        this.customer === 'Vilvi' ? '#359BB9' : '#FE0000'
-      }" id="background_blur"></div>`
+        document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
+      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${this.customer === 'Vilvi' ? '#359BB9' : '#FE0000'}" id="background_blur"></div>`
     : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-        document.documentElement.clientWidth < 418
-          ? document.documentElement.clientWidth + 'px'
-          : '418px'
+        document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
       }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
 }
 
@@ -1543,32 +1457,18 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
     if (this.showCompetitiveRegistration) {
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
-        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(this.customer, this.scoreTable, this.currentScore);
       } else if (this.customer === 'Perlas GO') {
-        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable, this.currentScore);
       } else {
-        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-        );
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
 
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
-      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
-        this.customer,
-        this.scoreTable,
-      );
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(this.customer, this.scoreTable);
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
@@ -1617,17 +1517,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
             if (containsCyrillic(emailInput)) {
               document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
             }
 
             if (containsCyrillic(emailInput)) {
-              document.getElementById('competition-email-error').innerText =
-                this.language === 'LV'
-                  ? 'E-pastā ir nederīgas rakstzīmes'
-                  : 'El. pašte yra neteisingų simbolių';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+              document.getElementById('competition-email-error').innerText = this.language === 'LV' ? 'E-pastā ir nederīgas rakstzīmes' : 'El. pašte yra neteisingų simbolių';
+              document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               return;
             }
             console.log(this.checkboxChange);
@@ -1641,42 +1536,29 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
                       : 'Norint tęsti privaloma sutikti su privatumo politika.';
 
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                this.customer === 'Akropolis' && this.language !== 'LV'
-                  ? '#FFBABA'
-                  : 'rgb(255, 186, 186)';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' ? '#FFBABA' : 'rgb(255, 186, 186)';
 
               document.getElementById('competition-name-error').innerText = '';
 
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
-              document.getElementById('competition-email-error').innerText =
-                this.language === 'LV'
-                  ? 'Obligāti aizpildāmie lauki.'
-                  : 'Norint tęsti privaloma užpildyti.';
-              document.getElementById('competition-email-error').style.backgroundColor =
-                this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+              document.getElementById('competition-email-error').innerText = this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
 
-              document.getElementById('competition-name-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
               document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor =
-                'transparent';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
             }
             if (this.customer === 'Perlas GO') {
               if (!isValidEmail(emailInput?.value)) {
-                document.getElementById('competition-email-error').innerText =
-                  'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+                document.getElementById('competition-email-error').innerText = 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
                 document.getElementById('competition-email-error').zIndex = 1;
-                document.getElementById('competition-email-error').style.backgroundColor =
-                  '#FFBABA';
+                document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
                 return;
               }
@@ -1694,43 +1576,27 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                   if (response.success === false) {
                     if (response.res_code === 'EMAIL_EXIST') {
                       document.getElementById('competition-email-error').innerText =
-                        this.language === 'LV'
-                          ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
-                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+                        this.language === 'LV' ? 'Šis e-pasts jau pastāv. Izmantojiet citu.' : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
                       document.getElementById('competition-name-error').innerText = '';
 
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
                       document.getElementById('competition-checkbox-error').innerText = '';
-                      document.getElementById('competition-checkbox-error').style.backgroundColor =
-                        'transparent';
-                    } else if (
-                      response.res_code === 'NICKNAME_EXIST' &&
-                      this.customer !== 'Perlas GO'
-                    ) {
+                      document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+                    } else if (response.res_code === 'NICKNAME_EXIST' && this.customer !== 'Perlas GO') {
                       document.getElementById('competition-name-error').innerText =
-                        this.language === 'LV'
-                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-name-error').style.backgroundColor =
-                        this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+                        this.language === 'LV' ? 'Šis segvārds jau pastāv. Izmantojiet citu.' : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                      document.getElementById('competition-name-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
 
                       document.getElementById('competition-email-error').innerText = '';
-                      document.getElementById('competition-email-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
                       document.getElementById('competition-checkbox-error').innerText = '';
-                      document.getElementById('competition-checkbox-error').style.backgroundColor =
-                        'transparent';
+                      document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
                     }
                   } else {
                     this.bestScore = response.user_best_score ?? 0;
-                    const inpuRegisterContainer = document.querySelector(
-                      '.input-register-container',
-                    );
-                    inpuRegisterContainer.style.transition =
-                      'height 1s ease, top 1s ease, opacity 1s ease';
+                    const inpuRegisterContainer = document.querySelector('.input-register-container');
+                    inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                     setTimeout(() => {
                       inpuRegisterContainer.style.height = '10px';
                       inpuRegisterContainer.style.top = 'calc(50% + 330px)';
@@ -1741,24 +1607,18 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                     }, 1000);
                     setTimeout(() => {
                       const canvas = document.getElementById('boomio-doodle-canvas');
-                      document.getElementById('background_blur').style.opacity =
-                        this.language === 'LV' ? 0.4 : 0.37;
+                      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
                       canvas.style.transition = 'filter 0.6s ease';
                       canvas.style.filter = 'blur(2px)';
                       const inputContainer = document.querySelector('.input-container');
-                      document.getElementById('control-button').style.transition =
-                        'opacity 2s ease';
+                      document.getElementById('control-button').style.transition = 'opacity 2s ease';
                       document.getElementById('control-button').style.opacity = 1;
                       document.getElementById('control-button').style.display = 'flex';
-                      inputContainer.style.transition =
-                        'height 1s ease, top 1s ease, opacity 1s ease';
+                      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                       inputContainer.style.display = 'block';
                       setTimeout(() => {
-                        inputContainer.style.height =
-                          this.customer === 'Pigu.lt' ? '400px' : '332px';
-                        inputContainer.style.top = `calc(50% + ${
-                          this.isMobileHeightSmall ? '110px' : '170px'
-                        })`;
+                        inputContainer.style.height = this.customer === 'Pigu.lt' ? '400px' : '332px';
+                        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
                         inputContainer.style.opacity = 1;
                       }, 100);
                     }, 300);
@@ -1940,22 +1800,11 @@ class Platform {
     try {
       if (this.type == 1) this.cy = 0;
       else if (this.type == 2) this.cy = 61;
-      else if (this.type == 3 && this.flag === 0)
-        this.cy = this.customer === 'Akropolis' && this.language === 'LV' ? 26 : 39;
+      else if (this.type == 3 && this.flag === 0) this.cy = this.customer === 'Akropolis' && this.language === 'LV' ? 26 : 39;
       else if (this.type == 3 && this.flag == 1) this.cy = 1000;
       else if (this.type == 4 && this.state === 0) this.cy = 90;
       else if (this.type == 4 && this.state == 1) this.cy = 1000;
-      DoodleWidget.ctx.drawImage(
-        this.image,
-        this.cx,
-        this.cy,
-        this.cwidth,
-        this.cheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height,
-      );
+      DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
     } catch (e) {}
   }
 
@@ -2034,17 +1883,7 @@ class Platform_broken_substitute {
   draw = () => {
     try {
       if (this.appearance === true) {
-        DoodleWidget.ctx.drawImage(
-          this.image,
-          this.cx,
-          this.cy,
-          this.cwidth,
-          this.cheight,
-          this.x,
-          this.y,
-          this.width,
-          this.height,
-        );
+        DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
       }
     } catch (e) {}
   };
@@ -2062,27 +1901,12 @@ class Spring {
     this.y = 0;
     this.cx = 5; // Horizontal position in the sprite sheet
 
-    this.possibleValues =
-      this.customer === 'Vilvi' || this.customer === 'Magija'
-        ? [625, 765, 855]
-        : this.customer === 'Perlas GO'
-          ? [625, 762, 852]
-          : [615]; // Define the possible vertical positions (cy values)
+    this.possibleValues = this.customer === 'Vilvi' || this.customer === 'Magija' ? [625, 765, 855] : this.customer === 'Perlas GO' ? [625, 762, 852] : [615]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width =
-      this.customer === 'Vilvi' || this.customer === 'Magija'
-        ? 90
-        : this.customer === 'Perlas GO'
-          ? 54
-          : 65; // Width to draw on canvas
-    this.height =
-      this.customer === 'Vilvi' || this.customer === 'Magija'
-        ? 60
-        : this.customer === 'Perlas GO'
-          ? 40
-          : 38; // Height to draw on canvas
+    this.width = this.customer === 'Vilvi' || this.customer === 'Magija' ? 90 : this.customer === 'Perlas GO' ? 54 : 65; // Width to draw on canvas
+    this.height = this.customer === 'Vilvi' || this.customer === 'Magija' ? 60 : this.customer === 'Perlas GO' ? 40 : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }
@@ -2116,8 +1940,7 @@ class Base {
   constructor(image) {
     this.image = image;
     this.height = 10;
-    this.width =
-      document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth : 418; // Adjust the width value accordingly
+    this.width = document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth : 418; // Adjust the width value accordingly
     this.cx = 0;
     this.cy = 614;
     this.cwidth = 100;
@@ -2129,17 +1952,7 @@ class Base {
 
   draw() {
     try {
-      DoodleWidget.ctx.drawImage(
-        this.image,
-        this.cx,
-        this.cy,
-        this.cwidth,
-        this.cheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height,
-      );
+      DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
     } catch (e) {}
   }
 }
@@ -2162,10 +1975,7 @@ class Player {
     this.cwidth = 110;
     this.cheight = 75;
     this.dir = 'left';
-    this.x =
-      (document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth : 418) /
-        2 -
-      this.width / 2;
+    this.x = (document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth : 418) / 2 - this.width / 2;
     this.y = 666;
   }
   draw() {
@@ -2177,17 +1987,7 @@ class Player {
       else if (this.dir == 'right_jump') this.cy = 282;
       else if (this.dir == 'left_jump') this.cy = 364;
 
-      DoodleWidget.ctx.drawImage(
-        this.image,
-        this.cx,
-        this.cy,
-        this.cwidth,
-        this.cheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height,
-      );
+      DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
     } catch (e) {}
   }
 
