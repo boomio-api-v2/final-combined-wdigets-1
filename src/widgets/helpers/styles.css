@@ -281,26 +281,26 @@ font-style: normal;
 font-weight: 500;
   font-family: Georama;
 }
-  .boomio-competition-email-input-field::-webkit-input-placeholder {      color: rgba(61, 73, 40, 1);
-    font-size: 16px;
+  .boomio-competition-email-input-field::-webkit-input-placeholder {      color: rgba(160, 155, 163, 1);
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     font-family: Georama;
 }
-.boomio-competition-email-input-field:-moz-placeholder {      color: rgba(61, 73, 40, 1);
-  font-size: 16px;
+.boomio-competition-email-input-field:-moz-placeholder {      color: rgba(160, 155, 163, 1);
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
     font-family: Georama;
 }
-.boomio-competition-email-input-field::-moz-placeholder {      color: rgba(61, 73, 40, 1);
-  font-size: 16px;
+.boomio-competition-email-input-field::-moz-placeholder {      color: rgba(160, 155, 163, 1);
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
     font-family: Georama;
 }
-.boomio-competition-email-input-field:-ms-input-placeholder {      color: rgba(61, 73, 40, 1);
-  font-size: 16px;
+.boomio-competition-email-input-field:-ms-input-placeholder {      color:rgba(160, 155, 163, 1);
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
     font-family: Georama;

@@ -191,3 +191,58 @@ export const crushElement7ZemaitijosPienasSpecial =
 
 export const backgroundZemaitijosPienas =
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/crushWidget/zemaitijos-pienas/background.png';
+
+const gamtosAteitisPrefix =
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/crushWidget/gamtosateitis';
+
+export const backgroundGamtosAteitisGlass = `${gamtosAteitisPrefix}/backgroundGamtosAteitisGlass.png`;
+export const backgroundGamtosAteitisPaper = `${gamtosAteitisPrefix}/backgroundGamtosAteitisPaper.png`;
+export const backgroundGamtosAteitisPlastic = `${gamtosAteitisPrefix}/backgroundGamtosAteitisPlastic.png`;
+
+export const crushElement1GamtosAteitisGlass = `${gamtosAteitisPrefix}/item01Glass.png`;
+export const crushElement2GamtosAteitisGlass = `${gamtosAteitisPrefix}/item02Glass.png`;
+export const crushElement3GamtosAteitisGlass = `${gamtosAteitisPrefix}/item03Glass.png`;
+export const crushElement4GamtosAteitisGlass = `${gamtosAteitisPrefix}/item04Glass.png`;
+export const crushElement5GamtosAteitisGlass = `${gamtosAteitisPrefix}/item05Glass.png`;
+export const crushElement6GamtosAteitisGlass = `${gamtosAteitisPrefix}/item06Glass.png`;
+export const crushElement7GamtosAteitisGlass = `${gamtosAteitisPrefix}/item07Glass.png`;
+
+export const crushElement1GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item01GlassSpecial.png`;
+export const crushElement2GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item02GlassSpecial.png`;
+export const crushElement3GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item03GlassSpecial.png`;
+export const crushElement4GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item04GlassSpecial.png`;
+export const crushElement5GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item05GlassSpecial.png`;
+export const crushElement6GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item06GlassSpecial.png`;
+export const crushElement7GamtosAteitisGlassSpecial = `${gamtosAteitisPrefix}/item07GlassSpecial.png`;
+
+export const crushElement1GamtosAteitisPaper = `${gamtosAteitisPrefix}/item01Paper.png`;
+export const crushElement2GamtosAteitisPaper = `${gamtosAteitisPrefix}/item02Paper.png`;
+export const crushElement3GamtosAteitisPaper = `${gamtosAteitisPrefix}/item03Paper.png`;
+export const crushElement4GamtosAteitisPaper = `${gamtosAteitisPrefix}/item04Paper.png`;
+export const crushElement5GamtosAteitisPaper = `${gamtosAteitisPrefix}/item05Paper.png`;
+export const crushElement6GamtosAteitisPaper = `${gamtosAteitisPrefix}/item06Paper.png`;
+export const crushElement7GamtosAteitisPaper = `${gamtosAteitisPrefix}/item07Paper.png`;
+
+export const crushElement1GamtosAteitisPaperSpecial = `${gamtosAteitisPrefix}/item01PaperSpecial.png`;
+export const crushElement2GamtosAteitisPaperSpecial = `${gamtosAteitisPrefix}/item02PaperSpecial.png`;
+export const crushElement3GamtosAteitisPaperSpecial = `${gamtosAteitisPrefix}/item03PaperSpecial.png`;
+export const crushElement4GamtosAteitisPaperSpecial = `${gamtosAteitisPrefix}/item04PaperSpecial.png`;
+export const crushElement5GamtosAteitisPaperSpecial = `${gamtosAteitisPrefix}/item05PaperSpecial.png`;
+export const crushElement6GamtosAteitisPaperSpecial = `${gamtosAteitisPrefix}/item06PaperSpecial.png`;
+export const crushElement7GamtosAteitisPaperSpecial = `${gamtosAteitisPrefix}/item07PaperSpecial.png`;
+
+export const crushElement1GamtosAteitisPlastic = `${gamtosAteitisPrefix}/item01Plastic.png`;
+export const crushElement2GamtosAteitisPlastic = `${gamtosAteitisPrefix}/item02Plastic.png`;
+export const crushElement3GamtosAteitisPlastic = `${gamtosAteitisPrefix}/item03Plastic.png`;
+export const crushElement4GamtosAteitisPlastic = `${gamtosAteitisPrefix}/item04Plastic.png`;
+export const crushElement5GamtosAteitisPlastic = `${gamtosAteitisPrefix}/item05Plastic.png`;
+export const crushElement6GamtosAteitisPlastic = `${gamtosAteitisPrefix}/item06Plastic.png`;
+export const crushElement7GamtosAteitisPlastic = `${gamtosAteitisPrefix}/item07Plastic.png`;
+
+export const crushElement1GamtosAteitisPlasticSpecial = `${gamtosAteitisPrefix}/item01PlasticSpecial.png`;
+export const crushElement2GamtosAteitisPlasticSpecial = `${gamtosAteitisPrefix}/item02PlasticSpecial.png`;
+export const crushElement3GamtosAteitisPlasticSpecial = `${gamtosAteitisPrefix}/item03PlasticSpecial.png`;
+export const crushElement4GamtosAteitisPlasticSpecial = `${gamtosAteitisPrefix}/item04PlasticSpecial.png`;
+export const crushElement5GamtosAteitisPlasticSpecial = `${gamtosAteitisPrefix}/item05PlasticSpecial.png`;
+export const crushElement6GamtosAteitisPlasticSpecial = `${gamtosAteitisPrefix}/item06PlasticSpecial.png`;
+export const crushElement7GamtosAteitisPlasticSpecial = `${gamtosAteitisPrefix}/item07PlasticSpecial.png`;
