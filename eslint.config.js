@@ -38,11 +38,11 @@ export default [
       'no-unused-vars': 'off',
 
       // === Safer defaults / useful signals ===
-      eqeqeq: 'off',
+      eqeqeq: 'warn',
       'no-undef': 'warn',
-      'no-useless-escape': 'off',
-      'no-empty': 'off',
-      'no-prototype-builtins': 'off',
+      'no-useless-escape': 'warn',
+      'no-empty': 'warn',
+      'no-prototype-builtins': 'warn',
       'no-unreachable': 'warn',
       'no-dupe-keys': 'warn',
       'no-dupe-args': 'warn',
