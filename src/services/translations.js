@@ -30,4 +30,22 @@ const translations = {
     FI: 'Kopioi linkki',
     RU: 'Скопировать ссылку',
   },
+  shareTitle: {
+    EN: 'Try this game!',
+    LT: 'Išbandyk šį žaidimą!',
+    LV: 'Izmēģini šo spēli!',
+    ET: 'Proovi seda mängu!',
+    FI: 'Kokeile tätä peliä!',
+    RU: 'Попробуй эту игру!',
+  },
+  shareText: {
+    EN: 'Dive into a fun game and win great prizes!',
+    LT: 'Pasinerk į smagų žaidimą ir laimėk puikių prizų!',
+    LV: 'Ienirsti jautrā spēlē un laimē lieliskas balvas!',
+    ET: 'Sukeldu lõbusasse mängu ja võida vahvaid auhindu!',
+    FI: 'Sukella hauskaan peliin ja voita mahtavia palkintoja!',
+    RU: 'Погрузись в увлекательную игру и выиграй классные призы!',
+  },
 };
+
+t.keys = Object.freeze(Object.fromEntries(Object.keys(translations).map((k) => [k, translations[k]])));

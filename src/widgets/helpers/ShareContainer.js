@@ -120,7 +120,7 @@ export class ShareContainer {
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text3');
-        copyButton.textContent = t('copiedMsg', this.language);
+        copyButton.textContent = t(t.keys.copiedMsg, this.language);
 
         setTimeout(() => {
           copyButton.textContent = this.couponCodeNew;
@@ -129,7 +129,7 @@ export class ShareContainer {
     }
 
     window.copyURL = function () {
-      navigator.clipboard.writeText(this.campaignUrlProp);
+      navigator.clipboard.writeText(this.getShareLink());
     }.bind(this);
 
     const shareButton = document.getElementById('default-share-button');
@@ -138,16 +138,34 @@ export class ShareContainer {
     }
   }
 
+  getShareLink() {
+    if (this.prop === 'Pigu.lt') {
+      if (this.campaignUrlOrCurrentPage.includes('pigu')) {
+        return 'https://pigu.lt/lt/boomio2024christmas';
+      }
+      if (this.campaignUrlOrCurrentPage.includes('220')) {
+        return 'https://220.lv/lv/boomio2024christmas';
+      }
+      if (this.campaignUrlOrCurrentPage.includes('kaup24')) {
+        return 'https://kaup24.ee/et/boomio2024christmas';
+      }
+      if (this.campaignUrlOrCurrentPage.includes('hobbyhall')) {
+        return 'https://hobbyhall.fi/fi/boomio2024christmas';
+      }
+    }
+    return this.campaignUrlOrCurrentPage;
+  }
+
   async defaultShare() {
     const shareData = {
-      title: 'Išbandyk šį žaidimą!',
-      text: 'Pasinerk į smagų žaidimą ir laimėk puikių prizų!',
-      url: this.campaignUrlOrCurrentPage,
+      title: t(t.keys.shareTitle, this.language),
+      text: t(t.keys.shareText, this.language),
+      url: this.getShareLink(),
     };
 
     document.dispatchEvent(
       new CustomEvent('shareClicked', {
-        detail: { url: this.campaignUrlOrCurrentPage },
+        detail: { url: shareData.url },
       }),
     );
 
@@ -176,13 +194,13 @@ export class ShareContainer {
 
       // 3) Modern clipboard (many in-app browsers block this)
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(this.campaignUrlOrCurrentPage);
-        alert(t('copiedMsg', this.language));
+        await navigator.clipboard.writeText(this.getShareLink());
+        alert(t(t.keys.copiedMsg, this.language));
         return;
       }
       // 4) Legacy clipboard via textarea
       const ta = document.createElement('textarea');
-      ta.value = this.campaignUrlOrCurrentPage;
+      ta.value = this.getShareLink();
       ta.setAttribute('readonly', '');
       ta.style.position = 'fixed';
       ta.style.top = '-9999px';
@@ -190,7 +208,7 @@ export class ShareContainer {
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      alert(t('copiedMsg', this.language));
+      alert(t(t.keys.copiedMsg, this.language));
     } catch (err) {
       console.error('Share/copy failed:', err);
       // 4) Absolute fallback: open a chooser-friendly intent-style page
@@ -316,7 +334,7 @@ export class ShareContainer {
               document.execCommand('copy');
               ta.remove();
             }
-            alert(t('copiedMsg', this.language));
+            alert(t(t.keys.copiedMsg, this.language));
           } else {
             this.attemptOpen(z.href, z.webFallback);
           }
@@ -333,7 +351,7 @@ export class ShareContainer {
     footer.style.cssText = 'padding:6px 10px 12px;';
     const closeBtn = document.createElement('button');
     closeBtn.type = 'button';
-    closeBtn.textContent = t('close', this.language);
+    closeBtn.textContent = t(t.keys.close, this.language);
     closeBtn.style.cssText = 'width:100%;height:42px;border-radius:12px;border:0;background:#f2f2f2;color:#111;font-weight:600;cursor:pointer;';
     closeBtn.onclick = () => this.closeShareSheet(root);
     footer.appendChild(closeBtn);
@@ -374,7 +392,7 @@ export class ShareContainer {
         label: 'Messenger',
         icon: ico('🔵'),
         href: `fb-messenger://share?link=${encUrl}`,
-        webFallback: `https://www.facebook.com/dialog/send?link=${encUrl}`,
+        webFallback: `https://www.facebook.com/sharer/sharer.php?u=${encUrl}`,
       },
       {
         label: 'Facebook',
@@ -385,7 +403,7 @@ export class ShareContainer {
       {
         label: 'Telegram',
         icon: ico('💬'),
-        href: `tg://msg_url?url=${encUrl}&text=${encTitle}`,
+        href: `tg://share?url=${encUrl}&text=${encTitle}`,
         webFallback: `https://t.me/share/url?url=${encUrl}&text=${encTitle}`,
       },
       {
@@ -412,7 +430,7 @@ export class ShareContainer {
         href: `mailto:?subject=${encTitle}&body=${encMsg}`,
       },
       {
-        label: t('copy', this.language),
+        label: t(t.keys.copy, this.language),
         icon: ico('📋'),
         type: 'copy',
       },
@@ -443,11 +461,11 @@ export class ShareContainer {
 
     // As a safety, also open fallback if nothing happened after ~1s (app not installed)
     if (fallback) {
-      const t = setTimeout(() => {
+      const timer = setTimeout(() => {
         try {
           window.location.href = fallback;
         } catch {}
-        clearTimeout(t);
+        clearTimeout(timer);
       }, 1000);
     }
   }
