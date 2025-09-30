@@ -545,7 +545,9 @@ class DoodleWidget {
                 ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
                 : this.customer === 'Pigu.lt' && this.language === 'RU'
                   ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
-                  : '';
+                  : this.language === 'ES'
+                    ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                    : '';
       document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
       document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';
@@ -1555,7 +1557,6 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               return;
             }
-            console.log(this.checkboxChange);
             if (!this.checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
@@ -1610,6 +1611,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
               return;
             }
+
             if (Elements.isVisible(phoneInput) && phoneInput?.value?.length < 10 && this.customer === 'Toni') {
               document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
               document.getElementById('competition-phone-error').style.height = '20px';
@@ -1640,7 +1642,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                   if (response.success === false) {
                     if (response.res_code === 'EMAIL_EXIST') {
                       document.getElementById('competition-email-error').innerText =
-                        this.language === 'LV' ? 'Šis e-pasts jau pastāv. Izmantojiet citu.' : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        this.language === 'LV'
+                          ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
+                          : this.language === 'ES'
+                            ? 'Este email ya está en uso. Use otro email.'
+                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
                       document.getElementById('competition-name-error').innerText = '';
 
