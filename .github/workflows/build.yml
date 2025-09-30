@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: build-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: 22.x
+          node-version: 24.x
           cache: npm
 
       - name: Install dependencies
@@ -55,36 +55,54 @@ jobs:
           retention-days: 14
           compression-level: 6
 
-      - name: Upload bundle.js to Cloudflare KV (TEST)
-        if: github.event_name == 'pull_request'
+  deploy_test:
+    if: github.event_name == 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: TEST
+    concurrency:
+      group: deploy-test-${{ github.head_ref || github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Download bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: bundle.js
+          path: .
+
+      - name: Upload bundle.js to Cloudflare KV
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID}}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: >
             kv:key put
             --namespace-id ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID_TEST }}
-            --path dist/bundle.js
+            --path bundle.js
             bundle.js
 
-      # - name: Purge Worker cache (TEST)
-      #   if: github.event_name == 'pull_request'
-      #   run: |
-      #     curl -X POST "https://widgets.boomio.workers.dev/test/${{ secrets.CACHE_SECRET_RESET_TEST }}"
+  deploy_prod:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: PROD
+    concurrency:
+      group: deploy-prod
+      cancel-in-progress: true
+    steps:
+      - name: Download bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: bundle.js
+          path: .
 
-      - name: Upload bundle.js to Cloudflare KV (PROD)
-        if: github.ref == 'refs/heads/main'
+      - name: Upload bundle.js to Cloudflare KV
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID}}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: >
             kv:key put
             --namespace-id ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID }}
-            --path dist/bundle.js
+            --path bundle.js
             bundle.js
-
-      # - name: Purge Worker cache (PROD)
-      #   if: github.ref == 'refs/heads/main'
-      #   run: |
-      #     curl -X POST "https://widgets.boomio.workers.dev/${{ secrets.CACHE_SECRET_RESET }}"
