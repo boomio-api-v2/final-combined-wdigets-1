@@ -1373,7 +1373,7 @@ class DoodleWidget {
                                   : ''
     }" 
 alt="Intro Image" 
-style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:block;" 
+style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:${this.customer === 'Toni' ? 'none' : 'block'};" 
 id="background_intro">
 
 
@@ -1539,6 +1539,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         if (this.gameCount === 0) {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const nameInput = document.querySelector('.boomio-competition-name-input-field');
+            const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
+
             const cyrillicRegex = /[\u0400-\u04FF]/;
             const containsCyrillic = (input) => cyrillicRegex.test(input.value);
 
@@ -1561,7 +1564,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                     ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
                     : this.customer === 'Vilvi'
                       ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
-                      : 'Norint tęsti privaloma sutikti su privatumo politika.';
+                      : this.language === 'ES'
+                        ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                        : 'Norint tęsti privaloma sutikti su privatumo politika.';
 
               document.getElementById('competition-checkbox-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' ? '#FFBABA' : 'rgb(255, 186, 186)';
 
@@ -1573,7 +1578,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
-              document.getElementById('competition-email-error').innerText = this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : 'Norint tęsti privaloma užpildyti.';
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
 
@@ -1591,13 +1597,44 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               }
             }
 
+            if (Elements.isVisible(emailInput) && emailInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-email-error').zIndex = 1;
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').innerText = '';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+
+              document.getElementById('competition-phone-error').style.height = '37px';
+
+              return;
+            }
+            if (Elements.isVisible(phoneInput) && phoneInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-phone-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').zIndex = 1;
+              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+              document.getElementById('competition-email-error').style.height = '37px';
+
+              return;
+            }
+
             if (this.showCompetitiveRegistration && this.checkboxChange) {
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange2,
-                  user_email: emailInput?.value,
-                  user_name: emailInput?.value,
+                  user_email: Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim(),
+                  user_name:
+                    this.customer === 'Toni'
+                      ? nameInput?.value.trimEnd() + phoneInput?.value
+                      : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
                   via_mobile: this.campaignUrl ? true : false,
+                  ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
                 })
                 .then((response) => {
                   if (response.success === false) {
@@ -1928,12 +1965,13 @@ class Spring {
     this.y = 0;
     this.cx = 5; // Horizontal position in the sprite sheet
 
-    this.possibleValues = this.customer === 'Vilvi' || this.customer === 'Magija' ? [625, 765, 855] : this.customer === 'Perlas GO' ? [625, 762, 852] : [615]; // Define the possible vertical positions (cy values)
+    this.possibleValues =
+      this.customer === 'Vilvi' || this.customer === 'Magija' ? [625, 765, 855] : this.customer === 'Perlas GO' ? [625, 762, 852] : this.customer === 'Toni' ? [625, 762, 852] : [615]; // Define the possible vertical positions (cy values)
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width = this.customer === 'Vilvi' || this.customer === 'Magija' ? 90 : this.customer === 'Perlas GO' ? 54 : 65; // Width to draw on canvas
-    this.height = this.customer === 'Vilvi' || this.customer === 'Magija' ? 60 : this.customer === 'Perlas GO' ? 40 : 38; // Height to draw on canvas
+    this.width = this.customer === 'Vilvi' || this.customer === 'Magija' || this.customer === 'Toni' ? 90 : this.customer === 'Perlas GO' ? 54 : 65; // Width to draw on canvas
+    this.height = this.customer === 'Vilvi' || this.customer === 'Magija' || this.customer === 'Toni' ? 60 : this.customer === 'Perlas GO' ? 40 : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }
