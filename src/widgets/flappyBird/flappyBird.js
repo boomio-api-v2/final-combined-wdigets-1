@@ -32,6 +32,8 @@ import {
   newRecordEE,
   newRecordFI,
   newRecordLV,
+  newRecordEn,
+  newRecordEs,
   snowFantazijos,
   FproFlappyIntro,
   FproFlappyBackground,
@@ -42,7 +44,6 @@ import {
   introGifFantazijosRU,
   CorepetitusFlappyIntro,
   CorepetitusFlappyBackground,
-  newRecordEn,
   SaludSAIntro,
   SaludSABackground,
   SaludSARecord,
@@ -1079,7 +1080,9 @@ class FlappyBird {
                 ? newRecordFI
                 : this.language === 'RU'
                   ? newRecordRU
-                  : newRecord
+                  : this.language === 'ES'
+                    ? newRecordEs
+                    : newRecord
     } 
 
 alt="Image Description 5" style="width: 100%; height: 100%;">
