@@ -65,6 +65,7 @@ import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { ShareContainer } from '../helpers/ShareContainer';
+import { Elements } from '../helpers/ElementsHelper';
 
 //JumpUp Game Classes
 class DoodleWidget {
@@ -127,9 +128,16 @@ class DoodleWidget {
                             ? mainImageAkropolisLV
                             : mainImageAkropolis
                           : mainImage;
-    this.image.onload = () => {
+
+    this.started = false;
+    const safeStart = () => {
+      if (this.started) return;
+      this.started = true;
       this.startDoodle();
     };
+
+    this.image.onload = safeStart;
+    this.image.onerror = safeStart; // <— start even if the image is missing
 
     this.currentScreen = 0; // Initialize the current screen counter
   }
@@ -228,10 +236,10 @@ class DoodleWidget {
           () => {
             document.getElementById('background_intro').style.display = 'none';
           },
-          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') ? 0 : 2500,
+          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer.includes('Toni') ? 0 : 2500,
         );
       },
-      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') ? 0 : 2500,
+      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer.includes('Toni') ? 0 : 2500,
     ); //intro speed
   }
 
@@ -279,8 +287,17 @@ class DoodleWidget {
         checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
       });
 
+      const phoneInputField = this.customer === 'Toni' ? document.getElementById('boomio-competition-email-input-field') : document.getElementById('boomio-competition-phone-input-field');
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
       emailInput.addEventListener('input', () => {});
+
+      if (phoneInputField) {
+        phoneInputField.addEventListener('input', (event) => {
+          event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+        });
+      } else {
+        console.error('');
+      }
 
       setTimeout(() => {
         const canvas = document.getElementById('boomio-doodle-canvas');
@@ -1322,7 +1339,7 @@ class DoodleWidget {
       </div><img src=${this.isMobile ? Controlls : ControlsDesktop} alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
 
-<img src=${
+<img src="${
       this.language === 'ET' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
         ? PiguJumpUpIntroEstonian
         : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
@@ -1354,7 +1371,7 @@ class DoodleWidget {
                                     ? introAkropolisLV
                                     : introAkropolis
                                   : ''
-    } 
+    }" 
 alt="Intro Image" 
 style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:block;" 
 id="background_intro">
