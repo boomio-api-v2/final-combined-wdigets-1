@@ -59,6 +59,7 @@ jobs:
     if: github.event_name == 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    environment: TEST
     concurrency:
       group: deploy-test-${{ github.head_ref || github.ref }}
       cancel-in-progress: true
@@ -69,7 +70,7 @@ jobs:
           name: bundle.js
           path: .
 
-      - name: Upload bundle.js to Cloudflare KV (TEST)
+      - name: Upload bundle.js to Cloudflare KV
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -84,6 +85,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
+    environment: PROD
     concurrency:
       group: deploy-prod
       cancel-in-progress: true
@@ -94,7 +96,7 @@ jobs:
           name: bundle.js
           path: .
 
-      - name: Upload bundle.js to Cloudflare KV (PROD)
+      - name: Upload bundle.js to Cloudflare KV
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
