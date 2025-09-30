@@ -564,10 +564,10 @@ class FlappyBird {
                 background.style.display = 'none';
               }
             },
-            this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' ? 0 : 2000,
+            this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni' ? 0 : 2000,
           );
         },
-        this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' ? 0 : 2000,
+        this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni' ? 0 : 2000,
       );
 
       //gifas
@@ -1051,12 +1051,10 @@ class FlappyBird {
                                           ? DentsuIntro
                                           : this.customer === 'LemonGym'
                                             ? LemonGymintro
-                                            : this.customer === 'Toni'
-                                              ? introToni
-                                              : this.customer === 'Penki Sezonai' && introGifPenki
-    } alt="Image Description 2" style="z-index:4;width: ${
+                                            : this.customer === 'Penki Sezonai' && introGifPenki
+    } alt="Intro Image Description" style="z-index:4;width: ${
       document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
-    }; height: 668px;position:absolute;pointer-events: none; display:${this.customer.includes('demo') || this.customer === 'LemonFeel' ? 'none' : 'block'};" id="background_intro">
+    }; height: 668px;position:absolute;pointer-events: none; display:${this.customer.includes('demo') || this.customer === 'LemonFeel' || this.customer === 'Toni' ? 'none' : 'block'};" id="background_intro">
 </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
