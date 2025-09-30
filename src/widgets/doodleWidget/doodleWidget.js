@@ -1455,7 +1455,9 @@ ${
               ? '#194898'
               : this.language === 'LV'
                 ? '#F40027'
-                : '#045222'
+                : this.customer === 'Toni'
+                  ? '#000F9F'
+                  : '#045222'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
