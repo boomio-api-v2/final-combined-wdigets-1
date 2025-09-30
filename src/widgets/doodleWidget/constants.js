@@ -37,6 +37,8 @@ export const newRecordLV = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
 
+export const newRecordEs = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/newRecordEs.png';
+
 export const mainImageAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/game2.png?raw=true';
 
 export const backgroundRedAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/background.png?raw=true';

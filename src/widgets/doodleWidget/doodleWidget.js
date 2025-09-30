@@ -23,6 +23,7 @@ import {
   newRecordRU,
   newRecordLV,
   newRecordEn,
+  newRecordEs,
   BackgroundPigu,
   MainImagePiguLT,
   MainImagePiguLV,
@@ -1354,12 +1355,12 @@ class DoodleWidget {
                                     : introAkropolis
                                   : ''
     } 
-alt="Image Description" 
+alt="Intro Image" 
 style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:block;" 
 id="background_intro">
 
 
-        <img src=${jumpEffect} alt="Image Description" style="z-index:4;width:${
+        <img src=${jumpEffect} alt="Jump Effect" style="z-index:4;width:${
           document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
         }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
 ${
@@ -1382,7 +1383,7 @@ ${
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${
+    <div id="new_highscore" class="new_highscore"><img src=${
       this.language === 'EN'
         ? newRecordEn
         : this.language === 'LV'
@@ -1393,8 +1394,10 @@ ${
               ? newRecordFI
               : this.language === 'RU'
                 ? newRecordRU
-                : newRecord
-    } alt="Image Description" style="width: 100%; height: 100%;">
+                : this.language === 'ES'
+                  ? newRecordEs
+                  : newRecord
+    } alt="Highscore Image Description" style="width: 100%; height: 100%;">
     </div>
 
 
