@@ -51,6 +51,8 @@ import {
   introMagija,
   mainImagDemo,
   backgroundDemo,
+  backgroundToni,
+  mainImagToni,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -117,11 +119,13 @@ class DoodleWidget {
                     ? mainImagMagija
                     : this.customer === 'demo-22'
                       ? mainImagDemo
-                      : this.customer === 'Akropolis'
-                        ? this.language === 'LV'
-                          ? mainImageAkropolisLV
-                          : mainImageAkropolis
-                        : mainImage;
+                      : this.customer === 'Toni'
+                        ? mainImagToni
+                        : this.customer === 'Akropolis'
+                          ? this.language === 'LV'
+                            ? mainImageAkropolisLV
+                            : mainImageAkropolis
+                          : mainImage;
     this.image.onload = () => {
       this.startDoodle();
     };
@@ -167,11 +171,13 @@ class DoodleWidget {
               ? backgroundMagija
               : this.customer === 'demo-22'
                 ? backgroundDemo
-                : this.customer === 'Akropolis'
-                  ? this.language === 'LV'
-                    ? backgroundRedAkropolisLV
-                    : backgroundRedAkropolis
-                  : backgroundRed
+                : this.customer === 'Toni'
+                  ? backgroundToni
+                  : this.customer === 'Akropolis'
+                    ? this.language === 'LV'
+                      ? backgroundRedAkropolisLV
+                      : backgroundRedAkropolis
+                    : backgroundRed
     }) center`;
 
     if (!canvas) {

@@ -2,6 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;600;700;800;900&display=swap');
 
+a[href] {
+  text-decoration: underline;
+}
+a:not([href]) {
+  text-decoration: none;
+}
+
 .ikea-bold {
   font-family: 'NotoIKEALatin';
   font-weight: bold;

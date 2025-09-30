@@ -127,3 +127,7 @@ export const introMagija = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 export const mainImagDemo = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/demo/mainImagDemo.png?raw=true';
 
 export const backgroundDemo = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/demo/backgroundImagDemo.png?raw=true';
+
+export const mainImagToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/doodleWidget/Toni/main.png';
+
+export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/doodleWidget/Toni/background.png';
