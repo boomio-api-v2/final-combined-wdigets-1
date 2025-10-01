@@ -192,7 +192,6 @@ export class CompetitionCodeScoreTableContainer {
 
     let tableHTML = '';
     scoreboard.forEach((item, index) => {
-      const userScoreRow = index + 1 === userBestPlace;
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 
       const color =

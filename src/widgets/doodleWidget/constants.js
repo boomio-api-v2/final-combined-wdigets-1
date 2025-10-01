@@ -37,7 +37,7 @@ export const newRecordLV = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
 
-export const newRecordEs = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/newRecordEs.png';
+export const newRecordEs = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEs.png';
 
 export const mainImageAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/game2.png?raw=true';
 
@@ -130,6 +130,6 @@ export const mainImagDemo = 'https://raw.githubusercontent.com/boomio-api-v2/fin
 
 export const backgroundDemo = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/demo/backgroundImagDemo.png?raw=true';
 
-export const mainImagToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/doodleWidget/Toni/main.png';
+export const mainImagToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Toni/main.png';
 
-export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/toni-flappy-doodle/images/doodleWidget/Toni/background.png';
+export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Toni/background.png';
