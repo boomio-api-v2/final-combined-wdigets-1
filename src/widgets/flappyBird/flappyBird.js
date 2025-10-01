@@ -9,10 +9,12 @@ import { PointCopyTableContainer } from '../helpers/PointCopyTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { ShareContainer } from '../helpers/ShareContainer';
+import { Elements } from '../helpers/ElementsHelper';
 
 import {
   close,
@@ -31,6 +33,8 @@ import {
   newRecordEE,
   newRecordFI,
   newRecordLV,
+  newRecordEn,
+  newRecordEs,
   snowFantazijos,
   FproFlappyIntro,
   FproFlappyBackground,
@@ -41,7 +45,6 @@ import {
   introGifFantazijosRU,
   CorepetitusFlappyIntro,
   CorepetitusFlappyBackground,
-  newRecordEn,
   SaludSAIntro,
   SaludSABackground,
   SaludSARecord,
@@ -93,8 +96,8 @@ import {
   TicheBackground,
   nykstukasBackground,
   orlenBackground,
-  toniBackground,
-  playerToni,
+  backgroundToni,
+  introToni,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -173,7 +176,7 @@ class FlappyBird {
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
         checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
       });
-
+      const phoneInputField = this.customer === 'Toni' ? document.getElementById('boomio-competition-email-input-field') : document.getElementById('boomio-competition-phone-input-field');
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
 
       if (this.customer === 'Orlen' && emailInput) {
@@ -200,6 +203,15 @@ class FlappyBird {
       } else {
         emailInput.addEventListener('input', () => {});
       }
+
+      if (phoneInputField) {
+        phoneInputField.addEventListener('input', (event) => {
+          event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+        });
+      } else {
+        console.error('');
+      }
+
       setTimeout(() => {
         if (this.customer !== 'SaludSA') {
           const canvas = document.getElementById('flappy-canvas');
@@ -469,10 +481,8 @@ class FlappyBird {
                                                                               : this.customer === 'Orlen'
                                                                                 ? orlenBackground
                                                                                 : this.customer === 'Toni'
-                                                                                  ? toniBackground
+                                                                                  ? backgroundToni
                                                                                   : this.customer === 'Penki Sezonai' && mainPenki;
-
-    // img.src = 'https://i.ibb.co/MP91zG9/Spring-2.png';
 
     const img2 = new Image();
     img2.src = 'https://i.ibb.co/SrtXMFx/Boomio-demo-penguin.png';
@@ -555,10 +565,14 @@ class FlappyBird {
                 background.style.display = 'none';
               }
             },
-            this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' ? 0 : 2000,
+            this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni'
+              ? 0
+              : 2000,
           );
         },
-        this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' ? 0 : 2000,
+        this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni'
+          ? 0
+          : 2000,
       );
 
       //gifas
@@ -967,9 +981,6 @@ class FlappyBird {
     const rulesImage = new Image();
     rulesImage.src = 'https://i.ibb.co/sK74MHP/Rules-1.png';
 
-    const rulesImage2 = new Image();
-    rulesImage2.src = 'https://gcdnb.pbrd.co/images/1bsvDYHu5MDP.png';
-
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
 
@@ -996,7 +1007,7 @@ class FlappyBird {
 
 
 
-<div alt="Image Description" style="z-index:1;width: ${
+<div alt="Image Description 1" style="z-index:1;width: ${
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#808080'}" id="background_blur"></div>
    
@@ -1046,18 +1057,18 @@ class FlappyBird {
                                           : this.customer === 'LemonGym'
                                             ? LemonGymintro
                                             : this.customer === 'Penki Sezonai' && introGifPenki
-    } alt="Image Description" style="z-index:4;width: ${
+    } alt="Intro Image Description" style="z-index:4;width: ${
       document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
-    }; height: 668px;position:absolute;pointer-events: none; display:${this.customer.includes('demo') || this.customer === 'LemonFeel' ? 'none' : 'block'};" id="background_intro">
+    }; height: 668px;position:absolute;pointer-events: none; display:${this.customer.includes('demo') || this.customer === 'LemonFeel' || this.customer === 'Toni' ? 'none' : 'block'};" id="background_intro">
 </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
-    <img src="${useCuponImage.src}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
+    <img src="${useCuponImage.src}" alt="Image Description 3" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
 
     <img class="new_highscore_stars" src=${
       newHighscoreStarsImage.src
-    } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
+    } alt="Image Description 4" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div class="new_highscore"><img src=${
       this.customer === 'SaludSA'
@@ -1066,16 +1077,18 @@ class FlappyBird {
           ? newRecordEn
           : this.language === 'LV'
             ? newRecordLV
-            : this.language === 'ET' || this.language === 'ET'
+            : this.language === 'ET'
               ? newRecordEE
               : this.language === 'FI'
                 ? newRecordFI
                 : this.language === 'RU'
                   ? newRecordRU
-                  : newRecord
+                  : this.language === 'ES'
+                    ? newRecordEs
+                    : newRecord
     } 
 
-alt="Image Description" style="width: 100%; height: 100%;">
+alt="Image Description 5" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers">
   <span class="numbers__window">
@@ -1145,7 +1158,7 @@ ${`<div style="${
                         ? 'TAP'
                         : 'BAKST'
     }</div>
-  </div><img src=${tapImageBarbora} alt="Image Description" style="margin-left:50px;width: 71px; height: 54px;">`}
+  </div><img src=${tapImageBarbora} alt="Image Description 6" style="margin-left:50px;width: 71px; height: 54px;">`}
 
 </div>
       <div class="flappy-container">
@@ -1158,10 +1171,12 @@ ${`<div style="${
                     ? '#FF00FF'
                     : this.customer === 'Tiche'
                       ? '#065DA4'
-                      : '#C6152F'
+                      : this.customer === 'Toni'
+                        ? '#000F9F'
+                        : '#C6152F'
             };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-    <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
+    <img src=${star} alt="Image Description 7" style="width: 20px; height: 20px;margin-top:18px"></img>
 
   <div style="text-align: center; color: white; font-size: 20px; font-family:${'Georama'}; font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:15px;z-index:3;line-height:30px;" id="currentScore"></div>
 </div>
@@ -1170,7 +1185,7 @@ ${`<div style="${
     this.campaignUrl === ''
       ? `
 <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
-<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+<img src=${close} alt="Image Description 8" style="width: 100%; height: 100%;"></img>
 </div>`
       : ''
   }
@@ -1184,7 +1199,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
         <div id="startButtonClick" style="margin-left:27px;margin-right:27px;width: 100%; height: 100%; padding-left: 127px; padding-right: 127px; padding-top: 11px; padding-bottom: 11px; background: white; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
           okImage.src
-        } alt="Image Description"></div>
+        } alt="Image Description 9"></div>
 </div>
 </div>
 <div class="input-container1" style="width:${
@@ -1193,7 +1208,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 <div style="height: 100%; position: relative;  background: linear-gradient(166deg, rgba(220, 35, 110, 0.90) 9.98%, rgba(91, 104, 185, 0.90) 83.11%); border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">
   <div style="width: 100%; height: 63px; top: 25px; position: absolute; text-align: center; color: white; font-size: 48px; font-family: Georama; font-weight: 900; text-transform: uppercase; line-height: 62.40px; word-wrap: break-word">  <img src=${
     gameOver.src
-  } alt="Image Description"></div>
+  } alt="Image Description 10"></div>
   <div class="boomio-colored_box" style="width:calc(100% - 40px);"></div>
   <div style="width: 142px; left: 46px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:start;">TOTAL SCORE</div>
   <div style="left: 240px; top: 116px; position: absolute; color: white; font-size: 18px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;text-align:right;width:120px;" id="bestScoreField"></div>
@@ -1204,7 +1219,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
   <div id="startButtonClick1" style="border:2px solid white;line-height:24px;box-sizing:content-box;width: 127px; padding-left: 25px; padding-right: 25px; padding-top: 11px; padding-bottom: 11px; left: 27px; top: 255px; position: absolute; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
       <div style="text-align: center; color: #FF3183; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word"><img src=${
         playAgain.src
-      } alt="Image Description"></div>
+      } alt="Image Description 11"></div>
   </div>
 
 
@@ -1225,6 +1240,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
         this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(this.customer, this.scoreTable, this.currentScore);
+      } else if (this.customer === 'Toni') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(this.customer, this.scoreTable);
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }
@@ -1302,8 +1319,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
           const checkboxChange2 = this.checkboxChange2;
 
-          const phone = document.querySelector('.boomio-competition-phone-input-field');
-
           setTimeout(() => {
             if (this.customer !== 'SaludSA') {
               if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo') && !this.customer.includes('Tiche'))) {
@@ -1316,13 +1331,14 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
                         : this.language === 'EN'
                           ? 'You need to agree to receive updates in order to continue'
-                          : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                          : this.language === 'ES'
+                            ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                            : 'Norint tęsti, privaloma sutikti su privatumo politika.';
                 document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
                 document.getElementById('competition-checkbox-error').style.display = 'block';
                 document.getElementById('competition-checkbox-error').style.height = '14px';
 
                 document.getElementById('competition-name-error').innerText = '';
-
                 document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
                 document.getElementById('competition-email-error').innerText = '';
@@ -1339,7 +1355,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         ? 'Para continuar debes agregar el correo electrónico.'
                         : this.language === 'EN'
                           ? 'Filling in is required to continue.'
-                          : 'Norint tęsti privaloma užpildyti.';
+                          : this.language === 'ES'
+                            ? 'Requerido para continuar.'
+                            : 'Norint tęsti privaloma užpildyti.';
                 document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
                 document.getElementById('competition-name-error').innerText = '';
 
@@ -1361,6 +1379,33 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
               }
             }
 
+            if (Elements.isVisible(emailInput) && emailInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-email-error').zIndex = 1;
+              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-email-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').innerText = '';
+              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+
+              document.getElementById('competition-phone-error').style.height = '37px';
+
+              return;
+            }
+            if (Elements.isVisible(phoneInput) && phoneInput?.value?.length < 10 && this.customer === 'Toni') {
+              document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
+              document.getElementById('competition-phone-error').style.height = '20px';
+
+              document.getElementById('competition-phone-error').zIndex = 1;
+              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+
+              document.getElementById('competition-email-error').innerText = '';
+              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+              document.getElementById('competition-email-error').style.height = '37px';
+
+              return;
+            }
+
             if (
               this.customer === 'SaludSA' ||
               this.showCompetitiveRegistration === 'competition' ||
@@ -1370,11 +1415,18 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange,
-                  user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
-                  user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+                  user_email: this.customer === 'SaludSA' ? new Date().toISOString() : Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim(),
+                  user_name:
+                    this.customer === 'SaludSA'
+                      ? new Date().toISOString()
+                      : this.customer === 'Toni'
+                        ? nameInput?.value.trimEnd() + phoneInput?.value
+                        : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
                   ...(this.customer === 'Nykstukas' && {
                     team: nameInput?.value,
                   }),
+                  game_code: this.game_code,
+                  ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
                 })
                 .then((response) => {
                   if (response.success === false) {
@@ -1403,7 +1455,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
                           : this.language === 'ES'
-                            ? 'Este nickname ya está en uso. Use otro nickname.'
+                            ? 'Este nickname ya está en uso. Use otro nombre.'
                             : this.language === 'LV'
                               ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                               : this.customer === 'SaludSA'
@@ -1621,7 +1673,9 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   ? 'Jatkaaksesi sinun tulee hyväksyä pelin tietojen ja palkintotietojen vastaanottaminen.'
                   : this.customer === 'Pigu.lt' && this.language === 'RU'
                     ? 'Чтобы продолжить, необходимо согласиться на получение новостей и информации о призах.'
-                    : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
+                    : this.language === 'ES'
+                      ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                      : 'Norint tęsti, privaloma sutikti gauti naujienas bei informaciją apie prizus.';
         document.getElementById('boomio-rules-checkbox-error').style.display = 'block';
 
         document.getElementById('boomio-rules-checkbox-error').style.backgroundColor = '#FFBABA';

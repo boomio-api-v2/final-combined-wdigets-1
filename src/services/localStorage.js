@@ -65,16 +65,13 @@ class LocalStorageService {
     const w_button_text = config?.w_button_text ?? 'Go!';
     const w_hint_static_text = config?.w_hint_static_text ?? 'Hint for another piece';
     /// ////////////////////////
-    const p_bottom_text_start_pc =
-      config?.p_bottom_text_start_pc ??
-      'To have immediate access for all your great rewards open or download ';
+    const p_bottom_text_start_pc = config?.p_bottom_text_start_pc ?? 'To have immediate access for all your great rewards open or download ';
     const p_bottom_text_end_pc = config?.p_bottom_text_end_pc ?? 'Boomio app by scanning this code';
     const discountType = 'percentage';
     const game_type = config?.game_type ?? '';
     const best_discount = config?.best_discount ?? 0;
 
-    const p_bottom_text_start_m =
-      config?.p_bottom_text_start_m ?? 'To have immediate access for all your great rewards ';
+    const p_bottom_text_start_m = config?.p_bottom_text_start_m ?? 'To have immediate access for all your great rewards ';
     const p_bottom_text_end_m = config?.p_bottom_text_end_m ?? 'open or download';
     const p_top_text = config?.p_top_text ?? 'YOU GOT ??? DISCOUNT!';
     const p_code_text = config?.p_code_text ?? 'Unique code: ???';
@@ -84,11 +81,7 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const business_name =
-      config?.business_name === 'Gamtos Ateitis Random'
-        ? ['Gamtos Ateitis Glass', 'Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][
-            Math.floor(Math.random() * 3)
-          ]
-        : config?.business_name ?? '';
+      config?.business_name === 'Gamtos Ateitis Random' ? ['Gamtos Ateitis Glass', 'Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][Math.floor(Math.random() * 3)] : (config?.business_name ?? '');
     const collection = config?.collection ?? [];
     const collectables = config?.collectables ?? [];
     const coupon_code = config?.coupon_code ?? '';
@@ -104,11 +97,7 @@ class LocalStorageService {
       puzzles_needed: config?.puzzles_needed ?? undefined,
       hint: config?.hint ?? 'Keep looking!',
     };
-    const w_top_text = config?.w_top_text
-      ? config.w_top_text
-      : puzzle.puzzles_collected === 4
-      ? 'CONGRATULATIONS! ENJOY YOUR A REWARD!'
-      : 'COLLECT ALL PIECES AND WIN A GIFT!';
+    const w_top_text = config?.w_top_text ? config.w_top_text : puzzle.puzzles_collected === 4 ? 'CONGRATULATIONS! ENJOY YOUR A REWARD!' : 'COLLECT ALL PIECES AND WIN A GIFT!';
     const secondary_text = config?.secondary_text ?? null;
     const top_text = config?.top_text ?? null;
     const hint_static_text = config?.hint_static_text ?? null;
@@ -123,7 +112,7 @@ class LocalStorageService {
     const campaignUrl = urlParams.get('campaign_url');
     const languageParam = urlParams.get('language');
     const couponCodeNew = config?.coupon_code;
-    const language = config?.business_name === 'Pigu.lt' ? languageParam : config?.language ?? 'LT';
+    const language = config?.business_name === 'Pigu.lt' ? languageParam : (config?.language ?? 'EN');
     const teams = config?.teams ?? [];
     const restrictions = config?.restrictions ?? {};
     const userBestScore = config?.user_best_score ? config?.user_best_score : 0;

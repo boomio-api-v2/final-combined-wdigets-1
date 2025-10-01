@@ -44,6 +44,8 @@ export const newRecordLV = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
 
+export const newRecordEs = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEs.png';
+
 export const FproFlappyScore = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/FPro/FProFlappyButton.png';
 
 export const FproFlappyIntro = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/FPro/FProFlappyIntroNew.gif';
@@ -158,6 +160,4 @@ export const nykstukasBackground = 'https://raw.githubusercontent.com/boomio-api
 
 export const orlenBackground = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/flappyWidget/Orlen/background.png';
 
-export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/items/bg.png';
-
-export const playerToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Toni/player.png';
+export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/Toni/bg.png';

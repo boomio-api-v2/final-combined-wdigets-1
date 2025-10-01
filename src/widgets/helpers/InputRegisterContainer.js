@@ -736,7 +736,7 @@ export class InputRegisterContainer {
     id="boomio-competition-phone-input-field" inputmode="tel" 
  class="boomio-competition-phone-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
    this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? 'block' : 'none'
- }" placeholder="${this.prop === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : 'Telefono numeris'}">
+ }" placeholder="${this.prop === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : this.language === 'EN' ? 'Phone number' : 'Telefono numeris'}">
 
     `;
 

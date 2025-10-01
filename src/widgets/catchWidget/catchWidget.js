@@ -208,7 +208,6 @@ import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
-
 import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
@@ -724,10 +723,9 @@ class CatchGame {
         if (this.gameCount === 0) {
           setTimeout(() => {
             const emailInput = document.querySelector('.boomio-competition-email-input-field');
-            const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
+            const nameInput = document.querySelector('.boomio-competition-name-input-field');
             const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
 
-            const phone = document.querySelector('.boomio-competition-phone-input-field');
             const schoolInput = document.querySelector('.boomio-competition-school-select');
             const citySelect = document.getElementById('city-select');
 
@@ -773,7 +771,7 @@ class CatchGame {
               return;
             }
 
-            if (!checkboxChange3 && this.customer === 'Pegasas' && phone?.value?.trim() !== '') {
+            if (!checkboxChange3 && this.customer === 'Pegasas' && phoneInput?.value?.trim() !== '') {
               document.getElementById('competition-checkbox-error3').innerText = 'Tai norint tęsti,  privaloma sutikti gauti naujienas SMS žinute.';
               document.getElementById('competition-checkbox-error3').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error3').style.display = 'block';
@@ -865,7 +863,7 @@ class CatchGame {
               return;
             }
 
-            if ((playerNameInput?.value === '' || playerNameInput?.value === null) && this.customer === 'Toni') {
+            if ((nameInput?.value === '' || nameInput?.value === null) && this.customer === 'Toni') {
               document.getElementById('competition-name-error').innerText = 'El campo de nombre debe completarse.';
               document.getElementById('competition-name-error').zIndex = 1;
               document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
@@ -924,9 +922,9 @@ class CatchGame {
               checkboxChange &&
               this.loading === false &&
               (this.customer !== 'Pegasas' || checkboxChange2) &&
-              (this.customer !== 'Pegasas' || phone?.value?.trim() === '' || checkboxChange3)
+              (this.customer !== 'Pegasas' || phoneInput?.value?.trim() === '' || checkboxChange3)
             ) {
-              const phoneValue = phone?.value?.trim();
+              const phoneValue = phoneInput?.value?.trim();
               this.loading = true;
 
               const boomioCatchSpinner = document.createElement('div');
@@ -969,8 +967,8 @@ class CatchGame {
                     this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen' || this.customer === 'Akropolis' || this.customer === 'Apranga'
                       ? emailInput?.value
                       : this.customer === 'Toni'
-                        ? playerNameInput?.value.trimEnd() + phoneInput?.value
-                        : playerNameInput?.value,
+                        ? nameInput?.value.trimEnd() + phoneInput?.value
+                        : nameInput?.value,
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneInput?.value } : {}),
                 })
