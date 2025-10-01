@@ -1655,7 +1655,19 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
                     } else if (response.res_code === 'NICKNAME_EXIST' && this.customer !== 'Perlas GO') {
                       document.getElementById('competition-name-error').innerText =
-                        this.language === 'LV' ? 'Šis segvārds jau pastāv. Izmantojiet citu.' : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                        this.customer === 'Fpro'
+                          ? 'This nickname already exists. Please use another one.'
+                          : this.language === 'ES'
+                            ? 'Este nickname ya está en uso. Use otro nickname.'
+                            : this.language === 'LV'
+                              ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                              : this.customer === 'SaludSA'
+                                ? 'Para continuar debes agregar el nombre de usuario.'
+                                : this.language === 'RU'
+                                  ? 'Этот псевдоним уже существует. Используйте другой.'
+                                  : this.language === 'ET'
+                                    ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                                    : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-name-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
 
                       document.getElementById('competition-email-error').innerText = '';
