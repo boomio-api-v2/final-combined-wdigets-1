@@ -590,7 +590,7 @@ class CatchGame {
                     : this.customer === 'Orlen'
                       ? '#DD2326'
                       : this.customer === 'Apranga'
-                        ? '#5F2929'
+                        ? '#0000A4'
                         : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -626,7 +626,7 @@ class CatchGame {
                     : this.customer === 'Orlen'
                       ? '#DD2326'
                       : this.customer === 'Apranga'
-                        ? '#5F2929'
+                        ? '#0000A4'
                         : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
@@ -675,7 +675,7 @@ class CatchGame {
             this.customer === 'Zemaitijos Pienas'
               ? '#004C22'
               : this.customer === 'Apranga'
-                ? '#5F2929'
+                ? '#0000A4'
                 : '#8E1735'
           }" ></div>`
         : `    <img id="background_blur" src=${blurImage.src} alt="Blur image" style="z-index:3;width: ${
