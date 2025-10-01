@@ -726,7 +726,6 @@ ${
       this.prop === 'Orlen' ||
       this.prop === 'LemonFeel' ||
       this.prop === 'Novaturas' ||
-      this.prop === 'Apranga' ||
       this.prop.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align: ${'center'}; color: white; font-size: 10px; font-family:${
             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
@@ -805,9 +804,7 @@ ${
                                                                             ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-FEEL-speles-noteikumi.pdf'
                                                                             : this.prop === 'Orlen'
                                                                               ? 'href=https://www.orlen.lt/LT/zaidimas/Puslapiai/taisykl%c4%97s.aspx'
-                                                                              : this.prop === 'Apranga'
-                                                                                ? 'href=https://soulz.lt/lt/page/zaidimo-taisykles-artvilnius'
-                                                                                : `href=${window.location.href}`
+                                                                              : `href=${window.location.href}`
           } style="color:white;text-decoration: underline;font-size:14px;margin-top:6px;font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};">${
             this.prop === 'Pigu.lt' && this.language === 'EN'
               ? 'Read the detailed game rules.'
