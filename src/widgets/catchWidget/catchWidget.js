@@ -2120,17 +2120,25 @@ class Fruit {
   }
 
   showScoreEffect(score, showLife) {
-    const x = this.canvas.width / 2 - this.player.playerWidth / 2;
-    const y = this.canvas.height - this.player.playerHeight - 200;
+    // position relative to the CANVAS
+    const localX = this.canvas.width / 2 - this.player.playerWidth / 2;
+    const localY = this.canvas.height - this.player.playerHeight - 200;
 
     const gameContainer = document.querySelector('.game-container');
+    const canvasRect = this.canvas.getBoundingClientRect();
+    const containerRect = gameContainer.getBoundingClientRect();
+
+    // translate canvas-local coords -> container coords
+    const left = canvasRect.left - containerRect.left + localX;
+    const top = canvasRect.top - containerRect.top + localY;
 
     const scoreContainer = document.createElement('div');
     scoreContainer.classList.add('float-score');
-    scoreContainer.style.left = `${x}px`;
-    scoreContainer.style.top = `${y}px`;
     scoreContainer.style.position = 'absolute';
+    scoreContainer.style.left = `${left}px`;
+    scoreContainer.style.top = `${top}px`;
     scoreContainer.style.display = 'flex';
+    scoreContainer.style.pointerEvents = 'none';
 
     if (showLife) {
       const scoreText = document.createElement('div');
