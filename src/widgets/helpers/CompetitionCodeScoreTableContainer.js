@@ -26,6 +26,18 @@ export class CompetitionCodeScoreTableContainer {
     this.updateVisuals();
   }
 
+  removeTrailingDigits(name) {
+    if (name == null) return '';
+
+    const s = String(name).trim();
+
+    // 1) If the whole name is digits → "ignore"    
+    if (/^\d+$/.test(s)) return name;
+
+    // 2) Otherwise remove only trailing digits
+    return s.replace(/\d+$/, '');
+  }
+
   updateVisuals() {
     if (!this.containerDiv) return;
 
@@ -246,7 +258,9 @@ export class CompetitionCodeScoreTableContainer {
                       ? 'SINUN TULOKSESI'
                       : this.prop === 'Pigu.lt' && this.language === 'RU' && 'ТВОЙ РЕЗУЛЬТАТ'
             : piguTable[index]
-          : item.user_name
+          : this.prop === 'Toni'
+            ? this.removeTrailingDigits(item.user_name)
+            : item.user_name
       }
     </td>
               <td style="width: 48px; color: ${this.prop === 'Toni' && userBestPlace === index + 1 ? '#10069F' : color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:11px;">${
