@@ -60,6 +60,7 @@ import { InputContainer } from '../helpers/InputContainer';
 import { GameOverContainer } from '../helpers/GameOverContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
@@ -169,6 +170,12 @@ class DoodleWidget {
 
     this.doodle = document.getElementById('boomio-doodle-container');
     const canvas = document.getElementById('boomio-doodle-canvas');
+
+    if (!canvas) {
+      console.error('Canvas element not found.');
+      return;
+    }
+
     canvas.style.background = `url(${
       this.customer === 'Pigu.lt'
         ? BackgroundPigu
@@ -188,11 +195,6 @@ class DoodleWidget {
                       : backgroundRedAkropolis
                     : backgroundRed
     }) center`;
-
-    if (!canvas) {
-      console.error('Canvas element not found.');
-      return;
-    }
 
     DoodleWidget.ctx = canvas.getContext('2d');
 
@@ -252,10 +254,6 @@ class DoodleWidget {
     const reward = document.getElementById('claimReward');
     reward.addEventListener('click', this.claimReward);
 
-    if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt') {
-      const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
-      competitionConfirmField.addEventListener('click', this.clickEventHandlerShowRules);
-    }
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', this.resetGame);
   };
@@ -938,6 +936,7 @@ class DoodleWidget {
   springCalc = () => {
     var s = this.Spring;
     var p = this.platforms[0];
+    if (!p) return;
 
     // Check if the current screen is an even number
     if (this.currentScreen % 2 === 0) {
@@ -1044,7 +1043,7 @@ class DoodleWidget {
       this.speed = 0.6;
     } else if (this.currentScore >= 6000 && this.currentScore < 7000) {
       this.speed = 0.55;
-    } else if (this.currentScore >= 5000 && this.currentScore < 5000) {
+    } else if (this.currentScore >= 5000 && this.currentScore < 6000) {
       this.speed = 0.5;
     } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
       this.speed = 0.35;
@@ -1251,7 +1250,9 @@ class DoodleWidget {
 
     //Make the player move through walls
     if (this.player.x > this.width) this.player.x = 0 - this.player.width;
-    else if (this.player.x < 0 - this.player.width) this.player.x = width;
+    else if (this.player.x < 0 - this.player.width) {
+      this.player.x = this.width;
+    }
 
     this.player.draw();
   };
@@ -1407,7 +1408,7 @@ ${
         ? newRecordEn
         : this.language === 'LV'
           ? newRecordLV
-          : this.language === 'ET' || this.language === 'ET'
+          : this.language === 'ET'
             ? newRecordEE
             : this.language === 'FI'
               ? newRecordFI
@@ -1489,6 +1490,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(this.customer, this.scoreTable, this.currentScore);
       } else if (this.customer === 'Perlas GO') {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable, this.currentScore);
+      } else if (this.customer === 'Toni') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(this.customer, this.scoreTable);
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }

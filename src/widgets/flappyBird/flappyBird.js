@@ -9,6 +9,7 @@ import { PointCopyTableContainer } from '../helpers/PointCopyTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
@@ -1076,7 +1077,7 @@ class FlappyBird {
           ? newRecordEn
           : this.language === 'LV'
             ? newRecordLV
-            : this.language === 'ET' || this.language === 'ET'
+            : this.language === 'ET'
               ? newRecordEE
               : this.language === 'FI'
                 ? newRecordFI
@@ -1239,6 +1240,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
         this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(this.customer, this.scoreTable, this.currentScore);
+      } else if (this.customer === 'Toni') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(this.customer, this.scoreTable);
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }
