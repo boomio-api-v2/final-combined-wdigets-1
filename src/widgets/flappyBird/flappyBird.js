@@ -564,10 +564,14 @@ class FlappyBird {
                 background.style.display = 'none';
               }
             },
-            this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni' ? 0 : 2000,
+            this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni'
+              ? 0
+              : 2000,
           );
         },
-        this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni' ? 0 : 2000,
+        this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni'
+          ? 0
+          : 2000,
       );
 
       //gifas
@@ -1332,7 +1336,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-checkbox-error').style.height = '14px';
 
                 document.getElementById('competition-name-error').innerText = '';
-
                 document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
                 document.getElementById('competition-email-error').innerText = '';
@@ -1449,7 +1452,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
                           : this.language === 'ES'
-                            ? 'Este nickname ya está en uso. Use otro nickname.'
+                            ? 'Este nickname ya está en uso. Use otro nombre.'
                             : this.language === 'LV'
                               ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                               : this.customer === 'SaludSA'

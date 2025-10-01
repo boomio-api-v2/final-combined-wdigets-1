@@ -208,7 +208,6 @@ import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
-
 import { PointScoreTableContainer } from '../helpers/PointScoreTableContainer';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';

@@ -1557,7 +1557,13 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
               return;
             }
-            if (!this.checkboxChange) {
+
+            if (Elements.isVisible(document.getElementById('competition-checkbox-error'))) {
+              document.getElementById('competition-checkbox-error').innerText = '';
+              document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+            }
+
+            if (!this.checkboxChange || (!this.checkboxChange2 && this.customer === 'Toni')) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
@@ -1569,14 +1575,16 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                         ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                         : 'Norint tęsti privaloma sutikti su privatumo politika.';
 
+              document.getElementById('competition-checkbox-error').style.display = 'block';
               document.getElementById('competition-checkbox-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' ? '#FFBABA' : 'rgb(255, 186, 186)';
+              document.getElementById('competition-checkbox-error').style.height = '14px';
 
               document.getElementById('competition-name-error').innerText = '';
-
               document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
               document.getElementById('competition-email-error').innerText = '';
               document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+              return;
             }
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
@@ -1585,8 +1593,6 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-name-error').innerText = '';
 
               document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-              document.getElementById('competition-checkbox-error').innerText = '';
-              document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
             }
             if (this.customer === 'Perlas GO') {
               if (!isValidEmail(emailInput?.value)) {
@@ -1658,7 +1664,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                         this.customer === 'Fpro'
                           ? 'This nickname already exists. Please use another one.'
                           : this.language === 'ES'
-                            ? 'Este nickname ya está en uso. Use otro nickname.'
+                            ? 'Este nickname ya está en uso. Use otro nombre.'
                             : this.language === 'LV'
                               ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
                               : this.customer === 'SaludSA'
