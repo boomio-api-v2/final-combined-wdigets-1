@@ -1,3 +1,21 @@
+## Clone & Setup
+
+```shell
+# Clone
+git clone  https://github.com/boomio-api-v2/final-combined-wdigets-1.git
+
+# If you use multiple users, add user name prefix
+git clone https://andriusboomio@github.com/boomio-api-v2/final-combined-wdigets-1.git
+
+# Configure Git user
+git config --global user.name "AndriusBoomio"
+git config --global user.email "andrius@boomio.com"
+
+# Check
+git config --global user.name
+git config --global user.email
+```
+
 ## Installation & Build
 
 ```shell
@@ -7,11 +25,12 @@ npm i
 # Build the project
 npm run build
 ```
+
 After building, the output will be available in dist/bundle.js.
 
 ## Development (local preview)
 
-```console
+```shell
 npm start
 ```
 
@@ -20,26 +39,20 @@ http://127.0.0.1:3000/?demo=1&widget_type=catch
 
 ## Commit & Push
 
-3.) Commit and push changes. Make sure that you pushes dist/bundle.js file.
-
-4.) take dist/bundle.js it is our main build file, which we will connect to website. Open it and pres Raw button.
-
-5.) Put your github link, and transform it in cd for source code. I used this https://raw.githack.com/
-
-!!! But don't forget if you use production mode, if you push new changes, they will be cached from previous branch.
-So you need to open your new commit, open version of file and repeat the previous operation.
+Commit and push changes. Make sure that you pushes dist/bundle.js file.
 
 ## Embed in Your Website
+
 Add the following snippet inside your <head>:
 
 Example:
 
 ```html
 <head>
-     <script>
-        const newLinkBoomio = "https://api.sun.boomio.eu/webshop-proxy-service/api/handle";
-    </script>
-    <script defer src="dist/bundle.js"></script>
+  <script>
+    const newLinkBoomio = 'https://api.sun.boomio.eu/webshop-proxy-service/api/handle';
+  </script>
+  <script defer src="dist/bundle.js"></script>
 </head>
 ```
 
@@ -47,16 +60,16 @@ or
 
 ```html
 <head>
-     <script>
-        window.newLinkBoomio = "https://api.sun.boomio.eu/webshop-proxy-service/api/handle";
-    </script>
-    <script defer src="dist/bundle.js"></script>
+  <script>
+    window.newLinkBoomio = 'https://api.sun.boomio.eu/webshop-proxy-service/api/handle';
+  </script>
+  <script defer src="dist/bundle.js"></script>
 </head>
 ```
 
 ## Assets (images)
 
-Assets (images) are loaded into different branches under this repository. Be carefull and dont' delete the branches before making sure they are not used.
+Assets (images) are loaded into different branches under this repository. Be carefull and don't delete the branches before making sure they are not used.
 
 Unique branch / revision identifiers found in raw.githubusercontent URLs for repository boomio-api-v2/final-combined-wdigets-1:
 
