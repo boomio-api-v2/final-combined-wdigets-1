@@ -258,6 +258,23 @@ class DoodleWidget {
     competitionRestart.addEventListener('click', this.resetGame);
   };
 
+  applyCanvasBlur = () => {
+    const canvas = document.getElementById('boomio-doodle-canvas');
+    canvas.style.transition = 'filter 0.6s ease';
+
+    if (this.customer === 'Toni') {
+      canvas.style.filter = '';
+    } else {
+      canvas.style.filter = 'blur(2px)';
+    }
+  };
+
+  removeCanvasBlur = () => {
+    const canvas = document.getElementById('boomio-doodle-canvas');
+    canvas.style.transition = 'filter 1s ease';
+    canvas.style.filter = 'none';
+  };
+
   showRulesOrRegistration = () => {
     const currentPageUrl = window.location.href;
     this.urlParams = new URL(currentPageUrl).searchParams;
@@ -298,10 +315,8 @@ class DoodleWidget {
       }
 
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-doodle-canvas');
         document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
+        this.applyCanvasBlur();
 
         const inpuRegisterContainer = document.querySelector('.input-register-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -359,10 +374,8 @@ class DoodleWidget {
         });
     } else {
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-doodle-canvas');
         document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
+        this.applyCanvasBlur();
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -398,10 +411,8 @@ class DoodleWidget {
       }, 1000);
     }
     setTimeout(() => {
-      const canvas = document.getElementById('boomio-doodle-canvas');
       document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
-      canvas.style.transition = 'filter 0.6s ease';
-      canvas.style.filter = 'blur(2px)';
+      this.applyCanvasBlur();
       const inputContainer = document.querySelector('.input-container');
       document.getElementById('control-button').style.transition = 'opacity 2s ease';
       document.getElementById('control-button').style.opacity = 1;
@@ -609,9 +620,7 @@ class DoodleWidget {
 
     setTimeout(() => {
       document.getElementById('background_blur').style.display = 'none';
-      const canvas = document.getElementById('boomio-doodle-canvas');
-      canvas.style.transition = 'filter 1s ease';
-      canvas.style.filter = 'none';
+      this.removeCanvasBlur();
       this.gamePlaying = true;
     }, 400);
 
@@ -765,9 +774,7 @@ class DoodleWidget {
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
           }
-          const canvas = document.getElementById('boomio-doodle-canvas');
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+          this.applyCanvasBlur();
           document.getElementById('background_blur').style.display = 'block';
           document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
           competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -779,9 +786,7 @@ class DoodleWidget {
           }, 100);
         } else {
           const inputContainer = document.querySelector('.input-container1');
-          const canvas = document.getElementById('boomio-doodle-canvas');
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+          this.applyCanvasBlur();
           document.getElementById('background_blur').style.display = 'block';
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
@@ -1697,10 +1702,8 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       inpuRegisterContainer.style.display = 'none';
                     }, 1000);
                     setTimeout(() => {
-                      const canvas = document.getElementById('boomio-doodle-canvas');
                       document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
-                      canvas.style.transition = 'filter 0.6s ease';
-                      canvas.style.filter = 'blur(2px)';
+                      this.applyCanvasBlur();
                       const inputContainer = document.querySelector('.input-container');
                       document.getElementById('control-button').style.transition = 'opacity 2s ease';
                       document.getElementById('control-button').style.opacity = 1;
