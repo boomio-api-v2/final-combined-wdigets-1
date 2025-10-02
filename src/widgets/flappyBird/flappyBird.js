@@ -97,7 +97,6 @@ import {
   nykstukasBackground,
   orlenBackground,
   backgroundToni,
-  introToni,
 } from './constants';
 class FlappyBird {
   constructor() {
@@ -391,10 +390,6 @@ class FlappyBird {
     this.flappy = document.getElementById('boomio-flappy-container');
 
     document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
-
-    const screenWidth = window.innerWidth;
-
-    const initialPosx = screenWidth / 2 - (window.matchMedia('(min-width: 450px)').matches ? 25 : -25);
 
     this.animation = new AnimationService({
       elem: this.flappy,
@@ -1254,7 +1249,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
       this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(this.customer, this.scoreTable);
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
-    document.addEventListener('shareClicked', (event) => {
+    document.addEventListener('shareClicked', () => {
       if (this.shareClicked === false) {
         console.log('shareClicked');
         this.shareClicked = true;
@@ -1539,7 +1534,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
           setTimeout(() => {
             shareContainer.style.height = '680px';
-            const isNarrowScreen = window.innerWidth <= 920;
             shareContainer.style.top = 'calc(50%)';
             shareContainer.style.opacity = 1;
           }, 100);
@@ -1578,7 +1572,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
           setTimeout(() => {
             competitionTableContainer.style.height = '680px';
-            const isNarrowScreen = window.innerWidth <= 920;
 
             competitionTableContainer.style.top = 'calc(50%)';
 
@@ -1595,7 +1588,6 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
           competitionRestart.addEventListener('click', clickEventHandlerResetGame);
         }, 2000);
 
-        const controlButton = document.querySelector('.control-button1');
         this.index = 0;
         this.currentScore = 0;
 

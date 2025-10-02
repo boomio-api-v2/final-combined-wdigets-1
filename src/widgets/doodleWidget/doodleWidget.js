@@ -1208,9 +1208,6 @@ class DoodleWidget {
         const screenWidth = window.innerWidth;
         const clickX = e.clientX;
 
-        // Adjust the sensitivity value based on your needs
-        const sensitivity = 0.1;
-
         if (clickX < screenWidth / 2) {
           // Left side of the screen is clicked
           this.dir = 'left';
@@ -1762,7 +1759,6 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           competitionRestart.addEventListener('click', clickEventHandlerResetGame);
         }, 2000);
 
-        const controlButton = document.querySelector('.control-button1');
         this.index = 0;
         this.currentScore = 0;
 
@@ -1945,7 +1941,7 @@ class Platform {
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
 
     //We can't have two consecutive breakable platforms otherwise it will be impossible to reach another platform sometimes!
-    if (this.type == 3 && DoodleWidget.broken < 1) {
+    if (this.type === 3 && DoodleWidget.broken < 1) {
       DoodleWidget.broken++;
     } else if (this.type == 3 && DoodleWidget.broken >= 1) {
       this.type = 1;
@@ -2075,12 +2071,12 @@ class Player {
   }
   draw() {
     try {
-      if (this.dir == 'right') this.cy = 124;
-      else if (this.dir == 'left') this.cy = 204;
-      else if (this.dir == 'right_land') this.cy = 446;
-      else if (this.dir == 'left_land') this.cy = 528;
-      else if (this.dir == 'right_jump') this.cy = 282;
-      else if (this.dir == 'left_jump') this.cy = 364;
+      if (this.dir === 'right') this.cy = 124;
+      else if (this.dir === 'left') this.cy = 204;
+      else if (this.dir === 'right_land') this.cy = 446;
+      else if (this.dir === 'left_land') this.cy = 528;
+      else if (this.dir === 'right_jump') this.cy = 282;
+      else if (this.dir === 'left_jump') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
     } catch (e) {}

@@ -427,8 +427,7 @@ class CatchGame {
             }, 100);
           }, 300);
         } else {
-          setTimeout(() => {
-            const canvas = document.getElementById('boomio-catch-canvas');
+          setTimeout(() => {            
             document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
             const inputContainer = document.querySelector('.input-container');
             document.getElementById('control-button').style.transition = 'opacity 2s ease';
