@@ -695,7 +695,7 @@ export class CompetitionScoreTableContainer {
                                                 : this.prop === 'Fantazijos'
                                                   ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
                                                   : this.prop === 'LemonFeel'
-                                                    ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
+                                                    ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
                                                         this.userParticipationDays >= 3
                                                           ? `${this.userParticipationDays} DIENAS SUPER!`
                                                           : this.userParticipationDays === 1
@@ -803,7 +803,7 @@ export class CompetitionScoreTableContainer {
                   : this.prop === 'Pieno Žvaigždės'
                     ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">IR </br>pagrindiniai <u style="text-transform:uppercase">MIAU PRIZAI  </u></u> - Su Miau gyvent linksmiau!'
                     : this.prop === 'LemonFeel'
-                      ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
+                      ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
                           this.userParticipationDays >= 3
                             ? `${this.userParticipationDays} DIENAS SUPER!`
                             : this.userParticipationDays === 1

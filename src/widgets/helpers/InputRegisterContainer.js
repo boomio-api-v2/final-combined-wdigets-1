@@ -317,52 +317,54 @@ export class InputRegisterContainer {
                                                   : this.prop === 'Daumantu'
                                                     ? 'Sutinku su „Daumantų“ privatumo politika.'
                                                     : this.prop === 'Akropolis' && this.language === 'LV'
-                                                      ? `Piekrītu <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'} style="color:white;text-decoration: underline;"> spēles noteikumiem un privātuma politikai</a>. `
-                                                      : this.prop === 'Akropolis'
-                                                        ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
-                                                        : this.prop === 'Perlas GO'
-                                                          ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/akcijos-zaisk-ir-laimek-taisykles/'} style="color:white;text-decoration: underline;"> akcijos taisyklėmis</a> ir „Perlas Go“ <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/privatumo-politika/'} style="color:white;text-decoration: underline;">privatumo politika.</a> `
-                                                          : this.prop === 'Corepetitus'
-                                                            ? 'Sutinku su'
-                                                            : this.prop === 'Zemaitijos Pienas'
-                                                              ? 'Sutinku su „Žemaitijos pienas“'
-                                                              : this.prop === 'Vilvi'
-                                                                ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
-                                                                : this.prop === 'Dentsu'
-                                                                  ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
-                                                                  : this.prop === 'Nykstukas'
-                                                                    ? 'Sutinku su „Pieno žvaigždės“'
-                                                                    : this.prop === 'Toni'
-                                                                      ? 'Acepto los términos y condicines de la actividad. Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
-                                                                      : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
-                                                                        ? 'Piekrītu LEMON GYM'
-                                                                        : this.prop === 'Nevezis'
-                                                                          ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
-                                                                          : this.prop === 'Magija'
+                                                      ? `Lai turpinātu, ir jāpiekrīt spēles noteikumiem un <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.akropoleriga.lv/lv/privatuma-politika?cid=7'} style="color:white;text-decoration: underline;"> privātuma politikai</a>. Piekrītot spēles noteikumiem, apliecinu, ka esmu sasniedzis vismaz 13 gadu vecumu.`
+                                                      : this.prop === 'Akropolis' && this.language === 'RU'
+                                                        ? `Lai turpinātu, ir jāpiekrīt spēles noteikumiem un <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.akropoleriga.lv/lv/privatuma-politika?cid=7'} style="color:white;text-decoration: underline;"> privātuma politikai</a>. Piekrītot spēles noteikumiem, apliecinu, ka esmu sasniedzis vismaz 13 gadu vecumu.`
+                                                        : this.prop === 'Akropolis'
+                                                          ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
+                                                          : this.prop === 'Perlas GO'
+                                                            ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/akcijos-zaisk-ir-laimek-taisykles/'} style="color:white;text-decoration: underline;"> akcijos taisyklėmis</a> ir „Perlas Go“ <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/privatumo-politika/'} style="color:white;text-decoration: underline;">privatumo politika.</a> `
+                                                            : this.prop === 'Corepetitus'
+                                                              ? 'Sutinku su'
+                                                              : this.prop === 'Zemaitijos Pienas'
+                                                                ? 'Sutinku su „Žemaitijos pienas“'
+                                                                : this.prop === 'Vilvi'
+                                                                  ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
+                                                                  : this.prop === 'Dentsu'
+                                                                    ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
+                                                                    : this.prop === 'Nykstukas'
+                                                                      ? 'Sutinku su „Pieno žvaigždės“'
+                                                                      : this.prop === 'Toni'
+                                                                        ? 'Acepto los términos y condicines de la actividad. Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
+                                                                        : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
+                                                                          ? 'Piekrītu LEMON GYM'
+                                                                          : this.prop === 'Nevezis'
                                                                             ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
-                                                                            : this.prop === 'Orlen'
-                                                                              ? 'Sutinku su „ORLEN“'
-                                                                              : this.prop === 'Apranga'
-                                                                                ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025?_gl=1*1u7c0c4*_up*MQ..*_ga*OTYxOTc1MjQwLjE3NTUwNzkxNjE.*_ga_J5PB18DDR4*czE3NTUwNzkxNjEkbzEkZzAkdDE3NTUwNzkxNjEkajYwJGwwJGg2MDcxMjkzMzM" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
-                                                                                : this.config.currentPageUrl.toLowerCase().includes('pigu')
-                                                                                  ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
-                                                                                  : this.config.currentPageUrl.toLowerCase().includes('220')
-                                                                                    ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
-                                                                                    : this.config.currentPageUrl.toLowerCase().includes('kaup24')
-                                                                                      ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
-                                                                                      : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
-                                                                                        ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
-                                                                                        : this.language === 'EN'
-                                                                                          ? 'I agree to receive '
-                                                                                          : this.language === 'LV'
-                                                                                            ? 'Es piekrītu'
-                                                                                            : this.language === 'ET'
-                                                                                              ? 'Ma olen nõus'
-                                                                                              : `Sutinku  ${
-                                                                                                  this.prop === 'LemonGym'
-                                                                                                    ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
-                                                                                                    : ''
-                                                                                                } `
+                                                                            : this.prop === 'Magija'
+                                                                              ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
+                                                                              : this.prop === 'Orlen'
+                                                                                ? 'Sutinku su „ORLEN“'
+                                                                                : this.prop === 'Apranga'
+                                                                                  ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025?_gl=1*1u7c0c4*_up*MQ..*_ga*OTYxOTc1MjQwLjE3NTUwNzkxNjE.*_ga_J5PB18DDR4*czE3NTUwNzkxNjEkbzEkZzAkdDE3NTUwNzkxNjEkajYwJGwwJGg2MDcxMjkzMzM" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
+                                                                                  : this.config.currentPageUrl.toLowerCase().includes('pigu')
+                                                                                    ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
+                                                                                    : this.config.currentPageUrl.toLowerCase().includes('220')
+                                                                                      ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
+                                                                                      : this.config.currentPageUrl.toLowerCase().includes('kaup24')
+                                                                                        ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
+                                                                                        : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
+                                                                                          ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
+                                                                                          : this.language === 'EN'
+                                                                                            ? 'I agree to receive '
+                                                                                            : this.language === 'LV'
+                                                                                              ? 'Es piekrītu'
+                                                                                              : this.language === 'ET'
+                                                                                                ? 'Ma olen nõus'
+                                                                                                : `Sutinku  ${
+                                                                                                    this.prop === 'LemonGym'
+                                                                                                      ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
+                                                                                                      : ''
+                                                                                                  } `
         }
     ${
       this.prop !== 'Barbora' &&

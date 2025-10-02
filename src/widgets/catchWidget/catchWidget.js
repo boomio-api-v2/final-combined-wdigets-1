@@ -130,6 +130,11 @@ import {
   item8Akropolis,
   item9Akropolis,
   item10Akropolis,
+  backgroundAkropolisLV,
+  playerAkropolisLV,
+  item1AkropolisLV,
+  item2AkropolisLV,
+  item3AkropolisLV,
   introDaumantu,
   backgroundDaumantu,
   playerDaumantu,
@@ -214,6 +219,7 @@ import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { ShareContainer } from '../helpers/ShareContainer';
+import { t } from '@/services/translations';
 
 class CatchGame {
   constructor() {
@@ -256,19 +262,21 @@ class CatchGame {
               ? backgroundPienoZvaigzdes
               : this.customer === 'Pegasas'
                 ? backgroundPegasas
-                : this.customer === 'Akropolis'
+                : this.customer === 'Akropolis' && this.language === 'LT'
                   ? backgroundAkropolis
-                  : this.customer === 'Daumantu'
-                    ? backgroundDaumantu
-                    : this.customer === 'Zemaitijos Pienas'
-                      ? backgroundDobilo
-                      : this.customer === 'Toni'
-                        ? backgroundToni
-                        : this.customer === 'Orlen'
-                          ? backgroundOrlen
-                          : this.customer === 'Apranga'
-                            ? backgroundApranga
-                            : background
+                  : this.customer === 'Akropolis'
+                    ? backgroundAkropolisLV
+                    : this.customer === 'Daumantu'
+                      ? backgroundDaumantu
+                      : this.customer === 'Zemaitijos Pienas'
+                        ? backgroundDobilo
+                        : this.customer === 'Toni'
+                          ? backgroundToni
+                          : this.customer === 'Orlen'
+                            ? backgroundOrlen
+                            : this.customer === 'Apranga'
+                              ? backgroundApranga
+                              : background
     }) center`;
 
     this.timer = null;
@@ -290,7 +298,7 @@ class CatchGame {
         ? 3
         : 5;
     this.startCatch();
-    document.addEventListener('shareClicked', (event) => {
+    document.addEventListener('shareClicked', () => {
       if (this.shareClicked === false) {
         this.shareClicked = true;
         this.currentScore = this.currentScore + 1000;
@@ -414,7 +422,6 @@ class CatchGame {
           }
 
           setTimeout(() => {
-            const canvas = document.getElementById('boomio-catch-canvas');
             document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
 
             const inpuRegisterContainer = document.querySelector('.input-register-container');
@@ -427,7 +434,7 @@ class CatchGame {
             }, 100);
           }, 300);
         } else {
-          setTimeout(() => {            
+          setTimeout(() => {
             document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
             const inputContainer = document.querySelector('.input-container');
             document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -453,8 +460,6 @@ class CatchGame {
       }
       if (this.gameCount === 0) {
         setTimeout(() => {
-          const canvas = document.getElementById('boomio-catch-canvas');
-
           document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
         }, 1000);
       }
@@ -474,8 +479,6 @@ class CatchGame {
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
-    const newHighscoreImage = new Image();
-    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
     // Create and configure the game container
     const gameContainer = document.createElement('div');
     gameContainer.setAttribute('id', 'boomio-catch-container');
@@ -509,9 +512,9 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-        <div>${this.language == 'ES' ? 'CLIC' : this.language == 'LT' ? 'SPUST' : 'KLIK'}</div>
-        <div>${this.language == 'ES' ? 'CLIC' : this.language == 'LT' ? 'SPUST' : 'KLIK'}</div>
-      </div><img src=${Controlls} alt="Image Description" style="display:inline;width: 110px; height: 50px;">`}
+         <div>${t('controlLeft', this.language)}</div>
+         <div>${t('controlRight', this.language)}</div>
+       </div><img src=${Controlls} alt="Image Description" style="display:inline;width: 110px; height: 50px;">`}
       </div>
        ${
          window.innerWidth <= 768
@@ -636,11 +639,11 @@ class CatchGame {
           document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
         }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
     ${
-      this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas' || this.customer === 'Apranga'
+      this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas' || this.customer === 'Apranga' || (this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU'))
         ? `<div id="background_blur" alt="Blur color" style="z-index:1;width: ${
             document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
           }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${
-            this.customer === 'Zemaitijos Pienas' ? '#004C22' : this.customer === 'Apranga' ? '#5F2929' : '#8E1735'
+            this.customer === 'Zemaitijos Pienas' ? '#004C22' : this.customer === 'Apranga' ? '#5F2929' : this.customer === 'Akropolis' ? '#FE0000' : '#8E1735'
           }" ></div>`
         : `    <img id="background_blur" src=${blurImage.src} alt="Blur image" style="z-index:3;width: ${
             document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
@@ -1035,7 +1038,6 @@ class CatchGame {
                       inpuRegisterContainer.style.display = 'none';
                     }, 1000);
                     setTimeout(() => {
-                      const canvas = document.getElementById('boomio-catch-canvas');
                       document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
                       const inputContainer = document.querySelector('.input-container');
                       document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -1089,7 +1091,7 @@ class CatchGame {
           if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
             boomioService
               .signal('ROUND_STARTED', 'signal')
-              .then((response) => {
+              .then(() => {
                 document.getElementById('background_blur').style.display = 'none';
                 const canvas = document.getElementById('boomio-catch-canvas');
                 canvas.style.transition = 'filter 1s ease';
@@ -1206,7 +1208,7 @@ class CatchGame {
                 if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
                   boomioService
                     .signal('ROUND_STARTED', 'signal')
-                    .then((response) => {
+                    .then(() => {
                       this.gameStarted = true;
                     })
                     .catch((error) => {
@@ -1532,8 +1534,6 @@ class CatchGame {
                 });
             }
             // Displaying the competition table container
-            const canvas = document.getElementById('boomio-catch-canvas');
-
             let competitionTableContainer = '';
             if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' || this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
@@ -1649,19 +1649,21 @@ class Player {
             ? playerPienoZvaigzdes
             : customer === 'Pegasas'
               ? playerPegasas
-              : customer === 'Akropolis'
+              : customer === 'Akropolis' && this.language === 'LT'
                 ? playerAkropolis
-                : customer === 'Daumantu'
-                  ? playerDaumantu
-                  : customer === 'Zemaitijos Pienas'
-                    ? playerDobilo
-                    : customer === 'Toni'
-                      ? playerToni
-                      : customer === 'Orlen'
-                        ? playerOrlen
-                        : customer === 'Apranga'
-                          ? playerApranga
-                          : player;
+                : customer === 'Akropolis'
+                  ? playerAkropolisLV
+                  : customer === 'Daumantu'
+                    ? playerDaumantu
+                    : customer === 'Zemaitijos Pienas'
+                      ? playerDobilo
+                      : customer === 'Toni'
+                        ? playerToni
+                        : customer === 'Orlen'
+                          ? playerOrlen
+                          : customer === 'Apranga'
+                            ? playerApranga
+                            : player;
     this.defaultscore = defaultscore;
   }
 
@@ -1704,7 +1706,7 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 8);
       }
-    } else if (this.customer === 'Akropolis') {
+    } else if (this.customer === 'Akropolis' && this.language === 'LT') {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 5 + 5);
       } else {
@@ -1830,8 +1832,10 @@ class Fruit {
         item13PienoZvaigzdes,
         item14PienoZvaigzdes,
       ];
-    } else if (this.customer && this.customer === 'Akropolis') {
+    } else if (this.customer && this.customer === 'Akropolis' && this.language === 'LT') {
       this.images = [item1Akropolis, item2Akropolis, item3Akropolis, item4Akropolis, item5Akropolis, item6Akropolis, item7Akropolis, item8Akropolis, item9Akropolis, item10Akropolis];
+    } else if (this.customer && this.customer === 'Akropolis') {
+      this.images = [item1AkropolisLV, item2AkropolisLV, item2AkropolisLV, item3AkropolisLV, item3AkropolisLV, item6Akropolis, item7Akropolis, item8Akropolis, item9Akropolis, item10Akropolis];
     } else if (this.customer && this.customer === 'Daumantu') {
       this.images = [
         item1Daumantu,
@@ -1976,7 +1980,7 @@ class Fruit {
         'item13PienoZvaigzdes',
         'item14PienoZvaigzdes',
       ][this.fruitNumber];
-    } else if (this.customer === 'Akropolis') {
+    } else if (this.customer === 'Akropolis' && this.language === 'LT') {
       this.fruitType = [
         'item1Akropolis',
         'item2Akropolis',
@@ -1989,6 +1993,8 @@ class Fruit {
         'item9Akropolis',
         'item10Akropolis',
       ][this.fruitNumber];
+    } else if (this.customer === 'Akropolis') {
+      this.fruitType = ['item1AkropolisLV', 'item2AkropolisLV', 'item3AkropolisLV', 'item6Akropolis', 'item7Akropolis', 'item8Akropolis', 'item9Akropolis', 'item10Akropolis'][this.fruitNumber];
     } else if (this.customer === 'Daumantu') {
       this.fruitType = [
         'item1Daumantu',
