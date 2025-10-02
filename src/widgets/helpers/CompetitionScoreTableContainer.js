@@ -659,17 +659,17 @@ export class CompetitionScoreTableContainer {
               this.prop === 'Nykstukas' || this.prop === 'Pigu.lt' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Pigu.lt' && this.language === 'RU'
-                ? `Ты выиграл приз этой недели: </br> -${this.getBonus(this.scoreTable?.user_best_score)}% на выбранные популярные товары при первой покупке в приложении.`
+                ? `Дополнительно -${this.getBonus(this.scoreTable?.user_best_score)}% на выбранные товары в приложении с кодом`
                 : this.prop === 'Pigu.lt' && this.language === 'FI'
-                  ? `Olet voittanut tämän viikon palkinnon </br> -${this.getBonus(this.scoreTable?.user_best_score)}% alennuksen valikoiduista tuotteista ensimmäisestä ostokerrasta sovelluksessa`
+                  ? `${this.getBonus(this.scoreTable?.user_best_score)}% alennus valikoiduista tuotteista sovelluksessa koodilla*`
                   : this.prop === 'Pigu.lt' && this.language === 'LV'
-                    ? `Tu esi ieguvis šīs nedēļas balvu: </br> Papildu -${this.getBonus(this.scoreTable?.user_best_score)}% izvēlētām precēm, veicot pirmo pirkumu lietotnē ar kodu*`
+                    ? `Papildu -${this.getBonus(this.scoreTable?.user_best_score)}% izvēlētām precēm lietotnē ar kodu*`
                     : this.prop === 'Pigu.lt' && this.language === 'LT'
-                      ? `Tu laimėjai šios savaitės prizą: </br> Perkant pirmąkart programėlėje -${this.getBonus(this.scoreTable?.user_best_score)}% nuolaidos kodą atrinktoms populiarioms prekėms.`
+                      ? `Papildomai -${this.getBonus(this.scoreTable?.user_best_score)}% atrinktoms prekėms programėlėje su kodu`
                       : this.prop === 'Pigu.lt' && this.language === 'EN'
-                        ? `You ve won this weeks prize:</br> First purchase in app -${this.getBonus(this.scoreTable?.user_best_score)}% discount code off selected popular items.`
+                        ? `-${this.getBonus(this.scoreTable?.user_best_score)}% off selected items when purchasing on app* with code`
                         : this.prop === 'Pigu.lt' && this.language === 'ET'
-                          ? `Oled selle nädala auhinna võitja! </br> Esimesel ostul äpis -${this.getBonus(this.scoreTable?.user_best_score)}% lisaale valitud populaarsetelt toodetelt `
+                          ? `-${this.getBonus(this.scoreTable?.user_best_score)}% lisaale valitud toodetelt äpis koodiga*`
                           : this.prop === 'Barbora'
                             ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
                             : this.prop === 'Pieno Žvaigždės'
