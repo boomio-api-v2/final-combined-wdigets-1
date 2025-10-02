@@ -1997,8 +1997,8 @@ class Spring {
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width = this.customer === 'Vilvi' || this.customer === 'Magija' || this.customer === 'Toni' ? 90 : this.customer === 'Perlas GO' ? 54 : 65; // Width to draw on canvas
-    this.height = this.customer === 'Vilvi' || this.customer === 'Magija' ? 60 : this.customer === 'Perlas GO' ? 40 : this.customer === 'Toni' ? 50 : 38; // Height to draw on canvas
+    this.width = this.customer === 'Vilvi' || this.customer === 'Magija' ? 90 : this.customer === 'Perlas GO' ? 54 : this.customer === 'Toni' ? 70 : 65; // Width to draw on canvas
+    this.height = this.customer === 'Vilvi' || this.customer === 'Magija' ? 60 : this.customer === 'Perlas GO' ? 40 : this.customer === 'Toni' ? 52 : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }
