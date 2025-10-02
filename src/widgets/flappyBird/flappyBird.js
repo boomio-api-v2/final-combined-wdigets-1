@@ -149,6 +149,23 @@ class FlappyBird {
     this.game_code = params.get('game_code');
   }
 
+  applyCanvasBlur = () => {
+    const canvas = document.getElementById('flappy-canvas');
+    canvas.style.transition = 'filter 0.6s ease';
+
+    if (this.customer === 'Toni') {
+      canvas.style.filter = '';
+    } else {
+      canvas.style.filter = 'blur(2px)';
+    }
+  };
+
+  removeCanvasBlur = () => {
+    const canvas = document.getElementById('flappy-canvas');
+    canvas.style.transition = 'filter 1s ease';
+    canvas.style.filter = 'none';
+  };
+
   showRulesOrRegistration() {
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;
@@ -214,10 +231,8 @@ class FlappyBird {
 
       setTimeout(() => {
         if (this.customer !== 'SaludSA') {
-          const canvas = document.getElementById('flappy-canvas');
           document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+          this.applyCanvasBlur();
 
           const inpuRegisterContainer = document.querySelector('.input-register-container');
           document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -249,10 +264,8 @@ class FlappyBird {
                 inpuRegisterContainer.style.display = 'none';
               }, 1000);
               setTimeout(() => {
-                const canvas = document.getElementById('flappy-canvas');
                 document.getElementById('background_blur').style.opacity = 0.37;
-                canvas.style.transition = 'filter 0.6s ease';
-                canvas.style.filter = 'blur(2px)';
+                this.applyCanvasBlur();
                 const inputContainer = document.querySelector('.input-container');
                 document.getElementById('control-button').style.transition = 'opacity 2s ease';
                 document.getElementById('control-button').style.opacity = 1;
@@ -319,10 +332,8 @@ class FlappyBird {
         });
     } else {
       setTimeout(() => {
-        const canvas = document.getElementById('flappy-canvas');
         document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
+        this.applyCanvasBlur();
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -356,10 +367,8 @@ class FlappyBird {
       competitionTableContainer.style.display = 'none';
     }, 1000);
     setTimeout(() => {
-      const canvas = document.getElementById('flappy-canvas');
       document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
-      canvas.style.transition = 'filter 0.6s ease';
-      canvas.style.filter = 'blur(2px)';
+      this.applyCanvasBlur();
       const inputContainer = document.querySelector('.input-container');
       document.getElementById('control-button').style.transition = 'opacity 2s ease';
       document.getElementById('control-button').style.opacity = 1;
@@ -553,8 +562,7 @@ class FlappyBird {
           if (this.gameCount === 0) {
             setTimeout(() => {
               document.getElementById('background_blur').style.opacity = 0.37;
-              canvas.style.transition = 'filter 0.6s ease';
-              canvas.style.filter = 'blur(2px)';
+              this.applyCanvasBlur();
             }, 1000);
           }
           setTimeout(
@@ -710,9 +718,7 @@ class FlappyBird {
                                 }
                               }
                               document.getElementById('background_blur').style.display = 'none';
-                              const canvas = document.getElementById('flappy-canvas');
-                              canvas.style.transition = 'filter 1s ease';
-                              canvas.style.filter = 'none';
+                              this.removeCanvasBlur();
                               this.gamePlaying = true;
                             })
                             .catch((error) => {
@@ -775,15 +781,13 @@ class FlappyBird {
                   }
 
                   if (this.showCompetitiveRegistration === 'competition') {
-                    const canvas = document.getElementById('flappy-canvas');
                     let competitionTableContainer = '';
                     if (this.customer === 'Nykstukas') {
                       competitionTableContainer = document.querySelector('.did-you-know-container');
                     } else {
                       competitionTableContainer = document.querySelector('.competition-table-container');
                     }
-                    canvas.style.transition = 'filter 0.6s ease';
-                    canvas.style.filter = 'blur(2px)';
+                    this.applyCanvasBlur();
                     document.getElementById('background_blur').style.display = 'block';
                     competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                     competitionTableContainer.style.display = 'block';
@@ -798,10 +802,8 @@ class FlappyBird {
                       currectScoreDiv.style.display = 'none';
                     }, 300);
                   } else {
-                    const canvas = document.getElementById('flappy-canvas');
                     const competitionTableContainer = document.querySelector('.competition-table-container');
-                    canvas.style.transition = 'filter 0.6s ease';
-                    canvas.style.filter = 'blur(2px)';
+                    this.applyCanvasBlur();
                     document.getElementById('background_blur').style.display = 'block';
                     competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                     competitionTableContainer.style.display = 'block';
@@ -1494,10 +1496,8 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                       inpuRegisterContainer.style.display = 'none';
                     }, 1000);
                     setTimeout(() => {
-                      const canvas = document.getElementById('flappy-canvas');
                       document.getElementById('background_blur').style.opacity = 0.37;
-                      canvas.style.transition = 'filter 0.6s ease';
-                      canvas.style.filter = 'blur(2px)';
+                      this.applyCanvasBlur();
                       const inputContainer = document.querySelector('.input-container');
                       document.getElementById('control-button').style.transition = 'opacity 2s ease';
                       document.getElementById('control-button').style.opacity = 1;
@@ -1631,9 +1631,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                   }
                 }
                 document.getElementById('background_blur').style.display = 'none';
-                const canvas = document.getElementById('flappy-canvas');
-                canvas.style.transition = 'filter 1s ease';
-                canvas.style.filter = 'none';
+                this.removeCanvasBlur();
                 this.gamePlaying = true;
               })
               .catch((error) => {
@@ -1763,9 +1761,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
             }, 50);
             this.gamePlaying = true;
             document.getElementById('background_blur').style.display = 'none';
-            const canvas = document.getElementById('flappy-canvas');
-            canvas.style.transition = 'filter 1s ease';
-            canvas.style.filter = 'none';
+            this.removeCanvasBlur();
 
             controlButton.style.opacity = 0;
           };
@@ -1793,9 +1789,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
 
           setTimeout(() => {
             document.getElementById('background_blur').style.display = 'none';
-            const canvas = document.getElementById('flappy-canvas');
-            canvas.style.transition = 'filter 1s ease';
-            canvas.style.filter = 'none';
+            this.removeCanvasBlur();
             this.gamePlaying = true;
           }, 400);
           controlButton.style.display = 'none';
