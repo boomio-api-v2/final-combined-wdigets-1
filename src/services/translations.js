@@ -46,14 +46,14 @@ const translations = {
     FI: 'Sukella hauskaan peliin ja voita mahtavia palkintoja!',
     RU: 'Погрузись в увлекательную игру и выиграй классные призы!',
   },
-  controlLeft: {
+  controlLeftCatch: {
     EN: 'CLICK',
     LT: 'SPUST',
     LV: 'PA KREISI',
     RU: 'НАЛЕВО',
     ES: 'CLIC',
   },
-  controlRight: {
+  controlRightCatch: {
     EN: 'CLICK',
     LT: 'SPUST',
     LV: 'PA LABI',
