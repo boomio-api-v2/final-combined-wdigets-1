@@ -1,9 +1,10 @@
 const config = {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
+  testMatch: ['**/tests/**/*.test.js'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    '\\.(css|scss)$': 'identity-obj-proxy',
+    '\\.(css|scss)$': '<rootDir>/src/tests/mocks/styleMock.js',
   },
   moduleDirectories: ['node_modules', 'src'],
 };
