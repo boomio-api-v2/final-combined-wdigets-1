@@ -1466,7 +1466,7 @@ class CatchGame {
         if (this.fruits.length < newNumberOfFruits) {
           // Create additional fruits to reach the new number
           for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
-            const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
+            const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
             fruit.chooseFruit();
             this.fruits.push(fruit);
           }
@@ -1475,7 +1475,7 @@ class CatchGame {
         if (this.fruits.length < newNumberOfFruits + 3) {
           // Create additional fruits to reach the new number
           for (let i = this.fruits.length; i < newNumberOfFruits + 3; i++) {
-            const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this, 'bad');
+            const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this, 'bad');
             fruit.chooseFruit();
             this.fruits.push(fruit);
           }
@@ -1485,7 +1485,7 @@ class CatchGame {
         if (this.fruits.length < newNumberOfFruits) {
           // Create additional fruits to reach the new number
           for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
-            const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
+            const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
             fruit.chooseFruit();
             this.fruits.push(fruit);
           }
