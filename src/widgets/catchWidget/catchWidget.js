@@ -264,7 +264,7 @@ class CatchGame {
                 ? backgroundPegasas
                 : this.customer === 'Akropolis' && this.language === 'LT'
                   ? backgroundAkropolis
-                  : this.customer === 'Akropolis'
+                  : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
                     ? backgroundAkropolisLV
                     : this.customer === 'Daumantu'
                       ? backgroundDaumantu
@@ -512,8 +512,8 @@ class CatchGame {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-         <div>${t(t.key.controlLeftCatch, this.language)}</div>
-         <div>${t(t.key.controlRightCatch, this.language)}</div>
+         <div>${t('controlLeftCatch', this.language)}</div>
+         <div>${t('controlRightCatch', this.language)}</div>
        </div><img src=${Controlls} alt="Image Description" style="display:inline;width: 110px; height: 50px;">`}
       </div>
        ${
@@ -885,7 +885,18 @@ class CatchGame {
             console.log(citySelect?.value);
 
             if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni' && this.customer !== 'Orlen') {
-              document.getElementById('competition-email-error').innerText = this.language === 'ES' ? 'Formato de correo electrónico incorrecto.' : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+              document.getElementById('competition-email-error').innerText =
+                this.language === 'ES'
+                  ? 'Formato de correo electrónico incorrecto.'
+                  : this.language === 'LT'
+                    ? 'Neteisingas el. pašto formatas.'
+                    : this.language === 'LV'
+                      ? 'Nederīgs e-pasta formāts.'
+                      : this.language === 'RU'
+                        ? 'Неверный формат электронной почты.'
+                        : this.language === 'ET'
+                          ? 'Vale e-posti formaat.'
+                          : 'Neteisingas el. pašto formatas.';
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
@@ -1651,7 +1662,7 @@ class Player {
               ? playerPegasas
               : customer === 'Akropolis' && this.language === 'LT'
                 ? playerAkropolis
-                : customer === 'Akropolis'
+                : customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
                   ? playerAkropolisLV
                   : customer === 'Daumantu'
                     ? playerDaumantu
@@ -1834,7 +1845,7 @@ class Fruit {
       ];
     } else if (this.customer && this.customer === 'Akropolis' && this.language === 'LT') {
       this.images = [item1Akropolis, item2Akropolis, item3Akropolis, item4Akropolis, item5Akropolis, item6Akropolis, item7Akropolis, item8Akropolis, item9Akropolis, item10Akropolis];
-    } else if (this.customer && this.customer === 'Akropolis') {
+    } else if (this.customer && this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')) {
       this.images = [item1AkropolisLV, item2AkropolisLV, item2AkropolisLV, item3AkropolisLV, item3AkropolisLV, item6Akropolis, item7Akropolis, item8Akropolis, item9Akropolis, item10Akropolis];
     } else if (this.customer && this.customer === 'Daumantu') {
       this.images = [
@@ -1993,8 +2004,19 @@ class Fruit {
         'item9Akropolis',
         'item10Akropolis',
       ][this.fruitNumber];
-    } else if (this.customer === 'Akropolis') {
-      this.fruitType = ['item1AkropolisLV', 'item2AkropolisLV', 'item3AkropolisLV', 'item6Akropolis', 'item7Akropolis', 'item8Akropolis', 'item9Akropolis', 'item10Akropolis'][this.fruitNumber];
+    } else if (this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')) {
+      this.fruitType = [
+        'item1AkropolisLV',
+        'item2AkropolisLV',
+        'item2AkropolisLV',
+        'item3AkropolisLV',
+        'item3AkropolisLV',
+        'item6Akropolis',
+        'item7Akropolis',
+        'item8Akropolis',
+        'item9Akropolis',
+        'item10Akropolis',
+      ][this.fruitNumber];
     } else if (this.customer === 'Daumantu') {
       this.fruitType = [
         'item1Daumantu',
