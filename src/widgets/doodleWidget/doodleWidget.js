@@ -1322,9 +1322,11 @@ class DoodleWidget {
                  ? 'Napautua'
                  : this.language === 'RU'
                    ? 'ТЫКАЙ'
-                   : this.language === 'LT' && this.customer === 'Pigu.lt'
-                     ? 'BAKST'
-                     : 'KLIK'
+                   : this.language === 'ES'
+                     ? 'CLIC'
+                     : this.language === 'LT' && this.customer === 'Pigu.lt'
+                       ? 'BAKST'
+                       : 'KLIK'
        }</div>
         <div>${
           this.language === 'EN'
@@ -1337,9 +1339,11 @@ class DoodleWidget {
                   ? 'Napautua'
                   : this.language === 'RU'
                     ? 'ТЫКАЙ'
-                    : this.language === 'LT' && this.customer === 'Pigu.lt'
-                      ? 'BAKST'
-                      : 'KLIK'
+                    : this.language === 'ES'
+                      ? 'CLIC'
+                      : this.language === 'LT' && this.customer === 'Pigu.lt'
+                        ? 'BAKST'
+                        : 'KLIK'
         }</div>
       </div><img src=${this.isMobile ? Controlls : ControlsDesktop} alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
@@ -1656,7 +1660,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                         this.language === 'LV'
                           ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
                           : this.language === 'ES'
-                            ? 'Este email ya está en uso. Use otro email.'
+                            ? 'Este email ya está en uso. Use otro numero.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
                       document.getElementById('competition-name-error').innerText = '';
