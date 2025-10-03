@@ -265,7 +265,7 @@ export class ShareContainer {
         : this.language === 'LT'
           ? 'TOLIAU'
           : this.language === 'LV'
-            ? 'NĀKAMAIS'
+            ? 'TĀLĀK'
             : this.language === 'ET'
               ? 'EDASI'
               : this.language === 'FI'

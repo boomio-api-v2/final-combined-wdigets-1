@@ -331,7 +331,7 @@ export class InputContainer {
                                     : this.prop === 'Novaturas' && this.language === 'RU'
                                       ? 'Собирайте  '
                                       : this.prop === 'Akropolis' && this.language === 'LV'
-                                        ? 'Spēlē vēlreiz,'
+                                        ? 'SPĒLĒ VĒLREIZ,'
                                         : this.prop === 'Akropolis' && this.language === 'RU'
                                           ? 'Играй снова,'
                                           : this.language === 'LV'

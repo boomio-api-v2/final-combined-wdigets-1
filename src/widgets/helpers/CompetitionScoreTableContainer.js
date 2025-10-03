@@ -821,7 +821,7 @@ export class CompetitionScoreTableContainer {
                         : this.prop === 'Akropolis' && this.language === 'LT'
                           ? 'Pagerink rezultatą ir kasdien laimėk vieną CAIF CAFE kavos </br>puodelį, o atsiėmęs prizą turėk galimybę laimėti 100 EUR</br>AKROPOLIO dovanų kortelę!'
                           : this.prop === 'Akropolis' && this.language === 'LV'
-                            ? 'Ja saglabāsi savu pozīciju 2000 rezultatīvāko spēlētāju sarakstā, tu saņemsi balvu no Narvesen, un pēc balvas izņemšanas - automātiski piedalīsies dienas izlozē par AKROPOLE dāvanu karti 100 EUR vērtībā. Tev ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
+                            ? 'Ja būsi viens no 2000 dienas rezultatīvākajiem spēlētājiem, tu saņemsi balvu no Narvesen, un pēc balvas izņemšanas – automātiski piedalīsies dienas izlozē par AKROPOLE dāvanu karti 100 EUR vērtībā. Tevi ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
                             : this.prop === 'Akropolis' && this.language === 'RU'
                               ? 'Если вы сохраните своё место в списке 2000 лучших игроков, вы получите приз от Narvesen, а после получения приза автоматически примете участие в ежедневном розыгрыше подарочной карты AKROPOLE на 100 евро. У вас есть возможность улучшить свой результат, сыграв снова!'
                               : this.prop === 'Daumantu'

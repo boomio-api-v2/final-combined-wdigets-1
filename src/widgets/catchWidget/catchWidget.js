@@ -741,17 +741,19 @@ class CatchGame {
                   ? 'Registruojantis, privaloma sutikti gauti "Daumantų” naujienas, kad atiduotume  laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
                   : this.customer === 'Zemaitijos Pienas'
                     ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
-                    : this.language === 'LV'
-                      ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                      : this.language === 'RU'
-                        ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
-                        : this.language === 'ES'
-                          ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                          : this.customer.includes('Gamtos Ateitis')
-                            ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-                            : this.customer === 'Apranga'
-                              ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
-                              : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                    : this.customer === 'Akropolis' && this.language === 'LV'
+                      ? 'Spēlētājam ir jāpiekrīt spēles noteikumiem un datu apstrādei, lai turpinātu.'
+                      : this.language === 'LV'
+                        ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                        : this.language === 'RU'
+                          ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+                          : this.language === 'ES'
+                            ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                            : this.customer.includes('Gamtos Ateitis')
+                              ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+                              : this.customer === 'Apranga'
+                                ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
+                                : 'Norint tęsti, privaloma sutikti su privatumo politika.';
               document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
               document.getElementById('competition-checkbox-error').style.height = '18px';
