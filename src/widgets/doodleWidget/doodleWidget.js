@@ -1582,6 +1582,15 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               }
             }
 
+            if (Elements.isVisible(nameInput) && (nameInput?.value === '' || nameInput?.value === null)) {
+              document.getElementById('competition-name-error').innerText = this.language === 'ES' ? 'El campo de nombre debe completarse.' : 'Norint tęsti privaloma užpildyti visus laukus.';
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              return;
+            } else {
+              document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+            }
+
             if (Elements.isVisible(emailInput) && emailInput?.value?.length < 10 && this.customer === 'Toni') {
               document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
               document.getElementById('competition-email-error').zIndex = 1;
