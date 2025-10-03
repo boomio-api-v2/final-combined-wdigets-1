@@ -71,6 +71,26 @@ function sample() {
 - Prefer extending existing service abstractions (`localStorageService`, `boomioInstance.signal`, `widgetHtmlService`) rather than inventing parallel utilities.
 - Ask for backend contract details before pruning or renaming config properties.
 
+### 11. Change Checklist — Always Verify Before Completing
+
+Before marking any change as complete, **always** perform these steps (in order):
+
+1. **Tests**: If tests exist for the modified code, run them (`npm test`). If adding new functionality, consider adding tests. If tests fail, fix them before proceeding.
+2. **Build**: Run `npm run build` to ensure the production bundle builds successfully without errors.
+3. **README**: Review if the change affects user-facing documentation:
+   - New widget added? Update available widget types.
+   - New configuration option? Document it.
+   - Changed build/dev commands? Update instructions.
+   - New dependencies or setup steps? Add to installation section.
+4. **Copilot Instructions**: Update this file if the change introduces:
+   - New architectural patterns or services
+   - New widget creation steps
+   - Modified configuration patterns
+   - New development workflow requirements
+   - Important pitfalls or gotchas discovered
+
+**Commit Requirements**: Always commit `dist/bundle.js` along with source changes (see README). Never push without a successful build.
+
 ---
 
 Provide feedback if any section needs deeper detail (e.g. a specific widget life cycle or adding analytics hooks) and this file can be iteratively refined.
