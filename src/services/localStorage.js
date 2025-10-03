@@ -81,7 +81,9 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const business_name =
-      config?.business_name === 'Gamtos Ateitis Random' ? ['Gamtos Ateitis Glass', 'Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][Math.floor(Math.random() * 3)] : (config?.business_name ?? 'Akropolis');
+      config?.business_name === 'Gamtos Ateitis Random'
+        ? ['Gamtos Ateitis Glass', 'Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][Math.floor(Math.random() * 3)]
+        : (config?.business_name ?? 'Akropolis');
     const collection = config?.collection ?? [];
     const collectables = config?.collectables ?? [];
     const coupon_code = config?.coupon_code ?? '';
@@ -112,7 +114,7 @@ class LocalStorageService {
     const campaignUrl = urlParams.get('campaign_url');
     const languageParam = urlParams.get('language');
     const couponCodeNew = config?.coupon_code;
-    const language = config?.business_name === 'Pigu.lt' ? languageParam : (config?.language ?? 'LV');
+    const language = config?.business_name === 'Pigu.lt' ? languageParam : (config?.language ?? 'RU');
     const teams = config?.teams ?? [];
     const restrictions = config?.restrictions ?? {};
     const userBestScore = config?.user_best_score ? config?.user_best_score : 0;
@@ -135,7 +137,7 @@ class LocalStorageService {
       w_hint_static_text,
       w_top_text,
       p_top_text,
-      p_coupon_text,      
+      p_coupon_text,
       p_bottom_text,
       p_button_text,
       p_bottom_text_end_pc,

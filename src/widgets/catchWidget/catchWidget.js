@@ -1324,7 +1324,7 @@ class CatchGame {
   }
 
   createPlayer() {
-    this.player = new Player(this.customer, this.canvas, this.context, this.defaultscore);
+    this.player = new Player(this.customer, this.language, this.canvas, this.context, this.defaultscore);
   }
 
   createFruits() {
@@ -1339,18 +1339,18 @@ class CatchGame {
       this.customer === 'Apranga'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
-        const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
+        const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
         fruit.chooseFruit();
         this.fruits.push(fruit);
       }
       for (let i = 0; i < 1; i++) {
-        const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this, 'bad');
+        const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this, 'bad');
         fruit.chooseFruit();
         this.fruits.push(fruit);
       }
     } else {
       for (let i = 0; i < this.numberOfFruits; i++) {
-        const fruit = new Fruit(this.customer, this.canvas, this.context, this.player, this);
+        const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
         fruit.chooseFruit();
         this.fruits.push(fruit);
       }
@@ -1632,8 +1632,9 @@ class CatchGame {
 }
 
 class Player {
-  constructor(customer, canvas, context, defaultscore) {
+  constructor(customer, language, canvas, context, defaultscore) {
     this.customer = customer;
+    this.language = language;
     this.canvas = canvas;
     this.context = context;
     this.gameOver = false;
@@ -1648,7 +1649,6 @@ class Player {
     if (this.customer === 'Daumantu') {
       this.y -= 20; // Move the player 20px higher if the customer is 'Daumantu'
     }
-
     this.playerImage = new Image();
     this.playerImage.src = customer.includes('Paper')
       ? playerGamtosAteitisPaper
@@ -1698,13 +1698,14 @@ class Player {
 }
 
 class Fruit {
-  constructor(customer, canvas, context, player, game, type) {
+  constructor(customer, language, canvas, context, player, game, type) {
     this.canvas = canvas;
     this.context = context;
     this.player = player;
     this.game = game;
     this.type = type;
     this.customer = customer;
+    this.language = language;
     if (this.customer.includes('Gamtos Ateitis')) {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 13);
