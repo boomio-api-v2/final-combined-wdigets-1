@@ -885,7 +885,7 @@ background:${
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
 
-    document.addEventListener('shareClicked', (event) => {
+    document.addEventListener('shareClicked', () => {
       if (this.shareClicked === false) {
         console.log('shareClicked');
         this.shareClicked = true;
@@ -1622,7 +1622,6 @@ background:${
 
       setTimeout(() => {
         shareContainer.style.height = '680px';
-        const isNarrowScreen = window.innerWidth <= 920;
         shareContainer.style.top = 'calc(50%)';
         shareContainer.style.opacity = 1;
       }, 100);
@@ -1661,7 +1660,6 @@ background:${
 
       setTimeout(() => {
         competitionTableContainer.style.height = '680px';
-        const isNarrowScreen = window.innerWidth <= 920;
 
         competitionTableContainer.style.top = 'calc(50%)';
 
@@ -2098,7 +2096,7 @@ background:${
     }
   }
 
-  explodeTile(centerTile, callback) {    
+  explodeTile(centerTile, callback) {
     const targetRow = centerTile.row;
     const targetCol = centerTile.col;
 

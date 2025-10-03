@@ -700,7 +700,7 @@ class CatchGame {
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
-    if (this.customer.includes('Akropolis')) {
+    if (this.customer.includes('Akropolis') && this.language === 'LT') {
       const gameContainer = document.querySelector('.game-container');
 
       this.shareContainer = new ShareContainer(this.customer);
@@ -1146,7 +1146,7 @@ class CatchGame {
         }
 
         let tabContainer;
-        if (this.customer === 'Akropolis') {
+        if (this.customer === 'Akropolis' && this.language === 'LT') {
           tabContainer = document.querySelector('.share-container');
         } else {
           tabContainer = document.querySelector('.did-you-know-container');
@@ -1548,7 +1548,7 @@ class CatchGame {
             let competitionTableContainer = '';
             if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' || this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
-            } else if (this.customer === 'Akropolis') {
+            } else if (this.customer === 'Akropolis' && this.language === 'LT') {
               competitionTableContainer = document.querySelector('.share-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
