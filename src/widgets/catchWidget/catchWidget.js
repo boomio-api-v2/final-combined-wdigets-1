@@ -743,13 +743,15 @@ class CatchGame {
                     ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
                     : this.language === 'LV'
                       ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                      : this.language === 'ES'
-                        ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                        : this.customer.includes('Gamtos Ateitis')
-                          ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-                          : this.customer === 'Apranga'
-                            ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
-                            : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                      : this.language === 'RU'
+                        ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+                        : this.language === 'ES'
+                          ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                          : this.customer.includes('Gamtos Ateitis')
+                            ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+                            : this.customer === 'Apranga'
+                              ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
+                              : 'Norint tęsti, privaloma sutikti su privatumo politika.';
               document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
               document.getElementById('competition-checkbox-error').style.height = '18px';
@@ -795,13 +797,20 @@ class CatchGame {
               document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
             }
 
-            if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni' || this.customer === 'Apranga')) {
+            if (
+              !checkboxChange2 &&
+              (this.customer === 'Pegasas' || this.customer === 'Toni' || this.customer === 'Apranga' || (this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')))
+            ) {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer === 'Apranga'
                     ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
-                    : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+                    : this.language === 'LV'
+                      ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                      : this.language === 'RU'
+                        ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+                        : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
               document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error2').style.display = 'block';
               document.getElementById('competition-checkbox-error2').style.height = '18px';
@@ -829,7 +838,13 @@ class CatchGame {
               (this.customer === 'Orlen' && !/^\+370\d{1,8}$/.test(emailInput.value))
             ) {
               document.getElementById('competition-email-error').innerText =
-                this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
+                this.language === 'LV'
+                  ? 'Obligāti aizpildāmie lauki.'
+                  : this.language === 'RU'
+                    ? 'Обязательные поля.'
+                    : this.language === 'ES'
+                      ? 'Requerido para continuar.'
+                      : 'Norint tęsti privaloma užpildyti.';
               document.getElementById('competition-email-error').zIndex = 1;
               document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-name-error').innerText = '';
