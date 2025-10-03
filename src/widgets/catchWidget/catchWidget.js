@@ -797,10 +797,7 @@ class CatchGame {
               document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
             }
 
-            if (
-              !checkboxChange2 &&
-              (this.customer === 'Pegasas' || this.customer === 'Toni' || this.customer === 'Apranga' || (this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')))
-            ) {
+            if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni' || this.customer === 'Apranga')) {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
