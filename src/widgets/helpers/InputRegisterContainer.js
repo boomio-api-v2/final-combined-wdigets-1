@@ -237,7 +237,7 @@ export class InputRegisterContainer {
                                                                   : this.prop === 'Pigu.lt' && this.language === 'ET'
                                                                     ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
                                                                     : this.prop === 'Apranga'
-                                                                      ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimo-taisykles-artvilnius" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
+                                                                      ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
                                                                       : 'Sutinku gauti naujienlaiškius.'
         }
     </div>
