@@ -1436,7 +1436,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                             : this.customer === 'SaludSA'
                               ? 'Para continuar debes agregar el correo electrónico.'
                               : this.language === 'ES'
-                                ? 'Este email ya está en uso. Use otro email.'
+                                ? 'Este email ya está en uso. Use otro numero.'
                                 : this.language === 'RU'
                                   ? 'Этот е-мейл адрес уже существует. Используйте другой.'
                                   : this.language === 'ET'
