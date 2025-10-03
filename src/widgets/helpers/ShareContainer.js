@@ -120,7 +120,7 @@ export class ShareContainer {
         document.body.removeChild(textarea);
 
         const copyButton = document.getElementById('p_code_text3');
-        copyButton.textContent = t(t.keys.copiedMsg, this.language);
+        copyButton.textContent = t('copiedMsg', this.language);
 
         setTimeout(() => {
           copyButton.textContent = this.couponCodeNew;
@@ -158,8 +158,8 @@ export class ShareContainer {
 
   async defaultShare() {
     const shareData = {
-      title: t(t.keys.shareTitle, this.language),
-      text: t(t.keys.shareText, this.language),
+      title: t('shareTitle', this.language),
+      text: t('shareText', this.language),
       url: this.getShareLink(),
     };
 
@@ -195,7 +195,7 @@ export class ShareContainer {
       // 3) Modern clipboard (many in-app browsers block this)
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(this.getShareLink());
-        alert(t(t.keys.copiedMsg, this.language));
+        alert(t('copiedMsg', this.language));
         return;
       }
       // 4) Legacy clipboard via textarea
@@ -208,7 +208,7 @@ export class ShareContainer {
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      alert(t(t.keys.copiedMsg, this.language));
+      alert(t('copiedMsg', this.language));
     } catch (err) {
       console.error('Share/copy failed:', err);
       // 4) Absolute fallback: open a chooser-friendly intent-style page
@@ -334,7 +334,7 @@ export class ShareContainer {
               document.execCommand('copy');
               ta.remove();
             }
-            alert(t(t.keys.copiedMsg, this.language));
+            alert(t('copiedMsg', this.language));
           } else {
             this.attemptOpen(z.href, z.webFallback);
           }
@@ -351,7 +351,7 @@ export class ShareContainer {
     footer.style.cssText = 'padding:6px 10px 12px;';
     const closeBtn = document.createElement('button');
     closeBtn.type = 'button';
-    closeBtn.textContent = t(t.keys.close, this.language);
+    closeBtn.textContent = t('close', this.language);
     closeBtn.style.cssText = 'width:100%;height:42px;border-radius:12px;border:0;background:#f2f2f2;color:#111;font-weight:600;cursor:pointer;';
     closeBtn.onclick = () => this.closeShareSheet(root);
     footer.appendChild(closeBtn);
@@ -430,7 +430,7 @@ export class ShareContainer {
         href: `mailto:?subject=${encTitle}&body=${encMsg}`,
       },
       {
-        label: t(t.keys.copy, this.language),
+        label: t('copy', this.language),
         icon: ico('📋'),
         type: 'copy',
       },
