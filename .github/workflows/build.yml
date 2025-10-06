@@ -13,7 +13,7 @@ permissions:
 # Prevent overlapping runs on the same ref (keeps deploys tidy)
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
