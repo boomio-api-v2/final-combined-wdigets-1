@@ -46,6 +46,29 @@ const translations = {
     FI: 'Sukella hauskaan peliin ja voita mahtavia palkintoja!',
     RU: 'Погрузись в увлекательную игру и выиграй классные призы!',
   },
+  controlLeftCatch: {
+    EN: 'CLICK',
+    LT: 'SPUST',
+    LV: 'PA KREISI',
+    RU: 'НАЛЕВО',
+    ES: 'CLIC',
+  },
+  controlRightCatch: {
+    EN: 'CLICK',
+    LT: 'SPUST',
+    LV: 'PA LABI',
+    RU: 'НАПРАВО',
+    ES: 'CLIC',
+  },
+  controlTapDoodle: {
+    EN: 'TAP',
+    LT: 'KLIK',
+    LV: 'BAKSTI',
+    ET: 'TÄPI',
+    FI: 'Napautua',
+    RU: 'ТЫКАЙ',
+    ES: 'CLIC',
+  },
 };
 
 t.keys = Object.freeze(Object.fromEntries(Object.keys(translations).map((k) => [k, translations[k]])));

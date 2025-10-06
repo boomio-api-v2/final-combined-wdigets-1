@@ -1363,17 +1363,15 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
                 document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
                 return;
               }
+            }
 
-              if (this.customer === 'Nykstukas' && (nameInput?.value === '' || nameInput?.value === null)) {
-                document.getElementById('competition-email-error').innerText = 'Norint tęsti privaloma užpildyti visus laukus.';
-                document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-                document.getElementById('competition-name-error').innerText = '';
-
-                document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-                document.getElementById('competition-checkbox-error').innerText = '';
-                document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-                return;
-              }
+            if (Elements.isVisible(nameInput) && (nameInput?.value === '' || nameInput?.value === null)) {
+              document.getElementById('competition-name-error').innerText = this.language === 'ES' ? 'El campo de nombre debe completarse.' : 'Norint tęsti privaloma užpildyti visus laukus.';
+              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+              return;
+            } else {
+              document.getElementById('competition-name-error').innerText = '';
+              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
             }
 
             if (Elements.isVisible(emailInput) && emailInput?.value?.length < 10 && this.customer === 'Toni') {
