@@ -28,8 +28,34 @@ module.exports = {
         unicodeEscapeSequence: false,
       },
       [
-        // Exclude external libraries (node_modules)
+        // EXCLUDE patterns (files NOT to obfuscate)
         'node_modules/**',
+        'dist/**',
+        '*.config.*', // Exclude webpack.config.js, jest.config.js, etc.
+        '*.html', // Exclude index.html
+        '*.md', // Exclude README.md
+
+        // ============================================================
+        // STRATEGY 1: Obfuscate ONLY specific files
+        // ============================================================
+        // Uncomment to obfuscate ONLY boomio.js:
+        'src/**', // Exclude all src files
+        '!src/services/boomio.js', // BUT include boomio.js (! negates)
+
+        // ============================================================
+        // STRATEGY 2: Exclude specific files (obfuscate everything else)
+        // ============================================================
+        // Uncomment to exclude specific files from obfuscation:
+        //'src/widgets/**', // Don't obfuscate widgets
+        // 'src/services/localStorage.js', // Don't obfuscate this file
+
+        // ============================================================
+        // STRATEGY 3: Obfuscate multiple specific files
+        // ============================================================
+        // Uncomment to obfuscate only boomio.js and catchWidget.js:
+        // 'src/**',                           // Exclude all
+        // '!src/services/boomio.js',          // Include this
+        // '!src/widgets/catchWidget/catchWidget.js', // Include this
       ],
     ),
   ],
