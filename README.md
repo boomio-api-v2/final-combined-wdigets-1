@@ -18,6 +18,8 @@ git config --global user.email
 
 ## Installation & Build
 
+Install Node 24.x
+
 ```shell
 # Install dependencies
 npm i
@@ -32,6 +34,9 @@ After building, the output will be available in dist/bundle.js.
 
 ```shell
 npm start
+
+# Alternative
+npm run dev
 ```
 
 Preview URL:
@@ -39,7 +44,7 @@ http://127.0.0.1:3000/?demo=1&widget_type=catch
 
 ## Commit & Push
 
-Commit and push changes. Make sure that you pushes dist/bundle.js file.
+Commit and push changes. Make sure that you pushe dist/bundle.js file.
 
 ## Embed in Your Website
 
