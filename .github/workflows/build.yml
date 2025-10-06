@@ -1,4 +1,4 @@
-name: Build
+name: Build & Deploy Widgets
 
 on:
   push:
@@ -10,16 +10,21 @@ on:
 permissions:
   contents: read
 
+# Prevent overlapping runs on the same ref (keeps deploys tidy)
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -36,7 +41,7 @@ jobs:
       # - name: Prettier check
       #   run: npm run format:check
 
-      - name: Test
+      - name: Run Tests
         run: npm test
         env:
           CI: true
@@ -56,21 +61,24 @@ jobs:
           compression-level: 6
 
   deploy_test:
-    if: github.event_name == 'pull_request'
+    name: Deploy TEST
     needs: build
+    if: (github.ref == 'refs/heads/main' || github.event_name == 'pull_request') && github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     environment: TEST
-    concurrency:
-      group: deploy-test-${{ github.head_ref || github.ref }}
-      cancel-in-progress: true
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write
+
     steps:
       - name: Download bundle
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: bundle.js
           path: .
 
-      - name: Upload bundle.js to Cloudflare KV
+      - name: Upload to Cloudflare KV
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -82,21 +90,22 @@ jobs:
             bundle.js
 
   deploy_prod:
-    if: github.ref == 'refs/heads/main'
+    name: Deploy PROD
     needs: build
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: PROD
-    concurrency:
-      group: deploy-prod
-      cancel-in-progress: true
+    permissions:
+      contents: read
+      deployments: write
     steps:
       - name: Download bundle
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: bundle.js
           path: .
 
-      - name: Upload bundle.js to Cloudflare KV
+      - name: Upload to Cloudflare KV
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

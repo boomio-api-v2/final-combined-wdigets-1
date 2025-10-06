@@ -229,7 +229,7 @@ class CrushGame {
 
   isUserIdSet() {
     const v = this.user_id;
-    if (v == null) return false; // null or undefined
+    if (v === null) return false; // null or undefined
     const s = String(v).trim().toLowerCase();
     return s.length > 0 && s !== 'null' && s !== 'undefined';
   }
@@ -793,10 +793,10 @@ ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 120px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
     <div>${
-      this.language == 'LV' ? 'PAVELC' : this.language == 'ET' ? 'LEHITSE' : this.language == 'FI' ? 'Pyyhkäise' : this.language == 'RU' ? 'ПОТЯНИ' : this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'
+      this.language === 'LV' ? 'PAVELC' : this.language === 'ET' ? 'LEHITSE' : this.language === 'FI' ? 'Pyyhkäise' : this.language === 'RU' ? 'ПОТЯНИ' : this.language === 'ES' ? 'DESLIZA' : 'BRŪKŠT'
     }</div>
     <div>${
-      this.language == 'LV' ? 'PAVELC' : this.language == 'ET' ? 'LEHITSE' : this.language == 'FI' ? 'Pyyhkäise' : this.language == 'RU' ? 'ПОТЯНИ' : this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'
+      this.language === 'LV' ? 'PAVELC' : this.language === 'ET' ? 'LEHITSE' : this.language === 'FI' ? 'Pyyhkäise' : this.language === 'RU' ? 'ПОТЯНИ' : this.language === 'ES' ? 'DESLIZA' : 'BRŪKŠT'
     }</div>
   </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
 </div>
@@ -885,7 +885,7 @@ background:${
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
 
-    document.addEventListener('shareClicked', (event) => {
+    document.addEventListener('shareClicked', () => {
       if (this.shareClicked === false) {
         console.log('shareClicked');
         this.shareClicked = true;
@@ -1622,7 +1622,6 @@ background:${
 
       setTimeout(() => {
         shareContainer.style.height = '680px';
-        const isNarrowScreen = window.innerWidth <= 920;
         shareContainer.style.top = 'calc(50%)';
         shareContainer.style.opacity = 1;
       }, 100);
@@ -1661,7 +1660,6 @@ background:${
 
       setTimeout(() => {
         competitionTableContainer.style.height = '680px';
-        const isNarrowScreen = window.innerWidth <= 920;
 
         competitionTableContainer.style.top = 'calc(50%)';
 
@@ -2099,7 +2097,6 @@ background:${
   }
 
   explodeTile(centerTile, callback) {
-    const specialKey = this.grid[centerTile.row][centerTile.col];
     const targetRow = centerTile.row;
     const targetCol = centerTile.col;
 
