@@ -135,7 +135,7 @@ class LocalStorageService {
       w_hint_static_text,
       w_top_text,
       p_top_text,
-      p_coupon_text,      
+      p_coupon_text,
       p_bottom_text,
       p_button_text,
       p_bottom_text_end_pc,

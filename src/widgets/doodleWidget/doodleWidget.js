@@ -1,4 +1,5 @@
 import { widgetHtmlService, QrCodeModal, AnimationService, boomioService, localStorageService } from '@/services';
+import { t } from '@/services/translations';
 import './styles.css';
 import {
   close,
@@ -1311,40 +1312,8 @@ class DoodleWidget {
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
-       <div>${
-         this.language === 'EN'
-           ? 'TAP'
-           : this.language === 'LV'
-             ? 'BAKSTI'
-             : this.language === 'ET'
-               ? 'TÄPI'
-               : this.language === 'FI'
-                 ? 'Napautua'
-                 : this.language === 'RU'
-                   ? 'ТЫКАЙ'
-                   : this.language === 'ES'
-                     ? 'CLIC'
-                     : this.language === 'LT' && this.customer === 'Pigu.lt'
-                       ? 'BAKST'
-                       : 'KLIK'
-       }</div>
-        <div>${
-          this.language === 'EN'
-            ? 'TAP'
-            : this.language === 'LV'
-              ? 'BAKSTI'
-              : this.language === 'ET'
-                ? 'TÄPI'
-                : this.language === 'FI'
-                  ? 'Napautua'
-                  : this.language === 'RU'
-                    ? 'ТЫКАЙ'
-                    : this.language === 'ES'
-                      ? 'CLIC'
-                      : this.language === 'LT' && this.customer === 'Pigu.lt'
-                        ? 'BAKST'
-                        : 'KLIK'
-        }</div>
+       <div>${this.language === 'LT' && this.customer === 'Pigu.lt' ? 'BAKST' : t('controlTapDoodle', this.language)}</div>
+        <div>${this.language === 'LT' && this.customer === 'Pigu.lt' ? 'BAKST' : t('controlTapDoodle', this.language)}</div>
       </div><img src=${this.isMobile ? Controlls : ControlsDesktop} alt="Image Description" style="width: 110px; height: 50px;">`}
       </div>
 
@@ -1901,12 +1870,12 @@ class Platform {
   }
   draw() {
     try {
-      if (this.type == 1) this.cy = 0;
-      else if (this.type == 2) this.cy = 61;
-      else if (this.type == 3 && this.flag === 0) this.cy = this.customer === 'Akropolis' && this.language === 'LV' ? 26 : 39;
-      else if (this.type == 3 && this.flag == 1) this.cy = 1000;
-      else if (this.type == 4 && this.state === 0) this.cy = 90;
-      else if (this.type == 4 && this.state == 1) this.cy = 1000;
+      if (this.type === 1) this.cy = 0;
+      else if (this.type === 2) this.cy = 61;
+      else if (this.type === 3 && this.flag === 0) this.cy = this.customer === 'Akropolis' && this.language === 'LV' ? 26 : 39;
+      else if (this.type === 3 && this.flag === 1) this.cy = 1000;
+      else if (this.type === 4 && this.state === 0) this.cy = 90;
+      else if (this.type === 4 && this.state === 1) this.cy = 1000;
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
     } catch (e) {}
   }
