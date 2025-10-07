@@ -1,7 +1,6 @@
 import './styles.css';
 
 import {
-  boomioLogo,
   SuccessmessagebannersNegativeEE,
   SuccessmessagebannersNegativeFI,
   SuccessmessagebannersNegativeLT,

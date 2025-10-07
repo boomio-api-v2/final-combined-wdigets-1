@@ -1,5 +1,4 @@
 import './index.css';
-import { drawText } from './font';
 import { localStorageService, boomioService } from '@/services';
 import {
   brickWallImageData,
@@ -33,7 +32,6 @@ import {
   cloudsImageDataBarbora,
   brickWallImageDataBarbora,
   mailboxImageDataBarbora,
-  grassBarbora,
   lineBarbora,
   BarboraTree1,
   BarboraTree2,
@@ -55,8 +53,6 @@ import {
   IkeaTree1,
   IkeaTree2,
   IkeaTree3,
-  grassIkea,
-  grassUnisend,
   backgroundUnisend,
   goldImageDataUnisend,
   goldImageDataUnisendES,
@@ -86,9 +82,7 @@ import {
   PigubikeLV,
   PigubikeFI,
   PigubikeLT,
-  Pigucity,
   Pigutree,
-  Pigutree2,
   city1ImageDataPigu,
   city2ImageDataPigu,
   city3ImageDataPigu,

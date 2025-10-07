@@ -48,7 +48,7 @@ Component.Stage = function (canvas, conf) {
     foodImg: null,
   };
 
-  if (typeof conf == 'object') {
+  if (typeof conf === 'object') {
     for (var key in conf) {
       if (conf.hasOwnProperty(key)) {
         this.conf[key] = conf[key];

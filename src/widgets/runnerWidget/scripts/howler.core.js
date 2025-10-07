@@ -1,7 +1,3 @@
-import PxLoader from './PxLoader.js';
-import PxLoaderImage from './PxLoaderImage.js';
-import yandexScripts from './yandexScripts.js';
-import vars from './vars.js';
 /*!
  *  howler.js v2.2.3
  *  howlerjs.com

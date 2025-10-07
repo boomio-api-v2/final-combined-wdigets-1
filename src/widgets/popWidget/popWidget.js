@@ -1,5 +1,4 @@
 import {
-  intro,
   newRecordEE,
   newRecordFI,
   newRecordRU,

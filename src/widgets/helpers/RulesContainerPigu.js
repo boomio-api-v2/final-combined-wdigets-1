@@ -1,6 +1,6 @@
 import './styles.css';
 
-import { boomioLogo, close } from './constants';
+import { close } from './constants';
 export class RulesContainerPigu {
   constructor(prop, scoreTable, currentScore) {
     this.prop = prop;

@@ -1,7 +1,7 @@
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
 import { closeImage, dotImage, oldCouponImage, winningConfetinGif } from '@/сonstants/icons';
-import { exitBtnHtml, exitBtnEmailHtml } from '@/сonstants/htmlTemplates';
+import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 
 const likeBtnImage =

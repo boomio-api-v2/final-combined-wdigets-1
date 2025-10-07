@@ -13,12 +13,10 @@ import {
   IkeaIntro,
   UnisendIntroLV,
   UnisendIntroEE,
-  newRecordIkea,
   piguDriveEEEn,
   piguDriveEERu,
   piguDriveEE,
   piguDriveFIEn,
-  piguDriveFIRu,
   piguDriveFI,
   piguDriveLTEn,
   piguDriveLTRu,
@@ -44,7 +42,6 @@ import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
-import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 
 class driveWidget {

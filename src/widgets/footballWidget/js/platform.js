@@ -26,7 +26,7 @@
   var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
 
   /** Detect free variable `global` from Node.js or Browserified code and use it as `root`. */
-  var freeGlobal = freeExports && freeModule && typeof global == 'object' && global;
+  var freeGlobal = freeExports && freeModule && typeof global === 'object' && global;
   if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal || freeGlobal.self === freeGlobal)) {
     root = freeGlobal;
   }
@@ -135,7 +135,7 @@
     var index = -1,
         length = object ? object.length : 0;
 
-    if (typeof length == 'number' && length > -1 && length <= maxSafeInteger) {
+    if (typeof length === 'number' && length > -1 && length <= maxSafeInteger) {
       while (++index < length) {
         callback(object[index], index, object);
       }
@@ -256,7 +256,7 @@
     var context = root;
 
     /** Used to flag when a custom context is provided. */
-    var isCustomContext = ua && typeof ua == 'object' && getClassOf(ua) != 'String';
+    var isCustomContext = ua && typeof ua === 'object' && getClassOf(ua) != 'String';
 
     // Juggle arguments.
     if (isCustomContext) {
@@ -332,7 +332,7 @@
     var useFeatures = ua == userAgent;
 
     /** The browser/environment version. */
-    var version = useFeatures && opera && typeof opera.version == 'function' && opera.version();
+    var version = useFeatures && opera && typeof opera.version === 'function' && opera.version();
 
     /** A flag to indicate if the OS ends with "/ Version" */
     var isSpecialCasedOS;
@@ -757,15 +757,15 @@
           }
         }
         else if (
-          typeof context.process == 'object' && !context.process.browser &&
+          typeof context.process === 'object' && !context.process.browser &&
           (data = context.process)
         ) {
-          if (typeof data.versions == 'object') {
-            if (typeof data.versions.electron == 'string') {
+          if (typeof data.versions === 'object') {
+            if (typeof data.versions.electron === 'string') {
               description.push('Node ' + data.versions.node);
               name = 'Electron';
               version = data.versions.electron;
-            } else if (typeof data.versions.nw == 'string') {
+            } else if (typeof data.versions.nw === 'string') {
               description.push('Chromium ' + version, 'Node ' + data.versions.node);
               name = 'NW.js';
               version = data.versions.nw;
@@ -791,7 +791,7 @@
         version = (data = data.version || null) && (data.major + '.' + data.minor + '.' + data.patch);
       }
       // Detect IE compatibility modes.
-      else if (typeof doc.documentMode == 'number' && (data = /\bTrident\/(\d+)/i.exec(ua))) {
+      else if (typeof doc.documentMode === 'number' && (data = /\bTrident\/(\d+)/i.exec(ua))) {
         // We're in compatibility mode when the Trident version + 4 doesn't
         // equal the document mode.
         version = [version, doc.documentMode];
@@ -803,7 +803,7 @@
         version = name == 'IE' ? String(version[1].toFixed(1)) : version[0];
       }
       // Detect IE 11 masking as other browsers.
-      else if (typeof doc.documentMode == 'number' && /^(?:Chrome|Firefox)\b/.test(name)) {
+      else if (typeof doc.documentMode === 'number' && /^(?:Chrome|Firefox)\b/.test(name)) {
         description.push('masking as ' + name + ' ' + version);
         name = 'IE';
         version = '11.0';
@@ -934,7 +934,7 @@
         data = data[1] || (data = data[0], data < 530 ? 1 : data < 532 ? 2 : data < 532.05 ? 3 : data < 533 ? 4 : data < 534.03 ? 5 : data < 534.07 ? 6 : data < 534.10 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.30 ? 11 : data < 535.01 ? 12 : data < 535.02 ? '13+' : data < 535.07 ? 15 : data < 535.11 ? 16 : data < 535.19 ? 17 : data < 536.05 ? 18 : data < 536.10 ? 19 : data < 537.01 ? 20 : data < 537.11 ? '21+' : data < 537.13 ? 23 : data < 537.18 ? 24 : data < 537.24 ? 25 : data < 537.36 ? 26 : layout != 'Blink' ? '27' : '28');
       }
       // Add the postfix of ".x" or "+" for approximate versions.
-      layout && (layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+'));
+      layout && (layout[1] += ' ' + (data += typeof data === 'number' ? '.x' : /[.+]/.test(data) ? '' : '+'));
       // Obscure version for some Safari 1-2 releases.
       if (name == 'Safari' && (!version || parseInt(version) > 45)) {
         version = data;
@@ -1192,7 +1192,7 @@
   var platform = parse();
 
   // Some AMD build optimizers, like r.js, check for condition patterns like the following:
-  if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+  if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
     // Expose platform on the global object to prevent errors when platform is
     // loaded by a script tag in the presence of an AMD loader.
     // See http://requirejs.org/docs/errors.html#mismatch for more details.

@@ -117,7 +117,7 @@ createjs.promote = function(subclass, prefix) {
 	if (supP) {
 		subP[(prefix+="_") + "constructor"] = supP.constructor; // constructor is not always innumerable
 		for (var n in supP) {
-			if (subP.hasOwnProperty(n) && (typeof supP[n] == "function")) { subP[prefix + n] = supP[n]; }
+			if (subP.hasOwnProperty(n) && (typeof supP[n] === "function")) { subP[prefix + n] = supP[n]; }
 		}
 	}
 	return subclass;
@@ -656,7 +656,7 @@ this.createjs = this.createjs||{};
 	 * @return {Boolean} Returns false if `preventDefault()` was called on a cancelable event, true otherwise.
 	 **/
 	p.dispatchEvent = function(eventObj, bubbles, cancelable) {
-		if (typeof eventObj == "string") {
+		if (typeof eventObj === "string") {
 			// skip everything if there's no listeners and it doesn't bubble:
 			var listeners = this._listeners;
 			if (!bubbles && (!listeners || !listeners[eventObj])) { return true; }

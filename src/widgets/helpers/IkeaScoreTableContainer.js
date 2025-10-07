@@ -1,7 +1,6 @@
 import './styles.css';
 
 import { boomioLogo } from './constants';
-import { BarboraAppleStore, BarboraGoogleStore } from '../driveWidget/js/constants';
 export class IkeaScoreTableContainer {
   constructor(prop, scoreTable, currentScore) {
     this.prop = prop;

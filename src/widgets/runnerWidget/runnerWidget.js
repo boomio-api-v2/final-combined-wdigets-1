@@ -1,8 +1,5 @@
 import './runnerStyles.css';
 import PxLoader from './scripts/PxLoader.js';
-import howlercore from './scripts/howler.core.js';
-import PxLoaderImage from './scripts/PxLoaderImage.js';
-import yandexScripts from './scripts/yandexScripts.js';
 import { localStorageService, widgetHtmlService, boomioService } from '@/services';
 import {
   star,
@@ -15,7 +12,6 @@ import {
   home,
   redo,
   up,
-  stopwatch,
   down,
   left,
   right,
@@ -34,12 +30,10 @@ import {
   downDentsu,
   leftDentsu,
   rightDentsu,
-  dentsuIntro,
   dentsuOrientation,
   uncheckIcon,
   runnerbackgroundNykstukas,
   runnerbackgroundDemo,
-  nykstukasIntro,
   close,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
