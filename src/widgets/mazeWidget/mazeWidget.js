@@ -65,15 +65,27 @@ class Maze {
 
   arrowsToMaze = (e) => {
     const key = e.key;
-    if (key === 'ArrowLeft' || key === 'a') { e.preventDefault(); this.moveLeft(); }
-    if (key === 'ArrowRight' || key === 'd') { e.preventDefault(); this.moveRight(); }
-    if (key === 'ArrowUp' || key === 'w') { e.preventDefault(); this.moveUp(); }
-    if (key === 'ArrowDown' || key === 's') { e.preventDefault(); this.moveDown(); }
-  }
+    if (key === 'ArrowLeft' || key === 'a') {
+      e.preventDefault();
+      this.moveLeft();
+    }
+    if (key === 'ArrowRight' || key === 'd') {
+      e.preventDefault();
+      this.moveRight();
+    }
+    if (key === 'ArrowUp' || key === 'w') {
+      e.preventDefault();
+      this.moveUp();
+    }
+    if (key === 'ArrowDown' || key === 's') {
+      e.preventDefault();
+      this.moveDown();
+    }
+  };
 
   enableMovement() {
-    const mazeEl = document.getElementById('maze')
-    document.addEventListener('keydown', this.arrowsToMaze)
+    const mazeEl = document.getElementById('maze');
+    document.addEventListener('keydown', this.arrowsToMaze);
     let xDown = null;
     let yDown = null;
     mazeEl.addEventListener('touchstart', (e) => {
@@ -125,12 +137,8 @@ class Maze {
   moveRight() {
     if (this.coordinates[1] >= this.col - 1) return;
     if (
-      this.cells
-        .find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1])
-        .style.includes('right') ||
-      this.cells
-        .find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] + 1)
-        .style.includes('left')
+      this.cells.find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('right') ||
+      this.cells.find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] + 1).style.includes('left')
     )
       return;
     this.unpickYou(this.coordinates[0], this.coordinates[1]);
@@ -140,12 +148,8 @@ class Maze {
   moveLeft() {
     if (this.coordinates[1] <= 0) return;
     if (
-      this.cells
-        .find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1])
-        .style.includes('left') ||
-      this.cells
-        .find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] - 1)
-        .style.includes('right')
+      this.cells.find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('left') ||
+      this.cells.find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1] - 1).style.includes('right')
     )
       return;
     this.unpickYou(this.coordinates[0], this.coordinates[1]);
@@ -154,24 +158,14 @@ class Maze {
   }
   moveUp() {
     if (this.coordinates[0] <= 0) return;
-    if (
-      this.cells
-        .find((cell) => cell.row === this.coordinates[0] - 1 && cell.col === this.coordinates[1])
-        .style.includes('bottom')
-    )
-      return;
+    if (this.cells.find((cell) => cell.row === this.coordinates[0] - 1 && cell.col === this.coordinates[1]).style.includes('bottom')) return;
     this.unpickYou(this.coordinates[0], this.coordinates[1]);
     this.coordinates[0]--;
     this.pickYou(this.coordinates[0], this.coordinates[1]);
   }
   moveDown() {
     if (this.coordinates[0] >= this.row - 1) return;
-    if (
-      this.cells
-        .find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1])
-        .style.includes('bottom')
-    )
-      return;
+    if (this.cells.find((cell) => cell.row === this.coordinates[0] && cell.col === this.coordinates[1]).style.includes('bottom')) return;
     this.unpickYou(this.coordinates[0], this.coordinates[1]);
     this.coordinates[0]++;
     this.pickYou(this.coordinates[0], this.coordinates[1]);
@@ -194,29 +188,17 @@ class Maze {
 
     this.visited.push(cell);
 
-    let bottom_cell = this.cells.find(
-      (cell_) => cell_.row === cell.row + 1 && cell_.col === cell.col,
-    ); //indicates an available bottom route
+    let bottom_cell = this.cells.find((cell_) => cell_.row === cell.row + 1 && cell_.col === cell.col); //indicates an available bottom route
     let visited_bottom_cell = this.visited.find((cell_) => cell_ === bottom_cell); //indicates a visited bottom route
 
-    let left_cell = this.cells.find(
-      (cell_) => cell_.row === cell.row && cell_.col === cell.col - 1,
-    );
+    let left_cell = this.cells.find((cell_) => cell_.row === cell.row && cell_.col === cell.col - 1);
     let visited_left_cell = this.visited.find((cell_) => cell_ === left_cell);
-    let right_cell = this.cells.find(
-      (cell_) => cell_.row === cell.row && cell_.col === cell.col + 1,
-    );
+    let right_cell = this.cells.find((cell_) => cell_.row === cell.row && cell_.col === cell.col + 1);
     let visited_right_cell = this.visited.find((cell_) => cell_ === right_cell);
     let top_cell = this.cells.find((cell_) => cell_.row === cell.row - 1 && cell_.col === cell.col);
     let visited_top_cell = this.visited.find((cell_) => cell_ === top_cell);
 
-    if (
-      cell.style !== 'bottom' &&
-      bottom_cell &&
-      bottom_cell.col === cell.col &&
-      visited_bottom_cell === undefined &&
-      this.drawRoute(bottom_cell)
-    ) {
+    if (cell.style !== 'bottom' && bottom_cell && bottom_cell.col === cell.col && visited_bottom_cell === undefined && this.drawRoute(bottom_cell)) {
       this.route.push(cell);
       //  console.log("cell is not bottom:", cell);
       // console.log("and we checked on ", bottom_cell);
@@ -260,12 +242,7 @@ class Maze {
       }
     }
 
-    if (
-      top_cell &&
-      top_cell.style !== 'bottom' &&
-      visited_top_cell === undefined &&
-      this.drawRoute(top_cell)
-    ) {
+    if (top_cell && top_cell.style !== 'bottom' && visited_top_cell === undefined && this.drawRoute(top_cell)) {
       this.route.push(cell);
       //      console.log("cell is not bottom:", cell);
       //      console.log("and we checked on ", top_cell );
@@ -292,7 +269,7 @@ class Maze {
     if (!table) {
       table = document.createElement('table');
       table.id = 'maze';
-      table.className = 'maze-field'
+      table.className = 'maze-field';
       table.style.position = 'absolute';
       table.style.top = `20px`;
       table.style.left = `20px`;
@@ -314,7 +291,7 @@ class Maze {
     closeBtn.addEventListener(
       'click',
       (e) => {
-        document.removeEventListener('keydown', this.arrowsToMaze)
+        document.removeEventListener('keydown', this.arrowsToMaze);
         e.stopPropagation();
         e.preventDefault();
         element.remove();

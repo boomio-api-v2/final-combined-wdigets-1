@@ -1,11 +1,4 @@
-import {
-  boomioService,
-  localStorageService,
-  DragElement,
-  QrCodeModal,
-  AnimationService,
-  widgetHtmlService,
-} from '@/services';
+import { boomioService, localStorageService, DragElement, QrCodeModal, AnimationService, widgetHtmlService } from '@/services';
 import { getRandomArbitrary } from '@/utlis';
 import { defaultList } from './constants';
 import { outerBorderGradient } from './constants';
@@ -22,11 +15,7 @@ class WheelOfFortuneWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     if (!this.config.success && !localStorage.getItem('testing_Widgets')) return;
-    this.x = window.matchMedia('(min-width: 560px)').matches
-      ? 300
-      : window.matchMedia('(min-width: 390px)').matches
-      ? 1
-      : -20;
+    this.x = window.matchMedia('(min-width: 560px)').matches ? 300 : window.matchMedia('(min-width: 390px)').matches ? 1 : -20;
     this.y = 200;
     this.size = window.matchMedia('(min-width: 560px)').matches ? 450 : 350;
     this.createWheel();
@@ -67,12 +56,7 @@ class WheelOfFortuneWidget {
     this.startAnimation();
     const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
 
-    createCloseMoveButtons(
-      this.wheelOfFortune,
-      this.wheelOfFortune,
-      isMobile ? [-140, 0] : [-200, 0],
-      true,
-    );
+    createCloseMoveButtons(this.wheelOfFortune, this.wheelOfFortune, isMobile ? [-140, 0] : [-200, 0], true);
   }
   engine = () => {
     this.frame();
@@ -88,15 +72,10 @@ class WheelOfFortuneWidget {
     if (this.config.p_top_text?.includes('$') || this.config.p_top_text?.includes('€')) {
       this.config.list.forEach((e) => {
         const rounding = winningValue.length > 1 ? winningValue.length - 1 : 1;
-        const value =
-          winningValue * 1 +
-          Math.round((winningValue * getRandomArbitrary(-1, 1)) / Math.pow(10, rounding - 1)) *
-            Math.pow(10, rounding - 1);
+        const value = winningValue * 1 + Math.round((winningValue * getRandomArbitrary(-1, 1)) / Math.pow(10, rounding - 1)) * Math.pow(10, rounding - 1);
         e.label = `${value}${this.config.p_top_text.includes('$') ? ' $' : ' €'}`;
       });
-      this.config.list[5].label = `${winningValue} ${
-        this.config.p_top_text.includes('$') ? ' $' : ' €'
-      }`;
+      this.config.list[5].label = `${winningValue} ${this.config.p_top_text.includes('$') ? ' $' : ' €'}`;
     }
     if (this.config.p_top_text?.includes('%')) {
       this.config.list[5].label = `${winningValue} % OFF`;
@@ -222,14 +201,7 @@ class WheelOfFortuneWidget {
     this.ctx.globalCompositeOperation = 'multiply';
     this.ctx.beginPath();
     let grdShadow;
-    grdShadow = this.ctx.createRadialGradient(
-      this.rad,
-      this.rad,
-      0,
-      this.rad,
-      this.rad,
-      this.rad - outerCircle,
-    );
+    grdShadow = this.ctx.createRadialGradient(this.rad, this.rad, 0, this.rad, this.rad, this.rad - outerCircle);
     shadowGradient.forEach((st) => grdShadow.addColorStop(st.pct, st.clr));
     this.ctx.fillStyle = grdShadow;
     this.ctx.moveTo(this.rad, this.rad);
@@ -323,26 +295,29 @@ class WheelOfFortuneWidget {
       }, delay);
       widgetHtmlService.container.appendChild(window['pict' + i]);
     });
-    setTimeout(() => {
-      const pictures = document.querySelectorAll('.boomio-picture');
+    setTimeout(
+      () => {
+        const pictures = document.querySelectorAll('.boomio-picture');
 
-      // Apply CSS transition for opacity to the pictures
-      pictures.forEach((pic) => {
-        pic.style.transition = 'opacity 0.5s ease'; // You can adjust the duration and easing as needed
-        pic.style.opacity = 0.8;
-      });
-      wheel.style.opacity = 0.1;
-      wheel.style.display = 'flex';
+        // Apply CSS transition for opacity to the pictures
+        pictures.forEach((pic) => {
+          pic.style.transition = 'opacity 0.5s ease'; // You can adjust the duration and easing as needed
+          pic.style.opacity = 0.8;
+        });
+        wheel.style.opacity = 0.1;
+        wheel.style.display = 'flex';
 
-      setTimeout(() => {
-        wheel.style.transition = 'opacity 0.5s ease'; // You can adjust the duration and easing as needed
-        wheel.style.opacity = 1; // Set the opacity to 1 to make it visible
-      }, 500);
-      // After the pictures have faded out, remove them from the DOM
-      setTimeout(() => {
-        pictures.forEach((pic) => pic.remove());
-      }, 700); // Adjust the time (in milliseconds) to match your transition duration
-    }, delay + transition * 1000);
+        setTimeout(() => {
+          wheel.style.transition = 'opacity 0.5s ease'; // You can adjust the duration and easing as needed
+          wheel.style.opacity = 1; // Set the opacity to 1 to make it visible
+        }, 500);
+        // After the pictures have faded out, remove them from the DOM
+        setTimeout(() => {
+          pictures.forEach((pic) => pic.remove());
+        }, 700); // Adjust the time (in milliseconds) to match your transition duration
+      },
+      delay + transition * 1000,
+    );
   };
 
   startAnimation = () => {

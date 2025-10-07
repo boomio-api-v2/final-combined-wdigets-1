@@ -272,16 +272,7 @@ const letters = {
 };
 
 const FONT_UNIT_HEIGHT = 5;
-export function drawText(
-  canvas,
-  string,
-  startX = 0,
-  startY = 0,
-  pixelHeight = 1,
-  color = '#000',
-  bgColor = '#CCC',
-  alpha = 1.0,
-) {
+export function drawText(canvas, string, startX = 0, startY = 0, pixelHeight = 1, color = '#000', bgColor = '#CCC', alpha = 1.0) {
   const size = pixelHeight / FONT_UNIT_HEIGHT;
   const context = canvas.getContext('2d');
   const oldAlpha = context.globalAlpha;

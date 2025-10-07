@@ -1,14 +1,6 @@
 import { AnimationService, DragElement, localStorageService, QrCodeModal } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
-import {
-  icePieceCount,
-  icePieceImages,
-  iceBlockImage,
-  icePieceShadowImages,
-  shadowTopCoordinatesForDesktop,
-  shadowTopCoordinatesForMobile,
-  bangImage,
-} from './constants';
+import { icePieceCount, icePieceImages, iceBlockImage, icePieceShadowImages, shadowTopCoordinatesForDesktop, shadowTopCoordinatesForMobile, bangImage } from './constants';
 import boomio from '@/services/boomio';
 import { isMobileDevice } from '@/config';
 import './styles.css';
@@ -76,9 +68,7 @@ class IceWidget {
       'load',
       () => {
         this.showQrModal();
-        const coordinates = isMobileDevice
-          ? shadowTopCoordinatesForMobile
-          : shadowTopCoordinatesForDesktop;
+        const coordinates = isMobileDevice ? shadowTopCoordinatesForMobile : shadowTopCoordinatesForDesktop;
         const top = coordinates[shadowIndex];
 
         assignStyleOnElement(currentImage.style, {

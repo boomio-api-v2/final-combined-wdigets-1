@@ -65,14 +65,8 @@ class TestingWidget {
       const spawnBtnId = `SpawnBtn_${widget.spawn}`;
 
       buttonsHtml += `<div style='width:100%;margin-bottom:10px'>
-      ${
-        widget.spawn === 'snake'
-          ? `<p style='margin-top:20px;margin-bottom:30px;'>Coming soon</p>`
-          : ''
-      }
-          <button class='go_button' style='margin:0px 10px;font-size: 12px !important;width:160px !important' data-widget-spawn='${
-            widget.spawn
-          }' id='${spawnBtnId}'>${widget.name}</button>
+      ${widget.spawn === 'snake' ? `<p style='margin-top:20px;margin-bottom:30px;'>Coming soon</p>` : ''}
+          <button class='go_button' style='margin:0px 10px;font-size: 12px !important;width:160px !important' data-widget-spawn='${widget.spawn}' id='${spawnBtnId}'>${widget.name}</button>
         </div>`;
     });
 
@@ -96,9 +90,7 @@ class TestingWidget {
       </div>
     `;
 
-    const couponPreviewContainer = animationEl.querySelector(
-      '.coupon__preview__card__header_buttons',
-    );
+    const couponPreviewContainer = animationEl.querySelector('.coupon__preview__card__header_buttons');
 
     couponPreviewContainer.addEventListener('touchstart', (event) => {
       event.stopPropagation();

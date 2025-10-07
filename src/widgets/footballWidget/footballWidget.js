@@ -54,11 +54,7 @@ class FootballWidget {
   createContainer = () => {
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-NewGame-container');
-    myCanvas.classList.add(
-      'boomio--animation__wrapper',
-      'boomio--animation__wrapper--initial',
-      'box',
-    );
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
 
     myCanvas.innerHTML = `
 

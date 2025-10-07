@@ -271,44 +271,21 @@
       var isOldSafari = checkSafari && safariVersion && parseInt(safariVersion[1], 10) < 15;
 
       self._codecs = {
-        mp3: !!(
-          !isOldOpera &&
-          (mpegTest || audioTest.canPlayType('audio/mp3;').replace(/^no$/, ''))
-        ),
+        mp3: !!(!isOldOpera && (mpegTest || audioTest.canPlayType('audio/mp3;').replace(/^no$/, ''))),
         mpeg: !!mpegTest,
         opus: !!audioTest.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, ''),
         ogg: !!audioTest.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''),
         oga: !!audioTest.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''),
-        wav: !!(
-          audioTest.canPlayType('audio/wav; codecs="1"') || audioTest.canPlayType('audio/wav')
-        ).replace(/^no$/, ''),
+        wav: !!(audioTest.canPlayType('audio/wav; codecs="1"') || audioTest.canPlayType('audio/wav')).replace(/^no$/, ''),
         aac: !!audioTest.canPlayType('audio/aac;').replace(/^no$/, ''),
         caf: !!audioTest.canPlayType('audio/x-caf;').replace(/^no$/, ''),
-        m4a: !!(
-          audioTest.canPlayType('audio/x-m4a;') ||
-          audioTest.canPlayType('audio/m4a;') ||
-          audioTest.canPlayType('audio/aac;')
-        ).replace(/^no$/, ''),
-        m4b: !!(
-          audioTest.canPlayType('audio/x-m4b;') ||
-          audioTest.canPlayType('audio/m4b;') ||
-          audioTest.canPlayType('audio/aac;')
-        ).replace(/^no$/, ''),
-        mp4: !!(
-          audioTest.canPlayType('audio/x-mp4;') ||
-          audioTest.canPlayType('audio/mp4;') ||
-          audioTest.canPlayType('audio/aac;')
-        ).replace(/^no$/, ''),
-        weba: !!(
-          !isOldSafari && audioTest.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, '')
-        ),
-        webm: !!(
-          !isOldSafari && audioTest.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, '')
-        ),
+        m4a: !!(audioTest.canPlayType('audio/x-m4a;') || audioTest.canPlayType('audio/m4a;') || audioTest.canPlayType('audio/aac;')).replace(/^no$/, ''),
+        m4b: !!(audioTest.canPlayType('audio/x-m4b;') || audioTest.canPlayType('audio/m4b;') || audioTest.canPlayType('audio/aac;')).replace(/^no$/, ''),
+        mp4: !!(audioTest.canPlayType('audio/x-mp4;') || audioTest.canPlayType('audio/mp4;') || audioTest.canPlayType('audio/aac;')).replace(/^no$/, ''),
+        weba: !!(!isOldSafari && audioTest.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, '')),
+        webm: !!(!isOldSafari && audioTest.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, '')),
         dolby: !!audioTest.canPlayType('audio/mp4; codecs="ec-3"').replace(/^no$/, ''),
-        flac: !!(
-          audioTest.canPlayType('audio/x-flac;') || audioTest.canPlayType('audio/flac;')
-        ).replace(/^no$/, ''),
+        flac: !!(audioTest.canPlayType('audio/x-flac;') || audioTest.canPlayType('audio/flac;')).replace(/^no$/, ''),
       };
 
       return self;
@@ -451,11 +428,7 @@
 
       //.Check if the audio is locked and throw a warning.
       var testPlay = new Audio().play();
-      if (
-        testPlay &&
-        typeof Promise !== 'undefined' &&
-        (testPlay instanceof Promise || typeof testPlay.then === 'function')
-      ) {
+      if (testPlay && typeof Promise !== 'undefined' && (testPlay instanceof Promise || typeof testPlay.then === 'function')) {
         testPlay.catch(function () {
           console.warn('HTML5 Audio pool exhausted, returning potentially locked audio object.');
         });
@@ -487,12 +460,7 @@
     _autoSuspend: function () {
       var self = this;
 
-      if (
-        !self.autoSuspend ||
-        !self.ctx ||
-        typeof self.ctx.suspend === 'undefined' ||
-        !Howler.usingWebAudio
-      ) {
+      if (!self.autoSuspend || !self.ctx || typeof self.ctx.suspend === 'undefined' || !Howler.usingWebAudio) {
         return;
       }
 
@@ -552,10 +520,7 @@
       if (self.state === 'running' && self.ctx.state !== 'interrupted' && self._suspendTimer) {
         clearTimeout(self._suspendTimer);
         self._suspendTimer = null;
-      } else if (
-        self.state === 'suspended' ||
-        (self.state === 'running' && self.ctx.state === 'interrupted')
-      ) {
+      } else if (self.state === 'suspended' || (self.state === 'running' && self.ctx.state === 'interrupted')) {
         self.ctx.resume().then(function () {
           self.state = 'running';
 
@@ -730,9 +695,7 @@
 
         // Log a warning if no extension was found.
         if (!ext) {
-          console.warn(
-            'No file extension was found. Consider using the "format" property or specify an extension.',
-          );
+          console.warn('No file extension was found. Consider using the "format" property or specify an extension.');
         }
 
         // Check if this extension is available.
@@ -901,13 +864,9 @@
 
           // Play the sound using the supported method.
           if (typeof node.bufferSource.start === 'undefined') {
-            sound._loop
-              ? node.bufferSource.noteGrainOn(0, seek, 86400)
-              : node.bufferSource.noteGrainOn(0, seek, duration);
+            sound._loop ? node.bufferSource.noteGrainOn(0, seek, 86400) : node.bufferSource.noteGrainOn(0, seek, duration);
           } else {
-            sound._loop
-              ? node.bufferSource.start(0, seek, 86400)
-              : node.bufferSource.start(0, seek, duration);
+            sound._loop ? node.bufferSource.start(0, seek, 86400) : node.bufferSource.start(0, seek, duration);
           }
 
           // Start a new timer if none is present.
@@ -947,11 +906,7 @@
             var play = node.play();
 
             // Support older browsers that don't support promises, and thus don't have this issue.
-            if (
-              play &&
-              typeof Promise !== 'undefined' &&
-              (play instanceof Promise || typeof play.then === 'function')
-            ) {
+            if (play && typeof Promise !== 'undefined' && (play instanceof Promise || typeof play.then === 'function')) {
               // Implements a lock to prevent DOMException: The play() request was interrupted by a call to pause().
               self._playLock = true;
 
@@ -974,8 +929,7 @@
                   self._emit(
                     'playerror',
                     sound._id,
-                    'Playback was unable to start. This is most commonly an issue ' +
-                      'on mobile devices and Chrome where playback was not within a user interaction.',
+                    'Playback was unable to start. This is most commonly an issue ' + 'on mobile devices and Chrome where playback was not within a user interaction.',
                   );
 
                   // Reset the ended and paused values.
@@ -993,12 +947,7 @@
 
             // If the node is still paused, then we can assume there was a playback issue.
             if (node.paused) {
-              self._emit(
-                'playerror',
-                sound._id,
-                'Playback was unable to start. This is most commonly an issue ' +
-                  'on mobile devices and Chrome where playback was not within a user interaction.',
-              );
+              self._emit('playerror', sound._id, 'Playback was unable to start. This is most commonly an issue ' + 'on mobile devices and Chrome where playback was not within a user interaction.');
               return;
             }
 
@@ -1021,17 +970,13 @@
         };
 
         // If this is streaming audio, make sure the src is set and load again.
-        if (
-          node.src ===
-          'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA'
-        ) {
+        if (node.src === 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA') {
           node.src = self._src;
           node.load();
         }
 
         // Play immediately if ready, or wait for the 'canplaythrough'e vent.
-        var loadedNoReadyState =
-          (window && window.ejecta) || (!node.readyState && Howler._navigator.isCocoonJS);
+        var loadedNoReadyState = (window && window.ejecta) || (!node.readyState && Howler._navigator.isCocoonJS);
         if (node.readyState >= 3 || loadedNoReadyState) {
           playHtml5();
         } else {
@@ -1617,8 +1562,7 @@
 
             // Reset the timers.
             var seek = self.seek(id[i]);
-            var duration =
-              (self._sprite[sound._sprite][0] + self._sprite[sound._sprite][1]) / 1000 - seek;
+            var duration = (self._sprite[sound._sprite][0] + self._sprite[sound._sprite][1]) / 1000 - seek;
             var timeout = (duration * 1000) / Math.abs(sound._rate);
 
             // Start a new end timer if sound is already playing.
@@ -2015,13 +1959,7 @@
       // If we are using IE and there was network latency we may be clipping
       // audio before it completes playing. Lets check the node to make sure it
       // believes it has completed, before ending the playback.
-      if (
-        !self._webAudio &&
-        sound._node &&
-        !sound._node.paused &&
-        !sound._node.ended &&
-        sound._node.currentTime < sound._stop
-      ) {
+      if (!self._webAudio && sound._node && !sound._node.paused && !sound._node.ended && sound._node.currentTime < sound._stop) {
         setTimeout(self._ended.bind(self, sound), 100);
         return self;
       }
@@ -2254,8 +2192,7 @@
     _clearSound: function (node) {
       var checkIE = /MSIE |Trident\//.test(Howler._navigator && Howler._navigator.userAgent);
       if (!checkIE) {
-        node.src =
-          'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+        node.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
       }
     },
   };
@@ -2313,10 +2250,7 @@
 
       if (parent._webAudio) {
         // Create the gain node for controlling volume (the source will connect to this).
-        self._node =
-          typeof Howler.ctx.createGain === 'undefined'
-            ? Howler.ctx.createGainNode()
-            : Howler.ctx.createGain();
+        self._node = typeof Howler.ctx.createGain === 'undefined' ? Howler.ctx.createGainNode() : Howler.ctx.createGain();
         self._node.gain.setValueAtTime(volume, Howler.ctx.currentTime);
         self._node.paused = true;
         self._node.connect(Howler.masterGain);
@@ -2489,11 +2423,7 @@
         // Make sure we get a successful response back.
         var code = (xhr.status + '')[0];
         if (code !== '0' && code !== '2' && code !== '3') {
-          self._emit(
-            'loaderror',
-            null,
-            'Failed loading audio file with status: ' + xhr.status + '.',
-          );
+          self._emit('loaderror', null, 'Failed loading audio file with status: ' + xhr.status + '.');
           return;
         }
 
@@ -2608,8 +2538,7 @@
     // Check if a webview is being used on iOS8 or earlier (rather than the browser).
     // If it is, disable Web Audio as it causes crashing.
     var iOS = /iP(hone|od|ad)/.test(Howler._navigator && Howler._navigator.platform);
-    var appVersion =
-      Howler._navigator && Howler._navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
+    var appVersion = Howler._navigator && Howler._navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
     var version = appVersion ? parseInt(appVersion[1], 10) : null;
     if (iOS && version && version < 9) {
       var safari = /safari/.test(Howler._navigator && Howler._navigator.userAgent.toLowerCase());
@@ -2620,14 +2549,8 @@
 
     // Create and expose the master GainNode when using Web Audio (useful for plugins or advanced usage).
     if (Howler.usingWebAudio) {
-      Howler.masterGain =
-        typeof Howler.ctx.createGain === 'undefined'
-          ? Howler.ctx.createGainNode()
-          : Howler.ctx.createGain();
-      Howler.masterGain.gain.setValueAtTime(
-        Howler._muted ? 0 : Howler._volume,
-        Howler.ctx.currentTime,
-      );
+      Howler.masterGain = typeof Howler.ctx.createGain === 'undefined' ? Howler.ctx.createGainNode() : Howler.ctx.createGain();
+      Howler.masterGain.gain.setValueAtTime(Howler._muted ? 0 : Howler._volume, Howler.ctx.currentTime);
       Howler.masterGain.connect(Howler.ctx.destination);
     }
 

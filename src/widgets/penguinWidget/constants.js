@@ -1,10 +1,8 @@
 import { isMobileDevice } from '@/config';
 
-export const iceBackgroundImage =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/ice_background.png?raw=true';
+export const iceBackgroundImage = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/ice_background.png?raw=true';
 
-export const iceExplosionImage =
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/ice-explosion.gif?raw=true';
+export const iceExplosionImage = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/ice-explosion.gif?raw=true';
 
 export const penguinParams = [
   {
@@ -36,8 +34,7 @@ export const penguinParams = [
 export const iceBlocksParams = [
   {
     img: 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/ice-cubes/ice-watermelon.png?raw=true',
-    fruitImg:
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/fruits/watermelon.png?raw=true',
+    fruitImg: 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/fruits/watermelon.png?raw=true',
     size: isMobileDevice ? 53 : 75,
     x: isMobileDevice ? 122 : 175,
     y: isMobileDevice ? 48 : 62,
@@ -46,8 +43,7 @@ export const iceBlocksParams = [
   },
   {
     img: 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/ice-cubes/ice-pine-apple.png?raw=true',
-    fruitImg:
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/fruits/pine-apple.png?raw=true',
+    fruitImg: 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/fruits/pine-apple.png?raw=true',
     size: isMobileDevice ? 53 : 75,
     x: isMobileDevice ? 150 : 230,
     y: isMobileDevice ? 50 : 67,
@@ -56,8 +52,7 @@ export const iceBlocksParams = [
   },
   {
     img: 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/ice-cubes/ice-cherry.png?raw=true',
-    fruitImg:
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/fruits/cherry.png?raw=true',
+    fruitImg: 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/fruits/cherry.png?raw=true',
     size: isMobileDevice ? 55 : 70,
     x: isMobileDevice ? 121 : 180,
     y: 10,
@@ -66,8 +61,7 @@ export const iceBlocksParams = [
   },
   {
     img: 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/ice-cubes/ice-banana.png?raw=true',
-    fruitImg:
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/fruits/banana.png?raw=true',
+    fruitImg: 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/da8bb2c3063250997ef061433a5558d0f48faaef/images/penguinWidget/fruits/banana.png?raw=true',
     size: isMobileDevice ? 55 : 70,
     x: isMobileDevice ? 151 : 238,
     y: isMobileDevice ? 13 : 20,

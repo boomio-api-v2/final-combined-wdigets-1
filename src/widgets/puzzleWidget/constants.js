@@ -55,8 +55,6 @@ export const puzzlesCoordinateForDesktop = [
   },
 ];
 
-export const puzzlesCoordinate = isMobileDevice
-  ? puzzlesCoordinateForMobile
-  : puzzlesCoordinateForDesktop;
+export const puzzlesCoordinate = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
 
 export const puzzleWidgetSize = isMobileDevice ? 101 : 185;

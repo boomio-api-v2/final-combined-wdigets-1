@@ -69,9 +69,7 @@ class BoomioService extends UserService {
     const toRad = (deg) => (deg * Math.PI) / 180;
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   }
@@ -134,11 +132,7 @@ class BoomioService extends UserService {
     const isValid = currentMinutes >= fromMinutes && currentMinutes <= toMinutes;
 
     if (!isValid) {
-      console.warn(
-        `❌ Time now (${now.toTimeString().slice(0, 5)}) is outside allowed range (${
-          timeRestriction.from
-        }–${timeRestriction.to}).`,
-      );
+      console.warn(`❌ Time now (${now.toTimeString().slice(0, 5)}) is outside allowed range (${timeRestriction.from}–${timeRestriction.to}).`);
     } else {
       console.log(`✅ Time ${now.toTimeString().slice(0, 5)} is within the allowed range.`);
     }
@@ -174,9 +168,7 @@ class BoomioService extends UserService {
       runner: startRunnerWidget,
     };
 
-    const hasLocationRestriction =
-      this.config.restrictions.location_restrictions?.locations &&
-      this.config.restrictions.location_restrictions?.locations_delta;
+    const hasLocationRestriction = this.config.restrictions.location_restrictions?.locations && this.config.restrictions.location_restrictions?.locations_delta;
 
     const hasDateRestriction = this.config.restrictions.date_restrictions?.dates?.length > 0;
     const hasTimeRestriction = this.config.restrictions.time_restrictions?.time;
@@ -184,9 +176,7 @@ class BoomioService extends UserService {
     const alertReasons = [];
 
     const handleAccessValidation = (currentLat, currentLon) => {
-      const isLocationValid = hasLocationRestriction
-        ? this.validateLocation(currentLat, currentLon)
-        : true;
+      const isLocationValid = hasLocationRestriction ? this.validateLocation(currentLat, currentLon) : true;
 
       const isDateValid = hasDateRestriction ? this.validateDate() : true;
       const isTimeValid = hasTimeRestriction ? this.validateTime() : true;
@@ -337,9 +327,7 @@ class BoomioService extends UserService {
           date.setTime(date.getTime() + months * 30 * 24 * 60 * 60 * 1000);
           expires = '; expires=' + date.toUTCString();
         }
-        document.cookie = `${name}=${encodeURIComponent(
-          value,
-        )}${expires}; path=/; Secure; SameSite=Strict`;
+        document.cookie = `${name}=${encodeURIComponent(value)}${expires}; path=/; Secure; SameSite=Strict`;
       };
 
       const getCookie = (name) => {

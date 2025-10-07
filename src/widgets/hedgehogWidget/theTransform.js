@@ -19,11 +19,7 @@ class AnimationService {
       transform.y = lerp(transform.y, transform.y2, 0.12);
       transform.scale = lerp(transform.scale, transform.scale2, 0.12);
 
-      if (
-        Math.abs(transform.x - transform.x2) < 0.05 &&
-        Math.abs(transform.y - transform.y2) < 0.05 &&
-        Math.abs(transform.scale - transform.scale2) < 0.05
-      ) {
+      if (Math.abs(transform.x - transform.x2) < 0.05 && Math.abs(transform.y - transform.y2) < 0.05 && Math.abs(transform.scale - transform.scale2) < 0.05) {
         stopAndResetTransform();
         transform.functionToFireWhenDone();
       }

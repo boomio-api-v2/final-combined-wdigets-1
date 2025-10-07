@@ -31,11 +31,7 @@ class WidgetHtmlService {
     document.body.appendChild(widgetScreenWrapper);
     const boomioStartWidget = localStorage.getItem('start_widget');
 
-    if (
-      (type === 'start_widget' || !type) &&
-      boomioStartWidget !== 'false' &&
-      (boomioStartWidget || type === 'start_widget')
-    ) {
+    if ((type === 'start_widget' || !type) && boomioStartWidget !== 'false' && (boomioStartWidget || type === 'start_widget')) {
       const boomioMainHolder = document.createElement('div');
       boomioMainHolder.style.cursor = 'pointer';
       boomioMainHolder.style.position = 'fixed';
@@ -73,8 +69,7 @@ class WidgetHtmlService {
 
       boomioMainHolder.addEventListener('animationend', (e) => {
         if (e.animationName === 'move-in') {
-          boomioMainHolder.style.animation =
-            'bounce 0.4s 6 alternate ease-out, bounce-left 3s forwards';
+          boomioMainHolder.style.animation = 'bounce 0.4s 6 alternate ease-out, bounce-left 3s forwards';
           setTimeout(() => {
             if (boomioMainHolder) {
               const windowHeight = window.innerHeight;

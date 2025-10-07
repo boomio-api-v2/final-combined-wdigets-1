@@ -48,7 +48,7 @@ function TimeSeries(options) {
   options.resetBounds = options.resetBounds === undefined ? true : options.resetBounds; // Enable or disable the resetBounds timer
   this.options = options;
   this.data = [];
-  this.label = options.label || "";
+  this.label = options.label || '';
 
   this.maxDataLength = options.maxDataLength || 1000;
   this.dataPool = [];
@@ -58,12 +58,19 @@ function TimeSeries(options) {
 
   // Start a resetBounds Interval timer desired
   if (options.resetBounds) {
-    this.boundsTimer = setInterval((function(thisObj) { return function() { thisObj.resetBounds(); } })(this), options.resetBoundsInterval);
+    this.boundsTimer = setInterval(
+      (function (thisObj) {
+        return function () {
+          thisObj.resetBounds();
+        };
+      })(this),
+      options.resetBoundsInterval,
+    );
   }
 }
 
 // Reset the min and max for this timeseries so the graph rescales itself
-TimeSeries.prototype.resetBounds = function() {
+TimeSeries.prototype.resetBounds = function () {
   this.maxValue = Number.NaN;
   this.minValue = Number.NaN;
   for (var i = 0; i < this.data.length; i++) {
@@ -72,29 +79,28 @@ TimeSeries.prototype.resetBounds = function() {
   }
 };
 
-TimeSeries.prototype.append = function(timestamp, value) {
-    this.lastTimeStamp = timestamp;
-    var newData = this.dataPool.length ? this.dataPool.pop() : [timestamp, value];
-    newData[0] = timestamp;
-    newData[1] = value;
-    this.data.push(newData);
-    this.maxValue = !isNaN(this.maxValue) ? Math.max(this.maxValue, value) : value;
-    this.minValue = !isNaN(this.minValue) ? Math.min(this.minValue, value) : value;
-    while(this.data.length > this.maxDataLength)
-        this.dataPool.push(this.data.shift());
+TimeSeries.prototype.append = function (timestamp, value) {
+  this.lastTimeStamp = timestamp;
+  var newData = this.dataPool.length ? this.dataPool.pop() : [timestamp, value];
+  newData[0] = timestamp;
+  newData[1] = value;
+  this.data.push(newData);
+  this.maxValue = !isNaN(this.maxValue) ? Math.max(this.maxValue, value) : value;
+  this.minValue = !isNaN(this.minValue) ? Math.min(this.minValue, value) : value;
+  while (this.data.length > this.maxDataLength) this.dataPool.push(this.data.shift());
 };
 
 function SmoothieChart(options) {
   // Defaults
   options = options || {};
-  options.grid = options.grid || { fillStyle:'#000000', strokeStyle: '#777777', lineWidth: 1, millisPerLine: 1000, verticalSections: 2 };
+  options.grid = options.grid || { fillStyle: '#000000', strokeStyle: '#777777', lineWidth: 1, millisPerLine: 1000, verticalSections: 2 };
   options.millisPerPixel = options.millisPerPixel || 20;
   options.fps = options.fps || 50;
   options.maxValueScale = options.maxValueScale || 1;
   options.minValue = options.minValue;
   options.maxValue = options.maxValue;
-  options.labels = options.labels || { fillStyle:'#ffffff' };
-  options.interpolation = options.interpolation || "bezier";
+  options.labels = options.labels || { fillStyle: '#ffffff' };
+  options.interpolation = options.interpolation || 'bezier';
   options.scaleSmoothing = options.scaleSmoothing || 0.125;
   options.maxDataSetLength = options.maxDataSetLength || 2;
   options.timestampFormatter = options.timestampFormatter || null;
@@ -104,32 +110,31 @@ function SmoothieChart(options) {
   this.currentVisMinValue = 0;
 }
 
-SmoothieChart.prototype.addTimeSeries = function(timeSeries, options) {
-  this.seriesSet.push({timeSeries: timeSeries, options: options || {}});
+SmoothieChart.prototype.addTimeSeries = function (timeSeries, options) {
+  this.seriesSet.push({ timeSeries: timeSeries, options: options || {} });
 };
 
-SmoothieChart.prototype.removeTimeSeries = function(timeSeries) {
-    this.seriesSet.splice(this.seriesSet.indexOf(timeSeries), 1);
+SmoothieChart.prototype.removeTimeSeries = function (timeSeries) {
+  this.seriesSet.splice(this.seriesSet.indexOf(timeSeries), 1);
 };
 
-SmoothieChart.prototype.streamTo = function(canvas, delay) {
-    var self = this;
-    this.render_on_tick = function() {
-        //self.render(canvas, new Date().getTime() - (delay || 0));
-        var timeSeries = self.seriesSet[0].timeSeries;
-        var dataSet = timeSeries.data;
-        self.render(canvas, timeSeries.lastTimeStamp);
-    };
+SmoothieChart.prototype.streamTo = function (canvas, delay) {
+  var self = this;
+  this.render_on_tick = function () {
+    //self.render(canvas, new Date().getTime() - (delay || 0));
+    var timeSeries = self.seriesSet[0].timeSeries;
+    var dataSet = timeSeries.data;
+    self.render(canvas, timeSeries.lastTimeStamp);
+  };
 
-    this.start();
+  this.start();
 };
 
-SmoothieChart.prototype.start = function() {
-  if (!this.timer)
-    this.timer = setInterval(this.render_on_tick, 1000/this.options.fps);
+SmoothieChart.prototype.start = function () {
+  if (!this.timer) this.timer = setInterval(this.render_on_tick, 1000 / this.options.fps);
 };
 
-SmoothieChart.prototype.stop = function() {
+SmoothieChart.prototype.stop = function () {
   if (this.timer) {
     clearInterval(this.timer);
     this.timer = undefined;
@@ -137,22 +142,24 @@ SmoothieChart.prototype.stop = function() {
 };
 
 // Sample timestamp formatting function
-SmoothieChart.timeFormatter = function(dateObject) {
-  function pad2(number){return (number < 10 ? '0' : '') + number};
-  return pad2(dateObject.getHours())+':'+pad2(dateObject.getMinutes())+':'+pad2(dateObject.getSeconds());
+SmoothieChart.timeFormatter = function (dateObject) {
+  function pad2(number) {
+    return (number < 10 ? '0' : '') + number;
+  }
+  return pad2(dateObject.getHours()) + ':' + pad2(dateObject.getMinutes()) + ':' + pad2(dateObject.getSeconds());
 };
 
-SmoothieChart.prototype.render = function(canvas, time) {
-  var canvasContext = canvas.getContext("2d");
+SmoothieChart.prototype.render = function (canvas, time) {
+  var canvasContext = canvas.getContext('2d');
   var options = this.options;
-  var dimensions = {top: 0, left: 0, width: canvas.clientWidth, height: canvas.clientHeight};
+  var dimensions = { top: 0, left: 0, width: canvas.clientWidth, height: canvas.clientHeight };
 
   // Save the state of the canvas context, any transformations applied in this method
   // will get removed from the stack at the end of this method when .restore() is called.
   canvasContext.save();
 
   // Round time down to pixel granularity, so motion appears smoother.
-  time = time - time % options.millisPerPixel;
+  time = time - (time % options.millisPerPixel);
 
   // Move the origin.
   canvasContext.translate(dimensions.left, dimensions.top);
@@ -177,24 +184,24 @@ SmoothieChart.prototype.render = function(canvas, time) {
   canvasContext.strokeStyle = options.grid.strokeStyle || '#ffffff';
   // Vertical (time) dividers.
   if (options.grid.millisPerLine > 0) {
-    for (var t = time - (time % options.grid.millisPerLine); t >= time - (dimensions.width * options.millisPerPixel); t -= options.grid.millisPerLine) {
+    for (var t = time - (time % options.grid.millisPerLine); t >= time - dimensions.width * options.millisPerPixel; t -= options.grid.millisPerLine) {
       canvasContext.beginPath();
-      var gx = Math.round(dimensions.width - ((time - t) / options.millisPerPixel));
+      var gx = Math.round(dimensions.width - (time - t) / options.millisPerPixel);
       canvasContext.moveTo(gx, 0);
       canvasContext.lineTo(gx, dimensions.height);
       canvasContext.stroke();
       // To display timestamps along the bottom
       // May have to adjust millisPerLine to display non-overlapping timestamps, depending on the canvas size
-      if (options.timestampFormatter){
-        var tx=new Date(t);
+      if (options.timestampFormatter) {
+        var tx = new Date(t);
         // Formats the timestamp based on user specified formatting function
         // SmoothieChart.timeFormatter function above is one such formatting option
         var ts = options.timestampFormatter(tx);
-        var txtwidth=(canvasContext.measureText(ts).width/2)+canvasContext.measureText(minValueString).width + 4;
-        if (gx<dimensions.width - txtwidth){
+        var txtwidth = canvasContext.measureText(ts).width / 2 + canvasContext.measureText(minValueString).width + 4;
+        if (gx < dimensions.width - txtwidth) {
           canvasContext.fillStyle = options.labels.fillStyle;
           // Insert the time string so it doesn't overlap on the minimum value
-          canvasContext.fillText(ts, gx-(canvasContext.measureText(ts).width / 2), dimensions.height-2);
+          canvasContext.fillText(ts, gx - canvasContext.measureText(ts).width / 2, dimensions.height - 2);
         }
       }
       canvasContext.closePath();
@@ -203,7 +210,7 @@ SmoothieChart.prototype.render = function(canvas, time) {
 
   // Horizontal (value) dividers.
   for (var v = 1; v < options.grid.verticalSections; v++) {
-    var gy = Math.round(v * dimensions.height / options.grid.verticalSections);
+    var gy = Math.round((v * dimensions.height) / options.grid.verticalSections);
     canvasContext.beginPath();
     canvasContext.moveTo(0, gy);
     canvasContext.lineTo(dimensions.width, gy);
@@ -221,33 +228,30 @@ SmoothieChart.prototype.render = function(canvas, time) {
   var minValue = Number.NaN;
 
   for (var d = 0; d < this.seriesSet.length; d++) {
-      // TODO(ndunn): We could calculate / track these values as they stream in.
-      var timeSeries = this.seriesSet[d].timeSeries;
-      if (!isNaN(timeSeries.maxValue)) {
-          maxValue = !isNaN(maxValue) ? Math.max(maxValue, timeSeries.maxValue) : timeSeries.maxValue;
-      }
+    // TODO(ndunn): We could calculate / track these values as they stream in.
+    var timeSeries = this.seriesSet[d].timeSeries;
+    if (!isNaN(timeSeries.maxValue)) {
+      maxValue = !isNaN(maxValue) ? Math.max(maxValue, timeSeries.maxValue) : timeSeries.maxValue;
+    }
 
-      if (!isNaN(timeSeries.minValue)) {
-          minValue = !isNaN(minValue) ? Math.min(minValue, timeSeries.minValue) : timeSeries.minValue;
-      }
+    if (!isNaN(timeSeries.minValue)) {
+      minValue = !isNaN(minValue) ? Math.min(minValue, timeSeries.minValue) : timeSeries.minValue;
+    }
   }
 
   if (isNaN(maxValue) && isNaN(minValue)) {
-      canvasContext.restore(); // without this there is crash in Android browser
-      return;
+    canvasContext.restore(); // without this there is crash in Android browser
+    return;
   }
 
   // Scale the maxValue to add padding at the top if required
-  if (options.maxValue != null)
-    maxValue = options.maxValue;
-  else
-    maxValue = maxValue * options.maxValueScale;
+  if (options.maxValue != null) maxValue = options.maxValue;
+  else maxValue = maxValue * options.maxValueScale;
   // Set the minimum if we've specified one
-  if (options.minValue != null)
-    minValue = options.minValue;
+  if (options.minValue != null) minValue = options.minValue;
   var targetValueRange = maxValue - minValue;
-  this.currentValueRange += options.scaleSmoothing*(targetValueRange - this.currentValueRange);
-  this.currentVisMinValue += options.scaleSmoothing*(minValue - this.currentVisMinValue);
+  this.currentValueRange += options.scaleSmoothing * (targetValueRange - this.currentValueRange);
+  this.currentVisMinValue += options.scaleSmoothing * (minValue - this.currentVisMinValue);
   var valueRange = this.currentValueRange;
   var visMinValue = this.currentVisMinValue;
 
@@ -261,7 +265,7 @@ SmoothieChart.prototype.render = function(canvas, time) {
     // Delete old data that's moved off the left of the chart.
     // We must always keep the last expired data point as we need this to draw the
     // line that comes into the chart, but any points prior to that can be removed.
-    while (dataSet.length >= options.maxDataSetLength && dataSet[1][0] < time - (dimensions.width * options.millisPerPixel)) {
+    while (dataSet.length >= options.maxDataSetLength && dataSet[1][0] < time - dimensions.width * options.millisPerPixel) {
       dataSet.splice(0, 1);
     }
 
@@ -272,10 +276,12 @@ SmoothieChart.prototype.render = function(canvas, time) {
     // Draw the line...
     canvasContext.beginPath();
     // Retain lastX, lastY for calculating the control points of bezier curves.
-    var firstX = 0, lastX = 0, lastY = 0;
+    var firstX = 0,
+      lastX = 0,
+      lastY = 0;
     for (var i = 0; i < dataSet.length; i++) {
       // TODO: Deal with dataSet.length < 2.
-      var x = Math.round(dimensions.width - ((time - dataSet[i][0]) / options.millisPerPixel));
+      var x = Math.round(dimensions.width - (time - dataSet[i][0]) / options.millisPerPixel);
       var value = dataSet[i][1];
       var offset = value - visMinValue;
       var scaledValue = dimensions.height - (valueRange ? Math.round((offset / valueRange) * dimensions.height) : 0);
@@ -301,20 +307,25 @@ SmoothieChart.prototype.render = function(canvas, time) {
       //
       else {
         switch (options.interpolation) {
-        case "line":
-          canvasContext.lineTo(x,y);
-          break;
-        case "bezier":
-        default:
-          canvasContext.bezierCurveTo( // startPoint (A) is implicit from last iteration of loop
-            Math.round((lastX + x) / 2), lastY, // controlPoint1 (P)
-            Math.round((lastX + x)) / 2, y, // controlPoint2 (Q)
-            x, y); // endPoint (B)
-          break;
+          case 'line':
+            canvasContext.lineTo(x, y);
+            break;
+          case 'bezier':
+          default:
+            canvasContext.bezierCurveTo(
+              // startPoint (A) is implicit from last iteration of loop
+              Math.round((lastX + x) / 2),
+              lastY, // controlPoint1 (P)
+              Math.round(lastX + x) / 2,
+              y, // controlPoint2 (Q)
+              x,
+              y,
+            ); // endPoint (B)
+            break;
         }
       }
 
-      lastX = x, lastY = y;
+      ((lastX = x), (lastY = y));
     }
     if (dataSet.length > 0 && seriesOptions.fillStyle) {
       // Close up the fill region.
@@ -328,25 +339,23 @@ SmoothieChart.prototype.render = function(canvas, time) {
     canvasContext.restore();
   }
 
-    // Draw the axis values on the chart.
-    if (!options.labels.disabled) {
+  // Draw the axis values on the chart.
+  if (!options.labels.disabled) {
+    if (!options.labelOffsetY) options.labelOffsetY = 0;
 
-        if(!options.labelOffsetY)
-            options.labelOffsetY = 0;
+    canvasContext.fillStyle = options.labels.fillStyle;
+    var maxValueString = parseFloat(maxValue).toFixed(2);
+    var minValueString = parseFloat(minValue).toFixed(2);
+    canvasContext.fillText(maxValueString, dimensions.width - canvasContext.measureText(maxValueString).width - 2, 10);
+    canvasContext.fillText(minValueString, dimensions.width - canvasContext.measureText(minValueString).width - 2, dimensions.height - 2);
 
-        canvasContext.fillStyle = options.labels.fillStyle;
-        var maxValueString = parseFloat(maxValue).toFixed(2);
-        var minValueString = parseFloat(minValue).toFixed(2);
-        canvasContext.fillText(maxValueString, dimensions.width - canvasContext.measureText(maxValueString).width - 2, 10);
-        canvasContext.fillText(minValueString, dimensions.width - canvasContext.measureText(minValueString).width - 2, dimensions.height - 2);
-
-        for(var i=0; i<this.seriesSet.length; i++){
-            var timeSeries = this.seriesSet[i].timeSeries;
-            var label = timeSeries.label;
-            canvasContext.fillStyle = timeSeries.options.fillStyle||"rgb(255,255,255)";
-            if(label) canvasContext.fillText(label, 2, 10*(i+1) + options.labelOffsetY);
-        }
+    for (var i = 0; i < this.seriesSet.length; i++) {
+      var timeSeries = this.seriesSet[i].timeSeries;
+      var label = timeSeries.label;
+      canvasContext.fillStyle = timeSeries.options.fillStyle || 'rgb(255,255,255)';
+      if (label) canvasContext.fillText(label, 2, 10 * (i + 1) + options.labelOffsetY);
     }
+  }
 
   canvasContext.restore(); // See .save() above.
-}
+};

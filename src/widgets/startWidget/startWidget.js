@@ -22,8 +22,7 @@ class StartWidget {
 
     new DragElement(animationEl);
 
-    const { secondary_text, top_text, hint_static_text, button_text, under_picture_text } =
-      localStorageService.config;
+    const { secondary_text, top_text, hint_static_text, button_text, under_picture_text } = localStorageService.config;
 
     animationEl.innerHTML = `
           <div class='position-relative product-design-bg-2 Preview-select' style='display:none;min-width: 180px;max-width: 300px; padding: 20px 22px;position:relative;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); border: 1px solid #ddd' id='start_widget'>

@@ -30,15 +30,10 @@ export class PointCopyTableContainer {
         <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
     TAVO REZULTATAS:  ${this.currentScore ?? 0} </div>
       <div style="width:100%;top: 85px; position: absolute; text-align: center; color: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
+        this.prop === 'Barbora' || this.prop === 'Fpro' || this.prop === 'Fantazijos' || this.prop === 'LemonGym' ? 'white' : 'white'
       }; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.prop === 'Fpro' ? 'Congrats!' : 'LAIMEJAI'
-    }</div>
+        this.prop === 'Fpro' ? 'Congrats!' : 'LAIMEJAI'
+      }</div>
       
       <div class="boomio-scoreboard-text">
       `;
@@ -97,26 +92,14 @@ export class PointCopyTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    let fontSize =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? '14px'
-        : '10px';
-    let fontWeight =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? '900'
-        : '700';
+    let fontSize = this.prop === 'Barbora' || this.prop === 'Fpro' || this.prop === 'Fantazijos' || this.prop === 'LemonGym' ? '14px' : '10px';
+    let fontWeight = this.prop === 'Barbora' || this.prop === 'Fpro' || this.prop === 'Fantazijos' || this.prop === 'LemonGym' ? '900' : '700';
     let scoreboardText = `
      <div style="width:100%; top: 410px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
-      this.currentScore > 600
-        ? `<a onclick="event.stopPropagation();" target="_blank" href="${'https://www.corepetitus.lt/tapk-korepetitoriumi'}" style="color:white;text-decoration: underline;font-size:12px;">Aplikuok ir tapk „Corepetitus“ korepetitoriumi!.</a> `
-        : 'TU GALI!'
-    } </div>
+       this.currentScore > 600
+         ? `<a onclick="event.stopPropagation();" target="_blank" href="${'https://www.corepetitus.lt/tapk-korepetitoriumi'}" style="color:white;text-decoration: underline;font-size:12px;">Aplikuok ir tapk „Corepetitus“ korepetitoriumi!.</a> `
+         : 'TU GALI!'
+     } </div>
              </div>
              <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 11px; font-family: Montserrat; text-transform: none;font-weight: 400; word-wrap: break-word">${
                this.currentScore > 600
@@ -152,12 +135,7 @@ export class PointCopyTableContainer {
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background = 'none';
 
-    containerDiv.style.width =
-      document.documentElement.clientWidth < 426
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
-        : '426px';
+    containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     this.containerDiv = containerDiv;
 
     const existingContainer = document.getElementById('collection-table-container');

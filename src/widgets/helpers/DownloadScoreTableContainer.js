@@ -56,13 +56,9 @@ export class DownloadScoreTableContainer {
 </div>
         `
         : `<div style="margin-top:20px;height:240px;filter: drop-shadow(5px 8px 18.6px rgba(255, 255, 255, 0.25));width:calc(100% - 18px); display:flex; padding:10px;justify-content:center;flex-direction:column;align-items:center;border-radius:20px;background: ${
-            this.prop === 'SaludSA'
-              ? 'linear-gradient(161deg, #1384B9 21.3%, #0377B5 49.66%, #1C3E7E 86.97%)'
-              : 'linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%)'
+            this.prop === 'SaludSA' ? 'linear-gradient(161deg, #1384B9 21.3%, #0377B5 49.66%, #1C3E7E 86.97%)' : 'linear-gradient(161deg, #C54040 21.3%, #CC0001 49.66%, #990A0B 86.97%)'
           };filter;box-sizing:content-box !important;"> <div id='boomio-your-score' style="margin-bottom:10px;width:100%;margin-top:-120px;top:30px;position:absolute; text-align: center; color: white; font-size: 16px; font-family: Montserrat; font-weight:400; text-transform: uppercase; word-wrap: break-word"> 
-   ${this.prop === 'SaludSA' ? 'Tu PUNTUACIÓN:' : ' TAVO REZULTATAS:'}  ${
-            this.currentScore ?? 0
-          } </div>
+   ${this.prop === 'SaludSA' ? 'Tu PUNTUACIÓN:' : ' TAVO REZULTATAS:'}  ${this.currentScore ?? 0} </div>
     ${
       this.prop === 'SaludSA'
         ? `<div style="width:100%;top: -60px; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Montserrat; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
@@ -71,65 +67,35 @@ export class DownloadScoreTableContainer {
         : ''
     }
     <div style="width:100%;text-align: center; color: white; font-size:18px;font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word"> 
-    ${
-      this.prop === 'SaludSA'
-        ? this.currentScore >= 9999
-          ? '¡GANASTE!'
-          : this.currentScore >= 5000
-          ? '¡GANASTE!'
-          : ''
-        : ''
-    } </div>
+    ${this.prop === 'SaludSA' ? (this.currentScore >= 9999 ? '¡GANASTE!' : this.currentScore >= 5000 ? '¡GANASTE!' : '') : ''} </div>
 <div style="width:100%;text-align: center; color: white; font-size: ${
             this.prop === 'SaludSA' ? '32px' : '42px'
           }; font-family: Montserrat; font-weight:800; text-transform: uppercase; word-wrap: break-word;line-height:32px;"> 
-    ${
-      this.prop === 'SaludSA'
-        ? this.currentScore >= 9999
-          ? 'esfero de Julián'
-          : this.currentScore >= 5000
-          ? 'Premio Sorpresa'
-          : 'No ganaste ningún premio'
-        : 'NELAIMĖJAI'
-    } </div></div>
+    ${this.prop === 'SaludSA' ? (this.currentScore >= 9999 ? 'esfero de Julián' : this.currentScore >= 5000 ? 'Premio Sorpresa' : 'No ganaste ningún premio') : 'NELAIMĖJAI'} </div></div>
 `;
 
     tableHTML += '</div>';
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    let fontSize =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? '14px'
-        : '10px';
-    let fontWeight =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym'
-        ? '900'
-        : '700';
+    let fontSize = this.prop === 'Barbora' || this.prop === 'Fpro' || this.prop === 'Fantazijos' || this.prop === 'LemonGym' ? '14px' : '10px';
+    let fontWeight = this.prop === 'Barbora' || this.prop === 'Fpro' || this.prop === 'Fantazijos' || this.prop === 'LemonGym' ? '900' : '700';
     let scoreboardText = `
 
    <div style="width:calc(100% - 40px);margin-left:20px; top: 420px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">   ${
-      this.prop === 'SaludSA'
-        ? this.currentScore >= 9999
-          ? 'además estás participando en el sorteo de increíbles premios. </br>¡Mejora tu puntuación para ganar un premio mayor!'
-          : this.currentScore >= 5000
-          ? 'además estás participando en el sorteo de increíbles premios.'
-          : 'ya estás participando en el sorteo de increíbles premios, si deseas ganar un premio instantáneo de saludsa vitality mejora tu puntaje. '
-        : this.currentScore >= 2000 && this.prop === 'Barbora'
-        ? 'ATSISIŲSK PROGRAMĖLĘ'
-        : 'PAGERINK REZULTATĄ!</br> pasiek daugiau nei 2000 taškų ir laimėk prizus!'
-    }</div>
+     this.prop === 'SaludSA'
+       ? this.currentScore >= 9999
+         ? 'además estás participando en el sorteo de increíbles premios. </br>¡Mejora tu puntuación para ganar un premio mayor!'
+         : this.currentScore >= 5000
+           ? 'además estás participando en el sorteo de increíbles premios.'
+           : 'ya estás participando en el sorteo de increíbles premios, si deseas ganar un premio instantáneo de saludsa vitality mejora tu puntaje. '
+       : this.currentScore >= 2000 && this.prop === 'Barbora'
+         ? 'ATSISIŲSK PROGRAMĖLĘ'
+         : 'PAGERINK REZULTATĄ!</br> pasiek daugiau nei 2000 taškų ir laimėk prizus!'
+   }</div>
   
           <div style="width:100%; top: 440px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400;  word-wrap: break-word"> ${
-            this.currentScore >= 2000 && this.prop === 'Barbora'
-              ? 'panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.'
-              : ''
+            this.currentScore >= 2000 && this.prop === 'Barbora' ? 'panaudok nuolaidos kodą ir laimėk 50 eurų Makaliaus dovanų kuponą.' : ''
           }</div>
              </div>
                           <div style="width:100%; top: 500px;margin-top:10px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">
@@ -160,8 +126,8 @@ export class DownloadScoreTableContainer {
 `
           : `<div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 46px; background: ${'white'};cursor:pointer; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">${
-              this.prop === 'SaludSA' ? 'JUEGA DE NUEVO' : 'PAGERINK REZULTATĄ'
-            }</div>
+          this.prop === 'SaludSA' ? 'JUEGA DE NUEVO' : 'PAGERINK REZULTATĄ'
+        }</div>
       </div>`
       }
 
@@ -201,12 +167,7 @@ export class DownloadScoreTableContainer {
     containerDiv.style.background = 'none';
     // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
-    containerDiv.style.width =
-      document.documentElement.clientWidth < 426
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
-        : '426px';
+    containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
 

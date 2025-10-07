@@ -1,10 +1,4 @@
-import {
-  widgetHtmlService,
-  AnimationService,
-  localStorageService,
-  DragElement,
-  QrCodeModal,
-} from '@/services';
+import { widgetHtmlService, AnimationService, localStorageService, DragElement, QrCodeModal } from '@/services';
 import './styles.css';
 import { giftImage } from '@/сonstants/icons';
 
@@ -71,9 +65,7 @@ Component.Snake = function (canvas, conf) {
   this.initFood = function () {
     this.stage.food = {
       x: Math.round((Math.random() * (this.stage.width - this.stage.conf.cw)) / this.stage.conf.cw),
-      y: Math.round(
-        (Math.random() * (this.stage.height - this.stage.conf.cw)) / this.stage.conf.cw,
-      ),
+      y: Math.round((Math.random() * (this.stage.height - this.stage.conf.cw)) / this.stage.conf.cw),
       image: this.stage.conf.foodImg, // Assign the preloaded image to the food object
     };
   };
@@ -192,14 +184,11 @@ Game.Draw = function (context, snake) {
         context.drawImage(image, -radius, -radius, cellSize, cellSize);
       }
       context.restore();
-    } else if (
-      x === snake.stage.length[snake.stage.length.length - 1].x &&
-      y === snake.stage.length[snake.stage.length.length - 1].y
-    ) {
+    } else if (x === snake.stage.length[snake.stage.length.length - 1].x && y === snake.stage.length[snake.stage.length.length - 1].y) {
       //tail
       context.fillStyle = color;
       context.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-      } else {
+    } else {
       if (x === snake.stage.food.x && y === snake.stage.food.y && snake.stage.food.image) {
         context.drawImage(snake.stage.food.image, x * cellSize, y * cellSize, cellSize, cellSize);
       } else {

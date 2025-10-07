@@ -7,16 +7,16 @@
 }
 
 .action-icon :first-child {
-  width: 20px  !important;
+  width: 20px !important;
   max-width: 20px !important;
-height: 20px !important;
-max-height: 20px !important;
-border-radius:20px !important;
-background-color: #B0AFBE !important;
+  height: 20px !important;
+  max-height: 20px !important;
+  border-radius: 20px !important;
+  background-color: #b0afbe !important;
 }
 
 .close {
-  left: 330px
+  left: 330px;
 }
 
 .move {
@@ -63,76 +63,74 @@ background-color: #B0AFBE !important;
 
 .boomio-guess-card.boomio-card-shake {
   animation: boomio-card-shake 0.35s ease-in-out;
-
 }
 .boomio-invisible {
   display: none;
 }
-.boomio-flytop1{
+.boomio-flytop1 {
   animation: flyinNE 0.2s 0.1s ease-in-out;
   animation-fill-mode: backwards;
 }
-.boomio-flytop2{
+.boomio-flytop2 {
   animation: flyinNE 0.5s 0.1s ease-in-out;
   animation-fill-mode: backwards;
 }
-.boomio-flytop3{
+.boomio-flytop3 {
   animation: flyinNE 0.8s 0.1s ease-in-out;
   animation-fill-mode: backwards;
 }
 
 @keyframes flyinNE {
   0% {
-    transform:translateX(500px) translateY(-200px) rotateZ(350deg);
+    transform: translateX(500px) translateY(-200px) rotateZ(350deg);
   }
 }
 
-
-.boomio-flymid1{
+.boomio-flymid1 {
   animation: flyinE 1.2s 0.1s ease-in-out;
   animation-fill-mode: backwards;
 }
-.boomio-flymid2{
+.boomio-flymid2 {
   animation-duration: 0.75s;
   animation-delay: 0.8s;
-  animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+  animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
   animation-fill-mode: backwards;
   animation-name: animate-blur;
   animation-timing-function: ease;
   /* animation-name: animate-roll; */
 }
-.boomio-flymid3{
+.boomio-flymid3 {
   animation: flyinW 1.2s 0.1s ease-in-out;
   animation-fill-mode: backwards;
 }
 
 @keyframes flyinE {
   0% {
-    transform:translateX(-500px) ;
+    transform: translateX(-500px);
   }
 }
 @keyframes flyinW {
   0% {
-    transform:translateX(500px) ;
+    transform: translateX(500px);
   }
 }
 
-.flybottom1{
+.flybottom1 {
   animation: flyinSW 1.2s 0.1s ease-in-out;
   animation-fill-mode: backwards;
 }
-.flybottom2{
+.flybottom2 {
   animation: flyinSW 0.9s 0.1s ease-in-out;
   animation-fill-mode: backwards;
 }
-.flybottom3{
+.flybottom3 {
   animation: flyinSW 0.6s 0.1s ease-in-out;
   animation-fill-mode: backwards;
 }
 
 @keyframes flyinSW {
   0% {
-    transform:translateX(-500px) translateY(200px) rotateZ(-350deg);
+    transform: translateX(-500px) translateY(200px) rotateZ(-350deg);
   }
 }
 
@@ -158,17 +156,15 @@ background-color: #B0AFBE !important;
   }
 }
 
-
 .boomio-card-jump {
   animation: jump 0.5s 0.2s ease-in-out;
 }
 
- @keyframes jump {
- 
-  50%  {
-     transform: translateY(-10px) ;
-   }
-   /* 30% {
+@keyframes jump {
+  50% {
+    transform: translateY(-10px);
+  }
+  /* 30% {
      transform: rotate(0deg);
    }
   45% {
@@ -177,19 +173,17 @@ background-color: #B0AFBE !important;
   60% {
      transform: rotate(720deg);
    } */
-   /* 100% {
+  /* 100% {
         transform: translateY(0px) ;
       } */
- }  
+}
 
 #boomio-guess-container {
   width: 300px;
   height: 300px;
 }
 
-
 @keyframes boomio-card-shake {
-
   0%,
   100% {
     transform: translateX(0);
@@ -211,8 +205,6 @@ background-color: #B0AFBE !important;
     transform: translateX(8px);
   }
 }
-
-
 
 .boomio-guess-card .boomio-view {
   width: 100%;
@@ -245,13 +237,11 @@ background-color: #B0AFBE !important;
   transform: rotateY(180deg);
 }
 
-
 @media (min-width: 600px) {
-
   .boomio-guess-cards {
     height: 250px;
     width: 250px;
-    margin-top:120px;
+    margin-top: 120px;
     margin-left: 100px;
   }
 
@@ -260,12 +250,10 @@ background-color: #B0AFBE !important;
     width: calc(100% / 3 - 10px) !important;
   }
 
-
   .boomio-wrapper {
     width: 650px;
     height: 650px;
     padding: 100px;
-
   }
 
   .action-icon {
@@ -276,14 +264,13 @@ background-color: #B0AFBE !important;
     width: 25px !important;
     max-width: 25px !important;
     height: 25px !important;
-max-height: 25px !important;
-border-radius:20px !important;
-background-color: #B0AFBE !important;
+    max-height: 25px !important;
+    border-radius: 20px !important;
+    background-color: #b0afbe !important;
   }
 
   .close {
     left: 430px;
-
   }
 
   .move {
@@ -294,5 +281,4 @@ background-color: #B0AFBE !important;
     width: 600px;
     height: 600px;
   }
-
 }

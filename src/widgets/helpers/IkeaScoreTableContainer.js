@@ -27,22 +27,15 @@ export class IkeaScoreTableContainer {
     <div style="width: 100%; height: 100%; position: relative; ">
         <div style="margin-bottom:10px;width:100%;margin-top:20px;top:30px;position:absolute;margin-left:55px; text-align: start; color: white; font-size: 16px; font-family:${
           this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-        } ; font-weight:400; text-transform:${
-      this.prop === 'Ikea' ? 'none' : 'uppercase'
-    } ; word-wrap: break-word"> 
+        } ; font-weight:400; text-transform:${this.prop === 'Ikea' ? 'none' : 'uppercase'} ; word-wrap: break-word"> 
     Jūsų rezultatas - ${this.currentScore ?? 0} </div>
       <div style="width:100%;top: 85px; position: absolute; text-align: start; color: ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym'
-          ? 'white'
-          : 'white'
+        this.prop === 'Barbora' || this.prop === 'Fpro' || this.prop === 'Fantazijos' || this.prop === 'LemonGym' ? 'white' : 'white'
       }; font-size: 36px; font-family:${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ; margin-left:55px;font-weight: 700;line-height:normal ; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-      this.currentScore > 2000 ? 'Sveikiname!' : 'Mes žinome, </br> kad galite geriau!'
-    }
+        this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+      } ; margin-left:55px;font-weight: 700;line-height:normal ; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
+        this.currentScore > 2000 ? 'Sveikiname!' : 'Mes žinome, </br> kad galite geriau!'
+      }
     </div>
       
       <div class="boomio-scoreboard-text">
@@ -64,8 +57,8 @@ export class IkeaScoreTableContainer {
       </div>
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:575px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family:${
-      this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
-    } ; font-weight: 400; line-height: 24px; word-wrap: break-word;cursor:pointer;">${'Žaisti dar kartą'}</div>
+          this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
+        } ; font-weight: 400; line-height: 24px; word-wrap: break-word;cursor:pointer;">${'Žaisti dar kartą'}</div>
       </div>
 
       <div style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain;background-repeat:no-repeat;" >
@@ -107,8 +100,8 @@ ar daugiau.</div>
      <div style="width:100%; top: 400px;margin-top:10px; margin-left:55px;position: absolute; text-align: start; color: white; font-size: 14px; font-family:${
        this.prop === 'Ikea' ? 'Noto Sans' : 'Montserrat'
      } ;font-weight: 300;  word-wrap: break-word;display:${
-      this.currentScore < 2000 ? 'block' : 'none'
-    };">Deja, šį kartą nieko nelaimėjote.</br><div style='margin-top:10px;font-weight:300;font-family:'Noto Sans';'> Žaiskite vėl ir pagerinkite rezultatą.</div><div style='font-weight:300;font-family:'Noto Sans'; >Surinkę daugiau nei 2000 taškų,</div><divstyle='font-weight:300;font-family:'Noto Sans'; > gausite nuolaidą IKEA pirkinių krepšeliui.
+       this.currentScore < 2000 ? 'block' : 'none'
+     };">Deja, šį kartą nieko nelaimėjote.</br><div style='margin-top:10px;font-weight:300;font-family:'Noto Sans';'> Žaiskite vėl ir pagerinkite rezultatą.</div><div style='font-weight:300;font-family:'Noto Sans'; >Surinkę daugiau nei 2000 taškų,</div><divstyle='font-weight:300;font-family:'Noto Sans'; > gausite nuolaidą IKEA pirkinių krepšeliui.
 </div></div>
              </div>
     `;
@@ -130,12 +123,7 @@ ar daugiau.</div>
     containerDiv.classList.add('competition-table-container');
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background = 'none';
-    containerDiv.style.width =
-      document.documentElement.clientWidth < 426
-        ? document.documentElement.clientWidth < 321
-          ? '375px'
-          : document.documentElement.clientWidth + 'px'
-        : '426px';
+    containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     this.containerDiv = containerDiv;
 
     const existingContainer = document.getElementById('collection-table-container');
