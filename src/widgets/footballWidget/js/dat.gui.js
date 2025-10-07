@@ -2305,7 +2305,7 @@ dat.GUI = dat.gui.GUI = (function (
 
     dom.bind(select, 'change', function () {
       for (var index = 0; index < gui.__preset_select.length; index++) {
-        gui.__preset_select[index].innerHTML = gui.__preset_select[index].value;
+        gui.__preset_select[index].textContent = gui.__preset_select[index].value;
       }
 
       gui.preset = this.value;
