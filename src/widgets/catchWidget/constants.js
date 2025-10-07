@@ -312,7 +312,7 @@ export const item9Orlen = 'https://raw.githubusercontent.com/boomio-api-v2/final
 
 export const item10Orlen = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Orlen/items/item3Orlen.png';
 
-export const backgroundApranga = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/as/apranga-geltonas/images/catchWidget/Apranga/items/bg.png';
+export const backgroundApranga = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Apranga/items/bg.png';
 
 export const playerApranga = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Apranga/player.png';
 
