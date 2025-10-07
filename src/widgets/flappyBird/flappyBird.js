@@ -244,11 +244,12 @@ class FlappyBird {
             inpuRegisterContainer.style.opacity = 1;
           }, 100);
         } else {
+          const emailValue = Elements.getEmailValue();
           boomioService
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange,
-              user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
-              user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+              user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailValue,
+              user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailValue,
             })
             .then((response) => {
               this.bestScore = response.user_best_score;

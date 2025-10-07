@@ -1,5 +1,6 @@
 import './index.css';
 import { localStorageService, boomioService } from '@/services';
+import { Elements } from '../../helpers/HtmlElementsHelper';
 import {
   brickWallImageData,
   carImageData,
@@ -1295,12 +1296,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   async function clickEventHandlerShowRules() {
     if (gameCount === 0) {
       setTimeout(async () => {
-        const emailInput = document.querySelector('.boomio-competition-email-input-field');
-        const cityInput = document.querySelector('.boomio-competition-city-select');
         const schoolInput = document.querySelector('.boomio-competition-school-select');
 
-        const email = emailInput?.value;
-        const userEmail = customer === 'Ikea' ? await hashString(email) : emailInput?.value;
+        const emailValue = Elements.getEmailValue();
+        const userEmail = customer === 'Ikea' ? await hashString(emailValue) : emailValue;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
 
@@ -1336,7 +1335,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           document.getElementById('competition-email-error').innerText = '';
           document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
         }
-        if (emailInput?.value === '' || emailInput?.value === null) {
+        if (emailValue === '' || emailValue === null) {
           document.getElementById('competition-email-error').innerText =
             language === 'LV'
               ? 'Lai turpinātu, obligāti jāaizpilda.'
@@ -1356,7 +1355,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           document.getElementById('competition-checkbox-error').innerText = '';
           document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
         }
-        if (customer === 'Orlen' && emailInput?.value.length < 7) {
+        if (customer === 'Orlen' && emailValue.length < 7) {
           document.getElementById('competition-email-error').innerText = 'Neteisingas telefono numeris.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';

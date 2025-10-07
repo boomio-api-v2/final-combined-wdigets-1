@@ -1,6 +1,7 @@
 import './runnerStyles.css';
 import PxLoader from './scripts/PxLoader.js';
 import { localStorageService, widgetHtmlService, boomioService } from '@/services';
+import { Elements } from '../helpers/HtmlElementsHelper';
 import {
   star,
   newRecord,
@@ -1109,8 +1110,8 @@ ${
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange,
-              user_email: emailInput?.value,
-              user_name: emailInput?.value,
+              user_email: Elements.getEmailValue(),
+              user_name: Elements.getEmailValue(),
               game_code: this.game_code,
               ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
             })
