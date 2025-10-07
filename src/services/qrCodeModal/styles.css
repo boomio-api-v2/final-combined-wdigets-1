@@ -1,151 +1,158 @@
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One:wght@400;500;600&display=swap');
 
 .modal-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-between
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .modal-buttons button {
-    border-radius: 32px;
-    width: 130px;
-    height: 40px;
-    outline: none;
-    border: none;
-    cursor:  pointer;
+  border-radius: 32px;
+  width: 130px;
+  height: 40px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 .modal-buttons .save {
-    background: transparent;    border:1px solid white;
+  background: transparent;
+  border: 1px solid white;
 
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: #FFFFFF;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
 }
 
 .modal-buttons .exit-wrapper {
-    background: #FFFFFF;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    background: transparent;    border:1px solid white;
+  background: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  background: transparent;
+  border: 1px solid white;
 
-    background-clip: text;
-    text-fill-color: transparent;
-    padding: 2px;
+  background-clip: text;
+  text-fill-color: transparent;
+  padding: 2px;
 }
 
 .modal-buttons .exit {
-    width: 100%;
-    height: 100%;
-    background: #FFFFFF;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    background: white;
-    background-clip: text;
-    color: transparent;
-    border:1px solid white;
-    text-fill-color: transparent;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  background: white;
+  background-clip: text;
+  color: transparent;
+  border: 1px solid white;
+  text-fill-color: transparent;
 }
 
-
 .modal-buttons .yes-button {
-    border: 1px solid #09DDD0;
-    color: #09DDD0;
-    background: white;
-    border-radius: 24px;
-    width: 91px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 16px;
+  border: 1px solid #09ddd0;
+  color: #09ddd0;
+  background: white;
+  border-radius: 24px;
+  width: 91px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .modal-buttons button img {
-    width: 16px;
-    height: 16px;
-    margin-left: 6px;
-    margin-right: 6px;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 .modal-buttons .no-button {
-    border: 1px solid #FF9161;
-    color: #FF9161;
-    background: white;
-    border-radius: 24px;
-    width: 91px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 16px;
+  border: 1px solid #ff9161;
+  color: #ff9161;
+  background: white;
+  border-radius: 24px;
+  width: 91px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .desktop-qr-modal p {
-    /*font-weight: 400;*/
-    /*font-size: 14px;*/
-    line-height: 18px;
-    text-align: center;
+  /*font-weight: 400;*/
+  /*font-size: 14px;*/
+  line-height: 18px;
+  text-align: center;
 }
 
 .coupon-grey-shadow-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    -webkit-box-shadow: 8px 8px 80px 0px #0400D966;
-    -moz-box-shadow:  8px 8px 80px 0px #0400D966;
-    box-shadow: 8px 8px 80px 0px #0400D966;
-    height: 141.25px;
-    width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 8px 8px 80px 0px #0400d966;
+  -moz-box-shadow: 8px 8px 80px 0px #0400d966;
+  box-shadow: 8px 8px 80px 0px #0400d966;
+  height: 141.25px;
+  width: 180px;
 }
 
 .coupon-grey {
-    height: 141.25px;
-    width: 180px;
-    background-size: contain;
-    transform: scale(1.1);
-    text-shadow: -5px -4px 4px rgba(0,0,0,0.14);
+  height: 141.25px;
+  width: 180px;
+  background-size: contain;
+  transform: scale(1.1);
+  text-shadow: -5px -4px 4px rgba(0, 0, 0, 0.14);
 }
 
 .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-top: 4px solid #000;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: auto;
-    display: none;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .show {
-    display: block;
-  }
-  
-  #boomio-textfield-first-name::placeholder {
-    color: #37676D;
-  }
-  
-  #boomio-textfield-first-name::-ms-input-placeholder { /* Edge 12 -18 */
-    color: #37676D;
-  }
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #000;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+  display: none;
+}
 
-  #boomio-textfield-email::placeholder {
-    color: #37676D;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  #boomio-textfield-email::-ms-input-placeholder { /* Edge 12 -18 */
-    color: #37676D;
+  100% {
+    transform: rotate(360deg);
   }
+}
+
+.show {
+  display: block;
+}
+
+#boomio-textfield-first-name::placeholder {
+  color: #37676d;
+}
+
+#boomio-textfield-first-name::-ms-input-placeholder {
+  /* Edge 12 -18 */
+  color: #37676d;
+}
+
+#boomio-textfield-email::placeholder {
+  color: #37676d;
+}
+
+#boomio-textfield-email::-ms-input-placeholder {
+  /* Edge 12 -18 */
+  color: #37676d;
+}

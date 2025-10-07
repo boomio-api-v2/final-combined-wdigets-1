@@ -124,10 +124,7 @@ function CMain(oData) {
           onload: s_oMain.soundLoaded,
           onloaderror: function (szId, szMsg) {
             for (var i = 0; i < s_aSoundsInfo.length; i++) {
-              if (
-                s_aSounds[s_aSoundsInfo[i].ingamename]._sounds.length > 0 &&
-                szId === s_aSounds[s_aSoundsInfo[i].ingamename]._sounds[0]._id
-              ) {
+              if (s_aSounds[s_aSoundsInfo[i].ingamename]._sounds.length > 0 && szId === s_aSounds[s_aSoundsInfo[i].ingamename]._sounds[0]._id) {
                 s_oMain.tryToLoadSound(s_aSoundsInfo[i], true);
                 break;
               } else {
@@ -189,115 +186,67 @@ function CMain(oData) {
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[IDLE]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[IDLE] + i,
-        './sprites/gk_idle/gk_idle_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[IDLE] + i, './sprites/gk_idle/gk_idle_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[RIGHT]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[RIGHT] + i,
-        './sprites/gk_save_right/gk_save_right_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[RIGHT] + i, './sprites/gk_save_right/gk_save_right_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[LEFT]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[LEFT] + i,
-        './sprites/gk_save_left/gk_save_left_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[LEFT] + i, './sprites/gk_save_left/gk_save_left_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[CENTER_DOWN]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[CENTER_DOWN] + i,
-        './sprites/gk_save_center_down/gk_save_center_down_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[CENTER_DOWN] + i, './sprites/gk_save_center_down/gk_save_center_down_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[CENTER_UP]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[CENTER_UP] + i,
-        './sprites/gk_save_center_up/gk_save_center_up_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[CENTER_UP] + i, './sprites/gk_save_center_up/gk_save_center_up_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[LEFT_DOWN]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[LEFT_DOWN] + i,
-        './sprites/gk_save_down_left/gk_save_down_left_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[LEFT_DOWN] + i, './sprites/gk_save_down_left/gk_save_down_left_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[RIGHT_DOWN]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[RIGHT_DOWN] + i,
-        './sprites/gk_save_down_right/gk_save_down_right_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[RIGHT_DOWN] + i, './sprites/gk_save_down_right/gk_save_down_right_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[CENTER]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[CENTER] + i,
-        './sprites/gk_save_center/gk_save_center_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[CENTER] + i, './sprites/gk_save_center/gk_save_center_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[SIDE_LEFT]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[SIDE_LEFT] + i,
-        './sprites/gk_save_side_left/gk_save_side_left_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[SIDE_LEFT] + i, './sprites/gk_save_side_left/gk_save_side_left_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[SIDE_RIGHT]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[SIDE_RIGHT] + i,
-        './sprites/gk_save_side_right/gk_save_side_right_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[SIDE_RIGHT] + i, './sprites/gk_save_side_right/gk_save_side_right_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[SIDE_LEFT_UP]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[SIDE_LEFT_UP] + i,
-        './sprites/gk_save_side_up_left/gk_save_side_up_left_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[SIDE_LEFT_UP] + i, './sprites/gk_save_side_up_left/gk_save_side_up_left_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[SIDE_RIGHT_UP]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[SIDE_RIGHT_UP] + i,
-        './sprites/gk_save_side_up_right/gk_save_side_up_right_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[SIDE_RIGHT_UP] + i, './sprites/gk_save_side_up_right/gk_save_side_up_right_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[SIDE_LEFT_DOWN]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[SIDE_LEFT_DOWN] + i,
-        './sprites/gk_save_side_low_left/gk_save_side_low_left_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[SIDE_LEFT_DOWN] + i, './sprites/gk_save_side_low_left/gk_save_side_low_left_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[SIDE_RIGHT_DOWN]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[SIDE_RIGHT_DOWN] + i,
-        './sprites/gk_save_side_low_right/gk_save_side_low_right_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[SIDE_RIGHT_DOWN] + i, './sprites/gk_save_side_low_right/gk_save_side_low_right_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[LEFT_UP]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[LEFT_UP] + i,
-        './sprites/gk_save_up_left/gk_save_up_left_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[LEFT_UP] + i, './sprites/gk_save_up_left/gk_save_up_left_' + i + '.png');
     }
 
     for (var i = 0; i < NUM_SPRITE_GOALKEEPER[RIGHT_UP]; i++) {
-      s_oSpriteLibrary.addSprite(
-        SPRITE_NAME_GOALKEEPER[RIGHT_UP] + i,
-        './sprites/gk_save_up_right/gk_save_up_right_' + i + '.png',
-      );
+      s_oSpriteLibrary.addSprite(SPRITE_NAME_GOALKEEPER[RIGHT_UP] + i, './sprites/gk_save_up_right/gk_save_up_right_' + i + '.png');
     }
 
     RESOURCE_TO_LOAD += s_oSpriteLibrary.getNumSprites();

@@ -19,7 +19,7 @@
 //         <meta charset="UTF-8">
 //     </head>
 //     <style type="text/css">
-// 		canvas	
+// 		canvas
 // 		{
 //             border: 1px solid black;
 //             position: absolute;
@@ -27,22 +27,22 @@
 // 		}
 
 // 	</style>
-    
+
 //     <script type="text/javascript">
-        
+
 //         window.onload = function()
 //         {
 //             var canvas = document.getElementById("canvas");
 //             var context = canvas.getContext("2d");
 //             var canvasBack = document.getElementById("backgroundCanvas");
 //             var contextBack = canvasBack.getContext("2d");
-            
+
 //             //Timer for the Timeout - needed in order to clear it
 //             var timer;
-            
+
 //             //Keeps track of hi score
 //             var hiscore = 0;
-            
+
 //             //Background image, music track, and arrays of sounds.
 //             //Arrays are needed so that the same sounds
 //             //can overlap with each other
@@ -56,11 +56,11 @@
 //                 catchSound.src = 'Audio/bleep.wav';
 //                 catchSounds.push(catchSound);
 //             }
-            
+
 //             var music = new Audio();
 //             music.src = 'Audio/MarimbaBoy.wav';
 //             music.loop = true;
-            
+
 //             var smashSounds = [];
 //             var smashCounter = 0;
 //             for(var i = 0; i < 5; i++)
@@ -69,11 +69,11 @@
 //                 smash.src = 'Audio/smash.mp3';
 //                 smashSounds.push(smash);
 //             }
-            
+
 //             var player;
 //             var fruits = [];
 //             var numberOfFruits = 15;
-            
+
 //             //Player constructor
 //             function Player()
 //             {
@@ -88,13 +88,13 @@
 //                 this.y = canvas.height - this.playerHeight;
 //                 this.playerImage = new Image();
 //                 this.playerImage.src = 'Images/basket2.png';
-                
+
 //                 //Draws the player
 //                 this.render = function()
 //                 {
 //                     context.drawImage(this.playerImage, this.x, this.y);
 //                 }
-                
+
 //                 //Moves the player left
 //                 this.moveLeft = function()
 //                 {
@@ -103,7 +103,7 @@
 //                         this.x -= this.playerSpeed;
 //                     }
 //                 }
-                
+
 //                 //Moves the player right
 //                 this.moveRight = function()
 //                 {
@@ -113,7 +113,7 @@
 //                     }
 //                 }
 //             }
-            
+
 //             //Fruit constructor
 //             function Fruit()
 //             {
@@ -126,7 +126,7 @@
 //                 this.fruitSpeed = Math.floor(Math.random() * 3 + 1);
 //                 this.x = Math.random() * (canvas.width - this.fruitWidth);
 //                 this.y = Math.random() * -canvas.height - this.fruitHeight;
-                
+
 //                 //Creates a different kind of fruit depending on the fruit number
 //                 //which is generated randomly
 //                 this.chooseFruit = function()
@@ -162,7 +162,7 @@
 //                         this.fruitImage.src = 'Images/melon2.png';
 //                     }
 //                 }
-                
+
 //                 //Makes the fruit descend.
 //                 //While falling checks if the fruit has been caught by the player
 //                 //Or if it hit the floor.
@@ -183,14 +183,14 @@
 //                         {
 //                             smashCounter++;
 //                         }
-                        
+
 //                         player.fruitsMissed += 1;
 //                         this.changeState();
 //                         this.chooseFruit();
 //                     }
 //                     this.checkIfCaught();
 //                 }
-                
+
 //                 //Checks if the fruit has been caught by the player
 //                 //If it is caught, the player score and fruit counter is increased, and
 //                 //the current fruit changes its state and becomes a different fruit.
@@ -210,16 +210,16 @@
 //                             {
 //                                 catchSoundCounter++;
 //                             }
-                            
+
 //                             player.score += this.fruitScore;
 //                             player.fruitsCollected += 1;
-                            
+
 //                             this.changeState();
 //                             this.chooseFruit();
 //                         }
 //                     }
 //                 }
-                
+
 //                 //Randomly updates the fruit speed, fruit number, which defines the type of fruit
 //                 //And also changes its x and y position on the canvas.
 //                 this.changeState = function()
@@ -229,14 +229,14 @@
 //                     this.x = Math.random() * (canvas.width - this.fruitWidth);
 //                     this.y = Math.random() * -canvas.height - this.fruitHeight;
 //                 }
-                
+
 //                 //Draws the fruit.
 //                 this.render = function()
 //                 {
 //                     context.drawImage(this.fruitImage, this.x, this.y);
 //                 }
 //             }
-            
+
 //             //Adds controls. Left arrow to move left, right arrow to move right.
 //             //ENTER to restart only works at the game over screen.
 //             window.addEventListener("keydown", function(e)
@@ -256,7 +256,7 @@
 //                     window.clearTimeout(timer);
 //                 }
 //              });
-            
+
 //             main();
 
 //             //Fills an array of fruits, creates a player and starts the game
@@ -273,10 +273,10 @@
 //                     fruit.chooseFruit();
 //                     fruits.push(fruit);
 //                 }
-                
+
 //                 startGame();
 //             }
-            
+
 //             function startGame()
 //             {
 //                 updateGame();
@@ -291,14 +291,14 @@
 //                 {
 //                     player.gameOver = true;
 //                 }
-                
+
 //                 for(var j = 0; j < fruits.length; j++)
 //                 {
 //                     fruits[j].fall();
 //                 }
 //                 timer = window.setTimeout(updateGame, 30);
 //             }
-            
+
 //             //Draws the player and fruits on the screen as well as info in the HUD.
 //             function drawGame()
 //             {
@@ -327,7 +327,7 @@
 //                         console.log("Speed was" + fruits[fruits.length - 1].fruitSpeed);
 //                         fruits.pop();
 //                     }
-                    
+
 //                     if(hiscore < player.score)
 //                     {
 //                         hiscore = player.score;
@@ -335,15 +335,15 @@
 //                     }
 //                     contextBack.fillText("PRESS ENTER TO RESTART", (canvas.width / 2) - 140, canvas.height / 2 + 50);
 //                     context.clearRect(0, 0, canvas.width, canvas.height);
-                    
+
 //                 }
 //                 window.requestAnimationFrame(drawGame);
-                
+
 //             }
 //         }
-    
+
 //     </script>
-    
+
 //     </head>
 //     <body style="margin-left:15%; margin-top:3%;">
 //         <canvas id="backgroundCanvas" width="1024" height="650"></canvas>

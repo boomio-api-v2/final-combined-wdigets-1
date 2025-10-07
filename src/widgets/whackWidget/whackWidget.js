@@ -69,12 +69,7 @@ class WhackWidget {
 
     const isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
 
-    createCloseMoveButtons(
-      myCanvas.querySelector('.boomio-mole'),
-      document.getElementById('boomio-whack-container'),
-      isMobile ? [-130, -330] : [-150, -450],
-      false,
-    );
+    createCloseMoveButtons(myCanvas.querySelector('.boomio-mole'), document.getElementById('boomio-whack-container'), isMobile ? [-130, -330] : [-150, -450], false);
   }
 
   addCardEventListeners() {
@@ -93,12 +88,7 @@ class WhackWidget {
       if (Math.random() < 0.5) {
         randomX = Math.floor(Math.random() * (containerWidth / 4 - moleWidth)) + 100;
       } else {
-        randomX =
-          Math.floor(
-            Math.random() * (containerWidth / 4 - moleWidth) +
-              containerWidth / 2 +
-              containerWidth / 4,
-          ) - 100;
+        randomX = Math.floor(Math.random() * (containerWidth / 4 - moleWidth) + containerWidth / 2 + containerWidth / 4) - 100;
       }
 
       const randomY = Math.floor(Math.random() * maxY);

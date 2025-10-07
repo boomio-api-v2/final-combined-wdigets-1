@@ -7,10 +7,7 @@ export class GameOverContainer {
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-container1');
     containerDiv.setAttribute('id', 'input-container1');
-    containerDiv.style.width =
-      document.documentElement.clientWidth < 430
-        ? document.documentElement.clientWidth + 'px'
-        : '430px';
+    containerDiv.style.width = document.documentElement.clientWidth < 430 ? document.documentElement.clientWidth + 'px' : '430px';
 
     containerDiv.innerHTML = `
     <div style="height: 100%; position: relative;  background: white; border-top-left-radius: 30px; border-top-right-radius: 30px; backdrop-filter: blur(10px)">

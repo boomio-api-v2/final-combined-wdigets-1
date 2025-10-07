@@ -31,7 +31,7 @@ export class CompetitionCodeScoreTableContainer {
 
     const s = String(name).trim();
 
-    // 1) If the whole name is digits → "ignore"    
+    // 1) If the whole name is digits → "ignore"
     if (/^\d+$/.test(s)) return name;
 
     // 2) Otherwise remove only trailing digits

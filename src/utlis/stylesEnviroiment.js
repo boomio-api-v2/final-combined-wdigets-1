@@ -9,7 +9,6 @@ export const addStylesToHtml = (cssRules) => {
   }
 };
 
-
 export const assignStyleOnElement = (style, properties) => {
   Object.assign(style, properties);
 };

@@ -8,679 +8,708 @@
 } */
 
 #boomio-widget-content {
-    pointer-events: auto;
+  pointer-events: auto;
 }
 
 .game-container {
-    position:fixed;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(10px); 
-    background-color: rgba(128, 128, 128, 0.3);
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none; 
-    -moz-user-select: none; 
-    -ms-user-select: none; 
-    user-select: none; 
-    outline: none;
-  }
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(128, 128, 128, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
 
 #boomio-widget-content .boomio-widget-screen-wrapper {
-    position: fixed;
-    z-index: 10000000000000;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    pointer-events: none;
+  position: fixed;
+  z-index: 10000000000000;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
 }
 
 .boomio--animation__wrapper--qr {
-    animation-name: boomio-animate-qr;
-    animation-duration: 300ms;
-    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    background-color: #ffffff;
-    box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px, rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
-    border-radius: 7px;
-    font-family: 'Montserrat';
+  animation-name: boomio-animate-qr;
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  background-color: #ffffff;
+  box-shadow:
+    rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,
+    rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
+  border-radius: 7px;
+  font-family: 'Montserrat';
 }
 
 .boomio--animation__wrapper {
-    text-align: center;
-    position: fixed;
-    z-index: 999999999999999999;
-    left:0px;
-    top:0px;
-    visibility: visible;
-    background-size: cover;
-    opacity: 1;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-family: 'Montserrat';
-    padding:0px;
-    margin:0px;
+  text-align: center;
+  position: fixed;
+  z-index: 999999999999999999;
+  left: 0px;
+  top: 0px;
+  visibility: visible;
+  background-size: cover;
+  opacity: 1;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Montserrat';
+  padding: 0px;
+  margin: 0px;
 }
 
-.boomio--animation--moveRight { animation-name: boomio-animate--moveRight; animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28); }
-.boomio--animation--moveLeft { animation-name: boomio-animate--moveLeft; animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28); }
-.boomio--animation--moveUp { animation-name: boomio-animate--moveUp; }
-.boomio--animation--moveDown { animation-name: boomio-animate--moveDown; }
-.boomio--animation--moveDiagonalDown { animation-name: boomio-animate--moveDiagonalDown; }
-.boomio--animation--moveDiagonalUp { animation-name: boomio-animate--moveDiagonalUp; }
-.boomio--animation--fadeIn { animation-name: boomio-animate--fadeIn; }
-.boomio--animation--zoomIn { animation-name: boomio-animate--zoomIn; animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28); }
-.boomio--animation--rotateRight { animation-name: boomio-animate--rotateRight; animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28); }
-.boomio--animation--skewLeft { animation-name: boomio-animate--skewLeft; }
-.boomio--animation--tada { animation-name: boomio-animate--tada; }
-.boomio--animation--lightSpeedInLeft { animation-name: boomio-animate--lightSpeedInLeft; }
-.boomio--animation--rollIn { animation-name: boomio-animate--rollIn; }
+.boomio--animation--moveRight {
+  animation-name: boomio-animate--moveRight;
+  animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.boomio--animation--moveLeft {
+  animation-name: boomio-animate--moveLeft;
+  animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.boomio--animation--moveUp {
+  animation-name: boomio-animate--moveUp;
+}
+.boomio--animation--moveDown {
+  animation-name: boomio-animate--moveDown;
+}
+.boomio--animation--moveDiagonalDown {
+  animation-name: boomio-animate--moveDiagonalDown;
+}
+.boomio--animation--moveDiagonalUp {
+  animation-name: boomio-animate--moveDiagonalUp;
+}
+.boomio--animation--fadeIn {
+  animation-name: boomio-animate--fadeIn;
+}
+.boomio--animation--zoomIn {
+  animation-name: boomio-animate--zoomIn;
+  animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.boomio--animation--rotateRight {
+  animation-name: boomio-animate--rotateRight;
+  animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.boomio--animation--skewLeft {
+  animation-name: boomio-animate--skewLeft;
+}
+.boomio--animation--tada {
+  animation-name: boomio-animate--tada;
+}
+.boomio--animation--lightSpeedInLeft {
+  animation-name: boomio-animate--lightSpeedInLeft;
+}
+.boomio--animation--rollIn {
+  animation-name: boomio-animate--rollIn;
+}
 
 @keyframes boomio-animate-qr {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes boomio-animate--rollIn {
-    from {
-        opacity: 0;
-        transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
-    }
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+  }
 
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes boomio-animate--zoomIn {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes boomio-animate--skewLeft {
-    0% {
-        transform: skew(60deg, 60deg);
-    }
-    100% {
-        transform: skew(0deg, 0deg);
-    }
+  0% {
+    transform: skew(60deg, 60deg);
+  }
+  100% {
+    transform: skew(0deg, 0deg);
+  }
 }
 
 @keyframes boomio-animate--rotateRight {
-    0% {
-        transform: rotate(360deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
-
 @keyframes boomio-animate--tada {
-    from {
-        transform: scale3d(1, 1, 1);
-    }
-    10%, 20% {
-        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
-    }
-    30%, 50%, 70%, 90% {
-        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
-    }
-    40%, 60%, 80% {
-        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
-    }
-    to {
-        transform: scale3d(1, 1, 1);
-    }
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
 .coupon__preview__card::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -18px;
-    background-color: #fff;
-    width: 20.99px;
-    height: 17.86px;
-    transform: translate(0%, -50%);
-    border-radius: 50%;
-    border: 2px solid transparent;
-    background-image: linear-gradient(#fff, #fff), linear-gradient(180deg, #5CB1E0 0%, #7E85E9 100%);
-    background-clip: content-box, border-box;
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  background-color: #fff;
+  width: 20.99px;
+  height: 17.86px;
+  transform: translate(0%, -50%);
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(180deg, #5cb1e0 0%, #7e85e9 100%);
+  background-clip: content-box, border-box;
 }
 
 .coupon_discount_modal .coupon__preview__card__header {
-    padding: 0;
-    text-align: center;
+  padding: 0;
+  text-align: center;
 }
 
 .coupon__preview__card__befor {
-    position: absolute;
-    content: "";
-    width: 19px;
-    top: 50%;
-    right: 0px;
-    height: 50px;
-    z-index: 1;
-    background-color: #fff;
-    transform: translate(111%, -50%);
+  position: absolute;
+  content: '';
+  width: 19px;
+  top: 50%;
+  right: 0px;
+  height: 50px;
+  z-index: 1;
+  background-color: #fff;
+  transform: translate(111%, -50%);
 }
 
 .coupon__preview__card__header h1 {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.02em;
-    color: #473F4E;
-    margin: 0px;
-    font-family: 'Montserrat' ;
-    text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #473f4e;
+  margin: 0px;
+  font-family: 'Montserrat';
+  text-align: center;
 }
 
 .coupon_discount_modal .coupon__preview__card__header h1 {
-    text-transform: uppercase;
-    margin-top: 10px;
-    margin-bottom: 14px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 14px;
 }
 
 .coupon_preview_card_footer .btn-text-group {
-    line-height: 14px;
-    font-size: 14px;
+  line-height: 14px;
+  font-size: 14px;
 }
 
 .coupon_preview_card_footer .btn-content {
-    width: 100%;
-    padding: 1px;
-    height: 47px;
-    border: double 1px transparent;
-    border-radius: 24px;
-    background-image: linear-gradient(#e8dff7, #fee0e7), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    cursor: pointer;
+  width: 100%;
+  padding: 1px;
+  height: 47px;
+  border: double 1px transparent;
+  border-radius: 24px;
+  background-image: linear-gradient(#e8dff7, #fee0e7), linear-gradient(39.06deg, #ffc24f 8.58%, #ff3183 32.32%, #8559f3 60.82%, #657bea 66.73%, #34b0dc 77.01%, #15d1d3 84.73%, #09ddd0 88.95%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  cursor: pointer;
 }
 
 .coupon_preview_card_footer a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .coupon_preview_card_footer .btn-content a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .coupon_preview_card_footer .btn-content .text-wrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .coupon_discount_modal .coupon_preview_card_footer {
-    margin-top: 8%;
+  margin-top: 8%;
 }
 
 .coupon_discount_modal .coupon_preview_card_footer a {
-    color:black
+  color: black;
 }
 
 .coupon_discount_modal .coupon_preview_card_footer p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .coupon_preview_card_footer .btn-content img {
-    width: 30px;
+  width: 30px;
 }
 
 .coupon_preview_card_footer .btn-content .small-font {
-    font-weight: 500;
-    font-size: 14px;
-    text-align: left;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: left;
 }
 
-
 .coupon__preview__card__after {
-    position: absolute;
-    content: "";
-    width: 19px;
-    top: 50%;
-    left: 0px;
-    height: 50px;
-    background-color: #fff;
-    transform: translate(-111%, -50%);
+  position: absolute;
+  content: '';
+  width: 19px;
+  top: 50%;
+  left: 0px;
+  height: 50px;
+  background-color: #fff;
+  transform: translate(-111%, -50%);
 }
 
 .coupon__preview__card {
-    position: relative;
-    width: 197px;
-    height: 156px;
-    border: double 2px transparent;
-    border-radius: 24px;
-    background-image: linear-gradient(#FBFAFC, #FBFAFC), linear-gradient(39.06deg, #FFC24F 8.58%, #FF3183 32.32%, #8559F3 60.82%, #657BEA 66.73%, #34B0DC 77.01%, #15D1D3 84.73%, #09DDD0 88.95%);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
+  position: relative;
+  width: 197px;
+  height: 156px;
+  border: double 2px transparent;
+  border-radius: 24px;
+  background-image: linear-gradient(#fbfafc, #fbfafc), linear-gradient(39.06deg, #ffc24f 8.58%, #ff3183 32.32%, #8559f3 60.82%, #657bea 66.73%, #34b0dc 77.01%, #15d1d3 84.73%, #09ddd0 88.95%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
 
- .coupon_info h3 {
-     padding: 3px;
-    text-align: center;
-    background: -webkit-linear-gradient(#FF3183, #8559F3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 40px;
-    margin: 0;
-     font-family: 'Montserrat';
- }
+.coupon_info h3 {
+  padding: 3px;
+  text-align: center;
+  background: -webkit-linear-gradient(#ff3183, #8559f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 40px;
+  margin: 0;
+  font-family: 'Montserrat';
+}
 
- .coupon_info h4 {
-     background: -webkit-linear-gradient(#FF3183, #8559F3);
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
-     text-transform: uppercase;
-     font-weight: 900;
-     font-size: 24px;
-     margin: 0;
-     padding: 0;
-     text-align: center;
-     font-family: 'Montserrat';
- }
+.coupon_info h4 {
+  background: -webkit-linear-gradient(#ff3183, #8559f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: 'Montserrat';
+}
 
 .coupon__preview__card::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -18px;
-    /* background-color: #fff; */
-    width: 20.99px;
-    height: 17.86px;
-    transform: translate(0%, -50%);
-    border-radius: 50%;
-    border: 2px solid transparent;
-    background-image: linear-gradient(#fff, #fff), linear-gradient(228.29deg, #FD5A97 10.56%, #FB6E80 86.04%);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -18px;
+  /* background-color: #fff; */
+  width: 20.99px;
+  height: 17.86px;
+  transform: translate(0%, -50%);
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(228.29deg, #fd5a97 10.56%, #fb6e80 86.04%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
 
 h4.boomio--animation__heading {
-    font-size: 16px;
-    opacity: .7;
-    margin-top: -8px;
+  font-size: 16px;
+  opacity: 0.7;
+  margin-top: -8px;
 }
 
 .boomio--animation__heading {
-    color: #000;
-    font: 22px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue;
-    margin: 0 0 16px;
+  color: #000;
+  font:
+    22px/1.2 system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Noto Sans,
+    Ubuntu,
+    Cantarell,
+    Helvetica Neue;
+  margin: 0 0 16px;
 }
 
 #modalBackground {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(62, 50, 72, 0.5);
-    z-index: 10000000000;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(62, 50, 72, 0.5);
+  z-index: 10000000000;
 }
 
 #widgetModal {
-    overflow: hidden;
-    box-shadow: 0px 4px 64px rgba(0, 0, 0, 0.25);
-    border: 1px solid #E8E7EB;
-    border-radius: 28px;
-    background: #FFFFFF;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;;
-    z-index: 100000000000;
-    transform: scale(0.1);
-    transition: all 0.3s;
-    animation: appearance;
-    animation-duration: 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 18px;
-    font-family: 'Montserrat';
+  overflow: hidden;
+  box-shadow: 0px 4px 64px rgba(0, 0, 0, 0.25);
+  border: 1px solid #e8e7eb;
+  border-radius: 28px;
+  background: #ffffff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  z-index: 100000000000;
+  transform: scale(0.1);
+  transition: all 0.3s;
+  animation: appearance;
+  animation-duration: 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 18px;
+  font-family: 'Montserrat';
 }
 
-#widgetModal .topText{
-    color: #473F4E;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    /* or 125% */
+#widgetModal .topText {
+  color: #473f4e;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  /* or 125% */
 
-    text-align: center;
-    letter-spacing: -0.02em;
+  text-align: center;
+  letter-spacing: -0.02em;
 }
 
-#widgetModal .bottomText{
-    background: linear-gradient(41.01deg, #FF6E6D 0%, #FF3183 5.48%, #598BF3 88.77%, #657BEA 95.23%, #34B0DC 101.49%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    /* or 125% */
+#widgetModal .bottomText {
+  background: linear-gradient(41.01deg, #ff6e6d 0%, #ff3183 5.48%, #598bf3 88.77%, #657bea 95.23%, #34b0dc 101.49%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  /* or 125% */
 
-    text-align: center;
-    letter-spacing: -0.02em;
+  text-align: center;
+  letter-spacing: -0.02em;
 }
 
 #boomio--qr {
-    z-index: 1000;
-    width: 100%;
-    height: 100%;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
 }
 
-.product-design-bg-2 *{
-    font-family: 'Montserrat' ;
-    font-style: normal;
+.product-design-bg-2 * {
+  font-family: 'Montserrat';
+  font-style: normal;
 }
 
 .product-design-bg-2 {
-    background-color: #ffffff;
-    height: 100% !important;
-    width: 100%;
-    height: -moz-fit-content;
-    height: fit-content;
-    padding: 20px;
-    border-radius: 10px;
-    padding: 0;
+  background-color: #ffffff;
+  height: 100% !important;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 20px;
+  border-radius: 10px;
+  padding: 0;
 }
 
 .coupon__preview__body {
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .coupon_discount_modal .coupon_preview_card_info {
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 }
 
-
 .align-items-center {
-    align-items: center !important;
+  align-items: center !important;
 }
 
 .justify-content-center {
-    justify-content: center !important;
+  justify-content: center !important;
 }
 
 .flex-column {
-    flex-direction: column !important;
+  flex-direction: column !important;
 }
 
 .coupon_discount_modal .coupon__preview__card {
-    box-shadow: 10px 11px 5px -5px rgba(195, 195, 195, 0.35);
+  box-shadow: 10px 11px 5px -5px rgba(195, 195, 195, 0.35);
 }
 
 .coupon-text {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    text-align: center;
-    line-height: 18px;
-    color: black;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  line-height: 18px;
+  color: black;
 }
 
-
- .coupon_info p {
-    padding: 0;
-    font-size: 12px;
-    font-weight: 600;
-    color: black;
-    margin-top: 4px;
-    text-align: center;
-    font-family: Montserrat;
+.coupon_info p {
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: black;
+  margin-top: 4px;
+  text-align: center;
+  font-family: Montserrat;
 }
-
 
 .coupon_discount_modal .coupon_preview_card_footer {
-    margin-top: 0px;
+  margin-top: 0px;
 }
 .coupon_discount_modal .coupon_preview_card_footer a {
-    color:black
+  color: black;
 }
 
 .coupon_discount_modal .coupon_preview_card_footer p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
-
 .coupon_preview_card_footer .btn-content img {
-    width: 20px;
-    height: 24px;
-    margin-right: 16px;
+  width: 20px;
+  height: 24px;
+  margin-right: 16px;
 }
 
 .coupon_preview_card_footer .btn-content .small-font {
-    font-weight: 600;
-    font-size: 10px;
+  font-weight: 600;
+  font-size: 10px;
 }
 
 .coupon_preview_card_footer .appstore-img img,
 .coupon_preview_card_footer .playstore-img img {
-    width: 150px;
+  width: 150px;
 }
 .coupon_preview_card_footer .btn-text-group {
-    line-height: 14px;
-    font-size: 14px;
+  line-height: 14px;
+  font-size: 14px;
 }
 
 .custom-close-icon {
-   position: relative;
-   top:-10px;
-   right:-180px;
+  position: relative;
+  top: -10px;
+  right: -180px;
 }
 
 @media only screen and (max-device-width: 640px) {
-    .custom-close-icon {
-        font-size: 8px;
-        width: 12px;
-        height: 12px;
-    }
+  .custom-close-icon {
+    font-size: 8px;
+    width: 12px;
+    height: 12px;
+  }
 }
 
 @media only screen and (min-device-width: 640px) {
-    .custom-close-icon {
-        font-size: 10px;
-        width: 16px;
-        height: 16px;
-    }
+  .custom-close-icon {
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+  }
 }
-
-
 
 #boomio-widget-content iframe:empty {
-    display: block !important;
+  display: block !important;
 }
-[draggable=true] {
-    cursor: move;
+[draggable='true'] {
+  cursor: move;
 }
 .boomio-close-modal-btn {
-    cursor: pointer;
+  cursor: pointer;
 }
 .boomio-close-modal-btn-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 #goModalButton {
-    font-size: 16px;
-    background: linear-gradient(39.06deg, #8559F3 8.58%, #657BEA 17.79%, #34B0DC 46.68%, #15D1D3 72.63%, #09DDD0 88.95%);
-    border-radius: 32px;
-    width: 130px;
-    height: 40px;
-    color: #FFFFFF;
-    flex: none;
-    order: 2;
-    flex-grow: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 24px;
-    gap: 8px;
-    outline: auto;
-    cursor: pointer;
-    font-weight: 600;
+  font-size: 16px;
+  background: linear-gradient(39.06deg, #8559f3 8.58%, #657bea 17.79%, #34b0dc 46.68%, #15d1d3 72.63%, #09ddd0 88.95%);
+  border-radius: 32px;
+  width: 130px;
+  height: 40px;
+  color: #ffffff;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  gap: 8px;
+  outline: auto;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 @keyframes appearance {
-    from {
-        transform: scale(0.1)
-    }
-    to {
-        transform: scale(1);
-        transform-origin: 200% 200%;
-    }
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+    transform-origin: 200% 200%;
+  }
 }
 
 .animation-widget {
-    transition: transform 0.3s;
-    animation: appearance;
-    animation-duration: 0.3s;
+  transition: transform 0.3s;
+  animation: appearance;
+  animation-duration: 0.3s;
 }
 
 .winningAnimation {
-     width: 60vw;
-    min-width: 300px;
-    position: fixed;
-    bottom: 0;
-    top: 50%;
-    left: 50%;
-    max-height: 600px;
-    transform: translate(-50%, -50%);
-    width: 40vw;
-    min-width: 300px;
-    height: 100vh;
-    right: 0;
-    z-index: 1000000000000000000000;
-    pointer-events: none;
-    object-fit: cover;
+  width: 60vw;
+  min-width: 300px;
+  position: fixed;
+  bottom: 0;
+  top: 50%;
+  left: 50%;
+  max-height: 600px;
+  transform: translate(-50%, -50%);
+  width: 40vw;
+  min-width: 300px;
+  height: 100vh;
+  right: 0;
+  z-index: 1000000000000000000000;
+  pointer-events: none;
+  object-fit: cover;
 }
 
 .exist-or-saving-modal-title {
-    text-align: center;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    color: black;
-    letter-spacing: -0.03em;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: black;
+  letter-spacing: -0.03em;
 }
 
 .boomie-preview-mobile {
-    width: 100px;
+  width: 100px;
 }
-
 
 #widgetPreview {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    bottom: -55px;
-    cursor: pointer;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: -55px;
+  cursor: pointer;
 }
 #puzzle-widget {
-    width: 185px;
-    height: 185px;
-    border-radius: 10px;
-    background-size: contain;
-    position: fixed;
-    z-index: 100000000000;
+  width: 185px;
+  height: 185px;
+  border-radius: 10px;
+  background-size: contain;
+  position: fixed;
+  z-index: 100000000000;
 }
 
 .oomio-app-text {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 18px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
 }
-
 
 .footer-dec {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    padding-top: 11px;
-    line-height: 21px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  padding-top: 11px;
+  line-height: 21px;
 }
-
 
 .coupon_discount_modal .coupon__preview__card {
-    box-shadow: 10px 11px 5px -5px rgb(195 195 195 / 35%);
+  box-shadow: 10px 11px 5px -5px rgb(195 195 195 / 35%);
 }
-
 
 .coupon_discount_modal .coupon__preview__card__header {
-    padding: 0;
-    text-align: center;
+  padding: 0;
+  text-align: center;
 }
 
-
- .coupon_info {
-     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.coupon_info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
 
 .boomio--animation__hover:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .d-flex {
-    display: flex !important;
+  display: flex !important;
 }
 
 .pt-2 {
-    padding-top: 0.5rem !important;
+  padding-top: 0.5rem !important;
 }
-
 
 .coupon__preview__card__header h1 {
-    font-weight: 600;
-    font-style: normal;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.02em;
-    color: #473F4E;
-    margin: 0px;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #473f4e;
+  margin: 0px;
 }
-
-

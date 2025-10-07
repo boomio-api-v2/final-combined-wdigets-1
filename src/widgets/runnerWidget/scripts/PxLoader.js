@@ -138,11 +138,7 @@ class PxLoader {
   }
 
   isBusy() {
-    return this.entries.some(
-      (entry) =>
-        entry.status === PxLoader.ResourceState.QUEUED ||
-        entry.status === PxLoader.ResourceState.WAITING,
-    );
+    return this.entries.some((entry) => entry.status === PxLoader.ResourceState.QUEUED || entry.status === PxLoader.ResourceState.WAITING);
   }
 
   // Handle progress updates
@@ -184,15 +180,10 @@ class PxLoader {
     let total = 0;
 
     for (const entry of this.entries) {
-      const includeResource =
-        listener.tags.length === 0 || entry.resource.tags.intersects(listener.tags);
+      const includeResource = listener.tags.length === 0 || entry.resource.tags.intersects(listener.tags);
       if (includeResource) {
         total++;
-        if (
-          entry.status === PxLoader.ResourceState.LOADED ||
-          entry.status === PxLoader.ResourceState.ERROR ||
-          entry.status === PxLoader.ResourceState.TIMEOUT
-        ) {
+        if (entry.status === PxLoader.ResourceState.LOADED || entry.status === PxLoader.ResourceState.ERROR || entry.status === PxLoader.ResourceState.TIMEOUT) {
           completed++;
         }
       }
