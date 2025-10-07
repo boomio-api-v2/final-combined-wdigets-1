@@ -2477,9 +2477,9 @@ dat.GUI = dat.gui.GUI = (function (
     var opt = gui.__preset_select[gui.__preset_select.selectedIndex];
     //    console.log('mark', modified, opt);
     if (modified) {
-      opt.innerHTML = opt.value + '*';
+      opt.textContent = opt.value + '*';
     } else {
-      opt.innerHTML = opt.value;
+      opt.textContent = opt.value;
     }
   }
 
