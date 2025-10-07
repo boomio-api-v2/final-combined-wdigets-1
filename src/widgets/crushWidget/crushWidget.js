@@ -121,7 +121,7 @@ import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { ShareContainer } from '../helpers/ShareContainer';
-import { Elements } from '../helpers/ElementsHelper';
+import { Elements } from '../helpers/HtmlElementsHelper';
 import { CitySchoolSelect } from '../helpers/CitySchoolSelect';
 
 import './styles.css';
@@ -1516,11 +1516,11 @@ background:${
           boomioService
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange2,
-              user_email: this.user_id || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
+              user_email: this.user_id || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
               user_name:
                 this.customer === 'Toni'
                   ? playerNameInput?.value.trimEnd() + phoneInput?.value
-                  : this.user_id || (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
+                  : this.user_id || (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
               ...(phoneValue ? { phone: phoneInput?.value } : {}),
               via_mobile: this.campaignUrl ? true : false,
               ...(Elements.isVisible(Elements.schoolSelect) ? { team: Elements?.schoolSelect?.value } : {}),

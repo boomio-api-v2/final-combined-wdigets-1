@@ -1,16 +1,26 @@
-export const Elements = {
+import { localStorageService } from '@/services';
+
+class HtmlElementsHelper {
+  constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name;
+  }
+
   get emailInput() {
     return document.getElementById('boomio-competition-email-input-field');
-  },
+  }
+
   get nameInput() {
     return document.getElementById('boomio-competition-name-input-field');
-  },
+  }
+
   get citySelect() {
     return document.getElementById('city-select');
-  },
+  }
+
   get schoolSelect() {
     return document.getElementById('school-select');
-  },
+  }
 
   isVisible(el) {
     if (!el) return false;
@@ -29,5 +39,19 @@ export const Elements = {
       rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
       rect.left <= (window.innerWidth || document.documentElement.clientWidth)
     );
-  },
-};
+  }
+
+  /**
+   * Get email value with proper case handling
+   * @returns {string} - Email value (lowercase unless customer is 'Pigu.lt')
+   */
+  getEmailValue() {
+    const email = this.emailInput?.value;
+    if (!email) return email;
+
+    // Keep case sensitive for Pigu.lt customer, otherwise convert to lowercase
+    return this.customer === 'Pigu.lt' ? email : email.toLowerCase();
+  }
+}
+
+export const Elements = new HtmlElementsHelper();

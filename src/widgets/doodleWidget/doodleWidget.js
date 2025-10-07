@@ -67,7 +67,7 @@ import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { ShareContainer } from '../helpers/ShareContainer';
-import { Elements } from '../helpers/ElementsHelper';
+import { Elements } from '../helpers/HtmlElementsHelper';
 
 //JumpUp Game Classes
 class DoodleWidget {
@@ -1623,11 +1623,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange2,
-                  user_email: Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim(),
+                  user_email: Elements.isVisible(Elements.emailInput) && Elements.getEmailValue(),
                   user_name:
                     this.customer === 'Toni'
                       ? nameInput?.value.trimEnd() + phoneInput?.value
-                      : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
+                      : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
                   via_mobile: this.campaignUrl ? true : false,
                   ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
                 })
