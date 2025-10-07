@@ -17,7 +17,7 @@ module.exports = (env, argv) => {
           compact: true,
           controlFlowFlattening: false,
           deadCodeInjection: false,
-          debugProtection: true,
+          debugProtection: false,
           debugProtectionInterval: 1000,
           disableConsoleOutput: false,
           identifierNamesGenerator: 'hexadecimal',
