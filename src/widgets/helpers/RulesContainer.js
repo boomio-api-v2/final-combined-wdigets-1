@@ -1,6 +1,6 @@
 import './styles.css';
 
-import { boomioLogo, close } from './constants';
+import { close } from './constants';
 export class RulesContainer {
   constructor(prop, scoreTable, currentScore) {
     this.prop = prop;
@@ -75,7 +75,7 @@ export class RulesContainer {
 
 `
         : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'EN'
-        ? `<div>
+          ? `<div>
     <p><strong>Game Rules</strong></p>
     <p>Revision from 2025-03-25</p>
 
@@ -117,8 +117,8 @@ export class RulesContainer {
 </div>
 
 `
-        : this.campaignUrlProp === 'https://220.lv' && this.language === 'LV'
-        ? `<div>
+          : this.campaignUrlProp === 'https://220.lv' && this.language === 'LV'
+            ? `<div>
     <p><strong>Spēles noteikumi</strong></p>
     <p>Pārskatīts 2025. gada 25. martā</p>
 
@@ -160,8 +160,8 @@ export class RulesContainer {
 </div>
 
 `
-        : this.campaignUrlProp === 'https://220.lv' && this.language === 'RU'
-        ? `<div>
+            : this.campaignUrlProp === 'https://220.lv' && this.language === 'RU'
+              ? `<div>
     <p><strong>Правила игры</strong></p>
     <p>Пересмотрено 25 марта 2025 г.</p>
 
@@ -204,8 +204,8 @@ export class RulesContainer {
 
 
 `
-        : this.campaignUrlProp === 'https://220.lv' && this.language === 'EN'
-        ? `<div>
+              : this.campaignUrlProp === 'https://220.lv' && this.language === 'EN'
+                ? `<div>
     <p><strong>Game Rules</strong></p>
     <p>Revision from 2025-03-25</p>
 
@@ -247,10 +247,8 @@ export class RulesContainer {
 </div>
 
 `
-        : (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee') &&
-          this.language === 'ET'
-        ? `<div>
+                : (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee') && this.language === 'ET'
+                  ? `<div>
     <p><strong>Правила игры</strong></p>
     <p>Пересмотрено 25 марта 2025 г.</p>
 
@@ -292,8 +290,8 @@ export class RulesContainer {
 </div>
 
 `
-        : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'RU'
-        ? `<div>
+                  : this.campaignUrlProp === 'https://pigu.lt' && this.language === 'RU'
+                    ? `<div>
     <p><strong>Правила игры</strong></p>
     <p>Пересмотрено 25 марта 2025 г.</p>
 
@@ -336,10 +334,8 @@ export class RulesContainer {
 
 
 `
-        : (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee') &&
-          this.language === 'RU'
-        ? `<div>
+                    : (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee') && this.language === 'RU'
+                      ? `<div>
     <p><strong>Правила игры</strong></p>
     <p>Пересмотрено 3 февраля 2025 г.</p>
 
@@ -392,8 +388,8 @@ export class RulesContainer {
 </div>
 
 `
-        : this.campaignUrlProp === 'https://hobbyhall.fi' && this.language === 'FI'
-        ? `<div>
+                      : this.campaignUrlProp === 'https://hobbyhall.fi' && this.language === 'FI'
+                        ? `<div>
     <p><strong>Pelisäännöt</strong></p>
     <p>Tarkistettu 25.3.2025</p>
 
@@ -434,10 +430,8 @@ export class RulesContainer {
 </div>
 
 `
-        : (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee') &&
-          this.language === 'EN'
-        ? `<div>
+                        : (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee') && this.language === 'EN'
+                          ? `<div>
     <p><strong>Game Rules</strong></p>
     <p>Revision from 2025-03-25</p>
 
@@ -479,9 +473,9 @@ export class RulesContainer {
 </div>
 
 `
-        : this.campaignUrlProp === 'https://hobbyhall.fi' &&
-          this.language === 'EN' &&
-          `<div>
+                          : this.campaignUrlProp === 'https://hobbyhall.fi' &&
+                            this.language === 'EN' &&
+                            `<div>
     <p><strong>Game Rules</strong></p>
     <p>Revision from 2025-03-25</p>
 
@@ -573,12 +567,7 @@ export class RulesContainer {
     containerDiv.style.borderRadius = '10px';
     containerDiv.style.paddingBottom = '20px';
 
-    containerDiv.style.width =
-      document.documentElement.clientWidth < 426
-        ? document.documentElement.clientWidth < 321
-          ? '315px'
-          : document.documentElement.clientWidth - 60 + 'px'
-        : '366px';
+    containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '315px' : document.documentElement.clientWidth - 60 + 'px') : '366px';
     this.containerDiv = containerDiv;
 
     const existingContainer = document.getElementById('collection-table-container');

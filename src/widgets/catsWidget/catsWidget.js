@@ -1,13 +1,7 @@
 import * as constants from '@/сonstants';
 import * as Matter from 'matter-js';
 import theAnimation from './animation';
-import {
-  AnimationService,
-  localStorageService,
-  widgetHtmlService,
-  DragElement,
-  QrCodeModal,
-} from '@/services';
+import { AnimationService, localStorageService, widgetHtmlService, DragElement, QrCodeModal } from '@/services';
 import './styles.css';
 
 class CatsWidget {
@@ -180,19 +174,13 @@ class CatsWidget {
       collisionHeight = _height / 1.13;
       _x = this.myCanvas.width * 0.28;
       _y = this.myCanvas.height * 0.48;
-      this.boxA = Matter.Bodies.rectangle(
-        _x + _width / 2,
-        _y + _height / 2,
-        collisionWidth,
-        collisionHeight,
-        {
-          width: _width,
-          height: _height,
-          broken: false,
-          clickCount: 0,
-          collisionWidth: collisionWidth,
-        },
-      );
+      this.boxA = Matter.Bodies.rectangle(_x + _width / 2, _y + _height / 2, collisionWidth, collisionHeight, {
+        width: _width,
+        height: _height,
+        broken: false,
+        clickCount: 0,
+        collisionWidth: collisionWidth,
+      });
       this.boxA.collisionFilter.group = 1;
       Matter.Body.setAngle(this.boxA, 90 * (Math.PI / 180));
 
@@ -203,19 +191,13 @@ class CatsWidget {
       collisionHeight = (_height / 1.13) * 0.99;
       _x = this.myCanvas.width * 0.53;
       _y = this.myCanvas.height * 0.1;
-      this.boxB = Matter.Bodies.rectangle(
-        _x + _width / 2,
-        _y + _height / 2,
-        collisionWidth,
-        collisionHeight,
-        {
-          width: _width,
-          height: _height,
-          broken: false,
-          clickCount: 0,
-          collisionWidth: collisionWidth,
-        },
-      );
+      this.boxB = Matter.Bodies.rectangle(_x + _width / 2, _y + _height / 2, collisionWidth, collisionHeight, {
+        width: _width,
+        height: _height,
+        broken: false,
+        clickCount: 0,
+        collisionWidth: collisionWidth,
+      });
       this.boxB.collisionFilter.group = 1;
       Matter.Body.setAngle(this.boxB, 180 * (Math.PI / 180));
 
@@ -255,14 +237,7 @@ class CatsWidget {
     box.height = box.height * divH;
   }
   addBoxesTotheWorld() {
-    Matter.Composite.add(this.engine.world, [
-      this.boxA,
-      this.boxB,
-      this.theGround,
-      this.wall1,
-      this.wall2,
-      this.roof,
-    ]);
+    Matter.Composite.add(this.engine.world, [this.boxA, this.boxB, this.theGround, this.wall1, this.wall2, this.roof]);
   }
 
   onmousemove(event) {
@@ -294,9 +269,7 @@ class CatsWidget {
     _y1 = this.getTopLeft(i)[1];
     _x2 = this.getBottomRight(i)[0];
     _y2 = this.getBottomRight(i)[1];
-    return (
-      this.brokenCubes[i] == false && clickX > _x1 && clickY > _y1 && clickX < _x2 && clickY < _y2
-    );
+    return this.brokenCubes[i] == false && clickX > _x1 && clickY > _y1 && clickX < _x2 && clickY < _y2;
   }
 
   setClickArea(i, _x, _y, _width, _height) {
@@ -314,11 +287,7 @@ class CatsWidget {
 
   objectWasClicked(box, i) {
     let neg = Math.sign(Math.random() - 0.5);
-    Matter.Body.applyForce(
-      box,
-      { x: box.position.x, y: box.position.y },
-      { x: -0.26 * neg, y: -0.49 },
-    );
+    Matter.Body.applyForce(box, { x: box.position.x, y: box.position.y }, { x: -0.26 * neg, y: -0.49 });
     if (box.clickCount < this.boxBlueImgsArr.length - 1) box.clickCount++;
     if (box.clickCount == this.boxBlueImgsArr.length - 1) {
       this.boxA.collisionFilter.group = -1;

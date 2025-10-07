@@ -136,20 +136,11 @@ export function playAirEngine() {
 }
 
 export function quietAllEngines() {
-  groundEngine.gainNode.gain.setValueAtTime(
-    groundEngine.gainNode.gain.value,
-    audioContext.currentTime,
-  );
-  groundEngine.gainNode.gain.exponentialRampToValueAtTime(
-    EPSILON,
-    audioContext.currentTime + RAMP_TIME,
-  );
+  groundEngine.gainNode.gain.setValueAtTime(groundEngine.gainNode.gain.value, audioContext.currentTime);
+  groundEngine.gainNode.gain.exponentialRampToValueAtTime(EPSILON, audioContext.currentTime + RAMP_TIME);
 
   airEngine.gainNode.gain.setValueAtTime(airEngine.gainNode.gain.value, audioContext.currentTime);
-  airEngine.gainNode.gain.exponentialRampToValueAtTime(
-    EPSILON,
-    audioContext.currentTime + RAMP_TIME,
-  );
+  airEngine.gainNode.gain.exponentialRampToValueAtTime(EPSILON, audioContext.currentTime + RAMP_TIME);
 }
 
 export function startEngines() {

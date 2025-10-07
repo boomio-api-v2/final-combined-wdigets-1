@@ -5,13 +5,7 @@ import theHandleObject from './theHandleObject';
 import theJar from './theJar';
 import theTransform from './theTransform';
 import * as constants from '@/сonstants';
-import {
-  localStorageService,
-  QrCodeModal,
-  AnimationService,
-  widgetHtmlService,
-  DragElement,
-} from '@/services';
+import { localStorageService, QrCodeModal, AnimationService, widgetHtmlService, DragElement } from '@/services';
 import './styles.css';
 
 class HedgehogWidget {
@@ -110,8 +104,8 @@ class HedgehogWidget {
     this.cursorX = 0;
     this.cursorY = 0;
 
-    this.xu, this.yu;
-    this.thePivotX, this.thePivotY;
+    (this.xu, this.yu);
+    (this.thePivotX, this.thePivotY);
     this.clickAreas = [[]];
 
     this.animation = new AnimationService({
@@ -406,12 +400,7 @@ class HedgehogWidget {
   }
 
   drawHammer() {
-    if (this.handImg != null)
-      this.ctx.drawImage(
-        this.handImg,
-        this.cursorX - this.handImg.width / 2,
-        this.cursorY - this.handImg.height / 2,
-      );
+    if (this.handImg != null) this.ctx.drawImage(this.handImg, this.cursorX - this.handImg.width / 2, this.cursorY - this.handImg.height / 2);
   }
 
   drawMachine() {
@@ -529,15 +518,8 @@ class HedgehogWidget {
     _height = this.myHandle.image.height * scale;
     _x = this.myCanvas.width * 0.66;
     _y = this.myCanvas.height * 0.438;
-    if (this.myHandle.isTurning == false)
-      this.ctx.drawImage(this.myHandle.image, _x, _y, _width, _height);
-    this.setClickArea(
-      0,
-      _x + this.myHandle.image.width * scale * 0.31,
-      _y + this.myHandle.image.width * scale * -0.04,
-      65,
-      50,
-    );
+    if (this.myHandle.isTurning == false) this.ctx.drawImage(this.myHandle.image, _x, _y, _width, _height);
+    this.setClickArea(0, _x + this.myHandle.image.width * scale * 0.31, _y + this.myHandle.image.width * scale * -0.04, 65, 50);
 
     if (this.myHandle.isTurning == false) return;
 

@@ -1,6 +1,5 @@
 import './styles.css';
 
-import { closeDidYouKnow, facebook, messenger, instagram, tiktok, copy, whatsapp } from './constants';
 import { localStorageService } from '@/services';
 import { t } from '../../services/translations';
 

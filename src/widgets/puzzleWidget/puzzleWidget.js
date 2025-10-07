@@ -1,20 +1,8 @@
-import {
-  boomioService,
-  localStorageService,
-  DragElement,
-  AnimationService,
-  QrCodeModal,
-  widgetHtmlService,
-} from '@/services';
+import { boomioService, localStorageService, DragElement, AnimationService, QrCodeModal, widgetHtmlService } from '@/services';
 import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
 import { getRandomArbitrary, assignStyleOnElement, createCloseMoveButtons } from '@/utlis';
-import {
-  puzzlesCoordinateForDesktop,
-  puzzlesCoordinateForMobile,
-  puzzlesCoordinate,
-  puzzleWidgetSize,
-} from './constants';
+import { puzzlesCoordinateForDesktop, puzzlesCoordinateForMobile, puzzlesCoordinate, puzzleWidgetSize } from './constants';
 
 export class Puzzle {
   constructor() {
@@ -72,12 +60,8 @@ export class Puzzle {
 
     const { clientWidth, clientHeight } = document.documentElement;
 
-    const left =
-      (!localStorage.getItem('testing_Widgets') && x_position) ||
-      clientWidth - 40 - puzzleWidgetSize;
-    const top =
-      (!localStorage.getItem('testing_Widgets') && y_position) ||
-      clientHeight - 40 - puzzleWidgetSize;
+    const left = (!localStorage.getItem('testing_Widgets') && x_position) || clientWidth - 40 - puzzleWidgetSize;
+    const top = (!localStorage.getItem('testing_Widgets') && y_position) || clientHeight - 40 - puzzleWidgetSize;
     const size = `${puzzleWidgetSize}px`;
     assignStyleOnElement(puzzleWidget.style, {
       width: size,
@@ -227,9 +211,7 @@ export class Puzzle {
         this.mainContainer = widgetHtmlService.container;
         this.animationEl = null;
         this.isPreviewDisplayed = false;
-        this.coordinates = isMobileDevice
-          ? puzzlesCoordinateForMobile
-          : puzzlesCoordinateForDesktop;
+        this.coordinates = isMobileDevice ? puzzlesCoordinateForMobile : puzzlesCoordinateForDesktop;
         localStorageService.config.puzzle.puzzles_collected = 0;
 
         const element = document.getElementById('puzzle-widget');
@@ -316,10 +298,7 @@ export default () => {
   if (puzzles_collected !== 0 || localStorage.getItem('testing_Widgets')) {
     puzzle.showPuzzleWidgetWindowDraggable();
   }
-  if (
-    (widget_subtype !== 'static' && puzzles_collected > 1) ||
-    localStorage.getItem('testing_Widgets')
-  ) {
+  if ((widget_subtype !== 'static' && puzzles_collected > 1) || localStorage.getItem('testing_Widgets')) {
     puzzle.addImageToPuzzleWidget();
   }
   if (widget_subtype !== 'static' || localStorage.getItem('testing_Widgets')) {

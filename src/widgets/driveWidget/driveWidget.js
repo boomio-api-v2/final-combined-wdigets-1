@@ -13,12 +13,10 @@ import {
   IkeaIntro,
   UnisendIntroLV,
   UnisendIntroEE,
-  newRecordIkea,
   piguDriveEEEn,
   piguDriveEERu,
   piguDriveEE,
   piguDriveFIEn,
-  piguDriveFIRu,
   piguDriveFI,
   piguDriveLTEn,
   piguDriveLTRu,
@@ -44,7 +42,6 @@ import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
-import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 
 class driveWidget {
@@ -53,8 +50,7 @@ class driveWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name ? this.config.business_name : 'Novaturas';
-    this.showCompetitiveRegistration =
-      this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
@@ -62,14 +58,13 @@ class driveWidget {
 
     const urlParams = new URL(currentPageUrl).searchParams;
     const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : this.config.language ?? 'ES';
+    this.language = this.customer === 'Pigu.lt' ? languageParam : (this.config.language ?? 'ES');
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     this.createContainer();
-    document.querySelector('.game-container').style.backgroundColor =
-      window.innerWidth <= 768 ? 'black' : 'none';
+    document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
   }
 
   createContainer = () => {
@@ -87,11 +82,7 @@ class driveWidget {
     this.type = randomType();
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-drive-container');
-    myCanvas.classList.add(
-      'boomio--animation__wrapper',
-      'boomio--animation__wrapper--initial',
-      'box',
-    );
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">
@@ -105,14 +96,14 @@ class driveWidget {
       this.language === 'EN'
         ? newRecordEn
         : this.language === 'LV'
-        ? newRecordLV
-        : this.language === 'ET'
-        ? newRecordEE
-        : this.language === 'FI'
-        ? newRecordFI
-        : this.language === 'RU'
-        ? newRecordRU
-        : newRecord
+          ? newRecordLV
+          : this.language === 'ET'
+            ? newRecordEE
+            : this.language === 'FI'
+              ? newRecordFI
+              : this.language === 'RU'
+                ? newRecordRU
+                : newRecord
     }  alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers" style="z-index:10">
@@ -137,38 +128,36 @@ class driveWidget {
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${
       this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
-    };font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${
-      this.customer === 'Ikea' ? 'none' : 'uppercase'
-    };">
+    };font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${this.customer === 'Ikea' ? 'none' : 'uppercase'};">
         <div>${
           this.language === 'FI'
             ? 'PYYHKÄISE'
             : this.language === 'ET'
-            ? 'LIBISTA'
-            : this.language === 'RU'
-            ? 'ПРОВЕДИ '
-            : this.language === 'LV'
-            ? 'Pakustini,'
-            : this.language === 'ET'
-            ? 'LIIGU'
-            : this.language === 'EN'
-            ? 'swipe'
-            : 'Brūkšt'
+              ? 'LIBISTA'
+              : this.language === 'RU'
+                ? 'ПРОВЕДИ '
+                : this.language === 'LV'
+                  ? 'Pakustini,'
+                  : this.language === 'ET'
+                    ? 'LIIGU'
+                    : this.language === 'EN'
+                      ? 'swipe'
+                      : 'Brūkšt'
         }</div>
         <div>${
           this.language === 'FI'
             ? 'PYYHKÄISE'
             : this.language === 'ET'
-            ? 'LIBISTA'
-            : this.language === 'RU'
-            ? 'ПРОВЕДИ '
-            : this.language === 'LV'
-            ? 'lai sāktu'
-            : this.language === 'ET'
-            ? 'LIIGU'
-            : this.language === 'EN'
-            ? 'swipe'
-            : 'Brūkšt'
+              ? 'LIBISTA'
+              : this.language === 'RU'
+                ? 'ПРОВЕДИ '
+                : this.language === 'LV'
+                  ? 'lai sāktu'
+                  : this.language === 'ET'
+                    ? 'LIIGU'
+                    : this.language === 'EN'
+                      ? 'swipe'
+                      : 'Brūkšt'
         }</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
@@ -176,18 +165,18 @@ class driveWidget {
       this.customer === 'Barbora'
         ? '#CC0001'
         : this.customer === 'Ikea'
-        ? '#0058A3'
-        : this.customer === 'Unisend'
-        ? '#376728'
-        : this.customer === 'Pigu.lt'
-        ? '#DF503E'
-        : this.customer === 'Gamtos Ateitis'
-        ? '#3F7543'
-        : this.customer === 'Orlen'
-        ? '#EF1C1D'
-        : this.customer === 'Novaturas'
-        ? '#32A1DA'
-        : '#FFE92D'
+          ? '#0058A3'
+          : this.customer === 'Unisend'
+            ? '#376728'
+            : this.customer === 'Pigu.lt'
+              ? '#DF503E'
+              : this.customer === 'Gamtos Ateitis'
+                ? '#3F7543'
+                : this.customer === 'Orlen'
+                  ? '#EF1C1D'
+                  : this.customer === 'Novaturas'
+                    ? '#32A1DA'
+                    : '#FFE92D'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
@@ -203,18 +192,9 @@ class driveWidget {
 
 
 ${
-  this.customer === 'Pigu.lt' ||
-  this.customer === 'Gamtos Ateitis' ||
-  this.customer === 'Orlen' ||
-  this.customer === 'Novaturas'
+  this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis' || this.customer === 'Orlen' || this.customer === 'Novaturas'
     ? `<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-        this.customer === 'Gamtos Ateitis'
-          ? '#3F7543'
-          : this.customer === 'Orlen'
-          ? '#EF1C1D'
-          : this.customer === 'Novaturas'
-          ? '#32A1DA'
-          : '#DF503E'
+        this.customer === 'Gamtos Ateitis' ? '#3F7543' : this.customer === 'Orlen' ? '#EF1C1D' : this.customer === 'Novaturas' ? '#32A1DA' : '#DF503E'
       };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
@@ -226,18 +206,18 @@ ${
         this.customer === 'Barbora'
           ? '#CC0001'
           : this.customer === 'Ikea'
-          ? '#0058A3'
-          : this.customer === 'Unisend'
-          ? '#376728'
-          : this.customer === 'Pigu.lt'
-          ? '#DF503E'
-          : this.customer === 'Gamtos Ateitis'
-          ? '#3F7543'
-          : this.customer === 'Orlen'
-          ? '#EF1C1D'
-          : this.customer === 'Novaturas'
-          ? '#32A1DA'
-          : '#FFE92D'
+            ? '#0058A3'
+            : this.customer === 'Unisend'
+              ? '#376728'
+              : this.customer === 'Pigu.lt'
+                ? '#DF503E'
+                : this.customer === 'Gamtos Ateitis'
+                  ? '#3F7543'
+                  : this.customer === 'Orlen'
+                    ? '#EF1C1D'
+                    : this.customer === 'Novaturas'
+                      ? '#32A1DA'
+                      : '#FFE92D'
       };border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
@@ -252,86 +232,62 @@ ${
 
 
     <img src=${
-      this.language === 'ET' &&
-      (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+      this.language === 'ET' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
         ? piguDriveEE
-        : this.language === 'RU' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
-        ? piguDriveEERu
-        : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-        ? piguDriveLT
-        : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-        ? piguDriveLTRu
-        : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? piguDriveFI
-        : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-        ? piguDriveLTEn
-        : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-        ? piguDriveFIEn
-        : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-        ? piguDriveLV
-        : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-        ? piguDriveLVRu
-        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-        ? piguDriveLVEn
-        : this.language === 'EN' &&
-          (this.campaignUrlProp === 'https://kaup.ee' ||
-            this.campaignUrlProp === 'https://kaup24.ee')
-        ? piguDriveEEEn
-        : this.customer === 'Barbora'
-        ? BarboraIntro
-        : this.customer === 'Unisend' && this.language === 'ET'
-        ? UnisendIntroEE
-        : this.customer === 'Unisend' && this.language === 'LV'
-        ? UnisendIntroLV
-        : this.customer === 'Ikea'
-        ? IkeaIntro
-        : this.customer === 'LemonGym'
-        ? intro
-        : this.customer === 'Orlen'
-        ? introOrlen
-        : this.type === 1
-        ? introPaper
-        : this.type === 2
-        ? introGlass
-        : this.type === 3
-        ? introPlastic
-        : ''
+        : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+          ? piguDriveEERu
+          : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+            ? piguDriveLT
+            : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+              ? piguDriveLTRu
+              : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+                ? piguDriveFI
+                : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+                  ? piguDriveLTEn
+                  : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+                    ? piguDriveFIEn
+                    : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+                      ? piguDriveLV
+                      : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+                        ? piguDriveLVRu
+                        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+                          ? piguDriveLVEn
+                          : this.language === 'EN' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+                            ? piguDriveEEEn
+                            : this.customer === 'Barbora'
+                              ? BarboraIntro
+                              : this.customer === 'Unisend' && this.language === 'ET'
+                                ? UnisendIntroEE
+                                : this.customer === 'Unisend' && this.language === 'LV'
+                                  ? UnisendIntroLV
+                                  : this.customer === 'Ikea'
+                                    ? IkeaIntro
+                                    : this.customer === 'LemonGym'
+                                      ? intro
+                                      : this.customer === 'Orlen'
+                                        ? introOrlen
+                                        : this.type === 1
+                                          ? introPaper
+                                          : this.type === 2
+                                            ? introGlass
+                                            : this.type === 3
+                                              ? introPlastic
+                                              : ''
     } alt="Image Description" style="z-index:4;width:${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth + 'px'
-        : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:${
-      this.customer === 'Novaturas' ? 'none' : 'block'
-    };" id="background_intro">
+      document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none; display:${this.customer === 'Novaturas' ? 'none' : 'block'};" id="background_intro">
     <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
-      document.documentElement.clientWidth < 418
-        ? document.documentElement.clientWidth + 'px'
-        : '418px'
+      document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0.37;pointer-events: none; display:block;" id="background_blur">
 
-    ${
-      this.showCompetitiveRegistration
-        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
-        : ''
-    }
+    ${this.showCompetitiveRegistration ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML : ''}
 
-    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:${
-      this.customer === 'Pigu.lt' ? 'none' : 'block'
-    };width:32px;height:32px;">
+    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:${this.customer === 'Pigu.lt' ? 'none' : 'block'};width:32px;height:32px;">
 <img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
 </div>
-    ${
-      new InputContainer(this.customer, 'drive').createInputContainerDiv('drive', this.type)
-        .outerHTML
-    }
+    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('drive', this.type).outerHTML}
 
-      <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${
-        document.documentElement.clientWidth < 418
-          ? document.documentElement.clientWidth + 'px'
-          : '418px'
-      }">
+      <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}">
       </canvas>
     </div>
     `;
@@ -340,25 +296,15 @@ ${
     if (this.showCompetitiveRegistration === 'competition') {
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
-        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(
-          this.customer,
-          this.scoreTable,
-          this.currentScore,
-        );
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(this.customer, this.scoreTable, this.currentScore);
       } else {
-        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(
-          this.customer,
-          this.scoreTable,
-        );
+        this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
-      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(
-        this.customer,
-        this.scoreTable,
-      );
+      this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(this.customer, this.scoreTable);
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {
@@ -380,11 +326,7 @@ ${
     if (this.showCompetitiveRegistration === 'points') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.scoreTableContainerInstance = new DownloadScoreTableContainer(
-        this.customer,
-        this.scoreTable,
-        this.currentScore,
-      );
+      this.scoreTableContainerInstance = new DownloadScoreTableContainer(this.customer, this.scoreTable, this.currentScore);
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
     // if (this.showCompetitiveRegistration === 'collectable') {
@@ -408,12 +350,7 @@ ${
     document.getElementById('close-game-container').addEventListener('click', () => {
       closeGame();
     });
-    startGame(
-      this.scoreTableContainerInstance,
-      this.didYouKnowContainer,
-      this.competitionCodeScoreTableContainerPigu,
-      this.type,
-    );
+    startGame(this.scoreTableContainerInstance, this.didYouKnowContainer, this.competitionCodeScoreTableContainerPigu, this.type);
   };
 }
 

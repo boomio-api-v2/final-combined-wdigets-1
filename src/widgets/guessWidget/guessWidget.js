@@ -1,10 +1,4 @@
-import {
-  widgetHtmlService,
-  AnimationService,
-  localStorageService,
-  DragElement,
-  QrCodeModal,
-} from '@/services';
+import { widgetHtmlService, AnimationService, localStorageService, DragElement, QrCodeModal } from '@/services';
 import './styles.css';
 import { createCloseMoveButtons } from '@/utlis';
 import boomio from '@/services/boomio';
@@ -38,21 +32,13 @@ class GuessWidget {
   }
 
   createContainer = () => {
-    const queIcon =
-      'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/1c01bd6fb616cfea26f25c6287d2d860d987ae63/src/widgets/guessWidget/que_icon.svg';
-    const img1 =
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-1.png?raw=true';
-    const img7 =
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/guess3/src/widgets/guessWidget/img-7.png?raw=true';
-    const center =
-      'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/guess3/src/widgets/guessWidget/center.png?raw=true';
+    const queIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/1c01bd6fb616cfea26f25c6287d2d860d987ae63/src/widgets/guessWidget/que_icon.svg';
+    const img1 = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-1.png?raw=true';
+    const img7 = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/guess3/src/widgets/guessWidget/img-7.png?raw=true';
+    const center = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/guess3/src/widgets/guessWidget/center.png?raw=true';
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-guess-container');
-    myCanvas.classList.add(
-      'boomio--animation__wrapper',
-      'boomio--animation__wrapper--initial',
-      'box',
-    );
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
     myCanvas.innerHTML = `
     <div class="boomio-wrapper">
       <ul class="boomio-guess-cards">
@@ -132,12 +118,7 @@ class GuessWidget {
     </div>
     `;
     widgetHtmlService.container.appendChild(myCanvas);
-    createCloseMoveButtons(
-      myCanvas.querySelector('.boomio-wrapper'),
-      document.getElementById('boomio-guess-container'),
-      [-30, 0],
-      true,
-    );
+    createCloseMoveButtons(myCanvas.querySelector('.boomio-wrapper'), document.getElementById('boomio-guess-container'), [-30, 0], true);
   };
 
   shuffleCard() {
@@ -149,9 +130,7 @@ class GuessWidget {
       card.classList.remove('flip');
       let imgTag = card.querySelector('.boomio-back-view img');
 
-      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${
-        i < 4 ? arr[i] : i > 4 ? arr[i - 1] : ''
-      }.png?raw=true`;
+      imgTag.src = `https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/img-${i < 4 ? arr[i] : i > 4 ? arr[i - 1] : ''}.png?raw=true`;
     });
 
     setTimeout(() => {

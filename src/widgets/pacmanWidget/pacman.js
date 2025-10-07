@@ -155,12 +155,7 @@ class Maze {
         if (this.eaten) this.eaten.removeClass('dotted');
       }
     }
-    if (
-      this.goal[0] - r < 3 &&
-      this.goal[0] - r > -3 &&
-      this.goal[1] - c < 3 &&
-      this.goal[1] - c > -3
-    ) {
+    if (this.goal[0] - r < 3 && this.goal[0] - r > -3 && this.goal[1] - c < 3 && this.goal[1] - c > -3) {
       const element = document.getElementById('maze-container');
       if (element) {
         document.removeEventListener('keydown', this.arrowsToMaze);

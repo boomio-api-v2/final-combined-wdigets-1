@@ -1,13 +1,11 @@
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { assignStyleOnElement } from '@/utlis';
 import { closeImage, dotImage, oldCouponImage, winningConfetinGif } from '@/сonstants/icons';
-import { exitBtnHtml, exitBtnEmailHtml } from '@/сonstants/htmlTemplates';
+import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 
-const likeBtnImage =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/like.svg';
-const disLikeBtnImage =
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/dislike.svg';
+const likeBtnImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/like.svg';
+const disLikeBtnImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/985a91f0065a9dbca7375cdbac92c24d88508c2b/images/dislike.svg';
 
 export default class {
   constructor(demo, value) {
@@ -259,10 +257,7 @@ export default class {
     textTitle.classList.add('exist-or-saving-modal-title');
 
     textTitle.innerHTML = 'Are you sure you want to exit without saving the reward?';
-    this.modal.style.background =
-      this.customer === 'Deprati'
-        ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
-        : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
+    this.modal.style.background = this.customer === 'Deprati' ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)' : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
     this.modal.appendChild(textTitle);
 
@@ -349,9 +344,7 @@ export default class {
     saveBtn.style.fontSize = '14px';
     saveBtn.innerHTML = 'Si, lo quiero!';
     this.modal.style.background =
-      this.customer === 'Deprati'
-        ? 'linear-gradient(164deg, #4A7F85 35.28%, #78BDC2 62.29%, #53878B 82.47%)'
-        : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
+      this.customer === 'Deprati' ? 'linear-gradient(164deg, #4A7F85 35.28%, #78BDC2 62.29%, #53878B 82.47%)' : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
 
     const exitBtn = document.createElement('button');
     exitBtn.onclick = () => {
@@ -394,11 +387,7 @@ export default class {
         <div class="coupon-grey-shadow-wrapper" id="coupon_div">
           <div class="coupon-grey" style="background-image: url(${oldCouponImage})">
             <div class="coupon_info">
-                <h3 >- ${
-                  this.config.p_coupon_text_line1 !== 'YOUR'
-                    ? this.config.p_coupon_text_line1
-                    : '???'
-                }</h3>
+                <h3 >- ${this.config.p_coupon_text_line1 !== 'YOUR' ? this.config.p_coupon_text_line1 : '???'}</h3>
               <p >${this.config.product} </p> 
               <p >${this.config.p_code_text} </p>
             </div>
@@ -431,17 +420,9 @@ export default class {
     return `
        <div class="coupon__preview__card coupon_div" id="coupon_div" >
           <div class="coupon_info"> 
-                <h3 id="p_coupon_text_line1">- ${
-                  this.config.p_coupon_text_line1 !== 'YOUR'
-                    ? this.config.p_coupon_text_line1
-                    : '???'
-                }</h3>
-                <p id="product" style="text-align: center; font-weight: 500; font-size: 12px">${
-                  this.config.product
-                } </p>
-                <p id="p_code_text" style="text-align: center; margin-top: 0px; font-weight: 600; font-size: 12px">${
-                  this.config.p_code_text
-                } </p>
+                <h3 id="p_coupon_text_line1">- ${this.config.p_coupon_text_line1 !== 'YOUR' ? this.config.p_coupon_text_line1 : '???'}</h3>
+                <p id="product" style="text-align: center; font-weight: 500; font-size: 12px">${this.config.product} </p>
+                <p id="p_code_text" style="text-align: center; margin-top: 0px; font-weight: 600; font-size: 12px">${this.config.p_code_text} </p>
           </div>
           <div class="coupon__preview__card__after"></div>
           <div class="coupon__preview__card__befor"></div>
@@ -453,9 +434,7 @@ export default class {
     this.modal.classList.add('desktop-qr-modal');
 
     this.modal.style.background =
-      this.customer === 'Deprati'
-        ? 'linear-gradient(164deg, #4A7F85 35.28%, #78BDC2 62.29%, #53878B 82.47%)'
-        : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
+      this.customer === 'Deprati' ? 'linear-gradient(164deg, #4A7F85 35.28%, #78BDC2 62.29%, #53878B 82.47%)' : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
     this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
 
@@ -580,10 +559,7 @@ export default class {
   showVerificationfield = () => {
     this.modal.classList.add('desktop-qr-modal');
 
-    this.modal.style.background =
-      this.customer === 'Deprati'
-        ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
-        : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
+    this.modal.style.background = this.customer === 'Deprati' ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)' : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
     this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
 
@@ -660,17 +636,12 @@ export default class {
     this.createModalWindow(335, 358);
     this.modal.classList.add('desktop-qr-modal');
 
-    this.modal.style.background =
-      this.customer === 'Deprati'
-        ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)'
-        : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
+    this.modal.style.background = this.customer === 'Deprati' ? 'linear-gradient(205deg, #C32128 31.89%, #5D1013 100%)' : 'linear-gradient(42.74deg, #B5252E -3.92%, #FFFFFF 132.67%)';
     this.modal.style.paddingBottom = '50px';
     this.modal.style.boxShadow = 'rgba(255, 255, 255, 0.45) 0px 0px 0px 3px inset';
 
     this.modal.innerHTML = `
-    <div class="boomio-close-modal-btn-wrapper" style='display: ${
-      this.demo ? 'none' : 'flex'
-    }; width:100%; justify-content:end;'>
+    <div class="boomio-close-modal-btn-wrapper" style='display: ${this.demo ? 'none' : 'flex'}; width:100%; justify-content:end;'>
       <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
     </div>
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
@@ -680,13 +651,7 @@ export default class {
     <div style="align-self: stretch; text-align: center; color: white; font-size: 20px; font-family: Montserrat; font-weight: 500; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">You won</div>
     </div>
     <div style="font-family:Paytone One;width: 100%; text-align: center; color: white; font-size: 42px; font-weight: 400;text-transform: uppercase; line-height: 54.60px; letter-spacing: 3.34px; word-wrap: break-word" id="p_coupon_text_line1">
-    ${
-      this.demo
-        ? this.demoValue
-        : this.config.p_coupon_text_line1 !== 'YOUR'
-        ? this.config.p_coupon_text_line1
-        : '???'
-    } </div>
+    ${this.demo ? this.demoValue : this.config.p_coupon_text_line1 !== 'YOUR' ? this.config.p_coupon_text_line1 : '???'} </div>
   
    <div style="width: 100%; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 400; line-height: 21px; word-wrap: break-word;margin-bottom:4px;margin-top:22px">Discount code</div>
    
@@ -789,9 +754,7 @@ ${this.config.p_code_text.replace('Unique code: ', '')}
             <div style='font-size:14px;'>
                 <p class="coupon-text" id='p_bottom_text_start_m' style='line-height:14px !important;'>  
                   ${this.config.p_bottom_text_start_m}
-                  <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${
-                    this.config.p_bottom_text_end_m
-                  }</p>
+                  <p style="line-height:14px !important;color: black; font-weight: 600; display: inline; font-size: 14px;"  id='p_bottom_text_end_m'>${this.config.p_bottom_text_end_m}</p>
                 </p></div>
                             <div class="coupon_preview_card_footer" style='width:200px;'>
     

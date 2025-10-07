@@ -26,12 +26,7 @@ function trace(szMsg) {
 function isIpad() {
   var isIpad = navigator.userAgent.toLowerCase().indexOf('ipad') !== -1;
 
-  if (
-    !isIpad &&
-    navigator.userAgent.match(/Mac/) &&
-    navigator.maxTouchPoints &&
-    navigator.maxTouchPoints > 2
-  ) {
+  if (!isIpad && navigator.userAgent.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2) {
     return true;
   }
 
@@ -109,14 +104,7 @@ function getSize(Name) {
     divElement.id = 'vpw-test-d';
     divElement.style.cssText = 'position:absolute;top:-1000px';
     // Getting specific on the CSS selector so it won't get overridden easily
-    divElement.innerHTML =
-      '<style>@media(' +
-      name +
-      ':' +
-      documentElement['client' + Name] +
-      'px){body#vpw-test-b div#vpw-test-d{' +
-      name +
-      ':7px!important}}</style>';
+    divElement.innerHTML = '<style>@media(' + name + ':' + documentElement['client' + Name] + 'px){body#vpw-test-b div#vpw-test-d{' + name + ':7px!important}}</style>';
     bodyElement.appendChild(divElement);
     documentElement.insertBefore(bodyElement, document.head);
     if (divElement['offset' + Name] == 7) {
@@ -186,14 +174,8 @@ function sizeHandler() {
   var fOffsetY = h / 2 - destH / 2;
   var fOffsetX = w / 2 - destW / 2;
   var fGameInverseScaling = CANVAS_WIDTH / destW;
-  if (
-    fOffsetX * fGameInverseScaling < -EDGEBOARD_X ||
-    fOffsetY * fGameInverseScaling < -EDGEBOARD_Y
-  ) {
-    s_iScaleFactor = Math.min(
-      h / (CANVAS_HEIGHT - EDGEBOARD_Y * 2),
-      w / (CANVAS_WIDTH - EDGEBOARD_X * 2),
-    );
+  if (fOffsetX * fGameInverseScaling < -EDGEBOARD_X || fOffsetY * fGameInverseScaling < -EDGEBOARD_Y) {
+    s_iScaleFactor = Math.min(h / (CANVAS_HEIGHT - EDGEBOARD_Y * 2), w / (CANVAS_WIDTH - EDGEBOARD_X * 2));
     destW = Math.round(CANVAS_WIDTH * s_iScaleFactor);
     destH = Math.round(CANVAS_HEIGHT * s_iScaleFactor);
     fOffsetY = (h - destH) / 2;
@@ -270,9 +252,7 @@ function createBitmap(oSprite, iWidthHitArea, iHeightHitArea) {
   var oBmp = new createjs.Bitmap(oSprite);
   var hitObject = new createjs.Shape();
   if (iWidthHitArea && iHeightHitArea) {
-    hitObject.graphics
-      .beginFill('#fff')
-      .drawRect(-iWidthHitArea / 2, -iHeightHitArea / 2, iWidthHitArea, iHeightHitArea);
+    hitObject.graphics.beginFill('#fff').drawRect(-iWidthHitArea / 2, -iHeightHitArea / 2, iWidthHitArea, iHeightHitArea);
   } else {
     hitObject.graphics.beginFill('#ff0').drawRect(0, 0, oSprite.width, oSprite.height);
   }
@@ -297,9 +277,7 @@ function randomFloatBetween(minValue, maxValue, precision) {
   if (typeof precision === 'undefined') {
     precision = 2;
   }
-  return parseFloat(
-    Math.min(minValue + Math.random() * (maxValue - minValue), maxValue).toFixed(precision),
-  );
+  return parseFloat(Math.min(minValue + Math.random() * (maxValue - minValue), maxValue).toFixed(precision));
 }
 
 function shuffle(array) {
@@ -421,11 +399,7 @@ function getBounds(obj, iTolerance) {
       imgr.width = sr.width * iTolerance;
       imgr.height = sr.height * iTolerance;
     } else if (obj instanceof createjs.Sprite) {
-      if (
-        obj.spriteSheet._frames &&
-        obj.spriteSheet._frames[obj.currentFrame] &&
-        obj.spriteSheet._frames[obj.currentFrame].image
-      ) {
+      if (obj.spriteSheet._frames && obj.spriteSheet._frames[obj.currentFrame] && obj.spriteSheet._frames[obj.currentFrame].image) {
         var cframe = obj.spriteSheet.getFrame(obj.currentFrame);
         imgr.width = cframe.rect.width;
         imgr.height = cframe.rect.height;
@@ -490,10 +464,7 @@ NoClickDelay.prototype = {
     this.element.removeEventListener('touchmove', this, false);
     this.element.removeEventListener('touchend', this, false);
     if (!this.moved) {
-      var theTarget = document.elementFromPoint(
-        e.changedTouches[0].clientX,
-        e.changedTouches[0].clientY,
-      );
+      var theTarget = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
       if (theTarget.nodeType == 3) theTarget = theTarget.parentNode;
       var theEvent = document.createEvent('MouseEvents');
       theEvent.initEvent('click', true, true);
@@ -505,12 +476,9 @@ NoClickDelay.prototype = {
   var hidden = 'hidden';
   // Standards:
   if (hidden in document) document.addEventListener('visibilitychange', onchange);
-  else if ((hidden = 'mozHidden') in document)
-    document.addEventListener('mozvisibilitychange', onchange);
-  else if ((hidden = 'webkitHidden') in document)
-    document.addEventListener('webkitvisibilitychange', onchange);
-  else if ((hidden = 'msHidden') in document)
-    document.addEventListener('msvisibilitychange', onchange);
+  else if ((hidden = 'mozHidden') in document) document.addEventListener('mozvisibilitychange', onchange);
+  else if ((hidden = 'webkitHidden') in document) document.addEventListener('webkitvisibilitychange', onchange);
+  else if ((hidden = 'msHidden') in document) document.addEventListener('msvisibilitychange', onchange);
   // IE 9 and lower:
   else if ('onfocusin' in document) document.onfocusin = document.onfocusout = onchange;
   // All others:
