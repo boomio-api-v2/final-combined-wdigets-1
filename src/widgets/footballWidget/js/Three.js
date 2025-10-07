@@ -5376,13 +5376,23 @@
         b = Array(36),
         c = 0,
         d;
+      // Use crypto.getRandomValues for cryptographically secure random numbers
+      var getSecureRandom = function () {
+        if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+          var arr = new Uint32Array(1);
+          crypto.getRandomValues(arr);
+          return arr[0] / 4294967296; // Convert to 0-1 range
+        }
+        // Fallback to Math.random() if crypto is not available
+        return Math.random();
+      };
       return function () {
         for (var e = 0; 36 > e; e++)
           8 === e || 13 === e || 18 === e || 23 === e
             ? (b[e] = '-')
             : 14 === e
               ? (b[e] = '4')
-              : (2 >= c && (c = (33554432 + 16777216 * Math.random()) | 0), (d = c & 15), (c >>= 4), (b[e] = a[19 === e ? (d & 3) | 8 : d]));
+              : (2 >= c && (c = (33554432 + 16777216 * getSecureRandom()) | 0), (d = c & 15), (c >>= 4), (b[e] = a[19 === e ? (d & 3) | 8 : d]));
         return b.join('');
       };
     })(),
