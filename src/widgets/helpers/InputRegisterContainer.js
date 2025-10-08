@@ -1,5 +1,5 @@
 import './styles.css';
-import { uncheckIcon } from './constants';
+import { uncheckIcon, checkIcon } from './constants';
 import { localStorageService } from '@/services';
 
 const privacyPolicytranslations = {
@@ -38,8 +38,8 @@ export class InputRegisterContainer {
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
-    let privacyCheckboxChecked = true;
-    let privacyCheckboxChecked2 = true;
+    let privacyCheckboxChecked = false;
+    let privacyCheckboxChecked2 = false;
     this.teams = this.prop === 'Akropolis' ? ['Vilnius', 'Klaipėda', 'Šiauliai', 'Kaunas'] : this.config.teams;
 
     const options = Array.isArray(this.teams) ? this.teams : Object.keys(this.teams);
@@ -165,7 +165,7 @@ export class InputRegisterContainer {
            : 'none'
        }">
       <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
-            <img id="privacyCheckboxImg2" src="${privacyCheckboxChecked2 ? uncheckIcon : ''}" style="width: 20px; height: 20px;">
+            <img id="privacyCheckboxImg2" src="${privacyCheckboxChecked2 ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
           this.isMobile
@@ -249,7 +249,7 @@ export class InputRegisterContainer {
    this.prop === 'Fpro' ? 'auto' : 'pointer'
  } ;left: 34px; top: ${'375px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${this.prop === 'Pegasas' ? 'inline-flex' : 'none'}">
       <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
-            <img id="privacyCheckboxImg3" src="${privacyCheckboxChecked2 ? uncheckIcon : ''}" style="width: 20px; height: 20px;">
+            <img id="privacyCheckboxImg3" src="${privacyCheckboxChecked2 ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${
           this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
@@ -261,7 +261,7 @@ export class InputRegisterContainer {
           this.prop === 'Akropolis' ? (this.language === 'LV' || this.language === 'RU' ? '395px' : '362px') : this.prop === 'Vilvi' ? '360px' : this.prop === 'Dentsu' ? '375px' : '395px'
         }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'};cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
-            <img id="privacyCheckboxImg" src="${privacyCheckboxChecked ? uncheckIcon : ''}" style="width: 20px; height: 20px;">
+            <img id="privacyCheckboxImg" src="${privacyCheckboxChecked ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-heigt:6px;font-size: ${
           this.isMobile
