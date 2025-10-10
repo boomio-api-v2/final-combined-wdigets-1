@@ -6,12 +6,28 @@ class HtmlElementsHelper {
     this.customer = this.config.business_name;
   }
 
+  get nameInput() {
+    return document.getElementById('boomio-competition-name-input-field');
+  }
+
+  get nameError() {
+    return document.getElementById('competition-name-error');
+  }
+
   get emailInput() {
     return document.getElementById('boomio-competition-email-input-field');
   }
 
-  get nameInput() {
-    return document.getElementById('boomio-competition-name-input-field');
+  get emailError() {
+    return document.getElementById('competition-email-error');
+  }
+
+  get phoneInput() {
+    return document.getElementById('boomio-competition-phone-input-field');
+  }
+
+  get phoneError() {
+    return document.getElementById('competition-phone-error');
   }
 
   get citySelect() {
