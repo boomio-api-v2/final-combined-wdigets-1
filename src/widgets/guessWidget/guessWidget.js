@@ -191,7 +191,7 @@ class GuessWidget {
         matched++;
         cardOne.classList.add('boomio-card-jump');
         cardTwo.classList.add('boomio-card-jump');
-        if (matched == 4) {
+        if (matched === 4) {
           setTimeout(() => {
             const guessContainer = document.getElementById('boomio-guess-container');
             if (guessContainer && guessContainer.parentNode) {

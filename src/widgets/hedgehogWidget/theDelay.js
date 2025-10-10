@@ -1,13 +1,13 @@
 class AnimationService {
   animation = function () {
     function startDelay(counterAmount) {
-      if (delay.shouldCount == false) {
+      if (delay.shouldCount === false) {
         delay.shouldCount = true;
         delay.counter = counterAmount;
       }
     }
     function update() {
-      if (delay.shouldCount == false) {
+      if (delay.shouldCount === false) {
         return;
       }
       delay.counter--;

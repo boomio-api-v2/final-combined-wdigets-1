@@ -4,7 +4,7 @@ class AnimationService {
       return (1 - t) * a + t * b;
     }
     function drawMovement() {
-      if (transform.image == null || transform.shouldPlay == false) {
+      if (transform.image === null || transform.shouldPlay === false) {
         return;
       }
       let _width, _height;

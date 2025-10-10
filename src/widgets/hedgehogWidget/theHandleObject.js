@@ -4,7 +4,7 @@ class AnimationService {
       switchToImage1();
     }
     function switchToImage1() {
-      if (handle.isIdle == false) {
+      if (handle.isIdle === false) {
         handle.image = handle.img1;
       }
     }

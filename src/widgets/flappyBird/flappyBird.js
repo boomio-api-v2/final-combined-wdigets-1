@@ -1310,14 +1310,15 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
-          const emailInput = document.querySelector('.boomio-competition-email-input-field');
-          const nameInput = document.querySelector('.boomio-competition-name-input-field');
-          const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
-
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
           const checkboxChange2 = this.checkboxChange2;
 
           setTimeout(() => {
+            // Query inputs AFTER credentials are loaded from cookie
+            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const nameInput = document.querySelector('.boomio-competition-name-input-field');
+            const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
+
             if (this.customer !== 'SaludSA') {
               if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo') && !this.customer.includes('Tiche'))) {
                 document.getElementById('competition-checkbox-error').innerText =

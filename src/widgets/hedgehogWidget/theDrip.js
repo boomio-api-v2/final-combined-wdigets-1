@@ -1,12 +1,12 @@
 class AnimationService {
   animation = function () {
     function play() {
-      if (drip.shouldPlay == false && drip.isLocked == false) {
+      if (drip.shouldPlay === false && drip.isLocked === false) {
         drip.shouldPlay = true;
       }
     }
     function stopPlaying() {
-      if (drip.shouldPlay == true) {
+      if (drip.shouldPlay === true) {
         drip.shouldPlay = false;
       }
     }
