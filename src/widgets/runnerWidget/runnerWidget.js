@@ -1109,7 +1109,7 @@ ${
           }
           boomioService
             .signal('', 'user_info', {
-              emails_consent: checkboxChange,
+              emails_consent: checkboxChange2,
               user_email: Elements.getEmailValue(),
               user_name: Elements.getEmailValue(),
               game_code: this.game_code,

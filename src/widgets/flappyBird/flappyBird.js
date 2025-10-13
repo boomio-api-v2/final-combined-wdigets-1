@@ -247,7 +247,7 @@ class FlappyBird {
           const emailValue = Elements.getEmailValue();
           boomioService
             .signal('', 'user_info', {
-              emails_consent: this.checkboxChange,
+              emails_consent: this.checkboxChange2,
               user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailValue,
               user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailValue,
             })
@@ -1411,7 +1411,7 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
             ) {
               boomioService
                 .signal('', 'user_info', {
-                  emails_consent: this.checkboxChange,
+                  emails_consent: this.checkboxChange2,
                   user_email: this.customer === 'SaludSA' ? new Date().toISOString() : Elements.isVisible(Elements.emailInput) && Elements.getEmailValue(),
                   user_name:
                     this.customer === 'SaludSA'
