@@ -218,6 +218,7 @@ import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContai
 import { IkeaScoreTableContainer } from '../helpers/IkeaScoreTableContainer';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
+import { Elements } from '../helpers/HtmlElementsHelper';
 import { ShareContainer } from '../helpers/ShareContainer';
 import { t } from '@/services/translations';
 
@@ -986,13 +987,13 @@ class CatchGame {
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.customer === 'Akropolis' ? this.checkboxChange : this.checkboxChange2,
-                  user_email: emailInput?.value,
+                  user_email: Elements.getEmailValue(),
                   ...(this.customer.includes('Gamtos Ateitis') && {
                     team: schoolInput.value,
                   }),
                   user_name:
                     this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen' || this.customer === 'Akropolis' || this.customer === 'Apranga'
-                      ? emailInput?.value
+                      ? Elements.getEmailValue()
                       : this.customer === 'Toni'
                         ? nameInput?.value.trimEnd() + phoneInput?.value
                         : nameInput?.value,

@@ -27,7 +27,7 @@ export class CompetitionCodeScoreTableContainer {
   }
 
   removeTrailingDigits(name) {
-    if (name == null) return '';
+    if (name === null) return '';
 
     const s = String(name).trim();
 

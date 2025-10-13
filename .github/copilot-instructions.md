@@ -1,8 +1,35 @@
+# Copilot Instructions
+
+<!-- Metadata -->
+
+**Version:** 1.1  
+**Last Updated:** October 8, 2025  
+**Maintainer:** boomio-api-v2  
+**Repository:** final-combined-wdigets-1
+
+---
+
 ## AI Assistant Project Instructions
 
-Focused guidance so an AI agent can be productive quickly in this repository. Keep answers grounded in these concrete project patterns (avoid generic advice).
+**Purpose & Scope**: This instruction file guides AI assistants on safe repository edits, coding conventions, and architectural patterns for the Boomio embeddable widget platform.
 
-### 1. Big Picture
+**Location & Scope Rules**:
+
+- Applies to all files under `src/`, build configuration (`webpack.config.js`, `package.json`), and documentation.
+- Does NOT apply to: generated `dist/` files (though must be committed), `node_modules/`, historical asset branches in `images/`.
+- Languages: JavaScript (ES Modules), CSS, HTML. No TypeScript.
+
+**Persona & Tone**: Be concise, grounded in project patterns, and conservative. Avoid generic advice. Always verify changes against the Change Checklist (§11) before marking complete. Ask for clarification on backend contract changes.
+
+---
+
+### 1. Project Overview & Big Picture
+
+**Runtime/Platform**: Browser-based embeddable JavaScript bundle. Target: Modern browsers (ES6+). No Node.js runtime dependency (client-side only).
+
+**Audience**: Merchant websites embedding mini-games/interactive widgets to drive engagement, collect user data, and distribute coupons.
+
+**Main Features**:
 
 - Single embeddable JS/CSS bundle (`dist/bundle.js`) injected into merchant pages (see README embed snippet). All runtime code lives under `src/`.
 - Entry point: `src/app.js` (imports global styles + bootstraps Boomio service).
@@ -10,23 +37,93 @@ Focused guidance so an AI agent can be productive quickly in this repository. Ke
 - Widgets are modular mini‑games / UI experiences in `src/widgets/*Widget` folders. Startup functions follow the naming pattern `start<WidgetName>Widget` (or similar, e.g. `startFlappyBird`).
 - Persistent & server‑driven state stored in localStorage under key `boomioPluginConfig`, abstracted by `LocalStorageService` (`src/services/localStorage.js`). Business flags (e.g. restrictions, coupon data, dynamicData, teams) flow from API → localStorage → widgets.
 
-### 2. Adding / Modifying a Widget
+---
 
-1. Create a new folder under `src/widgets/YourWidgetNameWidget/` (keep existing naming style: camelCase + `Widget`).
-2. Export a start function (e.g. `export function startYourWidget() { ... }`). Avoid side effects on import; only execute within that function.
-3. Add a re‑export to `src/widgets/index.js` (`export * from './yourWidgetNameWidget';`).
-4. Add mapping in `createWidgetMap` inside `BoomioService.loadWidget` (key = short url param / server value, value = start function).
-5. Ensure any DOM container usage assumes the wrapper produced by `widgetHtmlService.createWidgetContainer(widget_type)` exists.
-6. Keep assets relative; they are processed by `file-loader`. Do NOT use absolute URLs unless intentionally external. Large / shared images often live under root `images/` (plus historical branches—do not delete asset branches noted in README).
+### 2. Tooling & Versions
 
-### 3. Remote Config & Signals
+**Required**:
 
-- `sendBoomioData(extra_data)` wraps payload: `{user_session, current_page_url, extra_data}` → base64 (prefixed with random letter) → POST to `newLinkBoomio` (must be defined globally by host page; never hardcode).
-- After each response: `localStorageService.setConfigFromApi` merges & persists configuration (also handles `instruction === 'stop'`).
-- Use `boomioInstance.signal(signal_code, ev_type, additional_fields)` for runtime events; it reuses the same encoding pipe and updates config on response.
-- Respect restriction checks (location/date/time) in `loadWidget`—new widgets should not bypass them.
+- Node.js v14+ and npm v6+
+- Webpack 5 (bundler)
+- ESLint with `eslint-plugin-unused-imports`
+- Jest (testing, jsdom environment)
 
-### 4. Configuration Access Pattern
+**Key Dependencies** (see `package.json` for exact versions):
+
+- `@babel/core`, `babel-loader` for ES6+ transpilation
+- `file-loader` for asset processing (images)
+- `http-server` for local preview
+
+**Module Resolution**: `@` alias resolves to `src/` (configured in `webpack.config.js` and `jest.config.js` `moduleNameMapper`).
+
+---
+
+### 3. Build / Run / Test Commands
+
+**Installation**:
+
+```powershell
+npm install
+```
+
+**Development Preview**:
+
+```powershell
+# Option 1: Serve index.html with http-server
+npm start
+
+# Option 2: Webpack dev server with HMR at localhost:3000
+npm run dev
+```
+
+**Production Build**:
+
+```powershell
+npm run build          # Production bundle (minified)
+npm run build:dev      # Development bundle (source maps)
+```
+
+**Testing**:
+
+```powershell
+npm test               # Run Jest tests (currently minimal/commented out in CI)
+```
+
+**Linting**:
+
+```powershell
+npm run lint           # Run ESLint
+```
+
+**CI/CD**: GitHub Actions (`.github/workflows/build.yml`) runs lint + production build. Tests currently commented out—do not introduce failing tests without enabling in workflow.
+
+---
+
+### 4. Adding / Modifying a Widget
+
+1. **Create Widget Folder**: Create a new folder under `src/widgets/YourWidgetNameWidget/` (keep existing naming style: camelCase + `Widget`).
+2. **Export Start Function**: Export a start function (e.g. `export function startYourWidget() { ... }`). Avoid side effects on import; only execute within that function.
+3. **Register in Index**: Add a re‑export to `src/widgets/index.js` (`export * from './yourWidgetNameWidget';`).
+4. **Map in BoomioService**: Add mapping in `createWidgetMap` inside `BoomioService.loadWidget` (key = short url param / server value, value = start function).
+5. **DOM Container Assumptions**: Ensure any DOM container usage assumes the wrapper produced by `widgetHtmlService.createWidgetContainer(widget_type)` exists.
+6. **Asset Handling**: Keep assets relative; they are processed by `file-loader`. Do NOT use absolute URLs unless intentionally external. Large / shared images often live under root `images/` (plus historical branches—do not delete asset branches noted in README).
+
+---
+
+### 5. Remote Config & Signals (API Contracts)
+
+- **API Endpoint**: `sendBoomioData(extra_data)` wraps payload: `{user_session, current_page_url, extra_data}` → base64 (prefixed with random letter) → POST to `newLinkBoomio` (must be defined globally by host page; never hardcode).
+- **Config Merging**: After each response: `localStorageService.setConfigFromApi` merges & persists configuration (also handles `instruction === 'stop'`).
+- **Runtime Events**: Use `boomioInstance.signal(signal_code, ev_type, additional_fields)` for runtime events; it reuses the same encoding pipe and updates config on response.
+- **Restriction Checks**: Respect restriction checks (location/date/time) in `loadWidget`—new widgets should not bypass them.
+
+**Important API Fields** (do not rename without backend coordination):
+
+- `m`, `boomioStopTill`, `puzzles_collected`, `widget_type`, `coupon_code`, `language`, `restrictions`, `dynamicData`, `teams`
+
+---
+
+### 6. Configuration Access Pattern
 
 - Always read config through `localStorageService.config` (already refreshed post‑API). Don’t cache deep references long‑term—server may mutate values between signals.
 - When updating only local client state (e.g. widget position), use `localStorageService.updateConfig({ x_position, y_position })` so future reloads persist.

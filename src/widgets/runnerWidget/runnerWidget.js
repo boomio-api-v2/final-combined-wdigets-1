@@ -1,6 +1,7 @@
 import './runnerStyles.css';
 import PxLoader from './scripts/PxLoader.js';
 import { localStorageService, widgetHtmlService, boomioService } from '@/services';
+import { Elements } from '../helpers/HtmlElementsHelper';
 import {
   star,
   newRecord,
@@ -1109,8 +1110,8 @@ ${
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange,
-              user_email: emailInput?.value,
-              user_name: emailInput?.value,
+              user_email: Elements.getEmailValue(),
+              user_name: Elements.getEmailValue(),
               game_code: this.game_code,
               ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
             })
@@ -1265,40 +1266,40 @@ ${
     };
 
     const keyRightHandler = (e) => {
-      if (e.keyCode == 39 || e.keyCode == 68) {
+      if (e.keyCode === 39 || e.keyCode === 68) {
         //right
         rightPressed = true;
       }
-      if (e.keyCode == 37 || e.keyCode == 65) {
+      if (e.keyCode === 37 || e.keyCode === 65) {
         //left
         leftPressed = true;
       }
-      if (e.keyCode == 87 || e.keyCode == 38) {
+      if (e.keyCode === 87 || e.keyCode === 38) {
         //jump
         jumpBegin();
       }
-      if (e.keyCode == 83 || e.keyCode == 40) {
+      if (e.keyCode === 83 || e.keyCode === 40) {
         //slide
         slideBegin();
       }
 
-      if (e.keyCode == 27 && !gameOver) {
+      if (e.keyCode === 27 && !gameOver) {
         //pause
         PauseToggle();
       }
     };
 
     const keyLeftHandler = (e) => {
-      if (e.keyCode == 39 || e.keyCode == 68) {
+      if (e.keyCode === 39 || e.keyCode === 68) {
         rightPressed = false;
       }
-      if (e.keyCode == 37 || e.keyCode == 65) {
+      if (e.keyCode === 37 || e.keyCode === 65) {
         leftPressed = false;
       }
-      if (e.keyCode == 83 || e.keyCode == 40) {
+      if (e.keyCode === 83 || e.keyCode === 40) {
         slideEnd();
       }
-      if (e.keyCode == 32 && gameOver == true) {
+      if (e.keyCode === 32 && gameOver === true) {
         Replay();
       }
     };
@@ -1754,7 +1755,7 @@ ${
       if (!jumping) {
         player.slideing = true;
         slideing += 1;
-        if (slideing == 1) {
+        if (slideing === 1) {
           clearInterval(playerAnimate);
           player.image = slideSprites[0];
           setTimeout(() => {
@@ -1809,7 +1810,7 @@ ${
           unlockCount += 1;
         }
       }
-      if (unlockCount == achivesBlocks.length - 1) {
+      if (unlockCount === achivesBlocks.length - 1) {
         achivesBlocks[achivesBlocks.length - 1].classList.remove('boomio-lock');
       }
       document.getElementById('numberOfJumpsBlock').innerHTML = 'Jumps: ' + numberOfJumps;
@@ -1851,7 +1852,7 @@ ${
     }
 
     function Upgrade(boost) {
-      if (boost == 'shield') {
+      if (boost === 'shield') {
         if (+shieldCost.innerText <= +myCoins && +shieldLevel < 4) {
           myCoins = +myCoins - +shieldCost.innerText;
           shieldLevel = +shieldLevel + 1;
@@ -2043,9 +2044,9 @@ ${
       let x;
       let y;
       if (RandomInteger(1, 4) >= 2) {
-        if (RandomInteger(0, 1) == 1) {
+        if (RandomInteger(0, 1) === 1) {
           x = (4 * canvas.width) / 3;
-          y = pos == 'top' ? canvas.height - wrapperBlock.offsetHeight / 1.4 : canvas.height - wrapperBlock.offsetHeight / 3.1;
+          y = pos === 'top' ? canvas.height - wrapperBlock.offsetHeight / 1.4 : canvas.height - wrapperBlock.offsetHeight / 3.1;
         } else {
           x = (4 * canvas.width) / 2;
           y = canvas.height - wrapperBlock.offsetHeight / 3.1;
@@ -2075,7 +2076,7 @@ ${
         }
 
         // Adjust object placement condition
-        if (objects.length == 0 || objects.at(-1).x < canvas.width - 200) {
+        if (objects.length === 0 || objects.at(-1).x < canvas.width - 200) {
           objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, canvas.height - wrapperBlock.offsetHeight / 2.7, false));
           var randomBarrier = RandomInteger(1, 8);
           switch (randomBarrier) {
@@ -2120,13 +2121,13 @@ ${
                   objects.at(-1).image = CollectSprites[1];
                   objects.at(-1).isShield = true;
                   objects.at(-1).sizeCoef = 0.5;
-                  objects.at(-1).y = RandomInteger(0, 1) == 1 ? canvas.height - wrapperBlock.offsetHeight / 2.5 : canvas.height - wrapperBlock.offsetHeight / 1.3;
+                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? canvas.height - wrapperBlock.offsetHeight / 2.5 : canvas.height - wrapperBlock.offsetHeight / 1.3;
                 }
                 if (RandomInteger(0, 100) > 70) {
                   objects.at(-1).image = CollectSprites[2];
                   objects.at(-1).isBooster = true;
                   objects.at(-1).sizeCoef = 0.5;
-                  objects.at(-1).y = RandomInteger(0, 1) == 1 ? canvas.height - wrapperBlock.offsetHeight / 2.5 : canvas.height - wrapperBlock.offsetHeight / 1.3;
+                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? canvas.height - wrapperBlock.offsetHeight / 2.5 : canvas.height - wrapperBlock.offsetHeight / 1.3;
                 }
                 break;
               }

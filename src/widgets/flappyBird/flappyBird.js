@@ -14,7 +14,7 @@ import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { ShareContainer } from '../helpers/ShareContainer';
-import { Elements } from '../helpers/ElementsHelper';
+import { Elements } from '../helpers/HtmlElementsHelper';
 
 import {
   close,
@@ -244,11 +244,12 @@ class FlappyBird {
             inpuRegisterContainer.style.opacity = 1;
           }, 100);
         } else {
+          const emailValue = Elements.getEmailValue();
           boomioService
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange,
-              user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
-              user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailInput?.value,
+              user_email: this.customer === 'SaludSA' ? new Date().toISOString() : emailValue,
+              user_name: this.customer === 'SaludSA' ? new Date().toISOString() : emailValue,
             })
             .then((response) => {
               this.bestScore = response.user_best_score;
@@ -1309,14 +1310,15 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
-          const emailInput = document.querySelector('.boomio-competition-email-input-field');
-          const nameInput = document.querySelector('.boomio-competition-name-input-field');
-          const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
-
           const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
           const checkboxChange2 = this.checkboxChange2;
 
           setTimeout(() => {
+            // Query inputs AFTER credentials are loaded from cookie
+            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const nameInput = document.querySelector('.boomio-competition-name-input-field');
+            const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
+
             if (this.customer !== 'SaludSA') {
               if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo') && !this.customer.includes('Tiche'))) {
                 document.getElementById('competition-checkbox-error').innerText =
@@ -1410,13 +1412,13 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange,
-                  user_email: this.customer === 'SaludSA' ? new Date().toISOString() : Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim(),
+                  user_email: this.customer === 'SaludSA' ? new Date().toISOString() : Elements.isVisible(Elements.emailInput) && Elements.getEmailValue(),
                   user_name:
                     this.customer === 'SaludSA'
                       ? new Date().toISOString()
                       : this.customer === 'Toni'
                         ? nameInput?.value.trimEnd() + phoneInput?.value
-                        : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
+                        : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
                   ...(this.customer === 'Nykstukas' && {
                     team: nameInput?.value,
                   }),

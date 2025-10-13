@@ -67,7 +67,7 @@ import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { ShareContainer } from '../helpers/ShareContainer';
-import { Elements } from '../helpers/ElementsHelper';
+import { Elements } from '../helpers/HtmlElementsHelper';
 
 //JumpUp Game Classes
 class DoodleWidget {
@@ -872,16 +872,16 @@ class DoodleWidget {
         this.player.y + this.player.height > p.y &&
         this.player.y + this.player.height < p.y + p.height
       ) {
-        if (p.type == 3 && p.flag === 0) {
+        if (p.type === 3 && p.flag === 0) {
           // Breakable platform logic
           p.flag = 1;
           this.jumpCount = 0;
           return;
-        } else if (p.type == 4 && p.state === 0) {
+        } else if (p.type === 4 && p.state === 0) {
           // Vanishable platform
           this.player.jump();
           p.state = 1;
-        } else if (p.flag == 1) return;
+        } else if (p.flag === 1) return;
         else {
           // Normal platform
           this.player.jump();
@@ -915,13 +915,13 @@ class DoodleWidget {
     var subs = this.platform_broken_substitute;
 
     this.platforms.forEach((p, i) => {
-      if (p.type == 2) {
+      if (p.type === 2) {
         if (p.x < 0 || p.x + p.width > this.width) p.vx *= -1;
 
         p.x += p.vx;
       }
 
-      if (p.flag == 1 && subs.appearance === false && this.jumpCount === 0) {
+      if (p.flag === 1 && subs.appearance === false && this.jumpCount === 0) {
         subs.x = p.x;
         subs.y = p.y;
         subs.appearance = true;
@@ -946,7 +946,7 @@ class DoodleWidget {
 
     // Check if the current screen is an even number
     if (this.currentScreen % 2 === 0) {
-      if (p.type == 1 || p.type == 2) {
+      if (p.type === 1 || p.type === 2) {
         s.x = p.x + p.width / 2 - s.width / 2;
         s.y = p.y - p.height - 20;
 
@@ -967,11 +967,11 @@ class DoodleWidget {
     }
   };
   playerCalc = () => {
-    if (this.dir == 'left') {
+    if (this.dir === 'left') {
       this.player.dir = 'left';
       if (this.player.vy > -7 && this.player.vy < 0) this.player.dir = 'left_jump';
       else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
-    } else if (this.dir == 'right') {
+    } else if (this.dir === 'right') {
       this.player.dir = 'right';
       if (this.player.vy > -7 && this.player.vy < 0) this.player.dir = 'right_jump';
       else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
@@ -981,25 +981,25 @@ class DoodleWidget {
     document.onkeydown = (e) => {
       var key = e.keyCode;
 
-      if (key == 37) {
+      if (key === 37) {
         this.dir = 'left';
         this.player.isMovingLeft = true;
-      } else if (key == 39) {
+      } else if (key === 39) {
         this.dir = 'right';
         this.player.isMovingRight = true;
       }
 
-      // if (key == 32) {
+      // if (key === 32) {
       //   this.resetGame();
       // }
     };
 
     document.onkeyup = (e) => {
       var key = e.keyCode;
-      if (key == 37) {
+      if (key === 37) {
         this.dir = 'left';
         this.player.isMovingLeft = false;
-      } else if (key == 39) {
+      } else if (key === 39) {
         this.dir = 'right';
         this.player.isMovingRight = false;
       }
@@ -1171,10 +1171,10 @@ class DoodleWidget {
     if (this.player.vy > 0 && this.player.x + 15 < 260 && this.player.x + this.player.width - 15 > 155 && this.player.y + this.player.height > 475 && this.player.y + this.player.height < 500)
       this.player.jump();
 
-    if (this.dir == 'left') {
+    if (this.dir === 'left') {
       this.player.dir = 'left_land';
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'left_land';
-    } else if (this.dir == 'right') {
+    } else if (this.dir === 'right') {
       this.player.dir = 'right_land';
 
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
@@ -1183,10 +1183,10 @@ class DoodleWidget {
     document.onkeydown = (e) => {
       var key = e.keyCode;
 
-      if (key == 37) {
+      if (key === 37) {
         this.dir = 'left';
         this.player.isMovingLeft = true;
-      } else if (key == 39) {
+      } else if (key === 39) {
         this.dir = 'right';
         this.player.isMovingRight = true;
       }
@@ -1195,10 +1195,10 @@ class DoodleWidget {
     document.onkeyup = (e) => {
       var key = e.keyCode;
 
-      if (key == 37) {
+      if (key === 37) {
         this.dir = 'left';
         this.player.isMovingLeft = false;
-      } else if (key == 39) {
+      } else if (key === 39) {
         this.dir = 'right';
         this.player.isMovingRight = false;
       }
@@ -1623,11 +1623,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange2,
-                  user_email: Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim(),
+                  user_email: Elements.isVisible(Elements.emailInput) && Elements.getEmailValue(),
                   user_name:
                     this.customer === 'Toni'
                       ? nameInput?.value.trimEnd() + phoneInput?.value
-                      : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.emailInput?.value?.trim()),
+                      : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
                   via_mobile: this.campaignUrl ? true : false,
                   ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
                 })
@@ -1925,7 +1925,7 @@ class Platform {
     //We can't have two consecutive breakable platforms otherwise it will be impossible to reach another platform sometimes!
     if (this.type === 3 && DoodleWidget.broken < 1) {
       DoodleWidget.broken++;
-    } else if (this.type == 3 && DoodleWidget.broken >= 1) {
+    } else if (this.type === 3 && DoodleWidget.broken >= 1) {
       this.type = 1;
       DoodleWidget.broken = 0;
     }

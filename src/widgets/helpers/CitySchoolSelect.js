@@ -1,4 +1,4 @@
-import { Elements } from '../helpers/ElementsHelper';
+import { Elements } from '../helpers/HtmlElementsHelper';
 
 export function CitySchoolSelect({
   teams, // object from config: { "Vilnius": ["..."], "Kaunas": ["..."], ... }

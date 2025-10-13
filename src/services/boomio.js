@@ -284,7 +284,7 @@ class BoomioService extends UserService {
     if (!isLocalhost) {
       try {
         const u = new URL(current_page_url);
-        current_page_url_cleaned = `${u.origin}${u.pathname}`.replace(/\/$/, '/').trim();
+        current_page_url_cleaned = `${u.origin}${u.pathname}`.replace(/\/$/, '').trim();
       } catch {}
     }
 

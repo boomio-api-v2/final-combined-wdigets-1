@@ -19,6 +19,7 @@ import {
   popElement2,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
+import { Elements } from '../helpers/HtmlElementsHelper';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
@@ -349,8 +350,8 @@ class PopGame {
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 120px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-    <div>${this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'}</div>
-    <div>${this.language == 'ES' ? 'DESLIZA' : 'BRŪKŠT'}</div>
+    <div>${this.language === 'ES' ? 'DESLIZA' : 'BRŪKŠT'}</div>
+    <div>${this.language === 'ES' ? 'DESLIZA' : 'BRŪKŠT'}</div>
   </div><img src=${tutorial} alt="Image Description" style="margin-left:50px;width: 74px; height: 137.5px;">`}
 </div>
 
@@ -508,7 +509,8 @@ ${`<div style="${
           return;
         }
 
-        if (emailInput?.value === '' || emailInput?.value === null) {
+        const emailValue = Elements.getEmailValue();
+        if (emailValue === '' || emailValue === null) {
           document.getElementById('competition-phone-error').innerText =
             this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
@@ -558,7 +560,7 @@ ${`<div style="${
           return;
         }
 
-        if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni') {
+        if (!isValidEmail(emailValue) && this.customer !== 'Toni') {
           document.getElementById('competition-email-error').innerText = this.language === 'ES' ? 'Formato de correo electrónico no válido' : 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
           document.getElementById('competition-email-error').zIndex = 1;
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
@@ -573,10 +575,9 @@ ${`<div style="${
           boomioService
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange2,
-              user_email: emailInput?.value,
-              user_name: this.customer === 'Toni' ? playerNameInput?.value + phoneInput?.value : emailInput?.value,
+              user_email: emailValue,
+              user_name: this.customer === 'Toni' ? playerNameInput?.value + phoneInput?.value : emailValue,
               ...(phoneValue ? { phone: phoneInput?.value } : {}),
-
               via_mobile: this.campaignUrl ? true : false,
             })
             .then((response) => {

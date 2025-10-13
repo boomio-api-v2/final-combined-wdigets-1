@@ -2305,7 +2305,7 @@ dat.GUI = dat.gui.GUI = (function (
 
     dom.bind(select, 'change', function () {
       for (var index = 0; index < gui.__preset_select.length; index++) {
-        gui.__preset_select[index].innerHTML = gui.__preset_select[index].value;
+        gui.__preset_select[index].textContent = gui.__preset_select[index].value;
       }
 
       gui.preset = this.value;
@@ -2477,9 +2477,9 @@ dat.GUI = dat.gui.GUI = (function (
     var opt = gui.__preset_select[gui.__preset_select.selectedIndex];
     //    console.log('mark', modified, opt);
     if (modified) {
-      opt.innerHTML = opt.value + '*';
+      opt.textContent = opt.value + '*';
     } else {
-      opt.innerHTML = opt.value;
+      opt.textContent = opt.value;
     }
   }
 
