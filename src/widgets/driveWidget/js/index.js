@@ -1299,7 +1299,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         const schoolInput = document.querySelector('.boomio-competition-school-select');
 
         const emailValue = Elements.getEmailValue();
-        const userEmail = customer === 'Ikea' ? await hashString(emailValue) : emailValue;
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
 
@@ -1373,8 +1372,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange2,
-              user_email: userEmail,
-              user_name: userEmail,
+              user_email: emailValue,
+              user_name: (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
               ...(customer === 'Gamtos Ateitis' && {
                 team: schoolInput.value,
               }),
