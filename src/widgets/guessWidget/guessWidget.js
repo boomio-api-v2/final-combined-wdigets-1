@@ -146,7 +146,7 @@ class GuessWidget {
 
     setTimeout(() => {
       cards.forEach((card, i) => {
-        if (i != 4) card.classList.add('boomio-card-flip');
+        if (i !== 4) card.classList.add('boomio-card-flip');
       });
     }, 2000);
 

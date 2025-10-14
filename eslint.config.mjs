@@ -4,8 +4,20 @@ import globals from 'globals';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 export default [
-  // Ignore build artifacts
-  { ignores: ['node_modules/**', 'dist/**', 'build/**', 'coverage/**'] },
+  // Ignore build artifacts and third-party libraries
+  {
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      'coverage/**',
+      // Third-party minified libraries
+      'src/qrcode.min.js',
+      // Third-party footballWidget libraries
+      'src/widgets/footballWidget/js/**',
+      'src/widgets/runnerWidget/scripts/**',
+    ],
+  },
 
   // Base recommended JS rules
   js.configs.recommended,
@@ -38,7 +50,7 @@ export default [
       'no-unused-vars': 'off',
 
       // === Safer defaults / useful signals ===
-      eqeqeq: 'warn',
+      eqeqeq: 'error',
       'no-undef': 'warn',
       'no-useless-escape': 'warn',
       'no-empty': 'warn',

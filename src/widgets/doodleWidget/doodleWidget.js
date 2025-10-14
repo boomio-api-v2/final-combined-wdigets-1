@@ -241,12 +241,10 @@ class DoodleWidget {
         }
         this.showRulesOrRegistration();
 
-        setTimeout(
-          () => {
-            document.getElementById('background_intro').style.display = 'none';
-          },
-          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer === 'Toni' || this.customer === 'Nevezis' ? 0 : 2500,
-        );
+        // Hide intro after fade completes (1000ms transition duration)
+        setTimeout(() => {
+          document.getElementById('background_intro').style.display = 'none';
+        }, 1000);
       },
       this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer === 'Toni' || this.customer === 'Nevezis' ? 0 : 2500,
     ); //intro speed
@@ -345,21 +343,8 @@ class DoodleWidget {
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
-          if (this.customer === 'Pigu.lt' && false) {
-            this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
-            const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
-            competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            competitionTableContainer.style.display = 'block';
-            setTimeout(() => {
-              competitionTableContainer.style.height = '680px';
-              competitionTableContainer.style.top = 'calc(50%)';
-              competitionTableContainer.style.opacity = 1;
-            }, 100);
-          } else {
-            this.userBestScore = response.user_best_score;
-
-            this.showRulesPigu();
-          }
+          this.userBestScore = response.user_best_score;
+          this.showRulesPigu();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -1014,8 +999,6 @@ class DoodleWidget {
       document.addEventListener('touchstart', (e) => {
         const touchX = e.touches[0].clientX;
         const screenWidth = window.innerWidth;
-        // Adjust the sensitivity value based on your needs
-        const sensitivity = 0.1;
 
         if (touchX < screenWidth / 2) {
           // Left side of the screen is touched
@@ -1115,7 +1098,7 @@ class DoodleWidget {
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height) this.player.jump();
 
     //Gameover if it hits the bottom
-    if (this.base.y > this.height && this.player.y + this.player.height > this.height && this.player.isDead != 'yes') this.player.isDead = true;
+    if (this.base.y > this.height && this.player.y + this.player.height > this.height && this.player.isDead !== 'yes') this.player.isDead = true;
 
     //Make the player move through walls
     if (this.player.x + 40 > this.width) this.player.x = 0 - this.player.width + 40;

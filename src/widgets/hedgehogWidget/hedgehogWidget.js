@@ -286,7 +286,7 @@ class HedgehogWidget {
   }
 
   grabTheHandle() {
-    if (this.myHandle.isIdle == true) return;
+    if (this.myHandle.isIdle === true) return;
     this.xu = this.cursorX;
     this.yu = this.cursorY;
 
@@ -305,7 +305,7 @@ class HedgehogWidget {
 
   pourTheJuice() {
     this.juiceDrip.play();
-    if (this.juiceDrip.isPouring == true) this.jamJar.updateFill(0.002);
+    if (this.juiceDrip.isPouring === true) this.jamJar.updateFill(0.002);
   }
 
   tchEnd(event) {
@@ -400,7 +400,7 @@ class HedgehogWidget {
   }
 
   drawHammer() {
-    if (this.handImg != null) this.ctx.drawImage(this.handImg, this.cursorX - this.handImg.width / 2, this.cursorY - this.handImg.height / 2);
+    if (this.handImg !== null) this.ctx.drawImage(this.handImg, this.cursorX - this.handImg.width / 2, this.cursorY - this.handImg.height / 2);
   }
 
   drawMachine() {
@@ -415,7 +415,7 @@ class HedgehogWidget {
   }
 
   drawJar() {
-    if (this.jamJar.shouldPlay == false) {
+    if (this.jamJar.shouldPlay === false) {
       return;
     }
     let _x, _y, _width, _height;
@@ -444,14 +444,14 @@ class HedgehogWidget {
     _y = this.myCanvas.height * 0.78;
     this.ctx.drawImage(this.loadedImages['stiklainis1'], _x, _y, _width, _height);
 
-    if (this.jamJar.emptyJars == 1) return;
+    if (this.jamJar.emptyJars === 1) return;
     _width = this.loadedImages['stiklainis1'].width * scale;
     _height = this.loadedImages['stiklainis1'].height * scale;
     _x = this.myCanvas.width * 0.58 + _width;
     _y = this.myCanvas.height * 0.78;
     this.ctx.drawImage(this.loadedImages['stiklainis1'], _x, _y, _width, _height);
 
-    if (this.jamJar.emptyJars == 2) return;
+    if (this.jamJar.emptyJars === 2) return;
     _width = this.loadedImages['stiklainis1'].width * scale;
     _height = this.loadedImages['stiklainis1'].height * scale;
     _x = this.myCanvas.width * 0.58 + _width * 2;
@@ -462,7 +462,7 @@ class HedgehogWidget {
   drawFullJars() {
     let _x, _y, _width, _height;
     let scale = 0.28;
-    if (this.jamJar.fullJars == 0) return;
+    if (this.jamJar.fullJars === 0) return;
 
     _width = this.loadedImages['fullJar'].width * scale;
     _height = this.loadedImages['fullJar'].height * scale;
@@ -470,7 +470,7 @@ class HedgehogWidget {
     _y = this.myCanvas.height * 0.78;
     this.ctx.drawImage(this.loadedImages['fullJar'], _x, _y, _width, _height);
 
-    if (this.jamJar.fullJars == 1) return;
+    if (this.jamJar.fullJars === 1) return;
 
     _width = this.loadedImages['fullJar'].width * scale;
     _height = this.loadedImages['fullJar'].height * scale;
@@ -478,7 +478,7 @@ class HedgehogWidget {
     _y = this.myCanvas.height * 0.78 - _height;
     this.ctx.drawImage(this.loadedImages['fullJar'], _x, _y, _width, _height);
 
-    if (this.jamJar.fullJars == 2) return;
+    if (this.jamJar.fullJars === 2) return;
 
     _width = this.loadedImages['fullJar'].width * scale;
     _height = this.loadedImages['fullJar'].height * scale;
@@ -486,7 +486,7 @@ class HedgehogWidget {
     _y = this.myCanvas.height * 0.78 - _height * 2;
     this.ctx.drawImage(this.loadedImages['fullJar'], _x, _y, _width, _height);
 
-    if (this.jamJar.fullJars == 3) return;
+    if (this.jamJar.fullJars === 3) return;
 
     _width = this.loadedImages['fullJar'].width * scale;
     _height = this.loadedImages['fullJar'].height * scale;
@@ -496,7 +496,7 @@ class HedgehogWidget {
   }
 
   drawDrip() {
-    if (this.juiceDrip.shouldPlay == false) return;
+    if (this.juiceDrip.shouldPlay === false) return;
     let _x, _y, _width, _height;
     let scale = 0.48;
 
@@ -511,17 +511,17 @@ class HedgehogWidget {
   }
 
   drawHandle() {
-    if (this.myHandle.image == null || this.myHandle.isIdle == true) return;
+    if (this.myHandle.image === null || this.myHandle.isIdle === true) return;
     let _x, _y, _width, _height;
     let scale = 0.48;
     _width = this.myHandle.image.width * scale;
     _height = this.myHandle.image.height * scale;
     _x = this.myCanvas.width * 0.66;
     _y = this.myCanvas.height * 0.438;
-    if (this.myHandle.isTurning == false) this.ctx.drawImage(this.myHandle.image, _x, _y, _width, _height);
+    if (this.myHandle.isTurning === false) this.ctx.drawImage(this.myHandle.image, _x, _y, _width, _height);
     this.setClickArea(0, _x + this.myHandle.image.width * scale * 0.31, _y + this.myHandle.image.width * scale * -0.04, 65, 50);
 
-    if (this.myHandle.isTurning == false) return;
+    if (this.myHandle.isTurning === false) return;
 
     let pivotX = _x + this.myHandle.image.width * scale * 0.196;
     let pivotY = _y + this.myHandle.image.height * scale * 0.492;
@@ -544,7 +544,7 @@ class HedgehogWidget {
   }
 
   drawIdleHandle() {
-    if (this.myHandle.isIdle == false) {
+    if (this.myHandle.isIdle === false) {
       return;
     }
 

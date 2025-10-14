@@ -54,7 +54,7 @@ class Maze {
       this.direction = 'left';
       let i = setInterval(() => {
         this.moveLeft();
-        if (this.direction != 'left') clearInterval(i);
+        if (this.direction !== 'left') clearInterval(i);
       }, this.speed);
     }
 
@@ -63,7 +63,7 @@ class Maze {
       this.direction = 'right';
       let i = setInterval(() => {
         this.moveRight();
-        if (this.direction != 'right') clearInterval(i);
+        if (this.direction !== 'right') clearInterval(i);
       }, this.speed);
     }
 
@@ -72,7 +72,7 @@ class Maze {
       this.direction = 'up';
       let i = setInterval(() => {
         this.moveUp();
-        if (this.direction != 'up') clearInterval(i);
+        if (this.direction !== 'up') clearInterval(i);
       }, this.speed);
     }
 
@@ -81,7 +81,7 @@ class Maze {
       this.direction = 'down';
       let i = setInterval(() => {
         this.moveDown();
-        if (this.direction != 'down') clearInterval(i);
+        if (this.direction !== 'down') clearInterval(i);
       }, this.speed);
     }
   };
@@ -108,7 +108,7 @@ class Maze {
             this.direction = 'left';
             let i = setInterval(() => {
               this.moveLeft();
-              if (this.direction != 'left') clearInterval(i);
+              if (this.direction !== 'left') clearInterval(i);
             }, this.speed);
           }
         } else {
@@ -116,7 +116,7 @@ class Maze {
             this.direction = 'right';
             let i = setInterval(() => {
               this.moveRight();
-              if (this.direction != 'right') clearInterval(i);
+              if (this.direction !== 'right') clearInterval(i);
             }, this.speed);
           }
         }
@@ -126,7 +126,7 @@ class Maze {
             this.direction = 'up';
             let i = setInterval(() => {
               this.moveUp();
-              if (this.direction != 'up') clearInterval(i);
+              if (this.direction !== 'up') clearInterval(i);
             }, this.speed);
           }
         } else {
@@ -134,7 +134,7 @@ class Maze {
             this.direction = 'down';
             let i = setInterval(() => {
               this.moveDown();
-              if (this.direction != 'down') clearInterval(i);
+              if (this.direction !== 'down') clearInterval(i);
             }, this.speed);
           }
         }
