@@ -22,6 +22,17 @@ export default [
   // Base recommended JS rules
   js.configs.recommended,
 
+  // Configuration files (webpack, jest, etc.) - Node.js environment
+  {
+    files: ['*.config.js', '*.config.mjs', 'webpack.*.js', 'jest.*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { ...globals.node },
+    },
+  },
+
+  // Main application files - Browser environment
   {
     files: ['**/*.js'],
     languageOptions: {
@@ -61,7 +72,7 @@ export default [
       'no-sparse-arrays': 'warn',
       'no-cond-assign': 'warn',
       'no-redeclare': 'warn',
-      'no-const-assign': 'warn',
+      'no-const-assign': 'error',
       'no-irregular-whitespace': 'warn',
       'no-constant-condition': 'warn',
       'no-self-assign': 'warn',
@@ -73,7 +84,7 @@ export default [
 
       // === Unused imports/vars (modern approach) ===
       // remove unused imports entirely
-      'unused-imports/no-unused-imports': 'warn',
+      'unused-imports/no-unused-imports': 'error',
       // warn on unused vars, but allow _prefix to ignore
       'unused-imports/no-unused-vars': [
         'warn',
