@@ -22,6 +22,16 @@ export default [
   // Base recommended JS rules
   js.configs.recommended,
 
+  // Test files - Jest environment
+  {
+    files: ['**/*.test.js', '**/*.spec.js', 'src/tests/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { ...globals.jest, ...globals.node },
+    },
+  },
+
   // Configuration files (webpack, jest, etc.) - Node.js environment
   {
     files: ['*.config.js', '*.config.mjs', 'webpack.*.js', 'jest.*.js'],

@@ -1526,7 +1526,7 @@ ${
           if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
             boomioService
               .signal('ROUND_STARTED', 'signal')
-              .then((response) => {
+              .then((_response) => {
                 gameStarted = true;
               })
               .catch((error) => {
@@ -1937,7 +1937,7 @@ ${
 
       boomioService
         .signal('ROUND_STARTED', 'signal')
-        .then((response) => {
+        .then((_response) => {
           gameStarted = true;
         })
         .catch((error) => {

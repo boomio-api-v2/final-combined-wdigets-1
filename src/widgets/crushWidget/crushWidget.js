@@ -1831,7 +1831,7 @@ background:${
       if (this.showCompetitiveRegistration) {
         boomioService
           .signal('ROUND_STARTED', 'signal')
-          .then((response) => {
+          .then((_response) => {
             document.getElementById('background_blur').style.display = 'none';
             this.gamePlaying = true;
 
@@ -1956,7 +1956,7 @@ background:${
     this.grid[tile2.row][tile2.col] = temp;
   }
 
-  hasMatchesAfterSwap(tile1, tile2) {
+  hasMatchesAfterSwap(_tile1, _tile2) {
     const matches = this.findMatches();
     const hasMatches = matches.length > 0;
 

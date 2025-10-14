@@ -800,7 +800,7 @@ class DoodleWidget {
     );
   };
   gameOver = () => {
-    this.platforms.forEach((p, i) => {
+    this.platforms.forEach((p, _i) => {
       p.y -= 12;
     });
 
@@ -854,7 +854,7 @@ class DoodleWidget {
   };
   collides = () => {
     // Platform collisions
-    this.platforms.forEach((p, i) => {
+    this.platforms.forEach((p, _i) => {
       if (
         this.player.vy > 0 && // Player is falling
         p.state === 0 && // Platform is active
@@ -905,7 +905,7 @@ class DoodleWidget {
   platformCalc = () => {
     var subs = this.platform_broken_substitute;
 
-    this.platforms.forEach((p, i) => {
+    this.platforms.forEach((p, _i) => {
       if (p.type === 2) {
         if (p.x < 0 || p.x + p.width > this.width) p.vx *= -1;
 
@@ -1749,7 +1749,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           if (this.showCompetitiveRegistration) {
             boomioService
               .signal('ROUND_STARTED', 'signal')
-              .then((response) => {
+              .then((_response) => {
                 if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
                   document.getElementById('doodle-mobile-controls').style.display = 'block';
                 }
@@ -1866,7 +1866,9 @@ class Platform {
       else if (this.type === 4 && this.state === 0) this.cy = 90;
       else if (this.type === 4 && this.state === 1) this.cy = 1000;
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (e) {}
+    } catch (_e) {
+      // Ignore drawing errors
+    }
   }
 
   reset() {
@@ -1946,7 +1948,9 @@ class Platform_broken_substitute {
       if (this.appearance === true) {
         DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
       }
-    } catch (e) {}
+    } catch (_e) {
+      // Ignore drawing errors
+    }
   };
 }
 
@@ -2015,7 +2019,9 @@ class Base {
   draw() {
     try {
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (e) {}
+    } catch (_e) {
+      // Ignore drawing errors
+    }
   }
 }
 
@@ -2050,7 +2056,9 @@ class Player {
       else if (this.dir === 'left_jump') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (e) {}
+    } catch (_e) {
+      // Ignore drawing errors
+    }
   }
 
   jump = () => {
