@@ -48,7 +48,11 @@ export default [
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
-      globals: { ...globals.browser },
+      globals: {
+        ...globals.browser,
+        // Global variable defined by embedding page
+        newLinkBoomio: 'readonly',
+      },
     },
     plugins: {
       'unused-imports': unusedImports,

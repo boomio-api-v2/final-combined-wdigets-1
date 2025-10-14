@@ -1866,7 +1866,7 @@ class Platform {
       else if (this.type === 4 && this.state === 0) this.cy = 90;
       else if (this.type === 4 && this.state === 1) this.cy = 1000;
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (_e) {
+    } catch {
       // Ignore drawing errors
     }
   }
@@ -1948,7 +1948,7 @@ class Platform_broken_substitute {
       if (this.appearance === true) {
         DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
       }
-    } catch (_e) {
+    } catch {
       // Ignore drawing errors
     }
   };
@@ -2019,7 +2019,7 @@ class Base {
   draw() {
     try {
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (_e) {
+    } catch {
       // Ignore drawing errors
     }
   }
@@ -2056,7 +2056,7 @@ class Player {
       else if (this.dir === 'left_jump') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (_e) {
+    } catch {
       // Ignore drawing errors
     }
   }
