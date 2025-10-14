@@ -470,7 +470,7 @@ ${
     }
 
     this.startGame(this.scoreTableContainerInstance);
-    document.addEventListener('shareClicked', (event) => {
+    document.addEventListener('shareClicked', (_event) => {
       if (this.shareClicked === false) {
         console.log('shareClicked');
         this.shareClicked = true;

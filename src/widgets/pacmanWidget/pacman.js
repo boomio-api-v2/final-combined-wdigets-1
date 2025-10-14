@@ -265,7 +265,7 @@ class Maze {
     if (mouthEl) mouthEl.classList = 'pacman__mouth mouth-down';
   }
 
-  html(name) {
+  html(_name) {
     const animEl = document.createElement('div');
     animEl.style.position = 'absolute';
     animEl.style.top = `20px`;
@@ -347,7 +347,7 @@ class Cell {
     this.style = 'free';
   }
 
-  html(style) {
+  html(_style) {
     let cell = document.getElementById('cell_' + this.row + '.' + this.col);
     if (!cell) {
       cell = document.createElement('td');

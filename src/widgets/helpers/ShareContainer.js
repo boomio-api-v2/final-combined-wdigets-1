@@ -27,7 +27,7 @@ export class ShareContainer {
     this.render();
   }
 
-  updateProps(prop, score) {
+  updateProps(prop, _score) {
     this.prop = prop;
     this.isMobileWidthSmall = window.innerWidth <= 400;
     this.isSmallMobile = window.innerWidth <= 380;

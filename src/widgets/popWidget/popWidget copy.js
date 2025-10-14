@@ -806,7 +806,7 @@ ${`<div style="${
       if (this.showCompetitiveRegistration) {
         boomioService
           .signal('ROUND_STARTED', 'signal')
-          .then((response) => {
+          .then((_response) => {
             document.getElementById('background_blur').style.display = 'none';
             this.gamePlaying = true;
             this.selectedTile = null;
