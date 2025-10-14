@@ -1,6 +1,8 @@
 const { floor } = Math;
 
 // From https://github.com/PaulBGD/PixelFont/blob/master/script.js
+// Sparse arrays are intentional here - they represent empty pixels in the font bitmap
+/* eslint-disable no-sparse-arrays */
 // prettier-ignore
 const letters = {
         'A': [
