@@ -52,8 +52,6 @@ Component.Stage = function (canvas, conf) {
 };
 
 Component.Snake = function (canvas, conf) {
-  var self = this;
-
   this.stage = new Component.Stage(canvas, conf);
   this.initSnake = function () {
     for (var i = 0; i < this.stage.conf.size; i++) {

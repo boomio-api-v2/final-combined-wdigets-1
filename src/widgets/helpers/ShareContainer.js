@@ -468,7 +468,9 @@ export class ShareContainer {
       const timer = setTimeout(() => {
         try {
           window.location.href = fallback;
-        } catch {}
+        } catch (error) {
+          console.error('Error sharing:', error);
+        }
         clearTimeout(timer);
       }, 1000);
     }
