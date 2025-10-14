@@ -54,7 +54,9 @@ import {
   mainImagDemo,
   backgroundDemo,
   backgroundToni,
-  mainImagToni,
+  mainImageToni,
+  backgroundNevezis,
+  mainNevezis,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -83,11 +85,11 @@ class DoodleWidget {
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
+    this.customer = this.config.business_name;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
 
-    this.language = this.config.language ? this.config.language : 'LV';
+    this.language = this.config.language;
     const currentPageUrl = window.location.href;
     this.urlParams = new URL(currentPageUrl).searchParams;
     this.campaignUrl = this.urlParams.get('campaign_url');
@@ -124,12 +126,14 @@ class DoodleWidget {
                     : this.customer === 'demo-22'
                       ? mainImagDemo
                       : this.customer === 'Toni'
-                        ? mainImagToni
-                        : this.customer === 'Akropolis'
-                          ? this.language === 'LV'
-                            ? mainImageAkropolisLV
-                            : mainImageAkropolis
-                          : mainImage;
+                        ? mainImageToni
+                        : this.customer === 'Nevezis'
+                          ? mainNevezis
+                          : this.customer === 'Akropolis'
+                            ? this.language === 'LV'
+                              ? mainImageAkropolisLV
+                              : mainImageAkropolis
+                            : mainImage;
 
     this.started = false;
     const safeStart = () => {
@@ -190,11 +194,13 @@ class DoodleWidget {
                 ? backgroundDemo
                 : this.customer === 'Toni'
                   ? backgroundToni
-                  : this.customer === 'Akropolis'
-                    ? this.language === 'LV'
-                      ? backgroundRedAkropolisLV
-                      : backgroundRedAkropolis
-                    : backgroundRed
+                  : this.customer === 'Nevezis'
+                    ? backgroundNevezis
+                    : this.customer === 'Akropolis'
+                      ? this.language === 'LV'
+                        ? backgroundRedAkropolisLV
+                        : backgroundRedAkropolis
+                      : backgroundRed
     }) center`;
 
     DoodleWidget.ctx = canvas.getContext('2d');
@@ -239,10 +245,10 @@ class DoodleWidget {
           () => {
             document.getElementById('background_intro').style.display = 'none';
           },
-          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer.includes('Toni') ? 0 : 2500,
+          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer === 'Toni' || this.customer === 'Nevezis' ? 0 : 2500,
         );
       },
-      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer.includes('Toni') ? 0 : 2500,
+      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer === 'Toni' || this.customer === 'Nevezis' ? 0 : 2500,
     ); //intro speed
   }
 
@@ -263,7 +269,7 @@ class DoodleWidget {
     const canvas = document.getElementById('boomio-doodle-canvas');
     canvas.style.transition = 'filter 0.6s ease';
 
-    if (this.customer === 'Toni') {
+    if (this.customer === 'Toni' || this.customer === 'Nevezis') {
       canvas.style.filter = '';
     } else {
       canvas.style.filter = 'blur(2px)';
@@ -1351,7 +1357,7 @@ class DoodleWidget {
                                   : ''
     }" 
 alt="Intro Image" 
-style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:${this.customer === 'Toni' ? 'none' : 'block'};" 
+style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:${this.customer === 'Toni' || this.customer === 'Nevezis' ? 'none' : 'block'};" 
 id="background_intro">
 
 
@@ -1843,8 +1849,8 @@ class Platform {
     }
     this.config = localStorageService.getDefaultConfig();
 
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
-    this.language = this.config.language ? this.config.language : 'LV';
+    this.customer = this.config.business_name;
+    this.language = this.config.language;
 
     this.height = 20;
     this.x = Math.random() * (DoodleWidget.ctx.canvas.width - this.width);
@@ -1968,7 +1974,7 @@ class Spring {
 
     this.moved = 0;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Magija';
+    this.customer = this.config.business_name;
     this.vx = 1;
     this.y = 0;
     this.cx = 5; // Horizontal position in the sprite sheet
@@ -2033,7 +2039,7 @@ class Base {
 class Player {
   constructor(image) {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name;
 
     this.image = image;
     this.vy = 11;

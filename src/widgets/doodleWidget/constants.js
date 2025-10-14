@@ -130,9 +130,9 @@ export const mainImagDemo = 'https://raw.githubusercontent.com/boomio-api-v2/fin
 
 export const backgroundDemo = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/doodleWidget/demo/backgroundImagDemo.png?raw=true';
 
-export const mainImagToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Toni/main.png';
+export const mainImageToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Toni/main.png';
 
 export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Toni/background.png';
 
-export const mainNevezys = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Nevezys/game.png';
-export const backgroundNevezys = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Nevezys/background.png';
+export const mainNevezis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Nevezis/game.png';
+export const backgroundNevezis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Nevezis/background.png';
