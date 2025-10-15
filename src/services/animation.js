@@ -1,6 +1,6 @@
 import localStorageService from './localStorage';
 import widgetHtmlService from './widgetHtml';
-import { getRandomArbitrary, addStylesToHtml, assignStyleOnElement } from '@/utlis';
+import { getRandomArbitrary, addStylesToHtml, assignStyleOnElement } from '@/utils';
 
 const defaultProps = {
   posx: 0,

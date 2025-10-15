@@ -135,11 +135,11 @@ class CrushGame {
     this.shareClicked = false;
 
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Gamtos Ateitis Random';
+    this.customer = this.config.business_name;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
     this.gameCount = 0;
-    this.language = this.config.language ? this.config.language : 'LT';
+    this.language = this.config.language;
 
     this.currentScoreTable = {};
     this.gridCols = 5;

@@ -1,5 +1,5 @@
 import { boomioService, localStorageService, DragElement, QrCodeModal, AnimationService, widgetHtmlService } from '@/services';
-import { getRandomArbitrary } from '@/utlis';
+import { getRandomArbitrary } from '@/utils';
 import { defaultList } from './constants';
 import { outerBorderGradient } from './constants';
 import { outerBorderAngle } from './constants';
@@ -9,7 +9,7 @@ import { wrecks } from './constants';
 import { pictS } from './constants';
 import { pictL } from './constants';
 import './styles.css';
-import { createCloseMoveButtons } from '@/utlis';
+import { createCloseMoveButtons } from '@/utils';
 
 class WheelOfFortuneWidget {
   constructor() {

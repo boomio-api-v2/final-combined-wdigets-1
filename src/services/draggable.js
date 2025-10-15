@@ -1,5 +1,5 @@
 import { localStorageService } from '@/services';
-import { assignStyleOnElement } from '@/utlis';
+import { assignStyleOnElement } from '@/utils';
 import { isMobileDevice } from '@/config';
 
 const defaultArguments = {
