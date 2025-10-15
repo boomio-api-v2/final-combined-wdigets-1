@@ -257,7 +257,7 @@ class Maze {
     }
   }
 
-  html(name) {
+  html(_name) {
     const animEl = document.createElement('div');
     animEl.style.position = 'absolute';
     animEl.style.top = `100px`;

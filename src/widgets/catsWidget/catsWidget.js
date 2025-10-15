@@ -269,7 +269,7 @@ class CatsWidget {
     _y1 = this.getTopLeft(i)[1];
     _x2 = this.getBottomRight(i)[0];
     _y2 = this.getBottomRight(i)[1];
-    return this.brokenCubes[i] == false && clickX > _x1 && clickY > _y1 && clickX < _x2 && clickY < _y2;
+    return this.brokenCubes[i] === false && clickX > _x1 && clickY > _y1 && clickX < _x2 && clickY < _y2;
   }
 
   setClickArea(i, _x, _y, _width, _height) {
@@ -289,11 +289,11 @@ class CatsWidget {
     let neg = Math.sign(Math.random() - 0.5);
     Matter.Body.applyForce(box, { x: box.position.x, y: box.position.y }, { x: -0.26 * neg, y: -0.49 });
     if (box.clickCount < this.boxBlueImgsArr.length - 1) box.clickCount++;
-    if (box.clickCount == this.boxBlueImgsArr.length - 1) {
+    if (box.clickCount === this.boxBlueImgsArr.length - 1) {
       this.boxA.collisionFilter.group = -1;
       this.boxB.collisionFilter.group = -1;
       Matter.Body.setAngle(box, 0);
-      if (box.broken == false) {
+      if (box.broken === false) {
         this.createFishHeap(box, i);
         this.updateBoxColliderForBrokenBox(box);
       }
@@ -301,19 +301,6 @@ class CatsWidget {
     }
   }
 
-  addHammerToCursor = () => {
-    const hammer = document.createElement('img');
-    hammer.setAttribute('id', 'hammer');
-    hammer.setAttribute('src', hammerImage);
-    this.stoneContainer.appendChild(hammer);
-    this.stoneContainer.onmousemove = ({ clientX, clientY }) => {
-      const { x_position, y_position } = this.draggeble;
-      assignStyleOnElement(hammer.style, {
-        left: `${clientX - x_position + 5}px`,
-        top: `${clientY - y_position + 5}px`,
-      });
-    };
-  };
   drawHammer() {
     this.ctx.drawImage(this.loadedImages['hammerImage'], this.cursorX, this.cursorY);
   }
@@ -346,7 +333,7 @@ class CatsWidget {
   drawCubes1() {
     let _x, _y, _width, _height;
     let pivotX, pivotY;
-    if (this.brokenCubes[1] == false) {
+    if (this.brokenCubes[1] === false) {
       this.ctx.save();
       _width = this.boxB.width;
       _height = this.boxB.height;
@@ -367,7 +354,7 @@ class CatsWidget {
     let _x, _y, _width, _height;
     let pivotX, pivotY;
 
-    if (this.brokenCubes[0] == false) {
+    if (this.brokenCubes[0] === false) {
       this.ctx.save();
       _width = this.boxA.width;
       _height = this.boxA.height;
@@ -390,7 +377,7 @@ class CatsWidget {
     let div;
     _x = box.position.x;
     _y = box.position.y;
-    if (i == 0) {
+    if (i === 0) {
       div = this.loadedImages['fishHeapImg1'].height / this.loadedImages['fishHeapImg1'].width;
       _width = box.collisionWidth;
       _height = box.collisionWidth * div;
@@ -400,7 +387,7 @@ class CatsWidget {
       });
       this.fishHeap1.collisionFilter.group = -1;
       Matter.Composite.add(this.engine.world, this.fishHeap1);
-    } else if (i == 1) {
+    } else if (i === 1) {
       div = this.loadedImages['fishHeapImg2'].height / this.loadedImages['fishHeapImg2'].width;
       _width = box.collisionWidth;
       _height = box.collisionWidth * div;
@@ -415,7 +402,7 @@ class CatsWidget {
 
   drawFishHeap() {
     let _x, _y, _width, _height;
-    if (this.boxA.broken == true && this.fishHeap1) {
+    if (this.boxA.broken === true && this.fishHeap1) {
       let pivotX, pivotY;
       pivotX = this.fishHeap1.position.x;
       pivotY = this.fishHeap1.position.y;
@@ -425,7 +412,7 @@ class CatsWidget {
       _y = pivotY - _height / 2;
       this.ctx.drawImage(this.loadedImages['fishHeapImg1'], _x, _y, _width, _height);
     }
-    if (this.boxB.broken == true && this.fishHeap2) {
+    if (this.boxB.broken === true && this.fishHeap2) {
       let pivotX, pivotY;
       pivotX = this.fishHeap2.position.x;
       pivotY = this.fishHeap2.position.y;

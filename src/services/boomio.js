@@ -198,7 +198,7 @@ class BoomioService extends UserService {
         (position) => {
           handleAccessValidation(position.coords.latitude, position.coords.longitude);
         },
-        (error) => {
+        (_error) => {
           alert('Geolocation access denied or unavailable. Cannot verify location.');
           return;
         },

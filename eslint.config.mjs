@@ -4,18 +4,55 @@ import globals from 'globals';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 export default [
-  // Ignore build artifacts
-  { ignores: ['node_modules/**', 'dist/**', 'build/**', 'coverage/**'] },
+  // Ignore build artifacts and third-party libraries
+  {
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      'coverage/**',
+      // Third-party minified libraries
+      'src/qrcode.min.js',
+      // Third-party footballWidget libraries
+      'src/widgets/footballWidget/js/**',
+      'src/widgets/runnerWidget/scripts/**',
+    ],
+  },
 
   // Base recommended JS rules
   js.configs.recommended,
 
+  // Test files - Jest environment
+  {
+    files: ['**/*.test.js', '**/*.spec.js', 'src/tests/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { ...globals.jest, ...globals.node },
+    },
+  },
+
+  // Configuration files (webpack, jest, etc.) - Node.js environment
+  {
+    files: ['*.config.js', '*.config.mjs', 'webpack.*.js', 'jest.*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { ...globals.node },
+    },
+  },
+
+  // Main application files - Browser environment
   {
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
-      globals: { ...globals.browser },
+      globals: {
+        ...globals.browser,
+        // Global variable defined by embedding page
+        newLinkBoomio: 'readonly',
+      },
     },
     plugins: {
       'unused-imports': unusedImports,
@@ -38,7 +75,7 @@ export default [
       'no-unused-vars': 'off',
 
       // === Safer defaults / useful signals ===
-      eqeqeq: 'warn',
+      eqeqeq: 'error',
       'no-undef': 'warn',
       'no-useless-escape': 'warn',
       'no-empty': 'warn',
@@ -49,7 +86,7 @@ export default [
       'no-sparse-arrays': 'warn',
       'no-cond-assign': 'warn',
       'no-redeclare': 'warn',
-      'no-const-assign': 'warn',
+      'no-const-assign': 'error',
       'no-irregular-whitespace': 'warn',
       'no-constant-condition': 'warn',
       'no-self-assign': 'warn',
@@ -61,7 +98,7 @@ export default [
 
       // === Unused imports/vars (modern approach) ===
       // remove unused imports entirely
-      'unused-imports/no-unused-imports': 'warn',
+      'unused-imports/no-unused-imports': 'error',
       // warn on unused vars, but allow _prefix to ignore
       'unused-imports/no-unused-vars': [
         'warn',
@@ -70,6 +107,7 @@ export default [
           varsIgnorePattern: '^_',
           args: 'after-used',
           argsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
         },
       ],
     },

@@ -237,7 +237,7 @@ class WhackWidget {
       }
     };
 
-    const whackMole = (event) => {
+    const whackMole = (_event) => {
       function moleHit(imageElement) {
         boomio.signal('hammer_click', 'signal', {
           widget_type: 'whack',

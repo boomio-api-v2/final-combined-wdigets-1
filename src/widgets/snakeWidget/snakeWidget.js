@@ -44,7 +44,7 @@ Component.Stage = function (canvas, conf) {
 
   if (typeof conf === 'object') {
     for (var key in conf) {
-      if (conf.hasOwnProperty(key)) {
+      if (Object.hasOwn(conf, key)) {
         this.conf[key] = conf[key];
       }
     }
@@ -52,8 +52,6 @@ Component.Stage = function (canvas, conf) {
 };
 
 Component.Snake = function (canvas, conf) {
-  var self = this;
-
   this.stage = new Component.Stage(canvas, conf);
   this.initSnake = function () {
     for (var i = 0; i < this.stage.conf.size; i++) {

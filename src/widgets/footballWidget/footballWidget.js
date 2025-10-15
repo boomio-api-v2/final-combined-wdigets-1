@@ -93,19 +93,19 @@ class FootballWidget {
       check_orientation: true,
       num_levels_for_ads: 2,
     });
-    $(oMain).on('start_session', function (evt) {
+    $(oMain).on('start_session', function (_evt) {
       if (getParamValue('ctl-arcade') === 'true') {
         parent.__ctlArcadeStartSession();
       }
     });
 
-    $(oMain).on('end_session', function (evt) {
+    $(oMain).on('end_session', function (_evt) {
       if (getParamValue('ctl-arcade') === 'true') {
         parent.__ctlArcadeEndSession();
       }
     });
 
-    $(oMain).on('start_level', function (evt, iLevel) {
+    $(oMain).on('start_level', function (_evt, iLevel) {
       if (getParamValue('ctl-arcade') === 'true') {
         parent.__ctlArcadeStartLevel({ level: iLevel });
       }
@@ -129,13 +129,13 @@ class FootballWidget {
       }
     });
 
-    $(oMain).on('show_interlevel_ad', function (evt) {
+    $(oMain).on('show_interlevel_ad', function (_evt) {
       if (getParamValue('ctl-arcade') === 'true') {
         parent.__ctlArcadeShowInterlevelAD();
       }
     });
 
-    $(oMain).on('share_event', function (evt, iScore) {
+    $(oMain).on('share_event', function (_evt, iScore) {
       if (getParamValue('ctl-arcade') === 'true') {
         parent.__ctlArcadeShareEvent({
           img: TEXT_SHARE_IMAGE,

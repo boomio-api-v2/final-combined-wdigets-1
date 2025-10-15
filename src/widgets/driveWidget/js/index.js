@@ -496,7 +496,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 : cloudsImageData;
 
   const treeImage =
-    customer == 'Barbora'
+    customer === 'Barbora'
       ? [
           (() => {
             const img = new Image();
@@ -514,7 +514,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             return img;
           })(),
         ]
-      : customer == 'Gamtos Ateitis'
+      : customer === 'Gamtos Ateitis'
         ? [
             (() => {
               const img = new Image();

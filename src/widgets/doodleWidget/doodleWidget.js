@@ -241,12 +241,10 @@ class DoodleWidget {
         }
         this.showRulesOrRegistration();
 
-        setTimeout(
-          () => {
-            document.getElementById('background_intro').style.display = 'none';
-          },
-          this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer === 'Toni' || this.customer === 'Nevezis' ? 0 : 2500,
-        );
+        // Hide intro after fade completes (1000ms transition duration)
+        setTimeout(() => {
+          document.getElementById('background_intro').style.display = 'none';
+        }, 1000);
       },
       this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer === 'Toni' || this.customer === 'Nevezis' ? 0 : 2500,
     ); //intro speed
@@ -345,21 +343,8 @@ class DoodleWidget {
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
-          if (this.customer === 'Pigu.lt' && false) {
-            this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
-            const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
-            competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            competitionTableContainer.style.display = 'block';
-            setTimeout(() => {
-              competitionTableContainer.style.height = '680px';
-              competitionTableContainer.style.top = 'calc(50%)';
-              competitionTableContainer.style.opacity = 1;
-            }, 100);
-          } else {
-            this.userBestScore = response.user_best_score;
-
-            this.showRulesPigu();
-          }
+          this.userBestScore = response.user_best_score;
+          this.showRulesPigu();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -815,7 +800,7 @@ class DoodleWidget {
     );
   };
   gameOver = () => {
-    this.platforms.forEach((p, i) => {
+    this.platforms.forEach((p, _i) => {
       p.y -= 12;
     });
 
@@ -869,7 +854,7 @@ class DoodleWidget {
   };
   collides = () => {
     // Platform collisions
-    this.platforms.forEach((p, i) => {
+    this.platforms.forEach((p, _i) => {
       if (
         this.player.vy > 0 && // Player is falling
         p.state === 0 && // Platform is active
@@ -920,7 +905,7 @@ class DoodleWidget {
   platformCalc = () => {
     var subs = this.platform_broken_substitute;
 
-    this.platforms.forEach((p, i) => {
+    this.platforms.forEach((p, _i) => {
       if (p.type === 2) {
         if (p.x < 0 || p.x + p.width > this.width) p.vx *= -1;
 
@@ -1014,8 +999,6 @@ class DoodleWidget {
       document.addEventListener('touchstart', (e) => {
         const touchX = e.touches[0].clientX;
         const screenWidth = window.innerWidth;
-        // Adjust the sensitivity value based on your needs
-        const sensitivity = 0.1;
 
         if (touchX < screenWidth / 2) {
           // Left side of the screen is touched
@@ -1115,7 +1098,7 @@ class DoodleWidget {
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height) this.player.jump();
 
     //Gameover if it hits the bottom
-    if (this.base.y > this.height && this.player.y + this.player.height > this.height && this.player.isDead != 'yes') this.player.isDead = true;
+    if (this.base.y > this.height && this.player.y + this.player.height > this.height && this.player.isDead !== 'yes') this.player.isDead = true;
 
     //Make the player move through walls
     if (this.player.x + 40 > this.width) this.player.x = 0 - this.player.width + 40;
@@ -1766,7 +1749,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           if (this.showCompetitiveRegistration) {
             boomioService
               .signal('ROUND_STARTED', 'signal')
-              .then((response) => {
+              .then((_response) => {
                 if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
                   document.getElementById('doodle-mobile-controls').style.display = 'block';
                 }
@@ -1883,7 +1866,9 @@ class Platform {
       else if (this.type === 4 && this.state === 0) this.cy = 90;
       else if (this.type === 4 && this.state === 1) this.cy = 1000;
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (e) {}
+    } catch {
+      // Ignore drawing errors
+    }
   }
 
   reset() {
@@ -1963,7 +1948,9 @@ class Platform_broken_substitute {
       if (this.appearance === true) {
         DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
       }
-    } catch (e) {}
+    } catch {
+      // Ignore drawing errors
+    }
   };
 }
 
@@ -2032,7 +2019,9 @@ class Base {
   draw() {
     try {
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (e) {}
+    } catch {
+      // Ignore drawing errors
+    }
   }
 }
 
@@ -2067,7 +2056,9 @@ class Player {
       else if (this.dir === 'left_jump') this.cy = 364;
 
       DoodleWidget.ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
-    } catch (e) {}
+    } catch {
+      // Ignore drawing errors
+    }
   }
 
   jump = () => {

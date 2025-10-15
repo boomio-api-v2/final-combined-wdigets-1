@@ -470,7 +470,7 @@ ${
     }
 
     this.startGame(this.scoreTableContainerInstance);
-    document.addEventListener('shareClicked', (event) => {
+    document.addEventListener('shareClicked', (_event) => {
       if (this.shareClicked === false) {
         console.log('shareClicked');
         this.shareClicked = true;
@@ -556,8 +556,8 @@ ${
     let numberOfJumps = localStorage.getItem('jumps') > 0 ? localStorage.getItem('jumps') : 0;
     let numberOfDeaths = localStorage.getItem('deaths') > 0 ? localStorage.getItem('deaths') : 0;
     let numberOfSlides = localStorage.getItem('slides') > 0 ? localStorage.getItem('slides') : 0;
-    const shieldLevel = localStorage.getItem('shieldLevel') > 1 ? localStorage.getItem('shieldLevel') : 1;
-    const boosterLevel = localStorage.getItem('boosterLevel') > 1 ? localStorage.getItem('boosterLevel') : 1;
+    let shieldLevel = localStorage.getItem('shieldLevel') > 1 ? localStorage.getItem('shieldLevel') : 1;
+    let boosterLevel = localStorage.getItem('boosterLevel') > 1 ? localStorage.getItem('boosterLevel') : 1;
 
     // Load sprites
     const runSprites = loadSprites(
@@ -1526,7 +1526,7 @@ ${
           if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
             boomioService
               .signal('ROUND_STARTED', 'signal')
-              .then((response) => {
+              .then((_response) => {
                 gameStarted = true;
               })
               .catch((error) => {
@@ -1937,7 +1937,7 @@ ${
 
       boomioService
         .signal('ROUND_STARTED', 'signal')
-        .then((response) => {
+        .then((_response) => {
           gameStarted = true;
         })
         .catch((error) => {

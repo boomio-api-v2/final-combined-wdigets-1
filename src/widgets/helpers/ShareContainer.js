@@ -27,7 +27,7 @@ export class ShareContainer {
     this.render();
   }
 
-  updateProps(prop, score) {
+  updateProps(prop, _score) {
     this.prop = prop;
     this.isMobileWidthSmall = window.innerWidth <= 400;
     this.isSmallMobile = window.innerWidth <= 380;
@@ -468,7 +468,9 @@ export class ShareContainer {
       const timer = setTimeout(() => {
         try {
           window.location.href = fallback;
-        } catch {}
+        } catch (error) {
+          console.error('Error sharing:', error);
+        }
         clearTimeout(timer);
       }, 1000);
     }

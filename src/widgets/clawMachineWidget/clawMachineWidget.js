@@ -90,7 +90,9 @@ class ClawMachineWidget {
 
     try {
       await Promise.all(imagePromises);
-    } catch (error) {}
+    } catch {
+      // Ignore image loading errors
+    }
   }
 
   startClawMachine() {

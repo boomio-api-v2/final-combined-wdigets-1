@@ -53,7 +53,6 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
-    console.log(this.userDiscountCode);
     const piguTable =
       this.prop === 'Pigu.lt' && this.campaignUrlProp === 'https://220.lv'
         ? [
