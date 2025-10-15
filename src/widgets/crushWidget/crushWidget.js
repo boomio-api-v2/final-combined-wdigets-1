@@ -128,16 +128,14 @@ import './styles.css';
 
 class CrushGame {
   constructor() {
-    const currentPageUrl = window.location.href;
-    this.urlParams = new URL(currentPageUrl).searchParams;
-    this.user_id = this.urlParams.get('user_id');
+    this.config = localStorageService.getDefaultConfig();
+    this.userId = this.config.userId;
 
     this.shareClicked = false;
 
-    this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
-    this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
+    this.campaignUrl = this.config.campaignUrl;
     this.gameCount = 0;
     this.language = this.config.language;
 
@@ -227,13 +225,6 @@ class CrushGame {
     this.startLoading();
   }
 
-  isUserIdSet() {
-    const v = this.user_id;
-    if (v === null) return false; // null or undefined
-    const s = String(v).trim().toLowerCase();
-    return s.length > 0 && s !== 'null' && s !== 'undefined';
-  }
-
   startLoading() {
     this.preloadImages(() => {
       this.createContainer();
@@ -260,7 +251,7 @@ class CrushGame {
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }
-    if (this.showCompetitiveRegistration && !this.isUserIdSet()) {
+    if (this.showCompetitiveRegistration && !this.userId) {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
@@ -291,43 +282,30 @@ class CrushGame {
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
-    } else if (this.isUserIdSet()) {
+    } else if (this.userId) {
       const canvas = document.getElementById('boomio-crush-canvas');
       canvas.style.transition = 'filter 0.6s ease';
       canvas.style.filter = 'blur(0px)';
       boomioService
         .signal('', 'user_info', {
           emails_consent: true,
-          user_email: this.user_id,
-          user_name: this.user_id,
+          user_email: this.userId,
+          user_name: this.userId,
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
-          if (this.customer === 'Pigu.lt' && false) {
-            this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
-            const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
-            competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-            competitionTableContainer.style.display = 'block';
-            setTimeout(() => {
-              competitionTableContainer.style.height = '680px';
-              competitionTableContainer.style.top = 'calc(50%)';
-              competitionTableContainer.style.opacity = 1;
-            }, 100);
-          } else {
-            this.userBestScore = response.user_best_score;
-
-            this.showRulesPigu();
-          }
+          this.userBestScore = response.user_best_score;
+          this.showRulesPigu();
         })
         .catch((error) => {
           console.error('Error:', error);
         });
-    } else if (this.customer === 'Perlas GO' && !this.isUserIdSet()) {
+    } else if (this.customer === 'Perlas GO' && !this.userId) {
       boomioService
         .signal('', 'user_info', {
           emails_consent: false,
-          user_email: this.user_id,
-          user_name: this.user_id,
+          user_email: this.userId,
+          user_name: this.userId,
         })
         .then((response) => {
           this.userBestScore = response.user_best_score;
@@ -358,22 +336,6 @@ class CrushGame {
     this.config = localStorageService.getDefaultConfig();
     this.userBestScore = this?.config?.userBestScore ? this?.config?.userBestScore : 0;
 
-    // if (this.customer === 'Pigu.lt') {
-    //   if (this.userBestScore > 0) {
-    //     document.getElementById('boomio-rules-privacyCheckbox').style.display = 'none';
-    //   }
-    //   const competitionTableContainer = document.querySelector('.competition-table-container-pigu');
-
-    //   competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-    //   setTimeout(() => {
-    //     competitionTableContainer.style.height = '10px';
-    //     competitionTableContainer.style.top = 'calc(50% + 330px)';
-    //     competitionTableContainer.style.opacity = 0;
-    //   }, 100);
-    //   setTimeout(() => {
-    //     competitionTableContainer.style.display = 'none';
-    //   }, 1000);
-    // }
     setTimeout(() => {
       document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
       const inputContainer = document.querySelector('.input-container');
@@ -1516,11 +1478,11 @@ background:${
           boomioService
             .signal('', 'user_info', {
               emails_consent: this.checkboxChange2,
-              user_email: this.user_id || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
+              user_email: this.userId || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
               user_name:
                 this.customer === 'Toni'
                   ? playerNameInput?.value.trimEnd() + phoneInput?.value
-                  : this.user_id || (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
+                  : this.userId || (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
               ...(phoneValue ? { phone: phoneInput?.value } : {}),
               via_mobile: this.campaignUrl ? true : false,
               ...(Elements.isVisible(Elements.schoolSelect) ? { team: Elements?.schoolSelect?.value } : {}),

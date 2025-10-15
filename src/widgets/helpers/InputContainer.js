@@ -10,12 +10,9 @@ export class InputContainer {
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();
 
-    this.language = this.config.language ? this.config.language : 'EN';
+    this.language = this.config.language;
 
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    this.campaignUrlProp = urlParams.get('campaign_url');
   }
 
   createInputContainerDiv(game, type) {
@@ -30,9 +27,7 @@ export class InputContainer {
     this.game = game;
     this.type = type;
 
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const userId = urlParams.get('user_id');
+    const userId = this.config.userId;
     containerDiv.innerHTML = `
 
       

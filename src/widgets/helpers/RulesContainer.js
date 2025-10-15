@@ -20,7 +20,6 @@ export class RulesContainer {
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const userPercentageDiscount = parseInt(this?.scoreTable?.best_discount) || 0;
     const userDiscountCode = this?.scoreTable?.coupon_code || '';
     const currentPageUrl = window.location.href;
     const urlParams = new URL(currentPageUrl).searchParams;

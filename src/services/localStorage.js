@@ -1,4 +1,5 @@
 import { localStoragePropertyName } from '@/config';
+import { getParam } from '@/utils';
 
 class LocalStorageService {
   constructor() {
@@ -108,10 +109,10 @@ class LocalStorageService {
     const email_collection_required = config?.email_collection_required ?? false;
     const product = config?.product ?? '???';
     const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-    const languageParam = urlParams.get('language')?.trim() || null;
-    const language = languageParam || config?.language || 'EN';
+    const language = getParam('language') || config?.language || 'EN';
+    const campaignUrl = getParam('campaign_url');
+    const userId = getParam('user_id');
+    const campaignUrlOrCurrentPage = campaignUrl || currentPageUrl;
     const couponCodeNew = config?.coupon_code;
     const teams = config?.teams ?? [];
     const restrictions = config?.restrictions ?? {};
@@ -119,8 +120,11 @@ class LocalStorageService {
     const dynamicData = config?.dynamicData ? config?.dynamicData : null;
 
     return {
-      currentPageUrl,
       language,
+      currentPageUrl,
+      campaignUrl,
+      campaignUrlOrCurrentPage,
+      userId,
       widget_subtype,
       success,
       qrcode,
@@ -166,7 +170,6 @@ class LocalStorageService {
       p_code_text,
       product,
       game_type,
-      campaignUrl,
       couponCodeNew,
       userBestScore,
       dynamicData,

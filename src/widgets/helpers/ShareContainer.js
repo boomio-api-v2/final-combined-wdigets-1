@@ -1,5 +1,4 @@
 import './styles.css';
-
 import { localStorageService } from '@/services';
 import { t } from '../../services/translations';
 
@@ -8,18 +7,14 @@ export class ShareContainer {
     this.couponCodeNew = 'boomio';
 
     this.config = localStorageService.getDefaultConfig();
-    this.language = this.config.language ? this.config.language : 'LV';
+    this.language = this.config.language;
     this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
 
-    const currentPageUrl = window.location.href;
     this.isSmallMobile = window.innerWidth <= 380;
 
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
     this.isMobileWidthSmall = window.innerWidth <= 400;
 
-    this.campaignUrlOrCurrentPage = campaignUrl ? campaignUrl : currentPageUrl;
-    this.user_id = urlParams.get('user_id');
+    this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
 
     this.prop = prop;
     this.isMobile = window.innerWidth <= 1280;
@@ -38,13 +33,6 @@ export class ShareContainer {
   }
 
   updateVisuals() {
-    this.config = localStorageService.getDefaultConfig();
-    this.language = this.config.language ? this.config.language : 'LV';
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-
-    this.campaignUrlOrCurrentPage = campaignUrl ? campaignUrl : currentPageUrl;
     if (!this.containerDiv) return;
 
     let scoreboardText = `
