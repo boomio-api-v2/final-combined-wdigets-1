@@ -2260,7 +2260,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   }
                 }
                 hideScore();
-                userBestPlace = response.user_best_place;
+
                 scoreTable = response;
                 scoreTableContainerInstance.updateProps(customer, scoreTable, gameVars.currentScore);
                 const competitionRestart = document.getElementById('boomio-game-play-again');
@@ -2760,8 +2760,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   }
 
   function drawFundingMeter() {
-    const introOffset = getIntroOffset();
-
     let fundingColor = GOOD_FUNDING_COLOR;
 
     if (gameVars.funding < TERRIBLE_FUNDING_LIMIT) {
