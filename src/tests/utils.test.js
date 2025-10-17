@@ -1,4 +1,4 @@
-import { getRandomArbitrary } from '@/utlis';
+import { getRandomArbitrary } from '@/utils';
 
 describe('utils', () => {
   test('getRandomArbitrary test 1', () => {

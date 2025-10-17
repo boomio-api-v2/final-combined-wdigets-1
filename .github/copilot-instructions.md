@@ -121,13 +121,20 @@ npm run lint           # Run ESLint
 
 - `m`, `boomioStopTill`, `puzzles_collected`, `widget_type`, `coupon_code`, `language`, `restrictions`, `dynamicData`, `teams`
 
+**URL Parameter Handling**:
+
+- **`campaign_url` Parameter**: When present in URL query string, this takes precedence over the actual page URL for tracking/analytics purposes. Used to support cross-page campaign attribution.
+- **`current_page_url` Property**: In `BoomioService.constructor`, set via `this.current_page_url = getParam('campaign_url') || window.location.href`. This allows merchants to pass a canonical campaign URL that overrides the actual embedding page URL.
+- **Pattern**: Always use `getParam()` utility from `@/utils` for URL parameter extraction (handles trim, empty strings, null values consistently).
+
 ---
 
 ### 6. Configuration Access Pattern
 
-- Always read config through `localStorageService.config` (already refreshed post‑API). Don’t cache deep references long‑term—server may mutate values between signals.
+- Always read config through `localStorageService.config` (already refreshed post‑API). Don't cache deep references long‑term—server may mutate values between signals.
 - When updating only local client state (e.g. widget position), use `localStorageService.updateConfig({ x_position, y_position })` so future reloads persist.
 - Never store large binary data in the config blob (keep to primitives / small arrays).
+- **URL Parameters**: Use `getParam()` from `@/utils` for reading URL query parameters. Common params: `campaign_url`, `language`, `user_id`. The utility handles whitespace trimming and returns `null` for empty/invalid values.
 
 ### 5. Build / Dev Workflow
 

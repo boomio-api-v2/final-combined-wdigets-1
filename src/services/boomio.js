@@ -22,44 +22,17 @@ import {
   startPopWidget,
   startRunnerWidget,
 } from '@/widgets';
-import { localStoragePropertyName } from '@/config';
 import { localStorageService, widgetHtmlService, UserService } from '@/services';
+import { getParam } from '@/utils';
 
 class BoomioService extends UserService {
   constructor() {
     super();
-    localStorage.removeItem(localStoragePropertyName);
     localStorageService.config = {};
 
     this._configInitialized = false;
     const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-    //const language = urlParams.get('language');
-
-    this.current_page_url = campaignUrl || currentPageUrl;
-
-    // if (
-    //   (language === 'ET' &&
-    //     (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
-    //   (language === 'RU' &&
-    //     (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
-    //   (language === 'EN' &&
-    //     (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee')) ||
-    //   (language === 'EN' && campaignUrl === 'https://pigu.lt') ||
-    //   (language === 'EN' && campaignUrl === 'https://hobbyhall.fi') ||
-    //   (language === 'EN' && campaignUrl === 'https://220.lv') ||
-    //   (language === 'LT' && campaignUrl === 'https://pigu.lt') ||
-    //   (language === 'RU' && campaignUrl === 'https://pigu.lt') ||
-    //   (language === 'FI' && campaignUrl === 'https://hobbyhall.fi') ||
-    //   (language === 'LV' && campaignUrl === 'https://220.lv') ||
-    //   (language === 'RU' && campaignUrl === 'https://220.lv') ||
-    //   (!language && !campaignUrl) ||
-    //   campaignUrl === 'https://boomio-web.webflow.io/demo-pigu-flap-through' ||
-    //   campaignUrl === 'https://boomio-web.webflow.io/perlas-go' ||
-    //   campaignUrl === 'https://www.perlasgo.lt/zaidimas' ||
-    //   campaignUrl === 'https://www.perlasgo.lt/zaidimas_app' ||
-    // )
+    this.current_page_url = getParam('campaign_url') || currentPageUrl;
 
     this.setInitialConfiguration();
   }
@@ -272,9 +245,11 @@ class BoomioService extends UserService {
   sendBoomioData(extra_data) {
     const isDenied = this.checkIsRequestDenied();
     if (isDenied) {
-      setTimeout(() => {
-        this.sendBoomioData(extra_data);
-      }, 2000);
+      return new Promise((resolve) => {
+        setTimeout(async () => {
+          resolve(await this.sendBoomioData(extra_data));
+        }, 2000);
+      });
     }
     const { user_session, current_page_url } = this;
 
@@ -285,7 +260,9 @@ class BoomioService extends UserService {
       try {
         const u = new URL(current_page_url);
         current_page_url_cleaned = `${u.origin}${u.pathname}`.replace(/\/$/, '').trim();
-      } catch {}
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     const rawRequestBody = {
@@ -306,16 +283,13 @@ class BoomioService extends UserService {
 
     const finalRequestBody = { body: randomLetter + encodedBody };
 
-    return new Promise(async (resolve) => {
-      const rawResponse = await fetch(newLinkBoomio, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(finalRequestBody),
-      });
-      resolve(rawResponse.json());
-    });
+    return fetch(newLinkBoomio, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(finalRequestBody),
+    }).then((response) => response.json());
   }
 
   signal(signal_code, ev_type, additional_fields) {
