@@ -714,7 +714,7 @@ ${
                             : this.prop === 'LemonGym'
                               ? 'LEMON GYM balvas!'
                               : this.prop === 'Nevezis'
-                                ? ''
+                                ? 'puikius OHO prizus!'
                                 : this.prop === 'Magija'
                                   ? 'belaides „Magija“ ausines, „Magija“ </br> sūrelių dėžutę arba „Magija“ puodelį!'
                                   : this.prop === 'Nykstukas'
