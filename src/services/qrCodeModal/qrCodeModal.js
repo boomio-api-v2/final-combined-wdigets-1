@@ -1,5 +1,5 @@
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
-import { assignStyleOnElement } from '@/utlis';
+import { assignStyleOnElement } from '@/utils';
 import { closeImage, dotImage, oldCouponImage, winningConfetinGif } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';

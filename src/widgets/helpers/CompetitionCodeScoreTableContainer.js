@@ -797,15 +797,13 @@ ${
             ? 'РЕЗУЛЬТАТЫ'
             : this.language === 'ET'
               ? 'TULEMUSED'
-              : this.language === 'ET'
-                ? 'TULEMUSED'
-                : this.language === 'ES'
-                  ? 'RESULTADOS'
-                  : this.language === 'FI'
-                    ? 'TULOKSET'
-                    : this.language === 'EN'
-                      ? 'RESULTS'
-                      : 'REZULTATAI'
+              : this.language === 'ES'
+                ? 'RESULTADOS'
+                : this.language === 'FI'
+                  ? 'TULOKSET'
+                  : this.language === 'EN'
+                    ? 'RESULTS'
+                    : 'REZULTATAI'
       }</div>
       
       <div class="boomio-scoreboard-text">

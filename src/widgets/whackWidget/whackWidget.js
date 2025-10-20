@@ -1,7 +1,7 @@
 import { widgetHtmlService, QrCodeModal, localStorageService } from '@/services';
 import './styles.css';
 import { WhackHammer, WhackMole00, WhackMole01Reversed, WhackMoleHit } from '@/сonstants';
-import { createCloseMoveButtons } from '@/utlis';
+import { createCloseMoveButtons } from '@/utils';
 import boomio from '@/services/boomio';
 
 class WhackWidget {

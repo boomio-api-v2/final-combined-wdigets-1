@@ -27,7 +27,7 @@ export class InputRegisterContainer {
     this.prop = prop; // Store the this.prop in a class this.property
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();
-    this.language = this.config.language ? this.config.language : 'EN';
+    this.language = this.config.language;
     this.teams = this.config.teams;
   }
 

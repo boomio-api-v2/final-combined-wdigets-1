@@ -1,12 +1,12 @@
 import { AnimationService, DragElement, localStorageService, QrCodeModal } from '@/services';
-import { assignStyleOnElement } from '@/utlis';
+import { assignStyleOnElement } from '@/utils';
 import { icePieceCount, icePieceImages, iceBlockImage, icePieceShadowImages, shadowTopCoordinatesForDesktop, shadowTopCoordinatesForMobile, bangImage } from './constants';
 import boomio from '@/services/boomio';
 import { isMobileDevice } from '@/config';
 import './styles.css';
 import { iceHammerImage } from '@/сonstants';
 
-import { createCloseMoveButtons } from '@/utlis';
+import { createCloseMoveButtons } from '@/utils';
 
 class IceWidget {
   constructor() {

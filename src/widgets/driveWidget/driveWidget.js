@@ -57,8 +57,7 @@ class driveWidget {
     const currentPageUrl = window.location.href;
 
     const urlParams = new URL(currentPageUrl).searchParams;
-    const languageParam = urlParams.get('language');
-    this.language = this.customer === 'Pigu.lt' ? languageParam : (this.config.language ?? 'ES');
+    this.language = this.config.language;
     const campaignUrl = urlParams.get('campaign_url');
 
     this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
@@ -266,17 +265,17 @@ ${
                                       ? intro
                                       : this.customer === 'Orlen'
                                         ? introOrlen
-                                        : this.type === 1
+                                        : this.customer.includes('Gamtos Ateitis') && this.type === 1
                                           ? introPaper
-                                          : this.type === 2
+                                          : this.customer.includes('Gamtos Ateitis') && this.type === 2
                                             ? introGlass
-                                            : this.type === 3
+                                            : this.customer.includes('Gamtos Ateitis') && this.type === 3
                                               ? introPlastic
                                               : ''
     } alt="Image Description" style="z-index:4;width:${
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:${this.customer === 'Novaturas' ? 'none' : 'block'};" id="background_intro">
-    <img src=${blurImage.src} alt="Image Description" style="z-index:3;width: ${
+    <img src=${blurImage.src} alt="Blur Image" style="z-index:3;width: ${
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0.37;pointer-events: none; display:block;" id="background_blur">
 

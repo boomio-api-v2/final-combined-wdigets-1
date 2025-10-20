@@ -1,6 +1,6 @@
 import { widgetHtmlService, AnimationService, localStorageService, DragElement, QrCodeModal } from '@/services';
 import './styles.css';
-import { createCloseMoveButtons } from '@/utlis';
+import { createCloseMoveButtons } from '@/utils';
 import boomio from '@/services/boomio';
 
 class GuessWidget {

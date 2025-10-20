@@ -1,5 +1,5 @@
 import { AnimationService, DragElement, QrCodeModal } from '@/services';
-import { assignStyleOnElement } from '@/utlis';
+import { assignStyleOnElement } from '@/utils';
 import { iceBackgroundImage, penguinParams, iceBlocksParams, iceExplosionImage } from './constants';
 import { iceHammerImage } from '@/сonstants';
 import './styles.css';

@@ -1,7 +1,7 @@
 import { boomioService, localStorageService, DragElement, AnimationService, QrCodeModal, widgetHtmlService } from '@/services';
 import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
-import { getRandomArbitrary, assignStyleOnElement, createCloseMoveButtons } from '@/utlis';
+import { getRandomArbitrary, assignStyleOnElement, createCloseMoveButtons } from '@/utils';
 import { puzzlesCoordinateForDesktop, puzzlesCoordinateForMobile, puzzlesCoordinate, puzzleWidgetSize } from './constants';
 
 export class Puzzle {

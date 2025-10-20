@@ -193,16 +193,12 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
-  const currentPageUrl = window.location.href;
 
-  const urlParams = new URL(currentPageUrl).searchParams;
-  const languageParam = urlParams.get('language');
-  let language = customer === 'Pigu.lt' ? languageParam : (config.language ?? 'ES');
+  let language = config.language;
 
   let campaignUrl = config.campaignUrl ? config.campaignUrl : '';
   const campaignUrlProp = campaignUrl ? campaignUrl : '';
 
-  let userBestPlace = 0;
   let scoreTable = {};
   let gameCount = 0;
   let bestScore = 0;
@@ -2264,7 +2260,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   }
                 }
                 hideScore();
-                userBestPlace = response.user_best_place;
+
                 scoreTable = response;
                 scoreTableContainerInstance.updateProps(customer, scoreTable, gameVars.currentScore);
                 const competitionRestart = document.getElementById('boomio-game-play-again');
@@ -2764,8 +2760,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   }
 
   function drawFundingMeter() {
-    const introOffset = getIntroOffset();
-
     let fundingColor = GOOD_FUNDING_COLOR;
 
     if (gameVars.funding < TERRIBLE_FUNDING_LIMIT) {
