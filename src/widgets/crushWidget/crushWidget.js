@@ -293,7 +293,7 @@ class CrushGame {
         .then((response) => {
           this.bestScore = response.user_best_score;
           this.userBestScore = response.user_best_score;
-          this.showRules();
+          this.showRulesContainer();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -307,8 +307,7 @@ class CrushGame {
         })
         .then((response) => {
           this.userBestScore = response.user_best_score;
-
-          this.showRules();
+          this.showRulesContainer();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -330,7 +329,7 @@ class CrushGame {
     }
   };
 
-  showRules = () => {
+  showRulesContainer = () => {
     this.config = localStorageService.getDefaultConfig();
     this.userBestScore = this?.config?.userBestScore ? this?.config?.userBestScore : 0;
 

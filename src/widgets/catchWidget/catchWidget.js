@@ -500,7 +500,8 @@ class CatchGame {
           })
           .then((response) => {
             this.bestScore = response.user_best_score;
-            this.hideInputContainerShowRules();
+            this.hideInputContainer();
+            this.showRulesContainer();
           })
           .catch((error) => {
             console.error('Error:', error);
@@ -509,7 +510,7 @@ class CatchGame {
     }, 0);
   };
 
-  hideInputContainerShowRules = () => {
+  hideInputContainer = () => {
     const inpuRegisterContainer = document.querySelector('.input-register-container');
     inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
     setTimeout(() => {
@@ -523,6 +524,9 @@ class CatchGame {
       },
       this.userId ? 300 : 1000,
     );
+  };
+
+  showRulesContainer = () => {
     setTimeout(() => {
       document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
       document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -534,22 +538,6 @@ class CatchGame {
       setTimeout(() => {
         inputContainer.style.height = '332px';
         inputContainer.style.top = 'calc(50% + 170px)';
-        inputContainer.style.opacity = 1;
-      }, 100);
-    }, 300);
-  };
-
-  showRules = () => {
-    setTimeout(() => {
-      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
-      const inputContainer = document.querySelector('.input-container');
-      document.getElementById('control-button').style.transition = 'opacity 2s ease';
-      document.getElementById('control-button').style.opacity = 1;
-      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      inputContainer.style.display = 'block';
-      setTimeout(() => {
-        inputContainer.style.height = '332px';
-        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
         inputContainer.style.opacity = 1;
       }, 100);
     }, 300);
@@ -1135,7 +1123,8 @@ class CatchGame {
                     }
                   } else {
                     this.bestScore = response.user_best_score;
-                    this.hideInputContainerShowRules();
+                    this.hideInputContainer();
+                    this.showRulesContainer();
                   }
                 })
                 .catch((error) => {
