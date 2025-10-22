@@ -207,6 +207,22 @@ import {
   item12Apranga,
   item13Apranga,
   item14Apranga,
+  backgroundPigu,
+  playerPigu,
+  item1Pigu,
+  item2Pigu,
+  item3Pigu,
+  item4Pigu,
+  item5Pigu,
+  item6Pigu,
+  item7Pigu,
+  item8Pigu,
+  item9Pigu,
+  item10Pigu,
+  item11Pigu,
+  item12Pigu,
+  item13Pigu,
+  item14Pigu,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -224,15 +240,15 @@ import { t } from '@/services/translations';
 
 class CatchGame {
   constructor() {
-    this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Akropolis';
+    this.customer = this.config.business_name;
     this.teams = this.config.teams;
-
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
-    this.language = this.config.language ? this.config.language : '';
+    this.language = this.config.language;
+    this.userId = this.config.userId;
+
+    this.shareClicked = false;
     this.gameCount = 0;
-    this.didYouKnow = true;
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
@@ -277,7 +293,9 @@ class CatchGame {
                             ? backgroundOrlen
                             : this.customer === 'Apranga'
                               ? backgroundApranga
-                              : background
+                              : this.customer === 'Pigu.lt'
+                                ? backgroundPigu
+                                : background
     }) center`;
 
     this.timer = null;
@@ -295,6 +313,7 @@ class CatchGame {
       this.customer === 'Toni' ||
       this.customer === 'Orlen' ||
       this.customer === 'Apranga' ||
+      this.customer === 'Pigu.lt' ||
       this.customer === 'Zemaitijos Pienas'
         ? 3
         : 5;
@@ -302,7 +321,7 @@ class CatchGame {
     document.addEventListener('shareClicked', () => {
       if (this.shareClicked === false) {
         this.shareClicked = true;
-        this.currentScore = this.currentScore + 1000;
+        this.currentScore = this.currentScore + (this.customer === 'Pigu.lt' ? 100 : 1000);
       }
     });
   }
@@ -471,8 +490,69 @@ class CatchGame {
           background.style.display = 'none';
         }
       }, 0);
+
+      if (this.userId) {
+        boomioService
+          .signal('', 'user_info', {
+            emails_consent: true,
+            user_email: this.userId,
+            user_name: this.userId,
+          })
+          .then((response) => {
+            this.bestScore = response.user_best_score;
+            this.hideInputContainerShowRules();
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
     }, 0);
-    //gifas
+  };
+
+  hideInputContainerShowRules = () => {
+    const inpuRegisterContainer = document.querySelector('.input-register-container');
+    inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    setTimeout(() => {
+      inpuRegisterContainer.style.height = '10px';
+      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+      inpuRegisterContainer.style.opacity = 0;
+    }, 100);
+    setTimeout(
+      () => {
+        inpuRegisterContainer.style.display = 'none';
+      },
+      this.userId ? 300 : 1000,
+    );
+    setTimeout(() => {
+      document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
+      document.getElementById('control-button').style.transition = 'opacity 2s ease';
+      document.getElementById('control-button').style.opacity = 1;
+      document.getElementById('control-button').style.display = 'flex';
+      const inputContainer = document.querySelector('.input-container');
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      inputContainer.style.display = 'block';
+      setTimeout(() => {
+        inputContainer.style.height = '332px';
+        inputContainer.style.top = 'calc(50% + 170px)';
+        inputContainer.style.opacity = 1;
+      }, 100);
+    }, 300);
+  };
+
+  showRules = () => {
+    setTimeout(() => {
+      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
+      const inputContainer = document.querySelector('.input-container');
+      document.getElementById('control-button').style.transition = 'opacity 2s ease';
+      document.getElementById('control-button').style.opacity = 1;
+      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+      inputContainer.style.display = 'block';
+      setTimeout(() => {
+        inputContainer.style.height = '332px';
+        inputContainer.style.top = `calc(50% + ${this.isMobileHeightSmall ? '110px' : '170px'})`;
+        inputContainer.style.opacity = 1;
+      }, 100);
+    }, 300);
   };
 
   createContainer() {
@@ -571,7 +651,9 @@ class CatchGame {
                       ? '#DD2326'
                       : this.customer === 'Apranga'
                         ? '#5F2929'
-                        : '#18904A'
+                        : this.customer === 'Pigu.lt'
+                          ? '#ff0000ff'
+                          : '#18904A'
     };border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
@@ -607,7 +689,9 @@ class CatchGame {
                       ? '#DD2326'
                       : this.customer === 'Apranga'
                         ? '#5F2929'
-                        : '#18904A'
+                        : this.customer === 'Pigu.lt'
+                          ? '#ff0000ff'
+                          : '#18904A'
     };border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
@@ -653,8 +737,8 @@ class CatchGame {
 
     ${this.showCompetitiveRegistration ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML : ''}
 
-    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:block;width:25px;height:25px;">
-<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+    <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:${this.customer === 'Pigu.lt' ? 'none' : 'block'};width:25px;height:25px;">
+<img src=${close} alt="Close" style="width: 100%; height: 100%;"></img>
 </div>
     ${new InputContainer(this.customer, 'drive').createInputContainerDiv('catch').outerHTML}
         <canvas id="boomio-catch-canvas"
@@ -701,7 +785,7 @@ class CatchGame {
       const didYouKnowContainer = new DidYouKnowContainer(this.customer);
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
-    if (this.customer.includes('Akropolis')) {
+    if (this.customer.includes('Akropolis') || this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
 
       this.shareContainer = new ShareContainer(this.customer);
@@ -987,16 +1071,14 @@ class CatchGame {
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange2,
-                  user_email: Elements.getEmailValue(),
+                  user_email: this.userId || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
                   ...(this.customer.includes('Gamtos Ateitis') && {
                     team: schoolInput.value,
                   }),
                   user_name:
-                    this.customer.includes('Gamtos Ateitis') || this.customer === 'Orlen' || this.customer === 'Akropolis' || this.customer === 'Apranga'
-                      ? Elements.getEmailValue()
-                      : this.customer === 'Toni'
-                        ? nameInput?.value.trimEnd() + phoneInput?.value
-                        : nameInput?.value,
+                    this.customer === 'Toni'
+                      ? nameInput?.value.trimEnd() + phoneInput?.value
+                      : this.userId || (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
                   game_code: this.game_code,
                   ...(phoneValue ? { phone: phoneInput?.value } : {}),
                 })
@@ -1053,30 +1135,7 @@ class CatchGame {
                     }
                   } else {
                     this.bestScore = response.user_best_score;
-                    const inpuRegisterContainer = document.querySelector('.input-register-container');
-                    inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-                    setTimeout(() => {
-                      inpuRegisterContainer.style.height = '10px';
-                      inpuRegisterContainer.style.top = 'calc(50% + 330px)';
-                      inpuRegisterContainer.style.opacity = 0;
-                    }, 100);
-                    setTimeout(() => {
-                      inpuRegisterContainer.style.display = 'none';
-                    }, 1000);
-                    setTimeout(() => {
-                      document.getElementById('background_blur').style.opacity = this.customer === 'Pegasas' ? 0.8 : 0.57;
-                      const inputContainer = document.querySelector('.input-container');
-                      document.getElementById('control-button').style.transition = 'opacity 2s ease';
-                      document.getElementById('control-button').style.opacity = 1;
-                      document.getElementById('control-button').style.display = 'flex';
-                      inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-                      inputContainer.style.display = 'block';
-                      setTimeout(() => {
-                        inputContainer.style.height = '332px';
-                        inputContainer.style.top = 'calc(50% + 170px)';
-                        inputContainer.style.opacity = 1;
-                      }, 100);
-                    }, 300);
+                    this.hideInputContainerShowRules();
                   }
                 })
                 .catch((error) => {
@@ -1161,10 +1220,12 @@ class CatchGame {
         }
 
         let tabContainer;
-        if (this.customer === 'Akropolis') {
-          tabContainer = document.querySelector('.share-container');
-        } else {
-          tabContainer = document.querySelector('.did-you-know-container');
+        if (Elements.isVisible(Elements.didYouKnowContainer)) {
+          tabContainer = Elements.didYouKnowContainer;
+        }
+
+        if (Elements.isVisible(Elements.shareContainer)) {
+          tabContainer = Elements.shareContainer;
         }
 
         tabContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1176,6 +1237,7 @@ class CatchGame {
         setTimeout(() => {
           tabContainer.style.display = 'none';
         }, 1000);
+
         const competitionTableContainer = document.querySelector('.competition-table-container');
         document.getElementById('background_blur').style.display = 'block';
         competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1299,9 +1361,12 @@ class CatchGame {
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      const competitionDidYouKnow = document.getElementById(this.customer === 'Akropolis' ? 'boomio-close-share' : 'boomio-close-did-you-know');
-      if (competitionDidYouKnow) {
-        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+      if (Elements.shareCloseButton) {
+        Elements.shareCloseButton.addEventListener('click', clickEventHandlerDidYouKnow);
+      }
+
+      if (Elements.didYouKnowCloseButton) {
+        Elements.didYouKnowCloseButton.addEventListener('click', clickEventHandlerDidYouKnow);
       }
     }
 
@@ -1334,7 +1399,7 @@ class CatchGame {
 
     currectLifeDiv.style.transition = 'opacity 0.8s ease';
     currectLifeDiv.style.display = 'block';
-    document.getElementById('currentLife').innerHTML = this.customer === 'Eurovaistine' ? `${this.defaultscore}/${this.defaultscore}` : `${this.defaultscore}/${this.defaultscore}`;
+    document.getElementById('currentLife').innerHTML = `${this.defaultscore}/${this.defaultscore}`;
     currectLifeDiv.style.opacity = 1;
   }
 
@@ -1351,7 +1416,8 @@ class CatchGame {
       this.customer === 'Daumantu' ||
       this.customer === 'Zemaitijos Pienas' ||
       this.customer === 'Toni' ||
-      this.customer === 'Apranga'
+      this.customer === 'Apranga' ||
+      this.customer === 'Pigu.lt'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
         const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
@@ -1463,7 +1529,8 @@ class CatchGame {
         this.customer === 'Daumantu' ||
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Toni' ||
-        this.customer === 'Apranga'
+        this.customer === 'Apranga' ||
+        this.customer === 'Pigu.lt'
       ) {
         const newNumberOfFruits = 4 + Math.floor(this.currentScore / 500);
         if (this.fruits.length < newNumberOfFruits) {
@@ -1563,7 +1630,7 @@ class CatchGame {
             let competitionTableContainer = '';
             if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' || this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
-            } else if (this.customer === 'Akropolis') {
+            } else if (this.customer === 'Akropolis' || this.customer === 'Pigu.lt') {
               competitionTableContainer = document.querySelector('.share-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
@@ -1586,7 +1653,6 @@ class CatchGame {
             currectScoreDiv.style.opacity = 0;
             setTimeout(() => {
               currectTimeDiv.style.display = 'block';
-
               currectScoreDiv.style.display = 'block';
             }, 300);
           },
@@ -1689,7 +1755,9 @@ class Player {
                           ? playerOrlen
                           : customer === 'Apranga'
                             ? playerApranga
-                            : player;
+                            : customer === 'Pigu.lt'
+                              ? playerPigu
+                              : player;
     this.defaultscore = defaultscore;
   }
 
@@ -1757,6 +1825,12 @@ class Fruit {
       } else {
         this.fruitNumber = Math.floor(Math.random() * 12);
       }
+    } else if (this.customer === 'Pigu.lt') {
+      if (type === 'bad') {
+        this.fruitNumber = 12 + Math.floor(Math.random() * 2); // 12..13
+      } else {
+        this.fruitNumber = Math.floor(Math.random() * 12);
+      }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
     }
@@ -1776,6 +1850,7 @@ class Fruit {
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
         this.customer === 'Apranga' ||
+        this.customer === 'Pigu.lt' ||
         this.customer === 'Toni'
           ? 3
           : 1),
@@ -1902,6 +1977,8 @@ class Fruit {
         item13Apranga,
         item14Apranga,
       ];
+    } else if (this.customer === 'Pigu.lt') {
+      this.images = [item1Pigu, item2Pigu, item3Pigu, item4Pigu, item5Pigu, item6Pigu, item7Pigu, item8Pigu, item9Pigu, item10Pigu, item11Pigu, item12Pigu, item13Pigu, item14Pigu];
     } else {
       // Default catch images if none of the above conditions are met
       this.images = [item1Pegasas, item2Pegasas, item3Pegasas, item4Pegasas, item5Pegasas, item6Pegasas, item7Pegasas, item8Pegasas, item9Pegasas, item10Pegasas];
@@ -2086,6 +2163,23 @@ class Fruit {
         'item13Apranga',
         'item14Apranga',
       ][this.fruitNumber];
+    } else if (this.customer === 'Pigu.lt') {
+      this.fruitType = [
+        'item1Pigu',
+        'item2Pigu',
+        'item3Pigu',
+        'item4Pigu',
+        'item5Pigu',
+        'item6Pigu',
+        'item7Pigu',
+        'item8Pigu',
+        'item9Pigu',
+        'item10Pigu',
+        'item11Pigu',
+        'item12Pigu',
+        'item13Pigu',
+        'item14Pigu',
+      ][this.fruitNumber];
     } else {
       // Default catch fruit types if none of the above conditions are met
       this.fruitType = ['item1Pegasas', 'item2Pegasas', 'item3Pegasas', 'item4Pegasas', 'item5Pegasas', 'item6Pegasas', 'item7Pegasas', 'item8Pegasas', 'item9Pegasas', 'item10Pegasas'][
@@ -2105,6 +2199,8 @@ class Fruit {
       this.fruitScore = [100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
     } else if (this.customer === 'Apranga') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][this.fruitNumber];
+    } else if (this.customer === 'Pigu.lt') {
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][this.fruitNumber];
     } else {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
@@ -2123,6 +2219,7 @@ class Fruit {
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
         this.customer === 'Apranga' ||
+        this.customer === 'Pigu.lt' ||
         this.customer === 'Toni'
       ) {
         if (fruit.fruitScore > 0 && this.game.currentScore > 0) {
@@ -2318,7 +2415,9 @@ class Fruit {
                   ? 10
                   : this.customer === 'Apranga'
                     ? 14
-                    : 5),
+                    : this.customer === 'Pigu.lt'
+                      ? 14
+                      : 5),
     );
 
     this.fruitSpeed = Math.floor(
@@ -2329,6 +2428,7 @@ class Fruit {
         this.customer === 'Zemaitijos Pienas' ||
         this.customer === 'Orlen' ||
         this.customer === 'Apranga' ||
+        this.customer === 'Pigu.lt' ||
         this.customer === 'Toni'
           ? 2.5
           : 1)) *

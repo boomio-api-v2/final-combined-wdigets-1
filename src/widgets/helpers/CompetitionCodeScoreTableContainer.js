@@ -10,19 +10,14 @@ export class CompetitionCodeScoreTableContainer {
     this.isSmallMobile = window.innerWidth <= 380;
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
-    this.language = this.config.language ? this.config.language : 'EN';
-
+    this.language = this.config.language;
+    this.campaignUrlProp = this.config.campaignUrlOrCurrentPage;
     this.render();
   }
 
   updateProps(prop, scoreTable) {
     this.prop = prop;
     this.scoreTable = scoreTable;
-    this.language = this.config.language ? this.config.language : 'EN';
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    this.campaignUrlProp = urlParams.get('campaign_url');
-
     this.updateVisuals();
   }
 
@@ -196,11 +191,6 @@ export class CompetitionCodeScoreTableContainer {
                           : this.language === 'EN' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
                             ? 'ILU1224'
                             : '';
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     let tableHTML = '';
     scoreboard.forEach((item, index) => {
@@ -274,7 +264,7 @@ export class CompetitionCodeScoreTableContainer {
       tableHTML += `
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
             <td style="padding-left:8px;text-align:start;width: 25px; color:${
-              this.prop === 'Toni' ? '#10069F' : rgba(61, 73, 40, 1)
+              this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
             }; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
               <td style="padding-left:6px;text-align:start;width: 100px; color: ${
@@ -777,14 +767,9 @@ ${
     containerDiv.classList.add('competition-table-container');
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background = 'none';
-    // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
 
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
     this.isMobileHeightSmall = window.innerHeight <= 550;
-
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+         
     containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">

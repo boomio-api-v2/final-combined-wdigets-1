@@ -1056,10 +1056,10 @@ ${
         }
 
         const isValidEmail = (email) => {
-          // Enhanced regex for email validation with TLD enforcement
-          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          // Improved email regex: balanced between correctness and performance
+          const emailRegex = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,62}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
 
-          // Additional check to prevent consecutive dots
+          // Prevent consecutive dots anywhere
           if (email.includes('..')) {
             return false;
           }
