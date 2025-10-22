@@ -769,7 +769,7 @@ ${
     containerDiv.style.background = 'none';
 
     this.isMobileHeightSmall = window.innerHeight <= 550;
-         
+
     containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
