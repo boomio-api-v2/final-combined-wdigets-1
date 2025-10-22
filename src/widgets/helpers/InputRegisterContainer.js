@@ -210,37 +210,41 @@ export class InputRegisterContainer {
                                         ? 'Piekrītu saņemt LEMON GYM jaunumu vēstuli.'
                                         : this.prop === 'Dentsu'
                                           ? 'Sutinku gauti Dentsu ir Boomio naujienas.'
-                                          : this.prop === 'Zemaitijos Pienas'
+                                          : this.prop === 'Zemaitijos Pienas' && this.language === 'LT'
                                             ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
-                                            : this.prop === 'Nykstukas'
-                                              ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
-                                              : this.prop === 'Nevezis'
-                                                ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
-                                                : this.prop === 'Toni'
-                                                  ? 'Confirmo que soy mayor de 13 años.'
-                                                  : this.prop === 'Magija'
-                                                    ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
-                                                    : this.prop === 'Orlen'
-                                                      ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
-                                                      : this.prop === 'Unisend' && this.language === 'LV'
-                                                        ? 'Nõustun saama Unisend.ee uudiskirju'
-                                                        : this.prop === 'Unisend' && this.language === 'LV'
-                                                          ? 'Nõustun saama Unisend.ee uudiskirju'
-                                                          : this.prop === 'Pigu.lt' && this.language === 'RU'
-                                                            ? 'Я прочитал(а) и согласен(на) с правилами и инструкциями игры.'
-                                                            : this.prop === 'Pigu.lt' && this.language === 'FI'
-                                                              ? 'Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.'
-                                                              : this.prop === 'Pigu.lt' && this.language === 'LV'
-                                                                ? 'Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.'
-                                                                : this.prop === 'Pigu.lt' && this.language === 'LT'
-                                                                  ? 'Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.'
-                                                                  : this.prop === 'Pigu.lt' && this.language === 'EN'
-                                                                    ? 'I have read and agree with game rules and instructions. '
-                                                                    : this.prop === 'Pigu.lt' && this.language === 'ET'
-                                                                      ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
-                                                                      : this.prop === 'Apranga'
-                                                                        ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
-                                                                        : 'Sutinku gauti naujienlaiškius.'
+                                            : this.prop === 'Zemaitijos Pienas' && this.language === 'LV'
+                                              ? 'Piekrītu saņemt jaunumus no „Žemaitijos pienam“.'
+                                              : this.prop === 'Zemaitijos Pienas' && this.language === 'ET'
+                                                ? 'Nõustun saama „Žemaitijos pienas“ uudiskirju.'
+                                                : this.prop === 'Nykstukas'
+                                                  ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
+                                                  : this.prop === 'Nevezis'
+                                                    ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
+                                                    : this.prop === 'Toni'
+                                                      ? 'Confirmo que soy mayor de 13 años.'
+                                                      : this.prop === 'Magija'
+                                                        ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
+                                                        : this.prop === 'Orlen'
+                                                          ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
+                                                          : this.prop === 'Unisend' && this.language === 'LV'
+                                                            ? 'Nõustun saama Unisend.ee uudiskirju'
+                                                            : this.prop === 'Unisend' && this.language === 'LV'
+                                                              ? 'Nõustun saama Unisend.ee uudiskirju'
+                                                              : this.prop === 'Pigu.lt' && this.language === 'RU'
+                                                                ? 'Я прочитал(а) и согласен(на) с правилами и инструкциями игры.'
+                                                                : this.prop === 'Pigu.lt' && this.language === 'FI'
+                                                                  ? 'Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.'
+                                                                  : this.prop === 'Pigu.lt' && this.language === 'LV'
+                                                                    ? 'Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.'
+                                                                    : this.prop === 'Pigu.lt' && this.language === 'LT'
+                                                                      ? 'Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.'
+                                                                      : this.prop === 'Pigu.lt' && this.language === 'EN'
+                                                                        ? 'I have read and agree with game rules and instructions. '
+                                                                        : this.prop === 'Pigu.lt' && this.language === 'ET'
+                                                                          ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
+                                                                          : this.prop === 'Apranga'
+                                                                            ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
+                                                                            : 'Sutinku gauti naujienlaiškius.'
         }
     </div>
       </div>
@@ -328,45 +332,49 @@ export class InputRegisterContainer {
                                                             ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/akcijos-zaisk-ir-laimek-taisykles/'} style="color:white;text-decoration: underline;"> akcijos taisyklėmis</a> ir „Perlas Go“ <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/privatumo-politika/'} style="color:white;text-decoration: underline;">privatumo politika.</a> `
                                                             : this.prop === 'Corepetitus'
                                                               ? 'Sutinku su'
-                                                              : this.prop === 'Zemaitijos Pienas'
+                                                              : this.prop === 'Zemaitijos Pienas' && this.language === 'LT'
                                                                 ? 'Sutinku su „Žemaitijos pienas“'
-                                                                : this.prop === 'Vilvi'
-                                                                  ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
-                                                                  : this.prop === 'Dentsu'
-                                                                    ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
-                                                                    : this.prop === 'Nykstukas'
-                                                                      ? 'Sutinku su „Pieno žvaigždės“'
-                                                                      : this.prop === 'Toni'
-                                                                        ? 'Acepto los términos y condicines de la actividad. Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
-                                                                        : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
-                                                                          ? 'Piekrītu LEMON GYM'
-                                                                          : this.prop === 'Nevezis'
-                                                                            ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
-                                                                            : this.prop === 'Magija'
-                                                                              ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
-                                                                              : this.prop === 'Orlen'
-                                                                                ? 'Sutinku su „ORLEN“'
-                                                                                : this.prop === 'Apranga'
-                                                                                  ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025-new" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
-                                                                                  : this.config.currentPageUrl.toLowerCase().includes('pigu')
-                                                                                    ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
-                                                                                    : this.config.currentPageUrl.toLowerCase().includes('220')
-                                                                                      ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
-                                                                                      : this.config.currentPageUrl.toLowerCase().includes('kaup24')
-                                                                                        ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
-                                                                                        : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
-                                                                                          ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
-                                                                                          : this.language === 'EN'
-                                                                                            ? 'I agree to receive '
-                                                                                            : this.language === 'LV'
-                                                                                              ? 'Es piekrītu'
-                                                                                              : this.language === 'ET'
-                                                                                                ? 'Ma olen nõus'
-                                                                                                : `Sutinku  ${
-                                                                                                    this.prop === 'LemonGym'
-                                                                                                      ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
-                                                                                                      : ''
-                                                                                                  } `
+                                                                : this.prop === 'Zemaitijos Pienas' && this.language === 'LV'
+                                                                  ? 'Piekrītu „Žemaitijos pienam“'
+                                                                  : this.prop === 'Zemaitijos Pienas' && this.language === 'ET'
+                                                                    ? 'Nõustun saama „Žemaitijos pienas“ uudiskirju.'
+                                                                    : this.prop === 'Vilvi'
+                                                                      ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
+                                                                      : this.prop === 'Dentsu'
+                                                                        ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
+                                                                        : this.prop === 'Nykstukas'
+                                                                          ? 'Sutinku su „Pieno žvaigždės“'
+                                                                          : this.prop === 'Toni'
+                                                                            ? 'Acepto los términos y condicines de la actividad. Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
+                                                                            : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
+                                                                              ? 'Piekrītu LEMON GYM'
+                                                                              : this.prop === 'Nevezis'
+                                                                                ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
+                                                                                : this.prop === 'Magija'
+                                                                                  ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
+                                                                                  : this.prop === 'Orlen'
+                                                                                    ? 'Sutinku su „ORLEN“'
+                                                                                    : this.prop === 'Apranga'
+                                                                                      ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025-new" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
+                                                                                      : this.config.currentPageUrl.toLowerCase().includes('pigu')
+                                                                                        ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
+                                                                                        : this.config.currentPageUrl.toLowerCase().includes('220')
+                                                                                          ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
+                                                                                          : this.config.currentPageUrl.toLowerCase().includes('kaup24')
+                                                                                            ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
+                                                                                            : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
+                                                                                              ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
+                                                                                              : this.language === 'EN'
+                                                                                                ? 'I agree to receive '
+                                                                                                : this.language === 'LV'
+                                                                                                  ? 'Es piekrītu'
+                                                                                                  : this.language === 'ET'
+                                                                                                    ? 'Ma olen nõus'
+                                                                                                    : `Sutinku  ${
+                                                                                                        this.prop === 'LemonGym'
+                                                                                                          ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
+                                                                                                          : ''
+                                                                                                      } `
         }
     ${
       this.prop !== 'Barbora' &&

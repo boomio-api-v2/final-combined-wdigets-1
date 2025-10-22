@@ -686,7 +686,9 @@ ${
                                           ? 'Laimėk'
                                           : this.language === 'LV'
                                             ? 'LAIMĒ'
-                                            : 'Laimėk'
+                                            : this.language === 'ET'
+                                              ? 'VÕIDA'
+                                              : 'Laimėk'
             } 
                           <div style="position:initial;top: 85px;margin-top:${'17px'}; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${
                             this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
@@ -730,7 +732,11 @@ ${
                                                   ? 'apbalvosim labāko spēlētāju'
                                                   : this.prop === 'Apranga'
                                                     ? 'prizus!'
-                                                    : 'prizus!'
+                                                    : this.language === 'LV'
+                                                      ? 'balvas!'
+                                                      : this.language === 'ET'
+                                                        ? 'auhindu!'
+                                                        : 'prizus!'
             }
           </div>
             </div>`

@@ -1324,6 +1324,8 @@ background:${
           document.getElementById('competition-checkbox-error').innerText =
             this.language === 'LV'
               ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+              : this.language === 'ET'
+                ? 'Mängijad peavad nõustuma andmete töötlemisega, et jätkata.'
               : this.language === 'ES'
                 ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                 : this.customer === 'Perlas GO'
@@ -1374,7 +1376,15 @@ background:${
 
         if (emailInput?.value === '' || emailInput?.value === null) {
           document.getElementById('competition-email-error').innerText =
-            this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
+            this.language === 'LV'
+              ? 'Obligāti aizpildāmie lauki.'
+              : this.language === 'ET'
+                ? 'Kohustuslikud väljad.'
+                : this.language === 'ES'
+                  ? 'Requerido para continuar.'
+                  : this.language === 'LT'
+                    ? 'Norint tęsti privaloma užpildyti.'
+                    : 'Required to continue.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';
           document.getElementById('competition-phone-error').innerText = '';
