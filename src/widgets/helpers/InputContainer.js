@@ -5,7 +5,7 @@ import { uncheckIcon } from './constants';
 // Rules container
 export class InputContainer {
   constructor(prop, game) {
-    this.prop = prop;
+    this.prop = prop; //Customer
     this.game = game;
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();

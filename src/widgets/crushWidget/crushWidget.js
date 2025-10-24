@@ -129,16 +129,14 @@ import './styles.css';
 class CrushGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.userId = this.config.userId;
-
-    this.shareClicked = false;
-
     this.customer = this.config.business_name;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl;
-    this.gameCount = 0;
     this.language = this.config.language;
+    this.userId = this.config.userId;
 
+    this.gameCount = 0;
+    this.shareClicked = false;
     this.currentScoreTable = {};
     this.gridCols = 5;
     this.gridRows = 8;
@@ -295,7 +293,7 @@ class CrushGame {
         .then((response) => {
           this.bestScore = response.user_best_score;
           this.userBestScore = response.user_best_score;
-          this.showRulesPigu();
+          this.showRulesContainer();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -309,8 +307,7 @@ class CrushGame {
         })
         .then((response) => {
           this.userBestScore = response.user_best_score;
-
-          this.showRulesPigu();
+          this.showRulesContainer();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -332,15 +329,15 @@ class CrushGame {
     }
   };
 
-  showRulesPigu = () => {
+  showRulesContainer = () => {
     this.config = localStorageService.getDefaultConfig();
     this.userBestScore = this?.config?.userBestScore ? this?.config?.userBestScore : 0;
 
     setTimeout(() => {
       document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
-      const inputContainer = document.querySelector('.input-container');
       document.getElementById('control-button').style.transition = 'opacity 2s ease';
       document.getElementById('control-button').style.opacity = 1;
+      const inputContainer = document.querySelector('.input-container');
       inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       inputContainer.style.display = 'block';
       setTimeout(() => {
@@ -849,7 +846,6 @@ background:${
 
     document.addEventListener('shareClicked', () => {
       if (this.shareClicked === false) {
-        console.log('shareClicked');
         this.shareClicked = true;
         this.currentScore = this.currentScore + 100;
       }
@@ -1568,76 +1564,66 @@ background:${
     }
   };
 
-  clickEventHandlerDidYouKnow = (closeShare) => {
-    let didYouKnowTableContainer = '';
-    const shareContainer = document.querySelector('.share-container');
+  clickEventHandlerDidYouKnow = () => {
+    let tabContainer;
 
-    if (this.customer === 'Pigu.lt') {
-      didYouKnowTableContainer = document.querySelector('.share-container');
-    } else {
-      didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+    if (Elements.isVisible(Elements.didYouKnowContainer)) {
+      tabContainer = Elements.didYouKnowContainer;
     }
 
-    didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    if (Elements.isVisible(Elements.shareContainer)) {
+      tabContainer = Elements.shareContainer;
+    }
+
+    tabContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
     setTimeout(() => {
-      didYouKnowTableContainer.style.height = '10px';
-      didYouKnowTableContainer.style.top = 'calc(50% + 330px)';
-      didYouKnowTableContainer.style.opacity = 0;
+      tabContainer.style.height = '10px';
+      tabContainer.style.top = 'calc(50% + 330px)';
+      tabContainer.style.opacity = 0;
     }, 100);
     setTimeout(() => {
-      didYouKnowTableContainer.style.display = 'none';
+      tabContainer.style.display = 'none';
     }, 1000);
 
-    if (shareContainer && !closeShare) {
-      shareContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      shareContainer.style.display = 'block';
+    if (this.customer === 'Pigu.lt') {
+      boomioService
+        .signal('ROUND_FINISHED', 'signal', {
+          score: this.currentScore,
+          shared_somewhere: this.shareClicked,
+        })
+        .then((response) => {
+          this.userBestPlace = response.user_best_place;
+          if (this.showCompetitiveRegistration === 'points') {
+            this.scoreTable = response;
+            this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
+          }
+          if (this.showCompetitiveRegistration === 'competition') {
+            this.scoreTable = response;
+            this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+          }
 
-      setTimeout(() => {
-        shareContainer.style.height = '680px';
-        shareContainer.style.top = 'calc(50%)';
-        shareContainer.style.opacity = 1;
-      }, 100);
-    } else {
-      if (this.customer === 'Pigu.lt') {
-        boomioService
-          .signal('ROUND_FINISHED', 'signal', {
-            score: this.currentScore,
-            shared_somewhere: this.shareClicked,
-          })
-          .then((response) => {
-            this.userBestPlace = response.user_best_place;
-            if (this.showCompetitiveRegistration === 'points') {
-              this.scoreTable = response;
-              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
-            }
-            if (this.showCompetitiveRegistration === 'competition') {
-              this.scoreTable = response;
-              this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
-            }
-
-            if (this.showCompetitiveRegistration === 'collectable') {
-              this.collection = response?.collection ? response?.collection : this.collection;
-              this.just_won = response?.just_won ? response?.just_won : this.just_won;
-              this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
-            }
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      }
-
-      const competitionTableContainer = document.querySelector('.competition-table-container');
-      competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-      competitionTableContainer.style.display = 'block';
-
-      setTimeout(() => {
-        competitionTableContainer.style.height = '680px';
-
-        competitionTableContainer.style.top = 'calc(50%)';
-
-        competitionTableContainer.style.opacity = 1;
-      }, 100);
+          if (this.showCompetitiveRegistration === 'collectable') {
+            this.collection = response?.collection ? response?.collection : this.collection;
+            this.just_won = response?.just_won ? response?.just_won : this.just_won;
+            this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     }
+
+    const competitionTableContainer = document.querySelector('.competition-table-container');
+    competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+    competitionTableContainer.style.display = 'block';
+
+    setTimeout(() => {
+      competitionTableContainer.style.height = '680px';
+
+      competitionTableContainer.style.top = 'calc(50%)';
+
+      competitionTableContainer.style.opacity = 1;
+    }, 100);
   };
 
   addEventListeners() {
@@ -1664,13 +1650,12 @@ background:${
     const start = document.getElementById('control-button');
     start.addEventListener('click', this.initGame);
 
-    if (this.customer === 'Nevezis' || this.customer.includes('Gamtos Ateitis')) {
-      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
-      competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
+    if (Elements.shareCloseButton) {
+      Elements.shareCloseButton.addEventListener('click', this.clickEventHandlerDidYouKnow);
     }
-    if (this.customer === 'Pigu.lt') {
-      const competitionDidYouKnow = document.getElementById('boomio-close-share');
-      competitionDidYouKnow.addEventListener('click', this.clickEventHandlerDidYouKnow);
+
+    if (Elements.didYouKnowCloseButton) {
+      Elements.didYouKnowCloseButton.addEventListener('click', this.clickEventHandlerDidYouKnow);
     }
 
     const closeEl = document.getElementById('close-game-container');

@@ -24,7 +24,7 @@ const privacyPolicytranslations = {
 
 export class InputRegisterContainer {
   constructor(prop) {
-    this.prop = prop; // Store the this.prop in a class this.property
+    this.prop = prop; // Customer
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();
     this.language = this.config.language;
@@ -356,13 +356,13 @@ export class InputRegisterContainer {
                                                                                     ? 'Sutinku su „ORLEN“'
                                                                                     : this.prop === 'Apranga'
                                                                                       ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025-new" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
-                                                                                      : this.config.currentPageUrl.toLowerCase().includes('pigu')
+                                                                                      : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('pigu')
                                                                                         ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
-                                                                                        : this.config.currentPageUrl.toLowerCase().includes('220')
+                                                                                        : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('220')
                                                                                           ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
-                                                                                          : this.config.currentPageUrl.toLowerCase().includes('kaup24')
+                                                                                          : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('kaup24')
                                                                                             ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
-                                                                                            : this.config.currentPageUrl.toLowerCase().includes('hobbyhall')
+                                                                                            : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('hobbyhall')
                                                                                               ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
                                                                                               : this.language === 'EN'
                                                                                                 ? 'I agree to receive '

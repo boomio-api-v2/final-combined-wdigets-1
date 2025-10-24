@@ -38,6 +38,22 @@ class HtmlElementsHelper {
     return document.getElementById('school-select');
   }
 
+  get shareContainer() {
+    return document.getElementById('share-container');
+  }
+
+  get shareCloseButton() {
+    return document.getElementById('boomio-close-share');
+  }
+
+  get didYouKnowContainer() {
+    return document.getElementById('did-you-know-container');
+  }
+
+  get didYouKnowCloseButton() {
+    return document.getElementById('boomio-close-did-you-know');
+  }
+
   isVisible(el) {
     if (!el) return false;
 
