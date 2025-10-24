@@ -30,7 +30,7 @@ export class CompetitionScoreTableContainer {
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
-    this.language = this.config.language ? this.config.language : 'EN';
+    this.language = this.config.language;
     this.render();
   }
 
@@ -94,7 +94,6 @@ export class CompetitionScoreTableContainer {
   updateProps(prop, scoreTable) {
     this.prop = prop;
     this.scoreTable = scoreTable;
-    this.language = this.config.language ? this.config.language : 'EN';
     this.updateVisuals();
   }
 
@@ -105,10 +104,7 @@ export class CompetitionScoreTableContainer {
     const userBestScore = Number(this.scoreTable?.user_best_score) || 0;
     this.userParticipationDays = this.scoreTable?.participation_days ?? 0; // nullish-coalescing
 
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-    const userId = urlParams.get('user_id');
+    const userId = this.config.userId;
     this.couponCodeNew = this.prop.includes('demo') ? 'discountcode' : 'boomio';
     const perlasGoTable = [
       'PERLIUKAS',
@@ -983,11 +979,8 @@ export class CompetitionScoreTableContainer {
     containerDiv.classList.add('competition-table-container');
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background = 'none';
-    // containerDiv.style.border = this.prop === 'Penki Sezonai' && '2px solid #A6CE39';
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-    const userId = urlParams.get('user_id');
+
+    const userId = this.config.userId;
     containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
