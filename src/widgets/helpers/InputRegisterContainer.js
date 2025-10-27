@@ -153,7 +153,6 @@ export class InputRegisterContainer {
          this.prop === 'Orlen' ||
          this.prop === 'LemonGym' ||
          this.prop === 'LemonFeel' ||
-         this.prop === 'Nevezis' ||
          this.prop === 'Magija' ||
          this.prop === 'Pigu.lt' ||
          this.prop === 'Nykstukas' ||
@@ -219,7 +218,7 @@ export class InputRegisterContainer {
                                                 : this.prop === 'Nykstukas'
                                                   ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
                                                   : this.prop === 'Nevezis'
-                                                    ? 'Sutinku gauti UAB ,,Naujasis Nevėžis“ naujienlaiškius.'
+                                                    ? 'Sutinku gauti „OHO GROUP“ UAB naujienlaiškius.'
                                                     : this.prop === 'Toni'
                                                       ? 'Confirmo que soy mayor de 13 años.'
                                                       : this.prop === 'Magija'
@@ -349,32 +348,30 @@ export class InputRegisterContainer {
                                                                             : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
                                                                               ? 'Piekrītu LEMON GYM'
                                                                               : this.prop === 'Nevezis'
-                                                                                ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
-                                                                                : this.prop === 'Magija'
-                                                                                  ? 'Sutinku su UAB ,,Naujasis Nevėžis“'
-                                                                                  : this.prop === 'Orlen'
-                                                                                    ? 'Sutinku su „ORLEN“'
-                                                                                    : this.prop === 'Apranga'
-                                                                                      ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025-new" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
-                                                                                      : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('pigu')
-                                                                                        ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
-                                                                                        : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('220')
-                                                                                          ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
-                                                                                          : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('kaup24')
-                                                                                            ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
-                                                                                            : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('hobbyhall')
-                                                                                              ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
-                                                                                              : this.language === 'EN'
-                                                                                                ? 'I agree to receive '
-                                                                                                : this.language === 'LV'
-                                                                                                  ? 'Es piekrītu'
-                                                                                                  : this.language === 'ET'
-                                                                                                    ? 'Ma olen nõus'
-                                                                                                    : `Sutinku  ${
-                                                                                                        this.prop === 'LemonGym'
-                                                                                                          ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
-                                                                                                          : ''
-                                                                                                      } `
+                                                                                ? 'Sutinku su „OHO GROUP“ UAB'
+                                                                                : this.prop === 'Orlen'
+                                                                                  ? 'Sutinku su „ORLEN“'
+                                                                                  : this.prop === 'Apranga'
+                                                                                    ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025-new" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
+                                                                                    : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('pigu')
+                                                                                      ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
+                                                                                      : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('220')
+                                                                                        ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
+                                                                                        : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('kaup24')
+                                                                                          ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
+                                                                                          : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('hobbyhall')
+                                                                                            ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
+                                                                                            : this.language === 'EN'
+                                                                                              ? 'I agree to receive '
+                                                                                              : this.language === 'LV'
+                                                                                                ? 'Es piekrītu'
+                                                                                                : this.language === 'ET'
+                                                                                                  ? 'Ma olen nõus'
+                                                                                                  : `Sutinku  ${
+                                                                                                      this.prop === 'LemonGym'
+                                                                                                        ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
+                                                                                                        : ''
+                                                                                                    } `
         }
     ${
       this.prop !== 'Barbora' &&
