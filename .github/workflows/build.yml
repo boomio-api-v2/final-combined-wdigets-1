@@ -52,7 +52,7 @@ jobs:
           CI: true
 
       - name: Upload dist
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: bundle.js
           path: dist/bundle.js
@@ -73,7 +73,7 @@ jobs:
 
     steps:
       - name: Download bundle
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: bundle.js
           path: .
@@ -100,7 +100,7 @@ jobs:
       deployments: write
     steps:
       - name: Download bundle
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: bundle.js
           path: .
