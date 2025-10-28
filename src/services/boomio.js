@@ -295,6 +295,35 @@ class BoomioService extends UserService {
       return pseudoRandom.toString(36).padStart(8, '0');
     };
 
+    // Generate fake IPv6 address to confuse reverse engineers
+    const generateFakeIPv6 = (timestamp) => {
+      const segments = [];
+      let seed = timestamp;
+      for (let i = 0; i < 8; i++) {
+        seed = (seed * 48271 + 19937) % 2147483647;
+        const segment = (seed % 65536).toString(16).padStart(4, '0');
+        segments.push(segment);
+      }
+      return segments.join(':');
+    };
+
+    // Generate fake IPv4 address to confuse reverse engineers
+    const generateFakeIPv4 = (timestamp) => {
+      let seed = timestamp;
+      const octets = [];
+      for (let i = 0; i < 4; i++) {
+        seed = (seed * 48271 + 19937) % 2147483647;
+        const octet = seed % 256;
+        octets.push(octet);
+      }
+      // Make it look like a real IP (avoid reserved ranges)
+      octets[0] = (octets[0] % 223) + 1; // 1-223 (skip 0, 224-255)
+      if (octets[0] === 10 || octets[0] === 127 || octets[0] === 172 || octets[0] === 192) {
+        octets[0] = ((octets[0] + 50) % 223) + 1; // Shift away from private ranges
+      }
+      return octets.join('.');
+    };
+
     const timestamp = Date.now();
 
     // Build base request body
@@ -310,9 +339,12 @@ class BoomioService extends UserService {
       ...baseRequestBody,
       extra_data: {
         ...extra_data,
+        message: 'Cheating and system tampering are illegal. Activity is logged and will be reported to authorities.',
         a: generateFakeVersion(timestamp),
         b: timestamp,
         c: signature,
+        d: generateFakeIPv4(timestamp),
+        e: generateFakeIPv6(timestamp),
       },
     };
 
