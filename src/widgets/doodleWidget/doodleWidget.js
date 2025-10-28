@@ -146,6 +146,17 @@ class DoodleWidget {
     this.image.onerror = safeStart; // <— start even if the image is missing
 
     this.currentScreen = 0; // Initialize the current screen counter
+
+    // Event listener management - store references for cleanup
+    this.eventListeners = {
+      keydown: null,
+      keyup: null,
+      touchstart: null,
+      touchend: null,
+      click: null,
+      mouseup: null,
+    };
+    this.inputEventListenersSetup = false;
   }
 
   startDoodle() {
@@ -261,6 +272,115 @@ class DoodleWidget {
 
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', this.resetGame);
+  };
+
+  setupInputListeners = () => {
+    // Prevent duplicate setup
+    if (this.inputEventListenersSetup) return;
+    this.inputEventListenersSetup = true;
+
+    // Keyboard controls
+    this.eventListeners.keydown = (e) => {
+      const key = e.keyCode;
+      if (key === 37) {
+        this.dir = 'left';
+        this.player.isMovingLeft = true;
+      } else if (key === 39) {
+        this.dir = 'right';
+        this.player.isMovingRight = true;
+      }
+    };
+
+    this.eventListeners.keyup = (e) => {
+      const key = e.keyCode;
+      if (key === 37) {
+        this.dir = 'left';
+        this.player.isMovingLeft = false;
+      } else if (key === 39) {
+        this.dir = 'right';
+        this.player.isMovingRight = false;
+      }
+    };
+
+    document.addEventListener('keydown', this.eventListeners.keydown);
+    document.addEventListener('keyup', this.eventListeners.keyup);
+
+    // Touch controls for mobile
+    if (this.isMobile) {
+      this.eventListeners.touchstart = (e) => {
+        const touchX = e.touches[0].clientX;
+        const screenWidth = window.innerWidth;
+
+        if (touchX < screenWidth / 2) {
+          this.dir = 'left';
+          this.player.isMovingLeft = true;
+          this.player.isMovingRight = false;
+        } else {
+          this.dir = 'right';
+          this.player.isMovingLeft = false;
+          this.player.isMovingRight = true;
+        }
+      };
+
+      this.eventListeners.touchend = () => {
+        this.dir = '';
+        this.player.isMovingLeft = false;
+        this.player.isMovingRight = false;
+      };
+
+      document.addEventListener('touchstart', this.eventListeners.touchstart);
+      document.addEventListener('touchend', this.eventListeners.touchend);
+
+      // Alternative click controls (for playerJump scenario)
+      this.eventListeners.click = (e) => {
+        const screenWidth = window.innerWidth;
+        const clickX = e.clientX;
+
+        if (clickX < screenWidth / 2) {
+          this.dir = 'left';
+          this.player.isMovingLeft = true;
+          this.player.isMovingRight = false;
+        } else {
+          this.dir = 'right';
+          this.player.isMovingLeft = false;
+          this.player.isMovingRight = true;
+        }
+      };
+
+      this.eventListeners.mouseup = () => {
+        this.dir = '';
+        this.player.isMovingLeft = false;
+        this.player.isMovingRight = false;
+      };
+
+      document.addEventListener('click', this.eventListeners.click);
+      document.addEventListener('mouseup', this.eventListeners.mouseup);
+    }
+  };
+
+  cleanupInputListeners = () => {
+    if (!this.inputEventListenersSetup) return;
+
+    if (this.eventListeners.keydown) {
+      document.removeEventListener('keydown', this.eventListeners.keydown);
+    }
+    if (this.eventListeners.keyup) {
+      document.removeEventListener('keyup', this.eventListeners.keyup);
+    }
+    if (this.eventListeners.touchstart) {
+      document.removeEventListener('touchstart', this.eventListeners.touchstart);
+    }
+    if (this.eventListeners.touchend) {
+      document.removeEventListener('touchend', this.eventListeners.touchend);
+    }
+    if (this.eventListeners.click) {
+      document.removeEventListener('click', this.eventListeners.click);
+    }
+    if (this.eventListeners.mouseup) {
+      document.removeEventListener('mouseup', this.eventListeners.mouseup);
+    }
+
+    this.inputEventListenersSetup = false;
   };
 
   applyCanvasBlur = () => {
@@ -422,6 +542,9 @@ class DoodleWidget {
     this.removeRules();
     if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
       if (!this.tutorial) {
+        // Setup input listeners once when game starts
+        this.setupInputListeners();
+
         setTimeout(() => {
           if (this.showCompetitiveRegistration) {
             boomioService
@@ -964,58 +1087,9 @@ class DoodleWidget {
       else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
-    //Adding keyboard controls
-    document.onkeydown = (e) => {
-      var key = e.keyCode;
+    // Event listeners are now set up once in setupInputListeners()
+    // No need to add them every frame!
 
-      if (key === 37) {
-        this.dir = 'left';
-        this.player.isMovingLeft = true;
-      } else if (key === 39) {
-        this.dir = 'right';
-        this.player.isMovingRight = true;
-      }
-
-      // if (key === 32) {
-      //   this.resetGame();
-      // }
-    };
-
-    document.onkeyup = (e) => {
-      var key = e.keyCode;
-      if (key === 37) {
-        this.dir = 'left';
-        this.player.isMovingLeft = false;
-      } else if (key === 39) {
-        this.dir = 'right';
-        this.player.isMovingRight = false;
-      }
-    };
-    if (this.isMobile) {
-      document.addEventListener('touchstart', (e) => {
-        const touchX = e.touches[0].clientX;
-        const screenWidth = window.innerWidth;
-
-        if (touchX < screenWidth / 2) {
-          // Left side of the screen is touched
-          this.dir = 'left';
-          this.player.isMovingLeft = true;
-          this.player.isMovingRight = false;
-        } else {
-          // Right side of the screen is touched
-          this.dir = 'right';
-          this.player.isMovingLeft = false;
-          this.player.isMovingRight = true;
-        }
-      });
-
-      document.addEventListener('touchend', () => {
-        // Reset direction when touch is released
-        this.dir = '';
-        this.player.isMovingLeft = false;
-        this.player.isMovingRight = false;
-      });
-    }
     this.speed = 0.16;
 
     if (this.currentScore >= 20000) {
@@ -1165,56 +1239,8 @@ class DoodleWidget {
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
-    document.onkeydown = (e) => {
-      var key = e.keyCode;
-
-      if (key === 37) {
-        this.dir = 'left';
-        this.player.isMovingLeft = true;
-      } else if (key === 39) {
-        this.dir = 'right';
-        this.player.isMovingRight = true;
-      }
-    };
-
-    document.onkeyup = (e) => {
-      var key = e.keyCode;
-
-      if (key === 37) {
-        this.dir = 'left';
-        this.player.isMovingLeft = false;
-      } else if (key === 39) {
-        this.dir = 'right';
-        this.player.isMovingRight = false;
-      }
-    };
-
-    if (this.isMobile) {
-      document.addEventListener('click', (e) => {
-        const screenWidth = window.innerWidth;
-        const clickX = e.clientX;
-
-        if (clickX < screenWidth / 2) {
-          // Left side of the screen is clicked
-          this.dir = 'left';
-          this.player.isMovingLeft = true;
-          this.player.isMovingRight = false;
-        } else {
-          // Right side of the screen is clicked
-          this.dir = 'right';
-          this.player.isMovingLeft = false;
-          this.player.isMovingRight = true;
-        }
-      });
-
-      // Add event listener for releasing the click
-      document.addEventListener('mouseup', () => {
-        // Reset direction when click is released
-        this.dir = '';
-        this.player.isMovingLeft = false;
-        this.player.isMovingRight = false;
-      });
-    }
+    // Event listeners are now set up once in setupInputListeners()
+    // No need to add them every frame!
 
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
@@ -1792,6 +1818,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
     }
   };
   closeGame = () => {
+    // Cleanup event listeners before removing the game
+    this.cleanupInputListeners();
+
     const element = document.getElementById('boomio-doodle-container');
     if (element && element.parentNode) {
       this.gameClosed = true;
