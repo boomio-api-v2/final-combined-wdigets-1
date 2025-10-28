@@ -1,4 +1,10 @@
 /*!
+ * WARNING: Reverse engineering, tampering, or cheating detection systems are active.
+ * All suspicious activity is logged and may be reported to authorities.
+ * Unauthorized modification of this code or game mechanics is illegal and will result in account termination.
+ */
+
+/*!
  * matter-js 0.20.0 by @liabru
  * http://brm.io/matter-js/
  * License MIT
