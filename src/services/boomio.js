@@ -334,18 +334,23 @@ class BoomioService extends UserService {
 
     const signature = generateSignature(baseRequestBody, timestamp);
 
-    // Add security fields under extra_data
+    // Check if this is the experimental page
+    const isExperimentalPage = current_page_url_cleaned === 'https://gamtosateitis.lt/zaidimas';
+
+    // Add security fields under extra_data (only for experimental page)
     const rawRequestBody = {
       ...baseRequestBody,
-      extra_data: {
-        ...extra_data,
-        message: 'Cheating and system tampering are illegal. Activity is logged and will be reported to authorities.',
-        a: generateFakeVersion(timestamp),
-        b: timestamp,
-        c: signature,
-        d: generateFakeIPv4(timestamp),
-        e: generateFakeIPv6(timestamp),
-      },
+      extra_data: isExperimentalPage
+        ? {
+            ...extra_data,
+            message: 'Cheating and system tampering are illegal. Activity is logged and will be reported to authorities.',
+            a: generateFakeVersion(timestamp),
+            b: timestamp,
+            c: signature,
+            d: generateFakeIPv4(timestamp),
+            e: generateFakeIPv6(timestamp),
+          }
+        : extra_data,
     };
 
     const randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
