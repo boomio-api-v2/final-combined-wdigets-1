@@ -1746,10 +1746,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       };
 
       const clickEventHandlerResetGame = () => {
-        const competitionRestart = document.getElementById('boomio-game-play-again');
-        competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+        // Prevent multiple rapid clicks with a simple flag check
+        if (this.isResetting) return;
+        this.isResetting = true;
+
         setTimeout(() => {
-          competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+          this.isResetting = false;
         }, 2000);
 
         this.index = 0;
@@ -1799,6 +1801,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         competitionRestart.addEventListener('click', this.showRulesPigu);
       }
 
+      // Register reset button click handler (uses isResetting flag for debouncing)
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
