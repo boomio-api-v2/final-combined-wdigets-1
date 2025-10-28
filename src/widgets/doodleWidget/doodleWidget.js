@@ -427,9 +427,7 @@ class DoodleWidget {
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
-                if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                  document.getElementById('doodle-mobile-controls').style.display = 'block';
-                }
+                this.toggleMobileControls(true);
                 if (this.customer === 'Pigu.lt') {
                   if (window.Boomio) {
                     window.Boomio.logEvent('game_started', JSON.stringify(response));
@@ -730,9 +728,7 @@ class DoodleWidget {
               score: this.currentScore,
             })
             .then((response) => {
-              if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                document.getElementById('doodle-mobile-controls').style.display = 'none';
-              }
+              this.toggleMobileControls(false);
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
                   window.Boomio.logEvent('game_finished', JSON.stringify(response));
@@ -1433,7 +1429,7 @@ ${
 </div>
 </div>
 
-    <div id="doodle-mobile-controls" class="doodle-mobile-controls" style="top:calc(50% + 200px);display:${'none'};position: absolute; bottom: 20px; width: 100%; justify-content: space-between; pointer-events: auto;">
+    <div id="doodle-mobile-controls" class="doodle-mobile-controls" style="top:calc(50% + 200px);display:none;position: absolute; bottom: 20px; width: 100%; justify-content: space-between; pointer-events: auto;">
       <img id="doodle-left-button" src="${left}" alt="Left" style="pointer-events:none;width: 50px; height: auto; margin-right: 100px; cursor: pointer;">
       <img id="doodle-right-button" src="${right}" alt="Right" style="pointer-events:none;width: 50px; height: auto; margin-left: 100px; cursor: pointer;">
     </div>
@@ -1750,9 +1746,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((_response) => {
-                if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                  document.getElementById('doodle-mobile-controls').style.display = 'block';
-                }
+                this.toggleMobileControls(true);
 
                 document.getElementById('background_blur').style.display = 'none';
                 const canvas = document.getElementById('boomio-doodle-canvas');
@@ -1802,6 +1796,13 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
     if (element && element.parentNode) {
       this.gameClosed = true;
       element.parentNode.removeChild(element);
+    }
+  };
+
+  toggleMobileControls = (show) => {
+    const mobileControls = document.getElementById('doodle-mobile-controls');
+    if (mobileControls && this.isMobile && (this.customer === 'Perlas GO' || this.customer === 'Nevezis')) {
+      mobileControls.style.display = show ? 'block' : 'none';
     }
   };
 }
