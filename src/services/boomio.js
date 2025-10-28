@@ -265,12 +265,6 @@ class BoomioService extends UserService {
       }
     }
 
-    const rawRequestBody = {
-      user_session,
-      current_page_url: current_page_url_cleaned,
-      extra_data,
-    };
-
     // Generate tamper-proof signature
     const generateSignature = (payload, timestamp) => {
       // Simple hash function (FNV-1a inspired)
@@ -294,14 +288,32 @@ class BoomioService extends UserService {
       return signature;
     };
 
-    const timestamp = Date.now();
-    const signature = generateSignature(rawRequestBody, timestamp);
+    // Generate fake version field to confuse reverse engineers
+    const generateFakeVersion = (timestamp) => {
+      // Create plausible-looking version string
+      const pseudoRandom = (timestamp * 48271 + 19937) % 2147483647 >>> 0;
+      return pseudoRandom.toString(36).padStart(8, '0');
+    };
 
-    // Add signature and timestamp to the body
-    const signedBody = {
-      ...rawRequestBody,
-      _ts: timestamp,
-      _sig: signature,
+    const timestamp = Date.now();
+
+    // Build base request body
+    const baseRequestBody = {
+      user_session,
+      current_page_url: current_page_url_cleaned,
+    };
+
+    const signature = generateSignature(baseRequestBody, timestamp);
+
+    // Add security fields under extra_data
+    const rawRequestBody = {
+      ...baseRequestBody,
+      extra_data: {
+        ...extra_data,
+        a: generateFakeVersion(timestamp),
+        b: timestamp,
+        c: signature,
+      },
     };
 
     const randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
@@ -312,7 +324,7 @@ class BoomioService extends UserService {
       return btoa(String.fromCharCode(...uint8Array));
     };
 
-    const encodedBody = encodeToBase64(JSON.stringify(signedBody));
+    const encodedBody = encodeToBase64(JSON.stringify(rawRequestBody));
 
     const finalRequestBody = { body: randomLetter + encodedBody };
 
