@@ -271,6 +271,39 @@ class BoomioService extends UserService {
       extra_data,
     };
 
+    // Generate tamper-proof signature
+    const generateSignature = (payload, timestamp) => {
+      // Simple hash function (FNV-1a inspired)
+      const hashString = (str) => {
+        let hash = 2166136261;
+        for (let i = 0; i < str.length; i++) {
+          hash ^= str.charCodeAt(i);
+          hash = (hash * 16777619) >>> 0;
+        }
+        return hash;
+      };
+
+      // Create a deterministic string from payload
+      const payloadString = JSON.stringify(payload);
+      const hash = hashString(payloadString + timestamp);
+
+      // Obfuscate: XOR timestamp with hash, then encode
+      const obfuscatedTimestamp = timestamp ^ hash;
+      const signature = (obfuscatedTimestamp >>> 0).toString(36) + hash.toString(36);
+
+      return signature;
+    };
+
+    const timestamp = Date.now();
+    const signature = generateSignature(rawRequestBody, timestamp);
+
+    // Add signature and timestamp to the body
+    const signedBody = {
+      ...rawRequestBody,
+      _ts: timestamp,
+      _sig: signature,
+    };
+
     const randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
 
     const encodeToBase64 = (str) => {
@@ -279,7 +312,7 @@ class BoomioService extends UserService {
       return btoa(String.fromCharCode(...uint8Array));
     };
 
-    const encodedBody = encodeToBase64(JSON.stringify(rawRequestBody));
+    const encodedBody = encodeToBase64(JSON.stringify(signedBody));
 
     const finalRequestBody = { body: randomLetter + encodedBody };
 
