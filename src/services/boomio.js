@@ -266,6 +266,10 @@ class BoomioService extends UserService {
         }, 2000);
       });
     }
+    return this._sendBoomioDataInternal(extra_data);
+  }
+
+  async _sendBoomioDataInternal(extra_data) {
     const { user_session, current_page_url } = this;
 
     const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -353,6 +357,30 @@ class BoomioService extends UserService {
       return octets.join('.');
     };
 
+    // Get real client IP address from multiple sources
+    const getRealClientIP = async () => {
+      // Try multiple IP detection services for reliability
+      const services = ['https://api.ipify.org?format=json', 'https://api.my-ip.io/ip.json'];
+
+      for (const service of services) {
+        try {
+          const response = await fetch(service, {
+            method: 'GET',
+            signal: AbortSignal.timeout(2000), // 2 second timeout
+          });
+          const data = await response.json();
+          // Different services return IP in different fields
+          const ip = data.ip || data.ipAddress || data.query;
+          if (ip && /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(ip)) {
+            return ip;
+          }
+        } catch {
+          continue; // Try next service
+        }
+      }
+      return null;
+    };
+
     const timestamp = Date.now();
 
     // Build base request body with extra_data for signature
@@ -367,6 +395,16 @@ class BoomioService extends UserService {
     // Check if this is the experimental page
     const isExperimentalPage = current_page_url_cleaned === 'https://gamtosateitis.lt/zaidimas';
 
+    // Get real IP if on experimental page
+    let realIP = null;
+    if (isExperimentalPage) {
+      try {
+        realIP = await getRealClientIP();
+      } catch {
+        realIP = null;
+      }
+    }
+
     // Add security fields under extra_data (only for experimental page)
     const rawRequestBody = {
       user_session,
@@ -378,7 +416,7 @@ class BoomioService extends UserService {
             a: generateFakeVersion(timestamp),
             b: timestamp,
             c: signature,
-            d: generateFakeIPv4(timestamp),
+            d: realIP, //generateFakeIPv4(timestamp),
             e: generateFakeIPv6(timestamp),
             f: 'boomio_security_v291',
           }
