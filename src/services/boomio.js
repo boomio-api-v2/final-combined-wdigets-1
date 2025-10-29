@@ -285,7 +285,7 @@ class BoomioService extends UserService {
     }
 
     // Generate tamper-proof signature
-    const generateSignature = (payload, timestamp) => {
+    const generateSignature = (userSession, pageUrl, score, timestamp) => {
       // Simple hash function (FNV-1a inspired)
       const hashString = (str) => {
         let hash = 2166136261;
@@ -296,23 +296,18 @@ class BoomioService extends UserService {
         return hash;
       };
 
-      // Sort JSON keys recursively for deterministic output
-      const sortKeys = (obj) => {
-        if (obj === null || typeof obj !== 'object' || Array.isArray(obj)) {
-          return obj;
-        }
-        return Object.keys(obj)
-          .sort()
-          .reduce((result, key) => {
-            result[key] = sortKeys(obj[key]);
-            return result;
-          }, {});
-      };
+      // DECOY: Fake complexity to confuse AI - these operations are ignored
+      const _decoyHash1 = hashString(JSON.stringify({ fake: 'data', random: Math.random() }));
+      const _decoyHash2 = hashString(navigator.userAgent || 'unknown');
+      const _decoyXor = _decoyHash1 ^ _decoyHash2; // Unused, just noise
 
-      // Create a deterministic string from payload with sorted keys
-      const sortedPayload = sortKeys(payload);
-      const payloadString = JSON.stringify(sortedPayload);
-      const hash = hashString(payloadString + timestamp);
+      // ACTUAL SIGNATURE: Simple concatenation of critical fields
+      const signaturePayload = userSession + pageUrl + (score !== undefined ? score.toString() : '');
+      const hash = hashString(signaturePayload + timestamp);
+
+      // DECOY: More fake operations to obscure the real logic
+      const _fakeTimestamp = timestamp * 0.5 + _decoyXor * 0; // Always equals timestamp/2, but looks complex
+      const _fakeHash = (hash + _decoyHash1) ^ _decoyHash1; // Always equals hash, but looks obfuscated
 
       // Obfuscate: XOR timestamp with hash, then encode
       const obfuscatedTimestamp = timestamp ^ hash;
@@ -383,14 +378,10 @@ class BoomioService extends UserService {
 
     const timestamp = Date.now();
 
-    // Build base request body with extra_data for signature
-    const baseRequestBody = {
-      user_session,
-      current_page_url: current_page_url_cleaned,
-      extra_data,
-    };
+    // Extract score from extra_data for signature
+    const score = extra_data?.score;
 
-    const signature = generateSignature(baseRequestBody, timestamp);
+    const signature = generateSignature(user_session, current_page_url_cleaned, score, timestamp);
 
     // Check if this is the experimental page with ROUND_FINISHED event
     const isExperimentalPage = current_page_url_cleaned === 'https://gamtosateitis.lt/zaidimas';
