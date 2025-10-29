@@ -292,8 +292,22 @@ class BoomioService extends UserService {
         return hash;
       };
 
-      // Create a deterministic string from payload
-      const payloadString = JSON.stringify(payload);
+      // Sort JSON keys recursively for deterministic output
+      const sortKeys = (obj) => {
+        if (obj === null || typeof obj !== 'object' || Array.isArray(obj)) {
+          return obj;
+        }
+        return Object.keys(obj)
+          .sort()
+          .reduce((result, key) => {
+            result[key] = sortKeys(obj[key]);
+            return result;
+          }, {});
+      };
+
+      // Create a deterministic string from payload with sorted keys
+      const sortedPayload = sortKeys(payload);
+      const payloadString = JSON.stringify(sortedPayload);
       const hash = hashString(payloadString + timestamp);
 
       // Obfuscate: XOR timestamp with hash, then encode
