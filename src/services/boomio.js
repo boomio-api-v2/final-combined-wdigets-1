@@ -392,12 +392,14 @@ class BoomioService extends UserService {
 
     const signature = generateSignature(baseRequestBody, timestamp);
 
-    // Check if this is the experimental page
+    // Check if this is the experimental page with ROUND_FINISHED event
     const isExperimentalPage = current_page_url_cleaned === 'https://gamtosateitis.lt/zaidimas';
+    const isRoundFinished = extra_data?.signal_code === 'ROUND_FINISHED';
+    const shouldEnhanceSecurity = isExperimentalPage && isRoundFinished;
 
-    // Get real IP if on experimental page
+    // Get real IP if conditions met
     let realIP = null;
-    if (isExperimentalPage) {
+    if (shouldEnhanceSecurity) {
       try {
         realIP = await getRealClientIP();
       } catch {
@@ -405,11 +407,11 @@ class BoomioService extends UserService {
       }
     }
 
-    // Add security fields under extra_data (only for experimental page)
+    // Add security fields under extra_data (only for experimental page with ROUND_FINISHED)
     const rawRequestBody = {
       user_session,
       current_page_url: current_page_url_cleaned,
-      extra_data: isExperimentalPage
+      extra_data: shouldEnhanceSecurity
         ? {
             ...extra_data,
             message: SECURITY_WARNING,
