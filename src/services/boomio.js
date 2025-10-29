@@ -309,9 +309,10 @@ class BoomioService extends UserService {
       const _fakeTimestamp = timestamp * 0.5 + _decoyXor * 0; // Always equals timestamp/2, but looks complex
       const _fakeHash = (hash + _decoyHash1) ^ _decoyHash1; // Always equals hash, but looks obfuscated
 
-      // Obfuscate: XOR timestamp with hash, then encode
-      const obfuscatedTimestamp = timestamp ^ hash;
-      const signature = (obfuscatedTimestamp >>> 0).toString(36) + hash.toString(36);
+      // Obfuscate: XOR timestamp with hash (use only lower 32 bits), then encode
+      const timestamp32 = timestamp >>> 0; // Convert to 32-bit unsigned
+      const obfuscatedTimestamp = (timestamp32 ^ hash) >>> 0;
+      const signature = obfuscatedTimestamp.toString(36) + hash.toString(36);
 
       return signature;
     };
@@ -411,7 +412,7 @@ class BoomioService extends UserService {
             c: signature,
             d: realIP, //generateFakeIPv4(timestamp),
             e: generateFakeIPv6(timestamp),
-            f: 'boomio_security_v292',
+            f: 'boomio_security_v293',
           }
         : extra_data,
     };
