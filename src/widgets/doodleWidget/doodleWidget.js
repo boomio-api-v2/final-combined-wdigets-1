@@ -106,6 +106,7 @@ class DoodleWidget {
     this.height = 668;
     this.player;
     this.tutorial = true;
+    this.isResetting = false;
     this.image = new Image();
 
     this.image.src =
@@ -281,22 +282,20 @@ class DoodleWidget {
 
     // Keyboard controls
     this.eventListeners.keydown = (e) => {
-      const key = e.keyCode;
-      if (key === 37) {
+      if (e.key === 'ArrowLeft') {
         this.dir = 'left';
         this.player.isMovingLeft = true;
-      } else if (key === 39) {
+      } else if (e.key === 'ArrowRight') {
         this.dir = 'right';
         this.player.isMovingRight = true;
       }
     };
 
     this.eventListeners.keyup = (e) => {
-      const key = e.keyCode;
-      if (key === 37) {
+      if (e.key === 'ArrowLeft') {
         this.dir = 'left';
         this.player.isMovingLeft = false;
-      } else if (key === 39) {
+      } else if (e.key === 'ArrowRight') {
         this.dir = 'right';
         this.player.isMovingRight = false;
       }
