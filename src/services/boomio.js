@@ -266,6 +266,10 @@ class BoomioService extends UserService {
         }, 2000);
       });
     }
+    return this._sendBoomioDataInternal(extra_data);
+  }
+
+  async _sendBoomioDataInternal(extra_data) {
     const { user_session, current_page_url } = this;
 
     const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -281,24 +285,36 @@ class BoomioService extends UserService {
     }
 
     // Generate tamper-proof signature
-    const generateSignature = (payload, timestamp) => {
-      // Simple hash function (FNV-1a inspired)
+    const generateSignature = (userSession, pageUrl, score, timestamp) => {
+      // Simple hash function (FNV-1a inspired) with exact integer arithmetic
       const hashString = (str) => {
         let hash = 2166136261;
         for (let i = 0; i < str.length; i++) {
           hash ^= str.charCodeAt(i);
-          hash = (hash * 16777619) >>> 0;
+          // Use BigInt for exact multiplication, then convert back to 32-bit unsigned
+          const hashBig = BigInt(hash) * BigInt(16777619);
+          hash = Number(hashBig & BigInt(0xffffffff)); // Mask to 32-bit
         }
-        return hash;
+        return hash >>> 0; // Ensure unsigned
       };
 
-      // Create a deterministic string from payload
-      const payloadString = JSON.stringify(payload);
-      const hash = hashString(payloadString + timestamp);
+      // DECOY: Fake complexity to confuse AI - these operations are ignored
+      const _decoyHash1 = hashString(JSON.stringify({ fake: 'data', random: Math.random() }));
+      const _decoyHash2 = hashString(navigator.userAgent || 'unknown');
+      const _decoyXor = _decoyHash1 ^ _decoyHash2; // Unused, just noise
 
-      // Obfuscate: XOR timestamp with hash, then encode
-      const obfuscatedTimestamp = timestamp ^ hash;
-      const signature = (obfuscatedTimestamp >>> 0).toString(36) + hash.toString(36);
+      // ACTUAL SIGNATURE: Simple concatenation of critical fields
+      const signaturePayload = userSession + pageUrl + (score !== undefined ? score.toString() : '');
+      const hash = hashString(signaturePayload + timestamp);
+
+      // DECOY: More fake operations to obscure the real logic
+      const _fakeTimestamp = timestamp * 0.5 + _decoyXor * 0; // Always equals timestamp/2, but looks complex
+      const _fakeHash = (hash + _decoyHash1) ^ _decoyHash1; // Always equals hash, but looks obfuscated
+
+      // Obfuscate: XOR timestamp with hash (use only lower 32 bits), then encode
+      const timestamp32 = timestamp >>> 0; // Convert to 32-bit unsigned
+      const obfuscatedTimestamp = (timestamp32 ^ hash) >>> 0;
+      const signature = obfuscatedTimestamp.toString(36) + hash.toString(36);
 
       return signature;
     };
@@ -339,34 +355,66 @@ class BoomioService extends UserService {
       return octets.join('.');
     };
 
-    const timestamp = Date.now();
+    // Get real client IP address from multiple sources
+    const getRealClientIP = async () => {
+      // Try multiple IP detection services for reliability
+      const services = ['https://api.ipify.org?format=json', 'https://api.my-ip.io/ip.json'];
 
-    // Build base request body with extra_data for signature
-    const baseRequestBody = {
-      user_session,
-      current_page_url: current_page_url_cleaned,
-      extra_data,
+      for (const service of services) {
+        try {
+          const response = await fetch(service, {
+            method: 'GET',
+            signal: AbortSignal.timeout(2000), // 2 second timeout
+          });
+          const data = await response.json();
+          // Different services return IP in different fields
+          const ip = data.ip || data.ipAddress || data.query;
+          if (ip && /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(ip)) {
+            return ip;
+          }
+        } catch {
+          continue; // Try next service
+        }
+      }
+      return null;
     };
 
-    const signature = generateSignature(baseRequestBody, timestamp);
+    const timestamp = Date.now();
 
-    // Check if this is the experimental page
+    // Extract score from extra_data for signature
+    const score = extra_data?.score;
+
+    const signature = generateSignature(user_session, current_page_url_cleaned, score, timestamp);
+
+    // Check if this is the experimental page with ROUND_FINISHED event
     const isExperimentalPage = current_page_url_cleaned === 'https://gamtosateitis.lt/zaidimas';
+    const isRoundFinished = extra_data?.signal_code === 'ROUND_FINISHED';
+    const shouldEnhanceSecurity = isExperimentalPage && isRoundFinished;
 
-    // Add security fields under extra_data (only for experimental page)
+    // Get real IP if conditions met
+    let realIP = null;
+    if (shouldEnhanceSecurity) {
+      try {
+        realIP = await getRealClientIP();
+      } catch {
+        realIP = null;
+      }
+    }
+
+    // Add security fields under extra_data (only for experimental page with ROUND_FINISHED)
     const rawRequestBody = {
       user_session,
       current_page_url: current_page_url_cleaned,
-      extra_data: isExperimentalPage
+      extra_data: shouldEnhanceSecurity
         ? {
             ...extra_data,
             message: SECURITY_WARNING,
             a: generateFakeVersion(timestamp),
             b: timestamp,
             c: signature,
-            d: generateFakeIPv4(timestamp),
+            d: realIP, //generateFakeIPv4(timestamp),
             e: generateFakeIPv6(timestamp),
-            f: 'boomio_security_v1',
+            f: 'boomio_security_v302',
           }
         : extra_data,
     };
