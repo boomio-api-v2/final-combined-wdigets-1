@@ -330,30 +330,34 @@ class DoodleWidget {
       document.addEventListener('touchstart', this.eventListeners.touchstart);
       document.addEventListener('touchend', this.eventListeners.touchend);
 
-      // Alternative click controls (for playerJump scenario)
-      this.eventListeners.click = (e) => {
-        const screenWidth = window.innerWidth;
-        const clickX = e.clientX;
+      // Mobile button controls only (not touch on canvas)
+      const leftButton = document.getElementById('doodle-left-button');
+      const rightButton = document.getElementById('doodle-right-button');
 
-        if (clickX < screenWidth / 2) {
-          this.dir = 'left';
-          this.player.isMovingLeft = true;
-          this.player.isMovingRight = false;
-        } else {
-          this.dir = 'right';
+      if (leftButton && rightButton) {
+        this.eventListeners.click = (e) => {
+          const target = e.target;
+          if (target.id === 'doodle-left-button' || target.closest('#doodle-left-button')) {
+            this.dir = 'left';
+            this.player.isMovingLeft = true;
+            this.player.isMovingRight = false;
+          } else if (target.id === 'doodle-right-button' || target.closest('#doodle-right-button')) {
+            this.dir = 'right';
+            this.player.isMovingLeft = false;
+            this.player.isMovingRight = true;
+          }
+        };
+
+        this.eventListeners.mouseup = () => {
+          this.dir = '';
           this.player.isMovingLeft = false;
-          this.player.isMovingRight = true;
-        }
-      };
+          this.player.isMovingRight = false;
+        };
 
-      this.eventListeners.mouseup = () => {
-        this.dir = '';
-        this.player.isMovingLeft = false;
-        this.player.isMovingRight = false;
-      };
-
-      document.addEventListener('click', this.eventListeners.click);
-      document.addEventListener('mouseup', this.eventListeners.mouseup);
+        leftButton.parentElement.addEventListener('click', this.eventListeners.click);
+        rightButton.parentElement.addEventListener('mouseup', this.eventListeners.mouseup);
+        document.addEventListener('mouseup', this.eventListeners.mouseup);
+      }
     }
   };
 
@@ -373,9 +377,16 @@ class DoodleWidget {
       document.removeEventListener('touchend', this.eventListeners.touchend);
     }
     if (this.eventListeners.click) {
-      document.removeEventListener('click', this.eventListeners.click);
+      const leftButton = document.getElementById('doodle-left-button');
+      if (leftButton && leftButton.parentElement) {
+        leftButton.parentElement.removeEventListener('click', this.eventListeners.click);
+      }
     }
     if (this.eventListeners.mouseup) {
+      const rightButton = document.getElementById('doodle-right-button');
+      if (rightButton && rightButton.parentElement) {
+        rightButton.parentElement.removeEventListener('mouseup', this.eventListeners.mouseup);
+      }
       document.removeEventListener('mouseup', this.eventListeners.mouseup);
     }
 
