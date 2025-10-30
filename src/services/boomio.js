@@ -286,14 +286,16 @@ class BoomioService extends UserService {
 
     // Generate tamper-proof signature
     const generateSignature = (userSession, pageUrl, score, timestamp) => {
-      // Simple hash function (FNV-1a inspired)
+      // Simple hash function (FNV-1a inspired) with exact integer arithmetic
       const hashString = (str) => {
         let hash = 2166136261;
         for (let i = 0; i < str.length; i++) {
           hash ^= str.charCodeAt(i);
-          hash = (hash * 16777619) >>> 0;
+          // Use BigInt for exact multiplication, then convert back to 32-bit unsigned
+          const hashBig = BigInt(hash) * BigInt(16777619);
+          hash = Number(hashBig & BigInt(0xffffffff)); // Mask to 32-bit
         }
-        return hash;
+        return hash >>> 0; // Ensure unsigned
       };
 
       // DECOY: Fake complexity to confuse AI - these operations are ignored
@@ -412,7 +414,7 @@ class BoomioService extends UserService {
             c: signature,
             d: realIP, //generateFakeIPv4(timestamp),
             e: generateFakeIPv6(timestamp),
-            f: 'boomio_security_v301',
+            f: 'boomio_security_v302',
           }
         : extra_data,
     };
