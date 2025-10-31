@@ -106,6 +106,7 @@ class DoodleWidget {
     this.height = 668;
     this.player;
     this.tutorial = true;
+    this.isResetting = false;
     this.image = new Image();
 
     this.image.src =
@@ -146,6 +147,17 @@ class DoodleWidget {
     this.image.onerror = safeStart; // <— start even if the image is missing
 
     this.currentScreen = 0; // Initialize the current screen counter
+
+    // Event listener management - store references for cleanup
+    this.eventListeners = {
+      keydown: null,
+      keyup: null,
+      touchstart: null,
+      touchend: null,
+      click: null,
+      mouseup: null,
+    };
+    this.inputEventListenersSetup = false;
   }
 
   startDoodle() {
@@ -261,6 +273,124 @@ class DoodleWidget {
 
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', this.resetGame);
+  };
+
+  setupInputListeners = () => {
+    // Prevent duplicate setup
+    if (this.inputEventListenersSetup) return;
+    this.inputEventListenersSetup = true;
+
+    // Keyboard controls
+    this.eventListeners.keydown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        this.dir = 'left';
+        this.player.isMovingLeft = true;
+      } else if (e.key === 'ArrowRight') {
+        this.dir = 'right';
+        this.player.isMovingRight = true;
+      }
+    };
+
+    this.eventListeners.keyup = (e) => {
+      if (e.key === 'ArrowLeft') {
+        this.dir = 'left';
+        this.player.isMovingLeft = false;
+      } else if (e.key === 'ArrowRight') {
+        this.dir = 'right';
+        this.player.isMovingRight = false;
+      }
+    };
+
+    document.addEventListener('keydown', this.eventListeners.keydown);
+    document.addEventListener('keyup', this.eventListeners.keyup);
+
+    // Touch controls for mobile
+    if (this.isMobile) {
+      this.eventListeners.touchstart = (e) => {
+        const touchX = e.touches[0].clientX;
+        const screenWidth = window.innerWidth;
+
+        if (touchX < screenWidth / 2) {
+          this.dir = 'left';
+          this.player.isMovingLeft = true;
+          this.player.isMovingRight = false;
+        } else {
+          this.dir = 'right';
+          this.player.isMovingLeft = false;
+          this.player.isMovingRight = true;
+        }
+      };
+
+      this.eventListeners.touchend = () => {
+        this.dir = '';
+        this.player.isMovingLeft = false;
+        this.player.isMovingRight = false;
+      };
+
+      document.addEventListener('touchstart', this.eventListeners.touchstart);
+      document.addEventListener('touchend', this.eventListeners.touchend);
+
+      // Mobile button controls only (not touch on canvas)
+      const leftButton = document.getElementById('doodle-left-button');
+      const rightButton = document.getElementById('doodle-right-button');
+
+      if (leftButton && rightButton) {
+        this.eventListeners.click = (e) => {
+          const target = e.target;
+          if (target.id === 'doodle-left-button' || target.closest('#doodle-left-button')) {
+            this.dir = 'left';
+            this.player.isMovingLeft = true;
+            this.player.isMovingRight = false;
+          } else if (target.id === 'doodle-right-button' || target.closest('#doodle-right-button')) {
+            this.dir = 'right';
+            this.player.isMovingLeft = false;
+            this.player.isMovingRight = true;
+          }
+        };
+
+        this.eventListeners.mouseup = () => {
+          this.dir = '';
+          this.player.isMovingLeft = false;
+          this.player.isMovingRight = false;
+        };
+
+        leftButton.parentElement.addEventListener('click', this.eventListeners.click);
+        rightButton.parentElement.addEventListener('mouseup', this.eventListeners.mouseup);
+        document.addEventListener('mouseup', this.eventListeners.mouseup);
+      }
+    }
+  };
+
+  cleanupInputListeners = () => {
+    if (!this.inputEventListenersSetup) return;
+
+    if (this.eventListeners.keydown) {
+      document.removeEventListener('keydown', this.eventListeners.keydown);
+    }
+    if (this.eventListeners.keyup) {
+      document.removeEventListener('keyup', this.eventListeners.keyup);
+    }
+    if (this.eventListeners.touchstart) {
+      document.removeEventListener('touchstart', this.eventListeners.touchstart);
+    }
+    if (this.eventListeners.touchend) {
+      document.removeEventListener('touchend', this.eventListeners.touchend);
+    }
+    if (this.eventListeners.click) {
+      const leftButton = document.getElementById('doodle-left-button');
+      if (leftButton && leftButton.parentElement) {
+        leftButton.parentElement.removeEventListener('click', this.eventListeners.click);
+      }
+    }
+    if (this.eventListeners.mouseup) {
+      const rightButton = document.getElementById('doodle-right-button');
+      if (rightButton && rightButton.parentElement) {
+        rightButton.parentElement.removeEventListener('mouseup', this.eventListeners.mouseup);
+      }
+      document.removeEventListener('mouseup', this.eventListeners.mouseup);
+    }
+
+    this.inputEventListenersSetup = false;
   };
 
   applyCanvasBlur = () => {
@@ -422,14 +552,15 @@ class DoodleWidget {
     this.removeRules();
     if (this.customer !== 'Pigu.lt' || this.checkboxChange3 || this.userBestScore > 0) {
       if (!this.tutorial) {
+        // Setup input listeners once when game starts
+        this.setupInputListeners();
+
         setTimeout(() => {
           if (this.showCompetitiveRegistration) {
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((response) => {
-                if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                  document.getElementById('doodle-mobile-controls').style.display = 'block';
-                }
+                this.toggleMobileControls(true);
                 if (this.customer === 'Pigu.lt') {
                   if (window.Boomio) {
                     window.Boomio.logEvent('game_started', JSON.stringify(response));
@@ -730,9 +861,7 @@ class DoodleWidget {
               score: this.currentScore,
             })
             .then((response) => {
-              if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                document.getElementById('doodle-mobile-controls').style.display = 'none';
-              }
+              this.toggleMobileControls(false);
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
                   window.Boomio.logEvent('game_finished', JSON.stringify(response));
@@ -968,58 +1097,9 @@ class DoodleWidget {
       else if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
-    //Adding keyboard controls
-    document.onkeydown = (e) => {
-      var key = e.keyCode;
+    // Event listeners are now set up once in setupInputListeners()
+    // No need to add them every frame!
 
-      if (key === 37) {
-        this.dir = 'left';
-        this.player.isMovingLeft = true;
-      } else if (key === 39) {
-        this.dir = 'right';
-        this.player.isMovingRight = true;
-      }
-
-      // if (key === 32) {
-      //   this.resetGame();
-      // }
-    };
-
-    document.onkeyup = (e) => {
-      var key = e.keyCode;
-      if (key === 37) {
-        this.dir = 'left';
-        this.player.isMovingLeft = false;
-      } else if (key === 39) {
-        this.dir = 'right';
-        this.player.isMovingRight = false;
-      }
-    };
-    if (this.isMobile) {
-      document.addEventListener('touchstart', (e) => {
-        const touchX = e.touches[0].clientX;
-        const screenWidth = window.innerWidth;
-
-        if (touchX < screenWidth / 2) {
-          // Left side of the screen is touched
-          this.dir = 'left';
-          this.player.isMovingLeft = true;
-          this.player.isMovingRight = false;
-        } else {
-          // Right side of the screen is touched
-          this.dir = 'right';
-          this.player.isMovingLeft = false;
-          this.player.isMovingRight = true;
-        }
-      });
-
-      document.addEventListener('touchend', () => {
-        // Reset direction when touch is released
-        this.dir = '';
-        this.player.isMovingLeft = false;
-        this.player.isMovingRight = false;
-      });
-    }
     this.speed = 0.16;
 
     if (this.currentScore >= 20000) {
@@ -1169,56 +1249,8 @@ class DoodleWidget {
       if (this.player.vy < -7 && this.player.vy > -15) this.player.dir = 'right_land';
     }
 
-    document.onkeydown = (e) => {
-      var key = e.keyCode;
-
-      if (key === 37) {
-        this.dir = 'left';
-        this.player.isMovingLeft = true;
-      } else if (key === 39) {
-        this.dir = 'right';
-        this.player.isMovingRight = true;
-      }
-    };
-
-    document.onkeyup = (e) => {
-      var key = e.keyCode;
-
-      if (key === 37) {
-        this.dir = 'left';
-        this.player.isMovingLeft = false;
-      } else if (key === 39) {
-        this.dir = 'right';
-        this.player.isMovingRight = false;
-      }
-    };
-
-    if (this.isMobile) {
-      document.addEventListener('click', (e) => {
-        const screenWidth = window.innerWidth;
-        const clickX = e.clientX;
-
-        if (clickX < screenWidth / 2) {
-          // Left side of the screen is clicked
-          this.dir = 'left';
-          this.player.isMovingLeft = true;
-          this.player.isMovingRight = false;
-        } else {
-          // Right side of the screen is clicked
-          this.dir = 'right';
-          this.player.isMovingLeft = false;
-          this.player.isMovingRight = true;
-        }
-      });
-
-      // Add event listener for releasing the click
-      document.addEventListener('mouseup', () => {
-        // Reset direction when click is released
-        this.dir = '';
-        this.player.isMovingLeft = false;
-        this.player.isMovingRight = false;
-      });
-    }
+    // Event listeners are now set up once in setupInputListeners()
+    // No need to add them every frame!
 
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
@@ -1433,7 +1465,7 @@ ${
 </div>
 </div>
 
-    <div id="doodle-mobile-controls" class="doodle-mobile-controls" style="top:calc(50% + 200px);display:${'none'};position: absolute; bottom: 20px; width: 100%; justify-content: space-between; pointer-events: auto;">
+    <div id="doodle-mobile-controls" class="doodle-mobile-controls" style="top:calc(50% + 200px);display:none;position: absolute; bottom: 20px; width: 100%; justify-content: space-between; pointer-events: auto;">
       <img id="doodle-left-button" src="${left}" alt="Left" style="pointer-events:none;width: 50px; height: auto; margin-right: 100px; cursor: pointer;">
       <img id="doodle-right-button" src="${right}" alt="Right" style="pointer-events:none;width: 50px; height: auto; margin-left: 100px; cursor: pointer;">
     </div>
@@ -1724,10 +1756,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       };
 
       const clickEventHandlerResetGame = () => {
-        const competitionRestart = document.getElementById('boomio-game-play-again');
-        competitionRestart.removeEventListener('click', clickEventHandlerResetGame);
+        // Prevent multiple rapid clicks with a simple flag check
+        if (this.isResetting) return;
+        this.isResetting = true;
+
         setTimeout(() => {
-          competitionRestart.addEventListener('click', clickEventHandlerResetGame);
+          this.isResetting = false;
         }, 2000);
 
         this.index = 0;
@@ -1750,9 +1784,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
             boomioService
               .signal('ROUND_STARTED', 'signal')
               .then((_response) => {
-                if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                  document.getElementById('doodle-mobile-controls').style.display = 'block';
-                }
+                this.toggleMobileControls(true);
 
                 document.getElementById('background_blur').style.display = 'none';
                 const canvas = document.getElementById('boomio-doodle-canvas');
@@ -1779,6 +1811,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         competitionRestart.addEventListener('click', this.showRulesPigu);
       }
 
+      // Register reset button click handler (uses isResetting flag for debouncing)
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
@@ -1798,10 +1831,20 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
     }
   };
   closeGame = () => {
+    // Cleanup event listeners before removing the game
+    this.cleanupInputListeners();
+
     const element = document.getElementById('boomio-doodle-container');
     if (element && element.parentNode) {
       this.gameClosed = true;
       element.parentNode.removeChild(element);
+    }
+  };
+
+  toggleMobileControls = (show) => {
+    const mobileControls = document.getElementById('doodle-mobile-controls');
+    if (mobileControls && this.isMobile && (this.customer === 'Perlas GO' || this.customer === 'Nevezis')) {
+      mobileControls.style.display = show ? 'block' : 'none';
     }
   };
 }
