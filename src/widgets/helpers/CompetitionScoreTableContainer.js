@@ -1086,8 +1086,10 @@ export class CompetitionScoreTableContainer {
         }</div>
       </div>
 
-      <div id="boomio-logo" style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain;background-repeat:no-repeat;">
-      </div>
+      <a href="https://boomio.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; cursor: pointer;">
+        <div id="boomio-logo" style="left:calc(50% - 40px);width:78px;top:625px;position:absolute;margin-top:5px;height: 22px; background: url(${boomioLogo}); justify-content: center; align-items: center; display: flex;background-size: contain;background-repeat:no-repeat;">
+        </div>
+      </a>
     </div>`;
     this.containerDiv = containerDiv;
 
