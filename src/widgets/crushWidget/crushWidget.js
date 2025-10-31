@@ -122,7 +122,6 @@ import {
   crushElement5Apranga,
   crushElement6Apranga,
   crushElement7Apranga,
-  crushElement8Apranga,
   crushElement1AprangaSpecial,
   crushElement2AprangaSpecial,
   crushElement3AprangaSpecial,
@@ -130,7 +129,6 @@ import {
   crushElement5AprangaSpecial,
   crushElement6AprangaSpecial,
   crushElement7AprangaSpecial,
-  crushElement8AprangaSpecial,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -213,7 +211,6 @@ class CrushGame {
                 crushElement5Apranga,
                 crushElement6Apranga,
                 crushElement7Apranga,
-                crushElement8Apranga,
               }
             : this.customer === 'Toni'
               ? {
@@ -659,7 +656,6 @@ class CrushGame {
                   crushElement5AprangaSpecial,
                   crushElement6AprangaSpecial,
                   crushElement7AprangaSpecial,
-                  crushElement8AprangaSpecial,
                 }
               : this.customer?.includes('Glass')
                 ? {
