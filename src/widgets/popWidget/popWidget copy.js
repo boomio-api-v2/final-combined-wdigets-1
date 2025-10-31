@@ -191,9 +191,6 @@ class PopGame {
               score: this.currentScore,
             })
             .then((response) => {
-              if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                document.getElementById('crush-mobile-controls').style.display = 'none';
-              }
               if (this.customer === 'Pigu.lt') {
                 if (window.Boomio) {
                   window.Boomio.logEvent('game_finished', JSON.stringify(response));
