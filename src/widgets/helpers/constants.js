@@ -12,7 +12,7 @@ export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const inputBackground = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/flappyWidget/inputBackgroundGray.png';
 
-export const boomioLogo = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/PoweredByboomioLogo.png';
+export const boomioLogo = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/PoweredByboomioLogo.png';
 
 export const item1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/GamtosAteitisPlastic/items/item1.png';
 
