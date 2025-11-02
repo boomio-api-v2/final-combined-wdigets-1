@@ -100,7 +100,8 @@ export class CompetitionScoreTableContainer {
   updateVisuals() {
     if (!this.containerDiv) return;
     const scoreboard = this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? this.scoreTable?.teams_scoreboard : this.scoreTable?.scoreboard || [];
-    const userBestPlace = Number(this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? this.scoreTable.team_best_place : this.scoreTable?.user_best_place) || 0;
+    //const userBestPlace = Number(this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? this.scoreTable.team_best_place : this.scoreTable?.user_best_place) || 0;
+    const userBestPlace = Number(this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? -1 : this.scoreTable?.user_best_place) || 0;
     const userBestScore = Number(this.scoreTable?.user_best_score) || 0;
     this.userParticipationDays = this.scoreTable?.participation_days ?? 0; // nullish-coalescing
 
@@ -520,7 +521,9 @@ export class CompetitionScoreTableContainer {
                       : this.language === 'ES'
                         ? esNicknames[index]
                         : ltNicknames[index]
-          : scoreboard[index].team
+          : this.prop.includes('Gamtos Ateitis')
+            ? 'MOKYKLA ' + (index + 1)
+            : scoreboard[index].team
       }
     </td>
               <td style="width: 48px; color: ${color}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${
