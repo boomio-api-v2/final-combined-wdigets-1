@@ -1,3 +1,13 @@
+/**
+ * Translation service for multi-language support.
+ *
+ * IMPORTANT: Always keep language codes sorted alphabetically (EN, ES, ET, FI, LT, LV, RU, etc.)
+ * within each translation key to maintain consistency and readability.
+ *
+ * @param {string} key - Translation key to look up
+ * @param {string} lang - Language code (default: 'EN')
+ * @returns {string} Translated text or key name as fallback
+ */
 export function t(key, lang = 'EN') {
   const dict = translations[key];
   if (!dict) return key; // fallback to key name
@@ -8,66 +18,84 @@ export function t(key, lang = 'EN') {
 const translations = {
   copiedMsg: {
     EN: 'Link copied!',
-    LT: 'Nuoroda nukopijuota!',
-    LV: 'Saite nokopēta!',
     ET: 'Link kopeeritud!',
     FI: 'Linkki kopioitu!',
+    LT: 'Nuoroda nukopijuota!',
+    LV: 'Saite nokopēta!',
     RU: 'Ссылка скопирована!',
   },
   close: {
     EN: 'Close',
-    LT: 'Uždaryti',
-    LV: 'Aizvērt',
     ET: 'Sulge',
     FI: 'Sulje',
+    LT: 'Uždaryti',
+    LV: 'Aizvērt',
     RU: 'Закрыть',
   },
   copy: {
     EN: 'Copy link',
-    LT: 'Kopijuoti nuorodą',
-    LV: 'Kopēt saiti',
     ET: 'Kopeeri link',
     FI: 'Kopioi linkki',
+    LT: 'Kopijuoti nuorodą',
+    LV: 'Kopēt saiti',
     RU: 'Скопировать ссылку',
   },
   shareTitle: {
     EN: 'Try this game!',
-    LT: 'Išbandyk šį žaidimą!',
-    LV: 'Izmēģini šo spēli!',
     ET: 'Proovi seda mängu!',
     FI: 'Kokeile tätä peliä!',
+    LT: 'Išbandyk šį žaidimą!',
+    LV: 'Izmēģini šo spēli!',
     RU: 'Попробуй эту игру!',
   },
   shareText: {
     EN: 'Dive into a fun game and win great prizes!',
-    LT: 'Pasinerk į smagų žaidimą ir laimėk puikių prizų!',
-    LV: 'Ienirsti jautrā spēlē un laimē lieliskas balvas!',
     ET: 'Sukeldu lõbusasse mängu ja võida vahvaid auhindu!',
     FI: 'Sukella hauskaan peliin ja voita mahtavia palkintoja!',
+    LT: 'Pasinerk į smagų žaidimą ir laimėk puikių prizų!',
+    LV: 'Ienirsti jautrā spēlē un laimē lieliskas balvas!',
     RU: 'Погрузись в увлекательную игру и выиграй классные призы!',
   },
   controlLeftCatch: {
     EN: 'CLICK',
+    ES: 'CLIC',
     LT: 'SPUST',
     LV: 'PA KREISI',
     RU: 'НАЛЕВО',
-    ES: 'CLIC',
   },
   controlRightCatch: {
     EN: 'CLICK',
+    ES: 'CLIC',
     LT: 'SPUST',
     LV: 'PA LABI',
     RU: 'НАПРАВО',
-    ES: 'CLIC',
   },
   controlTapDoodle: {
     EN: 'TAP',
-    LT: 'KLIK',
-    LV: 'BAKSTI',
+    ES: 'CLIC',
     ET: 'TÄPI',
     FI: 'Napautua',
+    LT: 'KLIK',
+    LV: 'BAKSTI',
     RU: 'ТЫКАЙ',
-    ES: 'CLIC',
+  },
+  controlDriveSwipeLeft: {
+    EN: 'swipe',
+    ES: 'DESLIZA',
+    ET: 'LIBISTA',
+    FI: 'PYYHKÄISE',
+    LT: 'Brūkšt',
+    LV: 'Pakustini,',
+    RU: 'ПРОВЕДИ ',
+  },
+  controlDriveSwipeRight: {
+    EN: 'swipe',
+    ES: 'DESLIZA',
+    ET: 'LIBISTA',
+    FI: 'PYYHKÄISE',
+    LT: 'Brūkšt',
+    LV: 'lai sāktu',
+    RU: 'ПРОВЕДИ ',
   },
 };
 
