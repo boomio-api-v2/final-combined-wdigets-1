@@ -114,6 +114,21 @@ import {
   crushElement5GamtosAteitisPlasticSpecial,
   crushElement6GamtosAteitisPlasticSpecial,
   crushElement7GamtosAteitisPlasticSpecial,
+  backgroundApranga,
+  crushElement1Apranga,
+  crushElement2Apranga,
+  crushElement3Apranga,
+  crushElement4Apranga,
+  crushElement5Apranga,
+  crushElement6Apranga,
+  crushElement7Apranga,
+  crushElement1AprangaSpecial,
+  crushElement2AprangaSpecial,
+  crushElement3AprangaSpecial,
+  crushElement4AprangaSpecial,
+  crushElement5AprangaSpecial,
+  crushElement6AprangaSpecial,
+  crushElement7AprangaSpecial,
 } from './constants';
 import { widgetHtmlService, localStorageService, boomioService } from '@/services';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -125,6 +140,32 @@ import { Elements } from '../helpers/HtmlElementsHelper';
 import { CitySchoolSelect } from '../helpers/CitySchoolSelect';
 
 import './styles.css';
+
+// Helper function to generate array of color keys
+const createColorKeys = (prefix, count, suffix = '') => Array.from({ length: count }, (_, i) => `${prefix}${i + 1}${suffix}`);
+
+// Helper function to get brand color based on customer
+const getBrandColor = (customer) => {
+  if (customer === 'Toni') return '#262B8C';
+  if (customer === 'Apranga') return '#2D2D2D';
+  if (customer?.includes('Glass')) return '#18904A';
+  if (customer?.includes('Plastic')) return '#FBCA00';
+  if (customer?.includes('Paper')) return '#488DB0';
+  return '#E1251B'; // Default: Nevezis/Pigu.lt/Zemaitijos Pienas
+};
+
+// Helper function to get background image based on customer
+const getBackground = (customer) => {
+  if (customer === 'Pigu.lt') return backgroundPigu;
+  if (customer === 'Zemaitijos Pienas') return backgroundZemaitijosPienas;
+  if (customer === 'Apranga') return backgroundApranga;
+  if (customer === 'Toni') return backgroundToni;
+  if (customer === 'Nevezis') return backgroundNevezis;
+  if (customer?.includes('Paper')) return backgroundGamtosAteitisPaper;
+  if (customer?.includes('Plastic')) return backgroundGamtosAteitisPlastic;
+  if (customer?.includes('Glass')) return backgroundGamtosAteitisGlass;
+  return ''; // Default
+};
 
 class CrushGame {
   constructor() {
@@ -161,55 +202,65 @@ class CrushGame {
               crushElement6ZemaitijosPienas,
               crushElement7ZemaitijosPienas,
             }
-          : this.customer === 'Toni'
+          : this.customer === 'Apranga'
             ? {
-                crushElement1Toni,
-                crushElement2Toni,
-                crushElement3Toni,
-                crushElement4Toni,
-                crushElement5Toni,
-                crushElement6Toni,
-                crushElement7Toni,
+                crushElement1Apranga,
+                crushElement2Apranga,
+                crushElement3Apranga,
+                crushElement4Apranga,
+                crushElement5Apranga,
+                crushElement6Apranga,
+                crushElement7Apranga,
               }
-            : this.customer?.includes('Glass')
+            : this.customer === 'Toni'
               ? {
-                  crushElement1GamtosAteitisGlass,
-                  crushElement2GamtosAteitisGlass,
-                  crushElement3GamtosAteitisGlass,
-                  crushElement4GamtosAteitisGlass,
-                  crushElement5GamtosAteitisGlass,
-                  crushElement6GamtosAteitisGlass,
-                  crushElement7GamtosAteitisGlass,
+                  crushElement1Toni,
+                  crushElement2Toni,
+                  crushElement3Toni,
+                  crushElement4Toni,
+                  crushElement5Toni,
+                  crushElement6Toni,
+                  crushElement7Toni,
                 }
-              : this.customer?.includes('Paper')
+              : this.customer?.includes('Glass')
                 ? {
-                    crushElement1GamtosAteitisPaper,
-                    crushElement2GamtosAteitisPaper,
-                    crushElement3GamtosAteitisPaper,
-                    crushElement4GamtosAteitisPaper,
-                    crushElement5GamtosAteitisPaper,
-                    crushElement6GamtosAteitisPaper,
-                    crushElement7GamtosAteitisPaper,
+                    crushElement1GamtosAteitisGlass,
+                    crushElement2GamtosAteitisGlass,
+                    crushElement3GamtosAteitisGlass,
+                    crushElement4GamtosAteitisGlass,
+                    crushElement5GamtosAteitisGlass,
+                    crushElement6GamtosAteitisGlass,
+                    crushElement7GamtosAteitisGlass,
                   }
-                : this.customer?.includes('Plastic')
+                : this.customer?.includes('Paper')
                   ? {
-                      crushElement1GamtosAteitisPlastic,
-                      crushElement2GamtosAteitisPlastic,
-                      crushElement3GamtosAteitisPlastic,
-                      crushElement4GamtosAteitisPlastic,
-                      crushElement5GamtosAteitisPlastic,
-                      crushElement6GamtosAteitisPlastic,
-                      crushElement7GamtosAteitisPlastic,
+                      crushElement1GamtosAteitisPaper,
+                      crushElement2GamtosAteitisPaper,
+                      crushElement3GamtosAteitisPaper,
+                      crushElement4GamtosAteitisPaper,
+                      crushElement5GamtosAteitisPaper,
+                      crushElement6GamtosAteitisPaper,
+                      crushElement7GamtosAteitisPaper,
                     }
-                  : {
-                      crushElement1Nevezis,
-                      crushElement2Nevezis,
-                      crushElement3Nevezis,
-                      crushElement4Nevezis,
-                      crushElement5Nevezis,
-                      crushElement6Nevezis,
-                      crushElement7Nevezis,
-                    };
+                  : this.customer?.includes('Plastic')
+                    ? {
+                        crushElement1GamtosAteitisPlastic,
+                        crushElement2GamtosAteitisPlastic,
+                        crushElement3GamtosAteitisPlastic,
+                        crushElement4GamtosAteitisPlastic,
+                        crushElement5GamtosAteitisPlastic,
+                        crushElement6GamtosAteitisPlastic,
+                        crushElement7GamtosAteitisPlastic,
+                      }
+                    : {
+                        crushElement1Nevezis,
+                        crushElement2Nevezis,
+                        crushElement3Nevezis,
+                        crushElement4Nevezis,
+                        crushElement5Nevezis,
+                        crushElement6Nevezis,
+                        crushElement7Nevezis,
+                      };
     this.grid = [];
     this.selectedTile = null;
     this.images = {};
@@ -468,9 +519,6 @@ class CrushGame {
                 shared_somewhere: this.shareClicked,
               })
               .then((response) => {
-                if (this.customer === 'Perlas GO' && window.innerWidth <= 1280) {
-                  document.getElementById('crush-mobile-controls').style.display = 'none';
-                }
                 if (this.customer === 'Pigu.lt') {
                   if (window.Boomio) {
                     window.Boomio.logEvent('game_finished', JSON.stringify(response));
@@ -599,45 +647,55 @@ class CrushGame {
                 crushElement6ZemaitijosPienasSpecial,
                 crushElement7ZemaitijosPienasSpecial,
               }
-            : this.customer?.includes('Glass')
+            : this.customer === 'Apranga'
               ? {
-                  crushElement1GamtosAteitisGlassSpecial,
-                  crushElement2GamtosAteitisGlassSpecial,
-                  crushElement3GamtosAteitisGlassSpecial,
-                  crushElement4GamtosAteitisGlassSpecial,
-                  crushElement5GamtosAteitisGlassSpecial,
-                  crushElement6GamtosAteitisGlassSpecial,
-                  crushElement7GamtosAteitisGlassSpecial,
+                  crushElement1AprangaSpecial,
+                  crushElement2AprangaSpecial,
+                  crushElement3AprangaSpecial,
+                  crushElement4AprangaSpecial,
+                  crushElement5AprangaSpecial,
+                  crushElement6AprangaSpecial,
+                  crushElement7AprangaSpecial,
                 }
-              : this.customer?.includes('Paper')
+              : this.customer?.includes('Glass')
                 ? {
-                    crushElement1GamtosAteitisPaperSpecial,
-                    crushElement2GamtosAteitisPaperSpecial,
-                    crushElement3GamtosAteitisPaperSpecial,
-                    crushElement4GamtosAteitisPaperSpecial,
-                    crushElement5GamtosAteitisPaperSpecial,
-                    crushElement6GamtosAteitisPaperSpecial,
-                    crushElement7GamtosAteitisPaperSpecial,
+                    crushElement1GamtosAteitisGlassSpecial,
+                    crushElement2GamtosAteitisGlassSpecial,
+                    crushElement3GamtosAteitisGlassSpecial,
+                    crushElement4GamtosAteitisGlassSpecial,
+                    crushElement5GamtosAteitisGlassSpecial,
+                    crushElement6GamtosAteitisGlassSpecial,
+                    crushElement7GamtosAteitisGlassSpecial,
                   }
-                : this.customer?.includes('Plastic')
+                : this.customer?.includes('Paper')
                   ? {
-                      crushElement1GamtosAteitisPlasticSpecial,
-                      crushElement2GamtosAteitisPlasticSpecial,
-                      crushElement3GamtosAteitisPlasticSpecial,
-                      crushElement4GamtosAteitisPlasticSpecial,
-                      crushElement5GamtosAteitisPlasticSpecial,
-                      crushElement6GamtosAteitisPlasticSpecial,
-                      crushElement7GamtosAteitisPlasticSpecial,
+                      crushElement1GamtosAteitisPaperSpecial,
+                      crushElement2GamtosAteitisPaperSpecial,
+                      crushElement3GamtosAteitisPaperSpecial,
+                      crushElement4GamtosAteitisPaperSpecial,
+                      crushElement5GamtosAteitisPaperSpecial,
+                      crushElement6GamtosAteitisPaperSpecial,
+                      crushElement7GamtosAteitisPaperSpecial,
                     }
-                  : {
-                      crushElement1NevezisSpecial,
-                      crushElement2NevezisSpecial,
-                      crushElement3NevezisSpecial,
-                      crushElement4NevezisSpecial,
-                      crushElement5NevezisSpecial,
-                      crushElement6NevezisSpecial,
-                      crushElement7NevezisSpecial,
-                    };
+                  : this.customer?.includes('Plastic')
+                    ? {
+                        crushElement1GamtosAteitisPlasticSpecial,
+                        crushElement2GamtosAteitisPlasticSpecial,
+                        crushElement3GamtosAteitisPlasticSpecial,
+                        crushElement4GamtosAteitisPlasticSpecial,
+                        crushElement5GamtosAteitisPlasticSpecial,
+                        crushElement6GamtosAteitisPlasticSpecial,
+                        crushElement7GamtosAteitisPlasticSpecial,
+                      }
+                    : {
+                        crushElement1NevezisSpecial,
+                        crushElement2NevezisSpecial,
+                        crushElement3NevezisSpecial,
+                        crushElement4NevezisSpecial,
+                        crushElement5NevezisSpecial,
+                        crushElement6NevezisSpecial,
+                        crushElement7NevezisSpecial,
+                      };
     const specialKeys = Object.keys(specialSources);
 
     let loadedImages = 0;
@@ -765,9 +823,7 @@ ${`<div style="${
 
 
 <div class="boomio-time-input-container" style="top:calc(50% - 290px);box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;
-background:${
-      this.customer === 'Toni' ? '#262B8C' : this.customer?.includes('Glass') ? '#18904A' : this.customer?.includes('Plastic') ? '#FBCA00' : this.customer?.includes('Paper') ? '#488DB0' : '#E1251B'
-    };border-radius:35px">
+background:${getBrandColor(this.customer)};border-radius:35px">
 <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
@@ -777,9 +833,7 @@ background:${
 </div>
 </div>
 
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Toni' ? '#262B8C' : this.customer?.includes('Glass') ? '#18904A' : this.customer?.includes('Plastic') ? '#FBCA00' : this.customer?.includes('Paper') ? '#488DB0' : '#E1251B'
-    };border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(this.customer)};border-radius:35px">
     <div style="width: 1208px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -787,21 +841,7 @@ background:${
 </div>
 </div>
 
-<img src="${
-      this.customer === 'Pigu.lt'
-        ? backgroundPigu
-        : this.customer === 'Zemaitijos Pienas'
-          ? backgroundZemaitijosPienas
-          : this.customer === 'Toni'
-            ? backgroundToni
-            : this.customer?.includes('Paper')
-              ? backgroundGamtosAteitisPaper
-              : this.customer?.includes('Plastic')
-                ? backgroundGamtosAteitisPlastic
-                : this.customer?.includes('Glass')
-                  ? backgroundGamtosAteitisGlass
-                  : backgroundNevezis
-    }" 
+<img src="${getBackground(this.customer)}" 
      alt="Game Background"
      id="background_nevezis"
      style="z-index:0;
@@ -903,50 +943,22 @@ background:${
     // Only add 3Points if baseColor is allowed and not already special
     const threePointColors =
       this.customer === 'Pigu.lt'
-        ? ['crushElement1Pigu', 'crushElement2Pigu', 'crushElement3Pigu', 'crushElement4Pigu', 'crushElement5Pigu', 'crushElement6Pigu']
+        ? createColorKeys('crushElement', 6, 'Pigu')
         : this.customer === 'Zemaitijos Pienas'
-          ? [
-              'crushElement1ZemaitijosPienas',
-              'crushElement2ZemaitijosPienas',
-              'crushElement3ZemaitijosPienas',
-              'crushElement4ZemaitijosPienas',
-              'crushElement5ZemaitijosPienas',
-              'crushElement6ZemaitijosPienas',
-              'crushElement7ZemaitijosPienas',
-            ]
-          : this.customer?.includes('Glass')
-            ? [
-                'crushElement1GamtosAteitisGlass',
-                'crushElement2GamtosAteitisGlass',
-                'crushElement3GamtosAteitisGlass',
-                'crushElement4GamtosAteitisGlass',
-                'crushElement5GamtosAteitisGlass',
-                'crushElement6GamtosAteitisGlass',
-                'crushElement7GamtosAteitisGlass',
-              ]
-            : this.customer?.includes('Paper')
-              ? [
-                  'crushElement1GamtosAteitisPaper',
-                  'crushElement2GamtosAteitisPaper',
-                  'crushElement3GamtosAteitisPaper',
-                  'crushElement4GamtosAteitisPaper',
-                  'crushElement5GamtosAteitisPaper',
-                  'crushElement6GamtosAteitisPaper',
-                  'crushElement7GamtosAteitisPaper',
-                ]
-              : this.customer?.includes('Plastic')
-                ? [
-                    'crushElement1GamtosAteitisPlastic',
-                    'crushElement2GamtosAteitisPlastic',
-                    'crushElement3GamtosAteitisPlastic',
-                    'crushElement4GamtosAteitisPlastic',
-                    'crushElement5GamtosAteitisPlastic',
-                    'crushElement6GamtosAteitisPlastic',
-                    'crushElement7GamtosAteitisPlastic',
-                  ]
-                : this.customer === 'Toni'
-                  ? ['crushElement1Toni', 'crushElement2Toni', 'crushElement3Toni', 'crushElement4Toni', 'crushElement5Toni', 'crushElement6Toni', 'crushElement7Toni']
-                  : ['crushElement1Nevezis', 'crushElement2Nevezis', 'crushElement3Nevezis', 'crushElement4Nevezis', 'crushElement5Nevezis', 'crushElement6Nevezis', 'crushElement7Nevezis'];
+          ? createColorKeys('crushElement', 7, 'ZemaitijosPienas')
+          : this.customer === 'Apranga'
+            ? createColorKeys('crushElement', 8, 'Apranga')
+            : this.customer?.includes('Glass')
+              ? createColorKeys('crushElement', 7, 'GamtosAteitisGlass')
+              : this.customer?.includes('Paper')
+                ? createColorKeys('crushElement', 7, 'GamtosAteitisPaper')
+                : this.customer?.includes('Plastic')
+                  ? createColorKeys('crushElement', 7, 'GamtosAteitisPlastic')
+                  : this.customer === 'Toni'
+                    ? createColorKeys('crushElement', 7, 'Toni')
+                    : this.customer === 'Nevezis'
+                      ? createColorKeys('crushElement', 7, 'Nevezis')
+                      : [];
 
     if (Math.random() < 0.1 && threePointColors.includes(baseColor)) {
       return baseColor + '3Points';
@@ -1032,22 +1044,7 @@ background:${
         let newColor = this.getRandomColor();
         // With a 10% chance, convert it to its special variant.
         if (!newColor.includes('3Points') && Math.random() < 0.1) {
-          newColor =
-            newColor === 'yellow'
-              ? this.customer === 'Toni'
-                ? 'crushElement1ToniSpecial'
-                : this.customer === 'Zemaitijos Pienas'
-                  ? 'crushElement1ZemaitijosPienasSpecial'
-                  : this.customer === 'Pigu.lt'
-                    ? 'crushElement1PiguSpecial'
-                    : this.customer?.includes('Paper')
-                      ? 'crushElement1GamtosAteitisPaperSpecial'
-                      : this.customer?.includes('Plastic')
-                        ? 'crushElement1GamtosAteitisPlasticSpecial'
-                        : this.customer?.includes('Glass')
-                          ? 'crushElement1GamtosAteitisGlassSpecial'
-                          : 'crushElement1NevezisSpecial'
-              : newColor + 'Special';
+          newColor = newColor + 'Special';
         }
         newTilesMap[col].push(newColor);
         newFalling.push({
