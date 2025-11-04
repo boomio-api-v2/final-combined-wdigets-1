@@ -220,9 +220,6 @@ import {
   item9Pigu,
   item10Pigu,
   item11Pigu,
-  item12Pigu,
-  item13Pigu,
-  item14Pigu,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -252,6 +249,40 @@ const getBrandColor = (customer) => {
   if (customer?.includes('Plastic')) return '#FBCA00';
   if (customer?.includes('Paper')) return '#488DB0';
   return '#18904A'; // Default
+};
+
+const getBackground = (customer, language) => {
+  if (customer?.includes('Paper')) return backgroundGamtosAteitisPaper;
+  if (customer?.includes('Plastic')) return backgroundGamtosAteitis;
+  if (customer?.includes('Glass')) return backgroundGamtosAteitisGlass;
+  if (customer === 'Pieno Žvaigždės') return backgroundPienoZvaigzdes;
+  if (customer === 'Pegasas') return backgroundPegasas;
+  if (customer === 'Akropolis' && language === 'LT') return backgroundAkropolis;
+  if (customer === 'Akropolis' && (language === 'LV' || language === 'RU')) return backgroundAkropolisLV;
+  if (customer === 'Daumantu') return backgroundDaumantu;
+  if (customer === 'Zemaitijos Pienas') return backgroundDobilo;
+  if (customer === 'Toni') return backgroundToni;
+  if (customer === 'Orlen') return backgroundOrlen;
+  if (customer === 'Apranga') return backgroundApranga;
+  if (customer === 'Pigu.lt') return backgroundPigu;
+  return background; // Default
+};
+
+const getPlayer = (customer, language) => {
+  if (customer?.includes('Paper')) return playerGamtosAteitisPaper;
+  if (customer?.includes('Plastic')) return playerGamtosAteitis;
+  if (customer?.includes('Glass')) return playerGamtosAteitisGlass;
+  if (customer === 'Pieno Žvaigždės') return playerPienoZvaigzdes;
+  if (customer === 'Pegasas') return playerPegasas;
+  if (customer === 'Akropolis' && language === 'LT') return playerAkropolis;
+  if (customer === 'Akropolis' && (language === 'LV' || language === 'RU')) return playerAkropolisLV;
+  if (customer === 'Daumantu') return playerDaumantu;
+  if (customer === 'Zemaitijos Pienas') return playerDobilo;
+  if (customer === 'Toni') return playerToni;
+  if (customer === 'Orlen') return playerOrlen;
+  if (customer === 'Apranga') return playerApranga;
+  if (customer === 'Pigu.lt') return playerPigu;
+  return player; // Default
 };
 
 class CatchGame {
@@ -284,35 +315,7 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
 
-    this.canvas.style.background = `url(${
-      this.customer.includes('Paper')
-        ? backgroundGamtosAteitisPaper
-        : this.customer.includes('Plastic')
-          ? backgroundGamtosAteitis
-          : this.customer.includes('Glass')
-            ? backgroundGamtosAteitisGlass
-            : this.customer === 'Pieno Žvaigždės'
-              ? backgroundPienoZvaigzdes
-              : this.customer === 'Pegasas'
-                ? backgroundPegasas
-                : this.customer === 'Akropolis' && this.language === 'LT'
-                  ? backgroundAkropolis
-                  : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
-                    ? backgroundAkropolisLV
-                    : this.customer === 'Daumantu'
-                      ? backgroundDaumantu
-                      : this.customer === 'Zemaitijos Pienas'
-                        ? backgroundDobilo
-                        : this.customer === 'Toni'
-                          ? backgroundToni
-                          : this.customer === 'Orlen'
-                            ? backgroundOrlen
-                            : this.customer === 'Apranga'
-                              ? backgroundApranga
-                              : this.customer === 'Pigu.lt'
-                                ? backgroundPigu
-                                : background
-    }) center`;
+    this.canvas.style.background = `url(${getBackground(this.customer, this.language)}) center`;
 
     this.timer = null;
     this.highscore = 0;
@@ -672,7 +675,7 @@ class CatchGame {
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 674px;position:absolute;pointer-events: none; display:block;object-fit: cover;" id="background_intro">
 
-        <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
+        <img src=${'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/jumpEffect.gif?raw=true'} alt="Image Description" style="z-index:2;width:${
           document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
         }; height: 674px;position:absolute;pointer-events: none;clip-path: inset(0 0 50% 0); display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
     ${
@@ -1684,33 +1687,7 @@ class Player {
       this.y -= 20; // Move the player 20px higher if the customer is 'Daumantu'
     }
     this.playerImage = new Image();
-    this.playerImage.src = customer.includes('Paper')
-      ? playerGamtosAteitisPaper
-      : customer.includes('Plastic')
-        ? playerGamtosAteitis
-        : customer.includes('Glass')
-          ? playerGamtosAteitisGlass
-          : customer === 'Pieno Žvaigždės'
-            ? playerPienoZvaigzdes
-            : customer === 'Pegasas'
-              ? playerPegasas
-              : customer === 'Akropolis' && this.language === 'LT'
-                ? playerAkropolis
-                : customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
-                  ? playerAkropolisLV
-                  : customer === 'Daumantu'
-                    ? playerDaumantu
-                    : customer === 'Zemaitijos Pienas'
-                      ? playerDobilo
-                      : customer === 'Toni'
-                        ? playerToni
-                        : customer === 'Orlen'
-                          ? playerOrlen
-                          : customer === 'Apranga'
-                            ? playerApranga
-                            : customer === 'Pigu.lt'
-                              ? playerPigu
-                              : player;
+    this.playerImage.src = getPlayer(customer, this.language);
     this.defaultscore = defaultscore;
   }
 
@@ -1779,10 +1756,11 @@ class Fruit {
         this.fruitNumber = Math.floor(Math.random() * 12);
       }
     } else if (this.customer === 'Pigu.lt') {
+      const goodItemsCount = 7;
       if (type === 'bad') {
-        this.fruitNumber = 12 + Math.floor(Math.random() * 2); // 12..13
+        this.fruitNumber = goodItemsCount + Math.floor(Math.random() * 4); // 7..10 (4 bad images)
       } else {
-        this.fruitNumber = Math.floor(Math.random() * 12);
+        this.fruitNumber = Math.floor(Math.random() * goodItemsCount); // 0..6 (7 good images)
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
@@ -1931,214 +1909,15 @@ class Fruit {
         item14Apranga,
       ];
     } else if (this.customer === 'Pigu.lt') {
-      this.images = [item1Pigu, item2Pigu, item3Pigu, item4Pigu, item5Pigu, item6Pigu, item7Pigu, item8Pigu, item9Pigu, item10Pigu, item11Pigu, item12Pigu, item13Pigu, item14Pigu];
-    } else {
+      this.images = [item1Pigu, item2Pigu, item3Pigu, item4Pigu, item5Pigu, item6Pigu, item7Pigu, item8Pigu, item9Pigu, item10Pigu, item11Pigu];
+    } else if (this.customer === 'Pegasas') {
       // Default catch images if none of the above conditions are met
       this.images = [item1Pegasas, item2Pegasas, item3Pegasas, item4Pegasas, item5Pegasas, item6Pegasas, item7Pegasas, item8Pegasas, item9Pegasas, item10Pegasas];
     }
   }
 
   chooseFruit() {
-    if (this.customer && this.customer.includes('Plastic')) {
-      // Handle Gamtos Ateitis fruit types
-      this.fruitType = [
-        'item1',
-        'item4',
-        'item5',
-        'item6',
-        'item7',
-        'item8',
-        'item10',
-        'item12',
-        'item14',
-        'item16',
-        'item19',
-        'item20',
-        'item23',
-        'item2',
-        'item3',
-        'item9',
-        'item11',
-        'item13',
-        'item15',
-        'item17',
-        'item18',
-        'item21',
-        'item22',
-      ][this.fruitNumber];
-    } else if (this.customer && this.customer.includes('Paper')) {
-      // Handle Paper fruit types
-      this.fruitType = [
-        'item1Paper',
-        'item4Paper',
-        'item5Paper',
-        'item6Paper',
-        'item7Paper',
-        'item8Paper',
-        'item10Paper',
-        'item12Paper',
-        'item14Paper',
-        'item16Paper',
-        'item19Paper',
-        'item20Paper',
-        'item23Paper',
-        'item2Paper',
-        'item3Paper',
-        'item9Paper',
-        'item11Paper',
-        'item13Paper',
-        'item15Paper',
-        'item17Paper',
-        'item18Paper',
-        'item21Paper',
-        'item22Paper',
-      ][this.fruitNumber];
-    } else if (this.customer && this.customer.includes('Glass')) {
-      // Handle Glass fruit types
-      this.fruitType = [
-        'item1Glass',
-        'item4Glass',
-        'item5Glass',
-        'item6Glass',
-        'item7Glass',
-        'item8Glass',
-        'item10Glass',
-        'item12Glass',
-        'item14Glass',
-        'item16Glass',
-        'item19Glass',
-        'item20Glass',
-        'item23Glass',
-        'item2Glass',
-        'item3Glass',
-        'item9Glass',
-        'item11Glass',
-        'item13Glass',
-        'item15Glass',
-        'item17Glass',
-        'item18Glass',
-        'item21Glass',
-        'item22Glass',
-      ][this.fruitNumber];
-    } else if (this.customer === 'Pieno Žvaigždės') {
-      this.fruitType = [
-        'item1PienoZvaigzdes',
-        'item2PienoZvaigzdes',
-        'item3PienoZvaigzdes',
-        'item4PienoZvaigzdes',
-        'item5PienoZvaigzdes',
-        'item6PienoZvaigzdes',
-        'item7PienoZvaigzdes',
-        'item8PienoZvaigzdes',
-        'item9PienoZvaigzdes',
-        'item10PienoZvaigzdes',
-        'item11PienoZvaigzdes',
-        'item12PienoZvaigzdes',
-        'item13PienoZvaigzdes',
-        'item14PienoZvaigzdes',
-      ][this.fruitNumber];
-    } else if (this.customer === 'Akropolis' && this.language === 'LT') {
-      this.fruitType = [
-        'item1Akropolis',
-        'item2Akropolis',
-        'item3Akropolis',
-        'item4Akropolis',
-        'item5Akropolis',
-        'item6Akropolis',
-        'item7Akropolis',
-        'item8Akropolis',
-        'item9Akropolis',
-        'item10Akropolis',
-      ][this.fruitNumber];
-    } else if (this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')) {
-      this.fruitType = [
-        'item1AkropolisLV',
-        'item2AkropolisLV',
-        'item2AkropolisLV',
-        'item3AkropolisLV',
-        'item3AkropolisLV',
-        'item6Akropolis',
-        'item7Akropolis',
-        'item8Akropolis',
-        'item9Akropolis',
-        'item10Akropolis',
-      ][this.fruitNumber];
-    } else if (this.customer === 'Daumantu') {
-      this.fruitType = [
-        'item1Daumantu',
-        'item2Daumantu',
-        'item3Daumantu',
-        'item4Daumantu',
-        'item5Daumantu',
-        'item6Daumantu',
-        'item7Daumantu',
-        'item8Daumantu',
-        'item9Daumantu',
-        'item10Daumantu',
-        'item11Daumantu',
-        'item12Daumantu',
-        'item13Daumantu',
-      ][this.fruitNumber];
-    } else if (this.customer === 'Zemaitijos Pienas') {
-      this.fruitType = [
-        'item1Dobilo',
-        'item2Dobilo',
-        'item3Dobilo',
-        'item4Dobilo',
-        'item5Dobilo',
-        'item6Dobilo',
-        'item7Dobilo',
-        'item8Dobilo',
-        'item9Dobilo',
-        'item10Dobilo',
-        'item11Dobilo',
-        'item12Dobilo',
-        'item13Dobilo',
-      ][this.fruitNumber];
-    } else if (this.customer === 'Toni') {
-      this.fruitType = ['item1Toni', 'item2Toni', 'item3Toni', 'item4Toni', 'item5Toni', 'item6Toni', 'item7Toni', 'item8Toni', 'item9Toni', 'item10Toni'][this.fruitNumber];
-    } else if (this.customer === 'Orlen') {
-      this.fruitType = ['item1Orlen', 'item2Orlen', 'item3Orlen', 'item4Orlen', 'item5Orlen', 'item6Orlen', 'item7Orlen', 'item8Orlen', 'item9Orlen', 'item10Orlen'][this.fruitNumber];
-    } else if (this.customer === 'Apranga') {
-      this.fruitType = [
-        'item1Apranga',
-        'item2Apranga',
-        'item3Apranga',
-        'item4Apranga',
-        'item5Apranga',
-        'item6Apranga',
-        'item7Apranga',
-        'item8Apranga',
-        'item9Apranga',
-        'item10Apranga',
-        'item11Apranga',
-        'item12Apranga',
-        'item13Apranga',
-        'item14Apranga',
-      ][this.fruitNumber];
-    } else if (this.customer === 'Pigu.lt') {
-      this.fruitType = [
-        'item1Pigu',
-        'item2Pigu',
-        'item3Pigu',
-        'item4Pigu',
-        'item5Pigu',
-        'item6Pigu',
-        'item7Pigu',
-        'item8Pigu',
-        'item9Pigu',
-        'item10Pigu',
-        'item11Pigu',
-        'item12Pigu',
-        'item13Pigu',
-        'item14Pigu',
-      ][this.fruitNumber];
-    } else {
-      // Default catch fruit types if none of the above conditions are met
-      this.fruitType = ['item1Pegasas', 'item2Pegasas', 'item3Pegasas', 'item4Pegasas', 'item5Pegasas', 'item6Pegasas', 'item7Pegasas', 'item8Pegasas', 'item9Pegasas', 'item10Pegasas'][
-        this.fruitNumber
-      ];
-    }
+    this.fruitType = this.images[this.fruitNumber];
 
     if (this.customer.includes('Gamtos Ateitis')) {
       this.fruitScore = [-50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
@@ -2153,8 +1932,8 @@ class Fruit {
     } else if (this.customer === 'Apranga') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][this.fruitNumber];
     } else if (this.customer === 'Pigu.lt') {
-      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][this.fruitNumber];
-    } else {
+      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
+    } else if (this.customer === 'Pegasas') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
     this.fruitImage.src = this.images[this.fruitNumber];
@@ -2268,16 +2047,16 @@ class Fruit {
   updateScore() {
     if (this.fruitScore > 0) {
       // Update the current score
-      console.log(`Fruit caught: ${this.fruitType}, Score: ${this.fruitScore}`);
+      //console.log(`Fruit caught: ${this.fruitType}, Score: ${this.fruitScore}`);
 
-      if (this.fruitType === 'item2Toni') {
+      if (this.fruitType === item2Toni) {
         this.game.currentScore += this.fruitScore * 2;
       } else {
         this.game.currentScore += this.fruitScore;
       }
       document.getElementById('currentScore').innerHTML = `${this.game.currentScore}`;
 
-      if (this.fruitType === 'item2Toni') {
+      if (this.fruitType === item2Toni) {
         this.showScoreEffect('+200');
       } else {
         this.showScoreEffect('+100');
@@ -2354,24 +2133,7 @@ class Fruit {
   }
 
   changeState() {
-    this.fruitNumber = Math.floor(
-      Math.random() *
-        (this.customer.includes('Gamtos Ateitis')
-          ? 23
-          : this.customer === 'Pieno Žvaigždės'
-            ? 14
-            : this.customer === 'Akropolis'
-              ? 10
-              : this.customer === 'Daumantu' || this.customer === 'Zemaitijos Pienas'
-                ? 13
-                : this.customer === 'Orlen' || this.customer === 'Toni'
-                  ? 10
-                  : this.customer === 'Apranga'
-                    ? 14
-                    : this.customer === 'Pigu.lt'
-                      ? 14
-                      : 5),
-    );
+    this.fruitNumber = Math.floor(Math.random() * this.images.length);
 
     this.fruitSpeed = Math.floor(
       (Math.random() * 2 +
