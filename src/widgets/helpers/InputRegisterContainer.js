@@ -218,7 +218,7 @@ export class InputRegisterContainer {
                                                 : this.prop === 'Nykstukas'
                                                   ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
                                                   : this.prop === 'Nevezis'
-                                                    ? 'Sutinku gauti „OHO GROUP“ UAB naujienlaiškius.'
+                                                    ? 'Sutinku gauti OHO GROUP UAB naujienlaiškius.'
                                                     : this.prop === 'Toni'
                                                       ? 'Confirmo que soy mayor de 13 años.'
                                                       : this.prop === 'Magija'
@@ -348,7 +348,7 @@ export class InputRegisterContainer {
                                                                             : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
                                                                               ? 'Piekrītu LEMON GYM'
                                                                               : this.prop === 'Nevezis'
-                                                                                ? 'Sutinku su „OHO GROUP“ UAB'
+                                                                                ? 'Sutinku su OHO GROUP UAB'
                                                                                 : this.prop === 'Orlen'
                                                                                   ? 'Sutinku su „ORLEN“'
                                                                                   : this.prop === 'Apranga'

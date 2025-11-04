@@ -71,6 +71,23 @@ import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/Competiti
 import { ShareContainer } from '../helpers/ShareContainer';
 import { Elements } from '../helpers/HtmlElementsHelper';
 
+const getBackgroundBlurColor = (customer, language) => {
+  if (customer === 'Vilvi') return '#359BB9';
+  if (customer === 'Akropolis' && language === 'LV') return '#FE0000';
+  if (customer === 'Nevezis') return '#003319';
+  return null; // Return null if no color is set (will show image instead)
+};
+
+const getBrandColor = (customer, language) => {
+  if (customer === 'Vilvi') return '#45A2BF';
+  if (customer === 'Pigu.lt') return '#FD61FE';
+  if (customer === 'Perlas GO') return '#19AA82';
+  if (customer === 'Magija') return '#194898';
+  if (language === 'LV') return '#F40027';
+  if (customer === 'Toni') return '#000F9F';
+  return '#045222'; // Default color
+};
+
 //JumpUp Game Classes
 class DoodleWidget {
   static ctx;
@@ -1301,11 +1318,6 @@ class DoodleWidget {
   createContainer = () => {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
-    const playAgain = new Image();
-    playAgain.src = 'https://i.ibb.co/0Bqvttk/PLAY-AGAIN.png';
-
-    const okImage = new Image();
-    okImage.src = 'https://i.ibb.co/nL70YWF/OK.png';
 
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
@@ -1379,15 +1391,17 @@ id="background_intro">
         <img src=${jumpEffect} alt="Jump Effect" style="z-index:4;width:${
           document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
         }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
-${
-  (this.language === 'LV' && this.customer === 'Akropolis') || this.customer === 'Vilvi'
-    ? `<div alt="Image Description" style="z-index:1;width: ${
-        document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
-      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${this.customer === 'Vilvi' ? '#359BB9' : '#FE0000'}" id="background_blur"></div>`
-    : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-        document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
-      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
-}
+${(() => {
+  const blurColor = getBackgroundBlurColor(this.customer, this.language);
+  const widthStyle = document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px';
+  const commonStyles = `z-index:1;width: ${widthStyle}; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;`;
+
+  if (blurColor) {
+    return `<div id="background_blur" style="${commonStyles}background-color:${blurColor}"></div>`;
+  } else {
+    return `<img id="background_blur" src=${blurImage.src} alt="Blur image" style="${commonStyles}"></img>`;
+  }
+})()}
 
     <a href="https://www.barbora.lt/" style="position:absolute;margin-top:380px;margin-left:-340px">
     <img src="${useButton}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
@@ -1443,21 +1457,7 @@ ${
 </div>
 
 
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Vilvi'
-        ? '#45A2BF'
-        : this.customer === 'Pigu.lt'
-          ? '#FD61FE'
-          : this.customer === 'Perlas GO'
-            ? '#19AA82'
-            : this.customer === 'Magija'
-              ? '#194898'
-              : this.language === 'LV'
-                ? '#F40027'
-                : this.customer === 'Toni'
-                  ? '#000F9F'
-                  : '#045222'
-    };border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(this.customer, this.language)};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -1843,7 +1843,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
   toggleMobileControls = (show) => {
     const mobileControls = document.getElementById('doodle-mobile-controls');
-    if (mobileControls && this.isMobile && (this.customer === 'Perlas GO' || this.customer === 'Nevezis')) {
+    if (mobileControls && this.isMobile) {
       mobileControls.style.display = show ? 'block' : 'none';
     }
   };
