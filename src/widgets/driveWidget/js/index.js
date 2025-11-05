@@ -186,10 +186,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   let checkboxChange2 = false;
   let checkboxChange3 = false;
 
-  const isMobile = window.innerWidth <= 1280;
   const isMobileHeightSmall = window.innerHeight <= 600;
 
-  const customer = config.business_name ? config.business_name : 'Novaturas';
+  const customer = config.business_name;
 
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
@@ -1259,19 +1258,19 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         () => {
           document.getElementById('background_intro').style.transition = 'opacity 1s ease';
           document.getElementById('background_intro').style.opacity = 0;
-
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+          if (gameCount === 0) {
+            document.getElementById('background_blur').style.display = 'block';
+            document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+          }
           showRulesOrRegistration();
-          setTimeout(
-            () => {
-              document.getElementById('background_intro').style.display = 'none';
-              createHandlers(t);
-            },
-            customer === 'Novaturas' ? 1000 : 2000,
-          );
+
+          // Hide intro after fade completes (1000ms transition duration)
+          setTimeout(() => {
+            document.getElementById('background_intro').style.display = 'none';
+            createHandlers(t);
+          }, 1000);
         },
-        customer === 'Novaturas' ? 1000 : 2000,
+        customer === 'Toni' ? 0 : 2000,
       ); //intro speed
     }
     drawTitleScreen();
@@ -1294,7 +1293,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       setTimeout(async () => {
         const schoolInput = document.querySelector('.boomio-competition-school-select');
 
-        const emailValue = Elements.getEmailValue();
+        const emailInput = Elements.getEmailValue();
+        const nameInput = document.querySelector('.boomio-competition-name-input-field');
+        const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
+
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
 
@@ -1330,7 +1332,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           document.getElementById('competition-email-error').innerText = '';
           document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
         }
-        if (emailValue === '' || emailValue === null) {
+        if (!emailInput?.trim()) {
           document.getElementById('competition-email-error').innerText =
             language === 'LV'
               ? 'Lai turpinātu, obligāti jāaizpilda.'
@@ -1350,7 +1352,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           document.getElementById('competition-checkbox-error').innerText = '';
           document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
         }
-        if (customer === 'Orlen' && emailValue.length < 7) {
+        if (customer === 'Orlen' && emailInput.length < 7) {
           document.getElementById('competition-email-error').innerText = 'Neteisingas telefono numeris.';
           document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-name-error').innerText = '';
@@ -1368,11 +1370,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange2,
-              user_email: emailValue,
-              user_name: (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
+              user_email: Elements.isVisible(Elements.emailInput) && Elements.getEmailValue(),
+              user_name:
+                customer === 'Toni'
+                  ? nameInput?.value.trimEnd() + phoneInput?.value
+                  : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
               ...(customer === 'Gamtos Ateitis' && {
                 team: schoolInput.value,
               }),
+              ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
             })
             .then((response) => {
               if (response.success === false) {
@@ -1610,7 +1616,14 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         checkboxImgChange2.src = checkboxChange2 ? checkIcon : uncheckIcon;
       });
 
+      const phoneInputField = customer === 'Toni' ? document.getElementById('boomio-competition-email-input-field') : document.getElementById('boomio-competition-phone-input-field');
       const emailInput = document.querySelector('.boomio-competition-email-input-field');
+
+      if (phoneInputField) {
+        phoneInputField.addEventListener('input', (event) => {
+          event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+        });
+      }
 
       if (customer === 'Orlen' && emailInput) {
         emailInput.value = '+370';
@@ -2917,8 +2930,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   function showScoreEffect(score, showLife) {
     const canvas = document.getElementById('boomio-drive-canvas');
-    const x = window.innerWidth / 2 - 25;
-    const y = window.innerHeight / 2 + 50;
+    const canvasRect = canvas.getBoundingClientRect();
+    const x = canvasRect.left + canvasRect.width / 2 - 25;
+    const y = canvasRect.top + canvasRect.height / 2 + 50;
 
     const gameContainer = document.querySelector('.game-container');
 
@@ -3154,7 +3168,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     pointerState.down = true;
     pointerState.downAt = realTime;
     pointerState.upAt = null;
-    const xPercentage = pointerX / window.innerWidth;
+    const xPercentage = pointerX / width;
     const x = width * xPercentage;
     pointerState.x = x;
     pointerState.playerX = player.pos.x;
@@ -3170,7 +3184,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   }
 
   function pointerMove(pointerX) {
-    const xPercentage = pointerX / window.innerWidth;
+    const xPercentage = pointerX / width;
     const x = width * xPercentage;
 
     const diff = x - pointerState.x;
