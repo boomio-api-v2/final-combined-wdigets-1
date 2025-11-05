@@ -154,6 +154,26 @@ npm run lint           # Run ESLint
 - Geolocation path: if `restrictions.location_restrictions` present, `navigator.geolocation.getCurrentPosition` async gating occurs—new logic must remain inside the validation flow or deferred until after load.
 - Keep bundle size reasonable; use lazy loading only if you also adjust build (currently everything eagerly bundled).
 
+**Game Loop / Animation Best Practices**:
+
+- **Use `requestAnimationFrame` with framerate limiting**: For game widgets (e.g., doodleWidget), use timestamp-based framerate limiting instead of `setTimeout`. This provides more accurate timing than `setTimeout` (which can drift), uses browser-optimized animation loops, and ensures consistent physics across different refresh rates.
+- **Pattern**: 
+  ```js
+  gameLoop = (timestamp) => {
+    if (!this.lastFrameTime) this.lastFrameTime = timestamp;
+    const deltaTime = timestamp - this.lastFrameTime;
+    
+    // Only update if enough time has passed (e.g., 8.33ms for 120 FPS)
+    if (deltaTime >= 8.33) {
+      this.update();
+      this.lastFrameTime = timestamp;
+    }
+    
+    requestAnimationFrame(this.gameLoop);
+  };
+  ```
+- **Benefits**: Caps framerate (e.g., 120 FPS) so physics remain consistent, prevents players from moving too fast on high-refresh monitors (144Hz, 240Hz), and provides smoother timing than nested `setTimeout` + `requestAnimationFrame`.
+
 ### 8. Testing Guidance (Current State)
 
 - Jest configured with jsdom (`jest.config.js`), but few/no tests exist. If adding tests: place under `src/__tests__/`; mock localStorage & `fetch` as needed. Avoid introducing global side effects in test imports.
