@@ -176,7 +176,7 @@ export class InputRegisterContainer {
               : this.prop === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
                 ? '10px'
                 : '12px'
-        }; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'};font-weight: 400; word-wrap: break-word;text-align:start;">${
+        }; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'};font-weight: 400;  line-height: 14px; word-wrap: break-word;text-align:start;">${
           this.prop === 'Novaturas' && this.language === 'LT'
             ? 'Norint tęsti privaloma sutikti gauti įmonės naujienlaiškius.'
             : this.prop === 'Novaturas' && this.language === 'LV'
