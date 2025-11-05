@@ -157,18 +157,18 @@ npm run lint           # Run ESLint
 **Game Loop / Animation Best Practices**:
 
 - **Use `requestAnimationFrame` with framerate limiting**: For game widgets (e.g., doodleWidget), use timestamp-based framerate limiting instead of `setTimeout`. This provides more accurate timing than `setTimeout` (which can drift), uses browser-optimized animation loops, and ensures consistent physics across different refresh rates.
-- **Pattern**: 
+- **Pattern**:
   ```js
   gameLoop = (timestamp) => {
     if (!this.lastFrameTime) this.lastFrameTime = timestamp;
     const deltaTime = timestamp - this.lastFrameTime;
-    
+
     // Only update if enough time has passed (e.g., 8.33ms for 120 FPS)
     if (deltaTime >= 8.33) {
       this.update();
       this.lastFrameTime = timestamp;
     }
-    
+
     requestAnimationFrame(this.gameLoop);
   };
   ```
