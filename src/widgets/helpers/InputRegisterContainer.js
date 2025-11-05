@@ -238,14 +238,13 @@ export class InputRegisterContainer {
                                                                     : this.prop === 'Pigu.lt' && this.language === 'LT'
                                                                       ? 'Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.'
                                                                       : this.prop === 'Pigu.lt' && this.language === 'EN'
-                                                                        ? 'I have read and agree with game rules and instructions. '
+                                                                        ? 'I have read and agree with game rules and instructions.'
                                                                         : this.prop === 'Pigu.lt' && this.language === 'ET'
                                                                           ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
                                                                           : this.prop === 'Apranga'
                                                                             ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
                                                                             : 'Sutinku gauti naujienlaiškius.'
-        }
-    </div>
+        }</div>
       </div>
       
  <div class="boomio-privacyCheckbox3" id="boomio-privacyCheckbox3" style=";cursor:${
