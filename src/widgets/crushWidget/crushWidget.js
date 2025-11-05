@@ -758,7 +758,7 @@ class CrushGame {
         <img src=${close} alt="Close" style="width:100%;height:100%;pointer-events:none;"></img>
       </div>
            
-        ${new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML}
+        ${new InputRegisterContainer().createInputRegisterContainer().outerHTML}
           <img class="new_highscore_stars" src=${
             newHighscoreStarsImage.src
           } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
@@ -779,7 +779,7 @@ class CrushGame {
             </div>
         
         
-            ${new InputContainer(this.customer, 'crush').createInputContainerDiv('crush').outerHTML}
+            ${new InputContainer().createInputContainerDiv().outerHTML}
 
 
                 <div class="numbers">
@@ -880,7 +880,7 @@ background:${getBrandColor(this.customer)};border-radius:35px">
     if (this.customer === 'Nevezis' || this.customer.includes('Gamtos Ateitis')) {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      const didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
 
@@ -893,7 +893,7 @@ background:${getBrandColor(this.customer)};border-radius:35px">
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.shareContainer = new ShareContainer(this.customer);
+      this.shareContainer = new ShareContainer();
       gameContainer.appendChild(this.shareContainer.containerDiv);
     }
   }

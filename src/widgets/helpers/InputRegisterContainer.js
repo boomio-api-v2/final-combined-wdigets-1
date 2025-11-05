@@ -23,10 +23,10 @@ const privacyPolicytranslations = {
 };
 
 export class InputRegisterContainer {
-  constructor(prop) {
-    this.prop = prop; // Customer
+  constructor() {
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name;
     this.language = this.config.language;
     this.teams = this.config.teams;
   }
@@ -40,19 +40,19 @@ export class InputRegisterContainer {
     containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
     let privacyCheckboxChecked = false;
     let privacyCheckboxChecked2 = false;
-    this.teams = this.prop === 'Akropolis' ? ['Vilnius', 'Klaipėda', 'Šiauliai', 'Kaunas'] : this.config.teams;
+    this.teams = this.customer === 'Akropolis' ? ['Vilnius', 'Klaipėda', 'Šiauliai', 'Kaunas'] : this.config.teams;
 
     const options = Array.isArray(this.teams) ? this.teams : Object.keys(this.teams);
 
     containerDiv.innerHTML = `
-      <div style="height: ${this.prop === 'Toni' ? '0px' : '124px'}; top:${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '0px' : this.language !== 'LT' ? '70px' : '90px'
-      }; position: relative; text-align:${this.prop === 'Ikea' ? 'start' : 'center'} ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${this.isMobile ? '24px' : '26px'}; font-family: ${
-        this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-      }; font-weight: 700; text-transform: ${this.prop === 'Ikea' ? 'none' : 'uppercase'}; line-height: 32px; word-wrap: break-word">${
-        this.language === 'LV' && this.prop === 'Akropolis'
+      <div style="height: ${this.customer === 'Toni' ? '0px' : '124px'}; top:${
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '0px' : this.language !== 'LT' ? '70px' : '90px'
+      }; position: relative; text-align:${this.customer === 'Ikea' ? 'start' : 'center'} ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${this.isMobile ? '24px' : '26px'}; font-family: ${
+        this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+      }; font-weight: 700; text-transform: ${this.customer === 'Ikea' ? 'none' : 'uppercase'}; line-height: 32px; word-wrap: break-word">${
+        this.language === 'LV' && this.customer === 'Akropolis'
           ? 'REĢISTRĒJIES'
-          : this.prop === 'LemonFeel'
+          : this.customer === 'LemonFeel'
             ? 'REĢISTRĒJIES, LAI KRĀTU PUNKTUS'
             : this.language === 'LV'
               ? 'REĢISTRĒJIES SPĒLEI'
@@ -60,15 +60,15 @@ export class InputRegisterContainer {
                 ? 'ЗАРЕГИСТРИРОВАТЬСЯ ДЛЯ ИГРЫ'
                 : this.language === 'ET'
                   ? 'REGISTREERI MÄNGU'
-                  : this.prop === 'Fpro'
+                  : this.customer === 'Fpro'
                     ? 'REGISTER TO PLAY'
-                    : this.prop === 'Ikea'
+                    : this.customer === 'Ikea'
                       ? 'Registracija'
-                      : this.prop === 'Eurovaistine'
+                      : this.customer === 'Eurovaistine'
                         ? 'REĢISTRĒJIES'
-                        : this.prop === 'SaludSA'
+                        : this.customer === 'SaludSA'
                           ? 'REGÍSTRATE</br>PARA JUGAR'
-                          : this.prop === 'Apranga'
+                          : this.customer === 'Apranga'
                             ? 'REGISTRUOKITĖS ŽAISTI'
                             : this.language === 'EN'
                               ? 'Register to Play'
@@ -78,16 +78,16 @@ export class InputRegisterContainer {
                                   ? 'REKISTERÖIDY PELAAMAAN'
                                   : 'Registruokis Žaisti'
       }</div>
-          <div style="height: 124px; top:${this.prop === 'Toni' ? '60px' : '20px'}; position: relative; text-align:${
-            this.prop === 'Ikea' ? 'start' : 'center'
+          <div style="height: 124px; top:${this.customer === 'Toni' ? '60px' : '20px'}; position: relative; text-align:${
+            this.customer === 'Ikea' ? 'start' : 'center'
           } ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${'14px'}; font-family: ${'Georama'}; font-weight: 500;  line-height: 14px; word-wrap: break-word">${
-            this.prop.includes('Gamtos Ateitis')
+            this.customer.includes('Gamtos Ateitis')
               ? 'Jau registravaisi? Naudok tą patį el. paštą ir mokyklą bei</br> toliau gerink rezultatą!'
               : this.language === 'EN'
                 ? 'Already registered? Use the same email </br> and improve your result!'
                 : this.language === 'ES'
                   ? '¿Ya te registraste? Usa la misma información para mejorar tus resultados.'
-                  : this.prop === 'LemonFeel'
+                  : this.customer === 'LemonFeel'
                     ? 'Ievadi e-pastu, ko izmantoji, reģistrējoties LEMON FEEL </br> abonementam vai savam LEMON GYM profilam'
                     : this.language === 'LV'
                       ? ' Jau reģistrējies? Izmanto to pašu e-pastu  </br>un uzlabo savu rezultātu!'
@@ -101,9 +101,9 @@ export class InputRegisterContainer {
                               ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
                               : this.language === 'FI'
                                 ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
-                                : this.prop === 'Perlas GO'
+                                : this.customer === 'Perlas GO'
                                   ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
-                                  : this.prop === 'Orlen'
+                                  : this.customer === 'Orlen'
                                     ? 'Jau registravaisi? Naudok tą patį telefono numerį </br> toliau gerinant rezultatą!'
                                     : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
           } 
@@ -111,9 +111,9 @@ export class InputRegisterContainer {
       <div id="boomio-competition-confirm-field" disabled=${
         privacyCheckboxChecked ? true : false
       } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="text-align: center;font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};   color: ${
-          this.prop === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
-        } ; font-size: 24px;  font-weight: ${this.prop === 'Ikea' ? '400' : '700'}; line-height: 24px; word-wrap: break-word" >${
+        <div style="text-align: center;font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};   color: ${
+          this.customer === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
+        } ; font-size: 24px;  font-weight: ${this.customer === 'Ikea' ? '400' : '700'}; line-height: 24px; word-wrap: break-word" >${
           this.language === 'LV'
             ? 'TĀLĀK'
             : this.language === 'RU'
@@ -122,13 +122,13 @@ export class InputRegisterContainer {
                 ? 'EDASI'
                 : this.language === 'ES' || this.language === 'ET'
                   ? 'SIGUIENTE'
-                  : this.prop === 'Fpro'
+                  : this.customer === 'Fpro'
                     ? 'NEXT'
-                    : this.prop === 'SaludSA'
+                    : this.customer === 'SaludSA'
                       ? 'SIGUIENTE'
-                      : this.prop === 'Ikea'
+                      : this.customer === 'Ikea'
                         ? 'Toliau'
-                        : this.prop === 'Eurovaistine'
+                        : this.customer === 'Eurovaistine'
                           ? 'TĀLĀK'
                           : this.language === 'EN'
                             ? 'CONTINUE'
@@ -139,218 +139,218 @@ export class InputRegisterContainer {
                                 : 'TOLIAU'
         }</div>
       </div>
-       <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${this.prop === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
-         this.prop === 'Zemaitijos Pienas' ? '360px' : '360px'
+       <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${this.customer === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
+         this.customer === 'Zemaitijos Pienas' ? '360px' : '360px'
        }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
-         this.prop === 'Makalius' ||
-         this.prop === 'Pegasas' ||
-         this.prop === 'Pieno Žvaigždės' ||
-         this.prop === 'Eurovaistine' ||
-         this.prop === 'Perlas GO' ||
-         this.prop === 'Daumantu' ||
-         this.prop === 'Dentsu' ||
-         this.prop === 'Zemaitijos Pienas' ||
-         this.prop === 'Orlen' ||
-         this.prop === 'LemonGym' ||
-         this.prop === 'LemonFeel' ||
-         this.prop === 'Magija' ||
-         this.prop === 'Pigu.lt' ||
-         this.prop === 'Nykstukas' ||
-         this.prop === 'Novaturas' ||
-         this.prop === 'Apranga' ||
-         this.prop === 'Toni' ||
-         (this.prop === 'Akropolis' && (this.language === 'LV' || this.language === 'RU'))
+         this.customer === 'Makalius' ||
+         this.customer === 'Pegasas' ||
+         this.customer === 'Pieno Žvaigždės' ||
+         this.customer === 'Eurovaistine' ||
+         this.customer === 'Perlas GO' ||
+         this.customer === 'Daumantu' ||
+         this.customer === 'Dentsu' ||
+         this.customer === 'Zemaitijos Pienas' ||
+         this.customer === 'Orlen' ||
+         this.customer === 'LemonGym' ||
+         this.customer === 'LemonFeel' ||
+         this.customer === 'Magija' ||
+         this.customer === 'Pigu.lt' ||
+         this.customer === 'Nykstukas' ||
+         this.customer === 'Novaturas' ||
+         this.customer === 'Apranga' ||
+         this.customer === 'Toni' ||
+         (this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU'))
            ? 'inline-flex'
            : 'none'
        }">
-      <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
+      <div  style=" cursor: ${this.customer === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg2" src="${privacyCheckboxChecked2 ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${
           this.isMobile
-            ? this.prop === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
+            ? this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
               ? '8px'
               : '10px'
-            : this.prop === 'Pieno Žvaigždės' || this.prop === 'Pegasas'
+            : this.customer === 'Pieno Žvaigždės' || this.customer === 'Pegasas'
               ? '12px'
-              : this.prop === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
+              : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
                 ? '10px'
                 : '12px'
-        }; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'};font-weight: 400;  line-height: 14px; word-wrap: break-word;text-align:start;">${
-          this.prop === 'Novaturas' && this.language === 'LT'
+        }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'};font-weight: 400;  line-height: 14px; word-wrap: break-word;text-align:start;">${
+          this.customer === 'Novaturas' && this.language === 'LT'
             ? 'Norint tęsti privaloma sutikti gauti įmonės naujienlaiškius.'
-            : this.prop === 'Novaturas' && this.language === 'LV'
+            : this.customer === 'Novaturas' && this.language === 'LV'
               ? 'Lai turpinātu, ir jāpiekrīt saņemt uzņēmuma jaunumu izsūtnes.'
-              : this.prop === 'Novaturas' && this.language === 'ET'
+              : this.customer === 'Novaturas' && this.language === 'ET'
                 ? 'Jätkamiseks nõustu saama Novatoursi uudiskirju.'
-                : this.prop === 'Novaturas' && this.language === 'EN'
+                : this.customer === 'Novaturas' && this.language === 'EN'
                   ? 'To continue, you must agree to receive the companys newsletters.'
-                  : this.prop === 'Novaturas' && this.language === 'RU'
+                  : this.customer === 'Novaturas' && this.language === 'RU'
                     ? 'Чтобы продолжить, необходимо согласиться на получение новостной рассылки компании.'
-                    : this.prop === 'Ikea'
+                    : this.customer === 'Ikea'
                       ? 'Sutinku gauti IKEA naujienas.'
-                      : this.prop === 'Perlas GO'
+                      : this.customer === 'Perlas GO'
                         ? 'Sutinku gauti „Perlas Go“ naujienas el. paštu.'
-                        : this.prop === 'Eurovaistine'
+                        : this.customer === 'Eurovaistine'
                           ? 'Piekrītu saņemt Euroaptieka informatīvos izdevumus.'
-                          : this.prop === 'Daumantu'
+                          : this.customer === 'Daumantu'
                             ? 'Sutinku gauti „Daumantų“ naujienlaiškius.'
-                            : this.prop === 'Pieno Žvaigždės'
+                            : this.customer === 'Pieno Žvaigždės'
                               ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
-                              : this.prop === 'Pegasas'
+                              : this.customer === 'Pegasas'
                                 ? 'Sutinku gauti Pegaso naujienlaiškius.'
-                                : this.prop === 'Corepetitus'
+                                : this.customer === 'Corepetitus'
                                   ? 'Sutinku gauti Corepetitus naujienlaiškius.'
-                                  : this.prop === 'Akropolis' && this.language === 'LV'
+                                  : this.customer === 'Akropolis' && this.language === 'LV'
                                     ? 'Piekrītu saņemt AKROPOLE iepirkšanās centru jaunumus e-pastā.'
-                                    : this.prop === 'Akropolis' && this.language === 'RU'
+                                    : this.customer === 'Akropolis' && this.language === 'RU'
                                       ? 'Я согласен получать новости торгового центра AKROPOLE по электронной почте.'
-                                      : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
+                                      : this.language === 'LV' && (this.customer === 'LemonGym' || this.customer === 'LemonFeel')
                                         ? 'Piekrītu saņemt LEMON GYM jaunumu vēstuli.'
-                                        : this.prop === 'Dentsu'
+                                        : this.customer === 'Dentsu'
                                           ? 'Sutinku gauti Dentsu ir Boomio naujienas.'
-                                          : this.prop === 'Zemaitijos Pienas' && this.language === 'LT'
+                                          : this.customer === 'Zemaitijos Pienas' && this.language === 'LT'
                                             ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
-                                            : this.prop === 'Zemaitijos Pienas' && this.language === 'LV'
+                                            : this.customer === 'Zemaitijos Pienas' && this.language === 'LV'
                                               ? 'Piekrītu saņemt jaunumus no „Žemaitijos pienam“.'
-                                              : this.prop === 'Zemaitijos Pienas' && this.language === 'ET'
+                                              : this.customer === 'Zemaitijos Pienas' && this.language === 'ET'
                                                 ? 'Nõustun saama „Žemaitijos pienas“ uudiskirju.'
-                                                : this.prop === 'Nykstukas'
+                                                : this.customer === 'Nykstukas'
                                                   ? 'Sutinku gauti „Pieno žvaigždės“ naujienlaiškius.'
-                                                  : this.prop === 'Nevezis'
+                                                  : this.customer === 'Nevezis'
                                                     ? 'Sutinku gauti OHO GROUP UAB naujienlaiškius.'
-                                                    : this.prop === 'Toni'
+                                                    : this.customer === 'Toni'
                                                       ? 'Confirmo que soy mayor de 13 años.'
-                                                      : this.prop === 'Magija'
+                                                      : this.customer === 'Magija'
                                                         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
-                                                        : this.prop === 'Orlen'
+                                                        : this.customer === 'Orlen'
                                                           ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
-                                                          : this.prop === 'Unisend' && this.language === 'LV'
+                                                          : this.customer === 'Unisend' && this.language === 'LV'
                                                             ? 'Nõustun saama Unisend.ee uudiskirju'
-                                                            : this.prop === 'Unisend' && this.language === 'LV'
+                                                            : this.customer === 'Unisend' && this.language === 'LV'
                                                               ? 'Nõustun saama Unisend.ee uudiskirju'
-                                                              : this.prop === 'Pigu.lt' && this.language === 'RU'
+                                                              : this.customer === 'Pigu.lt' && this.language === 'RU'
                                                                 ? 'Я прочитал(а) и согласен(на) с правилами и инструкциями игры.'
-                                                                : this.prop === 'Pigu.lt' && this.language === 'FI'
+                                                                : this.customer === 'Pigu.lt' && this.language === 'FI'
                                                                   ? 'Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.'
-                                                                  : this.prop === 'Pigu.lt' && this.language === 'LV'
+                                                                  : this.customer === 'Pigu.lt' && this.language === 'LV'
                                                                     ? 'Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.'
-                                                                    : this.prop === 'Pigu.lt' && this.language === 'LT'
+                                                                    : this.customer === 'Pigu.lt' && this.language === 'LT'
                                                                       ? 'Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.'
-                                                                      : this.prop === 'Pigu.lt' && this.language === 'EN'
+                                                                      : this.customer === 'Pigu.lt' && this.language === 'EN'
                                                                         ? 'I have read and agree with game rules and instructions.'
-                                                                        : this.prop === 'Pigu.lt' && this.language === 'ET'
+                                                                        : this.customer === 'Pigu.lt' && this.language === 'ET'
                                                                           ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
-                                                                          : this.prop === 'Apranga'
+                                                                          : this.customer === 'Apranga'
                                                                             ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
                                                                             : 'Sutinku gauti naujienlaiškius.'
         }</div>
       </div>
       
  <div class="boomio-privacyCheckbox3" id="boomio-privacyCheckbox3" style=";cursor:${
-   this.prop === 'Fpro' ? 'auto' : 'pointer'
- } ;left: 34px; top: ${'375px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${this.prop === 'Pegasas' ? 'inline-flex' : 'none'}">
-      <div  style=" cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
+   this.customer === 'Fpro' ? 'auto' : 'pointer'
+ } ;left: 34px; top: ${'375px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${this.customer === 'Pegasas' ? 'inline-flex' : 'none'}">
+      <div  style=" cursor: ${this.customer === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg3" src="${privacyCheckboxChecked2 ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${
-          this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
-        };font-weight: 400; word-wrap: break-word;text-align:start;">${this.prop === 'Pegasas' ? 'Sutinku gauti Pegaso naujienas SMS žinute.' : ''}
+          this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
+        };font-weight: 400; word-wrap: break-word;text-align:start;">${this.customer === 'Pegasas' ? 'Sutinku gauti Pegaso naujienas SMS žinute.' : ''}
     </div>
       </div>
 
-        <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${this.prop === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
-          this.prop === 'Akropolis' ? (this.language === 'LV' || this.language === 'RU' ? '395px' : '362px') : this.prop === 'Vilvi' ? '360px' : this.prop === 'Dentsu' ? '375px' : '395px'
+        <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${this.customer === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
+          this.customer === 'Akropolis' ? (this.language === 'LV' || this.language === 'RU' ? '395px' : '362px') : this.customer === 'Vilvi' ? '360px' : this.customer === 'Dentsu' ? '375px' : '395px'
         }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
-      <div  style=" display: ${this.prop === 'Fpro' || this.prop === 'Fantazijos' ? 'none' : 'inline-flex'};cursor: ${this.prop === 'Fpro' ? 'auto' : 'pointer'};">
+      <div  style=" display: ${this.customer === 'Fpro' || this.customer === 'Fantazijos' ? 'none' : 'inline-flex'};cursor: ${this.customer === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg" src="${privacyCheckboxChecked ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-heigt:6px;font-size: ${
           this.isMobile
-            ? this.prop === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
+            ? this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
               ? '8px'
               : '10px'
-            : this.prop === 'Eurovaistine'
+            : this.customer === 'Eurovaistine'
               ? '12px'
-              : this.prop === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
+              : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
                 ? '10px'
                 : '12px'
-        }; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'} ;  font-weight: 400; width:${
-          this.prop?.includes('Gamtos Ateitis') ? '320px' : '350px'
+        }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'} ;  font-weight: 400; width:${
+          this.customer?.includes('Gamtos Ateitis') ? '320px' : '350px'
         };word-wrap: break-word;line-height:14px;text-align:start;">${
-          this.prop === 'Novaturas' && this.language === 'LT'
+          this.customer === 'Novaturas' && this.language === 'LT'
             ? 'Norint tęsti privaloma sutikti su įmonės  <a href="https://www.novaturas.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">privatumo politika</a>.'
-            : this.prop === 'Novaturas' && this.language === 'LV'
+            : this.customer === 'Novaturas' && this.language === 'LV'
               ? 'Lai turpinātu, ir jāpiekrīt uzņēmuma <a href="https://www.novatours.lv/privatuma-politika" target="_blank" rel="noopener noreferrer">privātuma politikai</a>.'
-              : this.prop === 'Novaturas' && this.language === 'ET'
+              : this.customer === 'Novaturas' && this.language === 'ET'
                 ? 'Jätkamiseks nõustu ettevõtte <a href="https://www.novatours.ee/privaatsusteave" target="_blank" rel="noopener noreferrer">privaatsuspoliitikaga</a>.'
-                : this.prop === 'Novaturas' && this.language === 'EN'
+                : this.customer === 'Novaturas' && this.language === 'EN'
                   ? 'To continue, you must agree to the companys   <a href="https://www.novaturas.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">privacy policy</a>.'
-                  : this.prop === 'Novaturas' && this.language === 'RU'
+                  : this.customer === 'Novaturas' && this.language === 'RU'
                     ? 'Чтобы продолжить, необходимо согласиться с политикой <a href="https://www.novaturas.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">конфиденциальности компании</a>.'
-                    : this.prop === 'Fpro'
+                    : this.customer === 'Fpro'
                       ? 'By continuing, I agree to receive FPRO newsletters.'
-                      : this.prop === 'Pieno Žvaigždės'
+                      : this.customer === 'Pieno Žvaigždės'
                         ? 'Sutinku su „Pieno žvaigždės“'
-                        : this.prop === 'Pegasas'
+                        : this.customer === 'Pegasas'
                           ? 'Sutinku su Pegaso'
-                          : this.prop === 'Barbora'
+                          : this.customer === 'Barbora'
                             ? 'Sutinku gauti Barboros naujienas.'
-                            : this.prop?.includes('Gamtos Ateitis')
+                            : this.customer?.includes('Gamtos Ateitis')
                               ? 'Sutinku su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“'
-                              : this.prop === 'Unisend' && this.language === 'LV'
+                              : this.customer === 'Unisend' && this.language === 'LV'
                                 ? `Esmu izlasījis <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.lv/spelesnoteikumi/'} style="color:white;text-decoration: underline;"> spēles noteikumus</a>  un piekrītu tiem.`
-                                : this.prop === 'Unisend' && this.language === 'ET'
+                                : this.customer === 'Unisend' && this.language === 'ET'
                                   ? `Olen <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://unisend.ee/unisendi-mangureeglid/'} style="color:white;text-decoration: underline;"> mängureeglitega</a> tutvunud ja nõustun nendega.`
-                                  : this.prop === 'Fantazijos' && this.language === 'LV'
+                                  : this.customer === 'Fantazijos' && this.language === 'LV'
                                     ? 'Turpinot spēlēt, es piekrītu saņemt yesyes.lv jaunumus.'
-                                    : this.prop === 'Fantazijos' && this.language === 'RU'
+                                    : this.customer === 'Fantazijos' && this.language === 'RU'
                                       ? 'Продолжая играть, я соглашаюсь получать информационную рассылку yesyes.lv.'
-                                      : this.prop === 'Fantazijos' && this.language === 'ET'
+                                      : this.customer === 'Fantazijos' && this.language === 'ET'
                                         ? 'Mängu jätkates nõustun yesyes.ee uudiskirja saamisega.'
-                                        : this.prop === 'Fantazijos'
+                                        : this.customer === 'Fantazijos'
                                           ? 'Sutinku gauti Fantazijos.lt naujienlaiškius.'
-                                          : this.prop === 'Makalius'
+                                          : this.customer === 'Makalius'
                                             ? 'Sutinku gauti Makaliaus naujienlaiškius.'
-                                            : this.prop === 'Ikea'
+                                            : this.customer === 'Ikea'
                                               ? 'Sutinku su'
-                                              : this.prop === 'SaludSA'
+                                              : this.customer === 'SaludSA'
                                                 ? 'Acepto recibir boletines de SaludSA.'
-                                                : this.prop === 'Eurovaistine'
+                                                : this.customer === 'Eurovaistine'
                                                   ? 'Piekrītu Euroaptiekas'
-                                                  : this.prop === 'Daumantu'
+                                                  : this.customer === 'Daumantu'
                                                     ? 'Sutinku su „Daumantų“ privatumo politika.'
-                                                    : this.prop === 'Akropolis' && this.language === 'LV'
+                                                    : this.customer === 'Akropolis' && this.language === 'LV'
                                                       ? 'Lai turpinātu, ir jāpiekrīt <a onclick="event.stopPropagation();" target="_blank" href="https://www.akropoleriga.lv/lv/jauns/speles-spele-un-laime-katru-dienu-noteikumi/46463" style="color: white;">spēles</a> noteikumiem un <a onclick="event.stopPropagation();" target="_blank" href="https://www.akropoleriga.lv/lv/privatuma-politika?cid=7" style="color: white;">privātuma politikai</a>. Piekrītot spēles noteikumiem, apliecinu, ka esmu sasniedzis vismaz 13 gadu vecumu.'
-                                                      : this.prop === 'Akropolis' && this.language === 'RU'
+                                                      : this.customer === 'Akropolis' && this.language === 'RU'
                                                         ? 'Чтобы продолжить, вы должны согласиться с <a onclick="event.stopPropagation();" target="_blank" href="https://www.akropoleriga.lv/lv/jauns/speles-spele-un-laime-katru-dienu-noteikumi/46463" style="color: white;">правилами игры</a> и <a onclick="event.stopPropagation();" target="_blank" href="https://www.akropoleriga.lv/lv/privatuma-politika?cid=7" style="color: white;">политикой конфиденциальности</a>. Согласившись с правилами игры, я подтверждаю, что мне исполнилось как минимум 13 лет.'
-                                                        : this.prop === 'Akropolis' && this.language === 'LT'
+                                                        : this.customer === 'Akropolis' && this.language === 'LT'
                                                           ? 'Sutinku gauti PPC AKROPOLIS naujienas.'
-                                                          : this.prop === 'Perlas GO'
+                                                          : this.customer === 'Perlas GO'
                                                             ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/akcijos-zaisk-ir-laimek-taisykles/'} style="color:white;text-decoration: underline;"> akcijos taisyklėmis</a> ir „Perlas Go“ <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Basis Grotesque Pro; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.perlasgo.lt/privatumo-politika/'} style="color:white;text-decoration: underline;">privatumo politika.</a> `
-                                                            : this.prop === 'Corepetitus'
+                                                            : this.customer === 'Corepetitus'
                                                               ? 'Sutinku su'
-                                                              : this.prop === 'Zemaitijos Pienas' && this.language === 'LT'
+                                                              : this.customer === 'Zemaitijos Pienas' && this.language === 'LT'
                                                                 ? 'Sutinku su „Žemaitijos pienas“'
-                                                                : this.prop === 'Zemaitijos Pienas' && this.language === 'LV'
+                                                                : this.customer === 'Zemaitijos Pienas' && this.language === 'LV'
                                                                   ? 'Piekrītu „Žemaitijos pienam“'
-                                                                  : this.prop === 'Zemaitijos Pienas' && this.language === 'ET'
+                                                                  : this.customer === 'Zemaitijos Pienas' && this.language === 'ET'
                                                                     ? 'Nõustun saama „Žemaitijos pienas“ uudiskirju.'
-                                                                    : this.prop === 'Vilvi'
+                                                                    : this.customer === 'Vilvi'
                                                                       ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
-                                                                      : this.prop === 'Dentsu'
+                                                                      : this.customer === 'Dentsu'
                                                                         ? `Sutinku su <a style="align-self: stretch; text-align: center; color: white; font-size: 10px; font-family:Georama; font-weight: 600; line-height: 21.60px; word-wrap: break-word;"><a onclick="event.stopPropagation();" target="_blank" ${'href=https://www.boomio.com/dentsu-game-rules'} style="color:white; text-decoration: underline;"> akcijos taisyklėmis </a>  ir Dentsu`
-                                                                        : this.prop === 'Nykstukas'
+                                                                        : this.customer === 'Nykstukas'
                                                                           ? 'Sutinku su „Pieno žvaigždės“'
-                                                                          : this.prop === 'Toni'
+                                                                          : this.customer === 'Toni'
                                                                             ? 'Acepto los términos y condicines de la actividad. Acepto recibir comunicaciones de marketing por parte de Tonicorp sobre productos, servicios y promociones.'
-                                                                            : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
+                                                                            : this.language === 'LV' && (this.customer === 'LemonGym' || this.customer === 'LemonFeel')
                                                                               ? 'Piekrītu LEMON GYM'
-                                                                              : this.prop === 'Nevezis'
+                                                                              : this.customer === 'Nevezis'
                                                                                 ? 'Sutinku su OHO GROUP UAB'
-                                                                                : this.prop === 'Orlen'
+                                                                                : this.customer === 'Orlen'
                                                                                   ? 'Sutinku su „ORLEN“'
-                                                                                  : this.prop === 'Apranga'
+                                                                                  : this.customer === 'Apranga'
                                                                                     ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025-new" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
                                                                                     : this.config.campaignUrlOrCurrentPage.includes('pigu')
                                                                                       ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
@@ -367,70 +367,70 @@ export class InputRegisterContainer {
                                                                                                 : this.language === 'ET'
                                                                                                   ? 'Ma olen nõus'
                                                                                                   : `Sutinku  ${
-                                                                                                      this.prop === 'LemonGym'
+                                                                                                      this.customer === 'LemonGym'
                                                                                                         ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
                                                                                                         : ''
                                                                                                     } `
         }
     ${
-      this.prop !== 'Barbora' &&
-      this.prop !== 'Fpro' &&
-      this.prop !== 'Fantazijos' &&
-      this.prop !== 'Makalius' &&
-      this.prop !== 'Unisend' &&
-      this.prop !== 'Akropolis' &&
-      this.prop !== 'SaludSA' &&
-      this.prop !== 'Vilvi' &&
-      this.prop !== 'Daumantu' &&
-      this.prop !== 'Toni' &&
-      this.prop !== 'Pigu.lt' &&
-      this.prop !== 'Novaturas' &&
-      this.prop !== 'Perlas GO' &&
-      this.prop !== 'Apranga'
+      this.customer !== 'Barbora' &&
+      this.customer !== 'Fpro' &&
+      this.customer !== 'Fantazijos' &&
+      this.customer !== 'Makalius' &&
+      this.customer !== 'Unisend' &&
+      this.customer !== 'Akropolis' &&
+      this.customer !== 'SaludSA' &&
+      this.customer !== 'Vilvi' &&
+      this.customer !== 'Daumantu' &&
+      this.customer !== 'Toni' &&
+      this.customer !== 'Pigu.lt' &&
+      this.customer !== 'Novaturas' &&
+      this.customer !== 'Perlas GO' &&
+      this.customer !== 'Apranga'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
-            this.prop === 'Ikea'
+            this.customer === 'Ikea'
               ? 'https://www.ikea.lt/lt/privacy-policy'
-              : this.prop === 'Corepetitus'
+              : this.customer === 'Corepetitus'
                 ? 'https://www.corepetitus.lt/privatumo-politika'
-                : this.prop === 'Eurovaistine'
+                : this.customer === 'Eurovaistine'
                   ? 'https://www.e-euroaptieka.lv/privatuma-politika'
-                  : this.prop === 'Pieno Žvaigždės'
+                  : this.customer === 'Pieno Žvaigždės'
                     ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
-                    : this.prop === 'Pegasas'
+                    : this.customer === 'Pegasas'
                       ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
-                      : this.prop?.includes('Gamtos Ateitis')
+                      : this.customer?.includes('Gamtos Ateitis')
                         ? 'https://gamtosateitis.lt/privatumo-politika/'
-                        : this.prop === 'Dentsu'
+                        : this.customer === 'Dentsu'
                           ? 'https://www.dentsu.com/our-policies/privacy-notices'
-                          : this.prop === 'Zemaitijos Pienas'
+                          : this.customer === 'Zemaitijos Pienas'
                             ? 'https://www.zpienas.lt/privatumo-politika/'
-                            : this.prop === 'Nevezis'
+                            : this.customer === 'Nevezis'
                               ? 'https://nevezis.lt/privatumo-politika/'
-                              : this.prop === 'Magija'
+                              : this.customer === 'Magija'
                                 ? 'https://www.zpienas.lt/privatumo-politika/'
-                                : this.prop === 'LemonGym' || this.prop === 'LemonFeel'
+                                : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
                                   ? 'https://www.lemongym.lv/en/privacy-policy/'
-                                  : this.prop === 'Nykstukas'
+                                  : this.customer === 'Nykstukas'
                                     ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
-                                    : this.prop === 'Orlen'
+                                    : this.customer === 'Orlen'
                                       ? 'https://www.orlen.lt/LT/Apie%20mus/Privatumo%20politika/Puslapiai/default.aspx'
-                                      : this.prop === 'Novaturas' && this.language === 'LT'
+                                      : this.customer === 'Novaturas' && this.language === 'LT'
                                         ? 'https://www.novaturas.lt/privatumo-politika'
-                                        : this.prop === 'Novaturas' && this.language === 'LV'
+                                        : this.customer === 'Novaturas' && this.language === 'LV'
                                           ? 'https://www.novatours.lv/privatuma-politika'
-                                          : this.prop === 'Novaturas' && this.language === 'ET'
+                                          : this.customer === 'Novaturas' && this.language === 'ET'
                                             ? 'https://www.novatours.ee/privaatsusteave'
                                             : ''
-          }" style="color:white;text-decoration: underline; font-size: ${this.isMobile ? '10px' : this.prop === 'Eurovaistine' ? '12px' : '12px'}; ">${
-            this.prop === 'Ikea'
+          }" style="color:white;text-decoration: underline; font-size: ${this.isMobile ? '10px' : this.customer === 'Eurovaistine' ? '12px' : '12px'}; ">${
+            this.customer === 'Ikea'
               ? 'IKEA privatumo politika.'
-              : this.prop === 'Perlas GO'
+              : this.customer === 'Perlas GO'
                 ? 'ir „Perlas Go“ privatumo politika.'
-                : this.prop === 'Eurovaistine'
+                : this.customer === 'Eurovaistine'
                   ? 'privātuma politikai.'
-                  : this.prop === 'Corepetitus'
+                  : this.customer === 'Corepetitus'
                     ? 'Corepetitus privatumo politika.'
-                    : this.language === 'LV' && (this.prop === 'LemonGym' || this.prop === 'LemonFeel')
+                    : this.language === 'LV' && (this.customer === 'LemonGym' || this.customer === 'LemonFeel')
                       ? 'privātuma politikai.'
                       : this.language === 'EN'
                         ? 'newsletters.'
@@ -448,8 +448,8 @@ export class InputRegisterContainer {
       </div>
 
       
-        <div style="margin-right:20px;display:${this.prop === 'Akropolis' && this.language === 'LT' ? 'block' : 'none'} ;left: 34px; top:${
-          this.prop === 'Akropolis' ? '383px' : '384px'
+        <div style="margin-right:20px;display:${this.customer === 'Akropolis' && this.language === 'LT' ? 'block' : 'none'} ;left: 34px; top:${
+          this.customer === 'Akropolis' ? '383px' : '384px'
         }; position: absolute; justify-content: start;align-items: start; gap: 5px;font-size:9px;color:white;text-align:start;line-height:9px;">
         ${`Jūsų sutikimu Jūsų el. pašto duomenis AKROPOLIS GROUP, UAB tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. Sutikimą galėsite bet kuriuo metu atšaukti, spaudžiant nuorodą gautame naujienlaiškyje arba kreipiantis privatumas@akropolis.lt. Plačiau <a onclick="event.stopPropagation();" target="_blank" ${'href=www.akropolis.lt'} style="text-decoration: underline;color:white;">www.akropolis.lt</a>.`} 
 
@@ -457,33 +457,33 @@ export class InputRegisterContainer {
    
    
         <div id="competition-checkbox-error" style="padding-top:1px;height:${
-          this.prop === 'Magija' ? 'auto' : this.language === 'LV' || this.prop === 'Perlas GO' || this.prop === 'Nevezis' ? '15px' : '28px'
+          this.customer === 'Magija' ? 'auto' : this.language === 'LV' || this.customer === 'Perlas GO' || this.customer === 'Nevezis' ? '15px' : '28px'
         } ;margin-right:30px;display:${
-          this.prop === 'Akropolis' ||
-          this.prop === 'Eurovaistine' ||
-          this.prop === 'Vilvi' ||
-          this.prop === 'Perlas GO' ||
-          this.prop === 'Magija' ||
-          this.prop === 'Pigu.lt' ||
-          this.prop === 'Nevezis'
+          this.customer === 'Akropolis' ||
+          this.customer === 'Eurovaistine' ||
+          this.customer === 'Vilvi' ||
+          this.customer === 'Perlas GO' ||
+          this.customer === 'Magija' ||
+          this.customer === 'Pigu.lt' ||
+          this.customer === 'Nevezis'
             ? 'block'
             : 'none'
         } ;left: 34px; top:${
-          this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.language === 'ES' ? '436px' : '430px'
-        }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.prop === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'};color:${'rgb(216, 0, 12)'};text-align:start;line-height:8px;">
+          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.language === 'ES' ? '436px' : '430px'
+        }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.customer === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'};color:${'rgb(216, 0, 12)'};text-align:start;line-height:8px;">
 </div>
 
         <div id="competition-checkbox-error2" style="padding-top:1px;height:${this.language === 'LV' ? '14px' : '28px'} ;margin-right:30px;display:${
-          this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'
+          this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
         } ;left: 34px; top:${
-          this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.prop === 'Toni' ? '436px' : '430px'
+          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.customer === 'Toni' ? '436px' : '430px'
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.isMobile ? '8px' : '9px'};color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>
 
         <div id="competition-checkbox-error3" style="padding-top:1px;height:${this.language === 'LV' ? '14px' : '28px'} ;margin-right:30px;display:${
-          this.prop === 'Akropolis' || this.prop === 'Eurovaistine' ? 'block' : 'none'
+          this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
         } ;left: 34px; top:${
-          this.prop?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
+          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.isMobile ? '9px' : '10px'};color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>
 
@@ -491,24 +491,24 @@ export class InputRegisterContainer {
 
 
       <div style="display:${
-        this.prop.includes('Gamtos Ateitis') ||
-        this.prop === 'Perlas GO' ||
-        this.prop === 'Nevezis' ||
-        this.prop === 'Magija' ||
-        this.prop === 'Pigu.lt' ||
-        this.prop === 'LemonGym' ||
-        this.prop === 'Nykstukas' ||
-        this.prop === 'Orlen' ||
-        this.prop === 'LemonFeel' ||
-        this.prop === 'Tiche' ||
-        this.prop === 'Zemaitijos Pienas' ||
-        this.prop === 'Novaturas' ||
-        this.prop === 'Apranga' ||
+        this.customer.includes('Gamtos Ateitis') ||
+        this.customer === 'Perlas GO' ||
+        this.customer === 'Nevezis' ||
+        this.customer === 'Magija' ||
+        this.customer === 'Pigu.lt' ||
+        this.customer === 'LemonGym' ||
+        this.customer === 'Nykstukas' ||
+        this.customer === 'Orlen' ||
+        this.customer === 'LemonFeel' ||
+        this.customer === 'Tiche' ||
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Novaturas' ||
+        this.customer === 'Apranga' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
-      }width: calc(100% - 70px); height: ${this.prop === 'Toni' ? '37px' : '21px'}; left: 35px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '171px' : '255px'
+      }width: calc(100% - 70px); height: ${this.customer === 'Toni' ? '37px' : '21px'}; left: 35px; top: ${
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '171px' : '255px'
       }; position: absolute;text-align:start;z-index:99999;color:  '#D8000C';
       font-family: Montserrat;
       font-size: 10px;
@@ -520,8 +520,14 @@ export class InputRegisterContainer {
       " id="competition-name-error"></div>
 
 
-      <div style="width: calc(100% - 70px); height: ${this.prop === 'Toni' ? '37px' : '21px'}; left: 35px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '255px' : this.prop.includes('Gamtos Ateitis') ? '348px' : this.prop === 'Nykstukas' ? '430px' : '338px'
+      <div style="width: calc(100% - 70px); height: ${this.customer === 'Toni' ? '37px' : '21px'}; left: 35px; top: ${
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
+          ? '255px'
+          : this.customer.includes('Gamtos Ateitis')
+            ? '348px'
+            : this.customer === 'Nykstukas'
+              ? '430px'
+              : '338px'
       } ; position: absolute;text-align:start;z-index:99999;color: '#D8000C';
       font-family: Montserrat;
       font-size: 10px;
@@ -534,7 +540,7 @@ export class InputRegisterContainer {
 
 
             <div style="width: calc(100% - 70px); height: ${
-              this.prop === 'Toni' ? '37px' : '21px'
+              this.customer === 'Toni' ? '37px' : '21px'
             }; left: 35px; top: ${'335px'} ; position: absolute;text-align:start;z-index:99999;color: ${'#D8000C'};
       font-family: Montserrat;
       font-size: 10px;
@@ -546,22 +552,22 @@ export class InputRegisterContainer {
       " id="competition-phone-error"> </div>
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni'
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
           ? '207px'
-          : this.prop.includes('Gamtos Ateitis')
+          : this.customer.includes('Gamtos Ateitis')
             ? '180px'
-            : this.prop === 'Perlas GO' ||
-                this.prop === 'Nevezis' ||
-                this.prop === 'Magija' ||
-                this.prop === 'Pigu.lt' ||
-                this.prop === 'LemonGym' ||
-                this.prop === 'Nykstukas' ||
-                this.prop === 'Orlen' ||
-                this.prop === 'LemonFeel' ||
-                this.prop === 'Tiche' ||
-                this.prop === 'Zemaitijos Pienas' ||
-                this.prop === 'Novaturas' ||
-                this.prop === 'Apranga' ||
+            : this.customer === 'Perlas GO' ||
+                this.customer === 'Nevezis' ||
+                this.customer === 'Magija' ||
+                this.customer === 'Pigu.lt' ||
+                this.customer === 'LemonGym' ||
+                this.customer === 'Nykstukas' ||
+                this.customer === 'Orlen' ||
+                this.customer === 'LemonFeel' ||
+                this.customer === 'Tiche' ||
+                this.customer === 'Zemaitijos Pienas' ||
+                this.customer === 'Novaturas' ||
+                this.customer === 'Apranga' ||
                 this.language === 'EN'
               ? '240px'
               : '287px'
@@ -570,70 +576,70 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
-        this.prop.includes('Gamtos Ateitis') ||
-        this.prop === 'Perlas GO' ||
-        this.prop === 'Nevezis' ||
-        this.prop === 'Magija' ||
-        this.prop === 'Pigu.lt' ||
-        this.prop === 'LemonGym' ||
-        this.prop === 'Orlen' ||
-        this.prop === 'LemonFeel' ||
-        this.prop === 'Tiche' ||
-        this.prop === 'Zemaitijos Pienas' ||
-        this.prop === 'Novaturas' ||
-        this.prop === 'Apranga' ||
-        this.prop === 'Akropolis' ||
+        this.customer.includes('Gamtos Ateitis') ||
+        this.customer === 'Perlas GO' ||
+        this.customer === 'Nevezis' ||
+        this.customer === 'Magija' ||
+        this.customer === 'Pigu.lt' ||
+        this.customer === 'LemonGym' ||
+        this.customer === 'Orlen' ||
+        this.customer === 'LemonFeel' ||
+        this.customer === 'Tiche' ||
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Novaturas' ||
+        this.customer === 'Apranga' ||
+        this.customer === 'Akropolis' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
       }; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '124px' : this.prop === 'Nykstukas' ? '304px' : '204px'
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '124px' : this.customer === 'Nykstukas' ? '304px' : '204px'
       }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
       <input 
-        maxLength=${this.prop === 'Toni' ? 10 : undefined}
+        maxLength=${this.customer === 'Toni' ? 10 : undefined}
 
       id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni'
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
           ? '219px'
-          : this.prop.includes('Gamtos Ateitis')
+          : this.customer.includes('Gamtos Ateitis')
             ? '189px'
-            : this.prop === 'Perlas GO' ||
-                this.prop === 'Nevezis' ||
-                this.prop === 'Magija' ||
-                this.prop === 'Pigu.lt' ||
-                this.prop === 'LemonGym' ||
-                this.prop === 'Nykstukas' ||
-                this.prop === 'Orlen' ||
-                this.prop === 'LemonFeel' ||
-                this.prop === 'Tiche' ||
-                this.prop === 'Zemaitijos Pienas' ||
-                this.prop === 'Novaturas' ||
-                this.prop === 'Apranga' ||
+            : this.customer === 'Perlas GO' ||
+                this.customer === 'Nevezis' ||
+                this.customer === 'Magija' ||
+                this.customer === 'Pigu.lt' ||
+                this.customer === 'LemonGym' ||
+                this.customer === 'Nykstukas' ||
+                this.customer === 'Orlen' ||
+                this.customer === 'LemonFeel' ||
+                this.customer === 'Tiche' ||
+                this.customer === 'Zemaitijos Pienas' ||
+                this.customer === 'Novaturas' ||
+                this.customer === 'Apranga' ||
                 this.language === 'EN'
               ? '249px'
               : '299px'
       };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonGym' ||
-        this.prop === 'Tiche' ||
-        this.prop === 'Zemaitijos Pienas' ||
-        this.prop === 'Novaturas' ||
-        this.prop === 'Apranga' ||
-        this.prop === 'LemonFeel'
+        this.customer === 'Barbora' ||
+        this.customer === 'Fpro' ||
+        this.customer === 'Fantazijos' ||
+        this.customer === 'LemonGym' ||
+        this.customer === 'Tiche' ||
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Novaturas' ||
+        this.customer === 'Apranga' ||
+        this.customer === 'LemonFeel'
           ? 'rgba(61, 73, 40, 1)'
           : '#473F4E'
-      } ; font-size: 18px; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-        this.prop === 'Fpro'
+      } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+        this.customer === 'Fpro'
           ? 'Email address'
-          : this.prop === 'Ikea'
+          : this.customer === 'Ikea'
             ? 'El. pašto adresas'
-            : this.prop === 'Eurovaistine'
+            : this.customer === 'Eurovaistine'
               ? 'Spēlētāja e-pasts'
-              : this.prop === 'SaludSA'
+              : this.customer === 'SaludSA'
                 ? 'Correo electrónico'
-                : this.prop.includes('Gamtos Ateitis')
+                : this.customer.includes('Gamtos Ateitis')
                   ? 'El. pašto adresas'
                   : this.language === 'LV'
                     ? 'Spēlētāja e-pasts'
@@ -647,42 +653,42 @@ export class InputRegisterContainer {
                             ? 'Email address'
                             : this.language === 'ES'
                               ? 'Número de contacto'
-                              : this.prop === 'Orlen'
+                              : this.customer === 'Orlen'
                                 ? 'Telefono numeris'
                                 : 'Elektroninio pašto adresas'
       }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
-        this.prop.includes('Gamtos Ateitis') ||
-        this.prop === 'Perlas GO' ||
-        this.prop === 'Nevezis' ||
-        this.prop === 'Magija' ||
-        this.prop === 'Pigu.lt' ||
-        this.prop === 'LemonGym' ||
-        this.prop === 'Orlen' ||
-        this.prop === 'LemonFeel' ||
-        this.prop === 'Tiche' ||
-        this.prop === 'Zemaitijos Pienas' ||
-        this.prop === 'Novaturas' ||
-        this.prop === 'Apranga' ||
-        this.prop === 'Akropolis' ||
+        this.customer.includes('Gamtos Ateitis') ||
+        this.customer === 'Perlas GO' ||
+        this.customer === 'Nevezis' ||
+        this.customer === 'Magija' ||
+        this.customer === 'Pigu.lt' ||
+        this.customer === 'LemonGym' ||
+        this.customer === 'Orlen' ||
+        this.customer === 'LemonFeel' ||
+        this.customer === 'Tiche' ||
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Novaturas' ||
+        this.customer === 'Apranga' ||
+        this.customer === 'Akropolis' ||
         this.language === 'EN'
           ? 'none'
           : 'block'
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? '135px' : this.prop === 'Nykstukas' ? '315px' : '215px'
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '135px' : this.customer === 'Nykstukas' ? '315px' : '215px'
       };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
-        this.prop === 'Barbora' ||
-        this.prop === 'Fpro' ||
-        this.prop === 'Fantazijos' ||
-        this.prop === 'LemonFeel' ||
-        this.prop === 'Tiche' ||
-        this.prop === 'Zemaitijos Pienas' ||
-        this.prop === 'Novaturas' ||
-        this.prop === 'Apranga' ||
-        this.prop === 'LemonGym'
+        this.customer === 'Barbora' ||
+        this.customer === 'Fpro' ||
+        this.customer === 'Fantazijos' ||
+        this.customer === 'LemonFeel' ||
+        this.customer === 'Tiche' ||
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Novaturas' ||
+        this.customer === 'Apranga' ||
+        this.customer === 'LemonGym'
           ? 'rgba(61, 73, 40, 1)'
           : '#473F4E'
-      } ; font-size: 18px; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+      } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
         this.language === 'LV'
           ? 'Spēlētāja lietotājvārds'
           : this.language === 'RU'
@@ -691,50 +697,50 @@ export class InputRegisterContainer {
               ? 'Mängija hüüdnimi'
               : this.language === 'ES'
                 ? 'Nombre y apellido'
-                : this.prop === 'Fpro'
+                : this.customer === 'Fpro'
                   ? 'Players full name'
-                  : this.prop === 'Ikea'
+                  : this.customer === 'Ikea'
                     ? 'Žaidėjo vardas'
-                    : this.prop === 'Eurovaistine'
+                    : this.customer === 'Eurovaistine'
                       ? 'Spēlētāja lietotājvārds'
-                      : this.prop === 'SaludSA'
+                      : this.customer === 'SaludSA'
                         ? 'Nombre de usuario'
                         : this.language === 'EN'
                           ? 'Player nickname'
-                          : this.prop === 'Nykstukas'
+                          : this.customer === 'Nykstukas'
                             ? 'Komandos pavadinimas'
                             : 'Žaidėjo slapyvardis'
       }"> 
     
              <select id="city-select" class="boomio-competition-city-select"
-    style="display:${this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'};
+    style="display:${this.customer.includes('Gamtos Ateitis') ? 'block' : 'none'};
            width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;
-           left:28px;height:45px;position:absolute;top:${this.prop.includes('Gamtos Ateitis') ? '240px' : '205px'};margin:0px;;margin:0px;
+           left:28px;height:45px;position:absolute;top:${this.customer.includes('Gamtos Ateitis') ? '240px' : '205px'};margin:0px;;margin:0px;
            box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:rgba(160, 155, 163, 1);font-family:Georama;font-size:18px;font-weight:500;">
-        <option value="">${this.prop.includes('Gamtos Ateitis') ? 'Miestas ar rajonas' : 'Kurio miesto AKROPOLIO naujienos tau aktualiausios?'}</option>
+        <option value="">${this.customer.includes('Gamtos Ateitis') ? 'Miestas ar rajonas' : 'Kurio miesto AKROPOLIO naujienos tau aktualiausios?'}</option>
     ${options.map((city) => `<option value="${city}">${city}</option>`).join('')}
   </select>
 
     
  
       <select id="school-select" class="boomio-competition-school-select" style="display:${
-        this.prop.includes('Gamtos Ateitis') ? 'block' : 'none'
+        this.customer.includes('Gamtos Ateitis') ? 'block' : 'none'
       };width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;left:28px;height:45px;position:absolute;top:300px;margin:0px;box-shadow:2px 4px 3px rgba(0, 0, 0, 0.25) inset;color:rgba(160, 155, 163, 1);font-family:Georama;font-size:18px;font-weight:500;">
          <option value="">Pirmiau pasirink miestą ar rajoną</option>
       </select>
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
-        this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? 'block' : 'none'
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
       }"></div>
           <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
-            this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? 'block' : 'none'
+            this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
           }"></div>
     <input 
-    maxLength=${this.prop === 'Toni' ? 10 : undefined}
+    maxLength=${this.customer === 'Toni' ? 10 : undefined}
 
     id="boomio-competition-phone-input-field" inputmode="tel" 
  class="boomio-competition-phone-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
-   this.prop === 'SaludSA' || this.prop === 'Pegasas' || this.prop === 'Toni' ? 'block' : 'none'
- }" placeholder="${this.prop === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : this.language === 'EN' ? 'Phone number' : 'Telefono numeris'}">
+   this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
+ }" placeholder="${this.customer === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : this.language === 'EN' ? 'Phone number' : 'Telefono numeris'}">
 
     `;
 
@@ -747,7 +753,7 @@ export class InputRegisterContainer {
 
     // Function to set the values in the input fields
     const setCredentialsToInputs = () => {
-      if (this.prop !== 'Toni') {
+      if (this.customer !== 'Toni') {
         const emailInput = document.querySelector('.boomio-competition-email-input-field');
         const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
 
@@ -759,7 +765,7 @@ export class InputRegisterContainer {
             if (parsedCredentials.email && emailInput) {
               emailInput.value = parsedCredentials.email;
             }
-            if (this.prop !== 'Nykstukas' && parsedCredentials.name && playerNameInput) {
+            if (this.customer !== 'Nykstukas' && parsedCredentials.name && playerNameInput) {
               playerNameInput.value = parsedCredentials.name;
             }
           } catch (e) {

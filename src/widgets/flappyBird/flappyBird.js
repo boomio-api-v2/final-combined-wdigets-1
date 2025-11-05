@@ -100,23 +100,18 @@ import {
 } from './constants';
 class FlappyBird {
   constructor() {
-    this.shareClicked = false;
     this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name;
+    this.language = this.config.language;
+    this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
+    this.campaignUrl = this.config.campaignUrl;
+
+    this.shareClicked = false;
     this.gameClosed = false;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.userBestPlace = 0;
     this.scoreTable = {};
     this.isJumping = false;
-    this.customer = this.config.business_name ? this.config.business_name : 'Toni';
-    const currentPageUrl = window.location.href;
-
-    const urlParams = new URL(currentPageUrl).searchParams;
-    this.language = this.config.language;
-    const campaignUrl = urlParams.get('campaign_url');
-
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
-
-    this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
@@ -165,9 +160,7 @@ class FlappyBird {
   };
 
   showRulesOrRegistration() {
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const user_id = urlParams.get('user_id');
+    const user_id = this.config.userId;
 
     if (this.customer === 'Pigu.lt' && this.bestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
@@ -292,7 +285,7 @@ class FlappyBird {
         })
         .then((response) => {
           this.bestScore = response.user_best_score;
-          this.didYouKnowContainer.updateProps(this.customer, this.scoreTable);
+          this.didYouKnowContainer.updateProps();
 
           if (this.customer === 'Pigu.lt' && false) {
             this.competitionCodeScoreTableContainerPigu.updateProps(this.customer, this.scoreTable);
@@ -404,19 +397,19 @@ class FlappyBird {
     img.src =
       this.customer === 'SaludSA'
         ? SaludSABackground
-        : this.campaignUrlProp === 'https://pigu.lt'
+        : this.campaignUrlOrCurrentPage === 'https://pigu.lt'
           ? randomChoice === 0
             ? PIGUFirstLT
             : PIGUSecondLT
-          : this.campaignUrlProp === 'https://220.lv'
+          : this.campaignUrlOrCurrentPage === 'https://220.lv'
             ? randomChoice === 0
               ? PIGUFirstLV
               : PIGUSecondLV
-            : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
+            : this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee'
               ? randomChoice === 0
                 ? PIGUFirstEE
                 : PIGUSecondEE
-              : this.campaignUrlProp === 'https://hobbyhall.fi'
+              : this.campaignUrlOrCurrentPage === 'https://hobbyhall.fi'
                 ? randomChoice === 0
                   ? PIGUFirstFI
                   : PIGUSecondFI
@@ -998,7 +991,7 @@ class FlappyBird {
     <div class="game-container game-container-flappy">
     ${
       this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable'
-        ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML
+        ? new InputRegisterContainer().createInputRegisterContainer().outerHTML
         : ''
     } 
 
@@ -1009,27 +1002,27 @@ class FlappyBird {
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#808080'}" id="background_blur"></div>
    
 <img src=${
-      this.language === 'ET' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+      this.language === 'ET' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
         ? ChristmasPiguFlapThroughXmasEENew
-        : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+        : this.language === 'RU' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
           ? ChristmasPiguFlapThroughXmasEERuNew
-          : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
+          : this.language === 'LT' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
             ? ChristmasPiguFlapThroughXmasLTNew
-            : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+            : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
               ? ChristmasPiguFlapThroughXmasLTRuNew
-              : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
+              : this.language === 'FI' && this.campaignUrlOrCurrentPage === 'https://hobbyhall.fi'
                 ? ChristmasPiguFlapThroughXmasFINew
-                : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
+                : this.language === 'EN' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
                   ? ChristmasPiguFlapThroughXmasLTEnNew
-                  : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
+                  : this.language === 'EN' && this.campaignUrlOrCurrentPage === 'https://hobbyhall.fi'
                     ? ChristmasPiguFlapThroughXmasFIEnNew
-                    : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
+                    : this.language === 'LV' && this.campaignUrlOrCurrentPage === 'https://220.lv'
                       ? ChristmasPiguFlapThroughXmasLVNew
-                      : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+                      : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://220.lv'
                         ? ChristmasPiguFlapThroughXmasLVRuNew
-                        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
+                        : this.language === 'EN' && this.campaignUrlOrCurrentPage === 'https://220.lv'
                           ? ChristmasPiguFlapThroughXmasLVEnNew
-                          : this.language === 'EN' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+                          : this.language === 'EN' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
                             ? ChristmasPiguFlapThroughXmasEEEnNew
                             : this.customer === 'SaludSA'
                               ? SaludSAIntro
@@ -1189,7 +1182,7 @@ ${`<div style="${
 
 
 
-${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
+${new InputContainer().createInputContainerDiv().outerHTML}
         <div style="margin-top:255px; z-index:3;justify-content: center; align-items: center; gap: 24px;display:flex; width:${
           document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
         };display:none;" class="control-button" id="control-button">
@@ -1294,10 +1287,10 @@ ${new InputContainer(this.customer).createInputContainerDiv('flappy').outerHTML}
     if (this.customer === 'Nykstukas') {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      const didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
 
-      this.shareContainer = new ShareContainer(this.customer);
+      this.shareContainer = new ShareContainer();
       gameContainer.appendChild(this.shareContainer.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {

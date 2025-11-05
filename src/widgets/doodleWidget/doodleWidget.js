@@ -1377,7 +1377,7 @@ class DoodleWidget {
 </div>`
       : ''
   }
-    ${this.showCompetitiveRegistration && this.customer !== 'Pigu.lt' ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML : ''}
+    ${this.showCompetitiveRegistration && this.customer !== 'Pigu.lt' ? new InputRegisterContainer().createInputRegisterContainer().outerHTML : ''}
 
     
 
@@ -1439,7 +1439,7 @@ ${(() => {
     </div>
 
 
-    ${new InputContainer(this.customer, 'doodle').createInputContainerDiv('doodle').outerHTML}
+    ${new InputContainer().createInputContainerDiv().outerHTML}
 
 
     <div class="numbers">
@@ -1515,14 +1515,14 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
     if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      const didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
 
     if (this.customer === 'Perlas GO') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.shareContainer = new ShareContainer(this.customer);
+      this.shareContainer = new ShareContainer();
       gameContainer.appendChild(this.shareContainer.containerDiv);
     }
 

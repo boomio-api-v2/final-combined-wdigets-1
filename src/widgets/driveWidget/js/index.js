@@ -1365,7 +1365,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
         if (showCompetitiveRegistration && checkboxChange) {
           if (customer === 'Gamtos Ateitis') {
-            didYouKnowContainer.updateProps(customer, type);
+            didYouKnowContainer.updateProps();
           }
           boomioService
             .signal('', 'user_info', {
@@ -1552,9 +1552,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   };
 
   function showRulesOrRegistration() {
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const user_id = urlParams.get('user_id');
+    const user_id = this.config.userId;
 
     if (customer === 'Pigu.lt' && bestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
@@ -1678,7 +1676,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         })
         .then((response) => {
           bestScore = response.user_best_score;
-          didYouKnowContainer.updateProps(customer, type);
+          didYouKnowContainer.updateProps();
 
           if (customer === 'Pigu.lt' && campaignUrlProp === 'https://hobbyhall.fi' && response.coupon_code) {
             competitionCodeScoreTableContainerPigu.updateProps(customer, scoreTable);

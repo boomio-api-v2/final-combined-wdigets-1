@@ -690,12 +690,12 @@ class CatchGame {
           }; height: 668px;position:absolute;opacity:${this.customer === 'Pegasas' ? 0.8 : 0.5};pointer-events: none; display:block;">`
     }
 
-    ${this.showCompetitiveRegistration ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML : ''}
+    ${this.showCompetitiveRegistration ? new InputRegisterContainer().createInputRegisterContainer().outerHTML : ''}
 
     <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:${this.customer === 'Pigu.lt' ? 'none' : 'block'};width:25px;height:25px;">
 <img src=${close} alt="Close" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('catch').outerHTML}
+    ${new InputContainer().createInputContainerDiv().outerHTML}
         <canvas id="boomio-catch-canvas"
                 width="${Math.min(document.documentElement.clientWidth, 418)}"
                 height="668">
@@ -737,13 +737,13 @@ class CatchGame {
     if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' || this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas') {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      const didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
     if (this.customer.includes('Akropolis') || this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.shareContainer = new ShareContainer(this.customer);
+      this.shareContainer = new ShareContainer();
       gameContainer.appendChild(this.shareContainer.containerDiv);
     }
 
@@ -1587,7 +1587,7 @@ class CatchGame {
                   }
                   if (this.customer === 'Akropolis') {
                     this.scoreTable = response;
-                    this.shareContainer.updateProps(this.customer, this.currentScore);
+                    this.shareContainer.updateProps();
                   }
                   if (this.showCompetitiveRegistration === 'competition') {
                     this.scoreTable = response;

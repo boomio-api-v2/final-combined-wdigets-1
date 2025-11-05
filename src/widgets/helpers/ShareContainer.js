@@ -3,29 +3,25 @@ import { localStorageService } from '@/services';
 import { t } from '../../services/translations';
 
 export class ShareContainer {
-  constructor(prop) {
+  constructor() {
     this.couponCodeNew = 'boomio';
 
     this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name;
     this.language = this.config.language;
+    this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
     this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
 
     this.isSmallMobile = window.innerWidth <= 380;
 
     this.isMobileWidthSmall = window.innerWidth <= 400;
 
-    this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
-
-    this.prop = prop;
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
     this.render();
   }
 
-  updateProps(prop, _score) {
-    this.prop = prop;
-    this.isMobileWidthSmall = window.innerWidth <= 400;
-    this.isSmallMobile = window.innerWidth <= 380;
+  updateProps() {
     this.config = localStorageService.getDefaultConfig();
     this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
 
@@ -38,13 +34,13 @@ export class ShareContainer {
     let scoreboardText = `
       <div class="bomio-first-line" style="width:calc(100% - 20px);margin-left:10px; top: 250px; line-height:24px; position: absolute; font-weight: 700; text-align: center; color: white; font-size: 20px; font-family: Montserrat; word-wrap: break-word;">
          ${
-           this.prop === 'Perlas GO'
+           this.customer === 'Perlas GO'
              ? 'Tik naujiems vartotojams – panaudok kodą ir gauk 5 € sąskaitoms apmokėti Perlas Go! '
-             : this.prop === 'Akropolis' && this.language === 'LT'
+             : this.customer === 'Akropolis' && this.language === 'LT'
                ? 'Už pakviestus draugus gausi +1000 taškų prie savo žaidimo rezultato!<br>Pasidalink žaidimo nuoroda dabar ir gauk papildomą staigmeną!'
-               : this.prop === 'Akropolis' && this.language === 'LV'
+               : this.customer === 'Akropolis' && this.language === 'LV'
                  ? 'Uzaicini draugus, daloties ar spēles saiti, un reizi dienā saņem +1000 punktus savam spēles rezultātam!'
-                 : this.prop === 'Akropolis' && this.language === 'RU'
+                 : this.customer === 'Akropolis' && this.language === 'RU'
                    ? 'Приглашай друзей, делясь ссылкой на игру, и один раз в день получай +1000 очков к своему игровому результату!'
                    : this.language === 'EN'
                      ? 'For inviting friends you will receive +100 points to your game score!<br>Share the game link now and get an additional surprise!'
@@ -62,7 +58,7 @@ export class ShareContainer {
       </div>
 
       ${
-        this.prop === 'Perlas GO'
+        this.customer === 'Perlas GO'
           ? `<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#FFB151'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; display: inline-flex;width:260px;position:absolute;top:340px;left:calc(50% - 130px);">
       <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text3">
        ${'boomio'}
@@ -79,7 +75,7 @@ export class ShareContainer {
                <div id="default-share-button" style="cursor:pointer;width: calc(100% - 40px);margin-left:20px;margin-right:20px;position:absolute; height: 38px; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex;">
     <div style="text-align: center; color: rgba(61, 73, 40, 1); font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;">
     ${
-      this.prop === 'Perlas GO'
+      this.customer === 'Perlas GO'
         ? 'PANAUDOK KODĄ'
         : this.language === 'EN'
           ? 'SHARE'
@@ -100,7 +96,7 @@ export class ShareContainer {
 
     this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
 
-    if (this.prop === 'Perlas GO') {
+    if (this.customer === 'Perlas GO') {
       document.getElementById('boomio-copy-modal-btn3').onclick = () => {
         const textToCopy = this.couponCodeNew;
         const textarea = document.createElement('textarea');
@@ -131,7 +127,7 @@ export class ShareContainer {
   }
 
   getShareLink() {
-    if (this.prop === 'Pigu.lt') {
+    if (this.customer === 'Pigu.lt') {
       if (this.campaignUrlOrCurrentPage.includes('pigu')) {
         return 'https://pigu.lt/lt/boomio2024christmas';
       }
@@ -219,11 +215,11 @@ export class ShareContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative;">
       <div style="width:calc(100% - 20px);margin-left:10px;top: ${
-        this.prop === 'Nykstukas' ? '150px' : '72px'
+        this.customer === 'Nykstukas' ? '150px' : '72px'
       };; position: absolute; text-align: center;line-height:42px; color: ${'white'}; font-size: ${
         this.isMobileWidthSmall ? '26px' : '30px'
       }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-        this.prop === 'Perlas GO'
+        this.customer === 'Perlas GO'
           ? 'Tavo NUOLAIDOS KODAS'
           : this.language === 'EN'
             ? 'MORE FRIENDS, MORE POINTS'

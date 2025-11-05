@@ -30,11 +30,11 @@ import './styles.css';
 class PopGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Nevezis';
+    this.customer = this.config.business_name;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
     this.gameCount = 0;
-    this.language = this.config.language ? this.config.language : 'LV';
+    this.language = this.config.language;
 
     this.currentScore = 0;
     this.isAnimating = false;
@@ -68,10 +68,8 @@ class PopGame {
     }, 50); //intro speed
   }
 
-  showRulesOrRegistration = () => {
-    const currentPageUrl = window.location.href;
-    this.urlParams = new URL(currentPageUrl).searchParams;
-    const user_id = this.urlParams.get('user_id');
+  showRulesOrRegistration = () => {    
+    const user_id = this.config.userId;
     if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
