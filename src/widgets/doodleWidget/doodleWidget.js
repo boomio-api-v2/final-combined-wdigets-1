@@ -71,30 +71,134 @@ import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/Competiti
 import { ShareContainer } from '../helpers/ShareContainer';
 import { Elements } from '../helpers/HtmlElementsHelper';
 
+const getBrandColor = (customer, language) => {
+  if (customer === 'Vilvi') return '#45A2BF';
+  if (customer === 'Pigu.lt') return '#FD61FE';
+  if (customer === 'Perlas GO') return '#19AA82';
+  if (customer === 'Magija') return '#194898';
+  if (language === 'LV') return '#F40027';
+  if (customer === 'Toni') return '#000F9F';
+  return '#045222'; // Default color
+};
+
+const getBackgroundBlurColor = (customer, language) => {
+  if (customer === 'Vilvi') return '#359BB9';
+  if (customer === 'Akropolis' && language === 'LV') return '#FE0000';
+  if (customer === 'Nevezis') return '#008041';
+  return null; // Return null if no color is set (will show image instead)
+};
+
+const toggleBackgroundBlur = (show, customer, language) => {
+  const blur = document.getElementById('background_blur');
+  if (!blur) return;
+
+  const transition = 'opacity 1s ease';
+
+  if (show) {
+    // Show with opacity
+    blur.style.display = 'block';
+    blur.style.transition = transition;
+    blur.style.opacity = customer === 'Nevezis' ? 0.8 : language === 'LV' ? 0.4 : 0.37;
+  } else {
+    // Fade out (opacity: 0) then hide (display: none) after transition
+    blur.style.transition = transition;
+    blur.style.opacity = 0;
+    // Hide after transition completes (1000ms based on transition duration)
+    setTimeout(() => {
+      blur.style.display = 'none';
+    }, 1000);
+  }
+};
+
+const getBackground = (customer, language) => {
+  if (customer === 'Pigu.lt') return BackgroundPigu;
+  if (customer === 'Vilvi') return backgroundVilvi;
+  if (customer === 'Perlas GO') return backgroundPerlasGo;
+  if (customer === 'Magija') return backgroundMagija;
+  if (customer === 'demo-22') return backgroundDemo;
+  if (customer === 'Toni') return backgroundToni;
+  if (customer === 'Nevezis') return backgroundNevezis;
+  if (customer === 'Akropolis') {
+    return language === 'LV' ? backgroundRedAkropolisLV : backgroundRedAkropolis;
+  }
+  return backgroundRed; // Default background
+};
+
+const getIntroImage = (customer, language, campaignUrlOrCurrentPage) => {
+  // Pigu.lt campaign URLs with language variants
+  if (campaignUrlOrCurrentPage === 'https://kaup.ee' || campaignUrlOrCurrentPage === 'https://kaup24.ee') {
+    if (language === 'ET') return PiguJumpUpIntroEstonian;
+    if (language === 'RU') return PiguJumpUpIntroEstoniaRU;
+    if (language === 'EN') return PiguJumpUpIntroEstonianEN;
+  }
+
+  if (campaignUrlOrCurrentPage === 'https://pigu.lt') {
+    if (language === 'LT') return PiguJumpUpIntroLithuanian;
+    if (language === 'RU') return PiguJumpUpIntroLithuanianRU;
+    if (language === 'EN') return PiguJumpUpIntroLithuanianEN;
+  }
+
+  if (campaignUrlOrCurrentPage === 'https://hobbyhall.fi') {
+    if (language === 'FI') return PiguJumpUpIntroFinish;
+    if (language === 'EN') return PiguJumpUpIntroFinishEN;
+  }
+
+  if (campaignUrlOrCurrentPage === 'https://220.lv') {
+    if (language === 'LV') return PiguJumpUpIntroLatvian;
+    if (language === 'RU') return PiguJumpUpIntroLatvianRU;
+    if (language === 'EN') return PiguJumpUpIntroLatvianEN;
+  }
+
+  // Customer-specific intro images
+  if (customer === 'Vilvi') return introVilvi;
+  if (customer === 'Magija') return introMagija;
+  if (customer === 'Akropolis') {
+    return language === 'LV' ? introAkropolisLV : introAkropolis;
+  }
+
+  return ''; // Default (no intro image)
+};
+
+const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
+  // Pigu.lt campaign URLs
+  if (campaignUrlOrCurrentPage === 'https://pigu.lt') return MainImagePiguLT;
+  if (campaignUrlOrCurrentPage === 'https://220.lv') return MainImagePiguLV;
+  if (campaignUrlOrCurrentPage === 'https://kaup.ee' || campaignUrlOrCurrentPage === 'https://kaup24.ee') return MainImagePiguEE;
+  if (campaignUrlOrCurrentPage === 'https://hobbyhall.fi') return MainImagePiguFI;
+
+  // Customer-specific main images
+  if (customer === 'Vilvi') return mainImageVilvi;
+  if (customer === 'Perlas GO') return mainImagePerlasGo;
+  if (customer === 'Magija') return mainImagMagija;
+  if (customer === 'demo-22') return mainImagDemo;
+  if (customer === 'Toni') return mainImageToni;
+  if (customer === 'Nevezis') return mainNevezis;
+  if (customer === 'Akropolis') {
+    return language === 'LV' ? mainImageAkropolisLV : mainImageAkropolis;
+  }
+
+  return mainImage; // Default main image
+};
+
 //JumpUp Game Classes
 class DoodleWidget {
   static ctx;
 
   constructor() {
     this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name;
+    this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
+    this.campaignUrl = this.config.campaignUrl;
+    this.language = this.config.language;
+    this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
+    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
+
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
-    this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
 
     this.isMobile = window.innerWidth <= 1280;
     this.isMobileHeightSmall = window.innerHeight <= 600;
-
-    this.customer = this.config.business_name;
-    this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
-    this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
-
-    this.language = this.config.language;
-    const currentPageUrl = window.location.href;
-    this.urlParams = new URL(currentPageUrl).searchParams;
-    this.campaignUrl = this.urlParams.get('campaign_url');
-
-    this.campaignUrlProp = this.campaignUrl ? this.campaignUrl : currentPageUrl;
 
     this.userBestPlace = 0;
     this.scoreTable = {};
@@ -109,32 +213,7 @@ class DoodleWidget {
     this.isResetting = false;
     this.image = new Image();
 
-    this.image.src =
-      this.campaignUrlProp === 'https://pigu.lt'
-        ? MainImagePiguLT
-        : this.campaignUrlProp === 'https://220.lv'
-          ? MainImagePiguLV
-          : this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee'
-            ? MainImagePiguEE
-            : this.campaignUrlProp === 'https://hobbyhall.fi'
-              ? MainImagePiguFI
-              : this.customer === 'Vilvi'
-                ? mainImageVilvi
-                : this.customer === 'Perlas GO'
-                  ? mainImagePerlasGo
-                  : this.customer === 'Magija'
-                    ? mainImagMagija
-                    : this.customer === 'demo-22'
-                      ? mainImagDemo
-                      : this.customer === 'Toni'
-                        ? mainImageToni
-                        : this.customer === 'Nevezis'
-                          ? mainNevezis
-                          : this.customer === 'Akropolis'
-                            ? this.language === 'LV'
-                              ? mainImageAkropolisLV
-                              : mainImageAkropolis
-                            : mainImage;
+    this.image.src = getMainImage(this.customer, this.language, this.campaignUrlOrCurrentPage);
 
     this.started = false;
     const safeStart = () => {
@@ -178,7 +257,7 @@ class DoodleWidget {
     if (this.customer === 'Pigu.lt') {
       document.querySelector('.game-container').style.backgroundColor = 'black';
     } else {
-      document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
+      document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : '';
     }
 
     this.config = localStorageService.getDefaultConfig();
@@ -193,27 +272,7 @@ class DoodleWidget {
       return;
     }
 
-    canvas.style.background = `url(${
-      this.customer === 'Pigu.lt'
-        ? BackgroundPigu
-        : this.customer === 'Vilvi'
-          ? backgroundVilvi
-          : this.customer === 'Perlas GO'
-            ? backgroundPerlasGo
-            : this.customer === 'Magija'
-              ? backgroundMagija
-              : this.customer === 'demo-22'
-                ? backgroundDemo
-                : this.customer === 'Toni'
-                  ? backgroundToni
-                  : this.customer === 'Nevezis'
-                    ? backgroundNevezis
-                    : this.customer === 'Akropolis'
-                      ? this.language === 'LV'
-                        ? backgroundRedAkropolisLV
-                        : backgroundRedAkropolis
-                      : backgroundRed
-    }) center`;
+    canvas.style.background = `url(${getBackground(this.customer, this.language)}) center`;
 
     DoodleWidget.ctx = canvas.getContext('2d');
 
@@ -248,8 +307,7 @@ class DoodleWidget {
         document.getElementById('background_intro').style.transition = 'opacity 1s ease';
         document.getElementById('background_intro').style.opacity = 0;
         if (this.gameCount === 0) {
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+          toggleBackgroundBlur(true, this.customer, this.language);
         }
         this.showRulesOrRegistration();
 
@@ -411,9 +469,7 @@ class DoodleWidget {
   };
 
   showRulesOrRegistration = () => {
-    const currentPageUrl = window.location.href;
-    this.urlParams = new URL(currentPageUrl).searchParams;
-    const user_id = this.urlParams.get('user_id');
+    const user_id = this.config.userId;
     if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
@@ -438,8 +494,6 @@ class DoodleWidget {
       });
 
       const phoneInputField = this.customer === 'Toni' ? document.getElementById('boomio-competition-email-input-field') : document.getElementById('boomio-competition-phone-input-field');
-      const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      emailInput.addEventListener('input', () => {});
 
       if (phoneInputField) {
         phoneInputField.addEventListener('input', (event) => {
@@ -450,7 +504,7 @@ class DoodleWidget {
       }
 
       setTimeout(() => {
-        document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
+        toggleBackgroundBlur(true, this.customer, this.language);
         this.applyCanvasBlur();
 
         const inpuRegisterContainer = document.querySelector('.input-register-container');
@@ -533,7 +587,7 @@ class DoodleWidget {
       }, 1000);
     }
     setTimeout(() => {
-      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
+      toggleBackgroundBlur(true, this.customer, this.language);
       this.applyCanvasBlur();
       const inputContainer = document.querySelector('.input-container');
       document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -648,11 +702,10 @@ class DoodleWidget {
 
     setTimeout(() => {
       document.getElementById('useCuponImage').style.display = 'block';
-      document.getElementById('background_blur').style.transition = 'opacity 1s ease';
       document.getElementById('ending_background').style.display = 'block';
 
       setTimeout(() => {
-        document.getElementById('background_blur').style.opacity = 0;
+        toggleBackgroundBlur(false, this.customer, this.language);
         document.getElementById('ending_background').style.transition = 'opacity 1s ease';
         document.getElementById('ending_background').style.opacity = 1;
       }, 100);
@@ -738,11 +791,11 @@ class DoodleWidget {
       }, 1000);
     }
     setTimeout(() => {
-      document.getElementById('background_blur').style.opacity = 0;
+      toggleBackgroundBlur(false, this.customer, this.language);
     }, 200);
 
     setTimeout(() => {
-      document.getElementById('background_blur').style.display = 'none';
+      toggleBackgroundBlur(false, this.customer, this.language);
       this.removeCanvasBlur();
       this.gamePlaying = true;
     }, 400);
@@ -766,8 +819,8 @@ class DoodleWidget {
   };
 
   updateScore = () => {
-    document.getElementById('bestScoreField').textContent = this.currentScore;
-    document.getElementById('currentScoreField').textContent = this.bestScore;
+    document.getElementById('bestScoreField').textContent = this.bestScore;
+    document.getElementById('currentScoreField').textContent = this.currentScore;
     document.getElementById('bestScoreFieldConverted').textContent =
       this.config.discountType !== 'percentage'
         ? this.bestScore / 100 + '€'
@@ -896,8 +949,7 @@ class DoodleWidget {
             competitionTableContainer = document.querySelector('.competition-table-container');
           }
           this.applyCanvasBlur();
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
+          toggleBackgroundBlur(true, this.customer, this.language);
           competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
           setTimeout(() => {
@@ -908,7 +960,7 @@ class DoodleWidget {
         } else {
           const inputContainer = document.querySelector('.input-container1');
           this.applyCanvasBlur();
-          document.getElementById('background_blur').style.display = 'block';
+          toggleBackgroundBlur(true, this.customer, this.language);
           inputContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           inputContainer.style.display = 'block';
           setTimeout(() => {
@@ -974,13 +1026,19 @@ class DoodleWidget {
     DoodleWidget.ctx = canvas.getContext('2d');
   };
 
-  gameLoop = () => {
-    this.update();
+  gameLoop = (timestamp) => {
+    if (!this.lastFrameTime) this.lastFrameTime = timestamp;
+    const deltaTime = timestamp - this.lastFrameTime;
 
-    setTimeout(() => {
-      requestAnimationFrame(this.gameLoop);
-    }, 1000 / 120);
+    // Only update if enough time has passed (target 120 FPS = 8.33ms per frame)
+    if (deltaTime >= 8.33) {
+      this.update();
+      this.lastFrameTime = timestamp;
+    }
+
+    requestAnimationFrame(this.gameLoop);
   };
+
   collides = () => {
     // Platform collisions
     this.platforms.forEach((p, _i) => {
@@ -1301,11 +1359,6 @@ class DoodleWidget {
   createContainer = () => {
     const blurImage = new Image();
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
-    const playAgain = new Image();
-    playAgain.src = 'https://i.ibb.co/0Bqvttk/PLAY-AGAIN.png';
-
-    const okImage = new Image();
-    okImage.src = 'https://i.ibb.co/nL70YWF/OK.png';
 
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
@@ -1328,50 +1381,18 @@ class DoodleWidget {
 
     
 
-		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}">
+		<canvas id="boomio-doodle-canvas" class="boomio-doodle-canvas" style="width:${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}">
 		</canvas>
 
     <div style="position: absolute;z-index:999;pointer-events:none" class="tutorial" id="tutorial">
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${'Georama'};font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${'uppercase'};">
        <div>${this.language === 'LT' && this.customer === 'Pigu.lt' ? 'BAKST' : t('controlTapDoodle', this.language)}</div>
         <div>${this.language === 'LT' && this.customer === 'Pigu.lt' ? 'BAKST' : t('controlTapDoodle', this.language)}</div>
-      </div><img src=${this.isMobile ? Controlls : ControlsDesktop} alt="Image Description" style="width: 110px; height: 50px;">`}
+      </div><img src=${this.isMobile ? Controlls : ControlsDesktop} alt="Controls image" style="width: 110px; height: 50px;">`}
       </div>
 
-<img src="${
-      this.language === 'ET' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? PiguJumpUpIntroEstonian
-        : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-          ? PiguJumpUpIntroEstoniaRU
-          : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-            ? PiguJumpUpIntroLithuanian
-            : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-              ? PiguJumpUpIntroLithuanianRU
-              : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-                ? PiguJumpUpIntroFinish
-                : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-                  ? PiguJumpUpIntroLatvian
-                  : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-                    ? PiguJumpUpIntroLatvianRU
-                    : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-                      ? PiguJumpUpIntroLithuanianEN
-                      : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-                        ? PiguJumpUpIntroFinishEN
-                        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-                          ? PiguJumpUpIntroLatvianEN
-                          : this.language === 'EN' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-                            ? PiguJumpUpIntroEstonianEN
-                            : this.customer === 'Vilvi'
-                              ? introVilvi
-                              : this.customer === 'Magija'
-                                ? introMagija
-                                : this.customer === 'Akropolis'
-                                  ? this.language === 'LV'
-                                    ? introAkropolisLV
-                                    : introAkropolis
-                                  : ''
-    }" 
-alt="Intro Image" 
+<img src="${getIntroImage(this.customer, this.language, this.campaignUrlOrCurrentPage)}" 
+alt="Intro image" 
 style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:${this.customer === 'Toni' || this.customer === 'Nevezis' ? 'none' : 'block'};" 
 id="background_intro">
 
@@ -1379,20 +1400,21 @@ id="background_intro">
         <img src=${jumpEffect} alt="Jump Effect" style="z-index:4;width:${
           document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
         }; height: 674px;position:absolute;pointer-events: none; display:none;opacity:0;transition:opacity 0.6s ease;" id="background_effect">
-${
-  (this.language === 'LV' && this.customer === 'Akropolis') || this.customer === 'Vilvi'
-    ? `<div alt="Image Description" style="z-index:1;width: ${
-        document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
-      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${this.customer === 'Vilvi' ? '#359BB9' : '#FE0000'}" id="background_blur"></div>`
-    : `<img src=${blurImage.src} alt="Image Description" style="z-index:1;width: ${
-        document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
-      }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;" id="background_blur"></img>`
-}
+${(() => {
+  const blurColor = getBackgroundBlurColor(this.customer, this.language);
+  const widthStyle = document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px';
+  const commonStyles = `z-index:1;width: ${widthStyle}; height: 668px;position:absolute;opacity:0;pointer-events:none;display:none;`;
+
+  if (blurColor) {
+    return `<div id="background_blur" style="${commonStyles}background-color:${blurColor}"></div>`;
+  } else {
+    return `<img id="background_blur" src="${blurImage.src}" alt="Blur image" style="${commonStyles}"></img>`;
+  }
+})()}
 
     <a href="https://www.barbora.lt/" style="position:absolute;margin-top:380px;margin-left:-340px">
     <img src="${useButton}" alt="Image Description" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
   </a>
-
 
 
     <img class="new_highscore_stars" src=${
@@ -1443,21 +1465,7 @@ ${
 </div>
 
 
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Vilvi'
-        ? '#45A2BF'
-        : this.customer === 'Pigu.lt'
-          ? '#FD61FE'
-          : this.customer === 'Perlas GO'
-            ? '#19AA82'
-            : this.customer === 'Magija'
-              ? '#194898'
-              : this.language === 'LV'
-                ? '#F40027'
-                : this.customer === 'Toni'
-                  ? '#000F9F'
-                  : '#045222'
-    };border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(this.customer, this.language)};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -1702,7 +1710,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       inpuRegisterContainer.style.display = 'none';
                     }, 1000);
                     setTimeout(() => {
-                      document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.37;
+                      toggleBackgroundBlur(true, this.customer, this.language);
                       this.applyCanvasBlur();
                       const inputContainer = document.querySelector('.input-container');
                       document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -1744,7 +1752,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
           didYouKnowTableContainer.style.display = 'none';
         }, 1000);
         const competitionTableContainer = document.querySelector('.competition-table-container');
-        document.getElementById('background_blur').style.display = 'block';
+        toggleBackgroundBlur(true, this.customer, this.language);
         competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         competitionTableContainer.style.display = 'block';
 
@@ -1786,7 +1794,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               .then((_response) => {
                 this.toggleMobileControls(true);
 
-                document.getElementById('background_blur').style.display = 'none';
+                toggleBackgroundBlur(false, this.customer, this.language);
                 const canvas = document.getElementById('boomio-doodle-canvas');
                 canvas.style.transition = 'filter 1s ease';
                 canvas.style.filter = 'none';
@@ -1843,7 +1851,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
 
   toggleMobileControls = (show) => {
     const mobileControls = document.getElementById('doodle-mobile-controls');
-    if (mobileControls && this.isMobile && (this.customer === 'Perlas GO' || this.customer === 'Nevezis')) {
+    if (mobileControls && this.isMobile) {
       mobileControls.style.display = show ? 'block' : 'none';
     }
   };

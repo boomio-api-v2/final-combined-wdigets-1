@@ -836,8 +836,8 @@ class FlappyBird {
 
           flyHeight = canvas.height / 2 - size[1] / 2 - 70;
 
-          document.getElementById('bestScoreField').textContent = this.currentScore;
-          document.getElementById('currentScoreField').textContent = this.bestScore;
+          document.getElementById('bestScoreField').textContent = this.bestScore;
+          document.getElementById('currentScoreField').textContent = this.currentScore;
 
           document.getElementById('bestScoreFieldConverted').textContent =
             this.config.discountType !== 'percentage'

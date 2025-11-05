@@ -1343,9 +1343,17 @@ background:${getBrandColor(this.customer)};border-radius:35px">
           return;
         }
 
-        if (!this.checkboxChange2 && this.customer === 'Toni') {
+        if (!this.checkboxChange2 && (this.customer === 'Toni' || this.customer === 'Apranga')) {
           document.getElementById('competition-checkbox-error2').innerText =
-            this.customer === 'Toni' ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.' : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+            this.customer === 'Toni'
+              ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+              : this.customer === 'Apranga'
+                ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
+                : this.language === 'LV'
+                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                  : this.language === 'RU'
+                    ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+                    : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
           document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
           document.getElementById('competition-checkbox-error2').style.display = 'block';
           document.getElementById('competition-checkbox-error2').style.height = '18px';
