@@ -4,21 +4,21 @@ import { localStorageService } from '@/services';
 
 const privacyPolicytranslations = {
   pigu: {
-    EN: `I agree with <a href="https://pigu.lt/ru/t/politika-konfidentsialnosti-zao-pigu" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt/220.lv/Kaup24.ee/Hobbyhall.fi</a> privacy policy. I have read and agree with game rules and instructions.`,
-    LT: `Sutinku su <a href="https://pigu.lt/lt/t/privatumo-politika" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a> privatumo politika. Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.`,
-    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://pigu.lt/ru/t/politika-konfidentsialnosti-zao-pigu" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a>. Я прочитал(а) и согласен(на) с правилами и инструкциями игры.`,
+    EN: `I agree with <a href="https://pigu.lt/ru/t/politika-konfidentsialnosti-zao-pigu" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt/220.lv/Kaup24.ee/Hobbyhall.fi</a> privacy policy.`,
+    LT: `Sutinku su <a href="https://pigu.lt/lt/t/privatumo-politika" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a> privatumo politika.`,
+    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://pigu.lt/ru/t/politika-konfidentsialnosti-zao-pigu" target="_blank" rel="noopener noreferrer" style="color:white">Pigu.lt</a>.`,
   },
   220: {
-    LV: `Es piekrītu <a href="https://220.lv/lv/t/privatuma-politika" target="_blank" rel="noopener noreferrer" style="color:white">220.lv</a> privātuma politikai. Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.`,
-    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://220.lv/ru/t/politika-konfidencialnosti" target="_blank" rel="noopener noreferrer" style="color:white">220.lv</a>. Я прочитал(а) и согласен(на) с правилами и инструкциями игры.`,
+    LV: `Es piekrītu <a href="https://220.lv/lv/t/privatuma-politika" target="_blank" rel="noopener noreferrer" style="color:white">220.lv</a> privātuma politikai.`,
+    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://220.lv/ru/t/politika-konfidencialnosti" target="_blank" rel="noopener noreferrer" style="color:white">220.lv</a>.`,
   },
   kaup24: {
-    ET: `Nõustun <a href="https://kaup24.ee/et/t/privaatsuspoliitika" target="_blank" rel="noopener noreferrer" style="color:white">Kaup24.ee</a> privaatsuspoliitikaga. Olen tutvunud ja nõustun mängureeglite ning juhistega.`,
-    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://kaup24.ee/ru/t/konfidencialnos" target="_blank" rel="noopener noreferrer" style="color:white">Kaup24.ee</a>. Я прочитал(а) и согласен(на) с правилами и инструкциями игры.`,
+    ET: `Nõustun <a href="https://kaup24.ee/et/t/privaatsuspoliitika" target="_blank" rel="noopener noreferrer" style="color:white">Kaup24.ee</a> privaatsuspoliitikaga.`,
+    RU: `Я согласен(на) с политикой конфиденциальности <a href="https://kaup24.ee/ru/t/konfidencialnos" target="_blank" rel="noopener noreferrer" style="color:white">Kaup24.ee</a>.`,
   },
   hobbyhall: {
     EN: `I agree with <a href="https://hobbyhall.fi/fi/t/privacy-policy" target="_blank" rel="noopener noreferrer" style="color:white">Hobbyhall.fi</a> privacy policy.`,
-    FI: `Hyväksyn yrityksen <a href="https://hobbyhall.fi/fi/t/privacy-policy" target="_blank" rel="noopener noreferrer" style="color:white">tietosuojakäytännön</a>. Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.`,
+    FI: `Hyväksyn yrityksen <a href="https://hobbyhall.fi/fi/t/privacy-policy" target="_blank" rel="noopener noreferrer" style="color:white">tietosuojakäytännön</a>.`,
   },
 };
 
@@ -352,13 +352,13 @@ export class InputRegisterContainer {
                                                                                   ? 'Sutinku su „ORLEN“'
                                                                                   : this.prop === 'Apranga'
                                                                                     ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025-new" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
-                                                                                    : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('pigu')
+                                                                                    : this.config.campaignUrlOrCurrentPage.includes('pigu')
                                                                                       ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
-                                                                                      : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('220')
+                                                                                      : this.config.campaignUrlOrCurrentPage.includes('220')
                                                                                         ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
-                                                                                        : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('kaup24')
+                                                                                        : this.config.campaignUrlOrCurrentPage.includes('kaup24')
                                                                                           ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
-                                                                                          : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('hobbyhall')
+                                                                                          : this.config.campaignUrlOrCurrentPage.includes('hobbyhall')
                                                                                             ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
                                                                                             : this.language === 'EN'
                                                                                               ? 'I agree to receive '

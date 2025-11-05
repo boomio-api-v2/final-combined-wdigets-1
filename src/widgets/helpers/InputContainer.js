@@ -766,19 +766,19 @@ ${
                   ? 'href=https://www.novatours.ee/mangu-reeglid'
                   : this.prop === 'Novaturas' && this.language === 'RU'
                     ? 'href=https://www.novatours.lv/ru/pravila-igri'
-                    : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('pigu')
+                    : this.config.campaignUrlOrCurrentPage.includes('pigu')
                       ? this.language === 'RU'
                         ? `href=https://pigu.lt/ru/t/zaidimo-taisykles-jump`
                         : `href=https://pigu.lt/lt/t/zaidimo-taisykles-jump`
-                      : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('220')
+                      : this.config.campaignUrlOrCurrentPage.includes('220')
                         ? this.language === 'RU'
                           ? `href=https://220.lv/ru/t/game-rules-jump`
                           : `href=https://220.lv/lv/t/game-rules-jump `
-                        : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('kaup24')
+                        : this.config.campaignUrlOrCurrentPage.includes('kaup24')
                           ? this.language === 'RU'
                             ? `href=https://kaup24.ee/ru/t/game-rules-jump `
                             : `href=https://kaup24.ee/et/t/game-rules-jump `
-                          : this.config.campaignUrlOrCurrentPage.toLowerCase().includes('hobbyhall')
+                          : this.config.campaignUrlOrCurrentPage.includes('hobbyhall')
                             ? this.language === 'EN'
                               ? `href=https://hobbyhall.fi/fi/t/game-rules-jump `
                               : `href=https://hobbyhall.fi/fi/t/game-rules-jump `

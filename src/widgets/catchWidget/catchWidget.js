@@ -783,17 +783,29 @@ class CatchGame {
                     ? 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas“ privatumo politika.'
                     : this.customer === 'Akropolis' && this.language === 'LV'
                       ? 'Spēlētājam ir jāpiekrīt spēles noteikumiem un datu apstrādei, lai turpinātu.'
-                      : this.language === 'LV'
-                        ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                        : this.language === 'RU'
-                          ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
-                          : this.language === 'ES'
-                            ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                            : this.customer.includes('Gamtos Ateitis')
-                              ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-                              : this.customer === 'Apranga'
-                                ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
-                                : 'Norint tęsti, privaloma sutikti su privatumo politika.';
+                      : this.customer.includes('Gamtos Ateitis')
+                        ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+                        : this.customer === 'Apranga'
+                          ? 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu'
+                          : this.customer === 'Pigu.lt' && this.language === 'LV'
+                            ? 'Lai turpinātu, ir obligāti jāpiekrīt uzņēmuma privātuma politikai.'
+                            : this.customer === 'Pigu.lt' && this.language === 'RU'
+                              ? 'Чтобы продолжить, необходимо согласиться с политикой конфиденциальности компании.'
+                              : this.customer === 'Pigu.lt' && this.language === 'ET'
+                                ? 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.'
+                                : this.customer === 'Pigu.lt' && this.language === 'FI'
+                                  ? 'Jatkaaksesi sinun on hyväksyttävä yrityksen tietosuojakäytäntö.'
+                                  : this.language === 'LV'
+                                    ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                                    : this.language === 'RU'
+                                      ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+                                      : this.language === 'ES'
+                                        ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                                        : this.language === 'FI'
+                                          ? 'Jatkaaksesi sinun on hyväksyttävä yrityksen tietosuojakäytäntö.'
+                                          : this.language === 'LT'
+                                            ? 'Norint tęsti, privaloma sutikti su privatumo politika.'
+                                            : 'To continue, you must agree to the privacy policy.';
               document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error').style.display = 'block';
               document.getElementById('competition-checkbox-error').style.height = '18px';
@@ -839,17 +851,27 @@ class CatchGame {
               document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
             }
 
-            if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni' || this.customer === 'Apranga')) {
+            if (!checkboxChange2 && (this.customer === 'Pegasas' || this.customer === 'Toni' || this.customer === 'Apranga' || this.customer === 'Pigu.lt')) {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                   : this.customer === 'Apranga'
                     ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
-                    : this.language === 'LV'
-                      ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                      : this.language === 'RU'
-                        ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
-                        : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+                    : this.customer === 'Pigu.lt' && this.language === 'LT'
+                      ? 'Norint tęsti privaloma sutikti su žaidimo taisyklėmis.'
+                      : this.customer === 'Pigu.lt' && this.language === 'LV'
+                        ? 'Lai turpinātu, ir obligāti jāpiekrīt spēles noteikumiem.'
+                        : this.customer === 'Pigu.lt' && this.language === 'RU'
+                          ? 'Чтобы продолжить, необходимо согласиться с правилами игры.'
+                          : this.customer === 'Pigu.lt' && this.language === 'ET'
+                            ? 'Jätkamiseks nõustu mängureeglitega.'
+                            : this.customer === 'Pigu.lt' && this.language === 'FI'
+                              ? 'Jatkaaksesi sinun on hyväksyttävä pelisäännöt.'
+                              : this.language === 'LV'
+                                ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+                                : this.language === 'RU'
+                                  ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+                                  : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
               document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
               document.getElementById('competition-checkbox-error2').style.display = 'block';
               document.getElementById('competition-checkbox-error2').style.height = '18px';
