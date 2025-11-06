@@ -1,6 +1,7 @@
 import './index.css';
 import { localStorageService, boomioService } from '@/services';
 import { Elements } from '../../helpers/HtmlElementsHelper';
+import { isLifeCustomer } from '../utils';
 import {
   brickWallImageData,
   carImageData,
@@ -225,7 +226,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
-  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' ? 1 : 3;
+  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' || customer === 'Toni' ? 1 : 3;
   let LOST_LIFE = 0;
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -259,7 +260,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const ROAD_SPRITE_SPAWN_X = width / 10;
   let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' ? 999999 : 90; //time
+  const START_TIME = isLifeCustomer(customer) ? 999999 : 90; //time
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -1552,7 +1553,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   };
 
   function showRulesOrRegistration() {
-    const user_id = this.config.userId;
+    const user_id = config.userId;
 
     if (customer === 'Pigu.lt' && bestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
@@ -1644,8 +1645,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         emailInput.addEventListener('paste', (e) => {
           e.preventDefault(); // Block pasting
         });
-      } else {
-        emailInput.addEventListener('input', () => {});
       }
 
       setTimeout(() => {
@@ -1940,7 +1939,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   function updateGame() {
     if (readyToDecrementTime()) updateTimeLeft();
-    const { timeLeft } = gameVars;
 
     if (gameVars.gameOver) {
       // if (gameVars.readyToRestart && isButtonPressed()) restartGame();
@@ -1950,10 +1948,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       addWall();
     }
 
-    if (timeLeft <= 10) {
-    }
-
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+    if (isLifeCustomer(customer)) {
       if (DEFAULT_LIFE <= LOST_LIFE) gameOverLifeZero();
     }
 
@@ -2311,18 +2306,18 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             }, 100);
           }, 2000);
 
-          const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-          let currectTimeDiv;
-          if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
-            currectTimeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
+          let currentTimeDiv;
+          if (isLifeCustomer(customer)) {
+            currentTimeDiv = Elements.lifeInputContainer;
           } else {
-            currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+            currentTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
           }
-          currectTimeDiv.style.opacity = 0;
-          currectScoreDiv.style.opacity = 0;
+          currentTimeDiv.style.opacity = 0;
+          const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+          currentScoreDiv.style.opacity = 0;
           setTimeout(() => {
-            currectTimeDiv.style.display = 'none';
-            currectScoreDiv.style.display = 'none';
+            currentTimeDiv.style.display = 'none';
+            currentScoreDiv.style.display = 'none';
           }, 300);
         }, 100);
         gameVars.readyToRestart = true;
@@ -2388,7 +2383,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     if (inGracePeriod()) return;
     const halfWidth = player.dimensions / 3;
     gameVars.lastHitAt = gameTime;
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+    if (isLifeCustomer(customer)) {
       LOST_LIFE++;
 
       showScoreEffect('-1', true);
@@ -2426,10 +2421,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     gameVars.currentScore += min(100, 999);
 
     if (gameVars.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-      currectScoreDiv.style.transition = 'opacity 0.8s ease';
-      currectScoreDiv.style.display = 'block';
-      currectScoreDiv.style.opacity = 1;
+      const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      currentScoreDiv.style.transition = 'opacity 0.8s ease';
+      currentScoreDiv.style.display = 'block';
+      currentScoreDiv.style.opacity = 1;
     }
 
     if (bestScore < gameVars.currentScore) {
@@ -2452,10 +2447,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     });
     gameVars.currentScore += min(50, 999);
     if (gameVars.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-      currectScoreDiv.style.transition = 'opacity 0.8s ease';
-      currectScoreDiv.style.display = 'block';
-      currectScoreDiv.style.opacity = 1;
+      const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      currentScoreDiv.style.transition = 'opacity 0.8s ease';
+      currentScoreDiv.style.display = 'block';
+      currentScoreDiv.style.opacity = 1;
     }
     if (bestScore < gameVars.currentScore) {
       newHighScoreReached = true;
@@ -2592,7 +2587,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
-    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+    } else if (isLifeCustomer(customer)) {
       if (backgroundImageLoaded) {
         ctx.drawImage(backgroundImage, 0, 0, width, height);
       }
@@ -2655,7 +2650,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+      } else if (isLifeCustomer(customer)) {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2696,7 +2691,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+      } else if (isLifeCustomer(customer)) {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2717,12 +2712,11 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     }
     angle += 0.01;
   }
-
   function drawUi() {
     if (gameVars.gameOver) return;
     const timeColor = gameVars.timeLeft > 20 ? 'white' : SPARK_COLOR;
 
-    if (customer !== 'Pigu.lt' && customer !== 'Gamtos Ateitis' && customer !== 'Orlen' && customer !== 'Novaturas') {
+    if (!isLifeCustomer(customer)) {
       document.getElementById('currentTime').innerHTML = `${gameVars.timeLeft}`;
       document.getElementById('currentTime').style.color = timeColor;
 

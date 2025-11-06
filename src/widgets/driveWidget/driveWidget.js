@@ -45,19 +45,7 @@ import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCo
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
-
-// Helper function to get brand color based on customer
-const getBrandColor = (customer) => {
-  if (customer === 'Barbora') return '#CC0001';
-  if (customer === 'Ikea') return '#0058A3';
-  if (customer === 'Unisend') return '#376728';
-  if (customer === 'Pigu.lt') return '#DF503E';
-  if (customer === 'Gamtos Ateitis') return '#3F7543';
-  if (customer === 'Orlen') return '#EF1C1D';
-  if (customer === 'Novaturas') return '#32A1DA';
-  if (customer === 'Toni') return '#262B8C';
-  return '#FFE92D'; // Default
-};
+import { getBrandColor, isLifeCustomer } from './utils';
 
 // Helper function to get intro image based on customer, language, campaign URL, and type
 const getIntroImage = (customer, language, campaignUrl) => {
@@ -202,12 +190,12 @@ class driveWidget {
 
 
 ${
-  this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis' || this.customer === 'Orlen' || this.customer === 'Novaturas'
+  isLifeCustomer(this.customer)
     ? `<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(
         this.customer,
       )};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-<img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
+<img src=${life} alt="Life image" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
 <div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife"></div>
 </div>

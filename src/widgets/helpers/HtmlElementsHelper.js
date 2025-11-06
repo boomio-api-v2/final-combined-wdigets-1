@@ -54,6 +54,10 @@ class HtmlElementsHelper {
     return document.getElementById('boomio-close-did-you-know');
   }
 
+  get lifeInputContainer() {
+    return document.querySelector('.boomio-life-input-container');
+  }
+
   isVisible(el) {
     if (!el) return false;
 

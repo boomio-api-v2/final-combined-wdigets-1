@@ -208,8 +208,6 @@ class FlappyBird {
         emailInput.addEventListener('paste', (e) => {
           e.preventDefault(); // Block pasting
         });
-      } else {
-        emailInput.addEventListener('input', () => {});
       }
 
       if (phoneInputField) {
@@ -633,10 +631,10 @@ class FlappyBird {
               document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
 
               if (this.currentScore > 1) {
-                const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-                currectScoreDiv.style.transition = 'opacity 0.8s ease';
-                currectScoreDiv.style.display = 'block';
-                currectScoreDiv.style.opacity = 1;
+                const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+                currentScoreDiv.style.transition = 'opacity 0.8s ease';
+                currentScoreDiv.style.display = 'block';
+                currentScoreDiv.style.opacity = 1;
               }
               if (this.bestScore < this.currentScore) {
                 this.newHighScoreReached = true;
@@ -784,10 +782,10 @@ class FlappyBird {
                       competitionTableContainer.style.top = 'calc(50%)';
                       competitionTableContainer.style.opacity = 1;
                     }, 100);
-                    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-                    currectScoreDiv.style.opacity = 0;
+                    const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+                    currentScoreDiv.style.opacity = 0;
                     setTimeout(() => {
-                      currectScoreDiv.style.display = 'none';
+                      currentScoreDiv.style.display = 'none';
                     }, 300);
                   } else {
                     const competitionTableContainer = document.querySelector('.competition-table-container');
@@ -800,10 +798,10 @@ class FlappyBird {
                       competitionTableContainer.style.top = 'calc(50%)';
                       competitionTableContainer.style.opacity = 1;
                     }, 100);
-                    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-                    currectScoreDiv.style.opacity = 0;
+                    const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+                    currentScoreDiv.style.opacity = 0;
                     setTimeout(() => {
-                      currectScoreDiv.style.display = 'none';
+                      currentScoreDiv.style.display = 'none';
                     }, 300);
                   }
                   setup();

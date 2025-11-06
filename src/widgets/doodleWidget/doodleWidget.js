@@ -969,11 +969,11 @@ class DoodleWidget {
             inputContainer.style.opacity = 1;
           }, 100);
         }
-        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+        const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
         this.hideScore();
-        currectScoreDiv.style.opacity = 0;
+        currentScoreDiv.style.opacity = 0;
         setTimeout(() => {
-          currectScoreDiv.style.display = 'none';
+          currentScoreDiv.style.display = 'none';
         }, 300);
       },
 
@@ -1274,10 +1274,10 @@ class DoodleWidget {
       document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
 
       if (this.currentScore > 1) {
-        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-        currectScoreDiv.style.transition = 'opacity 0.8s ease';
-        currectScoreDiv.style.display = 'block';
-        currectScoreDiv.style.opacity = 1;
+        const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+        currentScoreDiv.style.transition = 'opacity 0.8s ease';
+        currentScoreDiv.style.display = 'block';
+        currentScoreDiv.style.opacity = 1;
       }
 
       if (this.bestScore < this.currentScore) {
