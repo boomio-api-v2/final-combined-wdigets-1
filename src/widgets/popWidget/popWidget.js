@@ -68,7 +68,7 @@ class PopGame {
     }, 50); //intro speed
   }
 
-  showRulesOrRegistration = () => {    
+  showRulesOrRegistration = () => {
     const user_id = this.config.userId;
     if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
