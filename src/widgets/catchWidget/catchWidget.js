@@ -1152,11 +1152,26 @@ class CatchGame {
           if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
             boomioService
               .signal('ROUND_STARTED', 'signal')
-              .then(() => {
+              .then((response) => {
                 document.getElementById('background_blur').style.display = 'none';
                 const canvas = document.getElementById('boomio-catch-canvas');
                 canvas.style.transition = 'filter 1s ease';
                 canvas.style.filter = 'none';
+
+                if (this.customer === 'Pigu.lt') {
+                  if (window.Boomio) {
+                    window.Boomio.logEvent('game_started', JSON.stringify(response));
+                  } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
+                    var message = {
+                      command: 'logEvent',
+                      name: 'game_started',
+                      parameters: { response },
+                    };
+                    window.webkit.messageHandlers.Boomio.postMessage(message);
+                  } else {
+                    console.log('No native APIs found.');
+                  }
+                }
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -1272,8 +1287,23 @@ class CatchGame {
                 if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
                   boomioService
                     .signal('ROUND_STARTED', 'signal')
-                    .then(() => {
+                    .then((response) => {
                       this.gameStarted = true;
+
+                      if (this.customer === 'Pigu.lt') {
+                        if (window.Boomio) {
+                          window.Boomio.logEvent('game_started', JSON.stringify(response));
+                        } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
+                          var message = {
+                            command: 'logEvent',
+                            name: 'game_started',
+                            parameters: { response },
+                          };
+                          window.webkit.messageHandlers.Boomio.postMessage(message);
+                        } else {
+                          console.log('No native APIs found.');
+                        }
+                      }
                     })
                     .catch((error) => {
                       console.error('Error:', error);
@@ -1579,6 +1609,22 @@ class CatchGame {
                 .then((response) => {
                   this.hideScore();
                   this.userBestPlace = response.user_best_place;
+
+                  if (this.customer === 'Pigu.lt') {
+                    if (window.Boomio) {
+                      window.Boomio.logEvent('game_finished', JSON.stringify(response));
+                    } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
+                      var message = {
+                        command: 'logEvent',
+                        name: 'game_finished',
+                        parameters: { response },
+                      };
+                      window.webkit.messageHandlers.Boomio.postMessage(message);
+                    } else {
+                      console.log('No native APIs found.');
+                    }
+                  }
+
                   if (this.showCompetitiveRegistration === 'points') {
                     this.scoreTable = response;
                     this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
