@@ -93,24 +93,20 @@ export class InputRegisterContainer {
                       ? ' Jau reģistrējies? Izmanto to pašu e-pastu  </br>un uzlabo savu rezultātu!'
                       : this.language === 'RU'
                         ? ' Уже зарегистрировался? Используй тот же  </br>email и улучшай результат!'
-                        : this.language === 'ES'
-                          ? 'Oled juba registreerunud? Kasuta sama e-posti </br> ja paranda oma tulemust!'
-                          : this.language === 'ET'
-                            ? 'Juba registreerunud? Kasuta sama e-posti aadressi </br> ja paranda oma tulemust!'
-                            : this.language === 'PL'
-                              ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
-                              : this.language === 'FI'
-                                ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
-                                : this.customer === 'Perlas GO'
-                                  ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
-                                  : this.customer === 'Orlen'
-                                    ? 'Jau registravaisi? Naudok tą patį telefono numerį </br> toliau gerinant rezultatą!'
-                                    : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
+                        : this.language === 'ET'
+                          ? 'Juba registreerunud? Kasuta sama e-posti aadressi </br> ja paranda oma tulemust!'
+                          : this.language === 'PL'
+                            ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
+                            : this.language === 'FI'
+                              ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
+                              : this.customer === 'Perlas GO'
+                                ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
+                                : this.customer === 'Orlen'
+                                  ? 'Jau registravaisi? Naudok tą patį telefono numerį </br> toliau gerinant rezultatą!'
+                                  : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
           } 
     </div>
-      <div id="boomio-competition-confirm-field" disabled=${
-        privacyCheckboxChecked ? true : false
-      } style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="text-align: center;font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};   color: ${
           this.customer === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
         } ; font-size: 24px;  font-weight: ${this.customer === 'Ikea' ? '400' : '700'}; line-height: 24px; word-wrap: break-word" >${
@@ -120,7 +116,7 @@ export class InputRegisterContainer {
               ? 'ДАЛЕЕ'
               : this.language === 'ET'
                 ? 'EDASI'
-                : this.language === 'ES' || this.language === 'ET'
+                : this.language === 'ES'
                   ? 'SIGUIENTE'
                   : this.customer === 'Fpro'
                     ? 'NEXT'
@@ -134,12 +130,10 @@ export class InputRegisterContainer {
                             ? 'CONTINUE'
                             : this.language === 'FI'
                               ? 'SEURAAVA'
-                              : this.language === 'ES'
-                                ? 'CONTINUAR'
-                                : 'TOLIAU'
+                              : 'TOLIAU'
         }</div>
       </div>
-       <div class="boomio-privacyCheckbox2" id="boomio-privacyCheckbox2" style=";cursor:${this.customer === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
+       <div id="boomio-privacyCheckbox2" class="boomio-privacyCheckbox2" style=";cursor:${this.customer === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
          this.customer === 'Zemaitijos Pienas' ? '360px' : '360px'
        }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${
          this.customer === 'Makalius' ||
@@ -225,29 +219,25 @@ export class InputRegisterContainer {
                                                         ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
                                                         : this.customer === 'Orlen'
                                                           ? 'Sutinku gauti „ORLEN“ naujienlaiškius.'
-                                                          : this.customer === 'Unisend' && this.language === 'LV'
-                                                            ? 'Nõustun saama Unisend.ee uudiskirju'
-                                                            : this.customer === 'Unisend' && this.language === 'LV'
-                                                              ? 'Nõustun saama Unisend.ee uudiskirju'
-                                                              : this.customer === 'Pigu.lt' && this.language === 'RU'
-                                                                ? 'Я прочитал(а) и согласен(на) с правилами и инструкциями игры.'
-                                                                : this.customer === 'Pigu.lt' && this.language === 'FI'
-                                                                  ? 'Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.'
-                                                                  : this.customer === 'Pigu.lt' && this.language === 'LV'
-                                                                    ? 'Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.'
-                                                                    : this.customer === 'Pigu.lt' && this.language === 'LT'
-                                                                      ? 'Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.'
-                                                                      : this.customer === 'Pigu.lt' && this.language === 'EN'
-                                                                        ? 'I have read and agree with game rules and instructions.'
-                                                                        : this.customer === 'Pigu.lt' && this.language === 'ET'
-                                                                          ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
-                                                                          : this.customer === 'Apranga'
-                                                                            ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
-                                                                            : 'Sutinku gauti naujienlaiškius.'
+                                                          : this.customer === 'Pigu.lt' && this.language === 'RU'
+                                                            ? 'Я прочитал(а) и согласен(на) с правилами и инструкциями игры.'
+                                                            : this.customer === 'Pigu.lt' && this.language === 'FI'
+                                                              ? 'Olen lukenut ja hyväksyn pelin säännöt ja ohjeet.'
+                                                              : this.customer === 'Pigu.lt' && this.language === 'LV'
+                                                                ? 'Esmu izlasījis un piekrītu spēles noteikumiem un instrukcijām.'
+                                                                : this.customer === 'Pigu.lt' && this.language === 'LT'
+                                                                  ? 'Perskaičiau ir sutinku su žaidimo taisyklėmis bei instrukcijomis.'
+                                                                  : this.customer === 'Pigu.lt' && this.language === 'EN'
+                                                                    ? 'I have read and agree with game rules and instructions.'
+                                                                    : this.customer === 'Pigu.lt' && this.language === 'ET'
+                                                                      ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
+                                                                      : this.customer === 'Apranga'
+                                                                        ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
+                                                                        : 'Sutinku gauti naujienlaiškius.'
         }</div>
       </div>
       
- <div class="boomio-privacyCheckbox3" id="boomio-privacyCheckbox3" style=";cursor:${
+ <div id="boomio-privacyCheckbox3" class="boomio-privacyCheckbox3" style=";cursor:${
    this.customer === 'Fpro' ? 'auto' : 'pointer'
  } ;left: 34px; top: ${'375px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${this.customer === 'Pegasas' ? 'inline-flex' : 'none'}">
       <div  style=" cursor: ${this.customer === 'Fpro' ? 'auto' : 'pointer'};">
@@ -259,13 +249,13 @@ export class InputRegisterContainer {
     </div>
       </div>
 
-        <div class="boomio-privacyCheckbox" id="boomio-privacyCheckbox" style="cursor:${this.customer === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
+        <div id="boomio-privacyCheckbox" class="boomio-privacyCheckbox" style="cursor:${this.customer === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
           this.customer === 'Akropolis' ? (this.language === 'LV' || this.language === 'RU' ? '395px' : '362px') : this.customer === 'Vilvi' ? '360px' : this.customer === 'Dentsu' ? '375px' : '395px'
         }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${this.customer === 'Fpro' || this.customer === 'Fantazijos' ? 'none' : 'inline-flex'};cursor: ${this.customer === 'Fpro' ? 'auto' : 'pointer'};">
             <img id="privacyCheckboxImg" src="${privacyCheckboxChecked ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
         </div>
-        <div style="color: ${'white'}; font-heigt:6px;font-size: ${
+        <div style="color: ${'white'}; font-height:6px;font-size: ${
           this.isMobile
             ? this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
               ? '8px'
@@ -456,22 +446,10 @@ export class InputRegisterContainer {
 </div>
    
    
-        <div id="competition-checkbox-error" style="padding-top:1px;height:${
-          this.customer === 'Magija' ? 'auto' : this.language === 'LV' || this.customer === 'Perlas GO' || this.customer === 'Nevezis' ? '15px' : '28px'
-        } ;margin-right:30px;display:${
-          this.customer === 'Akropolis' ||
-          this.customer === 'Eurovaistine' ||
-          this.customer === 'Vilvi' ||
-          this.customer === 'Perlas GO' ||
-          this.customer === 'Magija' ||
-          this.customer === 'Pigu.lt' ||
-          this.customer === 'Nevezis'
-            ? 'block'
-            : 'none'
-        } ;left: 34px; top:${
+        <div id="competition-checkbox-error" style="width: fit-content;height:auto;padding-top:1px;margin-right:30px;display:none;left: 34px; top:${
           this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.language === 'ES' ? '436px' : '430px'
-        }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.customer === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'};color:${'rgb(216, 0, 12)'};text-align:start;line-height:8px;">
-</div>
+        }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.customer === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'};color:${'#D8000C'};text-align:start;line-height:8px;">
+        </div>
 
         <div id="competition-checkbox-error2" style="padding-top:1px;height:${this.language === 'LV' ? '14px' : '28px'} ;margin-right:30px;display:${
           this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
@@ -487,10 +465,7 @@ export class InputRegisterContainer {
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.isMobile ? '9px' : '10px'};color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>
 
-
-
-
-      <div style="display:${
+      <div id="competition-name-error" style="display:${
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Perlas GO' ||
         this.customer === 'Nevezis' ||
@@ -507,9 +482,9 @@ export class InputRegisterContainer {
         this.language === 'EN'
           ? 'none'
           : 'block'
-      }width: calc(100% - 70px); height: ${this.customer === 'Toni' ? '37px' : '21px'}; left: 35px; top: ${
+      };width: fit-content; height: auto; left: 35px; top: ${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '171px' : '255px'
-      }; position: absolute;text-align:start;z-index:99999;color:  '#D8000C';
+      }; position: absolute;text-align:start;z-index:99999;color:#D8000C;
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
@@ -517,10 +492,9 @@ export class InputRegisterContainer {
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;
-      " id="competition-name-error"></div>
+      "></div>
 
-
-      <div style="width: calc(100% - 70px); height: ${this.customer === 'Toni' ? '37px' : '21px'}; left: 35px; top: ${
+      <div id="competition-email-error" style="width: fit-content; height: auto; left: 35px; top: ${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
           ? '255px'
           : this.customer.includes('Gamtos Ateitis')
@@ -528,7 +502,7 @@ export class InputRegisterContainer {
             : this.customer === 'Nykstukas'
               ? '430px'
               : '338px'
-      } ; position: absolute;text-align:start;z-index:99999;color: '#D8000C';
+      } ; position: absolute;text-align:start;z-index:99999;color:#D8000C;
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
@@ -536,12 +510,10 @@ export class InputRegisterContainer {
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;
-      " id="competition-email-error"> </div>
+      "></div>
 
 
-            <div style="width: calc(100% - 70px); height: ${
-              this.customer === 'Toni' ? '37px' : '21px'
-            }; left: 35px; top: ${'335px'} ; position: absolute;text-align:start;z-index:99999;color: ${'#D8000C'};
+      <div id="competition-phone-error" style="width: fit-content; height: auto; left: 35px; top:335px; position: absolute;text-align:start;z-index:99999;color: ${'#D8000C'};
       font-family: Montserrat;
       font-size: 10px;
       font-style: normal;
@@ -549,7 +521,7 @@ export class InputRegisterContainer {
       letter-spacing: -0.42px;
       border-radius:4px;
       padding:1px 8px 1px 8px;
-      " id="competition-phone-error"> </div>
+      "></div>
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
@@ -595,68 +567,67 @@ export class InputRegisterContainer {
       }; top: ${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '124px' : this.customer === 'Nykstukas' ? '304px' : '204px'
       }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
-      <input 
-        maxLength=${this.customer === 'Toni' ? 10 : undefined}
-
-      id="boomio-competition-email-input-field" class="boomio-competition-email-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
-          ? '219px'
-          : this.customer.includes('Gamtos Ateitis')
-            ? '189px'
-            : this.customer === 'Perlas GO' ||
-                this.customer === 'Nevezis' ||
-                this.customer === 'Magija' ||
-                this.customer === 'Pigu.lt' ||
-                this.customer === 'LemonGym' ||
-                this.customer === 'Nykstukas' ||
-                this.customer === 'Orlen' ||
-                this.customer === 'LemonFeel' ||
-                this.customer === 'Tiche' ||
-                this.customer === 'Zemaitijos Pienas' ||
-                this.customer === 'Novaturas' ||
-                this.customer === 'Apranga' ||
-                this.language === 'EN'
-              ? '249px'
-              : '299px'
-      };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
-        this.customer === 'Barbora' ||
-        this.customer === 'Fpro' ||
-        this.customer === 'Fantazijos' ||
-        this.customer === 'LemonGym' ||
-        this.customer === 'Tiche' ||
-        this.customer === 'Zemaitijos Pienas' ||
-        this.customer === 'Novaturas' ||
-        this.customer === 'Apranga' ||
-        this.customer === 'LemonFeel'
-          ? 'rgba(61, 73, 40, 1)'
-          : '#473F4E'
-      } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-        this.customer === 'Fpro'
-          ? 'Email address'
-          : this.customer === 'Ikea'
-            ? 'El. pašto adresas'
-            : this.customer === 'Eurovaistine'
-              ? 'Spēlētāja e-pasts'
-              : this.customer === 'SaludSA'
-                ? 'Correo electrónico'
-                : this.customer.includes('Gamtos Ateitis')
-                  ? 'El. pašto adresas'
-                  : this.language === 'LV'
-                    ? 'Spēlētāja e-pasts'
-                    : this.language === 'RU'
-                      ? 'Емейл игрока'
-                      : this.language === 'ET'
-                        ? 'Mängija e-post'
-                        : this.language === 'FI'
-                          ? 'Sähköpostiosoite'
-                          : this.language === 'EN'
-                            ? 'Email address'
-                            : this.language === 'ES'
-                              ? 'Número de contacto'
-                              : this.customer === 'Orlen'
-                                ? 'Telefono numeris'
-                                : 'Elektroninio pašto adresas'
-      }">
+      <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field"
+        maxLength=${this.customer === 'Toni' ? 10 : 50}
+       type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
+         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
+           ? '219px'
+           : this.customer.includes('Gamtos Ateitis')
+             ? '189px'
+             : this.customer === 'Perlas GO' ||
+                 this.customer === 'Nevezis' ||
+                 this.customer === 'Magija' ||
+                 this.customer === 'Pigu.lt' ||
+                 this.customer === 'LemonGym' ||
+                 this.customer === 'Nykstukas' ||
+                 this.customer === 'Orlen' ||
+                 this.customer === 'LemonFeel' ||
+                 this.customer === 'Tiche' ||
+                 this.customer === 'Zemaitijos Pienas' ||
+                 this.customer === 'Novaturas' ||
+                 this.customer === 'Apranga' ||
+                 this.language === 'EN'
+               ? '249px'
+               : '299px'
+       };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
+         this.customer === 'Barbora' ||
+         this.customer === 'Fpro' ||
+         this.customer === 'Fantazijos' ||
+         this.customer === 'LemonGym' ||
+         this.customer === 'Tiche' ||
+         this.customer === 'Zemaitijos Pienas' ||
+         this.customer === 'Novaturas' ||
+         this.customer === 'Apranga' ||
+         this.customer === 'LemonFeel'
+           ? 'rgba(61, 73, 40, 1)'
+           : '#473F4E'
+       } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+         this.customer === 'Fpro'
+           ? 'Email address'
+           : this.customer === 'Ikea'
+             ? 'El. pašto adresas'
+             : this.customer === 'Eurovaistine'
+               ? 'Spēlētāja e-pasts'
+               : this.customer === 'SaludSA'
+                 ? 'Correo electrónico'
+                 : this.customer.includes('Gamtos Ateitis')
+                   ? 'El. pašto adresas'
+                   : this.language === 'LV'
+                     ? 'Spēlētāja e-pasts'
+                     : this.language === 'RU'
+                       ? 'Емейл игрока'
+                       : this.language === 'ET'
+                         ? 'Mängija e-post'
+                         : this.language === 'FI'
+                           ? 'Sähköpostiosoite'
+                           : this.language === 'EN'
+                             ? 'Email address'
+                             : this.language === 'ES'
+                               ? 'Número de contacto'
+                               : this.customer === 'Orlen'
+                                 ? 'Telefono numeris'
+                                 : 'Elektroninio pašto adresas'
+       }">
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Perlas GO' ||
@@ -731,17 +702,13 @@ export class InputRegisterContainer {
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
       }"></div>
-          <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
-            this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
-          }"></div>
-    <input 
-    maxLength=${this.customer === 'Toni' ? 10 : undefined}
 
-    id="boomio-competition-phone-input-field" inputmode="tel" 
- class="boomio-competition-phone-input-field" type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
-   this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
- }" placeholder="${this.customer === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : this.language === 'EN' ? 'Phone number' : 'Telefono numeris'}">
-
+    <input id="boomio-competition-phone-input-field" class="boomio-competition-phone-input-field"
+    maxLength=${this.customer === 'Toni' ? 10 : 50}
+    inputmode="tel" 
+  type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
+    this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
+  }" placeholder="${this.customer === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : this.language === 'EN' ? 'Phone number' : 'Telefono numeris'}">
     `;
 
     function getCookie(name) {

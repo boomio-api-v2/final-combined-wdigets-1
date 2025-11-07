@@ -38,6 +38,22 @@ class HtmlElementsHelper {
     return document.getElementById('school-select');
   }
 
+  get competitionCheckboxError() {
+    return document.getElementById('competition-checkbox-error');
+  }
+
+  get competitionNameError() {
+    return document.getElementById('competition-name-error');
+  }
+
+  get competitionEmailError() {
+    return document.getElementById('competition-email-error');
+  }
+
+  get competitionPhoneError() {
+    return document.getElementById('competition-phone-error');
+  }
+
   get shareContainer() {
     return document.getElementById('share-container');
   }
@@ -87,6 +103,36 @@ class HtmlElementsHelper {
 
     // Keep case sensitive for Pigu.lt customer, otherwise convert to lowercase
     return this.customer === 'Pigu.lt' ? email : email.toLowerCase();
+  }
+
+  isInputEmpty(input) {
+    return !input?.value?.trim();
+  }
+
+  /**
+   * Toggle element visibility using display property
+   * @param {HTMLElement} element - The element to toggle
+   * @param {boolean} show - If true, show element (display: block), if false, hide (display: none)
+   */
+  toggleElement(element, show) {
+    if (!element) return;
+    element.style.display = show ? 'block' : 'none';
+  }
+
+  /**
+   * Show element by setting display to block
+   * @param {HTMLElement} element - The element to show
+   */
+  showElement(element) {
+    this.toggleElement(element, true);
+  }
+
+  /**
+   * Hide element by setting display to none
+   * @param {HTMLElement} element - The element to hide
+   */
+  hideElement(element) {
+    this.toggleElement(element, false);
   }
 }
 

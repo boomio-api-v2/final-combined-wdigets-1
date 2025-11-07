@@ -499,8 +499,6 @@ class DoodleWidget {
         phoneInputField.addEventListener('input', (event) => {
           event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
         });
-      } else {
-        console.error('');
       }
 
       setTimeout(() => {
@@ -1547,7 +1545,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
           setTimeout(() => {
-            const emailInput = document.querySelector('.boomio-competition-email-input-field');
+            const emailInput = Elements.emailInput;
             const nameInput = document.querySelector('.boomio-competition-name-input-field');
             const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
 

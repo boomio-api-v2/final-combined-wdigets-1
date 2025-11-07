@@ -1294,7 +1294,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       setTimeout(async () => {
         const schoolInput = document.querySelector('.boomio-competition-school-select');
 
-        const emailInput = Elements.getEmailValue();
+        const emailInput = Elements.emailInput;
         const nameInput = document.querySelector('.boomio-competition-name-input-field');
         const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
 
@@ -1307,8 +1307,26 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         const checkboxChange = checkboxImgSrc.includes('Uncheck') ? false : true;
         const checkboxChange2 = checkboxImgSrc2.includes('Uncheck') ? false : true;
 
-        if (!checkboxChange) {
-          document.getElementById('competition-checkbox-error').innerText =
+        /**
+         * Helper function to show or hide validation errors
+         * @param {HTMLElement} errorElement - The error element to show/hide
+         * @param {boolean} showError - If true, show error with message, if false, hide error
+         * @param {string} errorMessage - The error message to display (only used when showError is true)
+         */
+        const toggleValidationError = (errorElement, showError, errorMessage = '') => {
+          if (showError) {
+            errorElement.innerText = errorMessage;
+            errorElement.style.backgroundColor = '#FFBABA';
+            Elements.showElement(errorElement);
+          } else {
+            errorElement.innerText = '';
+            errorElement.style.backgroundColor = 'transparent';
+            Elements.hideElement(errorElement);
+          }
+        };
+
+        if (!checkboxChange || (customer === 'Toni' && !checkboxChange2)) {
+          Elements.competitionCheckboxError.innerText =
             customer === 'Gamtos Ateitis'
               ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
               : customer === 'Novaturas' && language === 'LT'
@@ -1321,20 +1339,29 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                       ? 'To continue, you must agree to the companys privacy policy.'
                       : customer === 'Novaturas' && language === 'ET'
                         ? 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.'
-                        : 'Norint tęsti, privaloma sutikti su naujienomis.';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error').style.display = 'block';
-          document.getElementById('competition-checkbox-error').style.height = '14px';
-
-          document.getElementById('competition-name-error').innerText = '';
-
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+                        : language === 'ES'
+                          ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                          : 'Norint tęsti, privaloma sutikti su naujienomis.';
+          Elements.competitionCheckboxError.style.backgroundColor = '#FFBABA';
+          Elements.showElement(Elements.competitionCheckboxError);
+        } else {
+          Elements.competitionCheckboxError.innerText = '';
+          Elements.competitionCheckboxError.style.backgroundColor = 'transparent';
+          Elements.hideElement(Elements.competitionCheckboxError);
         }
-        if (!emailInput?.trim()) {
-          document.getElementById('competition-email-error').innerText =
+
+        if (Elements.isVisible(nameInput) && Elements.isInputEmpty(nameInput)) {
+          Elements.competitionNameError.innerText = language === 'ES' ? 'El campo de nombre debe completarse.' : 'Norint tęsti privaloma užpildyti visus laukus.';
+          Elements.competitionNameError.style.backgroundColor = '#FFBABA';
+          Elements.showElement(Elements.competitionNameError);
+        } else {
+          Elements.competitionNameError.innerText = '';
+          Elements.competitionNameError.style.backgroundColor = 'transparent';
+          Elements.hideElement(Elements.competitionNameError);
+        }
+
+        if (Elements.isVisible(emailInput) && Elements.isInputEmpty(emailInput)) {
+          Elements.competitionEmailError.innerText =
             language === 'LV'
               ? 'Lai turpinātu, obligāti jāaizpilda.'
               : language === 'LT'
@@ -1345,22 +1372,39 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? 'Required to continue.'
                     : language === 'RU'
                       ? 'Чтобы продолжить, необходимо заполнить.'
-                      : 'Required to continue.';
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-name-error').innerText = '';
+                      : language === 'ES'
+                        ? 'Requerido para continuar.'
+                        : 'Required to continue.';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+          Elements.competitionEmailError.style.backgroundColor = '#FFBABA';
+          Elements.showElement(Elements.competitionEmailError);
+        } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
+          Elements.competitionEmailError.innerText = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+          Elements.competitionEmailError.style.backgroundColor = '#FFBABA';
+          Elements.showElement(Elements.competitionEmailError);
+        } else {
+          Elements.competitionEmailError.innerText = '';
+          Elements.competitionEmailError.style.backgroundColor = 'transparent';
+          Elements.hideElement(Elements.competitionEmailError);
         }
-        if (customer === 'Orlen' && emailInput.length < 7) {
-          document.getElementById('competition-email-error').innerText = 'Neteisingas telefono numeris.';
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        if (Elements.isVisible(phoneInput) && (Elements.isInputEmpty(phoneInput) || (customer === 'Toni' && phoneInput?.value?.length < 10))) {
+          Elements.competitionPhoneError.innerText = language === 'ES' ? 'Debes ingresar 10 dígitos.' : '';
+          Elements.competitionPhoneError.style.backgroundColor = '#FFBABA';
+          Elements.showElement(Elements.competitionPhoneError);
+        } else {
+          Elements.competitionPhoneError.innerText = '';
+          Elements.competitionPhoneError.style.backgroundColor = 'transparent';
+          Elements.hideElement(Elements.competitionPhoneError);
+        }
+
+        if (
+          Elements.isVisible(Elements.competitionCheckboxError) ||
+          Elements.isVisible(Elements.competitionNameError) ||
+          Elements.isVisible(Elements.competitionEmailError) ||
+          Elements.isVisible(Elements.competitionPhoneError)
+        ) {
+          console.log('Validation errors present. Aborting registration.');
           return;
         }
 
@@ -1384,19 +1428,33 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             .then((response) => {
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
-                  document.getElementById('competition-email-error').innerText =
+                  Elements.competitionEmailError.innerText =
                     language === 'LV'
                       ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                       : language === 'RU'
                         ? 'Этот е-мейл адрес уже существует. Используйте другой.'
                         : language === 'ET'
                           ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-
-                  document.getElementById('competition-name-error').innerText = '';
-
-                  document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+                          : language === 'ES'
+                            ? 'Este email ya está en uso. Use otro numero.'
+                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                  Elements.competitionEmailError.style.backgroundColor = '#FFBABA';
+                } else if (response.res_code === 'NICKNAME_EXIST' && customer !== 'Perlas GO') {
+                  Elements.competitionNameError.innerText =
+                    customer === 'Fpro'
+                      ? 'This nickname already exists. Please use another one.'
+                      : language === 'ES'
+                        ? 'Este nickname ya está en uso. Use otro nombre.'
+                        : language === 'LV'
+                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                          : customer === 'SaludSA'
+                            ? 'Para continuar debes agregar el nombre de usuario.'
+                            : language === 'RU'
+                              ? 'Этот псевдоним уже существует. Используйте другой.'
+                              : language === 'ET'
+                                ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                                : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                  Elements.competitionNameError.style.backgroundColor = customer === 'Akropolis' && language !== 'LV' && '#FFBABA';
                 }
               } else {
                 bestScore = response.user_best_score ?? 0;
