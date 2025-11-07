@@ -315,9 +315,6 @@ class CrushGame {
         checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
       });
 
-      const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      emailInput.addEventListener('input', () => {});
-
       setTimeout(() => {
         document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
         const inpuRegisterContainer = document.querySelector('.input-register-container');
@@ -400,10 +397,10 @@ class CrushGame {
   };
 
   startTimer() {
-    const currectScoreDiv = document.getElementsByClassName('boomio-time-input-container')[0];
-    currectScoreDiv.style.transition = 'opacity 0.8s ease';
-    currectScoreDiv.style.display = 'block';
-    currectScoreDiv.style.opacity = 1;
+    const currentScoreDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+    currentScoreDiv.style.transition = 'opacity 0.8s ease';
+    currentScoreDiv.style.display = 'block';
+    currentScoreDiv.style.opacity = 1;
 
     const timerElement = document.getElementById('currentTime');
     if (this.timerInterval) {
@@ -445,11 +442,11 @@ class CrushGame {
   };
 
   showFinishMenu = () => {
-    let currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+    let currentTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
 
-    currectTimeDiv.style.opacity = 0;
+    currentTimeDiv.style.opacity = 0;
     setTimeout(() => {
-      currectTimeDiv.style.display = 'none';
+      currentTimeDiv.style.display = 'none';
     }, 300);
     const canvas = document.getElementById('boomio-crush-canvas');
     if (canvas) {
@@ -576,11 +573,11 @@ class CrushGame {
             inputContainer.style.opacity = 1;
           }, 100);
         }
-        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+        const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
         this.hideScore();
-        currectScoreDiv.style.opacity = 0;
+        currentScoreDiv.style.opacity = 0;
         setTimeout(() => {
-          currectScoreDiv.style.display = 'none';
+          currentScoreDiv.style.display = 'none';
         }, 300);
       },
 
@@ -758,7 +755,7 @@ class CrushGame {
         <img src=${close} alt="Close" style="width:100%;height:100%;pointer-events:none;"></img>
       </div>
            
-        ${new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML}
+        ${new InputRegisterContainer().createInputRegisterContainer().outerHTML}
           <img class="new_highscore_stars" src=${
             newHighscoreStarsImage.src
           } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
@@ -779,7 +776,7 @@ class CrushGame {
             </div>
         
         
-            ${new InputContainer(this.customer, 'crush').createInputContainerDiv('crush').outerHTML}
+            ${new InputContainer().createInputContainerDiv().outerHTML}
 
 
                 <div class="numbers">
@@ -880,7 +877,7 @@ background:${getBrandColor(this.customer)};border-radius:35px">
     if (this.customer === 'Nevezis' || this.customer.includes('Gamtos Ateitis')) {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      const didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
 
@@ -893,7 +890,7 @@ background:${getBrandColor(this.customer)};border-radius:35px">
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.shareContainer = new ShareContainer(this.customer);
+      this.shareContainer = new ShareContainer();
       gameContainer.appendChild(this.shareContainer.containerDiv);
     }
   }
@@ -2027,10 +2024,10 @@ background:${getBrandColor(this.customer)};border-radius:35px">
       this.currentScore += totalBasePoints;
 
       if (this.currentScore > 0 && this.isAnimating) {
-        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-        currectScoreDiv.style.transition = 'opacity 0.8s ease';
-        currectScoreDiv.style.display = 'block';
-        currectScoreDiv.style.opacity = 1;
+        const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+        currentScoreDiv.style.transition = 'opacity 0.8s ease';
+        currentScoreDiv.style.display = 'block';
+        currentScoreDiv.style.opacity = 1;
       }
 
       // Update score display

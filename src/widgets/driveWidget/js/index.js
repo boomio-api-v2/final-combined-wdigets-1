@@ -1,6 +1,7 @@
 import './index.css';
 import { localStorageService, boomioService } from '@/services';
 import { Elements } from '../../helpers/HtmlElementsHelper';
+import { isLifeCustomer } from '../utils';
 import {
   brickWallImageData,
   carImageData,
@@ -186,10 +187,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   let checkboxChange2 = false;
   let checkboxChange3 = false;
 
-  const isMobile = window.innerWidth <= 1280;
   const isMobileHeightSmall = window.innerHeight <= 600;
 
-  const customer = config.business_name ? config.business_name : 'Novaturas';
+  const customer = config.business_name;
 
   const teams = config.teams;
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
@@ -226,7 +226,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
-  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' ? 1 : 3;
+  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' || customer === 'Toni' ? 1 : 3;
   let LOST_LIFE = 0;
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -260,7 +260,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const ROAD_SPRITE_SPAWN_X = width / 10;
   let randomNumber = 0;
   const RESTART_TIMEOUT_TIME = 1000;
-  const START_TIME = customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' ? 999999 : 90; //time
+  const START_TIME = isLifeCustomer(customer) ? 999999 : 90; //time
   const START_FUNDING = 100;
   const TOUCH_TIME = 300;
   const SPARK_COLOR = '#fc9003';
@@ -1259,19 +1259,19 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         () => {
           document.getElementById('background_intro').style.transition = 'opacity 1s ease';
           document.getElementById('background_intro').style.opacity = 0;
-
-          document.getElementById('background_blur').style.display = 'block';
-          document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+          if (gameCount === 0) {
+            document.getElementById('background_blur').style.display = 'block';
+            document.getElementById('background_blur').style.transition = 'opacity 0.8s ease';
+          }
           showRulesOrRegistration();
-          setTimeout(
-            () => {
-              document.getElementById('background_intro').style.display = 'none';
-              createHandlers(t);
-            },
-            customer === 'Novaturas' ? 1000 : 2000,
-          );
+
+          // Hide intro after fade completes (1000ms transition duration)
+          setTimeout(() => {
+            document.getElementById('background_intro').style.display = 'none';
+            createHandlers(t);
+          }, 1000);
         },
-        customer === 'Novaturas' ? 1000 : 2000,
+        customer === 'Toni' ? 0 : 2000,
       ); //intro speed
     }
     drawTitleScreen();
@@ -1294,7 +1294,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       setTimeout(async () => {
         const schoolInput = document.querySelector('.boomio-competition-school-select');
 
-        const emailValue = Elements.getEmailValue();
+        const emailInput = Elements.emailInput;
+        const nameInput = Elements.nameInput;
+        const phoneInput = Elements.phoneInput;
+
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
 
@@ -1304,8 +1307,46 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         const checkboxChange = checkboxImgSrc.includes('Uncheck') ? false : true;
         const checkboxChange2 = checkboxImgSrc2.includes('Uncheck') ? false : true;
 
-        if (!checkboxChange) {
-          document.getElementById('competition-checkbox-error').innerText =
+        /**
+         * Helper function to show or hide validation errors
+         * @param {HTMLElement} errorElement - The error element to show/hide
+         * @param {boolean} showError - If true, show error with message, if false, hide error
+         * @param {string} errorMessage - The error message to display (only used when showError is true)
+         */
+        const toggleValidationError = (errorElement, showError, errorMessage = '') => {
+          if (showError) {
+            errorElement.innerText = errorMessage;
+            errorElement.style.backgroundColor = '#FFBABA';
+            Elements.showElement(errorElement);
+          } else {
+            errorElement.innerText = '';
+            errorElement.style.backgroundColor = 'transparent';
+            Elements.hideElement(errorElement);
+          }
+        };
+
+        /**
+         * Get localized error message for empty/required fields
+         * @returns {string} Localized error message based on current language
+         */
+        const getEmptyFieldErrorMessage = () => {
+          return language === 'LV'
+            ? 'Lai turpinātu, obligāti jāaizpilda.'
+            : language === 'LT'
+              ? 'Norint tęsti, privaloma užpildyti.'
+              : language === 'ET'
+                ? 'Jätkamiseks kinnita kõik väljad.'
+                : language === 'FI'
+                  ? 'Vaatitaan jatkamiseen.'
+                  : language === 'RU'
+                    ? 'Чтобы продолжить, необходимо заполнить.'
+                    : language === 'ES'
+                      ? 'Requerido para continuar.'
+                      : 'Required to continue.';
+        };
+
+        if (!checkboxChange || (customer === 'Toni' && !checkboxChange2)) {
+          const errorMessage =
             customer === 'Gamtos Ateitis'
               ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
               : customer === 'Novaturas' && language === 'LT'
@@ -1318,78 +1359,94 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                       ? 'To continue, you must agree to the companys privacy policy.'
                       : customer === 'Novaturas' && language === 'ET'
                         ? 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.'
-                        : 'Norint tęsti, privaloma sutikti su naujienomis.';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error').style.display = 'block';
-          document.getElementById('competition-checkbox-error').style.height = '14px';
-
-          document.getElementById('competition-name-error').innerText = '';
-
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+                        : language === 'ES'
+                          ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                          : 'Norint tęsti, privaloma sutikti su naujienomis.';
+          toggleValidationError(Elements.competitionCheckboxError, true, errorMessage);
+        } else {
+          toggleValidationError(Elements.competitionCheckboxError, false);
         }
-        if (emailValue === '' || emailValue === null) {
-          document.getElementById('competition-email-error').innerText =
-            language === 'LV'
-              ? 'Lai turpinātu, obligāti jāaizpilda.'
-              : language === 'LT'
-                ? 'Norint tęsti, privaloma užpildyti.'
-                : language === 'ET'
-                  ? 'Jätkamiseks kinnita kõik väljad.'
-                  : language === 'EN'
-                    ? 'Required to continue.'
-                    : language === 'RU'
-                      ? 'Чтобы продолжить, необходимо заполнить.'
-                      : 'Required to continue.';
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        if (Elements.isVisible(nameInput) && Elements.isInputEmpty(nameInput)) {
+          toggleValidationError(Elements.competitionNameError, true, getEmptyFieldErrorMessage());
+        } else {
+          toggleValidationError(Elements.competitionNameError, false);
         }
-        if (customer === 'Orlen' && emailValue.length < 7) {
-          document.getElementById('competition-email-error').innerText = 'Neteisingas telefono numeris.';
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        if (Elements.isVisible(emailInput) && Elements.isInputEmpty(emailInput)) {
+          toggleValidationError(Elements.competitionEmailError, true, getEmptyFieldErrorMessage());
+        } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
+          const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+          toggleValidationError(Elements.competitionEmailError, true, errorMessage);
+        } else {
+          toggleValidationError(Elements.competitionEmailError, false);
+        }
+
+        if (Elements.isVisible(phoneInput) && Elements.isInputEmpty(phoneInput)) {
+          toggleValidationError(Elements.competitionPhoneError, true, getEmptyFieldErrorMessage());
+        } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
+          const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+          toggleValidationError(Elements.competitionPhoneError, true, errorMessage);
+        } else {
+          toggleValidationError(Elements.competitionPhoneError, false);
+        }
+
+        if (
+          Elements.isVisible(Elements.competitionCheckboxError) ||
+          Elements.isVisible(Elements.competitionNameError) ||
+          Elements.isVisible(Elements.competitionEmailError) ||
+          Elements.isVisible(Elements.competitionPhoneError)
+        ) {
           return;
         }
 
         if (showCompetitiveRegistration && checkboxChange) {
           if (customer === 'Gamtos Ateitis') {
-            didYouKnowContainer.updateProps(customer, type);
+            didYouKnowContainer.updateProps();
           }
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange2,
-              user_email: emailValue,
-              user_name: (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
-              ...(customer === 'Gamtos Ateitis' && {
+              user_email: Elements.isVisible(Elements.emailInput) && Elements.getEmailValue(),
+              user_name:
+                customer === 'Toni'
+                  ? nameInput?.value.trimEnd() + phoneInput?.value
+                  : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
+              ...(customer.includes('Gamtos Ateitis') && {
                 team: schoolInput.value,
               }),
+              ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
             })
             .then((response) => {
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
-                  document.getElementById('competition-email-error').innerText =
+                  Elements.competitionEmailError.innerText =
                     language === 'LV'
                       ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                       : language === 'RU'
                         ? 'Этот е-мейл адрес уже существует. Используйте другой.'
                         : language === 'ET'
                           ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-
-                  document.getElementById('competition-name-error').innerText = '';
-
-                  document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+                          : language === 'ES'
+                            ? 'Este email ya está en uso. Use otro numero.'
+                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                  Elements.competitionEmailError.style.backgroundColor = '#FFBABA';
+                } else if (response.res_code === 'NICKNAME_EXIST' && customer !== 'Perlas GO') {
+                  Elements.competitionNameError.innerText =
+                    customer === 'Fpro'
+                      ? 'This nickname already exists. Please use another one.'
+                      : language === 'ES'
+                        ? 'Este nickname ya está en uso. Use otro nombre.'
+                        : language === 'LV'
+                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                          : customer === 'SaludSA'
+                            ? 'Para continuar debes agregar el nombre de usuario.'
+                            : language === 'RU'
+                              ? 'Этот псевдоним уже существует. Используйте другой.'
+                              : language === 'ET'
+                                ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                                : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                  Elements.competitionNameError.style.backgroundColor = customer === 'Akropolis' && language !== 'LV' && '#FFBABA';
                 }
               } else {
                 bestScore = response.user_best_score ?? 0;
@@ -1546,9 +1603,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   };
 
   function showRulesOrRegistration() {
-    const currentPageUrl = window.location.href;
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const user_id = urlParams.get('user_id');
+    const user_id = config.userId;
 
     if (customer === 'Pigu.lt' && bestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
@@ -1610,7 +1665,19 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         checkboxImgChange2.src = checkboxChange2 ? checkIcon : uncheckIcon;
       });
 
-      const emailInput = document.querySelector('.boomio-competition-email-input-field');
+      const emailInput = Elements.emailInput;
+
+      if (customer === 'Toni' && emailInput) {
+        emailInput.addEventListener('input', (event) => {
+          event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+        });
+      }
+
+      if (Elements.phoneInput) {
+        Elements.phoneInput.addEventListener('input', (event) => {
+          event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+        });
+      }
 
       if (customer === 'Orlen' && emailInput) {
         emailInput.value = '+370';
@@ -1633,8 +1700,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         emailInput.addEventListener('paste', (e) => {
           e.preventDefault(); // Block pasting
         });
-      } else {
-        emailInput.addEventListener('input', () => {});
       }
 
       setTimeout(() => {
@@ -1665,7 +1730,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         })
         .then((response) => {
           bestScore = response.user_best_score;
-          didYouKnowContainer.updateProps(customer, type);
+          didYouKnowContainer.updateProps();
 
           if (customer === 'Pigu.lt' && campaignUrlProp === 'https://hobbyhall.fi' && response.coupon_code) {
             competitionCodeScoreTableContainerPigu.updateProps(customer, scoreTable);
@@ -1929,7 +1994,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   function updateGame() {
     if (readyToDecrementTime()) updateTimeLeft();
-    const { timeLeft } = gameVars;
 
     if (gameVars.gameOver) {
       // if (gameVars.readyToRestart && isButtonPressed()) restartGame();
@@ -1939,10 +2003,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       addWall();
     }
 
-    if (timeLeft <= 10) {
-    }
-
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+    if (isLifeCustomer(customer)) {
       if (DEFAULT_LIFE <= LOST_LIFE) gameOverLifeZero();
     }
 
@@ -2300,18 +2361,18 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             }, 100);
           }, 2000);
 
-          const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-          let currectTimeDiv;
-          if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
-            currectTimeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
+          let currentTimeDiv;
+          if (isLifeCustomer(customer)) {
+            currentTimeDiv = Elements.lifeInputContainer;
           } else {
-            currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+            currentTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
           }
-          currectTimeDiv.style.opacity = 0;
-          currectScoreDiv.style.opacity = 0;
+          currentTimeDiv.style.opacity = 0;
+          const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+          currentScoreDiv.style.opacity = 0;
           setTimeout(() => {
-            currectTimeDiv.style.display = 'none';
-            currectScoreDiv.style.display = 'none';
+            currentTimeDiv.style.display = 'none';
+            currentScoreDiv.style.display = 'none';
           }, 300);
         }, 100);
         gameVars.readyToRestart = true;
@@ -2377,7 +2438,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     if (inGracePeriod()) return;
     const halfWidth = player.dimensions / 3;
     gameVars.lastHitAt = gameTime;
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+    if (isLifeCustomer(customer)) {
       LOST_LIFE++;
 
       showScoreEffect('-1', true);
@@ -2415,10 +2476,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     gameVars.currentScore += min(100, 999);
 
     if (gameVars.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-      currectScoreDiv.style.transition = 'opacity 0.8s ease';
-      currectScoreDiv.style.display = 'block';
-      currectScoreDiv.style.opacity = 1;
+      const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      currentScoreDiv.style.transition = 'opacity 0.8s ease';
+      currentScoreDiv.style.display = 'block';
+      currentScoreDiv.style.opacity = 1;
     }
 
     if (bestScore < gameVars.currentScore) {
@@ -2441,10 +2502,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     });
     gameVars.currentScore += min(50, 999);
     if (gameVars.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
-      currectScoreDiv.style.transition = 'opacity 0.8s ease';
-      currectScoreDiv.style.display = 'block';
-      currectScoreDiv.style.opacity = 1;
+      const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      currentScoreDiv.style.transition = 'opacity 0.8s ease';
+      currentScoreDiv.style.display = 'block';
+      currentScoreDiv.style.opacity = 1;
     }
     if (bestScore < gameVars.currentScore) {
       newHighScoreReached = true;
@@ -2581,7 +2642,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       ctx.fillStyle = gradient;
 
       ctx.fillRect(0, 0, width, height);
-    } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+    } else if (isLifeCustomer(customer)) {
       if (backgroundImageLoaded) {
         ctx.drawImage(backgroundImage, 0, 0, width, height);
       }
@@ -2644,7 +2705,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+      } else if (isLifeCustomer(customer)) {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2685,7 +2746,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     if (customer !== 'Barbora') {
       if (customer === 'Unisend') {
         ctx.drawImage(backgroundImg, -50, 148, 476, 185);
-      } else if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas') {
+      } else if (isLifeCustomer(customer)) {
         ctx.drawImage(
           backgroundImg,
           0,
@@ -2706,12 +2767,11 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     }
     angle += 0.01;
   }
-
   function drawUi() {
     if (gameVars.gameOver) return;
     const timeColor = gameVars.timeLeft > 20 ? 'white' : SPARK_COLOR;
 
-    if (customer !== 'Pigu.lt' && customer !== 'Gamtos Ateitis' && customer !== 'Orlen' && customer !== 'Novaturas') {
+    if (!isLifeCustomer(customer)) {
       document.getElementById('currentTime').innerHTML = `${gameVars.timeLeft}`;
       document.getElementById('currentTime').style.color = timeColor;
 
@@ -2917,8 +2977,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   function showScoreEffect(score, showLife) {
     const canvas = document.getElementById('boomio-drive-canvas');
-    const x = window.innerWidth / 2 - 25;
-    const y = window.innerHeight / 2 + 50;
+    const canvasRect = canvas.getBoundingClientRect();
+    const x = canvasRect.left + canvasRect.width / 2 - 25;
+    const y = canvasRect.top + canvasRect.height / 2 + 50;
 
     const gameContainer = document.querySelector('.game-container');
 
@@ -3154,7 +3215,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     pointerState.down = true;
     pointerState.downAt = realTime;
     pointerState.upAt = null;
-    const xPercentage = pointerX / window.innerWidth;
+    const xPercentage = pointerX / width;
     const x = width * xPercentage;
     pointerState.x = x;
     pointerState.playerX = player.pos.x;
@@ -3170,7 +3231,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   }
 
   function pointerMove(pointerX) {
-    const xPercentage = pointerX / window.innerWidth;
+    const xPercentage = pointerX / width;
     const x = width * xPercentage;
 
     const diff = x - pointerState.x;

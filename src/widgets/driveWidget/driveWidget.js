@@ -1,4 +1,5 @@
 import { localStorageService, widgetHtmlService } from '@/services';
+import { t } from '@/services/translations';
 import startGame from './js/index.js';
 import {
   intro,
@@ -27,6 +28,7 @@ import {
   newRecordEn,
   newRecordFI,
   newRecordRU,
+  newRecordEs,
   life,
   introGlass,
   introPaper,
@@ -37,30 +39,70 @@ import './index.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
+import { CompetitionCodeScoreTableContainer } from '../helpers/CompetitionCodeScoreTableContainer';
+import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
-import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
+import { getBrandColor, isLifeCustomer } from './utils';
+
+// Helper function to get intro image based on customer, language, campaign URL, and type
+const getIntroImage = (customer, language, campaignUrl) => {
+  // Pigu.lt multi-language logic
+  if (campaignUrl === 'https://kaup.ee' || campaignUrl === 'https://kaup24.ee') {
+    if (language === 'ET') return piguDriveEE;
+    if (language === 'RU') return piguDriveEERu;
+    if (language === 'EN') return piguDriveEEEn;
+  }
+
+  if (campaignUrl === 'https://pigu.lt') {
+    if (language === 'LT') return piguDriveLT;
+    if (language === 'RU') return piguDriveLTRu;
+    if (language === 'EN') return piguDriveLTEn;
+  }
+
+  if (campaignUrl === 'https://hobbyhall.fi') {
+    if (language === 'FI') return piguDriveFI;
+    if (language === 'EN') return piguDriveFIEn;
+  }
+
+  if (campaignUrl === 'https://220.lv') {
+    if (language === 'LV') return piguDriveLV;
+    if (language === 'RU') return piguDriveLVRu;
+    if (language === 'EN') return piguDriveLVEn;
+  }
+
+  // Customer-specific logic
+  if (customer === 'Barbora') return BarboraIntro;
+  if (customer === 'Ikea') return IkeaIntro;
+
+  if (customer === 'Unisend') {
+    if (language === 'ET') return UnisendIntroEE;
+    if (language === 'LV') return UnisendIntroLV;
+  }
+
+  if (customer === 'LemonGym') return intro;
+  if (customer === 'Orlen') return introOrlen;
+
+  if (customer === 'Gamtos Ateitis Paper') return introPaper;
+  if (customer === 'Gamtos Ateitis Glass') return introGlass;
+  if (customer === 'Gamtos Ateitis Plastic') return introPlastic;
+
+  return ''; // Default empty
+};
 
 class driveWidget {
-  static ctx;
-
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Novaturas';
+    this.customer = this.config.business_name;
+    this.language = this.config.language;
+    this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
 
     this.scoreTable = {};
     this.scoreTableContainerInstance;
-    const currentPageUrl = window.location.href;
-
-    const urlParams = new URL(currentPageUrl).searchParams;
-    this.language = this.config.language;
-    const campaignUrl = urlParams.get('campaign_url');
-
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
 
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
@@ -102,7 +144,9 @@ class driveWidget {
               ? newRecordFI
               : this.language === 'RU'
                 ? newRecordRU
-                : newRecord
+                : this.language === 'ES'
+                  ? newRecordEs
+                  : newRecord
     }  alt="Image Description" style="width: 100%; height: 100%;">
     </div>
     <div class="numbers" style="z-index:10">
@@ -128,55 +172,13 @@ class driveWidget {
     ${`<div style="gap:20px;display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family:${
       this.customer === 'Ikea' ? 'Noto Sans' : 'Georama'
     };font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: ${this.customer === 'Ikea' ? 'none' : 'uppercase'};">
-        <div>${
-          this.language === 'FI'
-            ? 'PYYHKÄISE'
-            : this.language === 'ET'
-              ? 'LIBISTA'
-              : this.language === 'RU'
-                ? 'ПРОВЕДИ '
-                : this.language === 'LV'
-                  ? 'Pakustini,'
-                  : this.language === 'ET'
-                    ? 'LIIGU'
-                    : this.language === 'EN'
-                      ? 'swipe'
-                      : 'Brūkšt'
-        }</div>
-        <div>${
-          this.language === 'FI'
-            ? 'PYYHKÄISE'
-            : this.language === 'ET'
-              ? 'LIBISTA'
-              : this.language === 'RU'
-                ? 'ПРОВЕДИ '
-                : this.language === 'LV'
-                  ? 'lai sāktu'
-                  : this.language === 'ET'
-                    ? 'LIIGU'
-                    : this.language === 'EN'
-                      ? 'swipe'
-                      : 'Brūkšt'
-        }</div>
+        <div>${t('controlDriveSwipeLeft', this.language)}</div>
+        <div>${t('controlDriveSwipeRight', this.language)}</div>
       </div><img src=${tapImageBarbora} alt="Image Description" style="width: 93px; height: 89px;">`}
       </div>
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-      this.customer === 'Barbora'
-        ? '#CC0001'
-        : this.customer === 'Ikea'
-          ? '#0058A3'
-          : this.customer === 'Unisend'
-            ? '#376728'
-            : this.customer === 'Pigu.lt'
-              ? '#DF503E'
-              : this.customer === 'Gamtos Ateitis'
-                ? '#3F7543'
-                : this.customer === 'Orlen'
-                  ? '#EF1C1D'
-                  : this.customer === 'Novaturas'
-                    ? '#32A1DA'
-                    : '#FFE92D'
-    };border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(
+      this.customer,
+    )};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
@@ -188,36 +190,20 @@ class driveWidget {
 
 
 
-
-
 ${
-  this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis' || this.customer === 'Orlen' || this.customer === 'Novaturas'
-    ? `<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-        this.customer === 'Gamtos Ateitis' ? '#3F7543' : this.customer === 'Orlen' ? '#EF1C1D' : this.customer === 'Novaturas' ? '#32A1DA' : '#DF503E'
-      };border-radius:35px">
+  isLifeCustomer(this.customer)
+    ? `<div class="boomio-life-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(
+        this.customer,
+      )};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-<img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
+<img src=${life} alt="Life image" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
 <div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife"></div>
 </div>
 </div>`
-    : `<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-        this.customer === 'Barbora'
-          ? '#CC0001'
-          : this.customer === 'Ikea'
-            ? '#0058A3'
-            : this.customer === 'Unisend'
-              ? '#376728'
-              : this.customer === 'Pigu.lt'
-                ? '#DF503E'
-                : this.customer === 'Gamtos Ateitis'
-                  ? '#3F7543'
-                  : this.customer === 'Orlen'
-                    ? '#EF1C1D'
-                    : this.customer === 'Novaturas'
-                      ? '#32A1DA'
-                      : '#FFE92D'
-      };border-radius:35px">
+    : `<div class="boomio-time-input-container" style="box-sizing:border-box;display:none;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(
+        this.customer,
+      )};border-radius:35px">
 <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${stopwatch} alt="Image Description" style="width: 20px; height: 20px;margin-top:20px"></img>
 
@@ -230,61 +216,19 @@ ${
 
 
 
-    <img src=${
-      this.language === 'ET' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-        ? piguDriveEE
-        : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-          ? piguDriveEERu
-          : this.language === 'LT' && this.campaignUrlProp === 'https://pigu.lt'
-            ? piguDriveLT
-            : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
-              ? piguDriveLTRu
-              : this.language === 'FI' && this.campaignUrlProp === 'https://hobbyhall.fi'
-                ? piguDriveFI
-                : this.language === 'EN' && this.campaignUrlProp === 'https://pigu.lt'
-                  ? piguDriveLTEn
-                  : this.language === 'EN' && this.campaignUrlProp === 'https://hobbyhall.fi'
-                    ? piguDriveFIEn
-                    : this.language === 'LV' && this.campaignUrlProp === 'https://220.lv'
-                      ? piguDriveLV
-                      : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
-                        ? piguDriveLVRu
-                        : this.language === 'EN' && this.campaignUrlProp === 'https://220.lv'
-                          ? piguDriveLVEn
-                          : this.language === 'EN' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
-                            ? piguDriveEEEn
-                            : this.customer === 'Barbora'
-                              ? BarboraIntro
-                              : this.customer === 'Unisend' && this.language === 'ET'
-                                ? UnisendIntroEE
-                                : this.customer === 'Unisend' && this.language === 'LV'
-                                  ? UnisendIntroLV
-                                  : this.customer === 'Ikea'
-                                    ? IkeaIntro
-                                    : this.customer === 'LemonGym'
-                                      ? intro
-                                      : this.customer === 'Orlen'
-                                        ? introOrlen
-                                        : this.customer.includes('Gamtos Ateitis') && this.type === 1
-                                          ? introPaper
-                                          : this.customer.includes('Gamtos Ateitis') && this.type === 2
-                                            ? introGlass
-                                            : this.customer.includes('Gamtos Ateitis') && this.type === 3
-                                              ? introPlastic
-                                              : ''
-    } alt="Image Description" style="z-index:4;width:${
+    <img src=${getIntroImage(this.customer, this.language, this.campaignUrlOrCurrentPage)} alt="Intro image" style="z-index:4;width:${
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
-    }; height: 674px;position:absolute;pointer-events: none; display:${this.customer === 'Novaturas' ? 'none' : 'block'};" id="background_intro">
+    }; height: 674px;position:absolute;pointer-events: none; display:${this.customer === 'Novaturas' || this.customer === 'Toni' ? 'none' : 'block'};" id="background_intro">
     <img src=${blurImage.src} alt="Blur Image" style="z-index:3;width: ${
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0.37;pointer-events: none; display:block;" id="background_blur">
 
-    ${this.showCompetitiveRegistration ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML : ''}
+    ${this.showCompetitiveRegistration ? new InputRegisterContainer().createInputRegisterContainer().outerHTML : ''}
 
     <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:${this.customer === 'Pigu.lt' ? 'none' : 'block'};width:32px;height:32px;">
-<img src=${close} alt="Image Description" style="width: 100%; height: 100%;"></img>
+<img src=${close} alt="Close image" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('drive', this.type).outerHTML}
+    ${new InputContainer().createInputContainerDiv().outerHTML}
 
       <canvas id="boomio-drive-canvas" class="boomio-drive-canvas" style="${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}">
       </canvas>
@@ -296,6 +240,8 @@ ${
       const gameContainer = document.querySelector('.game-container');
       if (this.customer === 'Pigu.lt') {
         this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(this.customer, this.scoreTable, this.currentScore);
+      } else if (this.customer === 'Toni') {
+        this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(this.customer, this.scoreTable);
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }
@@ -314,7 +260,7 @@ ${
     if (this.customer === 'Pigu.lt' || this.customer === 'Gamtos Ateitis') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.didYouKnowContainer = new DidYouKnowContainer(this.customer, this.type);
+      this.didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(this.didYouKnowContainer.containerDiv);
     }
     if (this.customer === 'Pigu.lt') {

@@ -30,11 +30,11 @@ import './styles.css';
 class PopGame {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Nevezis';
+    this.customer = this.config.business_name;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.campaignUrl = this.config.campaignUrl ? this.config.campaignUrl : '';
     this.gameCount = 0;
-    this.language = this.config.language ? this.config.language : 'LV';
+    this.language = this.config.language;
 
     this.currentScore = 0;
     this.isAnimating = false;
@@ -69,9 +69,7 @@ class PopGame {
   }
 
   showRulesOrRegistration = () => {
-    const currentPageUrl = window.location.href;
-    this.urlParams = new URL(currentPageUrl).searchParams;
-    const user_id = this.urlParams.get('user_id');
+    const user_id = this.config.userId;
     if (this.customer === 'Pigu.lt' && this.userBestScore <= 0) {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
@@ -94,9 +92,6 @@ class PopGame {
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
         checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
       });
-
-      const emailInput = document.querySelector('.boomio-competition-email-input-field');
-      emailInput.addEventListener('input', () => {});
 
       setTimeout(() => {
         document.getElementById('background_blur').style.opacity = this.language === 'LV' ? 0.4 : 0.2;
@@ -129,10 +124,10 @@ class PopGame {
   };
 
   startTimer() {
-    const currectScoreDiv = document.getElementsByClassName('boomio-time-input-container')[0];
-    currectScoreDiv.style.transition = 'opacity 0.8s ease';
-    currectScoreDiv.style.display = 'block';
-    currectScoreDiv.style.opacity = 1;
+    const currentScoreDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+    currentScoreDiv.style.transition = 'opacity 0.8s ease';
+    currentScoreDiv.style.display = 'block';
+    currentScoreDiv.style.opacity = 1;
 
     const timerElement = document.getElementById('currentTime');
     if (this.timerInterval) {
@@ -174,11 +169,11 @@ class PopGame {
   };
 
   showFinishMenu = () => {
-    let currectTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
+    let currentTimeDiv = document.getElementsByClassName('boomio-time-input-container')[0];
 
-    currectTimeDiv.style.opacity = 0;
+    currentTimeDiv.style.opacity = 0;
     setTimeout(() => {
-      currectTimeDiv.style.display = 'none';
+      currentTimeDiv.style.display = 'none';
     }, 300);
     const canvas = document.getElementById('boomio-pop-canvas');
     if (canvas) {
@@ -273,11 +268,11 @@ class PopGame {
             inputContainer.style.opacity = 1;
           }, 100);
         }
-        const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+        const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
         this.hideScore();
-        currectScoreDiv.style.opacity = 0;
+        currentScoreDiv.style.opacity = 0;
         setTimeout(() => {
-          currectScoreDiv.style.display = 'none';
+          currentScoreDiv.style.display = 'none';
         }, 300);
       },
 

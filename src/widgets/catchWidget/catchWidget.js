@@ -448,8 +448,6 @@ class CatchGame {
             emailInput.addEventListener('paste', (e) => {
               e.preventDefault(); // Block pasting
             });
-          } else {
-            emailInput.addEventListener('input', () => {});
           }
 
           if (phoneInputField) {
@@ -690,12 +688,12 @@ class CatchGame {
           }; height: 668px;position:absolute;opacity:${this.customer === 'Pegasas' ? 0.8 : 0.5};pointer-events: none; display:block;">`
     }
 
-    ${this.showCompetitiveRegistration ? new InputRegisterContainer(this.customer).createInputRegisterContainer().outerHTML : ''}
+    ${this.showCompetitiveRegistration ? new InputRegisterContainer().createInputRegisterContainer().outerHTML : ''}
 
     <div class="close-game-container" id="close-game-container" style="top:calc(50% - 290px);display:${this.customer === 'Pigu.lt' ? 'none' : 'block'};width:25px;height:25px;">
 <img src=${close} alt="Close" style="width: 100%; height: 100%;"></img>
 </div>
-    ${new InputContainer(this.customer, 'drive').createInputContainerDiv('catch').outerHTML}
+    ${new InputContainer().createInputContainerDiv().outerHTML}
         <canvas id="boomio-catch-canvas"
                 width="${Math.min(document.documentElement.clientWidth, 418)}"
                 height="668">
@@ -737,13 +735,13 @@ class CatchGame {
     if (this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' || this.customer === 'Pegasas' || this.customer === 'Zemaitijos Pienas') {
       const gameContainer = document.querySelector('.game-container');
 
-      const didYouKnowContainer = new DidYouKnowContainer(this.customer);
+      const didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
     if (this.customer.includes('Akropolis') || this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
 
-      this.shareContainer = new ShareContainer(this.customer);
+      this.shareContainer = new ShareContainer();
       gameContainer.appendChild(this.shareContainer.containerDiv);
     }
 
@@ -1400,15 +1398,15 @@ class CatchGame {
   }
 
   setLife() {
-    const currectLifeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
-    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
-    currectScoreDiv.style.display = 'block';
+    const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
+    currentScoreDiv.style.display = 'block';
     document.getElementById('currentScore').innerHTML = `0`;
 
-    currectLifeDiv.style.transition = 'opacity 0.8s ease';
-    currectLifeDiv.style.display = 'block';
+    const currentLifeDiv = Elements.lifeInputContainer;
+    currentLifeDiv.style.transition = 'opacity 0.8s ease';
+    currentLifeDiv.style.display = 'block';
     document.getElementById('currentLife').innerHTML = `${this.defaultscore}/${this.defaultscore}`;
-    currectLifeDiv.style.opacity = 1;
+    currentLifeDiv.style.opacity = 1;
   }
 
   createPlayer() {
@@ -1633,7 +1631,7 @@ class CatchGame {
                   }
                   if (this.customer === 'Akropolis') {
                     this.scoreTable = response;
-                    this.shareContainer.updateProps(this.customer, this.currentScore);
+                    this.shareContainer.updateProps();
                   }
                   if (this.showCompetitiveRegistration === 'competition') {
                     this.scoreTable = response;
@@ -1670,14 +1668,14 @@ class CatchGame {
               competitionTableContainer.style.opacity = 1;
             }, 100);
 
-            const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
-            const currectTimeDiv = document.getElementsByClassName('boomio-life-input-container')[0];
-            currectTimeDiv.style.opacity = 0;
+            const currentTimeDiv = Elements.lifeInputContainer;
+            currentTimeDiv.style.opacity = 0;
 
-            currectScoreDiv.style.opacity = 0;
+            const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
+            currentScoreDiv.style.opacity = 0;
             setTimeout(() => {
-              currectTimeDiv.style.display = 'block';
-              currectScoreDiv.style.display = 'block';
+              currentTimeDiv.style.display = 'block';
+              currentScoreDiv.style.display = 'block';
             }, 300);
           },
           this.newHighScoreReached ? 2500 : 100,
@@ -1687,11 +1685,11 @@ class CatchGame {
   }
 
   resetGame() {
-    const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
+    const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
     this.hideScore();
-    currectScoreDiv.style.opacity = 1;
+    currentScoreDiv.style.opacity = 1;
     setTimeout(() => {
-      currectScoreDiv.style.display = 'block';
+      currentScoreDiv.style.display = 'block';
     }, 300);
 
     if (this.timer) {
@@ -2170,10 +2168,8 @@ class Fruit {
         }, remainingTime); // Extend the timeout with the remaining time
       }
     } else {
-      const container = document.querySelector('.boomio-life-input-container');
-
       // To trigger the shake effect
-
+      const container = Elements.lifeInputContainer;
       container.classList.add('shake-life');
 
       // Remove the class after the animation ends (reset the animation)
@@ -2187,10 +2183,10 @@ class Fruit {
     }
 
     if (this.game.currentScore > 1) {
-      const currectScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
-      currectScoreDiv.style.transition = 'opacity 0.8s ease';
-      currectScoreDiv.style.display = 'block';
-      currectScoreDiv.style.opacity = 1;
+      const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container-catch')[0];
+      currentScoreDiv.style.transition = 'opacity 0.8s ease';
+      currentScoreDiv.style.display = 'block';
+      currentScoreDiv.style.opacity = 1;
     }
     if (this.game.bestScore < this.game.currentScore) {
       this.game.newHighScoreReached = true;

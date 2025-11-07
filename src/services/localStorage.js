@@ -81,8 +81,11 @@ class LocalStorageService {
     const p_button_text = config?.p_button_text ?? null;
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
+    const defaultBusinessName = 'Boomio';
     const business_name =
-      config?.business_name === 'Gamtos Ateitis Random' ? ['Gamtos Ateitis Glass', 'Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][Math.floor(Math.random() * 3)] : (config?.business_name ?? '');
+      config?.business_name === 'Gamtos Ateitis Random'
+        ? ['Gamtos Ateitis Glass', 'Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][Math.floor(Math.random() * 3)]
+        : (config?.business_name ?? defaultBusinessName);
     const collection = config?.collection ?? [];
     const collectables = config?.collectables ?? [];
     const coupon_code = config?.coupon_code ?? '';

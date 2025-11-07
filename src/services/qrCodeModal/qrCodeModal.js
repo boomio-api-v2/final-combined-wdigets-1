@@ -13,7 +13,7 @@ export default class {
     this.demoValue = value;
     this.updateConfigData();
     this.mainContainer = widgetHtmlService.container;
-    this.customer = this.config.business_name ? this.config.business_name : 'Deprati';
+    this.customer = this.config.business_name;
 
     if (!this.config?.email_collection_required) {
       this.showQrCode();

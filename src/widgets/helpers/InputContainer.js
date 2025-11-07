@@ -263,7 +263,7 @@ const getRule2Title = (customer, language, game) => {
 };
 
 // Helper function to get Rule 2 descriptive text based on customer, language, and game
-const getRule2Text = (customer, language, game, type) => {
+const getRule2Text = (customer, language, game) => {
   // Pigu.lt variations by language
   if (customer === 'Pigu.lt' && language === 'EN') return 'for better result.';
   if (customer === 'Pigu.lt' && language === 'LV') return 'lai sasniegtu labāku rezultātu.';
@@ -316,9 +316,9 @@ const getRule2Text = (customer, language, game, type) => {
   if (customer === 'SaludSA') return '3 veces para mejorar';
 
   // Gamtos Ateitis variations
-  if (customer.includes('Gamtos Ateitis') && type === 1 && game === 'catch') return 'popieriaus pakuočių atliekas ir gauk taškų.';
-  if (customer.includes('Gamtos Ateitis') && type === 2 && game === 'catch') return 'stiklo pakuočių atliekas ir gauk taškų.';
-  if (customer.includes('Gamtos Ateitis') && type === 3 && game === 'catch') return 'plastiko pakuočių atliekas ir gauk taškų.';
+  if (customer === 'Gamtos Ateitis Paper' && game === 'catch') return 'popieriaus pakuočių atliekas ir gauk taškų.';
+  if (customer === 'Gamtos Ateitis Glass' && game === 'catch') return 'stiklo pakuočių atliekas ir gauk taškų.';
+  if (customer === 'Gamtos Ateitis Plastic' && game === 'catch') return 'plastiko pakuočių atliekas ir gauk taškų.';
   if (customer.includes('Gamtos Ateitis') && game === 'crush') return 'geresnio rezultato.';
 
   // Novaturas variations by language
@@ -610,18 +610,16 @@ const getRule4Text = (customer, language, game) => {
 
 // Rules container
 export class InputContainer {
-  constructor(prop, game) {
-    this.prop = prop; //Customer
-    this.game = game;
+  constructor() {
     this.isMobile = window.innerWidth <= 1280;
     this.config = localStorageService.getDefaultConfig();
-
+    this.customer = this.config.business_name;
     this.language = this.config.language;
-
+    this.game = this.config.widget_type;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
   }
 
-  createInputContainerDiv(game, type) {
+  createInputContainerDiv() {
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
     const containerDiv = document.createElement('div');
     containerDiv.classList.add('input-container');
@@ -630,100 +628,97 @@ export class InputContainer {
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 9999;
-    this.game = game;
-    this.type = type;
 
     const userId = this.config.userId;
     containerDiv.innerHTML = `
 
-      
     <div style="width: 100%; height: ${'180px'};box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 10px; padding-right: 10px; flex-direction: column; justify-content: center; align-items: center; display: flex">
     <div style="margin-top:-20px;align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${
-      this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-    }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="${this.prop === 'Ikea' ? 'margin-left:20px' : ''};color: #FFF;text-align: ${
-      this.prop === 'Ikea' ? 'start' : 'center'
-    } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${getRulesTitle(this.prop, this.language)}</div>`}</div>
+      this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+    }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="${this.customer === 'Ikea' ? 'margin-left:20px' : ''};color: #FFF;text-align: ${
+      this.customer === 'Ikea' ? 'start' : 'center'
+    } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${getRulesTitle(this.customer, this.language)}</div>`}</div>
     <div style="width: ${this.isMobile ? '370px' : '390px'};margin-top:10px;margin-bottom:10px;height:${
-      this.prop.includes('Gamtos Ateitis') ||
-      this.prop === 'Nykstukas' ||
-      this.prop === 'LemonGym' ||
-      this.prop === 'Magija' ||
-      this.prop === 'Orlen' ||
-      this.prop === 'Novaturas' ||
-      this.prop === 'Nevezis' ||
-      this.prop === 'Pigu.lt' ||
-      this.prop === 'Zemaitijos Pienas' ||
-      this.prop === 'LemonFeel' ||
-      this.prop === 'Apranga' ||
-      this.prop === 'Toni'
+      this.customer.includes('Gamtos Ateitis') ||
+      this.customer === 'Nykstukas' ||
+      this.customer === 'LemonGym' ||
+      this.customer === 'Magija' ||
+      this.customer === 'Orlen' ||
+      this.customer === 'Novaturas' ||
+      this.customer === 'Nevezis' ||
+      this.customer === 'Pigu.lt' ||
+      this.customer === 'Zemaitijos Pienas' ||
+      this.customer === 'LemonFeel' ||
+      this.customer === 'Apranga' ||
+      this.customer === 'Toni'
         ? '150px'
         : '110px'
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
  
           <div style="width:100%; height: 120px; left: 20px; top: 0px; position: absolute">
             <div style="left: 0px; top: -10px;display:flex; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.prop === 'Ikea' ? '20px' : '20px'
-            }; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
+              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.customer === 'Ikea' ? '20px' : '20px'
+            }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             
-              1. ${getRule1Title(this.prop, this.language, this.game)}
+              1. ${getRule1Title(this.customer, this.language, this.game)}
     <div
   style="position:initial;top: 9px; margin-top: 2px; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-weight: 700; margin-left: 4px; font-family: ${
-    this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+    this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
   }; word-wrap: break-word"
 >
-  ${getRule1Text(this.prop, this.language, this.game)}
+  ${getRule1Text(this.customer, this.language, this.game)}
 </div>
 
             </div>
             <div style="left: 0px; top: 30px;display:flex; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.prop === 'Ikea' ? '20px' : '20px'
-            }; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
-            2.  ${getRule2Title(this.prop, this.language, this.game)}
+              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.customer === 'Ikea' ? '20px' : '20px'
+            }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
+            2.  ${getRule2Title(this.customer, this.language, this.game)}
                          <div style="position:initial;top: 46px;margin-left:4px;margin-top:2px; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${
-                           this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+                           this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
                          }; font-weight: 700;  word-wrap: break-word">
-            ${getRule2Text(this.prop, this.language, this.game, this.type)}
+            ${getRule2Text(this.customer, this.language, this.game)}
           </div>
             </div>
             <div style="left: 1px; top: 70px;display:flex; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.prop === 'Ikea' ? '20px' : '20px'
-            }; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
-            3. ${getRule3Title(this.prop, this.language, this.game, userId)} 
+              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.customer === 'Ikea' ? '20px' : '20px'
+            }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
+            3. ${getRule3Title(this.customer, this.language, this.game, userId)} 
                           <div style="position:initial;top: 85px;margin-top:${
-                            this.prop === 'Perlas GO' ? '19px' : this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Dentsu' ? '16px' : '2px'
+                            this.customer === 'Perlas GO' ? '19px' : this.customer === 'SaludSA' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Dentsu' ? '16px' : '2px'
                           }; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${
-                            this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+                            this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
                           }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
-                            this.prop === 'Perlas GO' || this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Dentsu' ? 'white-space:normal;' : ''
+                            this.customer === 'Perlas GO' || this.customer === 'SaludSA' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Dentsu' ? 'white-space:normal;' : ''
                           }
-    ${this.prop === 'Toni' && 'margin-top:13px;line-height:14px;white-space:normal;'}
-    ${this.prop === 'Perlas GO' || this.prop === 'SaludSA' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Dentsu' ? 'line-height:14px;' : ''}">
-            ${getRule3Text(this.prop, this.language, this.game, userId)}
+    ${this.customer === 'Toni' && 'margin-top:13px;line-height:14px;white-space:normal;'}
+    ${this.customer === 'Perlas GO' || this.customer === 'SaludSA' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Dentsu' ? 'line-height:14px;' : ''}">
+            ${getRule3Text(this.customer, this.language, this.game, userId)}
           </div>
             </div>
 ${
-  this.prop === 'Perlas GO' ||
-  this.prop.includes('Gamtos Ateitis') ||
-  this.prop === 'Nykstukas' ||
-  this.prop === 'Nevezis' ||
-  this.prop === 'Magija' ||
-  this.prop === 'Orlen' ||
-  this.prop === 'Novaturas' ||
-  this.prop === 'LemonFeel' ||
-  this.prop === 'Pigu.lt' ||
-  this.prop === 'Zemaitijos Pienas' ||
-  this.prop === 'LemonGym' ||
-  this.prop === 'Apranga'
+  this.customer === 'Perlas GO' ||
+  this.customer.includes('Gamtos Ateitis') ||
+  this.customer === 'Nykstukas' ||
+  this.customer === 'Nevezis' ||
+  this.customer === 'Magija' ||
+  this.customer === 'Orlen' ||
+  this.customer === 'Novaturas' ||
+  this.customer === 'LemonFeel' ||
+  this.customer === 'Pigu.lt' ||
+  this.customer === 'Zemaitijos Pienas' ||
+  this.customer === 'LemonGym' ||
+  this.customer === 'Apranga'
     ? `<div style="left: 1px; top: 110px;display:flex; position: absolute; color: white; font-size: ${'20px'}; font-family:${
-        this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+        this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
       }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
-            4. ${getRule4Title(this.prop, this.language, this.game)} 
+            4. ${getRule4Title(this.customer, this.language, this.game)} 
                           <div style="position:initial;top: 85px;margin-top:${'17px'}; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${
-                            this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+                            this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
                           }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
-            ${getRule4Text(this.prop, this.language, this.game)}
+            ${getRule4Text(this.customer, this.language, this.game)}
           </div>
             </div>`
     : ``
@@ -731,40 +726,40 @@ ${
           </div>
         </div>`}</div>
     ${
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Fantazijos' ||
-      this.prop === 'LemonGym' ||
-      this.prop === 'Makalius' ||
-      this.prop === 'Corepetitus' ||
-      this.prop === 'Pieno Žvaigždės' ||
-      this.prop === 'Pegasas' ||
-      this.prop === 'Eurovaistine' ||
-      this.prop.includes('Gamtos Ateitis') ||
-      this.prop === 'Akropolis' ||
-      this.prop === 'Pigu.lt' ||
-      this.prop === 'SaludSA' ||
-      this.prop === 'Vilvi' ||
-      this.prop === 'Zemaitijos Pienas' ||
-      this.prop === 'Ikea' ||
-      this.prop === 'Nykstukas' ||
-      this.prop === 'LemonGym' ||
-      this.prop === 'Nevezis' ||
-      this.prop === 'Magija' ||
-      this.prop === 'Orlen' ||
-      this.prop === 'LemonFeel' ||
-      this.prop === 'Novaturas' ||
-      this.prop.includes('demo')
+      this.customer === 'Barbora' ||
+      this.customer === 'Fpro' ||
+      this.customer === 'Fantazijos' ||
+      this.customer === 'LemonGym' ||
+      this.customer === 'Makalius' ||
+      this.customer === 'Corepetitus' ||
+      this.customer === 'Pieno Žvaigždės' ||
+      this.customer === 'Pegasas' ||
+      this.customer === 'Eurovaistine' ||
+      this.customer.includes('Gamtos Ateitis') ||
+      this.customer === 'Akropolis' ||
+      this.customer === 'Pigu.lt' ||
+      this.customer === 'SaludSA' ||
+      this.customer === 'Vilvi' ||
+      this.customer === 'Zemaitijos Pienas' ||
+      this.customer === 'Ikea' ||
+      this.customer === 'Nykstukas' ||
+      this.customer === 'LemonGym' ||
+      this.customer === 'Nevezis' ||
+      this.customer === 'Magija' ||
+      this.customer === 'Orlen' ||
+      this.customer === 'LemonFeel' ||
+      this.customer === 'Novaturas' ||
+      this.customer.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align:center; color: white; font-size: 10px; font-family:${
-            this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
+            this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
           }; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" rel="noopener noreferrer" ${
-            this.prop === 'Novaturas' && this.language === 'LT'
+            this.customer === 'Novaturas' && this.language === 'LT'
               ? 'href=https://www.novaturas.lt/zaidimo-taisykles'
-              : this.prop === 'Novaturas' && this.language === 'LV'
+              : this.customer === 'Novaturas' && this.language === 'LV'
                 ? 'href=https://www.novatours.lv/speles-noteikumi'
-                : this.prop === 'Novaturas' && this.language === 'ET'
+                : this.customer === 'Novaturas' && this.language === 'ET'
                   ? 'href=https://www.novatours.ee/mangu-reeglid'
-                  : this.prop === 'Novaturas' && this.language === 'RU'
+                  : this.customer === 'Novaturas' && this.language === 'RU'
                     ? 'href=https://www.novatours.lv/ru/pravila-igri'
                     : this.config.campaignUrlOrCurrentPage.includes('pigu')
                       ? this.language === 'RU'
@@ -782,83 +777,83 @@ ${
                             ? this.language === 'EN'
                               ? `href=https://hobbyhall.fi/fi/t/game-rules-jump `
                               : `href=https://hobbyhall.fi/fi/t/game-rules-jump `
-                            : this.prop === 'SaludSA'
+                            : this.customer === 'SaludSA'
                               ? 'href=https://ventas.saludsa.com/reglas-juego'
-                              : this.prop === 'Barbora'
+                              : this.customer === 'Barbora'
                                 ? 'href=https://www.barbora.lt/info/akciju-zaidimu-taisykles'
-                                : this.prop === 'Eurovaistine'
+                                : this.customer === 'Eurovaistine'
                                   ? 'href=https://www.e-euroaptieka.lv/ker-un-laime-speles-noteikumi'
-                                  : this.prop === 'Unisend' && this.language === 'LV'
+                                  : this.customer === 'Unisend' && this.language === 'LV'
                                     ? 'href=https://unisend.lv'
-                                    : this.prop === 'Unisend' && this.language === 'ET'
+                                    : this.customer === 'Unisend' && this.language === 'ET'
                                       ? 'href=https://unisend.ee'
-                                      : this.prop === 'LemonGym'
+                                      : this.customer === 'LemonGym'
                                         ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-GYM-LV-speles-noteikumi.pdf'
-                                        : this.prop === 'Ikea'
+                                        : this.customer === 'Ikea'
                                           ? 'href=https://www.ikea.lt/en/zaidimo-ar-gerai-vairuojate-taisykles'
-                                          : this.prop === 'Makalius'
+                                          : this.customer === 'Makalius'
                                             ? 'href=https://www.makalius.lt/gimtadienio-zaidimo-taisykles/'
                                             : this.language === 'ET'
                                               ? 'href=https://docs.google.com/document/d/1OeMh9o3FeQMj00XRvsxlvwbUpaYuBgRsVLUZMCPWfdo/edit'
-                                              : this.prop === 'Fantazijos'
+                                              : this.customer === 'Fantazijos'
                                                 ? 'href=https://www.fantazijos.lt/zaidimo-taisykles'
-                                                : this.prop === 'Fpro'
+                                                : this.customer === 'Fpro'
                                                   ? 'href=https://fpro.com/'
-                                                  : this.prop === 'Corepetitus'
+                                                  : this.customer === 'Corepetitus'
                                                     ? 'href=https://www.corepetitus.lt/zaidimo-taisykles'
-                                                    : this.prop === 'Pieno Žvaigždės'
+                                                    : this.customer === 'Pieno Žvaigždės'
                                                       ? 'href=https://www.boomio.com/pieno-zvaigzdes-miau-zaidimo-taisykles'
-                                                      : this.prop === 'Pegasas'
+                                                      : this.customer === 'Pegasas'
                                                         ? 'href=https://www.pegasas.lt/c/pegaso-zaidimo-taisykles/'
-                                                        : this.prop === 'Akropolis' && this.language === 'LV'
+                                                        : this.customer === 'Akropolis' && this.language === 'LV'
                                                           ? 'href=https://www.akropoleriga.lv/lv/jauns/spele-un-laime-kfc-balvas-katru-dienu-speles-noteikumi/41828'
-                                                          : this.prop === 'Akropolis'
+                                                          : this.customer === 'Akropolis'
                                                             ? 'href=https://www.akropolis.lt/view-file/14247_%C5%BDaidi%20ir%20kava%20kasdien%20laimi_Kavos_%C5%BEaidimas_2025.pdf'
-                                                            : this.language === 'LV' && this.prop === 'Fantazijos'
+                                                            : this.language === 'LV' && this.customer === 'Fantazijos'
                                                               ? 'href=https://docs.google.com/document/d/1QNzkm_j-Sn73LsykBYgFAfwg0Ij2TeM5/edit'
-                                                              : this.language === 'RU' && this.prop === 'Fantazijos'
+                                                              : this.language === 'RU' && this.customer === 'Fantazijos'
                                                                 ? 'href=https://docs.google.com/document/d/1PN05AH1AQUL6iiENuVVeVBJGip6Ia6w1/edit'
-                                                                : this.prop.includes('Gamtos Ateitis')
+                                                                : this.customer.includes('Gamtos Ateitis')
                                                                   ? 'href=https://gamtosateitis.lt/wp-content/uploads/2025/05/Taisykles_word.pdf'
-                                                                  : this.prop === 'Zemaitijos Pienas'
+                                                                  : this.customer === 'Zemaitijos Pienas'
                                                                     ? 'href=https://www.boomio.com/zemaitijos-pienas-protein-m-zaidimo-taisykles'
-                                                                    : this.prop === 'Nykstukas'
+                                                                    : this.customer === 'Nykstukas'
                                                                       ? 'href=https://www.nykstukozaidimas.lt/taisykles/'
-                                                                      : this.prop === 'Magija'
+                                                                      : this.customer === 'Magija'
                                                                         ? 'href=https://www.boomio.com/zemaitijos-pienas-magija-zaidimo-taisykles'
-                                                                        : this.prop === 'Nevezis'
+                                                                        : this.customer === 'Nevezis'
                                                                           ? 'href=https://ohosausryciai.lt/zaidimo-taisykles.html'
-                                                                          : this.prop === 'LemonFeel'
+                                                                          : this.customer === 'LemonFeel'
                                                                             ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-FEEL-speles-noteikumi.pdf'
-                                                                            : this.prop === 'Orlen'
+                                                                            : this.customer === 'Orlen'
                                                                               ? 'href=https://www.orlen.lt/LT/zaidimas/Puslapiai/taisykl%c4%97s.aspx'
                                                                               : `href=${window.location.href}`
-          } style="color:white;font-size:14px;margin-top:6px;font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};">${
-            this.prop === 'Pigu.lt' && this.language === 'EN'
+          } style="color:white;font-size:14px;margin-top:6px;font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};">${
+            this.customer === 'Pigu.lt' && this.language === 'EN'
               ? 'Read the detailed game rules.'
-              : this.prop === 'Pigu.lt' && this.language === 'LV'
+              : this.customer === 'Pigu.lt' && this.language === 'LV'
                 ? 'Izlasi detalizētos spēles noteikumus.'
-                : this.prop === 'Pigu.lt' && this.language === 'ET'
+                : this.customer === 'Pigu.lt' && this.language === 'ET'
                   ? 'Loe mängu täpseid reegleid.'
-                  : this.prop === 'Pigu.lt' && this.language === 'FI'
+                  : this.customer === 'Pigu.lt' && this.language === 'FI'
                     ? 'Lue tarkat säännöt.'
-                    : this.prop === 'Pigu.lt' && this.language === 'RU'
+                    : this.customer === 'Pigu.lt' && this.language === 'RU'
                       ? 'Ознакомься с подробными правилами игры.'
-                      : this.prop === 'Pigu.lt'
+                      : this.customer === 'Pigu.lt'
                         ? 'Skaityk išsamias žaidimo taisykles'
-                        : this.prop === 'Eurovaistine'
+                        : this.customer === 'Eurovaistine'
                           ? 'Pilni spēles noteikumi šeit.'
-                          : this.prop === 'Fpro'
+                          : this.customer === 'Fpro'
                             ? 'Read full games rules. '
-                            : this.prop === 'SaludSA'
+                            : this.customer === 'SaludSA'
                               ? 'Revisa las reglas completas del juego.'
-                              : this.prop === 'Ikea'
+                              : this.customer === 'Ikea'
                                 ? 'Visos žaidimo taisyklės'
-                                : this.prop === 'LemonFeel'
+                                : this.customer === 'LemonFeel'
                                   ? 'Lasīt pilnos spēles noteikumus'
-                                  : this.prop === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
+                                  : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
                                     ? ''
-                                    : this.prop.includes('Gamtos Ateitis')
+                                    : this.customer.includes('Gamtos Ateitis')
                                       ? 'Skaityk išsamias žaidimo taisykles.'
                                       : this.language === 'EN'
                                         ? 'Read the full game rules'
@@ -872,22 +867,22 @@ ${
           } </a></div>
            
           ${
-            this.prop === 'Pigu.lt' && false
+            this.customer === 'Pigu.lt' && false
               ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:30px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
       <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
             <img id="boomio-rules-privacyCheckbox-img" src="${uncheckIcon}" style="max-width:fit-content;width: 20px; height: 20px;">
         </div>
         <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${'Montserrat'} ;width:calc(100% - 50px);  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">
         ${
-          this.prop === 'Pigu.lt' && this.language === 'EN'
+          this.customer === 'Pigu.lt' && this.language === 'EN'
             ? 'I agree to receive game news and information about prizes, and for my data to be processed for this purpose.'
-            : this.prop === 'Pigu.lt' && this.language === 'LV'
+            : this.customer === 'Pigu.lt' && this.language === 'LV'
               ? 'Es piekrītu saņemt spēles jaunumus un informāciju par balvām, kā arī piekrītu manu datu apstrādei šim nolūkam'
-              : this.prop === 'Pigu.lt' && this.language === 'ET'
+              : this.customer === 'Pigu.lt' && this.language === 'ET'
                 ? 'Nõustun saama teavet mängu uudiste ja auhindade kohta ning luban oma andmete töötlemise selleks otstarbeks.'
-                : this.prop === 'Pigu.lt' && this.language === 'FI'
+                : this.customer === 'Pigu.lt' && this.language === 'FI'
                   ? 'Hyväksyn, että minulle lähetetään tietoja pelistä ja palkinnoista, ja että tietojani käsitellään tätä tarkoitusta varten.'
-                  : this.prop === 'Pigu.lt' && this.language === 'RU'
+                  : this.customer === 'Pigu.lt' && this.language === 'RU'
                     ? 'Я соглашаюсь получать новости о игре и информацию о призах, а также на обработку моих данных с этой целью.'
                     : 'Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.'
         }
@@ -910,26 +905,26 @@ ${
               };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height:38px;background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; font-size: 20px; font-family:${this.prop === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: ${
-                this.prop === 'Ikea' ? '400' : '700'
+              <div style="text-align: center; font-size: 20px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: ${
+                this.customer === 'Ikea' ? '400' : '700'
               }; line-height: 20px; word-wrap: break-word"> <div style="line-height:20px;text-align: center; color: ${
-                this.prop === 'Toni' ? '#000F9F' : 'rgba(61, 73, 40, 1)'
+                this.customer === 'Toni' ? '#000F9F' : 'rgba(61, 73, 40, 1)'
               }; font-size: 20px;  line-height: 20px; word-wrap: break-word">${
-                this.prop === 'Pigu.lt' && this.language === 'EN'
+                this.customer === 'Pigu.lt' && this.language === 'EN'
                   ? 'NEXT'
-                  : this.prop === 'Pigu.lt' && this.language === 'LV'
+                  : this.customer === 'Pigu.lt' && this.language === 'LV'
                     ? 'TĀLĀK'
-                    : this.prop === 'Pigu.lt' && this.language === 'ET'
+                    : this.customer === 'Pigu.lt' && this.language === 'ET'
                       ? 'JÄRGMINE'
-                      : this.prop === 'Pigu.lt' && this.language === 'FI'
+                      : this.customer === 'Pigu.lt' && this.language === 'FI'
                         ? 'SEURAAVA'
-                        : this.prop === 'Pigu.lt' && this.language === 'RU'
+                        : this.customer === 'Pigu.lt' && this.language === 'RU'
                           ? 'ДАЛЕЕ'
-                          : this.prop === 'Pigu.lt' && this.language === 'LT'
+                          : this.customer === 'Pigu.lt' && this.language === 'LT'
                             ? 'PIRMYN'
-                            : this.prop === 'Akropolis' && this.language === 'LV'
+                            : this.customer === 'Akropolis' && this.language === 'LV'
                               ? 'PIEKRĪTU NOTEIKUMIEM'
-                              : this.prop === 'Akropolis' && this.language === 'RU'
+                              : this.customer === 'Akropolis' && this.language === 'RU'
                                 ? 'Я согласен с правилами'
                                 : this.language === 'LV'
                                   ? 'TĀLĀK'
@@ -939,27 +934,27 @@ ${
                                       ? 'EDASI'
                                       : this.language === 'ES'
                                         ? 'SIGUIENTE'
-                                        : this.prop === 'Barbora' ||
-                                            this.prop === 'Fantazijos' ||
-                                            this.prop === 'LemonGym' ||
-                                            this.prop === 'Corepetitus' ||
-                                            this.prop === 'Pieno Žvaigždės' ||
-                                            this.prop.includes('Gamtos Ateitis') ||
-                                            this.prop === 'Makalius' ||
-                                            this.prop === 'Daumantu' ||
-                                            this.prop === 'Pegasas'
+                                        : this.customer === 'Barbora' ||
+                                            this.customer === 'Fantazijos' ||
+                                            this.customer === 'LemonGym' ||
+                                            this.customer === 'Corepetitus' ||
+                                            this.customer === 'Pieno Žvaigždės' ||
+                                            this.customer.includes('Gamtos Ateitis') ||
+                                            this.customer === 'Makalius' ||
+                                            this.customer === 'Daumantu' ||
+                                            this.customer === 'Pegasas'
                                           ? 'PIRMYN'
-                                          : this.prop === 'Fpro'
+                                          : this.customer === 'Fpro'
                                             ? 'PLAY'
-                                            : this.prop === 'Eurovaistine'
+                                            : this.customer === 'Eurovaistine'
                                               ? 'TĀLĀK'
-                                              : this.prop === 'Akropolis' && this.language === 'LT'
+                                              : this.customer === 'Akropolis' && this.language === 'LT'
                                                 ? 'SUTINKU'
-                                                : this.prop === 'SaludSA'
+                                                : this.customer === 'SaludSA'
                                                   ? 'SIGUIENTE'
-                                                  : this.prop === 'Vilvi'
+                                                  : this.customer === 'Vilvi'
                                                     ? 'SUTINKU'
-                                                    : this.prop === 'Perlas GO'
+                                                    : this.customer === 'Perlas GO'
                                                       ? 'SUTINKU'
                                                       : this.language === 'EN'
                                                         ? 'CONTINUE'

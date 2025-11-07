@@ -51,9 +51,18 @@ import {
 } from './constants';
 
 export class DidYouKnowContainer {
-  constructor(prop, type) {
+  constructor() {
+    this.config = localStorageService.getDefaultConfig();
+    this.customer = this.config.business_name;
+    this.language = this.config.language ? this.config.language : 'LV';
+    this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
+    this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
+
+    this.isSmallMobile = window.innerWidth <= 380;
+    this.isMobileWidthSmall = window.innerWidth <= 400;
+
     this.gamtosAteitis =
-      type === 1
+      this.customer === 'Gamtos Ateitis Paper'
         ? [
             {
               title: '„Rūšiuodamas nesigraužk dėl prirašyto sąsiuvinio su sąvaržėlėmis!“ 📖',
@@ -88,7 +97,7 @@ export class DidYouKnowContainer {
               text: 'Įmetęs pakuotę į vandenį įsitiksi: jei suminkštėja ir pradeda irti – tikras popierius! 📜✅ Jei plaukia ar laiko vandenį (kaip vienkartiniai kavos puodeliai) – turi plastiko priemaišų, tad mesk į plastiko/kombinuotų pakuočių konteinerį! ♻️🚫',
             },
           ]
-        : type === 2
+        : this.customer === 'Gamtos Ateitis Plastic'
           ? [
               {
                 title: '„Tuščia – reiškia švaru!“ 🥛🚫',
@@ -147,21 +156,6 @@ export class DidYouKnowContainer {
             ];
     this.randomGamtosAteitis = this.gamtosAteitis[Math.floor(Math.random() * this.gamtosAteitis.length)];
 
-    this.config = localStorageService.getDefaultConfig();
-    this.language = this.config.language ? this.config.language : 'LV';
-    this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
-
-    const currentPageUrl = window.location.href;
-    this.isSmallMobile = window.innerWidth <= 380;
-
-    const urlParams = new URL(currentPageUrl).searchParams;
-    const campaignUrl = urlParams.get('campaign_url');
-    this.isMobileWidthSmall = window.innerWidth <= 400;
-
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
-    this.user_id = urlParams.get('user_id');
-
-    this.prop = prop;
     // if (this.prop && this.prop.includes('Plastic')) {
     //   this.collectables = [
     //     item16,
@@ -208,27 +202,27 @@ export class DidYouKnowContainer {
     //     item7Glass,
     //   ];
     // }
-    if (this.prop === 'Pieno Žvaigždės') {
+    if (this.customer === 'Pieno Žvaigždės') {
       this.collectables = [item15PienoZvaigzdes, item1PienoZvaigzdes, item8PienoZvaigzdes, item2PienoZvaigzdes, item7PienoZvaigzdes, item5PienoZvaigzdes];
-    } else if (this.prop === 'Pegasas') {
+    } else if (this.customer === 'Pegasas') {
       // Handle Glass collectables
       this.collectables = [item1pegasas, item2pegasas, item3pegasas, item4pegasas, item5pegasas, item6pegasas, item7pegasas, item8pegasas, item9pegasas, item10pegasas, item11pegasas, item12pegasas];
-    } else if (this.prop === 'Zemaitijos Pienas') {
+    } else if (this.customer === 'Zemaitijos Pienas') {
       // Handle Glass collectables
       this.collectables = [item8Dobilo, item2Dobilo, item5Dobilo, item3Dobilo, item4Dobilo, item7Dobilo, item6Dobilo, item1Dobilo, item9Dobilo];
-    } else if (this.prop === 'Nykstukas') {
+    } else if (this.customer === 'Nykstukas') {
       // Handle Glass collectables
       this.collectables = [item1Nykstukas, item2Nykstukas, item3Nykstukas, item4Nykstukas];
-    } else if (this.prop === 'Magija') {
+    } else if (this.customer === 'Magija') {
       // Handle Glass collectables
       this.collectables = [item1Magija, item2Magija, item3Magija, item4Magija, item5Magija, item6Magija];
-    } else if (this.prop === 'Nevezis') {
+    } else if (this.customer === 'Nevezis') {
       // Handle Glass collectables
       this.collectables = [item1Nevezis, item2Nevezis, item3Nevezis, item4Nevezis, item5Nevezis, item6Nevezis, item7Nevezis, item8Nevezis, item9Nevezis];
     }
 
     this.collectablesLinks = [];
-    if (this.prop === 'Pigu.lt') {
+    if (this.customer === 'Pigu.lt') {
       this.collectablesLinks = this.dynamicData;
     } else {
       this.collectablesLinks = [
@@ -252,14 +246,8 @@ export class DidYouKnowContainer {
   }
 
   // Update properties method
-  updateProps(prop, type) {
-    this.prop = prop;
-    this.type = type;
-    this.isMobileWidthSmall = window.innerWidth <= 400;
-    this.isSmallMobile = window.innerWidth <= 380;
-    this.config = localStorageService.getDefaultConfig();
-    this.dynamicData = this.config.dynamicData ? this.config.dynamicData : null;
-    if (this.prop === 'Pigu.lt') {
+  updateProps() {
+    if (this.customer === 'Pigu.lt') {
       this.collectablesLinks = this.dynamicData;
     }
     // else if (this.prop && this.prop.includes('Plastic')) {
@@ -308,13 +296,13 @@ export class DidYouKnowContainer {
     //     item7Glass,
     //   ];
     // }
-    else if (this.prop === 'Pieno Žvaigždės') {
+    else if (this.customer === 'Pieno Žvaigždės') {
       // Handle Glass collectables
       this.collectables = [item15PienoZvaigzdes, item1PienoZvaigzdes, item8PienoZvaigzdes, item2PienoZvaigzdes, item7PienoZvaigzdes, item5PienoZvaigzdes];
-    } else if (this.prop === 'Pegasas') {
+    } else if (this.customer === 'Pegasas') {
       // Handle Glass collectables
       this.collectables = [item1pegasas, item2pegasas, item3pegasas, item4pegasas, item5pegasas, item6pegasas, item7pegasas, item8pegasas, item9pegasas, item10pegasas, item11pegasas, item12pegasas];
-    } else if (this.prop === 'Zemaitijos Pienas') {
+    } else if (this.customer === 'Zemaitijos Pienas') {
       // Handle Glass collectables
       this.collectables = [item8Dobilo, item2Dobilo, item5Dobilo, item3Dobilo, item4Dobilo, item7Dobilo, item6Dobilo, item1Dobilo, item9Dobilo];
     }
@@ -330,7 +318,7 @@ export class DidYouKnowContainer {
     const urlParams = new URL(currentPageUrl).searchParams;
     const campaignUrl = urlParams.get('campaign_url');
 
-    this.campaignUrlProp = campaignUrl ? campaignUrl : currentPageUrl;
+    this.campaignUrlOrCurrentPage = campaignUrl ? campaignUrl : currentPageUrl;
     if (!this.containerDiv) return;
 
     // Placeholder logic for updating visuals with products
@@ -349,9 +337,9 @@ export class DidYouKnowContainer {
           };
         })
         .slice(0, 9) || [];
-    const loopingImages = this.prop === 'Pigu.lt' ? this.products : this.collectables;
+    const loopingImages = this.customer === 'Pigu.lt' ? this.products : this.collectables;
 
-    if (this.prop === 'Pigu.lt') {
+    if (this.customer === 'Pigu.lt') {
       loopingImages?.forEach((product, index) => {
         if (index % 3 === 0) {
           tableHTML += '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
@@ -394,27 +382,27 @@ export class DidYouKnowContainer {
       loopingImages?.forEach((item, index) => {
         const link = this.collectablesLinks[index];
 
-        if (this.prop === 'Nykstukas' ? index % 2 === 0 : index % 3 === 0) {
+        if (this.customer === 'Nykstukas' ? index % 2 === 0 : index % 3 === 0) {
           tableHTML += '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
         }
         tableHTML += `
-          <td style="padding:5px;text-align: center; border: none; ${this.prop === 'Pegasas' || this.prop === 'Pigu.lt' ? 'cursor:pointer' : ''}">
+          <td style="padding:5px;text-align: center; border: none; ${this.customer === 'Pegasas' || this.customer === 'Pigu.lt' ? 'cursor:pointer' : ''}">
           <div id="image-${index}" >
           <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:
-            ${this.prop === 'Pigu.lt' ? '100px' : '70px'};' src=${item} alt="Scoreboard Image" >
+            ${this.customer === 'Pigu.lt' ? '100px' : '70px'};' src=${item} alt="Scoreboard Image" >
         
         ${
-          (this.prop === 'Pegasas' && this.collectablesLinks[index]) || (this.prop === 'Pigu.lt' && link)
+          (this.customer === 'Pegasas' && this.collectablesLinks[index]) || (this.customer === 'Pigu.lt' && link)
             ? `<div class='image-container-text'><a href="${
-                this.prop === 'Pegasas' ? this.collectablesLinks[index] : this.prop === 'Pigu.lt' && link.url + '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Black_Friday'
+                this.customer === 'Pegasas' ? this.collectablesLinks[index] : this.customer === 'Pigu.lt' && link.url + '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Black_Friday'
               }" target="_blank" style="color: white; text-decoration: underline;"><p style="margin-left:10px;margin-right:10px;max-width:280px;line-height:10px;">${
-                this.prop === 'Pegasas' ? this.collectablesLinks[index] : this.prop === 'Pigu.lt' && link.title
+                this.customer === 'Pegasas' ? this.collectablesLinks[index] : this.customer === 'Pigu.lt' && link.title
               }<p/></a></div>`
             : ''
         }
           </div>
           </td>`;
-        if ((this.prop === 'Nykstukas' ? (index + 1) % 2 === 0 : (index + 1) % 3 === 0) || index === loopingImages.length - 1) {
+        if ((this.customer === 'Nykstukas' ? (index + 1) % 2 === 0 : (index + 1) % 3 === 0) || index === loopingImages.length - 1) {
           tableHTML += '</tr>';
         }
       });
@@ -422,32 +410,32 @@ export class DidYouKnowContainer {
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     let scoreboardText = `
       ${`<div class="bomio-first-line" style="width:${'calc(100% - 32px)'};margin-left:${'16px'}; top: ${
-        this.prop?.includes('Gamtos Ateitis') ? '305px' : '505px'
+        this.customer?.includes('Gamtos Ateitis') ? '305px' : '505px'
       };line-height:18px; position: absolute;font-weight: 600; text-align: center; color: white; font-size:${
-        this.prop === 'Pegasas' || this.prop === 'Pieno Žvaigždės' || this.prop === 'Nykstukas' ? '18px' : '14px'
+        this.customer === 'Pegasas' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Nykstukas' ? '18px' : '14px'
       } ; font-family: Montserrat;  word-wrap: break-word">${
-        this.prop?.includes('Gamtos Ateitis')
+        this.customer?.includes('Gamtos Ateitis')
           ? this.randomGamtosAteitis?.text
-          : this.prop === 'Pegasas'
+          : this.customer === 'Pegasas'
             ? 'DAUGIAU PEGASO PRODUKTŲ RASI'
-            : this.prop === 'Zemaitijos Pienas'
+            : this.customer === 'Zemaitijos Pienas'
               ? 'Ekologiški jogurtai „DOBILAS“'
-              : this.prop === 'Nykstukas'
+              : this.customer === 'Nykstukas'
                 ? ''
-                : this.prop === 'Nevezis'
+                : this.customer === 'Nevezis'
                   ? ''
-                  : this.prop === 'Magija'
+                  : this.customer === 'Magija'
                     ? 'Šokoladu aplieti „Magija“ varškės sūreliai'
                     : ''
       }</div>
               <div class="bomio-second-line" style="width:100%; top: ${'525px'};line-height:18px; position: absolute; text-align: center; color: white; font-size:${'12px'} ; font-family: Montserrat; font-weight:${
-                this.prop === 'Pieno Žvaigždės' ? 500 : 400
-              };  word-wrap: break-word;text-decoration:${this.prop === 'Pieno Žvaigždės' ? 'underline' : ''} ">${
-                this.prop === 'Pegasas'
+                this.customer === 'Pieno Žvaigždės' ? 500 : 400
+              };  word-wrap: break-word;text-decoration:${this.customer === 'Pieno Žvaigždės' ? 'underline' : ''} ">${
+                this.customer === 'Pegasas'
                   ? ''
-                  : this.prop === 'Pieno Žvaigždės'
+                  : this.customer === 'Pieno Žvaigždės'
                     ? ''
-                    : this.prop === 'Zemaitijos Pienas'
+                    : this.customer === 'Zemaitijos Pienas'
                       ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
@@ -455,7 +443,7 @@ export class DidYouKnowContainer {
   style="color:white;font-weight:900;font-size:16px;">
   VISI PRODUKTAI
 </a>`
-                      : this.prop === 'Nykstukas'
+                      : this.customer === 'Nykstukas'
                         ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
@@ -464,7 +452,7 @@ export class DidYouKnowContainer {
   style="color:white;font-weight:900;font-size:12px;text-decoration: underline;">
   DAUGIAU NYKŠTUKO SKONIŲ!
 </a>`
-                        : this.prop === 'Nevezis'
+                        : this.customer === 'Nevezis'
                           ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
@@ -472,7 +460,7 @@ export class DidYouKnowContainer {
   style="color:white;font-weight:900;font-size:12px;">
    Susipažink su mūsų produktais!
 </a>`
-                          : this.prop === 'Magija'
+                          : this.customer === 'Magija'
                             ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
@@ -482,7 +470,7 @@ export class DidYouKnowContainer {
 </a>`
                             : ''
               }${
-                this.prop === 'Pieno Žvaigždės'
+                this.customer === 'Pieno Žvaigždės'
                   ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
@@ -493,7 +481,7 @@ export class DidYouKnowContainer {
                   : ''
               }
           ${
-            this.prop === 'Pegasas' || this.prop === 'Pigu.lt'
+            this.customer === 'Pegasas' || this.customer === 'Pigu.lt'
               ? `<a 
   onclick="event.stopPropagation();" 
   target="_blank" 
@@ -509,22 +497,22 @@ export class DidYouKnowContainer {
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Montserrat; font-weight: 700;  word-wrap: break-word;text-decoration: underline;"><a 
   onclick="event.stopPropagation();" 
   target="_blank" 
-  href="${this.prop === 'Pieno Žvaigždės' ? 'https://pienozvaigzdes.lt/lt/20_miau' : this.prop === 'Pegasas' ? 'https://www.pegasas.lt/' : ''}" 
+  href="${this.customer === 'Pieno Žvaigždės' ? 'https://pienozvaigzdes.lt/lt/20_miau' : this.customer === 'Pegasas' ? 'https://www.pegasas.lt/' : ''}" 
   style="color:white">
-  ${this.prop === 'Pegasas' ? '' : this.prop === 'Pieno Žvaigždės' ? '' : this.prop === 'Zemaitijos Pienas' ? '' : ''}
+  ${this.customer === 'Pegasas' ? '' : this.customer === 'Pieno Žvaigždės' ? '' : this.customer === 'Zemaitijos Pienas' ? '' : ''}
 </a> </div> `}
     `;
 
-    if (this.prop !== 'Pigu.lt') {
+    if (this.customer !== 'Pigu.lt') {
       this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
     }
 
-    if (this.prop === 'Pegasas' || this.prop === 'Pigu.lt') {
+    if (this.customer === 'Pegasas' || this.customer === 'Pigu.lt') {
       document.getElementById('closeDidYouKnow').addEventListener('click', () => {
         // Find all enlarged images by checking for the 'enlarge-image' class
         const enlargedImages = document.querySelectorAll('.enlarge-image');
 
-        if (this.prop === 'Pigu.lt') {
+        if (this.customer === 'Pigu.lt') {
           document.querySelector('.closeDidYouKnow').style.display = 'none'; // Hide the close button
         }
 
@@ -545,7 +533,7 @@ export class DidYouKnowContainer {
   }
 
   addfunc() {
-    const count = this.prop === 'Pigu.lt' ? this.products?.length || 0 : this.collectables?.length || 0;
+    const count = this.customer === 'Pigu.lt' ? this.products?.length || 0 : this.collectables?.length || 0;
     for (let index = 0; index < count; index++) {
       const image = document.getElementById(`image-${index}`);
       if (image && window.getComputedStyle(image).backgroundColor !== 'rgb(255, 255, 255)') {
@@ -569,7 +557,7 @@ export class DidYouKnowContainer {
       const imgElement = image.querySelector('img');
       if (imgElement) {
         imgElement.classList.toggle('enlarge-image');
-        if (this.prop === 'Pigu.lt') {
+        if (this.customer === 'Pigu.lt') {
           // Toggle the display of the close button
           document.querySelector('.closeDidYouKnow').style.display = document.querySelector('.closeDidYouKnow').style.display === 'none' ? 'block' : 'none';
         }
@@ -594,18 +582,18 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="display:${
-        this.prop?.includes('Gamtos Ateitis') ? 'block' : 'none'
-      };width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${this.prop === 'Pigu.lt' ? 'white' : 'white'}; font-size: ${
+        this.customer?.includes('Gamtos Ateitis') ? 'block' : 'none'
+      };width:calc(100% - 20px);margin-left:10px;top: ${'190px'}; position: absolute; text-align: center;line-height:${'30px'}; color: ${this.customer === 'Pigu.lt' ? 'white' : 'white'}; font-size: ${
         this.isMobileWidthSmall ? '26px' : '30px'
       }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name">${
-        this.prop?.includes('Gamtos Ateitis') ? this.randomGamtosAteitis?.title : ''
+        this.customer?.includes('Gamtos Ateitis') ? this.randomGamtosAteitis?.title : ''
       }</div>
-      <div style="width:calc(100% - 20px);margin-left:10px;top: ${this.prop === 'Nykstukas' ? '150px' : '72px'}; position: absolute; text-align: center;line-height:${'42px'}; color: ${
-        this.prop === 'Pigu.lt' ? 'white' : 'white'
+      <div style="width:calc(100% - 20px);margin-left:10px;top: ${this.customer === 'Nykstukas' ? '150px' : '72px'}; position: absolute; text-align: center;line-height:${'42px'}; color: ${
+        this.customer === 'Pigu.lt' ? 'white' : 'white'
       }; font-size: ${
         this.isMobileWidthSmall ? '26px' : '30px'
       }; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',    sans-serif; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-collection-scoreboard-name2">${
-        this.prop === 'Pigu.lt'
+        this.customer === 'Pigu.lt'
           ? this.language === 'EN'
             ? 'HAVE YOU SEEN THE TOP DEALS?'
             : this.language === 'LT'
@@ -617,19 +605,19 @@ export class DidYouKnowContainer {
                   : this.language === 'FI'
                     ? 'OLETKO NÄHNYT HUIPPUDIILEJÄ?'
                     : this.language === 'RU' && 'А ТЫ УЖЕ ВИДЕЛ ТОП ПРЕДЛОЖЕНИЯ?'
-          : this.prop === 'Pieno Žvaigždės'
+          : this.customer === 'Pieno Žvaigždės'
             ? 'Ar visus RAGAVAI?'
-            : this.prop === 'Pegasas'
+            : this.customer === 'Pegasas'
               ? 'ĮSIGYK PEGASO PERKAMIAUSIUS'
-              : this.prop === 'Zemaitijos Pienas'
+              : this.customer === 'Zemaitijos Pienas'
                 ? 'Ar visus RAGAVAI?'
-                : this.prop?.includes('Gamtos Ateitis')
+                : this.customer?.includes('Gamtos Ateitis')
                   ? 'TAI SVARBU RŪŠIUOJANT!'
-                  : this.prop === 'Nykstukas'
+                  : this.customer === 'Nykstukas'
                     ? 'AR IŠRAGAVAI ŠIŲ METŲ NAUJIENAS?'
-                    : this.prop === 'Magija'
+                    : this.customer === 'Magija'
                       ? 'Ar visus RAGAVAI?'
-                      : this.prop === 'Nevezis'
+                      : this.customer === 'Nevezis'
                         ? 'ATRASK SAVO SKONĮ'
                         : 'Ar žinojai?'
       }</div>
@@ -640,10 +628,10 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-        this.prop === 'Pegasas' ? '100px' : this.prop === 'Pieno Žvaigždės' ? '174px' : this.prop === 'Nykstukas' ? '230px' : '114px'
+        this.customer === 'Pegasas' ? '100px' : this.customer === 'Pieno Žvaigždės' ? '174px' : this.customer === 'Nykstukas' ? '230px' : '114px'
       }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
-          <table style="margin-top:${this.prop === 'Pigu.lt' ? (this.isMobileWidthSmall ? '30px' : '40px') : '30px'};border-spacing:3px;width:${
+          <table style="margin-top:${this.customer === 'Pigu.lt' ? (this.isMobileWidthSmall ? '30px' : '40px') : '30px'};border-spacing:3px;width:${
             this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
           };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
             <tbody class="boomio-tbody" style="background-color:transparent">
@@ -659,11 +647,11 @@ export class DidYouKnowContainer {
           <div style="width:100%;font-size:${
             this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
           };text-align:center;text-transform:uppercase;top:555px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
-          <div style="display:${this.prop === 'Pigu.lt' ? 'block' : 'none'};border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
-            this.prop === 'Pigu.lt' ? '#F34434' : 'none'
+          <div style="display:${this.customer === 'Pigu.lt' ? 'block' : 'none'};border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
+            this.customer === 'Pigu.lt' ? '#F34434' : 'none'
           }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
-        this.prop === 'Pigu.lt'
+        this.customer === 'Pigu.lt'
           ? this.language === 'EN'
             ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
             : this.language === 'LV'
@@ -672,11 +660,11 @@ export class DidYouKnowContainer {
                 ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
                 : this.language === 'FI'
                   ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
-                  : this.language === 'RU' && (this.campaignUrlProp === 'https://kaup.ee' || this.campaignUrlProp === 'https://kaup24.ee')
+                  : this.language === 'RU' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
                     ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
-                    : this.language === 'RU' && this.campaignUrlProp === 'https://pigu.lt'
+                    : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
                       ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
-                      : this.language === 'RU' && this.campaignUrlProp === 'https://220.lv'
+                      : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://220.lv'
                         ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
                         : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
           : ''
@@ -686,7 +674,7 @@ export class DidYouKnowContainer {
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">
         ${
-          this.prop !== 'Pigu.lt'
+          this.customer !== 'Pigu.lt'
             ? 'TOLIAU'
             : this.language === 'EN'
               ? 'NEXT'

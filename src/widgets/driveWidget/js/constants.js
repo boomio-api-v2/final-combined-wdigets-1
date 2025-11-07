@@ -250,6 +250,8 @@ export const newRecordRU = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
 
+export const newRecordEs = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEs.png';
+
 export const linePigu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/line.png';
 export const linePiguFI = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/newTestGame/Pigu/lineFI.png';
 

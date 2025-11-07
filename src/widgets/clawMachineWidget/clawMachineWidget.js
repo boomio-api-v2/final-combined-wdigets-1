@@ -39,7 +39,7 @@ import boomio from '@/services/boomio';
 class ClawMachineWidget {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name ? this.config.business_name : 'Deprati';
+    this.customer = this.config.business_name;
 
     this.preloadImages().then(() => {
       this.startClawMachine();
