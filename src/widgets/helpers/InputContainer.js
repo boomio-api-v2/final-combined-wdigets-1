@@ -276,7 +276,7 @@ const getRule2Text = (customer, language, game) => {
   // Pigu.lt variations by language
   if (customer === 'Pigu.lt' && game === 'catch') {
     if (language === 'EN') return "bad ones – don't lose your lives.";
-    if (language === 'LT') return 'neprarask gyvybių.';
+    if (language === 'LT') return 'blogų – neprarask gyvybių.';
     if (language === 'RU') return 'плохих - не теряй жизни.';
     if (language === 'LV') return 'no sliktajām - nepazaudē savas dzīvības.';
     if (language === 'ET') return 'halbu - ära kaota elusid.';
@@ -666,7 +666,7 @@ export class InputContainer {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name;
     this.language = this.config.language;
-    this.game = this.config.widget_type;
+    this.game = this.config.game;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
   }
 
