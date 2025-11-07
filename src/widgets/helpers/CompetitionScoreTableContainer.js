@@ -35,33 +35,33 @@ export class CompetitionScoreTableContainer {
   }
 
   getBonus(score) {
-    if (score >= 600) return 25;
-    if (score >= 500) return 20;
-    if (score >= 400) return 15;
-    if (score >= 100) return 10;
+    if (score >= 6000) return 25;
+    if (score >= 4000) return 20;
+    if (score >= 2000) return 15;
+    if (score >= 500) return 10;
     return 0;
   }
 
   getDiscountCode(score) {
-    if (score >= 600) return '25GAME1125';
-    if (score >= 500) return '20GAME1125';
-    if (score >= 400) return '15GAME1125';
-    if (score >= 100) return '10GAME1125';
+    if (score >= 6000) return '25GAME2511';
+    if (score >= 4000) return '20GAME2511';
+    if (score >= 2000) return '15GAME2511';
+    if (score >= 500) return '10GAME2511';
     return '';
   }
 
   getPrizeUrl(score, language) {
     if (this.prop !== 'Pigu.lt') return '';
     let page = null;
-    if (score >= 100 && score < 400) page = '10game';
-    else if (score >= 400 && score < 500) page = '15game';
-    else if (score >= 500 && score < 600) page = '20game';
-    else if (score >= 600) page = '25game';
+    if (score >= 6000) page = 'game25';
+    else if (score >= 4000) page = 'game20';
+    else if (score >= 2000) page = 'game15';
+    else if (score >= 500) page = 'game10';
     if (!page) return '';
     const urls = {
       LT: `https://pigu.lt/lt/puslapis/${page}`,
       LV: `https://220.lv/lv/lapaspuse/${page}`,
-      ET: `https://kaup24.ee/et/lehekulg/${page}`, // keep ET
+      ET: `https://kaup24.ee/et/lehekulg/${page}`,
       FI: `https://hobbyhall.fi/fi/sivu/${page}`,
       EN: `https://pigu.lt/lt/puslapis/${page}`,
       RU: `https://pigu.lt/lt/puslapis/${page}`,

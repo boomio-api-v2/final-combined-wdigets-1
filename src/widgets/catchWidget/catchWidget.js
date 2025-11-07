@@ -340,7 +340,7 @@ class CatchGame {
     document.addEventListener('shareClicked', () => {
       if (this.shareClicked === false) {
         this.shareClicked = true;
-        this.currentScore = this.currentScore + (this.customer === 'Pigu.lt' ? 100 : 1000);
+        this.currentScore = this.currentScore + 1000;
       }
     });
   }
