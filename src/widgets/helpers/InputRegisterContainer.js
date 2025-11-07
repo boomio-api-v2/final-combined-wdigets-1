@@ -569,7 +569,7 @@ export class InputRegisterContainer {
       }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field"
         maxLength=${this.customer === 'Toni' ? 10 : 50}
-       type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
+       type="email" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
          this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
            ? '219px'
            : this.customer.includes('Gamtos Ateitis')
@@ -628,7 +628,8 @@ export class InputRegisterContainer {
                                  ? 'Telefono numeris'
                                  : 'Elektroninio pašto adresas'
        }">
-      <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" type="text" style="display:${
+      <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" 
+      type="text" maxLength=50 style="display:${
         this.customer.includes('Gamtos Ateitis') ||
         this.customer === 'Perlas GO' ||
         this.customer === 'Nevezis' ||

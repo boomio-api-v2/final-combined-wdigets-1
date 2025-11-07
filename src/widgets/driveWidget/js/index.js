@@ -1295,8 +1295,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         const schoolInput = document.querySelector('.boomio-competition-school-select');
 
         const emailInput = Elements.emailInput;
-        const nameInput = document.querySelector('.boomio-competition-name-input-field');
-        const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
+        const nameInput = Elements.nameInput;
+        const phoneInput = Elements.phoneInput;
 
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
@@ -1325,8 +1325,28 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           }
         };
 
+        /**
+         * Get localized error message for empty/required fields
+         * @returns {string} Localized error message based on current language
+         */
+        const getEmptyFieldErrorMessage = () => {
+          return language === 'LV'
+            ? 'Lai turpinātu, obligāti jāaizpilda.'
+            : language === 'LT'
+              ? 'Norint tęsti, privaloma užpildyti.'
+              : language === 'ET'
+                ? 'Jätkamiseks kinnita kõik väljad.'
+                : language === 'FI'
+                  ? 'Vaatitaan jatkamiseen.'
+                  : language === 'RU'
+                    ? 'Чтобы продолжить, необходимо заполнить.'
+                    : language === 'ES'
+                      ? 'Requerido para continuar.'
+                      : 'Required to continue.';
+        };
+
         if (!checkboxChange || (customer === 'Toni' && !checkboxChange2)) {
-          Elements.competitionCheckboxError.innerText =
+          const errorMessage =
             customer === 'Gamtos Ateitis'
               ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
               : customer === 'Novaturas' && language === 'LT'
@@ -1342,60 +1362,33 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                         : language === 'ES'
                           ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
                           : 'Norint tęsti, privaloma sutikti su naujienomis.';
-          Elements.competitionCheckboxError.style.backgroundColor = '#FFBABA';
-          Elements.showElement(Elements.competitionCheckboxError);
+          toggleValidationError(Elements.competitionCheckboxError, true, errorMessage);
         } else {
-          Elements.competitionCheckboxError.innerText = '';
-          Elements.competitionCheckboxError.style.backgroundColor = 'transparent';
-          Elements.hideElement(Elements.competitionCheckboxError);
+          toggleValidationError(Elements.competitionCheckboxError, false);
         }
 
         if (Elements.isVisible(nameInput) && Elements.isInputEmpty(nameInput)) {
-          Elements.competitionNameError.innerText = language === 'ES' ? 'El campo de nombre debe completarse.' : 'Norint tęsti privaloma užpildyti visus laukus.';
-          Elements.competitionNameError.style.backgroundColor = '#FFBABA';
-          Elements.showElement(Elements.competitionNameError);
+          toggleValidationError(Elements.competitionNameError, true, getEmptyFieldErrorMessage());
         } else {
-          Elements.competitionNameError.innerText = '';
-          Elements.competitionNameError.style.backgroundColor = 'transparent';
-          Elements.hideElement(Elements.competitionNameError);
+          toggleValidationError(Elements.competitionNameError, false);
         }
 
         if (Elements.isVisible(emailInput) && Elements.isInputEmpty(emailInput)) {
-          Elements.competitionEmailError.innerText =
-            language === 'LV'
-              ? 'Lai turpinātu, obligāti jāaizpilda.'
-              : language === 'LT'
-                ? 'Norint tęsti, privaloma užpildyti.'
-                : language === 'ET'
-                  ? 'Jätkamiseks kinnita kõik väljad.'
-                  : language === 'EN'
-                    ? 'Required to continue.'
-                    : language === 'RU'
-                      ? 'Чтобы продолжить, необходимо заполнить.'
-                      : language === 'ES'
-                        ? 'Requerido para continuar.'
-                        : 'Required to continue.';
-
-          Elements.competitionEmailError.style.backgroundColor = '#FFBABA';
-          Elements.showElement(Elements.competitionEmailError);
+          toggleValidationError(Elements.competitionEmailError, true, getEmptyFieldErrorMessage());
         } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
-          Elements.competitionEmailError.innerText = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
-          Elements.competitionEmailError.style.backgroundColor = '#FFBABA';
-          Elements.showElement(Elements.competitionEmailError);
+          const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+          toggleValidationError(Elements.competitionEmailError, true, errorMessage);
         } else {
-          Elements.competitionEmailError.innerText = '';
-          Elements.competitionEmailError.style.backgroundColor = 'transparent';
-          Elements.hideElement(Elements.competitionEmailError);
+          toggleValidationError(Elements.competitionEmailError, false);
         }
 
-        if (Elements.isVisible(phoneInput) && (Elements.isInputEmpty(phoneInput) || (customer === 'Toni' && phoneInput?.value?.length < 10))) {
-          Elements.competitionPhoneError.innerText = language === 'ES' ? 'Debes ingresar 10 dígitos.' : '';
-          Elements.competitionPhoneError.style.backgroundColor = '#FFBABA';
-          Elements.showElement(Elements.competitionPhoneError);
+        if (Elements.isVisible(phoneInput) && Elements.isInputEmpty(phoneInput)) {
+          toggleValidationError(Elements.competitionPhoneError, true, getEmptyFieldErrorMessage());
+        } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
+          const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+          toggleValidationError(Elements.competitionPhoneError, true, errorMessage);
         } else {
-          Elements.competitionPhoneError.innerText = '';
-          Elements.competitionPhoneError.style.backgroundColor = 'transparent';
-          Elements.hideElement(Elements.competitionPhoneError);
+          toggleValidationError(Elements.competitionPhoneError, false);
         }
 
         if (
@@ -1404,7 +1397,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           Elements.isVisible(Elements.competitionEmailError) ||
           Elements.isVisible(Elements.competitionPhoneError)
         ) {
-          console.log('Validation errors present. Aborting registration.');
           return;
         }
 
@@ -1420,7 +1412,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 customer === 'Toni'
                   ? nameInput?.value.trimEnd() + phoneInput?.value
                   : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
-              ...(customer === 'Gamtos Ateitis' && {
+              ...(customer.includes('Gamtos Ateitis') && {
                 team: schoolInput.value,
               }),
               ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
@@ -1673,11 +1665,16 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         checkboxImgChange2.src = checkboxChange2 ? checkIcon : uncheckIcon;
       });
 
-      const phoneInputField = customer === 'Toni' ? document.getElementById('boomio-competition-email-input-field') : document.getElementById('boomio-competition-phone-input-field');
-      const emailInput = document.querySelector('.boomio-competition-email-input-field');
+      const emailInput = Elements.emailInput;
 
-      if (phoneInputField) {
-        phoneInputField.addEventListener('input', (event) => {
+      if (customer === 'Toni' && emailInput) {
+        emailInput.addEventListener('input', (event) => {
+          event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+        });
+      }
+
+      if (Elements.phoneInput) {
+        Elements.phoneInput.addEventListener('input', (event) => {
           event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
         });
       }
