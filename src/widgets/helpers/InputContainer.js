@@ -198,7 +198,7 @@ const getRule2Title = (customer, language, game) => {
     if (language === 'RU') return 'Избегай';
     if (language === 'LV') return 'Izvairies';
     if (language === 'ET') return 'Väldi';
-    if (language === 'FI') return 'Vältä ,';
+    if (language === 'FI') return 'Vältä';
   }
 
   if (customer === 'Pigu.lt') {
@@ -275,7 +275,7 @@ const getRule2Title = (customer, language, game) => {
 const getRule2Text = (customer, language, game) => {
   // Pigu.lt variations by language
   if (customer === 'Pigu.lt' && game === 'catch') {
-    if (language === 'EN') return "bad ones – don't lose your lives.";
+    if (language === 'EN') return "the bad ones – don't lose your lives.";
     if (language === 'LT') return 'blogų – neprarask gyvybių.';
     if (language === 'RU') return 'плохих - не теряй жизни.';
     if (language === 'LV') return 'no sliktajām - nepazaudē savas dzīvības.';
