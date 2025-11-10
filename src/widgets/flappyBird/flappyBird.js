@@ -170,7 +170,7 @@ class FlappyBird {
         checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
       });
     }
-    if (this.showCompetitiveRegistration && this.campaignUrl === '') {
+    if (this.showCompetitiveRegistration && !this.campaignUrl) {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
@@ -1170,7 +1170,7 @@ ${`<div style="${
 </div>
 </div>
   ${
-    this.campaignUrl === ''
+    !this.campaignUrl
       ? `
 <div class="close-game-container" id="close-game-container" style="display:block;width:32px;height:32px;">
 <img src=${close} alt="Image Description 8" style="width: 100%; height: 100%;"></img>
@@ -1789,7 +1789,7 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
         };
       }
     });
-    if (this.campaignUrl === '') {
+    if (!this.campaignUrl) {
       document.getElementById('close-game-container').addEventListener('click', () => {
         this.closeGame();
       });
