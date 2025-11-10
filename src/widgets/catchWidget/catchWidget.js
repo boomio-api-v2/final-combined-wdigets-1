@@ -207,8 +207,11 @@ import {
   item12Apranga,
   item13Apranga,
   item14Apranga,
-  backgroundPigu,
-  playerPigu,
+  backgroundPiguLT,
+  backgroundPiguLV_EE,
+  backgroundPiguFI,
+  playerPiguLT,
+  playerPiguLV_EE_FI,
   item1Pigu,
   item2Pigu,
   item3Pigu,
@@ -251,7 +254,7 @@ const getBrandColor = (customer) => {
   return '#18904A'; // Default
 };
 
-const getBackground = (customer, language) => {
+const getBackground = (customer, language, campaignUrlOrCurrentPage) => {
   if (customer?.includes('Paper')) return backgroundGamtosAteitisPaper;
   if (customer?.includes('Plastic')) return backgroundGamtosAteitis;
   if (customer?.includes('Glass')) return backgroundGamtosAteitisGlass;
@@ -264,11 +267,24 @@ const getBackground = (customer, language) => {
   if (customer === 'Toni') return backgroundToni;
   if (customer === 'Orlen') return backgroundOrlen;
   if (customer === 'Apranga') return backgroundApranga;
-  if (customer === 'Pigu.lt') return backgroundPigu;
+  if (customer === 'Pigu.lt') {
+    if (campaignUrlOrCurrentPage.includes('pigu')) {
+      return backgroundPiguLT;
+    }
+    if (campaignUrlOrCurrentPage.includes('220')) {
+      return backgroundPiguLV_EE;
+    }
+    if (campaignUrlOrCurrentPage.includes('kaup24')) {
+      return backgroundPiguLV_EE;
+    }
+    if (campaignUrlOrCurrentPage.includes('hobbyhall')) {
+      return backgroundPiguFI;
+    }
+  }
   return background; // Default
 };
 
-const getPlayer = (customer, language) => {
+const getPlayer = (customer, language, campaignUrlOrCurrentPage) => {
   if (customer?.includes('Paper')) return playerGamtosAteitisPaper;
   if (customer?.includes('Plastic')) return playerGamtosAteitis;
   if (customer?.includes('Glass')) return playerGamtosAteitisGlass;
@@ -281,7 +297,20 @@ const getPlayer = (customer, language) => {
   if (customer === 'Toni') return playerToni;
   if (customer === 'Orlen') return playerOrlen;
   if (customer === 'Apranga') return playerApranga;
-  if (customer === 'Pigu.lt') return playerPigu;
+  if (customer === 'Pigu.lt') {
+    if (campaignUrlOrCurrentPage.includes('pigu')) {
+      return playerPiguLT;
+    }
+    if (campaignUrlOrCurrentPage.includes('220')) {
+      return playerPiguLV_EE_FI;
+    }
+    if (campaignUrlOrCurrentPage.includes('kaup24')) {
+      return playerPiguLV_EE_FI;
+    }
+    if (campaignUrlOrCurrentPage.includes('hobbyhall')) {
+      return playerPiguLV_EE_FI;
+    }
+  }
   return player; // Default
 };
 
@@ -293,6 +322,7 @@ class CatchGame {
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language;
     this.userId = this.config.userId;
+    this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
 
     this.shareClicked = false;
     this.gameCount = 0;
@@ -315,7 +345,7 @@ class CatchGame {
     this.canvas = document.getElementById('boomio-catch-canvas');
     this.context = this.canvas.getContext('2d');
 
-    this.canvas.style.background = `url(${getBackground(this.customer, this.language)}) center`;
+    this.canvas.style.background = `url(${getBackground(this.customer, this.language, this.campaignUrlOrCurrentPage)}) center`;
 
     this.timer = null;
     this.highscore = 0;
@@ -1410,7 +1440,7 @@ class CatchGame {
   }
 
   createPlayer() {
-    this.player = new Player(this.customer, this.language, this.canvas, this.context, this.defaultscore);
+    this.player = new Player(this.customer, this.language, this.campaignUrlOrCurrentPage, this.canvas, this.context, this.defaultscore);
   }
 
   createFruits() {
@@ -1735,9 +1765,10 @@ class CatchGame {
 }
 
 class Player {
-  constructor(customer, language, canvas, context, defaultscore) {
+  constructor(customer, language, campaignUrlOrCurrentPage, canvas, context, defaultscore) {
     this.customer = customer;
     this.language = language;
+    this.campaignUrlOrCurrentPage = campaignUrlOrCurrentPage;
     this.canvas = canvas;
     this.context = context;
     this.gameOver = false;
@@ -1753,7 +1784,7 @@ class Player {
       this.y -= 20; // Move the player 20px higher if the customer is 'Daumantu'
     }
     this.playerImage = new Image();
-    this.playerImage.src = getPlayer(customer, this.language);
+    this.playerImage.src = getPlayer(customer, this.language, this.campaignUrlOrCurrentPage, this.campaignUrlOrCurrentPage);
     this.defaultscore = defaultscore;
   }
 

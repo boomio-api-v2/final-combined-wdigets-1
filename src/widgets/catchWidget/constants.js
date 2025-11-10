@@ -344,8 +344,11 @@ export const item13Apranga = 'https://raw.githubusercontent.com/boomio-api-v2/fi
 
 export const item14Apranga = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/new-testing/images/catchWidget/Apranga/items/item14Apranga.png';
 
-export const backgroundPigu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/background.png';
-export const playerPigu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/player.png';
+export const backgroundPiguLT = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/backgroundLT.png';
+export const backgroundPiguLV_EE = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/backgroundLV_EE.png';
+export const backgroundPiguFI = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/backgroundbackgroundFI.png';
+export const playerPiguLT = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/player.png';
+export const playerPiguLV_EE_FI = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/LV_EE_FI/player.png';
 export const item2Pigu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/item02.png';
 export const item3Pigu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/item03.png';
 export const item1Pigu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pigu/item01.png';
