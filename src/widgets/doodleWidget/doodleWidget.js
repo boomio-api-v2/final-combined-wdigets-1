@@ -57,6 +57,8 @@ import {
   mainImageToni,
   backgroundNevezis,
   mainNevezis,
+  backgroundBoomio,
+  mainBoomio,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -121,7 +123,8 @@ const getBackground = (customer, language) => {
   if (customer === 'Akropolis') {
     return language === 'LV' ? backgroundRedAkropolisLV : backgroundRedAkropolis;
   }
-  return backgroundRed; // Default background
+  if (customer === 'Barbora') return backgroundRed;
+  return backgroundBoomio;
 };
 
 const getIntroImage = (customer, language, campaignUrlOrCurrentPage) => {
@@ -176,8 +179,9 @@ const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
   if (customer === 'Akropolis') {
     return language === 'LV' ? mainImageAkropolisLV : mainImageAkropolis;
   }
+  if (customer === 'Barbora') return mainImage;
 
-  return mainImage; // Default main image
+  return mainBoomio;
 };
 
 //JumpUp Game Classes
@@ -316,7 +320,7 @@ class DoodleWidget {
           document.getElementById('background_intro').style.display = 'none';
         }, 1000);
       },
-      this.customer === 'Pigu.lt' ? 2000 : this.customer === 'Perlas GO' || this.customer.includes('demo') || this.customer === 'Toni' || this.customer === 'Nevezis' ? 0 : 2500,
+      getIntroImage(this.customer, this.language, this.campaignUrlOrCurrentPage) ? 2500 : 0,
     ); //intro speed
   }
 
@@ -1391,7 +1395,7 @@ class DoodleWidget {
 
 <img src="${getIntroImage(this.customer, this.language, this.campaignUrlOrCurrentPage)}" 
 alt="Intro image" 
-style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:${this.customer === 'Toni' || this.customer === 'Nevezis' ? 'none' : 'block'};" 
+style="z-index:4; height: ${this.isMobileHeightSmall ? '100%' : '674px'};position:absolute;pointer-events: none; display:${getIntroImage(this.customer, this.language, this.campaignUrlOrCurrentPage) ? 'block' : 'none'};" 
 id="background_intro">
 
 
