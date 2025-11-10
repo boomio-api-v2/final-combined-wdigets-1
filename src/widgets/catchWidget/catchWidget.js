@@ -1213,36 +1213,6 @@ class CatchGame {
         }, 400);
       };
       const clickEventHandlerDidYouKnow = () => {
-        if (this.customer === 'Akropolis') {
-          this.hideScore();
-          boomioService
-            .signal('ROUND_FINISHED', 'signal', {
-              score: this.currentScore,
-              shared_somewhere: this.shareClicked,
-            })
-            .then((response) => {
-              this.hideScore();
-              this.userBestPlace = response.user_best_place;
-              if (this.showCompetitiveRegistration === 'points') {
-                this.scoreTable = response;
-                this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
-              }
-              if (this.showCompetitiveRegistration === 'competition') {
-                this.scoreTable = response;
-                this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
-              }
-
-              if (this.showCompetitiveRegistration === 'collectable') {
-                this.collection = response?.collection ? response?.collection : this.collection;
-                this.just_won = response?.just_won ? response?.just_won : this.just_won;
-                this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
-              }
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-        }
-
         let tabContainer;
         if (Elements.isVisible(Elements.didYouKnowContainer)) {
           tabContainer = Elements.didYouKnowContainer;
@@ -1250,6 +1220,7 @@ class CatchGame {
 
         if (Elements.isVisible(Elements.shareContainer)) {
           tabContainer = Elements.shareContainer;
+          this.sendRoundFinished();
         }
 
         tabContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1630,56 +1601,8 @@ class CatchGame {
 
         setTimeout(
           () => {
-            if (
-              (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') &&
-              this.customer !== 'Akropolis'
-            ) {
-              this.hideScore();
-              boomioService
-                .signal('ROUND_FINISHED', 'signal', {
-                  score: this.currentScore,
-                })
-                .then((response) => {
-                  this.hideScore();
-                  this.userBestPlace = response.user_best_place;
-
-                  if (this.customer === 'Pigu.lt') {
-                    if (window.Boomio) {
-                      window.Boomio.logEvent('game_finished', JSON.stringify(response));
-                    } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
-                      var message = {
-                        command: 'logEvent',
-                        name: 'game_finished',
-                        parameters: { response },
-                      };
-                      window.webkit.messageHandlers.Boomio.postMessage(message);
-                    } else {
-                      console.log('No native APIs found.');
-                    }
-                  }
-
-                  if (this.showCompetitiveRegistration === 'points') {
-                    this.scoreTable = response;
-                    this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
-                  }
-                  if (this.customer === 'Akropolis') {
-                    this.scoreTable = response;
-                    this.shareContainer.updateProps();
-                  }
-                  if (this.showCompetitiveRegistration === 'competition') {
-                    this.scoreTable = response;
-                    this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
-                  }
-
-                  if (this.showCompetitiveRegistration === 'collectable') {
-                    this.collection = response?.collection ? response?.collection : this.collection;
-                    this.just_won = response?.just_won ? response?.just_won : this.just_won;
-                    this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
-                  }
-                })
-                .catch((error) => {
-                  console.error('Error:', error);
-                });
+            if ((this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') && !this.shareContainer) {
+              this.sendRoundFinished();
             }
             // Displaying the competition table container
             let competitionTableContainer = '';
@@ -1764,6 +1687,64 @@ class CatchGame {
       new_highscore_stars.style.display = 'none';
       numbers.style.display = 'none';
     }, 500);
+  }
+
+  /**
+   * Send ROUND_FINISHED signal to the backend and update UI components
+   * @returns {Promise} Promise that resolves with the response data
+   */
+  sendRoundFinished() {
+    this.hideScore();
+    return boomioService
+      .signal('ROUND_FINISHED', 'signal', {
+        score: this.currentScore,
+        shared_somewhere: this.shareClicked,
+      })
+      .then((response) => {
+        this.hideScore();
+        this.userBestPlace = response.user_best_place;
+
+        // Log event for Pigu.lt
+        if (this.customer === 'Pigu.lt') {
+          if (window.Boomio) {
+            window.Boomio.logEvent('game_finished', JSON.stringify(response));
+          } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.Boomio) {
+            const message = {
+              command: 'logEvent',
+              name: 'game_finished',
+              parameters: { response },
+            };
+            window.webkit.messageHandlers.Boomio.postMessage(message);
+          } else {
+            console.log('No native APIs found.');
+          }
+        }
+
+        // Update score table for points mode
+        if (this.showCompetitiveRegistration === 'points') {
+          this.scoreTable = response;
+          this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
+        }
+
+        // Update score table for competition mode
+        if (this.showCompetitiveRegistration === 'competition') {
+          this.scoreTable = response;
+          this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
+        }
+
+        // Update collectable items
+        if (this.showCompetitiveRegistration === 'collectable') {
+          this.collection = response?.collection ? response?.collection : this.collection;
+          this.just_won = response?.just_won ? response?.just_won : this.just_won;
+          this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
+        }
+
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        throw error;
+      });
   }
 }
 
