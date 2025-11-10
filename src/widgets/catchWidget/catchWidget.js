@@ -223,6 +223,17 @@ import {
   item9Pigu,
   item10Pigu,
   item11Pigu,
+  item1PiguLV_EE_FI,
+  item2PiguLV_EE_FI,
+  item3PiguLV_EE_FI,
+  item4PiguLV_EE_FI,
+  item5PiguLV_EE_FI,
+  item6PiguLV_EE_FI,
+  item7PiguLV_EE_FI,
+  item8PiguLV_EE_FI,
+  item9PiguLV_EE_FI,
+  item10PiguLV_EE_FI,
+  item11PiguLV_EE_FI,
 } from './constants';
 import './styles.css';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
@@ -301,15 +312,7 @@ const getPlayer = (customer, language, campaignUrlOrCurrentPage) => {
     if (campaignUrlOrCurrentPage.includes('pigu')) {
       return playerPiguLT;
     }
-    if (campaignUrlOrCurrentPage.includes('220')) {
-      return playerPiguLV_EE_FI;
-    }
-    if (campaignUrlOrCurrentPage.includes('kaup24')) {
-      return playerPiguLV_EE_FI;
-    }
-    if (campaignUrlOrCurrentPage.includes('hobbyhall')) {
-      return playerPiguLV_EE_FI;
-    }
+    return playerPiguLV_EE_FI;
   }
   return player; // Default
 };
@@ -1456,18 +1459,18 @@ class CatchGame {
       this.customer === 'Pigu.lt'
     ) {
       for (let i = 0; i < this.numberOfFruits - 2; i++) {
-        const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
+        const fruit = new Fruit(this.customer, this.language, this.campaignUrlOrCurrentPage, this.canvas, this.context, this.player, this);
         fruit.chooseFruit();
         this.fruits.push(fruit);
       }
       for (let i = 0; i < 1; i++) {
-        const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this, 'bad');
+        const fruit = new Fruit(this.customer, this.language, this.campaignUrlOrCurrentPage, this.canvas, this.context, this.player, this, 'bad');
         fruit.chooseFruit();
         this.fruits.push(fruit);
       }
     } else {
       for (let i = 0; i < this.numberOfFruits; i++) {
-        const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
+        const fruit = new Fruit(this.customer, this.language, this.campaignUrlOrCurrentPage, this.canvas, this.context, this.player, this);
         fruit.chooseFruit();
         this.fruits.push(fruit);
       }
@@ -1572,7 +1575,7 @@ class CatchGame {
         if (this.fruits.length < newNumberOfFruits) {
           // Create additional fruits to reach the new number
           for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
-            const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
+            const fruit = new Fruit(this.customer, this.language, this.campaignUrlOrCurrentPage, this.canvas, this.context, this.player, this);
             fruit.chooseFruit();
             this.fruits.push(fruit);
           }
@@ -1581,7 +1584,7 @@ class CatchGame {
         if (this.fruits.length < newNumberOfFruits + 3) {
           // Create additional fruits to reach the new number
           for (let i = this.fruits.length; i < newNumberOfFruits + 3; i++) {
-            const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this, 'bad');
+            const fruit = new Fruit(this.customer, this.language, this.campaignUrlOrCurrentPage, this.canvas, this.context, this.player, this, 'bad');
             fruit.chooseFruit();
             this.fruits.push(fruit);
           }
@@ -1591,7 +1594,7 @@ class CatchGame {
         if (this.fruits.length < newNumberOfFruits) {
           // Create additional fruits to reach the new number
           for (let i = this.fruits.length; i < newNumberOfFruits; i++) {
-            const fruit = new Fruit(this.customer, this.language, this.canvas, this.context, this.player, this);
+            const fruit = new Fruit(this.customer, this.language, this.campaignUrlOrCurrentPage, this.canvas, this.context, this.player, this);
             fruit.chooseFruit();
             this.fruits.push(fruit);
           }
@@ -1808,7 +1811,7 @@ class Player {
 }
 
 class Fruit {
-  constructor(customer, language, canvas, context, player, game, type) {
+  constructor(customer, language, campaignUrlOrCurrentPage, canvas, context, player, game, type) {
     this.canvas = canvas;
     this.context = context;
     this.player = player;
@@ -1816,6 +1819,7 @@ class Fruit {
     this.type = type;
     this.customer = customer;
     this.language = language;
+    this.campaignUrlOrCurrentPage = campaignUrlOrCurrentPage;
     if (this.customer.includes('Gamtos Ateitis')) {
       if (type === 'bad') {
         this.fruitNumber = Math.floor(Math.random() * 13);
@@ -1853,11 +1857,11 @@ class Fruit {
         this.fruitNumber = Math.floor(Math.random() * 12);
       }
     } else if (this.customer === 'Pigu.lt') {
-      const goodItemsCount = 7;
+      const goodItemsCount = 6;
       if (type === 'bad') {
-        this.fruitNumber = goodItemsCount + Math.floor(Math.random() * 4); // 7..10 (4 bad images)
+        this.fruitNumber = goodItemsCount + Math.floor(Math.random() * 5); // 6..10 (5 bad images)
       } else {
-        this.fruitNumber = Math.floor(Math.random() * goodItemsCount); // 0..6 (7 good images)
+        this.fruitNumber = Math.floor(Math.random() * goodItemsCount); // 0..5 (6 good images)
       }
     } else {
       this.fruitNumber = Math.floor(Math.random() * 10);
@@ -2006,7 +2010,23 @@ class Fruit {
         item14Apranga,
       ];
     } else if (this.customer === 'Pigu.lt') {
-      this.images = [item1Pigu, item2Pigu, item3Pigu, item4Pigu, item5Pigu, item6Pigu, item7Pigu, item8Pigu, item9Pigu, item10Pigu, item11Pigu];
+      if (this.campaignUrlOrCurrentPage.includes('pigu')) {
+        this.images = [item1Pigu, item2Pigu, item3Pigu, item4Pigu, item5Pigu, item6Pigu, item7Pigu, item8Pigu, item9Pigu, item10Pigu, item11Pigu];
+      } else {
+        this.images = [
+          item1PiguLV_EE_FI,
+          item2PiguLV_EE_FI,
+          item3PiguLV_EE_FI,
+          item4PiguLV_EE_FI,
+          item5PiguLV_EE_FI,
+          item6PiguLV_EE_FI,
+          item7PiguLV_EE_FI,
+          item8PiguLV_EE_FI,
+          item9PiguLV_EE_FI,
+          item10PiguLV_EE_FI,
+          item11PiguLV_EE_FI,
+        ];
+      }
     } else if (this.customer === 'Pegasas') {
       // Default catch images if none of the above conditions are met
       this.images = [item1Pegasas, item2Pegasas, item3Pegasas, item4Pegasas, item5Pegasas, item6Pegasas, item7Pegasas, item8Pegasas, item9Pegasas, item10Pegasas];
@@ -2029,7 +2049,7 @@ class Fruit {
     } else if (this.customer === 'Apranga') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -50, -50][this.fruitNumber];
     } else if (this.customer === 'Pigu.lt') {
-      this.fruitScore = [100, 100, 100, 100, 100, 100, 100, -50, -50, -50, -50][this.fruitNumber];
+      this.fruitScore = [100, 100, 100, 100, 100, 100, -50, -50, -50, -50, -50][this.fruitNumber];
     } else if (this.customer === 'Pegasas') {
       this.fruitScore = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100][this.fruitNumber];
     }
