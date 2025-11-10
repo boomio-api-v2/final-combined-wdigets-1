@@ -35,33 +35,33 @@ export class CompetitionScoreTableContainer {
   }
 
   getBonus(score) {
-    if (score >= 600) return 25;
-    if (score >= 500) return 20;
-    if (score >= 400) return 15;
-    if (score >= 100) return 10;
+    if (score >= 6000) return 25;
+    if (score >= 4000) return 20;
+    if (score >= 2000) return 15;
+    if (score >= 500) return 10;
     return 0;
   }
 
   getDiscountCode(score) {
-    if (score >= 600) return '25GAME1125';
-    if (score >= 500) return '20GAME1125';
-    if (score >= 400) return '15GAME1125';
-    if (score >= 100) return '10GAME1125';
+    if (score >= 6000) return '25GAME2511';
+    if (score >= 4000) return '20GAME2511';
+    if (score >= 2000) return '15GAME2511';
+    if (score >= 500) return '10GAME2511';
     return '';
   }
 
   getPrizeUrl(score, language) {
     if (this.prop !== 'Pigu.lt') return '';
     let page = null;
-    if (score >= 100 && score < 400) page = '10game';
-    else if (score >= 400 && score < 500) page = '15game';
-    else if (score >= 500 && score < 600) page = '20game';
-    else if (score >= 600) page = '25game';
+    if (score >= 6000) page = 'game25';
+    else if (score >= 4000) page = 'game20';
+    else if (score >= 2000) page = 'game15';
+    else if (score >= 500) page = 'game10';
     if (!page) return '';
     const urls = {
       LT: `https://pigu.lt/lt/puslapis/${page}`,
       LV: `https://220.lv/lv/lapaspuse/${page}`,
-      ET: `https://kaup24.ee/et/lehekulg/${page}`, // keep ET
+      ET: `https://kaup24.ee/et/lehekulg/${page}`,
       FI: `https://hobbyhall.fi/fi/sivu/${page}`,
       EN: `https://pigu.lt/lt/puslapis/${page}`,
       RU: `https://pigu.lt/lt/puslapis/${page}`,
@@ -590,7 +590,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
         (this.prop === 'Orlen' && this.scoreTable.user_best_place > 1000) ||
         (this.prop === 'Novaturas' && this.scoreTable.user_best_place > 30) ||
-        (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score >= 100) ||
+        (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score >= 500) ||
         (this.prop === 'Apranga' && this.scoreTable.user_best_place <= 100) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div id="boomio-title-win" style="width:100%; top: ${
@@ -874,17 +874,17 @@ export class CompetitionScoreTableContainer {
                                                                           : this.prop === 'Toni'
                                                                             ? 'Inténtalo de nuevo y suma más oportunidades de ganar.'
                                                                             : this.prop === 'Pigu.lt' && this.language === 'RU'
-                                                                              ? 'Накопи 100 очков или более и выиграй:</br>Скидочный код на выбранные популярные товары.'
+                                                                              ? 'Накопи 500 очков или более и выиграй:</br>Скидочный код на выбранные популярные товары.'
                                                                               : this.prop === 'Pigu.lt' && this.language === 'FI'
-                                                                                ? '100 pistettä enemmän ja voit voittaa</br>Alekoodi valikoiduille suosituille tuotteille'
+                                                                                ? '500 pistettä enemmän ja voit voittaa</br>Alekoodi valikoiduille suosituille tuotteille'
                                                                                 : this.prop === 'Pigu.lt' && this.language === 'LV'
-                                                                                  ? 'Sakrāj 100 punktus vai vairāk un laimē:</br>Atlaižu kodu izvēlētām precēm.'
+                                                                                  ? 'Sakrāj 500 punktus vai vairāk un laimē:</br>Atlaižu kodu izvēlētām precēm.'
                                                                                   : this.prop === 'Pigu.lt' && this.language === 'LT'
-                                                                                    ? 'Surink 100 ar daugiau taškų ir laimėk:</br>Nuolaidos kodą atrinktoms populiarioms prekėms.'
+                                                                                    ? 'Surink 500 ar daugiau taškų ir laimėk:</br>Nuolaidos kodą atrinktoms populiarioms prekėms.'
                                                                                     : this.prop === 'Pigu.lt' && this.language === 'EN'
-                                                                                      ? 'A discount code for selected popular products.</br>If you have already won, we will send the information to the email address you ve provided during registration.'
+                                                                                      ? 'Get 500 points or more and win:</br>A discount code for selected popular products.'
                                                                                       : this.prop === 'Pigu.lt' && this.language === 'ET'
-                                                                                        ? 'Kogu 100 punkti või rohkem ja võida:</br>Sooduskood valikule populaarsetele toodetele!'
+                                                                                        ? 'Kogu 500 punkti või rohkem ja võida:</br>Sooduskood valikule populaarsetele toodetele!'
                                                                                         : this.prop === 'Apranga'
                                                                                           ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
                                                                                           : ''

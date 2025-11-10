@@ -109,10 +109,11 @@ class LocalStorageService {
     const under_picture_text = config?.under_picture_text ?? null;
     const user_email = config?.user_email ?? null;
     const widget_subtype = config?.subtype ?? false;
+    const game = config?.widget_type ?? '';
     const email_collection_required = config?.email_collection_required ?? false;
     const product = config?.product ?? '???';
     const currentPageUrl = window.location.href;
-    const language = getParam('language') || config?.language || 'EN';
+    const language = getParam('language')?.toUpperCase() || config?.language?.toUpperCase() || 'EN';
     const campaignUrl = getParam('campaign_url');
     const userId = getParam('user_id');
     const campaignUrlOrCurrentPage = campaignUrl || currentPageUrl;
@@ -123,7 +124,9 @@ class LocalStorageService {
     const dynamicData = config?.dynamicData ? config?.dynamicData : null;
 
     return {
+      game,
       language,
+      business_name,
       currentPageUrl,
       campaignUrl,
       campaignUrlOrCurrentPage,
@@ -159,7 +162,6 @@ class LocalStorageService {
       best_discount,
       p_button_text_line1,
       p_button_text_line2,
-      business_name,
       static_text,
       boomioStopTill,
       m,

@@ -20,13 +20,13 @@ const getRulesTitle = (customer, language) => {
 // Helper function to get Rule 1 title based on customer, language, and game
 const getRule1Title = (customer, language, game) => {
   // Pigu.lt variations by language
-  if (customer === 'Pigu.lt') {
-    if (language === 'LT') return 'Sudėk';
-    if (language === 'EN') return 'Match';
-    if (language === 'LV') return 'Saliec ';
-    if (language === 'ET') return 'Kogu ';
-    if (language === 'FI') return 'Yhdistä ';
-    if (language === 'RU') return 'Собери ';
+  if (customer === 'Pigu.lt' && game === 'catch') {
+    if (language === 'EN') return 'Catch';
+    if (language === 'LT') return 'Gaudyk';
+    if (language === 'RU') return 'Лови';
+    if (language === 'LV') return 'Noķer';
+    if (language === 'ET') return 'Püüa';
+    if (language === 'FI') return 'Kerää';
   }
 
   // Other customer-specific rules
@@ -110,13 +110,13 @@ const getRule1Text = (customer, language, game) => {
   }
 
   // Pigu.lt other games by language
-  if (customer === 'Pigu.lt') {
-    if (language === 'EN') return 'to jump';
-    if (language === 'LV') return 'lai lektu';
-    if (language === 'ET') return 'et hüpata';
-    if (language === 'FI') return 'hypätäksesi';
-    if (language === 'RU') return 'чтобы прыгнуть';
-    if (language === 'LT') return 'kad pašoktum';
+  if (customer === 'Pigu.lt' && game === 'catch') {
+    if (language === 'EN') return 'the good items.';
+    if (language === 'LT') return 'gerus daiktus.';
+    if (language === 'RU') return 'хорошие предметы.';
+    if (language === 'LV') return 'labās preces.';
+    if (language === 'ET') return 'häid asju.';
+    if (language === 'FI') return 'hyvät esineet.';
   }
 
   // More specific customers
@@ -192,6 +192,15 @@ const getRule1Text = (customer, language, game) => {
 // Helper function to get Rule 2 title based on customer, language, and game
 const getRule2Title = (customer, language, game) => {
   // Pigu.lt variations by language
+  if (customer === 'Pigu.lt' && game === 'catch') {
+    if (language === 'EN') return 'Avoid';
+    if (language === 'LT') return 'Venk';
+    if (language === 'RU') return 'Избегай';
+    if (language === 'LV') return 'Izvairies';
+    if (language === 'ET') return 'Väldi';
+    if (language === 'FI') return 'Vältä';
+  }
+
   if (customer === 'Pigu.lt') {
     if (language === 'EN') return 'Repeat ';
     if (language === 'LV') return 'Atkārto,';
@@ -265,6 +274,15 @@ const getRule2Title = (customer, language, game) => {
 // Helper function to get Rule 2 descriptive text based on customer, language, and game
 const getRule2Text = (customer, language, game) => {
   // Pigu.lt variations by language
+  if (customer === 'Pigu.lt' && game === 'catch') {
+    if (language === 'EN') return "the bad ones – don't lose your lives.";
+    if (language === 'LT') return 'blogų – neprarask gyvybių.';
+    if (language === 'RU') return 'плохих - не теряй жизни.';
+    if (language === 'LV') return 'no sliktajām - nepazaudē savas dzīvības.';
+    if (language === 'ET') return 'halbu - ära kaota elusid.';
+    if (language === 'FI') return 'huonoja - mutta varo menettämästä henkeäsi.';
+  }
+
   if (customer === 'Pigu.lt' && language === 'EN') return 'for better result.';
   if (customer === 'Pigu.lt' && language === 'LV') return 'lai sasniegtu labāku rezultātu.';
   if (customer === 'Pigu.lt' && language === 'ET') return 'et tulemus oleks veel parem.';
@@ -357,6 +375,15 @@ const getRule2Text = (customer, language, game) => {
 // Helper function to get Rule 3 title based on customer, language, and game
 const getRule3Title = (customer, language, game, userId) => {
   // Pigu.lt variations by language
+  if (customer === 'Pigu.lt' && game === 'catch') {
+    if (language === 'EN') return 'Repeat';
+    if (language === 'LT') return 'Kartok';
+    if (language === 'RU') return 'Повторяй';
+    if (language === 'LV') return 'Atkārto';
+    if (language === 'ET') return 'Korda';
+    if (language === 'FI') return 'Toista';
+  }
+
   if (customer === 'Pigu.lt' && language === 'EN') return 'Enjoy ';
   if (customer === 'Pigu.lt' && language === 'LV') return 'Izbaudi ';
   if (customer === 'Pigu.lt' && language === 'ET') return 'Naudi ';
@@ -426,6 +453,15 @@ const getRule3Title = (customer, language, game, userId) => {
 // Helper function to get Rule 3 descriptive text based on customer, language, and game
 const getRule3Text = (customer, language, game, userId) => {
   // Pigu.lt variations by language
+  if (customer === 'Pigu.lt' && game === 'catch') {
+    if (language === 'EN') return 'and aim for the record.';
+    if (language === 'LT') return 'ir siek rekordo.';
+    if (language === 'RU') return 'и стремись к рекорду.';
+    if (language === 'LV') return 'un uzlabo savu rezultātu.';
+    if (language === 'ET') return 'ja püstita rekord.';
+    if (language === 'FI') return 'ja yritä saavuttaa ennätys.';
+  }
+
   if (customer === 'Pigu.lt' && language === 'EN') return 'the game. ';
   if (customer === 'Pigu.lt' && language === 'LV') return 'spēli. ';
   if (customer === 'Pigu.lt' && language === 'ET') return 'mängu. ';
@@ -442,9 +478,6 @@ const getRule3Text = (customer, language, game, userId) => {
   // Drive game variations
   if (language === 'LV' && game === 'drive') return 'un uzlabo savu rezultātu';
   if (language === 'ET' && game === 'drive') return 'uuesti ja paranda oma tulemust.';
-
-  // LV language with Pigu.lt special
-  if (language === 'LV' && customer === 'Pigu.lt') return 'līdz pat 30 Yesyes.lv balvām!';
 
   // LV language with LemonFeel
   if (language === 'LV' && customer === 'LemonFeel') return 'spēli.';
@@ -543,6 +576,15 @@ const getRule3Text = (customer, language, game, userId) => {
 // Helper function to get Rule 4 title based on customer, language, and game
 const getRule4Title = (customer, language, game) => {
   // Pigu.lt variations by language
+  if (customer === 'Pigu.lt' && game === 'catch') {
+    if (language === 'EN') return 'Win';
+    if (language === 'LT') return 'Laimėk';
+    if (language === 'RU') return 'Выигрывай';
+    if (language === 'LV') return 'Laimē';
+    if (language === 'ET') return 'Võida';
+    if (language === 'FI') return 'Voita';
+  }
+
   if (customer === 'Pigu.lt' && language === 'EN') return 'Win ';
   if (customer === 'Pigu.lt' && language === 'LV') return 'Laimē  ';
   if (customer === 'Pigu.lt' && language === 'ET') return 'Võida  ';
@@ -573,6 +615,15 @@ const getRule4Title = (customer, language, game) => {
 // Helper function to get Rule 4 descriptive text based on customer, language, and game
 const getRule4Text = (customer, language, game) => {
   // Pigu.lt variations by language
+  if (customer === 'Pigu.lt' && game === 'catch') {
+    if (language === 'EN') return 'prizes!';
+    if (language === 'LT') return 'prizus!';
+    if (language === 'RU') return 'призы!';
+    if (language === 'LV') return 'balvas!';
+    if (language === 'ET') return 'auhindu!';
+    if (language === 'FI') return 'palkintoja!';
+  }
+
   if (customer === 'Pigu.lt' && language === 'EN') return 'prizes! ';
   if (customer === 'Pigu.lt' && language === 'LV') return 'balvas!';
   if (customer === 'Pigu.lt' && language === 'ET') return 'auhindu!';
@@ -615,7 +666,7 @@ export class InputContainer {
     this.config = localStorageService.getDefaultConfig();
     this.customer = this.config.business_name;
     this.language = this.config.language;
-    this.game = this.config.widget_type;
+    this.game = this.config.game;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
   }
 
