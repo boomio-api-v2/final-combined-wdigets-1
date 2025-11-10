@@ -804,7 +804,7 @@ export class CompetitionScoreTableContainer {
             }</div>
             <div id="boomio-text-lose" style="width:calc(100% - 20px);margin-left:10px; top: ${
               this.prop === 'Perlas GO' ? '390px' : '455px'
-            };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
+            };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: ${this.prop === 'Pigu.lt' ? 12 : 10}px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
               this.prop === 'Barbora'
                 ? ''
                 : this.prop === 'Eurovaistine'
