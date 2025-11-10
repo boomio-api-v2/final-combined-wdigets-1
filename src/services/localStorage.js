@@ -113,7 +113,7 @@ class LocalStorageService {
     const email_collection_required = config?.email_collection_required ?? false;
     const product = config?.product ?? '???';
     const currentPageUrl = window.location.href;
-    const language = getParam('language')?.toUpperCase() || config?.language?.toUpperCase() || 'RU';
+    const language = getParam('language')?.toUpperCase() || config?.language?.toUpperCase() || 'EN';
     const campaignUrl = getParam('campaign_url');
     const userId = getParam('user_id');
     const campaignUrlOrCurrentPage = campaignUrl || currentPageUrl;
