@@ -159,7 +159,10 @@ const getRule1Text = (customer, language, game) => {
   if (customer === 'Nevezis') return 'į šonus, kad nenukristum.';
   if (customer === 'Nykstukas') return 'baksnodamas ekraną Nykštuką išlaikysi ore.';
   if (customer === 'Orlen' && game === 'catch') return 'ledus ir gauk taškus.';
-  if (customer === 'Zemaitijos Pienas') return '3 vai vairāk vienādus priekšmetus.';
+  if (customer === 'Zemaitijos Pienas') {
+    if (language === 'LV') return '3 vai vairāk vienādus priekšmetus.';
+    if (language === 'ET') return '3 või rohkem ühesuguseid esemeid.';
+  }
 
   // Runner game
   if (game === 'runner') return 'rodyklių pagalba.';
