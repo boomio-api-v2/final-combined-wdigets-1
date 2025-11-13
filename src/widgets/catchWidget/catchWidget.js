@@ -601,7 +601,7 @@ class CatchGame {
     // Create and configure the game container
     const gameContainer = document.createElement('div');
     gameContainer.setAttribute('id', 'boomio-catch-container');
-    gameContainer.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
+    gameContainer.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     gameContainer.innerHTML = `
       <div class="game-container game-container-catch">
           <img class="new_highscore_stars" src=${

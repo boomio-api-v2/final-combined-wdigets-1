@@ -38,7 +38,7 @@ class GuessWidget {
     const center = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/guess3/src/widgets/guessWidget/center.png?raw=true';
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-guess-container');
-    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     myCanvas.innerHTML = `
     <div class="boomio-wrapper">
       <ul class="boomio-guess-cards">

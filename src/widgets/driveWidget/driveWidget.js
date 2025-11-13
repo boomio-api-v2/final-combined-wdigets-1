@@ -123,7 +123,7 @@ class driveWidget {
     this.type = randomType();
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-drive-container');
-    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
 
     myCanvas.innerHTML = `
     <div class="game-container" id="game-container">

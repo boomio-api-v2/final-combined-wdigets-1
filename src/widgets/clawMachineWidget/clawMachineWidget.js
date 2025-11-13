@@ -451,7 +451,7 @@ class ClawMachineWidget {
   createContainer = () => {
     const clawMachineContainer = document.createElement('div');
     clawMachineContainer.setAttribute('id', 'clawMachine-container');
-    clawMachineContainer.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
+    clawMachineContainer.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
 
     const clawClose = document.createElement('div');
     clawClose.classList.add('boomio-claw-close');

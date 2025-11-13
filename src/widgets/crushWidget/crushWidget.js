@@ -745,7 +745,7 @@ class CrushGame {
 
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-crush-container');
-    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial', 'box');
+    myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
     myCanvas.innerHTML = `
       <div class="game-container" id="game-container">
 
