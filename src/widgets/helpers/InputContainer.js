@@ -434,14 +434,17 @@ const getRule3Title = (customer, language, game, userId) => {
   if (customer === 'Akropolis' && language === 'LV') return 'LAIMĒ';
   if (customer === 'Akropolis' && language === 'RU') return 'ВЫИГРЫВАЙ';
 
+  // Zemaitijos Pienas
+  if (customer === 'Zemaitijos Pienas') {
+    if (language === 'LT') return 'Mėgaukis';
+    if (language === 'LV') return 'Baudi';
+  }
+
   // Language-specific defaults
   if (language === 'LV') return 'Atkārto ';
   if (language === 'ET') return 'Proovi ';
   if (language === 'EN') return 'Repeat ';
   if (language === 'RU') return 'Повторяйте ';
-
-  // Zemaitijos Pienas
-  if (customer === 'Zemaitijos Pienas') return 'Mėgaukis';
 
   // Apranga
   if (customer === 'Apranga') return 'MĖGAUKITĖS';
@@ -554,7 +557,9 @@ const getRule3Text = (customer, language, game, userId) => {
   if (customer === 'Magija') return 'žaidimu.';
 
   // Zemaitijos Pienas
-  if (customer === 'Zemaitijos Pienas') return 'spēli.';
+  if (customer === 'Zemaitijos Pienas') {
+    if (language === 'LV') return 'spēli!';
+  }
 
   // Orlen
   if (customer === 'Orlen') return ' ir  pagerink rezultatą.';

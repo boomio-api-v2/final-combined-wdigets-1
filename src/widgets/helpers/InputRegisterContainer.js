@@ -325,7 +325,7 @@ export class InputRegisterContainer {
                                                                 : this.customer === 'Zemaitijos Pienas' && this.language === 'LV'
                                                                   ? 'Piekrītu "Žemaitijos pienas"'
                                                                   : this.customer === 'Zemaitijos Pienas' && this.language === 'ET'
-                                                                    ? 'Nõustun saama „Žemaitijos pienas“ uudiskirju.'
+                                                                    ? 'Nõustun saama „Žemaitijos pienas“'
                                                                     : this.customer === 'Vilvi'
                                                                       ? 'Sutinku gauti VILVI naujienas. <div style="font-size:8px;"> Jūsų sutikimu Jūsų el. pašto duomenis VILVI tvarkys laimėtojų nustatymo ir naujienlaiškių siuntimo tikslu. </div>'
                                                                       : this.customer === 'Dentsu'
@@ -429,7 +429,7 @@ export class InputRegisterContainer {
                           : this.language === 'ES'
                             ? ''
                             : this.language === 'ET'
-                              ? 'privaatsuspoliitika.'
+                              ? 'privaatsuspoliitikaga.'
                               : 'privatumo politika.'
           }</a> `
         : ''
