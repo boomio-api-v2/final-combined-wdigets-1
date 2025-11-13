@@ -387,7 +387,7 @@ class BoomioService extends UserService {
     const signature = generateSignature(user_session, current_page_url_cleaned, score, timestamp);
 
     // Check if this is the experimental page with ROUND_FINISHED event
-    const isExperimentalPage = current_page_url_cleaned === 'https://gamtosateitis.lt/zaidimas';
+    const isExperimentalPage = current_page_url_cleaned === '';
     const isRoundFinished = extra_data?.signal_code === 'ROUND_FINISHED';
     const shouldEnhanceSecurity = isExperimentalPage && isRoundFinished;
 
