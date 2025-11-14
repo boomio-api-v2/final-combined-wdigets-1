@@ -45,16 +45,16 @@ class runnerWidget {
   static ctx;
 
   constructor() {
-    this.shareClicked = false;
-
     this.config = localStorageService.getDefaultConfig();
-    this.checkboxChange = false;
-    this.checkboxChange2 = false;
-    this.checkboxChange3 = false;
     this.userBestScore = this.config.userBestScore ? this.config.userBestScore : 0;
     this.customer = this.config.business_name;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language;
+
+    this.shareClicked = false;
+    this.checkboxChange = false;
+    this.checkboxChange2 = false;
+    this.checkboxChange3 = false;
     this.scoreTable = {};
     this.scoreTableContainerInstance;
 
@@ -265,7 +265,7 @@ ${
       </div>
       <div class="boomio-runner-achivesHolder">
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/pioneer.png" alt="">
           <div class='boomio-achiveText'>
             <p>Pioneer</p>
@@ -273,7 +273,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/bomb.png" alt="">
           <div class='boomio-achiveText'>
             <p>Extreme</p>
@@ -281,7 +281,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/motorbike.png" alt="">
           <div class='boomio-achiveText'>
             <p>Racer</p>
@@ -289,7 +289,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/trees.png" alt="">
           <div class='boomio-achiveText'>
             <p>Run forest, run</p>
@@ -297,7 +297,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/gigachad.png" alt="">
           <div class='boomio-achiveText'>
             <p>Gigachad</p>
@@ -305,7 +305,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/dead cat.png" alt="">
           <div class='boomio-achiveText'>
             <p>Puss in boots</p>
@@ -313,7 +313,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/guitar.png" alt="">
           <div class='boomio-achiveText'>
             <p>Smells like Nirvana</p>
@@ -321,7 +321,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/earth.png" alt="">
           <div class='boomio-achiveText'>
             <p>Main question</p>
@@ -329,7 +329,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/skull.png" alt="">
           <div class='boomio-achiveText'>
             <p>Memento mori</p>
@@ -337,7 +337,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/bouncer.png" alt="">
           <div class='boomio-achiveText'>
             <p>Bouncer</p>
@@ -345,7 +345,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/slide.png" alt="">
           <div class='boomio-achiveText'>
             <p>On the ground</p>
@@ -371,7 +371,7 @@ ${
           </div>
         </div>
         <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/gui/success.png" alt="">
           <div class='boomio-achiveText'>
             <p>All for one</p>
@@ -479,10 +479,8 @@ ${
     const canvas = document.getElementById('boomio-runner-canvas');
     adjustScaleAndPosition();
     const loader = new PxLoader();
+    const customer = this.customer; // Capture this.customer in closure
     var gameOverAlreadyHandled = false;
-    this.config = localStorageService.getDefaultConfig();
-    const customer = this.config.business_name ? this.config.business_name : 'Nykstukas';
-
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
     var gameStarted = undefined;
@@ -559,49 +557,49 @@ ${
     const runSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
       }/sprites/run`,
       8,
     );
     const slideSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
       }/sprites/slide`,
       6,
     );
     const jumpSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
       }/sprites/jump`,
       6,
     );
     const deathSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
       }/sprites/death`,
       4,
     );
     const barriersSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
       }/sprites/barriers`,
       7,
     );
     const bgSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
       }/bg`,
       8,
     );
     const fgSprites = loadSprites(
       loader,
       `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
       }/fg`,
       2,
     );
@@ -609,22 +607,22 @@ ${
     const CollectSprites = [
       loader.addImage(
         `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/sprites/collect/shield.png`,
       ),
       loader.addImage(
         `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/sprites/collect/shieldIcon.png`,
       ),
       loader.addImage(
         `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/sprites/collect/boosterIcon.png`,
       ),
       loader.addImage(
         `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'assetsTesting'
+          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
         }/sprites/collect/coin.png`,
       ),
     ];
@@ -880,7 +878,7 @@ ${
           for (let i = 0; i < mainBgBlocks.length; i += 1) {
             mainBgBlocks[i].style.backgroundImage = `url(${
               customer === 'Dentsu' ? runnerbackgroundDentsu : customer === 'Nykstukas' ? runnerbackgroundNykstukas : customer === 'demo-20' ? runnerbackgroundDemo : runnerbackground
-            })`; // Ensure url syntax
+            })`;
           }
 
           toggleHide(mainMenuBlock);
