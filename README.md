@@ -80,9 +80,8 @@ Unique branch / revision identifiers found in raw.githubusercontent URLs for rep
 
 ```
 feature/new-testing
+refs/heads/feature/new-testing
 feature/qr-remove
 feature/whack-testing
-claw-machine-icon-button
-refs/heads/feature/new-testing
 main
 ```
