@@ -123,7 +123,7 @@ class WheelOfFortuneWidget {
     this.elSpin.innerHTML = !this.angVel
       ? 'SPIN'
       : `      
-            <img style="width: 40px; height: 40px" src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/wheelof-fortune/images/wheelOfFortuneWidget/fav-boomiyo.png?raw=true"></img>
+            <img style="width: 40px; height: 40px" src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/wheelOfFortuneWidget/fav-boomiyo.png"></img>
         `;
     // this.elSpin.style.background = sector.color;
 

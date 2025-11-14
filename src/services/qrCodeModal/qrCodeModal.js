@@ -443,7 +443,7 @@ export default class {
                     <div style="width: 100%; height: 100%; flex-direction: column;align-items: center; gap: 9px; display: inline-flex">
       <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/logo.png" style="margin-left:22px;width:145px;height:34.8px;margin-bottom:20px;margin-top:10px;"/>
   </div>
-      <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
+      <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/src/widgets/guessWidget/x-circle.png" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
       </div>
 
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
@@ -565,7 +565,7 @@ export default class {
 
     this.modal.innerHTML = `
     <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
-      <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
+      <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/src/widgets/guessWidget/x-circle.png" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
     </div>
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>
@@ -642,7 +642,7 @@ export default class {
 
     this.modal.innerHTML = `
     <div class="boomio-close-modal-btn-wrapper" style='display: ${this.demo ? 'none' : 'flex'}; width:100%; justify-content:end;'>
-      <img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
+      <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/src/widgets/guessWidget/x-circle.png" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
     </div>
     <div style="width: 100%; height: 100%; position: relative;margin-bottom:4px">
     <div style="align-self: stretch; text-align: center; color: white; font-size: 28px;margin-top:20px; font-family: Montserrat; font-weight: 800; text-transform: uppercase; line-height: 26px; letter-spacing: 0.34px; word-wrap: break-word">BOOMIO</div>

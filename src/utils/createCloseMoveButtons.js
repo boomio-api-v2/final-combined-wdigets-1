@@ -18,13 +18,13 @@ export const createCloseMoveButtons = (element, deleteElement, position, moveBut
     if (window.matchMedia('(min-width: 600px)').matches) {
       dragBtn.classList.add('action-icon', 'move');
       dragBtn.style.cursor = 'grab';
-      dragBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-move.png?raw=true"></img>';
+      dragBtn.innerHTML = '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/src/widgets/guessWidget/x-move.png"></img>';
     }
   }
   const closeBtn = document.createElement('div');
   closeBtn.classList.add('action-icon', 'close');
   btnContainer.style.cursor = 'pointer';
-  closeBtn.innerHTML = '<img src="https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/x-circle.png?raw=true"></img>';
+  closeBtn.innerHTML = '<img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/src/widgets/guessWidget/x-circle.png"></img>';
   closeBtn.addEventListener('click', (e) => {
     localStorage.setItem('closing_button', deleteElement.id);
     e.stopPropagation();

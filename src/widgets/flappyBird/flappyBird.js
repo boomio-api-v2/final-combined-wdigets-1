@@ -1242,7 +1242,6 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
     }
     document.addEventListener('shareClicked', () => {
       if (this.shareClicked === false) {
-        console.log('shareClicked');
         this.shareClicked = true;
         this.currentScore = this.currentScore + 1000;
       }
