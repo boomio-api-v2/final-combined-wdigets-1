@@ -82,6 +82,7 @@ class LocalStorageService {
     /// //////////////////
     const p_coupon_text_line1 = config?.p_coupon_text_line1 ?? '???';
     const defaultBusinessName = 'Boomio';
+    const defaultLanguage = 'EN';
     const business_name =
       config?.business_name === 'Gamtos Ateitis Random'
         ? ['Gamtos Ateitis Glass', 'Gamtos Ateitis Plastic', 'Gamtos Ateitis Paper'][Math.floor(Math.random() * 3)]
@@ -113,7 +114,7 @@ class LocalStorageService {
     const email_collection_required = config?.email_collection_required ?? false;
     const product = config?.product ?? '???';
     const currentPageUrl = window.location.href;
-    const language = getParam('language')?.toUpperCase() || config?.language?.toUpperCase() || 'EN';
+    const language = getParam('language')?.toUpperCase() || config?.language?.toUpperCase() || defaultLanguage;
     const campaignUrl = getParam('campaign_url');
     const userId = getParam('user_id');
     const campaignUrlOrCurrentPage = campaignUrl || currentPageUrl;

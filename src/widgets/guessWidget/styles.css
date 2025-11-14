@@ -30,7 +30,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url('https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/quessWidget-new-design/src/widgets/guessWidget/background.png?raw=true');
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/src/widgets/guessWidget/background.png');
 }
 
 .boomio-guess-cards,

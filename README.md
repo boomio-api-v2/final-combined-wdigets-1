@@ -82,15 +82,7 @@ Unique branch / revision identifiers found in raw.githubusercontent URLs for rep
 feature/new-testing
 feature/qr-remove
 feature/whack-testing
-feature/claw-machine-auto
-feature/claw-machine-auto-with-close
-fix/whack-speed-and-gifs
-fix-wheel-z-index
 claw-machine-icon-button
-main
 refs/heads/feature/new-testing
-0753f565c8eeb594222696c37839677a8738f41d
-f944596b1d3e8a4992e37ca44bc1e369d1784e8e
-273ccfb7bc0752badbdc88389a5b5b47e183a03e
-29f42dcf4707294e1a86d84192c5fceb8c81f414
+main
 ```
