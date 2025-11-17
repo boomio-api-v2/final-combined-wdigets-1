@@ -59,6 +59,8 @@ import {
   mainNevezis,
   backgroundBoomio,
   mainBoomio,
+  backgroundElesen,
+  mainElesen,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -124,6 +126,7 @@ const getBackground = (customer, language) => {
     return language === 'LV' ? backgroundRedAkropolisLV : backgroundRedAkropolis;
   }
   if (customer === 'Barbora') return backgroundRed;
+  if (customer === 'Elesen') return backgroundElesen;
   return backgroundBoomio;
 };
 
@@ -180,6 +183,7 @@ const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
     return language === 'LV' ? mainImageAkropolisLV : mainImageAkropolis;
   }
   if (customer === 'Barbora') return mainImage;
+  if (customer === 'Elesen') return mainElesen;
 
   return mainBoomio;
 };

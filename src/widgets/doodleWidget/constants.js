@@ -139,3 +139,6 @@ export const backgroundNevezis = 'https://raw.githubusercontent.com/boomio-api-v
 
 export const mainBoomio = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Boomio/main.png';
 export const backgroundBoomio = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Boomio/background.png';
+
+export const mainElesen = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/main.png';
+export const backgroundElesen = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/background.png';
