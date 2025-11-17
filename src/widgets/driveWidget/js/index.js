@@ -2,6 +2,7 @@ import './index.css';
 import { localStorageService, boomioService } from '@/services';
 import { Elements } from '../../helpers/HtmlElementsHelper';
 import { isLifeCustomer } from '../utils';
+import { InputValidator } from '../../helpers/InputRegisterContainerValidation.js';
 import {
   brickWallImageData,
   carImageData,
@@ -1292,11 +1293,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   async function clickEventHandlerShowRules() {
     if (gameCount === 0) {
       setTimeout(async () => {
-        const schoolInput = document.querySelector('.boomio-competition-school-select');
-
         const emailInput = Elements.emailInput;
         const nameInput = Elements.nameInput;
         const phoneInput = Elements.phoneInput;
+        const schoolInput = document.querySelector('.boomio-competition-school-select');
 
         const checkboxImgChange = document.getElementById('privacyCheckboxImg');
         const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
@@ -1307,98 +1307,102 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         const checkboxChange = checkboxImgSrc.includes('Uncheck') ? false : true;
         const checkboxChange2 = checkboxImgSrc2.includes('Uncheck') ? false : true;
 
-        /**
-         * Helper function to show or hide validation errors
-         * @param {HTMLElement} errorElement - The error element to show/hide
-         * @param {boolean} showError - If true, show error with message, if false, hide error
-         * @param {string} errorMessage - The error message to display (only used when showError is true)
-         */
-        const toggleValidationError = (errorElement, showError, errorMessage = '') => {
-          if (showError) {
-            errorElement.innerText = errorMessage;
-            errorElement.style.backgroundColor = '#FFBABA';
-            Elements.showElement(errorElement);
-          } else {
-            errorElement.innerText = '';
-            errorElement.style.backgroundColor = 'transparent';
-            Elements.hideElement(errorElement);
-          }
-        };
-
-        /**
-         * Get localized error message for empty/required fields
-         * @returns {string} Localized error message based on current language
-         */
-        const getEmptyFieldErrorMessage = () => {
-          return language === 'LV'
-            ? 'Lai turpinātu, obligāti jāaizpilda.'
-            : language === 'LT'
-              ? 'Norint tęsti, privaloma užpildyti.'
-              : language === 'ET'
-                ? 'Jätkamiseks kinnita kõik väljad.'
-                : language === 'FI'
-                  ? 'Vaatitaan jatkamiseen.'
-                  : language === 'RU'
-                    ? 'Чтобы продолжить, необходимо заполнить.'
-                    : language === 'ES'
-                      ? 'Requerido para continuar.'
-                      : 'Required to continue.';
-        };
-
-        if (!checkboxChange || (customer === 'Toni' && !checkboxChange2)) {
-          const errorMessage =
-            customer === 'Gamtos Ateitis'
-              ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-              : customer === 'Novaturas' && language === 'LT'
-                ? 'Norint tęsti privaloma sutikti su įmonės privatumo politika.'
-                : customer === 'Novaturas' && language === 'LV'
-                  ? 'Lai turpinātu, ir jāpiekrīt uzņēmuma privātuma politikai.'
-                  : customer === 'Novaturas' && language === 'RU'
-                    ? 'Чтобы продолжить, необходимо согласиться с политикой конфиденциальности компании.'
-                    : customer === 'Novaturas' && language === 'EN'
-                      ? 'To continue, you must agree to the companys privacy policy.'
-                      : customer === 'Novaturas' && language === 'ET'
-                        ? 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.'
-                        : language === 'ES'
-                          ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                          : 'Norint tęsti, privaloma sutikti su naujienomis.';
-          toggleValidationError(Elements.competitionCheckboxError, true, errorMessage);
-        } else {
-          toggleValidationError(Elements.competitionCheckboxError, false);
-        }
-
-        if (Elements.isVisible(nameInput) && Elements.isInputEmpty(nameInput)) {
-          toggleValidationError(Elements.competitionNameError, true, getEmptyFieldErrorMessage());
-        } else {
-          toggleValidationError(Elements.competitionNameError, false);
-        }
-
-        if (Elements.isVisible(emailInput) && Elements.isInputEmpty(emailInput)) {
-          toggleValidationError(Elements.competitionEmailError, true, getEmptyFieldErrorMessage());
-        } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
-          const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
-          toggleValidationError(Elements.competitionEmailError, true, errorMessage);
-        } else {
-          toggleValidationError(Elements.competitionEmailError, false);
-        }
-
-        if (Elements.isVisible(phoneInput) && Elements.isInputEmpty(phoneInput)) {
-          toggleValidationError(Elements.competitionPhoneError, true, getEmptyFieldErrorMessage());
-        } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
-          const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
-          toggleValidationError(Elements.competitionPhoneError, true, errorMessage);
-        } else {
-          toggleValidationError(Elements.competitionPhoneError, false);
-        }
-
-        if (
-          Elements.isVisible(Elements.competitionCheckboxError) ||
-          Elements.isVisible(Elements.competitionNameError) ||
-          Elements.isVisible(Elements.competitionEmailError) ||
-          Elements.isVisible(Elements.competitionPhoneError)
-        ) {
+        if (!InputValidator.validateRegistrationInputs()) {
           return;
         }
+
+        // /**
+        //  * Helper function to show or hide validation errors
+        //  * @param {HTMLElement} errorElement - The error element to show/hide
+        //  * @param {boolean} showError - If true, show error with message, if false, hide error
+        //  * @param {string} errorMessage - The error message to display (only used when showError is true)
+        //  */
+        // const toggleValidationError = (errorElement, showError, errorMessage = '') => {
+        //   if (showError) {
+        //     errorElement.innerText = errorMessage;
+        //     errorElement.style.backgroundColor = '#FFBABA';
+        //     Elements.showElement(errorElement);
+        //   } else {
+        //     errorElement.innerText = '';
+        //     errorElement.style.backgroundColor = 'transparent';
+        //     Elements.hideElement(errorElement);
+        //   }
+        // };
+
+        // /**
+        //  * Get localized error message for empty/required fields
+        //  * @returns {string} Localized error message based on current language
+        //  */
+        // const getEmptyFieldErrorMessage = () => {
+        //   return language === 'LV'
+        //     ? 'Lai turpinātu, obligāti jāaizpilda.'
+        //     : language === 'LT'
+        //       ? 'Norint tęsti, privaloma užpildyti.'
+        //       : language === 'ET'
+        //         ? 'Jätkamiseks kinnita kõik väljad.'
+        //         : language === 'FI'
+        //           ? 'Vaatitaan jatkamiseen.'
+        //           : language === 'RU'
+        //             ? 'Чтобы продолжить, необходимо заполнить.'
+        //             : language === 'ES'
+        //               ? 'Requerido para continuar.'
+        //               : 'Required to continue.';
+        // };
+
+        // if (!checkboxChange || (customer === 'Toni' && !checkboxChange2)) {
+        //   const errorMessage =
+        //     customer === 'Gamtos Ateitis'
+        //       ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+        //       : customer === 'Novaturas' && language === 'LT'
+        //         ? 'Norint tęsti privaloma sutikti su įmonės privatumo politika.'
+        //         : customer === 'Novaturas' && language === 'LV'
+        //           ? 'Lai turpinātu, ir jāpiekrīt uzņēmuma privātuma politikai.'
+        //           : customer === 'Novaturas' && language === 'RU'
+        //             ? 'Чтобы продолжить, необходимо согласиться с политикой конфиденциальности компании.'
+        //             : customer === 'Novaturas' && language === 'EN'
+        //               ? 'To continue, you must agree to the companys privacy policy.'
+        //               : customer === 'Novaturas' && language === 'ET'
+        //                 ? 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.'
+        //                 : language === 'ES'
+        //                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+        //                   : 'Norint tęsti, privaloma sutikti su naujienomis.';
+        //   toggleValidationError(Elements.competitionCheckboxError, true, errorMessage);
+        // } else {
+        //   toggleValidationError(Elements.competitionCheckboxError, false);
+        // }
+
+        // if (Elements.isVisible(nameInput) && Elements.isInputEmpty(nameInput)) {
+        //   toggleValidationError(Elements.competitionNameError, true, getEmptyFieldErrorMessage());
+        // } else {
+        //   toggleValidationError(Elements.competitionNameError, false);
+        // }
+
+        // if (Elements.isVisible(emailInput) && Elements.isInputEmpty(emailInput)) {
+        //   toggleValidationError(Elements.competitionEmailError, true, getEmptyFieldErrorMessage());
+        // } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
+        //   const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+        //   toggleValidationError(Elements.competitionEmailError, true, errorMessage);
+        // } else {
+        //   toggleValidationError(Elements.competitionEmailError, false);
+        // }
+
+        // if (Elements.isVisible(phoneInput) && Elements.isInputEmpty(phoneInput)) {
+        //   toggleValidationError(Elements.competitionPhoneError, true, getEmptyFieldErrorMessage());
+        // } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
+        //   const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+        //   toggleValidationError(Elements.competitionPhoneError, true, errorMessage);
+        // } else {
+        //   toggleValidationError(Elements.competitionPhoneError, false);
+        // }
+
+        // if (
+        //   Elements.isVisible(Elements.competitionCheckboxError) ||
+        //   Elements.isVisible(Elements.competitionNameError) ||
+        //   Elements.isVisible(Elements.competitionEmailError) ||
+        //   Elements.isVisible(Elements.competitionPhoneError)
+        // ) {
+        //   return;
+        // }
 
         if (showCompetitiveRegistration && checkboxChange) {
           if (customer === 'Gamtos Ateitis') {

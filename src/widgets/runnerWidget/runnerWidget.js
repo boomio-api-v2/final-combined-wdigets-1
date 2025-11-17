@@ -36,6 +36,7 @@ import {
   close,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
+import { InputValidator } from '../helpers/InputRegisterContainerValidation.js';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
@@ -925,82 +926,100 @@ ${
     const clickEventHandlerShowRules = () => {
       const competitionConfirmFieldBody = document.getElementById('boomio-competition-confirm-field');
       setTimeout(() => {
-        const emailInput = document.querySelector('.boomio-competition-email-input-field');
-        const phone = document.querySelector('.boomio-competition-phone-input-field');
+        const emailInput = Elements.emailInput;
+        const nameInput = Elements.nameInput;
+        const phoneInput = Elements.phoneInput;
+        const schoolInput = document.querySelector('.boomio-competition-school-select');
+
+        if (customer === 'Toni' && emailInput) {
+          emailInput.addEventListener('input', (event) => {
+            event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+          });
+        }
+
+        if (phoneInput) {
+          phoneInput.addEventListener('input', (event) => {
+            event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+          });
+        }
 
         const checkboxChange = this.checkboxChange;
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!checkboxChange) {
-          document.getElementById('competition-checkbox-error2').innerText =
-            this.prop === 'Nykstukas'
-              ? 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.'
-              : 'Norėdami tęsti, turite sutikti su "Pieno Žvaigždės" privatumo politika.';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error2').style.display = 'block';
-          document.getElementById('competition-checkbox-error2').style.height = '14px';
-
-          document.getElementById('competition-name-error').innerText = '';
-
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        if (!InputValidator.validateRegistrationInputs()) {
           return;
         }
-        if (checkboxChange) {
-          document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        // if (!checkboxChange) {
+        //   document.getElementById('competition-checkbox-error2').innerText =
+        //     this.prop === 'Nykstukas'
+        //       ? 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.'
+        //       : 'Norėdami tęsti, turite sutikti su "Pieno Žvaigždės" privatumo politika.';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-checkbox-error2').style.display = 'block';
+        //   document.getElementById('competition-checkbox-error2').style.height = '14px';
 
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-checkbox-error2').innerText = '';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
-        }
-        if (emailInput?.value === '' || emailInput?.value === null) {
-          document.getElementById('competition-email-error').innerText = 'Norint tęsti privaloma užpildyti.';
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-name-error').innerText = '';
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error2').innerText = '';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-email-error').innerText = '';
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   return;
+        // }
+        // if (checkboxChange) {
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
-        }
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
-        const isValidEmail = (email) => {
-          // Improved email regex: balanced between correctness and performance
-          const emailRegex = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,62}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
+        //   document.getElementById('competition-email-error').innerText = '';
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
 
-          // Prevent consecutive dots anywhere
-          if (email.includes('..')) {
-            return false;
-          }
+        //   document.getElementById('competition-checkbox-error2').innerText = '';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
+        // }
+        // if (emailInput?.value === '' || emailInput?.value === null) {
+        //   document.getElementById('competition-email-error').innerText = 'Norint tęsti privaloma užpildyti.';
+        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          return emailRegex.test(email);
-        };
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error2').innerText = '';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
-        if (!isValidEmail(emailInput?.value)) {
-          document.getElementById('competition-email-error').innerText = 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
-          document.getElementById('competition-email-error').zIndex = 1;
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-checkbox-error3').innerText = '';
+        //   document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
+        // }
 
-          return;
-        }
+        // const isValidEmail = (email) => {
+        //   // Improved email regex: balanced between correctness and performance
+        //   const emailRegex = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,62}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
+
+        //   // Prevent consecutive dots anywhere
+        //   if (email.includes('..')) {
+        //     return false;
+        //   }
+
+        //   return emailRegex.test(email);
+        // };
+
+        // if (!isValidEmail(emailInput?.value)) {
+        //   document.getElementById('competition-email-error').innerText = 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+        //   document.getElementById('competition-email-error').zIndex = 1;
+        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+
+        //   return;
+        // }
 
         if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
-          const phoneValue = phone?.value?.trim();
+          const phoneValue = phoneInput?.value?.trim();
           this.loading = true;
 
           const boomioCatchSpinner = document.createElement('div');
@@ -1034,10 +1053,15 @@ ${
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange2,
-              user_email: Elements.getEmailValue(),
-              user_name: Elements.getEmailValue(),
-              game_code: this.game_code,
-              ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
+              user_email: Elements.isVisible(Elements.emailInput) && Elements.getEmailValue(),
+              user_name:
+                customer === 'Toni'
+                  ? nameInput?.value.trimEnd() + phoneInput?.value
+                  : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
+              ...(customer.includes('Gamtos Ateitis') && {
+                team: schoolInput.value,
+              }),
+              ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
             })
             .then((response) => {
               boomioCatchSpinner.remove();
