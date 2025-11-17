@@ -1078,7 +1078,9 @@ ${
                           ? 'Этот е-мейл адрес уже существует. Используйте другой.'
                           : this.language === 'ET'
                             ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                            : this.language === 'ES'
+                              ? 'Este email ya está en uso. Use otro numero.'
+                              : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
                   document.getElementById('competition-name-error').innerText = '';
                   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
@@ -1086,13 +1088,15 @@ ${
                   document.getElementById('competition-name-error').innerText =
                     this.customer === 'Fpro'
                       ? 'This nickname already exists. Please use another one.'
-                      : this.language === 'LV'
-                        ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                        : this.language === 'RU'
-                          ? 'Этот псевдоним уже существует. Используйте другой.'
-                          : this.language === 'ET'
-                            ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                            : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                      : this.language === 'ES'
+                        ? 'Este nickname ya está en uso. Use otro nombre.'
+                        : this.language === 'LV'
+                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                          : this.language === 'RU'
+                            ? 'Этот псевдоним уже существует. Используйте другой.'
+                            : this.language === 'ET'
+                              ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                              : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
                   document.getElementById('competition-email-error').innerText = '';

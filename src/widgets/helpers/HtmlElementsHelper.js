@@ -38,20 +38,28 @@ class HtmlElementsHelper {
     return document.getElementById('school-select');
   }
 
+  get checkbox() {
+    return document.getElementById('boomio-privacyCheckbox');
+  }
+
+  get checkbox2() {
+    return document.getElementById('boomio-privacyCheckbox2');
+  }
+
+  get checkbox3() {
+    return document.getElementById('boomio-privacyCheckbox3');
+  }
+
   get competitionCheckboxError() {
     return document.getElementById('competition-checkbox-error');
   }
 
-  get competitionNameError() {
-    return document.getElementById('competition-name-error');
+  get competitionCheckboxError2() {
+    return document.getElementById('competition-checkbox-error2');
   }
 
-  get competitionEmailError() {
-    return document.getElementById('competition-email-error');
-  }
-
-  get competitionPhoneError() {
-    return document.getElementById('competition-phone-error');
+  get competitionCheckboxError3() {
+    return document.getElementById('competition-checkbox-error3');
   }
 
   get shareContainer() {

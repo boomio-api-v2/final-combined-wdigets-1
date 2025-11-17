@@ -87,10 +87,16 @@ class InputRegisterContainerValidation {
    * @returns {string} - Error message in appropriate language
    */
   getCyrillicEmailMessage() {
-    if (this.language === 'LV') {
-      return 'E-pastā ir nederīgas rakstzīmes';
-    }
-    return 'El. pašte yra neteisingų simbolių';
+    const messages = {
+      LT: 'El. pašte yra neteisingų simbolių',
+      LV: 'E-pastā ir nederīgas rakstzīmes',
+      RU: 'В адресе электронной почты есть недопустимые символы.',
+      ET: 'E-posti aadressis on vigaseid sümboleid.',
+      EN: '"There are invalid characters in the email address.',
+      ES: 'Hay caracteres no válidos en la dirección de correo electrónico.',
+      FI: 'Sähköpostiosoitteessa on virheellisiä merkkejä.',
+    };
+    return messages[this.language] || messages.EN;
   }
 
   /**
@@ -109,49 +115,6 @@ class InputRegisterContainerValidation {
     };
 
     return messages[this.language] || messages.EN;
-  }
-
-  /**
-   * Gets localized error message for checkbox consent
-   * @returns {string} - Error message in appropriate language
-   */
-  getCheckboxErrorMessage() {
-    const messages = {
-      LT: 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.',
-      LV: 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.',
-      RU: 'Игрок должен согласиться на обработку данных для продолжения.',
-      ET: 'Mängija peab nõustuma andmete töötlemisega, et jätkata.',
-      EN: 'Player must agree to data processing to continue.',
-      ES: 'El jugador debe aceptar el procesamiento de datos para continuar.',
-      FI: 'Pelaajan on hyväksyttävä tietojen käsittely jatkaakseen.',
-    };
-
-    return messages[this.language] || messages.EN;
-  }
-
-  /**
-   * Clears error display for a specific field
-   * @param {string} errorElementId - ID of the error element to clear
-   */
-  clearError(errorElementId) {
-    const errorElement = document.getElementById(errorElementId);
-    if (errorElement) {
-      errorElement.innerText = '';
-      errorElement.style.backgroundColor = 'transparent';
-    }
-  }
-
-  /**
-   * Shows error for a specific field
-   * @param {string} errorElementId - ID of the error element
-   * @param {string} message - Error message to display
-   */
-  showError(errorElementId, message) {
-    const errorElement = document.getElementById(errorElementId);
-    if (errorElement) {
-      errorElement.innerText = message;
-      errorElement.style.backgroundColor = '#FFBABA';
-    }
   }
 
   /**
@@ -191,32 +154,55 @@ class InputRegisterContainerValidation {
   }
 
   /**
-   * Get customer-specific checkbox error message
-   * @param {boolean} checkboxChange2 - State of second checkbox if applicable
-   * @returns {string} Customer and language-specific error message
+   * Gets localized error message for checkbox consent
+   * @returns {string} - Error message in appropriate language
    */
-  getCustomerCheckboxErrorMessage(checkboxChange2 = false) {
-    // Handle specific customer checkbox requirements
-    if (this.customer === 'Gamtos Ateitis') {
-      return 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis" privatumo politika.';
+  getCheckboxErrorMessage() {
+    // Customer-specific messages
+    if (this.customer === 'Daumantu') {
+      return 'Registruojantis, privaloma sutikti gauti "Daumantų" naujienas, kad atiduotume  laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
     }
 
-    if (this.customer === 'Novaturas') {
-      const messages = {
-        LT: 'Norint tęsti privaloma sutikti su įmonės privatumo politika.',
-        LV: 'Lai turpinātu, ir jāpiekrīt uzņēmuma privātuma politikai.',
+    if (this.customer === 'Zemaitijos Pienas') {
+      return 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas" privatumo politika.';
+    }
+
+    if (this.customer === 'Akropolis' && this.language === 'LV') {
+      return 'Spēlētājam ir jāpiekrīt spēles noteikumiem un datu apstrādei, lai turpinātu.';
+    }
+
+    if (this.customer.includes('Gamtos Ateitis')) {
+      return 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis"  privatumo politika.';
+    }
+
+    if (this.customer === 'Apranga') {
+      return 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu';
+    }
+
+    if (this.customer === 'Pigu.lt') {
+      const piguMessages = {
+        LV: 'Lai turpinātu, ir obligāti jāpiekrīt uzņēmuma privātuma politikai.',
         RU: 'Чтобы продолжить, необходимо согласиться с политикой конфиденциальности компании.',
-        EN: 'To continue, you must agree to the companys privacy policy.',
         ET: 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.',
+        FI: 'Jatkaaksesi sinun on hyväksyttävä yrityksen tietosuojakäytäntö.',
       };
-      return messages[this.language] || messages.EN;
+      if (piguMessages[this.language]) {
+        return piguMessages[this.language];
+      }
     }
 
-    if (this.customer === 'Toni' && !checkboxChange2) {
-      return this.language === 'ES' ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.' : 'Required to continue.';
-    }
+    // Language-based default messages
+    const messages = {
+      LV: 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.',
+      RU: 'Игрок должен согласиться на обработку данных, чтобы продолжить.',
+      ES: 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.',
+      FI: 'Jatkaaksesi sinun on hyväksyttävä yrityksen tietosuojakäytäntö.',
+      LT: 'Norint tęsti, privaloma sutikti su privatumo politika.',
+      ET: 'Mängija peab nõustuma andmete töötlemisega, et jätkata.',
+      EN: 'Player must agree to data processing to continue.',
+    };
 
-    return 'Norint tęsti, privaloma sutikti su naujienomis.';
+    return messages[this.language] || messages.EN;
   }
 
   /**
@@ -230,7 +216,7 @@ class InputRegisterContainerValidation {
     if (this.customer === 'Toni' && (!checkboxChange || !checkboxChange2)) {
       return {
         isValid: false,
-        errorMessage: this.getCustomerCheckboxErrorMessage(checkboxChange2),
+        errorMessage: this.getCheckboxErrorMessage(),
       };
     }
 
@@ -238,7 +224,7 @@ class InputRegisterContainerValidation {
     if (!checkboxChange) {
       return {
         isValid: false,
-        errorMessage: this.getCustomerCheckboxErrorMessage(checkboxChange2),
+        errorMessage: this.getCheckboxErrorMessage(),
       };
     }
 
@@ -261,46 +247,6 @@ class InputRegisterContainerValidation {
       return {
         isValid: false,
         errorMessage: this.getEmptyFieldErrorMessage(),
-      };
-    }
-
-    return { isValid: true, errorMessage: '' };
-  }
-
-  /**
-   * Validates email field (if visible)
-   * @param {HTMLElement} emailInput - Email input element
-   * @param {boolean} isVisible - Whether the field is visible
-   * @returns {Object} { isValid: boolean, errorMessage: string }
-   */
-  validateEmailField(emailInput, isVisible = true) {
-    if (!isVisible || !emailInput) {
-      return { isValid: true, errorMessage: '' };
-    }
-
-    const value = emailInput.value?.trim();
-
-    // Empty check
-    if (!value || value === '') {
-      return {
-        isValid: false,
-        errorMessage: this.getEmptyFieldErrorMessage(),
-      };
-    }
-
-    // Toni-specific length validation
-    if (this.customer === 'Toni' && value.length < 10) {
-      return {
-        isValid: false,
-        errorMessage: this.language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.',
-      };
-    }
-
-    // Email format validation (skip for Toni as it uses phone numbers)
-    if (this.customer !== 'Toni' && !this.isValidEmail(value)) {
-      return {
-        isValid: false,
-        errorMessage: this.getInvalidEmailMessage(),
       };
     }
 
@@ -361,60 +307,67 @@ class InputRegisterContainerValidation {
     const checkboxChange3 = checkboxImgSrc3.includes('Uncheck') ? false : true;
 
     // Validate checkboxes
-    if (!checkboxChange || (this.customer === 'Toni' && !checkboxChange2)) {
-      const errorMessage =
-        this.customer === 'Gamtos Ateitis'
-          ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-          : this.customer === 'Novaturas' && this.language === 'LT'
-            ? 'Norint tęsti privaloma sutikti su įmonės privatumo politika.'
-            : this.customer === 'Novaturas' && this.language === 'LV'
-              ? 'Lai turpinātu, ir jāpiekrīt uzņēmuma privātuma politikai.'
-              : this.customer === 'Novaturas' && this.language === 'RU'
-                ? 'Чтобы продолжить, необходимо согласиться с политикой конфиденциальности компании.'
-                : this.customer === 'Novaturas' && this.language === 'EN'
-                  ? 'To continue, you must agree to the companys privacy policy.'
-                  : this.customer === 'Novaturas' && this.language === 'ET'
-                    ? 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.'
-                    : this.language === 'ES'
-                      ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                      : 'Norint tęsti, privaloma sutikti su naujienomis.';
-      this.toggleValidationError(Elements.competitionCheckboxError, true, errorMessage);
-    } else {
-      this.toggleValidationError(Elements.competitionCheckboxError, false);
+    if (Elements.isVisible(Elements.checkbox)) {
+      if (!checkboxChange || (this.customer === 'Toni' && !checkboxChange2)) {
+        this.toggleValidationError(Elements.competitionCheckboxError, true, this.getCheckboxErrorMessage());
+      } else {
+        this.toggleValidationError(Elements.competitionCheckboxError, false);
+      }
+    }
+
+    if (Elements.isVisible(Elements.checkbox2)) {
+      this.toggleValidationError(Elements.competitionCheckboxError2, false);
+    }
+
+    if (Elements.isVisible(Elements.checkbox3)) {
+      this.toggleValidationError(Elements.competitionCheckboxError3, false);
     }
 
     // Validate name
-    if (Elements.isVisible(nameInput) && Elements.isInputEmpty(nameInput)) {
-      this.toggleValidationError(Elements.competitionNameError, true, this.getEmptyFieldErrorMessage());
-    } else {
-      this.toggleValidationError(Elements.competitionNameError, false);
+    if (Elements.isVisible(nameInput)) {
+      if (Elements.isInputEmpty(nameInput)) {
+        this.toggleValidationError(Elements.nameError, true, this.getEmptyFieldErrorMessage());
+      } else {
+        this.toggleValidationError(Elements.nameError, false);
+      }
     }
 
     // Validate email
-    if (Elements.isVisible(emailInput) && Elements.isInputEmpty(emailInput)) {
-      this.toggleValidationError(Elements.competitionEmailError, true, this.getEmptyFieldErrorMessage());
-    } else if (this.customer === 'Toni' && emailInput?.value?.length < 10) {
-      const errorMessage = this.language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
-      this.toggleValidationError(Elements.competitionEmailError, true, errorMessage);
-    } else {
-      this.toggleValidationError(Elements.competitionEmailError, false);
+    if (Elements.isVisible(emailInput)) {
+      const emailValue = Elements.getEmailValue();
+      if (Elements.isInputEmpty(emailInput)) {
+        this.toggleValidationError(Elements.emailError, true, this.getEmptyFieldErrorMessage());
+      } else if (this.customer === 'Toni' && emailValue?.length < 10) {
+        const errorMessage = this.language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+        this.toggleValidationError(Elements.emailError, true, errorMessage);
+      } else if (this.customer !== 'Toni' && !this.isValidEmail(emailValue)) {
+        this.toggleValidationError(Elements.emailError, true, this.getInvalidEmailMessage());
+      } else if (this.containsCyrillic(emailValue)) {
+        this.toggleValidationError(Elements.emailError, true, this.getCyrillicEmailMessage());
+      } else {
+        this.toggleValidationError(Elements.emailError, false);
+      }
     }
 
     // Validate phone
-    if (Elements.isVisible(phoneInput) && Elements.isInputEmpty(phoneInput)) {
-      this.toggleValidationError(Elements.competitionPhoneError, true, this.getEmptyFieldErrorMessage());
-    } else if (this.customer === 'Toni' && emailInput?.value?.length < 10) {
-      const errorMessage = this.language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
-      this.toggleValidationError(Elements.competitionPhoneError, true, errorMessage);
-    } else {
-      this.toggleValidationError(Elements.competitionPhoneError, false);
+    if (Elements.isVisible(phoneInput)) {
+      if (Elements.isInputEmpty(phoneInput)) {
+        this.toggleValidationError(Elements.phoneError, true, this.getEmptyFieldErrorMessage());
+      } else if (this.customer === 'Toni' && phoneInput?.value?.length < 10) {
+        const errorMessage = this.language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
+        this.toggleValidationError(Elements.phoneError, true, errorMessage);
+      } else {
+        this.toggleValidationError(Elements.phoneError, false);
+      }
     }
 
     if (
+      Elements.isVisible(Elements.nameError) ||
+      Elements.isVisible(Elements.emailError) ||
+      Elements.isVisible(Elements.phoneError) ||
       Elements.isVisible(Elements.competitionCheckboxError) ||
-      Elements.isVisible(Elements.competitionNameError) ||
-      Elements.isVisible(Elements.competitionEmailError) ||
-      Elements.isVisible(Elements.competitionPhoneError)
+      Elements.isVisible(Elements.competitionCheckboxError2) ||
+      Elements.isVisible(Elements.competitionCheckboxError3)
     ) {
       return false;
     }
