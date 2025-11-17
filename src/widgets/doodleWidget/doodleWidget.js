@@ -82,6 +82,7 @@ const getBrandColor = (customer, language) => {
   if (customer === 'Magija') return '#194898';
   if (language === 'LV') return '#F40027';
   if (customer === 'Toni') return '#000F9F';
+  if (customer === 'Toni') return '#323136';
   return '#045222'; // Default color
 };
 
