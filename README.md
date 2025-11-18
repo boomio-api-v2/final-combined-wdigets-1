@@ -5,11 +5,11 @@
 git clone  https://github.com/boomio-api-v2/final-combined-wdigets-1.git
 
 # If you use multiple users, add user name prefix
-git clone https://andriusboomio@github.com/boomio-api-v2/final-combined-wdigets-1.git
+git clone https://userName@github.com/boomio-api-v2/final-combined-wdigets-1.git
 
 # Configure Git user
-git config --global user.name "AndriusBoomio"
-git config --global user.email "andrius@boomio.com"
+git config --global user.name "userName"
+git config --global user.email "userEmail"
 
 # Check
 git config --global user.name
