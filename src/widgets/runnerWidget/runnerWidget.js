@@ -36,6 +36,7 @@ import {
   close,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
+import { InputValidator } from '../helpers/InputRegisterContainerValidation.js';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
@@ -67,6 +68,12 @@ class runnerWidget {
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
     const newHighscoreImage = new Image();
     newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
+
+    // Helper function to get asset URLs based on customer
+    const getAssetPath = (suffix) => {
+      const assetFolder = this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio';
+      return `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${assetFolder}/${suffix}`;
+    };
 
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-runner-container');
@@ -224,7 +231,7 @@ class runnerWidget {
 
         <div class="boomio-runner-mainMenuButtons">
 ${
-  false
+  false //Some buttons disabled
     ? `<div class='storeButton  boomio-runner-menuButton' >
             <img src="${cart}" alt="">
             store
@@ -264,89 +271,67 @@ ${
         <div class='boomio-runner-stat' id="numberOfSlidesBlock"></div>
       </div>
       <div class="boomio-runner-achivesHolder">
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/pioneer.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/pioneer.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Pioneer</p>
             Score 100 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/bomb.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/bomb.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Extreme</p>
             Score 300 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/motorbike.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/motorbike.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Racer</p>
             Score 500 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/trees.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/trees.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Run forest, run</p>
             Score 750 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/gigachad.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/gigachad.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Gigachad</p>
             Score 1000 points
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/dead cat.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/dead cat.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Puss in boots</p>
             Die 8 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/guitar.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/guitar.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Smells like Nirvana</p>
             Die 27 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/earth.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/earth.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Main question</p>
             Die 42 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/skull.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/skull.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Memento mori</p>
             Die 100 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/bouncer.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/bouncer.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>Bouncer</p>
             Jump 500 times
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/slide.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/slide.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>On the ground</p>
             Slide under barriers 300 times
@@ -370,9 +355,7 @@ ${
             Earn 1000 coins
           </div>
         </div>
-        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/gui/success.png" alt="">
+        <div class="boomio-runner-achiveBlock boomio-lock"><img class='boomio-achiveImg' src="${getAssetPath('gui/success.png')}" alt="">
           <div class='boomio-achiveText'>
             <p>All for one</p>
             Unlock all achives
@@ -468,7 +451,6 @@ ${
     this.startGame(this.scoreTableContainerInstance);
     document.addEventListener('shareClicked', (_event) => {
       if (this.shareClicked === false) {
-        console.log('shareClicked');
         this.shareClicked = true;
         this.currentScore = this.currentScore + 1000;
       }
@@ -480,6 +462,13 @@ ${
     adjustScaleAndPosition();
     const loader = new PxLoader();
     const customer = this.customer; // Capture this.customer in closure
+
+    // Helper function to get asset URLs based on customer
+    const getAssetPath = (suffix) => {
+      const assetFolder = customer === 'Dentsu' ? 'assetsDentsu' : customer === 'Nykstukas' ? 'assetsNykstukas' : customer === 'demo-20' ? 'assetsDemo' : 'Boomio';
+      return `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${assetFolder}/${suffix}`;
+    };
+
     var gameOverAlreadyHandled = false;
     var ctx = canvas?.getContext('2d');
     var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
@@ -554,77 +543,19 @@ ${
     let boosterLevel = localStorage.getItem('boosterLevel') > 1 ? localStorage.getItem('boosterLevel') : 1;
 
     // Load sprites
-    const runSprites = loadSprites(
-      loader,
-      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-      }/sprites/run`,
-      8,
-    );
-    const slideSprites = loadSprites(
-      loader,
-      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-      }/sprites/slide`,
-      6,
-    );
-    const jumpSprites = loadSprites(
-      loader,
-      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-      }/sprites/jump`,
-      6,
-    );
-    const deathSprites = loadSprites(
-      loader,
-      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-      }/sprites/death`,
-      4,
-    );
-    const barriersSprites = loadSprites(
-      loader,
-      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-      }/sprites/barriers`,
-      7,
-    );
-    const bgSprites = loadSprites(
-      loader,
-      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-      }/bg`,
-      8,
-    );
-    const fgSprites = loadSprites(
-      loader,
-      `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-        this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-      }/fg`,
-      2,
-    );
+    const runSprites = loadSprites(loader, getAssetPath('sprites/run'), 8);
+    const slideSprites = loadSprites(loader, getAssetPath('sprites/slide'), 6);
+    const jumpSprites = loadSprites(loader, getAssetPath('sprites/jump'), 6);
+    const deathSprites = loadSprites(loader, getAssetPath('sprites/death'), 4);
+    const barriersSprites = loadSprites(loader, getAssetPath('sprites/barriers'), 7);
+    const bgSprites = loadSprites(loader, getAssetPath('bg'), 8);
+    const fgSprites = loadSprites(loader, getAssetPath('fg'), 2);
 
     const CollectSprites = [
-      loader.addImage(
-        `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/sprites/collect/shield.png`,
-      ),
-      loader.addImage(
-        `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/sprites/collect/shieldIcon.png`,
-      ),
-      loader.addImage(
-        `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/sprites/collect/boosterIcon.png`,
-      ),
-      loader.addImage(
-        `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${
-          this.customer === 'Dentsu' ? 'assetsDentsu' : this.customer === 'Nykstukas' ? 'assetsNykstukas' : this.customer === 'demo-20' ? 'assetsDemo' : 'Boomio'
-        }/sprites/collect/coin.png`,
-      ),
+      loader.addImage(getAssetPath('sprites/collect/shield.png')),
+      loader.addImage(getAssetPath('sprites/collect/shieldIcon.png')),
+      loader.addImage(getAssetPath('sprites/collect/boosterIcon.png')),
+      loader.addImage(getAssetPath('sprites/collect/coin.png')),
     ];
 
     class GameObject {
@@ -741,7 +672,7 @@ ${
       }
     }
 
-    var player = new GameObject(runSprites[0], 0.2 * canvas.width, canvas.height - wrapperBlock.offsetHeight / 2.5, true);
+    player = new GameObject(runSprites[0], 0.2 * canvas.width, canvas.height - wrapperBlock.offsetHeight / 2.5, true);
     window.addEventListener('resize', Resize);
 
     let orientationTimeout;
@@ -829,44 +760,44 @@ ${
       //   });
       // }
 
-      function showRevawardVideo(getReward) {
-        ysdk.adv.showRewardedVideo({
-          callbacks: {
-            onOpen: () => {},
-            onRewarded: () => {},
-            onClose: () => {
-              getReward();
-            },
-            onError: (e) => {
-              console.log('Error while open video ad:', e);
-            },
-          },
-        });
-      }
+      // function showRevawardVideo(getReward) {
+      //   ysdk.adv.showRewardedVideo({
+      //     callbacks: {
+      //       onOpen: () => {},
+      //       onRewarded: () => {},
+      //       onClose: () => {
+      //         getReward();
+      //       },
+      //       onError: (e) => {
+      //         console.log('Error while open video ad:', e);
+      //       },
+      //     },
+      //   });
+      // }
 
-      const addCoins = () => {
-        myCoins = Number(myCoins) + 100;
-        localStorage.setItem('myCoins', myCoins);
-        storeCoinsText.innerText = Number(myCoins);
-        mainCoinBlock.innerText = Number(myCoins);
+      // const addCoins = () => {
+      //   myCoins = Number(myCoins) + 100;
+      //   localStorage.setItem('myCoins', myCoins);
+      //   storeCoinsText.innerText = Number(myCoins);
+      //   mainCoinBlock.innerText = Number(myCoins);
 
-        coinSound.play();
-      };
+      //   coinSound.play();
+      // };
 
-      const saveMe = () => {
-        player.rise = true;
-        gameOver = false;
-        stopGame = false;
-        player.dead = false;
-        toggleHide(gameOverBlock);
-        toggleHide(pauseButton);
-        toggleHide(scoreBlock);
+      // const saveMe = () => {
+      //   player.rise = true;
+      //   gameOver = false;
+      //   stopGame = false;
+      //   player.dead = false;
+      //   toggleHide(gameOverBlock);
+      //   toggleHide(pauseButton);
+      //   toggleHide(scoreBlock);
 
-        player.shield = true;
-        activeTime = 1;
-        Start();
-        canvas.focus();
-      };
+      //   player.shield = true;
+      //   activeTime = 1;
+      //   Start();
+      //   canvas.focus();
+      // };
 
       loader.addCompletionListener(() => {
         const initGame = () => {
@@ -995,82 +926,100 @@ ${
     const clickEventHandlerShowRules = () => {
       const competitionConfirmFieldBody = document.getElementById('boomio-competition-confirm-field');
       setTimeout(() => {
-        const emailInput = document.querySelector('.boomio-competition-email-input-field');
-        const phone = document.querySelector('.boomio-competition-phone-input-field');
+        const emailInput = Elements.emailInput;
+        const nameInput = Elements.nameInput;
+        const phoneInput = Elements.phoneInput;
+        const schoolInput = document.querySelector('.boomio-competition-school-select');
+
+        if (customer === 'Toni' && emailInput) {
+          emailInput.addEventListener('input', (event) => {
+            event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+          });
+        }
+
+        if (phoneInput) {
+          phoneInput.addEventListener('input', (event) => {
+            event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+          });
+        }
 
         const checkboxChange = this.checkboxChange;
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!checkboxChange) {
-          document.getElementById('competition-checkbox-error2').innerText =
-            this.prop === 'Nykstukas'
-              ? 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.'
-              : 'Norėdami tęsti, turite sutikti su "Pieno Žvaigždės" privatumo politika.';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error2').style.display = 'block';
-          document.getElementById('competition-checkbox-error2').style.height = '14px';
-
-          document.getElementById('competition-name-error').innerText = '';
-
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        if (!InputValidator.validateRegistrationInputs()) {
           return;
         }
-        if (checkboxChange) {
-          document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        // if (!checkboxChange) {
+        //   document.getElementById('competition-checkbox-error2').innerText =
+        //     this.prop === 'Nykstukas'
+        //       ? 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.'
+        //       : 'Norėdami tęsti, turite sutikti su "Pieno Žvaigždės" privatumo politika.';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-checkbox-error2').style.display = 'block';
+        //   document.getElementById('competition-checkbox-error2').style.height = '14px';
 
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-checkbox-error2').innerText = '';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
-        }
-        if (emailInput?.value === '' || emailInput?.value === null) {
-          document.getElementById('competition-email-error').innerText = 'Norint tęsti privaloma užpildyti.';
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-name-error').innerText = '';
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error2').innerText = '';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-email-error').innerText = '';
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   return;
+        // }
+        // if (checkboxChange) {
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
-        }
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
 
-        const isValidEmail = (email) => {
-          // Improved email regex: balanced between correctness and performance
-          const emailRegex = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,62}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
+        //   document.getElementById('competition-email-error').innerText = '';
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
 
-          // Prevent consecutive dots anywhere
-          if (email.includes('..')) {
-            return false;
-          }
+        //   document.getElementById('competition-checkbox-error2').innerText = '';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
+        // }
+        // if (emailInput?.value === '' || emailInput?.value === null) {
+        //   document.getElementById('competition-email-error').innerText = 'Norint tęsti privaloma užpildyti.';
+        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          return emailRegex.test(email);
-        };
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error2').innerText = '';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
-        if (!isValidEmail(emailInput?.value)) {
-          document.getElementById('competition-email-error').innerText = 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
-          document.getElementById('competition-email-error').zIndex = 1;
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-checkbox-error3').innerText = '';
+        //   document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
+        // }
 
-          return;
-        }
+        // const isValidEmail = (email) => {
+        //   // Improved email regex: balanced between correctness and performance
+        //   const emailRegex = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,62}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
+
+        //   // Prevent consecutive dots anywhere
+        //   if (email.includes('..')) {
+        //     return false;
+        //   }
+
+        //   return emailRegex.test(email);
+        // };
+
+        // if (!isValidEmail(emailInput?.value)) {
+        //   document.getElementById('competition-email-error').innerText = 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
+        //   document.getElementById('competition-email-error').zIndex = 1;
+        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+
+        //   return;
+        // }
 
         if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
-          const phoneValue = phone?.value?.trim();
+          const phoneValue = phoneInput?.value?.trim();
           this.loading = true;
 
           const boomioCatchSpinner = document.createElement('div');
@@ -1104,10 +1053,15 @@ ${
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange2,
-              user_email: Elements.getEmailValue(),
-              user_name: Elements.getEmailValue(),
-              game_code: this.game_code,
-              ...(phoneValue ? { phone: phoneValue } : {}), // Include only if phoneValue is non-empty
+              user_email: Elements.isVisible(Elements.emailInput) && Elements.getEmailValue(),
+              user_name:
+                customer === 'Toni'
+                  ? nameInput?.value.trimEnd() + phoneInput?.value
+                  : (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
+              ...(customer.includes('Gamtos Ateitis') && {
+                team: schoolInput.value,
+              }),
+              ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
             })
             .then((response) => {
               boomioCatchSpinner.remove();
@@ -1124,7 +1078,9 @@ ${
                           ? 'Этот е-мейл адрес уже существует. Используйте другой.'
                           : this.language === 'ET'
                             ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                            : this.language === 'ES'
+                              ? 'Este email ya está en uso. Use otro numero.'
+                              : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
                   document.getElementById('competition-name-error').innerText = '';
                   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
@@ -1132,13 +1088,15 @@ ${
                   document.getElementById('competition-name-error').innerText =
                     this.customer === 'Fpro'
                       ? 'This nickname already exists. Please use another one.'
-                      : this.language === 'LV'
-                        ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                        : this.language === 'RU'
-                          ? 'Этот псевдоним уже существует. Используйте другой.'
-                          : this.language === 'ET'
-                            ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                            : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
+                      : this.language === 'ES'
+                        ? 'Este nickname ya está en uso. Use otro nombre.'
+                        : this.language === 'LV'
+                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
+                          : this.language === 'RU'
+                            ? 'Этот псевдоним уже существует. Используйте другой.'
+                            : this.language === 'ET'
+                              ? 'See hüüdnimi on juba olemas. Kasutage teist.'
+                              : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
                   document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
 
                   document.getElementById('competition-email-error').innerText = '';
@@ -1798,7 +1756,7 @@ ${
         13: myCoins >= 1000,
       };
       var unlockCount = 0;
-      for (var i = 0; i < achivesBlocks.length - 1; i += 1) {
+      for (let i = 0; i < achivesBlocks.length - 1; i += 1) {
         if (achives[i]) {
           achivesBlocks[i].classList.remove('boomio-lock');
           unlockCount += 1;
@@ -1834,46 +1792,46 @@ ${
     }
     //localStorage.clear()
     //localStorage.setItem('myCoins', 10000);
-    function payForLife() {
-      if (+myCoins >= 100) {
-        myCoins = +myCoins - 100;
-        localStorage.setItem('myCoins', myCoins);
-        coinSound.play();
-        saveMe();
-      } else {
-        notEnough.play();
-      }
-    }
+    // function payForLife() {
+    //   if (+myCoins >= 100) {
+    //     myCoins = +myCoins - 100;
+    //     localStorage.setItem('myCoins', myCoins);
+    //     coinSound.play();
+    //     saveMe();
+    //   } else {
+    //     notEnough.play();
+    //   }
+    // }
 
-    function Upgrade(boost) {
-      if (boost === 'shield') {
-        if (+shieldCost.innerText <= +myCoins && +shieldLevel < 4) {
-          myCoins = +myCoins - +shieldCost.innerText;
-          shieldLevel = +shieldLevel + 1;
-          localStorage.setItem('shieldLevel', shieldLevel);
-          localStorage.setItem('myCoins', myCoins);
-          storeCoinsText.innerText = +myCoins;
-          mainCoinBlock.innerText = localStorage.getItem('myCoins');
-          coinSound.play();
-          updateUpgrades();
-        } else {
-          notEnough.play();
-        }
-      } else {
-        if (+boosterCost.innerText <= +myCoins && +boosterLevel < 4) {
-          myCoins = +myCoins - +boosterCost.innerText;
-          boosterLevel = +boosterLevel + 1;
-          localStorage.setItem('boosterLevel', boosterLevel);
-          localStorage.setItem('myCoins', myCoins);
-          storeCoinsText.innerText = +myCoins;
-          mainCoinBlock.innerText = localStorage.getItem('myCoins');
-          coinSound.play();
-          updateUpgrades();
-        } else {
-          notEnough.play();
-        }
-      }
-    }
+    // function Upgrade(boost) {
+    //   if (boost === 'shield') {
+    //     if (+shieldCost.innerText <= +myCoins && +shieldLevel < 4) {
+    //       myCoins = +myCoins - +shieldCost.innerText;
+    //       shieldLevel = +shieldLevel + 1;
+    //       localStorage.setItem('shieldLevel', shieldLevel);
+    //       localStorage.setItem('myCoins', myCoins);
+    //       storeCoinsText.innerText = +myCoins;
+    //       mainCoinBlock.innerText = localStorage.getItem('myCoins');
+    //       coinSound.play();
+    //       updateUpgrades();
+    //     } else {
+    //       notEnough.play();
+    //     }
+    //   } else {
+    //     if (+boosterCost.innerText <= +myCoins && +boosterLevel < 4) {
+    //       myCoins = +myCoins - +boosterCost.innerText;
+    //       boosterLevel = +boosterLevel + 1;
+    //       localStorage.setItem('boosterLevel', boosterLevel);
+    //       localStorage.setItem('myCoins', myCoins);
+    //       storeCoinsText.innerText = +myCoins;
+    //       mainCoinBlock.innerText = localStorage.getItem('myCoins');
+    //       coinSound.play();
+    //       updateUpgrades();
+    //     } else {
+    //       notEnough.play();
+    //     }
+    //   }
+    // }
 
     function GameOver() {
       if (gameOverAlreadyHandled) return; // ✅ prevent multiple runs
@@ -2134,7 +2092,7 @@ ${
 
         var isDead = false;
 
-        for (var i = 0; i < objects.length; i++) {
+        for (let i = 0; i < objects.length; i++) {
           objects[i].Update(i);
 
           if (objects[i].dead) {
@@ -2148,7 +2106,7 @@ ${
 
         var hit = false;
 
-        for (var i = 0; i < objects.length; i++) {
+        for (let i = 0; i < objects.length; i++) {
           hit = player.Collide(objects[i]);
 
           if (hit && !player.immune) {
@@ -2218,11 +2176,11 @@ ${
       ctx.imageSmoothingEnabled = true;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (var i = 0; i < bg.length; i += 1) {
+      for (let i = 0; i < bg.length; i += 1) {
         bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, canvas.height * bgRatio, canvas.height));
       }
 
-      for (var i = 0; i < objects.length; i++) {
+      for (let i = 0; i < objects.length; i++) {
         DrawObject(objects[i]);
       }
       ctx.imageSmoothingEnabled = false;
@@ -2248,7 +2206,7 @@ ${
           player.boostTimer = 0;
         }
       }
-      for (var i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
+      for (let i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
         fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, canvas.height * bgRatio, canvas.height));
       }
 

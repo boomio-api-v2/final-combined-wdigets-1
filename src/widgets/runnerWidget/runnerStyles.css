@@ -239,7 +239,7 @@
 }
 .boomio-runner-pause,
 .boomio-runner-gameOver {
-  background: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/popup.png');
+  background: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/popup.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -282,7 +282,7 @@
   width: 150px;
   height: 80px;
   padding: 10px 20px;
-  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/midBtn.png');
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/midBtn.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -326,7 +326,7 @@
   width: 40px;
   height: 40px;
   cursor: pointer;
-  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/boomio-runner-smallBtn.png');
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/smallBtn.png');
 
   background-size: contain;
   background-repeat: no-repeat;
@@ -340,10 +340,10 @@
 .boomio-runner-soundBtn {
   height: 50px;
   width: 50px;
-  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/soundOn.png');
+  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/soundOn.png');
 }
 .boomio-runner-soundBtnOff {
-  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/soundOff.png');
+  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/soundOff.png');
   filter: brightness(0.6) !important;
 }
 
@@ -489,7 +489,7 @@
   animation: fellOnTop 0.6s ease-in;
 }
 .boomio-runner-storeBack {
-  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/store.png');
+  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/store.png');
   height: 80%;
   position: relative;
 }
@@ -502,7 +502,7 @@
   align-items: center;
   top: 30%;
   right: 10%;
-  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/addBook.png');
+  content: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/addBook.png');
   height: 40%;
   cursor: pointer;
   background-size: contain;
@@ -517,7 +517,7 @@
 }
 .boomio-runner-saveMeAdd {
   align-items: center;
-  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/smallBtn.png');
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/smallBtn.png');
   height: 40%;
   cursor: pointer;
   background-size: contain;
@@ -594,7 +594,7 @@
   text-align: left;
 }
 .boomio-runner-upgradeHolder {
-  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/btn.png');
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/btn.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -681,7 +681,7 @@
   cursor: pointer;
   font-family: 'Georama';
   background: none;
-  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/refs/heads/feature/new-testing/images/runningWidget/assets/gui/btn.png');
+  background-image: url('https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/gui/btn.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;

@@ -567,7 +567,64 @@ export class InputRegisterContainer {
       }; top: ${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '124px' : this.customer === 'Nykstukas' ? '304px' : '204px'
       }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
-      <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field"
+
+      <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field"       
+      type="text" maxLength=50 style="display:${
+        this.customer.includes('Gamtos Ateitis') ||
+        this.customer === 'Perlas GO' ||
+        this.customer === 'Nevezis' ||
+        this.customer === 'Magija' ||
+        this.customer === 'Pigu.lt' ||
+        this.customer === 'LemonGym' ||
+        this.customer === 'Orlen' ||
+        this.customer === 'LemonFeel' ||
+        this.customer === 'Tiche' ||
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Novaturas' ||
+        this.customer === 'Apranga' ||
+        this.customer === 'Akropolis' ||
+        this.language === 'EN'
+          ? 'none'
+          : 'block'
+      };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
+        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '135px' : this.customer === 'Nykstukas' ? '315px' : '215px'
+      };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
+        this.customer === 'Barbora' ||
+        this.customer === 'Fpro' ||
+        this.customer === 'Fantazijos' ||
+        this.customer === 'LemonFeel' ||
+        this.customer === 'Tiche' ||
+        this.customer === 'Zemaitijos Pienas' ||
+        this.customer === 'Novaturas' ||
+        this.customer === 'Apranga' ||
+        this.customer === 'LemonGym'
+          ? 'rgba(61, 73, 40, 1)'
+          : '#473F4E'
+      } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+        this.language === 'LV'
+          ? 'Spēlētāja lietotājvārds'
+          : this.language === 'RU'
+            ? 'Псевдоним игрока'
+            : this.language === 'ET'
+              ? 'Mängija hüüdnimi'
+              : this.language === 'ES'
+                ? 'Nombre y apellido'
+                : this.customer === 'Fpro'
+                  ? 'Players full name'
+                  : this.customer === 'Ikea'
+                    ? 'Žaidėjo vardas'
+                    : this.customer === 'Eurovaistine'
+                      ? 'Spēlētāja lietotājvārds'
+                      : this.customer === 'SaludSA'
+                        ? 'Nombre de usuario'
+                        : this.language === 'EN'
+                          ? 'Player nickname'
+                          : this.customer === 'Nykstukas'
+                            ? 'Komandos pavadinimas'
+                            : 'Žaidėjo slapyvardis'
+      }">       
+
+      <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field"        
         maxLength=${this.customer === 'Toni' ? 10 : 50}
        type="email" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
          this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
@@ -627,63 +684,7 @@ export class InputRegisterContainer {
                                : this.customer === 'Orlen'
                                  ? 'Telefono numeris'
                                  : 'Elektroninio pašto adresas'
-       }">
-      <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field" 
-      type="text" maxLength=50 style="display:${
-        this.customer.includes('Gamtos Ateitis') ||
-        this.customer === 'Perlas GO' ||
-        this.customer === 'Nevezis' ||
-        this.customer === 'Magija' ||
-        this.customer === 'Pigu.lt' ||
-        this.customer === 'LemonGym' ||
-        this.customer === 'Orlen' ||
-        this.customer === 'LemonFeel' ||
-        this.customer === 'Tiche' ||
-        this.customer === 'Zemaitijos Pienas' ||
-        this.customer === 'Novaturas' ||
-        this.customer === 'Apranga' ||
-        this.customer === 'Akropolis' ||
-        this.language === 'EN'
-          ? 'none'
-          : 'block'
-      };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '135px' : this.customer === 'Nykstukas' ? '315px' : '215px'
-      };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
-        this.customer === 'Barbora' ||
-        this.customer === 'Fpro' ||
-        this.customer === 'Fantazijos' ||
-        this.customer === 'LemonFeel' ||
-        this.customer === 'Tiche' ||
-        this.customer === 'Zemaitijos Pienas' ||
-        this.customer === 'Novaturas' ||
-        this.customer === 'Apranga' ||
-        this.customer === 'LemonGym'
-          ? 'rgba(61, 73, 40, 1)'
-          : '#473F4E'
-      } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-        this.language === 'LV'
-          ? 'Spēlētāja lietotājvārds'
-          : this.language === 'RU'
-            ? 'Псевдоним игрока'
-            : this.language === 'ET'
-              ? 'Mängija hüüdnimi'
-              : this.language === 'ES'
-                ? 'Nombre y apellido'
-                : this.customer === 'Fpro'
-                  ? 'Players full name'
-                  : this.customer === 'Ikea'
-                    ? 'Žaidėjo vardas'
-                    : this.customer === 'Eurovaistine'
-                      ? 'Spēlētāja lietotājvārds'
-                      : this.customer === 'SaludSA'
-                        ? 'Nombre de usuario'
-                        : this.language === 'EN'
-                          ? 'Player nickname'
-                          : this.customer === 'Nykstukas'
-                            ? 'Komandos pavadinimas'
-                            : 'Žaidėjo slapyvardis'
-      }"> 
-    
+       }">    
              <select id="city-select" class="boomio-competition-city-select"
     style="display:${this.customer.includes('Gamtos Ateitis') ? 'block' : 'none'};
            width:calc(100% - 54px); margin:10px; padding:8px; border:1px solid #ccc; border-radius:35px;
@@ -704,7 +705,7 @@ export class InputRegisterContainer {
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
       }"></div>
 
-    <input id="boomio-competition-phone-input-field" class="boomio-competition-phone-input-field"
+    <input id="boomio-competition-phone-input-field" class="boomio-competition-phone-input-field"    
     maxLength=${this.customer === 'Toni' ? 10 : 50}
     inputmode="tel" 
   type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${

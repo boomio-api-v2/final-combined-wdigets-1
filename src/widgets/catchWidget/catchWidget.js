@@ -417,7 +417,7 @@ class CatchGame {
                 schoolSelect.appendChild(defaultOption);
                 return;
               }
-              console.log('Selected city:', selectedCity);
+
               const schools = (this.teams[selectedCity] || []).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
               if (schools.length === 0) {
                 const noSchoolOpt = document.createElement('option');
@@ -989,7 +989,6 @@ class CatchGame {
               document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
               return;
             }
-            console.log(citySelect?.value);
 
             if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni' && this.customer !== 'Orlen') {
               document.getElementById('competition-email-error').innerText =

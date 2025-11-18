@@ -7,23 +7,23 @@ export const gameIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets
 
 export const frameSvg = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/puzzle/frame.png?raw=true';
 
-export const WhackHammer = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hammer_02.png?raw=true';
+export const WhackHammer = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/Hammer_02.png';
 
-export const WhackMole00 = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Up-from-ground-mole-faster140pct.gif?raw=true';
+export const WhackMole00 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/Up-from-ground-mole-faster140pct.gif';
 
 export const WhackMole = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/whackWidget/frame_22_delay-0.03s.gif?raw=true';
 
-export const WhackMole01Reversed = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Down-to-ground-mole-faster140pct.gif?raw=true';
+export const WhackMole01Reversed = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/Down-to-ground-mole-faster140pct.gif';
 
-export const WhackMoleHit = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/fix/whack-speed-and-gifs/images/whackWidget/Hit-and-dizzy-mole-faster140pct.gif?raw=true';
+export const WhackMoleHit = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/Hit-and-dizzy-mole-faster140pct.gif';
 
-export const dotImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/0753f565c8eeb594222696c37839677a8738f41d/images/dotImage.svg';
+export const dotImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/dotImage.svg';
 
 export const puzzleIconsList = [
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/f944596b1d3e8a4992e37ca44bc1e369d1784e8e/images/puzzle/puzzle-1.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/f944596b1d3e8a4992e37ca44bc1e369d1784e8e/images/puzzle/puzzle-2.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/f944596b1d3e8a4992e37ca44bc1e369d1784e8e/images/puzzle/puzzle-3.svg',
-  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/f944596b1d3e8a4992e37ca44bc1e369d1784e8e/images/puzzle/puzzle-4.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/puzzle/puzzle-1.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/puzzle/puzzle-2.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/puzzle/puzzle-3.svg',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/puzzle/puzzle-4.svg',
 ];
 
 export const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';
@@ -32,13 +32,11 @@ export const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/ches
 export const openedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest3.png?raw=true';
 export const cloudImage = 'https://github.com/kbnvch/boomio/blob/main/expl5.png?raw=true';
 
-export const closeImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/273ccfb7bc0752badbdc88389a5b5b47e183a03e/images/close.svg';
-
 export const oldCouponImage = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/coupon.png?raw=true';
 
 export const iceHammerImage = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';
 
-export const winningConfetinGif = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/winningConfetinGif.gif?raw=true';
+export const winningConfetinGif = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/winningConfetinGif.gif';
 
 export const winningAnimationGif = 'https://i.ibb.co/C0YvY06/confetti-25-1.gif';
 
@@ -99,5 +97,5 @@ export const drip5 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/drp5.p
 export const hand1 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/rr1.png?raw=true';
 export const hand2 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/rr2.png?raw=true';
 
-export const BoomioBubblesGif = ['https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/feature/claw-machine-auto/images/Bubbles/Boomio_bubble_game.gif?raw=true'];
+export const BoomioBubblesGif = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/Bubbles/Boomio_bubble_game.gif'];
 export const BoomioBubbles = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/Bubbles/Barbora_Logo.png?raw=true'];
