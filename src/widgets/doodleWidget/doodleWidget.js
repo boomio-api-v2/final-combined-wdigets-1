@@ -82,6 +82,7 @@ const getBrandColor = (customer, language) => {
   if (customer === 'Magija') return '#194898';
   if (language === 'LV') return '#F40027';
   if (customer === 'Toni') return '#000F9F';
+  if (customer === 'Toni') return '#323136';
   return '#045222'; // Default color
 };
 
@@ -111,6 +112,22 @@ const toggleBackgroundBlur = (show, customer, language) => {
     setTimeout(() => {
       blur.style.display = 'none';
     }, 1000);
+  }
+};
+
+const setGameContainerStyle = (customer) => {
+  const gameContainer = document.getElementById('game-container');
+
+  if (customer === 'Pigu.lt') {
+    gameContainer.style.backgroundColor = 'black';
+  } else {
+    gameContainer.style.backgroundColor = window.innerWidth <= 768 ? 'black' : '';
+  }
+
+  if (customer === 'Elesen') {
+    gameContainer.style.backdropFilter = 'blur(1px)';
+  } else {
+    gameContainer.style.backdropFilter = 'blur(10px)';
   }
 };
 
@@ -262,13 +279,7 @@ class DoodleWidget {
       );
     })();
 
-    if (this.customer === 'Pigu.lt') {
-      document.querySelector('.game-container').style.backgroundColor = 'black';
-    } else {
-      document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : '';
-    }
-
-    this.config = localStorageService.getDefaultConfig();
+    setGameContainerStyle(this.customer);
 
     this.createHandlers();
 
