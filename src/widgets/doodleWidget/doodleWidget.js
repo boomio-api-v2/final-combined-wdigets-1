@@ -125,6 +125,7 @@ const setGameContainerStyle = (customer) => {
   }
 
   if (customer === 'Elesen') {
+    console.log('Setting backdrop filter for Elesen');
     gameContainer.style.backdropFilter = 'blur(1px)';
   } else {
     gameContainer.style.backdropFilter = 'blur(10px)';
