@@ -85,7 +85,7 @@ const getBrandColor = (customer, language, campaignUrlOrCurrentPage) => {
   if (language === 'LV') return '#F40027';
   if (customer === 'Toni') return '#000F9F';
   if (customer === 'Elesen') {
-    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen.lt')) return '#323136';
+    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen')) return '#F0A901';
     else return '#FCC802';
   }
 
@@ -149,8 +149,8 @@ const getBackground = (customer, language, campaignUrlOrCurrentPage) => {
     return language === 'LV' ? backgroundRedAkropolisLV : backgroundRedAkropolis;
   }
   if (customer === 'Barbora') return backgroundRed;
-  if (customer === 'Elesen') {    
-    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen.lt')) return backgroundElesenLT;
+  if (customer === 'Elesen') {
+    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen')) return backgroundElesenLT;
     else return backgroundElesenLV;
   }
 
@@ -211,7 +211,7 @@ const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
   }
   if (customer === 'Barbora') return mainImage;
   if (customer === 'Elesen') {
-    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen.lt')) return mainElesenLT;
+    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen')) return mainElesenLT;
     else return mainElesenLV;
   }
 
