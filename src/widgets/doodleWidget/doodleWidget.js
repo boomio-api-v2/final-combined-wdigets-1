@@ -115,6 +115,22 @@ const toggleBackgroundBlur = (show, customer, language) => {
   }
 };
 
+const setGameContainerStyle = (customer) => {
+  const gameContainer = document.getElementById('game-container');
+
+  if (customer === 'Pigu.lt') {
+    gameContainer.style.backgroundColor = 'black';
+  } else {
+    gameContainer.style.backgroundColor = window.innerWidth <= 768 ? 'black' : '';
+  }
+
+  if (customer === 'Elesen') {
+    gameContainer.style.backdropFilter = 'blur(1px)';
+  } else {
+    gameContainer.style.backdropFilter = 'blur(10px)';
+  }
+};
+
 const getBackground = (customer, language) => {
   if (customer === 'Pigu.lt') return BackgroundPigu;
   if (customer === 'Vilvi') return backgroundVilvi;
@@ -263,13 +279,7 @@ class DoodleWidget {
       );
     })();
 
-    if (this.customer === 'Pigu.lt') {
-      document.querySelector('.game-container').style.backgroundColor = 'black';
-    } else {
-      document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : '';
-    }
-
-    this.config = localStorageService.getDefaultConfig();
+    setGameContainerStyle(this.customer);
 
     this.createHandlers();
 
