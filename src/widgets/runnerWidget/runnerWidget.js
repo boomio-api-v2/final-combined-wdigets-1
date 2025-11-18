@@ -1,8 +1,3 @@
-import './runnerStyles.css';
-import PxLoader from './scripts/PxLoader.js';
-import './scripts/PxLoaderImage.js'; // Import to register addImage method
-import { localStorageService, widgetHtmlService, boomioService } from '@/services';
-import { Elements } from '../helpers/HtmlElementsHelper';
 import {
   star,
   newRecord,
@@ -35,12 +30,21 @@ import {
   runnerbackgroundDemo,
   close,
 } from './constants';
+import './runnerStyles.css';
+import PxLoader from './scripts/PxLoader.js';
+import './scripts/PxLoaderImage.js'; // Import to register addImage method
+import { localStorageService, widgetHtmlService, boomioService } from '@/services';
+import { Elements } from '../helpers/HtmlElementsHelper';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
-import { InputValidator } from '../helpers/InputRegisterContainerValidation.js';
+//import { InputValidator } from '../helpers/InputRegisterContainerValidation.js';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { ShareContainer } from '../helpers/ShareContainer';
+
+const getBrandColor = (customer, language) => {
+  return '#313131';
+};
 
 class runnerWidget {
   static ctx;
@@ -58,6 +62,9 @@ class runnerWidget {
     this.checkboxChange3 = false;
     this.scoreTable = {};
     this.scoreTableContainerInstance;
+    this.isMobile = window.innerWidth <= 1280;
+    this.isPortrait = window.innerHeight > window.innerWidth;
+    this.showMobileControls = this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' || this.customer === 'Toni';
 
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
@@ -87,7 +94,7 @@ class runnerWidget {
     </div>`}
 <div id="fullscreenButton" style="height:36px;display:none; width:200px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 5; background: white; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px;">
   <div style="margin-top:7px; text-align: center; color: rgba(61, 73, 40, 1); font-size: 22px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word; cursor:pointer;">${
-    this.language ? 'Start' : 'Pradėti'
+    this.language === 'LT' ? 'Pradėti' : 'Start'
   }</div>
 </div>
 
@@ -132,10 +139,10 @@ class runnerWidget {
     <div class="boomio-runner-wrapper boomio-screenRatio">
       <div class="boomio-runner-controlBlock">
         ${this.language === 'EN' ? 'Rules' : 'Taisyklės'}
-        <img class='boomio-runner-controlButton' src="${this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' ? upDentsu : up}" alt="">
-        <div><img class='boomio-runner-controlButton' src="${this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' ? leftDentsu : left}" alt="">
-          <img class='boomio-runner-controlButton' src="${this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' ? downDentsu : right}" alt="">
-          <img class='boomio-runner-controlButton' src="${this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' ? rightDentsu : down}" alt="">
+        <img class='boomio-runner-controlButton' src="${this.isMobile ? upDentsu : up}" alt="">
+        <div><img class='boomio-runner-controlButton' src="${this.isMobile ? leftDentsu : left}" alt="">
+          <img class='boomio-runner-controlButton' src="${this.isMobile ? downDentsu : right}" alt="">
+          <img class='boomio-runner-controlButton' src="${this.isMobile ? rightDentsu : down}" alt="">
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}; height: 668px;">
@@ -143,7 +150,7 @@ class runnerWidget {
 
       <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" style="display:none" alt="">
     
-<div class="boomio-runner-score-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#313131'};border-radius:35px">
+<div class="boomio-runner-score-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(this.customer, this.language)};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
 <img src=${star} alt="Image Description" style="margin-right:-10px;width: 25px; height: 25px;margin-top:15px"></img>
 
@@ -151,9 +158,9 @@ class runnerWidget {
 </div>
 
 
-<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${'#313131'};border-radius:35px">
+<div class="boomio-runner-life-input-container boomio-hide" style="box-sizing:border-box;display:block;width:120px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(this.customer, this.language)};border-radius:35px">
 <div style="width: 148px;top:-15px;height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
-<img src=${life} alt="Image Description" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
+<img src=${life} alt="Life image" style="margin-left:-10px;width: 50px; height: 50px;margin-top:15px"></img>
 
 <div style="text-align: center; color: white; font-size: 16px; font-family:${'Georama'} ;font-weight: 900; word-wrap: break-word;position:absolute;left:35px;top:17px;z-index:3;line-height:30px;" id="currentLife">3/3</div></div>
 </div>
@@ -164,13 +171,13 @@ class runnerWidget {
     ${new InputContainer(this.customer, 'runner').createInputContainerDiv('runner').outerHTML}
 
 <div class="boomio-runner-leftButtonsBlock boomio-hide">
-  <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' ? leftDentsu : left}" alt="">
-  <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' ? rightDentsu : right}" alt="">
+  <img id="mobileLeftButton" class="boomio-runner-mobileControlButt" src="${this.isMobile ? leftDentsu : left}" alt="">
+  <img id="mobileRightButton" class="boomio-runner-mobileControlButt" src="${this.isMobile ? rightDentsu : right}" alt="">
 </div>
 
 <div class="boomio-runner-rightButtonsBlock boomio-hide">
-  <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' ? upDentsu : up}" alt="">
-  <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${this.customer === 'Dentsu' || this.customer === 'Nykstukas' || this.customer === 'demo-20' ? downDentsu : down}" alt="">
+  <img id="mobileUpButton" class="boomio-runner-mobileControlButt" src="${this.isMobile ? upDentsu : up}" alt="">
+  <img id="mobileDownButton" class="boomio-runner-mobileControlButt" src="${this.isMobile ? downDentsu : down}" alt="">
 </div>
 
 
@@ -673,6 +680,21 @@ ${
     }
 
     player = new GameObject(runSprites[0], 0.2 * canvas.width, canvas.height - wrapperBlock.offsetHeight / 2.5, true);
+
+    const Resize = () => {
+      canvas.width = wrapperBlock.offsetWidth;
+      canvas.height = wrapperBlock.offsetHeight;
+
+      // if (!this.isPortrait) {
+      //   document.getElementById('turnLandscape').style.display = 'none !important';
+      // }
+
+      // Adjust player Y-position to match new height
+      if (player && player.isPlayer) {
+        player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
+      }
+    };
+
     window.addEventListener('resize', Resize);
 
     let orientationTimeout;
@@ -683,9 +705,7 @@ ${
       clearTimeout(orientationTimeout);
 
       orientationTimeout = setTimeout(() => {
-        const isPortrait = window.innerHeight > window.innerWidth;
-
-        if (isPortrait) {
+        if (this.isPortrait) {
           if (!stopGame) {
             console.log('Game paused because device is in portrait');
             Stop();
@@ -701,7 +721,7 @@ ${
       }, 100); // wait 200ms after rotation
     };
 
-    window.addEventListener('orientationchange', checkOrientationAndPause);
+    //window.addEventListener('orientationchange', checkOrientationAndPause);
     window.addEventListener('resize', adjustScaleAndPosition);
     document.addEventListener('DOMContentLoaded', adjustScaleAndPosition);
 
@@ -824,20 +844,21 @@ ${
             }
           }, 2500); //intro speed
 
-          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-          if (isIOS || window.innerWidth >= 920) {
-            showRules();
-          } else {
-            const fullscreenBtn = document.getElementById('fullscreenButton');
-            fullscreenBtn.style.display = 'block';
-            fullscreenBtn.addEventListener('click', () => {
-              requestFullscreen();
-              setTimeout(() => {
-                showRules();
-                fullscreenBtn.style.display = 'none';
-              }, 100);
-            });
-          }
+          showRules();
+          // const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          // if (isIOS || window.innerWidth >= 920) {
+          //   showRules();
+          // } else {
+          //   const fullscreenBtn = document.getElementById('fullscreenButton');
+          //   fullscreenBtn.style.display = 'block';
+          //   fullscreenBtn.addEventListener('click', () => {
+          //     requestFullscreen();
+          //     setTimeout(() => {
+          //       showRules();
+          //       fullscreenBtn.style.display = 'none';
+          //     }, 100);
+          //   });
+          // }
 
           const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');
 
@@ -947,79 +968,12 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!InputValidator.validateRegistrationInputs()) {
-          return;
-        }
-
-        // if (!checkboxChange) {
-        //   document.getElementById('competition-checkbox-error2').innerText =
-        //     this.prop === 'Nykstukas'
-        //       ? 'Norėdami tęsti, turite sutikti su akcijos taisyklėmis, Dentsu privatumo politika bei gauti Dentsu ir Boomio naujienas.'
-        //       : 'Norėdami tęsti, turite sutikti su "Pieno Žvaigždės" privatumo politika.';
-        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
-        //   document.getElementById('competition-checkbox-error2').style.display = 'block';
-        //   document.getElementById('competition-checkbox-error2').style.height = '14px';
-
-        //   document.getElementById('competition-name-error').innerText = '';
-
-        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-        //   document.getElementById('competition-email-error').innerText = '';
-        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-        //   document.getElementById('competition-checkbox-error').innerText = '';
-        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-        //   return;
-        // }
-        // if (checkboxChange) {
-        //   document.getElementById('competition-name-error').innerText = '';
-
-        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-        //   document.getElementById('competition-email-error').innerText = '';
-        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-        //   document.getElementById('competition-checkbox-error').innerText = '';
-        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-
-        //   document.getElementById('competition-checkbox-error2').innerText = '';
-        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
-        // }
-        // if (emailInput?.value === '' || emailInput?.value === null) {
-        //   document.getElementById('competition-email-error').innerText = 'Norint tęsti privaloma užpildyti.';
-        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-        //   document.getElementById('competition-name-error').innerText = '';
-
-        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-        //   document.getElementById('competition-checkbox-error').innerText = '';
-        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-        //   document.getElementById('competition-checkbox-error2').innerText = '';
-        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
-
-        //   document.getElementById('competition-checkbox-error3').innerText = '';
-        //   document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
-        // }
-
-        // const isValidEmail = (email) => {
-        //   // Improved email regex: balanced between correctness and performance
-        //   const emailRegex = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,62}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
-
-        //   // Prevent consecutive dots anywhere
-        //   if (email.includes('..')) {
-        //     return false;
-        //   }
-
-        //   return emailRegex.test(email);
-        // };
-
-        // if (!isValidEmail(emailInput?.value)) {
-        //   document.getElementById('competition-email-error').innerText = 'Neteisingas el. pašto formatas.'; // Incorrect email format in Lithuanian
-        //   document.getElementById('competition-email-error').zIndex = 1;
-        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-
+        //InputValidator.validateRegistrationInputs();
+        // if (!InputValidator.validateRegistrationInputs()) {
         //   return;
         // }
 
         if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
-          const phoneValue = phoneInput?.value?.trim();
           this.loading = true;
 
           const boomioCatchSpinner = document.createElement('div');
@@ -1389,13 +1343,13 @@ ${
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
 
-      if (window.innerWidth > window.innerHeight) {
-        document.getElementById('turnLandscape').style.display = 'none !important';
-      } else {
-        document.getElementById('turnLandscape').style.display = 'flex !important';
-      }
+      // if (!this.isPortrait) {
+      //   document.getElementById('turnLandscape').style.display = 'none !important';
+      // } else {
+      //   document.getElementById('turnLandscape').style.display = 'flex !important';
+      // }
 
-      document.getElementById('turnLandscape').style.zIndex = 10;
+      //document.getElementById('turnLandscape').style.zIndex = 10;
       if (!gameStarted) {
         let canvas = document.getElementById('boomio-runner-canvas');
 
@@ -1488,15 +1442,14 @@ ${
           console.log('started');
           const toggleHide = (block) => block.classList.toggle('boomio-hide');
 
-          const isPortrait = window.innerHeight > window.innerWidth;
-
-          if (isPortrait) {
-            console.log('Starting paused because device is in portrait');
-            Stop(); // don't start moving
-          } else {
-            console.log('Starting game because device is in landscape');
-            Start(); // start moving
-          }
+          Start(); // start moving
+          // if (this.isPortrait) {
+          //   console.log('Starting paused because device is in portrait');
+          //   Stop(); // don't start moving
+          // } else {
+          //   console.log('Starting game because device is in landscape');
+          //   Start(); // start moving
+          // }
 
           ResetGlobalVariables();
           document.addEventListener('keydown', keyRightHandler, false);
@@ -1614,20 +1567,6 @@ ${
     initializeGameLoader();
 
     updateUpgrades();
-
-    function Resize() {
-      canvas.width = wrapperBlock.offsetWidth;
-      canvas.height = wrapperBlock.offsetHeight;
-
-      if (window.innerWidth > window.innerHeight) {
-        document.getElementById('turnLandscape').style.display = 'none !important';
-      }
-
-      // Adjust player Y-position to match new height
-      if (player && player.isPlayer) {
-        player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
-      }
-    }
 
     highScoreBlock.innerText = highScore;
     mainCoinBlock.innerText = myCoins;
