@@ -25,7 +25,7 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
-    this.language = this.config.language ? this.config.language : 'EN';
+    this.language = this.config.language;
 
     this.render();
   }
@@ -35,15 +35,11 @@ export class CompetitionCodeScoreTableLastContainerPigu {
     this.scoreTable = scoreTable;
     this.currentScore = currentScore;
 
-    this.language = this.config.language ? this.config.language : 'EN';
-    this.config = localStorageService.getDefaultConfig();
-
     this.updateVisuals();
   }
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
     const scoreboard = this.scoreTable.scoreboard || [];
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
