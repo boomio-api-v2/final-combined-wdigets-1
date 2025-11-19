@@ -143,5 +143,5 @@ export const backgroundBoomio = 'https://raw.githubusercontent.com/boomio-api-v2
 export const mainElesenLT = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/main.png';
 export const backgroundElesenLT = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/background.png';
 
-export const mainElesenLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/main.png';
-export const backgroundElesenLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/background.png';
+export const mainElesenLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/mainLV.png';
+export const backgroundElesenLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/backgroundLV.png';

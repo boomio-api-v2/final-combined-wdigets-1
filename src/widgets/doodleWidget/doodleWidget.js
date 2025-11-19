@@ -77,17 +77,16 @@ import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/Competiti
 import { ShareContainer } from '../helpers/ShareContainer';
 import { Elements } from '../helpers/HtmlElementsHelper';
 
-const getBrandColor = (customer, language, campaignUrlOrCurrentPage) => {
+const getBrandColor = (customer, language) => {
   if (customer === 'Vilvi') return '#45A2BF';
   if (customer === 'Pigu.lt') return '#FD61FE';
   if (customer === 'Perlas GO') return '#19AA82';
   if (customer === 'Magija') return '#194898';
-  if (language === 'LV') return '#F40027';
   if (customer === 'Toni') return '#000F9F';
   if (customer === 'Elesen') {
-    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen')) return '#F0A901';
-    else return '#FCC802';
+    return language === 'LT' ? '#F0A901' : '#FCC802';
   }
+  if (language === 'LV') return '#F40027';
 
   return '#045222'; // Default color
 };
@@ -137,7 +136,7 @@ const setGameContainerStyle = (customer) => {
   }
 };
 
-const getBackground = (customer, language, campaignUrlOrCurrentPage) => {
+const getBackground = (customer, language) => {
   if (customer === 'Pigu.lt') return BackgroundPigu;
   if (customer === 'Vilvi') return backgroundVilvi;
   if (customer === 'Perlas GO') return backgroundPerlasGo;
@@ -150,8 +149,7 @@ const getBackground = (customer, language, campaignUrlOrCurrentPage) => {
   }
   if (customer === 'Barbora') return backgroundRed;
   if (customer === 'Elesen') {
-    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen')) return backgroundElesenLT;
-    else return backgroundElesenLV;
+    return language === 'LT' ? backgroundElesenLT : backgroundElesenLV;
   }
 
   return backgroundBoomio;
@@ -211,8 +209,7 @@ const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
   }
   if (customer === 'Barbora') return mainImage;
   if (customer === 'Elesen') {
-    if (!campaignUrlOrCurrentPage || campaignUrlOrCurrentPage?.includes('elesen')) return mainElesenLT;
-    else return mainElesenLV;
+    return language === 'LT' ? mainElesenLT : mainElesenLV;
   }
 
   return mainBoomio;
@@ -304,7 +301,7 @@ class DoodleWidget {
       return;
     }
 
-    canvas.style.background = `url(${getBackground(this.customer, this.language, this.campaignUrlOrCurrentPage)}) center`;
+    canvas.style.background = `url(${getBackground(this.customer, this.language)}) center`;
 
     DoodleWidget.ctx = canvas.getContext('2d');
 
@@ -1495,7 +1492,7 @@ ${(() => {
 </div>
 
 
-    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(this.customer, this.language, this.campaignUrlOrCurrentPage)};border-radius:35px">
+    <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(this.customer, this.language)};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description" style="width: 20px; height: 20px;margin-top:18px"></img>
 
