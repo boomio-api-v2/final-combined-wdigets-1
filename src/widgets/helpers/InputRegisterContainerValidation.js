@@ -362,12 +362,12 @@ class InputRegisterContainerValidation {
     }
 
     if (
-      Elements.isVisible(Elements.nameError) ||
-      Elements.isVisible(Elements.emailError) ||
-      Elements.isVisible(Elements.phoneError) ||
-      Elements.isVisible(Elements.competitionCheckboxError) ||
-      Elements.isVisible(Elements.competitionCheckboxError2) ||
-      Elements.isVisible(Elements.competitionCheckboxError3)
+      Elements.hasVisibleText(Elements.nameError) ||
+      Elements.hasVisibleText(Elements.emailError) ||
+      Elements.hasVisibleText(Elements.phoneError) ||
+      Elements.hasVisibleText(Elements.competitionCheckboxError) ||
+      Elements.hasVisibleText(Elements.competitionCheckboxError2) ||
+      Elements.hasVisibleText(Elements.competitionCheckboxError3)
     ) {
       return false;
     }
