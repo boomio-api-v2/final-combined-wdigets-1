@@ -1,11 +1,11 @@
-export const closeIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/close.png?raw=true';
-export const giftImage = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift_img.png?raw=true';
-export const gifIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/gift.png?raw=true';
-export const couponsDiscountIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/couponsDiscount.png?raw=true';
-export const discountIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/discount.png?raw=true';
-export const gameIcon = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/startWidget/game.png?raw=true';
+export const closeIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/close.png';
+export const giftImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/gift_img.png';
+export const gifIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/gift.png';
+export const couponsDiscountIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/couponsDiscount.png';
+export const discountIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/discount.png';
+export const gameIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/game.png';
 
-export const frameSvg = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/puzzle/frame.png?raw=true';
+export const frameSvg = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/puzzle/frame.png';
 
 export const WhackHammer = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/Hammer_02.png';
 
@@ -32,13 +32,13 @@ export const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/ches
 export const openedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest3.png?raw=true';
 export const cloudImage = 'https://github.com/kbnvch/boomio/blob/main/expl5.png?raw=true';
 
-export const oldCouponImage = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/coupon.png?raw=true';
+export const oldCouponImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/coupon.png';
 
-export const iceHammerImage = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/hammer.png?raw=true';
+export const iceHammerImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/hammer.png';
 
 export const winningConfetinGif = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/winningConfetinGif.gif';
 
-export const winningAnimationGif = 'https://i.ibb.co/C0YvY06/confetti-25-1.gif';
+export const winningAnimationGif = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/winningConfetinGif.gif';
 
 export const crate1 = 'https://github.com/kbnvch/crates/blob/main/aaa1.png?raw=true';
 export const crate2 = 'https://github.com/kbnvch/crates/blob/main/aaa2.png?raw=true';

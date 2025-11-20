@@ -1,22 +1,22 @@
 export const icePieceImages = [
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step7.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step6.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step5.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step4.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step3.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/static/step2.png?raw=true',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/static/step7.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/static/step6.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/static/step5.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/static/step4.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/static/step3.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/static/step2.png',
 ];
 
 export const icePieceShadowImages = [
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step2.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step3.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step4.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step5.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step6.png?raw=true',
-  'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/shadow/step7.png?raw=true',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/shadow/step2.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/shadow/step3.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/shadow/step4.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/shadow/step5.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/shadow/step6.png',
+  'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/shadow/step7.png',
 ];
 
-export const iceBlockImage = 'https://github.com/boomio-api-v2/final-combined-wdigets-1/blob/main/images/iceWidget/ice-block.png?raw=true';
+export const iceBlockImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/ice-block.png';
 
 export const bangImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/bang.svg';
 
