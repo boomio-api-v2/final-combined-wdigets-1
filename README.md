@@ -79,9 +79,8 @@ Assets (images) are loaded into different branches under this repository. Be car
 Unique branch / revision identifiers found in raw.githubusercontent URLs for repository boomio-api-v2/final-combined-wdigets-1:
 
 ```
-feature/new-testing
-refs/heads/feature/new-testing
 feature/qr-remove
 feature/whack-testing
+feature/testing-qr
 main
 ```
