@@ -147,7 +147,7 @@ export const item10pegasas = 'https://raw.githubusercontent.com/boomio-api-v2/fi
 export const item11pegasas = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pegasas/DidYouKnow/pegasas11.png';
 
 export const item12pegasas = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Pegasas/DidYouKnow/pegasas12.png';
-export const close = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/whiteClose.png'];
+export const close = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/whiteClose.png'];
 
 export const closeDidYouKnow = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/PiguValentine/close.png';
 

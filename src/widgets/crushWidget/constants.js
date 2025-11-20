@@ -1,4 +1,4 @@
-export const close = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/whiteClose.png'];
+export const close = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/whiteClose.png'];
 export const blue = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/crushWidget/graphics/blue-candy.png';
 
 export const green = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/crushWidget/graphics/green-candy.png';
@@ -31,12 +31,12 @@ export const newRecordRU = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const newRecordLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordLV.png?raw=true';
 
-export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
+export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEn.png?raw=true';
 export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxCheck.png';
 
 export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
-export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/star.png?raw=true';
-export const stopwatch = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/stopwatch.png?raw=true';
+export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/lemonGym/star.png?raw=true';
+export const stopwatch = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/lemonGym/stopwatch.png?raw=true';
 
 export const crushElement1Nevezis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/crushWidget/Nevezis/crushElement1.png';
 export const crushElement2Nevezis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/crushWidget/Nevezis/crushElement2.png';

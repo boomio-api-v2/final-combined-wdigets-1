@@ -1,12 +1,12 @@
-export const close = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/flappyWidget/whiteClose.png'];
+export const close = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/whiteClose.png'];
 
 export const scoreImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Barbora/Score_element_red.png';
 
-export const backgroundRed = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Barbora/BarboraBackgroundDoodle.png?raw=true';
+export const backgroundRed = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Barbora/BarboraBackgroundDoodle.png?raw=true';
 
 export const couponBackground = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Barbora/Background_Barbora_New.png?raw=true';
 
-export const mainImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Barbora/BarboraDoodleMain.png?raw=true';
+export const mainImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Barbora/BarboraDoodleMain.png?raw=true';
 
 export const intro = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Barbora/BarboraDoodleIntroBday.gif?raw=true';
 
@@ -27,29 +27,29 @@ export const newRecordRU = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const newRecordLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordLV.png?raw=true';
 
-export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
+export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEn.png?raw=true';
 
 export const newRecordEs = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEs.png';
 
-export const mainImageAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/game2.png?raw=true';
+export const mainImageAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Akropolis/game2.png?raw=true';
 
-export const backgroundRedAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/background.png?raw=true';
+export const backgroundRedAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Akropolis/background.png?raw=true';
 
-export const introAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/Akropolis/intro.gif?raw=true';
+export const introAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Akropolis/intro.gif?raw=true';
 
-export const mainImageAkropolisLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/AkropolisLV/game.png?raw=true';
+export const mainImageAkropolisLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/AkropolisLV/game.png?raw=true';
 
-export const backgroundRedAkropolisLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/AkropolisLV/background.png?raw=true';
+export const backgroundRedAkropolisLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/AkropolisLV/background.png?raw=true';
 
-export const introAkropolisLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/AkropolisLV/intro.gif?raw=true';
+export const introAkropolisLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/AkropolisLV/intro.gif?raw=true';
 
-export const Controlls = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/Controlls.png';
+export const Controlls = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/Controlls.png';
 
-export const ControlsDesktop = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/catchWidget/ControlsDesktop.png';
+export const ControlsDesktop = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/ControlsDesktop.png';
 
-export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/star.png?raw=true';
+export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/lemonGym/star.png?raw=true';
 
-export const jumpEffect = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/doodleWidget/jumpEffect.gif?raw=true';
+export const jumpEffect = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/jumpEffect.gif?raw=true';
 
 export const mainImagePigu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/pigu/game.png?raw=true';
 
