@@ -76,7 +76,9 @@ export class InputRegisterContainer {
                                 ? '¡Regístrate para jugar!'
                                 : this.language === 'FI'
                                   ? 'REKISTERÖIDY PELAAMAAN'
-                                  : 'Registruokis Žaisti'
+                                  : this.language === 'LT'
+                                    ? 'Registruokis Žaisti'
+                                    : 'Register to Play'
       }</div>
           <div style="height: 124px; top:${this.customer === 'Toni' ? '60px' : '20px'}; position: relative; text-align:${
             this.customer === 'Ikea' ? 'start' : 'center'
@@ -98,12 +100,12 @@ export class InputRegisterContainer {
                           : this.language === 'PL'
                             ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
                             : this.language === 'FI'
-                              ? ' Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
-                              : this.customer === 'Perlas GO'
+                              ? 'Oletko jo rekisteröitynyt? Käytä samaa sähköpostia</br> ja paranna tulostasi!'
+                              : this.language === 'LT'
                                 ? 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
                                 : this.customer === 'Orlen'
                                   ? 'Jau registravaisi? Naudok tą patį telefono numerį </br> toliau gerinant rezultatą!'
-                                  : 'Jau registravaisi? Naudok tą patį el. paštą </br> toliau gerinant rezultatą!'
+                                  : 'Have you already registered? Use the same email address to keep improving your result!'
           } 
     </div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
@@ -118,19 +120,11 @@ export class InputRegisterContainer {
                 ? 'EDASI'
                 : this.language === 'ES'
                   ? 'SIGUIENTE'
-                  : this.customer === 'Fpro'
-                    ? 'NEXT'
-                    : this.customer === 'SaludSA'
-                      ? 'SIGUIENTE'
-                      : this.customer === 'Ikea'
-                        ? 'Toliau'
-                        : this.customer === 'Eurovaistine'
-                          ? 'TĀLĀK'
-                          : this.language === 'EN'
-                            ? 'CONTINUE'
-                            : this.language === 'FI'
-                              ? 'SEURAAVA'
-                              : 'TOLIAU'
+                  : this.language === 'FI'
+                    ? 'SEURAAVA'
+                    : this.language === 'LT'
+                      ? 'TOLIAU'
+                      : 'CONTINUE'
         }</div>
       </div>
        <div id="boomio-privacyCheckbox2" class="boomio-privacyCheckbox2" style=";cursor:${this.customer === 'Fpro' ? 'auto' : 'pointer'} ;left: 34px; top: ${
@@ -153,6 +147,7 @@ export class InputRegisterContainer {
          this.customer === 'Novaturas' ||
          this.customer === 'Apranga' ||
          this.customer === 'Toni' ||
+         this.customer === 'Elesen' ||
          (this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU'))
            ? 'inline-flex'
            : 'none'
@@ -231,9 +226,17 @@ export class InputRegisterContainer {
                                                                     ? 'I have read and agree with game rules and instructions.'
                                                                     : this.customer === 'Pigu.lt' && this.language === 'ET'
                                                                       ? 'Olen tutvunud ja nõustun mängureeglite ning juhistega.'
-                                                                      : this.customer === 'Apranga'
-                                                                        ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
-                                                                        : 'Sutinku gauti naujienlaiškius.'
+                                                                      : this.customer === 'Elesen' && this.language === 'LT'
+                                                                        ? 'Sutinku gauti įmonės naujienlaiškius.'
+                                                                        : this.customer === 'Elesen' && this.language === 'LV'
+                                                                          ? 'Piekrītu saņemt uzņēmuma jaunumus.'
+                                                                          : this.customer === 'Elesen' && this.language === 'ET'
+                                                                            ? 'Nõustun saama ettevõtte uudiskirju.'
+                                                                            : this.customer === 'Apranga'
+                                                                              ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
+                                                                              : this.language === 'LT'
+                                                                                ? 'Sutinku gauti naujienlaiškius.'
+                                                                                : 'I agree to receive newsletters'
         }</div>
       </div>
       
@@ -342,25 +345,32 @@ export class InputRegisterContainer {
                                                                                   ? 'Sutinku su „ORLEN“'
                                                                                   : this.customer === 'Apranga'
                                                                                     ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://soulz.lt/lt/page/privatumo-pranesimas-2025-new" target="_blank" rel="noopener noreferrer" style="color:white">Privatumo pranešime</a> nustatyta tvarka.'
-                                                                                    : this.config.campaignUrlOrCurrentPage.includes('pigu')
-                                                                                      ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
-                                                                                      : this.config.campaignUrlOrCurrentPage.includes('220')
-                                                                                        ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
-                                                                                        : this.config.campaignUrlOrCurrentPage.includes('kaup24')
-                                                                                          ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
-                                                                                          : this.config.campaignUrlOrCurrentPage.includes('hobbyhall')
-                                                                                            ? privacyPolicytranslations['hobbyhall'][this.language] || privacyPolicytranslations['hobbyhall']['FI']
-                                                                                            : this.language === 'EN'
-                                                                                              ? 'I agree to receive '
-                                                                                              : this.language === 'LV'
-                                                                                                ? 'Es piekrītu'
-                                                                                                : this.language === 'ET'
-                                                                                                  ? 'Ma olen nõus'
-                                                                                                  : `Sutinku  ${
-                                                                                                      this.customer === 'LemonGym'
-                                                                                                        ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
-                                                                                                        : ''
-                                                                                                    } `
+                                                                                    : this.customer === 'Elesen' && this.language === 'LT'
+                                                                                      ? 'Sutinku, kad mano asmens duomenys būtų tvarkomi tiesioginės rinkodaros tikslu <a href="https://www.elesen.lt/privatumo-politika?_gl=1*ebnhhz*_up*MQ..&gclid=CjwKCAiAz_DIBhBJEiwAVH2XwDcPfOMQvGrk-0geR7cOZ5eviXBQpDt9MyOw0u85zvawgCY8XnN04xoCkSIQAvD_BwE&gbraid=0AAAAADlAi3caaYn_ci1gK71mIRIPy9zs1" target="_blank" rel="noopener noreferrer" style="color:white">privatumo politikos</a> nustatyta tvarka.'
+                                                                                      : this.customer === 'Elesen' && this.language === 'LV'
+                                                                                        ? 'Piekrītu, ka mani personas dati tiks apstrādāti tiešā mārketinga nolūkos saskaņā ar <a href="https://www.euronics.lv/privatuma-politika" target="_blank" rel="noopener noreferrer" style="color:white">privātuma politiku</a>.'
+                                                                                        : this.customer === 'Elesen' && this.language === 'ET'
+                                                                                          ? 'Nõustun, et minu isikuandmeid töödeldakse otseturunduse eesmärgil vastavalt <a href="https://www.euronics.ee/StaticContent/Index/5882" target="_blank" rel="noopener noreferrer" style="color:white">privaatsuspoliitikas</a> sätestatud korrale.'
+                                                                                          : this.config.campaignUrlOrCurrentPage.includes('pigu')
+                                                                                            ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
+                                                                                            : this.config.campaignUrlOrCurrentPage.includes('220')
+                                                                                              ? privacyPolicytranslations['220'][this.language] || privacyPolicytranslations['220']['LV']
+                                                                                              : this.config.campaignUrlOrCurrentPage.includes('kaup24')
+                                                                                                ? privacyPolicytranslations['kaup24'][this.language] || privacyPolicytranslations['kaup24']['ET']
+                                                                                                : this.config.campaignUrlOrCurrentPage.includes('hobbyhall')
+                                                                                                  ? privacyPolicytranslations['hobbyhall'][this.language] ||
+                                                                                                    privacyPolicytranslations['hobbyhall']['FI']
+                                                                                                  : this.language === 'EN'
+                                                                                                    ? 'I agree to receive '
+                                                                                                    : this.language === 'LV'
+                                                                                                      ? 'Es piekrītu'
+                                                                                                      : this.language === 'ET'
+                                                                                                        ? 'Ma olen nõus'
+                                                                                                        : `Sutinku  ${
+                                                                                                            this.customer === 'LemonGym'
+                                                                                                              ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
+                                                                                                              : ''
+                                                                                                          } `
         }
     ${
       this.customer !== 'Barbora' &&
@@ -376,7 +386,8 @@ export class InputRegisterContainer {
       this.customer !== 'Pigu.lt' &&
       this.customer !== 'Novaturas' &&
       this.customer !== 'Perlas GO' &&
-      this.customer !== 'Apranga'
+      this.customer !== 'Apranga' &&
+      this.customer !== 'Elesen'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.customer === 'Ikea'
               ? 'https://www.ikea.lt/lt/privacy-policy'
@@ -447,18 +458,18 @@ export class InputRegisterContainer {
    
    
         <div id="competition-checkbox-error" style="width: fit-content;height:auto;padding-top:1px;margin-right:30px;display:none;left: 34px; top:${
-          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.language === 'ES' ? '436px' : '430px'
+          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.customer === 'Toni' || this.customer === 'Elesen' ? '436px' : '430px'
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.customer === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'};color:${'#D8000C'};text-align:start;line-height:8px;">
         </div>
 
-        <div id="competition-checkbox-error2" style="padding-top:1px;height:${this.language === 'LV' ? '14px' : '28px'} ;margin-right:30px;display:${
+        <div id="competition-checkbox-error2" style="padding-top:1px;height:${'14px'} ;margin-right:30px;display:${
           this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
         } ;left: 34px; top:${
-          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.customer === 'Toni' ? '436px' : '430px'
+          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.customer === 'Toni' || this.customer === 'Elesen' ? '436px' : '430px'
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.isMobile ? '8px' : '9px'};color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>
 
-        <div id="competition-checkbox-error3" style="padding-top:1px;height:${this.language === 'LV' ? '14px' : '28px'} ;margin-right:30px;display:${
+        <div id="competition-checkbox-error3" style="padding-top:1px;height:${'14px'} ;margin-right:30px;display:${
           this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
         } ;left: 34px; top:${
           this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
@@ -611,17 +622,11 @@ export class InputRegisterContainer {
                 ? 'Nombre y apellido'
                 : this.customer === 'Fpro'
                   ? 'Players full name'
-                  : this.customer === 'Ikea'
-                    ? 'Žaidėjo vardas'
-                    : this.customer === 'Eurovaistine'
-                      ? 'Spēlētāja lietotājvārds'
-                      : this.customer === 'SaludSA'
-                        ? 'Nombre de usuario'
-                        : this.language === 'EN'
-                          ? 'Player nickname'
-                          : this.customer === 'Nykstukas'
-                            ? 'Komandos pavadinimas'
-                            : 'Žaidėjo slapyvardis'
+                  : this.language === 'LT'
+                    ? 'Žaidėjo slapyvardis'
+                    : this.customer === 'Nykstukas'
+                      ? 'Komandos pavadinimas'
+                      : 'Player nickname'
       }">       
 
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field"        
@@ -659,31 +664,27 @@ export class InputRegisterContainer {
            ? 'rgba(61, 73, 40, 1)'
            : '#473F4E'
        } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
-         this.customer === 'Fpro'
-           ? 'Email address'
-           : this.customer === 'Ikea'
-             ? 'El. pašto adresas'
-             : this.customer === 'Eurovaistine'
-               ? 'Spēlētāja e-pasts'
-               : this.customer === 'SaludSA'
-                 ? 'Correo electrónico'
-                 : this.customer.includes('Gamtos Ateitis')
-                   ? 'El. pašto adresas'
-                   : this.language === 'LV'
-                     ? 'Spēlētāja e-pasts'
-                     : this.language === 'RU'
-                       ? 'Емейл игрока'
-                       : this.language === 'ET'
-                         ? 'Mängija e-post'
-                         : this.language === 'FI'
-                           ? 'Sähköpostiosoite'
-                           : this.language === 'EN'
-                             ? 'Email address'
-                             : this.language === 'ES'
-                               ? 'Número de contacto'
-                               : this.customer === 'Orlen'
-                                 ? 'Telefono numeris'
-                                 : 'Elektroninio pašto adresas'
+         this.customer === 'Ikea'
+           ? 'El. pašto adresas'
+           : this.customer === 'SaludSA'
+             ? 'Correo electrónico'
+             : this.customer.includes('Gamtos Ateitis')
+               ? 'El. pašto adresas'
+               : this.language === 'LV'
+                 ? 'Spēlētāja e-pasts'
+                 : this.language === 'RU'
+                   ? 'Емейл игрока'
+                   : this.language === 'ET'
+                     ? 'Mängija e-post'
+                     : this.language === 'FI'
+                       ? 'Sähköpostiosoite'
+                       : this.language === 'LT'
+                         ? 'Elektroninio pašto adresas'
+                         : this.language === 'ES'
+                           ? 'Número de contacto'
+                           : this.customer === 'Orlen'
+                             ? 'Telefono numeris'
+                             : 'Email address'
        }">    
              <select id="city-select" class="boomio-competition-city-select"
     style="display:${this.customer.includes('Gamtos Ateitis') ? 'block' : 'none'};

@@ -59,8 +59,10 @@ import {
   mainNevezis,
   backgroundBoomio,
   mainBoomio,
-  backgroundElesen,
-  mainElesen,
+  backgroundElesenLT,
+  mainElesenLT,
+  backgroundElesenLV,
+  mainElesenLV,
 } from './constants';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
 import { InputContainer } from '../helpers/InputContainer';
@@ -80,9 +82,12 @@ const getBrandColor = (customer, language) => {
   if (customer === 'Pigu.lt') return '#FD61FE';
   if (customer === 'Perlas GO') return '#19AA82';
   if (customer === 'Magija') return '#194898';
-  if (language === 'LV') return '#F40027';
   if (customer === 'Toni') return '#000F9F';
-  if (customer === 'Toni') return '#323136';
+  if (customer === 'Elesen') {
+    return language === 'LT' ? '#F0A901' : '#FCC802';
+  }
+  if (language === 'LV') return '#F40027';
+
   return '#045222'; // Default color
 };
 
@@ -143,7 +148,10 @@ const getBackground = (customer, language) => {
     return language === 'LV' ? backgroundRedAkropolisLV : backgroundRedAkropolis;
   }
   if (customer === 'Barbora') return backgroundRed;
-  if (customer === 'Elesen') return backgroundElesen;
+  if (customer === 'Elesen') {
+    return language === 'LT' ? backgroundElesenLT : backgroundElesenLV;
+  }
+
   return backgroundBoomio;
 };
 
@@ -200,7 +208,9 @@ const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
     return language === 'LV' ? mainImageAkropolisLV : mainImageAkropolis;
   }
   if (customer === 'Barbora') return mainImage;
-  if (customer === 'Elesen') return mainElesen;
+  if (customer === 'Elesen') {
+    return language === 'LT' ? mainElesenLT : mainElesenLV;
+  }
 
   return mainBoomio;
 };
@@ -1582,12 +1592,34 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               return;
             }
 
+            if (!this.checkboxChange2 && (this.customer === 'Toni' || this.customer === 'Elesen')) {
+              document.getElementById('competition-checkbox-error2').innerText =
+                this.customer === 'Toni'
+                  ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                  : this.customer === 'Apranga'
+                    ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
+                    : this.language === 'LV'
+                      ? 'Lai turpinātu, jums ir jāpiekrīt saņemt jaunumu vēstules.'
+                      : this.language === 'RU'
+                        ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+                        : this.language === 'ET'
+                          ? 'Edasi liikumiseks peate nõustuma uudiskirjade saamisega.'
+                          : 'Norėdami tęsti, privalote sutikti gauti naujienlaiškius.';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-checkbox-error2').style.display = 'block';
+
+              return;
+            } else {
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
+            }
+
             if (Elements.isVisible(document.getElementById('competition-checkbox-error'))) {
               document.getElementById('competition-checkbox-error').innerText = '';
               document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
             }
 
-            if (!this.checkboxChange || (!this.checkboxChange2 && this.customer === 'Toni')) {
+            if (!this.checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
@@ -1610,6 +1642,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
               return;
             }
+
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
@@ -1899,7 +1932,6 @@ class Platform {
       this.width = 100;
     }
     this.config = localStorageService.getDefaultConfig();
-
     this.customer = this.config.business_name;
     this.language = this.config.language;
 
@@ -2039,8 +2071,8 @@ class Spring {
     this.cwidth = 110; // Width of a single sprite frame
     this.cheight = 80; // Height of a single sprite frame
     this.state = 0;
-    this.width = this.customer === 'Vilvi' || this.customer === 'Magija' ? 90 : this.customer === 'Perlas GO' ? 54 : this.customer === 'Toni' ? 70 : 65; // Width to draw on canvas
-    this.height = this.customer === 'Vilvi' || this.customer === 'Magija' ? 60 : this.customer === 'Perlas GO' ? 40 : this.customer === 'Toni' ? 52 : 38; // Height to draw on canvas
+    this.width = this.customer === 'Vilvi' || this.customer === 'Magija' ? 90 : this.customer === 'Perlas GO' ? 54 : this.customer === 'Toni' ? 70 : this.customer === 'Elesen' ? 85 : 65; // Width to draw on canvas
+    this.height = this.customer === 'Vilvi' || this.customer === 'Magija' ? 60 : this.customer === 'Perlas GO' ? 40 : this.customer === 'Toni' ? 52 : this.customer === 'Elesen' ? 50 : 38; // Height to draw on canvas
 
     this.reset(); // Initialize with a random cy
   }
