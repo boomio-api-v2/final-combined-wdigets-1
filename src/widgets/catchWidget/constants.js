@@ -55,9 +55,9 @@ export const tapImageBarbora = 'https://raw.githubusercontent.com/boomio-api-v2/
 export const life = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/life.png?raw=true';
 
 export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/star.png?raw=true';
-export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxCheck.png';
+export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxCheck.png';
 
-export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxUncheck.png';
+export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
 
 export const item1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/GamtosAteitisPlastic/items/item1.png';
 

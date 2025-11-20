@@ -10,9 +10,9 @@ export const newRecordRU = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 export const newRecordLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordLV.png?raw=true';
 
 export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newRecordEn.png?raw=true';
-export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxCheck.png';
+export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxCheck.png';
 
-export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/qr-remove/images/RegistrationCheckboxUncheck.png';
+export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
 export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/star.png?raw=true';
 export const stopwatch = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/newTestGame/lemonGym/stopwatch.png?raw=true';
 
