@@ -458,18 +458,18 @@ export class InputRegisterContainer {
    
    
         <div id="competition-checkbox-error" style="width: fit-content;height:auto;padding-top:1px;margin-right:30px;display:none;left: 34px; top:${
-          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.language === 'ES' ? '436px' : '430px'
+          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.customer === 'Toni' || this.customer === 'Elesen' ? '436px' : '430px'
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.customer === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'};color:${'#D8000C'};text-align:start;line-height:8px;">
         </div>
 
-        <div id="competition-checkbox-error2" style="padding-top:1px;height:${this.language === 'LV' ? '14px' : '28px'} ;margin-right:30px;display:${
+        <div id="competition-checkbox-error2" style="padding-top:1px;height:${'14px'} ;margin-right:30px;display:${
           this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
         } ;left: 34px; top:${
-          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.customer === 'Toni' ? '436px' : '430px'
+          this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.customer === 'Toni' || this.customer === 'Elesen' ? '436px' : '430px'
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.isMobile ? '8px' : '9px'};color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>
 
-        <div id="competition-checkbox-error3" style="padding-top:1px;height:${this.language === 'LV' ? '14px' : '28px'} ;margin-right:30px;display:${
+        <div id="competition-checkbox-error3" style="padding-top:1px;height:${'14px'} ;margin-right:30px;display:${
           this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
         } ;left: 34px; top:${
           this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'

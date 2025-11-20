@@ -1592,12 +1592,34 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               return;
             }
 
+            if (!this.checkboxChange2 && (this.customer === 'Toni' || this.customer === 'Elesen')) {
+              document.getElementById('competition-checkbox-error2').innerText =
+                this.customer === 'Toni'
+                  ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+                  : this.customer === 'Apranga'
+                    ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
+                    : this.language === 'LV'
+                      ? 'Lai turpinātu, jums ir jāpiekrīt saņemt jaunumu vēstules.'
+                      : this.language === 'RU'
+                        ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+                        : this.language === 'ET'
+                          ? 'Edasi liikumiseks peate nõustuma uudiskirjade saamisega.'
+                          : 'Norėdami tęsti, privalote sutikti gauti naujienlaiškius.';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+              document.getElementById('competition-checkbox-error2').style.display = 'block';
+
+              return;
+            } else {
+              document.getElementById('competition-checkbox-error2').innerText = '';
+              document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
+            }
+
             if (Elements.isVisible(document.getElementById('competition-checkbox-error'))) {
               document.getElementById('competition-checkbox-error').innerText = '';
               document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
             }
 
-            if (!this.checkboxChange || (!this.checkboxChange2 && this.customer === 'Toni')) {
+            if (!this.checkboxChange) {
               document.getElementById('competition-checkbox-error').innerText =
                 this.language === 'LV'
                   ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
@@ -1620,6 +1642,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
               return;
             }
+
             if (emailInput?.value === '' || emailInput?.value === null) {
               document.getElementById('competition-email-error').innerText =
                 this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';

@@ -776,6 +776,7 @@ export class InputContainer {
       this.customer === 'Zemaitijos Pienas' ||
       this.customer === 'LemonFeel' ||
       this.customer === 'Apranga' ||
+      this.customer === 'Elesen' ||
       this.customer === 'Toni'
         ? '150px'
         : '110px'
@@ -874,6 +875,7 @@ ${
       this.customer === 'Orlen' ||
       this.customer === 'LemonFeel' ||
       this.customer === 'Novaturas' ||
+      this.customer === 'Elesen' ||
       this.customer.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align:center; color: white; font-size: 10px; font-family:${
             this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
@@ -952,7 +954,13 @@ ${
                                                                             ? 'href=https://www.lemongym.lv/wp-content/uploads/2025/05/LEMON-FEEL-speles-noteikumi.pdf'
                                                                             : this.customer === 'Orlen'
                                                                               ? 'href=https://www.orlen.lt/LT/zaidimas/Puslapiai/taisykl%c4%97s.aspx'
-                                                                              : `href=${window.location.href}`
+                                                                              : this.customer === 'Elesen' && this.language === 'LT'
+                                                                                ? 'href=https://www.elesen.lt/konkursu-taisykles'
+                                                                                : this.customer === 'Elesen' && this.language === 'LV'
+                                                                                  ? 'href=https://www.euronics.lv/speles-noteikumi'
+                                                                                  : this.customer === 'Elesen' && this.language === 'ET'
+                                                                                    ? 'href=https://www.euronics.ee/mangureeglid'
+                                                                                    : `href=${window.location.href}`
           } style="color:white;font-size:14px;margin-top:6px;font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};">${
             this.customer === 'Pigu.lt' && this.language === 'EN'
               ? 'Read the detailed game rules.'
@@ -966,29 +974,33 @@ ${
                       ? 'Ознакомься с подробными правилами игры.'
                       : this.customer === 'Pigu.lt'
                         ? 'Skaityk išsamias žaidimo taisykles'
-                        : this.customer === 'Eurovaistine'
-                          ? 'Pilni spēles noteikumi šeit.'
-                          : this.customer === 'Fpro'
-                            ? 'Read full games rules. '
-                            : this.customer === 'SaludSA'
-                              ? 'Revisa las reglas completas del juego.'
-                              : this.customer === 'Ikea'
-                                ? 'Visos žaidimo taisyklės'
-                                : this.customer === 'LemonFeel'
-                                  ? 'Lasīt pilnos spēles noteikumus'
-                                  : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
-                                    ? ''
-                                    : this.customer.includes('Gamtos Ateitis')
-                                      ? 'Skaityk išsamias žaidimo taisykles.'
-                                      : this.language === 'EN'
-                                        ? 'Read the full game rules'
-                                        : this.language === 'LV'
-                                          ? 'Izlasi detalizētos spēles noteikumus.'
-                                          : this.language === 'RU'
-                                            ? 'Ознакомьтесь с полными правилами игры.'
-                                            : this.language === 'ET'
-                                              ? 'Loe kõiki mängureegleid.'
-                                              : 'Skaityk išsamias žaidimo taisykles.'
+                        : this.customer === 'Elesen' && this.language === 'LT'
+                          ? 'Skaitykite išsamias žaidimo taisykles.'
+                          : this.customer === 'Elesen' && this.language === 'LV'
+                            ? 'Izlasi detalizētos spēles noteikumus.'
+                            : this.customer === 'Elesen' && this.language === 'ET'
+                              ? 'Loe mängu üksikasjalikke reegleid.'
+                              : this.customer === 'Fpro'
+                                ? 'Read full games rules. '
+                                : this.customer === 'SaludSA'
+                                  ? 'Revisa las reglas completas del juego.'
+                                  : this.customer === 'Ikea'
+                                    ? 'Visos žaidimo taisyklės'
+                                    : this.customer === 'LemonFeel'
+                                      ? 'Lasīt pilnos spēles noteikumus'
+                                      : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
+                                        ? ''
+                                        : this.customer.includes('Gamtos Ateitis')
+                                          ? 'Skaityk išsamias žaidimo taisykles.'
+                                          : this.language === 'LT'
+                                            ? 'Skaityk išsamias žaidimo taisykles'
+                                            : this.language === 'LV'
+                                              ? 'Izlasi detalizētos spēles noteikumus.'
+                                              : this.language === 'RU'
+                                                ? 'Ознакомьтесь с полными правилами игры.'
+                                                : this.language === 'ET'
+                                                  ? 'Loe kõiki mängureegleid.'
+                                                  : 'Read the full game rules'
           } </a></div>
            
           ${
@@ -1047,43 +1059,41 @@ ${
                           ? 'ДАЛЕЕ'
                           : this.customer === 'Pigu.lt' && this.language === 'LT'
                             ? 'PIRMYN'
-                            : this.customer === 'Akropolis' && this.language === 'LV'
-                              ? 'PIEKRĪTU NOTEIKUMIEM'
-                              : this.customer === 'Akropolis' && this.language === 'RU'
-                                ? 'Я согласен с правилами'
-                                : this.language === 'LV'
-                                  ? 'TĀLĀK'
-                                  : this.language === 'RU'
-                                    ? 'ДАЛЕЕ'
-                                    : this.language === 'ET'
-                                      ? 'EDASI'
-                                      : this.language === 'ES'
-                                        ? 'SIGUIENTE'
-                                        : this.customer === 'Barbora' ||
-                                            this.customer === 'Fantazijos' ||
-                                            this.customer === 'LemonGym' ||
-                                            this.customer === 'Corepetitus' ||
-                                            this.customer === 'Pieno Žvaigždės' ||
-                                            this.customer.includes('Gamtos Ateitis') ||
-                                            this.customer === 'Makalius' ||
-                                            this.customer === 'Daumantu' ||
-                                            this.customer === 'Pegasas'
-                                          ? 'PIRMYN'
-                                          : this.customer === 'Fpro'
-                                            ? 'PLAY'
-                                            : this.customer === 'Eurovaistine'
-                                              ? 'TĀLĀK'
-                                              : this.customer === 'Akropolis' && this.language === 'LT'
-                                                ? 'SUTINKU'
-                                                : this.customer === 'SaludSA'
-                                                  ? 'SIGUIENTE'
-                                                  : this.customer === 'Vilvi'
+                            : this.customer === 'Akropolis' && this.language === 'LT'
+                              ? 'SUTINKU'
+                              : this.customer === 'Akropolis' && this.language === 'LV'
+                                ? 'PIEKRĪTU NOTEIKUMIEM'
+                                : this.customer === 'Akropolis' && this.language === 'RU'
+                                  ? 'Я согласен с правилами'
+                                  : this.language === 'LV'
+                                    ? 'TĀLĀK'
+                                    : this.language === 'RU'
+                                      ? 'ДАЛЕЕ'
+                                      : this.language === 'ET'
+                                        ? 'EDASI'
+                                        : this.language === 'ES'
+                                          ? 'SIGUIENTE'
+                                          : this.customer === 'Barbora' ||
+                                              this.customer === 'Fantazijos' ||
+                                              this.customer === 'LemonGym' ||
+                                              this.customer === 'Corepetitus' ||
+                                              this.customer === 'Pieno Žvaigždės' ||
+                                              this.customer.includes('Gamtos Ateitis') ||
+                                              this.customer === 'Makalius' ||
+                                              this.customer === 'Daumantu' ||
+                                              this.customer === 'Pegasas'
+                                            ? 'PIRMYN'
+                                            : this.customer === 'Fpro'
+                                              ? 'PLAY'
+                                              : this.customer === 'SaludSA'
+                                                ? 'SIGUIENTE'
+                                                : this.customer === 'Vilvi'
+                                                  ? 'SUTINKU'
+                                                  : this.customer === 'Perlas GO'
                                                     ? 'SUTINKU'
-                                                    : this.customer === 'Perlas GO'
+                                                    : this.language === 'LT'
                                                       ? 'SUTINKU'
-                                                      : this.language === 'EN'
-                                                        ? 'CONTINUE'
-                                                        : 'SUTINKU'
+                                                      : 'CONTINUE'
               }</div></div>
     </div>
  
