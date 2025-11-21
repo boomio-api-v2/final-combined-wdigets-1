@@ -215,6 +215,12 @@ const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
   return mainBoomio;
 };
 
+const isDidYouKnowVisible = (customer, language) => {
+  if (customer === 'Pigu.lt' || customer === 'Magija' || (customer === 'Elesen' && language === 'LT')) {
+    return true;
+  }
+};
+
 //JumpUp Game Classes
 class DoodleWidget {
   static ctx;
@@ -997,10 +1003,10 @@ class DoodleWidget {
         }
         if (this.showCompetitiveRegistration) {
           let competitionTableContainer = '';
-          if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
-            competitionTableContainer = document.querySelector('.did-you-know-container');
+          if (isDidYouKnowVisible(this.customer, this.language)) {
+            competitionTableContainer = Elements.didYouKnowContainer;
           } else if (this.customer === 'Perlas GO') {
-            competitionTableContainer = document.querySelector('.share-container');
+            competitionTableContainer = Elements.shareContainer;
           } else {
             competitionTableContainer = document.querySelector('.competition-table-container');
           }
@@ -1564,7 +1570,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
-    if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
+    if (isDidYouKnowVisible(this.customer, this.language)) {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer();
@@ -1809,12 +1815,14 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         }
       };
       const clickEventHandlerDidYouKnow = () => {
-        let didYouKnowTableContainer = '';
+        let didYouKnowTableContainer;
 
-        if (this.customer === 'Perlas GO') {
-          didYouKnowTableContainer = document.querySelector('.share-container');
-        } else {
-          didYouKnowTableContainer = document.querySelector('.did-you-know-container');
+        if (Elements.isVisible(Elements.didYouKnowContainer)) {
+          didYouKnowTableContainer = Elements.didYouKnowContainer;
+        }
+
+        if (Elements.isVisible(Elements.shareContainer)) {
+          didYouKnowTableContainer = Elements.shareContainer;
         }
 
         didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1898,13 +1906,12 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       const competitionRestart = document.getElementById('boomio-game-play-again');
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-      if (this.customer === 'Pigu.lt' || this.customer === 'Magija') {
-        const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
-        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+      if (Elements.shareCloseButton) {
+        Elements.shareCloseButton.addEventListener('click', clickEventHandlerDidYouKnow);
       }
-      if (this.customer === 'Perlas GO') {
-        const competitionDidYouKnow = document.getElementById('boomio-close-share');
-        competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
+
+      if (Elements.didYouKnowCloseButton) {
+        Elements.didYouKnowCloseButton.addEventListener('click', clickEventHandlerDidYouKnow);
       }
     }
     if (this.customer !== 'Pigu.lt' && !this.campaignUrl) {
