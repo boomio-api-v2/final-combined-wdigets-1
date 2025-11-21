@@ -13,8 +13,8 @@ export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxCheck.png';
 
 export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
-export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/lemonGym/star.png?raw=true';
-export const stopwatch = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/lemonGym/stopwatch.png?raw=true';
+export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/star.png?raw=true';
+export const stopwatch = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/stopwatch.png?raw=true';
 
 export const background = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/popWidget/test/background.png';
 

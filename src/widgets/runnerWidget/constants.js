@@ -22,10 +22,10 @@ export const player = 'https://raw.githubusercontent.com/boomio-api-v2/final-com
 export const newRecord = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecord.png?raw=true';
 
 export const close = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/whiteClose.png'];
-export const tapImageBarbora = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/pointer.png';
+export const tapImageBarbora = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/pointer.png';
 export const life = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/life.png?raw=true';
 
-export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/lemonGym/star.png?raw=true';
+export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/star.png?raw=true';
 export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxCheck.png';
 
 export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
@@ -65,7 +65,7 @@ export const downDentsu = 'https://raw.githubusercontent.com/boomio-api-v2/final
 export const leftDentsu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assetsDentsu/gui/A.png';
 
 export const rightDentsu = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assetsDentsu/gui/D.png';
-export const stopwatch = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/lemonGym/stopwatch.png?raw=true';
+export const stopwatch = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/stopwatch.png?raw=true';
 
 export const dentsuIntro = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assetsDentsu/dentsuIntro.gif';
 

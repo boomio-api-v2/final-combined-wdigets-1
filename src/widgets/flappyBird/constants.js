@@ -72,7 +72,7 @@ export const SaludSABackground = 'https://raw.githubusercontent.com/boomio-api-v
 
 export const PiguIntro = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/Pigu/PiguIntro.png';
 
-export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newTestGame/lemonGym/star.png?raw=true';
+export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/star.png?raw=true';
 
 export const PiguBackground = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/Pigu/PiguBackground.png';
 
