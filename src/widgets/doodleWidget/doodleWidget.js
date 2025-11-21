@@ -272,6 +272,19 @@ class DoodleWidget {
       mouseup: null,
     };
     this.inputEventListenersSetup = false;
+
+    // Cached DOM references for performance
+    this.cachedElements = {
+      canvas: null,
+      currentScore: null,
+      currentScoreDiv: null,
+      controlButton: null,
+      backgroundIntro: null,
+      backgroundBlur: null,
+      tutorial: null,
+      inputContainer: null,
+      gameContainer: null,
+    };
   }
 
   startDoodle() {
@@ -303,7 +316,19 @@ class DoodleWidget {
 
     canvas.style.background = `url(${getBackground(this.customer, this.language)}) center`;
 
+    // Cache the canvas context ONCE - critical performance optimization
     DoodleWidget.ctx = canvas.getContext('2d');
+
+    // Cache frequently accessed DOM elements
+    this.cachedElements.canvas = canvas;
+    this.cachedElements.currentScore = document.getElementById('currentScore');
+    this.cachedElements.currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+    this.cachedElements.controlButton = document.getElementById('control-button');
+    this.cachedElements.backgroundIntro = document.getElementById('background_intro');
+    this.cachedElements.backgroundBlur = document.getElementById('background_blur');
+    this.cachedElements.tutorial = document.getElementById('tutorial');
+    this.cachedElements.inputContainer = document.querySelector('.input-container');
+    this.cachedElements.gameContainer = document.querySelector('.game-container');
 
     this.animation = new AnimationService({
       elem: this.doodle,
@@ -333,8 +358,10 @@ class DoodleWidget {
 
     setTimeout(
       () => {
-        document.getElementById('background_intro').style.transition = 'opacity 1s ease';
-        document.getElementById('background_intro').style.opacity = 0;
+        if (this.cachedElements.backgroundIntro) {
+          this.cachedElements.backgroundIntro.style.transition = 'opacity 1s ease';
+          this.cachedElements.backgroundIntro.style.opacity = 0;
+        }
         if (this.gameCount === 0) {
           toggleBackgroundBlur(true, this.customer, this.language);
         }
@@ -342,7 +369,9 @@ class DoodleWidget {
 
         // Hide intro after fade completes (1000ms transition duration)
         setTimeout(() => {
-          document.getElementById('background_intro').style.display = 'none';
+          if (this.cachedElements.backgroundIntro) {
+            this.cachedElements.backgroundIntro.style.display = 'none';
+          }
         }, 1000);
       },
       getIntroImage(this.customer, this.language, this.campaignUrlOrCurrentPage) ? 2500 : 0,
@@ -679,13 +708,13 @@ class DoodleWidget {
   };
 
   showtutorial = () => {
-    if (this.tutorial) {
-      document.getElementById('tutorial').style.transition = 'opacity 1s ease';
-      document.getElementById('tutorial').style.opacity = 1;
-      document.getElementById('tutorial').style.display = 'block';
+    if (this.tutorial && this.cachedElements.tutorial) {
+      this.cachedElements.tutorial.style.transition = 'opacity 1s ease';
+      this.cachedElements.tutorial.style.opacity = 1;
+      this.cachedElements.tutorial.style.display = 'block';
       this.tutorial = false;
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-doodle-canvas');
+        const canvas = this.cachedElements.canvas;
 
         if (this.isMobile) {
           canvas.addEventListener('click', this.removetutorial);
@@ -1048,11 +1077,6 @@ class DoodleWidget {
     // menu.style.visibility = 'hidden';
   };
 
-  paintCanvas = () => {
-    const canvas = document.getElementById('boomio-doodle-canvas'); // Updated here
-    DoodleWidget.ctx = canvas.getContext('2d');
-  };
-
   gameLoop = (timestamp) => {
     if (!this.lastFrameTime) this.lastFrameTime = timestamp;
     const deltaTime = timestamp - this.lastFrameTime;
@@ -1298,10 +1322,12 @@ class DoodleWidget {
       }
 
       this.currentScore++;
-      document.getElementById('currentScore').innerHTML = `${this.currentScore}`;
+      if (this.cachedElements.currentScore) {
+        this.cachedElements.currentScore.innerHTML = `${this.currentScore}`;
+      }
 
-      if (this.currentScore > 1) {
-        const currentScoreDiv = document.getElementsByClassName('boomio-score-input-container')[0];
+      if (this.currentScore > 1 && this.cachedElements.currentScoreDiv) {
+        const currentScoreDiv = this.cachedElements.currentScoreDiv;
         currentScoreDiv.style.transition = 'opacity 0.8s ease';
         currentScoreDiv.style.display = 'block';
         currentScoreDiv.style.opacity = 1;
@@ -1368,7 +1394,6 @@ class DoodleWidget {
 
   update = () => {
     DoodleWidget.ctx.clearRect(0, 0, this.width, this.height);
-    this.paintCanvas();
     this.base.draw();
     this.playerCalc();
     this.updateScore();
