@@ -48,7 +48,9 @@ import {
   item7Nevezis,
   item8Nevezis,
   item9Nevezis,
-  itemElesen,
+  itemElesenLT,
+  itemElesenLV,
+  itemElesenET,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -176,7 +178,7 @@ export class DidYouKnowContainer {
       this.collectables = [item1Nevezis, item2Nevezis, item3Nevezis, item4Nevezis, item5Nevezis, item6Nevezis, item7Nevezis, item8Nevezis, item9Nevezis];
     } else if (this.customer === 'Elesen') {
       // Handle Glass collectables
-      this.collectables = [itemElesen];
+      this.collectables = [this.language === 'LT' ? itemElesenLT : this.language === 'LV' ? itemElesenLV : itemElesenET];
     }
 
     this.collectablesLinks = [];
@@ -198,7 +200,7 @@ export class DidYouKnowContainer {
         'https://www.pegasas.lt/sunyciai-patruliai-advento-kalendorius-1114538',
       ];
     } else if (this.customer === 'Elesen') {
-      this.collectablesLinks = ['https://www.elesen.lt/black-friday'];
+      this.collectablesLinks = [this.language === 'LT' ? 'https://www.elesen.lt/black-friday' : this.language === 'LV' ? 'https://www.euronics.lv/blackfriday' : 'https://www.euronics.ee/mustreede'];
     }
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
@@ -302,7 +304,7 @@ export class DidYouKnowContainer {
           <td ${this.customer === 'Elesen' ? 'colspan="3"' : ''} style="padding:5px;text-align: center; border: none; ${this.customer === 'Pegasas' || this.customer === 'Pigu.lt' || this.customer === 'Elesen' ? 'cursor:pointer' : ''}">
           <div id="image-${index}" style="${this.customer === 'Elesen' ? 'display:flex;justify-content:center;align-items:center;width:100%;' : ''}" >
           <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:
-            ${this.customer === 'Pigu.lt' ? '100px' : this.customer === 'Elesen' ? '250px' : '70px'} !important;' src=${item} alt="Scoreboard Image" >
+            ${this.customer === 'Pigu.lt' ? '100px' : this.customer === 'Elesen' ? '350px' : '70px'} !important;' src=${item} alt="Scoreboard Image" >
         
         ${
           ((this.customer === 'Pegasas' || this.customer === 'Elesen') && this.collectablesLinks[index]) || (this.customer === 'Pigu.lt' && link)
@@ -544,9 +546,15 @@ export class DidYouKnowContainer {
                       ? 'Ar visus RAGAVAI?'
                       : this.customer === 'Nevezis'
                         ? 'ATRASK SAVO SKONĮ'
-                        : this.customer === 'Elesen'
+                        : this.customer === 'Elesen' && this.language === 'LT'
                           ? 'Ar jau matei mūsų TOP pasiūlymus?'
-                          : 'Ar žinojai?'
+                          : this.customer === 'Elesen' && this.language === 'LV'
+                            ? 'VAI ESI REDZĒJIS TOP PIEDĀVĀJUMUS?'
+                            : this.customer === 'Elesen' && this.language === 'ET'
+                              ? 'Kas oled juba näinud meie TOP pakkumisi?'
+                              : this.language === 'LT'
+                                ? 'Ar žinojai?'
+                                : 'Did you know?'
       }</div>
       
       <div class="boomio-scoreboard-text">
@@ -578,8 +586,10 @@ export class DidYouKnowContainer {
             this.customer === 'Pigu.lt' ? '#F34434' : this.customer === 'Elesen' ? 'white' : 'none'
           }; box-shadow: ${this.customer === 'Elesen' ? '-4px -4px 8px #DFE6F5 inset' : 'none'}; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
-        this.customer === 'Elesen' && this.language === 'LT'
-          ? '<a style="text-decoration:none;color:rgba(61, 73, 40, 1);font-size:24px;font-weight:700;line-height:24px;cursor:pointer;" target="_blank" href="https://www.elesen.lt/black-friday">ŽIŪRĖTI PASIŪLYMUS</a>'
+        this.customer === 'Elesen'
+          ? `<a style="text-decoration:none;color:rgba(61, 73, 40, 1);font-size:24px;font-weight:700;line-height:24px;cursor:pointer;" target="_blank" href="${
+              this.language === 'LT' ? 'https://www.elesen.lt/black-friday' : this.language === 'LV' ? 'https://www.euronics.lv/blackfriday' : 'https://www.euronics.ee/mustreede'
+            }">${this.language === 'LT' ? 'ŽIŪRĖTI PASIŪLYMUS' : this.language === 'LV' ? 'SKATĪT PIEDĀVĀJUMUS' : 'VAATA PAKKUMISI'}</a>`
           : this.customer === 'Pigu.lt'
             ? this.language === 'EN'
               ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
@@ -603,19 +613,17 @@ export class DidYouKnowContainer {
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">
         ${
-          this.customer !== 'Pigu.lt'
-            ? 'TOLIAU'
-            : this.language === 'EN'
-              ? 'NEXT'
-              : this.language === 'LT'
-                ? 'PIRMYN'
-                : this.language === 'LV'
-                  ? 'KLIKŠĶINI'
-                  : this.language === 'ET'
-                    ? 'JÄRGMINE'
-                    : this.language === 'FI'
-                      ? 'SEURAAVA'
-                      : this.language === 'RU' && 'ДАЛЕЕ'
+          this.language === 'EN'
+            ? 'NEXT'
+            : this.language === 'LT'
+              ? 'TOLIAU'
+              : this.language === 'LV'
+                ? 'TĀLĀK'
+                : this.language === 'ET'
+                  ? 'EDASI'
+                  : this.language === 'FI'
+                    ? 'SEURAAVA'
+                    : this.language === 'RU' && 'ДАЛЕЕ'
         }
         </div>
       </div>

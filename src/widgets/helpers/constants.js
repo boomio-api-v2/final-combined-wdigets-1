@@ -296,4 +296,6 @@ export const item7Nevezis = 'https://raw.githubusercontent.com/boomio-api-v2/fin
 export const item8Nevezis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/crushWidget/Nevezis/items/item8.png';
 export const item9Nevezis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/crushWidget/Nevezis/items/item9.png';
 
-export const itemElesen = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/didYouKnow.jpg';
+export const itemElesenLT = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/didYouKnow.jpg';
+export const itemElesenLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/didYouKnowLV.jpg';
+export const itemElesenET = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Elesen/didYouKnowET.jpg';

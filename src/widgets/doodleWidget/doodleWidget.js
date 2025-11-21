@@ -215,8 +215,8 @@ const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
   return mainBoomio;
 };
 
-const isDidYouKnowVisible = (customer, language) => {
-  if (customer === 'Pigu.lt' || customer === 'Magija' || (customer === 'Elesen' && language === 'LT')) {
+const isDidYouKnowVisible = (customer) => {
+  if (customer === 'Pigu.lt' || customer === 'Magija' || customer === 'Elesen') {
     return true;
   }
 };
@@ -1003,7 +1003,7 @@ class DoodleWidget {
         }
         if (this.showCompetitiveRegistration) {
           let competitionTableContainer = '';
-          if (isDidYouKnowVisible(this.customer, this.language)) {
+          if (isDidYouKnowVisible(this.customer)) {
             competitionTableContainer = Elements.didYouKnowContainer;
           } else if (this.customer === 'Perlas GO') {
             competitionTableContainer = Elements.shareContainer;
@@ -1570,7 +1570,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
-    if (isDidYouKnowVisible(this.customer, this.language)) {
+    if (isDidYouKnowVisible(this.customer)) {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer();
