@@ -48,7 +48,9 @@ import {
   item7Nevezis,
   item8Nevezis,
   item9Nevezis,
-  itemElesen,
+  itemElesenLT,
+  itemElesenLV,
+  itemElesenET,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -176,7 +178,7 @@ export class DidYouKnowContainer {
       this.collectables = [item1Nevezis, item2Nevezis, item3Nevezis, item4Nevezis, item5Nevezis, item6Nevezis, item7Nevezis, item8Nevezis, item9Nevezis];
     } else if (this.customer === 'Elesen') {
       // Handle Glass collectables
-      this.collectables = [itemElesen];
+      this.collectables = [this.language === 'LT' ? itemElesenLT : this.language === 'LV' ? itemElesenLV : itemElesenET];
     }
 
     this.collectablesLinks = [];
@@ -198,7 +200,7 @@ export class DidYouKnowContainer {
         'https://www.pegasas.lt/sunyciai-patruliai-advento-kalendorius-1114538',
       ];
     } else if (this.customer === 'Elesen') {
-      this.collectablesLinks = ['https://www.elesen.lt/black-friday'];
+      this.collectablesLinks = [this.language === 'LT' ? 'https://www.elesen.lt/black-friday' : this.language === 'LV' ? 'https://www.euronics.lv/blackfriday' : 'https://www.euronics.ee/mustreede'];
     }
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
@@ -578,8 +580,10 @@ export class DidYouKnowContainer {
             this.customer === 'Pigu.lt' ? '#F34434' : this.customer === 'Elesen' ? 'white' : 'none'
           }; box-shadow: ${this.customer === 'Elesen' ? '-4px -4px 8px #DFE6F5 inset' : 'none'}; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
-        this.customer === 'Elesen' && this.language === 'LT'
-          ? '<a style="text-decoration:none;color:rgba(61, 73, 40, 1);font-size:24px;font-weight:700;line-height:24px;cursor:pointer;" target="_blank" href="https://www.elesen.lt/black-friday">ŽIŪRĖTI PASIŪLYMUS</a>'
+        this.customer === 'Elesen'
+          ? `<a style="text-decoration:none;color:rgba(61, 73, 40, 1);font-size:24px;font-weight:700;line-height:24px;cursor:pointer;" target="_blank" href="${
+              this.language === 'LT' ? 'https://www.elesen.lt/black-friday' : this.language === 'LV' ? 'https://www.euronics.lv/blackfriday' : 'https://www.euronics.ee/mustreede'
+            }">ŽIŪRĖTI PASIŪLYMUS</a>`
           : this.customer === 'Pigu.lt'
             ? this.language === 'EN'
               ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
