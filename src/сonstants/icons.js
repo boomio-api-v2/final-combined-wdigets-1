@@ -26,11 +26,7 @@ export const puzzleIconsList = [
   'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/puzzle/puzzle-4.svg',
 ];
 
-export const hammerImage = 'https://github.com/kbnvch/bla/blob/main/hammer01.png?raw=true';
-
-export const closedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest1.png?raw=true';
-export const openedChestImage = 'https://github.com/kbnvch/boomio/blob/main/chest3.png?raw=true';
-export const cloudImage = 'https://github.com/kbnvch/boomio/blob/main/expl5.png?raw=true';
+export const hammerImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/hammer01.png';
 
 export const oldCouponImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/iceWidget/coupon.png';
 
@@ -40,62 +36,61 @@ export const winningConfetinGif = 'https://raw.githubusercontent.com/boomio-api-
 
 export const winningAnimationGif = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/winningConfetinGif.gif';
 
-export const crate1 = 'https://github.com/kbnvch/crates/blob/main/aaa1.png?raw=true';
-export const crate2 = 'https://github.com/kbnvch/crates/blob/main/aaa2.png?raw=true';
-export const crate3 = 'https://github.com/kbnvch/crates/blob/main/aaa3.png?raw=true';
-export const crate4 = 'https://github.com/kbnvch/crates/blob/main/aaa4.png?raw=true';
-export const crate5 = 'https://github.com/kbnvch/crates/blob/main/aaa5.png?raw=true';
-export const crate6 = 'https://github.com/kbnvch/crates/blob/main/aaa6.png?raw=true';
+export const crate1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/crate1.png';
+export const crate2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/crate2.png';
+export const crate3 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/crate3.png';
+export const crate4 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/crate4.png';
+export const crate5 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/crate5.png';
+export const crate6 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/crate6.png';
 
-export const fishHeapImg1 = 'https://github.com/kbnvch/crates/blob/main/fish01.png?raw=true';
-export const fishHeapImg2 = 'https://github.com/kbnvch/crates/blob/main/fish02.png?raw=true';
+export const fishHeapImg1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/fishHeap1.png';
+export const fishHeapImg2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/fishHeap2.png';
 
-export const pole1 = 'https://github.com/kbnvch/crates/blob/main/p1.png?raw=true';
-export const pole2 = 'https://github.com/kbnvch/crates/blob/main/p2.png?raw=true';
+export const pole1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/pole1.png';
+export const pole2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/pole2.png';
 
-export const cat1_1 = 'https://github.com/kbnvch/crates/blob/main/ct1_01.png?raw=true';
-export const cat1_2 = 'https://github.com/kbnvch/crates/blob/main/ct1_02.png?raw=true';
-export const cat1_3 = 'https://github.com/kbnvch/crates/blob/main/ct1_03.png?raw=true';
-export const cat1_4 = 'https://github.com/kbnvch/crates/blob/main/ct1_04.png?raw=true';
+export const cat1_1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/cat1_1.png';
+export const cat1_2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/cat1_2.png';
+export const cat1_3 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/cat1_3.png';
+export const cat1_4 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/cat1_4.png';
 
-export const cat2_1 = 'https://github.com/kbnvch/crates/blob/main/ct2_01.png?raw=true';
-export const cat2_2 = 'https://github.com/kbnvch/crates/blob/main/ct2_02.png?raw=true';
-export const cat2_3 = 'https://github.com/kbnvch/crates/blob/main/ct2_03.png?raw=true';
-export const cat2_4 = 'https://github.com/kbnvch/crates/blob/main/ct2_04.png?raw=true';
-export const ground = 'https://github.com/kbnvch/crates/blob/main/ground2.png?raw=true';
-export const backgroundImg = 'https://github.com/kbnvch/crates/blob/main/dot.png?raw=true';
+export const cat2_1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/cat2_1.png';
+export const cat2_2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/cat2_2.png';
+export const cat2_3 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/cat2_3.png';
+export const cat2_4 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/cat2_4.png';
+export const ground = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/catsWidget/ground.png';
 
-export const eziukas10 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/ziukas0.png?raw=true';
-export const eziukas11 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/ziukas1.png?raw=true';
-export const eziukas12 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/ziukas2.png?raw=true';
-export const eziukas13 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/ziukas3.png?raw=true';
-export const eziukas20 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/zjump1.png?raw=true';
-export const eziukas21 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/zjump2.png?raw=true';
-export const eziukas30 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/eeziukas33.png?raw=true';
-export const machine1 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/machine01.png?raw=true';
-export const fullJar = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/fulljar.png?raw=true';
-export const emptyJarWthLid = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/emptyWthLid.png?raw=true';
-export const stiklainis1 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2.png?raw=true';
-export const jar00 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_000.png?raw=true';
-export const jar01 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_001.png?raw=true';
-export const jar02 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_002.png?raw=true';
-export const jar03 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_003.png?raw=true';
-export const jar04 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_004.png?raw=true';
-export const jar05 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_005.png?raw=true';
-export const jar06 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_006.png?raw=true';
-export const jar07 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_007.png?raw=true';
-export const jar08 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_008.png?raw=true';
-export const jar09 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/theJar2_009.png?raw=true';
-export const handle1 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/handl01.png?raw=true';
-export const handle2 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/handl02.png?raw=true';
-export const handle3 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/handl03.png?raw=true';
-export const drip1 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/drp1.png?raw=true';
-export const drip2 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/drp2.png?raw=true';
-export const drip3 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/drp3.png?raw=true';
-export const drip4 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/drp4.png?raw=true';
-export const drip5 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/drp5.png?raw=true';
-export const hand1 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/rr1.png?raw=true';
-export const hand2 = 'https://github.com/kbnvch/eziukai_uogiene/blob/main/rr2.png?raw=true';
+export const eziukas10 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/eziukas10.png';
+export const eziukas11 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/eziukas11.png';
+export const eziukas12 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/eziukas12.png';
+export const eziukas13 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/eziukas13.png';
+export const eziukas20 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/eziukas20.png';
+export const eziukas21 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/eziukas21.png';
+export const eziukas30 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/eziukas30.png';
+export const machine1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/machine1.png';
+export const fullJar = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/fullJar.png';
+export const emptyJarWthLid = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/emptyJarWthLid.png';
+export const stiklainis1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/stiklainis1.png';
+export const jar00 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar00.png';
+export const jar01 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar01.png';
+export const jar02 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar02.png';
+export const jar03 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar03.png';
+export const jar04 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar04.png';
+export const jar05 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar05.png';
+export const jar06 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar06.png';
+export const jar07 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar07.png';
+export const jar08 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar08.png';
+export const jar09 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/jar09.png';
+export const handle1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/handle1.png';
+export const handle2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/handle2.png';
+export const handle3 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/handle3.png';
+export const drip1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/drip1.png';
+export const drip2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/drip2.png';
+export const drip3 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/drip3.png';
+export const drip4 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/drip4.png';
+export const drip5 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/drip5.png';
+export const hand1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/hand1.png';
+export const hand2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/hand2.png';
 
 export const BoomioBubblesGif = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/Bubbles/Boomio_bubble_game.gif'];
 export const BoomioBubbles = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/Bubbles/Barbora_Logo.png?raw=true'];
