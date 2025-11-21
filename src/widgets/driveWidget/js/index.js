@@ -195,7 +195,11 @@ import {
   carToni,
   signToni,
   goldImageDataToni,
-  envelopeImageDataToni,
+  envelopeImageDataToni1,
+  envelopeImageDataToni2,
+  envelopeImageDataToni3,
+  envelopeImageDataToni4,
+  envelopeImageDataToni5,
 } from './constants';
 
 function startGame(scoreTableContainerInstance, didYouKnowContainer, competitionCodeScoreTableContainerPigu, type) {
@@ -411,7 +415,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 : customer === 'Novaturas'
                   ? envelopeImageDataNovaturas
                   : customer === 'Toni'
-                    ? envelopeImageDataToni
+                    ? envelopeImageDataToni1
                     : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
@@ -435,6 +439,17 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   const envelopeImage4GamtosAteitis = new Image();
   envelopeImage4GamtosAteitis.src = type === 1 ? envelopeImageData4GamtosAteitisPopierius : type === 2 ? envelopeImageData4GamtosAteitisStiklas : envelopeImageData4GamtosAteitisPlastikas;
+
+  const envelopeImageToni1 = new Image();
+  envelopeImageToni1.src = envelopeImageDataToni1;
+  const envelopeImageToni2 = new Image();
+  envelopeImageToni2.src = envelopeImageDataToni2;
+  const envelopeImageToni3 = new Image();
+  envelopeImageToni3.src = envelopeImageDataToni3;
+  const envelopeImageToni4 = new Image();
+  envelopeImageToni4.src = envelopeImageDataToni4;
+  const envelopeImageToni5 = new Image();
+  envelopeImageToni5.src = envelopeImageDataToni5;
 
   const goldImage = new Image();
   goldImage.src =
@@ -499,7 +514,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               : customer === 'Novaturas'
                 ? envelopeImageDataNovaturas
                 : customer === 'Toni'
-                  ? envelopeImageDataToni
+                  ? envelopeImageDataToni1
                   : envelopeImageData;
 
   const cloudsImage = new Image();
@@ -1145,7 +1160,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   });
 
   function createLeftMailbox() {
-    randomNumber = (randomNumber + 1) % 4;
+    randomNumber = (randomNumber + 1) % (customer === 'Toni' ? 5 : 4);
     return {
       image:
         customer === 'Gamtos Ateitis'
@@ -1156,7 +1171,17 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               : randomNumber === 2
                 ? envelopeImage3GamtosAteitis
                 : envelopeImage4GamtosAteitis
-          : leftMailboxImage,
+          : customer === 'Toni'
+            ? randomNumber === 0
+              ? envelopeImageToni1
+              : randomNumber === 1
+                ? envelopeImageToni2
+                : randomNumber === 2
+                  ? envelopeImageToni3
+                  : randomNumber === 3
+                    ? envelopeImageToni4
+                    : envelopeImageToni5
+            : leftMailboxImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
         y: 0,
