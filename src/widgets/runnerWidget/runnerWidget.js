@@ -1606,7 +1606,10 @@ ${
     }, 75);
 
     function Move() {
-      if (rightPressed && player.x + canvas.width / 10 < canvas.width) {
+      // Calculate actual player width for accurate boundary checking
+      var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
+
+      if (rightPressed && player.x + playerWidth < canvas.width) {
         player.x += speed;
       } else if (leftPressed && player.x > 0) {
         player.x -= speed;
