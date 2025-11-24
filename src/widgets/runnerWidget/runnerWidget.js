@@ -36,7 +36,7 @@ import './scripts/PxLoaderImage.js'; // Import to register addImage method
 import { localStorageService, widgetHtmlService, boomioService } from '@/services';
 import { Elements } from '../helpers/HtmlElementsHelper';
 import { InputRegisterContainer } from '../helpers/InputRegisterContainer';
-//import { InputValidator } from '../helpers/InputRegisterContainerValidation.js';
+import { InputRegisterContainerValidation } from '../helpers/InputRegisterContainerValidation.js';
 import { InputContainer } from '../helpers/InputContainer';
 import { CompetitionScoreTableContainer } from '../helpers/CompetitionScoreTableContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
@@ -55,6 +55,9 @@ class runnerWidget {
     this.customer = this.config.business_name;
     this.showCompetitiveRegistration = this?.config?.game_type !== '' ? this.config.game_type : 'competition';
     this.language = this.config.language;
+
+    // Create validator instance with current customer and language
+    this.InputValidator = new InputRegisterContainerValidation(this.customer, this.language);
 
     this.shareClicked = false;
     this.checkboxChange = false;
@@ -968,8 +971,7 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        //InputValidator.validateRegistrationInputs();
-        // if (!InputValidator.validateRegistrationInputs()) {
+        // if (!this.InputValidator.validateRegistrationInputs()) {
         //   return;
         // }
 
