@@ -330,12 +330,6 @@ class InputRegisterContainerValidation {
       }
     }
 
-    console.log('Validating email and phone inputs...');
-    console.log('Customer:', this.customer);
-    console.log('Language:', this.language);
-    console.log('Email Input Value:', emailInput ? emailInput.value : 'N/A');
-    console.log('Phone Input Value:', phoneInput ? phoneInput.value : 'N/A');
-
     // Validate email
     if (Elements.isVisible(emailInput)) {
       const emailValue = Elements.getEmailValue();
@@ -372,15 +366,7 @@ class InputRegisterContainerValidation {
     const hasCheckboxError2 = Elements.hasVisibleText(Elements.competitionCheckboxError2);
     const hasCheckboxError3 = Elements.hasVisibleText(Elements.competitionCheckboxError3);
 
-    console.log('  hasNameError:', hasNameError);
-    console.log('  hasEmailError:', hasEmailError);
-    console.log('  hasPhoneError:', hasPhoneError);
-    console.log('  hasCheckboxError:', hasCheckboxError);
-    console.log('  hasCheckboxError2:', hasCheckboxError2);
-    console.log('  hasCheckboxError3:', hasCheckboxError3);
-
     if (hasNameError || hasEmailError || hasPhoneError || hasCheckboxError || hasCheckboxError2 || hasCheckboxError3) {
-      console.log('Validation FAILED - returning false');
       return false;
     }
     return true;

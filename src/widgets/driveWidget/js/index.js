@@ -1423,7 +1423,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
             })
             .then((response) => {
-              console.log('Registration error response:', response);
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
                   const errorMessage =
