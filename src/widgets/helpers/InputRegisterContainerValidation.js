@@ -1,4 +1,3 @@
-import { localStorageService } from '@/services';
 import { Elements } from './HtmlElementsHelper';
 
 /**
@@ -6,10 +5,9 @@ import { Elements } from './HtmlElementsHelper';
  * Handles all validation logic for email, phone, and other input fields
  */
 class InputRegisterContainerValidation {
-  constructor() {
-    this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name;
-    this.language = this.config.language;
+  constructor(customer, language) {
+    this.customer = customer;
+    this.language = language;
   }
 
   /**
@@ -382,4 +380,4 @@ class InputRegisterContainerValidation {
   }
 }
 
-export const InputValidator = new InputRegisterContainerValidation();
+export { InputRegisterContainerValidation };

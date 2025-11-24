@@ -2,7 +2,7 @@ import './index.css';
 import { localStorageService, boomioService } from '@/services';
 import { Elements } from '../../helpers/HtmlElementsHelper';
 import { isLifeCustomer } from '../utils';
-import { InputValidator } from '../../helpers/InputRegisterContainerValidation.js';
+import { InputRegisterContainerValidation } from '../../helpers/InputRegisterContainerValidation.js';
 import {
   brickWallImageData,
   carImageData,
@@ -216,6 +216,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
 
   let language = config.language;
+
+  // Create validator instance with current customer and language
+  const InputValidator = new InputRegisterContainerValidation(customer, language);
 
   let campaignUrl = config.campaignUrl ? config.campaignUrl : '';
   const campaignUrlProp = campaignUrl ? campaignUrl : '';
