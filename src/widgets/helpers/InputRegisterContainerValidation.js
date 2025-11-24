@@ -1,4 +1,3 @@
-import { localStorageService } from '@/services';
 import { Elements } from './HtmlElementsHelper';
 
 /**
@@ -6,10 +5,9 @@ import { Elements } from './HtmlElementsHelper';
  * Handles all validation logic for email, phone, and other input fields
  */
 class InputRegisterContainerValidation {
-  constructor() {
-    this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name;
-    this.language = this.config.language;
+  constructor(customer, language) {
+    this.customer = customer;
+    this.language = language;
   }
 
   /**
@@ -361,19 +359,18 @@ class InputRegisterContainerValidation {
       }
     }
 
-    if (
-      Elements.hasVisibleText(Elements.nameError) ||
-      Elements.hasVisibleText(Elements.emailError) ||
-      Elements.hasVisibleText(Elements.phoneError) ||
-      Elements.hasVisibleText(Elements.competitionCheckboxError) ||
-      Elements.hasVisibleText(Elements.competitionCheckboxError2) ||
-      Elements.hasVisibleText(Elements.competitionCheckboxError3)
-    ) {
+    const hasNameError = Elements.hasVisibleText(Elements.nameError);
+    const hasEmailError = Elements.hasVisibleText(Elements.emailError);
+    const hasPhoneError = Elements.hasVisibleText(Elements.phoneError);
+    const hasCheckboxError = Elements.hasVisibleText(Elements.competitionCheckboxError);
+    const hasCheckboxError2 = Elements.hasVisibleText(Elements.competitionCheckboxError2);
+    const hasCheckboxError3 = Elements.hasVisibleText(Elements.competitionCheckboxError3);
+
+    if (hasNameError || hasEmailError || hasPhoneError || hasCheckboxError || hasCheckboxError2 || hasCheckboxError3) {
       return false;
     }
-
     return true;
   }
 }
 
-export const InputValidator = new InputRegisterContainerValidation();
+export { InputRegisterContainerValidation };

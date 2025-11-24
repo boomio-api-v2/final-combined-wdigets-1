@@ -2,7 +2,7 @@ import './index.css';
 import { localStorageService, boomioService } from '@/services';
 import { Elements } from '../../helpers/HtmlElementsHelper';
 import { isLifeCustomer } from '../utils';
-import { InputValidator } from '../../helpers/InputRegisterContainerValidation.js';
+import { InputRegisterContainerValidation } from '../../helpers/InputRegisterContainerValidation.js';
 import {
   brickWallImageData,
   carImageData,
@@ -216,6 +216,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
 
   let language = config.language;
+
+  // Create validator instance with current customer and language
+  const InputValidator = new InputRegisterContainerValidation(customer, language);
 
   let campaignUrl = config.campaignUrl ? config.campaignUrl : '';
   const campaignUrlProp = campaignUrl ? campaignUrl : '';
@@ -876,7 +879,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   // resize();
 
   const sky = customer === 'Barbora' ? '#E84B4B' : customer === 'Ikea' ? '#959595' : '#F9F1DD';
-  const grass1 = customer === 'Barbora' ? '#85B62D' : '#F9F1DD';
   const grass2 = customer === 'Barbora' ? '#A9C734' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR =
@@ -906,7 +908,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               ? '#F24434'
               : customer === 'Novaturas'
                 ? '#FFB572'
-                : '#F24434';
+                : customer === 'Toni'
+                  ? '#5E2B17'
+                  : '#F24434';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
   const road1 =
@@ -944,7 +948,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 : customer === 'Novaturas'
                   ? '#32A1DA'
                   : customer === 'Toni'
-                    ? '#5E2B17'
+                    ? '#ECDCC1'
                     : 'black';
 
   const maxWhiteLineWidthPercent = 0.01;
@@ -1421,7 +1425,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             .then((response) => {
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
-                  Elements.competitionEmailError.innerText =
+                  const errorMessage =
                     language === 'LV'
                       ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                       : language === 'RU'
@@ -1431,9 +1435,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                           : language === 'ES'
                             ? 'Este email ya está en uso. Use otro numero.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  Elements.competitionEmailError.style.backgroundColor = '#FFBABA';
-                } else if (response.res_code === 'NICKNAME_EXIST' && customer !== 'Perlas GO') {
-                  Elements.competitionNameError.innerText =
+                  InputValidator.toggleValidationError(Elements.emailError, true, errorMessage);
+                } else if (response.res_code === 'NICKNAME_EXIST') {
+                  const errorMessage =
                     customer === 'Fpro'
                       ? 'This nickname already exists. Please use another one.'
                       : language === 'ES'
@@ -1447,7 +1451,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                               : language === 'ET'
                                 ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                                 : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                  Elements.competitionNameError.style.backgroundColor = customer === 'Akropolis' && language !== 'LV' && '#FFBABA';
+                  InputValidator.toggleValidationError(Elements.nameError, true, errorMessage);
                 }
               } else {
                 bestScore = response.user_best_score ?? 0;
@@ -2139,7 +2143,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? '#7AC723'
                 : customer === 'Novaturas'
                   ? '#2299DA'
-                  : '#85B62D'
+                  : customer === 'Toni'
+                    ? '#5E2B17'
+                    : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
           : customer === 'Pigu.lt'
@@ -2152,7 +2158,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? '#7AC723'
                   : customer === 'Novaturas'
                     ? '#2299DA'
-                    : '#A9C734';
+                    : customer === 'Toni'
+                      ? '#7D3D1B'
+                      : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
     const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve) - 10;
