@@ -365,17 +365,24 @@ class InputRegisterContainerValidation {
       }
     }
 
-    if (
-      Elements.hasVisibleText(Elements.nameError) ||
-      Elements.hasVisibleText(Elements.emailError) ||
-      Elements.hasVisibleText(Elements.phoneError) ||
-      Elements.hasVisibleText(Elements.competitionCheckboxError) ||
-      Elements.hasVisibleText(Elements.competitionCheckboxError2) ||
-      Elements.hasVisibleText(Elements.competitionCheckboxError3)
-    ) {
+    const hasNameError = Elements.hasVisibleText(Elements.nameError);
+    const hasEmailError = Elements.hasVisibleText(Elements.emailError);
+    const hasPhoneError = Elements.hasVisibleText(Elements.phoneError);
+    const hasCheckboxError = Elements.hasVisibleText(Elements.competitionCheckboxError);
+    const hasCheckboxError2 = Elements.hasVisibleText(Elements.competitionCheckboxError2);
+    const hasCheckboxError3 = Elements.hasVisibleText(Elements.competitionCheckboxError3);
+
+    console.log('  hasNameError:', hasNameError);
+    console.log('  hasEmailError:', hasEmailError);
+    console.log('  hasPhoneError:', hasPhoneError);
+    console.log('  hasCheckboxError:', hasCheckboxError);
+    console.log('  hasCheckboxError2:', hasCheckboxError2);
+    console.log('  hasCheckboxError3:', hasCheckboxError3);
+
+    if (hasNameError || hasEmailError || hasPhoneError || hasCheckboxError || hasCheckboxError2 || hasCheckboxError3) {
+      console.log('Validation FAILED - returning false');
       return false;
     }
-
     return true;
   }
 }
