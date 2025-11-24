@@ -475,7 +475,7 @@ ${
 
     // Helper function to get asset URLs based on customer
     const getAssetPath = (suffix) => {
-      const assetFolder = customer === 'Dentsu' ? 'assetsDentsu' : customer === 'Nykstukas' ? 'assetsNykstukas' : customer === 'demo-20' ? 'assetsDemo' : 'Boomio';
+      const assetFolder = customer === 'Dentsu' ? 'assetsDentsu' : customer === 'Nykstukas' ? 'assetsNykstukas' : customer === 'demo-20' ? 'assetsDemo' : customer === 'Toni' ? 'Toni' : 'Boomio';
       return `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${assetFolder}/${suffix}`;
     };
 
@@ -553,11 +553,12 @@ ${
     let boosterLevel = localStorage.getItem('boosterLevel') > 1 ? localStorage.getItem('boosterLevel') : 1;
 
     // Load sprites
+    const barriersSprites = loadSprites(loader, getAssetPath('sprites/barriers'), this.customer === 'Toni' ? 6 : 7);
+    const deathSprites = loadSprites(loader, getAssetPath('sprites/death'), 4);
+    const jumpSprites = loadSprites(loader, getAssetPath('sprites/jump'), 6);
     const runSprites = loadSprites(loader, getAssetPath('sprites/run'), 8);
     const slideSprites = loadSprites(loader, getAssetPath('sprites/slide'), 6);
-    const jumpSprites = loadSprites(loader, getAssetPath('sprites/jump'), 6);
-    const deathSprites = loadSprites(loader, getAssetPath('sprites/death'), 4);
-    const barriersSprites = loadSprites(loader, getAssetPath('sprites/barriers'), 7);
+
     const bgSprites = loadSprites(loader, getAssetPath('bg'), 8);
     const fgSprites = loadSprites(loader, getAssetPath('fg'), 2);
 
