@@ -941,7 +941,7 @@ ${
           const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
           inpuRegisterContainer.style.height = '528px';
-          inpuRegisterContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : isIOS ? '40%' : '35%';
+          inpuRegisterContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : isIOS ? '50%' : '50%';
           inpuRegisterContainer.style.opacity = 1;
         }, 100);
       }, 300);
@@ -1164,7 +1164,7 @@ ${
           const isNarrowScreen = window.innerWidth <= 920;
 
           if (isNarrowScreen) {
-            competitionTableContainer.style.top = 'calc(50% - 144px)';
+            competitionTableContainer.style.top = '50%';
           } else {
             competitionTableContainer.style.top = 'calc(50%)';
           }
@@ -1271,7 +1271,7 @@ ${
           competitionTableContainer.style.display = 'block';
           setTimeout(() => {
             competitionTableContainer.style.height = '680px';
-            competitionTableContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : '10%';
+            competitionTableContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : '50%';
             competitionTableContainer.style.opacity = 1;
           }, 100);
         } else {
