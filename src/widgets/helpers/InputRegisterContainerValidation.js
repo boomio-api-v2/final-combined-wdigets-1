@@ -332,6 +332,12 @@ class InputRegisterContainerValidation {
       }
     }
 
+    console.log('Validating email and phone inputs...');
+    console.log('Customer:', this.customer);
+    console.log('Language:', this.language);
+    console.log('Email Input Value:', emailInput ? emailInput.value : 'N/A');
+    console.log('Phone Input Value:', phoneInput ? phoneInput.value : 'N/A');
+
     // Validate email
     if (Elements.isVisible(emailInput)) {
       const emailValue = Elements.getEmailValue();
