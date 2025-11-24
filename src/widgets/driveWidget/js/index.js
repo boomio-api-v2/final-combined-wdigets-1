@@ -1426,7 +1426,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               console.log('Registration error response:', response);
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
-                  Elements.emailError.innerText =
+                  const errorMessage =
                     language === 'LV'
                       ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                       : language === 'RU'
@@ -1436,9 +1436,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                           : language === 'ES'
                             ? 'Este email ya está en uso. Use otro numero.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  Elements.emailError.style.backgroundColor = '#FFBABA';
-                } else if (response.res_code === 'NICKNAME_EXIST' && customer !== 'Perlas GO') {
-                  Elements.nameError.innerText =
+                  InputValidator.toggleValidationError(Elements.emailError, true, errorMessage);
+                } else if (response.res_code === 'NICKNAME_EXIST') {
+                  const errorMessage =
                     customer === 'Fpro'
                       ? 'This nickname already exists. Please use another one.'
                       : language === 'ES'
@@ -1452,7 +1452,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                               : language === 'ET'
                                 ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                                 : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                  Elements.nameError.style.backgroundColor = customer === 'Akropolis' && language !== 'LV' && '#FFBABA';
+                  InputValidator.toggleValidationError(Elements.nameError, true, errorMessage);
                 }
               } else {
                 bestScore = response.user_best_score ?? 0;
