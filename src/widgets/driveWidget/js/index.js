@@ -2156,7 +2156,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   : customer === 'Novaturas'
                     ? '#2299DA'
                     : customer === 'Toni'
-                      ? '#D7CEAD'
+                      ? '#7D3D1B'
                       : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
