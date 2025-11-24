@@ -1660,7 +1660,9 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
                       : this.language === 'ES'
                         ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                        : 'Norint tęsti privaloma sutikti su privatumo politika.';
+                        : this.language === 'ET'
+                          ? 'Et jätkata, peate nõustuma privaatsuspoliitikaga.'
+                          : 'Norint tęsti privaloma sutikti su privatumo politika.';
 
               document.getElementById('competition-checkbox-error').style.display = 'block';
               document.getElementById('competition-checkbox-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' ? '#FFBABA' : 'rgb(255, 186, 186)';

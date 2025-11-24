@@ -198,7 +198,7 @@ class InputRegisterContainerValidation {
       ES: 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.',
       FI: 'Jatkaaksesi sinun on hyväksyttävä yrityksen tietosuojakäytäntö.',
       LT: 'Norint tęsti, privaloma sutikti su privatumo politika.',
-      ET: 'Mängija peab nõustuma andmete töötlemisega, et jätkata.',
+      ET: 'Et jätkata, peate nõustuma privaatsuspoliitikaga.',
       EN: 'Player must agree to data processing to continue.',
     };
 
