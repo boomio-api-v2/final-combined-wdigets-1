@@ -75,13 +75,3 @@ or
 ## Assets (images)
 
 Assets (images) are loaded into different branches under this repository. Be carefull and don't delete the branches before making sure they are not used.
-
-Unique branch / revision identifiers found in raw.githubusercontent URLs for repository boomio-api-v2/final-combined-wdigets-1:
-
-```
-feature/new-testing
-refs/heads/feature/new-testing
-feature/qr-remove
-feature/whack-testing
-main
-```

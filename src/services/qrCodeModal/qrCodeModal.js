@@ -441,7 +441,7 @@ export default class {
     this.modal.innerHTML = `
         <div class="boomio-close-modal-btn-wrapper" style='display:flex;width:100%; justify-content:end;'>
                     <div style="width: 100%; height: 100%; flex-direction: column;align-items: center; gap: 9px; display: inline-flex">
-      <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/feature/whack-testing/images/clawWidget/DePrati/logo.png" style="margin-left:22px;width:145px;height:34.8px;margin-bottom:20px;margin-top:10px;"/>
+      <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/clawWidget/DePrati/logo.png" style="margin-left:22px;width:145px;height:34.8px;margin-bottom:20px;margin-top:10px;"/>
   </div>
       <img src="https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/src/widgets/guessWidget/x-circle.png" id="boomio-close-modal-btn" class="boomio-close-modal-btn" style="width:22px;height:22px;"/>
       </div>

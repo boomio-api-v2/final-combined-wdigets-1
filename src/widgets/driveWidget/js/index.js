@@ -2,7 +2,7 @@ import './index.css';
 import { localStorageService, boomioService } from '@/services';
 import { Elements } from '../../helpers/HtmlElementsHelper';
 import { isLifeCustomer } from '../utils';
-import { InputValidator } from '../../helpers/InputRegisterContainerValidation.js';
+import { InputRegisterContainerValidation } from '../../helpers/InputRegisterContainerValidation.js';
 import {
   brickWallImageData,
   carImageData,
@@ -171,7 +171,6 @@ import {
   city1ImageDataNovaturas,
   city2ImageDataNovaturas,
   city3ImageDataNovaturas,
-  brickWallImageDataNovaturas,
   cloudsImageDataNovaturas,
   lineNovaturas,
   treeNovaturas1,
@@ -180,6 +179,27 @@ import {
   signNovaturas,
   goldImageDataNovaturas,
   envelopeImageDataNovaturas,
+  backgroundToni,
+  wh1ImageDataToni,
+  wh2ImageDataToni,
+  wh3ImageDataToni,
+  city1ImageDataToni,
+  city2ImageDataToni,
+  city3ImageDataToni,
+  //brickWallImageDataToni,
+  cloudsImageDataToni,
+  lineToni,
+  treeToni1,
+  treeToni2,
+  backgroundFullToni,
+  carToni,
+  signToni,
+  goldImageDataToni,
+  envelopeImageDataToni1,
+  envelopeImageDataToni2,
+  envelopeImageDataToni3,
+  envelopeImageDataToni4,
+  envelopeImageDataToni5,
 } from './constants';
 
 function startGame(scoreTableContainerInstance, didYouKnowContainer, competitionCodeScoreTableContainerPigu, type) {
@@ -196,6 +216,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   let showCompetitiveRegistration = config?.game_type !== '' ? config.game_type : 'competition';
 
   let language = config.language;
+
+  // Create validator instance with current customer and language
+  const InputValidator = new InputRegisterContainerValidation(customer, language);
 
   let campaignUrl = config.campaignUrl ? config.campaignUrl : '';
   const campaignUrlProp = campaignUrl ? campaignUrl : '';
@@ -348,13 +371,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? carOrlen
                     : customer === 'Novaturas'
                       ? carNovaturas
-                      : customer === 'Gamtos Ateitis'
-                        ? type === 1
-                          ? carImageDataGamtosAteitisPopierius
-                          : type === 2
-                            ? carImageDataGamtosAteitisStiklas
-                            : carImageDataGamtosAteitisPlastikas
-                        : carImageData;
+                      : customer === 'Toni'
+                        ? carToni
+                        : customer === 'Gamtos Ateitis'
+                          ? type === 1
+                            ? carImageDataGamtosAteitisPopierius
+                            : type === 2
+                              ? carImageDataGamtosAteitisStiklas
+                              : carImageDataGamtosAteitisPlastikas
+                          : carImageData;
 
   const rightMailboxImage = new Image();
   rightMailboxImage.src =
@@ -372,7 +397,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? goldImageDataOrlen
                 : customer === 'Novaturas'
                   ? goldImageDataNovaturas
-                  : mailboxImageData;
+                  : customer === 'Toni'
+                    ? goldImageDataToni
+                    : mailboxImageData;
 
   const leftMailboxImage = new Image();
   leftMailboxImage.src =
@@ -390,7 +417,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? envelopeImageDataOrlen
                 : customer === 'Novaturas'
                   ? envelopeImageDataNovaturas
-                  : mailboxImageData;
+                  : customer === 'Toni'
+                    ? envelopeImageDataToni1
+                    : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
   goldImageUnisendLV1.src = goldImageDataUnisendLV1;
@@ -414,6 +443,17 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const envelopeImage4GamtosAteitis = new Image();
   envelopeImage4GamtosAteitis.src = type === 1 ? envelopeImageData4GamtosAteitisPopierius : type === 2 ? envelopeImageData4GamtosAteitisStiklas : envelopeImageData4GamtosAteitisPlastikas;
 
+  const envelopeImageToni1 = new Image();
+  envelopeImageToni1.src = envelopeImageDataToni1;
+  const envelopeImageToni2 = new Image();
+  envelopeImageToni2.src = envelopeImageDataToni2;
+  const envelopeImageToni3 = new Image();
+  envelopeImageToni3.src = envelopeImageDataToni3;
+  const envelopeImageToni4 = new Image();
+  envelopeImageToni4.src = envelopeImageDataToni4;
+  const envelopeImageToni5 = new Image();
+  envelopeImageToni5.src = envelopeImageDataToni5;
+
   const goldImage = new Image();
   goldImage.src =
     customer === 'Barbora'
@@ -436,7 +476,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                       ? PigubagsFI1
                       : customer === 'Novaturas'
                         ? goldImageDataNovaturas
-                        : goldImageData;
+                        : customer === 'Toni'
+                          ? goldImageDataToni
+                          : goldImageData;
 
   const wallImage = new Image();
   wallImage.src =
@@ -452,12 +494,12 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               ? signOrlen
               : customer === 'Novaturas'
                 ? signNovaturas
-                : customer === 'Gamtos Ateitis'
-                  ? brickWallImageDataGamtosAteitis
-                  : customer === 'Orlen'
-                    ? brickWallImageDataOrlen
-                    : customer === 'Novaturas'
-                      ? brickWallImageDataNovaturas
+                : customer === 'Toni'
+                  ? signToni
+                  : customer === 'Gamtos Ateitis'
+                    ? brickWallImageDataGamtosAteitis
+                    : customer === 'Orlen'
+                      ? brickWallImageDataOrlen
                       : brickWallImageData;
 
   const envelopeImage = new Image();
@@ -474,7 +516,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               ? envelopeImageDataOrlen
               : customer === 'Novaturas'
                 ? envelopeImageDataNovaturas
-                : envelopeImageData;
+                : customer === 'Toni'
+                  ? envelopeImageDataToni1
+                  : envelopeImageData;
 
   const cloudsImage = new Image();
   cloudsImage.src =
@@ -490,7 +534,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               ? cloudsImageDataOrlen
               : customer === 'Novaturas'
                 ? cloudsImageDataNovaturas
-                : cloudsImageData;
+                : customer === 'Toni'
+                  ? cloudsImageDataToni
+                  : cloudsImageData;
 
   const treeImage =
     customer === 'Barbora'
@@ -596,13 +642,26 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                       return img;
                     })(),
                   ]
-                : [
-                    (() => {
-                      const img = new Image();
-                      img.src = customer === 'Unisend' ? treeUnisend : treeImageData;
-                      return img;
-                    })(),
-                  ];
+                : customer === 'Toni'
+                  ? [
+                      (() => {
+                        const img = new Image();
+                        img.src = treeToni1;
+                        return img;
+                      })(),
+                      (() => {
+                        const img = new Image();
+                        img.src = treeToni2;
+                        return img;
+                      })(),
+                    ]
+                  : [
+                      (() => {
+                        const img = new Image();
+                        img.src = customer === 'Unisend' ? treeUnisend : treeImageData;
+                        return img;
+                      })(),
+                    ];
 
   const wh1 = new Image();
   const wh2 = new Image();
@@ -628,7 +687,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? wh1ImageDataOrlen
                   : customer === 'Novaturas'
                     ? wh1ImageDataNovaturas
-                    : wh1ImageData;
+                    : customer === 'Toni'
+                      ? wh1ImageDataToni
+                      : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
       ? wh2ImageDataBarbora
@@ -646,7 +707,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? wh2ImageDataOrlen
                   : customer === 'Novaturas'
                     ? wh2ImageDataNovaturas
-                    : wh2ImageData;
+                    : customer === 'Toni'
+                      ? wh2ImageDataToni
+                      : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
       ? wh3ImageDataBarbora
@@ -664,7 +727,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? wh3ImageDataOrlen
                   : customer === 'Novaturas'
                     ? wh3ImageDataNovaturas
-                    : wh3ImageData;
+                    : customer === 'Toni'
+                      ? wh3ImageDataToni
+                      : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
       ? lineBarbora
@@ -682,7 +747,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? lineOrlen
                   : customer === 'Novaturas'
                     ? lineNovaturas
-                    : line;
+                    : customer === 'Toni'
+                      ? lineToni
+                      : line;
 
   backgroundImg.src =
     customer === 'Barbora'
@@ -701,7 +768,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? backgroundOrlen
                   : customer === 'Novaturas'
                     ? backgroundNovaturas
-                    : background;
+                    : customer === 'Toni'
+                      ? backgroundToni
+                      : background;
   backgroundImg2.src =
     customer === 'Barbora'
       ? backgroundBarbora2
@@ -719,7 +788,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? backgroundOrlen
                   : customer === 'Novaturas'
                     ? backgroundNovaturas
-                    : background;
+                    : customer === 'Toni'
+                      ? backgroundToni
+                      : background;
 
   const backgroundImage = new Image();
   backgroundImage.src =
@@ -731,7 +802,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           ? backgroundFullOrlen
           : customer === 'Novaturas'
             ? backgroundFullNovaturas
-            : background1Pigu;
+            : customer === 'Toni'
+              ? backgroundFullToni
+              : background1Pigu;
 
   let backgroundImageLoaded = false;
   backgroundImage.onload = () => {
@@ -758,7 +831,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? city1ImageDataOrlen
                   : customer === 'Novaturas'
                     ? city1ImageDataNovaturas
-                    : city1ImageData;
+                    : customer === 'Toni'
+                      ? city1ImageDataToni
+                      : city1ImageData;
   city2.src =
     customer === 'Barbora'
       ? city2ImageDataBarbora
@@ -776,7 +851,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? city2ImageDataOrlen
                   : customer === 'Novaturas'
                     ? city2ImageDataNovaturas
-                    : city2ImageData;
+                    : customer === 'Toni'
+                      ? city2ImageDataToni
+                      : city2ImageData;
   city3.src =
     customer === 'Barbora'
       ? city3ImageDataBarbora
@@ -794,13 +871,14 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? city3ImageDataOrlen
                   : customer === 'Novaturas'
                     ? city3ImageDataNovaturas
-                    : city3ImageData;
+                    : customer === 'Toni'
+                      ? city3ImageDataToni
+                      : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
 
   const sky = customer === 'Barbora' ? '#E84B4B' : customer === 'Ikea' ? '#959595' : '#F9F1DD';
-  const grass1 = customer === 'Barbora' ? '#85B62D' : '#F9F1DD';
   const grass2 = customer === 'Barbora' ? '#A9C734' : '#F9F1DD';
   const GOOD_FUNDING_COLOR = grass2;
   const BAD_FUNDING_COLOR =
@@ -830,7 +908,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               ? '#F24434'
               : customer === 'Novaturas'
                 ? '#FFB572'
-                : '#F24434';
+                : customer === 'Toni'
+                  ? '#5E2B17'
+                  : '#F24434';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
   const road1 =
@@ -848,7 +928,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? '#263238'
                 : customer === 'Novaturas'
                   ? '#32A1DA'
-                  : '#F9F1DD';
+                  : customer === 'Toni'
+                    ? '#ECDCC1'
+                    : '#F9F1DD';
 
   const road2 =
     customer === 'Barbora'
@@ -865,7 +947,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? 'white'
                 : customer === 'Novaturas'
                   ? '#32A1DA'
-                  : 'black';
+                  : customer === 'Toni'
+                    ? '#ECDCC1'
+                    : 'black';
 
   const maxWhiteLineWidthPercent = 0.01;
   const sideLineWidth = 1;
@@ -1080,7 +1164,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   });
 
   function createLeftMailbox() {
-    randomNumber = (randomNumber + 1) % 4;
+    randomNumber = (randomNumber + 1) % (customer === 'Toni' ? 5 : 4);
     return {
       image:
         customer === 'Gamtos Ateitis'
@@ -1091,7 +1175,17 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               : randomNumber === 2
                 ? envelopeImage3GamtosAteitis
                 : envelopeImage4GamtosAteitis
-          : leftMailboxImage,
+          : customer === 'Toni'
+            ? randomNumber === 0
+              ? envelopeImageToni1
+              : randomNumber === 1
+                ? envelopeImageToni2
+                : randomNumber === 2
+                  ? envelopeImageToni3
+                  : randomNumber === 3
+                    ? envelopeImageToni4
+                    : envelopeImageToni5
+            : leftMailboxImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
         y: 0,
@@ -1311,99 +1405,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
           return;
         }
 
-        // /**
-        //  * Helper function to show or hide validation errors
-        //  * @param {HTMLElement} errorElement - The error element to show/hide
-        //  * @param {boolean} showError - If true, show error with message, if false, hide error
-        //  * @param {string} errorMessage - The error message to display (only used when showError is true)
-        //  */
-        // const toggleValidationError = (errorElement, showError, errorMessage = '') => {
-        //   if (showError) {
-        //     errorElement.innerText = errorMessage;
-        //     errorElement.style.backgroundColor = '#FFBABA';
-        //     Elements.showElement(errorElement);
-        //   } else {
-        //     errorElement.innerText = '';
-        //     errorElement.style.backgroundColor = 'transparent';
-        //     Elements.hideElement(errorElement);
-        //   }
-        // };
-
-        // /**
-        //  * Get localized error message for empty/required fields
-        //  * @returns {string} Localized error message based on current language
-        //  */
-        // const getEmptyFieldErrorMessage = () => {
-        //   return language === 'LV'
-        //     ? 'Lai turpinātu, obligāti jāaizpilda.'
-        //     : language === 'LT'
-        //       ? 'Norint tęsti, privaloma užpildyti.'
-        //       : language === 'ET'
-        //         ? 'Jätkamiseks kinnita kõik väljad.'
-        //         : language === 'FI'
-        //           ? 'Vaatitaan jatkamiseen.'
-        //           : language === 'RU'
-        //             ? 'Чтобы продолжить, необходимо заполнить.'
-        //             : language === 'ES'
-        //               ? 'Requerido para continuar.'
-        //               : 'Required to continue.';
-        // };
-
-        // if (!checkboxChange || (customer === 'Toni' && !checkboxChange2)) {
-        //   const errorMessage =
-        //     customer === 'Gamtos Ateitis'
-        //       ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-        //       : customer === 'Novaturas' && language === 'LT'
-        //         ? 'Norint tęsti privaloma sutikti su įmonės privatumo politika.'
-        //         : customer === 'Novaturas' && language === 'LV'
-        //           ? 'Lai turpinātu, ir jāpiekrīt uzņēmuma privātuma politikai.'
-        //           : customer === 'Novaturas' && language === 'RU'
-        //             ? 'Чтобы продолжить, необходимо согласиться с политикой конфиденциальности компании.'
-        //             : customer === 'Novaturas' && language === 'EN'
-        //               ? 'To continue, you must agree to the companys privacy policy.'
-        //               : customer === 'Novaturas' && language === 'ET'
-        //                 ? 'Jätkamiseks nõustu ettevõtte privaatsuspoliitikaga.'
-        //                 : language === 'ES'
-        //                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-        //                   : 'Norint tęsti, privaloma sutikti su naujienomis.';
-        //   toggleValidationError(Elements.competitionCheckboxError, true, errorMessage);
-        // } else {
-        //   toggleValidationError(Elements.competitionCheckboxError, false);
-        // }
-
-        // if (Elements.isVisible(nameInput) && Elements.isInputEmpty(nameInput)) {
-        //   toggleValidationError(Elements.competitionNameError, true, getEmptyFieldErrorMessage());
-        // } else {
-        //   toggleValidationError(Elements.competitionNameError, false);
-        // }
-
-        // if (Elements.isVisible(emailInput) && Elements.isInputEmpty(emailInput)) {
-        //   toggleValidationError(Elements.competitionEmailError, true, getEmptyFieldErrorMessage());
-        // } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
-        //   const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
-        //   toggleValidationError(Elements.competitionEmailError, true, errorMessage);
-        // } else {
-        //   toggleValidationError(Elements.competitionEmailError, false);
-        // }
-
-        // if (Elements.isVisible(phoneInput) && Elements.isInputEmpty(phoneInput)) {
-        //   toggleValidationError(Elements.competitionPhoneError, true, getEmptyFieldErrorMessage());
-        // } else if (customer === 'Toni' && emailInput?.value?.length < 10) {
-        //   const errorMessage = language === 'ES' ? 'Debes ingresar 10 dígitos.' : 'Required to continue.';
-        //   toggleValidationError(Elements.competitionPhoneError, true, errorMessage);
-        // } else {
-        //   toggleValidationError(Elements.competitionPhoneError, false);
-        // }
-
-        // if (
-        //   Elements.isVisible(Elements.competitionCheckboxError) ||
-        //   Elements.isVisible(Elements.competitionNameError) ||
-        //   Elements.isVisible(Elements.competitionEmailError) ||
-        //   Elements.isVisible(Elements.competitionPhoneError)
-        // ) {
-        //   return;
-        // }
-
         if (showCompetitiveRegistration && checkboxChange) {
           if (customer === 'Gamtos Ateitis') {
             didYouKnowContainer.updateProps();
@@ -1424,7 +1425,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             .then((response) => {
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
-                  Elements.competitionEmailError.innerText =
+                  const errorMessage =
                     language === 'LV'
                       ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
                       : language === 'RU'
@@ -1434,9 +1435,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                           : language === 'ES'
                             ? 'Este email ya está en uso. Use otro numero.'
                             : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  Elements.competitionEmailError.style.backgroundColor = '#FFBABA';
-                } else if (response.res_code === 'NICKNAME_EXIST' && customer !== 'Perlas GO') {
-                  Elements.competitionNameError.innerText =
+                  InputValidator.toggleValidationError(Elements.emailError, true, errorMessage);
+                } else if (response.res_code === 'NICKNAME_EXIST') {
+                  const errorMessage =
                     customer === 'Fpro'
                       ? 'This nickname already exists. Please use another one.'
                       : language === 'ES'
@@ -1450,7 +1451,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                               : language === 'ET'
                                 ? 'See hüüdnimi on juba olemas. Kasutage teist.'
                                 : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                  Elements.competitionNameError.style.backgroundColor = customer === 'Akropolis' && language !== 'LV' && '#FFBABA';
+                  InputValidator.toggleValidationError(Elements.nameError, true, errorMessage);
                 }
               } else {
                 bestScore = response.user_best_score ?? 0;
@@ -2142,7 +2143,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? '#7AC723'
                 : customer === 'Novaturas'
                   ? '#2299DA'
-                  : '#85B62D'
+                  : customer === 'Toni'
+                    ? '#5E2B17'
+                    : '#85B62D'
         : customer === 'Ikea' || customer === 'Unisend'
           ? '#489B2D'
           : customer === 'Pigu.lt'
@@ -2155,7 +2158,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? '#7AC723'
                   : customer === 'Novaturas'
                     ? '#2299DA'
-                    : '#A9C734';
+                    : customer === 'Toni'
+                      ? '#7D3D1B'
+                      : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
     const x1 = floor((width - currentRoadWidth) / 2 - xOffset + xCenter + curve) - 10;

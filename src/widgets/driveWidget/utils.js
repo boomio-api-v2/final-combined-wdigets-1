@@ -20,6 +20,6 @@ export const getBrandColor = (customer) => {
   if (customer === 'Gamtos Ateitis') return '#3F7543';
   if (customer === 'Orlen') return '#EF1C1D';
   if (customer === 'Novaturas') return '#32A1DA';
-  if (customer === 'Toni') return '#262B8C';
+  if (customer === 'Toni') return '#5E2B17';
   return '#FFE92D'; // Default
 };

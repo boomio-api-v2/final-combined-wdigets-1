@@ -48,6 +48,9 @@ import {
   item7Nevezis,
   item8Nevezis,
   item9Nevezis,
+  itemElesenLT,
+  itemElesenLV,
+  itemElesenET,
 } from './constants';
 
 export class DidYouKnowContainer {
@@ -156,52 +159,6 @@ export class DidYouKnowContainer {
             ];
     this.randomGamtosAteitis = this.gamtosAteitis[Math.floor(Math.random() * this.gamtosAteitis.length)];
 
-    // if (this.prop && this.prop.includes('Plastic')) {
-    //   this.collectables = [
-    //     item16,
-    //     item4,
-    //     item14,
-    //     item1,
-    //     item23,
-    //     item20,
-    //     item10,
-    //     item8,
-    //     item6,
-    //     item12,
-    //     item19,
-    //     item7,
-    //   ];
-    // } else if (this.prop && this.prop.includes('Paper')) {
-    //   this.collectables = [
-    //     item16Paper,
-    //     item4Paper,
-    //     item14Paper,
-    //     item1Paper,
-    //     item23Paper,
-    //     item20Paper,
-    //     item10Paper,
-    //     item8Paper,
-    //     item6Paper,
-    //     item12Paper,
-    //     item19Paper,
-    //     item7Paper,
-    //   ];
-    // } else if (this.prop && this.prop.includes('Glass')) {
-    //   this.collectables = [
-    //     item16Glass,
-    //     item4Glass,
-    //     item14Glass,
-    //     item1Glass,
-    //     item23Glass,
-    //     item20Glass,
-    //     item10Glass,
-    //     item8Glass,
-    //     item6Glass,
-    //     item12Glass,
-    //     item19Glass,
-    //     item7Glass,
-    //   ];
-    // }
     if (this.customer === 'Pieno Žvaigždės') {
       this.collectables = [item15PienoZvaigzdes, item1PienoZvaigzdes, item8PienoZvaigzdes, item2PienoZvaigzdes, item7PienoZvaigzdes, item5PienoZvaigzdes];
     } else if (this.customer === 'Pegasas') {
@@ -219,12 +176,15 @@ export class DidYouKnowContainer {
     } else if (this.customer === 'Nevezis') {
       // Handle Glass collectables
       this.collectables = [item1Nevezis, item2Nevezis, item3Nevezis, item4Nevezis, item5Nevezis, item6Nevezis, item7Nevezis, item8Nevezis, item9Nevezis];
+    } else if (this.customer === 'Elesen') {
+      // Handle Glass collectables
+      this.collectables = [this.language === 'LT' ? itemElesenLT : this.language === 'LV' ? itemElesenLV : itemElesenET];
     }
 
     this.collectablesLinks = [];
     if (this.customer === 'Pigu.lt') {
       this.collectablesLinks = this.dynamicData;
-    } else {
+    } else if (this.customer === 'Pegasas') {
       this.collectablesLinks = [
         'https://www.pegasas.lt/noriu-valgyti-sveikai-bet-skaniai-1114698',
         'https://www.pegasas.lt/liepsnojantis-kryzius-ciklo-svetimsale-5-knyga-1113987',
@@ -239,6 +199,8 @@ export class DidYouKnowContainer {
         'https://www.pegasas.lt/lego-city-miesto-centro-tramvajus-ir-stotele-60423-5704456',
         'https://www.pegasas.lt/sunyciai-patruliai-advento-kalendorius-1114538',
       ];
+    } else if (this.customer === 'Elesen') {
+      this.collectablesLinks = [this.language === 'LT' ? 'https://www.elesen.lt/black-friday' : this.language === 'LV' ? 'https://www.euronics.lv/blackfriday' : 'https://www.euronics.ee/mustreede'];
     }
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null;
@@ -249,54 +211,7 @@ export class DidYouKnowContainer {
   updateProps() {
     if (this.customer === 'Pigu.lt') {
       this.collectablesLinks = this.dynamicData;
-    }
-    // else if (this.prop && this.prop.includes('Plastic')) {
-    //   this.collectables = [
-    //     item16,
-    //     item4,
-    //     item14,
-    //     item1,
-    //     item23,
-    //     item20,
-    //     item10,
-    //     item8,
-    //     item6,
-    //     item12,
-    //     item19,
-    //     item7,
-    //   ];
-    // } else if (this.prop && this.prop.includes('Paper')) {
-    //   this.collectables = [
-    //     item16Paper,
-    //     item4Paper,
-    //     item14Paper,
-    //     item1Paper,
-    //     item23Paper,
-    //     item20Paper,
-    //     item10Paper,
-    //     item8Paper,
-    //     item6Paper,
-    //     item12Paper,
-    //     item19Paper,
-    //     item7Paper,
-    //   ];
-    // } else if (this.prop && this.prop.includes('Glass')) {
-    //   this.collectables = [
-    //     item16Glass,
-    //     item4Glass,
-    //     item14Glass,
-    //     item1Glass,
-    //     item23Glass,
-    //     item20Glass,
-    //     item10Glass,
-    //     item8Glass,
-    //     item6Glass,
-    //     item12Glass,
-    //     item19Glass,
-    //     item7Glass,
-    //   ];
-    // }
-    else if (this.customer === 'Pieno Žvaigždės') {
+    } else if (this.customer === 'Pieno Žvaigždės') {
       // Handle Glass collectables
       this.collectables = [item15PienoZvaigzdes, item1PienoZvaigzdes, item8PienoZvaigzdes, item2PienoZvaigzdes, item7PienoZvaigzdes, item5PienoZvaigzdes];
     } else if (this.customer === 'Pegasas') {
@@ -386,17 +301,19 @@ export class DidYouKnowContainer {
           tableHTML += '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
         }
         tableHTML += `
-          <td style="padding:5px;text-align: center; border: none; ${this.customer === 'Pegasas' || this.customer === 'Pigu.lt' ? 'cursor:pointer' : ''}">
-          <div id="image-${index}" >
+          <td ${this.customer === 'Elesen' ? 'colspan="3"' : ''} style="padding:5px;text-align: center; border: none; ${this.customer === 'Pegasas' || this.customer === 'Pigu.lt' || this.customer === 'Elesen' ? 'cursor:pointer' : ''}">
+          <div id="image-${index}" style="${this.customer === 'Elesen' ? 'display:flex;justify-content:center;align-items:center;width:100%;' : ''}" >
           <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:
-            ${this.customer === 'Pigu.lt' ? '100px' : '70px'};' src=${item} alt="Scoreboard Image" >
+            ${this.customer === 'Pigu.lt' ? '100px' : this.customer === 'Elesen' ? '350px' : '70px'} !important;' src=${item} alt="Scoreboard Image" >
         
         ${
-          (this.customer === 'Pegasas' && this.collectablesLinks[index]) || (this.customer === 'Pigu.lt' && link)
+          ((this.customer === 'Pegasas' || this.customer === 'Elesen') && this.collectablesLinks[index]) || (this.customer === 'Pigu.lt' && link)
             ? `<div class='image-container-text'><a href="${
-                this.customer === 'Pegasas' ? this.collectablesLinks[index] : this.customer === 'Pigu.lt' && link.url + '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Black_Friday'
+                this.customer === 'Pegasas' || this.customer === 'Elesen'
+                  ? this.collectablesLinks[index]
+                  : this.customer === 'Pigu.lt' && link.url + '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Black_Friday'
               }" target="_blank" style="color: white; text-decoration: underline;"><p style="margin-left:10px;margin-right:10px;max-width:280px;line-height:10px;">${
-                this.customer === 'Pegasas' ? this.collectablesLinks[index] : this.customer === 'Pigu.lt' && link.title
+                this.customer === 'Pegasas' || this.customer === 'Elesen' ? this.collectablesLinks[index] : this.customer === 'Pigu.lt' && link.title
               }<p/></a></div>`
             : ''
         }
@@ -405,7 +322,7 @@ export class DidYouKnowContainer {
         if ((this.customer === 'Nykstukas' ? (index + 1) % 2 === 0 : (index + 1) % 3 === 0) || index === loopingImages.length - 1) {
           tableHTML += '</tr>';
         }
-      });
+      }); //loop ends
     }
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
     let scoreboardText = `
@@ -507,7 +424,7 @@ export class DidYouKnowContainer {
       this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
     }
 
-    if (this.customer === 'Pegasas' || this.customer === 'Pigu.lt') {
+    if (this.customer === 'Pegasas' || this.customer === 'Pigu.lt' || this.customer === 'Elesen') {
       document.getElementById('closeDidYouKnow').addEventListener('click', () => {
         // Find all enlarged images by checking for the 'enlarge-image' class
         const enlargedImages = document.querySelectorAll('.enlarge-image');
@@ -543,6 +460,16 @@ export class DidYouKnowContainer {
   }
 
   handleImageClick(image) {
+    // For Elesen, directly open the link without zoom effect
+    if (this.customer === 'Elesen') {
+      const linkElement = image.querySelector('.image-container-text a');
+      if (linkElement) {
+        const url = linkElement.href;
+        window.open(url, '_blank');
+      }
+      return;
+    }
+
     const enlargedImages = document.querySelectorAll('.enlarge-image');
     if (enlargedImages.length === 0) {
       // Toggle enlargement class
@@ -619,7 +546,15 @@ export class DidYouKnowContainer {
                       ? 'Ar visus RAGAVAI?'
                       : this.customer === 'Nevezis'
                         ? 'ATRASK SAVO SKONĮ'
-                        : 'Ar žinojai?'
+                        : this.customer === 'Elesen' && this.language === 'LT'
+                          ? 'Ar jau matei mūsų TOP pasiūlymus?'
+                          : this.customer === 'Elesen' && this.language === 'LV'
+                            ? 'VAI ESI REDZĒJIS TOP PIEDĀVĀJUMUS?'
+                            : this.customer === 'Elesen' && this.language === 'ET'
+                              ? 'Kas oled juba näinud meie TOP pakkumisi?'
+                              : this.language === 'LT'
+                                ? 'Ar žinojai?'
+                                : 'Did you know?'
       }</div>
       
       <div class="boomio-scoreboard-text">
@@ -628,12 +563,12 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-        this.customer === 'Pegasas' ? '100px' : this.customer === 'Pieno Žvaigždės' ? '174px' : this.customer === 'Nykstukas' ? '230px' : '114px'
+        this.customer === 'Pegasas' ? '100px' : this.customer === 'Pieno Žvaigždės' ? '174px' : this.customer === 'Nykstukas' ? '230px' : this.customer === 'Elesen' ? '130px' : '114px'
       }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${this.customer === 'Pigu.lt' ? (this.isMobileWidthSmall ? '30px' : '40px') : '30px'};border-spacing:3px;width:${
             this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
-          };margin-left:${this.isMobileWidthSmall ? '20px' : '40px'};border-collapse:separate">
+          };margin-left:${this.customer === 'Elesen' ? 'auto' : this.isMobileWidthSmall ? '20px' : '40px'};margin-right:${this.customer === 'Elesen' ? 'auto' : '0'};border-collapse:separate">
             <tbody class="boomio-tbody" style="background-color:transparent">
     `;
 
@@ -647,46 +582,48 @@ export class DidYouKnowContainer {
           <div style="width:100%;font-size:${
             this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
           };text-align:center;text-transform:uppercase;top:555px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
-          <div style="display:${this.customer === 'Pigu.lt' ? 'block' : 'none'};border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 28px; background: ${
-            this.customer === 'Pigu.lt' ? '#F34434' : 'none'
-          }; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
+          <div style="display:${this.customer === 'Pigu.lt' || this.customer === 'Elesen' ? 'block' : 'none'};border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 38px; background: ${
+            this.customer === 'Pigu.lt' ? '#F34434' : this.customer === 'Elesen' ? 'white' : 'none'
+          }; box-shadow: ${this.customer === 'Elesen' ? '-4px -4px 8px #DFE6F5 inset' : 'none'}; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
-        this.customer === 'Pigu.lt'
-          ? this.language === 'EN'
-            ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
-            : this.language === 'LV'
-              ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv">Atklāj labākos 220.lv piedāvājumus!</a>'
-              : this.language === 'ET'
-                ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
-                : this.language === 'FI'
-                  ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
-                  : this.language === 'RU' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
-                    ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
-                    : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
-                      ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
-                      : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://220.lv'
-                        ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
-                        : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
-          : ''
+        this.customer === 'Elesen'
+          ? `<a style="text-decoration:none;color:rgba(61, 73, 40, 1);font-size:24px;font-weight:700;line-height:24px;cursor:pointer;" target="_blank" href="${
+              this.language === 'LT' ? 'https://www.elesen.lt/black-friday' : this.language === 'LV' ? 'https://www.euronics.lv/blackfriday' : 'https://www.euronics.ee/mustreede'
+            }">${this.language === 'LT' ? 'ŽIŪRĖTI PASIŪLYMUS' : this.language === 'LV' ? 'SKATĪT PIEDĀVĀJUMUS' : 'VAATA PAKKUMISI'}</a>`
+          : this.customer === 'Pigu.lt'
+            ? this.language === 'EN'
+              ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'
+              : this.language === 'LV'
+                ? '<a style="text-decoration:none;color:white" target="_blank" href="https://220.lv">Atklāj labākos 220.lv piedāvājumus!</a>'
+                : this.language === 'ET'
+                  ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Avasta Kaup24.ee parimaid ostudiile!</a>'
+                  : this.language === 'FI'
+                    ? '<a style="text-decoration:none;color:white" target="_blank" href="https://hobbyhall.fi">Löydä parhaat diilit Hobbyhall.fi verkkokaupasta!</a>'
+                    : this.language === 'RU' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
+                      ? '<a style="text-decoration:none;color:white" target="_blank" href="https://kaup24.ee">Открой для себя лучшие предложения Kaup24!</a>'
+                      : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
+                        ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения Pigu.lt!</a>'
+                        : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://220.lv'
+                          ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Открой для себя лучшие предложения 220.lv!</a>'
+                          : '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Atrask geriausius Pigu.lt pasiūlymus!</a>'
+            : ''
       }
   </div>
       </div>
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:595px;position:absolute; height: 38px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-close-did-you-know">
         <div style="text-align: center; color: ${'rgba(61, 73, 40, 1)'} ; font-size: 24px; font-family: Georama; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">
         ${
-          this.customer !== 'Pigu.lt'
-            ? 'TOLIAU'
-            : this.language === 'EN'
-              ? 'NEXT'
-              : this.language === 'LT'
-                ? 'PIRMYN'
-                : this.language === 'LV'
-                  ? 'KLIKŠĶINI'
-                  : this.language === 'ET'
-                    ? 'JÄRGMINE'
-                    : this.language === 'FI'
-                      ? 'SEURAAVA'
-                      : this.language === 'RU' && 'ДАЛЕЕ'
+          this.language === 'EN'
+            ? 'NEXT'
+            : this.language === 'LT'
+              ? 'TOLIAU'
+              : this.language === 'LV'
+                ? 'TĀLĀK'
+                : this.language === 'ET'
+                  ? 'EDASI'
+                  : this.language === 'FI'
+                    ? 'SEURAAVA'
+                    : this.language === 'RU' && 'ДАЛЕЕ'
         }
         </div>
       </div>

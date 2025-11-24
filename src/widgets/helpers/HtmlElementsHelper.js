@@ -118,6 +118,20 @@ class HtmlElementsHelper {
   }
 
   /**
+   * Check if error element is visible AND has error text
+   * @param {HTMLElement} errorElement - The error element to check
+   * @returns {boolean} - True if element is visible and has non-empty text content
+   */
+  hasVisibleText(errorElement) {
+    if (!this.isVisible(errorElement)) {
+      return false;
+    }
+
+    const errorText = errorElement?.innerText?.trim() || errorElement?.textContent?.trim();
+    return !!errorText;
+  }
+
+  /**
    * Toggle element visibility using display property
    * @param {HTMLElement} element - The element to toggle
    * @param {boolean} show - If true, show element (display: block), if false, hide (display: none)

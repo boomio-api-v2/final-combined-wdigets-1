@@ -1,4 +1,3 @@
-import { localStorageService } from '@/services';
 import { Elements } from './HtmlElementsHelper';
 
 /**
@@ -6,10 +5,9 @@ import { Elements } from './HtmlElementsHelper';
  * Handles all validation logic for email, phone, and other input fields
  */
 class InputRegisterContainerValidation {
-  constructor() {
-    this.config = localStorageService.getDefaultConfig();
-    this.customer = this.config.business_name;
-    this.language = this.config.language;
+  constructor(customer, language) {
+    this.customer = customer;
+    this.language = language;
   }
 
   /**
@@ -198,7 +196,7 @@ class InputRegisterContainerValidation {
       ES: 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.',
       FI: 'Jatkaaksesi sinun on hyväksyttävä yrityksen tietosuojakäytäntö.',
       LT: 'Norint tęsti, privaloma sutikti su privatumo politika.',
-      ET: 'Mängija peab nõustuma andmete töötlemisega, et jätkata.',
+      ET: 'Et jätkata, peate nõustuma privaatsuspoliitikaga.',
       EN: 'Player must agree to data processing to continue.',
     };
 
@@ -361,19 +359,18 @@ class InputRegisterContainerValidation {
       }
     }
 
-    if (
-      Elements.isVisible(Elements.nameError) ||
-      Elements.isVisible(Elements.emailError) ||
-      Elements.isVisible(Elements.phoneError) ||
-      Elements.isVisible(Elements.competitionCheckboxError) ||
-      Elements.isVisible(Elements.competitionCheckboxError2) ||
-      Elements.isVisible(Elements.competitionCheckboxError3)
-    ) {
+    const hasNameError = Elements.hasVisibleText(Elements.nameError);
+    const hasEmailError = Elements.hasVisibleText(Elements.emailError);
+    const hasPhoneError = Elements.hasVisibleText(Elements.phoneError);
+    const hasCheckboxError = Elements.hasVisibleText(Elements.competitionCheckboxError);
+    const hasCheckboxError2 = Elements.hasVisibleText(Elements.competitionCheckboxError2);
+    const hasCheckboxError3 = Elements.hasVisibleText(Elements.competitionCheckboxError3);
+
+    if (hasNameError || hasEmailError || hasPhoneError || hasCheckboxError || hasCheckboxError2 || hasCheckboxError3) {
       return false;
     }
-
     return true;
   }
 }
 
-export const InputValidator = new InputRegisterContainerValidation();
+export { InputRegisterContainerValidation };
