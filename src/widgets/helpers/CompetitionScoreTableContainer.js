@@ -593,7 +593,7 @@ export class CompetitionScoreTableContainer {
         (this.prop === 'Novaturas' && this.scoreTable.user_best_place > 30) ||
         (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score >= 500) ||
         (this.prop === 'Apranga' && this.scoreTable.user_best_place <= 100) ||
-        (this.prop === 'Elesen' && this.scoreTable.user_best_place <= 100) ||
+        (this.prop === 'Elesen' && this.scoreTable.user_best_place <= 10) ||
         (this.language === 'EN' && this.prop.includes('demo'))
           ? `<div id="boomio-title-win" style="width:100%; top: ${
               this.prop === 'Pigu.lt' ? '410px' : this.prop === 'Akropolis' ? '400px' : '420px'
