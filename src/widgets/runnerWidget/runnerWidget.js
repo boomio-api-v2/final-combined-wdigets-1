@@ -972,9 +972,9 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        // if (!this.InputValidator.validateRegistrationInputs()) {
-        //   return;
-        // }
+        if (!this.InputValidator.validateRegistrationInputs()) {
+          return;
+        }
 
         if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
           this.loading = true;
@@ -1975,7 +1975,7 @@ ${
         // Adjust object placement condition
         if (objects.length === 0 || objects.at(-1).x < canvas.width - 200) {
           objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, canvas.height - wrapperBlock.offsetHeight / 2.7, false));
-          var randomBarrier = RandomInteger(1, 8);
+          var randomBarrier = RandomInteger(1, barriersSprites.length + 1);
           switch (randomBarrier) {
             case 1:
               objects.at(-1).image = barriersSprites[randomBarrier - 1];
