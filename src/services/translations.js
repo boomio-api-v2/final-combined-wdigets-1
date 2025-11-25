@@ -76,7 +76,7 @@ const translations = {
     ET: 'TÄPI',
     FI: 'Napautua',
     LT: 'KLIK',
-    LV: 'BAKSTI',
+    LV: 'SPIED',
     RU: 'ТЫКАЙ',
   },
   controlDriveSwipeLeft: {
