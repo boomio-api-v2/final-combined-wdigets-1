@@ -1975,37 +1975,41 @@ ${
         // Adjust object placement condition
         if (objects.length === 0 || objects.at(-1).x < canvas.width - 200) {
           objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, canvas.height - wrapperBlock.offsetHeight / 2.7, false));
-          var randomBarrier = RandomInteger(1, barriersSprites.length);
+          var randomBarrier = RandomInteger(1, 8);
+          var index = randomBarrier - 1;
           switch (randomBarrier) {
             case 1:
-              objects.at(-1).image = barriersSprites[randomBarrier - 1];
+              objects.at(-1).image = barriersSprites[index];
               pushRandomCoin('top');
               break;
             case 2:
-              objects.at(-1).image = barriersSprites[randomBarrier - 1];
+              objects.at(-1).image = barriersSprites[index];
               pushRandomCoin('top');
               break;
             case 3:
-              objects.at(-1).image = barriersSprites[randomBarrier - 1];
+              objects.at(-1).image = barriersSprites[index];
               pushRandomCoin('top');
               break;
             case 4:
-              objects.at(-1).image = barriersSprites[randomBarrier - 1];
+              objects.at(-1).image = barriersSprites[index];
               objects.at(-1).y = canvas.height - wrapperBlock.offsetHeight / 2.35;
               pushRandomCoin('top');
               break;
             case 5:
-              objects.at(-1).image = barriersSprites[randomBarrier - 1];
+              objects.at(-1).image = barriersSprites[index];
               objects.at(-1).topBarrier = true;
               objects.at(-1).y = canvas.height - canvas.height / 2.58 / (objects.at(-1).image.naturalWidth / objects.at(-1).image.naturalHeight);
               pushRandomCoin('bottom');
               break;
             case 6:
-              objects.at(-1).image = barriersSprites[randomBarrier - 1];
+              objects.at(-1).image = barriersSprites[index];
               pushRandomCoin('top');
               break;
             case 7:
-              objects.at(-1).image = barriersSprites[randomBarrier - 1];
+              if (index >= barriersSprites.length) {
+                return;
+              }
+              objects.at(-1).image = barriersSprites[index];
               objects.at(-1).isLevitate = true;
               objects.at(-1).topBarrier = true;
               objects.at(-1).sizeCoef = 1.7;
