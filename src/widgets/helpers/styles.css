@@ -323,3 +323,21 @@ a:not([href]) {
   flex-direction: column;
   cursor: pointer;
 }
+
+@media (max-width: 920px) {
+  .input-register-container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .competition-table-container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .did-you-know-container,
+  .share-container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}

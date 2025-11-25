@@ -874,9 +874,13 @@
     font-size: 15px;
   }
   .boomio-insideScreenRatio {
-    overflow: scroll;
-    width: 85%;
+    overflow: auto;
+    width: 90%;
+    max-width: 90%;
     height: 85%;
+    box-sizing: border-box;
+    left: 50%;
+    transform: translateX(-50%);
   }
   #boomio-runner-coinImg {
     width: 40px;
@@ -890,6 +894,8 @@
   .boomio-runner-pause,
   .boomio-runner-gameOver {
     font-size: 35px;
+    padding: 15px;
+    box-sizing: border-box;
   }
   .boomio-runner-HIandRecord {
     font-size: 40px;
@@ -902,6 +908,15 @@
   .gameOverCoins {
     font-size: 35px;
   }
+  .boomio-runner-gameOverCoinsHolder {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
+  }
+  .boomio-runner-saveMeHolder {
+    width: 100%;
+    box-sizing: border-box;
+  }
   .boomio-runner-pauseButton {
     height: 30px;
     width: 30px;
@@ -912,6 +927,10 @@
   }
   .boomio-buttonHolder {
     height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
   }
   .boomio-achiveImg {
     height: 43px;

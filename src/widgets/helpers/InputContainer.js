@@ -72,6 +72,13 @@ const getRule1Title = (customer, language, game) => {
     }
   }
 
+  // Runner game
+  if (game === 'runner') {
+    if (language === 'LT') return 'Judėk';
+    if (language === 'EN') return 'Move';
+    if (language === 'ES') return 'Muévete';
+  }
+
   // Language-specific defaults
   if (language === 'LV') return 'SPIED,';
   if (language === 'RU') return 'ПРАВИЛА';
@@ -183,7 +190,11 @@ const getRule1Text = (customer, language, game) => {
   }
 
   // Runner game
-  if (game === 'runner') return 'rodyklių pagalba.';
+  if (game === 'runner') {
+    if (language === 'LT') return 'rodyklių pagalba.';
+    if (language === 'EN') return 'with the arrows.';
+    if (language === 'ES') return 'con las flechas.';
+  }
 
   // Doodle game
   if (game === 'doodle') return 'į šonus, kad nenukristum.';
