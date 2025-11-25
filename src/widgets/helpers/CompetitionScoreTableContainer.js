@@ -750,7 +750,7 @@ export class CompetitionScoreTableContainer {
                                                                                         : this.prop === 'Elesen' && this.language === 'LV'
                                                                                           ? 'Ja laimēsi balvu, mēs Tevi informēsim uz e-pastu, kuru norādīji.'
                                                                                           : this.prop === 'Elesen' && this.language === 'ET'
-                                                                                            ? 'Kui võidate mingeid auhindu, teavitame teid teie esitatud e-posti aadressi kaudu.'
+                                                                                            ? 'Kui võidad mõne auhinna, anname sellest teada sinu esitatud e-posti aadressile.'
                                                                                             : 'If you win a prize, we will inform you by the email address you provided.'
             }</div>
               <div style="width:100%; top: ${
@@ -910,7 +910,7 @@ export class CompetitionScoreTableContainer {
                                                                                             : this.prop === 'Elesen' && this.language === 'LV'
                                                                                               ? 'Ja laimēsi balvu, mēs Tevi informēsim uz e-pastu, kuru norādīji.'
                                                                                               : this.prop === 'Elesen' && this.language === 'ET'
-                                                                                                ? 'Kui võidate mingeid auhindu, teavitame teid teie esitatud e-posti aadressi kaudu.'
+                                                                                                ? 'Kui võidad mõne auhinna, anname sellest teada sinu esitatud e-posti aadressile.'
                                                                                                 : 'If you win a prize, we will inform you by the email address you provided.'
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${

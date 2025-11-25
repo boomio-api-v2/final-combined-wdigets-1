@@ -143,7 +143,7 @@ const getRule1Text = (customer, language, game) => {
     if (game === 'doodle') {
       if (language === 'LT') return 'į šonus, kad nenukristum.';
       if (language === 'LV') return 'uz sāniem, lai nenokristu.';
-      if (language === 'ET') return 'küljele, et mitte kukkuda.';
+      if (language === 'ET') return 'külgedele, et vältida kukkumist.';
     }
   }
 

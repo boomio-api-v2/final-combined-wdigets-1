@@ -96,7 +96,7 @@ export class InputRegisterContainer {
                       : this.language === 'RU'
                         ? ' Уже зарегистрировался? Используй тот же  </br>email и улучшай результат!'
                         : this.language === 'ET'
-                          ? 'Juba registreerunud? Kasuta sama e-posti aadressi </br> ja paranda oma tulemust!'
+                          ? 'Oled juba registreerunud? Kasuta sama e-posti aadressi </br> ja paranda oma tulemust!'
                           : this.language === 'PL'
                             ? 'Już się zarejestrowałeś? Użyj tego samego nicku i e-maila </br>, by dalej poprawiać wynik!'
                             : this.language === 'FI'
