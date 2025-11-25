@@ -496,34 +496,38 @@ export class CompetitionScoreTableContainer {
       ${
         !this.prop.includes('Gamtos Ateitis')
           ? userBestPlace === index + 1
-            ? this.language === 'LT'
-              ? 'Tavo rezultatas'
-              : this.language === 'LV'
-                ? 'Tavs rezultāts'
-                : this.language === 'ET'
-                  ? 'Sinu tulemus'
-                  : this.language === 'ES'
-                    ? 'Tu resultado'
-                    : this.language === 'FI'
-                      ? 'SINUN TULOKSESI'
-                      : this.language === 'RU'
-                        ? 'ВАШ РЕЗУЛЬТАТ'
-                        : this.prop === 'Nykstukas'
-                          ? 'Tavo komandos rezultatas'
-                          : 'Your score'
+            ? this.prop === 'Elesen'
+              ? scoreboard[index].user_nickname
+              : this.language === 'LT'
+                ? 'Tavo rezultatas2'
+                : this.language === 'LV'
+                  ? 'Tavs rezultāts'
+                  : this.language === 'ET'
+                    ? 'Sinu tulemus'
+                    : this.language === 'ES'
+                      ? 'Tu resultado'
+                      : this.language === 'FI'
+                        ? 'SINUN TULOKSESI'
+                        : this.language === 'RU'
+                          ? 'ВАШ РЕЗУЛЬТАТ'
+                          : this.prop === 'Nykstukas'
+                            ? 'Tavo komandos rezultatas'
+                            : 'Your score'
             : this.prop === 'Perlas GO'
               ? perlasGoTable[index]
               : this.prop === 'Nykstukas'
                 ? hiddenNicknames[index]
-                : this.language === 'LV'
-                  ? lvNicknames[index]
-                  : this.language === 'ET'
-                    ? eeNicknames[index]
-                    : this.language === 'EN'
-                      ? enNicknames[index]
-                      : this.language === 'ES'
-                        ? esNicknames[index]
-                        : ltNicknames[index]
+                : this.prop === 'Elesen'
+                  ? scoreboard[index].user_nickname
+                  : this.language === 'LV'
+                    ? lvNicknames[index]
+                    : this.language === 'ET'
+                      ? eeNicknames[index]
+                      : this.language === 'EN'
+                        ? enNicknames[index]
+                        : this.language === 'ES'
+                          ? esNicknames[index]
+                          : ltNicknames[index]
           : this.prop.includes('Gamtos Ateitis')
             ? 'MOKYKLA ' + (index + 1)
             : scoreboard[index].team
