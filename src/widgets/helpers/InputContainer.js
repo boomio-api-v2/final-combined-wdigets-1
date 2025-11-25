@@ -36,12 +36,13 @@ const getRule1Title = (customer, language, game) => {
 
   // Game-specific rules for 'drive'
   if (game === 'drive') {
-    if (language === 'EN') return 'Move ';
-    if (language === 'LV') return 'Stūrē ';
-    if (language === 'ET') return 'Navigeerimiseks ';
+    if (language === 'EN') return 'Move';
+    if (language === 'LV') return 'Stūrē';
+    if (language === 'ET') return 'Navigeerimiseks';
     if (language === 'FI') return 'PYYHKÄISE';
-    if (language === 'RU') return 'Двигайтесь ';
-    if (language === 'LT') return 'Judėk  ';
+    if (language === 'RU') return 'Двигайтесь';
+    if (language === 'LT') return 'Judėk';
+    if (language === 'ES') return 'Muévete';
   }
 
   // Doodle game specific
@@ -175,9 +176,10 @@ const getRule1Text = (customer, language, game) => {
     if (customer === 'Ikea') return 'braukdami kairiau ar dešiniau.';
     if (language === 'LT') return 'į šonus, kad vairuotum.';
     if (language === 'LV') return 'pa labi un pa kreisi';
-    if (language === 'ET') return 'liigu paremale ja vasakule. ';
+    if (language === 'ET') return 'liigu paremale ja vasakule.';
     if (language === 'EN') return 'sideways to steer.';
     if (language === 'RU') return 'вправо и влево';
+    if (language === 'ES') return 'lateralmente para girar.';
   }
 
   // Runner game
@@ -487,10 +489,11 @@ const getRule3Title = (customer, language, game, userId) => {
   if (customer === 'Apranga') return 'MĖGAUKITĖS';
 
   // Language-specific defaults
-  if (language === 'LV') return 'Atkārto ';
-  if (language === 'ET') return 'Proovi ';
-  if (language === 'EN') return 'Repeat ';
-  if (language === 'RU') return 'Повторяйте ';
+  if (language === 'LV') return 'Atkārto';
+  if (language === 'ET') return 'Proovi';
+  if (language === 'EN') return 'Repeat';
+  if (language === 'RU') return 'Повторяйте';
+  if (language === 'ES') return 'Disfruta';
 
   // Default fallback
   return 'Enjoy';
@@ -620,10 +623,11 @@ const getRule3Text = (customer, language, game, userId) => {
 
   // Language-specific defaults
   if (language === 'LT') return 'ir pagerink rezultatą.';
-  if (language === 'LV') return 'un uzlabo savu rezultātu ';
-  if (language === 'ET') return 'uuesti ja paranda oma tulemust. ';
+  if (language === 'LV') return 'un uzlabo savu rezultātu';
+  if (language === 'ET') return 'uuesti ja paranda oma tulemust.';
   if (language === 'EN') return 'and improve your score.';
-  if (language === 'RU') return 'и улучшайте свой результат ';
+  if (language === 'RU') return 'и улучшайте свой результат';
+  if (language === 'ES') return 'el juego.';
 
   // Default fallback
   return 'the game.';
