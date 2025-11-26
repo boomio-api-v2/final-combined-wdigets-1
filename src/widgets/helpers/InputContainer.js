@@ -833,7 +833,7 @@ export class InputContainer {
                           }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
                             this.customer === 'Perlas GO' || this.customer === 'SaludSA' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Dentsu' ? 'white-space:normal;' : ''
                           }
-    ${this.customer === 'Toni' && 'margin-top:13px;line-height:14px;white-space:normal;'}
+    ${this.customer === 'Toni' && (this.game === 'flappy' || this.game === 'doodle') && 'margin-top:13px;line-height:14px;white-space:normal;'}
     ${this.customer === 'Perlas GO' || this.customer === 'SaludSA' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Dentsu' ? 'line-height:14px;' : ''}">
             ${getRule3Text(this.customer, this.language, this.game, userId)}
           </div>
