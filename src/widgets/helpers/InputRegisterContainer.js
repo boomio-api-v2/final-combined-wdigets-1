@@ -231,7 +231,7 @@ export class InputRegisterContainer {
                                                                         : this.customer === 'Elesen' && this.language === 'LV'
                                                                           ? 'Piekrītu saņemt uzņēmuma jaunumus.'
                                                                           : this.customer === 'Elesen' && this.language === 'ET'
-                                                                            ? 'Nõustun saama ettevõtte uudiskirju.'
+                                                                            ? 'Nõustun saama Euronicsi uudiskirju. Loobuda <br> uudiskirjadest saab igal hetkel.'
                                                                             : this.customer === 'Apranga'
                                                                               ? 'Sutinku su <a href="https://soulz.lt/lt/page/zaidimotaisykles" target="_blank" rel="noopener noreferrer" style="color:white">Žaidimo taisyklėmis.</a>'
                                                                               : this.language === 'LT'
@@ -350,7 +350,7 @@ export class InputRegisterContainer {
                                                                                       : this.customer === 'Elesen' && this.language === 'LV'
                                                                                         ? 'Piekrītu, ka mani personas dati tiks apstrādāti tiešā mārketinga nolūkos saskaņā ar <a href="https://www.euronics.lv/privatuma-politika" target="_blank" rel="noopener noreferrer" style="color:white">privātuma politiku</a>.'
                                                                                         : this.customer === 'Elesen' && this.language === 'ET'
-                                                                                          ? 'Nõustun ettevõtte <a href="https://www.euronics.ee/privaatsuspoliitika" target="_blank" rel="noopener noreferrer" style="color:white">privaatsuspoliitikaga</a> ja mängu täielike <a href="https://www.euronics.ee/mangureeglid" target="_blank" rel="noopener noreferrer" style="color:white">reeglitega.</a>'
+                                                                                          ? 'Nõustun, et minu isikuandmeid töödeldakse loosimises osalemise eesmärgil, vastavalt kampaania <a href="https://www.euronics.ee/mangureeglid" target="_blank" rel="noopener noreferrer" style="color:white">tingimustes</a> ja <a href="https://www.euronics.ee/privaatsuspoliitika" target="_blank" rel="noopener noreferrer" style="color:white">privaatsuspoliitikas</a> sätestatud korrale.'
                                                                                           : this.config.campaignUrlOrCurrentPage.includes('pigu')
                                                                                             ? privacyPolicytranslations['pigu'][this.language] || privacyPolicytranslations['pigu']['LT']
                                                                                             : this.config.campaignUrlOrCurrentPage.includes('220')
