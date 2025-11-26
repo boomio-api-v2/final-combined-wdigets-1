@@ -1623,7 +1623,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
               return;
             }
 
-            if (!this.checkboxChange2 && (this.customer === 'Toni' || this.customer === 'Elesen')) {
+            if (!this.checkboxChange2 && this.customer === 'Toni') {
               document.getElementById('competition-checkbox-error2').innerText =
                 this.customer === 'Toni'
                   ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
