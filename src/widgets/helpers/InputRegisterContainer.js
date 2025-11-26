@@ -581,22 +581,7 @@ export class InputRegisterContainer {
 
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field"       
       type="text" maxLength=50 style="display:${
-        this.customer.includes('Gamtos Ateitis') ||
-        this.customer === 'Perlas GO' ||
-        this.customer === 'Nevezis' ||
-        this.customer === 'Magija' ||
-        this.customer === 'Pigu.lt' ||
-        this.customer === 'LemonGym' ||
-        this.customer === 'Orlen' ||
-        this.customer === 'LemonFeel' ||
-        this.customer === 'Tiche' ||
-        this.customer === 'Zemaitijos Pienas' ||
-        this.customer === 'Novaturas' ||
-        this.customer === 'Apranga' ||
-        this.customer === 'Akropolis' ||
-        this.language === 'EN'
-          ? 'none'
-          : 'block'
+        this.customer === 'Toni' || this.customer === 'Elesen' ? 'block' : 'none' //by default should be hidden for all customers
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '135px' : this.customer === 'Nykstukas' ? '315px' : '215px'
       };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${

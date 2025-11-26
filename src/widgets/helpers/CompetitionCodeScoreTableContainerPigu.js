@@ -27,7 +27,6 @@ export class CompetitionCodeScoreTableContainerPigu {
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
     const scoreboard = this.scoreTable.scoreboard || [];
     const userBestPlace = parseInt(this.scoreTable.user_best_place);
     const userBestScore = parseInt(this.scoreTable.user_best_score);
