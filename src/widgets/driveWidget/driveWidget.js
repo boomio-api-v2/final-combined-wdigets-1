@@ -113,8 +113,7 @@ class driveWidget {
     blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
-    const newHighscoreImage = new Image();
-    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
+
     const randomType = () => {
       const types = [1, 2, 3];
       return types[Math.floor(Math.random() * types.length)];

@@ -18,7 +18,7 @@ export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-
 
 export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
 
-export const newRecord = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecord.png?raw=true';
+export const newRecordLT = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecord.png?raw=true';
 export const newRecordEE = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEE.png?raw=true';
 
 export const newRecordFI = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordFI.png?raw=true';
@@ -27,9 +27,9 @@ export const newRecordRU = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const newRecordLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordLV.png?raw=true';
 
-export const newRecordEn = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEn.png?raw=true';
+export const newRecordEN = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEn.png?raw=true';
 
-export const newRecordEs = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEs.png';
+export const newRecordES = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEs.png';
 
 export const mainImageAkropolis = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/Akropolis/game2.png?raw=true';
 

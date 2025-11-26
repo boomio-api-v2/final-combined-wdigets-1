@@ -8,7 +8,7 @@ import {
   useButton,
   checkIcon,
   uncheckIcon,
-  newRecord,
+  newRecordLT,
   backgroundRedAkropolis,
   mainImageAkropolis,
   introAkropolis,
@@ -23,8 +23,8 @@ import {
   newRecordFI,
   newRecordRU,
   newRecordLV,
-  newRecordEn,
-  newRecordEs,
+  newRecordEN,
+  newRecordES,
   BackgroundPigu,
   MainImagePiguLT,
   MainImagePiguLV,
@@ -1480,19 +1480,19 @@ ${(() => {
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
     <div id="new_highscore" class="new_highscore"><img src=${
-      this.language === 'EN'
-        ? newRecordEn
-        : this.language === 'LV'
-          ? newRecordLV
-          : this.language === 'ET'
-            ? newRecordEE
-            : this.language === 'FI'
-              ? newRecordFI
-              : this.language === 'RU'
-                ? newRecordRU
-                : this.language === 'ES'
-                  ? newRecordEs
-                  : newRecord
+      this.language === 'LV'
+        ? newRecordLV
+        : this.language === 'ET'
+          ? newRecordEE
+          : this.language === 'FI'
+            ? newRecordFI
+            : this.language === 'RU'
+              ? newRecordRU
+              : this.language === 'ES'
+                ? newRecordES
+                : this.language === 'LT'
+                  ? newRecordLT
+                  : newRecordEN
     } alt="Highscore Image Description" style="width: 100%; height: 100%;">
     </div>
 

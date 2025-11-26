@@ -1,6 +1,8 @@
 import {
   star,
-  newRecord,
+  newRecordEN,
+  newRecordLT,
+  newRecordES,
   runnerbackground,
   runnerbackgroundDentsu,
   home,
@@ -63,6 +65,7 @@ class runnerWidget {
     this.checkboxChange = false;
     this.checkboxChange2 = false;
     this.checkboxChange3 = false;
+    this.newHighScoreReached = false;
     this.scoreTable = {};
     this.scoreTableContainerInstance;
     this.isMobile = window.innerWidth <= 1280;
@@ -76,8 +79,6 @@ class runnerWidget {
   createContainer = () => {
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
-    const newHighscoreImage = new Image();
-    newHighscoreImage.src = 'https://i.ibb.co/fdFppDg/New-best-score.png';
 
     // Helper function to get asset URLs based on customer
     const getAssetPath = (suffix) => {
@@ -110,28 +111,30 @@ class runnerWidget {
       newHighscoreStarsImage.src
     } alt="Image Description" style="overflow: hidden;z-index:4;margin-top:-300px;display:none; height: 95px;position:absolute;pointer-events:none;" >
     </img>
-    <div class="new_highscore"><img src=${newRecord}  alt="Image Description" style="width: 100%; height: 100%;">
+    <div class="new_highscore"><img src=${this.language === 'ES' ? newRecordES : this.language === 'LT' ? newRecordLT : newRecordEN}  alt="Image Description" style="width: 100%; height: 100%;">
     </div>
-    <div class="numbers" style="z-index:10">
-    <span class="numbers__window">
-        <span class="numbers__window__digit numbers__window__digit--1" data-fake="8642519073" id="bestScore1"></span>
-    </span>
-    <span class="numbers__window">
-        <span class="numbers__window__digit numbers__window__digit--2" data-fake="5207186394" id="bestScore2"></span>
-    </span>
-    <span class="numbers__window">
-        <span class="numbers__window__digit numbers__window__digit--3" data-fake="8395216407" id="bestScore3"></span>
-    </span>
-    <span class="numbers__window">
-    <span class="numbers__window__digit numbers__window__digit--4" data-fake="8395216407" id="bestScore4"></span>
+    <div class="numbers">
+  <span class="numbers__window">
+      <span class="numbers__window__digit numbers__window__digit--1" data-fake="8642519073" id="bestScore1"></span>
   </span>
   <span class="numbers__window">
-  <span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
+      <span class="numbers__window__digit numbers__window__digit--2" data-fake="5207186394" id="bestScore2"></span>
   </span>
-  </div>
-    
+  <span class="numbers__window">
+      <span class="numbers__window__digit numbers__window__digit--3" data-fake="8395216407" id="bestScore3"></span>
+  </span>
+  <span class="numbers__window">
+  <span class="numbers__window__digit numbers__window__digit--4" data-fake="8395216407" id="bestScore4"></span>
+</span>
+<span class="numbers__window">
+<span class="numbers__window__digit numbers__window__digit--5" data-fake="8395216407" id="bestScore5"></span>
+</span>
+<span class="numbers__window">
 
-
+<span class="numbers__window__digit numbers__window__digit--6" data-fake="8395216407" id="bestScore6"></span>
+</span>
+</div>
+  
  
 <div class="boomio-runner-body" oncontextmenu="return false;" style="background:">
 <div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
@@ -477,6 +480,80 @@ ${
     const getAssetPath = (suffix) => {
       const assetFolder = customer === 'Dentsu' ? 'assetsDentsu' : customer === 'Nykstukas' ? 'assetsNykstukas' : customer === 'demo-20' ? 'assetsDemo' : customer === 'Toni' ? 'Toni' : 'Boomio';
       return `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${assetFolder}/${suffix}`;
+    };
+
+    // Helper functions for highscore elements visibility
+    const showHighscoreElements = (delay = 200) => {
+      const elements = {
+        numbers: document.querySelector('.numbers'),
+        new_highscore: document.querySelector('.new_highscore'),
+        new_highscore_stars: document.querySelector('.new_highscore_stars'),
+      };
+
+      Object.values(elements).forEach((element) => {
+        if (element) {
+          element.style.display = 'block';
+          setTimeout(() => {
+            element.style.opacity = 1;
+          }, delay);
+        }
+      });
+
+      // Animate the score digits
+      const scoreDigits = document.querySelectorAll('.numbers__window__digit');
+      const scoreString = Math.floor(score).toString();
+
+      const initialMargin = 200;
+      const scoreLength = Math.floor(score).toString().length;
+
+      const newMarginLeft = initialMargin - 30 * scoreLength;
+      elements.numbers.style.marginLeft = `${newMarginLeft}px`;
+
+      // Determine the number of leading zeros to hide
+      let leadingZeros = 0;
+      while (leadingZeros < scoreString.length && scoreString[leadingZeros] === '0') {
+        leadingZeros++;
+      }
+
+      // Hide all digits initially
+      scoreDigits.forEach((digit) => {
+        digit.style.display = 'none';
+      });
+
+      // Display each digit individually, starting from the first non-zero digit
+      for (let i = leadingZeros; i < scoreString.length; i++) {
+        scoreDigits[i - leadingZeros].textContent = scoreString[i];
+        scoreDigits[i - leadingZeros].style.display = 'block';
+        scoreDigits[i - leadingZeros].classList.add('boomio-counting-animation');
+      }
+
+      // Remove the counting class after a short delay
+      setTimeout(() => {
+        setTimeout(() => {
+          this.newHighScoreReached = false;
+        }, 2000);
+        scoreDigits.forEach((digit) => {
+          digit.classList.remove('boomio-counting-animation');
+        });
+      }, 1000);
+    };
+
+    const hideHighscoreElements = (transitionDuration = 2000) => {
+      const elements = {
+        numbers: document.querySelector('.numbers'),
+        new_highscore: document.querySelector('.new_highscore'),
+        new_highscore_stars: document.querySelector('.new_highscore_stars'),
+      };
+
+      Object.values(elements).forEach((element) => {
+        if (element) {
+          element.style.transition = 'opacity 0.5s ease';
+          element.style.opacity = 0;
+          setTimeout(() => {
+            element.style.display = 'none';
+          }, transitionDuration);
+        }
+      });
     };
 
     var gameOverAlreadyHandled = false;
@@ -1215,6 +1292,9 @@ ${
 
     const showCompetitiveRegistrationTable = () => {
       setTimeout(() => {
+        // Hide highscore elements when showing results
+        hideHighscoreElements();
+
         if (this.showCompetitiveRegistration && this.customer !== 'Nykstukas') {
           boomioService
             .signal('ROUND_FINISHED', 'signal', {
@@ -1270,11 +1350,14 @@ ${
           this.language === 'LV' ? 0.4 : 0.37;
           competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
           competitionTableContainer.style.display = 'block';
-          setTimeout(() => {
-            competitionTableContainer.style.height = '680px';
-            competitionTableContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : '50%';
-            competitionTableContainer.style.opacity = 1;
-          }, 100);
+          setTimeout(
+            () => {
+              competitionTableContainer.style.height = '680px';
+              competitionTableContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : '50%';
+              competitionTableContainer.style.opacity = 1;
+            },
+            this.newHighScoreReached ? 2500 : 100,
+          );
         } else {
           const inputContainer = document.querySelector('.input-container1');
           const canvas = document.getElementById('boomio-runner-canvas');
@@ -1382,16 +1465,7 @@ ${
           this.clickEventHandler = () => {
             const tutorial = document.querySelector('.tutorial');
             tutorial.style.display = 'none';
-            const numbers = document.querySelector('.numbers');
-            const new_highscore = document.querySelector('.new_highscore');
-
-            new_highscore.style.display = 'none';
-
-            const new_highscore_stars = document.querySelector('.new_highscore_stars');
-
-            new_highscore_stars.style.display = 'none';
-
-            numbers.style.display = 'none';
+            hideHighscoreElements(0);
 
             if (this.gameCount === 0) {
               this.init();
@@ -1529,31 +1603,6 @@ ${
       const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
       checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
     });
-
-    document.getElementById('startButtonClick').addEventListener('click', () => {
-      PlayButtonActivate();
-    });
-    document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
-    document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);
-    document.querySelector('.boomio-runner-pauseButton').addEventListener('click', PauseToggle);
-    document.querySelector('.boomio-runner-pauseButton1').addEventListener('click', PauseToggle);
-
-    document.querySelector('.boomio-runner-replayButton').addEventListener('click', Replay);
-    document.querySelector('.boomio-runner-replayButton1').addEventListener('click', Replay);
-
-    document.querySelector('.boomio-runner-store-return-btn').addEventListener('click', () => {
-      toggleHide(storeBlock);
-    });
-    document.querySelector('.boomio-runner-return-btn').addEventListener('click', () => {
-      toggleHide(achivesBlock);
-    });
-    // document.querySelector('.achivesButton').addEventListener('click', () => {
-    //   toggleHide(achivesBlock);
-    // });
-    // document.querySelector('.storeButton').addEventListener('click', () => {
-    //   toggleHide(storeBlock);
-    //   storeCoinsText.innerText = Number(mainCoinBlock.innerText);
-    // });
 
     function loadSprites(loader, basePath, count) {
       const sprites = [];
@@ -1778,7 +1827,7 @@ ${
     //   }
     // }
 
-    function GameOver() {
+    const GameOver = () => {
       if (gameOverAlreadyHandled) return; // ✅ prevent multiple runs
       gameOverAlreadyHandled = true;
 
@@ -1812,10 +1861,13 @@ ${
                 player.dead = false;
                 // showFullAdd(); need to check
                 if (score > highScore) {
+                  this.newHighScoreReached = true;
                   HIandRecord.innerHTML = 'new record!';
                   highScore = Number(score.toFixed(0));
                   localStorage.setItem('HI', score.toFixed(0));
+                  showHighscoreElements();
                 } else {
+                  this.newHighScoreReached = false;
                   HIandRecord.innerText = 'HighScore: ' + highScore;
                 }
                 if (player.rise) {
@@ -1827,9 +1879,9 @@ ${
           }, 50);
         }, 50);
       }, 50);
-    }
+    };
 
-    function Replay() {
+    const Replay = () => {
       gameOverAlreadyHandled = false;
 
       boomioService
@@ -1885,6 +1937,9 @@ ${
       ResetGlobalVariables();
       document.addEventListener('keydown', keyRightHandler, false);
       document.addEventListener('keyup', keyLeftHandler, false);
+      this.newHighScoreReached = false;
+      hideHighscoreElements();
+
       const competitionTableContainer = document.querySelector('.competition-table-container');
 
       competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -1897,9 +1952,9 @@ ${
         competitionTableContainer.style.display = 'none';
         Start();
       }, 400);
-    }
+    };
 
-    function GoToHome() {
+    const GoToHome = () => {
       if (pause) {
         toggleHide(pauseBlock);
       }
@@ -1914,7 +1969,7 @@ ${
       updateAchives();
       updateUpgrades();
       toggleHide(mainMenuBlock);
-    }
+    };
     function UpdateBg(index, arr = bg) {
       arr[index].Update(arr[index + 1]);
       arr[index + 1].Update(arr[index]);
@@ -2245,6 +2300,25 @@ ${
       let rand = min - 0.5 + Math.random() * (max - min + 1);
       return Math.round(rand);
     }
+
+    // Attach event listeners after all functions are defined
+    document.getElementById('startButtonClick').addEventListener('click', () => {
+      PlayButtonActivate();
+    });
+    document.querySelector('.boomio-runner-homeButton').addEventListener('click', GoToHome);
+    document.querySelector('.boomio-runner-homeButton1').addEventListener('click', GoToHome);
+    document.querySelector('.boomio-runner-pauseButton').addEventListener('click', PauseToggle);
+    document.querySelector('.boomio-runner-pauseButton1').addEventListener('click', PauseToggle);
+
+    document.querySelector('.boomio-runner-replayButton').addEventListener('click', Replay);
+    document.querySelector('.boomio-runner-replayButton1').addEventListener('click', Replay);
+
+    document.querySelector('.boomio-runner-store-return-btn').addEventListener('click', () => {
+      toggleHide(storeBlock);
+    });
+    document.querySelector('.boomio-runner-return-btn').addEventListener('click', () => {
+      toggleHide(achivesBlock);
+    });
   };
 }
 
