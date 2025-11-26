@@ -1749,9 +1749,11 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
                       document.getElementById('competition-email-error').innerText =
                         this.language === 'LV'
                           ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
-                          : this.language === 'ES'
-                            ? 'Este email ya está en uso. Use otro numero.'
-                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                          : this.language === 'ET'
+                            ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                            : this.language === 'ES'
+                              ? 'Este email ya está en uso. Use otro numero.'
+                              : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
                       document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
                       document.getElementById('competition-name-error').innerText = '';
 
