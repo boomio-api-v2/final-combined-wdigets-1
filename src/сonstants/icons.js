@@ -11,7 +11,7 @@ export const WhackHammer = 'https://raw.githubusercontent.com/boomio-api-v2/fina
 
 export const WhackMole00 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/Up-from-ground-mole-faster140pct.gif';
 
-export const WhackMole = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/frame_22_delay-0.03s.gif?raw=true';
+export const WhackMole = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/frame_22_delay-0.03s.gif';
 
 export const WhackMole01Reversed = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/whackWidget/Down-to-ground-mole-faster140pct.gif';
 
@@ -93,4 +93,4 @@ export const hand1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-comb
 export const hand2 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/gameWidget/hedgehogWidget/hand2.png';
 
 export const BoomioBubblesGif = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/Bubbles/Boomio_bubble_game.gif'];
-export const BoomioBubbles = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/Bubbles/Barbora_Logo.png?raw=true'];
+export const BoomioBubbles = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/Bubbles/Barbora_Logo.png'];
