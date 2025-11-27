@@ -1656,7 +1656,7 @@ ${
       }
       if (jumping) {
         jumpCount += speed / (canvas.height / 75);
-        jumpHeight = (canvas.height / 125) * jumpLength * Math.sin((Math.PI * jumpCount) / jumpLength);
+        jumpHeight = (canvas.height / 180) * jumpLength * Math.sin((Math.PI * jumpCount) / jumpLength);
       }
       if (jumpCount > jumpLength) {
         jumpCount = 0;
