@@ -616,7 +616,7 @@ export class InputRegisterContainer {
 
       <input id="boomio-competition-email-input-field" class="boomio-competition-email-input-field"        
         maxLength=${this.customer === 'Toni' ? 10 : 50}
-       type="email" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
+       type="${this.customer === 'Toni' ? 'tel' : 'email'}" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
          this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni'
            ? '219px'
            : this.customer.includes('Gamtos Ateitis')
@@ -692,11 +692,10 @@ export class InputRegisterContainer {
       }"></div>
 
     <input id="boomio-competition-phone-input-field" class="boomio-competition-phone-input-field"    
-    maxLength=${this.customer === 'Toni' ? 10 : 50}
-    inputmode="tel" 
-  type="text" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
-    this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
-  }" placeholder="${this.customer === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : this.language === 'EN' ? 'Phone number' : 'Telefono numeris'}">
+    maxLength=${this.customer === 'Toni' ? 10 : 50}    
+    type="tel" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
+      this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
+    }" placeholder="${this.customer === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : this.language === 'LT' ? 'Telefono numeris' : 'Phone number'}">
     `;
 
     function getCookie(name) {
