@@ -2,6 +2,40 @@
   width: 0;
 }
 
+#boomio-runner-container {
+  width: 100%;
+  max-width: 418px;
+  height: 668px;
+  position: relative;
+  margin: 20px auto 0;
+  overflow: hidden;
+}
+
+#boomio-runner-container .input-register-container {
+  top: 50%;
+}
+
+#boomio-runner-container .competition-table-container {
+  top: 50%;
+}
+
+#boomio-runner-container .game-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.close-game-container {
+  z-index: 99999999999999999999999;
+  position: absolute;
+  top: calc(50% - 310px);
+  left: calc(50% + 185px);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
 .boomio-runner-body {
   width: 100%;
   height: 100%;
@@ -136,8 +170,9 @@
 .boomio-screenRatio {
   padding: 0;
   margin: 0;
+  max-width: 418px;
   width: 100%;
-  height: 100%;
+  height: 668px;
 }
 .boomio-insideScreenRatio {
   padding: 20px;
@@ -149,15 +184,17 @@
 .boomio-runner-wrapper {
   position: relative;
   overflow: hidden;
+  max-width: 418px;
+  width: 100%;
+  height: 668px;
 }
 
 .boomio-runner-canvas {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  width: 100%;
+  max-width: 418px;
   height: 668px;
   background: #000;
-  z-index: -10;
 }
 .boomio-runner-controlBlock {
   display: flex;

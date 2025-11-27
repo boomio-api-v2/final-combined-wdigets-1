@@ -161,7 +161,7 @@ class runnerWidget {
   <div class="boomio-runner-main">
     <div class="boomio-runner-wrapper boomio-screenRatio">
       <div class="boomio-runner-controlBlock">
-        ${this.language === 'EN' ? 'Rules' : 'Taisyklės'}
+        ${this.language === 'ES' ? 'Reglas' : this.language === 'LT' ? 'Taisyklės' : 'Rules'}
         <img class='boomio-runner-controlButton' src="${this.isMobile ? upDentsu : up}" alt="">
         <div><img class='boomio-runner-controlButton' src="${this.isMobile ? leftDentsu : left}" alt="">
           <img class='boomio-runner-controlButton' src="${this.isMobile ? downDentsu : right}" alt="">
@@ -1033,10 +1033,8 @@ ${
         inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         inpuRegisterContainer.style.display = 'block';
         setTimeout(() => {
-          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
           inpuRegisterContainer.style.height = '528px';
-          inpuRegisterContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : isIOS ? '50%' : '50%';
+          inpuRegisterContainer.style.top = '50%';
           inpuRegisterContainer.style.opacity = 1;
 
           // Add input restriction for Toni customer (digits only)
@@ -1134,7 +1132,7 @@ ${
                 inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                 setTimeout(() => {
                   inpuRegisterContainer.style.height = '10px';
-                  inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                  inpuRegisterContainer.style.top = '50%';
                   inpuRegisterContainer.style.opacity = 0;
                 }, 100);
                 setTimeout(() => {
@@ -1345,7 +1343,7 @@ ${
           setTimeout(
             () => {
               competitionTableContainer.style.height = '680px';
-              competitionTableContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : '50%';
+              competitionTableContainer.style.top = '50%';
               competitionTableContainer.style.opacity = 1;
             },
             this.newHighScoreReached ? 2500 : 100,
@@ -1937,7 +1935,7 @@ ${
       competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       setTimeout(() => {
         competitionTableContainer.style.height = '10px';
-        competitionTableContainer.style.top = 'calc(50% + 330px)';
+        competitionTableContainer.style.top = '50%';
         competitionTableContainer.style.opacity = 0;
       }, 100);
       setTimeout(() => {
