@@ -154,7 +154,7 @@ class runnerWidget {
   
  
 <div class="boomio-runner-body" oncontextmenu="return false;" style="background:">
-<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
+<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;display:none;">
   ${this.customer === 'Nykstukas' ? 'Pasukite savo įrenginį' : 'rotate your device'}
   <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
 </div>
@@ -921,10 +921,10 @@ ${
 
       loader.addCompletionListener(() => {
         const initGame = () => {
-          if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
-            rightButtonsBlock.classList.remove('boomio-hide');
-            leftButtonsBlock.classList.remove('boomio-hide');
-          }
+          // if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
+          //   rightButtonsBlock.classList.remove('boomio-hide');
+          //   leftButtonsBlock.classList.remove('boomio-hide');
+          // }
 
           for (let i = 0; i < mainBgBlocks.length; i += 1) {
             mainBgBlocks[i].style.backgroundImage = `url(${getBackground()})`;
