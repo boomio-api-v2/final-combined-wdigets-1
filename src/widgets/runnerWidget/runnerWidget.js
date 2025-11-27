@@ -168,7 +168,7 @@ class runnerWidget {
           <img class='boomio-runner-controlButton' src="${this.isMobile ? rightDentsu : down}" alt="">
         </div>
       </div>
-     <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}; height: 668px;">
+     <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'};">
       </canvas>
 
       <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" style="display:none" alt="">
@@ -1034,7 +1034,7 @@ ${
         inpuRegisterContainer.style.display = 'block';
         setTimeout(() => {
           inpuRegisterContainer.style.height = '528px';
-          inpuRegisterContainer.style.top = '50%';
+          inpuRegisterContainer.style.top = 'calc(50% + 74px)';
           inpuRegisterContainer.style.opacity = 1;
 
           // Add input restriction for Toni customer (digits only)
@@ -1132,7 +1132,7 @@ ${
                 inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                 setTimeout(() => {
                   inpuRegisterContainer.style.height = '10px';
-                  inpuRegisterContainer.style.top = '50%';
+                  inpuRegisterContainer.style.top = 'calc(50% + 74px)';
                   inpuRegisterContainer.style.opacity = 0;
                 }, 100);
                 setTimeout(() => {
@@ -1232,9 +1232,9 @@ ${
           const isNarrowScreen = window.innerWidth <= 920;
 
           if (isNarrowScreen) {
-            competitionTableContainer.style.top = '50%';
+            competitionTableContainer.style.top = 'calc(50% + 74px)';
           } else {
-            competitionTableContainer.style.top = 'calc(50%)';
+            competitionTableContainer.style.top = 'calc(50% + 74px)';
           }
           competitionTableContainer.style.opacity = 1;
         }, 100);
@@ -1343,7 +1343,7 @@ ${
           setTimeout(
             () => {
               competitionTableContainer.style.height = '680px';
-              competitionTableContainer.style.top = '50%';
+              competitionTableContainer.style.top = 'calc(50% + 74px)';
               competitionTableContainer.style.opacity = 1;
             },
             this.newHighScoreReached ? 2500 : 100,
@@ -1405,16 +1405,16 @@ ${
       // toggleHide(pauseButton);
       // toggleHide(lifeContainer);
     };
-    function requestFullscreen() {
-      const container = document.getElementById('boomio-runner-container');
-      if (container.requestFullscreen) {
-        container.requestFullscreen();
-      } else if (container.webkitRequestFullscreen) {
-        container.webkitRequestFullscreen(); // Safari
-      } else if (container.msRequestFullscreen) {
-        container.msRequestFullscreen(); // IE11
-      }
-    }
+    // function requestFullscreen() {
+    //   const container = document.getElementById('boomio-runner-container');
+    //   if (container.requestFullscreen) {
+    //     container.requestFullscreen();
+    //   } else if (container.webkitRequestFullscreen) {
+    //     container.webkitRequestFullscreen(); // Safari
+    //   } else if (container.msRequestFullscreen) {
+    //     container.msRequestFullscreen(); // IE11
+    //   }
+    // }
     const PlayButtonActivate = () => {
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);

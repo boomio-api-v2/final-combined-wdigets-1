@@ -2,21 +2,11 @@
   width: 0;
 }
 
-#boomio-runner-container {
-  width: 100%;
-  max-width: 418px;
+.boomio-runner-container {
   height: 668px;
   position: relative;
   margin: 20px auto 0;
   overflow: hidden;
-}
-
-#boomio-runner-container .input-register-container {
-  top: 50%;
-}
-
-#boomio-runner-container .competition-table-container {
-  top: 50%;
 }
 
 #boomio-runner-container .game-container {
@@ -172,7 +162,7 @@
   margin: 0;
   max-width: 418px;
   width: 100%;
-  height: 668px;
+  height: 100%;
 }
 .boomio-insideScreenRatio {
   padding: 20px;
@@ -186,16 +176,15 @@
   overflow: hidden;
   max-width: 418px;
   width: 100%;
-  height: 668px;
+  height: 100%;
 }
 
 .boomio-runner-canvas {
-  display: block;
-  width: 100%;
-  max-width: 418px;
   height: 668px;
-  background: #000;
+  display: block;
+  background-size: cover;
 }
+
 .boomio-runner-controlBlock {
   display: flex;
   flex-direction: column;
