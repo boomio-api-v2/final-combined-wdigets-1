@@ -1184,7 +1184,7 @@ ${
         shareContainer.style.display = 'block';
 
         setTimeout(() => {
-          shareContainer.style.height = '680px';
+          shareContainer.style.height = '528px';
           const isNarrowScreen = window.innerWidth <= 920;
 
           if (isNarrowScreen) {
@@ -1232,9 +1232,9 @@ ${
           const isNarrowScreen = window.innerWidth <= 920;
 
           if (isNarrowScreen) {
-            competitionTableContainer.style.top = 'calc(50% + 74px)';
+            competitionTableContainer.style.top = 'calc(50%)';
           } else {
-            competitionTableContainer.style.top = 'calc(50% + 74px)';
+            competitionTableContainer.style.top = 'calc(50%)';
           }
           competitionTableContainer.style.opacity = 1;
         }, 100);
@@ -1343,7 +1343,7 @@ ${
           setTimeout(
             () => {
               competitionTableContainer.style.height = '680px';
-              competitionTableContainer.style.top = 'calc(50% + 74px)';
+              competitionTableContainer.style.top = 'calc(50%)';
               competitionTableContainer.style.opacity = 1;
             },
             this.newHighScoreReached ? 2500 : 100,
