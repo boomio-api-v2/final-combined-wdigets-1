@@ -1425,33 +1425,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             .then((response) => {
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
-                  const errorMessage =
-                    language === 'LV'
-                      ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                      : language === 'RU'
-                        ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                        : language === 'ET'
-                          ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                          : language === 'ES'
-                            ? 'Este email ya está en uso. Use otro numero.'
-                            : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  InputValidator.toggleValidationError(Elements.emailError, true, errorMessage);
+                  InputValidator.toggleValidationError(Elements.emailError, true, InputValidator.getEmailExistsErrorMessage());
                 } else if (response.res_code === 'NICKNAME_EXIST') {
-                  const errorMessage =
-                    customer === 'Fpro'
-                      ? 'This nickname already exists. Please use another one.'
-                      : language === 'ES'
-                        ? 'Este nickname ya está en uso. Use otro nombre.'
-                        : language === 'LV'
-                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                          : customer === 'SaludSA'
-                            ? 'Para continuar debes agregar el nombre de usuario.'
-                            : language === 'RU'
-                              ? 'Этот псевдоним уже существует. Используйте другой.'
-                              : language === 'ET'
-                                ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                                : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                  InputValidator.toggleValidationError(Elements.nameError, true, errorMessage);
+                  InputValidator.toggleValidationError(Elements.nameError, true, InputValidator.getNicknameExistsErrorMessage());
                 }
               } else {
                 bestScore = response.user_best_score ?? 0;

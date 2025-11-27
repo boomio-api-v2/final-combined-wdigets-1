@@ -30,6 +30,7 @@ import {
   uncheckIcon,
   runnerbackgroundNykstukas,
   runnerbackgroundDemo,
+  runnerbackgroundToni,
   close,
 } from './constants';
 import './runnerStyles.css';
@@ -75,6 +76,22 @@ class runnerWidget {
     this.createContainer();
     document.querySelector('.game-container').style.backgroundColor = window.innerWidth <= 768 ? 'black' : 'none';
   }
+
+  // Helper function to get background image based on customer
+  getBackground = () => {
+    switch (this.customer) {
+      case 'Dentsu':
+        return runnerbackgroundDentsu;
+      case 'Nykstukas':
+        return runnerbackgroundNykstukas;
+      case 'demo-20':
+        return runnerbackgroundDemo;
+      case 'Toni':
+        return runnerbackgroundToni;
+      default:
+        return runnerbackground;
+    }
+  };
 
   createContainer = () => {
     const newHighscoreStarsImage = new Image();
@@ -275,9 +292,7 @@ ${
       </div>
     </div>
     <div class="tutorial  boomio-hide"></div>
-<div class="boomio-runner-achives boomio-runner-mainBg boomio-screenRatio boomio-hide" style="background-image: url('${
-      this.customer === 'Dentsu' ? runnerbackgroundDentsu : this.customer === 'Nykstukas' ? runnerbackgroundNykstukas : this.customer === 'demo-20' ? runnerbackgroundDemo : runnerbackground
-    }');">
+<div class="boomio-runner-achives boomio-runner-mainBg boomio-screenRatio boomio-hide" style="background-image: url('${this.getBackground()}');">
       <div class="boomio-statsHolder">
         <div class="boomio-runner-stat" id="numberOfDeathsBlock"></div>
         <div class='boomio-runner-stat ' id="numberOfJumpsBlock"></div>
@@ -475,6 +490,7 @@ ${
     adjustScaleAndPosition();
     const loader = new PxLoader();
     const customer = this.customer; // Capture this.customer in closure
+    const getBackground = this.getBackground; // Capture for use in callbacks
 
     // Helper function to get asset URLs based on customer
     const getAssetPath = (suffix) => {
@@ -908,9 +924,7 @@ ${
           }
 
           for (let i = 0; i < mainBgBlocks.length; i += 1) {
-            mainBgBlocks[i].style.backgroundImage = `url(${
-              customer === 'Dentsu' ? runnerbackgroundDentsu : customer === 'Nykstukas' ? runnerbackgroundNykstukas : customer === 'demo-20' ? runnerbackgroundDemo : runnerbackground
-            })`;
+            mainBgBlocks[i].style.backgroundImage = `url(${getBackground()})`;
           }
 
           toggleHide(mainMenuBlock);
@@ -1103,38 +1117,9 @@ ${
                 this.loading = false;
 
                 if (response.res_code === 'EMAIL_EXIST') {
-                  document.getElementById('competition-email-error').innerText =
-                    this.customer === 'Fpro'
-                      ? 'This email address already exists. Please use another one.'
-                      : this.language === 'LV'
-                        ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                        : this.language === 'RU'
-                          ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                          : this.language === 'ET'
-                            ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                            : this.language === 'ES'
-                              ? 'Este email ya está en uso. Use otro numero.'
-                              : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-                  document.getElementById('competition-name-error').innerText = '';
-                  document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+                  this.InputValidator.toggleValidationError(Elements.emailError, true, this.InputValidator.getEmailExistsErrorMessage());
                 } else if (response.res_code === 'NICKNAME_EXIST') {
-                  document.getElementById('competition-name-error').innerText =
-                    this.customer === 'Fpro'
-                      ? 'This nickname already exists. Please use another one.'
-                      : this.language === 'ES'
-                        ? 'Este nickname ya está en uso. Use otro nombre.'
-                        : this.language === 'LV'
-                          ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                          : this.language === 'RU'
-                            ? 'Этот псевдоним уже существует. Используйте другой.'
-                            : this.language === 'ET'
-                              ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                              : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                  document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-
-                  document.getElementById('competition-email-error').innerText = '';
-                  document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+                  this.InputValidator.toggleValidationError(Elements.nameError, true, this.InputValidator.getNicknameExistsErrorMessage());
                 }
               } else {
                 this.bestScore = response.user_best_score;

@@ -1096,19 +1096,17 @@ class CatchGame {
 
                     if (response.res_code === 'EMAIL_EXIST') {
                       document.getElementById('competition-email-error').innerText =
-                        this.customer === 'Fpro'
-                          ? 'This email address already exists. Please use another one.'
-                          : this.customer === 'Toni'
-                            ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
-                            : this.language === 'ES'
-                              ? 'Este email ya está en uso. Use otro email.'
-                              : this.language === 'LV'
-                                ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                                : this.language === 'RU'
-                                  ? 'Этот e-мейл адрес уже существует. Используйте другой.'
-                                  : this.language === 'ET'
-                                    ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                                    : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
+                        this.language === 'ES'
+                          ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
+                          : this.language === 'LV'
+                            ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
+                            : this.language === 'RU'
+                              ? 'Этот e-мейл адрес уже существует. Используйте другой.'
+                              : this.language === 'ET'
+                                ? 'See e-posti aadress on juba olemas. Kasutage teist.'
+                                : this.language === 'LT'
+                                  ? 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.'
+                                  : 'This number is already in use. Please use the same number as your initial registration or a new one.';
                       document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
                       document.getElementById('competition-name-error').innerText = '';
