@@ -98,6 +98,38 @@ class InputRegisterContainerValidation {
   }
 
   /**
+   * Gets localized error message for email already exists
+   * @returns {string} - Error message in appropriate language
+   */
+  getEmailExistsErrorMessage() {
+    const messages = {
+      ES: 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.',
+      LV: 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.',
+      RU: 'Этот e-мейл адрес уже существует. Используйте другой.',
+      ET: 'See e-posti aadress on juba olemas. Kasutage teist.',
+      LT: 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.',
+      EN: 'This email is already in use. Use your original or a new email.',
+    };
+    return messages[this.language] || messages.EN;
+  }
+
+  /**
+   * Gets localized error message for nickname already exists
+   * @returns {string} - Error message in appropriate language
+   */
+  getNicknameExistsErrorMessage() {
+    const messages = {
+      ES: 'Este nickname ya está en uso. Use otro nombre.',
+      LV: 'Šis segvārds jau pastāv. Izmantojiet citu.',
+      RU: 'Этот псевдоним уже существует. Используйте другой.',
+      ET: 'See hüüdnimi on juba olemas. Kasutage teist.',
+      LT: 'Šis slapyvardis jau egzistuoja. Naudokite kitą.',
+      EN: 'This nickname already exists. Please use another one.',
+    };
+    return messages[this.language] || messages.EN;
+  }
+
+  /**
    * Gets localized error message for missing required field
    * @returns {string} - Error message in appropriate language
    */
