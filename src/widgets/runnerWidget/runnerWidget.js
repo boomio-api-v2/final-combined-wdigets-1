@@ -1386,7 +1386,7 @@ ${
       player.boost = false;
       player.dead = false;
       player.life = 3;
-      speed = canvas.clientWidth / 300;
+      speed = canvas.clientWidth / 200;
       score = 0;
       leftPressed = false;
       rightPressed = false;
