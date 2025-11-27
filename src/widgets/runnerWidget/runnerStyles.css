@@ -2,10 +2,12 @@
   width: 0;
 }
 
-.boomio-runner-container {
+#boomio-runner-container {
   height: 668px;
-  position: relative;
-  margin: 20px auto 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   overflow: hidden;
 }
 
