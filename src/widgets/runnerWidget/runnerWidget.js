@@ -1035,6 +1035,23 @@ ${
           inpuRegisterContainer.style.height = '528px';
           inpuRegisterContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : isIOS ? '50%' : '50%';
           inpuRegisterContainer.style.opacity = 1;
+
+          // Add input restriction for Toni customer (digits only)
+          if (customer === 'Toni') {
+            const emailInput = Elements.emailInput;
+            if (emailInput) {
+              emailInput.addEventListener('input', (event) => {
+                event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+              });
+            }
+
+            const phoneInput = Elements.phoneInput;
+            if (phoneInput) {
+              phoneInput.addEventListener('input', (event) => {
+                event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
+              });
+            }
+          }
         }, 100);
       }, 300);
     };
@@ -1042,22 +1059,9 @@ ${
     const clickEventHandlerShowRules = () => {
       const competitionConfirmFieldBody = document.getElementById('boomio-competition-confirm-field');
       setTimeout(() => {
-        const emailInput = Elements.emailInput;
         const nameInput = Elements.nameInput;
         const phoneInput = Elements.phoneInput;
         const schoolInput = document.querySelector('.boomio-competition-school-select');
-
-        if (customer === 'Toni' && emailInput) {
-          emailInput.addEventListener('input', (event) => {
-            event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
-          });
-        }
-
-        if (phoneInput) {
-          phoneInput.addEventListener('input', (event) => {
-            event.target.value = event.target.value.replace(/(?!^\+)[^0-9]/g, '');
-          });
-        }
 
         const checkboxChange = this.checkboxChange;
         const checkboxChange2 = this.checkboxChange2;

@@ -498,21 +498,7 @@ export class CompetitionScoreTableContainer {
           ? userBestPlace === index + 1
             ? this.prop === 'Elesen'
               ? scoreboard[index].user_nickname
-              : this.language === 'LT'
-                ? 'Tavo rezultatas2'
-                : this.language === 'LV'
-                  ? 'Tavs rezultāts'
-                  : this.language === 'ET'
-                    ? 'Sinu tulemus'
-                    : this.language === 'ES'
-                      ? 'Tu resultado'
-                      : this.language === 'FI'
-                        ? 'SINUN TULOKSESI'
-                        : this.language === 'RU'
-                          ? 'ВАШ РЕЗУЛЬТАТ'
-                          : this.prop === 'Nykstukas'
-                            ? 'Tavo komandos rezultatas'
-                            : 'Your score'
+              : this.getYourScoreText()
             : this.prop === 'Perlas GO'
               ? perlasGoTable[index]
               : this.prop === 'Nykstukas'
@@ -523,11 +509,11 @@ export class CompetitionScoreTableContainer {
                     ? lvNicknames[index]
                     : this.language === 'ET'
                       ? eeNicknames[index]
-                      : this.language === 'EN'
-                        ? enNicknames[index]
-                        : this.language === 'ES'
-                          ? esNicknames[index]
-                          : ltNicknames[index]
+                      : this.language === 'ES'
+                        ? esNicknames[index]
+                        : this.language === 'LT'
+                          ? ltNicknames[index]
+                          : enNicknames[index]
           : this.prop.includes('Gamtos Ateitis')
             ? 'MOKYKLA ' + (index + 1)
             : scoreboard[index].team
@@ -1128,5 +1114,19 @@ export class CompetitionScoreTableContainer {
     }
 
     this.updateVisuals();
+  }
+
+  getYourScoreText() {
+    const messages = {
+      LT: 'Tavo rezultatas',
+      LV: 'Tavs rezultāts',
+      ET: 'Sinu tulemus',
+      ES: 'Tu resultado',
+      FI: 'SINUN TULOKSESI',
+      RU: 'ВАШ РЕЗУЛЬТАТ',
+      EN: 'Your score',
+    };
+
+    return messages[this.language] || messages.EN;
   }
 }
