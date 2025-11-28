@@ -186,7 +186,6 @@ import {
   city1ImageDataToni,
   city2ImageDataToni,
   city3ImageDataToni,
-  //brickWallImageDataToni,
   cloudsImageDataToni,
   lineToni,
   treeToni1,
@@ -250,7 +249,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
-  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' || customer === 'Toni' ? 1 : 3;
+  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' ? 1 : 3;
   let LOST_LIFE = 0;
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
