@@ -1,14 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-# After merging, if dependency files changed, install, test, and build
-FILES=$(git diff --name-only HEAD@{1} HEAD)
-
-echo "$FILES" | grep -E "(^|/)(package\.json|package-lock\.json|npm-shrinkwrap\.json)$" >/dev/null 2>&1
-
-if [ $? -eq 0 ]; then
-  echo "Dependency files changed after merge. Installing, testing, and building..."
-  npm install || exit 1
-  npm test || exit 1
-  npm run build || exit 1
-fi
+node -e "const {execSync} = require('child_process'); const files = execSync('git diff --name-only HEAD@{1} HEAD', {encoding: 'utf8'}); if (/package(-lock)?\.json|npm-shrinkwrap\.json/.test(files)) { console.log('Dependency files changed after merge. Installing, testing, and building...'); execSync('npm install', {stdio: 'inherit'}); execSync('npm test', {stdio: 'inherit'}); execSync('npm run build', {stdio: 'inherit'}); }"

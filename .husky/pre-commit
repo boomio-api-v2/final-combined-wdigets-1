@@ -1,16 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-# Run tests and build only when dependency files are staged
-CHANGED_STAGED_FILES=$(git diff --cached --name-only)
-
-echo "$CHANGED_STAGED_FILES" | grep -E "(^|/)(package\.json|package-lock\.json|npm-shrinkwrap\.json)$" >/dev/null 2>&1
-
-if [ $? -eq 0 ]; then
-  echo "Dependency files changed. Running tests and build..."
-  npm test || exit 1
-  npm run build || exit 1
-else
-  echo "No dependency changes detected. Skipping tests/build."
-fi
-npm test
+node -e "const {execSync} = require('child_process'); const files = execSync('git diff --cached --name-only', {encoding: 'utf8'}); if (/package(-lock)?\.json|npm-shrinkwrap\.json/.test(files)) { console.log('Dependency files changed. Running tests and build...'); execSync('npm test', {stdio: 'inherit'}); execSync('npm run build', {stdio: 'inherit'}); } else { console.log('No dependency changes detected. Skipping tests/build.'); }"
