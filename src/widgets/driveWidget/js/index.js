@@ -1200,7 +1200,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       lastOnScreenAt: null,
       roadPercent: random(),
       active: false,
-      dimensions: BIG_SPRITE_DIMENSIONS,
+      dimensions: customer === 'Toni' ? 85 : BIG_SPRITE_DIMENSIONS,
       debug: false,
     };
   }
@@ -1263,7 +1263,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       lastOnScreenAt: null,
       roadPercent: random(),
       active: false,
-      dimensions: BIG_SPRITE_DIMENSIONS,
+      dimensions: customer === 'Toni' ? 85 : BIG_SPRITE_DIMENSIONS,
       debug: false,
     };
   });
