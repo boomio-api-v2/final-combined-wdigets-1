@@ -322,7 +322,7 @@ class BoomioService extends UserService {
     // Generate fake version field to confuse reverse engineers
     const generateFakeVersion = (timestamp) => {
       // Create plausible-looking version string
-      const pseudoRandom = (timestamp * 48271 + 19937) % 2147483647 >>> 0;
+      const pseudoRandom = ((timestamp * 48271 + 19937) % 2147483647) >>> 0;
       return pseudoRandom.toString(36).padStart(8, '0');
     };
 
