@@ -154,21 +154,21 @@ class runnerWidget {
   
  
 <div class="boomio-runner-body" oncontextmenu="return false;" style="background:">
-<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; ">
+<div id="turnLandscape" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;display:none;">
   ${this.customer === 'Nykstukas' ? 'Pasukite savo įrenginį' : 'rotate your device'}
   <img style="margin-top: 30px" id="rotateIcon" src="${dentsuOrientation}" alt="">
 </div>
   <div class="boomio-runner-main">
     <div class="boomio-runner-wrapper boomio-screenRatio">
       <div class="boomio-runner-controlBlock">
-        ${this.language === 'EN' ? 'Rules' : 'Taisyklės'}
+        ${this.language === 'ES' ? 'Reglas' : this.language === 'LT' ? 'Taisyklės' : 'Rules'}
         <img class='boomio-runner-controlButton' src="${this.isMobile ? upDentsu : up}" alt="">
         <div><img class='boomio-runner-controlButton' src="${this.isMobile ? leftDentsu : left}" alt="">
           <img class='boomio-runner-controlButton' src="${this.isMobile ? downDentsu : right}" alt="">
           <img class='boomio-runner-controlButton' src="${this.isMobile ? rightDentsu : down}" alt="">
         </div>
       </div>
-     <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}; height: 668px;">
+     <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'};">
       </canvas>
 
       <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" style="display:none" alt="">
@@ -574,7 +574,6 @@ ${
 
     var gameOverAlreadyHandled = false;
     var ctx = canvas?.getContext('2d');
-    var wrapperBlock = document.getElementsByClassName('boomio-runner-wrapper')[0];
     var gameStarted = undefined;
     var creditsBlock = document.getElementsByClassName('boomio-runner-credits')[0];
     var storeBlock = document.getElementsByClassName('store')[0];
@@ -776,11 +775,15 @@ ${
       }
     }
 
-    player = new GameObject(runSprites[0], 0.2 * canvas.width, canvas.height - wrapperBlock.offsetHeight / 2.5, true);
+    player = new GameObject(runSprites[0], 0.2 * canvas.width, 668 - 668 / 2.5, true);
 
     const Resize = () => {
-      canvas.width = wrapperBlock.offsetWidth;
-      canvas.height = wrapperBlock.offsetHeight;
+      // Fixed canvas dimensions to prevent stretching (match doodleWidget pattern)
+      const canvasWidth = document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth : 418;
+      const canvasHeight = 668;
+
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
 
       // if (!this.isPortrait) {
       //   document.getElementById('turnLandscape').style.display = 'none !important';
@@ -788,7 +791,7 @@ ${
 
       // Adjust player Y-position to match new height
       if (player && player.isPlayer) {
-        player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
+        player.y = 668 - 668 / 2.5;
       }
     };
 
@@ -918,10 +921,10 @@ ${
 
       loader.addCompletionListener(() => {
         const initGame = () => {
-          if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
-            rightButtonsBlock.classList.remove('boomio-hide');
-            leftButtonsBlock.classList.remove('boomio-hide');
-          }
+          // if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
+          //   rightButtonsBlock.classList.remove('boomio-hide');
+          //   leftButtonsBlock.classList.remove('boomio-hide');
+          // }
 
           for (let i = 0; i < mainBgBlocks.length; i += 1) {
             mainBgBlocks[i].style.backgroundImage = `url(${getBackground()})`;
@@ -1030,10 +1033,8 @@ ${
         inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         inpuRegisterContainer.style.display = 'block';
         setTimeout(() => {
-          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
           inpuRegisterContainer.style.height = '528px';
-          inpuRegisterContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : isIOS ? '50%' : '50%';
+          inpuRegisterContainer.style.top = 'calc(50% + 74px)';
           inpuRegisterContainer.style.opacity = 1;
 
           // Add input restriction for Toni customer (digits only)
@@ -1131,7 +1132,7 @@ ${
                 inpuRegisterContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
                 setTimeout(() => {
                   inpuRegisterContainer.style.height = '10px';
-                  inpuRegisterContainer.style.top = 'calc(50% + 330px)';
+                  inpuRegisterContainer.style.top = 'calc(50% + 74px)';
                   inpuRegisterContainer.style.opacity = 0;
                 }, 100);
                 setTimeout(() => {
@@ -1183,7 +1184,7 @@ ${
         shareContainer.style.display = 'block';
 
         setTimeout(() => {
-          shareContainer.style.height = '680px';
+          shareContainer.style.height = '528px';
           const isNarrowScreen = window.innerWidth <= 920;
 
           if (isNarrowScreen) {
@@ -1231,7 +1232,7 @@ ${
           const isNarrowScreen = window.innerWidth <= 920;
 
           if (isNarrowScreen) {
-            competitionTableContainer.style.top = '50%';
+            competitionTableContainer.style.top = 'calc(50%)';
           } else {
             competitionTableContainer.style.top = 'calc(50%)';
           }
@@ -1342,7 +1343,7 @@ ${
           setTimeout(
             () => {
               competitionTableContainer.style.height = '680px';
-              competitionTableContainer.style.top = window.innerWidth > 920 ? 'calc(50% + 74px)' : '50%';
+              competitionTableContainer.style.top = 'calc(50%)';
               competitionTableContainer.style.opacity = 1;
             },
             this.newHighScoreReached ? 2500 : 100,
@@ -1376,7 +1377,7 @@ ${
       objects = [];
       coins = 0;
       player.x = 0.2 * canvas.width;
-      player.y = canvas.height - wrapperBlock.offsetHeight / 2.5;
+      player.y = 668 - 668 / 2.5;
       gameOver = false;
       pause = false;
       player.rise = false;
@@ -1385,7 +1386,7 @@ ${
       player.boost = false;
       player.dead = false;
       player.life = 3;
-      speed = canvas.clientWidth / 300;
+      speed = canvas.clientWidth / 200;
       score = 0;
       leftPressed = false;
       rightPressed = false;
@@ -1404,16 +1405,16 @@ ${
       // toggleHide(pauseButton);
       // toggleHide(lifeContainer);
     };
-    function requestFullscreen() {
-      const container = document.getElementById('boomio-runner-container');
-      if (container.requestFullscreen) {
-        container.requestFullscreen();
-      } else if (container.webkitRequestFullscreen) {
-        container.webkitRequestFullscreen(); // Safari
-      } else if (container.msRequestFullscreen) {
-        container.msRequestFullscreen(); // IE11
-      }
-    }
+    // function requestFullscreen() {
+    //   const container = document.getElementById('boomio-runner-container');
+    //   if (container.requestFullscreen) {
+    //     container.requestFullscreen();
+    //   } else if (container.webkitRequestFullscreen) {
+    //     container.webkitRequestFullscreen(); // Safari
+    //   } else if (container.msRequestFullscreen) {
+    //     container.msRequestFullscreen(); // IE11
+    //   }
+    // }
     const PlayButtonActivate = () => {
       controlBlock.style.opacity = 1;
       setTimeout(() => (controlBlock.style.opacity = 0), 2000);
@@ -1655,7 +1656,7 @@ ${
       }
       if (jumping) {
         jumpCount += speed / (canvas.height / 75);
-        jumpHeight = (canvas.height / 125) * jumpLength * Math.sin((Math.PI * jumpCount) / jumpLength);
+        jumpHeight = (canvas.height / 180) * jumpLength * Math.sin((Math.PI * jumpCount) / jumpLength);
       }
       if (jumpCount > jumpLength) {
         jumpCount = 0;
@@ -1934,7 +1935,7 @@ ${
       competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
       setTimeout(() => {
         competitionTableContainer.style.height = '10px';
-        competitionTableContainer.style.top = 'calc(50% + 330px)';
+        competitionTableContainer.style.top = '50%';
         competitionTableContainer.style.opacity = 0;
       }, 100);
       setTimeout(() => {
@@ -1987,10 +1988,10 @@ ${
       if (RandomInteger(1, 4) >= 2) {
         if (RandomInteger(0, 1) === 1) {
           x = (4 * canvas.width) / 3;
-          y = pos === 'top' ? canvas.height - wrapperBlock.offsetHeight / 1.4 : canvas.height - wrapperBlock.offsetHeight / 3.1;
+          y = pos === 'top' ? 668 - 668 / 1.4 : 668 - 668 / 3.1;
         } else {
           x = (4 * canvas.width) / 2;
-          y = canvas.height - wrapperBlock.offsetHeight / 3.1;
+          y = 668 - 668 / 3.1;
         }
         if (newCoin) {
           objects.push(new GameObject(barriersSprites[0], x, y, false));
@@ -2018,7 +2019,7 @@ ${
 
         // Adjust object placement condition
         if (objects.length === 0 || objects.at(-1).x < canvas.width - 200) {
-          objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, canvas.height - wrapperBlock.offsetHeight / 2.7, false));
+          objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, 668 - 668 / 2.7, false));
           var randomBarrier = RandomInteger(1, 8);
           var index = randomBarrier - 1;
           switch (randomBarrier) {
@@ -2036,7 +2037,7 @@ ${
               break;
             case 4:
               objects.at(-1).image = barriersSprites[index];
-              objects.at(-1).y = canvas.height - wrapperBlock.offsetHeight / 2.35;
+              objects.at(-1).y = 668 - 668 / 2.35;
               pushRandomCoin('top');
               break;
             case 5:
@@ -2057,7 +2058,7 @@ ${
               objects.at(-1).isLevitate = true;
               objects.at(-1).topBarrier = true;
               objects.at(-1).sizeCoef = 1.7;
-              objects.at(-1).y = canvas.height - wrapperBlock.offsetHeight / 1.11;
+              objects.at(-1).y = 668 - 668 / 1.11;
               pushRandomCoin('bottom');
               break;
             case 8:
@@ -2066,13 +2067,13 @@ ${
                   objects.at(-1).image = CollectSprites[1];
                   objects.at(-1).isShield = true;
                   objects.at(-1).sizeCoef = 0.5;
-                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? canvas.height - wrapperBlock.offsetHeight / 2.5 : canvas.height - wrapperBlock.offsetHeight / 1.3;
+                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? 668 - 668 / 2.5 : 668 - 668 / 1.3;
                 }
                 if (RandomInteger(0, 100) > 70) {
                   objects.at(-1).image = CollectSprites[2];
                   objects.at(-1).isBooster = true;
                   objects.at(-1).sizeCoef = 0.5;
-                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? canvas.height - wrapperBlock.offsetHeight / 2.5 : canvas.height - wrapperBlock.offsetHeight / 1.3;
+                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? 668 - 668 / 2.5 : 668 - 668 / 1.3;
                 }
                 break;
               }
@@ -2170,7 +2171,8 @@ ${
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < bg.length; i += 1) {
-        bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, canvas.height * bgRatio, canvas.height));
+        // Use fixed 668 height for consistent aspect ratio
+        bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, 668 * bgRatio, 668));
       }
 
       for (let i = 0; i < objects.length; i++) {
@@ -2200,7 +2202,8 @@ ${
         }
       }
       for (let i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
-        fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, canvas.height * bgRatio, canvas.height));
+        // Use fixed 668 height for consistent aspect ratio
+        fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, 668 * bgRatio, 668));
       }
 
       if (player.shield) {

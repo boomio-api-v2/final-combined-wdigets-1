@@ -419,7 +419,6 @@ export const wh3ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v
 export const city1ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity1.png'];
 export const city2ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity2.png'];
 export const city3ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity3.png'];
-export const brickWallImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/sign.png'];
 export const cloudsImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/cloud.png'];
 export const lineToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/line.png'];
 export const treeToni1 = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Tree1.png';

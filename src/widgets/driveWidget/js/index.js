@@ -186,7 +186,6 @@ import {
   city1ImageDataToni,
   city2ImageDataToni,
   city3ImageDataToni,
-  //brickWallImageDataToni,
   cloudsImageDataToni,
   lineToni,
   treeToni1,
@@ -250,7 +249,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const ROAD_WIDTH_PERCENT = 1.3;
   const ZERO_POS = { x: 0, y: 0, z: 0 };
   const ZERO_POS_TREE = { x: 0, y: 50, z: 0 };
-  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' || customer === 'Toni' ? 1 : 3;
+  const DEFAULT_LIFE = customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' ? 1 : 3;
   let LOST_LIFE = 0;
   const UI_PADDING = 4;
   const FONT_SIZE = 20;
@@ -381,25 +380,25 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                               : carImageDataGamtosAteitisPlastikas
                           : carImageData;
 
-  const rightMailboxImage = new Image();
-  rightMailboxImage.src =
-    customer === 'Barbora'
-      ? mailboxImageDataBarbora
-      : customer === 'Ikea'
-        ? mailboxImageDataIkea
-        : customer === 'Unisend'
-          ? mailboxImageDataUnisend
-          : customer === 'Pigu.lt'
-            ? PiguBags2
-            : customer === 'Gamtos Ateitis'
-              ? mailboxImageDataGamtosAteitisPopierius
-              : customer === 'Orlen'
-                ? goldImageDataOrlen
-                : customer === 'Novaturas'
-                  ? goldImageDataNovaturas
-                  : customer === 'Toni'
-                    ? goldImageDataToni
-                    : mailboxImageData;
+  // const rightMailboxImage = new Image();
+  // rightMailboxImage.src =
+  //   customer === 'Barbora'
+  //     ? mailboxImageDataBarbora
+  //     : customer === 'Ikea'
+  //       ? mailboxImageDataIkea
+  //       : customer === 'Unisend'
+  //         ? mailboxImageDataUnisend
+  //         : customer === 'Pigu.lt'
+  //           ? PiguBags2
+  //           : customer === 'Gamtos Ateitis'
+  //             ? mailboxImageDataGamtosAteitisPopierius
+  //             : customer === 'Orlen'
+  //               ? goldImageDataOrlen
+  //               : customer === 'Novaturas'
+  //                 ? goldImageDataNovaturas
+  //                 : customer === 'Toni'
+  //                   ? goldImageDataToni
+  //                   : mailboxImageData;
 
   const leftMailboxImage = new Image();
   leftMailboxImage.src =
@@ -1201,34 +1200,36 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       lastOnScreenAt: null,
       roadPercent: random(),
       active: false,
-      dimensions: BIG_SPRITE_DIMENSIONS,
+      dimensions: customer === 'Toni' ? 85 : BIG_SPRITE_DIMENSIONS,
       debug: false,
     };
   }
   const leftMailboxes = range(4).map(() => createLeftMailbox());
 
-  const rightMailboxes = range(customer === 'Unisend' ? 2 : 1).map(() => {
-    return {
-      image: rightMailboxImage,
-      pos: {
-        x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
-        y: 0,
-        z: 0,
-      },
-      rect: { x: -1, y: -1, width: -1, height: -1 },
-      i: floor(skyHeight),
-      iCoord: skyHeight,
-      alpha: 1,
-      name: 'mailbox',
-      percentChanceOfSpawning: MAILBOX_CHANCE_SPAWN,
-      minTimeOffScreen: MAILBOX_TIME_OFFSCREEN,
-      lastOnScreenAt: null,
-      roadPercent: random(),
-      active: false,
-      dimensions: BIG_SPRITE_DIMENSIONS,
-      debug: false,
-    };
-  });
+  // RIGHT MAILBOXES DISABLED because they are not displayed correctly in game
+  const rightMailboxes = [];
+  // const rightMailboxes = range(customer === 'Unisend' ? 2 : 1).map(() => {
+  //   return {
+  //     image: rightMailboxImage,
+  //     pos: {
+  //       x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
+  //       y: 0,
+  //       z: 0,
+  //     },
+  //     rect: { x: -1, y: -1, width: -1, height: -1 },
+  //     i: floor(skyHeight),
+  //     iCoord: skyHeight,
+  //     alpha: 1,
+  //     name: 'mailbox',
+  //     percentChanceOfSpawning: MAILBOX_CHANCE_SPAWN,
+  //     minTimeOffScreen: MAILBOX_TIME_OFFSCREEN,
+  //     lastOnScreenAt: null,
+  //     roadPercent: random(),
+  //     active: false,
+  //     dimensions: BIG_SPRITE_DIMENSIONS,
+  //     debug: false,
+  //   };
+  // });
 
   const golds = range(customer === 'Unisend' ? 4 : 2).map(() => {
     randomNumber = randomNumber + 1;
@@ -1262,7 +1263,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       lastOnScreenAt: null,
       roadPercent: random(),
       active: false,
-      dimensions: BIG_SPRITE_DIMENSIONS,
+      dimensions: customer === 'Toni' ? 85 : BIG_SPRITE_DIMENSIONS,
       debug: false,
     };
   });
