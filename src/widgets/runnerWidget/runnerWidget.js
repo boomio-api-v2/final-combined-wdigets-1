@@ -614,7 +614,6 @@ ${
 
     var normalSpeed;
     var speed;
-    var bgRatio;
     var leftPressed = false;
     var rightPressed = false;
     var upPressed = false;
@@ -775,7 +774,13 @@ ${
       }
     }
 
-    player = new GameObject(runSprites[0], 0.2 * canvas.width, canvas.height - canvas.height / 2.5, true);
+    // Helper function to calculate player X position
+    const getPlayerX = () => 0.2 * canvas.width;
+
+    // Helper function to calculate player Y position
+    const getPlayerY = () => canvas.height - canvas.height / 2.5;
+
+    player = new GameObject(runSprites[0], getPlayerX(), getPlayerY(), true);
 
     const Resize = () => {
       // Fixed canvas dimensions to prevent stretching (match doodleWidget pattern)
@@ -791,7 +796,7 @@ ${
 
       // Adjust player Y-position to match new height
       if (player && player.isPlayer) {
-        player.y = canvas.height - canvas.height / 2.5;
+        player.y = getPlayerY();
       }
     };
 
@@ -974,11 +979,6 @@ ${
           });
 
           gameEndButton.addEventListener('click', Replay);
-          //bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
-          //bgRatio = 1;
-
-          // Apply scale adjustment to reduce zoom for all customers
-          //bgRatio = bgRatio * 0.25; // Increase width multiplier to show more of the background
 
           // Draw initial background so canvas isn't black during registration
           Draw();
@@ -1383,8 +1383,8 @@ ${
 
       objects = [];
       coins = 0;
-      player.x = 0.2 * canvas.width;
-      player.y = canvas.height - canvas.height / 2.5;
+      player.x = getPlayerX();
+      player.y = getPlayerY();
       gameOver = false;
       pause = false;
       player.rise = false;
@@ -2232,8 +2232,8 @@ ${
         // Increment the shield timer (adjust the increment value as needed)
         player.shieldTimer += 1; // or += deltaTime
 
-        let offsetX = -50;
-        let offsetY = -50;
+        let offsetX = -20;
+        let offsetY = -30;
 
         // Adjust offsets for mobile devices
         if (window.innerWidth < 920) {
