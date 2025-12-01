@@ -978,6 +978,9 @@ ${
 
           // Apply scale adjustment to reduce zoom for all customers
           bgRatio = bgRatio * 1.5; // Increase width multiplier to show more of the background
+
+          // Draw initial background so canvas isn't black during registration
+          Draw();
         };
 
         // Use DOMContentLoaded event
