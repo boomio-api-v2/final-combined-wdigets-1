@@ -975,6 +975,9 @@ ${
 
           gameEndButton.addEventListener('click', Replay);
           bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
+
+          // Apply scale adjustment to reduce zoom for all customers
+          bgRatio = bgRatio * 1.5; // Increase width multiplier to show more of the background
         };
 
         // Use DOMContentLoaded event
@@ -1068,9 +1071,9 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        if (!this.InputValidator.validateRegistrationInputs()) {
-          return;
-        }
+        // if (!this.InputValidator.validateRegistrationInputs()) {
+        //   return;
+        // }
 
         if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
           this.loading = true;
@@ -2272,10 +2275,12 @@ ${
       }, delay);
     }
     function DrawObject(object) {
-      var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-      var playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-      var barrierWidth = canvas.height / 3.5;
-      var barrierHight = canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight);
+      // Apply scaling to match background zoom level for all customers
+      const scaleFactor = 0.8;
+      var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
+      var playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
+      var barrierWidth = (canvas.height / 3.5) * scaleFactor;
+      var barrierHight = (canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight)) * scaleFactor;
       object.image.addEventListener(
         'load',
         ctx.drawImage(
