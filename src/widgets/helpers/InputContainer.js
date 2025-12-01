@@ -798,27 +798,24 @@ export class InputContainer {
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
  
           <div style="width:100%; height: 120px; left: 20px; top: 0px; position: absolute">
-            <div style="left: 0px; top: -10px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
-            
-              1. ${getRule1Title(this.customer, this.language, this.game)}
-    <div
-  style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-weight: 700; margin-left: 4px; font-family: ${'Georama'}; word-wrap: break-word"
->
-  ${getRule1Text(this.customer, this.language, this.game)}
-</div>
+            <div style="left: 0px; top: -10px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word">
+              <span style="white-space: nowrap;">1. ${getRule1Title(this.customer, this.language, this.game)}</span>
+              <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-weight: 700; margin-left: 4px; font-family: ${'Georama'}; word-wrap: break-word; white-space: normal; line-height: 14px;">
+                ${getRule1Text(this.customer, this.language, this.game)}
+              </div>
 
             </div>
-            <div style="left: 0px; top: 30px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
-            2.  ${getRule2Title(this.customer, this.language, this.game)}
-                         <div style="position:initial;margin-left:4px; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700;  word-wrap: break-word">
-            ${getRule2Text(this.customer, this.language, this.game)}
-          </div>
+            <div style="left: 0px; top: 30px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word">
+              <span style="white-space: nowrap;">2. ${getRule2Title(this.customer, this.language, this.game)}</span>
+              <div style="position:initial; margin-left:4px; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700; word-wrap: break-word; white-space: normal; line-height: 14px;">
+                ${getRule2Text(this.customer, this.language, this.game)}
+              </div>
             </div>
-            <div style="left: 1px; top: 70px;display:flex; align-items: center; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word;">
-            <span style="white-space: nowrap;">3. ${getRule3Title(this.customer, this.language, this.game, userId)}</span>
-                          <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700;margin-left:4px; word-wrap: break-word; white-space:normal; line-height:14px;">
-            ${getRule3Text(this.customer, this.language, this.game, userId)}
-          </div>
+            <div style="left: 1px; top: 70px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word;">
+              <span style="white-space: nowrap;">3. ${getRule3Title(this.customer, this.language, this.game, userId)}</span>
+              <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700; margin-left:4px; word-wrap: break-word; white-space:normal; line-height:14px;">
+                ${getRule3Text(this.customer, this.language, this.game, userId)}
+              </div>
             </div>
 ${
   this.customer.includes('Gamtos Ateitis') ||
@@ -829,11 +826,11 @@ ${
   this.customer === 'Zemaitijos Pienas' ||
   this.customer === 'Apranga' ||
   this.customer === 'Elesen'
-    ? `<div style="left: 1px; top: 110px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
-            4. ${getRule4Title(this.customer, this.language, this.game)} 
-                          <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
-            ${getRule4Text(this.customer, this.language, this.game)}
-          </div>
+    ? `<div style="left: 1px; top: 110px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word;">
+              <span style="white-space: nowrap;">4. ${getRule4Title(this.customer, this.language, this.game)}</span>
+              <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700; margin-left:4px; word-wrap: break-word; white-space:normal; line-height:14px;">
+                ${getRule4Text(this.customer, this.language, this.game)}
+              </div>
             </div>`
     : ``
 }
