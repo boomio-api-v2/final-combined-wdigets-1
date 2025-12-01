@@ -216,7 +216,7 @@ const getMainImage = (customer, language, campaignUrlOrCurrentPage) => {
 };
 
 const isDidYouKnowVisible = (customer) => {
-  if (customer === 'Pigu.lt' || customer === 'Magija' || customer === 'Elesen') {
+  if (customer === 'Pigu.lt' || customer === 'Magija') {
     return true;
   }
 };
