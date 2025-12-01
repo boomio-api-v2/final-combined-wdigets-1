@@ -1635,8 +1635,7 @@ ${
         this.x -= speed * this.layer;
         if (this.x < 0) {
           // Use image's natural aspect ratio for proper tiling
-          const imageAspectRatio = this.image.naturalWidth / this.image.naturalHeight;
-          const tileWidth = canvas.height * imageAspectRatio;
+          const tileWidth = getTileWidth(this.image);
           bg.x = this.x + tileWidth - speed;
         }
       }
@@ -2188,9 +2187,8 @@ ${
 
       for (let i = 0; i < bg.length; i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
-        const imageAspectRatio = bg[i].image.naturalWidth / bg[i].image.naturalHeight;
         const bgHeight = canvas.height;
-        const bgWidth = bgHeight * imageAspectRatio;
+        const bgWidth = getTileWidth(bg[i].image);
         bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, bgWidth, bgHeight));
       }
 
@@ -2222,9 +2220,8 @@ ${
       }
       for (let i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
-        const imageAspectRatio = fg[i].image.naturalWidth / fg[i].image.naturalHeight;
         const fgHeight = canvas.height;
-        const fgWidth = fgHeight * imageAspectRatio;
+        const fgWidth = getTileWidth(fg[i].image);
         fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, fgWidth, fgHeight));
       }
 
