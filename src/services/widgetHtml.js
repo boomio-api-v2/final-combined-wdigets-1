@@ -11,7 +11,7 @@ class WidgetHtmlService {
     setInterval(() => {
       const item = localStorage.getItem('closing_button');
       const element = document.getElementById(item);
-      if (element) {        
+      if (element) {
         this.imageElement.src = BoomioBubblesGif;
 
         setTimeout(() => {
