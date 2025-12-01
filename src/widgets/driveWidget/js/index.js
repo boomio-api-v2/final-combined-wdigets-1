@@ -209,6 +209,17 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   const isMobileHeightSmall = window.innerHeight <= 600;
 
+  const applyCanvasBlur = (customer) => {
+    const canvas = document.getElementById('boomio-drive-canvas');
+    canvas.style.transition = 'filter 0.6s ease';
+
+    if (customer === 'Toni') {
+      canvas.style.filter = '';
+    } else {
+      canvas.style.filter = 'blur(2px)';
+    }
+  };
+
   const customer = config.business_name;
 
   const teams = config.teams;
@@ -1686,10 +1697,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
       setTimeout(() => {
         if (customer !== 'SaludSA') {
-          const canvas = document.getElementById('boomio-drive-canvas');
           document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
-          canvas.style.transition = 'filter 0.6s ease';
-          canvas.style.filter = 'blur(2px)';
+          applyCanvasBlur(customer);
 
           const inpuRegisterContainer = document.querySelector('.input-register-container');
           document.getElementById('control-button').style.transition = 'opacity 2s ease';
@@ -1751,10 +1760,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         });
     } else {
       setTimeout(() => {
-        const canvas = document.getElementById('boomio-drive-canvas');
         document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
-        canvas.style.transition = 'filter 0.6s ease';
-        canvas.style.filter = 'blur(2px)';
+        applyCanvasBlur(customer);
         const inputContainer = document.querySelector('.input-container');
         document.getElementById('control-button').style.transition = 'opacity 2s ease';
         document.getElementById('control-button').style.opacity = 1;
@@ -1788,10 +1795,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       competitionTableContainer.style.display = 'none';
     }, 1000);
     setTimeout(() => {
-      const canvas = document.getElementById('boomio-drive-canvas');
       document.getElementById('background_blur').style.opacity = language === 'LV' ? 0.4 : 0.37;
-      canvas.style.transition = 'filter 0.6s ease';
-      canvas.style.filter = 'blur(2px)';
+      applyCanvasBlur(customer);
       const inputContainer = document.querySelector('.input-container');
       document.getElementById('control-button').style.transition = 'opacity 2s ease';
       document.getElementById('control-button').style.opacity = 1;
