@@ -974,10 +974,11 @@ ${
           });
 
           gameEndButton.addEventListener('click', Replay);
-          bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
+          //bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
+          //bgRatio = 1;
 
           // Apply scale adjustment to reduce zoom for all customers
-          bgRatio = bgRatio * 1.5; // Increase width multiplier to show more of the background
+          //bgRatio = bgRatio * 0.25; // Increase width multiplier to show more of the background
 
           // Draw initial background so canvas isn't black during registration
           Draw();
@@ -1633,7 +1634,10 @@ ${
       Update(bg) {
         this.x -= speed * this.layer;
         if (this.x < 0) {
-          bg.x = this.x + canvas.height * bgRatio - speed;
+          // Use image's natural aspect ratio for proper tiling
+          const imageAspectRatio = this.image.naturalWidth / this.image.naturalHeight;
+          const tileWidth = 668 * imageAspectRatio;
+          bg.x = this.x + tileWidth - speed;
         }
       }
     }
@@ -1650,6 +1654,12 @@ ${
     var playerAnimate = setInterval(() => {
       animate(player, runSprites);
     }, 75);
+
+    // Calculate tile width based on natural aspect ratio for each sprite
+    const getTileWidth = (sprite) => {
+      const aspectRatio = sprite.naturalWidth / sprite.naturalHeight;
+      return 668 * aspectRatio;
+    };
 
     function Move() {
       // Calculate actual player width for accurate boundary checking
@@ -1677,7 +1687,7 @@ ${
       }
     }
 
-    const fg = [new Bg(fgSprites[0], 0, 0.3), new Bg(fgSprites[0], canvas.height * bgRatio, 0.3), new Bg(fgSprites[1], 0, 1), new Bg(fgSprites[1], canvas.height * bgRatio, 1)];
+    const fg = [new Bg(fgSprites[0], 0, 0.3), new Bg(fgSprites[0], getTileWidth(fgSprites[0]), 0.3), new Bg(fgSprites[1], 0, 1), new Bg(fgSprites[1], getTileWidth(fgSprites[1]), 1)];
 
     const CollectObjects = [new GameObject(CollectSprites[0], 0, 0, false)];
 
@@ -2147,28 +2157,28 @@ ${
 
     const bg = [
       new Bg(bgSprites[0], 0, 0.1),
-      new Bg(bgSprites[0], canvas.height * bgRatio, 0.1),
+      new Bg(bgSprites[0], getTileWidth(bgSprites[0]), 0.1),
 
       new Bg(bgSprites[1], 0, 0.15),
-      new Bg(bgSprites[1], canvas.height * bgRatio, 0.15),
+      new Bg(bgSprites[1], getTileWidth(bgSprites[1]), 0.15),
 
       new Bg(bgSprites[2], 0, 0.25),
-      new Bg(bgSprites[2], canvas.height * bgRatio, 0.25),
+      new Bg(bgSprites[2], getTileWidth(bgSprites[2]), 0.25),
 
       new Bg(bgSprites[3], 0, 0.3),
-      new Bg(bgSprites[3], canvas.height * bgRatio, 0.3),
+      new Bg(bgSprites[3], getTileWidth(bgSprites[3]), 0.3),
 
       new Bg(bgSprites[7], 0, 0.4),
-      new Bg(bgSprites[7], canvas.height * bgRatio, 0.4),
+      new Bg(bgSprites[7], getTileWidth(bgSprites[7]), 0.4),
 
       new Bg(bgSprites[4], 0, 0.6),
-      new Bg(bgSprites[4], canvas.height * bgRatio, 0.6),
+      new Bg(bgSprites[4], getTileWidth(bgSprites[4]), 0.6),
 
       new Bg(bgSprites[5], 0, 1),
-      new Bg(bgSprites[5], canvas.height * bgRatio, 1),
+      new Bg(bgSprites[5], getTileWidth(bgSprites[5]), 1),
 
       new Bg(bgSprites[6], 0, 1.2),
-      new Bg(bgSprites[6], canvas.height * bgRatio, 1.2),
+      new Bg(bgSprites[6], getTileWidth(bgSprites[6]), 1.2),
     ];
 
     function Draw() {
@@ -2177,8 +2187,11 @@ ${
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < bg.length; i += 1) {
-        // Use fixed 668 height for consistent aspect ratio
-        bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, 668 * bgRatio, 668));
+        // Calculate dimensions based on image's natural aspect ratio to prevent stretching
+        const imageAspectRatio = bg[i].image.naturalWidth / bg[i].image.naturalHeight;
+        const bgHeight = 668;
+        const bgWidth = bgHeight * imageAspectRatio;
+        bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, bgWidth, bgHeight));
       }
 
       for (let i = 0; i < objects.length; i++) {
@@ -2208,8 +2221,11 @@ ${
         }
       }
       for (let i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
-        // Use fixed 668 height for consistent aspect ratio
-        fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, 668 * bgRatio, 668));
+        // Calculate dimensions based on image's natural aspect ratio to prevent stretching
+        const imageAspectRatio = fg[i].image.naturalWidth / fg[i].image.naturalHeight;
+        const fgHeight = 668;
+        const fgWidth = fgHeight * imageAspectRatio;
+        fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, fgWidth, fgHeight));
       }
 
       if (player.shield) {
