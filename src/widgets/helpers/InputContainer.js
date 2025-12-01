@@ -42,7 +42,7 @@ const getRule1Title = (customer, language, game) => {
     if (language === 'FI') return 'PYYHKÄISE';
     if (language === 'RU') return 'Двигайтесь';
     if (language === 'LT') return 'Judėk';
-    if (language === 'ES') return 'Muévete';
+    if (language === 'ES') return 'Desplázate';
   }
 
   // Doodle game specific
@@ -186,7 +186,7 @@ const getRule1Text = (customer, language, game) => {
     if (language === 'ET') return 'liigu paremale ja vasakule.';
     if (language === 'EN') return 'sideways to steer.';
     if (language === 'RU') return 'вправо и влево';
-    if (language === 'ES') return 'lateralmente para girar.';
+    if (language === 'ES') return 'lateralmente para esquivar los obstáculos.';
   }
 
   // Runner game
@@ -266,7 +266,7 @@ const getRule2Title = (customer, language, game) => {
     if (game === 'crush') return 'Combina';
     if (game === 'flappy') return 'Supera';
     if (game === 'doodle') return 'Sube';
-    if (game === 'drive') return 'Repetir';
+    if (game === 'drive') return 'Atrapa';
     if (game === 'runner') return 'Repetir';
   }
 
@@ -400,7 +400,7 @@ const getRule2Text = (customer, language, game) => {
   if (language === 'EN') return 'to get the best possible result';
 
   // General ES
-  if (language === 'ES') return 'para obtener el mejor resultado posible.';
+  if (language === 'ES') return 'los empaques para ganar puntos.';
 
   // Nykstukas
   if (customer === 'Nykstukas') return 'ledų kliūtis.';
@@ -506,7 +506,7 @@ const getRule3Title = (customer, language, game, userId) => {
   if (language === 'ET') return 'Proovi';
   if (language === 'EN') return 'Repeat';
   if (language === 'RU') return 'Повторяйте';
-  if (language === 'ES') return 'Disfruta';
+  if (language === 'ES') return 'Vuelve';
 
   // Default fallback
   return 'Enjoy';
@@ -640,7 +640,7 @@ const getRule3Text = (customer, language, game, userId) => {
   if (language === 'ET') return 'uuesti ja paranda oma tulemust.';
   if (language === 'EN') return 'and improve your score.';
   if (language === 'RU') return 'и улучшайте свой результат';
-  if (language === 'ES') return 'el juego.';
+  if (language === 'ES') return 'a jugar para incrementar tus oportunidades de ganar y participa por increíbles premios.';
 
   // Default fallback
   return 'the game.';
@@ -776,9 +776,7 @@ export class InputContainer {
     <div style="width: 100%; height: ${'180px'};box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 10px; padding-right: 10px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-    <div style="margin-top:-20px;align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${
-      this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-    }; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="${this.customer === 'Ikea' ? 'margin-left:20px' : ''};color: #FFF;text-align: ${
+    <div style="margin-top:-20px;align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${'Georama'}; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="${this.customer === 'Ikea' ? 'margin-left:20px' : ''};color: #FFF;text-align: ${
       this.customer === 'Ikea' ? 'start' : 'center'
     } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${getRulesTitle(this.customer, this.language)}</div>`}</div>
     <div style="width: ${this.isMobile ? '370px' : '390px'};margin-top:10px;margin-bottom:10px;height:${
@@ -800,47 +798,25 @@ export class InputContainer {
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
  
           <div style="width:100%; height: 120px; left: 20px; top: 0px; position: absolute">
-            <div style="left: 0px; top: -10px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.customer === 'Ikea' ? '20px' : '20px'
-            }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
+            <div style="left: 0px; top: -10px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             
               1. ${getRule1Title(this.customer, this.language, this.game)}
     <div
-  style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-weight: 700; margin-left: 4px; font-family: ${
-    this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-  }; word-wrap: break-word"
+  style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-weight: 700; margin-left: 4px; font-family: ${'Georama'}; word-wrap: break-word"
 >
   ${getRule1Text(this.customer, this.language, this.game)}
 </div>
 
             </div>
-            <div style="left: 0px; top: 30px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.customer === 'Ikea' ? '20px' : '20px'
-            }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
+            <div style="left: 0px; top: 30px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word">
             2.  ${getRule2Title(this.customer, this.language, this.game)}
-                         <div style="position:initial;margin-left:4px; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${
-                           this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-                         }; font-weight: 700;  word-wrap: break-word">
+                         <div style="position:initial;margin-left:4px; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700;  word-wrap: break-word">
             ${getRule2Text(this.customer, this.language, this.game)}
           </div>
             </div>
-            <div style="left: 1px; top: 70px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${
-              this.language === 'LV' || this.language === 'RU' || this.language === 'ET' ? '20px' : this.customer === 'Ikea' ? '20px' : '20px'
-            }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
-            3. ${getRule3Title(this.customer, this.language, this.game, userId)} 
-                          <div style="position:initial;${
-                            this.customer === 'Perlas GO'
-                              ? 'margin-top:19px;'
-                              : this.customer === 'SaludSA' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Dentsu'
-                                ? 'margin-top:16px;'
-                                : ''
-                          } color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${
-                            this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-                          }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${
-                            this.customer === 'Perlas GO' || this.customer === 'SaludSA' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Dentsu' ? 'white-space:normal;' : ''
-                          }
-    ${this.customer === 'Toni' && (this.game === 'flappy' || this.game === 'doodle') && 'margin-top:13px;line-height:14px;white-space:normal;'}
-    ${this.customer === 'Perlas GO' || this.customer === 'SaludSA' || this.customer === 'Pieno Žvaigždės' || this.customer === 'Dentsu' ? 'line-height:14px;' : ''}">
+            <div style="left: 1px; top: 70px;display:flex; align-items: center; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word;">
+            <span style="white-space: nowrap;">3. ${getRule3Title(this.customer, this.language, this.game, userId)}</span>
+                          <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700;margin-left:4px; word-wrap: break-word; white-space:normal; line-height:14px;">
             ${getRule3Text(this.customer, this.language, this.game, userId)}
           </div>
             </div>
@@ -853,13 +829,9 @@ ${
   this.customer === 'Zemaitijos Pienas' ||
   this.customer === 'Apranga' ||
   this.customer === 'Elesen'
-    ? `<div style="left: 1px; top: 110px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${
-        this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-      }; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
+    ? `<div style="left: 1px; top: 110px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 43.50px; word-wrap: break-word;white-space: nowrap;">
             4. ${getRule4Title(this.customer, this.language, this.game)} 
-                          <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${
-                            this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-                          }; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
+                          <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700;margin-left:4px; word-wrap: break-word; ${'white-space:normal;'}${'line-height:14px;'}">
             ${getRule4Text(this.customer, this.language, this.game)}
           </div>
             </div>`
@@ -893,9 +865,7 @@ ${
       this.customer === 'Novaturas' ||
       this.customer === 'Elesen' ||
       this.customer.includes('demo')
-        ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align:center; color: white; font-size: 10px; font-family:${
-            this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-          }; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" rel="noopener noreferrer" ${
+        ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align:center; color: white; font-size: 10px; font-family:${'Georama'}; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" rel="noopener noreferrer" ${
             this.customer === 'Novaturas' && this.language === 'LT'
               ? 'href=https://www.novaturas.lt/zaidimo-taisykles'
               : this.customer === 'Novaturas' && this.language === 'LV'
@@ -975,7 +945,7 @@ ${
                                                                                 : this.customer === 'Orlen'
                                                                                   ? 'href=https://www.orlen.lt/LT/zaidimas/Puslapiai/taisykl%c4%97s.aspx'
                                                                                   : `href=${window.location.href}`
-          } style="color:white;font-size:14px;margin-top:6px;font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};">${
+          } style="color:white;font-size:14px;margin-top:6px;font-family:${'Georama'};">${
             this.customer === 'Pigu.lt' && this.language === 'EN'
               ? 'Read the detailed game rules.'
               : this.customer === 'Pigu.lt' && this.language === 'LV'
@@ -1056,7 +1026,7 @@ ${
               };" id="control-button" class="control-button">
               <div id="startButtonClick" style="cursor:pointer;box-shadow:-4px -4px 8px #DFE6F5 inset; margin-left:27px;margin-right:27px;width: 100%; height:38px;background: white
               ; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div style="text-align: center; font-size: 20px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: ${
+              <div style="text-align: center; font-size: 20px; font-family:${'Georama'}; font-weight: ${
                 this.customer === 'Ikea' ? '400' : '700'
               }; line-height: 20px; word-wrap: break-word"> <div style="line-height:20px;text-align: center; color: ${
                 this.customer === 'Toni' ? '#000F9F' : 'rgba(61, 73, 40, 1)'
