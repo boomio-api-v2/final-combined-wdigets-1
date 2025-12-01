@@ -776,7 +776,7 @@ export class InputContainer {
     <div style="width: 100%; height: ${'180px'};box-sizing:content-box; padding-top: 20px; padding-bottom: 50px; border-top-right-radius: 20px;border-top-left-radius: 20px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 19px; display: inline-flex">
     
     <div style="padding-left: 10px; padding-right: 10px; flex-direction: column; justify-content: center; align-items: center; display: flex">
-    <div style="margin-top:-20px;margin-bottom:15px;align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${'Georama'}; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="${this.customer === 'Ikea' ? 'margin-left:20px' : ''};color: #FFF;text-align: ${
+    <div style="margin-top:-20px;align-self: stretch; text-align: center; color: white; font-size: 32px; font-family:${'Georama'}; font-weight: 700; line-height: 21.60px; word-wrap: break-word;">  ${`<div style="${this.customer === 'Ikea' ? 'margin-left:20px' : ''};color: #FFF;text-align: ${
       this.customer === 'Ikea' ? 'start' : 'center'
     } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${getRulesTitle(this.customer, this.language)}</div>`}</div>
     <div style="width: ${this.isMobile ? '370px' : '390px'};margin-top:10px;margin-bottom:10px;height:${
