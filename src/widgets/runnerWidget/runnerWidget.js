@@ -168,7 +168,7 @@ class runnerWidget {
           <img class='boomio-runner-controlButton' src="${this.isMobile ? rightDentsu : down}" alt="">
         </div>
       </div>
-     <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'};">
+     <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'};height: 668px;">
       </canvas>
 
       <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" style="display:none" alt="">
@@ -775,7 +775,7 @@ ${
       }
     }
 
-    player = new GameObject(runSprites[0], 0.2 * canvas.width, 668 - 668 / 2.5, true);
+    player = new GameObject(runSprites[0], 0.2 * canvas.width, canvas.height - canvas.height / 2.5, true);
 
     const Resize = () => {
       // Fixed canvas dimensions to prevent stretching (match doodleWidget pattern)
@@ -791,7 +791,7 @@ ${
 
       // Adjust player Y-position to match new height
       if (player && player.isPlayer) {
-        player.y = 668 - 668 / 2.5;
+        player.y = canvas.height - canvas.height / 2.5;
       }
     };
 
@@ -1384,7 +1384,7 @@ ${
       objects = [];
       coins = 0;
       player.x = 0.2 * canvas.width;
-      player.y = 668 - 668 / 2.5;
+      player.y = canvas.height - canvas.height / 2.5;
       gameOver = false;
       pause = false;
       player.rise = false;
@@ -1636,7 +1636,7 @@ ${
         if (this.x < 0) {
           // Use image's natural aspect ratio for proper tiling
           const imageAspectRatio = this.image.naturalWidth / this.image.naturalHeight;
-          const tileWidth = 668 * imageAspectRatio;
+          const tileWidth = canvas.height * imageAspectRatio;
           bg.x = this.x + tileWidth - speed;
         }
       }
@@ -1658,7 +1658,7 @@ ${
     // Calculate tile width based on natural aspect ratio for each sprite
     const getTileWidth = (sprite) => {
       const aspectRatio = sprite.naturalWidth / sprite.naturalHeight;
-      return 668 * aspectRatio;
+      return canvas.height * aspectRatio;
     };
 
     function Move() {
@@ -2004,10 +2004,10 @@ ${
       if (RandomInteger(1, 4) >= 2) {
         if (RandomInteger(0, 1) === 1) {
           x = (4 * canvas.width) / 3;
-          y = pos === 'top' ? 668 - 668 / 1.4 : 668 - 668 / 3.1;
+          y = pos === 'top' ? canvas.height - canvas.height / 1.4 : canvas.height - canvas.height / 3.1;
         } else {
           x = (4 * canvas.width) / 2;
-          y = 668 - 668 / 3.1;
+          y = canvas.height - canvas.height / 3.1;
         }
         if (newCoin) {
           objects.push(new GameObject(barriersSprites[0], x, y, false));
@@ -2035,7 +2035,7 @@ ${
 
         // Adjust object placement condition
         if (objects.length === 0 || objects.at(-1).x < canvas.width - 200) {
-          objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, 668 - 668 / 2.7, false));
+          objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, canvas.height - canvas.height / 2.7, false));
           var randomBarrier = RandomInteger(1, 8);
           var index = randomBarrier - 1;
           switch (randomBarrier) {
@@ -2053,7 +2053,7 @@ ${
               break;
             case 4:
               objects.at(-1).image = barriersSprites[index];
-              objects.at(-1).y = 668 - 668 / 2.35;
+              objects.at(-1).y = canvas.height - canvas.height / 2.35;
               pushRandomCoin('top');
               break;
             case 5:
@@ -2074,7 +2074,7 @@ ${
               objects.at(-1).isLevitate = true;
               objects.at(-1).topBarrier = true;
               objects.at(-1).sizeCoef = 1.7;
-              objects.at(-1).y = 668 - 668 / 1.11;
+              objects.at(-1).y = canvas.height - canvas.height / 1.11;
               pushRandomCoin('bottom');
               break;
             case 8:
@@ -2083,13 +2083,13 @@ ${
                   objects.at(-1).image = CollectSprites[1];
                   objects.at(-1).isShield = true;
                   objects.at(-1).sizeCoef = 0.5;
-                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? 668 - 668 / 2.5 : 668 - 668 / 1.3;
+                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? canvas.height - canvas.height / 2.5 : canvas.height - canvas.height / 1.3;
                 }
                 if (RandomInteger(0, 100) > 70) {
                   objects.at(-1).image = CollectSprites[2];
                   objects.at(-1).isBooster = true;
                   objects.at(-1).sizeCoef = 0.5;
-                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? 668 - 668 / 2.5 : 668 - 668 / 1.3;
+                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? canvas.height - canvas.height / 2.5 : canvas.height - canvas.height / 1.3;
                 }
                 break;
               }
@@ -2189,7 +2189,7 @@ ${
       for (let i = 0; i < bg.length; i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
         const imageAspectRatio = bg[i].image.naturalWidth / bg[i].image.naturalHeight;
-        const bgHeight = 668;
+        const bgHeight = canvas.height;
         const bgWidth = bgHeight * imageAspectRatio;
         bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, bgWidth, bgHeight));
       }
@@ -2223,7 +2223,7 @@ ${
       for (let i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
         const imageAspectRatio = fg[i].image.naturalWidth / fg[i].image.naturalHeight;
-        const fgHeight = 668;
+        const fgHeight = canvas.height;
         const fgWidth = fgHeight * imageAspectRatio;
         fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, fgWidth, fgHeight));
       }
