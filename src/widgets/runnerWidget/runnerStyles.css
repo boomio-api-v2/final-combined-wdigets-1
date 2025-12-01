@@ -431,7 +431,8 @@
   display: flex;
   flex-direction: row;
   filter: brightness(0.9);
-  filter: grayscale(30%) blur(2px) brightness(80%);
+  background-size: cover;
+  background-position: top;
 }
 .boomio-runner-mainLeftInfo {
   position: absolute;
