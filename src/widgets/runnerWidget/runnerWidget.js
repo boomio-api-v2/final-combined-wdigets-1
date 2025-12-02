@@ -1565,14 +1565,16 @@ ${
 
     // Define event handlers
     const handleTouchStart = (callback, button) => {
-      return () => {
+      return (e) => {
+        e.preventDefault(); // Prevent context menu and other default behaviors
         callback(true);
         button.style.opacity = '0.5';
       };
     };
 
     const handleTouchEnd = (callback, button) => {
-      return () => {
+      return (e) => {
+        e.preventDefault(); // Prevent default behavior
         callback(false);
         button.style.opacity = '1';
       };
@@ -1585,26 +1587,34 @@ ${
     // Add event listeners
     mobileLeftButton.addEventListener('touchstart', handleTouchStart(setLeftPressed, mobileLeftButton));
     mobileLeftButton.addEventListener('touchend', handleTouchEnd(setLeftPressed, mobileLeftButton));
+    mobileLeftButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
     mobileRightButton.addEventListener('touchstart', handleTouchStart(setRightPressed, mobileRightButton));
     mobileRightButton.addEventListener('touchend', handleTouchEnd(setRightPressed, mobileRightButton));
+    mobileRightButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
-    mobileUpButton.addEventListener('touchstart', () => {
+    mobileUpButton.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       jumpBegin();
       mobileUpButton.style.opacity = '0.5';
     });
-    mobileUpButton.addEventListener('touchend', () => {
+    mobileUpButton.addEventListener('touchend', (e) => {
+      e.preventDefault();
       mobileUpButton.style.opacity = '1';
     });
+    mobileUpButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
-    mobileDownButton.addEventListener('touchstart', () => {
+    mobileDownButton.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       slideBegin();
       mobileDownButton.style.opacity = '0.5';
     });
-    mobileDownButton.addEventListener('touchend', () => {
+    mobileDownButton.addEventListener('touchend', (e) => {
+      e.preventDefault();
       slideEnd();
       mobileDownButton.style.opacity = '1';
     });
+    mobileDownButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
     const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
     checkboxImg.addEventListener('click', () => {
