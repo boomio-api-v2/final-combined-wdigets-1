@@ -92,12 +92,11 @@ jobs:
   deploy_prod:
     name: Deploy PROD
     needs: build
-    #if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: PROD
     permissions:
       contents: read
-      #deployments: write
     steps:
       - name: Download bundle
         uses: actions/download-artifact@v6
@@ -119,12 +118,11 @@ jobs:
   deploy_prod_aws:
     name: Deploy PROD AWS
     needs: build
-    #if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: PROD
     permissions:
       contents: read
-      #deployments: write
       id-token: write
     steps:
       - name: Download bundle
