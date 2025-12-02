@@ -1726,7 +1726,7 @@ ${
 
     function jumpBegin() {
       if (!player.slideing) {
-        setPlayerAnimation(jumpSprites, 100 + score / 10);
+        setPlayerAnimation(jumpSprites, 60 + score / 10);
         jumping = true;
       }
     }
