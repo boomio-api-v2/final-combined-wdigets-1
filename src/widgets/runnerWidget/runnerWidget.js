@@ -686,7 +686,7 @@ ${
       }
 
       Update() {
-        var barrierWidth = (canvas.height / 5) * (this.image.width / this.image.height);
+        var barrierWidth = (canvas.height / 3.5) * (this.image.naturalWidth / this.image.naturalHeight);
 
         if (!this.isPlayer) {
           if (this.isLevitate) {
@@ -717,6 +717,15 @@ ${
         var barrierHight = canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight);
         var hit = false;
 
+        const collectCoin = () => {
+          if (!object.kicked) {
+            score += 50;
+            currentScore.innerText = '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
+            coins += 1;
+          }
+          object.kicked = true;
+        };
+
         if (object.topBarrier) {
           if (this.x + playerWidth / 2.5 > object.x && this.x < object.x + (barrierWidth * object.sizeCoef) / 1.2) {
             if (this.y - jumpHeight + playerHeight / 1.2 > object.y) {
@@ -735,13 +744,7 @@ ${
             if (this.y - jumpHeight + playerHeight > object.y * 1.1 && this.y - jumpHeight < object.y + barrierHight * object.sizeCoef) {
               if (player.shield) {
                 if (object.isCoin) {
-                  if (!object.kicked) {
-                    score += 50;
-                    currentScore.innerText = '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
-
-                    coins += 1;
-                  }
-                  object.kicked = true;
+                  collectCoin();
                 } else {
                   object.kicked = true;
                 }
@@ -758,12 +761,7 @@ ${
                   object.image = new Image();
                 }
                 if (object.isCoin) {
-                  if (!object.kicked) {
-                    score += 50;
-                    currentScore.innerText = '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
-                    coins += 1;
-                  }
-                  object.kicked = true;
+                  collectCoin();
                 }
                 if (!object.isBooster && !object.isShield && !object.isCoin) hit = true;
               }
@@ -2187,9 +2185,11 @@ ${
 
       for (let i = 0; i < bg.length; i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
-        const bgHeight = canvas.height;
-        const bgWidth = getTileWidth(bg[i].image);
-        bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, bgWidth, bgHeight));
+        const scaleFactor = 1;
+        const bgHeight = canvas.height * scaleFactor;
+        const bgWidth = getTileWidth(bg[i].image) * scaleFactor;
+        const bgY = canvas.height - bgHeight; // Position at bottom
+        bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bgY, bgWidth, bgHeight));
       }
 
       for (let i = 0; i < objects.length; i++) {
@@ -2220,9 +2220,11 @@ ${
       }
       for (let i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
-        const fgHeight = canvas.height;
-        const fgWidth = getTileWidth(fg[i].image);
-        fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, fgWidth, fgHeight));
+        const scaleFactor = 1;
+        const fgHeight = canvas.height * scaleFactor;
+        const fgWidth = getTileWidth(fg[i].image) * scaleFactor;
+        const fgY = canvas.height - fgHeight; // Position at bottom
+        fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fgY, fgWidth, fgHeight));
       }
 
       if (player.shield) {
@@ -2292,11 +2294,14 @@ ${
     }
     function DrawObject(object) {
       // Apply scaling to match background zoom level for all customers
-      const scaleFactor = 0.8;
+      const scaleFactor = 1;
       var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
       var playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
       var barrierWidth = (canvas.height / 3.5) * scaleFactor;
       var barrierHight = (canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight)) * scaleFactor;
+      const playerY = canvas.height - playerHeight - 0;
+      const barrierY = canvas.height - barrierHight - 0;
+
       object.image.addEventListener(
         'load',
         ctx.drawImage(
