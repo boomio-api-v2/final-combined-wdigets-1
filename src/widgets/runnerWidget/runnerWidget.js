@@ -498,14 +498,17 @@ ${
       return `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${assetFolder}/${suffix}`;
     };
 
+    // Global scale factor for all game sprites
+    const scaleFactor = 0.7;
+
     // Helper function to calculate object dimensions
-    const calculateDimensions = (object, scaleFactor = 1) => {
-      const playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
-      const playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
-      const barrierWidth = (canvas.height / 3.5) * scaleFactor;
-      const barrierHeight = (canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight)) * scaleFactor;
+    const calculateDimensions = (object, scaleFactorOverride = scaleFactor) => {
+      const playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactorOverride;
+      const playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactorOverride;
+      const barrierWidth = (canvas.height / 3.5) * scaleFactorOverride;
+      const barrierHeight = (canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight)) * scaleFactorOverride;
       // Barrier width with aspect ratio (for Update method off-screen detection)
-      const barrierWidthWithAspect = (canvas.height / 3.5) * (object.image.naturalWidth / object.image.naturalHeight) * scaleFactor;
+      const barrierWidthWithAspect = (canvas.height / 3.5) * (object.image.naturalWidth / object.image.naturalHeight) * scaleFactorOverride;
       return { playerWidth, playerHeight, barrierWidth, barrierHeight, barrierWidthWithAspect };
     };
 
@@ -1640,7 +1643,7 @@ ${
       Update(bg) {
         this.x -= speed * this.layer;
         if (this.x < 0) {
-          // Use image's natural aspect ratio for proper tiling
+          // Tile width already includes scaleFactor
           const tileWidth = getTileWidth(this.image);
           bg.x = this.x + tileWidth - speed;
         }
@@ -1660,10 +1663,10 @@ ${
       animate(player, runSprites);
     }, 75);
 
-    // Calculate tile width based on natural aspect ratio for each sprite
+    // Calculate tile width based on natural aspect ratio for each sprite (includes scaleFactor)
     const getTileWidth = (sprite) => {
       const aspectRatio = sprite.naturalWidth / sprite.naturalHeight;
-      return canvas.height * aspectRatio;
+      return canvas.height * aspectRatio * scaleFactor;
     };
 
     function Move() {
@@ -2189,13 +2192,15 @@ ${
     function Draw() {
       ctx.imageSmoothingQuality = 'high';
       ctx.imageSmoothingEnabled = true;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Fill background with sky blue color before clearing
+      ctx.fillStyle = '#27A5FF';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < bg.length; i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
-        const scaleFactor = 1;
         const bgHeight = canvas.height * scaleFactor;
-        const bgWidth = getTileWidth(bg[i].image) * scaleFactor;
+        const bgWidth = getTileWidth(bg[i].image);
         const bgY = canvas.height - bgHeight; // Position at bottom
         bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bgY, bgWidth, bgHeight));
       }
@@ -2228,9 +2233,8 @@ ${
       }
       for (let i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
-        const scaleFactor = 1;
         const fgHeight = canvas.height * scaleFactor;
-        const fgWidth = getTileWidth(fg[i].image) * scaleFactor;
+        const fgWidth = getTileWidth(fg[i].image);
         const fgY = canvas.height - fgHeight; // Position at bottom
         fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fgY, fgWidth, fgHeight));
       }
@@ -2302,7 +2306,6 @@ ${
     }
     function DrawObject(object) {
       // Apply scaling to match background zoom level for all customers
-      const scaleFactor = 1;
       const { playerWidth, playerHeight, barrierWidth, barrierHeight } = calculateDimensions(object, scaleFactor);
       const playerY = canvas.height - playerHeight - 0;
       const barrierY = canvas.height - barrierHeight - 0;
