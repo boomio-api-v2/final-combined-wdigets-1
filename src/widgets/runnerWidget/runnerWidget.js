@@ -739,14 +739,14 @@ ${
 
         if (object.topBarrier) {
           if (this.x + playerWidth / 2.5 > object.x && this.x < object.x + (barrierWidth * object.sizeCoef) / 1.2) {
-            if (this.y - jumpHeight + playerHeight / 1.2 > object.y) {
-              var actualPlayerHigh = this.slideing ? this.y + playerHeight / 2.2 : this.y;
-              if (actualPlayerHigh * 1.1 - jumpHeight < object.y + barrierHeight * object.sizeCoef) {
-                if (player.shield) {
-                  object.kicked = true;
-                } else {
-                  hit = true;
-                }
+            // For top barriers, check if player (when not sliding) hits the barrier
+            // When sliding, player height is reduced and can pass under
+            var actualPlayerTop = this.slideing ? this.y + playerHeight / 2.5 : this.y;
+            if (actualPlayerTop - jumpHeight < object.y + barrierHeight * object.sizeCoef) {
+              if (player.shield) {
+                object.kicked = true;
+              } else {
+                hit = true;
               }
             }
           }
@@ -2027,7 +2027,7 @@ ${
         }
         objects.at(-1).image = CollectSprites[3];
         objects.at(-1).isCoin = true;
-        objects.at(-1).sizeCoef = 0.3;
+        objects.at(-1).sizeCoef = 0.6;
       }
     }
     function Update() {
@@ -2074,7 +2074,7 @@ ${
             case 5:
               objects.at(-1).image = barriersSprites[index];
               objects.at(-1).topBarrier = true;
-              objects.at(-1).y = roadY - (bgHeight * 0.32) / (objects.at(-1).image.naturalWidth / objects.at(-1).image.naturalHeight);
+              objects.at(-1).y = roadY - (bgHeight * 0.28) / (objects.at(-1).image.naturalWidth / objects.at(-1).image.naturalHeight);
               pushRandomCoin('bottom');
               break;
             case 6:
@@ -2314,8 +2314,6 @@ ${
     function DrawObject(object) {
       // Apply scaling to match background zoom level for all customers
       const { playerWidth, playerHeight, barrierWidth, barrierHeight } = calculateDimensions(object, scaleFactor);
-      const playerY = canvas.height - playerHeight - 0;
-      const barrierY = canvas.height - barrierHeight - 0;
 
       object.image.addEventListener(
         'load',
