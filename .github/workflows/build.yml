@@ -141,10 +141,10 @@ jobs:
 
       - name: Upload files to S3
         run: |
-          aws s3 cp ./bundle.js s3://prod-boomio-assets/widgets/js/bundle.js
+          aws s3 cp ./bundle.js s3://prod-boomio-assets/widgets/bundle.js
 
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
-            --paths "/widgets/js/bundle.js"
+            --paths "/widgets/bundle.js"
