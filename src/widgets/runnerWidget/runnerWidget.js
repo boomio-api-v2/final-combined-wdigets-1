@@ -498,6 +498,17 @@ ${
       return `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${assetFolder}/${suffix}`;
     };
 
+    // Helper function to calculate object dimensions
+    const calculateDimensions = (object, scaleFactor = 1) => {
+      const playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
+      const playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
+      const barrierWidth = (canvas.height / 3.5) * scaleFactor;
+      const barrierHeight = (canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight)) * scaleFactor;
+      // Barrier width with aspect ratio (for Update method off-screen detection)
+      const barrierWidthWithAspect = (canvas.height / 3.5) * (object.image.naturalWidth / object.image.naturalHeight) * scaleFactor;
+      return { playerWidth, playerHeight, barrierWidth, barrierHeight, barrierWidthWithAspect };
+    };
+
     // Helper functions for highscore elements visibility
     const showHighscoreElements = (delay = 200) => {
       const elements = {
@@ -686,7 +697,7 @@ ${
       }
 
       Update() {
-        var barrierWidth = (canvas.height / 3.5) * (this.image.naturalWidth / this.image.naturalHeight);
+        const { barrierWidthWithAspect } = calculateDimensions(this);
 
         if (!this.isPlayer) {
           if (this.isLevitate) {
@@ -696,7 +707,7 @@ ${
           }
 
           if (
-            (((!this.topBarrier && this.x < -1.5 * barrierWidth) || (this.topBarrier && this.x < -5 * barrierWidth) || this.y < -500) && !this.kicked) ||
+            (((!this.topBarrier && this.x < -1.5 * barrierWidthWithAspect) || (this.topBarrier && this.x < -5 * barrierWidthWithAspect) || this.y < -500) && !this.kicked) ||
             (this.kicked && this.x <= -5 * canvas.width) ||
             (this.kicked && this.y <= -5 * canvas.height)
           ) {
@@ -711,10 +722,7 @@ ${
         }
       }
       Collide(object) {
-        var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-        var playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-        var barrierWidth = canvas.height / 3.5;
-        var barrierHight = canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight);
+        const { playerWidth, playerHeight, barrierWidth, barrierHeight } = calculateDimensions(object);
         var hit = false;
 
         const collectCoin = () => {
@@ -730,7 +738,7 @@ ${
           if (this.x + playerWidth / 2.5 > object.x && this.x < object.x + (barrierWidth * object.sizeCoef) / 1.2) {
             if (this.y - jumpHeight + playerHeight / 1.2 > object.y) {
               var actualPlayerHigh = this.slideing ? this.y + playerHeight / 2.2 : this.y;
-              if (actualPlayerHigh * 1.1 - jumpHeight < object.y + barrierHight * object.sizeCoef) {
+              if (actualPlayerHigh * 1.1 - jumpHeight < object.y + barrierHeight * object.sizeCoef) {
                 if (player.shield) {
                   object.kicked = true;
                 } else {
@@ -741,7 +749,7 @@ ${
           }
         } else {
           if (this.x + playerWidth / 1.5 > object.x && this.x < object.x + barrierWidth / 1.5) {
-            if (this.y - jumpHeight + playerHeight > object.y * 1.1 && this.y - jumpHeight < object.y + barrierHight * object.sizeCoef) {
+            if (this.y - jumpHeight + playerHeight > object.y * 1.1 && this.y - jumpHeight < object.y + barrierHeight * object.sizeCoef) {
               if (player.shield) {
                 if (object.isCoin) {
                   collectCoin();
@@ -1660,7 +1668,7 @@ ${
 
     function Move() {
       // Calculate actual player width for accurate boundary checking
-      var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
+      const { playerWidth } = calculateDimensions(player);
 
       if (rightPressed && player.x + playerWidth < canvas.width) {
         player.x += speed;
@@ -2295,12 +2303,9 @@ ${
     function DrawObject(object) {
       // Apply scaling to match background zoom level for all customers
       const scaleFactor = 1;
-      var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
-      var playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactor;
-      var barrierWidth = (canvas.height / 3.5) * scaleFactor;
-      var barrierHight = (canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight)) * scaleFactor;
+      const { playerWidth, playerHeight, barrierWidth, barrierHeight } = calculateDimensions(object, scaleFactor);
       const playerY = canvas.height - playerHeight - 0;
-      const barrierY = canvas.height - barrierHight - 0;
+      const barrierY = canvas.height - barrierHeight - 0;
 
       object.image.addEventListener(
         'load',
@@ -2309,7 +2314,7 @@ ${
           object.x,
           object.isPlayer ? object.y - jumpHeight : object.y,
           object.isPlayer ? playerWidth : barrierWidth * object.sizeCoef,
-          object.isPlayer ? playerHeight : barrierHight * object.sizeCoef,
+          object.isPlayer ? playerHeight : barrierHeight * object.sizeCoef,
         ),
       );
     }
