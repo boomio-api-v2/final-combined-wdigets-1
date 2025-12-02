@@ -814,7 +814,7 @@ ${
       }
 
       // Redraw canvas with new dimensions (only if Draw function exists and bg is initialized)
-      if (bg && bg.length > 0) {
+      if (typeof bg !== 'undefined' && bg && bg.length > 0) {
         Draw();
       }
     };
@@ -2142,10 +2142,10 @@ ${
           hit = player.Collide(objects[i]);
 
           if (hit && !player.immune) {
-            console.log(player.life);
+            player.life = player.life - 1;
+            document.getElementById('currentLife').innerHTML = `${player.life} / 3`;
+
             if (player.life > 0) {
-              player.life = player.life - 1;
-              document.getElementById('currentLife').innerHTML = `${player.life} / 3`;
               const container = document.querySelector('.boomio-runner-life-input-container');
               container.classList.add('shake-life');
               setTimeout(() => {
