@@ -430,9 +430,9 @@
   font-family: 'Georama';
   display: flex;
   flex-direction: row;
-  filter: brightness(0.9);
   background-size: cover;
   background-position: top;
+  filter: grayscale(30%) blur(0.5px) brightness(60%);
 }
 .boomio-runner-mainLeftInfo {
   position: absolute;
