@@ -1669,9 +1669,17 @@ ${
       object.image = spritesArr[frameNumber];
     }
 
+    // Reusable function to set player animation
+    const setPlayerAnimation = (sprites, interval) => {
+      clearInterval(playerAnimate);
+      playerAnimate = setInterval(() => {
+        animate(player, sprites);
+      }, interval);
+    };
+
     var playerAnimate = setInterval(() => {
       animate(player, runSprites);
-    }, 75);
+    }, 50);
 
     // Calculate tile width based on natural aspect ratio for each sprite (includes scaleFactor)
     const getTileWidth = (sprite) => {
@@ -1698,10 +1706,7 @@ ${
         jumpHeight = 0;
         numberOfJumps = Number(numberOfJumps) + 1;
         localStorage.setItem('jumps', numberOfJumps);
-        clearInterval(playerAnimate);
-        playerAnimate = setInterval(() => {
-          animate(player, runSprites);
-        }, 75);
+        setPlayerAnimation(runSprites, 50);
       }
     }
 
@@ -1711,13 +1716,7 @@ ${
 
     function jumpBegin() {
       if (!player.slideing) {
-        clearInterval(playerAnimate);
-        playerAnimate = setInterval(
-          () => {
-            animate(player, jumpSprites);
-          },
-          100 + score / 10,
-        );
+        setPlayerAnimation(jumpSprites, 100 + score / 10);
         jumping = true;
       }
     }
@@ -1748,9 +1747,7 @@ ${
         setTimeout(() => {
           player.image = slideSprites[0];
         }, 20);
-        playerAnimate = setInterval(() => {
-          animate(player, runSprites);
-        }, 75);
+        setPlayerAnimation(runSprites, 50);
         numberOfSlides = Number(numberOfSlides) + 1;
         localStorage.setItem('slides', numberOfSlides);
       }
@@ -2226,10 +2223,7 @@ ${
       DrawObject(player);
       if (player.boost) {
         if (player.boostTimer === 0) {
-          clearInterval(playerAnimate);
-          playerAnimate = setInterval(() => {
-            animate(player, runSprites);
-          }, 30);
+          setPlayerAnimation(runSprites, 20);
           // Optionally set a visual effect, e.g. shield on boost
           player.shield = true;
           // Save current speed, then multiply for boost
