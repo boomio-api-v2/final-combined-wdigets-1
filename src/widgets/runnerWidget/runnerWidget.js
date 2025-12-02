@@ -648,6 +648,8 @@ ${
     var coins = 0;
     var player;
     var activeTime;
+    var bg; // Background layers array
+    var fg; // Foreground layers array
     const toggleHide = (block) => block.classList.toggle('boomio-hide');
     let highScore = localStorage.getItem('HI') > 0 ? localStorage.getItem('HI') : 0;
     let myCoins = localStorage.getItem('myCoins') > 0 ? localStorage.getItem('myCoins') : 0;
@@ -810,6 +812,11 @@ ${
       if (player && player.isPlayer) {
         player.y = getPlayerY();
       }
+
+      // Redraw canvas with new dimensions (only if Draw function exists and bg is initialized)
+      if (bg && bg.length > 0) {
+        Draw();
+      }
     };
 
     window.addEventListener('resize', Resize);
@@ -868,21 +875,21 @@ ${
     updateAchives();
 
     function initializeGameLoader() {
-      let pageMuted;
-      if (typeof localStorage.getItem('pageMuted') === 'undefined' || localStorage.getItem('pageMuted') === null) {
-        localStorage.setItem('pageMuted', '');
-        pageMuted = false;
-      } else {
-        pageMuted = Boolean(localStorage.getItem('pageMuted'));
-      }
+      // let pageMuted;
+      // if (typeof localStorage.getItem('pageMuted') === 'undefined' || localStorage.getItem('pageMuted') === null) {
+      //   localStorage.setItem('pageMuted', '');
+      //   pageMuted = false;
+      // } else {
+      //   pageMuted = Boolean(localStorage.getItem('pageMuted'));
+      // }
 
       loader.start();
 
-      if ('mediaSession' in navigator) {
-        // Media session logic can be added here
-      }
+      // if ('mediaSession' in navigator) {
+      //   // Media session logic can be added here
+      // }
 
-      let ysdk;
+      // let ysdk;
 
       // function showFullAdd() { need to check
       //   ysdk.adv.showFullscreenAdv({
@@ -1698,7 +1705,7 @@ ${
       }
     }
 
-    const fg = [new Bg(fgSprites[0], 0, 0.3), new Bg(fgSprites[0], getTileWidth(fgSprites[0]), 0.3), new Bg(fgSprites[1], 0, 1), new Bg(fgSprites[1], getTileWidth(fgSprites[1]), 1)];
+    fg = [new Bg(fgSprites[0], 0, 0.3), new Bg(fgSprites[0], getTileWidth(fgSprites[0]), 0.3), new Bg(fgSprites[1], 0, 1), new Bg(fgSprites[1], getTileWidth(fgSprites[1]), 1)];
 
     const CollectObjects = [new GameObject(CollectSprites[0], 0, 0, false)];
 
@@ -2170,7 +2177,7 @@ ${
       }
     }
 
-    const bg = [
+    bg = [
       new Bg(bgSprites[0], 0, 0.1),
       new Bg(bgSprites[0], getTileWidth(bgSprites[0]), 0.1),
 
