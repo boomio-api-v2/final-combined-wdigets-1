@@ -68,7 +68,6 @@ jobs:
     environment: TEST
     permissions:
       contents: read
-      deployments: write
       pull-requests: write
 
     steps:
@@ -88,6 +87,38 @@ jobs:
             --namespace-id ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID_TEST }}
             --path bundle.js
             bundle.js
+
+  deploy_test_aws:
+    name: Deploy TEST AWS
+    needs: build
+    if: (github.ref == 'refs/heads/main' || github.event_name == 'pull_request') && github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    environment: TEST
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Download bundle
+        uses: actions/download-artifact@v6
+        with:
+          name: bundle.js
+          path: .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Upload files to S3
+        run: |
+          aws s3 cp ./bundle.js s3://prod-boomio-assets/widgets/bundle-test.js
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/widgets/bundle-test.js"
 
   deploy_prod:
     name: Deploy PROD
