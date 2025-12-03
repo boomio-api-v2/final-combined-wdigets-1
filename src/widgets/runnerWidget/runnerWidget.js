@@ -162,10 +162,10 @@ class runnerWidget {
     <div class="boomio-runner-wrapper boomio-screenRatio">
       <div class="boomio-runner-controlBlock">
         ${this.language === 'ES' ? 'Reglas' : this.language === 'LT' ? 'Taisyklės' : 'Rules'}
-        <img class='boomio-runner-controlButton' src="${this.isMobile ? upDentsu : up}" alt="">
-        <div><img class='boomio-runner-controlButton' src="${this.isMobile ? leftDentsu : left}" alt="">
-          <img class='boomio-runner-controlButton' src="${this.isMobile ? downDentsu : right}" alt="">
-          <img class='boomio-runner-controlButton' src="${this.isMobile ? rightDentsu : down}" alt="">
+        <img class='boomio-runner-controlButton' src="${upDentsu}" alt="">
+        <div><img class='boomio-runner-controlButton' src="${leftDentsu}" alt="">
+          <img class='boomio-runner-controlButton' src="${downDentsu}" alt="">
+          <img class='boomio-runner-controlButton' src="${rightDentsu}" alt="">
         </div>
       </div>
      <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'};height: 668px;">
