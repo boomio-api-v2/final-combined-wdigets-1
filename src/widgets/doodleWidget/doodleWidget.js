@@ -1327,22 +1327,25 @@ class DoodleWidget {
         this.player.vy += this.gravity;
       }
 
-      this.currentScore++;
-      if (this.cachedElements.currentScore) {
-        this.cachedElements.currentScore.innerHTML = `${this.currentScore}`;
-      }
+      // Award points for height only if player is moving horizontally (not idle jumping)
+      if (Math.abs(this.player.vx) > 0.01) {
+        this.currentScore++;
+        if (this.cachedElements.currentScore) {
+          this.cachedElements.currentScore.innerHTML = `${this.currentScore}`;
+        }
 
-      if (this.currentScore > 1 && this.cachedElements.currentScoreDiv) {
-        const currentScoreDiv = this.cachedElements.currentScoreDiv;
-        currentScoreDiv.style.transition = 'opacity 0.8s ease';
-        currentScoreDiv.style.display = 'block';
-        currentScoreDiv.style.opacity = 1;
-      }
+        if (this.currentScore > 1 && this.cachedElements.currentScoreDiv) {
+          const currentScoreDiv = this.cachedElements.currentScoreDiv;
+          currentScoreDiv.style.transition = 'opacity 0.8s ease';
+          currentScoreDiv.style.display = 'block';
+          currentScoreDiv.style.opacity = 1;
+        }
 
-      if (this.bestScore < this.currentScore) {
-        this.newHighScoreReached = true;
+        if (this.bestScore < this.currentScore) {
+          this.newHighScoreReached = true;
+        }
+        this.bestScore = Math.max(this.bestScore, this.currentScore);
       }
-      this.bestScore = Math.max(this.bestScore, this.currentScore);
     }
 
     this.collides();
