@@ -950,9 +950,9 @@ ${
           //   leftButtonsBlock.classList.remove('boomio-hide');
           // }
 
-          for (let i = 0; i < mainBgBlocks.length; i += 1) {
-            mainBgBlocks[i].style.backgroundImage = `url(${getBackground()})`;
-          }
+          // for (let i = 0; i < mainBgBlocks.length; i += 1) {
+          //   mainBgBlocks[i].style.backgroundImage = `url(${getBackground()})`;
+          // }
 
           toggleHide(mainMenuBlock);
           setTimeout(() => {
