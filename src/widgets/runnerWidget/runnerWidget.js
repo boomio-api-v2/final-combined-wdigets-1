@@ -2024,11 +2024,12 @@ ${
       stopGame = true;
     }
     function pushRandomCoin(pos, newCoin = true) {
-      const bgHeight = canvas.height * scaleFactor;
-      const roadY = getPlayerY();
-      let x;
-      let y;
       if (RandomInteger(1, 4) >= 2) {
+        const bgHeight = canvas.height * scaleFactor;
+        const roadY = getPlayerY();
+        let x;
+        let y;
+
         if (RandomInteger(0, 1) === 1) {
           x = (4 * canvas.width) / 3;
           y = pos === 'top' ? roadY - bgHeight * 0.28 : roadY;
@@ -2038,10 +2039,10 @@ ${
         }
         if (newCoin) {
           objects.push(new GameObject(barriersSprites[0], x, y, false));
+          objects.at(-1).image = CollectSprites[3];
+          objects.at(-1).isCoin = true;
+          objects.at(-1).sizeCoef = 0.6;
         }
-        objects.at(-1).image = CollectSprites[3];
-        objects.at(-1).isCoin = true;
-        objects.at(-1).sizeCoef = 0.6;
       }
     }
     function Update() {
@@ -2071,7 +2072,9 @@ ${
             case 1:
               objects.at(-1).image = barriersSprites[index];
               objects.at(-1).y = roadY + bgHeight * 0.02;
+              console.log(randomBarrier + ' before ' + objects.at(-1).y);
               pushRandomCoin('top');
+              console.log(randomBarrier + ' after ' + objects.at(-1).y);
               break;
             case 2:
               objects.at(-1).image = barriersSprites[index];
@@ -2124,7 +2127,7 @@ ${
                 }
                 break;
               }
-          }
+          } // switch end
         }
 
         for (let i = 0; i < fg.length - 1; i += 2) {
@@ -2224,7 +2227,13 @@ ${
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
         const bgHeight = canvas.height * scaleFactor;
         const bgWidth = getTileWidth(bg[i].image);
-        const bgY = canvas.height - bgHeight; // Position at bottom
+        let bgY = canvas.height - bgHeight; // Position at bottom
+
+        // Move bgSprites[2] higher (layer 0.25)
+        if (bg[i].layer === 0.25) {
+          bgY = bgY - bgHeight * 0.15; // Move up by 15% of background height
+        }
+
         bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bgY, bgWidth, bgHeight));
       }
 
