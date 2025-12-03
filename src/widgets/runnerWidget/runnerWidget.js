@@ -2070,10 +2070,12 @@ ${
           switch (randomBarrier) {
             case 1:
               objects.at(-1).image = barriersSprites[index];
+              objects.at(-1).y = roadY + bgHeight * 0.02;
               pushRandomCoin('top');
               break;
             case 2:
               objects.at(-1).image = barriersSprites[index];
+              objects.at(-1).y = roadY + bgHeight * 0.01;
               pushRandomCoin('top');
               break;
             case 3:
@@ -2082,7 +2084,7 @@ ${
               break;
             case 4:
               objects.at(-1).image = barriersSprites[index];
-              objects.at(-1).y = roadY - bgHeight * 0.05; // Slightly higher on road
+              objects.at(-1).y = roadY - bgHeight * 0.04;
               pushRandomCoin('top');
               break;
             case 5:
