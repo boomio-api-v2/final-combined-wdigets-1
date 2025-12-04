@@ -1094,9 +1094,9 @@ ${
         const checkboxChange2 = this.checkboxChange2;
         const checkboxChange3 = this.checkboxChange3;
 
-        // if (!this.InputValidator.validateRegistrationInputs()) {
-        //   return;
-        // }
+        if (!this.InputValidator.validateRegistrationInputs()) {
+          return;
+        }
 
         if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
           this.loading = true;
