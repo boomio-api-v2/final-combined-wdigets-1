@@ -462,38 +462,17 @@ export class InputRegisterContainer {
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.customer === 'Perlas GO' ? '10px' : this.isMobile ? '8px' : '9px'};color:${'#D8000C'};text-align:start;line-height:8px;">
         </div>
 
-        <div id="competition-checkbox-error2" style="padding-top:1px;height:${'14px'} ;margin-right:30px;display:${
-          this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
-        } ;left: 34px; top:${
+        <div id="competition-checkbox-error2" style="padding-top:1px;height:${'14px'} ;margin-right:30px;display:${'none'} ;left: 34px; top:${
           this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : this.customer === 'Toni' || this.customer === 'Elesen' ? '436px' : '430px'
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.isMobile ? '8px' : '9px'};color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>
 
-        <div id="competition-checkbox-error3" style="padding-top:1px;height:${'14px'} ;margin-right:30px;display:${
-          this.customer === 'Akropolis' || this.customer === 'Eurovaistine' ? 'block' : 'none'
-        } ;left: 34px; top:${
+        <div id="competition-checkbox-error3" style="padding-top:1px;height:${'14px'} ;margin-right:30px;display:${'none'} ;left: 34px; top:${
           this.customer?.includes('Gamtos Ateitis') ? '435px' : this.language === 'LV' ? '440px' : '430px'
         }; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${this.isMobile ? '9px' : '10px'};color:${'#D8000C'};text-align:start;line-height:8px;">
 </div>
 
-      <div id="competition-name-error" style="display:${
-        this.customer.includes('Gamtos Ateitis') ||
-        this.customer === 'Perlas GO' ||
-        this.customer === 'Nevezis' ||
-        this.customer === 'Magija' ||
-        this.customer === 'Pigu.lt' ||
-        this.customer === 'LemonGym' ||
-        this.customer === 'Nykstukas' ||
-        this.customer === 'Orlen' ||
-        this.customer === 'LemonFeel' ||
-        this.customer === 'Tiche' ||
-        this.customer === 'Zemaitijos Pienas' ||
-        this.customer === 'Novaturas' ||
-        this.customer === 'Apranga' ||
-        this.language === 'EN'
-          ? 'none'
-          : 'block'
-      };width: fit-content; height: auto; left: 35px; top: ${
+      <div id="competition-name-error" style="display:${'none'};width: fit-content; height: auto; left: 35px; top: ${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '171px' : '255px'
       }; position: absolute;text-align:start;z-index:99999;color:#D8000C;
       font-family: Montserrat;
@@ -559,31 +538,16 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
-        this.customer.includes('Gamtos Ateitis') ||
-        this.customer === 'Perlas GO' ||
-        this.customer === 'Nevezis' ||
-        this.customer === 'Magija' ||
-        this.customer === 'Pigu.lt' ||
-        this.customer === 'LemonGym' ||
-        this.customer === 'Orlen' ||
-        this.customer === 'LemonFeel' ||
-        this.customer === 'Tiche' ||
-        this.customer === 'Zemaitijos Pienas' ||
-        this.customer === 'Novaturas' ||
-        this.customer === 'Apranga' ||
-        this.customer === 'Akropolis' ||
-        this.language === 'EN'
-          ? 'none'
-          : 'block'
+        this.customer === 'Toni' || this.customer === 'Elesen' ? 'block' : 'none' //by default should be hidden for all customers
       }; top: ${
-        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '124px' : this.customer === 'Nykstukas' ? '304px' : '204px'
+        this.customer === 'Toni' ? '124px' : '204px'
       }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
 
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field"       
       type="text" maxLength=50 style="display:${
         this.customer === 'Toni' || this.customer === 'Elesen' ? 'block' : 'none' //by default should be hidden for all customers
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
-        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '135px' : this.customer === 'Nykstukas' ? '315px' : '215px'
+        this.customer === 'Toni' ? '135px' : this.customer === 'Nykstukas' ? '315px' : '215px'
       };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
         this.customer === 'Barbora' ||
         this.customer === 'Fpro' ||
@@ -688,13 +652,13 @@ export class InputRegisterContainer {
          <option value="">Pirmiau pasirink miestą ar rajoną</option>
       </select>
       <div style="width: calc(100% - 54px); height: 45px; left: 28px; top: ${'290px'}; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'};display:${
-        this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
+        this.customer === 'Toni' ? 'block' : 'none'
       }"></div>
 
     <input id="boomio-competition-phone-input-field" class="boomio-competition-phone-input-field"    
     maxLength=${this.customer === 'Toni' ? 10 : 50}    
     type="tel" style="box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${'300px'};height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${'#473F4E'} ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word;display:${
-      this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? 'block' : 'none'
+      this.customer === 'Toni' ? 'block' : 'none'
     }" placeholder="${this.customer === 'SaludSA' ? 'Número de teléfono' : this.language === 'ES' ? 'Número de cédula' : this.language === 'LT' ? 'Telefono numeris' : 'Phone number'}">
     `;
 
