@@ -1663,8 +1663,9 @@ ${
       Update(bg) {
         this.x -= speed * this.layer;
         if (this.x < 0) {
-          // Tile width already includes scaleFactor
-          const tileWidth = getTileWidth(this.image);
+          // Tile width uses custom scale for specific layers
+          const bgScale = getBgScale(this.layer);
+          const tileWidth = getTileWidth(this.image, bgScale);
           bg.x = this.x + tileWidth - speed;
         }
       }
@@ -1692,9 +1693,25 @@ ${
     }, 50);
 
     // Calculate tile width based on natural aspect ratio for each sprite (includes scaleFactor)
-    const getTileWidth = (sprite) => {
+    const getTileWidth = (sprite, customScale = scaleFactor) => {
       const aspectRatio = sprite.naturalWidth / sprite.naturalHeight;
-      return canvas.height * aspectRatio * scaleFactor;
+      return canvas.height * aspectRatio * customScale;
+    };
+
+    // Helper function to get custom scale for specific background layers
+    const getBgScale = (layer) => {
+      if (layer === 0.25) {
+        return scaleFactor * 0.6; // bgSprites[2] is 60% of default scale
+      }
+      return scaleFactor;
+    };
+
+    // Helper function to get Y offset for specific background layers
+    const getBgYOffset = (layer, bgHeight) => {
+      if (layer === 0.25) {
+        return bgHeight * 0.35; // Move bgSprites[2] up by 35%
+      }
+      return 0;
     };
 
     function Move() {
@@ -2225,21 +2242,11 @@ ${
 
       for (let i = 0; i < bg.length; i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
-        let bgScale = scaleFactor;
-
-        // Custom scale for bgSprites[2] (layer 0.25)
-        if (bg[i].layer === 0.25) {
-          bgScale = scaleFactor * 0.6; // Make bgSprites[2] smaller
-        }
-
+        const bgScale = getBgScale(bg[i].layer);
         const bgHeight = canvas.height * bgScale;
-        const bgWidth = getTileWidth(bg[i].image) * (bgScale / scaleFactor);
-        let bgY = canvas.height - bgHeight; // Position at bottom
-
-        // Move bgSprites[2] higher (layer 0.25)
-        if (bg[i].layer === 0.25) {
-          bgY = bgY - bgHeight * 0.35; // Move up by 35% of background height
-        }
+        const bgWidth = getTileWidth(bg[i].image, bgScale);
+        const bgYOffset = getBgYOffset(bg[i].layer, bgHeight);
+        const bgY = canvas.height - bgHeight - bgYOffset; // Position at bottom with offset
 
         bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bgY, bgWidth, bgHeight));
       }
