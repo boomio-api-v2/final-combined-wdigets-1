@@ -15,6 +15,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/CompetitionCodeScoreTableLastContainerPigu';
 import { ShareContainer } from '../helpers/ShareContainer';
 import { Elements } from '../helpers/HtmlElementsHelper';
+import { InputRegisterContainerValidation } from '../helpers/InputRegisterContainerValidation.js';
 
 import {
   close,
@@ -97,7 +98,136 @@ import {
   nykstukasBackground,
   orlenBackground,
   backgroundToni,
+  backgroundBoomio,
 } from './constants';
+const getBackground = (customer, campaignUrlOrCurrentPage) => {
+  const randomChoice = Math.round(Math.random());
+
+  if (customer === 'SaludSA') return SaludSABackground;
+
+  // Pigu multi-market backgrounds
+  if (campaignUrlOrCurrentPage === 'https://pigu.lt') {
+    return randomChoice === 0 ? PIGUFirstLT : PIGUSecondLT;
+  }
+  if (campaignUrlOrCurrentPage === 'https://220.lv') {
+    return randomChoice === 0 ? PIGUFirstLV : PIGUSecondLV;
+  }
+  if (campaignUrlOrCurrentPage === 'https://kaup.ee' || campaignUrlOrCurrentPage === 'https://kaup24.ee') {
+    return randomChoice === 0 ? PIGUFirstEE : PIGUSecondEE;
+  }
+  if (campaignUrlOrCurrentPage === 'https://hobbyhall.fi') {
+    return randomChoice === 0 ? PIGUFirstFI : PIGUSecondFI;
+  }
+
+  // Customer-specific backgrounds
+  const customerBackgrounds = {
+    Barbora: mainBarbora,
+    Fantazijos: mainFantazijos,
+    Fpro: FproFlappyBackground,
+    Makalius: MakaliusFlappyBackground,
+    Corepetitus: CorepetitusFlappyBackground,
+    Dentsu: DentsuBackground,
+    LemonGym: LemonGymBackground,
+    LemonFeel: LemonFeelBackground,
+    Tiche: TicheBackground,
+    Nykstukas: nykstukasBackground,
+    Orlen: orlenBackground,
+    Toni: backgroundToni,
+    'Penki Sezonai': mainPenki,
+  };
+
+  // Demo backgrounds
+  for (let i = 1; i <= 21; i++) {
+    if (customer === `demo-${i}`) {
+      const demoBackgrounds = {
+        'demo-1': demoGame1,
+        'demo-2': demoGame2,
+        'demo-3': demoGame3,
+        'demo-4': demoGame4,
+        'demo-5': demoGame5,
+        'demo-6': demoGame6,
+        'demo-7': demoGame7,
+        'demo-8': demoGame8,
+        'demo-9': demoGame9,
+        'demo-10': demoGame10,
+        'demo-11': demoGame11,
+        'demo-12': demoGame12,
+        'demo-13': demoGame13,
+        'demo-14': demoGame14,
+        'demo-15': demoGame15,
+        'demo-16': demoGame16,
+        'demo-17': demoGame17,
+        'demo-18': demoGame18,
+        'demo-19': demoGame19,
+        'demo-20': demoGame20,
+        'demo-21': demoGame21,
+      };
+      return demoBackgrounds[customer];
+    }
+  }
+
+  return customerBackgrounds[customer] || backgroundBoomio;
+};
+
+const getIntro = (customer, language, campaignUrlOrCurrentPage) => {
+  // Pigu multi-market intros with language support
+  const isKaupEE = campaignUrlOrCurrentPage === 'https://kaup.ee' || campaignUrlOrCurrentPage === 'https://kaup24.ee';
+
+  if (language === 'ET' && isKaupEE) return ChristmasPiguFlapThroughXmasEENew;
+  if (language === 'RU' && isKaupEE) return ChristmasPiguFlapThroughXmasEERuNew;
+  if (language === 'EN' && isKaupEE) return ChristmasPiguFlapThroughXmasEEEnNew;
+
+  if (campaignUrlOrCurrentPage === 'https://pigu.lt') {
+    if (language === 'LT') return ChristmasPiguFlapThroughXmasLTNew;
+    if (language === 'RU') return ChristmasPiguFlapThroughXmasLTRuNew;
+    if (language === 'EN') return ChristmasPiguFlapThroughXmasLTEnNew;
+  }
+
+  if (campaignUrlOrCurrentPage === 'https://hobbyhall.fi') {
+    if (language === 'FI') return ChristmasPiguFlapThroughXmasFINew;
+    if (language === 'EN') return ChristmasPiguFlapThroughXmasFIEnNew;
+  }
+
+  if (campaignUrlOrCurrentPage === 'https://220.lv') {
+    if (language === 'LV') return ChristmasPiguFlapThroughXmasLVNew;
+    if (language === 'RU') return ChristmasPiguFlapThroughXmasLVRuNew;
+    if (language === 'EN') return ChristmasPiguFlapThroughXmasLVEnNew;
+  }
+
+  // Customer-specific intros
+  if (customer === 'SaludSA') return SaludSAIntro;
+  if (customer === 'Barbora') return introGif;
+  if (customer === 'Fpro') return FproFlappyIntro;
+  if (customer === 'Makalius') return MakaliusFlappyIntro;
+  if (customer === 'Corepetitus') return CorepetitusFlappyIntro;
+  if (customer === 'Dentsu') return DentsuIntro;
+  if (customer === 'LemonGym') return LemonGymintro;
+  if (customer === 'Penki Sezonai') return introGifPenki;
+
+  // Fantazijos with language support
+  if (customer === 'Fantazijos') {
+    if (language === 'LV') return introGifFantazijosLV;
+    if (language === 'RU') return introGifFantazijosRU;
+    if (language === 'ET') return introGifFantazijosEE;
+    return introGifFantazijos;
+  }
+
+  return '';
+};
+
+const shouldSkipIntro = (customer, language, campaignUrlOrCurrentPage) => {
+  return getIntro(customer, language, campaignUrlOrCurrentPage) === '';
+};
+
+const getBrandColor = (customer) => {
+  if (customer === 'Dentsu') return '#FE5022';
+  if (customer.includes('demo')) return '#0A3533';
+  if (customer === 'LemonGym' || customer === 'LemonFeel') return '#FF00FF';
+  if (customer === 'Tiche') return '#065DA4';
+  if (customer === 'Toni') return '#000F9F';
+  return '#C6152F';
+};
+
 class FlappyBird {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
@@ -105,6 +235,9 @@ class FlappyBird {
     this.language = this.config.language;
     this.campaignUrlOrCurrentPage = this.config.campaignUrlOrCurrentPage;
     this.campaignUrl = this.config.campaignUrl;
+
+    // Create validator instance with current customer and language
+    this.InputValidator = new InputRegisterContainerValidation(this.customer, this.language);
 
     this.shareClicked = false;
     this.gameClosed = false;
@@ -391,93 +524,7 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    const randomChoice = Math.round(Math.random());
-    img.src =
-      this.customer === 'SaludSA'
-        ? SaludSABackground
-        : this.campaignUrlOrCurrentPage === 'https://pigu.lt'
-          ? randomChoice === 0
-            ? PIGUFirstLT
-            : PIGUSecondLT
-          : this.campaignUrlOrCurrentPage === 'https://220.lv'
-            ? randomChoice === 0
-              ? PIGUFirstLV
-              : PIGUSecondLV
-            : this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee'
-              ? randomChoice === 0
-                ? PIGUFirstEE
-                : PIGUSecondEE
-              : this.campaignUrlOrCurrentPage === 'https://hobbyhall.fi'
-                ? randomChoice === 0
-                  ? PIGUFirstFI
-                  : PIGUSecondFI
-                : this.customer === 'Barbora'
-                  ? mainBarbora
-                  : this.customer === 'Fantazijos'
-                    ? mainFantazijos
-                    : this.customer === 'Fpro'
-                      ? FproFlappyBackground
-                      : this.customer === 'Makalius'
-                        ? MakaliusFlappyBackground
-                        : this.customer === 'Corepetitus'
-                          ? CorepetitusFlappyBackground
-                          : this.customer === 'Dentsu'
-                            ? DentsuBackground
-                            : this.customer === 'demo-1'
-                              ? demoGame1
-                              : this.customer === 'demo-2'
-                                ? demoGame2
-                                : this.customer === 'demo-3'
-                                  ? demoGame3
-                                  : this.customer === 'demo-4'
-                                    ? demoGame4
-                                    : this.customer === 'demo-5'
-                                      ? demoGame5
-                                      : this.customer === 'demo-6'
-                                        ? demoGame6
-                                        : this.customer === 'demo-7'
-                                          ? demoGame7
-                                          : this.customer === 'demo-8'
-                                            ? demoGame8
-                                            : this.customer === 'demo-9'
-                                              ? demoGame9
-                                              : this.customer === 'demo-10'
-                                                ? demoGame10
-                                                : this.customer === 'demo-11'
-                                                  ? demoGame11
-                                                  : this.customer === 'demo-12'
-                                                    ? demoGame12
-                                                    : this.customer === 'demo-13'
-                                                      ? demoGame13
-                                                      : this.customer === 'demo-14'
-                                                        ? demoGame14
-                                                        : this.customer === 'demo-15'
-                                                          ? demoGame15
-                                                          : this.customer === 'demo-16'
-                                                            ? demoGame16
-                                                            : this.customer === 'demo-17'
-                                                              ? demoGame17
-                                                              : this.customer === 'demo-18'
-                                                                ? demoGame18
-                                                                : this.customer === 'demo-19'
-                                                                  ? demoGame19
-                                                                  : this.customer === 'demo-20'
-                                                                    ? demoGame20
-                                                                    : this.customer === 'demo-21'
-                                                                      ? demoGame21
-                                                                      : this.customer === 'LemonGym'
-                                                                        ? LemonGymBackground
-                                                                        : this.customer === 'LemonFeel'
-                                                                          ? LemonFeelBackground
-                                                                          : this.customer === 'Tiche'
-                                                                            ? TicheBackground
-                                                                            : this.customer === 'Nykstukas'
-                                                                              ? nykstukasBackground
-                                                                              : this.customer === 'Orlen'
-                                                                                ? orlenBackground
-                                                                                : this.customer === 'Toni'
-                                                                                  ? backgroundToni
-                                                                                  : this.customer === 'Penki Sezonai' && mainPenki;
+    img.src = getBackground(this.customer, this.campaignUrlOrCurrentPage);
 
     const img2 = new Image();
     img2.src = 'https://i.ibb.co/SrtXMFx/Boomio-demo-penguin.png';
@@ -559,14 +606,10 @@ class FlappyBird {
                 background.style.display = 'none';
               }
             },
-            this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni'
-              ? 0
-              : 2000,
+            shouldSkipIntro(this.customer, this.language, this.campaignUrlOrCurrentPage) ? 0 : 2000,
           );
         },
-        this.customer.includes('demo') || this.customer === 'Nykstukas' || this.customer === 'Tiche' || this.customer === 'Orlen' || this.customer === 'LemonFeel' || this.customer === 'Toni'
-          ? 0
-          : 2000,
+        shouldSkipIntro(this.customer, this.language, this.campaignUrlOrCurrentPage) ? 0 : 2000,
       );
 
       //gifas
@@ -999,55 +1042,9 @@ class FlappyBird {
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#808080'}" id="background_blur"></div>
    
-<img src=${
-      this.language === 'ET' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
-        ? ChristmasPiguFlapThroughXmasEENew
-        : this.language === 'RU' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
-          ? ChristmasPiguFlapThroughXmasEERuNew
-          : this.language === 'LT' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
-            ? ChristmasPiguFlapThroughXmasLTNew
-            : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
-              ? ChristmasPiguFlapThroughXmasLTRuNew
-              : this.language === 'FI' && this.campaignUrlOrCurrentPage === 'https://hobbyhall.fi'
-                ? ChristmasPiguFlapThroughXmasFINew
-                : this.language === 'EN' && this.campaignUrlOrCurrentPage === 'https://pigu.lt'
-                  ? ChristmasPiguFlapThroughXmasLTEnNew
-                  : this.language === 'EN' && this.campaignUrlOrCurrentPage === 'https://hobbyhall.fi'
-                    ? ChristmasPiguFlapThroughXmasFIEnNew
-                    : this.language === 'LV' && this.campaignUrlOrCurrentPage === 'https://220.lv'
-                      ? ChristmasPiguFlapThroughXmasLVNew
-                      : this.language === 'RU' && this.campaignUrlOrCurrentPage === 'https://220.lv'
-                        ? ChristmasPiguFlapThroughXmasLVRuNew
-                        : this.language === 'EN' && this.campaignUrlOrCurrentPage === 'https://220.lv'
-                          ? ChristmasPiguFlapThroughXmasLVEnNew
-                          : this.language === 'EN' && (this.campaignUrlOrCurrentPage === 'https://kaup.ee' || this.campaignUrlOrCurrentPage === 'https://kaup24.ee')
-                            ? ChristmasPiguFlapThroughXmasEEEnNew
-                            : this.customer === 'SaludSA'
-                              ? SaludSAIntro
-                              : this.customer === 'Barbora'
-                                ? introGif
-                                : this.customer === 'Fantazijos'
-                                  ? this.language === 'LV'
-                                    ? introGifFantazijosLV
-                                    : this.language === 'RU'
-                                      ? introGifFantazijosRU
-                                      : this.language === 'ET'
-                                        ? introGifFantazijosEE
-                                        : introGifFantazijos
-                                  : this.customer === 'Fpro'
-                                    ? FproFlappyIntro
-                                    : this.customer === 'Makalius'
-                                      ? MakaliusFlappyIntro
-                                      : this.customer === 'Corepetitus'
-                                        ? CorepetitusFlappyIntro
-                                        : this.customer === 'Dentsu'
-                                          ? DentsuIntro
-                                          : this.customer === 'LemonGym'
-                                            ? LemonGymintro
-                                            : this.customer === 'Penki Sezonai' && introGifPenki
-    } alt="Intro Image Description" style="z-index:4;width: ${
+<img src=${getIntro(this.customer, this.language, this.campaignUrlOrCurrentPage)} alt="Intro Image Description" style="z-index:4;width: ${
       document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
-    }; height: 668px;position:absolute;pointer-events: none; display:${this.customer.includes('demo') || this.customer === 'LemonFeel' || this.customer === 'Toni' ? 'none' : 'block'};" id="background_intro">
+    }; height: 668px;position:absolute;pointer-events: none; display:${shouldSkipIntro(this.customer, this.language, this.campaignUrlOrCurrentPage) ? 'none' : 'block'};" id="background_intro">
 </img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
@@ -1150,19 +1147,9 @@ ${`<div style="${
 
 </div>
       <div class="flappy-container">
-            <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${
-              this.customer === 'Dentsu'
-                ? '#FE5022'
-                : this.customer.includes('demo')
-                  ? '#0A3533'
-                  : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
-                    ? '#FF00FF'
-                    : this.customer === 'Tiche'
-                      ? '#065DA4'
-                      : this.customer === 'Toni'
-                        ? '#000F9F'
-                        : '#C6152F'
-            };border-radius:35px">
+            <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(
+              this.customer,
+            )};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description 7" style="width: 20px; height: 20px;margin-top:18px"></img>
 
@@ -1299,105 +1286,16 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
     if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {
-          const checkboxChange = this.customer === 'Fantazijos' ? true : this.checkboxChange;
-          const checkboxChange2 = this.checkboxChange2;
-
           setTimeout(() => {
             // Query inputs AFTER credentials are loaded from cookie
-            const emailInput = document.querySelector('.boomio-competition-email-input-field');
-            const nameInput = document.querySelector('.boomio-competition-name-input-field');
-            const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
+            const nameInput = Elements.nameInput;
+            const phoneInput = Elements.phoneInput;
 
-            if (this.customer !== 'SaludSA') {
-              if (!checkboxChange || (!checkboxChange2 && !this.customer.includes('demo') && !this.customer.includes('Tiche'))) {
-                document.getElementById('competition-checkbox-error').innerText =
-                  this.language === 'LV'
-                    ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                    : this.language === 'ET'
-                      ? 'Jätkamiseks peate nõustuma privaatsuspoliitikaga.'
-                      : this.customer === 'SaludSA'
-                        ? 'Para continuar debes aaceptar recibir newsletters de SaludSA.'
-                        : this.language === 'EN'
-                          ? 'You need to agree to receive updates in order to continue'
-                          : this.language === 'ES'
-                            ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                            : 'Norint tęsti, privaloma sutikti su privatumo politika.';
-                document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
-                document.getElementById('competition-checkbox-error').style.display = 'block';
-                document.getElementById('competition-checkbox-error').style.height = '14px';
-
-                document.getElementById('competition-name-error').innerText = '';
-                document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-                document.getElementById('competition-email-error').innerText = '';
-                document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-                return;
-              }
-              if (emailInput?.value === '' || emailInput?.value === null || (emailInput?.value?.length < 12 && this.customer === 'Orlen')) {
-                document.getElementById('competition-email-error').innerText =
-                  this.language === 'LV'
-                    ? 'Obligāti aizpildāmie lauki.'
-                    : this.language === 'ET'
-                      ? 'Jätkamiseks vajalik.'
-                      : this.customer === 'SaludSA'
-                        ? 'Para continuar debes agregar el correo electrónico.'
-                        : this.language === 'EN'
-                          ? 'Filling in is required to continue.'
-                          : this.language === 'ES'
-                            ? 'Requerido para continuar.'
-                            : 'Norint tęsti privaloma užpildyti.';
-                document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-                document.getElementById('competition-name-error').innerText = '';
-
-                document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-                document.getElementById('competition-checkbox-error').innerText = '';
-                document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-                return;
-              }
-            }
-
-            if (Elements.isVisible(nameInput) && (nameInput?.value === '' || nameInput?.value === null)) {
-              document.getElementById('competition-name-error').innerText = this.language === 'ES' ? 'El campo de nombre debe completarse.' : 'Norint tęsti privaloma užpildyti visus laukus.';
-              document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-              return;
-            } else {
-              document.getElementById('competition-name-error').innerText = '';
-              document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-            }
-
-            if (Elements.isVisible(emailInput) && emailInput?.value?.length < 10 && this.customer === 'Toni') {
-              document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
-              document.getElementById('competition-email-error').zIndex = 1;
-              document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-              document.getElementById('competition-email-error').style.height = '20px';
-
-              document.getElementById('competition-phone-error').innerText = '';
-              document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
-
-              document.getElementById('competition-phone-error').style.height = '37px';
-
-              return;
-            }
-            if (Elements.isVisible(phoneInput) && phoneInput?.value?.length < 10 && this.customer === 'Toni') {
-              document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
-              document.getElementById('competition-phone-error').style.height = '20px';
-
-              document.getElementById('competition-phone-error').zIndex = 1;
-              document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
-
-              document.getElementById('competition-email-error').innerText = '';
-              document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-              document.getElementById('competition-email-error').style.height = '37px';
-
+            if (!this.InputValidator.validateRegistrationInputs()) {
               return;
             }
 
-            if (
-              this.customer === 'SaludSA' ||
-              this.showCompetitiveRegistration === 'competition' ||
-              this.showCompetitiveRegistration === 'points' ||
-              this.showCompetitiveRegistration === 'collectable'
-            ) {
+            if (this.showCompetitiveRegistration === 'competition' || this.showCompetitiveRegistration === 'points' || this.showCompetitiveRegistration === 'collectable') {
               boomioService
                 .signal('', 'user_info', {
                   emails_consent: this.checkboxChange2,
@@ -1417,55 +1315,12 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
                 .then((response) => {
                   if (response.success === false) {
                     if (response.res_code === 'EMAIL_EXIST') {
-                      document.getElementById('competition-email-error').innerText =
-                        this.customer === 'Fpro'
-                          ? 'This email address already exists. Please use another one.'
-                          : this.language === 'LV'
-                            ? 'Šī e-pasta adrese jau eksistē. Izmantojiet citu.'
-                            : this.customer === 'SaludSA'
-                              ? 'Para continuar debes agregar el correo electrónico.'
-                              : this.language === 'ES'
-                                ? 'Este email ya está en uso. Use otro numero.'
-                                : this.language === 'RU'
-                                  ? 'Этот е-мейл адрес уже существует. Используйте другой.'
-                                  : this.language === 'ET'
-                                    ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                                    : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-
-                      document.getElementById('competition-name-error').innerText = '';
-
-                      document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+                      this.InputValidator.toggleValidationError(Elements.emailError, true, this.InputValidator.getEmailExistsErrorMessage());
                     } else if (response.res_code === 'NICKNAME_EXIST') {
-                      document.getElementById('competition-name-error').innerText =
-                        this.customer === 'Fpro'
-                          ? 'This nickname already exists. Please use another one.'
-                          : this.language === 'ES'
-                            ? 'Este nickname ya está en uso. Use otro nombre.'
-                            : this.language === 'LV'
-                              ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                              : this.customer === 'SaludSA'
-                                ? 'Para continuar debes agregar el nombre de usuario.'
-                                : this.language === 'RU'
-                                  ? 'Этот псевдоним уже существует. Используйте другой.'
-                                  : this.language === 'ET'
-                                    ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                                    : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                      document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-
-                      document.getElementById('competition-email-error').innerText = '';
-                      document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+                      this.InputValidator.toggleValidationError(Elements.nameError, true, this.InputValidator.getNicknameExistsErrorMessage());
                     } else if (response.res_code === 'TEAM_FULL' && this.customer === 'Nykstukas') {
-                      document.getElementById('competition-checkbox-error').innerText = 'Ši komanda yra pilna. Naudokite kitą.';
-                      document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
-                      document.getElementById('competition-checkbox-error').style.display = 'block';
-
-                      document.getElementById('competition-name-error').innerText = '';
-
-                      document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-
-                      document.getElementById('competition-email-error').innerText = '';
-                      document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+                      this.InputValidator.toggleValidationError(Elements.checkboxError, true, 'Ši komanda yra pilna. Naudokite kitą.');
+                      this.InputValidator.toggleValidationError(Elements.nameError, false);
                     }
                   } else {
                     this.bestScore = response.user_best_score;

@@ -640,7 +640,9 @@ export class CompetitionScoreTableContainer {
                                                                   ? 'ПОЗДРАВЛЯЕМ, У ВАС ОТЛИЧНО ПОЛУЧАЕТСЯ!'
                                                                   : this.prop === 'Apranga'
                                                                     ? 'NUOSTABU, JUMS PUIKIAI SEKASI!'
-                                                                    : 'Hooray, you’re doing great!'
+                                                                    : this.language === 'LT'
+                                                                      ? 'Valio, tau puikiai sekasi!'
+                                                                      : 'Hooray, you’re doing great!'
             }</div>
 
       ${
@@ -737,7 +739,9 @@ export class CompetitionScoreTableContainer {
                                                                                           ? 'Ja laimēsi balvu, mēs Tevi informēsim uz e-pastu, kuru norādīji.'
                                                                                           : this.prop === 'Elesen' && this.language === 'ET'
                                                                                             ? 'Kui võidad mõne auhinna, anname sellest teada sinu esitatud e-posti aadressile.'
-                                                                                            : 'If you win a prize, we will inform you by the email address you provided.'
+                                                                                            : this.language === 'LT'
+                                                                                              ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
+                                                                                              : 'If you win a prize, we will inform you by the email address you provided.'
             }</div>
               <div style="width:100%; top: ${
                 this.prop === 'Perlas GO' ? '455px' : this.prop.includes('demo') ? '465px' : '505px'
@@ -804,7 +808,9 @@ export class CompetitionScoreTableContainer {
                                               ? ''
                                               : this.prop === 'Apranga'
                                                 ? 'JŪS GALITE!'
-                                                : 'YOU CAN DO BETTER!'
+                                                : this.language === 'LT'
+                                                  ? 'Tu gali!'
+                                                  : 'YOU CAN DO BETTER!'
             }</div>
             <div id="boomio-text-lose" style="width:calc(100% - 20px);margin-left:10px; top: ${
               this.prop === 'Perlas GO' ? '390px' : '455px'
@@ -897,7 +903,9 @@ export class CompetitionScoreTableContainer {
                                                                                               ? 'Ja laimēsi balvu, mēs Tevi informēsim uz e-pastu, kuru norādīji.'
                                                                                               : this.prop === 'Elesen' && this.language === 'ET'
                                                                                                 ? 'Kui võidad mõne auhinna, anname sellest teada sinu esitatud e-posti aadressile.'
-                                                                                                : 'If you win a prize, we will inform you by the email address you provided.'
+                                                                                                : this.language === 'LT'
+                                                                                                  ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
+                                                                                                  : 'If you win a prize, we will inform you by the email address you provided.'
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
                 this.prop ? '10px' : '10px'

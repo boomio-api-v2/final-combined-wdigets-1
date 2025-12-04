@@ -72,6 +72,13 @@ const getRule1Title = (customer, language, game) => {
     }
   }
 
+  // Toni game-specific rules
+  if (customer === 'Toni') {
+    if (game === 'flappy') return 'Toca';
+    if (game === 'doodle') return 'Muévete';
+    return 'Desliza';
+  }
+
   // Runner game
   if (game === 'runner') {
     if (language === 'LT') return 'Judėk';
@@ -79,15 +86,8 @@ const getRule1Title = (customer, language, game) => {
     if (language === 'ES') return 'Muévete';
   }
 
-  // Language-specific defaults
-  if (language === 'LV') return 'SPIED,';
-  if (language === 'RU') return 'ПРАВИЛА';
-
-  // Toni game-specific rules
-  if (customer === 'Toni') {
-    if (game === 'flappy') return 'Toca';
-    if (game === 'doodle') return 'Muévete';
-    return 'Desliza';
+  if (game === 'flappy') {
+    if (language === 'LT') return 'Spausk,';
   }
 
   if (language === 'ET') return 'KLÕPSA';
@@ -102,6 +102,10 @@ const getRule1Title = (customer, language, game) => {
   if (language === 'ES' && game === 'crush') return 'CONECTAR';
   if (game === 'crush') return 'Sudėk';
   if (game === 'drive') return 'Brauk';
+
+  // Language-specific defaults
+  if (language === 'LV') return 'SPIED,';
+  if (language === 'RU') return 'ПРАВИЛА';
 
   return 'Click,';
 };
@@ -169,7 +173,6 @@ const getRule1Text = (customer, language, game) => {
   if (customer === 'Fpro') return 'TO FLY';
   if (customer === 'SaludSA') return 'para volar';
   if (customer === 'Perlas GO') return 'į šonus, kad nenukristum.';
-  if (customer === 'Dentsu' && game === 'flappy') return 'kad skristum.';
   if (customer === 'Nevezis') return 'į šonus, kad nenukristum.';
   if (customer === 'Nykstukas') return 'baksnodamas ekraną Nykštuką išlaikysi ore.';
   if (customer === 'Orlen' && game === 'catch') return 'ledus ir gauk taškus.';
@@ -209,6 +212,10 @@ const getRule1Text = (customer, language, game) => {
   if (game === 'crush') {
     if (language === 'ES') return "Tres o más helados 'Toni'";
     return 'kartu 3 ar daugiau prekes.';
+  }
+
+  if (game === 'flappy') {
+    if (language === 'LT') return 'kad skristum.';
   }
 
   // Language-specific defaults
@@ -304,6 +311,7 @@ const getRule2Title = (customer, language, game) => {
   }
 
   // Language-specific defaults
+  if (language === 'LT') return 'Kartok';
   if (language === 'LV') return 'ATKĀRTO,';
   if (language === 'RU') return 'ПОВТОРИТЬ';
   if (language === 'ET') return 'KORDA';
@@ -368,12 +376,6 @@ const getRule2Text = (customer, language, game) => {
   // General ET
   if (language === 'ET') return 'kaarte ja teeni puntke.';
 
-  // Pieno Žvaigždės
-  if (customer === 'Pieno Žvaigždės') return 'siekdamas kuo geresnio rezultato.';
-
-  // Pegasas
-  if (customer === 'Pegasas') return 'siekdamas kuo geresnio rezultato.';
-
   // Drive game Ikea special
   if (game === 'drive' && customer === 'Ikea') return 'jei nesate patenkinti rezultatu.';
 
@@ -405,18 +407,14 @@ const getRule2Text = (customer, language, game) => {
   // Nykstukas
   if (customer === 'Nykstukas') return 'ledų kliūtis.';
 
-  // Nevezis
-  if (customer === 'Nevezis') return 'siekdamas kuo geresnio rezultato.';
-
   // Orlen variations by game
   if (customer === 'Orlen' && game === 'catch') return 'draudžiamų ženklų.';
   if (customer === 'Orlen') return 'ledus ir gauk taškus. ';
 
-  // Perlas GO
-  if (customer === 'Perlas GO') return 'siekdamas kuo geresnio rezultato.';
-
   // Apranga
   if (customer === 'Apranga') return 'siekdami geresnio rezultato.';
+
+  if (language === 'LT') return 'siekdamas kuo geresnio rezultato.';
 
   // Default fallback
   return 'to improve your score.';
@@ -454,7 +452,6 @@ const getRule3Title = (customer, language, game, userId) => {
 
   // Perlas GO variations based on userId
   if (customer === 'Perlas GO' && !userId) return 'Registruokis';
-  if (customer === 'Perlas GO') return 'Mėgaukis';
 
   // Eurovaistine
   if (customer === 'Eurovaistine') return 'LAIMĒ';
@@ -467,12 +464,6 @@ const getRule3Title = (customer, language, game, userId) => {
 
   // Nykstukas
   if (customer === 'Nykstukas') return 'Kartok';
-
-  // Nevezis
-  if (customer === 'Nevezis') return 'Mėgaukis';
-
-  // Magija
-  if (customer === 'Magija') return 'Mėgaukis';
 
   // Orlen
   if (customer === 'Orlen') return 'Kartok';
@@ -502,6 +493,7 @@ const getRule3Title = (customer, language, game, userId) => {
   if (customer === 'Apranga') return 'MĖGAUKITĖS';
 
   // Language-specific defaults
+  if (language === 'LT') return 'Mėgaukis';
   if (language === 'LV') return 'Atkārto';
   if (language === 'ET') return 'Proovi';
   if (language === 'EN') return 'Repeat';
