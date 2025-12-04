@@ -1328,7 +1328,7 @@ class DoodleWidget {
       }
 
       // Award points for height only if player is moving horizontally (not idle jumping)
-      if (Math.abs(this.player.vx) > 0.01) {
+      if (Math.abs(this.player.vx) > 0.001) {
         this.currentScore++;
         if (this.cachedElements.currentScore) {
           this.cachedElements.currentScore.innerHTML = `${this.currentScore}`;
