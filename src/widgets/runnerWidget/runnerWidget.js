@@ -2225,13 +2225,20 @@ ${
 
       for (let i = 0; i < bg.length; i += 1) {
         // Calculate dimensions based on image's natural aspect ratio to prevent stretching
-        const bgHeight = canvas.height * scaleFactor;
-        const bgWidth = getTileWidth(bg[i].image);
+        let bgScale = scaleFactor;
+
+        // Custom scale for bgSprites[2] (layer 0.25)
+        if (bg[i].layer === 0.25) {
+          bgScale = scaleFactor * 0.6; // Make bgSprites[2] smaller
+        }
+
+        const bgHeight = canvas.height * bgScale;
+        const bgWidth = getTileWidth(bg[i].image) * (bgScale / scaleFactor);
         let bgY = canvas.height - bgHeight; // Position at bottom
 
         // Move bgSprites[2] higher (layer 0.25)
         if (bg[i].layer === 0.25) {
-          bgY = bgY - bgHeight * 0.15; // Move up by 15% of background height
+          bgY = bgY - bgHeight * 0.35; // Move up by 35% of background height
         }
 
         bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bgY, bgWidth, bgHeight));
