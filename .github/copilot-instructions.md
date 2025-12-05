@@ -164,8 +164,8 @@ npm run lint           # Run ESLint
     if (!this.lastFrameTime) this.lastFrameTime = timestamp;
     const deltaTime = timestamp - this.lastFrameTime;
 
-    // Only update if enough time has passed (e.g., 8.33ms for 120 FPS)
-    if (deltaTime >= 8.33) {
+    // Only update if enough time has passed (e.g., 16.67ms for 60 FPS)
+    if (deltaTime >= 16.67) {
       this.update();
       this.lastFrameTime = timestamp;
     }
@@ -174,7 +174,7 @@ npm run lint           # Run ESLint
   };
   ```
 
-- **Benefits**: Caps framerate (e.g., 120 FPS) so physics remain consistent, prevents players from moving too fast on high-refresh monitors (144Hz, 240Hz), and provides smoother timing than nested `setTimeout` + `requestAnimationFrame`.
+- **Benefits**: Caps framerate (e.g., 60 FPS) so physics remain consistent, prevents excessive CPU/GPU usage on lower-end devices, and provides smoother timing than nested `setTimeout` + `requestAnimationFrame`. 60 FPS is the recommended standard for optimal performance across all devices.
 
 ### 8. Testing Guidance (Current State)
 
