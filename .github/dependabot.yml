@@ -9,7 +9,8 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/' # adjust for monorepos: e.g. /apps/web
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'monday'
       time: '04:00'
       timezone: 'Europe/Vilnius'
     target-branch: 'main'
@@ -33,5 +34,5 @@ updates:
     schedule:
       interval: 'weekly'
       day: 'monday'
-      time: '06:10'
+      time: '04:30'
       timezone: 'Europe/Vilnius'
