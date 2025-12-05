@@ -162,13 +162,13 @@ class runnerWidget {
     <div class="boomio-runner-wrapper boomio-screenRatio">
       <div class="boomio-runner-controlBlock">
         ${this.language === 'ES' ? 'Reglas' : this.language === 'LT' ? 'Taisyklės' : 'Rules'}
-        <img class='boomio-runner-controlButton' src="${this.isMobile ? upDentsu : up}" alt="">
-        <div><img class='boomio-runner-controlButton' src="${this.isMobile ? leftDentsu : left}" alt="">
-          <img class='boomio-runner-controlButton' src="${this.isMobile ? downDentsu : right}" alt="">
-          <img class='boomio-runner-controlButton' src="${this.isMobile ? rightDentsu : down}" alt="">
+        <img class='boomio-runner-controlButton' src="${upDentsu}" alt="">
+        <div><img class='boomio-runner-controlButton' src="${leftDentsu}" alt="">
+          <img class='boomio-runner-controlButton' src="${downDentsu}" alt="">
+          <img class='boomio-runner-controlButton' src="${rightDentsu}" alt="">
         </div>
       </div>
-     <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'};">
+     <canvas id="boomio-runner-canvas" class="boomio-runner-canvas" style="width: ${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'};height: 668px;">
       </canvas>
 
       <img class="boomio-runner-pauseButton boomio-runner-button boomio-hide" src="${pause}" style="display:none" alt="">
@@ -498,6 +498,20 @@ ${
       return `https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/${assetFolder}/${suffix}`;
     };
 
+    // Global scale factor for all game sprites
+    const scaleFactor = 0.7;
+
+    // Helper function to calculate object dimensions
+    const calculateDimensions = (object, scaleFactorOverride = scaleFactor) => {
+      const playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactorOverride;
+      const playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight) * scaleFactorOverride;
+      const barrierWidth = (canvas.height / 3.5) * scaleFactorOverride;
+      const barrierHeight = (canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight)) * scaleFactorOverride;
+      // Barrier width with aspect ratio (for Update method off-screen detection)
+      const barrierWidthWithAspect = (canvas.height / 3.5) * (object.image.naturalWidth / object.image.naturalHeight) * scaleFactorOverride;
+      return { playerWidth, playerHeight, barrierWidth, barrierHeight, barrierWidthWithAspect };
+    };
+
     // Helper functions for highscore elements visibility
     const showHighscoreElements = (delay = 200) => {
       const elements = {
@@ -614,7 +628,6 @@ ${
 
     var normalSpeed;
     var speed;
-    var bgRatio;
     var leftPressed = false;
     var rightPressed = false;
     var upPressed = false;
@@ -635,6 +648,8 @@ ${
     var coins = 0;
     var player;
     var activeTime;
+    var bg; // Background layers array
+    var fg; // Foreground layers array
     const toggleHide = (block) => block.classList.toggle('boomio-hide');
     let highScore = localStorage.getItem('HI') > 0 ? localStorage.getItem('HI') : 0;
     let myCoins = localStorage.getItem('myCoins') > 0 ? localStorage.getItem('myCoins') : 0;
@@ -687,7 +702,7 @@ ${
       }
 
       Update() {
-        var barrierWidth = (canvas.height / 5) * (this.image.width / this.image.height);
+        const { barrierWidthWithAspect } = calculateDimensions(this);
 
         if (!this.isPlayer) {
           if (this.isLevitate) {
@@ -697,7 +712,7 @@ ${
           }
 
           if (
-            (((!this.topBarrier && this.x < -1.5 * barrierWidth) || (this.topBarrier && this.x < -5 * barrierWidth) || this.y < -500) && !this.kicked) ||
+            (((!this.topBarrier && this.x < -1.5 * barrierWidthWithAspect) || (this.topBarrier && this.x < -5 * barrierWidthWithAspect) || this.y < -500) && !this.kicked) ||
             (this.kicked && this.x <= -5 * canvas.width) ||
             (this.kicked && this.y <= -5 * canvas.height)
           ) {
@@ -712,37 +727,37 @@ ${
         }
       }
       Collide(object) {
-        var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-        var playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-        var barrierWidth = canvas.height / 3.5;
-        var barrierHight = canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight);
+        const { playerWidth, playerHeight, barrierWidth, barrierHeight } = calculateDimensions(object);
         var hit = false;
+
+        const collectCoin = () => {
+          if (!object.kicked) {
+            score += 50;
+            currentScore.innerText = '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
+            coins += 1;
+          }
+          object.kicked = true;
+        };
 
         if (object.topBarrier) {
           if (this.x + playerWidth / 2.5 > object.x && this.x < object.x + (barrierWidth * object.sizeCoef) / 1.2) {
-            if (this.y - jumpHeight + playerHeight / 1.2 > object.y) {
-              var actualPlayerHigh = this.slideing ? this.y + playerHeight / 2.2 : this.y;
-              if (actualPlayerHigh * 1.1 - jumpHeight < object.y + barrierHight * object.sizeCoef) {
-                if (player.shield) {
-                  object.kicked = true;
-                } else {
-                  hit = true;
-                }
+            // For top barriers, check if player (when not sliding) hits the barrier
+            // When sliding, player height is reduced and can pass under
+            var actualPlayerTop = this.slideing ? this.y + playerHeight / 2.5 : this.y;
+            if (actualPlayerTop - jumpHeight < object.y + barrierHeight * object.sizeCoef) {
+              if (player.shield) {
+                object.kicked = true;
+              } else {
+                hit = true;
               }
             }
           }
         } else {
           if (this.x + playerWidth / 1.5 > object.x && this.x < object.x + barrierWidth / 1.5) {
-            if (this.y - jumpHeight + playerHeight > object.y * 1.1 && this.y - jumpHeight < object.y + barrierHight * object.sizeCoef) {
+            if (this.y - jumpHeight + playerHeight > object.y * 1.1 && this.y - jumpHeight < object.y + barrierHeight * object.sizeCoef) {
               if (player.shield) {
                 if (object.isCoin) {
-                  if (!object.kicked) {
-                    score += 50;
-                    currentScore.innerText = '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
-
-                    coins += 1;
-                  }
-                  object.kicked = true;
+                  collectCoin();
                 } else {
                   object.kicked = true;
                 }
@@ -759,12 +774,7 @@ ${
                   object.image = new Image();
                 }
                 if (object.isCoin) {
-                  if (!object.kicked) {
-                    score += 50;
-                    currentScore.innerText = '0'.repeat(4 - String(score.toFixed(0).length)) + String(score.toFixed(0));
-                    coins += 1;
-                  }
-                  object.kicked = true;
+                  collectCoin();
                 }
                 if (!object.isBooster && !object.isShield && !object.isCoin) hit = true;
               }
@@ -775,7 +785,16 @@ ${
       }
     }
 
-    player = new GameObject(runSprites[0], 0.2 * canvas.width, 668 - 668 / 2.5, true);
+    // Helper function to calculate player X position
+    const getPlayerX = () => 0.2 * canvas.width;
+
+    // Helper function to calculate player Y position (on the road)
+    const getPlayerY = () => {
+      const bgHeight = canvas.height * scaleFactor;
+      return canvas.height - bgHeight + bgHeight * 0.61; // Position on brown road surface
+    };
+
+    player = new GameObject(runSprites[0], getPlayerX(), getPlayerY(), true);
 
     const Resize = () => {
       // Fixed canvas dimensions to prevent stretching (match doodleWidget pattern)
@@ -791,7 +810,12 @@ ${
 
       // Adjust player Y-position to match new height
       if (player && player.isPlayer) {
-        player.y = 668 - 668 / 2.5;
+        player.y = getPlayerY();
+      }
+
+      // Redraw canvas with new dimensions (only if Draw function exists and bg is initialized)
+      if (typeof bg !== 'undefined' && bg && bg.length > 0) {
+        Draw();
       }
     };
 
@@ -851,21 +875,21 @@ ${
     updateAchives();
 
     function initializeGameLoader() {
-      let pageMuted;
-      if (typeof localStorage.getItem('pageMuted') === 'undefined' || localStorage.getItem('pageMuted') === null) {
-        localStorage.setItem('pageMuted', '');
-        pageMuted = false;
-      } else {
-        pageMuted = Boolean(localStorage.getItem('pageMuted'));
-      }
+      // let pageMuted;
+      // if (typeof localStorage.getItem('pageMuted') === 'undefined' || localStorage.getItem('pageMuted') === null) {
+      //   localStorage.setItem('pageMuted', '');
+      //   pageMuted = false;
+      // } else {
+      //   pageMuted = Boolean(localStorage.getItem('pageMuted'));
+      // }
 
       loader.start();
 
-      if ('mediaSession' in navigator) {
-        // Media session logic can be added here
-      }
+      // if ('mediaSession' in navigator) {
+      //   // Media session logic can be added here
+      // }
 
-      let ysdk;
+      // let ysdk;
 
       // function showFullAdd() { need to check
       //   ysdk.adv.showFullscreenAdv({
@@ -926,9 +950,9 @@ ${
           //   leftButtonsBlock.classList.remove('boomio-hide');
           // }
 
-          for (let i = 0; i < mainBgBlocks.length; i += 1) {
-            mainBgBlocks[i].style.backgroundImage = `url(${getBackground()})`;
-          }
+          // for (let i = 0; i < mainBgBlocks.length; i += 1) {
+          //   mainBgBlocks[i].style.backgroundImage = `url(${getBackground()})`;
+          // }
 
           toggleHide(mainMenuBlock);
           setTimeout(() => {
@@ -974,7 +998,9 @@ ${
           });
 
           gameEndButton.addEventListener('click', Replay);
-          bgRatio = bgSprites[0].naturalWidth / bgSprites[0].naturalHeight;
+
+          // Draw initial background so canvas isn't black during registration
+          Draw();
         };
 
         // Use DOMContentLoaded event
@@ -1376,8 +1402,8 @@ ${
 
       objects = [];
       coins = 0;
-      player.x = 0.2 * canvas.width;
-      player.y = 668 - 668 / 2.5;
+      player.x = getPlayerX();
+      player.y = getPlayerY();
       gameOver = false;
       pause = false;
       player.rise = false;
@@ -1539,14 +1565,16 @@ ${
 
     // Define event handlers
     const handleTouchStart = (callback, button) => {
-      return () => {
+      return (e) => {
+        e.preventDefault(); // Prevent context menu and other default behaviors
         callback(true);
         button.style.opacity = '0.5';
       };
     };
 
     const handleTouchEnd = (callback, button) => {
-      return () => {
+      return (e) => {
+        e.preventDefault(); // Prevent default behavior
         callback(false);
         button.style.opacity = '1';
       };
@@ -1559,26 +1587,34 @@ ${
     // Add event listeners
     mobileLeftButton.addEventListener('touchstart', handleTouchStart(setLeftPressed, mobileLeftButton));
     mobileLeftButton.addEventListener('touchend', handleTouchEnd(setLeftPressed, mobileLeftButton));
+    mobileLeftButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
     mobileRightButton.addEventListener('touchstart', handleTouchStart(setRightPressed, mobileRightButton));
     mobileRightButton.addEventListener('touchend', handleTouchEnd(setRightPressed, mobileRightButton));
+    mobileRightButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
-    mobileUpButton.addEventListener('touchstart', () => {
+    mobileUpButton.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       jumpBegin();
       mobileUpButton.style.opacity = '0.5';
     });
-    mobileUpButton.addEventListener('touchend', () => {
+    mobileUpButton.addEventListener('touchend', (e) => {
+      e.preventDefault();
       mobileUpButton.style.opacity = '1';
     });
+    mobileUpButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
-    mobileDownButton.addEventListener('touchstart', () => {
+    mobileDownButton.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       slideBegin();
       mobileDownButton.style.opacity = '0.5';
     });
-    mobileDownButton.addEventListener('touchend', () => {
+    mobileDownButton.addEventListener('touchend', (e) => {
+      e.preventDefault();
       slideEnd();
       mobileDownButton.style.opacity = '1';
     });
+    mobileDownButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
     const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
     checkboxImg.addEventListener('click', () => {
@@ -1627,7 +1663,10 @@ ${
       Update(bg) {
         this.x -= speed * this.layer;
         if (this.x < 0) {
-          bg.x = this.x + canvas.height * bgRatio - speed;
+          // Tile width uses custom scale for specific layers
+          const bgScale = getBgScale(this.layer);
+          const tileWidth = getTileWidth(this.image, bgScale);
+          bg.x = this.x + tileWidth - speed;
         }
       }
     }
@@ -1641,13 +1680,43 @@ ${
       object.image = spritesArr[frameNumber];
     }
 
+    // Reusable function to set player animation
+    const setPlayerAnimation = (sprites, interval) => {
+      clearInterval(playerAnimate);
+      playerAnimate = setInterval(() => {
+        animate(player, sprites);
+      }, interval);
+    };
+
     var playerAnimate = setInterval(() => {
       animate(player, runSprites);
-    }, 75);
+    }, 50);
+
+    // Calculate tile width based on natural aspect ratio for each sprite (includes scaleFactor)
+    const getTileWidth = (sprite, customScale = scaleFactor) => {
+      const aspectRatio = sprite.naturalWidth / sprite.naturalHeight;
+      return canvas.height * aspectRatio * customScale;
+    };
+
+    // Helper function to get custom scale for specific background layers
+    const getBgScale = (layer) => {
+      if (layer === 0.25) {
+        return scaleFactor * 0.6; // bgSprites[2] is 60% of default scale
+      }
+      return scaleFactor;
+    };
+
+    // Helper function to get Y offset for specific background layers
+    const getBgYOffset = (layer, bgHeight) => {
+      if (layer === 0.25) {
+        return bgHeight * 0.35; // Move bgSprites[2] up by 35%
+      }
+      return 0;
+    };
 
     function Move() {
       // Calculate actual player width for accurate boundary checking
-      var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
+      const { playerWidth } = calculateDimensions(player);
 
       if (rightPressed && player.x + playerWidth < canvas.width) {
         player.x += speed;
@@ -1664,26 +1733,17 @@ ${
         jumpHeight = 0;
         numberOfJumps = Number(numberOfJumps) + 1;
         localStorage.setItem('jumps', numberOfJumps);
-        clearInterval(playerAnimate);
-        playerAnimate = setInterval(() => {
-          animate(player, runSprites);
-        }, 75);
+        setPlayerAnimation(runSprites, 50);
       }
     }
 
-    const fg = [new Bg(fgSprites[0], 0, 0.3), new Bg(fgSprites[0], canvas.height * bgRatio, 0.3), new Bg(fgSprites[1], 0, 1), new Bg(fgSprites[1], canvas.height * bgRatio, 1)];
+    fg = [new Bg(fgSprites[0], 0, 0.3), new Bg(fgSprites[0], getTileWidth(fgSprites[0]), 0.3), new Bg(fgSprites[1], 0, 1), new Bg(fgSprites[1], getTileWidth(fgSprites[1]), 1)];
 
     const CollectObjects = [new GameObject(CollectSprites[0], 0, 0, false)];
 
     function jumpBegin() {
       if (!player.slideing) {
-        clearInterval(playerAnimate);
-        playerAnimate = setInterval(
-          () => {
-            animate(player, jumpSprites);
-          },
-          100 + score / 10,
-        );
+        setPlayerAnimation(jumpSprites, 60 + score / 10);
         jumping = true;
       }
     }
@@ -1714,9 +1774,7 @@ ${
         setTimeout(() => {
           player.image = slideSprites[0];
         }, 20);
-        playerAnimate = setInterval(() => {
-          animate(player, runSprites);
-        }, 75);
+        setPlayerAnimation(runSprites, 50);
         numberOfSlides = Number(numberOfSlides) + 1;
         localStorage.setItem('slides', numberOfSlides);
       }
@@ -1983,22 +2041,25 @@ ${
       stopGame = true;
     }
     function pushRandomCoin(pos, newCoin = true) {
-      let x;
-      let y;
       if (RandomInteger(1, 4) >= 2) {
+        const bgHeight = canvas.height * scaleFactor;
+        const roadY = getPlayerY();
+        let x;
+        let y;
+
         if (RandomInteger(0, 1) === 1) {
           x = (4 * canvas.width) / 3;
-          y = pos === 'top' ? 668 - 668 / 1.4 : 668 - 668 / 3.1;
+          y = pos === 'top' ? roadY - bgHeight * 0.28 : roadY;
         } else {
           x = (4 * canvas.width) / 2;
-          y = 668 - 668 / 3.1;
+          y = roadY;
         }
         if (newCoin) {
           objects.push(new GameObject(barriersSprites[0], x, y, false));
+          objects.at(-1).image = CollectSprites[3];
+          objects.at(-1).isCoin = true;
+          objects.at(-1).sizeCoef = 0.6;
         }
-        objects.at(-1).image = CollectSprites[3];
-        objects.at(-1).isCoin = true;
-        objects.at(-1).sizeCoef = 0.3;
       }
     }
     function Update() {
@@ -2019,16 +2080,22 @@ ${
 
         // Adjust object placement condition
         if (objects.length === 0 || objects.at(-1).x < canvas.width - 200) {
-          objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, 668 - 668 / 2.7, false));
+          const bgHeight = canvas.height * scaleFactor;
+          const roadY = getPlayerY();
+          objects.push(new GameObject(barriersSprites[0], (4 * canvas.width) / 2.5, roadY, false));
           var randomBarrier = RandomInteger(1, 8);
           var index = randomBarrier - 1;
           switch (randomBarrier) {
             case 1:
               objects.at(-1).image = barriersSprites[index];
+              objects.at(-1).y = roadY + bgHeight * 0.02;
+              console.log(randomBarrier + ' before ' + objects.at(-1).y);
               pushRandomCoin('top');
+              console.log(randomBarrier + ' after ' + objects.at(-1).y);
               break;
             case 2:
               objects.at(-1).image = barriersSprites[index];
+              objects.at(-1).y = roadY + bgHeight * 0.01;
               pushRandomCoin('top');
               break;
             case 3:
@@ -2037,13 +2104,13 @@ ${
               break;
             case 4:
               objects.at(-1).image = barriersSprites[index];
-              objects.at(-1).y = 668 - 668 / 2.35;
+              objects.at(-1).y = roadY - bgHeight * 0.04;
               pushRandomCoin('top');
               break;
             case 5:
               objects.at(-1).image = barriersSprites[index];
               objects.at(-1).topBarrier = true;
-              objects.at(-1).y = canvas.height - canvas.height / 2.58 / (objects.at(-1).image.naturalWidth / objects.at(-1).image.naturalHeight);
+              objects.at(-1).y = roadY - (bgHeight * 0.28) / (objects.at(-1).image.naturalWidth / objects.at(-1).image.naturalHeight);
               pushRandomCoin('bottom');
               break;
             case 6:
@@ -2058,7 +2125,7 @@ ${
               objects.at(-1).isLevitate = true;
               objects.at(-1).topBarrier = true;
               objects.at(-1).sizeCoef = 1.7;
-              objects.at(-1).y = 668 - 668 / 1.11;
+              objects.at(-1).y = roadY + bgHeight * 0.17;
               pushRandomCoin('bottom');
               break;
             case 8:
@@ -2067,17 +2134,17 @@ ${
                   objects.at(-1).image = CollectSprites[1];
                   objects.at(-1).isShield = true;
                   objects.at(-1).sizeCoef = 0.5;
-                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? 668 - 668 / 2.5 : 668 - 668 / 1.3;
+                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? roadY - bgHeight * 0.2 : roadY - bgHeight * 0.05;
                 }
                 if (RandomInteger(0, 100) > 70) {
                   objects.at(-1).image = CollectSprites[2];
                   objects.at(-1).isBooster = true;
                   objects.at(-1).sizeCoef = 0.5;
-                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? 668 - 668 / 2.5 : 668 - 668 / 1.3;
+                  objects.at(-1).y = RandomInteger(0, 1) === 1 ? roadY - bgHeight * 0.2 : roadY - bgHeight * 0.05;
                 }
                 break;
               }
-          }
+          } // switch end
         }
 
         for (let i = 0; i < fg.length - 1; i += 2) {
@@ -2104,10 +2171,10 @@ ${
           hit = player.Collide(objects[i]);
 
           if (hit && !player.immune) {
-            console.log(player.life);
+            player.life = player.life - 1;
+            document.getElementById('currentLife').innerHTML = `${player.life} / 3`;
+
             if (player.life > 0) {
-              player.life = player.life - 1;
-              document.getElementById('currentLife').innerHTML = `${player.life} / 3`;
               const container = document.querySelector('.boomio-runner-life-input-container');
               container.classList.add('shake-life');
               setTimeout(() => {
@@ -2139,40 +2206,49 @@ ${
       }
     }
 
-    const bg = [
+    bg = [
       new Bg(bgSprites[0], 0, 0.1),
-      new Bg(bgSprites[0], canvas.height * bgRatio, 0.1),
+      new Bg(bgSprites[0], getTileWidth(bgSprites[0]), 0.1),
 
       new Bg(bgSprites[1], 0, 0.15),
-      new Bg(bgSprites[1], canvas.height * bgRatio, 0.15),
+      new Bg(bgSprites[1], getTileWidth(bgSprites[1]), 0.15),
 
       new Bg(bgSprites[2], 0, 0.25),
-      new Bg(bgSprites[2], canvas.height * bgRatio, 0.25),
+      new Bg(bgSprites[2], getTileWidth(bgSprites[2]), 0.25),
 
       new Bg(bgSprites[3], 0, 0.3),
-      new Bg(bgSprites[3], canvas.height * bgRatio, 0.3),
+      new Bg(bgSprites[3], getTileWidth(bgSprites[3]), 0.3),
 
       new Bg(bgSprites[7], 0, 0.4),
-      new Bg(bgSprites[7], canvas.height * bgRatio, 0.4),
+      new Bg(bgSprites[7], getTileWidth(bgSprites[7]), 0.4),
 
       new Bg(bgSprites[4], 0, 0.6),
-      new Bg(bgSprites[4], canvas.height * bgRatio, 0.6),
+      new Bg(bgSprites[4], getTileWidth(bgSprites[4]), 0.6),
 
       new Bg(bgSprites[5], 0, 1),
-      new Bg(bgSprites[5], canvas.height * bgRatio, 1),
+      new Bg(bgSprites[5], getTileWidth(bgSprites[5]), 1),
 
       new Bg(bgSprites[6], 0, 1.2),
-      new Bg(bgSprites[6], canvas.height * bgRatio, 1.2),
+      new Bg(bgSprites[6], getTileWidth(bgSprites[6]), 1.2),
     ];
 
     function Draw() {
       ctx.imageSmoothingQuality = 'high';
       ctx.imageSmoothingEnabled = true;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Fill background with sky blue color before clearing
+      ctx.fillStyle = '#27A5FF';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < bg.length; i += 1) {
-        // Use fixed 668 height for consistent aspect ratio
-        bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bg[i].y, 668 * bgRatio, 668));
+        // Calculate dimensions based on image's natural aspect ratio to prevent stretching
+        const bgScale = getBgScale(bg[i].layer);
+        const bgHeight = canvas.height * bgScale;
+        const bgWidth = getTileWidth(bg[i].image, bgScale);
+        const bgYOffset = getBgYOffset(bg[i].layer, bgHeight);
+        const bgY = canvas.height - bgHeight - bgYOffset; // Position at bottom with offset
+
+        bg[i].image.addEventListener('load', ctx.drawImage(bg[i].image, 0, 0, bg[i].image.naturalWidth, bg[i].image.naturalHeight, bg[i].x, bgY, bgWidth, bgHeight));
       }
 
       for (let i = 0; i < objects.length; i++) {
@@ -2182,10 +2258,7 @@ ${
       DrawObject(player);
       if (player.boost) {
         if (player.boostTimer === 0) {
-          clearInterval(playerAnimate);
-          playerAnimate = setInterval(() => {
-            animate(player, runSprites);
-          }, 30);
+          setPlayerAnimation(runSprites, 20);
           // Optionally set a visual effect, e.g. shield on boost
           player.shield = true;
           // Save current speed, then multiply for boost
@@ -2202,16 +2275,19 @@ ${
         }
       }
       for (let i = 0; i < (player.boost ? fg.length : fg.length - 2); i += 1) {
-        // Use fixed 668 height for consistent aspect ratio
-        fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fg[i].y, 668 * bgRatio, 668));
+        // Calculate dimensions based on image's natural aspect ratio to prevent stretching
+        const fgHeight = canvas.height * scaleFactor;
+        const fgWidth = getTileWidth(fg[i].image);
+        const fgY = canvas.height - fgHeight; // Position at bottom
+        fg[i].image.addEventListener('load', ctx.drawImage(fg[i].image, 0, 0, fg[i].image.naturalWidth, fg[i].image.naturalHeight, fg[i].x, fgY, fgWidth, fgHeight));
       }
 
       if (player.shield) {
         // Increment the shield timer (adjust the increment value as needed)
         player.shieldTimer += 1; // or += deltaTime
 
-        let offsetX = -50;
-        let offsetY = -50;
+        let offsetX = -20;
+        let offsetY = -30;
 
         // Adjust offsets for mobile devices
         if (window.innerWidth < 920) {
@@ -2272,10 +2348,9 @@ ${
       }, delay);
     }
     function DrawObject(object) {
-      var playerWidth = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-      var playerHeight = (canvas.height / 5) * (player.image.naturalWidth / player.image.naturalHeight);
-      var barrierWidth = canvas.height / 3.5;
-      var barrierHight = canvas.height / 3.5 / (object.image.naturalWidth / object.image.naturalHeight);
+      // Apply scaling to match background zoom level for all customers
+      const { playerWidth, playerHeight, barrierWidth, barrierHeight } = calculateDimensions(object, scaleFactor);
+
       object.image.addEventListener(
         'load',
         ctx.drawImage(
@@ -2283,7 +2358,7 @@ ${
           object.x,
           object.isPlayer ? object.y - jumpHeight : object.y,
           object.isPlayer ? playerWidth : barrierWidth * object.sizeCoef,
-          object.isPlayer ? playerHeight : barrierHight * object.sizeCoef,
+          object.isPlayer ? playerHeight : barrierHeight * object.sizeCoef,
         ),
       );
     }
