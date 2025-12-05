@@ -24,9 +24,9 @@ const translations = {
 };
 
 export class CompetitionScoreTableContainer {
-  constructor(prop, scoreTable) {
-    this.prop = prop;
-    this.scoreTable = scoreTable; // Store the prop in a class property
+  constructor(customer, scoreTable) {
+    this.customer = customer;
+    this.scoreTable = scoreTable;
     this.isMobile = window.innerWidth <= 1280;
     this.containerDiv = null; // Store container reference
     this.config = localStorageService.getDefaultConfig();
@@ -77,7 +77,7 @@ export class CompetitionScoreTableContainer {
     const prizeAnchor = this.containerDiv?.querySelector('#boomio-prize-link');
     const prizeContainer = this.containerDiv?.querySelector('#boomio-prize-link-container');
     if (!prizeAnchor || !prizeContainer) return;
-    const url = this.getPrizeUrl(this.prop, language, score);
+    const url = this.getPrizeUrl(this.customer, language, score);
     if (url) {
       prizeAnchor.setAttribute('href', url);
       prizeAnchor.setAttribute('target', '_blank');
@@ -95,21 +95,21 @@ export class CompetitionScoreTableContainer {
     }
   }
 
-  updateProps(prop, scoreTable) {
-    this.prop = prop;
+  updateProps(customer, scoreTable) {
+    this.customer = customer;
     this.scoreTable = scoreTable;
     this.updateVisuals();
   }
 
   updateVisuals() {
     if (!this.containerDiv) return;
-    const scoreboard = this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? this.scoreTable?.teams_scoreboard : this.scoreTable?.scoreboard || [];
-    const userBestPlace = Number(this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? this.scoreTable.team_best_place : this.scoreTable?.user_best_place) || 0;
+    const scoreboard = this.customer.includes('Gamtos Ateitis') || this.customer === 'Nykstukas' ? this.scoreTable?.teams_scoreboard : this.scoreTable?.scoreboard || [];
+    const userBestPlace = Number(this.customer.includes('Gamtos Ateitis') || this.customer === 'Nykstukas' ? this.scoreTable.team_best_place : this.scoreTable?.user_best_place) || 0;
     const userBestScore = Number(this.scoreTable?.user_best_score) || 0;
     this.userParticipationDays = this.scoreTable?.participation_days ?? 0; // nullish-coalescing
 
     const userId = this.config.userId;
-    this.couponCodeNew = this.prop.includes('demo') ? 'discountcode' : 'boomio';
+    this.couponCodeNew = this.customer.includes('demo') ? 'discountcode' : 'boomio';
     const perlasGoTable = [
       'PERLIUKAS',
       'TAUPUOLIS',
@@ -484,7 +484,7 @@ export class CompetitionScoreTableContainer {
     scoreboard?.forEach((item, index) => {
       const background = index + 1 === userBestPlace ? 'rgba(255, 255, 255, 1)' : 'none';
 
-      const color = index + 1 === userBestPlace ? this.getBrandColor(this.prop) : 'white';
+      const color = index + 1 === userBestPlace ? this.getBrandColor(this.customer) : 'white';
       const boxShadow = index + 1 === userBestPlace ? '2px 4px 3.4px 0px rgba(0, 0, 0, 0.10) inset' : 'none';
 
       tableHTML += `
@@ -494,16 +494,16 @@ export class CompetitionScoreTableContainer {
             }</td>
       <td style="padding-left:6px;text-align:start;width: 100px; color: ${color}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word;">
       ${
-        !this.prop.includes('Gamtos Ateitis')
+        !this.customer.includes('Gamtos Ateitis')
           ? userBestPlace === index + 1
-            ? this.prop === 'Elesen'
+            ? this.customer === 'Elesen'
               ? scoreboard[index].user_nickname
               : this.getYourScoreText()
-            : this.prop === 'Perlas GO'
+            : this.customer === 'Perlas GO'
               ? perlasGoTable[index]
-              : this.prop === 'Nykstukas'
+              : this.customer === 'Nykstukas'
                 ? hiddenNicknames[index]
-                : this.prop === 'Elesen'
+                : this.customer === 'Elesen'
                   ? scoreboard[index].user_nickname
                   : this.language === 'LV'
                     ? lvNicknames[index]
@@ -514,7 +514,7 @@ export class CompetitionScoreTableContainer {
                         : this.language === 'LT'
                           ? ltNicknames[index]
                           : enNicknames[index]
-          : this.prop.includes('Gamtos Ateitis')
+          : this.customer.includes('Gamtos Ateitis')
             ? 'MOKYKLA ' + (index + 1)
             : scoreboard[index].team
       }
@@ -525,14 +525,14 @@ export class CompetitionScoreTableContainer {
             </tr>`;
     });
 
-    if (userBestPlace > (this.prop.includes('Gamtos Ateitis') || this.prop === 'Nykstukas' ? 100 : 20)) {
+    if (userBestPlace > (this.customer.includes('Gamtos Ateitis') || this.customer === 'Nykstukas' ? 100 : 20)) {
       tableHTML += `
             <tr style="background: rgba(255, 255, 255, 1);box-shadow:none;margin: 0;height:44px ">
-            <td style="padding-left:8px;text-align:start;width: 25px; color: ${this.getBrandColor(this.prop)}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
+            <td style="padding-left:8px;text-align:start;width: 25px; color: ${this.getBrandColor(this.customer)}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${userBestPlace}</td>
 
-              <td style="padding-left:6px;text-align:start;width: 100px; color: ${this.getBrandColor(this.prop)}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
-                !this.prop.includes('Gamtos Ateitis')
-                  ? this.prop === 'Nykstukas'
+              <td style="padding-left:6px;text-align:start;width: 100px; color: ${this.getBrandColor(this.customer)}; border: none;font-size: 14px; font-family: Georama; font-weight: 800; text-transform: uppercase; line-height: 27px; word-wrap: break-word">${
+                !this.customer.includes('Gamtos Ateitis')
+                  ? this.customer === 'Nykstukas'
                     ? 'Tavo komandos rezultatas'
                     : this.language === 'EN'
                       ? 'Your score'
@@ -545,100 +545,101 @@ export class CompetitionScoreTableContainer {
                             : 'Tavo rezultatas'
                   : scoreboard[userBestPlace].team
               }</td>
-              <td style="width: 48px; color: ${this.getBrandColor(this.prop)}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
+              <td style="width: 48px; color: ${this.getBrandColor(this.customer)}; border: none;font-size: 16px; font-family: Georama; font-weight: 800; line-height: 27px; word-wrap: break-word;padding-right:10px;">${userBestScore}</td>
             </tr>`;
     }
 
     let textColor = 'white';
     let fontSize = '14px';
     let fontWeight =
-      this.prop === 'Barbora' ||
-      this.prop === 'Fpro' ||
-      this.prop === 'Vilvi' ||
-      this.prop === 'Fantazijos' ||
-      this.prop.includes('Gamtos Ateitis') ||
-      this.prop === 'Pieno Žvaigždės' ||
-      this.prop === 'LemonGym'
+      this.customer === 'Barbora' ||
+      this.customer === 'Fpro' ||
+      this.customer === 'Vilvi' ||
+      this.customer === 'Fantazijos' ||
+      this.customer.includes('Gamtos Ateitis') ||
+      this.customer === 'Pieno Žvaigždės' ||
+      this.customer === 'LemonGym'
         ? '900'
         : '700';
     let scoreboardText = `
       ${
-        (this.prop === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
-        (this.prop === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
-        (this.prop === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
-        (this.prop === 'Akropolis' && this.scoreTable?.user_best_place < 2025) ||
-        (this.prop === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
-        (this.prop === 'Perlas GO' && !userId) ||
-        (this.prop.includes('Gamtos Ateitis') && this.scoreTable?.team_best_place < 10) ||
-        (this.prop === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
-        (this.prop === 'Nevezis' && this.scoreTable?.user_best_place <= 10) ||
-        (this.prop === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
-        (this.prop === 'Magija' && this.scoreTable?.user_best_place <= 3) ||
-        (this.prop === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
-        (this.prop === 'Orlen' && this.scoreTable.user_best_place > 1000) ||
-        (this.prop === 'Novaturas' && this.scoreTable.user_best_place > 30) ||
-        (this.prop === 'Pigu.lt' && this.scoreTable.user_best_score >= 500) ||
-        (this.prop === 'Apranga' && this.scoreTable.user_best_place <= 100) ||
-        (this.prop === 'Elesen' && this.scoreTable.user_best_place <= 10) ||
-        (this.language === 'EN' && this.prop.includes('demo'))
+        (this.customer === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
+        (this.customer === 'Makalius' && this.scoreTable?.user_best_place < 500) ||
+        (this.customer === 'Pieno Žvaigždės' && this.scoreTable?.user_best_place < 25) ||
+        (this.customer === 'Akropolis' && this.scoreTable?.user_best_place < 2025) ||
+        (this.customer === 'Vilvi' && this.scoreTable?.user_best_place <= 10) ||
+        (this.customer === 'Perlas GO' && !userId) ||
+        (this.customer.includes('Gamtos Ateitis') && this.scoreTable?.team_best_place < 10) ||
+        (this.customer === 'Zemaitijos Pienas' && this.scoreTable?.user_best_place <= 3) ||
+        (this.customer === 'Nevezis' && this.scoreTable?.user_best_place <= 10) ||
+        (this.customer === 'Daumantu' && this.scoreTable?.user_best_place <= 50) ||
+        (this.customer === 'Magija' && this.scoreTable?.user_best_place <= 3) ||
+        (this.customer === 'Nykstukas' && this.scoreTable.user_best_score > 200) ||
+        (this.customer === 'Orlen' && this.scoreTable.user_best_place > 1000) ||
+        (this.customer === 'Novaturas' && this.scoreTable.user_best_place > 30) ||
+        (this.customer === 'Pigu.lt' && this.scoreTable.user_best_score >= 500) ||
+        (this.customer === 'Apranga' && this.scoreTable.user_best_place <= 100) ||
+        (this.customer === 'Elesen' && this.scoreTable.user_best_place <= 10) ||
+        (this.customer === 'Boomio' && this.scoreTable.user_best_score >= 0) ||
+        (this.language === 'EN' && this.customer.includes('demo'))
           ? `<div id="boomio-title-win" style="width:100%; top: ${
-              this.prop === 'Pigu.lt' ? '410px' : this.prop === 'Akropolis' ? '400px' : '420px'
+              this.customer === 'Pigu.lt' ? '410px' : this.customer === 'Akropolis' ? '400px' : '420px'
             }; position: absolute; text-align: center; color: ${textColor}; font-size: ${
-              this.prop === 'Barbora' || this.prop === 'Pigu.lt' ? '16px' : fontSize
-            }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: ${this.prop === 'Nykstukas' ? 'none' : 'uppercase'}; word-wrap: break-word">${
-              this.prop === 'Pigu.lt' && this.language === 'RU'
+              this.customer === 'Barbora' || this.customer === 'Pigu.lt' ? '16px' : fontSize
+            }; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: ${this.customer === 'Nykstukas' ? 'none' : 'uppercase'}; word-wrap: break-word">${
+              this.customer === 'Pigu.lt' && this.language === 'RU'
                 ? 'ПОЗДРАВЛЯЕМ!'
-                : this.prop === 'Pigu.lt' && this.language === 'FI'
+                : this.customer === 'Pigu.lt' && this.language === 'FI'
                   ? 'ONNITTELUT!'
-                  : this.prop === 'Pigu.lt' && this.language === 'LV'
+                  : this.customer === 'Pigu.lt' && this.language === 'LV'
                     ? 'APSVEICAM!'
-                    : this.prop === 'Pigu.lt' && this.language === 'LT'
+                    : this.customer === 'Pigu.lt' && this.language === 'LT'
                       ? 'SVEIKINAME!'
-                      : this.prop === 'Pigu.lt' && this.language === 'EN'
+                      : this.customer === 'Pigu.lt' && this.language === 'EN'
                         ? 'CONGRATULATIONS!'
-                        : this.prop === 'Pigu.lt' && this.language === 'ET'
+                        : this.customer === 'Pigu.lt' && this.language === 'ET'
                           ? 'PALJU ÕNNE!'
-                          : this.prop === 'Barbora'
+                          : this.customer === 'Barbora'
                             ? 'DOVANA tau!'
-                            : this.prop === 'Unisend' && this.language === 'LV'
+                            : this.customer === 'Unisend' && this.language === 'LV'
                               ? 'TEV VEICAS LIELISKI!'
-                              : this.prop === 'Akropolis' && this.language === 'LV'
+                              : this.customer === 'Akropolis' && this.language === 'LV'
                                 ? 'TEV VEICĀS LIELISKI!'
-                                : this.prop === 'Akropolis' && this.language === 'RU'
+                                : this.customer === 'Akropolis' && this.language === 'RU'
                                   ? 'ТЫ СПРАВИЛСЯ ОТЛИЧНО!'
-                                  : this.prop === 'Elesen' && this.language === 'LT'
+                                  : this.customer === 'Elesen' && this.language === 'LT'
                                     ? 'NUOSTABU, JUMS PUIKIAI SEKASI!'
-                                    : this.prop === 'Elesen' && this.language === 'LV'
+                                    : this.customer === 'Elesen' && this.language === 'LV'
                                       ? 'APSVEICU, JUMS KLĀJAS LIELISKI!'
-                                      : this.prop === 'Elesen' && this.language === 'ET'
+                                      : this.customer === 'Elesen' && this.language === 'ET'
                                         ? 'PALJU ÕNNE, SA TEGED VÄGA HÄSTI!'
-                                        : this.prop === 'Eurovaistine'
+                                        : this.customer === 'Eurovaistine'
                                           ? 'TEV VEICAS LIELISKI!'
                                           : this.language === 'LV'
                                             ? 'Atzīmējiet karstāko vasaru'
                                             : this.language === 'RU'
                                               ? 'Отпразднуйте самый жаркий месяц лета'
-                                              : this.prop === 'Unisend' && this.language === 'ET'
+                                              : this.customer === 'Unisend' && this.language === 'ET'
                                                 ? 'SUL LÄHEB HÄSTI!'
                                                 : this.language === 'ET'
                                                   ? 'Tähistage suve kuumimat kuud ja võitke'
-                                                  : this.prop === 'Fantazijos'
+                                                  : this.customer === 'Fantazijos'
                                                     ? '2024.06.09 ŠVENČIANT NACIONALINĘ 69 DIENĄ'
                                                     : this.language === 'EN'
                                                       ? 'CONGRATULATIONS!'
-                                                      : this.prop === 'Nykstukas'
+                                                      : this.customer === 'Nykstukas'
                                                         ? 'SVEIKINAME! Pretenduoji laimėti šios savaitės prizą'
-                                                        : this.prop === 'Novaturas' && this.language === 'LT'
+                                                        : this.customer === 'Novaturas' && this.language === 'LT'
                                                           ? 'VALIO, TAU PUIKIAI SEKASI!'
-                                                          : this.prop === 'Novaturas' && this.language === 'LV'
+                                                          : this.customer === 'Novaturas' && this.language === 'LV'
                                                             ? 'APSVEICAM, TEV LIELISKI IZDODAS!'
-                                                            : this.prop === 'Novaturas' && this.language === 'ET'
+                                                            : this.customer === 'Novaturas' && this.language === 'ET'
                                                               ? 'PALJU ÕNNE, SUL LÄHEB HÄSTI!'
-                                                              : this.prop === 'Novaturas' && this.language === 'EN'
+                                                              : this.customer === 'Novaturas' && this.language === 'EN'
                                                                 ? 'CONGRATULATIONS, YOU RE DOING GREAT!'
-                                                                : this.prop === 'Novaturas' && this.language === 'RU'
+                                                                : this.customer === 'Novaturas' && this.language === 'RU'
                                                                   ? 'ПОЗДРАВЛЯЕМ, У ВАС ОТЛИЧНО ПОЛУЧАЕТСЯ!'
-                                                                  : this.prop === 'Apranga'
+                                                                  : this.customer === 'Apranga'
                                                                     ? 'NUOSTABU, JUMS PUIKIAI SEKASI!'
                                                                     : this.language === 'LT'
                                                                       ? 'Valio, tau puikiai sekasi!'
@@ -646,54 +647,54 @@ export class CompetitionScoreTableContainer {
             }</div>
 
       ${
-        this.prop === 'Nykstukas'
+        this.customer === 'Nykstukas'
           ? `<div style="font-family: Montserrat;padding-left:4px;padding-right:4px;position:absolute;top:463px;width:calc(100% - 10px);margin-left:5px;background-color:#45A9D7;color:white;font-size: ${fontSize};font-weight: ${fontWeight}; ">10 Eur Wolt kuponus.</div>`
           : ''
       }
             <div id="boomio-text-win" style="width:calc(100% - 20px);margin-left:10px; top: ${
-              this.prop === 'Nykstukas' ? '490px' : '440px'
+              this.customer === 'Nykstukas' ? '490px' : '440px'
             };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-              this.prop === 'Nykstukas' || this.prop === 'Pigu.lt' ? '14px' : '10px'
+              this.customer === 'Nykstukas' || this.customer === 'Pigu.lt' ? '14px' : '10px'
             } ; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
-              this.prop === 'Pigu.lt' && this.language === 'RU'
+              this.customer === 'Pigu.lt' && this.language === 'RU'
                 ? `Дополнительно -${this.getBonus(this.scoreTable?.user_best_score)}% на выбранные товары в приложении с кодом`
-                : this.prop === 'Pigu.lt' && this.language === 'FI'
+                : this.customer === 'Pigu.lt' && this.language === 'FI'
                   ? `${this.getBonus(this.scoreTable?.user_best_score)}% alennus valikoiduista tuotteista sovelluksessa koodilla*`
-                  : this.prop === 'Pigu.lt' && this.language === 'LV'
+                  : this.customer === 'Pigu.lt' && this.language === 'LV'
                     ? `Papildu -${this.getBonus(this.scoreTable?.user_best_score)}% izvēlētām precēm lietotnē ar kodu*`
-                    : this.prop === 'Pigu.lt' && this.language === 'LT'
+                    : this.customer === 'Pigu.lt' && this.language === 'LT'
                       ? `Papildomai -${this.getBonus(this.scoreTable?.user_best_score)}% atrinktoms prekėms programėlėje su kodu`
-                      : this.prop === 'Pigu.lt' && this.language === 'EN'
+                      : this.customer === 'Pigu.lt' && this.language === 'EN'
                         ? `-${this.getBonus(this.scoreTable?.user_best_score)}% off selected items when purchasing on app* with code`
-                        : this.prop === 'Pigu.lt' && this.language === 'ET'
+                        : this.customer === 'Pigu.lt' && this.language === 'ET'
                           ? `-${this.getBonus(this.scoreTable?.user_best_score)}% lisaale valitud toodetelt äpis koodiga*`
-                          : this.prop === 'Barbora'
+                          : this.customer === 'Barbora'
                             ? 'Pirk <a style="color:white" target="_blank" href="https://www.barbora.lt/">Barbora.lt</a>, nuolaidos kodo laukelyje vesk <b style="font-weight:900;font-size:18px;background-color:#FFC727;"> &apos;GIMTADIENIS&apos;</b> ir gauk dovanų!'
-                            : this.prop === 'Pieno Žvaigždės'
+                            : this.customer === 'Pieno Žvaigždės'
                               ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį</br> fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">IR </br>pagrindiniai <u style="text-transform:uppercase">MIAU PRIZAI  </u></u>- Su Miau gyvent linksmiau!'
-                              : this.prop === 'Unisend' && this.language === 'LV'
+                              : this.customer === 'Unisend' && this.language === 'LV'
                                 ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'
-                                : this.language === 'LV' && this.prop === 'Fantazijos'
+                                : this.language === 'LV' && this.customer === 'Fantazijos'
                                   ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
-                                  : this.language === 'RU' && this.prop === 'Fantazijos'
+                                  : this.language === 'RU' && this.customer === 'Fantazijos'
                                     ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
-                                    : this.prop === 'Akropolis' && this.language === 'LT'
+                                    : this.customer === 'Akropolis' && this.language === 'LT'
                                       ? 'Žaisk ir kasdien laimėk vieną CAIF CAFE kavos puodelį, o</br>atsiėmęs prizą turėk galimybę laimėti 100 EUR AKROPOLIO </br>dovanų kortelę!'
-                                      : this.prop === 'Akropolis' && this.language === 'LV'
+                                      : this.customer === 'Akropolis' && this.language === 'LV'
                                         ? 'Ja saglabāsi savu pozīciju 2000 rezultatīvāko spēlētāju sarakstā, tu saņemsi balvu no Narvesen, un pēc balvas izņemšanas - automātiski piedalīsies dienas izlozē par AKROPOLE dāvanu karti 100 EUR vērtībā. Tev ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
-                                        : this.prop === 'Akropolis' && this.language === 'RU'
+                                        : this.customer === 'Akropolis' && this.language === 'RU'
                                           ? 'Если вы сохраните своё место в списке 2000 лучших игроков, вы получите приз от Narvesen, а после получения приза автоматически примете участие в ежедневном розыгрыше подарочной карты AKROPOLE на 100 евро. У вас есть возможность улучшить свой результат, сыграв снова!'
-                                          : this.prop === 'Daumantu'
+                                          : this.customer === 'Daumantu'
                                             ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei.</br> Prizinį fondą sudaro 50 Daumantų prizų!'
-                                            : this.prop.includes('Gamtos Ateitis')
+                                            : this.customer.includes('Gamtos Ateitis')
                                               ? 'Geriausius rezultatus pasiekusios mokyklos pateks į kitą etapą ir varžysis dėl koncerto savo mokykloje! Kas savaitę iškrenta dvi mažiausiai taškų surinkusios mokyklos. Jei tavo mokykla pateks į kitą etapą, pranešime el. paštu, kurį nurodei.'
-                                              : this.prop === 'Unisend' && this.language === 'ET'
+                                              : this.customer === 'Unisend' && this.language === 'ET'
                                                 ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
-                                                : this.language === 'ET' && this.prop === 'Fantazijos'
+                                                : this.language === 'ET' && this.customer === 'Fantazijos'
                                                   ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
-                                                  : this.prop === 'Fantazijos'
+                                                  : this.customer === 'Fantazijos'
                                                     ? 'net 69 geriausi žaidėjai laimės prizus! </br>Apie laimėjimą sužinosi savo nurodytu el. paštu.'
-                                                    : this.prop === 'LemonFeel'
+                                                    : this.customer === 'LemonFeel'
                                                       ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
                                                           this.userParticipationDays >= 3
                                                             ? `${this.userParticipationDays} DIENAS SUPER!`
@@ -701,102 +702,102 @@ export class CompetitionScoreTableContainer {
                                                               ? `${this.userParticipationDays} DIENA`
                                                               : `${this.userParticipationDays} DIENAS`
                                                         } `
-                                                      : this.prop === 'Makalius'
+                                                      : this.customer === 'Makalius'
                                                         ? 'Apie laimėjimą sužinosi savo nurodytu el. paštu liepos 1 d. </br> Prizinį fondą sudaro net 500 kuponų po 20 €, 50 €'
-                                                        : this.prop === 'Vilvi'
+                                                        : this.customer === 'Vilvi'
                                                           ? 'Net 10 geriausių žaidėjų xx dieną laimės VILVI prizus! </br> Jei laimėsi informuosime tavo nurodytu el. paštu.'
-                                                          : this.prop === 'Perlas GO'
+                                                          : this.customer === 'Perlas GO'
                                                             ? `Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Jei laimėsi, informuosime tave registracijos metu nurodytu el. paštu.`
-                                                            : this.prop === 'Zemaitijos Pienas' && this.language === 'LT'
+                                                            : this.customer === 'Zemaitijos Pienas' && this.language === 'LT'
                                                               ? 'Pagerink rezultatą, nes geriausi 5 žaidėjai laimės sportinio rankšluosčio</br> ir gertuvės rinkinį, arba dėžutę PROTEIN M varškės sūrelių'
-                                                              : this.prop === 'Zemaitijos Pienas' && this.language === 'LV'
+                                                              : this.customer === 'Zemaitijos Pienas' && this.language === 'LV'
                                                                 ? 'Uzlabojiet savu rezultātu, jo labākie 5 spēlētāji laimēs sporta dvieli</br> un ūdens pudeles komplektu, vai PROTEIN M biezpiena sieriņu kastīti'
-                                                                : this.prop === 'Zemaitijos Pienas' && this.language === 'ET'
+                                                                : this.customer === 'Zemaitijos Pienas' && this.language === 'ET'
                                                                   ? 'Paranda oma tulemust, sest parimad 5 mängijat võidavad sporditooted</br> ja joogipudeli komplekti või PROTEIN M kohupiima juustu karbi'
-                                                                  : this.prop === 'Nykstukas'
+                                                                  : this.customer === 'Nykstukas'
                                                                     ? 'Geriausi žaidėjai gali laimėti bilietus į Post Malone koncertą! Laimėtojus informuosime el. paštu. Prizus dovanoja Nykštukas!'
-                                                                    : this.prop === 'Nevezis'
+                                                                    : this.customer === 'Nevezis'
                                                                       ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį </br>fondą sudaro „oho!” prizai!'
-                                                                      : this.prop === 'Magija'
+                                                                      : this.customer === 'Magija'
                                                                         ? 'Kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Magija“  prizus! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. '
-                                                                        : this.prop === 'Orlen'
+                                                                        : this.customer === 'Orlen'
                                                                           ? 'Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą sudaro net 1 000 ledų kas savaitę! Dydisis prizas - skrydis oro balionu!'
-                                                                          : this.prop === 'Novaturas' && this.language === 'LT'
+                                                                          : this.customer === 'Novaturas' && this.language === 'LT'
                                                                             ? 'Pagerink savo rezultatą – rugsėjo pabaigoje net 30 geriausių žaidėjų laimės po 100 € vertės „Novaturas“ kuponą! Jei būsi tarp laimėtojų, apie tai pranešime Tavo nurodytu el. paštu.'
-                                                                            : this.prop === 'Novaturas' && this.language === 'LV'
+                                                                            : this.customer === 'Novaturas' && this.language === 'LV'
                                                                               ? 'Tev ir iespēja uzlabot savu rezultātu, jo 30 labākie rezultātu saņēmēji laimēs 100 EUR Novatours atlaižu kuponu. Ja laimēsi balvu, mēs Tevi informēsim pa e-pastu, kuru norādīji.'
-                                                                              : this.prop === 'Novaturas' && this.language === 'ET'
+                                                                              : this.customer === 'Novaturas' && this.language === 'ET'
                                                                                 ? 'Sul on võimalus oma tulemust parandada! 30 parimat mängijat võidavad 100 eurose Novatoursi sooduskupongi. Kui oled nende seas, teavitame Sind e-maili teel.'
-                                                                                : this.prop === 'Novaturas' && this.language === 'EN'
+                                                                                : this.customer === 'Novaturas' && this.language === 'EN'
                                                                                   ? ' Improve your score, because at the end of the month, 30 players with the best results will win a 100 EUR Novaturas voucher. If you have won a prize, we will inform you via the email address you provided.'
-                                                                                  : this.prop === 'Novaturas' && this.language === 'RU'
+                                                                                  : this.customer === 'Novaturas' && this.language === 'RU'
                                                                                     ? 'Улучши свой результат, ведь в конце месяца 30 лучших игроков получат подарочную карту Novatours на 100€. Если выиграешь приз, мы сообщим об этом на указанный тобой адрес электронной почты.'
-                                                                                    : this.prop === 'Apranga'
+                                                                                    : this.customer === 'Apranga'
                                                                                       ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
-                                                                                      : this.prop === 'Elesen' && this.language === 'LT'
+                                                                                      : this.customer === 'Elesen' && this.language === 'LT'
                                                                                         ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
-                                                                                        : this.prop === 'Elesen' && this.language === 'LV'
+                                                                                        : this.customer === 'Elesen' && this.language === 'LV'
                                                                                           ? 'Ja laimēsi balvu, mēs Tevi informēsim uz e-pastu, kuru norādīji.'
-                                                                                          : this.prop === 'Elesen' && this.language === 'ET'
+                                                                                          : this.customer === 'Elesen' && this.language === 'ET'
                                                                                             ? 'Kui võidad mõne auhinna, anname sellest teada sinu esitatud e-posti aadressile.'
                                                                                             : this.language === 'LT'
                                                                                               ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
                                                                                               : 'If you win a prize, we will inform you by the email address you provided.'
             }</div>
               <div style="width:100%; top: ${
-                this.prop === 'Perlas GO' ? '455px' : this.prop.includes('demo') ? '465px' : '505px'
+                this.customer === 'Perlas GO' ? '455px' : this.customer.includes('demo') ? '465px' : '505px'
               };line-height:14px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-                this.prop === 'Perlas GO' ? '10px' : '10px'
-              } ; font-family: Montserrat; font-weight: 700; text-transform:${this.prop === 'Perlas GO' ? 'none' : 'uppercase'} ; word-wrap: break-word">${
-                this.prop === 'Unisend' && this.language === 'ET'
+                this.customer === 'Perlas GO' ? '10px' : '10px'
+              } ; font-family: Montserrat; font-weight: 700; text-transform:${this.customer === 'Perlas GO' ? 'none' : 'uppercase'} ; word-wrap: break-word">${
+                this.customer === 'Unisend' && this.language === 'ET'
                   ? 'Võitjatega võetakse ühendust e-posti teel.'
-                  : this.language === 'LV' && this.prop === 'Fantazijos'
+                  : this.language === 'LV' && this.customer === 'Fantazijos'
                     ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
-                    : this.language === 'RU' && this.prop === 'Fantazijos'
+                    : this.language === 'RU' && this.customer === 'Fantazijos'
                       ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
-                      : this.language === 'ET' && this.prop === 'Fantazijos'
+                      : this.language === 'ET' && this.customer === 'Fantazijos'
                         ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
-                        : this.prop === 'Fantazijos'
+                        : this.customer === 'Fantazijos'
                           ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div><a style="background-color:#FD7A77;font-size:14px">69diena</a></div>`
-                          : this.prop === 'Makalius' && this.language === 'LT'
+                          : this.customer === 'Makalius' && this.language === 'LT'
                             ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
-                            : this.prop.includes('demo') || this.language === 'EN'
+                            : this.customer.includes('demo') || this.language === 'EN'
                               ? 'Congrats! Here’s your discount code – just for you!'
                               : ''
               }</div>
             <div style="width:100%; top: 546px; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
-              this.prop === 'Barbora'
+              this.customer === 'Barbora'
                 ? '(Galioja pristatymams iki 04 14 d.)'
-                : this.prop === 'Eurovaistine'
+                : this.customer === 'Eurovaistine'
                   ? 'Uzvarētāji tiks informēti e-pastā.'
-                  : this.prop === 'Fantazijos'
+                  : this.customer === 'Fantazijos'
                     ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                     : ''
             } </div> `
           : `<div id="boomio-title-lose" style="width:calc(100% - 20px);margin-left:10px; top: 410px; position: absolute; text-align: center; color: ${textColor}; font-size: ${fontSize}; font-family: Montserrat; font-weight: ${fontWeight}; text-transform: uppercase; word-wrap: break-word">${
-              this.prop === 'Barbora'
+              this.customer === 'Barbora'
                 ? 'Pagerink rezultatą ir laimėk </br>Barbora gimtadienio dovaną iškart!'
                 : this.language === 'ES'
                   ? '¡FELICIDADES YA ESTÁS PARTICIPANDO POR INCREÍBLES PREMIOS!'
-                  : this.prop === 'Eurovaistine'
+                  : this.customer === 'Eurovaistine'
                     ? 'TEV VEICAS LIELISKI!'
-                    : this.prop === 'Akropolis' && this.language === 'LV'
+                    : this.customer === 'Akropolis' && this.language === 'LV'
                       ? 'Mēģini vēlreiz, tev izdosies!'
-                      : this.prop === 'Akropolis' && this.language === 'RU'
+                      : this.customer === 'Akropolis' && this.language === 'RU'
                         ? 'Попробуй снова, у тебя получится!'
-                        : this.prop === 'Unisend' && this.language === 'LV'
+                        : this.customer === 'Unisend' && this.language === 'LV'
                           ? 'TEV VEICAS LIELISKI!'
-                          : this.prop === 'Elesen' && this.language === 'LT'
+                          : this.customer === 'Elesen' && this.language === 'LT'
                             ? 'JŪS GALITE GERIAU!'
-                            : this.prop === 'Elesen' && this.language === 'LV'
+                            : this.customer === 'Elesen' && this.language === 'LV'
                               ? 'JŪS VARAT LABĀK!'
-                              : this.prop === 'Elesen' && this.language === 'ET'
+                              : this.customer === 'Elesen' && this.language === 'ET'
                                 ? 'SA VÕID PAREMINI!'
                                 : this.language === 'LV'
                                   ? 'TU VARI LABĀK!'
                                   : this.language === 'RU'
                                     ? 'ТЫ МОЖЕШЬ ЛУЧШЕ!'
-                                    : this.prop === 'Unisend' && this.language === 'ET'
+                                    : this.customer === 'Unisend' && this.language === 'ET'
                                       ? 'SUL LÄHEB HÄSTI!'
                                       : this.language === 'ET'
                                         ? 'SA SAAD SUUREPÄRASELT HAKKAMA!'
@@ -804,24 +805,24 @@ export class CompetitionScoreTableContainer {
                                           ? 'PYSTYT PAREMPAAN!'
                                           : this.language === 'EN'
                                             ? 'YOU CAN DO BETTER!'
-                                            : this.prop === 'Nykstukas'
+                                            : this.customer === 'Nykstukas'
                                               ? ''
-                                              : this.prop === 'Apranga'
+                                              : this.customer === 'Apranga'
                                                 ? 'JŪS GALITE!'
                                                 : this.language === 'LT'
                                                   ? 'Tu gali!'
                                                   : 'YOU CAN DO BETTER!'
             }</div>
             <div id="boomio-text-lose" style="width:calc(100% - 20px);margin-left:10px; top: ${
-              this.prop === 'Perlas GO' ? '390px' : '455px'
-            };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: ${this.prop === 'Pigu.lt' ? 12 : 10}px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
-              this.prop === 'Barbora'
+              this.customer === 'Perlas GO' ? '390px' : '455px'
+            };line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size: ${this.customer === 'Pigu.lt' ? 12 : 10}px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
+              this.customer === 'Barbora'
                 ? ''
-                : this.prop === 'Eurovaistine'
+                : this.customer === 'Eurovaistine'
                   ? '50 spēlētāji, kuri iegūs vislielāko punktu skaitu, saņems </br>E-EUROAPTIEKA dāvanu, kuponus: 100€, 50€, 25€, 15€,'
-                  : this.prop === 'Pieno Žvaigždės'
+                  : this.customer === 'Pieno Žvaigždės'
                     ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> prizus! Prizinį fondą sudaro Forum Cinemas bilietai <u style="text-transform:lowercase">IR </br>pagrindiniai <u style="text-transform:uppercase">MIAU PRIZAI  </u></u> - Su Miau gyvent linksmiau!'
-                    : this.prop === 'LemonFeel'
+                    : this.customer === 'LemonFeel'
                       ? `Uzlabo savu rezultātu un cīnies par balvu, ko iegūs labākais spēlētājs LEMON FEEL noslēguma pasākumā – 28. augustā!</br> ${
                           this.userParticipationDays >= 3
                             ? `${this.userParticipationDays} DIENAS SUPER!`
@@ -829,117 +830,117 @@ export class CompetitionScoreTableContainer {
                               ? `${this.userParticipationDays} DIENA`
                               : `${this.userParticipationDays} DIENAS`
                         } `
-                      : this.prop === 'Penki Sezonai'
+                      : this.customer === 'Penki Sezonai'
                         ? 'Pagerink rezultatą nes balandžio 1d.'
-                        : this.prop === 'Akropolis' && this.language === 'LT'
+                        : this.customer === 'Akropolis' && this.language === 'LT'
                           ? 'Pagerink rezultatą ir kasdien laimėk vieną CAIF CAFE kavos </br>puodelį, o atsiėmęs prizą turėk galimybę laimėti 100 EUR</br>AKROPOLIO dovanų kortelę!'
-                          : this.prop === 'Akropolis' && this.language === 'LV'
+                          : this.customer === 'Akropolis' && this.language === 'LV'
                             ? 'Ja būsi viens no 2000 dienas rezultatīvākajiem spēlētājiem, tu saņemsi balvu no Narvesen, un pēc balvas izņemšanas – automātiski piedalīsies dienas izlozē par AKROPOLE dāvanu karti 100 EUR vērtībā. Tevi ir iespēja uzlabot savu rezultātu, spēlējot vēlreiz!'
-                            : this.prop === 'Akropolis' && this.language === 'RU'
+                            : this.customer === 'Akropolis' && this.language === 'RU'
                               ? 'Если вы сохраните своё место в списке 2000 лучших игроков, вы получите приз от Narvesen, а после получения приза автоматически примете участие в ежедневном розыгрыше подарочной карты AKROPOLE на 100 евро. У вас есть возможность улучшить свой результат, сыграв снова!'
-                              : this.prop === 'Daumantu'
+                              : this.customer === 'Daumantu'
                                 ? 'Pagerink rezultatą, nes kas savaitę </br> geriausi žaidėjai laimės prizus! '
-                                : this.prop.includes('Gamtos Ateitis')
+                                : this.customer.includes('Gamtos Ateitis')
                                   ? 'Geriausius rezultatus pasiekusios mokyklos pateks į kitą etapą ir varžysis dėl koncerto savo mokykloje! Kas savaitę iškrenta dvi mažiausiai taškų surinkusios mokyklos. Jei tavo mokykla pateks į kitą etapą, pranešime el. paštu, kurį nurodei.'
-                                  : this.prop === 'Makalius'
+                                  : this.customer === 'Makalius'
                                     ? 'Pagerink rezultatą, nes liepos 1 dieną geriausi žaidėjai laimės </br>prizus! Prizinį fondą sudaro net 500 kuponų po 20 €, 50 € '
-                                    : this.prop === 'Unisend' && this.language === 'LV'
+                                    : this.customer === 'Unisend' && this.language === 'LV'
                                       ? '100 spēlētāji ar visvairāk punktiem saņems balvas. Izloze 31. </br> oktobris! Uzvarētāji tiks informēti e-pastā.'
-                                      : this.language === 'LV' && this.prop === 'Fantazijos'
+                                      : this.language === 'LV' && this.customer === 'Fantazijos'
                                         ? 'Un laimējiet līdz 30 balvām!</br> Par laimestu informēsim e-pastā.'
-                                        : this.language === 'RU' && this.prop === 'Fantazijos'
+                                        : this.language === 'RU' && this.customer === 'Fantazijos'
                                           ? 'и выиграйте до 30 призов! Уведомление о выигрыше </br>придет на вашу электронную почту.'
-                                          : this.prop === 'Unisend' && this.language === 'ET'
+                                          : this.customer === 'Unisend' && this.language === 'ET'
                                             ? 'Koguni 100 enim punkte kogunud mängijat </br> võidavad 31. oktoober auhindu!'
-                                            : this.language === 'ET' && this.prop === 'Fantazijos'
+                                            : this.language === 'ET' && this.customer === 'Fantazijos'
                                               ? 'kuni 30 auhinda oma sensuaalseteks naudinguteks.</br> Võitjaid teavitatakse nendemääratud e-posti teel.'
-                                              : this.prop === 'Vilvi'
+                                              : this.customer === 'Vilvi'
                                                 ? 'Pagerink rezultatą, nes net 10 geriausių žaidėjų xx dieną </br> laimės VILVI prizus!'
-                                                : this.prop === 'Perlas GO'
+                                                : this.customer === 'Perlas GO'
                                                   ? 'Kiekvieną savaitę 20 geriausių „Perlas Go“ žaidėjų, užsiregistravusių </br> programėlėje ar savitarnos svetainėje laimi po 10 € „Wolt“ kuponą!</br> Laimėjusius informuosime el. paštu.'
-                                                  : this.prop === 'Zemaitijos Pienas' && this.language === 'LT'
+                                                  : this.customer === 'Zemaitijos Pienas' && this.language === 'LT'
                                                     ? 'Pagerink rezultatą, nes geriausi 5 žaidėjai laimės sportinio rankšluosčio</br> ir gertuvės rinkinį, arba dėžutę PROTEIN M varškės sūrelių'
-                                                    : this.prop === 'Zemaitijos Pienas' && this.language === 'LV'
+                                                    : this.customer === 'Zemaitijos Pienas' && this.language === 'LV'
                                                       ? 'Uzlabojiet rezultātu, jo labākie 5 spēlētāji laimēs sporta dvieli</br> un ūdens pudeles komplektu vai PROTEIN M biezpiena siera kastīti'
-                                                      : this.prop === 'Zemaitijos Pienas' && this.language === 'ET'
+                                                      : this.customer === 'Zemaitijos Pienas' && this.language === 'ET'
                                                         ? 'Paranda oma tulemust, sest parimad 5 mängijat võidavad sporditooted</br> ja veepudeli komplekti või PROTEIN M kohupiima juustu kasti'
-                                                        : this.prop === 'Nykstukas'
+                                                        : this.customer === 'Nykstukas'
                                                           ? 'Geriausi žaidėjai gali laimėti bilietus į Post Malone koncertą! Jei laimėjai, informuosime Tave el. paštu, kurį nurodei. Prizinį fondą įsteigė Nykštukas! '
-                                                          : this.prop === 'Nevezis'
+                                                          : this.customer === 'Nevezis'
                                                             ? 'Pagerink rezultatą, nes kas savaitę geriausi žaidėjai laimės</br> „oho!” prizus!'
-                                                            : this.prop === 'Magija'
+                                                            : this.customer === 'Magija'
                                                               ? 'Pagerink rezultatą, nes kas savaitę 3 daugiausia taškų surinkę žaidėjai laimės „Dobilas“  prizus!'
-                                                              : this.prop === 'Orlen'
+                                                              : this.customer === 'Orlen'
                                                                 ? 'Pagerink rezultatą, nes prizinį fondą sudaro net 1 000 ledų kas savaitę! O dydisis prizas - skrydis oro balionu!'
-                                                                : this.prop === 'Novaturas' && this.language === 'LT'
+                                                                : this.customer === 'Novaturas' && this.language === 'LT'
                                                                   ? 'Pagerink savo rezultatą – rugsėjo pabaigoje net 30 geriausių žaidėjų laimės po 100 € vertės „Novaturas“ kuponą! Jei būsi tarp laimėtojų, apie tai pranešime Tavo nurodytu el. paštu.'
-                                                                  : this.prop === 'Novaturas' && this.language === 'LV'
+                                                                  : this.customer === 'Novaturas' && this.language === 'LV'
                                                                     ? 'Tev ir iespēja uzlabot savu rezultātu, jo 30 labākie rezultātu saņēmēji laimēs 100 EUR Novatours atlaižu kuponu. Ja laimēsi balvu, mēs Tevi informēsim pa e-pastu, kuru norādīji.'
-                                                                    : this.prop === 'Novaturas' && this.language === 'ET'
+                                                                    : this.customer === 'Novaturas' && this.language === 'ET'
                                                                       ? 'Sul on võimalus oma tulemust parandada! 30 parimat mängijat võidavad 100 eurose Novatoursi sooduskupongi. Kui oled nende seas, teavitame Sind e-maili teel.'
-                                                                      : this.prop === 'Novaturas' && this.language === 'EN'
+                                                                      : this.customer === 'Novaturas' && this.language === 'EN'
                                                                         ? ' Improve your score, because at the end of the month, 30 players with the best results will win a 100 EUR Novaturas voucher. If you have won a prize, we will inform you via the email address you provided.'
-                                                                        : this.prop === 'Novaturas' && this.language === 'RU'
+                                                                        : this.customer === 'Novaturas' && this.language === 'RU'
                                                                           ? 'Улучши свой результат, ведь в конце месяца 30 лучших игроков получат подарочную карту Novatours на 100€. Если выиграешь приз, мы сообщим об этом на указанный тобой адрес электронной почты.'
-                                                                          : this.prop === 'Toni'
+                                                                          : this.customer === 'Toni'
                                                                             ? 'Inténtalo de nuevo y suma más oportunidades de ganar.'
-                                                                            : this.prop === 'Pigu.lt' && this.language === 'RU'
+                                                                            : this.customer === 'Pigu.lt' && this.language === 'RU'
                                                                               ? 'Накопи 500 очков или более и выиграй:</br>Скидочный код на выбранные популярные товары.'
-                                                                              : this.prop === 'Pigu.lt' && this.language === 'FI'
+                                                                              : this.customer === 'Pigu.lt' && this.language === 'FI'
                                                                                 ? '500 pistettä enemmän ja voit voittaa</br>Alekoodi valikoiduille suosituille tuotteille'
-                                                                                : this.prop === 'Pigu.lt' && this.language === 'LV'
+                                                                                : this.customer === 'Pigu.lt' && this.language === 'LV'
                                                                                   ? 'Sakrāj 500 punktus vai vairāk un laimē:</br>Atlaižu kodu izvēlētām precēm.'
-                                                                                  : this.prop === 'Pigu.lt' && this.language === 'LT'
+                                                                                  : this.customer === 'Pigu.lt' && this.language === 'LT'
                                                                                     ? 'Surink 500 ar daugiau taškų ir laimėk:</br>Nuolaidos kodą atrinktoms populiarioms prekėms.'
-                                                                                    : this.prop === 'Pigu.lt' && this.language === 'EN'
+                                                                                    : this.customer === 'Pigu.lt' && this.language === 'EN'
                                                                                       ? 'Get 500 points or more and win:</br>A discount code for selected popular products.'
-                                                                                      : this.prop === 'Pigu.lt' && this.language === 'ET'
+                                                                                      : this.customer === 'Pigu.lt' && this.language === 'ET'
                                                                                         ? 'Kogu 500 punkti või rohkem ja võida:</br>Sooduskood valikule populaarsetele toodetele!'
-                                                                                        : this.prop === 'Apranga'
+                                                                                        : this.customer === 'Apranga'
                                                                                           ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
-                                                                                          : this.prop === 'Elesen' && this.language === 'LT'
+                                                                                          : this.customer === 'Elesen' && this.language === 'LT'
                                                                                             ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
-                                                                                            : this.prop === 'Elesen' && this.language === 'LV'
+                                                                                            : this.customer === 'Elesen' && this.language === 'LV'
                                                                                               ? 'Ja laimēsi balvu, mēs Tevi informēsim uz e-pastu, kuru norādīji.'
-                                                                                              : this.prop === 'Elesen' && this.language === 'ET'
+                                                                                              : this.customer === 'Elesen' && this.language === 'ET'
                                                                                                 ? 'Kui võidad mõne auhinna, anname sellest teada sinu esitatud e-posti aadressile.'
                                                                                                 : this.language === 'LT'
                                                                                                   ? 'Jei laimėsite prizą, apie tai jus informuosime el. paštu, kurį nurodėte.'
                                                                                                   : 'If you win a prize, we will inform you by the email address you provided.'
             }</div>
               <div style="width:100%; top: ${'505px'};line-height:18px; position: absolute; text-align: center; color: ${textColor}; font-size:${
-                this.prop ? '10px' : '10px'
+                this.customer ? '10px' : '10px'
               } ; font-family: Montserrat; font-weight: 700; text-transform: uppercase; word-wrap: break-word">${
-                this.prop === 'Unisend' && this.language === 'ET'
+                this.customer === 'Unisend' && this.language === 'ET'
                   ? 'Võitjatega võetakse ühendust e-posti teel.'
-                  : this.prop === 'Eurovaistine'
+                  : this.customer === 'Eurovaistine'
                     ? '10€, 5€ vērtība.'
-                    : this.language === 'LV' && this.prop === 'Fantazijos'
+                    : this.language === 'LV' && this.customer === 'Fantazijos'
                       ? 'IEPĒRCIETIES AR <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV </a> ATLAIŽU KODU: <div ><a style="background-color:#FD7A77; font-size:14px">vasara</a></div>'
-                      : this.language === 'RU' && this.prop === 'Fantazijos'
+                      : this.language === 'RU' && this.customer === 'Fantazijos'
                         ? 'ДЕЛАЙТЕ ПОКУПКИ С ПРОМОКОДОМ <a onclick="event.stopPropagation();" target="_blank" href=https://yesyes.lv/ style="color:white"> YESYES.LV: </a><div ><a style="background-color:#FD7A77; font-size:14px">vasara </a></div>'
-                        : this.language === 'ET' && this.prop === 'Fantazijos'
+                        : this.language === 'ET' && this.customer === 'Fantazijos'
                           ? 'Ostes YESYES.EE-st SOODUSKOODIGA<div ><a style="background-color:#FD7A77; font-size:14px">suvi</a></div>'
-                          : this.prop === 'Fantazijos'
+                          : this.customer === 'Fantazijos'
                             ? `O PIRKDAMAS <a onclick="event.stopPropagation();" target="_blank" href=https://www.fantazijos.lt style="color:white"> Fantazijos.lt </a> SU NUOLAIDOS KODU <div ><a style="background-color:#FD7A77; font-size:14px">69diena</a></div>`
-                            : this.prop === 'Makalius' && this.language === 'LT'
+                            : this.customer === 'Makalius' && this.language === 'LT'
                               ? 'arba 100 € MAKALIAUS paslaugoms įsigyti!'
                               : ''
               }</div>
               <div style="width:100%; top: ${
-                this.prop === 'Pigu.lt' ? '536px' : '546px'
+                this.customer === 'Pigu.lt' ? '536px' : '546px'
               }; position: absolute; text-align: center; color: ${textColor}; font-size: 10px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">${
-                this.prop === 'Barbora'
+                this.customer === 'Barbora'
                   ? '(Galioja pristatymams iki 04 14 d.)'
-                  : this.prop === 'Eurovaistine'
+                  : this.customer === 'Eurovaistine'
                     ? 'Uzvarētāji tiks informēti e-pastā.'
-                    : this.language === 'LV' && this.prop === 'Fantazijos'
+                    : this.language === 'LV' && this.customer === 'Fantazijos'
                       ? 'UN SAŅEMIET 20% ATLAIDI VISAM!'
-                      : this.language === 'RU' && this.prop === 'Fantazijos'
+                      : this.language === 'RU' && this.customer === 'Fantazijos'
                         ? 'И ПОЛУЧИТЕ СКИДКУ 20% НА ВСЕ!'
-                        : this.language === 'ET' && this.prop === 'Fantazijos'
+                        : this.language === 'ET' && this.customer === 'Fantazijos'
                           ? 'SAATE 20% ALLAHINDLUST KÕIGELE!'
-                          : this.prop === 'Fantazijos'
+                          : this.customer === 'Fantazijos'
                             ? 'GAUK 19% NUOLAIDĄ VISKAM!'
                             : // : this.prop === 'Pigu.lt' && this.language === 'RU'
                               // ? 'Если Ты уже выиграл, мы отправим информацию на адрес электронной почты, указанный при регистрации.'
@@ -959,7 +960,7 @@ export class CompetitionScoreTableContainer {
       }
       ${`<div style="box-sizing: border-box;width: 100%; padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px; background:${'#000000ff'}; border-radius: 32px; border: 0.50px  rgba(255, 255, 255, .6) solid; justify-content: space-between; align-items: center; 
       display: 
-      ${this.prop === 'Pigu.lt' && this.getBonus(this.scoreTable?.user_best_score) > 0 ? 'inline-flex' : 'none'};width:260px;position:absolute;top:495px;left:calc(50% - 130px);">
+      ${this.customer === 'Pigu.lt' && this.getBonus(this.scoreTable?.user_best_score) > 0 ? 'inline-flex' : 'none'};width:260px;position:absolute;top:495px;left:calc(50% - 130px);">
       <div style="height: 17px; color: white; font-size: 16px; font-family: Montserrat; font-weight: 600; line-height: 16px; word-wrap: break-word" id="p_code_text2">
        ${this.getDiscountCode(this.scoreTable?.user_best_score)}
           </div>
@@ -973,7 +974,7 @@ export class CompetitionScoreTableContainer {
 
     this.containerDiv.querySelector('.boomio-tbody').innerHTML = tableHTML;
 
-    if (this.prop === 'Pigu.lt') {
+    if (this.customer === 'Pigu.lt') {
       this.updatePrizeLink(this.scoreTable?.user_best_score, this.language);
       document.getElementById('boomio-copy-modal-btn2').onclick = () => {
         const textToCopy = this.getDiscountCode(this.scoreTable?.user_best_score);
@@ -1006,7 +1007,7 @@ export class CompetitionScoreTableContainer {
     containerDiv.innerHTML = `
     <div style="width: 100%; height: 100%; position: relative; ">
       <div style="width:100%;top: ${
-        this.prop === 'Toni' ? '95px' : '72px'
+        this.customer === 'Toni' ? '95px' : '72px'
       }; position: absolute; text-align: center; color: ${'white'}; font-size: 40px; font-family: Georama; font-weight: 900; text-transform: uppercase; word-wrap: break-word" id="boomio-competition-scoreboard-name">${
         this.language === 'LV'
           ? 'REZULTĀTI'
@@ -1032,7 +1033,7 @@ export class CompetitionScoreTableContainer {
 
 
       <div  style="width: calc(100% - 32px); height: ${'260px'}; left: 16px; top: ${
-        this.prop === 'Toni' ? '134px' : '124px'
+        this.customer === 'Toni' ? '134px' : '124px'
       }; position: absolute; background: rgba(255, 255, 255, 0.20); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; border-radius:20px;border-right:none; backdrop-filter: blur(4px)">
         <div style="overflow-x:hidden;overflow-y: scroll; height: calc(100% - 60px);margin-right:5px; margin-top:20px;" class="boomio-custom-scrollbar">
           <table style="margin-left:2px;width: 100%;padding-top:20px;padding-bottom:20px;border-collapse: collapse;" >
@@ -1054,7 +1055,7 @@ export class CompetitionScoreTableContainer {
   background: white;
   box-shadow: -4px -4px 8px #DFE6F5 inset;
   border-radius: 35px;
-  display:${(this.prop === 'Perlas GO' && !userId) || this.prop === 'Pigu.lt' ? 'flex' : 'none'};
+  display:${(this.customer === 'Perlas GO' && !userId) || this.customer === 'Pigu.lt' ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;
   z-index: 9999999;
@@ -1065,7 +1066,7 @@ export class CompetitionScoreTableContainer {
     rel="noopener noreferrer"
     style="
       text-align: center;
-      color: ${this.getBrandColor(this.prop)};
+      color: ${this.getBrandColor(this.customer)};
       font-size: 22px;
       font-family: 'Georama';
       font-weight: 700;
@@ -1080,12 +1081,12 @@ export class CompetitionScoreTableContainer {
 </div>
 
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:580px;position:absolute; height: 36px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${this.getBrandColor(this.prop)} ; font-size: 22px; font-family: ${
-          this.prop === 'Perlas GO' ? 'Basis Grotesque Pro, sans-serif' : 'Georama'
+        <div style="text-align: center; color: ${this.getBrandColor(this.customer)} ; font-size: 22px; font-family: ${
+          this.customer === 'Perlas GO' ? 'Basis Grotesque Pro, sans-serif' : 'Georama'
         }; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
-          this.prop === 'Akropolis' && this.language === 'LV'
+          this.customer === 'Akropolis' && this.language === 'LV'
             ? 'SPĒLĒT VĒLREIZ'
-            : this.prop === 'Akropolis' && this.language === 'RU'
+            : this.customer === 'Akropolis' && this.language === 'RU'
               ? 'ИГРАТЬ СНОВА'
               : this.language === 'LV'
                 ? 'UZLABOT REZULTĀTU'

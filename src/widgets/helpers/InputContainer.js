@@ -112,13 +112,6 @@ const getRule1Title = (customer, language, game) => {
 
 // Helper function to get Rule 1 descriptive text based on customer, language, and game
 const getRule1Text = (customer, language, game) => {
-  // Akropolis variations
-  if (customer === 'Akropolis' && language === 'LV') return 'Narvesen kafijas krūzītes.';
-  if (customer === 'Akropolis' && language === 'LT') return ',,Caif Cafe" kavos puodelius.';
-
-  // Other specific customers
-  if (customer === 'Daumantu') return ' TIK Daumantų produktus.';
-
   // Pigu.lt crush game variations by language
   if (customer === 'Pigu.lt' && game === 'crush') {
     if (language === 'EN') return '3 or more items together.';
@@ -140,7 +133,6 @@ const getRule1Text = (customer, language, game) => {
   }
 
   // More specific customers
-  if (customer === 'Eurovaistine') return 'pārvietojoties uz sāniem.';
   if (customer === 'Apranga') return '3 ar daugiau vienodų prekių.';
 
   if (customer === 'Elesen') {
@@ -151,16 +143,6 @@ const getRule1Text = (customer, language, game) => {
     }
   }
 
-  // Gamtos Ateitis variations
-  if (customer === 'Gamtos Ateitis Paper' && game === 'catch') return 'popieriaus pakuočių atliekas.';
-  if (customer === 'Gamtos Ateitis Plastic' && game === 'catch') return 'plastiko pakuočių atliekas.';
-  if (customer === 'Gamtos Ateitis Glass' && game === 'catch') return 'stiklo pakuočių atliekas.';
-  if (customer.includes('Gamtos Ateitis') && game === 'crush') return 'kartu 3 ar daugiau vienodų pakuočių.';
-
-  // More specific customers
-  if (customer === 'Pieno Žvaigždės') return '"MIAU" produktus.';
-  if (customer === 'Pegasas') return ' Pegaso produktus.';
-
   // Toni variations by game
   if (customer === 'Toni') {
     if (game === 'catch') return 'la BiciTopsy.';
@@ -170,16 +152,7 @@ const getRule1Text = (customer, language, game) => {
   }
 
   // More specific customers
-  if (customer === 'Fpro') return 'TO FLY';
-  if (customer === 'SaludSA') return 'para volar';
-  if (customer === 'Perlas GO') return 'į šonus, kad nenukristum.';
   if (customer === 'Nevezis') return 'į šonus, kad nenukristum.';
-  if (customer === 'Nykstukas') return 'baksnodamas ekraną Nykštuką išlaikysi ore.';
-  if (customer === 'Orlen' && game === 'catch') return 'ledus ir gauk taškus.';
-  if (customer === 'Zemaitijos Pienas') {
-    if (language === 'LV') return '3 vai vairāk vienādus priekšmetus.';
-    if (language === 'ET') return '3 või rohkem ühesuguseid esemeid.';
-  }
 
   // Drive game variations by language
   if (game === 'drive') {
@@ -240,33 +213,6 @@ const getRule2Title = (customer, language, game) => {
     if (language === 'FI') return 'Vältä';
   }
 
-  if (customer === 'Pigu.lt') {
-    if (language === 'EN') return 'Repeat ';
-    if (language === 'LV') return 'Atkārto,';
-    if (language === 'ET') return 'Korda,';
-    if (language === 'FI') return 'Toista ,';
-    if (language === 'RU') return 'Повтори  ';
-    if (language === 'LT') return 'Kartok  ';
-  }
-
-  // Doodle game LV language
-  if (language === 'LV' && game === 'doodle') return 'SPĒLĒ VĒLREIZ,';
-
-  // Novaturas variations by language
-  if (customer === 'Novaturas') {
-    if (language === 'LT') return 'Rink  ';
-    if (language === 'LV') return 'Savāc ';
-    if (language === 'ET') return 'Kogu  ';
-    if (language === 'EN') return 'Collect  ';
-    if (language === 'RU') return 'Собирайте  ';
-  }
-
-  // Akropolis variations by language
-  if (customer === 'Akropolis') {
-    if (language === 'LV') return 'SPĒLĒ VĒLREIZ,';
-    if (language === 'RU') return 'Играй снова,';
-  }
-
   // Toni variations by game
   if (customer === 'Toni') {
     if (game === 'catch') return 'Atrapa';
@@ -276,23 +222,6 @@ const getRule2Title = (customer, language, game) => {
     if (game === 'drive') return 'Atrapa';
     if (game === 'runner') return 'Repetir';
   }
-
-  // Other customer-specific rules
-  if (customer === 'Fpro') return 'REPEAT';
-  if (customer === 'Ikea') return 'Kartokite,';
-  if (customer === 'Eurovaistine') return 'ATKĀRTOT';
-  if (customer === 'SaludSA') return 'Presiona';
-
-  // Gamtos Ateitis variations by game
-  if (customer.includes('Gamtos Ateitis')) {
-    if (game === 'catch') return 'Rink';
-    if (game === 'crush') return 'Siek';
-  }
-
-  // More customer-specific rules
-  if (customer === 'Nykstukas') return 'Įveik';
-  if (customer === 'Nevezis') return 'Kartok,';
-  if (customer === 'Magija') return 'Kartok,';
 
   // Orlen variations by game
   if (customer === 'Orlen') {
@@ -311,7 +240,10 @@ const getRule2Title = (customer, language, game) => {
   }
 
   // Language-specific defaults
-  if (language === 'LT') return 'Kartok';
+  // Doodle game LV language
+  if (language === 'LV' && game === 'doodle') return 'SPĒLĒ VĒLREIZ,';
+
+  if (language === 'LT') return 'Kartok,';
   if (language === 'LV') return 'ATKĀRTO,';
   if (language === 'RU') return 'ПОВТОРИТЬ';
   if (language === 'ET') return 'KORDA';
@@ -333,20 +265,6 @@ const getRule2Text = (customer, language, game) => {
     if (language === 'FI') return 'huonoja - mutta varo menettämästä henkeäsi.';
   }
 
-  if (customer === 'Pigu.lt' && language === 'EN') return 'for better result.';
-  if (customer === 'Pigu.lt' && language === 'LV') return 'lai sasniegtu labāku rezultātu.';
-  if (customer === 'Pigu.lt' && language === 'ET') return 'et tulemus oleks veel parem.';
-  if (customer === 'Pigu.lt' && language === 'FI') return 'paremman tuloksen saavuttamiseksi.';
-  if (customer === 'Pigu.lt' && language === 'RU') return 'для достижения наилучших результатов.';
-  if (customer === 'Pigu.lt' && language === 'LT') return 'dėl geresnio rezultato.';
-
-  // Akropolis variations by language
-  if (customer === 'Akropolis' && language === 'LV') return 'lai uzlabotu savu rezultātu.';
-  if (customer === 'Akropolis' && language === 'RU') return 'чтобы улучшить свой результат.';
-
-  // Eurovaistine
-  if (customer === 'Eurovaistine') return 'un uzlabo savu rezultātu.';
-
   if (customer === 'Elesen') {
     if (game === 'doodle') {
       if (language === 'LT') return 'ir pagerink rezultatą.';
@@ -361,60 +279,21 @@ const getRule2Text = (customer, language, game) => {
   // Drive game LV special
   if (language === 'LV' && game === 'drive') return 'kuponus un iegūsti punktus';
 
-  // General LV
-  if (language === 'LV') return 'lai sasniegtu labāku rezultātu.';
-
-  // General RU
-  if (language === 'RU') return 'для лучшего результата';
-
   // Toni variations by game
   if (customer === 'Toni' && game === 'catch') return 'los helados Topsy para ganar puntos.';
   if (customer === 'Toni' && game === 'crush') return '3 o más, helados Topsy iguales.';
   if (customer === 'Toni' && game === 'flappy') return 'los obstáculos en el camino.';
   if (customer === 'Toni' && game === 'doodle') return 'sin caerte de las plataformas.';
 
-  // General ET
-  if (language === 'ET') return 'kaarte ja teeni puntke.';
-
-  // Drive game Ikea special
-  if (game === 'drive' && customer === 'Ikea') return 'jei nesate patenkinti rezultatu.';
-
-  // Fpro
-  if (customer === 'Fpro') return 'FOR BETTER RESULT';
-
-  // SaludSA
-  if (customer === 'SaludSA') return '3 veces para mejorar';
-
-  // Gamtos Ateitis variations
-  if (customer === 'Gamtos Ateitis Paper' && game === 'catch') return 'popieriaus pakuočių atliekas ir gauk taškų.';
-  if (customer === 'Gamtos Ateitis Glass' && game === 'catch') return 'stiklo pakuočių atliekas ir gauk taškų.';
-  if (customer === 'Gamtos Ateitis Plastic' && game === 'catch') return 'plastiko pakuočių atliekas ir gauk taškų.';
-  if (customer.includes('Gamtos Ateitis') && game === 'crush') return 'geresnio rezultato.';
-
-  // Novaturas variations by language
-  if (customer === 'Novaturas' && language === 'LT') return 'korteles ir gauk taškus.  ';
-  if (customer === 'Novaturas' && language === 'LV') return 'kārtis un iegūsti punktus ';
-  if (customer === 'Novaturas' && language === 'ET') return 'kaarte ja teeni puntke.';
-  if (customer === 'Novaturas' && language === 'EN') return 'cards and earn points.  ';
-  if (customer === 'Novaturas' && language === 'RU') return 'карты и зарабатывайте пункты.  ';
-
-  // General EN
-  if (language === 'EN') return 'to get the best possible result';
-
-  // General ES
-  if (language === 'ES') return 'los empaques para ganar puntos.';
-
-  // Nykstukas
-  if (customer === 'Nykstukas') return 'ledų kliūtis.';
-
-  // Orlen variations by game
-  if (customer === 'Orlen' && game === 'catch') return 'draudžiamų ženklų.';
-  if (customer === 'Orlen') return 'ledus ir gauk taškus. ';
-
   // Apranga
   if (customer === 'Apranga') return 'siekdami geresnio rezultato.';
 
   if (language === 'LT') return 'siekdamas kuo geresnio rezultato.';
+  if (language === 'LV') return 'lai sasniegtu labāku rezultātu.';
+  if (language === 'ET') return 'kaarte ja teeni puntke.';
+  if (language === 'EN') return 'to get the best possible result';
+  if (language === 'ES') return 'los empaques para ganar puntos.';
+  if (language === 'RU') return 'для лучшего результата';
 
   // Default fallback
   return 'to improve your score.';
@@ -432,48 +311,10 @@ const getRule3Title = (customer, language, game, userId) => {
     if (language === 'FI') return 'Toista';
   }
 
-  if (customer === 'Pigu.lt' && language === 'EN') return 'Enjoy ';
-  if (customer === 'Pigu.lt' && language === 'LV') return 'Izbaudi ';
-  if (customer === 'Pigu.lt' && language === 'ET') return 'Naudi ';
-  if (customer === 'Pigu.lt' && language === 'FI') return 'Nauti ';
-  if (customer === 'Pigu.lt' && language === 'RU') return 'Приятной ';
-  if (customer === 'Pigu.lt' && language === 'LT') return 'Mėgaukis ';
-
   // Toni variations by game
   if (customer === 'Toni' && game === 'catch') return 'Evita';
   if (customer === 'Toni' && game === 'crush') return 'Acumula Más Puntos';
   if (customer === 'Toni' && (game === 'flappy' || game === 'doodle')) return 'Vuelve';
-
-  // Fpro
-  if (customer === 'Fpro') return 'WIN';
-
-  // Ikea
-  if (customer === 'Ikea') return 'Laimėkite,';
-
-  // Perlas GO variations based on userId
-  if (customer === 'Perlas GO' && !userId) return 'Registruokis';
-
-  // Eurovaistine
-  if (customer === 'Eurovaistine') return 'LAIMĒ';
-
-  // SaludSA
-  if (customer === 'SaludSA') return '¡Gana!';
-
-  // Gamtos Ateitis
-  if (customer.includes('Gamtos Ateitis')) return 'Kartok,';
-
-  // Nykstukas
-  if (customer === 'Nykstukas') return 'Kartok';
-
-  // Orlen
-  if (customer === 'Orlen') return 'Kartok';
-
-  // Novaturas with LT language
-  if (customer === 'Novaturas' && language === 'LT') return 'Kartok';
-
-  // Akropolis variations by language
-  if (customer === 'Akropolis' && language === 'LV') return 'LAIMĒ';
-  if (customer === 'Akropolis' && language === 'RU') return 'ВЫИГРЫВАЙ';
 
   // Zemaitijos Pienas
   if (customer === 'Zemaitijos Pienas') {
@@ -516,22 +357,6 @@ const getRule3Text = (customer, language, game, userId) => {
     if (language === 'FI') return 'ja yritä saavuttaa ennätys.';
   }
 
-  if (customer === 'Pigu.lt' && language === 'EN') return 'the game. ';
-  if (customer === 'Pigu.lt' && language === 'LV') return 'spēli. ';
-  if (customer === 'Pigu.lt' && language === 'ET') return 'mängu. ';
-  if (customer === 'Pigu.lt' && language === 'FI') return 'pelistä. ';
-  if (customer === 'Pigu.lt' && language === 'RU') return 'игры.';
-  if (customer === 'Pigu.lt' && language === 'LT') return 'žaidimu. ';
-
-  // Eurovaistine
-  if (customer === 'Eurovaistine') return 'kādu no 50 balvām!';
-
-  // LV language with LemonFeel
-  if (language === 'LV' && customer === 'LemonFeel') return 'spēli.';
-
-  // LV language with LemonGym
-  if (language === 'LV' && customer === 'LemonGym') return 'spēli.';
-
   // Toni variations by game
   if (customer === 'Toni' && game === 'catch') return 'los palitos vacíos para no perder vidas.';
   if (customer === 'Toni' && game === 'crush') return 'combinando helados con splash de leche.';
@@ -545,73 +370,8 @@ const getRule3Text = (customer, language, game, userId) => {
     }
   }
 
-  // Gamtos Ateitis
-  if (customer.includes('Gamtos Ateitis')) return 'pagerinus rezultatą prisidės taškų skirtumas.';
-
-  // Pieno Žvaigždės
-  if (customer === 'Pieno Žvaigždės') return 'kassavaitinius Forum Cinema bilietus ir pagrindinius MIAU prizus!';
-
-  // Pegasas
-  if (customer === 'Pegasas') return '1 iš 80 Pegaso knygų, kas dvi savaites!';
-
-  // LemonGym
-  if (customer === 'LemonGym') return 'Lemon Gym narystes kas mėnesį!';
-
-  // Perlas GO variations based on userId
-  if (customer === 'Perlas GO' && !userId) return '„Perlas Go" savitarnoje </br> arba mobiliojoje programėlėje.';
-  if (customer === 'Perlas GO') return 'žaidimu.';
-
-  // Fpro
-  if (customer === 'Fpro') return 'UP TO 20% OFF!';
-
-  // Barbora
-  if (customer === 'Barbora') return 'iš karto!';
-
-  // Corepetitus
-  if (customer === 'Corepetitus') return 'COREPETITUS priedą!';
-
-  // Ikea
-  if (customer === 'Ikea') return 'ir prizą atsiimkite iš karto!';
-
-  // Fantazijos
-  if (customer === 'Fantazijos') return 'net 69 Fantazijos.lt prizus!';
-
-  // Makalius
-  if (customer === 'Makalius') return 'MAKALIAUS kuponus!';
-
-  // Akropolis variations by language
-  if (customer === 'Akropolis' && language === 'LT') return '1 iš 2000 kavos puodelių kasdien!';
-  if (customer === 'Akropolis' && language === 'LV') return 'katru dienu!';
-  if (customer === 'Akropolis' && language === 'RU') return 'каждый день!';
-
-  // Daumantu
-  if (customer === 'Daumantu') return 'Daumantų prizus!';
-
-  // SaludSA
-  if (customer === 'SaludSA') return 'premios Saludsa Vitality y participa </br> en el sorteo de increíbles premios.';
-
-  // Vilvi
-  if (customer === 'Vilvi') return 'kasdien!';
-
-  // Dentsu
-  if (customer === 'Dentsu') return '1 mėn. prieigą  prie interaktyvios tikslinės auditorijos!';
-
-  // Nykstukas
-  if (customer === 'Nykstukas') return 'siekiant kuo geresnio rezultato.';
-
   // Nevezis
   if (customer === 'Nevezis') return 'žaidimu.';
-
-  // Magija
-  if (customer === 'Magija') return 'žaidimu.';
-
-  // Zemaitijos Pienas
-  if (customer === 'Zemaitijos Pienas') {
-    if (language === 'LV') return 'spēli!';
-  }
-
-  // Orlen
-  if (customer === 'Orlen') return ' ir  pagerink rezultatą.';
 
   // Apranga
   if (customer === 'Apranga') return 'žaidimu.';
@@ -622,9 +382,6 @@ const getRule3Text = (customer, language, game, userId) => {
   // Drive game variations
   if (language === 'LV' && game === 'drive') return 'un uzlabo savu rezultātu';
   if (language === 'ET' && game === 'drive') return 'uuesti ja paranda oma tulemust.';
-
-  // General ET language
-  if (language === 'ET') return 'auhinnad.';
 
   // Language-specific defaults
   if (language === 'LT') return 'ir pagerink rezultatą.';
@@ -650,22 +407,7 @@ const getRule4Title = (customer, language, game) => {
     if (language === 'FI') return 'Voita';
   }
 
-  if (customer === 'Pigu.lt' && language === 'EN') return 'Win ';
-  if (customer === 'Pigu.lt' && language === 'LV') return 'Laimē  ';
-  if (customer === 'Pigu.lt' && language === 'ET') return 'Võida  ';
-  if (customer === 'Pigu.lt' && language === 'FI') return 'Voita  ';
-  if (customer === 'Pigu.lt' && language === 'RU') return 'Выигрывай ';
-  if (customer === 'Pigu.lt' && language === 'LT') return 'Laimėk';
-
-  // Novaturas variations by language
-  if (customer === 'Novaturas' && language === 'LT') return 'Laimėk';
-  if (customer === 'Novaturas' && language === 'LV') return 'Laimē';
-  if (customer === 'Novaturas' && language === 'ET') return 'Võida ';
-  if (customer === 'Novaturas' && language === 'EN') return 'Win ';
-  if (customer === 'Novaturas' && language === 'RU') return 'Выигрывайте ';
-
   // Customer-specific rules
-  if (customer === 'LemonFeel') return '28.AUGUSTĀ';
   if (customer === 'Apranga') return 'LAIMĖKITE';
   if (customer === 'Nevezis') return 'Laimėk';
 
@@ -678,6 +420,7 @@ const getRule4Title = (customer, language, game) => {
   }
 
   // Language-specific defaults
+  if (language === 'LT') return 'Laimėk';
   if (language === 'LV') return 'LAIMĒ';
   if (language === 'ET') return 'VÕIDA';
 
@@ -686,8 +429,8 @@ const getRule4Title = (customer, language, game) => {
 };
 
 // Helper function to get Rule 4 descriptive text based on customer, language, and game
+// Pigu.lt variations by language
 const getRule4Text = (customer, language, game) => {
-  // Pigu.lt variations by language
   if (customer === 'Pigu.lt' && game === 'catch') {
     if (language === 'EN') return 'prizes!';
     if (language === 'LT') return 'prizus!';
@@ -697,48 +440,22 @@ const getRule4Text = (customer, language, game) => {
     if (language === 'FI') return 'palkintoja!';
   }
 
-  if (customer === 'Pigu.lt' && language === 'EN') return 'prizes! ';
-  if (customer === 'Pigu.lt' && language === 'LV') return 'balvas!';
-  if (customer === 'Pigu.lt' && language === 'ET') return 'auhindu!';
-  if (customer === 'Pigu.lt' && language === 'FI') return 'palkintoja!';
-  if (customer === 'Pigu.lt' && language === 'RU') return 'призы!';
-  if (customer === 'Pigu.lt' && language === 'LT') return 'prizus!';
-
-  // Gamtos Ateitis special
-  if (customer.includes('Gamtos Ateitis')) return 'koncertą savo mokyklai!';
-
   // Customer-specific rules
-  if (customer === 'LemonGym') return 'LEMON GYM balvas!';
   if (customer === 'Nevezis') return 'puikius „oho!" prizus!';
-  if (customer === 'Magija') return 'belaides „Magija" ausines, „Magija" </br> sūrelių dėžutę arba „Magija" puodelį!';
-  if (customer === 'Nykstukas') return 'vertingus prizus kas savaitę!';
-  if (customer === 'Orlen') return '1 000 ledų kas savaitę!';
-
-  // Novaturas variations by language
-  if (customer === 'Novaturas' && language === 'LT') return ' „Novaturas" prizus!';
-  if (customer === 'Novaturas' && language === 'LV') return 'Novatours atlaižu kuponus!';
-  if (customer === 'Novaturas' && language === 'ET') return 'Novatoursi auhindu!';
-  if (customer === 'Novaturas' && language === 'EN') return ' „Novaturas" prizus!';
-  if (customer === 'Novaturas' && language === 'RU') return 'призы от Novatours!';
-
-  // LemonFeel special
-  if (customer === 'LemonFeel') return 'apbalvosim labāko spēlētāju';
 
   if (customer === 'Elesen') {
     if (game === 'doodle') {
-      if (language === 'LT') return '';
-      if (language === 'LV') return '';
-      if (language === 'ET') return '';
+      return '';
     }
   }
 
   // Language-specific defaults
-  if (language === 'LT') return 'prizus!';
+  if (language === 'LT') return 'puikius prizus!';
   if (language === 'LV') return 'balvas!';
   if (language === 'ET') return 'auhindu!';
 
   // Default fallback
-  return 'prizes!';
+  return 'great prizes!';
 };
 
 // Rules container
@@ -772,21 +489,7 @@ export class InputContainer {
       this.customer === 'Ikea' ? 'start' : 'center'
     } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${getRulesTitle(this.customer, this.language)}</div>`}</div>
     <div style="width: ${this.isMobile ? '370px' : '390px'};margin-top:10px;margin-bottom:10px;height:${
-      this.customer.includes('Gamtos Ateitis') ||
-      this.customer === 'Nykstukas' ||
-      this.customer === 'LemonGym' ||
-      this.customer === 'Magija' ||
-      this.customer === 'Orlen' ||
-      this.customer === 'Novaturas' ||
-      this.customer === 'Nevezis' ||
-      this.customer === 'Pigu.lt' ||
-      this.customer === 'Zemaitijos Pienas' ||
-      this.customer === 'LemonFeel' ||
-      this.customer === 'Apranga' ||
-      this.customer === 'Elesen' ||
-      this.customer === 'Toni'
-        ? '150px'
-        : '110px'
+      this.customer === 'Nevezis' || this.customer === 'Pigu.lt' || this.customer === 'Apranga' || this.customer === 'Elesen' || this.customer === 'Toni' ? '150px' : '110px'
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
  
           <div style="width:100%; height: 120px; left: 20px; top: 0px; position: absolute">
@@ -810,14 +513,7 @@ export class InputContainer {
               </div>
             </div>
 ${
-  this.customer.includes('Gamtos Ateitis') ||
-  this.customer === 'Nykstukas' ||
-  this.customer === 'Nevezis' ||
-  this.customer === 'Magija' ||
-  this.customer === 'Pigu.lt' ||
-  this.customer === 'Zemaitijos Pienas' ||
-  this.customer === 'Apranga' ||
-  this.customer === 'Elesen'
+  this.customer === 'Nevezis' || this.customer === 'Pigu.lt' || this.customer === 'Apranga' || this.customer === 'Elesen' || this.customer === 'Boomio'
     ? `<div style="left: 1px; top: 110px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word;">
               <span style="white-space: nowrap;">4. ${getRule4Title(this.customer, this.language, this.game)}</span>
               <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700; margin-left:4px; word-wrap: break-word; white-space:normal; line-height:14px;">
@@ -829,31 +525,7 @@ ${
           </div>
         </div>`}</div>
     ${
-      this.customer === 'Barbora' ||
-      this.customer === 'Fpro' ||
-      this.customer === 'Fantazijos' ||
-      this.customer === 'LemonGym' ||
-      this.customer === 'Makalius' ||
-      this.customer === 'Corepetitus' ||
-      this.customer === 'Pieno Žvaigždės' ||
-      this.customer === 'Pegasas' ||
-      this.customer === 'Eurovaistine' ||
-      this.customer.includes('Gamtos Ateitis') ||
-      this.customer === 'Akropolis' ||
-      this.customer === 'Pigu.lt' ||
-      this.customer === 'SaludSA' ||
-      this.customer === 'Vilvi' ||
-      this.customer === 'Zemaitijos Pienas' ||
-      this.customer === 'Ikea' ||
-      this.customer === 'Nykstukas' ||
-      this.customer === 'LemonGym' ||
-      this.customer === 'Nevezis' ||
-      this.customer === 'Magija' ||
-      this.customer === 'Orlen' ||
-      this.customer === 'LemonFeel' ||
-      this.customer === 'Novaturas' ||
-      this.customer === 'Elesen' ||
-      this.customer.includes('demo')
+      this.customer === 'Pigu.lt' || this.customer === 'Nevezis' || this.customer === 'Elesen' || this.customer.includes('demo')
         ? `<div id="startRulesButtonClick" style="align-self: stretch; text-align:center; color: white; font-size: 10px; font-family:${'Georama'}; font-weight: 500; line-height: 21.60px; word-wrap: break-word;"><a target="_blank" rel="noopener noreferrer" ${
             this.customer === 'Novaturas' && this.language === 'LT'
               ? 'href=https://www.novaturas.lt/zaidimo-taisykles'

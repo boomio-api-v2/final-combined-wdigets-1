@@ -360,88 +360,40 @@ export class InputRegisterContainer {
                                                                                                 : this.config.campaignUrlOrCurrentPage.includes('hobbyhall')
                                                                                                   ? privacyPolicytranslations['hobbyhall'][this.language] ||
                                                                                                     privacyPolicytranslations['hobbyhall']['FI']
-                                                                                                  : this.language === 'EN'
-                                                                                                    ? 'I agree to receive '
-                                                                                                    : this.language === 'LV'
-                                                                                                      ? 'Es piekrītu'
-                                                                                                      : this.language === 'ET'
-                                                                                                        ? 'Ma olen nõus'
-                                                                                                        : `Sutinku  ${
-                                                                                                            this.customer === 'LemonGym'
-                                                                                                              ? 'gauti naujienas bei informaciją, laimėjimo atveju, dėl prizų atsiėmimo. '
-                                                                                                              : ''
-                                                                                                          } `
+                                                                                                  : this.language === 'LV'
+                                                                                                    ? 'Es piekrītu'
+                                                                                                    : this.language === 'ET'
+                                                                                                      ? 'Ma olen nõus'
+                                                                                                      : this.language === 'LT'
+                                                                                                        ? 'Sutinku su'
+                                                                                                        : 'I agree with'
         }
     ${
-      this.customer !== 'Barbora' &&
-      this.customer !== 'Fpro' &&
-      this.customer !== 'Fantazijos' &&
-      this.customer !== 'Makalius' &&
-      this.customer !== 'Unisend' &&
-      this.customer !== 'Akropolis' &&
-      this.customer !== 'SaludSA' &&
-      this.customer !== 'Vilvi' &&
-      this.customer !== 'Daumantu' &&
-      this.customer !== 'Toni' &&
-      this.customer !== 'Pigu.lt' &&
-      this.customer !== 'Novaturas' &&
-      this.customer !== 'Perlas GO' &&
-      this.customer !== 'Apranga' &&
-      this.customer !== 'Elesen'
+      this.customer !== 'Akropolis' && this.customer !== 'Toni' && this.customer !== 'Pigu.lt' && this.customer !== 'Apranga' && this.customer !== 'Elesen'
         ? `<a onclick="event.stopPropagation();" target="_blank" href="${
             this.customer === 'Ikea'
               ? 'https://www.ikea.lt/lt/privacy-policy'
-              : this.customer === 'Corepetitus'
-                ? 'https://www.corepetitus.lt/privatumo-politika'
-                : this.customer === 'Eurovaistine'
-                  ? 'https://www.e-euroaptieka.lv/privatuma-politika'
-                  : this.customer === 'Pieno Žvaigždės'
-                    ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
-                    : this.customer === 'Pegasas'
-                      ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
-                      : this.customer?.includes('Gamtos Ateitis')
-                        ? 'https://gamtosateitis.lt/privatumo-politika/'
-                        : this.customer === 'Dentsu'
-                          ? 'https://www.dentsu.com/our-policies/privacy-notices'
-                          : this.customer === 'Zemaitijos Pienas'
-                            ? 'https://www.zpienas.lt/privatumo-politika/'
-                            : this.customer === 'Nevezis'
-                              ? 'https://nevezis.lt/privatumo-politika/'
-                              : this.customer === 'Magija'
-                                ? 'https://www.zpienas.lt/privatumo-politika/'
-                                : this.customer === 'LemonGym' || this.customer === 'LemonFeel'
-                                  ? 'https://www.lemongym.lv/en/privacy-policy/'
-                                  : this.customer === 'Nykstukas'
-                                    ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
-                                    : this.customer === 'Orlen'
-                                      ? 'https://www.orlen.lt/LT/Apie%20mus/Privatumo%20politika/Puslapiai/default.aspx'
-                                      : this.customer === 'Novaturas' && this.language === 'LT'
-                                        ? 'https://www.novaturas.lt/privatumo-politika'
-                                        : this.customer === 'Novaturas' && this.language === 'LV'
-                                          ? 'https://www.novatours.lv/privatuma-politika'
-                                          : this.customer === 'Novaturas' && this.language === 'ET'
-                                            ? 'https://www.novatours.ee/privaatsusteave'
-                                            : ''
+              : this.customer === 'Pieno Žvaigždės'
+                ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
+                : this.customer === 'Pegasas'
+                  ? 'https://www.pegasas.lt/c/privatumas-ir-slapuku-veikla/'
+                  : this.customer === 'Zemaitijos Pienas'
+                    ? 'https://www.zpienas.lt/privatumo-politika/'
+                    : this.customer === 'Nevezis'
+                      ? 'https://nevezis.lt/privatumo-politika/'
+                      : this.customer === 'Nykstukas'
+                        ? 'https://pienozvaigzdes.lt/lt/content/18-privatumo-politika'
+                        : ''
           }" style="color:white;text-decoration: underline; font-size: ${this.isMobile ? '10px' : this.customer === 'Eurovaistine' ? '12px' : '12px'}; ">${
-            this.customer === 'Ikea'
-              ? 'IKEA privatumo politika.'
-              : this.customer === 'Perlas GO'
-                ? 'ir „Perlas Go“ privatumo politika.'
-                : this.customer === 'Eurovaistine'
-                  ? 'privātuma politikai.'
-                  : this.customer === 'Corepetitus'
-                    ? 'Corepetitus privatumo politika.'
-                    : this.language === 'LV' && (this.customer === 'LemonGym' || this.customer === 'LemonFeel')
-                      ? 'privātuma politikai.'
-                      : this.language === 'EN'
-                        ? 'newsletters.'
-                        : this.language === 'LV'
-                          ? 'privātuma politikai.'
-                          : this.language === 'ES'
-                            ? ''
-                            : this.language === 'ET'
-                              ? 'privaatsuspoliitikaga.'
-                              : 'privatumo politika.'
+            this.language === 'LV'
+              ? 'privātuma politikai.'
+              : this.language === 'ES'
+                ? ''
+                : this.language === 'ET'
+                  ? 'privaatsuspoliitikaga.'
+                  : this.language === 'LT'
+                    ? 'privatumo politika.'
+                    : 'privacy policy.'
           }</a> `
         : ''
     }
