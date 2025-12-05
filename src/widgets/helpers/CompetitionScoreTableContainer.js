@@ -23,6 +23,7 @@ const translations = {
   },
 };
 
+//Should be used everywhere (really everywhere)
 export class CompetitionScoreTableContainer {
   constructor(customer, scoreTable) {
     this.customer = customer;
