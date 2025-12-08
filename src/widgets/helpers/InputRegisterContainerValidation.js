@@ -206,7 +206,7 @@ class InputRegisterContainerValidation {
     }
 
     if (this.customer === 'Apranga') {
-      return 'Norėdami tęsti, privalote sutikti su asmens duomenų tvarkymu tiesioginės rinkodaros tikslu';
+      return 'Norint tęsti, privaloma sutikti su įmonės privatumo politika.';
     }
 
     if (this.customer === 'Pigu.lt') {
@@ -230,6 +230,29 @@ class InputRegisterContainerValidation {
       LT: 'Norint tęsti, privaloma sutikti su privatumo politika.',
       ET: 'Et jätkata, peate nõustuma privaatsuspoliitikaga.',
       EN: 'Player must agree to data processing to continue.',
+    };
+
+    return messages[this.language] || messages.EN;
+  }
+
+  /**
+   * Gets localized error message for checkbox2 consent
+   * @returns {string} - Error message in appropriate language
+   */
+  getCheckboxError2Message() {
+    if (this.customer === 'Apranga') {
+      return 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.';
+    }
+
+    // Language-based default messages
+    const messages = {
+      LT: 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.',
+      LV: 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.',
+      RU: 'Игрок должен согласиться на обработку данных, чтобы продолжить.',
+      ET: 'Et jätkata, peate nõustuma uudiskirjade saamisega.',
+      FI: 'Jatkaaksesi sinun on hyväksyttävä uutiskirjeiden vastaanottaminen.',
+      ES: 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.',
+      EN: 'Player must agree to receive newsletters.',
     };
 
     return messages[this.language] || messages.EN;
@@ -345,8 +368,13 @@ class InputRegisterContainerValidation {
       }
     }
 
+    // Error shows in the same place, so don't show both errors simultaneously
     if (Elements.isVisible(Elements.checkbox2)) {
-      this.toggleValidationError(Elements.competitionCheckboxError2, false);
+      if (!checkboxChange2 && !Elements.isVisible(Elements.competitionCheckboxError) && this.customer === 'Apranga') {
+        this.toggleValidationError(Elements.competitionCheckboxError2, true, this.getCheckboxError2Message());
+      } else {
+        this.toggleValidationError(Elements.competitionCheckboxError2, false);
+      }
     }
 
     if (Elements.isVisible(Elements.checkbox3)) {

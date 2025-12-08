@@ -138,6 +138,7 @@ import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { ShareContainer } from '../helpers/ShareContainer';
 import { Elements } from '../helpers/HtmlElementsHelper';
 import { CitySchoolSelect } from '../helpers/CitySchoolSelect';
+import { InputRegisterContainerValidation } from '../helpers/InputRegisterContainerValidation.js';
 
 import './styles.css';
 
@@ -175,6 +176,9 @@ class CrushGame {
     this.campaignUrl = this.config.campaignUrl;
     this.language = this.config.language;
     this.userId = this.config.userId;
+
+    // Create validator instance with current customer and language
+    this.InputValidator = new InputRegisterContainerValidation(this.customer, this.language);
 
     this.gameCount = 0;
     this.shareClicked = false;
@@ -1280,207 +1284,209 @@ background:${getBrandColor(this.customer)};border-radius:35px">
   clickEventHandlerShowRules = () => {
     if (this.gameCount === 0) {
       setTimeout(() => {
-        const emailInput = document.querySelector('.boomio-competition-email-input-field');
-        const playerNameInput = document.querySelector('.boomio-competition-name-input-field');
-        const phoneInput = document.querySelector('.boomio-competition-phone-input-field');
-        const phone = document.querySelector('.boomio-competition-phone-input-field');
-        const phoneValue = phone?.value?.trim();
+        //const emailInput = document.querySelector('.boomio-competition-email-input-field');
+        const nameInput = Elements.nameInput;
+        const phoneInput = Elements.phoneInput;
 
-        const cyrillicRegex = /[\u0400-\u04FF]/;
-        const containsCyrillic = (input) => cyrillicRegex.test(input.value);
-        const isValidEmail = (email) => {
-          // Enhanced regex for email validation with TLD enforcement
-          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-          // Additional check to prevent consecutive dots
-          if (email.includes('..')) {
-            return false;
-          }
-
-          return emailRegex.test(email);
-        };
-        if (containsCyrillic(emailInput)) {
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-        }
-
-        if (containsCyrillic(emailInput)) {
-          document.getElementById('competition-email-error').innerText = this.language === 'LV' ? 'E-pastā ir nederīgas rakstzīmes' : 'El. pašte yra neteisingų simbolių';
-          document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+        if (!this.InputValidator.validateRegistrationInputs()) {
           return;
         }
 
-        if (!this.checkboxChange) {
-          document.getElementById('competition-checkbox-error').innerText =
-            this.language === 'LV'
-              ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-              : this.language === 'ET'
-                ? 'Mängijad peavad nõustuma andmete töötlemisega, et jätkata.'
-                : this.language === 'ES'
-                  ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-                  : this.customer === 'Perlas GO'
-                    ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
-                    : this.customer === 'Vilvi'
-                      ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
-                      : this.customer.includes('Gamtos Ateitis')
-                        ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
-                        : 'Norint tęsti, privaloma sutikti su įmonės privatumo politika. ';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error').style.display = 'block';
-          document.getElementById('competition-checkbox-error').style.height = '18px';
+        // const cyrillicRegex = /[\u0400-\u04FF]/;
+        // const containsCyrillic = (input) => cyrillicRegex.test(input.value);
+        // const isValidEmail = (email) => {
+        //   // Enhanced regex for email validation with TLD enforcement
+        //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-          document.getElementById('competition-name-error').innerText = '';
+        //   // Additional check to prevent consecutive dots
+        //   if (email.includes('..')) {
+        //     return false;
+        //   }
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-phone-error').innerText = '';
+        //   return emailRegex.test(email);
+        // };
+        // if (containsCyrillic(emailInput)) {
+        //   document.getElementById('competition-email-error').innerText = '';
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        // }
 
-          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          return;
-        }
+        // if (containsCyrillic(emailInput)) {
+        //   document.getElementById('competition-email-error').innerText = this.language === 'LV' ? 'E-pastā ir nederīgas rakstzīmes' : 'El. pašte yra neteisingų simbolių';
+        //   document.getElementById('competition-email-error').style.backgroundColor = this.customer === 'Akropolis' && this.language !== 'LV' && '#FFBABA';
+        //   return;
+        // }
 
-        if (!this.checkboxChange2 && (this.customer === 'Toni' || this.customer === 'Apranga')) {
-          document.getElementById('competition-checkbox-error2').innerText =
-            this.customer === 'Toni'
-              ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
-              : this.customer === 'Apranga'
-                ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
-                : this.language === 'LV'
-                  ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
-                  : this.language === 'RU'
-                    ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
-                    : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-checkbox-error2').style.display = 'block';
-          document.getElementById('competition-checkbox-error2').style.height = '18px';
+        // if (!this.checkboxChange) {
+        //   document.getElementById('competition-checkbox-error').innerText =
+        //     this.language === 'LV'
+        //       ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+        //       : this.language === 'ET'
+        //         ? 'Mängijad peavad nõustuma andmete töötlemisega, et jätkata.'
+        //         : this.language === 'ES'
+        //           ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+        //           : this.customer === 'Perlas GO'
+        //             ? 'Norint tęsti, privaloma sutikti su Perlas Go privatumo politika.'
+        //             : this.customer === 'Vilvi'
+        //               ? 'Registruojantis, privaloma sutikti gauti VILVI naujienas - tokiu būdu, laimėjimo atvieju,  susieksime su Jumis bei įteiksime laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.'
+        //               : this.customer.includes('Gamtos Ateitis')
+        //                 ? 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis“  privatumo politika.'
+        //                 : 'Norint tęsti, privaloma sutikti su įmonės privatumo politika. ';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-checkbox-error').style.display = 'block';
+        //   document.getElementById('competition-checkbox-error').style.height = '18px';
 
-          document.getElementById('competition-name-error').innerText = '';
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-phone-error').innerText = '';
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-phone-error').innerText = '';
 
-          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').zIndex = 0;
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-email-error').innerText = '';
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        //   return;
+        // }
 
-          document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
-          return;
-        }
+        // if (!this.checkboxChange2 && (this.customer === 'Toni' || this.customer === 'Apranga')) {
+        //   document.getElementById('competition-checkbox-error2').innerText =
+        //     this.customer === 'Toni'
+        //       ? 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.'
+        //       : this.customer === 'Apranga'
+        //         ? 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.'
+        //         : this.language === 'LV'
+        //           ? 'Spēlētājam ir jāpiekrīt datu apstrādei, lai turpinātu.'
+        //           : this.language === 'RU'
+        //             ? 'Игрок должен согласиться на обработку данных, чтобы продолжить.'
+        //             : 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-checkbox-error2').style.display = 'block';
+        //   document.getElementById('competition-checkbox-error2').style.height = '18px';
 
-        if (emailInput?.value === '' || emailInput?.value === null) {
-          document.getElementById('competition-email-error').innerText =
-            this.language === 'LV'
-              ? 'Obligāti aizpildāmie lauki.'
-              : this.language === 'ET'
-                ? 'Kohustuslikud väljad.'
-                : this.language === 'ES'
-                  ? 'Requerido para continuar.'
-                  : this.language === 'LT'
-                    ? 'Norint tęsti privaloma užpildyti.'
-                    : 'Required to continue.';
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-name-error').innerText = '';
-          document.getElementById('competition-phone-error').innerText = '';
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-          return;
-        }
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-phone-error').innerText = '';
 
-        if ((phoneInput?.value === '' || phoneInput?.value === null) && this.customer === 'Toni') {
-          document.getElementById('competition-phone-error').innerText =
-            this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
-          document.getElementById('competition-phone-error').zIndex = 1;
-          document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-name-error').innerText = '';
+        //   document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-email-error').innerText = '';
+        //   document.getElementById('competition-email-error').zIndex = 0;
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
 
-          document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error2').innerText = '';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error3').innerText = '';
+        //   document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
+        //   return;
+        // }
 
-          document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
-          return;
-        }
+        // if (emailInput?.value === '' || emailInput?.value === null) {
+        //   document.getElementById('competition-email-error').innerText =
+        //     this.language === 'LV'
+        //       ? 'Obligāti aizpildāmie lauki.'
+        //       : this.language === 'ET'
+        //         ? 'Kohustuslikud väljad.'
+        //         : this.language === 'ES'
+        //           ? 'Requerido para continuar.'
+        //           : this.language === 'LT'
+        //             ? 'Norint tęsti privaloma užpildyti.'
+        //             : 'Required to continue.';
+        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-name-error').innerText = '';
+        //   document.getElementById('competition-phone-error').innerText = '';
 
-        if ((playerNameInput?.value === '' || playerNameInput?.value === null) && this.customer === 'Toni') {
-          document.getElementById('competition-name-error').innerText = 'El campo de nombre debe completarse.';
-          document.getElementById('competition-name-error').zIndex = 1;
-          document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-phone-error').innerText = '';
+        //   document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   return;
+        // }
 
-          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-checkbox-error2').innerText = '';
-          document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
+        // if ((phoneInput?.value === '' || phoneInput?.value === null) && this.customer === 'Toni') {
+        //   document.getElementById('competition-phone-error').innerText =
+        //     this.language === 'LV' ? 'Obligāti aizpildāmie lauki.' : this.language === 'ES' ? 'Requerido para continuar.' : 'Norint tęsti privaloma užpildyti.';
+        //   document.getElementById('competition-phone-error').zIndex = 1;
+        //   document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-name-error').innerText = '';
 
-          document.getElementById('competition-checkbox-error3').innerText = '';
-          document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
-          return;
-        }
+        //   document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error2').innerText = '';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
-        if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni') {
-          document.getElementById('competition-email-error').innerText =
-            this.language === 'ES'
-              ? 'Formato de correo electrónico no válido'
-              : this.language === 'EN'
-                ? 'Invalid email format'
-                : this.language === 'RU'
-                  ? 'Неверный формат электронной почты'
-                  : this.language === 'LV'
-                    ? 'Nederīgs e-pasta formāts'
-                    : this.language === 'ET'
-                      ? 'Vigane e-posti vorming'
-                      : this.language === 'FI'
-                        ? 'Virheellinen sähköpostiosoite'
-                        : this.language === 'PL'
-                          ? 'Nieprawidłowy format adresu e-mail'
-                          : 'Neteisingas el. pašto formatas.';
-          document.getElementById('competition-email-error').zIndex = 1;
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-checkbox-error3').innerText = '';
+        //   document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
+        //   return;
+        // }
 
-          document.getElementById('competition-checkbox-error').innerText = '';
-          document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        // if ((playerNameInput?.value === '' || playerNameInput?.value === null) && this.customer === 'Toni') {
+        //   document.getElementById('competition-name-error').innerText = 'El campo de nombre debe completarse.';
+        //   document.getElementById('competition-name-error').zIndex = 1;
+        //   document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-phone-error').innerText = '';
 
-          return;
-        }
-        if (emailInput?.value?.length < 10 && this.customer === 'Toni') {
-          document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
-          document.getElementById('competition-email-error').zIndex = 1;
-          document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-          document.getElementById('competition-email-error').style.height = '20px';
+        //   document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error2').innerText = '';
+        //   document.getElementById('competition-checkbox-error2').style.backgroundColor = 'transparent';
 
-          document.getElementById('competition-phone-error').innerText = '';
-          document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-checkbox-error3').innerText = '';
+        //   document.getElementById('competition-checkbox-error3').style.backgroundColor = 'transparent';
+        //   return;
+        // }
 
-          document.getElementById('competition-phone-error').style.height = '37px';
+        // if (!isValidEmail(emailInput?.value) && this.customer !== 'Toni') {
+        //   document.getElementById('competition-email-error').innerText =
+        //     this.language === 'ES'
+        //       ? 'Formato de correo electrónico no válido'
+        //       : this.language === 'EN'
+        //         ? 'Invalid email format'
+        //         : this.language === 'RU'
+        //           ? 'Неверный формат электронной почты'
+        //           : this.language === 'LV'
+        //             ? 'Nederīgs e-pasta formāts'
+        //             : this.language === 'ET'
+        //               ? 'Vigane e-posti vorming'
+        //               : this.language === 'FI'
+        //                 ? 'Virheellinen sähköpostiosoite'
+        //                 : this.language === 'PL'
+        //                   ? 'Nieprawidłowy format adresu e-mail'
+        //                   : 'Neteisingas el. pašto formatas.';
+        //   document.getElementById('competition-email-error').zIndex = 1;
+        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
 
-          return;
-        }
-        if (phoneInput?.value?.length < 10 && this.customer === 'Toni') {
-          document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
-          document.getElementById('competition-phone-error').style.height = '20px';
+        //   document.getElementById('competition-checkbox-error').innerText = '';
+        //   document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
 
-          document.getElementById('competition-phone-error').zIndex = 1;
-          document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+        //   return;
+        // }
+        // if (emailInput?.value?.length < 10 && this.customer === 'Toni') {
+        //   document.getElementById('competition-email-error').innerText = 'Debes ingresar 10 dígitos.';
+        //   document.getElementById('competition-email-error').zIndex = 1;
+        //   document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
+        //   document.getElementById('competition-email-error').style.height = '20px';
 
-          document.getElementById('competition-email-error').innerText = '';
-          document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-          document.getElementById('competition-email-error').style.height = '37px';
+        //   document.getElementById('competition-phone-error').innerText = '';
+        //   document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
 
-          return;
-        }
+        //   document.getElementById('competition-phone-error').style.height = '37px';
+
+        //   return;
+        // }
+        // if (phoneInput?.value?.length < 10 && this.customer === 'Toni') {
+        //   document.getElementById('competition-phone-error').innerText = 'Debes ingresar 10 dígitos.';
+        //   document.getElementById('competition-phone-error').style.height = '20px';
+
+        //   document.getElementById('competition-phone-error').zIndex = 1;
+        //   document.getElementById('competition-phone-error').style.backgroundColor = '#FFBABA';
+
+        //   document.getElementById('competition-email-error').innerText = '';
+        //   document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
+        //   document.getElementById('competition-email-error').style.height = '37px';
+
+        //   return;
+        // }
 
         if (this.showCompetitiveRegistration && this.checkboxChange) {
           boomioService
@@ -1489,47 +1495,18 @@ background:${getBrandColor(this.customer)};border-radius:35px">
               user_email: this.userId || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
               user_name:
                 this.customer === 'Toni'
-                  ? playerNameInput?.value.trimEnd() + phoneInput?.value
+                  ? nameInput?.value.trimEnd() + phoneInput?.value
                   : this.userId || (Elements.isVisible(Elements.nameInput) && Elements.nameInput?.value?.trim()) || (Elements.isVisible(Elements.emailInput) && Elements.getEmailValue()),
-              ...(phoneValue ? { phone: phoneInput?.value } : {}),
+              ...(phoneInput?.value?.trim() ? { phone: phoneInput?.value } : {}),
               via_mobile: this.campaignUrl ? true : false,
               ...(Elements.isVisible(Elements.schoolSelect) ? { team: Elements?.schoolSelect?.value } : {}),
             })
             .then((response) => {
               if (response.success === false) {
                 if (response.res_code === 'EMAIL_EXIST') {
-                  document.getElementById('competition-email-error').innerText =
-                    this.language === 'LV'
-                      ? 'Šis e-pasts jau pastāv. Izmantojiet citu.'
-                      : this.language === 'ET'
-                        ? 'See e-posti aadress on juba olemas. Kasutage teist.'
-                        : this.language === 'ES'
-                          ? 'Este número ya está en uso. Use el mismo número del registro inicial o uno nuevo.'
-                          : 'Šis el. pašto adresas jau egzistuoja. Naudokite kitą.';
-                  document.getElementById('competition-email-error').style.backgroundColor = '#FFBABA';
-                  document.getElementById('competition-name-error').innerText = '';
-                  document.getElementById('competition-phone-error').innerText = '';
-
-                  document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
-                  document.getElementById('competition-name-error').style.backgroundColor = 'transparent';
-                  document.getElementById('competition-checkbox-error').innerText = '';
-                  document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+                  this.InputValidator.toggleValidationError(Elements.emailError, true, this.InputValidator.getEmailExistsErrorMessage());
                 } else if (response.res_code === 'NICKNAME_EXIST') {
-                  document.getElementById('competition-name-error').innerText =
-                    this.language === 'LV'
-                      ? 'Šis segvārds jau pastāv. Izmantojiet citu.'
-                      : this.language === 'ES'
-                        ? 'Este nombre ya está en uso. Use el mismo nombre del registro inicial o uno nuevo.'
-                        : this.language === 'ET'
-                          ? 'See hüüdnimi on juba olemas. Kasutage teist.'
-                          : 'Šis slapyvardis jau egzistuoja. Naudokite kitą.';
-                  document.getElementById('competition-phone-error').innerText = '';
-                  document.getElementById('competition-name-error').style.backgroundColor = '#FFBABA';
-                  document.getElementById('competition-phone-error').style.backgroundColor = 'transparent';
-                  document.getElementById('competition-email-error').innerText = '';
-                  document.getElementById('competition-email-error').style.backgroundColor = 'transparent';
-                  document.getElementById('competition-checkbox-error').innerText = '';
-                  document.getElementById('competition-checkbox-error').style.backgroundColor = 'transparent';
+                  this.InputValidator.toggleValidationError(Elements.nameError, true, this.InputValidator.getNicknameExistsErrorMessage());
                 }
               } else {
                 this.bestScore = response.user_best_score ?? 0;
