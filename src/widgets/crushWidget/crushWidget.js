@@ -1133,9 +1133,6 @@ background:${getBrandColor(this.customer)};border-radius:35px">
         requestAnimationFrame(animate);
       } else {
         callback();
-        setTimeout(() => {
-          this.isAnimating = false;
-        }, 500); // Set flag to false after animation is complete
       }
     };
 
@@ -1834,19 +1831,19 @@ background:${getBrandColor(this.customer)};border-radius:35px">
     else if (direction === 'right' && col < this.gridCols - 1) target.col += 1;
     else return; // Invalid move
 
+    // Set animation flag immediately
     this.isAnimating = true;
+
     this.animateTileSwap(this.selectedTile, target, () => {
       const matches = this.findMatches();
       if (matches.length > 0) {
-        this.selectedTile = null;
+        this.selectedTile = null; // Clear after successful match
         this.processMatches();
       } else {
         this.animateTileSwap(target, this.selectedTile, () => {
-          this.selectedTile = null;
+          this.selectedTile = null; // Clear after failed swap
           this.drawGrid();
-          setTimeout(() => {
-            this.isAnimating = false;
-          }, 500);
+          this.isAnimating = false;
         });
       }
     });
@@ -1882,9 +1879,6 @@ background:${getBrandColor(this.customer)};border-radius:35px">
         this.swapTiles(tile1, tile2); // Ensure tiles are swapped before checking for matches
         this.drawGrid();
         callback();
-        setTimeout(() => {
-          this.isAnimating = false;
-        }, 500); // Set flag to false after animation is complete
       }
     };
 
@@ -1954,6 +1948,9 @@ background:${getBrandColor(this.customer)};border-radius:35px">
     // Find initial matches in the grid
     const initialMatches = this.findMatches();
     if (initialMatches.length > 0) {
+      // Set animation flag immediately to prevent concurrent processing
+      this.isAnimating = true;
+
       // Expand matches to include all connected cells of the same base color
       let extendedMatches = new Set();
       initialMatches.forEach(({ row, col }) => {
@@ -2026,9 +2023,12 @@ background:${getBrandColor(this.customer)};border-radius:35px">
           this.processMatches(chain + 1);
         });
       });
+    } else {
+      // No matches found - clear animation flag to allow next move
+      this.isAnimating = false;
     }
     if (!this.findFirstPossibleMove()) {
-      console.warn('No more moves left! Regenerating board...');
+      //No more moves left! Regenerating board...
       setTimeout(() => {
         this.generateValidGrid();
         this.drawGrid();
@@ -2127,10 +2127,6 @@ background:${getBrandColor(this.customer)};border-radius:35px">
         requestAnimationFrame(animate);
       } else {
         callback();
-
-        setTimeout(() => {
-          this.isAnimating = false;
-        }, 500); // Set flag to false after animation is complete
       }
     };
     requestAnimationFrame(animate);
