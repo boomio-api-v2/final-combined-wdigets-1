@@ -582,6 +582,7 @@ export class CompetitionScoreTableContainer {
         (this.customer === 'Apranga' && this.scoreTable.user_best_place <= 100) ||
         (this.customer === 'Elesen' && this.scoreTable.user_best_place <= 10) ||
         (this.customer === 'Boomio' && this.scoreTable.user_best_score >= 0) ||
+        (this.customer === 'KakeMake' && this.scoreTable.user_best_score >= 0) ||
         (this.language === 'EN' && this.customer.includes('demo'))
           ? `<div id="boomio-title-win" style="width:100%; top: ${
               this.customer === 'Pigu.lt' ? '410px' : this.customer === 'Akropolis' ? '400px' : '420px'
