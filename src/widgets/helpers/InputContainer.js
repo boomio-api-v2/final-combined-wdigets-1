@@ -556,7 +556,7 @@ export class InputContainer {
               </div>
             </div>
 ${
-  (this.customer === 'Nevezis' || this.customer === 'Pigu.lt' || this.customer === 'Apranga' || this.customer === 'Elesen' || this.customer === 'Boomio') && this.customer !== 'Toni'
+  this.customer !== 'Toni'
     ? `<div style="left: 1px; top: 110px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word;">
               <span style="white-space: nowrap;">4. ${getRule4Title(this.customer, this.language, this.game)}</span>
               <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700; margin-left:4px; word-wrap: break-word; white-space:normal; line-height:14px;">

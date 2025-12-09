@@ -223,9 +223,15 @@ import {
   wh1ImageDataKakeMake,
   wh2ImageDataKakeMake,
   wh3ImageDataKakeMake,
-  city1ImageDataKakeMake,
-  city2ImageDataKakeMake,
-  city3ImageDataKakeMake,
+  city1ImageDataKakeMakeMaxima,
+  city2ImageDataKakeMakeMaxima,
+  city3ImageDataKakeMakeMaxima,
+  city1ImageDataKakeMakeLidl,
+  city2ImageDataKakeMakeLidl,
+  city3ImageDataKakeMakeLidl,
+  city1ImageDataKakeMakeRimi,
+  city2ImageDataKakeMakeRimi,
+  city3ImageDataKakeMakeRimi,
   cloudsImageDataKakeMake,
   lineKakeMake,
   treeKakeMake1,
@@ -237,7 +243,6 @@ import {
   envelopeImageDataKakeMake1,
   envelopeImageDataKakeMake2,
   envelopeImageDataKakeMake3,
-  envelopeImageDataKakeMake4,
 } from './constants';
 
 function startGame(scoreTableContainerInstance, didYouKnowContainer, competitionCodeScoreTableContainerPigu, type) {
@@ -269,8 +274,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   // Create validator instance with current customer and language
   const InputValidator = new InputRegisterContainerValidation(customer, language);
 
-  let campaignUrl = config.campaignUrl ? config.campaignUrl : '';
+  const campaignUrl = config.campaignUrl ? config.campaignUrl : '';
   const campaignUrlProp = campaignUrl ? campaignUrl : '';
+  const campaignUrlOrCurrentPage = config.campaignUrlOrCurrentPage;
 
   let scoreTable = {};
   let gameCount = 0;
@@ -290,6 +296,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   canvas.width = width;
   const SPRITE_DIMENSIONS = 32;
   const BIG_SPRITE_DIMENSIONS = 64;
+  const BIG_SPRITE_DIMENSIONS_85 = 85;
   const HOUSE_BIG_SPRITE_DIMENSIONS = 128;
   const JUMP_VELOCITY = -4;
   const GRAVITY = 0.3;
@@ -491,35 +498,28 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const goldImage3GamtosAteitis = new Image();
   goldImage3GamtosAteitis.src = type === 1 ? goldImageData3GamtosAteitisPopierius : type === 2 ? goldImageData3GamtosAteitisStiklas : goldImageData3GamtosAteitisPlastikas;
 
-  const envelopeImageGamtosAteitis = new Image();
-  envelopeImageGamtosAteitis.src = type === 1 ? envelopeImageDataGamtosAteitisPopierius : type === 2 ? envelopeImageDataGamtosAteitisStiklas : envelopeImageDataGamtosAteitisPlastikas;
-  const envelopeImage2GamtosAteitis = new Image();
-  envelopeImage2GamtosAteitis.src = type === 1 ? envelopeImageData2GamtosAteitisPopierius : type === 2 ? envelopeImageData2GamtosAteitisStiklas : envelopeImageData2GamtosAteitisPlastikas;
-  const envelopeImage3GamtosAteitis = new Image();
-  envelopeImage3GamtosAteitis.src = type === 1 ? envelopeImageData3GamtosAteitisPopierius : type === 2 ? envelopeImageData3GamtosAteitisStiklas : envelopeImageData3GamtosAteitisPlastikas;
+  // Helper function to create image from source
+  const createImage = (src) => {
+    const img = new Image();
+    img.src = src;
+    return img;
+  };
 
-  const envelopeImage4GamtosAteitis = new Image();
-  envelopeImage4GamtosAteitis.src = type === 1 ? envelopeImageData4GamtosAteitisPopierius : type === 2 ? envelopeImageData4GamtosAteitisStiklas : envelopeImageData4GamtosAteitisPlastikas;
-
-  const envelopeImageToni1 = new Image();
-  envelopeImageToni1.src = envelopeImageDataToni1;
-  const envelopeImageToni2 = new Image();
-  envelopeImageToni2.src = envelopeImageDataToni2;
-  const envelopeImageToni3 = new Image();
-  envelopeImageToni3.src = envelopeImageDataToni3;
-  const envelopeImageToni4 = new Image();
-  envelopeImageToni4.src = envelopeImageDataToni4;
-  const envelopeImageToni5 = new Image();
-  envelopeImageToni5.src = envelopeImageDataToni5;
-
-  const envelopeImageKakeMake1 = new Image();
-  envelopeImageKakeMake1.src = envelopeImageDataKakeMake1;
-  const envelopeImageKakeMake2 = new Image();
-  envelopeImageKakeMake2.src = envelopeImageDataKakeMake2;
-  const envelopeImageKakeMake3 = new Image();
-  envelopeImageKakeMake3.src = envelopeImageDataKakeMake3;
-  const envelopeImageKakeMake4 = new Image();
-  envelopeImageKakeMake4.src = envelopeImageDataKakeMake4;
+  // Create envelope images array per customer
+  const envelopeImagesStrings =
+    customer === 'Gamtos Ateitis'
+      ? [
+          type === 1 ? envelopeImageDataGamtosAteitisPopierius : type === 2 ? envelopeImageDataGamtosAteitisStiklas : envelopeImageDataGamtosAteitisPlastikas,
+          type === 1 ? envelopeImageData2GamtosAteitisPopierius : type === 2 ? envelopeImageData2GamtosAteitisStiklas : envelopeImageData2GamtosAteitisPlastikas,
+          type === 1 ? envelopeImageData3GamtosAteitisPopierius : type === 2 ? envelopeImageData3GamtosAteitisStiklas : envelopeImageData3GamtosAteitisPlastikas,
+          type === 1 ? envelopeImageData4GamtosAteitisPopierius : type === 2 ? envelopeImageData4GamtosAteitisStiklas : envelopeImageData4GamtosAteitisPlastikas,
+        ]
+      : customer === 'Toni'
+        ? [envelopeImageDataToni1, envelopeImageDataToni2, envelopeImageDataToni3, envelopeImageDataToni4, envelopeImageDataToni5]
+        : customer === 'KakeMake'
+          ? [envelopeImageDataKakeMake1, envelopeImageDataKakeMake2, envelopeImageDataKakeMake3]
+          : [];
+  const envelopeImages = envelopeImagesStrings.map(createImage);
 
   const goldImage = new Image();
   goldImage.src =
@@ -971,11 +971,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? city1ImageDataNovaturas
                     : customer === 'Toni'
                       ? city1ImageDataToni
-                      : customer === 'KakeMake'
-                        ? city1ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? city1ImageDataBoomio
-                          : city1ImageData;
+                      : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('maxima')
+                        ? city1ImageDataKakeMakeMaxima
+                        : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('lidl')
+                          ? city1ImageDataKakeMakeLidl
+                          : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('rimi')
+                            ? city1ImageDataKakeMakeRimi
+                            : customer === 'Boomio'
+                              ? city1ImageDataBoomio
+                              : city1ImageData;
   city2.src =
     customer === 'Barbora'
       ? city2ImageDataBarbora
@@ -995,11 +999,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? city2ImageDataNovaturas
                     : customer === 'Toni'
                       ? city2ImageDataToni
-                      : customer === 'KakeMake'
-                        ? city2ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? city2ImageDataBoomio
-                          : city2ImageData;
+                      : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('maxima')
+                        ? city2ImageDataKakeMakeMaxima
+                        : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('lidl')
+                          ? city2ImageDataKakeMakeLidl
+                          : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('rimi')
+                            ? city2ImageDataKakeMakeRimi
+                            : customer === 'Boomio'
+                              ? city2ImageDataBoomio
+                              : city2ImageData;
   city3.src =
     customer === 'Barbora'
       ? city3ImageDataBarbora
@@ -1019,11 +1027,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? city3ImageDataNovaturas
                     : customer === 'Toni'
                       ? city3ImageDataToni
-                      : customer === 'KakeMake'
-                        ? city3ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? city3ImageDataBoomio
-                          : city3ImageData;
+                      : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('maxima')
+                        ? city3ImageDataKakeMakeMaxima
+                        : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('lidl')
+                          ? city3ImageDataKakeMakeLidl
+                          : customer === 'KakeMake' && campaignUrlOrCurrentPage.includes('rimi')
+                            ? city3ImageDataKakeMakeRimi
+                            : customer === 'Boomio'
+                              ? city3ImageDataBoomio
+                              : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
@@ -1320,36 +1332,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   });
 
   function createLeftMailbox() {
-    randomNumber = (randomNumber + 1) % (customer === 'Toni' ? 5 : 4);
     return {
-      image:
-        customer === 'Gamtos Ateitis'
-          ? randomNumber === 0
-            ? envelopeImageGamtosAteitis
-            : randomNumber === 1
-              ? envelopeImage2GamtosAteitis
-              : randomNumber === 2
-                ? envelopeImage3GamtosAteitis
-                : envelopeImage4GamtosAteitis
-          : customer === 'Toni'
-            ? randomNumber === 0
-              ? envelopeImageToni1
-              : randomNumber === 1
-                ? envelopeImageToni2
-                : randomNumber === 2
-                  ? envelopeImageToni3
-                  : randomNumber === 3
-                    ? envelopeImageToni4
-                    : envelopeImageToni5
-            : customer === 'KakeMake'
-              ? randomNumber === 0
-                ? envelopeImageKakeMake1
-                : randomNumber === 1
-                  ? envelopeImageKakeMake2
-                  : randomNumber === 2
-                    ? envelopeImageKakeMake3
-                    : envelopeImageKakeMake4
-              : leftMailboxImage,
+      image: envelopeImages.length > 0 ? envelopeImages[Math.floor(Math.random() * envelopeImages.length)] : leftMailboxImage,
       pos: {
         x: randomIntBetween(-ROAD_SPRITE_SPAWN_X, ROAD_SPRITE_SPAWN_X),
         y: 0,
@@ -1365,7 +1349,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       lastOnScreenAt: null,
       roadPercent: random(),
       active: false,
-      dimensions: customer === 'Toni' || customer === 'KakeMake' ? 85 : BIG_SPRITE_DIMENSIONS,
+      dimensions: customer === 'Toni' || customer === 'KakeMake' ? BIG_SPRITE_DIMENSIONS_85 : BIG_SPRITE_DIMENSIONS,
       debug: false,
     };
   }
@@ -1428,7 +1412,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       lastOnScreenAt: null,
       roadPercent: random(),
       active: false,
-      dimensions: customer === 'Toni' || customer === 'KakeMake' ? 85 : BIG_SPRITE_DIMENSIONS,
+      dimensions: customer === 'Toni' || customer === 'KakeMake' ? BIG_SPRITE_DIMENSIONS_85 : BIG_SPRITE_DIMENSIONS,
       debug: false,
     };
   });

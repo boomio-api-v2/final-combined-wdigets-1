@@ -552,16 +552,7 @@ export class CompetitionScoreTableContainer {
 
     let textColor = 'white';
     let fontSize = '14px';
-    let fontWeight =
-      this.customer === 'Barbora' ||
-      this.customer === 'Fpro' ||
-      this.customer === 'Vilvi' ||
-      this.customer === 'Fantazijos' ||
-      this.customer.includes('Gamtos Ateitis') ||
-      this.customer === 'Pieno Žvaigždės' ||
-      this.customer === 'LemonGym'
-        ? '900'
-        : '700';
+    let fontWeight = this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' ? '900' : '700';
     let scoreboardText = `
       ${
         (this.customer === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
