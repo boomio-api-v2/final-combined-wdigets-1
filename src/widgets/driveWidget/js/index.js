@@ -288,7 +288,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const MAX_FUNDING_BAR = width - UI_PADDING * 2;
   const HIT_TIME = 1.5;
   const FLASH_TIME = 0.25;
-  const ANIMATION_TIME = 0.25;
+  const ANIMATION_TIME = customer === 'KakeMake' ? 3 : 0.25;
   const INSTRUCTIONS_FLASH_TIME = 5;
   const MAILBOX_HIT_AMOUNT = 5;
   const GOLD_HIT_AMOUNT = 5;
