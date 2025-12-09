@@ -3191,13 +3191,21 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         //   break;
       }
     });
-    document.getElementById('boomio-drive-canvas')?.addEventListener('touchstart', (e) => {
-      pointerDown(e.touches[0].clientX);
-    });
+    document.getElementById('boomio-drive-canvas')?.addEventListener(
+      'touchstart',
+      (e) => {
+        pointerDown(e.touches[0].clientX);
+      },
+      { passive: true },
+    );
 
-    document.getElementById('boomio-drive-canvas')?.addEventListener('touchend', () => {
-      pointerUp();
-    });
+    document.getElementById('boomio-drive-canvas')?.addEventListener(
+      'touchend',
+      () => {
+        pointerUp();
+      },
+      { passive: true },
+    );
 
     document.getElementById('boomio-drive-canvas')?.addEventListener('mousedown', (e) => {
       pointerDown(e.clientX);
@@ -3208,9 +3216,13 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       pointerMove(e.clientX);
     });
 
-    document.getElementById('boomio-drive-canvas')?.addEventListener('touchmove', (e) => {
-      pointerMove(e.touches[0].clientX);
-    });
+    document.getElementById('boomio-drive-canvas')?.addEventListener(
+      'touchmove',
+      (e) => {
+        pointerMove(e.touches[0].clientX);
+      },
+      { passive: true },
+    );
 
     document.getElementById('boomio-drive-canvas')?.addEventListener('mouseup', () => {
       pointerUp();
