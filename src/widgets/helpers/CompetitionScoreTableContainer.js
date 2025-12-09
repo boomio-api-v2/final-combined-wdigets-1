@@ -552,16 +552,7 @@ export class CompetitionScoreTableContainer {
 
     let textColor = 'white';
     let fontSize = '14px';
-    let fontWeight =
-      this.customer === 'Barbora' ||
-      this.customer === 'Fpro' ||
-      this.customer === 'Vilvi' ||
-      this.customer === 'Fantazijos' ||
-      this.customer.includes('Gamtos Ateitis') ||
-      this.customer === 'Pieno Žvaigždės' ||
-      this.customer === 'LemonGym'
-        ? '900'
-        : '700';
+    let fontWeight = this.customer.includes('Gamtos Ateitis') || this.customer === 'Pieno Žvaigždės' ? '900' : '700';
     let scoreboardText = `
       ${
         (this.customer === 'Fantazijos' && this.scoreTable.user_best_score > 500) ||
@@ -582,6 +573,7 @@ export class CompetitionScoreTableContainer {
         (this.customer === 'Apranga' && this.scoreTable.user_best_place <= 100) ||
         (this.customer === 'Elesen' && this.scoreTable.user_best_place <= 10) ||
         (this.customer === 'Boomio' && this.scoreTable.user_best_score >= 0) ||
+        (this.customer === 'KakeMake' && this.scoreTable.user_best_score >= 0) ||
         (this.language === 'EN' && this.customer.includes('demo'))
           ? `<div id="boomio-title-win" style="width:100%; top: ${
               this.customer === 'Pigu.lt' ? '410px' : this.customer === 'Akropolis' ? '400px' : '420px'

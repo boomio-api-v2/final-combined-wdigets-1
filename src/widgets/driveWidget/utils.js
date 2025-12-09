@@ -4,7 +4,7 @@
  * @returns {boolean} True if customer uses life-based gameplay
  */
 export const isLifeCustomer = (customer) => {
-  return customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' || customer === 'Toni';
+  return customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'Orlen' || customer === 'Novaturas' || customer === 'Toni' || customer === 'Boomio' || customer === 'KakeMake';
 };
 
 /**
@@ -21,5 +21,7 @@ export const getBrandColor = (customer) => {
   if (customer === 'Orlen') return '#EF1C1D';
   if (customer === 'Novaturas') return '#32A1DA';
   if (customer === 'Toni') return '#5E2B17';
+  if (customer === 'Boomio') return '#5E2B17';
+  if (customer === 'KakeMake') return '#7CAC32';
   return '#FFE92D'; // Default
 };
