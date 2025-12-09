@@ -1597,17 +1597,17 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       gameContainer.appendChild(this.rulesContainerPigu.containerDiv);
     }
     if (this.showCompetitiveRegistration) {
-      const isValidEmail = (email) => {
-        // Enhanced regex for email validation with TLD enforcement
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      // const isValidEmail = (email) => {
+      //   // Enhanced regex for email validation with TLD enforcement
+      //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-        // Additional check to prevent consecutive dots
-        if (email.includes('..')) {
-          return false;
-        }
+      //   // Additional check to prevent consecutive dots
+      //   if (email.includes('..')) {
+      //     return false;
+      //   }
 
-        return emailRegex.test(email);
-      };
+      //   return emailRegex.test(email);
+      // };
 
       const clickEventHandlerShowRules = () => {
         if (this.gameCount === 0) {

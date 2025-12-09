@@ -189,22 +189,6 @@ class InputRegisterContainerValidation {
    */
   getCheckboxErrorMessage() {
     // Customer-specific messages
-    if (this.customer === 'Daumantu') {
-      return 'Registruojantis, privaloma sutikti gauti "Daumantų" naujienas, kad atiduotume  laimėtą prizą, o pasibaigus Žaidimui siųsime naujienas.';
-    }
-
-    if (this.customer === 'Zemaitijos Pienas') {
-      return 'Norint tęsti, privaloma sutikti su „Žemaitijos pienas" privatumo politika.';
-    }
-
-    if (this.customer === 'Akropolis' && this.language === 'LV') {
-      return 'Spēlētājam ir jāpiekrīt spēles noteikumiem un datu apstrādei, lai turpinātu.';
-    }
-
-    if (this.customer.includes('Gamtos Ateitis')) {
-      return 'Norint tęsti, privaloma sutikti su Gamintojų ir importuotojų asociacijos „Gamtos ateitis"  privatumo politika.';
-    }
-
     if (this.customer === 'Apranga') {
       return 'Norint tęsti, privaloma sutikti su įmonės privatumo politika.';
     }
@@ -229,7 +213,7 @@ class InputRegisterContainerValidation {
       FI: 'Jatkaaksesi sinun on hyväksyttävä yrityksen tietosuojakäytäntö.',
       LT: 'Norint tęsti, privaloma sutikti su privatumo politika.',
       ET: 'Et jätkata, peate nõustuma privaatsuspoliitikaga.',
-      EN: 'Player must agree to data processing to continue.',
+      EN: 'To continue, you must agree to the privacy policy.',
     };
 
     return messages[this.language] || messages.EN;
@@ -244,6 +228,19 @@ class InputRegisterContainerValidation {
       return 'Norėdami tęsti, privalote sutikti su žaidimo taisyklėmis.';
     }
 
+    if (this.customer === 'Pigu.lt') {
+      const piguMessages = {
+        LT: 'Norint tęsti privaloma sutikti su žaidimo taisyklėmis.',
+        LV: 'Lai turpinātu, ir obligāti jāpiekrīt spēles noteikumiem.',
+        RU: 'Чтобы продолжить, необходимо согласиться с правилами игры.',
+        ET: 'Jätkamiseks nõustu mängureeglitega.',
+        FI: 'Jatkaaksesi sinun on hyväksyttävä pelisäännöt.',
+      };
+      if (piguMessages[this.language]) {
+        return piguMessages[this.language];
+      }
+    }
+
     // Language-based default messages
     const messages = {
       LT: 'Norint tęsti, privaloma sutikti gauti naujienlaiškius.',
@@ -252,7 +249,7 @@ class InputRegisterContainerValidation {
       ET: 'Et jätkata, peate nõustuma uudiskirjade saamisega.',
       FI: 'Jatkaaksesi sinun on hyväksyttävä uutiskirjeiden vastaanottaminen.',
       ES: 'Para continuar, debe declarar que es mayor a 13 años y aceptar los términos y condiciones.',
-      EN: 'Player must agree to receive newsletters.',
+      EN: 'To continue, you must agree to receive newsletters.',
     };
 
     return messages[this.language] || messages.EN;
@@ -370,7 +367,7 @@ class InputRegisterContainerValidation {
 
     // Error shows in the same place, so don't show both errors simultaneously
     if (Elements.isVisible(Elements.checkbox2)) {
-      if (!checkboxChange2 && !Elements.isVisible(Elements.competitionCheckboxError) && this.customer === 'Apranga') {
+      if (!checkboxChange2 && !Elements.isVisible(Elements.competitionCheckboxError) && (this.customer === 'Apranga' || this.customer === 'Pigu.lt')) {
         this.toggleValidationError(Elements.competitionCheckboxError2, true, this.getCheckboxError2Message());
       } else {
         this.toggleValidationError(Elements.competitionCheckboxError2, false);

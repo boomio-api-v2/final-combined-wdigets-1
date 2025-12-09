@@ -1320,7 +1320,6 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
                       this.InputValidator.toggleValidationError(Elements.nameError, true, this.InputValidator.getNicknameExistsErrorMessage());
                     } else if (response.res_code === 'TEAM_FULL' && this.customer === 'Nykstukas') {
                       this.InputValidator.toggleValidationError(Elements.checkboxError, true, 'Ši komanda yra pilna. Naudokite kitą.');
-                      this.InputValidator.toggleValidationError(Elements.nameError, false);
                     }
                   } else {
                     this.bestScore = response.user_best_score;
