@@ -945,7 +945,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               ? '#FFFFFF'
               : customer === 'Novaturas'
                 ? '#814C63'
-                : '#FFFFFF';
+                : customer === 'KakeMake'
+                  ? '#2E2B2A'
+                  : '#FFFFFF';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
       ? '#FFCA00'
@@ -962,7 +964,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 : customer === 'Toni'
                   ? '#5E2B17'
                   : customer === 'KakeMake'
-                    ? '#7CAC32'
+                    ? '#F2CE00'
                     : '#F24434';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
