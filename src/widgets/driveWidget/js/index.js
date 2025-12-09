@@ -1007,7 +1007,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   : customer === 'Toni'
                     ? '#ECDCC1'
                     : customer === 'KakeMake'
-                      ? '#BEBDC3'
+                      ? '#DDCCA4'
                       : 'black';
 
   const maxWhiteLineWidthPercent = 0.01;
@@ -2161,7 +2161,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     : customer === 'Toni'
                       ? '#7D3D1B'
                       : customer === 'KakeMake'
-                        ? '#7CAC32'
+                        ? '#9BC04B'
                         : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
