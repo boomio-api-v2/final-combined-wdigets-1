@@ -240,7 +240,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   const campaignUrl = config.campaignUrl ? config.campaignUrl : '';
   const campaignUrlProp = campaignUrl ? campaignUrl : '';
-  const campaignUrlOrCurrentPage = config.campaignUrlOrCurrentPage;  
+  const campaignUrlOrCurrentPage = config.campaignUrlOrCurrentPage;
 
   let scoreTable = {};
   let gameCount = 0;
