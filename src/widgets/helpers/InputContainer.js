@@ -532,7 +532,7 @@ export class InputContainer {
       this.customer === 'Ikea' ? 'start' : 'center'
     } ;font-size: 30px;font-style: normal;font-weight: 700;line-height: 130%; /* 52px */letter-spacing: -0.16px;text-transform: uppercase;">${getRulesTitle(this.customer, this.language)}</div>`}</div>
     <div style="width: ${this.isMobile ? '370px' : '390px'};margin-top:10px;margin-bottom:10px;height:${
-      this.customer === 'Nevezis' || this.customer === 'Pigu.lt' || this.customer === 'Apranga' || this.customer === 'Elesen' || this.customer === 'Toni' ? '150px' : '110px'
+      this.customer === 'Nevezis' || this.customer === 'Pigu.lt' || this.customer === 'Apranga' || this.customer === 'Elesen' || this.customer === 'Toni' ? '150px' : '150px'
     }; color: white; font-size: 14px;font-weight: 700; line-height: 35.20px; word-wrap: break-word;text-align:start;"> ${`<div style="width: 100%; height: 120px; position: relative">
  
           <div style="width:100%; height: 120px; left: 20px; top: 0px; position: absolute">

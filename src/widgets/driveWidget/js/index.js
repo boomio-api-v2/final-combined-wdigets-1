@@ -199,22 +199,22 @@ import {
   envelopeImageDataToni3,
   envelopeImageDataToni4,
   envelopeImageDataToni5,
-  // backgroundBoomio,
-  // wh1ImageDataBoomio,
-  // wh2ImageDataBoomio,
-  // wh3ImageDataBoomio,
-  // city1ImageDataBoomio,
-  // city2ImageDataBoomio,
-  // city3ImageDataBoomio,
-  // cloudsImageDataBoomio,
-  // lineBoomio,
-  // treeBoomio1,
-  // treeBoomio2,
-  // backgroundFullBoomio,
-  // carBoomio,
-  // signBoomio,
-  // goldImageDataBoomio,
-  // envelopeImageDataBoomio1,
+  backgroundBoomio,
+  wh1ImageDataBoomio,
+  wh2ImageDataBoomio,
+  wh3ImageDataBoomio,
+  city1ImageDataBoomio,
+  city2ImageDataBoomio,
+  city3ImageDataBoomio,
+  cloudsImageDataBoomio,
+  lineBoomio,
+  treeBoomio1,
+  treeBoomio2,
+  backgroundFullBoomio,
+  carBoomio,
+  signBoomio,
+  goldImageDataBoomio,
+  envelopeImageDataBoomio1,
   // envelopeImageDataBoomio2,
   // envelopeImageDataBoomio3,
   // envelopeImageDataBoomio4,
@@ -403,13 +403,15 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                       ? carNovaturas
                       : customer === 'Toni'
                         ? carToni
-                        : customer === 'Gamtos Ateitis'
-                          ? type === 1
-                            ? carImageDataGamtosAteitisPopierius
-                            : type === 2
-                              ? carImageDataGamtosAteitisStiklas
-                              : carImageDataGamtosAteitisPlastikas
-                          : carImageData;
+                        : customer === 'Boomio'
+                          ? carBoomio
+                          : customer === 'Gamtos Ateitis'
+                            ? type === 1
+                              ? carImageDataGamtosAteitisPopierius
+                              : type === 2
+                                ? carImageDataGamtosAteitisStiklas
+                                : carImageDataGamtosAteitisPlastikas
+                            : carImageData;
 
   // const rightMailboxImage = new Image();
   // rightMailboxImage.src =
@@ -449,7 +451,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   ? envelopeImageDataNovaturas
                   : customer === 'Toni'
                     ? envelopeImageDataToni1
-                    : mailboxImageData;
+                    : customer === 'Boomio'
+                      ? envelopeImageDataBoomio1
+                      : mailboxImageData;
 
   const goldImageUnisendLV1 = new Image();
   goldImageUnisendLV1.src = goldImageDataUnisendLV1;
@@ -508,7 +512,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                         ? goldImageDataNovaturas
                         : customer === 'Toni'
                           ? goldImageDataToni
-                          : goldImageData;
+                          : customer === 'Boomio'
+                            ? goldImageDataBoomio
+                            : goldImageData;
 
   const wallImage = new Image();
   wallImage.src =
@@ -526,11 +532,13 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? signNovaturas
                 : customer === 'Toni'
                   ? signToni
-                  : customer === 'Gamtos Ateitis'
-                    ? brickWallImageDataGamtosAteitis
-                    : customer === 'Orlen'
-                      ? brickWallImageDataOrlen
-                      : brickWallImageData;
+                  : customer === 'Boomio'
+                    ? signBoomio
+                    : customer === 'Gamtos Ateitis'
+                      ? brickWallImageDataGamtosAteitis
+                      : customer === 'Orlen'
+                        ? brickWallImageDataOrlen
+                        : brickWallImageData;
 
   const envelopeImage = new Image();
   envelopeImage.src =
@@ -548,7 +556,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? envelopeImageDataNovaturas
                 : customer === 'Toni'
                   ? envelopeImageDataToni1
-                  : envelopeImageData;
+                  : customer === 'Boomio'
+                    ? envelopeImageDataBoomio1
+                    : envelopeImageData;
 
   const cloudsImage = new Image();
   cloudsImage.src =
@@ -566,7 +576,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 ? cloudsImageDataNovaturas
                 : customer === 'Toni'
                   ? cloudsImageDataToni
-                  : cloudsImageData;
+                  : customer === 'Boomio'
+                    ? cloudsImageDataBoomio
+                    : cloudsImageData;
 
   const treeImage =
     customer === 'Barbora'
@@ -685,13 +697,26 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                         return img;
                       })(),
                     ]
-                  : [
-                      (() => {
-                        const img = new Image();
-                        img.src = customer === 'Unisend' ? treeUnisend : treeImageData;
-                        return img;
-                      })(),
-                    ];
+                  : customer === 'Boomio'
+                    ? [
+                        (() => {
+                          const img = new Image();
+                          img.src = treeBoomio1;
+                          return img;
+                        })(),
+                        (() => {
+                          const img = new Image();
+                          img.src = treeBoomio2;
+                          return img;
+                        })(),
+                      ]
+                    : [
+                        (() => {
+                          const img = new Image();
+                          img.src = customer === 'Unisend' ? treeUnisend : treeImageData;
+                          return img;
+                        })(),
+                      ];
 
   const wh1 = new Image();
   const wh2 = new Image();
@@ -719,7 +744,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? wh1ImageDataNovaturas
                     : customer === 'Toni'
                       ? wh1ImageDataToni
-                      : wh1ImageData;
+                      : customer === 'Boomio'
+                        ? wh1ImageDataBoomio
+                        : wh1ImageData;
   wh2.src =
     customer === 'Barbora'
       ? wh2ImageDataBarbora
@@ -739,7 +766,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? wh2ImageDataNovaturas
                     : customer === 'Toni'
                       ? wh2ImageDataToni
-                      : wh2ImageData;
+                      : customer === 'Boomio'
+                        ? wh2ImageDataBoomio
+                        : wh2ImageData;
   wh3.src =
     customer === 'Barbora'
       ? wh3ImageDataBarbora
@@ -759,7 +788,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? wh3ImageDataNovaturas
                     : customer === 'Toni'
                       ? wh3ImageDataToni
-                      : wh3ImageData;
+                      : customer === 'Boomio'
+                        ? wh3ImageDataBoomio
+                        : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
       ? lineBarbora
@@ -779,7 +810,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? lineNovaturas
                     : customer === 'Toni'
                       ? lineToni
-                      : line;
+                      : customer === 'Boomio'
+                        ? lineBoomio
+                        : line;
 
   backgroundImg.src =
     customer === 'Barbora'
@@ -800,7 +833,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? backgroundNovaturas
                     : customer === 'Toni'
                       ? backgroundToni
-                      : background;
+                      : customer === 'Boomio'
+                        ? backgroundBoomio
+                        : background;
   backgroundImg2.src =
     customer === 'Barbora'
       ? backgroundBarbora2
@@ -820,7 +855,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? backgroundNovaturas
                     : customer === 'Toni'
                       ? backgroundToni
-                      : background;
+                      : customer === 'Boomio'
+                        ? backgroundBoomio
+                        : background;
 
   const backgroundImage = new Image();
   backgroundImage.src =
@@ -834,7 +871,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             ? backgroundFullNovaturas
             : customer === 'Toni'
               ? backgroundFullToni
-              : background1Pigu;
+              : customer === 'Boomio'
+                ? backgroundFullBoomio
+                : background1Pigu;
 
   let backgroundImageLoaded = false;
   backgroundImage.onload = () => {
@@ -863,7 +902,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? city1ImageDataNovaturas
                     : customer === 'Toni'
                       ? city1ImageDataToni
-                      : city1ImageData;
+                      : customer === 'Boomio'
+                        ? city1ImageDataBoomio
+                        : city1ImageData;
   city2.src =
     customer === 'Barbora'
       ? city2ImageDataBarbora
@@ -883,7 +924,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? city2ImageDataNovaturas
                     : customer === 'Toni'
                       ? city2ImageDataToni
-                      : city2ImageData;
+                      : customer === 'Boomio'
+                        ? city2ImageDataBoomio
+                        : city2ImageData;
   city3.src =
     customer === 'Barbora'
       ? city3ImageDataBarbora
@@ -903,7 +946,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     ? city3ImageDataNovaturas
                     : customer === 'Toni'
                       ? city3ImageDataToni
-                      : city3ImageData;
+                      : customer === 'Boomio'
+                        ? city3ImageDataBoomio
+                        : city3ImageData;
 
   const whStartPos = width / 2 - (BIG_SPRITE_DIMENSIONS * 3) / 2 + BIG_SPRITE_DIMENSIONS / 2;
   // resize();
@@ -1404,22 +1449,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     drawTitleScreen();
   }
 
-  async function hashString(message) {
-    if (!message) {
-      throw new Error('Invalid input: Cannot hash an empty or undefined string.');
-    }
-
-    const msgBuffer = new TextEncoder().encode(message);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map((byte) => byte.toString(16).padStart(2, '0')).join('');
-    return hashHex;
-  }
-
   async function clickEventHandlerShowRules() {
     if (gameCount === 0) {
       setTimeout(async () => {
-        const emailInput = Elements.emailInput;
         const nameInput = Elements.nameInput;
         const phoneInput = Elements.phoneInput;
         const schoolInput = document.querySelector('.boomio-competition-school-select');
