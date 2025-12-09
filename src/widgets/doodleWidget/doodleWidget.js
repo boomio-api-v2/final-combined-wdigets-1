@@ -453,8 +453,8 @@ class DoodleWidget {
         this.player.isMovingRight = false;
       };
 
-      document.addEventListener('touchstart', this.eventListeners.touchstart);
-      document.addEventListener('touchend', this.eventListeners.touchend);
+      document.addEventListener('touchstart', this.eventListeners.touchstart, { passive: true });
+      document.addEventListener('touchend', this.eventListeners.touchend, { passive: true });
 
       // Mobile button controls only (not touch on canvas)
       const leftButton = document.getElementById('doodle-left-button');

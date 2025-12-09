@@ -71,9 +71,9 @@ class HedgehogWidget {
     this.myCanvas.style.cursor = 'none';
 
     if (this.isMobile) {
-      this.myCanvas.addEventListener('touchstart', (event) => this.tchStart(event));
-      this.myCanvas.addEventListener('touchend', (event) => this.tchEnd(event));
-      this.myCanvas.addEventListener('touchmove', (event) => this.tchMove(event));
+      this.myCanvas.addEventListener('touchstart', (event) => this.tchStart(event), { passive: true });
+      this.myCanvas.addEventListener('touchend', (event) => this.tchEnd(event), { passive: true });
+      this.myCanvas.addEventListener('touchmove', (event) => this.tchMove(event), { passive: true });
     } else {
       this.myCanvas.addEventListener('mousedown', (event) => this.mouseDown(event), false);
       this.myCanvas.addEventListener('mouseup', (event) => this.mouseUp(event), false);

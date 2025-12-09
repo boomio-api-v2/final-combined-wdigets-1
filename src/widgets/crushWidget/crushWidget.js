@@ -1610,14 +1610,22 @@ background:${getBrandColor(this.customer)};border-radius:35px">
     this.canvas.addEventListener('mousedown', (e) => this.handleTileSelection(e));
     this.canvas.addEventListener('mouseup', (e) => this.handleTileSwap(e));
 
-    this.canvas.addEventListener('touchstart', (e) => {
-      e.preventDefault(); // prevent scrolling
-      this.handleTileSelection(e.touches[0]);
-    });
-    this.canvas.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      this.handleTileSwap(e.changedTouches[0]);
-    });
+    this.canvas.addEventListener(
+      'touchstart',
+      (e) => {
+        e.preventDefault(); // prevent scrolling
+        this.handleTileSelection(e.touches[0]);
+      },
+      { passive: true },
+    );
+    this.canvas.addEventListener(
+      'touchend',
+      (e) => {
+        e.preventDefault();
+        this.handleTileSwap(e.changedTouches[0]);
+      },
+      { passive: true },
+    );
 
     if (this.showCompetitiveRegistration) {
       const competitionConfirmField = document.getElementById('boomio-competition-confirm-field');

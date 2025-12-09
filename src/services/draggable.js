@@ -51,12 +51,16 @@ export class DragElement {
         top: `${y_position}px`,
       });
     });
-    this.elmnt.addEventListener('touchstart', (e) => {
-      const { clientX, clientY } = e.touches[0];
-      const { left, top } = e.target.getBoundingClientRect();
-      mobileX = clientX - left - 10;
-      mobileY = clientY - top - 10;
-    });
+    this.elmnt.addEventListener(
+      'touchstart',
+      (e) => {
+        const { clientX, clientY } = e.touches[0];
+        const { left, top } = e.target.getBoundingClientRect();
+        mobileX = clientX - left - 10;
+        mobileY = clientY - top - 10;
+      },
+      { passive: true },
+    );
   }
 
   closeDragElement = () => {

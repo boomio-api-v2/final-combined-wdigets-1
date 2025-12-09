@@ -219,10 +219,14 @@ Game.Snake = function (elementId, conf) {
   // Swipe Event Listeners
   var xStart, yStart;
 
-  canvas.addEventListener('touchstart', function (event) {
-    xStart = event.touches[0].clientX;
-    yStart = event.touches[0].clientY;
-  });
+  canvas.addEventListener(
+    'touchstart',
+    function (event) {
+      xStart = event.touches[0].clientX;
+      yStart = event.touches[0].clientY;
+    },
+    { passive: true },
+  );
 
   canvas.addEventListener('touchend', function (event) {
     var xEnd = event.changedTouches[0].clientX;

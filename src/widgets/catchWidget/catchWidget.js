@@ -1409,8 +1409,8 @@ class CatchGame {
     window.addEventListener('keyup', this.handleKeyUp);
 
     // Add new listeners for mobile touch
-    window.addEventListener('touchstart', this.handleTouchStart);
-    window.addEventListener('touchend', this.handleTouchEnd);
+    window.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+    window.addEventListener('touchend', this.handleTouchEnd, { passive: true });
   }
 
   handleKeyDown = (e) => {
