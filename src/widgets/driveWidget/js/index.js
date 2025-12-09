@@ -8,9 +8,6 @@ import {
   carImageData,
   goldImageData,
   mailboxImageData,
-  wh1ImageData,
-  wh2ImageData,
-  wh3ImageData,
   city1ImageData,
   city2ImageData,
   city3ImageData,
@@ -26,9 +23,6 @@ import {
   goldImageDataBarbora,
   envelopeImageDataBarbora,
   carImageDataBarbora,
-  wh1ImageDataBarbora,
-  wh2ImageDataBarbora,
-  wh3ImageDataBarbora,
   city1ImageDataBarbora,
   city2ImageDataBarbora,
   city3ImageDataBarbora,
@@ -44,9 +38,6 @@ import {
   envelopeImageDataIkea,
   carImageDataIkea,
   mailboxImageDataIkea,
-  wh1ImageDataIkea,
-  wh2ImageDataIkea,
-  wh3ImageDataIkea,
   city1ImageDataIkea,
   city2ImageDataIkea,
   city3ImageDataIkea,
@@ -62,9 +53,6 @@ import {
   envelopeImageDataUnisend,
   carImageDataUnisend,
   mailboxImageDataUnisend,
-  wh1ImageDataUnisend,
-  wh2ImageDataUnisend,
-  wh3ImageDataUnisend,
   city1ImageDataUnisend,
   city2ImageDataUnisend,
   city3ImageDataUnisend,
@@ -89,15 +77,9 @@ import {
   city1ImageDataPigu,
   city2ImageDataPigu,
   city3ImageDataPigu,
-  wh1ImageDataPigu,
-  wh2ImageDataPigu,
-  wh3ImageDataPigu,
   city1ImageDataPiguFI,
   city2ImageDataPiguFI,
   city3ImageDataPiguFI,
-  wh1ImageDataPiguFI,
-  wh2ImageDataPiguFI,
-  wh3ImageDataPiguFI,
   background1Pigu,
   linePigu,
   linePiguFI,
@@ -111,9 +93,6 @@ import {
   envelopeImageData2GamtosAteitisPopierius,
   carImageDataGamtosAteitisPopierius,
   mailboxImageDataGamtosAteitisPopierius,
-  wh1ImageDataGamtosAteitis,
-  wh2ImageDataGamtosAteitis,
-  wh3ImageDataGamtosAteitis,
   city1ImageDataGamtosAteitis,
   city2ImageDataGamtosAteitis,
   city3ImageDataGamtosAteitis,
@@ -147,9 +126,6 @@ import {
   envelopeImageData4GamtosAteitisPlastikas,
   goldImageData3GamtosAteitisPlastikas,
   backgroundOrlen,
-  wh1ImageDataOrlen,
-  wh2ImageDataOrlen,
-  wh3ImageDataOrlen,
   city1ImageDataOrlen,
   city2ImageDataOrlen,
   city3ImageDataOrlen,
@@ -165,9 +141,6 @@ import {
   goldImageDataOrlen,
   envelopeImageDataOrlen,
   backgroundNovaturas,
-  wh1ImageDataNovaturas,
-  wh2ImageDataNovaturas,
-  wh3ImageDataNovaturas,
   city1ImageDataNovaturas,
   city2ImageDataNovaturas,
   city3ImageDataNovaturas,
@@ -180,9 +153,6 @@ import {
   goldImageDataNovaturas,
   envelopeImageDataNovaturas,
   backgroundToni,
-  wh1ImageDataToni,
-  wh2ImageDataToni,
-  wh3ImageDataToni,
   city1ImageDataToni,
   city2ImageDataToni,
   city3ImageDataToni,
@@ -200,9 +170,6 @@ import {
   envelopeImageDataToni4,
   envelopeImageDataToni5,
   backgroundBoomio,
-  wh1ImageDataBoomio,
-  wh2ImageDataBoomio,
-  wh3ImageDataBoomio,
   city1ImageDataBoomio,
   city2ImageDataBoomio,
   city3ImageDataBoomio,
@@ -220,9 +187,6 @@ import {
   // envelopeImageDataBoomio4,
   // envelopeImageDataBoomio5,
   backgroundKakeMake,
-  wh1ImageDataKakeMake,
-  wh2ImageDataKakeMake,
-  wh3ImageDataKakeMake,
   city1ImageDataKakeMakeMaxima,
   city2ImageDataKakeMakeMaxima,
   city3ImageDataKakeMakeMaxima,
@@ -276,7 +240,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
 
   const campaignUrl = config.campaignUrl ? config.campaignUrl : '';
   const campaignUrlProp = campaignUrl ? campaignUrl : '';
-  const campaignUrlOrCurrentPage = config.campaignUrlOrCurrentPage;
+  const campaignUrlOrCurrentPage = config.campaignUrlOrCurrentPage;  
 
   let scoreTable = {};
   let gameCount = 0;
@@ -773,85 +737,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                           })(),
                         ];
 
-  const wh1 = new Image();
-  const wh2 = new Image();
-  const wh3 = new Image();
   const lineImg = new Image();
   const backgroundImg = new Image();
   const backgroundImg2 = new Image();
 
-  wh1.src =
-    customer === 'Barbora'
-      ? wh1ImageDataBarbora
-      : customer === 'Ikea'
-        ? wh1ImageDataIkea
-        : customer === 'Unisend'
-          ? wh1ImageDataUnisend
-          : campaignUrlProp === 'https://hobbyhall.fi'
-            ? wh1ImageDataPiguFI
-            : customer === 'Pigu.lt'
-              ? wh1ImageDataPigu
-              : customer === 'Gamtos Ateitis'
-                ? wh1ImageDataGamtosAteitis
-                : customer === 'Orlen'
-                  ? wh1ImageDataOrlen
-                  : customer === 'Novaturas'
-                    ? wh1ImageDataNovaturas
-                    : customer === 'Toni'
-                      ? wh1ImageDataToni
-                      : customer === 'KakeMake'
-                        ? wh1ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? wh1ImageDataBoomio
-                          : wh1ImageData;
-  wh2.src =
-    customer === 'Barbora'
-      ? wh2ImageDataBarbora
-      : customer === 'Ikea'
-        ? wh2ImageDataIkea
-        : customer === 'Unisend'
-          ? wh2ImageDataUnisend
-          : campaignUrlProp === 'https://hobbyhall.fi'
-            ? wh2ImageDataPiguFI
-            : customer === 'Pigu.lt'
-              ? wh2ImageDataPigu
-              : customer === 'Gamtos Ateitis'
-                ? wh2ImageDataGamtosAteitis
-                : customer === 'Orlen'
-                  ? wh2ImageDataOrlen
-                  : customer === 'Novaturas'
-                    ? wh2ImageDataNovaturas
-                    : customer === 'Toni'
-                      ? wh2ImageDataToni
-                      : customer === 'KakeMake'
-                        ? wh2ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? wh2ImageDataBoomio
-                          : wh2ImageData;
-  wh3.src =
-    customer === 'Barbora'
-      ? wh3ImageDataBarbora
-      : customer === 'Ikea'
-        ? wh3ImageDataIkea
-        : customer === 'Unisend'
-          ? wh3ImageDataUnisend
-          : campaignUrlProp === 'https://hobbyhall.fi'
-            ? wh3ImageDataPiguFI
-            : customer === 'Pigu.lt'
-              ? wh3ImageDataPigu
-              : customer === 'Gamtos Ateitis'
-                ? wh3ImageDataGamtosAteitis
-                : customer === 'Orlen'
-                  ? wh3ImageDataOrlen
-                  : customer === 'Novaturas'
-                    ? wh3ImageDataNovaturas
-                    : customer === 'Toni'
-                      ? wh3ImageDataToni
-                      : customer === 'KakeMake'
-                        ? wh3ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? wh3ImageDataBoomio
-                          : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
       ? lineBarbora
@@ -2840,11 +2729,11 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       } else {
         ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       }
-      drawImage(wh1, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+      drawImage(city1, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
 
-      drawImage(wh2, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+      drawImage(city2, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
 
-      drawImage(wh3, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+      drawImage(city3, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
     }
     angle += 0.01;
   }
@@ -3190,20 +3079,17 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     const oldAlpha = ctx.globalAlpha;
 
     ctx.globalAlpha = alpha;
-    if (debug) {
-    } else {
-      ctx.drawImage(
-        image,
-        srcXOffset,
-        srcYOffset,
-        dimensions,
-        dimensions,
-        round(xOffset + pos.x - xScaleOffset),
-        round(yOffset + pos.y + pos.z + yScaleOffset),
-        round(dimensions * scale),
-        round(dimensions * scale),
-      );
-    }
+    ctx.drawImage(
+      image,
+      srcXOffset,
+      srcYOffset,
+      dimensions,
+      dimensions,
+      round(xOffset + pos.x - xScaleOffset),
+      round(yOffset + pos.y + pos.z + yScaleOffset),
+      round(dimensions * scale),
+      round(dimensions * scale),
+    );
     ctx.globalAlpha = oldAlpha;
   }
 

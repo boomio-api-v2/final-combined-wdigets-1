@@ -6,12 +6,6 @@ export const goldImageData = ['https://raw.githubusercontent.com/boomio-api-v2/f
 
 export const mailboxImageData = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/Smalllemon.png'];
 
-export const wh1ImageData = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/Bigcity1.png'];
-
-export const wh2ImageData = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/Bigcity2.png'];
-
-export const wh3ImageData = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/Bigcity3.png'];
-
 export const city1ImageData = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/Bigcity1.png'];
 
 export const city2ImageData = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/Bigcity2.png'];
@@ -60,12 +54,6 @@ export const carImageDataBarbora = ['https://raw.githubusercontent.com/boomio-ap
 
 export const mailboxImageDataBarbora = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/barbora/bag.png'];
 
-export const wh1ImageDataBarbora = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/barbora/Bigcity1New.png'];
-
-export const wh2ImageDataBarbora = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/barbora/Bigcity2New.png'];
-
-export const wh3ImageDataBarbora = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/barbora/Bigcity3New.png'];
-
 export const city1ImageDataBarbora = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/barbora/Bigcity1New.png'];
 
 export const city2ImageDataBarbora = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/barbora/Bigcity2New.png'];
@@ -102,12 +90,6 @@ export const envelopeImageDataIkea = ['https://raw.githubusercontent.com/boomio-
 export const carImageDataIkea = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/ikea/bike.png'];
 
 export const mailboxImageDataIkea = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/ikea/bag.png'];
-
-export const wh1ImageDataIkea = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/ikea/Bigcity1.png'];
-
-export const wh2ImageDataIkea = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/ikea/Bigcity2.png'];
-
-export const wh3ImageDataIkea = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/ikea/Bigcity3.png'];
 
 export const city1ImageDataIkea = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/ikea/Bigcity1.png'];
 
@@ -147,12 +129,6 @@ export const envelopeImageDataUnisend = ['https://raw.githubusercontent.com/boom
 export const carImageDataUnisend = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/unisend/bike.png'];
 
 export const mailboxImageDataUnisend = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/unisend/bag.png'];
-
-export const wh1ImageDataUnisend = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/unisend/Bigcity1.png'];
-
-export const wh2ImageDataUnisend = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/unisend/Bigcity2.png'];
-
-export const wh3ImageDataUnisend = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/unisend/Bigcity3.png'];
 
 export const city1ImageDataUnisend = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/unisend/Bigcity1.png'];
 
@@ -198,23 +174,11 @@ export const city2ImageDataPigu = ['https://raw.githubusercontent.com/boomio-api
 
 export const city3ImageDataPigu = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity3.png'];
 
-export const wh1ImageDataPigu = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity1.png'];
-
-export const wh2ImageDataPigu = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity2.png'];
-
-export const wh3ImageDataPigu = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity3.png'];
-
 export const city1ImageDataPiguFI = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity1FI.png'];
 
 export const city2ImageDataPiguFI = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity2FI.png'];
 
 export const city3ImageDataPiguFI = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity3FI.png'];
-
-export const wh1ImageDataPiguFI = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity1FI.png'];
-
-export const wh2ImageDataPiguFI = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity2FI.png'];
-
-export const wh3ImageDataPiguFI = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/Bigcity3FI.png'];
 
 export const background1Pigu = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Pigu/background1.png'];
 
@@ -258,12 +222,6 @@ export const linePiguFI = 'https://raw.githubusercontent.com/boomio-api-v2/final
 export const life = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/life.png';
 
 export const backgroundGamtosAteitis = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/GamtosAteitis/background.png'];
-
-export const wh1ImageDataGamtosAteitis = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/GamtosAteitis/Bigcity1.png'];
-
-export const wh2ImageDataGamtosAteitis = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/GamtosAteitis/Bigcity2.png'];
-
-export const wh3ImageDataGamtosAteitis = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/GamtosAteitis/Bigcity3.png'];
 
 export const city1ImageDataGamtosAteitis = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/GamtosAteitis/Bigcity1.png'];
 
@@ -346,12 +304,6 @@ export const goldImageData3GamtosAteitisPlastikas = ['https://raw.githubusercont
 
 export const backgroundOrlen = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Orlen/background.png'];
 
-export const wh1ImageDataOrlen = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Orlen/Bigcity1.png'];
-
-export const wh2ImageDataOrlen = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Orlen/Bigcity2.png'];
-
-export const wh3ImageDataOrlen = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Orlen/Bigcity3.png'];
-
 export const city1ImageDataOrlen = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Orlen/Bigcity1.png'];
 
 export const city2ImageDataOrlen = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Orlen/Bigcity2.png'];
@@ -382,12 +334,6 @@ export const envelopeImageDataOrlen = ['https://raw.githubusercontent.com/boomio
 
 export const backgroundNovaturas = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Novaturas/background.png'];
 
-export const wh1ImageDataNovaturas = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Novaturas/Bigcity1.png'];
-
-export const wh2ImageDataNovaturas = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Novaturas/Bigcity2.png'];
-
-export const wh3ImageDataNovaturas = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Novaturas/Bigcity3.png'];
-
 export const city1ImageDataNovaturas = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Novaturas/Bigcity1.png'];
 
 export const city2ImageDataNovaturas = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Novaturas/Bigcity2.png'];
@@ -413,9 +359,6 @@ export const goldImageDataNovaturas = ['https://raw.githubusercontent.com/boomio
 export const envelopeImageDataNovaturas = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Novaturas/bag.png'];
 
 export const backgroundToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/background.png'];
-export const wh1ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity1.png'];
-export const wh2ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity2.png'];
-export const wh3ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity3.png'];
 export const city1ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity1.png'];
 export const city2ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity2.png'];
 export const city3ImageDataToni = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/Bigcity3.png'];
@@ -434,9 +377,6 @@ export const envelopeImageDataToni4 = ['https://raw.githubusercontent.com/boomio
 export const envelopeImageDataToni5 = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Toni/bag5.png'];
 
 export const backgroundBoomio = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Boomio/background.png'];
-export const wh1ImageDataBoomio = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Boomio/Bigcity1.png'];
-export const wh2ImageDataBoomio = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Boomio/Bigcity2.png'];
-export const wh3ImageDataBoomio = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Boomio/Bigcity3.png'];
 export const city1ImageDataBoomio = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Boomio/Bigcity1.png'];
 export const city2ImageDataBoomio = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Boomio/Bigcity2.png'];
 export const city3ImageDataBoomio = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Boomio/Bigcity3.png'];
@@ -455,9 +395,6 @@ export const envelopeImageDataBoomio4 = ['https://raw.githubusercontent.com/boom
 export const envelopeImageDataBoomio5 = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/Boomio/bag5.png'];
 
 export const backgroundKakeMake = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/KakeMake/background.png'];
-export const wh1ImageDataKakeMake = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/KakeMake/Bigcity1.png'];
-export const wh2ImageDataKakeMake = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/KakeMake/Bigcity2.png'];
-export const wh3ImageDataKakeMake = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/KakeMake/Bigcity3.png'];
 export const city1ImageDataKakeMakeMaxima = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/KakeMake/Bigcity1Maxima.png'];
 export const city2ImageDataKakeMakeMaxima = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/KakeMake/Bigcity2Maxima.png'];
 export const city3ImageDataKakeMakeMaxima = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/KakeMake/Bigcity3Maxima.png'];
