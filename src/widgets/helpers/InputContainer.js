@@ -239,10 +239,16 @@ const getRule2Title = (customer, language, game) => {
     }
   }
 
-  // Language-specific defaults
-  // Doodle game LV language
-  if (language === 'LV' && game === 'doodle') return 'SPĒLĒ VĒLREIZ,';
+  // Game-specific defaults
+  if (game === 'doodle') {
+    if (language === 'LV') return 'SPĒLĒ VĒLREIZ,';
+  }
 
+  if (game === 'drive') {
+    if (language === 'LT') return 'Rink';
+  }
+
+  // Language-specific defaults
   if (language === 'LT') return 'Kartok,';
   if (language === 'LV') return 'ATKĀRTO,';
   if (language === 'RU') return 'ПОВТОРИТЬ';
@@ -273,12 +279,6 @@ const getRule2Text = (customer, language, game) => {
     }
   }
 
-  // Doodle game LV special
-  if (game === 'doodle' && language === 'LV') return 'lai uzlabotu savu rezultātu.';
-
-  // Drive game LV special
-  if (language === 'LV' && game === 'drive') return 'kuponus un iegūsti punktus';
-
   // Toni variations by game
   if (customer === 'Toni' && game === 'catch') return 'los helados Topsy para ganar puntos.';
   if (customer === 'Toni' && game === 'crush') return '3 o más, helados Topsy iguales.';
@@ -287,6 +287,14 @@ const getRule2Text = (customer, language, game) => {
 
   // Apranga
   if (customer === 'Apranga') return 'siekdami geresnio rezultato.';
+
+  // Doodle game LV special
+  if (game === 'doodle' && language === 'LV') return 'lai uzlabotu savu rezultātu.';
+
+  if (game === 'drive') {
+    if (language === 'LT') return 'prekes ir gauk taškus.';
+    if (language === 'LV') return 'kuponus un iegūsti punktus';
+  }
 
   if (language === 'LT') return 'siekdamas kuo geresnio rezultato.';
   if (language === 'LV') return 'lai sasniegtu labāku rezultātu.';
@@ -300,7 +308,7 @@ const getRule2Text = (customer, language, game) => {
 };
 
 // Helper function to get Rule 3 title based on customer, language, and game
-const getRule3Title = (customer, language, game, userId) => {
+const getRule3Title = (customer, language, game) => {
   // Pigu.lt variations by language
   if (customer === 'Pigu.lt' && game === 'catch') {
     if (language === 'EN') return 'Repeat';
@@ -333,6 +341,10 @@ const getRule3Title = (customer, language, game, userId) => {
   // Apranga
   if (customer === 'Apranga') return 'MĖGAUKITĖS';
 
+  if (game === 'drive') {
+    if (language === 'LT') return 'Kartok';
+  }
+
   // Language-specific defaults
   if (language === 'LT') return 'Mėgaukis';
   if (language === 'LV') return 'Atkārto';
@@ -346,7 +358,7 @@ const getRule3Title = (customer, language, game, userId) => {
 };
 
 // Helper function to get Rule 3 descriptive text based on customer, language, and game
-const getRule3Text = (customer, language, game, userId) => {
+const getRule3Text = (customer, language, game) => {
   // Pigu.lt variations by language
   if (customer === 'Pigu.lt' && game === 'catch') {
     if (language === 'EN') return 'and aim for the record.';
@@ -379,9 +391,11 @@ const getRule3Text = (customer, language, game, userId) => {
   // Doodle game LV special
   if (language === 'LV' && game === 'doodle') return 'katru dienu!';
 
-  // Drive game variations
-  if (language === 'LV' && game === 'drive') return 'un uzlabo savu rezultātu';
-  if (language === 'ET' && game === 'drive') return 'uuesti ja paranda oma tulemust.';
+  if (game === 'drive') {
+    if (language === 'LT') return 'ir pagerink rezultatą.';
+    if (language === 'LV') return 'un uzlabo savu rezultātu';
+    if (language === 'ET') return 'uuesti ja paranda oma tulemust.';
+  }
 
   // Language-specific defaults
   if (language === 'LT') return 'ir pagerink rezultatą.';
@@ -550,9 +564,9 @@ export class InputContainer {
               </div>
             </div>
             <div style="left: 1px; top: 70px;display:flex; align-items: baseline; position: absolute; color: white; font-size: ${'20px'}; font-family:${'Georama'}; font-weight: 700; line-height: 20px; word-wrap: break-word;">
-              <span style="white-space: nowrap;">3. ${getRule3Title(this.customer, this.language, this.game, userId)}</span>
+              <span style="white-space: nowrap;">3. ${getRule3Title(this.customer, this.language, this.game)}</span>
               <div style="position:initial; color: white; font-size: ${this.isMobile ? '12px' : '14px'}; font-family:${'Georama'}; font-weight: 700; margin-left:4px; word-wrap: break-word; white-space:normal; line-height:14px;">
-                ${getRule3Text(this.customer, this.language, this.game, userId)}
+                ${getRule3Text(this.customer, this.language, this.game)}
               </div>
             </div>
 ${
