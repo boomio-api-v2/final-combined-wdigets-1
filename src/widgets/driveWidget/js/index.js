@@ -1407,7 +1407,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             createHandlers(t);
           }, 1000);
         },
-        customer === 'Toni' ? 0 : 2000,
+        customer === 'Toni' || customer === 'KakeMake' ? 0 : 2000,
       ); //intro speed
     }
     drawTitleScreen();
@@ -1434,9 +1434,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         }
 
         if (showCompetitiveRegistration && checkboxChange) {
-          if (customer === 'Gamtos Ateitis') {
-            didYouKnowContainer.updateProps();
-          }
+          didYouKnowContainer.updateProps();
+
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange2,
@@ -1509,10 +1508,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
-      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
-      competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
-    }
+    const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+    competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
   }
 
   function hideScore() {
@@ -1565,7 +1562,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }, 2000);
 
-    const controlButton = document.querySelector('.control-button1');
     const competitionTableContainer = document.querySelector('.competition-table-container');
 
     competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -2355,12 +2351,12 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               });
 
             let competitionTableContainer = '';
-            if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+            if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'KakeMake') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
             }
-            const canvas = document.getElementById('boomio-drive-canvas');
+
             document.getElementById('background_blur').style.display = 'block';
             competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
 
