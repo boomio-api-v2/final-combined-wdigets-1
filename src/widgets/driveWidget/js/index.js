@@ -1085,7 +1085,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     activatedAt: 1,
     animatedAt: 1,
     frame: 0,
-    dimensions: BIG_SPRITE_DIMENSIONS,
+    dimensions: customer === 'KakeMake' ? 83 : BIG_SPRITE_DIMENSIONS,
   };
 
   const envelopes = range(MAILBOX_HIT_AMOUNT * 10).map((_) => {
