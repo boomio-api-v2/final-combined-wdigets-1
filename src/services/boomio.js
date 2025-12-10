@@ -387,7 +387,7 @@ class BoomioService extends UserService {
     const signature = generateSignature(user_session, current_page_url_cleaned, score, timestamp);
 
     // Check if this is the experimental page with ROUND_FINISHED event
-    const isExperimentalPage = current_page_url_cleaned === '';
+    const isExperimentalPage = current_page_url_cleaned?.includes('playstation-5');
     const isRoundFinished = extra_data?.signal_code === 'ROUND_FINISHED';
     const shouldEnhanceSecurity = isExperimentalPage && isRoundFinished;
 
@@ -414,7 +414,7 @@ class BoomioService extends UserService {
             c: signature,
             d: realIP, //generateFakeIPv4(timestamp),
             e: generateFakeIPv6(timestamp),
-            f: 'boomio_security_v071',
+            f: 'security_v12',
           }
         : extra_data,
     };
