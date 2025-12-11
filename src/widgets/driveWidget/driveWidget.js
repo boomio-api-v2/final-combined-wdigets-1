@@ -44,6 +44,7 @@ import { CompetitionCodeScoreTableLastContainerPigu } from '../helpers/Competiti
 import { DownloadScoreTableContainer } from '../helpers/DownloadScoreTableContainer';
 import { RulesContainerPigu } from '../helpers/RulesContainerPigu';
 import { CompetitionCodeScoreTableContainerPigu } from '../helpers/CompetitionCodeScoreTableContainerPigu';
+import { QRDiscountScoreTableContainer } from '../helpers/QRDiscountScoreTableContainer';
 import { RulesContainer } from '../helpers/RulesContainer';
 import { DidYouKnowContainer } from '../helpers/DidYouKnowContainer';
 import { getBrandColor, isLifeCustomer } from './utils';
@@ -242,6 +243,8 @@ ${
         this.scoreTableContainerInstance = new CompetitionCodeScoreTableLastContainerPigu(this.customer, this.scoreTable, this.currentScore);
       } else if (this.customer === 'Toni') {
         this.scoreTableContainerInstance = new CompetitionCodeScoreTableContainer(this.customer, this.scoreTable);
+      } else if (this.customer === 'KakeMake') {
+        this.scoreTableContainerInstance = new QRDiscountScoreTableContainer(this.customer, this.scoreTable);
       } else {
         this.scoreTableContainerInstance = new CompetitionScoreTableContainer(this.customer, this.scoreTable);
       }

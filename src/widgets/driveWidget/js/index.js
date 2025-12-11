@@ -2301,7 +2301,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               });
             }, 1000);
           } else {
-            const canvas = document.getElementById('boomio-drive-canvas');
             document.getElementById('background_blur').style.display = 'block';
           }
           setTimeout(() => {
