@@ -54,7 +54,6 @@ export class QRDiscountScoreTableContainer {
     this.scoreTable = scoreTable;
     this.currentScore = currentScore;
     this.updateVisuals();
-    console.log('updateProps', this.scoreTable, 'currentScore:', this.currentScore);
   }
 
   updateVisuals() {
