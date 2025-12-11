@@ -74,7 +74,6 @@ export class QRDiscountScoreTableContainer {
     containerDiv.setAttribute('id', 'competition-table-container');
     containerDiv.style.background = 'none';
 
-    const userId = this.config.userId;
     containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
 
     // Sample QR code placeholder - simple visible QR pattern
