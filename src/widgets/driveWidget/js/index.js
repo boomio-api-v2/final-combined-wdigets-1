@@ -8,9 +8,6 @@ import {
   carImageData,
   goldImageData,
   mailboxImageData,
-  wh1ImageData,
-  wh2ImageData,
-  wh3ImageData,
   city1ImageData,
   city2ImageData,
   city3ImageData,
@@ -26,9 +23,6 @@ import {
   goldImageDataBarbora,
   envelopeImageDataBarbora,
   carImageDataBarbora,
-  wh1ImageDataBarbora,
-  wh2ImageDataBarbora,
-  wh3ImageDataBarbora,
   city1ImageDataBarbora,
   city2ImageDataBarbora,
   city3ImageDataBarbora,
@@ -44,9 +38,6 @@ import {
   envelopeImageDataIkea,
   carImageDataIkea,
   mailboxImageDataIkea,
-  wh1ImageDataIkea,
-  wh2ImageDataIkea,
-  wh3ImageDataIkea,
   city1ImageDataIkea,
   city2ImageDataIkea,
   city3ImageDataIkea,
@@ -62,9 +53,6 @@ import {
   envelopeImageDataUnisend,
   carImageDataUnisend,
   mailboxImageDataUnisend,
-  wh1ImageDataUnisend,
-  wh2ImageDataUnisend,
-  wh3ImageDataUnisend,
   city1ImageDataUnisend,
   city2ImageDataUnisend,
   city3ImageDataUnisend,
@@ -89,15 +77,9 @@ import {
   city1ImageDataPigu,
   city2ImageDataPigu,
   city3ImageDataPigu,
-  wh1ImageDataPigu,
-  wh2ImageDataPigu,
-  wh3ImageDataPigu,
   city1ImageDataPiguFI,
   city2ImageDataPiguFI,
   city3ImageDataPiguFI,
-  wh1ImageDataPiguFI,
-  wh2ImageDataPiguFI,
-  wh3ImageDataPiguFI,
   background1Pigu,
   linePigu,
   linePiguFI,
@@ -111,9 +93,6 @@ import {
   envelopeImageData2GamtosAteitisPopierius,
   carImageDataGamtosAteitisPopierius,
   mailboxImageDataGamtosAteitisPopierius,
-  wh1ImageDataGamtosAteitis,
-  wh2ImageDataGamtosAteitis,
-  wh3ImageDataGamtosAteitis,
   city1ImageDataGamtosAteitis,
   city2ImageDataGamtosAteitis,
   city3ImageDataGamtosAteitis,
@@ -147,9 +126,6 @@ import {
   envelopeImageData4GamtosAteitisPlastikas,
   goldImageData3GamtosAteitisPlastikas,
   backgroundOrlen,
-  wh1ImageDataOrlen,
-  wh2ImageDataOrlen,
-  wh3ImageDataOrlen,
   city1ImageDataOrlen,
   city2ImageDataOrlen,
   city3ImageDataOrlen,
@@ -165,9 +141,6 @@ import {
   goldImageDataOrlen,
   envelopeImageDataOrlen,
   backgroundNovaturas,
-  wh1ImageDataNovaturas,
-  wh2ImageDataNovaturas,
-  wh3ImageDataNovaturas,
   city1ImageDataNovaturas,
   city2ImageDataNovaturas,
   city3ImageDataNovaturas,
@@ -180,9 +153,6 @@ import {
   goldImageDataNovaturas,
   envelopeImageDataNovaturas,
   backgroundToni,
-  wh1ImageDataToni,
-  wh2ImageDataToni,
-  wh3ImageDataToni,
   city1ImageDataToni,
   city2ImageDataToni,
   city3ImageDataToni,
@@ -200,9 +170,6 @@ import {
   envelopeImageDataToni4,
   envelopeImageDataToni5,
   backgroundBoomio,
-  wh1ImageDataBoomio,
-  wh2ImageDataBoomio,
-  wh3ImageDataBoomio,
   city1ImageDataBoomio,
   city2ImageDataBoomio,
   city3ImageDataBoomio,
@@ -220,9 +187,6 @@ import {
   // envelopeImageDataBoomio4,
   // envelopeImageDataBoomio5,
   backgroundKakeMake,
-  wh1ImageDataKakeMake,
-  wh2ImageDataKakeMake,
-  wh3ImageDataKakeMake,
   city1ImageDataKakeMakeMaxima,
   city2ImageDataKakeMakeMaxima,
   city3ImageDataKakeMakeMaxima,
@@ -324,7 +288,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
   const MAX_FUNDING_BAR = width - UI_PADDING * 2;
   const HIT_TIME = 1.5;
   const FLASH_TIME = 0.25;
-  const ANIMATION_TIME = 0.25;
+  const ANIMATION_TIME = customer === 'KakeMake' ? 3 : 0.25;
   const INSTRUCTIONS_FLASH_TIME = 5;
   const MAILBOX_HIT_AMOUNT = 5;
   const GOLD_HIT_AMOUNT = 5;
@@ -773,85 +737,10 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                           })(),
                         ];
 
-  const wh1 = new Image();
-  const wh2 = new Image();
-  const wh3 = new Image();
   const lineImg = new Image();
   const backgroundImg = new Image();
   const backgroundImg2 = new Image();
 
-  wh1.src =
-    customer === 'Barbora'
-      ? wh1ImageDataBarbora
-      : customer === 'Ikea'
-        ? wh1ImageDataIkea
-        : customer === 'Unisend'
-          ? wh1ImageDataUnisend
-          : campaignUrlProp === 'https://hobbyhall.fi'
-            ? wh1ImageDataPiguFI
-            : customer === 'Pigu.lt'
-              ? wh1ImageDataPigu
-              : customer === 'Gamtos Ateitis'
-                ? wh1ImageDataGamtosAteitis
-                : customer === 'Orlen'
-                  ? wh1ImageDataOrlen
-                  : customer === 'Novaturas'
-                    ? wh1ImageDataNovaturas
-                    : customer === 'Toni'
-                      ? wh1ImageDataToni
-                      : customer === 'KakeMake'
-                        ? wh1ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? wh1ImageDataBoomio
-                          : wh1ImageData;
-  wh2.src =
-    customer === 'Barbora'
-      ? wh2ImageDataBarbora
-      : customer === 'Ikea'
-        ? wh2ImageDataIkea
-        : customer === 'Unisend'
-          ? wh2ImageDataUnisend
-          : campaignUrlProp === 'https://hobbyhall.fi'
-            ? wh2ImageDataPiguFI
-            : customer === 'Pigu.lt'
-              ? wh2ImageDataPigu
-              : customer === 'Gamtos Ateitis'
-                ? wh2ImageDataGamtosAteitis
-                : customer === 'Orlen'
-                  ? wh2ImageDataOrlen
-                  : customer === 'Novaturas'
-                    ? wh2ImageDataNovaturas
-                    : customer === 'Toni'
-                      ? wh2ImageDataToni
-                      : customer === 'KakeMake'
-                        ? wh2ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? wh2ImageDataBoomio
-                          : wh2ImageData;
-  wh3.src =
-    customer === 'Barbora'
-      ? wh3ImageDataBarbora
-      : customer === 'Ikea'
-        ? wh3ImageDataIkea
-        : customer === 'Unisend'
-          ? wh3ImageDataUnisend
-          : campaignUrlProp === 'https://hobbyhall.fi'
-            ? wh3ImageDataPiguFI
-            : customer === 'Pigu.lt'
-              ? wh3ImageDataPigu
-              : customer === 'Gamtos Ateitis'
-                ? wh3ImageDataGamtosAteitis
-                : customer === 'Orlen'
-                  ? wh3ImageDataOrlen
-                  : customer === 'Novaturas'
-                    ? wh3ImageDataNovaturas
-                    : customer === 'Toni'
-                      ? wh3ImageDataToni
-                      : customer === 'KakeMake'
-                        ? wh3ImageDataKakeMake
-                        : customer === 'Boomio'
-                          ? wh3ImageDataBoomio
-                          : wh3ImageData;
   lineImg.src =
     customer === 'Barbora'
       ? lineBarbora
@@ -1056,7 +945,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               ? '#FFFFFF'
               : customer === 'Novaturas'
                 ? '#814C63'
-                : '#FFFFFF';
+                : customer === 'KakeMake'
+                  ? '#2E2B2A'
+                  : '#FFFFFF';
   const BAD_FUNDING_COLOR1 =
     customer === 'Barbora'
       ? '#FFCA00'
@@ -1073,7 +964,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                 : customer === 'Toni'
                   ? '#5E2B17'
                   : customer === 'KakeMake'
-                    ? '#7CAC32'
+                    ? '#F2CE00'
                     : '#F24434';
   let currentFillColor = BAD_FUNDING_COLOR1;
 
@@ -1116,7 +1007,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                   : customer === 'Toni'
                     ? '#ECDCC1'
                     : customer === 'KakeMake'
-                      ? '#BEBDC3'
+                      ? '#DDCCA4'
                       : 'black';
 
   const maxWhiteLineWidthPercent = 0.01;
@@ -1194,7 +1085,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     activatedAt: 1,
     animatedAt: 1,
     frame: 0,
-    dimensions: BIG_SPRITE_DIMENSIONS,
+    dimensions: customer === 'KakeMake' ? 83 : BIG_SPRITE_DIMENSIONS,
   };
 
   const envelopes = range(MAILBOX_HIT_AMOUNT * 10).map((_) => {
@@ -1516,7 +1407,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
             createHandlers(t);
           }, 1000);
         },
-        customer === 'Toni' ? 0 : 2000,
+        customer === 'Toni' || customer === 'KakeMake' ? 0 : 2000,
       ); //intro speed
     }
     drawTitleScreen();
@@ -1543,9 +1434,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         }
 
         if (showCompetitiveRegistration && checkboxChange) {
-          if (customer === 'Gamtos Ateitis') {
-            didYouKnowContainer.updateProps();
-          }
+          didYouKnowContainer.updateProps();
+
           boomioService
             .signal('', 'user_info', {
               emails_consent: checkboxChange2,
@@ -1618,10 +1508,8 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     const competitionRestart = document.getElementById('boomio-game-play-again');
     competitionRestart.addEventListener('click', clickEventHandlerResetGame);
 
-    if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
-      const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
-      competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
-    }
+    const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
+    competitionDidYouKnow.addEventListener('click', clickEventHandlerDidYouKnow);
   }
 
   function hideScore() {
@@ -1674,7 +1562,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       competitionRestart.addEventListener('click', clickEventHandlerResetGame);
     }, 2000);
 
-    const controlButton = document.querySelector('.control-button1');
     const competitionTableContainer = document.querySelector('.competition-table-container');
 
     competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
@@ -2270,7 +2157,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
                     : customer === 'Toni'
                       ? '#7D3D1B'
                       : customer === 'KakeMake'
-                        ? '#7CAC32'
+                        ? '#9BC04B'
                         : '#A9C734';
     ctx.beginPath();
     ctx.moveTo(round(0), i);
@@ -2414,7 +2301,6 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               });
             }, 1000);
           } else {
-            const canvas = document.getElementById('boomio-drive-canvas');
             document.getElementById('background_blur').style.display = 'block';
           }
           setTimeout(() => {
@@ -2464,12 +2350,12 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
               });
 
             let competitionTableContainer = '';
-            if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis') {
+            if (customer === 'Pigu.lt' || customer === 'Gamtos Ateitis' || customer === 'KakeMake') {
               competitionTableContainer = document.querySelector('.did-you-know-container');
             } else {
               competitionTableContainer = document.querySelector('.competition-table-container');
             }
-            const canvas = document.getElementById('boomio-drive-canvas');
+
             document.getElementById('background_blur').style.display = 'block';
             competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
 
@@ -2840,11 +2726,11 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       } else {
         ctx.drawImage(backgroundImg, -3, 228, 426, 105);
       }
-      drawImage(wh1, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+      drawImage(city1, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
 
-      drawImage(wh2, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+      drawImage(city2, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos + HOUSE_BIG_SPRITE_DIMENSIONS, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
 
-      drawImage(wh3, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
+      drawImage(city3, { x: -60, y: customer === 'Barbora' ? 10 : 5, z: 1 }, whStartPos + 2 * HOUSE_BIG_SPRITE_DIMENSIONS, 200, HOUSE_BIG_SPRITE_DIMENSIONS);
     }
     angle += 0.01;
   }
@@ -3190,20 +3076,17 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
     const oldAlpha = ctx.globalAlpha;
 
     ctx.globalAlpha = alpha;
-    if (debug) {
-    } else {
-      ctx.drawImage(
-        image,
-        srcXOffset,
-        srcYOffset,
-        dimensions,
-        dimensions,
-        round(xOffset + pos.x - xScaleOffset),
-        round(yOffset + pos.y + pos.z + yScaleOffset),
-        round(dimensions * scale),
-        round(dimensions * scale),
-      );
-    }
+    ctx.drawImage(
+      image,
+      srcXOffset,
+      srcYOffset,
+      dimensions,
+      dimensions,
+      round(xOffset + pos.x - xScaleOffset),
+      round(yOffset + pos.y + pos.z + yScaleOffset),
+      round(dimensions * scale),
+      round(dimensions * scale),
+    );
     ctx.globalAlpha = oldAlpha;
   }
 
@@ -3305,13 +3188,21 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         //   break;
       }
     });
-    document.getElementById('boomio-drive-canvas')?.addEventListener('touchstart', (e) => {
-      pointerDown(e.touches[0].clientX);
-    });
+    document.getElementById('boomio-drive-canvas')?.addEventListener(
+      'touchstart',
+      (e) => {
+        pointerDown(e.touches[0].clientX);
+      },
+      { passive: true },
+    );
 
-    document.getElementById('boomio-drive-canvas')?.addEventListener('touchend', () => {
-      pointerUp();
-    });
+    document.getElementById('boomio-drive-canvas')?.addEventListener(
+      'touchend',
+      () => {
+        pointerUp();
+      },
+      { passive: true },
+    );
 
     document.getElementById('boomio-drive-canvas')?.addEventListener('mousedown', (e) => {
       pointerDown(e.clientX);
@@ -3322,9 +3213,13 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       pointerMove(e.clientX);
     });
 
-    document.getElementById('boomio-drive-canvas')?.addEventListener('touchmove', (e) => {
-      pointerMove(e.touches[0].clientX);
-    });
+    document.getElementById('boomio-drive-canvas')?.addEventListener(
+      'touchmove',
+      (e) => {
+        pointerMove(e.touches[0].clientX);
+      },
+      { passive: true },
+    );
 
     document.getElementById('boomio-drive-canvas')?.addEventListener('mouseup', () => {
       pointerUp();

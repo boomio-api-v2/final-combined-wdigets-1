@@ -905,10 +905,14 @@ ${`<div style="${
     };
 
     canvas.addEventListener('click', (e) => this.checkBalloonClick(e));
-    canvas.addEventListener('touchstart', (e) => {
-      const touch = e.touches[0];
-      this.checkBalloonClick({ clientX: touch.clientX, clientY: touch.clientY });
-    });
+    canvas.addEventListener(
+      'touchstart',
+      (e) => {
+        const touch = e.touches[0];
+        this.checkBalloonClick({ clientX: touch.clientX, clientY: touch.clientY });
+      },
+      { passive: true },
+    );
 
     requestAnimationFrame(loop);
   }

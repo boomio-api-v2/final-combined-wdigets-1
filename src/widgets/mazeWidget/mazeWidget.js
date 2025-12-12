@@ -88,10 +88,14 @@ class Maze {
     document.addEventListener('keydown', this.arrowsToMaze);
     let xDown = null;
     let yDown = null;
-    mazeEl.addEventListener('touchstart', (e) => {
-      xDown = e.touches[0].clientX;
-      yDown = e.touches[0].clientY;
-    });
+    mazeEl.addEventListener(
+      'touchstart',
+      (e) => {
+        xDown = e.touches[0].clientX;
+        yDown = e.touches[0].clientY;
+      },
+      { passive: true },
+    );
     mazeEl.addEventListener('touchend', (e) => {
       if (!xDown || !yDown) {
         return;

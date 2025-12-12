@@ -22,6 +22,6 @@ export const getBrandColor = (customer) => {
   if (customer === 'Novaturas') return '#32A1DA';
   if (customer === 'Toni') return '#5E2B17';
   if (customer === 'Boomio') return '#5E2B17';
-  if (customer === 'KakeMake') return '#7CAC32';
+  if (customer === 'KakeMake') return '#8B3A8B';
   return '#FFE92D'; // Default
 };

@@ -1585,35 +1585,51 @@ ${
     const setRightPressed = (isPressed) => (rightPressed = isPressed);
 
     // Add event listeners
-    mobileLeftButton.addEventListener('touchstart', handleTouchStart(setLeftPressed, mobileLeftButton));
-    mobileLeftButton.addEventListener('touchend', handleTouchEnd(setLeftPressed, mobileLeftButton));
+    mobileLeftButton.addEventListener('touchstart', handleTouchStart(setLeftPressed, mobileLeftButton), { passive: true });
+    mobileLeftButton.addEventListener('touchend', handleTouchEnd(setLeftPressed, mobileLeftButton), { passive: true });
     mobileLeftButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
-    mobileRightButton.addEventListener('touchstart', handleTouchStart(setRightPressed, mobileRightButton));
-    mobileRightButton.addEventListener('touchend', handleTouchEnd(setRightPressed, mobileRightButton));
+    mobileRightButton.addEventListener('touchstart', handleTouchStart(setRightPressed, mobileRightButton), { passive: true });
+    mobileRightButton.addEventListener('touchend', handleTouchEnd(setRightPressed, mobileRightButton), { passive: true });
     mobileRightButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
-    mobileUpButton.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      jumpBegin();
-      mobileUpButton.style.opacity = '0.5';
-    });
-    mobileUpButton.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      mobileUpButton.style.opacity = '1';
-    });
+    mobileUpButton.addEventListener(
+      'touchstart',
+      (e) => {
+        e.preventDefault();
+        jumpBegin();
+        mobileUpButton.style.opacity = '0.5';
+      },
+      { passive: true },
+    );
+    mobileUpButton.addEventListener(
+      'touchend',
+      (e) => {
+        e.preventDefault();
+        mobileUpButton.style.opacity = '1';
+      },
+      { passive: true },
+    );
     mobileUpButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
-    mobileDownButton.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      slideBegin();
-      mobileDownButton.style.opacity = '0.5';
-    });
-    mobileDownButton.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      slideEnd();
-      mobileDownButton.style.opacity = '1';
-    });
+    mobileDownButton.addEventListener(
+      'touchstart',
+      (e) => {
+        e.preventDefault();
+        slideBegin();
+        mobileDownButton.style.opacity = '0.5';
+      },
+      { passive: true },
+    );
+    mobileDownButton.addEventListener(
+      'touchend',
+      (e) => {
+        e.preventDefault();
+        slideEnd();
+        mobileDownButton.style.opacity = '1';
+      },
+      { passive: true },
+    );
     mobileDownButton.addEventListener('contextmenu', (e) => e.preventDefault());
 
     const checkboxImg = document.querySelector('.boomio-privacyCheckbox');

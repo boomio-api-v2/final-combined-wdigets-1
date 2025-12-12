@@ -92,13 +92,21 @@ class TestingWidget {
 
     const couponPreviewContainer = animationEl.querySelector('.coupon__preview__card__header_buttons');
 
-    couponPreviewContainer.addEventListener('touchstart', (event) => {
-      event.stopPropagation();
-    });
+    couponPreviewContainer.addEventListener(
+      'touchstart',
+      (event) => {
+        event.stopPropagation();
+      },
+      { passive: true },
+    );
 
-    couponPreviewContainer.addEventListener('touchmove', (event) => {
-      event.stopPropagation();
-    });
+    couponPreviewContainer.addEventListener(
+      'touchmove',
+      (event) => {
+        event.stopPropagation();
+      },
+      { passive: true },
+    );
     document.getElementById('close_div_img').onclick = closeModalDiscount;
     document.getElementById('remove_div_btn').onclick = removeWidgets;
 
