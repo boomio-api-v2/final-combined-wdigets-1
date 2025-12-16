@@ -19,7 +19,6 @@ export default defineConfig(({ mode }) => {
   const isDevelopment = mode === 'development';
 
   return {
-    root: '.', // serve from project root
     publicDir: false, // Images loaded from GitHub raw URLs, not bundled
 
     plugins: [
@@ -28,44 +27,40 @@ export default defineConfig(({ mode }) => {
 
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src'),
-        images: resolve(__dirname, './images'),
+        '@': resolve(__dirname, 'src'),
+        images: resolve(__dirname, 'images'),
       },
     },
 
     build: {
       outDir: 'dist',
-      emptyOutDir: false, // equivalent to webpack's clean: false
+      emptyOutDir: false, // Keep existing assets (images loaded from GitHub)
       lib: {
         entry: resolve(__dirname, 'src/app.js'),
         name: 'BoomioWidget',
-        formats: ['iife'], // IIFE format for browser embedding
+        formats: ['iife'],
         fileName: () => 'bundle.js',
       },
       rollupOptions: {
         output: {
           banner,
-          // Ensure all code is bundled into single file
           inlineDynamicImports: true,
         },
       },
-      // Production optimizations
       minify: isDevelopment ? false : 'terser',
       terserOptions: {
         format: {
-          comments: /^\**!/, // Keep comments starting with /*!
+          comments: /^\**!/, // Keep banner comment
         },
       },
       sourcemap: isDevelopment,
-      // Target modern browsers (ES2020 = Chrome 80+, Firefox 72+, Safari 13.1+, Edge 80+)
-      target: 'es2020',
+      target: 'es2020', // Modern browsers (Chrome 80+, Firefox 72+, Safari 13.1+, Edge 80+)
     },
 
     server: {
       port: 3000,
       open: false,
       host: true,
-      hmr: true,
       fs: {
         strict: false, // Allow serving files from parent directories
       },
