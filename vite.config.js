@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const banner = `/*!
  * WARNING: Reverse engineering, tampering, or cheating detection systems are active.
@@ -16,11 +19,11 @@ export default defineConfig(({ mode }) => {
   const isDevelopment = mode === 'development';
 
   return {
-    root: '.', // serve from project root (like webpack did)
+    root: '.', // serve from project root
     publicDir: false, // Images loaded from GitHub raw URLs, not bundled
 
     plugins: [
-      cssInjectedByJsPlugin(), // Inject CSS into JS bundle
+      cssInjectedByJsPlugin(), // Inject CSS into JS bundle for single-file deployment
     ],
 
     resolve: {
@@ -54,27 +57,24 @@ export default defineConfig(({ mode }) => {
         },
       },
       sourcemap: isDevelopment,
-      // Ensure consistent builds
-      target: 'es2015',
+      // Target modern browsers (ES2020 = Chrome 80+, Firefox 72+, Safari 13.1+, Edge 80+)
+      target: 'es2020',
     },
 
     server: {
       port: 3000,
       open: false,
-      host: true, // equivalent to allowedHosts: 'all'
+      host: true,
       hmr: true,
-      // Serve index.html from root
       fs: {
-        strict: false,
+        strict: false, // Allow serving files from parent directories
       },
     },
 
-    // CSS handling (Vite handles this natively, no plugins needed)
     css: {
       devSourcemap: isDevelopment,
     },
 
-    // Clear console in dev mode
     clearScreen: false,
   };
 });
