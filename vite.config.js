@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 const banner = `/*!
  * WARNING: Reverse engineering, tampering, or cheating detection systems are active.
@@ -17,6 +18,10 @@ export default defineConfig(({ mode }) => {
   return {
     root: '.', // serve from project root (like webpack did)
     publicDir: false, // Images loaded from GitHub raw URLs, not bundled
+
+    plugins: [
+      cssInjectedByJsPlugin(), // Inject CSS into JS bundle
+    ],
 
     resolve: {
       alias: {
@@ -39,13 +44,6 @@ export default defineConfig(({ mode }) => {
           banner,
           // Ensure all code is bundled into single file
           inlineDynamicImports: true,
-          // Keep asset names predictable
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name.endsWith('.css')) {
-              return 'bundle.css';
-            }
-            return 'assets/[name].[ext]';
-          },
         },
       },
       // Production optimizations
@@ -58,7 +56,6 @@ export default defineConfig(({ mode }) => {
       sourcemap: isDevelopment,
       // Ensure consistent builds
       target: 'es2015',
-      cssCodeSplit: false, // Bundle all CSS together
     },
 
     server: {
