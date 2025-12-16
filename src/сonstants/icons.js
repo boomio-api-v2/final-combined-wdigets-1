@@ -1,5 +1,4 @@
 export const closeIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/close.png';
-export const closeImage = closeIcon; // Alias for backward compatibility
 export const giftImage = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/gift_img.png';
 export const gifIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/gift.png';
 export const couponsDiscountIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/startWidget/couponsDiscount.png';
