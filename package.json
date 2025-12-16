@@ -14,7 +14,6 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "jquery": "^3.7.1",
     "matter-js": "^0.20.0"
   },
   "devDependencies": {
