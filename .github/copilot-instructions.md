@@ -2,8 +2,8 @@
 
 <!-- Metadata -->
 
-**Version:** 1.1  
-**Last Updated:** October 8, 2025  
+**Version:** 1.2  
+**Last Updated:** December 16, 2025  
 **Maintainer:** boomio-api-v2  
 **Repository:** final-combined-wdigets-1
 
@@ -15,8 +15,8 @@
 
 **Location & Scope Rules**:
 
-- Applies to all files under `src/`, build configuration (`webpack.config.js`, `package.json`), and documentation.
-- Does NOT apply to: generated `dist/` files (though must be committed), `node_modules/`, historical asset branches in `images/`.
+- Applies to all files under `src/`, build configuration (`vite.config.js`, `package.json`), and documentation.
+- Does NOT apply to: generated `dist/` files (built by CI/CD, not committed), `node_modules/`, historical asset branches in `images/`.
 - Languages: JavaScript (ES Modules), CSS, HTML. No TypeScript.
 
 **Persona & Tone**: Be concise, grounded in project patterns, and conservative. Avoid generic advice. Always verify changes against the Change Checklist (§11) before marking complete. Ask for clarification on backend contract changes.
@@ -43,8 +43,8 @@
 
 **Required**:
 
-- Node.js v14+ and npm v6+
-- Webpack 5 (bundler)
+- Node.js v24.x and npm v6+
+- Vite 6 (bundler/dev server with HMR)
 - ESLint with `eslint-plugin-unused-imports`
 - Jest (testing, jsdom environment)
 
@@ -54,7 +54,7 @@
 - `file-loader` for asset processing (images)
 - `http-server` for local preview
 
-**Module Resolution**: `@` alias resolves to `src/` (configured in `webpack.config.js` and `jest.config.js` `moduleNameMapper`).
+**Module Resolution**: `@` alias resolves to `src/` (configured in `vite.config.js` and `jest.config.js` `moduleNameMapper`).
 
 ---
 
@@ -72,7 +72,7 @@ npm install
 # Option 1: Serve index.html with http-server
 npm start
 
-# Option 2: Webpack dev server with HMR at localhost:3000
+# Option 2: Vite dev server with HMR at localhost:3000
 npm run dev
 ```
 
@@ -215,7 +215,7 @@ Before marking any change as complete, **always** perform these steps (in order)
    - New development workflow requirements
    - Important pitfalls or gotchas discovered
 
-**Commit Requirements**: Always commit `dist/bundle.js` along with source changes (see README). Never push without a successful build.
+**Commit Requirements**: Never commit `dist/bundle.js` - it's built automatically by CI/CD. Always ensure your changes pass `npm run build` locally before pushing.
 
 ---
 

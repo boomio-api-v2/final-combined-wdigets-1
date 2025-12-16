@@ -32,9 +32,9 @@ export default [
     },
   },
 
-  // Configuration files (webpack, jest, etc.) - Node.js environment
+  // Configuration files (vite, jest, etc.) - Node.js environment
   {
-    files: ['*.config.js', '*.config.mjs', 'webpack.*.js', 'jest.*.js'],
+    files: ['*.config.js', '*.config.mjs', 'vite.*.js', 'jest.*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -52,8 +52,6 @@ export default [
         ...globals.browser,
         // Global variable defined by embedding page
         newLinkBoomio: 'readonly',
-        // Webpack HMR API
-        module: 'readonly',
       },
     },
     plugins: {

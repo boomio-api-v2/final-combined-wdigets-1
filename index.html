@@ -70,7 +70,8 @@
       const newLinkBoomio = 'https://api.sun.boomio.eu/webshop-proxy-service/api/handle';
       //const newLinkBoomio = 'https://api.boomio.com/webshop-proxy-service/handle';
     </script>
-    <script defer src="dist/bundle.js"></script>
+    <!-- In dev mode, Vite serves from src/app.js; in production use dist/bundle.js -->
+    <script type="module" src="/src/app.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
