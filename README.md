@@ -38,18 +38,15 @@ After building, the output will be available in `dist/bundle.js`.
 ## Development (local preview)
 
 ```shell
-# Fast development with Vite (Hot Module Replacement)
+# Development server with Hot Module Replacement
 npm run dev
-
-# Alternative: Build once and serve with http-server
-npm start
 ```
 
-**Vite dev server** (recommended for fast development):
+**Vite dev server**:
 
 - Hot reload - changes reflect instantly without full page refresh
 - Faster startup and rebuild times
-- Preview URL: http://127.0.0.1:3000/?demo=1&widget_type=catch
+- Preview URL: http://localhost:3000/?demo=1&widget_type=catch
 
 ## Commit & Push
 
