@@ -156,6 +156,35 @@ class HtmlElementsHelper {
   hideElement(element) {
     this.toggleElement(element, false);
   }
+
+  /**
+   * Toggle checkbox checked state by showing/hiding the appropriate image
+   * This avoids reloading images by toggling CSS display property instead of changing src
+   * @param {HTMLElement} checkboxContainer - The checkbox container element
+   * @param {boolean} isChecked - If true, show checked image, if false, show unchecked image
+   */
+  toggleCheckbox(checkboxContainer, isChecked) {
+    if (!checkboxContainer) return;
+
+    const checkedImg = checkboxContainer.querySelector('.checkbox-checked');
+    const uncheckedImg = checkboxContainer.querySelector('.checkbox-unchecked');
+
+    if (checkedImg && uncheckedImg) {
+      checkedImg.style.display = isChecked ? 'block' : 'none';
+      uncheckedImg.style.display = isChecked ? 'none' : 'block';
+    }
+  }
+
+  /**
+   * Get checkbox checked state by checking if checked image is visible
+   * @param {HTMLElement} checkboxContainer - The checkbox container element
+   * @returns {boolean} - True if checkbox is checked (checked image is visible)
+   */
+  isCheckboxChecked(checkboxContainer) {
+    if (!checkboxContainer) return false;
+    const checkedImg = checkboxContainer.querySelector('.checkbox-checked');
+    return checkedImg?.style.display !== 'none';
+  }
 }
 
 export const Elements = new HtmlElementsHelper();

@@ -28,9 +28,6 @@ export const tapImageBarbora = 'https://raw.githubusercontent.com/boomio-api-v2/
 export const life = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/catchWidget/life.png';
 
 export const star = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/star.png';
-export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxCheck.png';
-
-export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
 
 export const runnerbackground = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/runningWidget/assets/bg/bg.png';
 

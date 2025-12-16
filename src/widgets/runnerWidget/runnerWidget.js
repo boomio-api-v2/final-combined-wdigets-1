@@ -21,13 +21,11 @@ import {
   shield,
   pause,
   life,
-  checkIcon,
   upDentsu,
   downDentsu,
   leftDentsu,
   rightDentsu,
   dentsuOrientation,
-  uncheckIcon,
   runnerbackgroundNykstukas,
   runnerbackgroundDemo,
   runnerbackgroundToni,
@@ -1635,15 +1633,13 @@ ${
     const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
     checkboxImg.addEventListener('click', () => {
       this.checkboxChange = !this.checkboxChange;
-      const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-      checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+      Elements.toggleCheckbox(checkboxImg, this.checkboxChange);
     });
 
     const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
     checkboxImg2.addEventListener('click', () => {
       this.checkboxChange2 = !this.checkboxChange2;
-      const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
-      checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+      Elements.toggleCheckbox(checkboxImg2, this.checkboxChange2);
     });
 
     function loadSprites(loader, basePath, count) {

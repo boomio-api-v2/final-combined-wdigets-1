@@ -14,10 +14,6 @@ export const useButton = 'https://raw.githubusercontent.com/boomio-api-v2/final-
 
 export const howToPlay = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/doodleWidget/How_to_play.png';
 
-export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxCheck.png';
-
-export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
-
 export const newRecordLT = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecord.png';
 export const newRecordEE = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/newRecordEE.png';
 

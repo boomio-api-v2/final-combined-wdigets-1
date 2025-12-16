@@ -19,9 +19,6 @@ export const cloudsImageData = ['https://raw.githubusercontent.com/boomio-api-v2
 export const treeImageData = ['https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/tree.png'];
 
 export const intro = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/lemonGym/LemonGymIntro.gif';
-export const checkIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxCheck.png';
-
-export const uncheckIcon = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/RegistrationCheckboxUncheck.png';
 
 export const tapImageBarbora = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/driveWidget/pointer.png';
 

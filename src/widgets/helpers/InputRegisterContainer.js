@@ -29,6 +29,15 @@ export class InputRegisterContainer {
     this.customer = this.config.business_name;
     this.language = this.config.language;
     this.teams = this.config.teams;
+    // Preload checkbox images to avoid reloading on each toggle
+    this.preloadCheckboxImages();
+  }
+
+  preloadCheckboxImages() {
+    const checkImg = new Image();
+    checkImg.src = checkIcon;
+    const uncheckImg = new Image();
+    uncheckImg.src = uncheckIcon;
   }
 
   createInputRegisterContainer() {
@@ -38,8 +47,6 @@ export class InputRegisterContainer {
     containerDiv.style.background = `none`;
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.width = document.documentElement.clientWidth < 426 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '426px';
-    let privacyCheckboxChecked = false;
-    let privacyCheckboxChecked2 = false;
     this.teams = this.customer === 'Akropolis' ? ['Vilnius', 'Klaipėda', 'Šiauliai', 'Kaunas'] : this.config.teams;
 
     const options = Array.isArray(this.teams) ? this.teams : Object.keys(this.teams);
@@ -152,8 +159,9 @@ export class InputRegisterContainer {
            ? 'inline-flex'
            : 'none'
        }">
-      <div  style=" cursor:pointer;">
-            <img id="privacyCheckboxImg2" src="${privacyCheckboxChecked2 ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
+      <div style="cursor:pointer; position: relative; width: 20px; height: 20px;">
+            <img class="checkbox-unchecked" src="${uncheckIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0;">
+            <img class="checkbox-checked" src="${checkIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0; display: none;">
         </div>
         <div style="color: ${'white'}; font-size: ${
           this.isMobile
@@ -203,8 +211,9 @@ export class InputRegisterContainer {
       </div>
       
  <div id="boomio-privacyCheckbox3" class="boomio-privacyCheckbox3" style=";cursor:pointer;left: 34px; top: ${'375px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${this.customer === 'Pegasas' ? 'inline-flex' : 'none'}">
-      <div  style=" cursor:pointer;">
-            <img id="privacyCheckboxImg3" src="${privacyCheckboxChecked2 ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
+      <div style="cursor:pointer; position: relative; width: 20px; height: 20px;">
+            <img class="checkbox-unchecked" src="${uncheckIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0;">
+            <img class="checkbox-checked" src="${checkIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0; display: none;">
         </div>
         <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${
           this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
@@ -215,8 +224,9 @@ export class InputRegisterContainer {
         <div id="boomio-privacyCheckbox" class="boomio-privacyCheckbox" style="cursor:pointer;left: 34px; top: ${
           this.customer === 'Akropolis' ? (this.language === 'LV' || this.language === 'RU' ? '395px' : '362px') : this.customer === 'Vilvi' ? '360px' : this.customer === 'Dentsu' ? '375px' : '395px'
         }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
-      <div  style=" display: ${this.customer === 'Fpro' || this.customer === 'Fantazijos' ? 'none' : 'inline-flex'};cursor:pointer;">
-            <img id="privacyCheckboxImg" src="${privacyCheckboxChecked ? checkIcon : uncheckIcon}" style="width: 20px; height: 20px;">
+      <div style="display: ${this.customer === 'Fpro' || this.customer === 'Fantazijos' ? 'none' : 'inline-flex'}; cursor:pointer; position: relative; width: 20px; height: 20px;">
+            <img class="checkbox-unchecked" src="${uncheckIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0;">
+            <img class="checkbox-checked" src="${checkIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0; display: none;">
         </div>
         <div style="color: ${'white'}; font-height:6px;font-size: ${
           this.isMobile

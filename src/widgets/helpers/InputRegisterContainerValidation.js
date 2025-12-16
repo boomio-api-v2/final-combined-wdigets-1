@@ -344,17 +344,11 @@ class InputRegisterContainerValidation {
     const nameInput = Elements.nameInput;
     const phoneInput = Elements.phoneInput;
 
-    const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-    const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
-    const checkboxImgChange3 = document.getElementById('privacyCheckboxImg3');
-
-    const checkboxImgSrc = checkboxImgChange.src; // Get the 'src' attribute of the image
-    const checkboxImgSrc2 = checkboxImgChange2.src; // Get the 'src' attribute of the image
-    const checkboxImgSrc3 = checkboxImgChange3.src; // Get the 'src' attribute of the image
-
-    const checkboxChange = checkboxImgSrc.includes('Uncheck') ? false : true;
-    const checkboxChange2 = checkboxImgSrc2.includes('Uncheck') ? false : true;
-    const checkboxChange3 = checkboxImgSrc3.includes('Uncheck') ? false : true;
+    // Check checkbox states using the helper method (checks CSS display property instead of src)
+    const checkboxChange = Elements.isCheckboxChecked(Elements.checkbox);
+    const checkboxChange2 = Elements.isCheckboxChecked(Elements.checkbox2);
+    // checkboxChange3 validation not implemented yet, but keep for future use
+    const _checkboxChange3 = Elements.isCheckboxChecked(Elements.checkbox3);
 
     // Validate checkboxes
     if (Elements.isVisible(Elements.checkbox)) {

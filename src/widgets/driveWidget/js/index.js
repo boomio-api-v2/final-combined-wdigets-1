@@ -14,8 +14,6 @@ import {
   envelopeImageData,
   cloudsImageData,
   treeImageData,
-  checkIcon,
-  uncheckIcon,
   line,
   background,
   backgroundBarbora,
@@ -1420,14 +1418,9 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
         const phoneInput = Elements.phoneInput;
         const schoolInput = document.querySelector('.boomio-competition-school-select');
 
-        const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
-
-        const checkboxImgSrc = checkboxImgChange.src; // Get the 'src' attribute of the image
-        const checkboxImgSrc2 = checkboxImgChange2.src; // Get the 'src' attribute of the image
-
-        const checkboxChange = checkboxImgSrc.includes('Uncheck') ? false : true;
-        const checkboxChange2 = checkboxImgSrc2.includes('Uncheck') ? false : true;
+        // Check checkbox states using Elements helper
+        const checkboxChange = Elements.isCheckboxChecked(Elements.checkbox);
+        const checkboxChange2 = Elements.isCheckboxChecked(Elements.checkbox2);
 
         if (!InputValidator.validateRegistrationInputs()) {
           return;
@@ -1614,8 +1607,7 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3?.addEventListener('click', () => {
         checkboxChange3 = !checkboxChange3;
-        const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
-        checkboxImgChange3.src = checkboxChange3 ? checkIcon : uncheckIcon;
+        Elements.toggleCheckbox(checkboxImg3, checkboxChange3);
       });
     }
     if (showCompetitiveRegistration && campaignUrl === '') {
@@ -1659,15 +1651,13 @@ function startGame(scoreTableContainerInstance, didYouKnowContainer, competition
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         checkboxChange = !checkboxChange;
-        const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-        checkboxImgChange.src = checkboxChange ? checkIcon : uncheckIcon;
+        Elements.toggleCheckbox(checkboxImg, checkboxChange);
       });
 
       const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
       checkboxImg2.addEventListener('click', () => {
         checkboxChange2 = !checkboxChange2;
-        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
-        checkboxImgChange2.src = checkboxChange2 ? checkIcon : uncheckIcon;
+        Elements.toggleCheckbox(checkboxImg2, checkboxChange2);
       });
 
       const emailInput = Elements.emailInput;

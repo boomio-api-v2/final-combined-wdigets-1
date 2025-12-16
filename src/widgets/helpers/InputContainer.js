@@ -1,6 +1,5 @@
 import './styles.css';
 import { localStorageService } from '@/services';
-import { uncheckIcon } from './constants';
 
 // Helper function to get rules title based on language and customer
 const getRulesTitle = (customer, language) => {
@@ -535,7 +534,6 @@ export class InputContainer {
     containerDiv.style.backgroundSize = 'cover';
     containerDiv.style.zIndex = 9999;
 
-    const userId = this.config.userId;
     const rulesLink = getRulesLink(this.config.campaignUrlOrCurrentPage, this.customer, this.language);
     containerDiv.innerHTML = `
 
@@ -611,36 +609,7 @@ ${
                                     : this.language === 'ET'
                                       ? 'Loe kõiki mängureegleid.'
                                       : 'Read the full game rules'
-          } </a></div>
-           
-          ${
-            this.customer === 'Pigu.lt' && false
-              ? ` <div class="boomio-rules-privacyCheckbox" id="boomio-rules-privacyCheckbox" style="margin-left:30px;cursor:${'pointer'} ;left: 34px;  justify-content: center; align-items: center; gap: 5px; display: inline-flex">
-      <div  style=" display: ${'inline-flex'};cursor: ${'pointer'};">
-            <img id="boomio-rules-privacyCheckbox-img" src="${uncheckIcon}" style="max-width:fit-content;width: 20px; height: 20px;">
-        </div>
-        <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${'Montserrat'} ;width:calc(100% - 50px);  font-weight: 400; word-wrap: break-word;line-height:14px;text-align:start;">
-        ${
-          this.customer === 'Pigu.lt' && this.language === 'EN'
-            ? 'I agree to receive game news and information about prizes, and for my data to be processed for this purpose.'
-            : this.customer === 'Pigu.lt' && this.language === 'LV'
-              ? 'Es piekrītu saņemt spēles jaunumus un informāciju par balvām, kā arī piekrītu manu datu apstrādei šim nolūkam'
-              : this.customer === 'Pigu.lt' && this.language === 'ET'
-                ? 'Nõustun saama teavet mängu uudiste ja auhindade kohta ning luban oma andmete töötlemise selleks otstarbeks.'
-                : this.customer === 'Pigu.lt' && this.language === 'FI'
-                  ? 'Hyväksyn, että minulle lähetetään tietoja pelistä ja palkinnoista, ja että tietojani käsitellään tätä tarkoitusta varten.'
-                  : this.customer === 'Pigu.lt' && this.language === 'RU'
-                    ? 'Я соглашаюсь получать новости о игре и информацию о призах, а также на обработку моих данных с этой целью.'
-                    : 'Sutinku gauti žaidimo naujienas ir informaciją apie prizus, bei kad mano duomenys būtų tvarkomi šiuo tikslu.'
-        }
-    </div>
-      </div>         <div id="boomio-rules-checkbox-error" style="margin-left:16px;padding-top:1px;margin-right:14px;display:${'none'} ;top:${'270px'}; position: absolute; justify-content: start; align-items: start; gap: 5px;font-size:${
-        this.isMobile ? '8px' : '10px'
-      };color:${'#D8000C'};text-align:start;line-height:8px;">
-</div>`
-              : ''
-          }
-          `
+          } </a></div>`
         : ''
     }
     </div>

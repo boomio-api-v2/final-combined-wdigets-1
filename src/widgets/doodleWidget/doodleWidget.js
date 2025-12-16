@@ -6,8 +6,6 @@ import {
   backgroundRed,
   mainImage,
   useButton,
-  checkIcon,
-  uncheckIcon,
   newRecordLT,
   backgroundRedAkropolis,
   mainImageAkropolis,
@@ -542,23 +540,20 @@ class DoodleWidget {
       const checkboxImg3 = document.querySelector('.boomio-rules-privacyCheckbox');
       checkboxImg3.addEventListener('click', () => {
         this.checkboxChange3 = !this.checkboxChange3;
-        const checkboxImgChange3 = document.getElementById('boomio-rules-privacyCheckbox-img');
-        checkboxImgChange3.src = this.checkboxChange3 ? checkIcon : uncheckIcon;
+        Elements.toggleCheckbox(checkboxImg3, this.checkboxChange3);
       });
     }
     if (this.showCompetitiveRegistration && this.customer !== 'Pigu.lt' && user_id === null) {
       const checkboxImg = document.querySelector('.boomio-privacyCheckbox');
       checkboxImg.addEventListener('click', () => {
         this.checkboxChange = !this.checkboxChange;
-        const checkboxImgChange = document.getElementById('privacyCheckboxImg');
-        checkboxImgChange.src = this.checkboxChange ? checkIcon : uncheckIcon;
+        Elements.toggleCheckbox(checkboxImg, this.checkboxChange);
       });
 
       const checkboxImg2 = document.querySelector('.boomio-privacyCheckbox2');
       checkboxImg2.addEventListener('click', () => {
         this.checkboxChange2 = !this.checkboxChange2;
-        const checkboxImgChange2 = document.getElementById('privacyCheckboxImg2');
-        checkboxImgChange2.src = this.checkboxChange2 ? checkIcon : uncheckIcon;
+        Elements.toggleCheckbox(checkboxImg2, this.checkboxChange2);
       });
 
       const phoneInputField = this.customer === 'Toni' ? document.getElementById('boomio-competition-email-input-field') : document.getElementById('boomio-competition-phone-input-field');
