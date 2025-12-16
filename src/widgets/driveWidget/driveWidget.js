@@ -217,7 +217,9 @@ ${
 
 
 
-    ${introImage ? `<img src=${introImage} alt="Intro image" style="z-index:4;width:${document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'}; height: 674px;position:absolute;pointer-events: none; display:block;" id="background_intro">` : ''}
+    <img ${introImage ? `src="${introImage}"` : ''} alt="Intro image" style="z-index:4;width:${
+      document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
+    }; height: 674px;position:absolute;pointer-events: none; display:${introImage ? 'block' : 'none'};" id="background_intro">
     <img src=${blurImage.src} alt="Blur Image" style="z-index:3;width: ${
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0.37;pointer-events: none; display:block;" id="background_blur">
