@@ -51,7 +51,7 @@ module.exports = (env, argv) => {
         watch: true,
       },
       devMiddleware: {
-        writeToDisk: false, // keep dist/bundle.js on disk for any tooling depending on it
+        writeToDisk: true, // keep dist/bundle.js on disk for any tooling depending on it
       },
       port: 3000,
       hot: true,

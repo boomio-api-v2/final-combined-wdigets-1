@@ -1,1 +1,5 @@
 node_modules
+
+# Webpack HMR files
+*.hot-update.js
+*.hot-update.json

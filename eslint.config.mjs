@@ -52,6 +52,8 @@ export default [
         ...globals.browser,
         // Global variable defined by embedding page
         newLinkBoomio: 'readonly',
+        // Webpack HMR API
+        module: 'readonly',
       },
     },
     plugins: {
