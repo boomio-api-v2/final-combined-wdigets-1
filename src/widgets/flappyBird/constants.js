@@ -149,3 +149,8 @@ export const orlenBackground = 'https://raw.githubusercontent.com/boomio-api-v2/
 export const backgroundToni = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/Toni/bg.png';
 
 export const backgroundBoomio = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/Boomio/bg.png';
+
+export const backgroundElesenLT = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/Elesen/bgLT.png';
+export const backgroundElesenLV = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/Elesen/bgLV.png';
+
+export const backgroundEldorado = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/flappyWidget/Eldorado/bg.png';

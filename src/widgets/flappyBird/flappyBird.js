@@ -97,8 +97,12 @@ import {
   orlenBackground,
   backgroundToni,
   backgroundBoomio,
+  backgroundElesenLT,
+  backgroundElesenLV,
+  backgroundEldorado,
 } from './constants';
-const getBackground = (customer, campaignUrlOrCurrentPage) => {
+
+const getBackground = (customer, language, campaignUrlOrCurrentPage) => {
   const randomChoice = Math.round(Math.random());
 
   if (customer === 'SaludSA') return SaludSABackground;
@@ -117,6 +121,10 @@ const getBackground = (customer, campaignUrlOrCurrentPage) => {
     return randomChoice === 0 ? PIGUFirstFI : PIGUSecondFI;
   }
 
+  if (customer === 'Elesen') {
+    return language === 'LT' ? backgroundElesenLT : backgroundElesenLV;
+  }
+
   // Customer-specific backgrounds
   const customerBackgrounds = {
     Barbora: mainBarbora,
@@ -132,6 +140,7 @@ const getBackground = (customer, campaignUrlOrCurrentPage) => {
     Orlen: orlenBackground,
     Toni: backgroundToni,
     'Penki Sezonai': mainPenki,
+    Eldorado: backgroundEldorado,
   };
 
   // Demo backgrounds
@@ -520,7 +529,7 @@ class FlappyBird {
     const canvas = document.getElementById('flappy-canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
-    img.src = getBackground(this.customer, this.campaignUrlOrCurrentPage);
+    img.src = getBackground(this.customer, this.language, this.campaignUrlOrCurrentPage);
 
     const img2 = new Image();
     img2.src = 'https://i.ibb.co/SrtXMFx/Boomio-demo-penguin.png';
@@ -1038,10 +1047,12 @@ class FlappyBird {
       document.documentElement.clientWidth < 418 ? document.documentElement.clientWidth + 'px' : '418px'
     }; height: 668px;position:absolute;opacity:0;pointer-events: none; display:none;background-color:${'#808080'}" id="background_blur"></div>
    
-<img src=${getIntro(this.customer, this.language, this.campaignUrlOrCurrentPage)} alt="Intro Image Description" style="z-index:4;width: ${
+<img ${(() => {
+      const introImage = getIntro(this.customer, this.language, this.campaignUrlOrCurrentPage);
+      return introImage ? `src="${introImage}"` : '';
+    })()} alt="Intro Image Description" style="z-index:4;width: ${
       document.documentElement.clientWidth < 418 ? (document.documentElement.clientWidth < 321 ? '375px' : document.documentElement.clientWidth + 'px') : '418px'
     }; height: 668px;position:absolute;pointer-events: none; display:${shouldSkipIntro(this.customer, this.language, this.campaignUrlOrCurrentPage) ? 'none' : 'block'};" id="background_intro">
-</img>
 
     <a href="https://www.boomio.com/" style="position:absolute;margin-top:380px;margin-left:-340px">
     <img src="${useCuponImage.src}" alt="Image Description 3" style="z-index:4;width: 335px;max-width:335px; height: 86px; position:absolute; display:none; " id="useCuponImage">
