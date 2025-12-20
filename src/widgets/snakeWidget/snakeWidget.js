@@ -274,9 +274,9 @@ class SnakeWidget {
   startSnake() {
     this.config = localStorageService.getDefaultConfig();
     var head = new Image();
-    head.src = 'https://raw.githubusercontent.com/komeilshahmoradi/Snake/main/Sprites/snake.png';
+    head.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/snakeWidget/snake.png';
     var tail = new Image();
-    tail.src = 'https://raw.githubusercontent.com/komeilshahmoradi/Snake/main/Sprites/snake.png';
+    tail.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/snakeWidget/snake.png';
     var foodImg = new Image();
     foodImg.src = giftImage;
 
