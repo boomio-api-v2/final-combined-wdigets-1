@@ -1026,9 +1026,6 @@ class FlappyBird {
     const newHighscoreStarsImage = new Image();
     newHighscoreStarsImage.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/effects/New-demo-best-score.gif';
 
-    const snowImgEnd = new Image();
-    snowImgEnd.src = 'https://i.giphy.com/media/ggK4TpfK2cfuZcokhj/giphy.webp';
-
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-flappy-container');
     myCanvas.classList.add('boomio--animation__wrapper', 'boomio--animation__wrapper--initial');
