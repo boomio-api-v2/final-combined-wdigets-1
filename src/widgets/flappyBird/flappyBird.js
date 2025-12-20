@@ -532,10 +532,10 @@ class FlappyBird {
     img.src = getBackground(this.customer, this.language, this.campaignUrlOrCurrentPage);
 
     const img2 = new Image();
-    img2.src = 'https://i.ibb.co/SrtXMFx/Boomio-demo-penguin.png';
+    img2.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Boomio-demo-penguin.png';
 
     const img3 = new Image();
-    img3.src = 'https://i.ibb.co/xq7Yf83/Boomio-demo-3-1.png';
+    img3.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Boomio-demo-3-1.png';
 
     const snowImg = new Image();
     snowImg.src = snowFantazijos;
@@ -997,34 +997,34 @@ class FlappyBird {
 
   createContainer = () => {
     const starImg = new Image();
-    starImg.src = 'https://i.ibb.co/mBmxsKP/Group-1000001725.png';
+    starImg.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Group-1000001725.png';
 
     const clickImg = new Image();
-    clickImg.src = 'https://i.ibb.co/LvmQXcC/BOOMIO-TAP-ELEMENT.gif';
+    clickImg.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/effects/BOOMIO-TAP-ELEMENT.gif';
 
     const btnImg = new Image();
-    btnImg.src = 'https://i.ibb.co/d74HGX8/Button-Yellow-2.png';
+    btnImg.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Button-Yellow-2.png';
 
     const gameOver = new Image();
-    gameOver.src = 'https://i.ibb.co/kGkXBHq/Game-over-2.png';
+    gameOver.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Game-over-2.png';
 
     const playAgain = new Image();
-    playAgain.src = 'https://i.ibb.co/0Bqvttk/PLAY-AGAIN.png';
+    playAgain.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/PLAY-AGAIN.png';
 
     const okImage = new Image();
-    okImage.src = 'https://i.ibb.co/nL70YWF/OK.png';
+    okImage.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/OK.png';
 
     const rulesImage = new Image();
-    rulesImage.src = 'https://i.ibb.co/sK74MHP/Rules-1.png';
+    rulesImage.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Rules-1.png';
 
     const blurImage = new Image();
-    blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
+    blurImage.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Blur-game-rules.png';
 
     const useCuponImage = new Image();
-    useCuponImage.src = 'https://i.ibb.co/dGnFRp1/Button-use-it.png';
+    useCuponImage.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Button-use-it.png';
 
     const newHighscoreStarsImage = new Image();
-    newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
+    newHighscoreStarsImage.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/effects/New-demo-best-score.gif';
 
     const snowImgEnd = new Image();
     snowImgEnd.src = 'https://i.giphy.com/media/ggK4TpfK2cfuZcokhj/giphy.webp';

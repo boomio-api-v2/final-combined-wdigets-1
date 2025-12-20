@@ -1418,10 +1418,10 @@ class DoodleWidget {
   };
   createContainer = () => {
     const blurImage = new Image();
-    blurImage.src = 'https://i.ibb.co/wrHgcn1/Blur-game-rules.png';
+    blurImage.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/ui/Blur-game-rules.png';
 
     const newHighscoreStarsImage = new Image();
-    newHighscoreStarsImage.src = 'https://i.ibb.co/P43Lwwz/New-demo-best-score.gif';
+    newHighscoreStarsImage.src = 'https://raw.githubusercontent.com/boomio-api-v2/final-combined-wdigets-1/main/images/common/effects/New-demo-best-score.gif';
 
     const myCanvas = document.createElement('div');
     myCanvas.setAttribute('id', 'boomio-doodle-container');
