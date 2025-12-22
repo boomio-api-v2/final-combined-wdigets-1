@@ -361,7 +361,7 @@ class DoodleWidget {
     this.discount = '0%';
     this.newHighScoreReached = false;
     this.firstRun = true;
-    this.gravity = 0.1;
+    this.gravity = 0.2;
     this.gameCount = 0;
 
     setTimeout(
@@ -1086,8 +1086,8 @@ class DoodleWidget {
     if (!this.lastFrameTime) this.lastFrameTime = timestamp;
     const deltaTime = timestamp - this.lastFrameTime;
 
-    // Only update if enough time has passed (target 120 FPS = 8.33ms per frame)
-    if (deltaTime >= 8.33) {
+    // Only update if enough time has passed (target 60 FPS = 16.67ms per frame)
+    if (deltaTime >= 16.67) {
       this.update();
       this.lastFrameTime = timestamp;
     }
@@ -1214,33 +1214,33 @@ class DoodleWidget {
     // Event listeners are now set up once in setupInputListeners()
     // No need to add them every frame!
 
-    this.speed = 0.16;
+    this.speed = 0.32;
 
     if (this.currentScore >= 20000) {
-      this.speed = 0.95;
+      this.speed = 1.9;
     } else if (this.currentScore >= 15000 && this.currentScore < 20000) {
-      this.speed = 0.9;
+      this.speed = 1.8;
     } else if (this.currentScore >= 13000 && this.currentScore < 15000) {
-      this.speed = 0.85;
+      this.speed = 1.7;
     } else if (this.currentScore >= 11000 && this.currentScore < 13000) {
-      this.speed = 0.8;
+      this.speed = 1.6;
     } else if (this.currentScore >= 9000 && this.currentScore < 11000) {
-      this.speed = 0.75;
+      this.speed = 1.5;
     } else if (this.currentScore >= 8000 && this.currentScore < 9000) {
-      this.speed = 0.65;
+      this.speed = 1.3;
     } else if (this.currentScore >= 7000 && this.currentScore < 8000) {
-      this.speed = 0.6;
+      this.speed = 1.2;
     } else if (this.currentScore >= 6000 && this.currentScore < 7000) {
-      this.speed = 0.55;
+      this.speed = 1.1;
     } else if (this.currentScore >= 5000 && this.currentScore < 6000) {
-      this.speed = 0.5;
+      this.speed = 1.0;
     } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
-      this.speed = 0.35;
+      this.speed = 0.7;
     } else if (this.currentScore >= 700 && this.currentScore < 1500) {
-      this.speed = 0.3;
+      this.speed = 0.6;
     } else if (this.currentScore >= 500 && this.currentScore < 700) {
-      this.speed = 0.2;
-    } else if (this.currentScore >= 100 && this.currentScore < 500) this.speed = 0.16;
+      this.speed = 0.4;
+    } else if (this.currentScore >= 100 && this.currentScore < 500) this.speed = 0.32;
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
@@ -1261,32 +1261,32 @@ class DoodleWidget {
     // Speed limits!
 
     if (this.currentScore >= 20000) {
-      if (this.player.vx > 10) this.player.vx = 10;
-      else if (this.player.vx < -10) this.player.vx = -10;
+      if (this.player.vx > 20) this.player.vx = 20;
+      else if (this.player.vx < -20) this.player.vx = -20;
     } else if (this.currentScore >= 15000 && this.currentScore < 20000) {
-      if (this.player.vx > 9.5) this.player.vx = 9.5;
-      else if (this.player.vx < -9.5) this.player.vx = -9.5;
+      if (this.player.vx > 19) this.player.vx = 19;
+      else if (this.player.vx < -19) this.player.vx = -19;
     } else if (this.currentScore >= 10000 && this.currentScore < 15000) {
+      if (this.player.vx > 20) this.player.vx = 20;
+      else if (this.player.vx < -20) this.player.vx = -20;
+    } else if (this.currentScore >= 7000 && this.currentScore < 10000) {
+      if (this.player.vx > 16) this.player.vx = 16;
+      else if (this.player.vx < -16) this.player.vx = -16;
+    } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
+      if (this.player.vx > 14) this.player.vx = 14;
+      else if (this.player.vx < -14) this.player.vx = -14;
+    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+      if (this.player.vx > 12) this.player.vx = 12;
+      else if (this.player.vx < -12) this.player.vx = -12;
+    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
       if (this.player.vx > 10) this.player.vx = 10;
       else if (this.player.vx < -10) this.player.vx = -10;
-    } else if (this.currentScore >= 7000 && this.currentScore < 10000) {
+    } else if (this.currentScore >= 500 && this.currentScore < 700) {
       if (this.player.vx > 8) this.player.vx = 8;
       else if (this.player.vx < -8) this.player.vx = -8;
-    } else if (this.currentScore >= 5000 && this.currentScore < 7000) {
-      if (this.player.vx > 7) this.player.vx = 7;
-      else if (this.player.vx < -7) this.player.vx = -7;
-    } else if (this.currentScore >= 1500 && this.currentScore < 5000) {
+    } else if (this.currentScore >= 100 && this.currentScore < 500) {
       if (this.player.vx > 6) this.player.vx = 6;
       else if (this.player.vx < -6) this.player.vx = -6;
-    } else if (this.currentScore >= 700 && this.currentScore < 1500) {
-      if (this.player.vx > 5) this.player.vx = 5;
-      else if (this.player.vx < -5) this.player.vx = -5;
-    } else if (this.currentScore >= 500 && this.currentScore < 700) {
-      if (this.player.vx > 4) this.player.vx = 4;
-      else if (this.player.vx < -4) this.player.vx = -4;
-    } else if (this.currentScore >= 100 && this.currentScore < 500) {
-      if (this.player.vx > 3) this.player.vx = 3;
-      else if (this.player.vx < -3) this.player.vx = -3;
     }
     //Jump the player when it hits the base
     if (this.player.y + this.player.height > this.base.y && this.base.y < this.height) this.player.jump();
@@ -1374,18 +1374,18 @@ class DoodleWidget {
     //Accelerations produces when the user hold the keys
     if (this.player.isMovingLeft === true) {
       this.player.x += this.player.vx;
-      this.player.vx -= 0.3;
+      this.player.vx -= 0.6;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx < 0) this.player.vx += 0.2;
+      if (this.player.vx < 0) this.player.vx += 0.4;
     }
 
     if (this.player.isMovingRight === true) {
       this.player.x += this.player.vx;
-      this.player.vx += 0.3;
+      this.player.vx += 0.6;
     } else {
       this.player.x += this.player.vx;
-      if (this.player.vx > 0) this.player.vx -= 0.2;
+      if (this.player.vx > 0) this.player.vx -= 0.4;
     }
 
     //Jump the player when it hits the base
@@ -1984,32 +1984,32 @@ class Platform {
     // Set initial platform types
     if (this.currentScore >= 9000) {
       this.types = [2, 2, 2, 3, 3, 4, 4, 4, 4];
-      this.gravity = 0.3;
-      this.vx = 6;
+      this.gravity = 0.6;
+      this.vx = 12;
     } else if (this.currentScore >= 7000 && this.currentScore < 9000) {
       this.types = [2, 3, 2, 3, 4, 4, 4, 4];
-      this.gravity = 0.2;
-      this.vx = 5;
+      this.gravity = 0.4;
+      this.vx = 10;
     } else if (this.currentScore >= 3500 && this.currentScore < 7000) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
-      this.gravity = 0.18;
-      this.vx = 4;
+      this.gravity = 0.36;
+      this.vx = 8;
     } else if (this.currentScore >= 1500 && this.currentScore < 3500) {
       this.types = [2, 2, 2, 3, 3, 3, 3, 3];
-      this.gravity = 0.16;
-      this.vx = 3;
+      this.gravity = 0.32;
+      this.vx = 6;
     } else if (this.currentScore >= 800 && this.currentScore < 1500) {
       this.types = [1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
-      this.gravity = 0.14;
-      this.vx = 2;
+      this.gravity = 0.28;
+      this.vx = 4;
     } else if (this.currentScore >= 100 && this.currentScore < 800) {
-      this.gravity = 0.12;
+      this.gravity = 0.24;
       this.types = [1, 1, 1, 1, 2, 2];
-      this.vx = 1.5;
+      this.vx = 3;
     } else {
-      this.gravity = 0.1;
+      this.gravity = 0.2;
       this.types = [1];
-      this.vx = 1;
+      this.vx = 2;
     }
     //Choose a random type from the available types
     this.type = this.types[Math.floor(Math.random() * this.types.length)];
@@ -2132,7 +2132,7 @@ class Player {
     this.customer = this.config.business_name;
 
     this.image = image;
-    this.vy = 11;
+    this.vy = 22;
     this.vx = 0;
     this.width = this.customer === 'Vilvi' ? 125 : 110;
     this.height = 85;
@@ -2163,11 +2163,11 @@ class Player {
   }
 
   jump = () => {
-    this.vy = -7;
+    this.vy = -14;
   };
 
   jumpHigh = () => {
-    this.vy = -14;
+    this.vy = -28;
     const effectElement = document.getElementById('background_effect');
     effectElement.style.display = 'block';
     effectElement.style.opacity = 1;
