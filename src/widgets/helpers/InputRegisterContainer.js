@@ -55,9 +55,7 @@ export class InputRegisterContainer {
     containerDiv.innerHTML = `
       <div style="height: ${this.customer === 'Toni' ? '0px' : '124px'}; top:${
         this.customer === 'SaludSA' || this.customer === 'Pegasas' || this.customer === 'Toni' ? '0px' : this.language !== 'LT' ? '70px' : '90px'
-      }; position: relative; text-align:${this.customer === 'Ikea' ? 'start' : 'center'} ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${this.isMobile ? '24px' : '26px'}; font-family: ${
-        this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'
-      }; font-weight: 700; text-transform: ${this.customer === 'Ikea' ? 'none' : 'uppercase'}; line-height: 32px; word-wrap: break-word">${
+      }; position: relative; text-align:${this.customer === 'Ikea' ? 'start' : 'center'} ;left:34px;margin-right:68px; color: ${'white'}; font-size: ${this.isMobile ? '24px' : '26px'}; font-family: ${'Georama'}; font-weight: 700; text-transform: ${this.customer === 'Ikea' ? 'none' : 'uppercase'}; line-height: 32px; word-wrap: break-word">${
         this.language === 'LV' && this.customer === 'Akropolis'
           ? 'REĢISTRĒJIES'
           : this.customer === 'LemonFeel'
@@ -117,7 +115,7 @@ export class InputRegisterContainer {
           } 
     </div>
       <div id="boomio-competition-confirm-field" style="cursor:pointer;width: calc(100% - 54px); padding-top: 11px; padding-bottom: 11px; left: 27px; top: 455px; position: absolute; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <div style="text-align: center;font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'};   color: ${
+        <div style="text-align: center;font-family:${'Georama'};   color: ${
           this.customer === 'Toni' ? '#10069F' : 'rgba(61, 73, 40, 1)'
         } ; font-size: 24px;  font-weight: ${this.customer === 'Ikea' ? '400' : '700'}; line-height: 24px; word-wrap: break-word" >${
           this.language === 'LV'
@@ -160,7 +158,7 @@ export class InputRegisterContainer {
            ? 'inline-flex'
            : 'none'
        }">
-      <div style="cursor:pointer; position: relative; width: 20px; height: 20px;">
+      <div style="cursor:pointer; position: relative; width: 20px; height: 20px; flex-shrink: 0;">
             <img class="checkbox-unchecked" src="${uncheckIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0;">
             <img class="checkbox-checked" src="${checkIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0; display: none;">
         </div>
@@ -174,7 +172,7 @@ export class InputRegisterContainer {
               : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
                 ? '10px'
                 : '12px'
-        }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'};font-weight: 400;  line-height: 14px; word-wrap: break-word;text-align:start;">${
+        }; font-family:${'Montserrat'};font-weight: 400;  line-height: 14px; word-wrap: break-word;text-align:start;margin-right:10px;">${
           this.customer === 'Zemaitijos Pienas' && this.language === 'LT'
             ? 'Sutinku gauti „Žemaitijos pienas“ naujienlaiškius.'
             : this.customer === 'Zemaitijos Pienas' && this.language === 'LV'
@@ -212,20 +210,18 @@ export class InputRegisterContainer {
       </div>
       
  <div id="boomio-privacyCheckbox3" class="boomio-privacyCheckbox3" style=";cursor:pointer;left: 34px; top: ${'375px'}; position: absolute; justify-content: center; align-items: center; gap: 5px; display: ${this.customer === 'Pegasas' ? 'inline-flex' : 'none'}">
-      <div style="cursor:pointer; position: relative; width: 20px; height: 20px;">
+      <div style="cursor:pointer; position: relative; width: 20px; height: 20px; flex-shrink: 0;">
             <img class="checkbox-unchecked" src="${uncheckIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0;">
             <img class="checkbox-checked" src="${checkIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0; display: none;">
         </div>
-        <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${
-          this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'
-        };font-weight: 400; word-wrap: break-word;text-align:start;">${this.customer === 'Pegasas' ? 'Sutinku gauti Pegaso naujienas SMS žinute.' : ''}
+        <div style="color: ${'white'}; font-size: ${'10px'}; font-family:${'Montserrat'};font-weight: 400; word-wrap: break-word;text-align:start;margin-right:10px;">${this.customer === 'Pegasas' ? 'Sutinku gauti Pegaso naujienas SMS žinute.' : ''}
     </div>
       </div>
 
         <div id="boomio-privacyCheckbox" class="boomio-privacyCheckbox" style="cursor:pointer;left: 34px; top: ${
           this.customer === 'Akropolis' ? (this.language === 'LV' || this.language === 'RU' ? '395px' : '362px') : this.customer === 'Vilvi' ? '360px' : this.customer === 'Dentsu' ? '375px' : '395px'
         }; position: absolute; justify-content: center; align-items: center; gap: 5px; display: inline-flex">
-      <div style="display: ${this.customer === 'Fpro' || this.customer === 'Fantazijos' ? 'none' : 'inline-flex'}; cursor:pointer; position: relative; width: 20px; height: 20px;">
+      <div style="display: ${this.customer === 'Fpro' || this.customer === 'Fantazijos' ? 'none' : 'inline-flex'}; cursor:pointer; position: relative; width: 20px; height: 20px; flex-shrink: 0;">
             <img class="checkbox-unchecked" src="${uncheckIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0;">
             <img class="checkbox-checked" src="${checkIcon}" style="width: 20px; height: 20px; position: absolute; top: 0; left: 0; display: none;">
         </div>
@@ -239,9 +235,9 @@ export class InputRegisterContainer {
               : this.customer === 'Akropolis' && (this.language === 'LV' || this.language === 'RU')
                 ? '10px'
                 : '12px'
-        }; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Montserrat'} ;  font-weight: 400; width:${
+        }; font-family:${'Montserrat'} ;  font-weight: 400; width:${
           this.customer?.includes('Gamtos Ateitis') ? '320px' : '350px'
-        };word-wrap: break-word;line-height:14px;text-align:start;">${
+        };word-wrap: break-word;line-height:14px;text-align:start;margin-right:10px;">${
           this.customer === 'Novaturas' && this.language === 'LT'
             ? 'Norint tęsti privaloma sutikti su įmonės  <a href="https://www.novaturas.lt/privatumo-politika" target="_blank" rel="noopener noreferrer">privatumo politika</a>.'
             : this.customer === 'Novaturas' && this.language === 'LV'
@@ -408,7 +404,7 @@ export class InputRegisterContainer {
         this.customer === 'LemonGym'
           ? 'rgba(61, 73, 40, 1)'
           : '#473F4E'
-      } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+      } ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
         this.language === 'LV'
           ? 'Spēlētāja lietotājvārds'
           : this.language === 'RU'
@@ -459,7 +455,7 @@ export class InputRegisterContainer {
          this.customer === 'LemonFeel'
            ? 'rgba(61, 73, 40, 1)'
            : '#473F4E'
-       } ; font-size: 18px; font-family:${this.customer === 'Perlas GO' ? 'Basis Grotesque Pro' : 'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
+       } ; font-size: 18px; font-family:${'Georama'}; font-weight: 500; line-height: 24px; word-wrap: break-word" placeholder="${
          this.customer === 'Ikea'
            ? 'El. pašto adresas'
            : this.customer === 'SaludSA'

@@ -943,9 +943,7 @@ export class CompetitionScoreTableContainer {
 </div>
 
       <div style="width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:580px;position:absolute; height: 36px; background: ${'white'}; box-shadow: -4px -4px 8px #DFE6F5 inset; border-radius: 35px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: flex" id="boomio-game-play-again">
-        <div style="text-align: center; color: ${this.getBrandColor(this.customer)} ; font-size: 22px; font-family: ${
-          this.customer === 'Perlas GO' ? 'Basis Grotesque Pro, sans-serif' : 'Georama'
-        }; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
+        <div style="text-align: center; color: ${this.getBrandColor(this.customer)} ; font-size: 22px; font-family: ${'Georama'}; font-weight: 700; line-height: 24px; word-wrap: break-word;cursor:pointer;">${
           this.customer === 'Akropolis' && this.language === 'LV'
             ? 'SPĒLĒT VĒLREIZ'
             : this.customer === 'Akropolis' && this.language === 'RU'
