@@ -8,7 +8,6 @@ import {
   star,
   stopwatch,
   background,
-  backgroundToni,
   tutorial,
   close,
   redBalloon,
@@ -372,7 +371,7 @@ ${`<div style="${
 </div>
 </div>
 
-<img src="${this.customer === 'Toni' ? backgroundToni : background}" 
+<img src="${background}" 
      alt="Game Background"
      id="background_nevezis"
      style="z-index:0;

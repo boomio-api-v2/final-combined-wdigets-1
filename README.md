@@ -24,27 +24,33 @@ Install Node 24.x
 # Install dependencies
 npm i
 
-# Build the project
+# Build the project (production)
 npm run build
+
+# Build for development (with source maps)
+npm run build:dev
 ```
 
-After building, the output will be available in dist/bundle.js.
+After building, the output will be available in `dist/bundle.js`.
+
+**Note**: `dist/bundle.js` is NOT committed to the repository. It's built automatically in CI/CD and deployed to CloudFront/Cloudflare.
 
 ## Development (local preview)
 
 ```shell
-npm start
-
-# Alternative
+# Development server with Hot Module Replacement
 npm run dev
 ```
 
-Preview URL:
-http://127.0.0.1:3000/?demo=1&widget_type=catch
+**Vite dev server**:
+
+- Hot reload - changes reflect instantly without full page refresh
+- Faster startup and rebuild times
+- Preview URL: http://localhost:3000/?demo=1&widget_type=catch
 
 ## Commit & Push
 
-Commit and push changes. Make sure that you pushe dist/bundle.js file.
+Commit and push changes. The bundle will be built automatically by GitHub Actions.
 
 ## Embed in Your Website
 

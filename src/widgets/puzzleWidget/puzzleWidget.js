@@ -1,5 +1,5 @@
 import { boomioService, localStorageService, DragElement, AnimationService, QrCodeModal, widgetHtmlService } from '@/services';
-import { closeImage, frameSvg, puzzleIconsList } from '@/сonstants/icons';
+import { closeIcon, frameSvg, puzzleIconsList } from '@/сonstants/icons';
 import { isMobileDevice } from '@/config';
 import { getRandomArbitrary, assignStyleOnElement, createCloseMoveButtons } from '@/utils';
 import { puzzlesCoordinateForDesktop, puzzlesCoordinateForMobile, puzzlesCoordinate, puzzleWidgetSize } from './constants';
@@ -114,7 +114,7 @@ export class Puzzle {
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.classList.add('boomio-close-modal-btn-wrapper');
     const closeBtn = document.createElement('img');
-    closeBtn.src = closeImage;
+    closeBtn.src = closeIcon;
     closeBtn.classList.add('boomio-close-modal-btn');
     closeBtn.onclick = closeCallback;
     closeBtnWrapper.appendChild(closeBtn);

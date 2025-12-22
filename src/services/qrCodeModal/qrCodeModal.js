@@ -1,6 +1,6 @@
 import { boomioService, localStorageService, widgetHtmlService } from '@/services';
 import { assignStyleOnElement } from '@/utils';
-import { closeImage, dotImage, oldCouponImage, winningConfetinGif } from '@/сonstants/icons';
+import { closeIcon, dotImage, oldCouponImage, winningConfetinGif } from '@/сonstants/icons';
 import { exitBtnHtml } from '@/сonstants/htmlTemplates';
 import './styles.css';
 
@@ -369,7 +369,7 @@ export default class {
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.classList.add('boomio-close-modal-btn-wrapper');
     const closeBtn = document.createElement('img');
-    closeBtn.src = closeImage;
+    closeBtn.src = closeIcon;
     closeBtn.classList.add('boomio-close-modal-btn');
     closeBtn.onclick = closeCallback;
     closeBtnWrapper.appendChild(closeBtn);

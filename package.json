@@ -1,43 +1,33 @@
 {
+  "name": "boomio-widgets",
+  "version": "1.0.0",
   "scripts": {
-    "prestart": "npm run build:dev",
-    "start": "npx http-server . -p 3000",
+    "dev": "vite",
     "build": "npm run build:prod",
-    "build:dev": "webpack --mode development",
-    "build:prod": "webpack --mode production",
-    "dev": "webpack serve --mode development --port 3000",
-    "watch": "webpack --watch --mode development",
+    "build:dev": "vite build --mode development",
+    "build:prod": "vite build --mode production",
     "prepare": "husky",
-    "analyze": "webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+    "analyze": "vite build --mode production && vite-bundle-visualizer",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "jquery": "^3.7.1",
     "matter-js": "^0.20.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.5",
     "@babel/plugin-transform-modules-commonjs": "^7.20.11",
-    "ajv": "^8.17.1",
     "babel-jest": "^30.2.0",
-    "css-loader": "^7.1.2",
     "eslint": "^9.39.2",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-unused-imports": "^4.3.0",
-    "eslint-webpack-plugin": "^5.0.2",
-    "exports-loader": "^5.0.0",
-    "file-loader": "^6.2.0",
     "husky": "^9.1.7",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
     "prettier": "^3.7.4",
-    "style-loader": "^4.0.0",
-    "webpack": "^5.103.0",
-    "webpack-bundle-analyzer": "^5.1.0",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.2"
+    "vite": "^7.3.0",
+    "vite-bundle-visualizer": "^1.2.1",
+    "vite-plugin-css-injected-by-js": "^3.5.2"
   }
 }
