@@ -165,14 +165,15 @@ const getRule1Text = (customer, language, game) => {
 
   // Catch game by language
   if (game === 'catch') {
+    if (language === 'LT') return 'tik geras prekes.';
     if (language === 'EN') return 'to get points.';
     if (language === 'ES') return 'para obtener puntos.';
   }
 
   // Crush game by language
   if (game === 'crush') {
+    if (language === 'LT') return '3 ar daugiau vienodų prekių.';
     if (language === 'ES') return "Tres o más helados 'Toni'";
-    return 'kartu 3 ar daugiau prekes.';
   }
 
   if (game === 'flappy') {
@@ -225,7 +226,16 @@ const getRule2Title = (customer, language, game) => {
   }
 
   // Game-specific defaults
+  if (game === 'catch') {
+    if (language === 'LT') return 'Venk';
+  }
+
+  if (game === 'crush') {
+    if (language === 'LT') return 'Kartok';
+  }
+
   if (game === 'doodle') {
+    if (language === 'LT') return 'Kartok';
     if (language === 'LV') return 'SPĒLĒ VĒLREIZ,';
   }
 
@@ -236,6 +246,10 @@ const getRule2Title = (customer, language, game) => {
   if (game === 'flappy') {
     if (language === 'LT') return 'Venk';
     if (language === 'LV') return 'Izvairies';
+  }
+
+  if (game === 'runner') {
+    if (language === 'LT') return 'Rink';
   }
 
   // Language-specific defaults
@@ -281,9 +295,16 @@ const getRule2Text = (customer, language, game) => {
   // Apranga
   if (customer === 'Apranga') return 'siekdami geresnio rezultato.';
 
-  // Doodle game LV special
-  if (game === 'drive') {
-    if (language === 'LV') return 'lai uzlabotu savu rezultātu.';
+  if (game === 'catch') {
+    if (language === 'LT') return 'blogų – neprarask žaidimo gyvybės.';
+  }
+
+  if (game === 'crush') {
+    if (language === 'LT') return 'ir pagerink rezultatą.';
+  }
+
+  if (game === 'doodle') {
+    if (language === 'LT') return 'ir pagerink rezultatą.';
   }
 
   if (game === 'drive') {
@@ -294,6 +315,10 @@ const getRule2Text = (customer, language, game) => {
   if (game === 'flappy') {
     if (language === 'LT') return 'kliūčių.';
     if (language === 'LV') return 'no šķēršļiem.';
+  }
+
+  if (game === 'runner') {
+    if (language === 'LT') return 'monetas, įveikiant kliūtis.';
   }
 
   if (language === 'LT') return 'siekdamas kuo geresnio rezultato.';
@@ -324,12 +349,6 @@ const getRule3Title = (customer, language, game) => {
   if (customer === 'Toni' && game === 'crush') return 'Acumula Más Puntos';
   if (customer === 'Toni' && (game === 'flappy' || game === 'doodle')) return 'Vuelve';
 
-  // Zemaitijos Pienas
-  if (customer === 'Zemaitijos Pienas') {
-    if (language === 'LT') return 'Mėgaukis';
-    if (language === 'LV') return 'Baudi';
-  }
-
   if (customer === 'Elesen') {
     if (game === 'doodle') {
       if (language === 'LT') return 'Mėgaukis';
@@ -344,6 +363,10 @@ const getRule3Title = (customer, language, game) => {
   // Apranga
   if (customer === 'Apranga') return 'MĖGAUKITĖS';
 
+  if (game === 'catch') {
+    if (language === 'LT') return 'Kartok';
+  }
+
   if (game === 'drive') {
     if (language === 'LT') return 'Kartok';
   }
@@ -351,6 +374,10 @@ const getRule3Title = (customer, language, game) => {
   if (game === 'flappy') {
     if (language === 'LT') return 'Kartok';
     if (language === 'LV') return 'Atkārto';
+  }
+
+  if (game === 'runner') {
+    if (language === 'LT') return 'Kartok';
   }
 
   // Language-specific defaults
@@ -399,9 +426,12 @@ const getRule3Text = (customer, language, game) => {
   // Apranga
   if (customer === 'Apranga') return 'žaidimu.';
 
-  // Doodle game LV special
+  if (game === 'crush') {
+    if (language === 'LT') return 'žaidimu.';
+  }
+
   if (game === 'doodle') {
-    if (language === 'LV') return 'katru dienu!';
+    if (language === 'LT') return 'žaidimu.';
   }
 
   if (game === 'drive') {
