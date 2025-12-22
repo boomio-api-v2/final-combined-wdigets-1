@@ -6,7 +6,7 @@ const getRulesTitle = (customer, language) => {
   if (language === 'LT') return 'TAISYKLĖS';
   if (language === 'LV') return 'NOTEIKUMI';
   if (language === 'RU') return 'ПРАВИЛА';
-  if (language === 'ET') return 'MÄNGUREEGLID';
+  if (language === 'ET') return 'REEGLID';
   if (language === 'ES') return 'REGLAS';
   if (language === 'FI') return 'Säännöt';
   if (language === 'EN') return 'RULES';
@@ -35,6 +35,9 @@ const getRule1Title = (customer, language, game) => {
       if (language === 'LT') return 'Judėk';
       if (language === 'LV') return 'Kusties';
       if (language === 'ET') return 'Liigu';
+    }
+    if (game === 'flappy') {
+      if (language === 'ET') return 'Vajuta,';
     }
   }
 
@@ -123,6 +126,9 @@ const getRule1Text = (customer, language, game) => {
       if (language === 'LT') return 'į šonus, kad nenukristum.';
       if (language === 'LV') return 'uz sāniem, lai nenokristu.';
       if (language === 'ET') return 'külgedele, et vältida kukkumist.';
+    }
+    if (game === 'flappy') {
+      if (language === 'ET') return 'et tõusta.';
     }
   }
 
@@ -213,6 +219,9 @@ const getRule2Title = (customer, language, game) => {
       if (language === 'LV') return 'Atkārtojiet,';
       if (language === 'ET') return 'Korda,';
     }
+    if (game === 'flappy') {
+      if (language === 'ET') return 'Väldi';
+    }
   }
 
   // Game-specific defaults
@@ -226,6 +235,7 @@ const getRule2Title = (customer, language, game) => {
 
   if (game === 'flappy') {
     if (language === 'LT') return 'Venk';
+    if (language === 'LV') return 'Izvairies';
   }
 
   // Language-specific defaults
@@ -257,6 +267,9 @@ const getRule2Text = (customer, language, game) => {
       if (language === 'LV') return 'lai uzlabotu savu rezultātu.';
       if (language === 'ET') return 'et oma skoori parandada.';
     }
+    if (game === 'flappy') {
+      if (language === 'ET') return 'takistusi.';
+    }
   }
 
   // Toni variations by game
@@ -280,6 +293,7 @@ const getRule2Text = (customer, language, game) => {
 
   if (game === 'flappy') {
     if (language === 'LT') return 'kliūčių.';
+    if (language === 'LV') return 'no šķēršļiem.';
   }
 
   if (language === 'LT') return 'siekdamas kuo geresnio rezultato.';
@@ -322,6 +336,9 @@ const getRule3Title = (customer, language, game) => {
       if (language === 'LV') return 'Izbaudi';
       if (language === 'ET') return 'Naudi';
     }
+    if (game === 'flappy') {
+      if (language === 'ET') return 'Korda,';
+    }
   }
 
   // Apranga
@@ -333,6 +350,7 @@ const getRule3Title = (customer, language, game) => {
 
   if (game === 'flappy') {
     if (language === 'LT') return 'Kartok';
+    if (language === 'LV') return 'Atkārto';
   }
 
   // Language-specific defaults
@@ -369,6 +387,9 @@ const getRule3Text = (customer, language, game) => {
       if (language === 'LT') return 'žaidimu.';
       if (language === 'LV') return 'spēli.';
       if (language === 'ET') return 'mängu.';
+    }
+    if (game === 'flappy') {
+      if (language === 'ET') return 'et oma skoori parandada.';
     }
   }
 
