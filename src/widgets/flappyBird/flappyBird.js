@@ -238,12 +238,16 @@ const shouldSkipIntro = (customer, language, campaignUrlOrCurrentPage) => {
   return getIntro(customer, language, campaignUrlOrCurrentPage) === '';
 };
 
-const getBrandColor = (customer) => {
-  if (customer === 'Dentsu') return '#FE5022';
+const getBrandColor = (customer, language) => {
   if (customer.includes('demo')) return '#0A3533';
   if (customer === 'LemonGym' || customer === 'LemonFeel') return '#FF00FF';
-  if (customer === 'Tiche') return '#065DA4';
   if (customer === 'Toni') return '#000F9F';
+  if (customer === 'Elesen') {
+    if (language === 'LT') {
+      return '#5700D4';
+    }
+    return '#FCC802';
+  }
   return '#C6152F';
 };
 
@@ -1133,6 +1137,7 @@ ${`<div style="${
       <div class="flappy-container">
             <div class="boomio-score-input-container" style="box-sizing:border-box;display:none;width:130px;box-shadow:0px 3px 6px 0px rgba(30, 30, 30, 0.30);height:40px;padding:7px;background:${getBrandColor(
               this.customer,
+              this.language,
             )};border-radius:35px">
     <div style="width: 148px;top:-15px;left:10px; height: 100%; position: relative; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex;">
     <img src=${star} alt="Image Description 7" style="width: 20px; height: 20px;margin-top:18px"></img>
