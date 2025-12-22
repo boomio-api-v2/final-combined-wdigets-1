@@ -54,6 +54,12 @@ import {
   itemKakeMake,
 } from './constants';
 
+const isOneImageVisible = (customer) => {
+  if (customer === 'Elesen' || customer === 'KakeMake') {
+    return true;
+  }
+};
+
 export class DidYouKnowContainer {
   constructor() {
     this.config = localStorageService.getDefaultConfig();
@@ -178,7 +184,6 @@ export class DidYouKnowContainer {
       // Handle Glass collectables
       this.collectables = [item1Nevezis, item2Nevezis, item3Nevezis, item4Nevezis, item5Nevezis, item6Nevezis, item7Nevezis, item8Nevezis, item9Nevezis];
     } else if (this.customer === 'Elesen') {
-      // Handle Glass collectables
       this.collectables = [this.language === 'LT' ? itemElesenLT : this.language === 'LV' ? itemElesenLV : itemElesenET];
     } else if (this.customer === 'KakeMake') {
       // Handle Glass collectables
@@ -204,7 +209,9 @@ export class DidYouKnowContainer {
         'https://www.pegasas.lt/sunyciai-patruliai-advento-kalendorius-1114538',
       ];
     } else if (this.customer === 'Elesen') {
-      this.collectablesLinks = [this.language === 'LT' ? 'https://www.elesen.lt/black-friday' : this.language === 'LV' ? 'https://www.euronics.lv/blackfriday' : 'https://www.euronics.ee/mustreede'];
+      this.collectablesLinks = [
+        this.language === 'LT' ? 'https://www.elesen.lt/kampanijos/944' : this.language === 'LV' ? 'https://www.euronics.lv/kampanas/6415' : 'https://www.euronics.ee/kampaaniad/7252',
+      ];
     } else if (this.customer === 'KakeMake') {
       this.collectablesLinks = [
         this.campaignUrlOrCurrentPage.includes('maxima')
@@ -318,19 +325,19 @@ export class DidYouKnowContainer {
           tableHTML += '<tr style="border-spacing:2px;border-collapse:separate;background-color:transparent;">';
         }
         tableHTML += `
-          <td ${this.customer === 'KakeMake' ? 'colspan="3"' : ''} style="padding:5px;text-align: center; border: none; ${this.customer === 'Pegasas' || this.customer === 'Pigu.lt' || this.customer === 'KakeMake' ? 'cursor:pointer' : ''}">
-          <div id="image-${index}" style="${this.customer === 'KakeMake' ? 'display:flex;justify-content:center;align-items:center;width:100%;' : ''}" >
+          <td ${isOneImageVisible(this.customer) ? 'colspan="3"' : ''} style="padding:5px;text-align: center; border: none; ${this.customer === 'Pegasas' || this.customer === 'Pigu.lt' || isOneImageVisible(this.customer) ? 'cursor:pointer' : ''}">
+          <div id="image-${index}" style="${isOneImageVisible(this.customer) ? 'display:flex;justify-content:center;align-items:center;width:100%;' : ''}" >
           <img class='image-container' style='opacity:1;max-width: none; height: auto; object-fit: contain;max-height:
-            ${this.customer === 'Pigu.lt' ? '100px' : this.customer === 'KakeMake' ? '350px' : '70px'} !important;' src=${item} alt="Scoreboard Image" >
+            ${this.customer === 'Pigu.lt' ? '100px' : isOneImageVisible(this.customer) ? '350px' : '70px'} !important;' src=${item} alt="Scoreboard Image" >
         
         ${
-          ((this.customer === 'Pegasas' || this.customer === 'KakeMake') && this.collectablesLinks[index]) || (this.customer === 'Pigu.lt' && link)
+          ((this.customer === 'Pegasas' || isOneImageVisible(this.customer)) && this.collectablesLinks[index]) || (this.customer === 'Pigu.lt' && link)
             ? `<div class='image-container-text'><a href="${
-                this.customer === 'Pegasas' || this.customer === 'KakeMake'
+                this.customer === 'Pegasas' || isOneImageVisible(this.customer)
                   ? this.collectablesLinks[index]
                   : this.customer === 'Pigu.lt' && link.url + '&utm_source=Boomio&utm_medium=Gamification&utm_campaign=Black_Friday'
               }" target="_blank" style="color: white; text-decoration: underline;"><p style="margin-left:10px;margin-right:10px;max-width:280px;line-height:10px;">${
-                this.customer === 'Pegasas' || this.customer === 'KakeMake' ? this.collectablesLinks[index] : this.customer === 'Pigu.lt' && link.title
+                this.customer === 'Pegasas' || isOneImageVisible(this.customer) ? this.collectablesLinks[index] : this.customer === 'Pigu.lt' && link.title
               }<p/></a></div>`
             : ''
         }
@@ -441,7 +448,7 @@ export class DidYouKnowContainer {
       this.containerDiv.querySelector('.boomio-scoreboard-text').innerHTML = scoreboardText;
     }
 
-    if (this.customer === 'Pegasas' || this.customer === 'Pigu.lt' || this.customer === 'KakeMake') {
+    if (this.customer === 'Pegasas' || this.customer === 'Pigu.lt' || isOneImageVisible(this.customer)) {
       document.getElementById('closeDidYouKnow').addEventListener('click', () => {
         // Find all enlarged images by checking for the 'enlarge-image' class
         const enlargedImages = document.querySelectorAll('.enlarge-image');
@@ -477,8 +484,7 @@ export class DidYouKnowContainer {
   }
 
   handleImageClick(image) {
-    // For Elesen, directly open the link without zoom effect
-    if (this.customer === 'KakeMake') {
+    if (isOneImageVisible(this.customer)) {
       const linkElement = image.querySelector('.image-container-text a');
       if (linkElement) {
         const url = linkElement.href;
@@ -564,11 +570,11 @@ export class DidYouKnowContainer {
                       : this.customer === 'Nevezis'
                         ? 'ATRASK SAVO SKONĮ'
                         : this.customer === 'Elesen' && this.language === 'LT'
-                          ? 'Ar jau matei mūsų TOP pasiūlymus?'
+                          ? 'AR JAU MATEI TOP PASIŪLYMUS?'
                           : this.customer === 'Elesen' && this.language === 'LV'
                             ? 'VAI ESI REDZĒJIS TOP PIEDĀVĀJUMUS?'
                             : this.customer === 'Elesen' && this.language === 'ET'
-                              ? 'Kas oled juba näinud meie TOP pakkumisi?'
+                              ? 'KAS OLED MÄRGANUD MEIE PARIMAID PAKKUMISI?'
                               : this.customer === 'KakeMake'
                                 ? 'Lietuviškos daržvovės jau atvyko!'
                                 : this.language === 'LT'
@@ -582,12 +588,12 @@ export class DidYouKnowContainer {
     containerDiv.innerHTML += `
               </div>
       <div  style="width:100%;height: ${'302px'}; top: ${
-        this.customer === 'Pegasas' ? '100px' : this.customer === 'Pieno Žvaigždės' ? '174px' : this.customer === 'Nykstukas' ? '230px' : this.customer === 'KakeMake' ? '130px' : '114px'
+        this.customer === 'Pegasas' ? '100px' : this.customer === 'Pieno Žvaigždės' ? '174px' : this.customer === 'Nykstukas' ? '230px' : isOneImageVisible(this.customer) ? '130px' : '114px'
       }; position: absolute; border-right:none;">
         <div class="boomio-custom-scrollbar">
           <table style="margin-top:${this.customer === 'Pigu.lt' ? (this.isMobileWidthSmall ? '30px' : '40px') : '30px'};border-spacing:3px;width:${
             this.isMobileWidthSmall ? 'calc(100% - 40px)' : 'calc(100% - 80px)'
-          };margin-left:${this.customer === 'KakeMake' ? 'auto' : this.isMobileWidthSmall ? '20px' : '40px'};margin-right:${this.customer === 'KakeMake' ? 'auto' : '0'};border-collapse:separate">
+          };margin-left:${isOneImageVisible(this.customer) ? 'auto' : this.isMobileWidthSmall ? '20px' : '40px'};margin-right:${isOneImageVisible(this.customer) ? 'auto' : '0'};border-collapse:separate">
             <tbody class="boomio-tbody" style="background-color:transparent">
     `;
 
@@ -601,14 +607,14 @@ export class DidYouKnowContainer {
           <div style="width:100%;font-size:${
             this.isSmallMobile ? '8px' : this.isMobile ? '10px' : '12px'
           };text-align:center;text-transform:uppercase;top:555px;position:absolute;margin-top:2px;height: 22px; justify-content: center; align-items: center; display: flex;font-weight:600;background-size: contain;">
-          <div style="display:${this.customer === 'Pigu.lt' || this.customer === 'KakeMake' ? 'block' : 'none'};border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 38px; background: ${
-            this.customer === 'Pigu.lt' ? '#F34434' : this.customer === 'KakeMake' ? 'white' : 'none'
-          }; box-shadow: ${this.customer === 'KakeMake' ? '-4px -4px 8px #DFE6F5 inset' : 'none'}; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
+          <div style="display:${this.customer === 'Pigu.lt' || isOneImageVisible(this.customer) ? 'block' : 'none'};border-radius:35px;width: calc(100% - 40px);margin-left:20px;margin-right:20px;top:585px;height: 38px; background: ${
+            this.customer === 'Pigu.lt' ? '#F34434' : isOneImageVisible(this.customer) ? 'white' : 'none'
+          }; box-shadow: ${isOneImageVisible(this.customer) ? '-4px -4px 8px #DFE6F5 inset' : 'none'}; overflow: hidden; justify-content: center; align-items: center; gap: 11px; display: flex;font-family:Georama" id="boomio-game-link-to-web">
       ${
-        this.customer === 'KakeMake'
+        isOneImageVisible(this.customer)
           ? `<a style="text-decoration:none;color:rgba(61, 73, 40, 1);font-size:24px;font-weight:700;line-height:24px;cursor:pointer;" target="_blank" href="${
               this.collectablesLinks[0]
-            }">${this.language === 'LT' ? 'PLAUTOS LIETUVIŠKOS MORKOS' : this.language === 'LV' ? 'SKATĪT PIEDĀVĀJUMUS' : 'VAATA PAKKUMISI'}</a>`
+            }">${this.customer === 'KakeMake' ? 'PLAUTOS LIETUVIŠKOS MORKOS' : this.language === 'LT' ? 'Atrask Hisense pasiūlymus!' : this.language === 'LV' ? 'Atklāj Hisense piedāvājumus!' : this.language === 'ET' ? 'Vaata Hisense pakkumisi' : ''}</a>`
           : this.customer === 'Pigu.lt'
             ? this.language === 'EN'
               ? '<a style="text-decoration:none;color:white" target="_blank" href="https://pigu.lt">Discover the best Pigu.lt deals!</a>'

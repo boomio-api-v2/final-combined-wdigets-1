@@ -17,6 +17,18 @@ import { ShareContainer } from '../helpers/ShareContainer';
 import { Elements } from '../helpers/HtmlElementsHelper';
 import { InputRegisterContainerValidation } from '../helpers/InputRegisterContainerValidation.js';
 
+// Helper function to get tap text based on language
+const getTapText = (language) => {
+  if (language === 'LT') return 'BAKST';
+  if (language === 'LV') return 'BAKSTI';
+  if (language === 'EN') return 'TAP';
+  if (language === 'RU') return 'КЛИК';
+  if (language === 'ET') return 'PUUDUTA';
+  if (language === 'ES') return 'TAP';
+  if (language === 'FI') return 'NAPSAUTA';
+  return 'TAP';
+};
+
 import {
   close,
   introGif,
@@ -233,6 +245,12 @@ const getBrandColor = (customer) => {
   if (customer === 'Tiche') return '#065DA4';
   if (customer === 'Toni') return '#000F9F';
   return '#C6152F';
+};
+
+const isDidYouKnowVisible = (customer) => {
+  if (customer === 'Elesen') {
+    return true;
+  }
 };
 
 class FlappyBird {
@@ -816,8 +834,10 @@ class FlappyBird {
 
                   if (this.showCompetitiveRegistration === 'competition') {
                     let competitionTableContainer = '';
-                    if (this.customer === 'Nykstukas') {
-                      competitionTableContainer = document.querySelector('.did-you-know-container');
+                    if (isDidYouKnowVisible(this.customer)) {
+                      competitionTableContainer = Elements.didYouKnowContainer;
+                    } else if (this.customer === 'Perlas GO') {
+                      competitionTableContainer = Elements.shareContainer;
                     } else {
                       competitionTableContainer = document.querySelector('.competition-table-container');
                     }
@@ -1105,48 +1125,8 @@ alt="Image Description 5" style="width: 100%; height: 100%;">
 ${`<div style="${
   this.customer === 'Fpro' ? 'gap:50px' : 'gap:20px'
 };display:flex;color: #FFF;text-shadow: 4px 4px 14px rgba(255, 255, 255, 0.41);font-family: Georama;font-size: 26px;font-weight: 900;line-height: 130%; /* 33.8px */ letter-spacing: -0.16px;text-transform: uppercase;">
-    <div>${
-      this.language === 'LV'
-        ? 'KLIKŠĶINI'
-        : this.language === 'EN'
-          ? 'TAP'
-          : this.language === 'RU'
-            ? 'КЛИК'
-            : this.language === 'ET'
-              ? 'TAP'
-              : this.language === 'ET'
-                ? 'TÄPI'
-                : this.language === 'ES'
-                  ? 'TAP'
-                  : this.customer === 'Fpro'
-                    ? 'TAP'
-                    : this.language === 'FI'
-                      ? 'NAPSAUTA'
-                      : this.customer === 'SaludSA'
-                        ? 'TAP'
-                        : 'BAKST'
-    }</div>
-    <div>${
-      this.language === 'LV'
-        ? 'KLIKŠĶINI'
-        : this.language === 'EN'
-          ? 'TAP'
-          : this.language === 'RU'
-            ? 'КЛИК'
-            : this.language === 'ET'
-              ? 'TÄPI'
-              : this.language === 'ET'
-                ? 'TAP'
-                : this.language === 'ES'
-                  ? 'TAP'
-                  : this.customer === 'Fpro'
-                    ? 'TAP'
-                    : this.language === 'FI'
-                      ? 'NAPSAUTA'
-                      : this.customer === 'SaludSA'
-                        ? 'TAP'
-                        : 'BAKST'
-    }</div>
+    <div>${getTapText(this.language)}</div>
+    <div>${getTapText(this.language)}</div>
   </div><img src=${tapImageBarbora} alt="Image Description 6" style="margin-left:50px;width: 71px; height: 54px;">`}
 
 </div>
@@ -1257,27 +1237,34 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
         }
       }
     }
+
     if (this.showCompetitiveRegistration === 'collectable') {
       const gameContainer = document.querySelector('.game-container-flappy');
       this.scoreTableContainerInstance = new CollectionScoreTableContainer(this.customer, this.collectables, this.collection, this.just_won);
       gameContainer.appendChild(this.scoreTableContainerInstance.containerDiv);
     }
+
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
       this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(this.customer, this.scoreTable);
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
+
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
-    if (this.customer === 'Nykstukas') {
+
+    if (isDidYouKnowVisible(this.customer)) {
       const gameContainer = document.querySelector('.game-container');
 
       const didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
+    }
 
+    if (this.customer === 'Nykstukas') {
+      const gameContainer = document.querySelector('.game-container');
       this.shareContainer = new ShareContainer();
       gameContainer.appendChild(this.shareContainer.containerDiv);
     }
@@ -1362,10 +1349,17 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
         }
       };
 
-      const clickEventHandlerDidYouKnow = (closeShare) => {
-        const shareContainer = document.querySelector('.share-container');
+      const clickEventHandlerDidYouKnow = () => {
+        let didYouKnowTableContainer;
 
-        const didYouKnowTableContainer = closeShare ? document.querySelector('.share-container') : document.querySelector('.did-you-know-container');
+        if (Elements.isVisible(Elements.didYouKnowContainer)) {
+          didYouKnowTableContainer = Elements.didYouKnowContainer;
+        }
+
+        if (Elements.isVisible(Elements.shareContainer)) {
+          didYouKnowTableContainer = Elements.shareContainer;
+        }
+
         didYouKnowTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
         setTimeout(() => {
           didYouKnowTableContainer.style.height = '10px';
@@ -1375,56 +1369,16 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
         setTimeout(() => {
           didYouKnowTableContainer.style.display = 'none';
         }, 1000);
-        if (shareContainer && !closeShare) {
-          shareContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          shareContainer.style.display = 'block';
 
-          setTimeout(() => {
-            shareContainer.style.height = '680px';
-            shareContainer.style.top = 'calc(50%)';
-            shareContainer.style.opacity = 1;
-          }, 100);
-        } else {
-          if (this.customer === 'Nykstukas') {
-            boomioService
-              .signal('ROUND_FINISHED', 'signal', {
-                score: this.currentScore,
-                shared_somewhere: this.shareClicked,
-              })
-              .then((response) => {
-                this.userBestPlace = response.user_best_place;
-                if (this.showCompetitiveRegistration === 'points') {
-                  this.scoreTable = response;
-                  this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable, this.currentScore);
-                }
-                if (this.showCompetitiveRegistration === 'competition') {
-                  this.scoreTable = response;
-                  this.scoreTableContainerInstance.updateProps(this.customer, this.scoreTable);
-                }
+        const competitionTableContainer = document.querySelector('.competition-table-container');
+        competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
+        competitionTableContainer.style.display = 'block';
 
-                if (this.showCompetitiveRegistration === 'collectable') {
-                  this.collection = response?.collection ? response?.collection : this.collection;
-                  this.just_won = response?.just_won ? response?.just_won : this.just_won;
-                  this.scoreTableContainerInstance.updateProps(this.customer, this.collectables, this.collection, this.just_won);
-                }
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
-          }
-
-          const competitionTableContainer = document.querySelector('.competition-table-container');
-          competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';
-          competitionTableContainer.style.display = 'block';
-
-          setTimeout(() => {
-            competitionTableContainer.style.height = '680px';
-
-            competitionTableContainer.style.top = 'calc(50%)';
-
-            competitionTableContainer.style.opacity = 1;
-          }, 100);
-        }
+        setTimeout(() => {
+          competitionTableContainer.style.height = '680px';
+          competitionTableContainer.style.top = 'calc(50%)';
+          competitionTableContainer.style.opacity = 1;
+        }, 100);
       };
 
       const clickEventHandlerResetGame = () => {
@@ -1489,11 +1443,13 @@ ${new InputContainer().createInputContainerDiv().outerHTML}
         const competitionRestart = document.getElementById('boomio-game-play-again-pigu');
         competitionRestart.addEventListener('click', this.showRulesPigu);
       }
-      if (this.customer === 'Nykstukas') {
-        const competitionDidYouKnow = document.getElementById('boomio-close-did-you-know');
-        competitionDidYouKnow.addEventListener('click', () => clickEventHandlerDidYouKnow(false));
-        const competitionShare = document.getElementById('boomio-close-share');
-        competitionShare.addEventListener('click', () => clickEventHandlerDidYouKnow(true));
+
+      if (Elements.shareCloseButton) {
+        Elements.shareCloseButton.addEventListener('click', clickEventHandlerDidYouKnow);
+      }
+
+      if (Elements.didYouKnowCloseButton) {
+        Elements.didYouKnowCloseButton.addEventListener('click', clickEventHandlerDidYouKnow);
       }
     }
 

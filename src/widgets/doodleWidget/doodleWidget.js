@@ -1567,14 +1567,15 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
       this.competitionCodeScoreTableContainerPigu = new CompetitionCodeScoreTableContainerPigu(this.customer, this.scoreTable);
       gameContainer.appendChild(this.competitionCodeScoreTableContainerPigu.containerDiv);
     }
+
     if (this.customer === 'Pigu.lt') {
       const gameContainer = document.querySelector('.game-container');
       this.rulesContainer = new RulesContainer(this.customer, this.scoreTable);
       gameContainer.appendChild(this.rulesContainer.containerDiv);
     }
+
     if (isDidYouKnowVisible(this.customer)) {
       const gameContainer = document.querySelector('.game-container');
-
       const didYouKnowContainer = new DidYouKnowContainer();
       gameContainer.appendChild(didYouKnowContainer.containerDiv);
     }
@@ -1803,6 +1804,7 @@ ${new GameOverContainer().createGameOverContainerDiv().outerHTML}
         setTimeout(() => {
           didYouKnowTableContainer.style.display = 'none';
         }, 1000);
+
         const competitionTableContainer = document.querySelector('.competition-table-container');
         toggleBackgroundBlur(true, this.customer, this.language);
         competitionTableContainer.style.transition = 'height 1s ease, top 1s ease, opacity 1s ease';

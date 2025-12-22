@@ -1,9 +1,9 @@
 import './styles.css';
 import './services/boomio';
 
-// Vite HMR - Force full page reload for widget changes
-if (import.meta.hot) {
-  import.meta.hot.accept(() => {
-    window.location.reload();
-  });
-}
+// Vite HMR - Force full page reload on any changes
+// if (import.meta.hot) {
+//   import.meta.hot.dispose(() => {
+//     window.location.reload();
+//   });
+// }

@@ -423,6 +423,11 @@ const getRule4Title = (customer, language, game) => {
       if (language === 'LV') return 'Laimē PS5!';
       if (language === 'ET') return 'Võida PS5!';
     }
+    if (game === 'flappy') {
+      if (language === 'LT') return 'Laimėk 55" Hisense televizorių!';
+      if (language === 'LV') return 'Laimē 55" Hisense televizoru!';
+      if (language === 'ET') return 'Võida 55" Hisense teler!';
+    }
   }
 
   // Language-specific defaults
@@ -450,9 +455,8 @@ const getRule4Text = (customer, language, game) => {
   if (customer === 'Nevezis') return 'puikius „oho!" prizus!';
 
   if (customer === 'Elesen') {
-    if (game === 'doodle') {
-      return '';
-    }
+    if (game === 'doodle') return '';
+    if (game === 'flappy') return '';
   }
 
   // Language-specific defaults

@@ -29,6 +29,7 @@ export class InputRegisterContainer {
     this.customer = this.config.business_name;
     this.language = this.config.language;
     this.teams = this.config.teams;
+    this.game = this.config.game;
     // Preload checkbox images to avoid reloading on each toggle
     this.preloadCheckboxImages();
   }
@@ -387,14 +388,14 @@ export class InputRegisterContainer {
 
 
       <div style="width: calc(100% - 54px); height: 45px; left: 28px;display:${
-        this.customer === 'Toni' || this.customer === 'Elesen' ? 'block' : 'none' //by default should be hidden for all customers
+        this.customer === 'Toni' || (this.customer === 'Elesen' && this.game === 'doodle') ? 'block' : 'none' //by default should be hidden for all customers
       }; top: ${
         this.customer === 'Toni' ? '124px' : '204px'
       }; position: absolute; background: ${'white'}; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25) inset; border-radius: 35px; border: ${'1px rgba(164,164,164,0.9) solid'}"></div>
 
       <input id="boomio-competition-name-input-field" class="boomio-competition-name-input-field"       
       type="text" maxLength=50 style="display:${
-        this.customer === 'Toni' || this.customer === 'Elesen' ? 'block' : 'none' //by default should be hidden for all customers
+        this.customer === 'Toni' || (this.customer === 'Elesen' && this.game === 'doodle') ? 'block' : 'none' //by default should be hidden for all customers
       };box-shadow:none;padding:0px;border:none;width:calc(100% - 94px);position: absolute; left: 51px; top: ${
         this.customer === 'Toni' ? '135px' : this.customer === 'Nykstukas' ? '315px' : '215px'
       };height:30px; opacity: 0.60;background-color: ${'white'}; text-align: start; color:  ${
