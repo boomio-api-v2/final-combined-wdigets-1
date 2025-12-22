@@ -1,12 +1,14 @@
 {
   "name": "boomio-widgets",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "start": "npm run dev",
     "dev": "vite",
     "build": "npm run build:prod",
     "build:dev": "vite build --mode development",
-    "build:prod": "vite build --mode production",
+    "build:prod": "vite build --mode production && node obfuscate.js",
+    "build:prod:no-obfuscate": "vite build --mode production",
     "prepare": "husky",
     "analyze": "vite build --mode production && vite-bundle-visualizer",
     "test": "jest",
@@ -24,11 +26,13 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-unused-imports": "^4.3.0",
     "husky": "^9.1.7",
+    "javascript-obfuscator": "^5.1.0",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
     "prettier": "^3.7.4",
     "vite": "^7.3.0",
     "vite-bundle-visualizer": "^1.2.1",
-    "vite-plugin-css-injected-by-js": "^3.5.2"
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-javascript-obfuscator": "^3.1.0"
   }
 }
