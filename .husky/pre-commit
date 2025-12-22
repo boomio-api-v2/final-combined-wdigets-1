@@ -1,1 +1,2 @@
-node -e "const {execSync} = require('child_process'); const files = execSync('git diff --cached --name-only', {encoding: 'utf8'}); if (/package(-lock)?\.json|npm-shrinkwrap\.json/.test(files)) { console.log('Dependency files changed. Running tests and build...'); execSync('npm test', {stdio: 'inherit'}); execSync('npm run build', {stdio: 'inherit'}); } else { console.log('No dependency changes detected. Skipping tests/build.'); }"
+npm run lint
+npm run format:check
