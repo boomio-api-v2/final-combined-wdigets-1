@@ -23,7 +23,7 @@ const translations = {
   },
 };
 
-//Should be used everywhere (really everywhere)
+//Should be used with every customer (really everywhere)
 export class CompetitionScoreTableContainer {
   constructor(customer, scoreTable) {
     this.customer = customer;
@@ -572,6 +572,7 @@ export class CompetitionScoreTableContainer {
         (this.customer === 'Pigu.lt' && this.scoreTable.user_best_score >= 500) ||
         (this.customer === 'Apranga' && this.scoreTable.user_best_place <= 100) ||
         (this.customer === 'Elesen' && this.scoreTable.user_best_place <= 10) ||
+        (this.customer === 'Eldorado' && this.scoreTable.user_best_place <= 10) ||
         (this.customer === 'Boomio' && this.scoreTable.user_best_score >= 0) ||
         (this.customer === 'KakeMake' && this.scoreTable.user_best_score >= 0) ||
         (this.language === 'EN' && this.customer.includes('demo'))

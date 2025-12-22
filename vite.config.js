@@ -64,6 +64,12 @@ export default defineConfig(({ mode }) => {
       fs: {
         strict: false, // Allow serving files from parent directories
       },
+      hmr: {
+        overlay: true, // Show errors overlay
+      },
+      watch: {
+        usePolling: false, // Set to true if you have issues on Windows
+      },
     },
 
     css: {

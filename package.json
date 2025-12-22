@@ -2,6 +2,7 @@
   "name": "boomio-widgets",
   "version": "1.0.0",
   "scripts": {
+    "start": "npm run dev",
     "dev": "vite",
     "build": "npm run build:prod",
     "build:dev": "vite build --mode development",
