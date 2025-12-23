@@ -414,7 +414,7 @@ class BoomioService extends UserService {
             c: signature,
             d: realIP, //generateFakeIPv4(timestamp),
             e: generateFakeIPv6(timestamp),
-            f: 'security_v12',
+            f: 'security_v1223',
           }
         : extra_data,
     };
